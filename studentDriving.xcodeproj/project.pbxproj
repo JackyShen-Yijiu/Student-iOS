@@ -7,6 +7,36 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06F903AC1BF6D8AF0089A71A /* MagicMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903A71BF6D8AF0089A71A /* MagicMainTableViewController.m */; };
+		06F903AD1BF6D8AF0089A71A /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903A91BF6D8AF0089A71A /* MagicDetailViewController.m */; };
+		06F903AE1BF6D8AF0089A71A /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903AB1BF6D8AF0089A71A /* PrivateMessageController.m */; };
+		06F903BB1BF6D8E70089A71A /* MagicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903B01BF6D8E70089A71A /* MagicMainTableViewCell.m */; };
+		06F903BC1BF6D8E70089A71A /* MagicMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06F903B11BF6D8E70089A71A /* MagicMainTableViewCell.xib */; };
+		06F903BD1BF6D8E70089A71A /* DetailPriceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903B31BF6D8E70089A71A /* DetailPriceCell.m */; };
+		06F903BE1BF6D8E70089A71A /* DetailPriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06F903B41BF6D8E70089A71A /* DetailPriceCell.xib */; };
+		06F903BF1BF6D8E70089A71A /* DetailIntroduceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903B61BF6D8E70089A71A /* DetailIntroduceCell.m */; };
+		06F903C01BF6D8E70089A71A /* DetailIntroduceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06F903B71BF6D8E70089A71A /* DetailIntroduceCell.xib */; };
+		06F903C11BF6D8E70089A71A /* PrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903B91BF6D8E70089A71A /* PrivateMessageCell.m */; };
+		06F903C21BF6D8E70089A71A /* PrivateMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06F903BA1BF6D8E70089A71A /* PrivateMessageCell.xib */; };
+		06F903CC1BF6D9000089A71A /* LTBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903C41BF6D9000089A71A /* LTBottomView.m */; };
+		06F903CD1BF6D9000089A71A /* LTBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06F903C51BF6D9000089A71A /* LTBottomView.xib */; };
+		06F903CE1BF6D9000089A71A /* LTNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903C71BF6D9000089A71A /* LTNavigationView.m */; };
+		06F903CF1BF6D9000089A71A /* LTNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06F903C81BF6D9000089A71A /* LTNavigationView.xib */; };
+		06F903D01BF6D9000089A71A /* finishMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903CA1BF6D9000089A71A /* finishMessageView.m */; };
+		06F903D11BF6D9000089A71A /* finishMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06F903CB1BF6D9000089A71A /* finishMessageView.xib */; };
+		06F903D31BF6DAE60089A71A /* 占位图.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F903D21BF6DAE60089A71A /* 占位图.png */; };
+		06F903D51BF6DAF00089A71A /* Back.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F903D41BF6DAF00089A71A /* Back.png */; };
+		06F903D71BF6DAF80089A71A /* 商品_切片_03.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F903D61BF6DAF80089A71A /* 商品_切片_03.png */; };
+		06F903D91BF6DB020089A71A /* 商品_标注_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06F903D81BF6DB020089A71A /* 商品_标注_02.jpg */; };
+		06F903DB1BF6DB0B0089A71A /* 商品_标注333_02.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 06F903DA1BF6DB0B0089A71A /* 商品_标注333_02.jpg */; };
+		06F903DD1BF6DB1A0089A71A /* Light.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F903DC1BF6DB1A0089A71A /* Light.png */; };
+		06F903DF1BF6DB240089A71A /* natigationBar.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F903DE1BF6DB240089A71A /* natigationBar.png */; };
+		06F903E71BF6DB8F0089A71A /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903E41BF6DB8F0089A71A /* ShopModel.m */; };
+		06F903E81BF6DB8F0089A71A /* ShopMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903E61BF6DB8F0089A71A /* ShopMainModel.m */; };
+		06F903EA1BF6F4400089A71A /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F903E91BF6F4400089A71A /* back.png */; };
+		06F903EC1BF6F4EF0089A71A /* bc.png in Resources */ = {isa = PBXBuildFile; fileRef = 06F903EB1BF6F4EF0089A71A /* bc.png */; };
+		06F903EF1BF718EC0089A71A /* MyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903EE1BF718EC0089A71A /* MyWallet.m */; };
+		06F903F21BF737F10089A71A /* InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F903F11BF737F10089A71A /* InfoModel.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		D512569C1BDF602B002717DA /* CommonAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D512569B1BDF602B002717DA /* CommonAddressViewController.m */; };
 		D512569F1BDFAA31002717DA /* SignUpDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D512569E1BDFAA31002717DA /* SignUpDrivingViewController.m */; };
@@ -221,6 +251,51 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06F903A61BF6D8AF0089A71A /* MagicMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicMainTableViewController.h; sourceTree = "<group>"; };
+		06F903A71BF6D8AF0089A71A /* MagicMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicMainTableViewController.m; sourceTree = "<group>"; };
+		06F903A81BF6D8AF0089A71A /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDetailViewController.h; sourceTree = "<group>"; };
+		06F903A91BF6D8AF0089A71A /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicDetailViewController.m; sourceTree = "<group>"; };
+		06F903AA1BF6D8AF0089A71A /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageController.h; sourceTree = "<group>"; };
+		06F903AB1BF6D8AF0089A71A /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
+		06F903AF1BF6D8E70089A71A /* MagicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicMainTableViewCell.h; sourceTree = "<group>"; };
+		06F903B01BF6D8E70089A71A /* MagicMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicMainTableViewCell.m; sourceTree = "<group>"; };
+		06F903B11BF6D8E70089A71A /* MagicMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MagicMainTableViewCell.xib; sourceTree = "<group>"; };
+		06F903B21BF6D8E70089A71A /* DetailPriceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailPriceCell.h; sourceTree = "<group>"; };
+		06F903B31BF6D8E70089A71A /* DetailPriceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailPriceCell.m; sourceTree = "<group>"; };
+		06F903B41BF6D8E70089A71A /* DetailPriceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailPriceCell.xib; sourceTree = "<group>"; };
+		06F903B51BF6D8E70089A71A /* DetailIntroduceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailIntroduceCell.h; sourceTree = "<group>"; };
+		06F903B61BF6D8E70089A71A /* DetailIntroduceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailIntroduceCell.m; sourceTree = "<group>"; };
+		06F903B71BF6D8E70089A71A /* DetailIntroduceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailIntroduceCell.xib; sourceTree = "<group>"; };
+		06F903B81BF6D8E70089A71A /* PrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageCell.h; sourceTree = "<group>"; };
+		06F903B91BF6D8E70089A71A /* PrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageCell.m; sourceTree = "<group>"; };
+		06F903BA1BF6D8E70089A71A /* PrivateMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateMessageCell.xib; sourceTree = "<group>"; };
+		06F903C31BF6D9000089A71A /* LTBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBottomView.h; sourceTree = "<group>"; };
+		06F903C41BF6D9000089A71A /* LTBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBottomView.m; sourceTree = "<group>"; };
+		06F903C51BF6D9000089A71A /* LTBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTBottomView.xib; sourceTree = "<group>"; };
+		06F903C61BF6D9000089A71A /* LTNavigationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTNavigationView.h; sourceTree = "<group>"; };
+		06F903C71BF6D9000089A71A /* LTNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTNavigationView.m; sourceTree = "<group>"; };
+		06F903C81BF6D9000089A71A /* LTNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTNavigationView.xib; sourceTree = "<group>"; };
+		06F903C91BF6D9000089A71A /* finishMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishMessageView.h; sourceTree = "<group>"; };
+		06F903CA1BF6D9000089A71A /* finishMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishMessageView.m; sourceTree = "<group>"; };
+		06F903CB1BF6D9000089A71A /* finishMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = finishMessageView.xib; sourceTree = "<group>"; };
+		06F903D21BF6DAE60089A71A /* 占位图.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "占位图.png"; sourceTree = "<group>"; };
+		06F903D41BF6DAF00089A71A /* Back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Back.png; sourceTree = "<group>"; };
+		06F903D61BF6DAF80089A71A /* 商品_切片_03.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "商品_切片_03.png"; sourceTree = "<group>"; };
+		06F903D81BF6DB020089A71A /* 商品_标注_02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "商品_标注_02.jpg"; sourceTree = "<group>"; };
+		06F903DA1BF6DB0B0089A71A /* 商品_标注333_02.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "商品_标注333_02.jpg"; sourceTree = "<group>"; };
+		06F903DC1BF6DB1A0089A71A /* Light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Light.png; sourceTree = "<group>"; };
+		06F903DE1BF6DB240089A71A /* natigationBar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = natigationBar.png; sourceTree = "<group>"; };
+		06F903E11BF6DB4A0089A71A /* MagicAPIUrl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MagicAPIUrl.h; sourceTree = "<group>"; };
+		06F903E31BF6DB8F0089A71A /* ShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopModel.h; sourceTree = "<group>"; };
+		06F903E41BF6DB8F0089A71A /* ShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopModel.m; sourceTree = "<group>"; };
+		06F903E51BF6DB8F0089A71A /* ShopMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopMainModel.h; sourceTree = "<group>"; };
+		06F903E61BF6DB8F0089A71A /* ShopMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopMainModel.m; sourceTree = "<group>"; };
+		06F903E91BF6F4400089A71A /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		06F903EB1BF6F4EF0089A71A /* bc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bc.png; sourceTree = "<group>"; };
+		06F903ED1BF718EC0089A71A /* MyWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWallet.h; sourceTree = "<group>"; };
+		06F903EE1BF718EC0089A71A /* MyWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWallet.m; sourceTree = "<group>"; };
+		06F903F01BF737F10089A71A /* InfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoModel.h; sourceTree = "<group>"; };
+		06F903F11BF737F10089A71A /* InfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoModel.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -603,6 +678,89 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06F903A21BF6D50F0089A71A /* ExchangeController */ = {
+			isa = PBXGroup;
+			children = (
+				06F903A61BF6D8AF0089A71A /* MagicMainTableViewController.h */,
+				06F903A71BF6D8AF0089A71A /* MagicMainTableViewController.m */,
+				06F903A81BF6D8AF0089A71A /* MagicDetailViewController.h */,
+				06F903A91BF6D8AF0089A71A /* MagicDetailViewController.m */,
+				06F903AA1BF6D8AF0089A71A /* PrivateMessageController.h */,
+				06F903AB1BF6D8AF0089A71A /* PrivateMessageController.m */,
+			);
+			name = ExchangeController;
+			sourceTree = "<group>";
+		};
+		06F903A31BF6D5590089A71A /* Exchange */ = {
+			isa = PBXGroup;
+			children = (
+				06F903A41BF6D5710089A71A /* ExchangeLTView */,
+				06F903A21BF6D50F0089A71A /* ExchangeController */,
+				06F903A51BF6D5740089A71A /* ExchangeCell */,
+				06F903E21BF6DB6E0089A71A /* Model */,
+				06F903E01BF6DB390089A71A /* Commond */,
+			);
+			name = Exchange;
+			sourceTree = "<group>";
+		};
+		06F903A41BF6D5710089A71A /* ExchangeLTView */ = {
+			isa = PBXGroup;
+			children = (
+				06F903C31BF6D9000089A71A /* LTBottomView.h */,
+				06F903C41BF6D9000089A71A /* LTBottomView.m */,
+				06F903C51BF6D9000089A71A /* LTBottomView.xib */,
+				06F903C61BF6D9000089A71A /* LTNavigationView.h */,
+				06F903C71BF6D9000089A71A /* LTNavigationView.m */,
+				06F903C81BF6D9000089A71A /* LTNavigationView.xib */,
+				06F903C91BF6D9000089A71A /* finishMessageView.h */,
+				06F903CA1BF6D9000089A71A /* finishMessageView.m */,
+				06F903CB1BF6D9000089A71A /* finishMessageView.xib */,
+			);
+			name = ExchangeLTView;
+			sourceTree = "<group>";
+		};
+		06F903A51BF6D5740089A71A /* ExchangeCell */ = {
+			isa = PBXGroup;
+			children = (
+				06F903AF1BF6D8E70089A71A /* MagicMainTableViewCell.h */,
+				06F903B01BF6D8E70089A71A /* MagicMainTableViewCell.m */,
+				06F903B11BF6D8E70089A71A /* MagicMainTableViewCell.xib */,
+				06F903B21BF6D8E70089A71A /* DetailPriceCell.h */,
+				06F903B31BF6D8E70089A71A /* DetailPriceCell.m */,
+				06F903B41BF6D8E70089A71A /* DetailPriceCell.xib */,
+				06F903B51BF6D8E70089A71A /* DetailIntroduceCell.h */,
+				06F903B61BF6D8E70089A71A /* DetailIntroduceCell.m */,
+				06F903B71BF6D8E70089A71A /* DetailIntroduceCell.xib */,
+				06F903B81BF6D8E70089A71A /* PrivateMessageCell.h */,
+				06F903B91BF6D8E70089A71A /* PrivateMessageCell.m */,
+				06F903BA1BF6D8E70089A71A /* PrivateMessageCell.xib */,
+			);
+			name = ExchangeCell;
+			sourceTree = "<group>";
+		};
+		06F903E01BF6DB390089A71A /* Commond */ = {
+			isa = PBXGroup;
+			children = (
+				06F903E11BF6DB4A0089A71A /* MagicAPIUrl.h */,
+			);
+			name = Commond;
+			sourceTree = "<group>";
+		};
+		06F903E21BF6DB6E0089A71A /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06F903E31BF6DB8F0089A71A /* ShopModel.h */,
+				06F903E41BF6DB8F0089A71A /* ShopModel.m */,
+				06F903E51BF6DB8F0089A71A /* ShopMainModel.h */,
+				06F903E61BF6DB8F0089A71A /* ShopMainModel.m */,
+				06F903ED1BF718EC0089A71A /* MyWallet.h */,
+				06F903EE1BF718EC0089A71A /* MyWallet.m */,
+				06F903F01BF737F10089A71A /* InfoModel.h */,
+				06F903F11BF737F10089A71A /* InfoModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		4FD586B5C72C30AF6B2C582E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -641,6 +799,7 @@
 		D588AF881BDDB62C000C5D6F /* studentDriving */ = {
 			isa = PBXGroup;
 			children = (
+				06F903A31BF6D5590089A71A /* Exchange */,
 				D5C23FFB1BE8F66200832CF3 /* FourViewController */,
 				D5C23FF71BE8F5E200832CF3 /* ThirdVIewController */,
 				D588B0971BDDDC05000C5D6F /* ProjectCell */,
@@ -806,6 +965,15 @@
 				D588AFEB1BDDDAEB000C5D6F /* 待评价corner.png */,
 				D588AFEC1BDDDAEB000C5D6F /* 完成corner.png */,
 				D588AFED1BDDDAEB000C5D6F /* 预约corner.png */,
+				06F903D21BF6DAE60089A71A /* 占位图.png */,
+				06F903D41BF6DAF00089A71A /* Back.png */,
+				06F903D61BF6DAF80089A71A /* 商品_切片_03.png */,
+				06F903D81BF6DB020089A71A /* 商品_标注_02.jpg */,
+				06F903DA1BF6DB0B0089A71A /* 商品_标注333_02.jpg */,
+				06F903DC1BF6DB1A0089A71A /* Light.png */,
+				06F903DE1BF6DB240089A71A /* natigationBar.png */,
+				06F903E91BF6F4400089A71A /* back.png */,
+				06F903EB1BF6F4EF0089A71A /* bc.png */,
 			);
 			path = ImageSource;
 			sourceTree = "<group>";
@@ -1180,13 +1348,21 @@
 				D588B0041BDDDAEB000C5D6F /* av.jpg in Resources */,
 				D588B0251BDDDB42000C5D6F /* ic_搜索.png in Resources */,
 				D5BCFED51BF222070019402C /* Images.xcassets in Resources */,
+				06F903BC1BF6D8E70089A71A /* MagicMainTableViewCell.xib in Resources */,
+				06F903EA1BF6F4400089A71A /* back.png in Resources */,
 				D5C240081BEA032A00832CF3 /* playImage.png in Resources */,
 				D588B0241BDDDB42000C5D6F /* 首页_预约学车.png in Resources */,
+				06F903D71BF6DAF80089A71A /* 商品_切片_03.png in Resources */,
+				06F903C21BF6D8E70089A71A /* PrivateMessageCell.xib in Resources */,
 				D588B00E1BDDDAF7000C5D6F /* 我的错题.png in Resources */,
+				06F903DB1BF6DB0B0089A71A /* 商品_标注333_02.jpg in Resources */,
 				D588B0031BDDDAEB000C5D6F /* mv.jpg in Resources */,
+				06F903D31BF6DAE60089A71A /* 占位图.png in Resources */,
 				D588B0211BDDDB42000C5D6F /* 首页_我的.png in Resources */,
+				06F903D91BF6DB020089A71A /* 商品_标注_02.jpg in Resources */,
 				D588B01C1BDDDB42000C5D6F /* 首页_报名.png in Resources */,
 				D5C23FF61BE8F4B900832CF3 /* littleImage.png in Resources */,
+				06F903BE1BF6D8E70089A71A /* DetailPriceCell.xib in Resources */,
 				D588AFF71BDDDAEB000C5D6F /* 钱包.png in Resources */,
 				D588B0321BDDDB4D000C5D6F /* 账号.png in Resources */,
 				D588AFFF1BDDDAEB000C5D6F /* starUnSelected30.png in Resources */,
@@ -1196,13 +1372,16 @@
 				D588B0091BDDDAEB000C5D6F /* 预约corner.png in Resources */,
 				D588AFF21BDDDAEB000C5D6F /* locationImage.png in Resources */,
 				D588B0261BDDDB42000C5D6F /* x_pressed.png in Resources */,
+				06F903D51BF6DAF00089A71A /* Back.png in Resources */,
 				D588B0021BDDDAEB000C5D6F /* 心.png in Resources */,
 				D588B00F1BDDDAF7000C5D6F /* 模拟考试.png in Resources */,
 				D588AFF51BDDDAEB000C5D6F /* 相机pressed.png in Resources */,
 				D588AFFE1BDDDAEB000C5D6F /* starSelected30.png in Resources */,
 				D588AFFB1BDDDAEB000C5D6F /* 车型.png in Resources */,
+				06F903CF1BF6D9000089A71A /* LTNavigationView.xib in Resources */,
 				D588B0011BDDDAEB000C5D6F /* starSelected.png in Resources */,
 				D588B02F1BDDDB4D000C5D6F /* backImage@2x.png in Resources */,
+				06F903DD1BF6DB1A0089A71A /* Light.png in Resources */,
 				D588B0231BDDDB42000C5D6F /* 首页_消息.png in Resources */,
 				D588B0331BDDDB4D000C5D6F /* 返回.png in Resources */,
 				D588AFEE1BDDDAEB000C5D6F /* cancelSelect_click.png in Resources */,
@@ -1219,13 +1398,18 @@
 				D588B01E1BDDDB42000C5D6F /* 首页_教练卡.png in Resources */,
 				D588AFF81BDDDAEB000C5D6F /* 我的教练.png in Resources */,
 				D588B01F1BDDDB42000C5D6F /* 首页_课件.png in Resources */,
+				06F903DF1BF6DB240089A71A /* natigationBar.png in Resources */,
 				D588AFF31BDDDAEB000C5D6F /* cellSelected.png in Resources */,
 				D588B0271BDDDB42000C5D6F /* x.png in Resources */,
 				D588AFF91BDDDAEB000C5D6F /* 喜欢.png in Resources */,
+				06F903CD1BF6D9000089A71A /* LTBottomView.xib in Resources */,
 				D588B0001BDDDAEB000C5D6F /* starUnSelected.png in Resources */,
+				06F903EC1BF6F4EF0089A71A /* bc.png in Resources */,
 				D588AFF11BDDDAEB000C5D6F /* 日历.png in Resources */,
+				06F903D11BF6D9000089A71A /* finishMessageView.xib in Resources */,
 				D588AFFD1BDDDAEB000C5D6F /* 地点.png in Resources */,
 				D5BCFED31BF201410019402C /* PushConfig.plist in Resources */,
+				06F903C01BF6D8E70089A71A /* DetailIntroduceCell.xib in Resources */,
 				D588AFF41BDDDAEB000C5D6F /* 心Inner.png in Resources */,
 				D588AFFC1BDDDAEB000C5D6F /* 设置.png in Resources */,
 				D588AF941BDDB62C000C5D6F /* Main.storyboard in Resources */,
@@ -1296,6 +1480,8 @@
 				D588AFCE1BDDDAAB000C5D6F /* CourseTimeModel.m in Sources */,
 				D588B08D1BDDDBDB000C5D6F /* SignUpSucceedViewController.m in Sources */,
 				D588B1181BDDDC2F000C5D6F /* WMUITool.m in Sources */,
+				06F903BB1BF6D8E70089A71A /* MagicMainTableViewCell.m in Sources */,
+				06F903C11BF6D8E70089A71A /* PrivateMessageCell.m in Sources */,
 				D52638531BDF1AED00ADC2C7 /* DrivingCandidatesViewController.m in Sources */,
 				D588B14C1BDE157A000C5D6F /* QuestionTestViewController.m in Sources */,
 				D5BCFEEE1BF58C680019402C /* AppDelegate+EaseMob.m in Sources */,
@@ -1307,11 +1493,14 @@
 				D588B0E41BDDDC14000C5D6F /* CommentCell.m in Sources */,
 				D588B0E51BDDDC14000C5D6F /* CoachHeadCell.m in Sources */,
 				D588B1281BDDDC4B000C5D6F /* MainViewController.m in Sources */,
+				06F903BD1BF6D8E70089A71A /* DetailPriceCell.m in Sources */,
 				D588AFCA1BDDDAAB000C5D6F /* ExamClassModel.m in Sources */,
 				D588B1141BDDDC2F000C5D6F /* UIColor+RGBColor.m in Sources */,
 				D588B0D81BDDDC14000C5D6F /* DrivingIntroductionCell.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
+				06F903D01BF6D9000089A71A /* finishMessageView.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
+				06F903CC1BF6D9000089A71A /* LTBottomView.m in Sources */,
 				D5C240111BECFAD800832CF3 /* AVPlayModel.m in Sources */,
 				D588B11E1BDDDC2F000C5D6F /* NSString+CurrentTimeDay.m in Sources */,
 				D588AFCD1BDDDAAB000C5D6F /* AppointmentCoachTimeInfoModel.m in Sources */,
@@ -1321,10 +1510,12 @@
 				D588AFC91BDDDAAB000C5D6F /* TrainFieldInfoModel.m in Sources */,
 				D5C23FF21BE8ED1300832CF3 /* SchoolInfo.m in Sources */,
 				D51256A81BDFB56F002717DA /* SignUpCoachDetailViewController.m in Sources */,
+				06F903EF1BF718EC0089A71A /* MyWallet.m in Sources */,
 				D588B0DD1BDDDC14000C5D6F /* AppointmentCell.m in Sources */,
 				D51256D21BE36826002717DA /* MySaveViewController.m in Sources */,
 				D588B1191BDDDC2F000C5D6F /* UIImageView+WMClippingImage.m in Sources */,
 				D588B0961BDDDBDB000C5D6F /* ApplyDrivingViewController.m in Sources */,
+				06F903AD1BF6D8AF0089A71A /* MagicDetailViewController.m in Sources */,
 				D5C23FFE1BE8F6C200832CF3 /* FourViewController.m in Sources */,
 				D51256A21BDFAA53002717DA /* SignUpDrivingDetailViewController.m in Sources */,
 				D588B04E1BDDDB71000C5D6F /* SetupViewController.m in Sources */,
@@ -1369,6 +1560,7 @@
 				D5C2400B1BEA2EA200832CF3 /* BannerModel.m in Sources */,
 				D588AFC11BDDDAAB000C5D6F /* DrivingModel.m in Sources */,
 				D588B0511BDDDB71000C5D6F /* GenderViewController.m in Sources */,
+				06F903BF1BF6D8E70089A71A /* DetailIntroduceCell.m in Sources */,
 				D588B10F1BDDDC2F000C5D6F /* NSUserStoreTool.m in Sources */,
 				D588B0DB1BDDDC14000C5D6F /* MyReservationCell.m in Sources */,
 				D588B08F1BDDDBDB000C5D6F /* ExamCarViewController.m in Sources */,
@@ -1382,15 +1574,20 @@
 				D588B0DA1BDDDC14000C5D6F /* DrivingSelectedCoachCollectionCell.m in Sources */,
 				D51256B71BE1F084002717DA /* SubjectTwoModel.m in Sources */,
 				D588B0531BDDDB71000C5D6F /* UserCenterHeadView.m in Sources */,
+				06F903E71BF6DB8F0089A71A /* ShopModel.m in Sources */,
 				D51256A51BDFB521002717DA /* SignUpCoachViewController.m in Sources */,
 				D5BCFEE81BF582010019402C /* AppDelegate+DealJPushMessage.m in Sources */,
 				D588B0D21BDDDC14000C5D6F /* UserCenterCell.m in Sources */,
+				06F903F21BF737F10089A71A /* InfoModel.m in Sources */,
 				D588B1121BDDDC2F000C5D6F /* JEPhotoPickManger.m in Sources */,
 				D588B0E31BDDDC14000C5D6F /* AppointmentCollectionViewCell.m in Sources */,
 				D588B06E1BDDDB90000C5D6F /* APWaitConfirmViewController.m in Sources */,
+				06F903AC1BF6D8AF0089A71A /* MagicMainTableViewController.m in Sources */,
 				D588B11B1BDDDC2F000C5D6F /* RatingBar.m in Sources */,
 				D51256B41BE1DB9A002717DA /* StudentDetailModel.m in Sources */,
 				D588B1171BDDDC2F000C5D6F /* BLBaseViewController.m in Sources */,
+				06F903CE1BF6D9000089A71A /* LTNavigationView.m in Sources */,
+				06F903E81BF6DB8F0089A71A /* ShopMainModel.m in Sources */,
 				D588B0E11BDDDC14000C5D6F /* StudentInformationCell.m in Sources */,
 				D588B0CD1BDDDC14000C5D6F /* ExamClassCollectionViewCell.m in Sources */,
 				D588B06C1BDDDB90000C5D6F /* AppointmentDetailViewController.m in Sources */,
@@ -1421,6 +1618,7 @@
 				D5C240061BE9FB8A00832CF3 /* BLAVplayerCell.m in Sources */,
 				D588B0D01BDDDC14000C5D6F /* CoachDetailCell.m in Sources */,
 				D588AFC41BDDDAAB000C5D6F /* CoachModel.m in Sources */,
+				06F903AE1BF6D8AF0089A71A /* PrivateMessageController.m in Sources */,
 				D588B13A1BDDDC65000C5D6F /* RegisterViewController.m in Sources */,
 				D5C23FEC1BE867DF00832CF3 /* SignUpListViewController.m in Sources */,
 				D5C23FEF1BE8B30D00832CF3 /* ExamDetailCell.m in Sources */,
