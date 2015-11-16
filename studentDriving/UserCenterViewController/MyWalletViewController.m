@@ -10,6 +10,8 @@
 #import "UIDevice+JEsystemVersion.h"
 #import "UIView+CalculateUIView.h"
 #import <Chameleon.h>
+#import "MagicMainTableViewController.h"
+#import "MyWallet.h"
 
 static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=%@&count=10";
 
@@ -46,7 +48,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 - (UILabel *)moneyDisplay {
     if (_moneyDisplay == nil) {
         _moneyDisplay = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:65]];
-        _moneyDisplay.text = @"56.66";
+        _moneyDisplay.text = [NSString stringWithFormat:@"%d",_walletModel.amount];
     }
     return _moneyDisplay;
 }
@@ -109,6 +111,8 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     [self.bottomView addSubview:self.inviteNum];
     [self.bottomView addSubview:self.inviteButton];
     [self.bottomView addSubview:self.exchangeButton];
+    
+    
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(0);
         make.right.mas_equalTo(self.view.mas_right).offset(0);
@@ -134,14 +138,54 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         make.width.mas_equalTo(wide);
     }];
     
+    
+    // 为兑换商品按钮添加点击事件
+    [self.exchangeButton addTarget:self action:@selector(pushShopContor:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     [self startDownLoad];
     
 }
+
+#pragma maek -----兑换商品按钮添加点击事件
+- (void)pushShopContor:(UIButton *)btn
+{
+    MagicMainTableViewController *exchangeVC = [[MagicMainTableViewController alloc] init];
+    
+    
+   [self.navigationController pushViewController:exchangeVC animated:YES];
+}
+
+
+
+
+
+
+
+
+
+
 - (void)startDownLoad {
     NSString *url = [NSString stringWithFormat:kMyWalletUrl,[AcountManager manager].userid,@"0"];
     NSString *urlString = [NSString stringWithFormat:BASEURL,url];
+    NSLog(@"________________________%@",urlString);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
+        
+        
+        // 封装我的钱包数据
+        NSDictionary *dataDic = [data objectForKey:@"data"];
+        NSArray *listArray = [dataDic objectForKey:@"list"];
+        
+        for (NSDictionary *dic in listArray) {
+            MyWallet *walllet = [[MyWallet alloc]init];
+            [walllet setValuesForKeysWithDictionary:dic];
+            _walletModel = walllet;
+        }
+        
+        
+        
+        
     }];
 }
 - (UIView *)tableViewHead {
