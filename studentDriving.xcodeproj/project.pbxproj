@@ -2411,7 +2411,11 @@
 			isa = PBXGroup;
 			children = (
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D56049AD1BF656A70020F0D7 /* EaseMobManager */,
+=======
+				06F903A31BF6D5590089A71A /* Exchange */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903A31BF6D5590089A71A /* Exchange */,
 >>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
@@ -2987,6 +2991,7 @@
 				D5604C1C1BF656C50020F0D7 /* chat_sender_audio_playing_002.png in Resources */,
 				D588B0241BDDDB42000C5D6F /* 首页_预约学车.png in Resources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604C3B1BF656C50020F0D7 /* tabbar_chatsHL@2x.png in Resources */,
 				D5604BE71BF656C50020F0D7 /* chatBar_more.png in Resources */,
 				D5604BD21BF656C50020F0D7 /* chatBar_textBg@2x.png in Resources */,
@@ -3012,6 +3017,16 @@
 				D5604BDE1BF656C50020F0D7 /* messageSendFail@2x.png in Resources */,
 				D5604B9C1BF656C50020F0D7 /* VoiceSearchFeedback003@2x.png in Resources */,
 				D5604C0B1BF656C50020F0D7 /* messageToolbarBg@2x.png in Resources */,
+=======
+				06F903D71BF6DAF80089A71A /* 商品_切片_03.png in Resources */,
+				06F903C21BF6D8E70089A71A /* PrivateMessageCell.xib in Resources */,
+				D588B00E1BDDDAF7000C5D6F /* 我的错题.png in Resources */,
+				06F903DB1BF6DB0B0089A71A /* 商品_标注333_02.jpg in Resources */,
+				D588B0031BDDDAEB000C5D6F /* mv.jpg in Resources */,
+				06F903D31BF6DAE60089A71A /* 占位图.png in Resources */,
+				D588B0211BDDDB42000C5D6F /* 首页_我的.png in Resources */,
+				06F903D91BF6DB020089A71A /* 商品_标注_02.jpg in Resources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903D71BF6DAF80089A71A /* 商品_切片_03.png in Resources */,
 				06F903C21BF6D8E70089A71A /* PrivateMessageCell.xib in Resources */,
@@ -3058,11 +3073,15 @@
 				D588AFF21BDDDAEB000C5D6F /* locationImage.png in Resources */,
 				D588B0261BDDDB42000C5D6F /* x_pressed.png in Resources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604C401BF656C50020F0D7 /* tabbar_setting.png in Resources */,
 				D5604C301BF656C50020F0D7 /* group_invitee_delete@2x.png in Resources */,
 				D5604B9B1BF656C50020F0D7 /* VoiceSearchFeedback003.png in Resources */,
 				D5604BF01BF656C50020F0D7 /* chatBar_recordSelected@2x.png in Resources */,
 				D5604BA71BF656C50020F0D7 /* VoiceSearchFeedback009.png in Resources */,
+=======
+				06F903D51BF6DAF00089A71A /* Back.png in Resources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903D51BF6DAF00089A71A /* Back.png in Resources */,
 >>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
@@ -3105,9 +3124,13 @@
 				D5604BF71BF656C50020F0D7 /* chatBar_colorMore_location@2x.png in Resources */,
 				D588AFFB1BDDDAEB000C5D6F /* 车型.png in Resources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604C171BF656C50020F0D7 /* chat_receiver_bg@2x.png in Resources */,
 				D5604C421BF656C50020F0D7 /* tabbar_settingHL.png in Resources */,
 				D5604C191BF656C50020F0D7 /* chat_sender_audio_playing_000@2x.png in Resources */,
+=======
+				06F903CF1BF6D9000089A71A /* LTNavigationView.xib in Resources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903CF1BF6D9000089A71A /* LTNavigationView.xib in Resources */,
 >>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
@@ -3120,9 +3143,13 @@
 				D5604C161BF656C50020F0D7 /* chat_receiver_bg.png in Resources */,
 				D588B02F1BDDDB4D000C5D6F /* backImage@2x.png in Resources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604C221BF656C50020F0D7 /* chat_sender_bg.png in Resources */,
 				D5604BA31BF656C50020F0D7 /* VoiceSearchFeedback007.png in Resources */,
 				D5604BA11BF656C50020F0D7 /* VoiceSearchFeedback006.png in Resources */,
+=======
+				06F903DD1BF6DB1A0089A71A /* Light.png in Resources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903DD1BF6DB1A0089A71A /* Light.png in Resources */,
 >>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
@@ -3193,8 +3220,12 @@
 				D588AFF81BDDDAEB000C5D6F /* 我的教练.png in Resources */,
 				D588B01F1BDDDB42000C5D6F /* 首页_课件.png in Resources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604BB41BF656C50020F0D7 /* VoiceSearchFeedback015@2x.png in Resources */,
 				D5604C071BF656C50020F0D7 /* chatBar_more_photo.png in Resources */,
+=======
+				06F903DF1BF6DB240089A71A /* natigationBar.png in Resources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903DF1BF6DB240089A71A /* natigationBar.png in Resources */,
 >>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
@@ -3205,11 +3236,17 @@
 				06F903CD1BF6D9000089A71A /* LTBottomView.xib in Resources */,
 				D588B0001BDDDAEB000C5D6F /* starUnSelected.png in Resources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604B9D1BF656C50020F0D7 /* VoiceSearchFeedback004.png in Resources */,
 				D5604C001BF656C50020F0D7 /* chatBar_more_camera@2x.png in Resources */,
 				D588AFF11BDDDAEB000C5D6F /* 日历.png in Resources */,
 				D5604BFE1BF656C50020F0D7 /* chatBar_colorMore_videoSelected@2x.png in Resources */,
 				D5604BC11BF656C50020F0D7 /* call_out_h.png in Resources */,
+=======
+				06F903EC1BF6F4EF0089A71A /* bc.png in Resources */,
+				D588AFF11BDDDAEB000C5D6F /* 日历.png in Resources */,
+				06F903D11BF6D9000089A71A /* finishMessageView.xib in Resources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903EC1BF6F4EF0089A71A /* bc.png in Resources */,
 				D588AFF11BDDDAEB000C5D6F /* 日历.png in Resources */,
@@ -3314,7 +3351,12 @@
 				D588B08D1BDDDBDB000C5D6F /* SignUpSucceedViewController.m in Sources */,
 				D588B1181BDDDC2F000C5D6F /* WMUITool.m in Sources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604B871BF656C50020F0D7 /* EMSearchBar.m in Sources */,
+=======
+				06F903BB1BF6D8E70089A71A /* MagicMainTableViewCell.m in Sources */,
+				06F903C11BF6D8E70089A71A /* PrivateMessageCell.m in Sources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903BB1BF6D8E70089A71A /* MagicMainTableViewCell.m in Sources */,
 				06F903C11BF6D8E70089A71A /* PrivateMessageCell.m in Sources */,
@@ -3337,7 +3379,11 @@
 				D588B0E51BDDDC14000C5D6F /* CoachHeadCell.m in Sources */,
 				D588B1281BDDDC4B000C5D6F /* MainViewController.m in Sources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604C851BF656F30020F0D7 /* DXChatBarMoreView.m in Sources */,
+=======
+				06F903BD1BF6D8E70089A71A /* DetailPriceCell.m in Sources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903BD1BF6D8E70089A71A /* DetailPriceCell.m in Sources */,
 >>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
@@ -3362,7 +3408,11 @@
 				D5C23FF21BE8ED1300832CF3 /* SchoolInfo.m in Sources */,
 				D51256A81BDFB56F002717DA /* SignUpCoachDetailViewController.m in Sources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604C861BF656F30020F0D7 /* DXRecordView.m in Sources */,
+=======
+				06F903EF1BF718EC0089A71A /* MyWallet.m in Sources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903EF1BF718EC0089A71A /* MyWallet.m in Sources */,
 >>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
@@ -3471,7 +3521,11 @@
 				D51256B71BE1F084002717DA /* SubjectTwoModel.m in Sources */,
 				D588B0531BDDDB71000C5D6F /* UserCenterHeadView.m in Sources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604B5C1BF656C50020F0D7 /* UIButton+EMWebCache.m in Sources */,
+=======
+				06F903E71BF6DB8F0089A71A /* ShopModel.m in Sources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903E71BF6DB8F0089A71A /* ShopModel.m in Sources */,
 >>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
@@ -3485,9 +3539,13 @@
 				D5604B771BF656C50020F0D7 /* THProgressView.m in Sources */,
 				D588B0D21BDDDC14000C5D6F /* UserCenterCell.m in Sources */,
 <<<<<<< HEAD
+<<<<<<< HEAD
 				D5604B851BF656C50020F0D7 /* UIViewController+HUD.m in Sources */,
 				D5604B891BF656C50020F0D7 /* EMRemarkImageView.m in Sources */,
 				D5604CCD1BF840C20020F0D7 /* RealtimeSearchUtil.m in Sources */,
+=======
+				06F903F21BF737F10089A71A /* InfoModel.m in Sources */,
+>>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
 =======
 				06F903F21BF737F10089A71A /* InfoModel.m in Sources */,
 >>>>>>> 09750c84f321c11bc51b98d17211646c383a711d
