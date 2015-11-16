@@ -20,6 +20,8 @@
 #import <BMKMapView.h>
 #import <BMKPointAnnotation.h>
 #import <BMKPinAnnotationView.h>
+#import "ChatViewController.h"
+
 static NSString *const kStudentTimeStudy = @"courseinfo/sametimestudents/reservationid/%@/index/%@";
 
 static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@";
@@ -58,6 +60,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
         [_itemMessege setBackgroundImage:[UIImage imageNamed:@"聊天.png"] forState:UIControlStateNormal];
         _itemMessege.frame = CGRectMake(0, 0, 50, 50);
 //        _itemMessege.backgroundColor = [UIColor blackColor];
+        [_itemMessege addTarget:self action:@selector(dealMessage:) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _itemMessege;
@@ -135,6 +138,14 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     
     
    
+}
+- (void)dealMessage:(UIButton *)sender {
+    ChatViewController *chat = [[ChatViewController alloc] initWithChatter:self.model.coachid.infoId  conversationType:eConversationTypeChat];
+    chat.title = self.model.coachid.name;
+    
+    NSDictionary * extParam = @{@"headUrl":self.model.coachid.headportrait.originalpic,@"nickName":self.model.coachid.name,@"userId":self.model.coachid.infoId,@"userType":@"2"};
+    chat.conversation.ext = extParam;
+    [self.navigationController pushViewController:chat animated:YES];
 }
 - (void)createUI {
     [self.view addSubview:self.tableView];

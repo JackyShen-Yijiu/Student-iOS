@@ -530,9 +530,14 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         NSDictionary *param = data;
         DYNSLog(@"param = %@",param[@"msg"]);
-        if ([param[@"data"] isEqualToString:@"success"]) {
+        NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
+        if (type.integerValue == 1) {
             [SVProgressHUD showSuccessWithStatus:@"预约成功"];
+        }else {
+            kShowFail(msg)
         }
+        
     }];
     
 }

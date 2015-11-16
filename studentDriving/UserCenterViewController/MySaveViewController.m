@@ -16,7 +16,7 @@
 #import "CoachDetailViewController.h"
 #import "DrivingDetailViewController.h"
 #import "SignUpInfoManager.h"
-#import "PFAlertView.h"
+#import "BLPFAlertView.h"
 #import <SVProgressHUD.h>
 #define StartOffset  kSystemWide/4-60/2
 
@@ -146,7 +146,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             }
             
             if (![[AcountManager manager].applyschool.infoId isEqualToString:self.coachDetailModel.driveschoolinfo.driveSchoolId]) {
-                [PFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+                [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
                     DYNSLog(@"index = %ld",selectedOtherButtonIndex);
                     NSUInteger index = selectedOtherButtonIndex + 1;
                     if (index == 0) {
@@ -187,7 +187,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             
             
             if (![[AcountManager manager].applyschool.infoId isEqualToString:self.drivingDetailModel.schoolid]) {
-                [PFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+                [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
                     DYNSLog(@"index = %ld",selectedOtherButtonIndex);
                     NSUInteger index = selectedOtherButtonIndex + 1;
                     if (index == 0) {

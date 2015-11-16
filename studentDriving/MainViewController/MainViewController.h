@@ -9,5 +9,5 @@
 #import "BLBaseViewController.h"
 
 @interface MainViewController :BLBaseViewController
-
+- (void)dealInfo:(NSDictionary *)info;
 @end

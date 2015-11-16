@@ -10,7 +10,7 @@
 #import "ToolHeader.h"
 #import "DrivingDetailCell.h"
 #import "MapViewController.h"
-#import "PFAlertView.h"
+#import "BLPFAlertView.h"
 #import "DrivingInformationCell.h"
 #import "DrivingIntroductionCell.h"
 #import "SignUpViewController.h"
@@ -304,7 +304,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 }
 - (void)dealPhone:(UIButton *)sender {
     
-    [PFAlertView showAlertWithTitle:@"联系驾校" message:@"18911088136" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+    [BLPFAlertView showAlertWithTitle:@"联系驾校" message:@"18911088136" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         NSLog(@"index = %ld",selectedOtherButtonIndex);
         if (selectedOtherButtonIndex == 0) {
             NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"18911088136"];

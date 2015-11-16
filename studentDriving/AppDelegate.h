@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI/BMapKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate>{
+@interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,IChatManagerDelegate>{
     BMKMapManager *_mapManager;
+    EMConnectionState _connectionState;
+
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,assign)BOOL allowRotation;

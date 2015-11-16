@@ -67,8 +67,8 @@ static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
 {
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     //latitude=40.096263&longitude=116.1270&radius=10000
-    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
-    //    [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
+//    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
+     NSString *locationContent =   [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
     NSString *urlString = [NSString stringWithFormat:kDrivingUrl,locationContent];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
     

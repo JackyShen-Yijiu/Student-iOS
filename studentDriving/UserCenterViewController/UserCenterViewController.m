@@ -91,6 +91,11 @@
 }
 - (void)clickQuit:(UIButton *)sender {
     [AcountManager removeAllData];
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+        DYNSLog(@"退出成功 = %@ %@",info,error);
+        if (!error && info) {
+        }
+    } onQueue:nil];
     LoginViewController *login = [[LoginViewController alloc] init];
     [APService setAlias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];

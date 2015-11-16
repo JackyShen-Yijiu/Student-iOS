@@ -14,6 +14,7 @@
 #import "MyAppointmentModel.h"
 #import "ComplainViewController.h"
 #import <SVProgressHUD.h>
+#import "ChatViewController.h"
 @interface APWaitEvaluationViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) UIButton *itemMessege;
 @property (strong, nonatomic) UITableView *tableView;
@@ -52,7 +53,8 @@
         _itemMessege = [UIButton buttonWithType:UIButtonTypeCustom];
         [_itemMessege setBackgroundImage:[UIImage imageNamed:@"聊天.png"] forState:UIControlStateNormal];
         _itemMessege.frame = CGRectMake(0, 0, 50, 50);
-        
+        [_itemMessege addTarget:self action:@selector(dealMessage:) forControlEvents:UIControlEventTouchUpInside];
+
     }
     return _itemMessege;
 }
@@ -104,6 +106,15 @@
     
     [self conformNavItem];
 }
+
+- (void)dealMessage:(UIButton *)sender {
+    ChatViewController *chat = [[ChatViewController alloc] initWithChatter:self.model.coachid.infoId  conversationType:eConversationTypeChat];
+    chat.title = self.model.coachid.name;
+    NSDictionary * extParam = @{@"headUrl":self.model.coachid.headportrait.originalpic,@"nickName":self.model.coachid.name,@"userId":self.model.coachid.infoId,@"userType":@"2"};
+    chat.conversation.ext = extParam;
+    [self.navigationController pushViewController:chat animated:YES];
+}
+
 - (void)conformNavItem {
     UIBarButtonItem *navMessegeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemMessege];
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];

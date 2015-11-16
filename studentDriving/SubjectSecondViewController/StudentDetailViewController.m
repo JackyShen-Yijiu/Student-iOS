@@ -13,9 +13,17 @@
 #import "StudentInformationCell.h"
 #import <SVProgressHUD.h>
 #import "StudentDetailModel.h"
-static NSString *const kStudentDetailInfo = @"/userinfo/getuserinfo/1/userid/%@";
+#import "StudentCommentModel.h"
+#import "ChatViewController.h"
 
-@interface StudentDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+static NSString *const kStudentDetailInfo = @"/userinfo/getuserinfo/1/userid/%@";
+static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
+
+
+
+@interface StudentDetailViewController ()<UITableViewDataSource,UITableViewDelegate>{
+    
+}
 
 @property (strong, nonatomic)UIButton *messegeBtn;
 @property (strong, nonatomic) UITableView *tableView;
@@ -23,7 +31,7 @@ static NSString *const kStudentDetailInfo = @"/userinfo/getuserinfo/1/userid/%@"
 
 @property (strong, nonatomic) StudentDetailModel *detailModel;
 
-
+@property (strong, nonatomic) NSArray *dataArray;
 
 @end
 
@@ -81,8 +89,30 @@ static NSString *const kStudentDetailInfo = @"/userinfo/getuserinfo/1/userid/%@"
     
     [self startDownLoad];
 
+    [self startDownLoadComment];
+
     
+}
+- (void)startDownLoadComment {
     
+    NSString *urlString = [NSString stringWithFormat:kGetCommentInfo,self.studetnId,[NSNumber numberWithInt:1]];
+    NSString *urlComment = [NSString stringWithFormat:BASEURL,urlString];
+    [JENetwoking startDownLoadWithUrl:urlComment postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        DYNSLog(@"data = %@",data);
+        NSDictionary *param = data;
+        NSError *error = nil;
+        NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
+        if (type.integerValue == 1) {
+            self.dataArray = [MTLJSONAdapter modelsOfClass:StudentCommentModel.class fromJSONArray:param[@"data"] error:&error];
+            DYNSLog(@"error = %@",error);
+            [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
+        }else {
+            kShowFail(msg);
+            
+        }
+        
+    }];
 }
 - (void)startDownLoad {
     
@@ -161,7 +191,7 @@ static NSString *const kStudentDetailInfo = @"/userinfo/getuserinfo/1/userid/%@"
     if (section == 0) {
         return 2;
     }else if (section == 1) {
-        return 2;
+        return self.dataArray.count;
     }
     return 0;
 }
@@ -199,6 +229,8 @@ static NSString *const kStudentDetailInfo = @"/userinfo/getuserinfo/1/userid/%@"
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
+        StudentCommentModel *model = self.dataArray[indexPath.row];
+        [cell receiveCommentMessage:model];
         return cell;
     }
     
@@ -208,7 +240,14 @@ static NSString *const kStudentDetailInfo = @"/userinfo/getuserinfo/1/userid/%@"
 }
 #pragma  mark - btnAction
 - (void)clickPhoneBtn:(UIButton *)sender {
-    
+    if ([self.studetnId isEqualToString:[AcountManager manager].userid]) {
+        return;
+    }
+    ChatViewController *chat = [[ChatViewController alloc] initWithChatter:self.studetnId  conversationType:eConversationTypeChat];
+    chat.title = self.detailModel.name;
+    NSDictionary * extParam = @{@"headUrl":self.detailModel.headportrait.originalpic,@"nickName":self.detailModel.nickname,@"userId":self.studetnId,@"userType":@"1"};
+    chat.conversation.ext = extParam;
+    [self.navigationController pushViewController:chat animated:YES];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];

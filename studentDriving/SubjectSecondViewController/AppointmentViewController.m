@@ -171,7 +171,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
             DYNSLog(@"error = %@",error);
             [self.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error]];
             [self.tableView reloadData];
-            [self.tableView.header endRefreshing];
+//            [self.tableView.header endRefreshing];
         }else {
             kShowFail(msg);
         }

@@ -24,7 +24,7 @@
 #import "JsonTransformManager.h"
 #import <SVProgressHUD.h>
 #import "CoachDetail.h"
-#import "PFAlertView.h"
+#import "BLPFAlertView.h"
 #import "SignUpInfoManager.h"
 #import "StudentCommentModel.h"
 #import "BLInformationManager.h"
@@ -335,7 +335,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)clickPhoneBtn:(UIButton *)sender {
     
     
-    [PFAlertView showAlertWithTitle:@"电话号码" message:self.detailModel.mobile cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+    [BLPFAlertView showAlertWithTitle:@"电话号码" message:self.detailModel.mobile cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
         NSUInteger indexAlert = selectedOtherButtonIndex + 1;
         if (indexAlert == 1) {

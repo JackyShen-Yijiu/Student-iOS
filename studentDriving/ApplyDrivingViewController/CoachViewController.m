@@ -18,7 +18,7 @@
 #import "LoginViewController.h"
 #import "CoachDetailAppointmentViewController.h"
 #import "SignUpInfoManager.h"
-#import "PFAlertView.h"
+#import "BLPFAlertView.h"
 #define StartOffset  kSystemWide/4-60/2
 
 static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
@@ -117,7 +117,7 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
     }
 
     if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo.driveSchoolId]) {
-        [PFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+        [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
             DYNSLog(@"index = %ld",selectedOtherButtonIndex);
             NSUInteger index = selectedOtherButtonIndex + 1;
             if (index == 0) {
@@ -236,8 +236,8 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
 {
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     //latitude=40.096263&longitude=116.1270&radius=10000
-    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
-    //    [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
+//    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
+   NSString *locationContent =    [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
     NSString *urlString = [NSString stringWithFormat:kCoachUrl,locationContent];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
     

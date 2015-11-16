@@ -31,9 +31,11 @@
 #import "AppDelegate+DealJPushMessage.h"
 #import "AppDelegate+DealTool.h"
 #import <EaseMobHeaders.h>
-
+#import "AppDelegate+EaseMob.h"
+#import "ChatListViewController.h"
 
 @interface AppDelegate ()
+@property (strong, nonatomic)  MainViewController *main;
 @end
 
 @implementation AppDelegate
@@ -42,6 +44,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    _connectionState = eEMConnectionConnected;
+
     
     [self configBaiduMap];
     
@@ -49,8 +53,8 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    MainViewController *main = [[MainViewController alloc] init];
-    UINavigationController *mainNav = [[UINavigationController alloc] initWithRootViewController:main];
+    self.main = [[MainViewController alloc] init];
+    UINavigationController *mainNav = [[UINavigationController alloc] initWithRootViewController:_main];
     self.window.rootViewController = mainNav;
     
     
@@ -71,17 +75,8 @@
     [self JPushApplication:application didFinishLaunchingWithOptions:launchOptions];
 
     
-#pragma mark - 环信聊天
-    NSString *easemobAppKey = nil;
-    NSString *easemobApnsCertName = nil;
-#if DEBUG
-    easemobAppKey = @"black-cat#yibuxuechetest";
-    easemobApnsCertName = @"PushStudent";
-#else
-    
-#endif
-    
     //注册环信聊天
+    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
     
     
@@ -115,21 +110,34 @@
 
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
- 
+    DYNSLog(@"UILocalNotification = %@",notification);
+    NSString *info = notification.userInfo[@"ConversationChatter"];
+    if (info) {
+        [_main dealInfo:notification.userInfo];
+    }
 #pragma mark - JPush推送
     [self JPushApplication:application didReceiveLocalNotification:notification];
-
+    
     return;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
 #pragma mark - JPush注册token require
     [self JPushApplication:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+
 
     
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    DYNSLog(@"userInfo = %@",userInfo);
+    NSString *info = userInfo[@"ConversationChatter"];
+    if (info) {
+        ChatListViewController *chatlist = [[ChatListViewController alloc] init];
+        UINavigationController *nav = (UINavigationController *) [UIApplication sharedApplication].keyWindow.rootViewController;
+        [nav pushViewController:chatlist animated:YES];
+    }
 #pragma mark - JPush接受推送消息 require
     [self JPushApplication:application didReceiveRemoteNotification:userInfo];
     

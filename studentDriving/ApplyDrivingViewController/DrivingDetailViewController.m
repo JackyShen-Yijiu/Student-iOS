@@ -9,7 +9,7 @@
 #import "DrivingDetailViewController.h"
 #import "DrivingDetailCell.h"
 #import "MapViewController.h"
-#import "PFAlertView.h"
+#import "BLPFAlertView.h"
 #import "DrivingInformationCell.h"
 #import "DrivingIntroductionCell.h"
 #import "SignUpViewController.h"
@@ -316,7 +316,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         return;
     }
     
-    [PFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+    [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         DYNSLog(@"index = %ld",selectedOtherButtonIndex);
         NSUInteger index = selectedOtherButtonIndex + 1;
         if (index == 0) {
@@ -352,7 +352,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     DrvingDetailModel *model = self.dataArray.firstObject;
 
     
-    [PFAlertView showAlertWithTitle:@"联系驾校" message:model.phone cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+    [BLPFAlertView showAlertWithTitle:@"联系驾校" message:model.phone cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         NSLog(@"index = %ld",selectedOtherButtonIndex);
         if (selectedOtherButtonIndex == 0) {
             NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",model.phone];

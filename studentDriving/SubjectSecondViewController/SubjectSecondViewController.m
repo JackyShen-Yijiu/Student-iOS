@@ -19,7 +19,7 @@
 #import "LoginViewController.h"
 #import "BLAVPlayerViewController.h"
 #import <SDCycleScrollView.h>
-
+#import "ChatListViewController.h"
 @interface SubjectSecondViewController ()
 
 @property (strong, nonatomic)UIButton *coachButton;
@@ -485,7 +485,10 @@
 }
 
 - (void)dealMassage:(UIButton *)sender {
-    
+    ChatListViewController *list = [[ChatListViewController alloc] init];
+    list.title = @"消息";
+
+    [self.navigationController pushViewController:list animated:YES];
 }
 
 - (void)dealPurse:(UIButton *)sender {

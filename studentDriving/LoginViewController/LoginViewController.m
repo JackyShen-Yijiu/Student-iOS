@@ -273,6 +273,11 @@ static NSString *const kuserType = @"usertype";
             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
             if ([AcountManager manager].userid) {
             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+             
+            
+                
+            [self loginWithUsername:[AcountManager manager].userid password:self.passwordTextField.text.DY_MD5];
+
             }
             [self dismissViewControllerAnimated:YES completion:nil];
         }
@@ -283,6 +288,68 @@ static NSString *const kuserType = @"usertype";
    
    
 
+}
+
+
+
+//点击登陆后的操作
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password
+{
+    [self showHudInView:self.view hint:NSLocalizedString(@"login.ongoing", @"Is Login...")];
+    //异步登陆账号
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username
+                                                        password:password
+                                                      completion:
+     ^(NSDictionary *loginInfo, EMError *error) {
+         [self hideHud];
+         if (loginInfo && !error) {
+             DYNSLog(@"登录");
+             //设置是否自动登录
+             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+             
+             // 旧数据转换 (如果您的sdk是由2.1.2版本升级过来的，需要家这句话)
+             [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+             //获取数据库中数据
+             [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+             
+             //获取群组列表
+//             [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+             
+             EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
+             options.nickname = [AcountManager manager].userName;
+             options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
+             
+             
+             //发送自动登陆状态通知
+             [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+             
+             //保存最近一次登录用户名
+         }
+         else
+         {
+             switch (error.errorCode)
+             {
+                 case EMErrorNotFound:
+                     TTAlertNoTitle(error.description);
+                     break;
+                 case EMErrorNetworkNotConnected:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
+                     break;
+                 case EMErrorServerNotReachable:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                     break;
+                 case EMErrorServerAuthenticationFailure:
+                     TTAlertNoTitle(error.description);
+                     break;
+                 case EMErrorServerTimeout:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                     break;
+                 default:
+                     TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Login failure"));
+                     break;
+             }
+         }
+     } onQueue:nil];
 }
 - (void)tagsAliasCallback:(int)iResCode
                      tags:(NSSet *)tags

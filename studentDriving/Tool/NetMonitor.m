@@ -7,7 +7,6 @@
 //
 
 #import "NetMonitor.h"
-#import "PFAlertView.h"
 #import <AFNetworkActivityIndicatorManager.h>
 
 @interface NetMonitor ()

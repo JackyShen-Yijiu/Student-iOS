@@ -21,7 +21,7 @@
 #import "LoginViewController.h"
 #import <SDCycleScrollView.h>
 //      /info/examquestion
-
+#import "ChatListViewController.h"
 static NSString *const kexamquestionUrl = @"/info/examquestion";
 
 @interface SubjectFirstViewController ()
@@ -510,7 +510,10 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 }
 
 - (void)dealMassage:(UIButton *)sender {
-    
+    ChatListViewController *list = [[ChatListViewController alloc] init];
+    list.title = @"消息";
+
+    [self.navigationController pushViewController:list animated:YES];
 }
 
 - (void)dealPurse:(UIButton *)sender {

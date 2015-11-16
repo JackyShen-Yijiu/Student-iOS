@@ -8,7 +8,7 @@
 
 #import "AppDelegate+DealJPushMessage.h"
 #import "ToolHeader.h"
-#import "PFAlertView.h"
+#import "BLPFAlertView.h"
 #import "PushInformationManager.h"
 @implementation AppDelegate (DealJPushMessage)
 #pragma mark - JPush 载入
@@ -17,6 +17,7 @@
     // Required
     if ([[UIDevice currentDevice].systemVersion floatValue] >= 8.0) {
         //可以添加自定义categories
+        DYNSLog(@"launchOptions");
         [APService registerForRemoteNotificationTypes:(UIUserNotificationTypeBadge | UIUserNotificationTypeSound |UIUserNotificationTypeAlert) categories:nil];
     } else {
         //categories 必须为nil
@@ -56,14 +57,14 @@
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
     NSString *type = [NSString stringWithFormat:@"%@", userInfo[@"data"][@"type"]];
     if (application.applicationState == UIApplicationStateActive) {
-        [PFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+        [BLPFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
             DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
             if (selectedOtherButtonIndex == 0) {
                 [PushInformationManager receivePushInformation:userInfo];
             }
         }];
     }else if ([type isEqualToString:@"newversion"]) {
-        [PFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+        [BLPFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
             DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
             if (selectedOtherButtonIndex == 0) {
                 

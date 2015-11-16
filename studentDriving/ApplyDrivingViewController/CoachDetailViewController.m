@@ -16,7 +16,7 @@
 #import "JsonTransformManager.h"
 #import <SVProgressHUD.h>
 #import "CoachDetail.h"
-#import "PFAlertView.h"
+#import "BLPFAlertView.h"
 #import "SignUpInfoManager.h"
 #import "StudentCommentModel.h"
 #import "LoginViewController.h"
@@ -352,7 +352,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)clickPhoneBtn:(UIButton *)sender {
     
     
-   [PFAlertView showAlertWithTitle:@"电话号码" message:self.detailModel.mobile cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+   [BLPFAlertView showAlertWithTitle:@"电话号码" message:self.detailModel.mobile cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
        DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
        NSUInteger indexAlert = selectedOtherButtonIndex + 1;
        if (indexAlert == 1) {
@@ -404,7 +404,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
     }
     
     if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo.driveSchoolId]) {
-        [PFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+        [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
             DYNSLog(@"index = %ld",selectedOtherButtonIndex);
             NSUInteger index = selectedOtherButtonIndex + 1;
             if (index == 0) {

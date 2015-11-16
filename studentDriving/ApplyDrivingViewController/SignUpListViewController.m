@@ -19,7 +19,7 @@
 #import <QiniuSDK.h>
 #import "SignUpCoachViewController.h"
 #import "SignUpDrivingViewController.h"
-#import "PFAlertView.h"
+#import "BLPFAlertView.h"
 //245 247 250
 
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
