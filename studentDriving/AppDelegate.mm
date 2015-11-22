@@ -23,6 +23,10 @@
  百度：jatd_app@126.com,密码jatd2015
  汪渊
  北京交安通达信息技术有限公司
+ 
+ //友盟
+ 564cba17e0f55ae100005919
+ 
  */
 #import "AppDelegate.h"
 #import "LoginViewController.h"
@@ -33,7 +37,7 @@
 #import <EaseMobHeaders.h>
 #import "AppDelegate+EaseMob.h"
 #import "ChatListViewController.h"
-
+#import <UMengAnalytics-NO-IDFA/MobClick.h>
 @interface AppDelegate ()
 @property (strong, nonatomic)  MainViewController *main;
 @end
@@ -46,6 +50,8 @@
     
     _connectionState = eEMConnectionConnected;
 
+    [MobClick startWithAppkey:@"564cba17e0f55ae100005919" reportPolicy:BATCH   channelId:@""];
+
     
     [self configBaiduMap];
     
@@ -55,6 +61,7 @@
     
     self.main = [[MainViewController alloc] init];
     UINavigationController *mainNav = [[UINavigationController alloc] initWithRootViewController:_main];
+    
     self.window.rootViewController = mainNav;
     
     

@@ -8,6 +8,7 @@
 
 #import "NetMonitor.h"
 #import <AFNetworkActivityIndicatorManager.h>
+#import <SVProgressHUD.h>
 
 @interface NetMonitor ()
 @property (readwrite,nonatomic,assign) NetMonitorState _netMonitorState;
@@ -34,6 +35,12 @@
                     break;
                     case AFNetworkReachabilityStatusReachableViaWWAN:
                     __netMonitorState = NetMonitorStateWWAN;
+                    break;
+                    case AFNetworkReachabilityStatusNotReachable:
+//                    NSLog(@"NetMonitorStateUnkown");
+                    [SVProgressHUD showInfoWithStatus:@"网络出错"];
+                    
+                    
                 default:
                     break;
             }

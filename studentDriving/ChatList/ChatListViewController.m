@@ -372,6 +372,9 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
+    if ([conversation.latestMessage.messageId isEqualToString:conversation.latestMessageFromOthers.messageId]) {
+        conversation.ext = conversation.latestMessageFromOthers.ext;
+    }
     NSLog(@"ext = %@",conversation.ext);
     cell.name = conversation.ext[@"nickName"];
     if (conversation.conversationType == eConversationTypeChat) {

@@ -16,7 +16,7 @@
 #import "AppointmentDrivingViewController.h"
 #import "MyAppointmentModel.h"
 #import <SVProgressHUD.h>
-#import <MJRefreshNormalHeader.h>
+#import <MJRefresh.h>
 static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@&subjectid=%@";
 @interface AppointmentViewController ()<UITableViewDataSource,UITableViewDelegate>
 //废弃
@@ -136,7 +136,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     
     [self.view addSubview:[self tableViewHead]];
     self.tableView.tableFooterView = [[UIView alloc] init];
-    self.tableView.header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(startDownLoad)];
+    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(startDownLoad)];
     
     
     [self.view addSubview:self.signUpButton];
@@ -154,11 +154,12 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     NSString *appointmentUrl = [NSString stringWithFormat:kappointmentUrl,[AcountManager manager].userid,self.markNum];
     NSString *downLoadUrl = [NSString stringWithFormat:BASEURL,appointmentUrl];
     DYNSLog(@"url = %@ %@",[AcountManager manager].userid,[AcountManager manager].userToken);
+    
+    __weak AppointmentViewController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:downLoadUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
-//        NSDictionary *param = data;
-//        DYNSLog(@"msg = %@",param[@"msg"]);
-    
+
+        [weakSelf.tableView.mj_header endRefreshing];
         
         NSDictionary *param = data;
         NSNumber *type = param[@"type"];
@@ -171,7 +172,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
             DYNSLog(@"error = %@",error);
             [self.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error]];
             [self.tableView reloadData];
-//            [self.tableView.header endRefreshing];
+            [self.tableView.mj_header endRefreshing];
         }else {
             kShowFail(msg);
         }

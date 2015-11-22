@@ -787,14 +787,14 @@
 
 - (void)playVideoWithVideoPath:(NSString *)videoPath
 {
-    _isScrollToBottom = NO;
-    NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
-    
-    MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
-    
-    [moviePlayerController.moviePlayer prepareToPlay];
-    moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
-    [self presentMoviePlayerViewControllerAnimated:moviePlayerController];
+//    _isScrollToBottom = NO;
+//    NSURL *videoURL = [NSURL fileURLWithPath:videoPath];
+//    
+//    MPMoviePlayerViewController *moviePlayerController = [[MPMoviePlayerViewController alloc] initWithContentURL:videoURL];
+//    
+//    [moviePlayerController.moviePlayer prepareToPlay];
+//    moviePlayerController.moviePlayer.movieSourceType = MPMovieSourceTypeFile;
+//    [self presentMoviePlayerViewControllerAnimated:moviePlayerController];
 }
 
 // 图片的bubble被点击

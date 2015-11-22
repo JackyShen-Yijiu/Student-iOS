@@ -20,6 +20,9 @@ typedef NS_ENUM(NSUInteger,JENetworkingRequestMethod){
 
 typedef void(^Completion)(id data);
 
+typedef void(^Failure)(id data);
+
+
 @protocol JENetwokingDelegate <NSObject>
 
 - (void)jeNetworkingCallBackData:(id)data;
@@ -38,4 +41,9 @@ typedef void(^Completion)(id data);
                    postParam:(id)param
                   WithMethod:(JENetworkingRequestMethod)method
               withCompletion:(Completion)completion;
+
++ (void)startDownLoadWithUrl:(NSString *)urlString
+                   postParam:(id)param
+                  WithMethod:(JENetworkingRequestMethod)method
+              withCompletion:(Completion)completion withFailure:(Failure)failure;
 @end

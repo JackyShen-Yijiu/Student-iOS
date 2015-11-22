@@ -29,7 +29,7 @@ static const CGFloat kDefaultPlaySoundInterval = 3.0;
 static NSString *kMessageType = @"MessageType";
 
 
-@interface MainViewController ()<BaseContainViewControllerDelegate,BottomMenuDelegate,IChatManagerDelegate>
+@interface MainViewController ()<BaseContainViewControllerDelegate,BottomMenuDelegate,IChatManagerDelegate,UINavigationControllerDelegate>
 @property (strong, nonatomic) BaseContainViewController *baseContain;
 @property (strong, nonatomic) BottomMenu *menu;
 @property (strong, nonatomic) NSArray *titleNameArray;
@@ -48,6 +48,9 @@ static NSString *kMessageType = @"MessageType";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(quitSuccess) name:@"kQuitSuccess" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userapplysuccess) name:@"kuserapplysuccess" object:nil];
@@ -100,6 +103,7 @@ static NSString *kMessageType = @"MessageType";
     
     
 }
+
 #pragma mark - 聊天分界线
 -(void)registerNotifications
 {
@@ -378,5 +382,12 @@ static NSString *kMessageType = @"MessageType";
 
 }
 
-
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = YES;
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBarHidden = NO;
+}
 @end

@@ -146,4 +146,105 @@
         }];
     }
 }
+
++ (void)startDownLoadWithUrl:(NSString *)urlString
+                   postParam:(id)param
+                  WithMethod:(JENetworkingRequestMethod)method
+              withCompletion:(Completion)completion withFailure:(Failure)failure {
+    Completion _completion = [completion copy];
+    
+    Failure _failure = [failure copy];
+    
+    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
+    manager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy;
+    manager.requestSerializer.timeoutInterval = 30.0f;
+    if (method == JENetworkingRequestMethodGet) {
+        DYNSLog(@"token = %@",[AcountManager manager].userToken);
+        if ([AcountManager manager].userToken) {
+            [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
+        }
+        [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            if (responseObject == nil) {
+                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                return ;
+            }
+            if (_completion) {
+                _completion(responseObject);
+            }
+        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+            DYNSLog(@"error = %@",error);
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            _failure(error);
+        }];
+    }else if (method == JENetworkingRequestMethodPost) {
+        NSAssert(param != nil, @"param 不能为空");
+        if ([AcountManager manager].userToken) {
+            [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
+        }
+        DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
+        
+        [manager POST:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            DYNSLog(@"responseObject = %@",responseObject);
+            if (responseObject == nil) {
+                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                return ;
+            }
+            if (_completion) {
+                _completion(responseObject);
+            }
+        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+            DYNSLog(@"error = %@",error);
+            _failure(error);
+
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            
+        }];
+        
+    }else if (method == JENetworkingRequestMethodPut) {
+        if ([AcountManager manager].userToken) {
+            [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
+        }
+        DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
+        
+        [manager PUT:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            DYNSLog(@"responseObject = %@",responseObject);
+            if (responseObject == nil) {
+                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                return ;
+            }
+            if (_completion) {
+                _completion(responseObject);
+            }
+        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+            DYNSLog(@"error = %@",error);
+            _failure(error);
+
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            
+        }];
+    }else if (method == JENetworkingRequestMethodDelete) {
+        if ([AcountManager manager].userToken) {
+            [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
+        }
+        DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
+        
+        [manager DELETE:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            DYNSLog(@"responseObject = %@",responseObject);
+            if (responseObject == nil) {
+                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                return ;
+            }
+            if (_completion) {
+                _completion(responseObject);
+            }
+        } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+            DYNSLog(@"error = %@",error);
+            _failure(error);
+
+            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            
+        }];
+    }
+}
+
 @end

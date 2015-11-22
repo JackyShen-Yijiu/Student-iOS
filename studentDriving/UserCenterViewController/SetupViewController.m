@@ -10,6 +10,9 @@
 #import "ToolHeader.h"
 #import "UIDevice+JEsystemVersion.h"
 #import "FeedBackViewController.h"
+#import "AboutUsViewController.h"
+#import <SVProgressHUD.h>
+static NSString *const kSettingUrl = @"userinfo/personalsetting";
 
 @interface SetupViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) UITableView *tableView;
@@ -81,15 +84,59 @@
     if (indexPath.section == 0) {
         UISwitch *switchControl = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
         switchControl.onTintColor = MAINCOLOR;
-        
+        switchControl.tag = 100 + indexPath.row;
         cell.accessoryView = switchControl;
+        [switchControl addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+        
     }
     return cell;
 }
+- (void)switchAction:(UISwitch *)sender {
+    NSMutableDictionary *mubdic = [[NSMutableDictionary alloc] initWithDictionary:@{@"userid":[AcountManager manager].userid,@"usertype":@"1"}];
+    NSString *url = [NSString stringWithFormat:BASEURL,kSettingUrl];
+    if (sender.tag - 100 == 0) {
+        if (sender.on == YES) {
+            DYNSLog(@"sender.on = %d",sender.on);
+            [mubdic setObject:@"1" forKey:@"reservationreminder"];
+        }else if (sender.on == NO) {
+            [mubdic setObject:@"0" forKey:@"reservationreminder"];
+        }
+        
+        [JENetwoking startDownLoadWithUrl:url postParam:mubdic WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            NSDictionary *dataParam = data;
+            NSNumber *messege = dataParam[@"type"];
+            if (messege.intValue == 1) {
+                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            }else {
+                [SVProgressHUD showErrorWithStatus:@"修改失败"];
+            }
+        }];
+    }else if (sender.tag - 100 == 1) {
+        if (sender.on == YES) {
+            DYNSLog(@"sender.on = %d",sender.on);
+            [mubdic setObject:@"1" forKey:@"newmessagereminder"];
+        }else if (sender.on == NO) {
+            [mubdic setObject:@"0" forKey:@"newmessagereminder"];
+        }
+        [JENetwoking startDownLoadWithUrl:url postParam:mubdic WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            NSDictionary *dataParam = data;
+            NSNumber *messege = dataParam[@"type"];
+            if (messege.intValue == 1) {
+                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            }else {
+                [SVProgressHUD showErrorWithStatus:@"修改失败"];
+            }
+        }];
+    }
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1 && indexPath.row == 2) {
         FeedBackViewController *feedBack = [[FeedBackViewController alloc] init];
         [self.navigationController pushViewController:feedBack animated:YES];
+    }else if (indexPath.section == 1 && indexPath.row == 0) {
+        AboutUsViewController *about = [[AboutUsViewController alloc] init];
+        [self.navigationController pushViewController:about animated:YES];
     }
 }
 

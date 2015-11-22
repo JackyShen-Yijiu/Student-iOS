@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "BLBaseViewController.h"
-#import "MyWallet.h"
+
 @interface MyWalletViewController : BLBaseViewController
-@property (nonatomic,retain) MyWallet *walletModel;
+
 @end

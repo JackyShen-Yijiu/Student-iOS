@@ -74,7 +74,7 @@
 - (UIButton *)coachButton{
     if (_coachButton ==nil) {
         _coachButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _coachButton.backgroundColor = RGBColor(247, 87, 87);
+        _coachButton.backgroundColor = RGBColor(255, 153, 0);
         [_coachButton addTarget:self action:@selector(dealCoach:) forControlEvents:UIControlEventTouchUpInside];
         _coachButton.layer.cornerRadius = 2;
         [_coachButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -93,10 +93,10 @@
 - (UILabel *)coachLabel {
     if (_coachLabel == nil) {
         _coachLabel = [[UILabel alloc] init];
-        _coachLabel.font = [UIFont systemFontOfSize:18];
+        _coachLabel.font = [UIFont systemFontOfSize:11];
         _coachLabel.textColor = [UIColor whiteColor];
         _coachLabel.text = @"科二预约列表";
-        _coachLabel.textAlignment = NSTextAlignmentCenter;
+        _coachLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _coachLabel;
 }
@@ -105,7 +105,7 @@
 - (UIButton *)signUpButton{
     if (_signUpButton == nil) {
         _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _signUpButton.backgroundColor = RGBColor(255, 192, 0);
+        _signUpButton.backgroundColor = RGBColor(189, 31, 74);
         _signUpButton.layer.cornerRadius = 2;
         
         [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
@@ -124,10 +124,10 @@
 - (UILabel *)signUpLabel {
     if (_signUpLabel == nil) {
         _signUpLabel = [[UILabel alloc] init];
-        _signUpLabel.font = [UIFont systemFontOfSize:15];
+        _signUpLabel.font = [UIFont systemFontOfSize:11];
         _signUpLabel.textColor = [UIColor whiteColor];
         _signUpLabel.text = @"我要预约";
-        _signUpLabel.textAlignment = NSTextAlignmentCenter;
+        _signUpLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _signUpLabel;
 }
@@ -137,7 +137,7 @@
         _cardButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _cardButton.layer.cornerRadius = 2;
         
-        _cardButton.backgroundColor = RGBColor(255, 141, 39);
+        _cardButton.backgroundColor = RGBColor(255, 102, 51);
         [_cardButton addTarget:self action:@selector(dealCard:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cardButton;
@@ -153,10 +153,10 @@
 - (UILabel *)cardLabel {
     if (_cardLabel == nil) {
         _cardLabel = [[UILabel alloc] init];
-        _cardLabel.font = [UIFont systemFontOfSize:15];
+        _cardLabel.font = [UIFont systemFontOfSize:11];
         _cardLabel.textColor = [UIColor whiteColor];
         _cardLabel.text = @"科二课件";
-        _cardLabel.textAlignment = NSTextAlignmentCenter;
+        _cardLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _cardLabel;
 }
@@ -167,7 +167,7 @@
     if (_purseButton == nil) {
         _purseButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _purseButton.layer.cornerRadius = 2;
-        _purseButton.backgroundColor = RGBColor(61, 203, 125);
+        _purseButton.backgroundColor = RGBColor(1, 160,0);
         [_purseButton addTarget:self action:@selector(dealPurse:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _purseButton;
@@ -183,10 +183,10 @@
 - (UILabel *)purseLabel {
     if (_purseLabel == nil) {
         _purseLabel = [[UILabel alloc] init];
-        _purseLabel.font = [UIFont systemFontOfSize:15];
+        _purseLabel.font = [UIFont systemFontOfSize:11];
         _purseLabel.textColor = [UIColor whiteColor];
         _purseLabel.text = @"钱包";
-        _purseLabel.textAlignment = NSTextAlignmentCenter;
+        _purseLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _purseLabel;
 }
@@ -196,7 +196,7 @@
         _massageButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _massageButton.layer.cornerRadius = 2;
         
-        _massageButton.backgroundColor = RGBColor(66, 161, 229);
+        _massageButton.backgroundColor = RGBColor(0, 148, 166);
         [_massageButton addTarget:self action:@selector(dealMassage:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -214,10 +214,10 @@
 - (UILabel *)massageLabel {
     if (_massageLabel == nil) {
         _massageLabel = [[UILabel alloc] init];
-        _massageLabel.font = [UIFont systemFontOfSize:15];
+        _massageLabel.font = [UIFont systemFontOfSize:11];
         _massageLabel.textColor = [UIColor whiteColor];
         _massageLabel.text = @"消息";
-        _massageLabel.textAlignment = NSTextAlignmentCenter;
+        _massageLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _massageLabel;
 }
@@ -228,7 +228,7 @@
         _myselfButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _myselfButton.layer.cornerRadius = 2;
         
-        _myselfButton.backgroundColor = RGBColor(153, 164, 189);
+        _myselfButton.backgroundColor = RGBColor(45, 138, 239);
         [_myselfButton addTarget:self action:@selector(dealMyself:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -245,10 +245,10 @@
 - (UILabel *)myselfLabel {
     if (_myselfLabel == nil) {
         _myselfLabel = [[UILabel alloc] init];
-        _myselfLabel.font = [UIFont systemFontOfSize:15];
+        _myselfLabel.font = [UIFont systemFontOfSize:11];
         _myselfLabel.textColor = [UIColor whiteColor];
         _myselfLabel.text = @"我的";
-        _myselfLabel.textAlignment = NSTextAlignmentCenter;
+        _myselfLabel.textAlignment = NSTextAlignmentLeft;
     }
     return _myselfLabel;
 }
@@ -265,7 +265,7 @@
         self.backGroundScrollview.contentSize = CGSizeMake(320, 568);
     }
     
-    _loopview = [[SDCycleScrollView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemWide*0.4)];
+    _loopview = [[SDCycleScrollView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemWide*0.6)];
     _loopview.pageControlStyle = SDCycleScrollViewPageContolStyleClassic;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(bannerChange) name:@"kBannerChange" object:nil];
@@ -293,11 +293,11 @@
     
     
     [self.coachButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(_loopview.mas_bottom).with.offset(10);
-        make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(10);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.63];
+        make.top.mas_equalTo(self.loopview.mas_bottom).with.offset(5);
+        make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(5);
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.64];
         make.width.mas_equalTo(wide);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.66];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.672];
         make.height.mas_equalTo(height);
         
     }];
@@ -307,24 +307,26 @@
     [self.coachImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.coachButton.mas_centerX);
         make.centerY.mas_equalTo(self.coachButton.mas_centerY);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.31];
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.184];
         make.width.mas_equalTo(wide);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.29];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.20];
         make.height.mas_equalTo(height);
     }];
     [self.coachLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.coachButton.mas_centerX);
-        make.top.mas_equalTo(self.coachImageView.mas_bottom).with.offset(0);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.5];
+        make.left.mas_equalTo(self.coachButton.mas_left).with.offset(8);
+        make.bottom.mas_equalTo(self.coachButton.mas_bottom).with.offset(-8);
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.31];
         make.width.mas_equalTo(wide);
     }];
     
     [self.signUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.coachButton.mas_top).offset(0);
-        make.left.mas_equalTo(self.coachButton.mas_right).with.offset(3);
-        make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(-10);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.325];
-        make.height.mas_equalTo(wide);
+        make.left.mas_equalTo(self.coachButton.mas_right).with.offset(5);
+        make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(-5);
+        //        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.3125];
+        //        make.height.mas_equalTo(wide);
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.3281];
+        make.height.mas_equalTo(height);
     }];
     [self.signUpButton addSubview:self.signUpImageView];
     [self.signUpButton addSubview:self.signUpLabel];
@@ -333,25 +335,27 @@
     [self.signUpImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.signUpButton.mas_centerX);
         make.centerY.mas_equalTo(self.signUpButton.mas_centerY);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.1];
         make.width.mas_equalTo(wide);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.139];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.098];
         make.height.mas_equalTo(height);
     }];
     [self.signUpLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.signUpImageView.mas_left).with.offset(0);
-        make.top.mas_equalTo(self.signUpImageView.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(self.signUpButton.mas_left).with.offset(8);
+        make.bottom.mas_equalTo(self.signUpButton.mas_bottom).with.offset(-8);
         NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
         make.width.mas_equalTo(wide);
     }];
     
     [self.cardButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.top.mas_equalTo(self.signUpButton.mas_bottom).with.offset(3);
-        make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(-10);
-        make.left.mas_equalTo(self.coachButton.mas_right).offset(3);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.325];
-        make.height.mas_equalTo(wide);
+        make.top.mas_equalTo(self.signUpButton.mas_bottom).with.offset(5);
+        make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(-5);
+        make.left.mas_equalTo(self.coachButton.mas_right).offset(5);
+        //        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.3125];
+        //        make.height.mas_equalTo(wide);
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.3281];
+        make.height.mas_equalTo(height);
         
     }];
     [self.cardButton addSubview:self.cardImageView];
@@ -360,14 +364,14 @@
     [self.cardImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.cardButton.mas_centerX);
         make.centerY.mas_equalTo(self.cardButton.mas_centerY);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.1328];
         make.width.mas_equalTo(wide);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.139];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.08125];
         make.height.mas_equalTo(height);
     }];
     [self.cardLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.cardImageView.mas_left).with.offset(0);
-        make.top.mas_equalTo(self.cardImageView.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(self.cardButton.mas_left).with.offset(8);
+        make.bottom.mas_equalTo(self.cardButton.mas_bottom).with.offset(-8);
         NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
         make.width.mas_equalTo(wide);
     }];
@@ -375,10 +379,10 @@
     
     [self.purseButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.coachButton.mas_bottom).offset(5);
-        make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(10);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.31];
+        make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(5);
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.3125];
         make.width.mas_equalTo(wide);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.325];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.3281];
         make.height.mas_equalTo(height);
     }];
     
@@ -388,14 +392,14 @@
     [self.purseImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.purseButton.mas_centerX);
         make.centerY.mas_equalTo(self.purseButton.mas_centerY);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.10];
         make.width.mas_equalTo(wide);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.139];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.08];
         make.height.mas_equalTo(height);
     }];
     [self.purseLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.purseImageView.mas_left).with.offset(0);
-        make.top.mas_equalTo(self.purseImageView.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(self.purseButton.mas_left).with.offset(8);
+        make.bottom.mas_equalTo(self.purseButton.mas_bottom).with.offset(-8);
         NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
         make.width.mas_equalTo(wide);
     }];
@@ -403,11 +407,11 @@
     
     [self.massageButton mas_makeConstraints:^(MASConstraintMaker *make) {
         //        make.centerY.mas_equalTo(self.purseButton.mas_centerY);
-        make.left.mas_equalTo(self.purseButton.mas_right).with.offset(3);
+        make.left.mas_equalTo(self.purseButton.mas_right).with.offset(5);
         make.top.mas_equalTo(self.coachButton.mas_bottom).with.offset(5);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.31];
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.3125];
         make.width.mas_equalTo(wide);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.325];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.3281];
         make.height.mas_equalTo(height);
     }];
     
@@ -417,14 +421,14 @@
     [self.massageImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.massageButton.mas_centerX);
         make.centerY.mas_equalTo(self.massageButton.mas_centerY);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.095];
         make.width.mas_equalTo(wide);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.139];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.092];
         make.height.mas_equalTo(height);
     }];
     [self.massageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.massageImageView.mas_left).with.offset(0);
-        make.top.mas_equalTo(self.massageImageView.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(self.massageButton.mas_left).with.offset(8);
+        make.bottom.mas_equalTo(self.massageButton.mas_bottom).with.offset(-8);
         NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
         make.width.mas_equalTo(wide);
     }];
@@ -433,11 +437,11 @@
     [self.myselfButton mas_makeConstraints:^(MASConstraintMaker *make) {
         //        make.centerY.mas_equalTo(self.purseButton.mas_centerY);
         
-        make.left.mas_equalTo(self.massageButton.mas_right).with.offset(4);
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-10);
+        make.left.mas_equalTo(self.massageButton.mas_right).with.offset(5);
+        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-5);
         make.top.mas_equalTo(self.coachButton.mas_bottom).with.offset(5);
         
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.325];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.328];
         make.height.mas_equalTo(height);
     }];
     
@@ -447,14 +451,14 @@
     [self.myselfImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.myselfButton.mas_centerX);
         make.centerY.mas_equalTo(self.myselfButton.mas_centerY);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
+        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.09];
         make.width.mas_equalTo(wide);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.139];
+        NSNumber *height = [NSNumber numberWithFloat:kSystemWide*0.10];
         make.height.mas_equalTo(height);
     }];
     [self.myselfLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.myselfImageView.mas_left).with.offset(0);
-        make.top.mas_equalTo(self.myselfImageView.mas_bottom).with.offset(0);
+        make.left.mas_equalTo(self.myselfButton.mas_left).with.offset(8);
+        make.bottom.mas_equalTo(self.myselfButton.mas_bottom).with.offset(-8);
         NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
         make.width.mas_equalTo(wide);
     }];

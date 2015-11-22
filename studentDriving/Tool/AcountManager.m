@@ -11,6 +11,7 @@
 #import "ToolHeader.h"
 #import <SSKeychain.h>
 
+static  NSString    *kMobile = @"mobile";
 static  NSString    *kuserMobile = @"telephone";
 static  NSString    *kuserName = @"name";
 static  NSString    *kuserNickName = @"nickname";
@@ -159,6 +160,10 @@ static  NSString    *kBannerUrl = @"bannerUrl";
     if ([userInformaiton objectForKey:ksubjectThree]) {
         [NSUserStoreTool storeWithId:[userInformaiton objectForKey:ksubjectThree] WithKey:ksubjectThree];
     }
+    
+    if ([userInformaiton objectForKey:kMobile]) {
+        [NSUserStoreTool storeWithId:[userInformaiton objectForKey:kMobile] WithKey:kMobile];
+    }
     return userInformationManager;
 }
 
@@ -286,7 +291,7 @@ static  NSString    *kBannerUrl = @"bannerUrl";
     return dic;
 }
 - (NSString *)userMobile {
-    NSString *userMobileString = [NSUserStoreTool getObjectWithKey:kuserMobile];
+    NSString *userMobileString = [NSUserStoreTool getObjectWithKey:kMobile];
     if (userMobileString == nil) return @"";
     return userMobileString;
 }

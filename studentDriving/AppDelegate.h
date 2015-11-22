@@ -14,7 +14,6 @@
     EMConnectionState _connectionState;
 
 }
-
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,assign)BOOL allowRotation;
 
