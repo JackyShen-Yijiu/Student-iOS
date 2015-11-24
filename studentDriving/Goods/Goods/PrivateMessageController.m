@@ -294,7 +294,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     UITextField *textFiledTwo = [_textFiledArray objectAtIndex:1];
     UITextField *textFiledThree = [_textFiledArray objectAtIndex:2];
 
-    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kBuyproduct];
     
     
     // 当点击购买时向后台传送数据
@@ -308,7 +308,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
                           @"address":textFiledThree.text};
     
     
-    [JENetwoking startDownLoadWithUrl:kBuyproduct postParam:dic WithMethod:JENetworkingRequestMethodPost withCompletion:nil withFailure:^(id data) {
+    [JENetwoking startDownLoadWithUrl:urlString postParam:dic WithMethod:JENetworkingRequestMethodPost withCompletion:nil withFailure:^(id data) {
         NSLog(@"errorData = %@",data);
     }];
     
@@ -325,9 +325,10 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
   UIButton *button =   [_finishView viewWithTag:100];
     [button addTarget:self action:@selector(backMainView:) forControlEvents:UIControlEventTouchUpInside];
     _backBtn.hidden = YES;
+
     [_wid addSubview:_finishView];
-    
 }
+
 
 // 使Cell的分割线靠近最左边
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
