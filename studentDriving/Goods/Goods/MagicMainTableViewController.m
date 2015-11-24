@@ -20,7 +20,7 @@
 #import "ToolHeader.h"
 
 
-#define k_Count  1
+#define k_Count  3
 #define k_Height 150
 #define k_H      80
 #define k_Width self.view.frame.size.width
@@ -39,15 +39,15 @@
 
 - (void)viewDidLoad {
     
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+
+    
     [super viewDidLoad];
     // 数组初始化
     self.ShopListArray = [[NSMutableArray alloc] init];
     self.shopMainListArray = [[NSMutableArray alloc] init];
     [self.tableView registerNib:[UINib nibWithNibName:@"MagicMainTableViewCell" bundle:nil] forCellReuseIdentifier:@"mainCell"];
     self.title = @"一步商城";
-//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12],
-//                                                                      
-//                                                                      NSForegroundColorAttributeName:MAINCOLOR}];
     
     //创建ScrollView和PageControl
     
@@ -96,7 +96,6 @@
 - (void)startDownLoad {
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,shopListAPI];
-    NSLog(@"________________________%@",urlString);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
         
@@ -140,108 +139,6 @@
     }];
 
 }
-
-
-
-
-
-
-//- (void)startDownLoad {
-//    
-//    NSString *urlString = [NSString stringWithFormat:BASEURL,shopListAPI];
-//    NSLog(@"________________________%@",urlString);
-//    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-//        DYNSLog(@"data = %@",data);
-//        
-//        
-//             NSArray *keyArray = [data allKeys];
-//                for (NSString *keyStr in keyArray)
-//                {
-//        
-//                    // 封装轮播图Model
-//                    if ([keyStr isEqualToString:@"toplist"])
-//                    {
-//                        NSArray *array = [data objectForKey:keyStr];
-//                        for (NSDictionary *dic in array)
-//                        {
-//                            ShopModel *model=[[ShopModel alloc]init];
-//                            [model setValuesForKeysWithDictionary:dic];
-//                            [self.ShopListArray addObject:model];
-//                        }
-//                        // 将数据传给UIScroller;
-//                        [self loadScrollImage:_ShopListArray];
-//        
-//                    }
-//                    // 封装展示图Model
-//                    else
-//                    {
-//                        NSArray *array = [data objectForKey:keyStr];
-//                        for (NSDictionary *dic in array)
-//                        {
-//                            ShopMainModel *mainDodel = [[ShopMainModel alloc] init];
-//                            [mainDodel setValuesForKeysWithDictionary:dic];
-//                            [self.shopMainListArray addObject:mainDodel];
-//                        }
-//                     }
-//                }
-//                [self.tableView reloadData];
-//                
-//            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                NSLog(@"Error: %@", error);}
-//        //    }];
-
-        
-
-
-//- (void)viewLoadData
-//{
-//    
-//        //    从URL获取json数据
-//    
-//    AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
-//    [manager GET:shopListAPI parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//        NSDictionary *souccrDic = [responseObject objectForKey:@"data"];
-//        NSArray *keyArray = [souccrDic allKeys];
-//        for (NSString *keyStr in keyArray)
-//        {
-//            
-//            // 封装轮播图Model
-//            if ([keyStr isEqualToString:@"toplist"])
-//            {
-//                NSArray *array = [souccrDic objectForKey:keyStr];
-//                for (NSDictionary *dic in array)
-//                {
-//                    ShopModel *model=[[ShopModel alloc]init];
-//                    [model setValuesForKeysWithDictionary:dic];
-//                    [self.ShopListArray addObject:model];
-//                }
-//                // 将数据传给UIScroller;
-//                [self loadScrollImage:_ShopListArray];
-//                
-//            }
-//            // 封装展示图Model
-//            else
-//            {
-//                NSArray *array = [souccrDic objectForKey:keyStr];
-//                for (NSDictionary *dic in array)
-//                {
-//                    ShopMainModel *mainDodel = [[ShopMainModel alloc] init];
-//                    [mainDodel setValuesForKeysWithDictionary:dic];
-//                    [self.shopMainListArray addObject:mainDodel];
-//                }
-//             }
-//        }
-//        [self.tableView reloadData];
-//        
-//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"Error: %@", error);
-//    }];
-//    
-//    
-//    
-//  }
-
-
 #pragma mark --- 下载scrollView图片
 - (void)loadScrollImage:(NSMutableArray *)imageArray {
     
@@ -270,8 +167,8 @@
     MagicDetailViewController *detailVC = [[MagicDetailViewController alloc] init];
     
     int count =  _scrollNewList.contentOffset.x/k_Width;
-    
-    detailVC.mainModel = _shopMainListArray[count];
+    NSLog(@"count = %d",count);
+    detailVC.mainModel = _ShopListArray[count];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -280,7 +177,7 @@
 - (void)setupScrollView {
     
     //1.创建并添加到视图
-    self.scrollNewList = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, k_Width, kheight)];
+    self.scrollNewList = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, k_Width, [UIScreen mainScreen].bounds.size.width * 0.56)];
     [self.view addSubview:self.scrollNewList];
     
     //2.设置scrollView的一些基本属性
@@ -299,7 +196,7 @@
 - (void)setupPageControl {
     
     //1.创建并添加到视图
-    self.pageNewList = [[UIPageControl alloc] initWithFrame:CGRectMake(k_Height, k_Height+40, k_Width-100-180, 0)];
+    self.pageNewList = [[UIPageControl alloc] initWithFrame:CGRectMake(k_Height, [UIScreen mainScreen].bounds.size.width * 0.56 - 5, k_Width-100-180, 0)];
     self.pageNewList.numberOfPages = k_Count;
     [self.view addSubview:self.pageNewList];
     self.pageNewList.currentPage = 0;
@@ -346,17 +243,27 @@
 // 从XIB中加载自定义Cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    MagicMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainCell"];
+    static NSString *definition = @"myCell";
+    BOOL nibsRegistered = NO;
+    if (!nibsRegistered)
+    {
+        
+        UINib *nib = [UINib nibWithNibName:@"MagicMainTableViewCell" bundle:nil];
+        [tableView registerNib:nib forCellReuseIdentifier:definition];
+        nibsRegistered = YES;
+    }
+    MagicMainTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:definition];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    ShopMainModel *mainModel = _shopMainListArray[indexPath.row];
     
+    ShopMainModel *mainModel = _shopMainListArray[indexPath.row];
     NSString *encoded = [mainModel.productimg stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     [cell.shopMainImage sd_setImageWithURL:[NSURL URLWithString:encoded] placeholderImage:[UIImage imageNamed:@"nav_bg.png"]];
-     return cell;
+    return cell;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 195;
+    return [UIScreen mainScreen].bounds.size.width / 2;
+
     
 }
 

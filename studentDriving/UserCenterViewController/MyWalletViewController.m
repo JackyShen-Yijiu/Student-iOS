@@ -261,8 +261,9 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         DYNSLog(@"wallet = %@",walletString);
         if (walletString && walletString.length != 0) {
             self.moneyDisplay.text =  [NSString stringWithFormat:@"%@",walletString];
+            wallet.wallet = [NSString stringWithFormat:@"%@",walletString];
         }
-        for (NSDictionary *dic in list) {
+        for (NSDictionary *dic in data) {
             MyWallet *wallet = [[MyWallet alloc] init];
             [wallet setValuesForKeysWithDictionary:dic];
             [self.dataArray addObject:wallet];
@@ -285,6 +286,11 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         NSDictionary *param = [data objectForKey:@"data"];
         NSArray *list = [param objectForKey:@"list"];
         NSString *walletString = [NSString stringWithFormat:@"%@",param[@"wallet"]];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:walletString forKey:@"walletStr"];
+    
+        
         DYNSLog(@"wallet = %@",walletString);
         if (walletString && walletString.length != 0) {
             self.moneyDisplay.text =  [NSString stringWithFormat:@"%@",walletString];

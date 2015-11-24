@@ -38,14 +38,6 @@
     // 去除分割线
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.title = @"商城详情";
-//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12],
-
-//                                                                      NSForegroundColorAttributeName:MAINCOLOR}];
-    
-    
-    
-//    self.tableView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-//    self.automaticallyAdjustsScrollViewInsets = YES;
     
     // 加载用户的已有的积分数
 }
@@ -69,11 +61,6 @@
 }
 - (void)backAction:(UIButton *)btn
 {
-    
-//    UIView *viewText = [_wid viewWithTag:200];
-//    [viewText removeFromSuperview];
-//    NSLog(@"------");
-    
     [self.navigationController popViewControllerAnimated:YES];
     
 }
@@ -84,34 +71,18 @@
 {
     // 加载底部View
     _bottomView = [LTBottomView instanceBottomView];
-    
     // 取出积分的Label
     UILabel *numberLabel = [_bottomView viewWithTag:103];
-    numberLabel.text = [NSString stringWithFormat:@"%d",[MyWallet getInstance].amount];
+    NSUserDefaults *defaules = [NSUserDefaults standardUserDefaults];
+    NSString *walletstr = [defaules objectForKey:@"walletStr"];
+    numberLabel.text = walletstr;
     // 取出立即购买按钮,添加点击事件
    _didClickBtn = [_bottomView viewWithTag:102];
-    
-    
-    
-    
-    
-    
-    
-    
-    
     [_didClickBtn setTitle:@"立即购买" forState:UIControlStateNormal];
-    CGFloat kWight = self.tableView.frame.size.width;
-    CGFloat kHight = self.tableView.frame.size.height;
-    if (kHight == 647) {
-        kHight = kHight + 20;
-    }
-    
-    NSLog(@"kHight= %f",kHight);
+    CGFloat kWight = [UIScreen mainScreen].bounds.size.width;
+    CGFloat kHight = [UIScreen mainScreen].bounds.size.height;
     CGFloat kbottonViewh = 50;
     _bottomView.frame = CGRectMake(0,kHight - 50 , kWight, kbottonViewh);
-    
-    
-    
     NSArray *windows = [UIApplication sharedApplication].windows;
     _wid = [windows lastObject];
     
@@ -124,8 +95,8 @@
 - (void)didClick:(UIButton *)btn
 {
     PrivateMessageController *privateMessageVC = [[PrivateMessageController alloc] init];
-
     
+    privateMessageVC.shopId = _mainModel.productid;
     [self.navigationController pushViewController:privateMessageVC animated:YES];
 }
 
@@ -179,10 +150,7 @@
         [cell.shopImageView sd_setImageWithURL:[NSURL URLWithString:encoded] placeholderImage:[UIImage imageNamed:@"nav_bg"]];
         
         //// 判断按钮是否能点击
-        _didClickBtn.selected = [MyWallet getInstance].amount > _moneyCount ? 1 : 0;
-        
-        NSLog(@"%d ----- %d",[MyWallet getInstance].amount,_moneyCount);
-        
+        _didClickBtn.selected = 10000 > _moneyCount ? 1 : 0;
         if (_didClickBtn.selected) {
             [_didClickBtn setBackgroundColor:MAINCOLOR];
             [_didClickBtn addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -206,7 +174,7 @@
         DetailIntroduceCell *cell = [tableView dequeueReusableCellWithIdentifier:definition];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         NSString *encoded = [_mainModel.detailsimg stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:encoded] placeholderImage:[UIImage imageNamed:@"nav_bg"]];
+        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:encoded] placeholderImage:[UIImage imageNamed:@"nav_bg"]];
         return cell;
     }
 }

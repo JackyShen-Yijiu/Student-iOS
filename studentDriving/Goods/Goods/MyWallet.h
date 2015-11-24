@@ -12,6 +12,9 @@
 @property (nonatomic,assign) int amount;
 @property (nonatomic,assign) int type;
 @property (nonatomic,assign) int seqindex;
+
+@property (nonatomic,assign) NSString * wallet;
+
 @property (nonatomic,copy) NSString *createtime;
 
 + (instancetype)getInstance;

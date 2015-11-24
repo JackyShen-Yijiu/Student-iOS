@@ -11,6 +11,7 @@
 #import "LTBottomView.h"
 #import "MyWallet.h"
 
+
 @interface PrivateMessageController : UITableViewController
 @property (nonatomic,retain)UIButton *button;
 @property (nonatomic,retain)PrivateMessageCell *cell;
@@ -23,4 +24,5 @@
 @property (nonatomic,retain) NSMutableArray *cellArray ;
 @property (nonatomic,retain) NSMutableArray *textFiledArray;
 @property (nonatomic,retain) UIButton *backBtn;
+@property (nonatomic,retain) NSString *shopId; // 商品的id
 @end

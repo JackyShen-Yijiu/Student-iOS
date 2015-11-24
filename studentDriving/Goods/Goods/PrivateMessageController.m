@@ -14,6 +14,7 @@
 #import "InfoModel.h"
 
 static NSString *const kMyInfotUrl = @"userinfo/getuserinfo?userid=%@&usertype=1";
+static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 
 @interface PrivateMessageController ()
 
@@ -104,17 +105,13 @@ static NSString *const kMyInfotUrl = @"userinfo/getuserinfo?userid=%@&usertype=1
 - (void)startDownLoad {
     NSString *url = [NSString stringWithFormat:kMyInfotUrl,[AcountManager manager].userid];
     NSString *urlString = [NSString stringWithFormat:BASEURL,url];
-    NSLog(@"+++++++++++++++++++%@",urlString);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
-        
         
         // 封装我的钱包数据
         NSDictionary *dataDic = [data objectForKey:@"data"];
         InfoModel *infoModel = [[InfoModel alloc] init];
         [infoModel setValuesForKeysWithDictionary:dataDic];
-        
-        
         
     }];
 }
@@ -145,7 +142,9 @@ static NSString *const kMyInfotUrl = @"userinfo/getuserinfo?userid=%@&usertype=1
     
     // 取出积分的Label
     UILabel *numberLabel = [_bottomView viewWithTag:103];
-    numberLabel.text = [NSString stringWithFormat:@"%d",[MyWallet getInstance].amount];
+    NSUserDefaults *defaules = [NSUserDefaults standardUserDefaults];
+    NSString *walletstr = [defaules objectForKey:@"walletStr"];
+    numberLabel.text = walletstr;
 
     [_didClickBtn setTitle:@"确认购买" forState:UIControlStateNormal];
     CGFloat kWight = self.tableView.bounds.size.width;
@@ -199,12 +198,12 @@ static NSString *const kMyInfotUrl = @"userinfo/getuserinfo?userid=%@&usertype=1
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    InfoModel *infoModel = [InfoModel getInstance];
+//    InfoModel *infoModel = [InfoModel getInstance];
     
     
     // 个人基本信息数组
-    NSArray *infoArray = [[NSArray alloc] initWithObjects:[infoModel name],[infoModel mobile], nil];
-    
+//    NSArray *infoArray = [[NSArray alloc] initWithObjects:[infoModel name],[infoModel mobile], nil];
+//    
     
     // 字符数组
     NSArray *strArray = [[NSArray alloc] initWithObjects:@"姓名",@"电话",@"地址", nil];
@@ -220,7 +219,7 @@ static NSString *const kMyInfotUrl = @"userinfo/getuserinfo?userid=%@&usertype=1
             nibsRegistered = YES;
         }
         _cell = [tableView dequeueReusableCellWithIdentifier:definition];
-    _cell.messageTextField.text = infoArray[indexPath.row];
+//    _cell.messageTextField.text = infoArray[indexPath.row];
     
     // 添加当开始输入通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectorCell:) name:UITextFieldTextDidBeginEditingNotification object:_cell.messageTextField];
@@ -291,6 +290,31 @@ static NSString *const kMyInfotUrl = @"userinfo/getuserinfo?userid=%@&usertype=1
 }
 - (void)pushFinshView:(UIButton *)btn
 {
+    UITextField *textFiledOne = [_textFiledArray objectAtIndex:0];
+    UITextField *textFiledTwo = [_textFiledArray objectAtIndex:1];
+    UITextField *textFiledThree = [_textFiledArray objectAtIndex:2];
+
+    
+    
+    
+    // 当点击购买时向后台传送数据
+    NSString *useId = [AcountManager manager].userid;
+    NSString *productId = _shopId;
+    NSDictionary *dic = @{@"usertype":@"1",
+                          @"useid":useId,
+                          @"productid":productId,
+                          @"name":textFiledOne.text,
+                          @"mobile":textFiledTwo.text,
+                          @"address":textFiledThree.text};
+    
+    
+    [JENetwoking startDownLoadWithUrl:kBuyproduct postParam:dic WithMethod:JENetworkingRequestMethodPost withCompletion:nil withFailure:^(id data) {
+        NSLog(@"errorData = %@",data);
+    }];
+    
+    
+    
+    
 
  _finishView =  [finishMessageView instanceBottomView];
     

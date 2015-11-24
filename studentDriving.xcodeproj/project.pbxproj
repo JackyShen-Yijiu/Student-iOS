@@ -2914,7 +2914,7 @@
 				TargetAttributes = {
 					D588AF851BDDB62C000C5D6F = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = MC3VUBEH8X;
+						DevelopmentTeam = 45D2HNDKK9;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3661,7 +3661,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/studentDriving/3rdparty/Parse",
 				);
-				GCC_PREFIX_HEADER = "/Users/bestseller/Desktop/Student/studentDriving/EaseMobSDK-PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/xin/Student-iOS/studentDriving/EaseMobSDK-PrefixHeader.pch";
 				INFOPLIST_FILE = studentDriving/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3672,7 +3672,7 @@
 					"$(PROJECT_DIR)/studentDriving/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/studentDriving/3rdparty/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zyt.zyt.zyt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -3692,7 +3692,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/studentDriving/3rdparty/Parse",
 				);
-				GCC_PREFIX_HEADER = "/Users/bestseller/Desktop/Student/studentDriving/EaseMobSDK-PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/xin/Student-iOS/studentDriving/EaseMobSDK-PrefixHeader.pch";
 				INFOPLIST_FILE = studentDriving/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3703,7 +3703,7 @@
 					"$(PROJECT_DIR)/studentDriving/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/studentDriving/3rdparty/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zyt.zyt.zyt;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
