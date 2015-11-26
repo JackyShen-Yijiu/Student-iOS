@@ -12,6 +12,7 @@
 #import "ToolHeader.h"
 #import "MagicMainTableViewController.h"
 #import "InfoModel.h"
+#import "MyWalletViewController.h"
 
 static NSString *const kMyInfotUrl = @"userinfo/getuserinfo?userid=%@&usertype=1";
 static NSString *const kBuyproduct =  @"userinfo/buyproduct";
@@ -98,7 +99,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     [self cleaExtraLine];
 
    // 加载个人信息
-    [self startDownLoad];
+//    [self startDownLoad];
     
 }
 
@@ -147,10 +148,10 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     numberLabel.text = walletstr;
 
     [_didClickBtn setTitle:@"确认购买" forState:UIControlStateNormal];
-    CGFloat kWight = self.tableView.bounds.size.width;
-    CGFloat kHight = self.tableView.bounds.size.height;
+    CGFloat kWight = [UIScreen mainScreen].bounds.size.width;
+    CGFloat kHight = [UIScreen mainScreen].bounds.size.height;
     CGFloat kbottonViewh = 50;
-    _bottomView.frame = CGRectMake(0,kHight - 30 , kWight, kbottonViewh);
+    _bottomView.frame = CGRectMake(0,kHight - 50 , kWight, kbottonViewh);
     NSArray *windows = [UIApplication sharedApplication].windows;
     _wid = [windows lastObject];
     _bottomView.tag = 200;
@@ -295,24 +296,31 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     UITextField *textFiledThree = [_textFiledArray objectAtIndex:2];
 
     NSString *urlString = [NSString stringWithFormat:BASEURL,kBuyproduct];
-    
+    NSLog(@"urlString = %@",urlString);
     
     // 当点击购买时向后台传送数据
     NSString *useId = [AcountManager manager].userid;
     NSString *productId = _shopId;
     NSDictionary *dic = @{@"usertype":@"1",
-                          @"useid":useId,
+                          @"userid":useId,
                           @"productid":productId,
                           @"name":textFiledOne.text,
                           @"mobile":textFiledTwo.text,
                           @"address":textFiledThree.text};
+
     
     
-    [JENetwoking startDownLoadWithUrl:urlString postParam:dic WithMethod:JENetworkingRequestMethodPost withCompletion:nil withFailure:^(id data) {
+    [JENetwoking startDownLoadWithUrl:urlString postParam:dic WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        
+        NSLog(@"Turedata = %@",data);
+    }  withFailure:^(id data) {
         NSLog(@"errorData = %@",data);
     }];
     
+    MyWalletViewController *walletVC = [self.navigationController.viewControllers objectAtIndex:1];
     
+    [walletVC refreshWalletData];
     
     
 
@@ -325,6 +333,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
   UIButton *button =   [_finishView viewWithTag:100];
     [button addTarget:self action:@selector(backMainView:) forControlEvents:UIControlEventTouchUpInside];
     _backBtn.hidden = YES;
+    
 
     [_wid addSubview:_finishView];
 }

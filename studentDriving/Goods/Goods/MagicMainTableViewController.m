@@ -82,14 +82,14 @@
 }
 //ScrollView将要被拖拽时计时器失去作用
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView {
-    
     [self.timer invalidate];
 }
 
 //scrollView结束拖拽时又开始计时
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     
-    [self startTimer];
+        [self startTimer];      
+
 }
 #pragma mark --------加载数据
 

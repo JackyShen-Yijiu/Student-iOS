@@ -16,6 +16,10 @@
 
 @interface MagicDetailViewController ()
 
+
+{
+    NSString  *_walletstr;
+}
 @end
 
 @implementation MagicDetailViewController
@@ -74,11 +78,20 @@
     // 取出积分的Label
     UILabel *numberLabel = [_bottomView viewWithTag:103];
     NSUserDefaults *defaules = [NSUserDefaults standardUserDefaults];
-    NSString *walletstr = [defaules objectForKey:@"walletStr"];
-    numberLabel.text = walletstr;
+    _walletstr = [defaules objectForKey:@"walletStr"];
+    
+    numberLabel.text = _walletstr;
     // 取出立即购买按钮,添加点击事件
    _didClickBtn = [_bottomView viewWithTag:102];
     [_didClickBtn setTitle:@"立即购买" forState:UIControlStateNormal];
+    
+    //// 判断按钮是否能点击
+    _didClickBtn.selected = [_walletstr intValue]  >=  _mainModel.productprice ? 1 : 0;
+    if (_didClickBtn.selected) {
+        [_didClickBtn setBackgroundColor:MAINCOLOR];
+        [_didClickBtn addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
+    }
+
     CGFloat kWight = [UIScreen mainScreen].bounds.size.width;
     CGFloat kHight = [UIScreen mainScreen].bounds.size.height;
     CGFloat kbottonViewh = 50;
@@ -148,17 +161,6 @@
         cell.shopDetailName.text = descStr;
         NSString *encoded = [_mainModel.detailsimg stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [cell.shopImageView sd_setImageWithURL:[NSURL URLWithString:encoded] placeholderImage:[UIImage imageNamed:@"nav_bg"]];
-        
-        //// 判断按钮是否能点击
-        _didClickBtn.selected = 10000 > _moneyCount ? 1 : 0;
-        if (_didClickBtn.selected) {
-            [_didClickBtn setBackgroundColor:MAINCOLOR];
-            [_didClickBtn addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
-        }
-
-        
-        
-        
         return cell;
     }
     // 加载第二部分Cell

@@ -10,5 +10,5 @@
 #import "BLBaseViewController.h"
 
 @interface MyWalletViewController : BLBaseViewController
-
+- (void)refreshWalletData;
 @end

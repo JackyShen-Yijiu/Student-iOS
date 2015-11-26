@@ -286,6 +286,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         NSDictionary *param = [data objectForKey:@"data"];
         NSArray *list = [param objectForKey:@"list"];
         NSString *walletString = [NSString stringWithFormat:@"%@",param[@"wallet"]];
+        NSLog(@"walletStringTest = %@",walletString);
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:walletString forKey:@"walletStr"];
@@ -327,31 +328,12 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    
-//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.view.calculateFrameWithWide, 230)];
-//    view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:CGRectMake(0, 0, kSystemWide, 230) andColors:@[RGBColor(240, 71, 26),RGBColor(255, 102, 51)]];
-//    
-//    [view addSubview:self.myWalletTitle];
-//    [self.myWalletTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(view.mas_top).offset(53);
-//        make.centerX.mas_equalTo(view.mas_centerX);
-//    }];
-//    [view addSubview:self.moneyDisplay];
-//    [self.moneyDisplay mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.myWalletTitle.mas_bottom).offset(0);
-//        make.centerX.mas_equalTo(view.mas_centerX);
-//        
-//    }];
-//    if (section == 1) {
         UILabel *sectionTitle = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 29)];
         sectionTitle.text = @"      交易详情";
         sectionTitle.backgroundColor = RGBColor(247, 249, 251);
         sectionTitle.font = [UIFont systemFontOfSize:12];
         sectionTitle.textColor = [UIColor blackColor];
         return sectionTitle;
-//    }
-    
-//    return nil;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
@@ -403,33 +385,10 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         moneyDisplay.text = [NSString stringWithFormat:@"%@",[NSNumber numberWithInt:wallet.amount]] ;
         cell.accessoryView = moneyDisplay;
         return cell;
-
-//    }else if (indexPath.section == 0) {
-//        static NSString *cellId = @"cellTop";
-//        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-//        if (!cell) {
-//            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-//        }
-//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.view.calculateFrameWithWide, 230)];
-//        view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:CGRectMake(0, 0, kSystemWide, 230) andColors:@[RGBColor(240, 71, 26),RGBColor(255, 102, 51)]];
-//        
-//        [view addSubview:self.myWalletTitle];
-//        [self.myWalletTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(view.mas_top).offset(53);
-//            make.centerX.mas_equalTo(view.mas_centerX);
-//        }];
-//        [view addSubview:self.moneyDisplay];
-//        [self.moneyDisplay mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.top.mas_equalTo(self.myWalletTitle.mas_bottom).offset(0);
-//            make.centerX.mas_equalTo(view.mas_centerX);
-//            
-//        }];
-//        [cell.contentView addSubview:view];
-//        return cell;
-//    }
-//    return nil;
 }
-
+- (void)refreshWalletData
+{
+    [self startDownLoad];
+}
 
 @end
