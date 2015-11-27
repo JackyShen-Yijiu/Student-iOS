@@ -36,7 +36,9 @@
 @end
 
 @implementation MagicMainTableViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden = NO;
+}
 - (void)viewDidLoad {
     
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

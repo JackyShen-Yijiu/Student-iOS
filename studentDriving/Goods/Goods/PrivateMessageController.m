@@ -60,19 +60,19 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
                                                                       NSForegroundColorAttributeName:MAINCOLOR}];
 
     
-    // 用自定义Button代替
-    _backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    
-    [_backBtn setFrame:CGRectMake(10, 10, 25, 30)];
-    
-    [_backBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [_backBtn setTitle:nil forState:UIControlStateNormal];
-    
-    [_backBtn setBackgroundImage:[UIImage imageNamed:@"bc"] forState:UIControlStateNormal];
-    
-    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:_backBtn];
-    self.navigationItem.leftBarButtonItem = backItem;
+//    // 用自定义Button代替
+//    _backBtn = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//    
+//    [_backBtn setFrame:CGRectMake(10, 10, 25, 30)];
+//    
+//    [_backBtn addTarget:self action:@selector(backAction:) forControlEvents:UIControlEventTouchUpInside];
+//    
+//    [_backBtn setTitle:nil forState:UIControlStateNormal];
+//    
+//    [_backBtn setBackgroundImage:[UIImage imageNamed:@"bc"] forState:UIControlStateNormal];
+//    
+//    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:_backBtn];
+//    self.navigationItem.leftBarButtonItem = backItem;
 
     
     // 创建头部试图
@@ -332,8 +332,8 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     _finishView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
   UIButton *button =   [_finishView viewWithTag:100];
     [button addTarget:self action:@selector(backMainView:) forControlEvents:UIControlEventTouchUpInside];
-    _backBtn.hidden = YES;
-    
+//    _backBtn.hidden = YES;
+    self.navigationController.navigationBarHidden = YES;
 
     [_wid addSubview:_finishView];
 }

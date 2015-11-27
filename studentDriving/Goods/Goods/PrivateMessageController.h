@@ -23,6 +23,6 @@
 
 @property (nonatomic,retain) NSMutableArray *cellArray ;
 @property (nonatomic,retain) NSMutableArray *textFiledArray;
-@property (nonatomic,retain) UIButton *backBtn;
+//@property (nonatomic,retain) UIButton *backBtn;
 @property (nonatomic,retain) NSString *shopId; // 商品的id
 @end
