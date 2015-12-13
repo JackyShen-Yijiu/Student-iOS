@@ -565,6 +565,7 @@
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B8E979B51C1DC244002DEA0A /* EaseMobSDK-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseMobSDK-PrefixHeader.pch"; sourceTree = "<group>"; };
 		D512569A1BDF602B002717DA /* CommonAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAddressViewController.h; sourceTree = "<group>"; };
 		D512569B1BDF602B002717DA /* CommonAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAddressViewController.m; sourceTree = "<group>"; };
 		D512569D1BDFAA31002717DA /* SignUpDrivingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpDrivingViewController.h; sourceTree = "<group>"; };
@@ -1016,7 +1017,6 @@
 		D5604C7A1BF656F30020F0D7 /* MessageModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModelManager.m; sourceTree = "<group>"; };
 		D5604C7B1BF656F30020F0D7 /* MessageReadManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageReadManager.h; sourceTree = "<group>"; };
 		D5604C7C1BF656F30020F0D7 /* MessageReadManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageReadManager.m; sourceTree = "<group>"; };
-		D5604C931BF657140020F0D7 /* EaseMobSDK-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseMobSDK-PrefixHeader.pch"; sourceTree = "<group>"; };
 		D5604C951BF657AA0020F0D7 /* InvitationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InvitationManager.h; sourceTree = "<group>"; };
 		D5604C961BF657AA0020F0D7 /* InvitationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InvitationManager.m; sourceTree = "<group>"; };
 		D5604C971BF657AA0020F0D7 /* UserProfileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileManager.h; sourceTree = "<group>"; };
@@ -2371,6 +2371,7 @@
 		D588AF891BDDB62C000C5D6F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B8E979B51C1DC244002DEA0A /* EaseMobSDK-PrefixHeader.pch */,
 				D588AF8F1BDDB62C000C5D6F /* ViewController.h */,
 				D588AF901BDDB62C000C5D6F /* ViewController.m */,
 				D588AF921BDDB62C000C5D6F /* Main.storyboard */,
@@ -2379,7 +2380,6 @@
 				D588AF9A1BDDB62C000C5D6F /* Info.plist */,
 				D5BCFED21BF201410019402C /* PushConfig.plist */,
 				D588AF8A1BDDB62C000C5D6F /* main.m */,
-				D5604C931BF657140020F0D7 /* EaseMobSDK-PrefixHeader.pch */,
 				D5604CC21BF6E0150020F0D7 /* Localizable.strings */,
 			);
 			name = "Supporting Files";
@@ -2893,6 +2893,7 @@
 				D588AF831BDDB62C000C5D6F /* Frameworks */,
 				D588AF841BDDB62C000C5D6F /* Resources */,
 				9700B1883F63B649D544C4D8 /* Copy Pods Resources */,
+				3E067140CF0D277093FAA2F0 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3221,6 +3222,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3E067140CF0D277093FAA2F0 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9700B1883F63B649D544C4D8 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3661,7 +3677,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/studentDriving/3rdparty/Parse",
 				);
-				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/xin/Student-iOS/studentDriving/EaseMobSDK-PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/studentDriving/EaseMobSDK-PrefixHeader.pch";
 				INFOPLIST_FILE = studentDriving/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3692,7 +3708,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/studentDriving/3rdparty/Parse",
 				);
-				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/xin/Student-iOS/studentDriving/EaseMobSDK-PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/studentDriving/EaseMobSDK-PrefixHeader.pch";
 				INFOPLIST_FILE = studentDriving/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

@@ -1,0 +1,22 @@
+dependencies: \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/ChatList/ChatListViewController.m \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/EaseMobSDK-PrefixHeader.pch \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/ChatDemoUIDefine.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/3rdparty/EMAlertView/EMAlertView.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/3rdparty/TTGlobalUICommon/TTGlobalUICommon.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/Category/UIViewController+HUD.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/Category/UIViewController+DismissKeyboard.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/Category/NSString+Valid.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/ChatList/ChatListViewController.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/Custom/ViewController/BaseViewController.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/3rdparty/SlimeRefresh/SRRefreshView.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/3rdparty/SlimeRefresh/SRSlimeView.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/ChatList/ChatListCell.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/Custom/EMSearchBar.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/Category/NSDate+Category.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/ChatList/RealtimeSearchUtil.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/ChatView/ChatViewController.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/Custom/ViewController/EMSearchDisplayController.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/Custom/BaseTableViewCell.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/ChatView/ConvertToCommonEmoticonsHelper.h \
+  /Users/quke/code/yibu/Student-iOS/studentDriving/Core\ Data/UserProfileManager.h
