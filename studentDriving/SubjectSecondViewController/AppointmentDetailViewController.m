@@ -16,10 +16,10 @@
 #import "MyAppointmentModel.h"
 #import "StudentModel.h"
 #import <SVProgressHUD.h>
-#import <BMapKit.h>
-#import <BMKMapView.h>
-#import <BMKPointAnnotation.h>
-#import <BMKPinAnnotationView.h>
+#import <BaiduMapAPI/BMapKit.h>
+#import <BaiduMapAPI/BMKMapView.h>
+#import <BaiduMapAPI/BMKPointAnnotation.h>
+#import <BaiduMapAPI/BMKPinAnnotationView.h>
 #import "ChatViewController.h"
 
 static NSString *const kStudentTimeStudy = @"courseinfo/sametimestudents/reservationid/%@/index/%@";

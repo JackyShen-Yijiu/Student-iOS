@@ -7,10 +7,10 @@
 //
 
 #import "MapViewController.h"
-#import <BMapKit.h>
-#import <BMKMapView.h>
-#import <BMKPointAnnotation.h>
-#import <BMKPinAnnotationView.h>
+#import <BaiduMapAPI/BMapKit.h>
+#import <BaiduMapAPI/BMKMapView.h>
+#import <BaiduMapAPI/BMKPointAnnotation.h>
+#import <BaiduMapAPI/BMKPinAnnotationView.h>
 @interface MapViewController ()<BMKMapViewDelegate>
 @property (strong, nonatomic) BMKMapView *mapView;
 
