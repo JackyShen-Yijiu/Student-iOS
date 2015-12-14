@@ -536,9 +536,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 - (void)dealCard:(UIButton *)sender{
     WrongQuestionViewController *wrongQuestion = [[WrongQuestionViewController alloc] init];
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }else {
         NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
@@ -551,9 +549,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 
 - (void)dealMyself:(UIButton *)sender {
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     UserCenterViewController *userCenter = [[UserCenterViewController alloc] init];

@@ -289,9 +289,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     DrvingDetailModel *model = self.dataArray.firstObject;
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     
@@ -365,9 +363,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 - (void)dealLike:(UITapGestureRecognizer *)tap {
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     

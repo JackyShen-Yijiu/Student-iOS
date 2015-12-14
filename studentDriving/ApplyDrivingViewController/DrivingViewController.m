@@ -43,6 +43,7 @@ static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
     }
     return _tableView;
 }
+
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
         _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
@@ -55,9 +56,7 @@ static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
 - (void)clickRight:(UIButton *)sender {
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
@@ -104,6 +103,7 @@ static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
         }];
     }
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -118,7 +118,7 @@ static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
 
     [self.view addSubview:self.tableView];
     
-    [self locationManager];
+    [self locationManager];    
 }
 - (void)locationManager {
     
@@ -128,7 +128,6 @@ static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
     self.locationService = [[BMKLocationService alloc] init];
     self.locationService.delegate = self;
     [self.locationService startUserLocationService];
-
 }
 
 //处理位置坐标更新

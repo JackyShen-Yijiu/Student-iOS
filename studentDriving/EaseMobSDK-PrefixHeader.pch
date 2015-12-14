@@ -23,5 +23,7 @@
 #import "NSString+Valid.h"
 
 #import <EaseMobSDKFull/EaseMob.h>
+#import "RESideMenu.h"
+#import "UIViewController+SliderMenu.h"
 
 #endif /* EaseMobSDK_PrefixHeader_pch */

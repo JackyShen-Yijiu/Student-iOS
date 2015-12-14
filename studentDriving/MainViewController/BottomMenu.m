@@ -90,15 +90,13 @@ static CGFloat const kTopMenuDuration = 0.5;
     NSUInteger index = sender.view.tag-100;
     if (index >= 2 && ![AcountManager isLogin]) {
         
-        LoginViewController *login = [[LoginViewController alloc] init];
-         [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     
     if ([[AcountManager manager].userApplystate isEqualToString:@"0"] && index >= 2) {
         SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        [nav pushViewController:signUpList animated:YES];
+        [[HMControllerManager slideMainNavController] pushViewController:signUpList animated:YES];
         return;
     }
     for (id obj in self.menuScrollview.subviews) {
@@ -123,15 +121,13 @@ static CGFloat const kTopMenuDuration = 0.5;
     
     if (index >= 2 && ![AcountManager isLogin]) {
         
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     
     if ([[AcountManager manager].userApplystate isEqualToString:@"0"] && index >= 2) {
         SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        [nav pushViewController:signUpList animated:YES];
+        [[HMControllerManager slideMainNavController] pushViewController:signUpList animated:YES];
         return;
     }
     

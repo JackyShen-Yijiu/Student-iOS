@@ -368,9 +368,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)dealSignUp:(UIButton *)sender{
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
@@ -438,9 +436,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
     DYNSLog(@"like");
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     

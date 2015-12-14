@@ -74,10 +74,10 @@
     [self.view addSubview:self.tableView];
     
     self.tableView.tableFooterView = [self tableFootView];
-    
     self.tableView.tableHeaderView = self.userCenterView;
     
 }
+
 - (UIButton *)tableFootView {
     UIButton *quit = [UIButton buttonWithType:UIButtonTypeCustom];
     quit.backgroundColor = [UIColor whiteColor];
@@ -96,12 +96,12 @@
         if (!error && info) {
         }
     } onQueue:nil];
-    LoginViewController *login = [[LoginViewController alloc] init];
+
+    [self dismissViewControllerAnimated:NO completion:nil];
     [APService setAlias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kQuitSuccess" object:nil];
-   
+    [self showLoginView];
     
 }
 //取消别名标示
@@ -114,6 +114,7 @@
     
     DYNSLog(@"TagsAlias回调:%@", callbackString);
 }
+
 - (void)userCenterClick {
     EditorUserViewController *editor = [[EditorUserViewController alloc] init];
     [self.navigationController pushViewController:editor animated:YES];

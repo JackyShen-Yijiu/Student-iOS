@@ -79,16 +79,15 @@
     if (scrollView.contentOffset.x > self.view.calculateFrameWithWide && ![AcountManager isLogin]) {
         DYNSLog(@"scrollview");
         scrollView.contentOffset = CGPointMake(kSystemWide, 0);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];        return;
+        [self showLoginView];
+        return;
     
     }
     if ([[AcountManager manager].userApplystate isEqualToString:@"0"] && scrollView.contentOffset.x > self.view.calculateFrameWithWide) {
         scrollView.contentOffset = CGPointMake(kSystemWide, 0);
 
         SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        [nav pushViewController:signUpList animated:YES];
+        [self.slideMainNavController pushViewController:signUpList animated:YES];
         return;
     }
     
@@ -113,14 +112,13 @@
 }
 - (void)replaceVcWithIndex:(NSUInteger)index {
     if (index >= 2 && ![AcountManager isLogin]) {
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];        return;
+        [self showLoginView];
+        return;
     }
     
     if ([[AcountManager manager].userApplystate isEqualToString:@"0"] && index >= 2) {
         SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        [nav pushViewController:signUpList animated:YES];
+        [self.slideMainNavController pushViewController:signUpList animated:YES];
         return;
     }
     

@@ -487,8 +487,7 @@
 - (void)dealSignUp:(UIButton *)sender {
     if (![AcountManager isLogin]) {
         DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     SignUpViewController *signUp = [[SignUpViewController alloc] init];
@@ -505,9 +504,7 @@
 - (void)dealPurse:(UIButton *)sender {
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
 
@@ -517,7 +514,8 @@
 #pragma mark - 教练点击事件
 - (void)dealCoach:(UIButton *)sender{
     NSLog(@"sender");
-    
+    [self.slideMenu presentLeftMenuViewController];
+    return;
     CoachViewController *CoachVC = [[CoachViewController alloc]init];
     CoachVC.markNum = 1;
     [self.navigationController pushViewController:CoachVC animated:YES];
@@ -530,10 +528,8 @@
 }
 
 - (void)dealMyself:(UIButton *)sender {
-    if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+    if (![AcountManager isLogin]) {   
+        [self showLoginView];
         return;
     }
     UserCenterViewController *userCenter = [[UserCenterViewController alloc] init];

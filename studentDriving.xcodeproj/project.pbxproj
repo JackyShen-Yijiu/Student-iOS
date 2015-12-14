@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
+		B8272D411C1EE4BA00BE0D2D /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D401C1EE4BA00BE0D2D /* MenuController.m */; };
+		B8272D441C1EE4ED00BE0D2D /* YBBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D431C1EE4ED00BE0D2D /* YBBaseTableController.m */; };
+		B8272D471C1EEC4D00BE0D2D /* SideMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D461C1EEC4D00BE0D2D /* SideMenuItem.m */; };
+		B8272D4A1C1EF42700BE0D2D /* UIViewController+SliderMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D491C1EF42700BE0D2D /* UIViewController+SliderMenu.m */; };
 		D512569C1BDF602B002717DA /* CommonAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D512569B1BDF602B002717DA /* CommonAddressViewController.m */; };
 		D512569F1BDFAA31002717DA /* SignUpDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D512569E1BDFAA31002717DA /* SignUpDrivingViewController.m */; };
 		D51256A21BDFAA53002717DA /* SignUpDrivingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51256A11BDFAA53002717DA /* SignUpDrivingDetailViewController.m */; };
@@ -565,6 +569,14 @@
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B8272D3F1C1EE4BA00BE0D2D /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
+		B8272D401C1EE4BA00BE0D2D /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
+		B8272D421C1EE4ED00BE0D2D /* YBBaseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseTableController.h; sourceTree = "<group>"; };
+		B8272D431C1EE4ED00BE0D2D /* YBBaseTableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseTableController.m; sourceTree = "<group>"; };
+		B8272D451C1EEC4D00BE0D2D /* SideMenuItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuItem.h; sourceTree = "<group>"; };
+		B8272D461C1EEC4D00BE0D2D /* SideMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuItem.m; sourceTree = "<group>"; };
+		B8272D481C1EF42700BE0D2D /* UIViewController+SliderMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SliderMenu.h"; sourceTree = "<group>"; };
+		B8272D491C1EF42700BE0D2D /* UIViewController+SliderMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SliderMenu.m"; sourceTree = "<group>"; };
 		B8E979B51C1DC244002DEA0A /* EaseMobSDK-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseMobSDK-PrefixHeader.pch"; sourceTree = "<group>"; };
 		D512569A1BDF602B002717DA /* CommonAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAddressViewController.h; sourceTree = "<group>"; };
 		D512569B1BDF602B002717DA /* CommonAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAddressViewController.m; sourceTree = "<group>"; };
@@ -1446,6 +1458,21 @@
 				72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B8272D3E1C1EE49700BE0D2D /* SliderMenu */ = {
+			isa = PBXGroup;
+			children = (
+				B8272D3F1C1EE4BA00BE0D2D /* MenuController.h */,
+				B8272D401C1EE4BA00BE0D2D /* MenuController.m */,
+				B8272D421C1EE4ED00BE0D2D /* YBBaseTableController.h */,
+				B8272D431C1EE4ED00BE0D2D /* YBBaseTableController.m */,
+				B8272D451C1EEC4D00BE0D2D /* SideMenuItem.h */,
+				B8272D461C1EEC4D00BE0D2D /* SideMenuItem.m */,
+				B8272D481C1EF42700BE0D2D /* UIViewController+SliderMenu.h */,
+				B8272D491C1EF42700BE0D2D /* UIViewController+SliderMenu.m */,
+			);
+			name = SliderMenu;
 			sourceTree = "<group>";
 		};
 		BEF77C06A3D4E352E446D8FE /* Frameworks */ = {
@@ -2340,6 +2367,7 @@
 		D588AF881BDDB62C000C5D6F /* studentDriving */ = {
 			isa = PBXGroup;
 			children = (
+				B8272D3E1C1EE49700BE0D2D /* SliderMenu */,
 				D5D50EAE1BFA204A00F54097 /* Goods */,
 				D56049AD1BF656A70020F0D7 /* EaseMobManager */,
 				D5C23FFB1BE8F66200832CF3 /* FourViewController */,
@@ -3294,6 +3322,7 @@
 				D588B04F1BDDDB71000C5D6F /* EditorUserViewController.m in Sources */,
 				D51256C61BE257DA002717DA /* ConfirmSubjectTwoCell.m in Sources */,
 				D5D50ED81BFA205000F54097 /* finishMessageView.m in Sources */,
+				B8272D441C1EE4ED00BE0D2D /* YBBaseTableController.m in Sources */,
 				D588B0941BDDDBDB000C5D6F /* DrivingViewController.m in Sources */,
 				D588AFCE1BDDDAAB000C5D6F /* CourseTimeModel.m in Sources */,
 				D588B08D1BDDDBDB000C5D6F /* SignUpSucceedViewController.m in Sources */,
@@ -3358,6 +3387,7 @@
 				D588B08E1BDDDBDB000C5D6F /* ExamClassViewController.m in Sources */,
 				D51256C01BE24442002717DA /* ConfirmStudyFinishViewController.m in Sources */,
 				D588B0931BDDDBDB000C5D6F /* CoachViewController.m in Sources */,
+				B8272D471C1EEC4D00BE0D2D /* SideMenuItem.m in Sources */,
 				D5604B3F1BF656C50020F0D7 /* EMAudioRecorderUtil.m in Sources */,
 				D51256CF1BE36239002717DA /* MyExamCarViewController.m in Sources */,
 				D588AFCF1BDDDAAB000C5D6F /* MyAppointmentModel.m in Sources */,
@@ -3430,6 +3460,7 @@
 				D588B08F1BDDDBDB000C5D6F /* ExamCarViewController.m in Sources */,
 				D588B0D51BDDDC14000C5D6F /* DrivingCell.m in Sources */,
 				D588B11D1BDDDC2F000C5D6F /* JsonTransformManager.m in Sources */,
+				B8272D4A1C1EF42700BE0D2D /* UIViewController+SliderMenu.m in Sources */,
 				D5BCFEE51BF4924C0019402C /* BLImageViewController.m in Sources */,
 				D526385F1BDF4C4D00ADC2C7 /* ModifyNameViewController.m in Sources */,
 				D588B0541BDDDB71000C5D6F /* FeedBackViewController.m in Sources */,
@@ -3510,6 +3541,7 @@
 				D588AFCB1BDDDAAB000C5D6F /* ExamCarModel.m in Sources */,
 				D588AF8B1BDDB62C000C5D6F /* main.m in Sources */,
 				D588B06D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m in Sources */,
+				B8272D411C1EE4BA00BE0D2D /* MenuController.m in Sources */,
 				D5604B7B1BF656C50020F0D7 /* wav.mm in Sources */,
 				D588B13D1BDDDC65000C5D6F /* ModificationView.m in Sources */,
 				D5604B551BF656C50020F0D7 /* EMSDWebImageDecoder.m in Sources */,

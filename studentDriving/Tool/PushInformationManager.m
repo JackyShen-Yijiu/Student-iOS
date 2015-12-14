@@ -29,8 +29,7 @@
         detail.isPushInformation = YES;
         detail.infoId = string;
         detail.state = AppointmentStateCoachConfirm;
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        [nav pushViewController:detail animated:YES];
+        [[HMControllerManager slideMainNavController] pushViewController:detail animated:YES];
         
     }else if ([type isEqualToString:@"reservationcancel"]) {
         DYNSLog(@"接受到教练取消订单信息");
@@ -39,15 +38,12 @@
         detail.isPushInformation = YES;
         detail.infoId = string;
         detail.state = AppointmentStateCoachCancel;
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        [nav pushViewController:detail animated:YES];
-
+        [[HMControllerManager slideMainNavController] pushViewController:detail animated:YES];
     }else if ([type isEqualToString:@"reservationcoachcomment"]) {
         
     }else if ([type isEqualToString:@"walletupdate"]) {
         MyWalletViewController *detail = [[MyWalletViewController alloc] init];
-        UINavigationController *nav = (UINavigationController *)[UIApplication sharedApplication].keyWindow.rootViewController;
-        [nav pushViewController:detail animated:YES];
+        [[HMControllerManager slideMainNavController] pushViewController:detail animated:YES];
         
     }
     

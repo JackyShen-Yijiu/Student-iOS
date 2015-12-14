@@ -75,9 +75,7 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
 - (void)clickRight:(UIButton *)sender {
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        [self showLoginView];
         return;
     }
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {

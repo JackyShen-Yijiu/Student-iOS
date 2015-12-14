@@ -72,8 +72,6 @@
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
-
-//    [self searchController];
 }
 
 - (void)didReceiveMemoryWarning

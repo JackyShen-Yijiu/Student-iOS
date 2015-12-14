@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "BLBaseViewController.h"
-@interface UserCenterViewController : BLBaseViewController
 
+@interface UserCenterViewController : BLBaseViewController
 @end
