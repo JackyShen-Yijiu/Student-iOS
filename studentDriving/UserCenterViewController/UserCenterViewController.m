@@ -18,7 +18,7 @@
 #import "MySaveViewController.h"
 #import "DrivingViewController.h"
 #import "LoginViewController.h"
-#import "MainViewController.h"
+//#import "MainViewController.h"
 #import <JPush/APService.h>
 @interface UserCenterViewController ()<UITableViewDataSource,UITableViewDelegate,UserCenterHeadViewDelegte>
 @property (strong, nonatomic) UITableView *tableView;
