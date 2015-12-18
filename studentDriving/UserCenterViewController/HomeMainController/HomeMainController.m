@@ -15,6 +15,8 @@
 #import "ChatViewController.h"
 #import "LoginViewController.h"
 #import "SignUpListViewController.h"
+// 首页
+#import "HomeAdvantageController.h"
 
 // 科目一
 #import "QuestionBankViewController.h"
@@ -145,6 +147,17 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     __block HomeMainController *mainVC = self;
     
     self.homeMainView.didClickBlock = ^(NSInteger tag){
+        switch (tag) {
+            case 101:
+            {
+                HomeAdvantageController *homeAdvantageVC = [[HomeAdvantageController alloc] init];
+                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+            }
+                break;
+                
+            default:
+                break;
+        }
     
         NSLog(@"我被回调了tag = %lu",tag);
         
