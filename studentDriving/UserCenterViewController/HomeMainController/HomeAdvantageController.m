@@ -35,7 +35,10 @@ static NSString *advantage = @"3.html";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.view addSubview:self.webView];
+
    }
 
 - (void)didReceiveMemoryWarning {
