@@ -92,6 +92,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     self.geoCodeSearch = nil;
+    [SVProgressHUD dismiss];
 }
 
 #pragma mark - network
