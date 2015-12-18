@@ -127,7 +127,7 @@
 
 - (void)configBaiduMap {
     _mapManager = [[BMKMapManager alloc] init];
-    BOOL ret = [_mapManager start:@"PSwEai4xM5aEtgHIsyqiTOrW" generalDelegate:self];
+    BOOL ret = [_mapManager start:@"oi8deyTjgz2Xmv6nxyCvOF0P" generalDelegate:self];
     if (!ret) {
         NSLog(@"初始化失败 = %d",ret);
     }
