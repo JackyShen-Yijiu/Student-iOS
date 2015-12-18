@@ -9,15 +9,18 @@
 #import "DrivingCell.h"
 #import "ToolHeader.h"
 #import "DrivingModel.h"
+
+#define starViewWidth 100
+#define starViewHeight 25
+
 @interface DrivingCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UIImageView *drivingImage;
 @property (strong, nonatomic) UILabel *drivingNameLabel;
 @property (strong, nonatomic) UILabel *drivingAddressLabel;
 @property (strong, nonatomic) UILabel *moenyLabel;
-@property (strong, nonatomic) UILabel *successRateLabel;
+//@property (strong, nonatomic) UILabel *successRateLabel;
 @property (strong, nonatomic) UIView *WMSelectedbackGroundView;
-
 @end
 @implementation DrivingCell
 
@@ -76,31 +79,59 @@
 - (UILabel *)moenyLabel{
     if (_moenyLabel == nil) {
         _moenyLabel = [[UILabel alloc]init];
-        _moenyLabel.text = @"¥2000/¥5000";
+        _moenyLabel.text = @"¥2000-¥5000";
         _moenyLabel.textColor = MAINCOLOR;
         _moenyLabel.font = [UIFont systemFontOfSize:15];
     }
     return _moenyLabel;
 }
-- (UILabel *)successRateLabel {
-    if (_successRateLabel == nil) {
-        _successRateLabel = [[UILabel alloc] init];
-        _successRateLabel.font = [UIFont systemFontOfSize:12];
-        _successRateLabel.textColor = RGBColor(153, 153, 153);
-        _successRateLabel.text = @"通过率:95%";
-    }
-    return _successRateLabel;
-}
+//- (UILabel *)successRateLabel {
+//    if (_successRateLabel == nil) {
+//        _successRateLabel = [[UILabel alloc] init];
+//        _successRateLabel.font = [UIFont systemFontOfSize:12];
+//        _successRateLabel.textColor = RGBColor(153, 153, 153);
+//        _successRateLabel.text = @"通过率:95%";
+//    }
+//    return _successRateLabel;
+//}
 - (UILabel *)distanceLabel {
     if (_distanceLabel == nil) {
         _distanceLabel = [[UILabel alloc] init];
         _distanceLabel.font = [UIFont systemFontOfSize:12];
         _distanceLabel.textColor = RGBColor(153, 153, 153);
-        _distanceLabel.text = @"1278km";
-        
+        _distanceLabel.text = @"12789353478m";
     }
     return _distanceLabel;
 }
+
+- (UILabel *)commentLabel {
+    if (!_commentLabel) {
+        _commentLabel = [UILabel new];
+        _commentLabel.text = @"8名认证教练";
+        _commentLabel.textColor = MAINCOLOR;
+        _commentLabel.font = [UIFont systemFontOfSize:15];
+    }
+    return _commentLabel;
+}
+
+- (UIImageView *)starBackgroundImageView {
+    if (!_starBackgroundImageView) {
+        _starBackgroundImageView = [UIImageView new];
+//        _starBackgroundImageView.backgroundColor = [UIColor lightGrayColor];
+        _starBackgroundImageView.image = [UIImage imageNamed:@"star_background"];
+    }
+    return _starBackgroundImageView;
+}
+- (UIImageView *)starImageView {
+    if (!_starImageView) {
+        _starImageView = [UIImageView new];
+//        _starImageView.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.1];
+        _starImageView.image = [UIImage imageNamed:@"star"];
+        _starImageView.contentMode = UIViewContentModeLeft;
+    }
+    return _starImageView;
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setUp];
@@ -120,14 +151,17 @@
 
     [self.backGroundView addSubview:self.drivingAddressLabel];
 
-    [self.backGroundView addSubview:self.successRateLabel];
+//    [self.backGroundView addSubview:self.successRateLabel];
     [self.backGroundView addSubview:self.distanceLabel];
     
+    [self.backGroundView addSubview:self.commentLabel];
+    [self.backGroundView addSubview:self.starBackgroundImageView];
+    [self.backGroundView addSubview:self.starImageView];
     
     [self.drivingImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
         make.top.mas_equalTo(self.backGroundView.mas_top).offset(15);
-        make.width.mas_equalTo(@90);
+        make.width.mas_equalTo(@70);
         make.height.mas_equalTo(@70);
     }];
     
@@ -150,15 +184,36 @@
 //        make.width.mas_equalTo(wide);
     }];
     
-    [self.successRateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
-        make.top.mas_equalTo(self.backGroundView.mas_top).offset(17);
-    }];
+//    [self.successRateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
+//        make.top.mas_equalTo(self.backGroundView.mas_top).offset(17);
+//    }];
     
     [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
-        make.bottom.mas_equalTo(self.backGroundView.mas_bottom).offset(-17);
+        make.bottom.mas_equalTo(self.drivingAddressLabel.mas_bottom).offset(-1);
     }];
+    
+    [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.distanceLabel.mas_right);
+        make.bottom.mas_equalTo(self.moenyLabel.mas_bottom).offset(0.5);
+    }];
+    
+    [self.starBackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.distanceLabel.mas_right);
+        make.top.mas_equalTo(self.drivingNameLabel.mas_top).offset(0);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(15);
+    }];
+    [self.starImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.starBackgroundImageView.mas_right);
+        make.top.mas_equalTo(self.starBackgroundImageView.mas_top);
+        make.width.mas_equalTo(self.starBackgroundImageView.mas_width);
+        make.height.mas_equalTo(self.starBackgroundImageView.mas_height);
+    }];
+    self.star = 3;
+    [self setStar];
+//    self.distanceLabel.backgroundColor = [UIColor lightGrayColor];
     
 }
 
@@ -166,18 +221,57 @@
     [self clearContent];
     
     self.drivingNameLabel.text = model.name;
-    self.drivingAddressLabel.text = model.address;
-    self.moenyLabel.text = [NSString stringWithFormat:@"¥%@/¥%@",model.minprice,model.maxprice];
+    NSString *address = @"未填写地址";
+    if (![model.address isKindOfClass:[NSNull class]] && model.address.length) {
+        address = model.address;
+    }
+    self.drivingAddressLabel.text = address;
+    if (![model.minprice isKindOfClass:[NSNull class]] || ![model.maxprice isKindOfClass:[NSNull class]]) {
+        self.moenyLabel.text = @"未填写价格";
+    }else {
+        self.moenyLabel.text = [NSString stringWithFormat:@"¥%@-¥%@",model.minprice,model.maxprice];
+    }
     self.distanceLabel.text = [NSString stringWithFormat:@"距离%@m",model.distance];
-    self.successRateLabel.text = [NSString stringWithFormat:@"通过率:%@%@",model.passingrate,@"%"];
+    self.star = [model.passingrate floatValue] / 100.f * 10.f / 2.f;
+    [self setStar];
     [self.drivingImage sd_setImageWithURL:[NSURL URLWithString:model.logoimg.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
 }
+
+//设置星级
+- (void)setStar {
+    
+    CGFloat biLi = self.star * 2.f / 10.f;
+    //    NSLog(@"%f",biLi);
+    UIImage *tempImage = [UIImage imageNamed:@"star"];
+    UIImage *image = [self reSizeImage:tempImage newSize:CGSizeMake(80, 15)];
+    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+    rect.size.width *= biLi;
+    
+    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
+    UIImage *catImage = [UIImage imageWithCGImage:imageRef];
+    
+    self.starImageView.image = catImage;
+}
+
+//改变图片的大小
+- (UIImage *)reSizeImage:(UIImage *)image newSize:(CGSize)newSize {
+    
+    UIGraphicsBeginImageContext(newSize);
+    CGRect rect;
+    rect.origin = CGPointMake(0, 0);
+    rect.size = newSize;
+    [image drawInRect:rect];
+    UIImage *reSizeImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return reSizeImage;
+}
+
 - (void)clearContent {
     self.drivingImage.image = nil;
     self.drivingNameLabel.text = nil;
     self.drivingAddressLabel.text = nil;
     self.moenyLabel.text = nil;
-    self.successRateLabel.text = nil;
+//    self.successRateLabel.text = nil;
     self.distanceLabel.text = nil;
 }
 @end
