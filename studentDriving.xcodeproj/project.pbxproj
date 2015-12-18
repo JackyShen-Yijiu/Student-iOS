@@ -10,28 +10,6 @@
 		066BFB181C23A2C3002A1DD8 /* HomeMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB131C23A2C3002A1DD8 /* HomeMainController.m */; };
 		066BFB191C23A2C3002A1DD8 /* HomeMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB151C23A2C3002A1DD8 /* HomeMainView.m */; };
 		066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */; };
-		066BFB251C23AC2E002A1DD8 /* 承诺.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB1D1C23AC2E002A1DD8 /* 承诺.png */; };
-		066BFB261C23AC2E002A1DD8 /* 底子.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB1E1C23AC2E002A1DD8 /* 底子.png */; };
-		066BFB271C23AC2E002A1DD8 /* 驾校优惠.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB1F1C23AC2E002A1DD8 /* 驾校优惠.png */; };
-		066BFB281C23AC2E002A1DD8 /* 驾校优势.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB201C23AC2E002A1DD8 /* 驾校优势.png */; };
-		066BFB291C23AC2E002A1DD8 /* 科目1条.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB211C23AC2E002A1DD8 /* 科目1条.png */; };
-		066BFB2A1C23AC2E002A1DD8 /* 科目2条.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB221C23AC2E002A1DD8 /* 科目2条.png */; };
-		066BFB2B1C23AC2E002A1DD8 /* 科目3条.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB231C23AC2E002A1DD8 /* 科目3条.png */; };
-		066BFB2C1C23AC2E002A1DD8 /* 科目4条.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB241C23AC2E002A1DD8 /* 科目4条.png */; };
-		066BFB551C23AC84002A1DD8 /* 课件2.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB521C23AC84002A1DD8 /* 课件2.png */; };
-		066BFB561C23AC84002A1DD8 /* 预约2.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB531C23AC84002A1DD8 /* 预约2.png */; };
-		066BFB571C23AC84002A1DD8 /* 预约列表2.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB541C23AC84002A1DD8 /* 预约列表2.png */; };
-		066BFB5B1C23AC91002A1DD8 /* 课件3.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB581C23AC91002A1DD8 /* 课件3.png */; };
-		066BFB5C1C23AC91002A1DD8 /* 预约3.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB591C23AC91002A1DD8 /* 预约3.png */; };
-		066BFB5D1C23AC91002A1DD8 /* 预约列表3.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB5A1C23AC91002A1DD8 /* 预约列表3.png */; };
-		066BFB611C23AC9B002A1DD8 /* 错题4.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB5E1C23AC9B002A1DD8 /* 错题4.png */; };
-		066BFB621C23AC9B002A1DD8 /* 科目4.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB5F1C23AC9B002A1DD8 /* 科目4.png */; };
-		066BFB631C23AC9B002A1DD8 /* 课件4.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB601C23AC9B002A1DD8 /* 课件4.png */; };
-		066BFB671C23ACB3002A1DD8 /* 错题1.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB641C23ACB3002A1DD8 /* 错题1.png */; };
-		066BFB681C23ACB3002A1DD8 /* 模考1.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB651C23ACB3002A1DD8 /* 模考1.png */; };
-		066BFB691C23ACB3002A1DD8 /* 题库1.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB661C23ACB3002A1DD8 /* 题库1.png */; };
-		066BFB6B1C23AD05002A1DD8 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB6A1C23AD05002A1DD8 /* car.png */; };
-		066BFB6D1C23DBC5002A1DD8 /* bg(2).png in Resources */ = {isa = PBXBuildFile; fileRef = 066BFB6C1C23DBC5002A1DD8 /* bg(2).png */; };
 		066BFB701C2428D0002A1DD8 /* HomeAdvantageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		B8272D411C1EE4BA00BE0D2D /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D401C1EE4BA00BE0D2D /* MenuController.m */; };
@@ -595,28 +573,6 @@
 		066BFB151C23A2C3002A1DD8 /* HomeMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainView.m; sourceTree = "<group>"; };
 		066BFB161C23A2C3002A1DD8 /* HomeSpotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSpotView.h; sourceTree = "<group>"; };
 		066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSpotView.m; sourceTree = "<group>"; };
-		066BFB1D1C23AC2E002A1DD8 /* 承诺.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "承诺.png"; path = "../../../../../TestCar/TestCar/承诺.png"; sourceTree = "<group>"; };
-		066BFB1E1C23AC2E002A1DD8 /* 底子.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "底子.png"; path = "../../../../../TestCar/TestCar/底子.png"; sourceTree = "<group>"; };
-		066BFB1F1C23AC2E002A1DD8 /* 驾校优惠.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "驾校优惠.png"; path = "../../../../../TestCar/TestCar/驾校优惠.png"; sourceTree = "<group>"; };
-		066BFB201C23AC2E002A1DD8 /* 驾校优势.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "驾校优势.png"; path = "../../../../../TestCar/TestCar/驾校优势.png"; sourceTree = "<group>"; };
-		066BFB211C23AC2E002A1DD8 /* 科目1条.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "科目1条.png"; path = "../../../../../TestCar/TestCar/科目1条.png"; sourceTree = "<group>"; };
-		066BFB221C23AC2E002A1DD8 /* 科目2条.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "科目2条.png"; path = "../../../../../TestCar/TestCar/科目2条.png"; sourceTree = "<group>"; };
-		066BFB231C23AC2E002A1DD8 /* 科目3条.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "科目3条.png"; path = "../../../../../TestCar/TestCar/科目3条.png"; sourceTree = "<group>"; };
-		066BFB241C23AC2E002A1DD8 /* 科目4条.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "科目4条.png"; path = "../../../../../TestCar/TestCar/科目4条.png"; sourceTree = "<group>"; };
-		066BFB521C23AC84002A1DD8 /* 课件2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "课件2.png"; sourceTree = "<group>"; };
-		066BFB531C23AC84002A1DD8 /* 预约2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "预约2.png"; sourceTree = "<group>"; };
-		066BFB541C23AC84002A1DD8 /* 预约列表2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "预约列表2.png"; sourceTree = "<group>"; };
-		066BFB581C23AC91002A1DD8 /* 课件3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "课件3.png"; sourceTree = "<group>"; };
-		066BFB591C23AC91002A1DD8 /* 预约3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "预约3.png"; sourceTree = "<group>"; };
-		066BFB5A1C23AC91002A1DD8 /* 预约列表3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "预约列表3.png"; sourceTree = "<group>"; };
-		066BFB5E1C23AC9B002A1DD8 /* 错题4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "错题4.png"; sourceTree = "<group>"; };
-		066BFB5F1C23AC9B002A1DD8 /* 科目4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "科目4.png"; sourceTree = "<group>"; };
-		066BFB601C23AC9B002A1DD8 /* 课件4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "课件4.png"; sourceTree = "<group>"; };
-		066BFB641C23ACB3002A1DD8 /* 错题1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "错题1.png"; sourceTree = "<group>"; };
-		066BFB651C23ACB3002A1DD8 /* 模考1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "模考1.png"; sourceTree = "<group>"; };
-		066BFB661C23ACB3002A1DD8 /* 题库1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "题库1.png"; sourceTree = "<group>"; };
-		066BFB6A1C23AD05002A1DD8 /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
-		066BFB6C1C23DBC5002A1DD8 /* bg(2).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bg(2).png"; sourceTree = "<group>"; };
 		066BFB6E1C2428D0002A1DD8 /* HomeAdvantageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAdvantageController.h; sourceTree = "<group>"; };
 		066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAdvantageController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1512,35 +1468,6 @@
 			);
 			name = HomeMainController;
 			path = UserCenterViewController/HomeMainController;
-			sourceTree = "<group>";
-		};
-		066BFB1B1C23ABA0002A1DD8 /* MainViewImage */ = {
-			isa = PBXGroup;
-			children = (
-				066BFB6C1C23DBC5002A1DD8 /* bg(2).png */,
-				066BFB6A1C23AD05002A1DD8 /* car.png */,
-				066BFB641C23ACB3002A1DD8 /* 错题1.png */,
-				066BFB651C23ACB3002A1DD8 /* 模考1.png */,
-				066BFB661C23ACB3002A1DD8 /* 题库1.png */,
-				066BFB5E1C23AC9B002A1DD8 /* 错题4.png */,
-				066BFB5F1C23AC9B002A1DD8 /* 科目4.png */,
-				066BFB601C23AC9B002A1DD8 /* 课件4.png */,
-				066BFB581C23AC91002A1DD8 /* 课件3.png */,
-				066BFB591C23AC91002A1DD8 /* 预约3.png */,
-				066BFB5A1C23AC91002A1DD8 /* 预约列表3.png */,
-				066BFB521C23AC84002A1DD8 /* 课件2.png */,
-				066BFB531C23AC84002A1DD8 /* 预约2.png */,
-				066BFB541C23AC84002A1DD8 /* 预约列表2.png */,
-				066BFB1D1C23AC2E002A1DD8 /* 承诺.png */,
-				066BFB1E1C23AC2E002A1DD8 /* 底子.png */,
-				066BFB1F1C23AC2E002A1DD8 /* 驾校优惠.png */,
-				066BFB201C23AC2E002A1DD8 /* 驾校优势.png */,
-				066BFB211C23AC2E002A1DD8 /* 科目1条.png */,
-				066BFB221C23AC2E002A1DD8 /* 科目2条.png */,
-				066BFB231C23AC2E002A1DD8 /* 科目3条.png */,
-				066BFB241C23AC2E002A1DD8 /* 科目4条.png */,
-			);
-			path = MainViewImage;
 			sourceTree = "<group>";
 		};
 		066BFB1C1C23ABE9002A1DD8 /* HistoryImage */ = {
@@ -2651,7 +2578,6 @@
 			isa = PBXGroup;
 			children = (
 				066BFB1C1C23ABE9002A1DD8 /* HistoryImage */,
-				066BFB1B1C23ABA0002A1DD8 /* MainViewImage */,
 			);
 			path = ImageSource;
 			sourceTree = "<group>";
@@ -3077,7 +3003,6 @@
 				D5604BAB1BF656C50020F0D7 /* VoiceSearchFeedback011.png in Resources */,
 				D5604C291BF656C50020F0D7 /* back@2x.png in Resources */,
 				D5604C211BF656C50020F0D7 /* chat_sender_audio_playing_full@2x.png in Resources */,
-				066BFB6D1C23DBC5002A1DD8 /* bg(2).png in Resources */,
 				D5604BE61BF656C50020F0D7 /* chatBar_keyboardSelected@2x.png in Resources */,
 				D5604BF51BF656C50020F0D7 /* chatBar_colorMore_camera@2x.png in Resources */,
 				D5604C2E1BF656C50020F0D7 /* group_creategroup@2x.png in Resources */,
@@ -3095,7 +3020,6 @@
 				D5604BD21BF656C50020F0D7 /* chatBar_textBg@2x.png in Resources */,
 				D5604BFB1BF656C50020F0D7 /* chatBar_colorMore_video@2x.png in Resources */,
 				D5604C441BF656C50020F0D7 /* tabbarBackground.png in Resources */,
-				066BFB5D1C23AC91002A1DD8 /* 预约列表3.png in Resources */,
 				D5604BC81BF656C50020F0D7 /* chat_video_play.png in Resources */,
 				D5604BFD1BF656C50020F0D7 /* chatBar_colorMore_videoCallSelected@2x.png in Resources */,
 				D5604BCD1BF656C50020F0D7 /* chatBar_more_face.png in Resources */,
@@ -3103,7 +3027,6 @@
 				D5D510031BFCD2E400F54097 /* 模拟考试@3x.png in Resources */,
 				D5604BB71BF656C50020F0D7 /* VoiceSearchFeedback017.png in Resources */,
 				D5604BB91BF656C50020F0D7 /* VoiceSearchFeedback018.png in Resources */,
-				066BFB5B1C23AC91002A1DD8 /* 课件3.png in Resources */,
 				D588B0031BDDDAEB000C5D6F /* mv.jpg in Resources */,
 				D5604BBC1BF656C50020F0D7 /* VoiceSearchFeedback019@2x.png in Resources */,
 				D5604BEA1BF656C50020F0D7 /* chatBar_moreSelected@2x.png in Resources */,
@@ -3119,7 +3042,6 @@
 				D5604BAE1BF656C50020F0D7 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D5604BD51BF656C50020F0D7 /* chat_location_detail_disclosure.png in Resources */,
 				D5D50FFE1BFCD2AD00F54097 /* 题库@2x.png in Resources */,
-				066BFB631C23AC9B002A1DD8 /* 课件4.png in Resources */,
 				D5604B921BF656C50020F0D7 /* 57.png in Resources */,
 				D5604C031BF656C50020F0D7 /* chatBar_more_location.png in Resources */,
 				D5604C471BF656C50020F0D7 /* tabbarSelectBg@2x.png in Resources */,
@@ -3136,7 +3058,6 @@
 				D588AFFF1BDDDAEB000C5D6F /* starUnSelected30.png in Resources */,
 				D5604BFF1BF656C50020F0D7 /* chatBar_more_camera.png in Resources */,
 				D5604C061BF656C50020F0D7 /* chatBar_more_locationSelected@2x.png in Resources */,
-				066BFB5C1C23AC91002A1DD8 /* 预约3.png in Resources */,
 				D5604C181BF656C50020F0D7 /* chat_sender_audio_playing_000.png in Resources */,
 				D5604BB51BF656C50020F0D7 /* VoiceSearchFeedback016.png in Resources */,
 				D5604C451BF656C50020F0D7 /* tabbarBackground@2x.png in Resources */,
@@ -3151,7 +3072,6 @@
 				D5604BE21BF656C50020F0D7 /* chatBar_faceSelected@2x.png in Resources */,
 				D5604BF41BF656C50020F0D7 /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
 				D588AFF21BDDDAEB000C5D6F /* locationImage.png in Resources */,
-				066BFB551C23AC84002A1DD8 /* 课件2.png in Resources */,
 				D588B0261BDDDB42000C5D6F /* x_pressed.png in Resources */,
 				D5604C401BF656C50020F0D7 /* tabbar_setting.png in Resources */,
 				D5604C301BF656C50020F0D7 /* group_invitee_delete@2x.png in Resources */,
@@ -3190,19 +3110,15 @@
 				D5604C1F1BF656C50020F0D7 /* chat_sender_audio_playing_003@2x.png in Resources */,
 				D5D50EE11BFA205000F54097 /* MagicMainTableViewCell.xib in Resources */,
 				D5604BD01BF656C50020F0D7 /* chatBar_more_faceSelected@2x.png in Resources */,
-				066BFB2C1C23AC2E002A1DD8 /* 科目4条.png in Resources */,
 				D5604BF91BF656C50020F0D7 /* chatBar_colorMore_photo@2x.png in Resources */,
 				D5604BDA1BF656C50020F0D7 /* chat_location_preview@2x.png in Resources */,
-				066BFB691C23ACB3002A1DD8 /* 题库1.png in Resources */,
 				D5604BEB1BF656C50020F0D7 /* chatBar_record.png in Resources */,
 				D5D510061BFCD31600F54097 /* 我的错题@2x.png in Resources */,
 				D5D50EDE1BFA205000F54097 /* LTNavigationView.xib in Resources */,
 				D5604BEF1BF656C50020F0D7 /* chatBar_recordSelected.png in Resources */,
-				066BFB621C23AC9B002A1DD8 /* 科目4.png in Resources */,
 				D5604C041BF656C50020F0D7 /* chatBar_more_location@2x.png in Resources */,
 				D5D510131BFCD44300F54097 /* 首页_课件@3x.png in Resources */,
 				D588AFF51BDDDAEB000C5D6F /* 相机pressed.png in Resources */,
-				066BFB671C23ACB3002A1DD8 /* 错题1.png in Resources */,
 				D5D50ED51BFA205000F54097 /* DetailIntroduceCell.xib in Resources */,
 				D5604BBB1BF656C50020F0D7 /* VoiceSearchFeedback019.png in Resources */,
 				D5604B931BF656C50020F0D7 /* 58.png in Resources */,
@@ -3228,7 +3144,6 @@
 				D588B0331BDDDB4D000C5D6F /* 返回.png in Resources */,
 				D5604BC41BF656C50020F0D7 /* call_silence@2x.png in Resources */,
 				D588AFEE1BDDDAEB000C5D6F /* cancelSelect_click.png in Resources */,
-				066BFB561C23AC84002A1DD8 /* 预约2.png in Resources */,
 				D5604BE31BF656C50020F0D7 /* chatBar_keyboard.png in Resources */,
 				D5C240001BE8FC1000832CF3 /* 缺省icon.png in Resources */,
 				D5604BD61BF656C50020F0D7 /* chat_location_detail_disclosure@2x.png in Resources */,
@@ -3236,7 +3151,6 @@
 				D5604BA41BF656C50020F0D7 /* VoiceSearchFeedback007@2x.png in Resources */,
 				D5604C431BF656C50020F0D7 /* tabbar_settingHL@2x.png in Resources */,
 				D5604C281BF656C50020F0D7 /* add@2x.png in Resources */,
-				066BFB271C23AC2E002A1DD8 /* 驾校优惠.png in Resources */,
 				D5604C3F1BF656C50020F0D7 /* tabbar_contactsHL@2x.png in Resources */,
 				D5604C381BF656C50020F0D7 /* tabbar_chats.png in Resources */,
 				D5604BA21BF656C50020F0D7 /* VoiceSearchFeedback006@2x.png in Resources */,
@@ -3252,26 +3166,19 @@
 				D5604BAD1BF656C50020F0D7 /* VoiceSearchFeedback012.png in Resources */,
 				D5604C0A1BF656C50020F0D7 /* chatBar_more_photoSelected@2x.png in Resources */,
 				D5604BB11BF656C50020F0D7 /* VoiceSearchFeedback014.png in Resources */,
-				066BFB6B1C23AD05002A1DD8 /* car.png in Resources */,
 				D588AFEF1BDDDAEB000C5D6F /* cancelSelect.png in Resources */,
 				D5604BD41BF656C50020F0D7 /* chat_location_annotation_someone@2x.png in Resources */,
-				066BFB681C23ACB3002A1DD8 /* 模考1.png in Resources */,
-				066BFB291C23AC2E002A1DD8 /* 科目1条.png in Resources */,
 				D5D5100F1BFCD40000F54097 /* 首页_预约学车@3x.png in Resources */,
 				D5604BD81BF656C50020F0D7 /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				D588AF991BDDB62C000C5D6F /* LaunchScreen.storyboard in Resources */,
 				D5604B9F1BF656C50020F0D7 /* VoiceSearchFeedback005.png in Resources */,
-				066BFB281C23AC2E002A1DD8 /* 驾校优势.png in Resources */,
 				D5604BBD1BF656C50020F0D7 /* VoiceSearchFeedback020.png in Resources */,
 				D5604BA61BF656C50020F0D7 /* VoiceSearchFeedback008@2x.png in Resources */,
-				066BFB611C23AC9B002A1DD8 /* 错题4.png in Resources */,
 				D5604C151BF656C50020F0D7 /* chat_receiver_audio_playing_full@2x.png in Resources */,
 				D588AF961BDDB62C000C5D6F /* Assets.xcassets in Resources */,
-				066BFB2B1C23AC2E002A1DD8 /* 科目3条.png in Resources */,
 				D5604BF21BF656C50020F0D7 /* chatBar_recordSelectedBg@2x.png in Resources */,
 				D5604BE51BF656C50020F0D7 /* chatBar_keyboardSelected.png in Resources */,
 				D5D50ED91BFA205000F54097 /* finishMessageView.xib in Resources */,
-				066BFB261C23AC2E002A1DD8 /* 底子.png in Resources */,
 				D5604C371BF656C50020F0D7 /* newFriends@2x.png in Resources */,
 				D5604B951BF656C50020F0D7 /* chatListCellHead.png in Resources */,
 				D5604C3A1BF656C50020F0D7 /* tabbar_chatsHL.png in Resources */,
@@ -3282,7 +3189,6 @@
 				D5604B971BF656C50020F0D7 /* VoiceSearchFeedback001.png in Resources */,
 				D5604BC51BF656C50020F0D7 /* call_silence_h.png in Resources */,
 				D5604BC61BF656C50020F0D7 /* call_silence_h@2x.png in Resources */,
-				066BFB251C23AC2E002A1DD8 /* 承诺.png in Resources */,
 				D5604C081BF656C50020F0D7 /* chatBar_more_photo@2x.png in Resources */,
 				D5604BC01BF656C50020F0D7 /* call_out@2x.png in Resources */,
 				D588B0081BDDDAEB000C5D6F /* 完成corner.png in Resources */,
@@ -3313,10 +3219,8 @@
 				D588AFF31BDDDAEB000C5D6F /* cellSelected.png in Resources */,
 				D5D510161BFCD52C00F54097 /* 首页_我的预约@2x.png in Resources */,
 				D5604C0E1BF656C50020F0D7 /* chat_receiver_audio_playing001.png in Resources */,
-				066BFB2A1C23AC2E002A1DD8 /* 科目2条.png in Resources */,
 				D588B0271BDDDB42000C5D6F /* x.png in Resources */,
 				D588AFF91BDDDAEB000C5D6F /* 喜欢.png in Resources */,
-				066BFB571C23AC84002A1DD8 /* 预约列表2.png in Resources */,
 				D588B0001BDDDAEB000C5D6F /* starUnSelected.png in Resources */,
 				D5604B9D1BF656C50020F0D7 /* VoiceSearchFeedback004.png in Resources */,
 				D5604C001BF656C50020F0D7 /* chatBar_more_camera@2x.png in Resources */,

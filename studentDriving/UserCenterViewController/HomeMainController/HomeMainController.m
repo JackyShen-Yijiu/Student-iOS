@@ -81,7 +81,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 
     // 添加UIImageView,用于当滑动时,背景滑动1/4
     _backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, systemsW * 2, systemsH)];
-    _backImage.image = [UIImage imageNamed:@"bg(2)"];
+    _backImage.image = [UIImage imageNamed:@"bg"];
     _imageX = 0;
     [_backImage addSubview:_mainScrollView];
     
