@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [SVProgressHUD show];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -67,6 +68,7 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
+    [SVProgressHUD dismiss];
     _webView.hidden = NO;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {

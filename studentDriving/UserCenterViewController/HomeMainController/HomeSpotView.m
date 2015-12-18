@@ -87,7 +87,7 @@
         CGFloat carX = _carView.frame.origin.x + carOffsetX;
             NSLog(@"%f",carOffsetX);
         CGRect rect = CGRectMake(carX, _carView.frame.origin.y, _carView.frame.size.width, _carView.frame.size.height);
-        [UIView animateWithDuration:0.3 animations:^{
+        [UIView animateWithDuration:0.5 animations:^{
             _carView.frame = rect;
         } completion:nil];
             //  调用代理方法
