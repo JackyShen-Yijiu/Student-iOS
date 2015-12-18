@@ -25,27 +25,39 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIImage *image = [UIImage imageNamed:@"sbg"];
+    UIImage *image = [UIImage imageNamed:@"side_menu_bg"];
     self.view.layer.contents = (id)image.CGImage;
     
     self.tableView.backgroundColor = [UIColor clearColor];
     self.tableView.scrollEnabled = NO;
     
     SideMenuItem * item1 = [[SideMenuItem alloc] init];
-    item1.title = @"查找驾校";
+    item1.title = @"首页";
     item1.target = @"DrivingViewController";
     
     SideMenuItem * item2 = [[SideMenuItem alloc] init];
-    item2.title = @"消息";
+    item2.title = @"查找教练";
     item2.target = @"ChatListViewController";
     
     SideMenuItem * item3 = [[SideMenuItem alloc] init];
-    item3.title = @"商城";
+    item3.title = @"消息";
     item3.target = @"MagicMainTableViewController";
     
-    self.LeftItemArray = @[item1,item2,item3];
+    SideMenuItem * item4 = [[SideMenuItem alloc] init];
+    item4.title = @"签到";
+    item4.target = @"MagicMainTableViewController";
     
-    self.LeftIconArray = @[ @"1",@"2",@"3"];
+    SideMenuItem * item5 = [[SideMenuItem alloc] init];
+    item5.title = @"商城";
+    item5.target = @"MagicMainTableViewController";
+    
+    SideMenuItem * item6 = [[SideMenuItem alloc] init];
+    item6.title = @"我";
+    item6.target = @"MagicMainTableViewController";
+    
+    self.LeftItemArray = @[item1,item2,item3,item4,item5,item6];
+    
+    self.LeftIconArray = @[ @"首页",@"查找教练",@"消息", @"签到", @"商城", @"我" ];
     self.tableView.tableHeaderView = self.headView;
 }
 
@@ -55,9 +67,9 @@
         _headView.backgroundColor = [UIColor clearColor];
         UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(97, 82, 78, 78)];
         imgView.userInteractionEnabled = YES;
-        imgView.image = [UIImage imageNamed:@"tou"];
-        imgView.layer.masksToBounds = YES;
-        imgView.layer.cornerRadius = 39;
+        imgView.image = [UIImage imageNamed:@"头像11"];
+//        imgView.layer.masksToBounds = YES;
+//        imgView.layer.cornerRadius = 39;
         [_headView addSubview:imgView];
         UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconViewIsClick)];
         [imgView addGestureRecognizer:tapGR];
@@ -94,7 +106,7 @@
         cell = [[UITableViewCell alloc] initWithStyle:(UITableViewCellStyleDefault) reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.backgroundColor = [UIColor clearColor];
-        UIImageView *cellIconView = [[UIImageView alloc] initWithFrame:CGRectMake(37, 15, 16, 16)];
+        UIImageView *cellIconView = [[UIImageView alloc] initWithFrame:CGRectMake(37, 9, 28, 28)];
         cellIconView.tag = 10 +indexPath.row;
         [cell.contentView addSubview:cellIconView];
         UILabel *lb = [[UILabel alloc] initWithFrame:CGRectMake(67, 15, 100, 16)];
