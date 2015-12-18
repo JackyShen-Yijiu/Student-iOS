@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "MainViewController.h"
+//#import "MainViewController.h"
 #import "NSUserStoreTool.h"
 #import "ForgetViewController.h"
 #import "RegisterViewController.h"

@@ -30,7 +30,7 @@
  */
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "MainViewController.h"
+#import "HomeMainController.h"
 #import "ToolHeader.h"
 #import "AppDelegate+DealJPushMessage.h"
 #import "AppDelegate+DealTool.h"
@@ -42,7 +42,7 @@
 #import "MenuController.h"
 
 @interface AppDelegate ()
-@property (strong, nonatomic)  MainViewController *main;
+@property (strong, nonatomic)  HomeMainController *main;
 @end
 
 @implementation AppDelegate
@@ -62,7 +62,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
     
-    self.main = [[MainViewController alloc] init];
+    self.main = [[HomeMainController alloc] init];
     
     UINavigationController *mainNav = [[UINavigationController alloc] initWithRootViewController:_main];
     self.window.rootViewController = [self sideControllerWithContentController:mainNav];

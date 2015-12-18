@@ -9,7 +9,7 @@
 #import "RegisterViewController.h"
 #import <SVProgressHUD.h>
 #import <Masonry/Masonry.h>
-#import "MainViewController.h"
+//#import "MainViewController.h"
 #import "ToolHeader.h"
 #import "NSString+DY_MD5.h"
 #import <JPush/APService.h>
