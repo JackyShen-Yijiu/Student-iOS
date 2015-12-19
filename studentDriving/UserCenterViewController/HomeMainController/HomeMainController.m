@@ -362,7 +362,12 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     }
     if (systemsW  < scrollView.contentOffset.x && scrollView.contentOffset.x <= systemsW * 2)
     {
-        
+       
+        if (![AcountManager isLogin]) {
+            LoginViewController *login = [[LoginViewController alloc] init];
+            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+            return;
+        }
         // 判断是否跳转报名界面
         if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
             NSLog(@"%@",[AcountManager manager].userApplystate);
