@@ -121,17 +121,17 @@
         }
     CGFloat carX = _carView.frame.origin.x - carOffsetX;
     CGRect rect = CGRectMake(carX, _carView.frame.origin.y, _carView.frame.size.width, _carView.frame.size.height);
-        //  调用代理方法
-        if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
-            [_delegate horizontalMenuScrollPageIndex:carX];
-        }
-    [UIView animateWithDuration:0.3 animations:^{
-        _carView.frame = rect;
-    } completion:nil];
 //        //  调用代理方法
 //        if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
 //            [_delegate horizontalMenuScrollPageIndex:carX];
 //        }
+    [UIView animateWithDuration:0.3 animations:^{
+        _carView.frame = rect;
+    } completion:nil];
+        //  调用代理方法
+        if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
+            [_delegate horizontalMenuScrollPageIndex:carX];
+        }
 
     }
 }
@@ -210,9 +210,12 @@
     NSInteger j =  (offset - systemsW) / systemsW + 301;
     for (UIImageView *resultImageView in _imageArray) {
         if (resultImageView.tag == j) {
-            resultImageView.hidden = NO;
+                resultImageView.hidden = NO;
+            
         }else{
-            resultImageView.hidden = YES;
+            
+                resultImageView.hidden = YES;
+            
         }
     }
     

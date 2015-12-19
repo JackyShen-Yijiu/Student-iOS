@@ -39,9 +39,9 @@
     CGFloat imageViewH = 42;
     CGFloat imageViewW = 186;
     
-    CGFloat coachCardButtonW = 121;
-    CGFloat schoolCardButton = 160;
-    CGFloat signButton = 85;
+    CGFloat coachCardButtonW = 96;
+    CGFloat schoolCardButton = 128;
+    CGFloat signButton = 68;
     
     
     
@@ -60,9 +60,9 @@
                 _textImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - imageViewW) / 2, imageY, imageViewW, imageViewH)];
                 _textImageView.image = [UIImage imageNamed:@"文字"];
                 
-                CGFloat coachCardButtonX = (systemsW - coachCardButtonW - schoolCardButton + 28) / 2 ;
+                CGFloat coachCardButtonX = (systemsW - coachCardButtonW - schoolCardButton + 23) / 2 ;
                 _coachCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
-                _coachCardButton.frame = CGRectMake(coachCardButtonX, 100, coachCardButtonW, coachCardButtonW);
+                _coachCardButton.frame = CGRectMake(coachCardButtonX, 120, coachCardButtonW, coachCardButtonW);
                 [self addButtonProperty:@"教练卡" button:_coachCardButton];
                 [_coachCardButton setBackgroundImage:[UIImage imageNamed:@"驾校优势"] forState:UIControlStateNormal];
                 _coachCardButton.tag = 101;
@@ -70,7 +70,7 @@
 
                 
                 _schoolCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
-                _schoolCardButton.frame = CGRectMake(_coachCardButton.frame.origin.x + 93, _coachCardButton.frame.origin.y + 60, schoolCardButton, schoolCardButton);
+                _schoolCardButton.frame = CGRectMake(_coachCardButton.frame.origin.x + 74, _coachCardButton.frame.origin.y + 48, schoolCardButton, schoolCardButton);
                 [_schoolCardButton setBackgroundImage:[UIImage imageNamed:@"驾校优惠"] forState:UIControlStateNormal];
                 [_schoolCardButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 _schoolCardButton.tag = 102;
@@ -78,7 +78,7 @@
              
                 
                 _signButton = [UIButton buttonWithType:UIButtonTypeSystem];
-                _signButton.frame = CGRectMake(_coachCardButton.frame.origin.x + 5, 260, signButton, signButton);
+                _signButton.frame = CGRectMake(_coachCardButton.frame.origin.x + 4, 228, signButton, signButton);
                 [self addButtonProperty:@"报名" button:_signButton];
                 [_signButton setBackgroundImage:[UIImage imageNamed:@"承诺"] forState:UIControlStateNormal];
                 _signButton.tag = 103;
@@ -113,7 +113,7 @@
                 _textImageView.image = [UIImage imageNamed:@"文字"];
                 
                 
-                CGFloat signButtonX = (systemsW - schoolCardButton - coachCardButtonW + 17) / 2 ;
+                CGFloat signButtonX = (systemsW - schoolCardButton - coachCardButtonW + 15) / 2 ;
 
                 _signButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _signButton.frame = CGRectMake(signButtonX, 150, schoolCardButton, schoolCardButton);
@@ -124,7 +124,7 @@
 
                 
                 _coachCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
-                _coachCardButton.frame = CGRectMake(_signButton.frame.origin.x + schoolCardButton - 17, _signButton.frame.origin.y + 80, coachCardButtonW, coachCardButtonW);
+                _coachCardButton.frame = CGRectMake(_signButton.frame.origin.x + schoolCardButton - 15, _signButton.frame.origin.y + 78, coachCardButtonW, coachCardButtonW);
                 [self addButtonProperty:@"科目一" button:_coachCardButton];
                 [_coachCardButton setBackgroundImage:[UIImage imageNamed:@"模考1"] forState:UIControlStateNormal];
                 _coachCardButton.tag = 101;
@@ -162,7 +162,7 @@
                 [_coachCardButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
                 
                 _signButton = [UIButton buttonWithType:UIButtonTypeSystem];
-                _signButton.frame = CGRectMake(_coachCardButton.frame.origin.x + schoolCardButton - 60, _coachCardButton.frame.origin.y + schoolCardButton - 30,coachCardButtonW, coachCardButtonW);
+                _signButton.frame = CGRectMake(_coachCardButton.frame.origin.x + schoolCardButton - 60, _coachCardButton.frame.origin.y + schoolCardButton - 16,coachCardButtonW, coachCardButtonW);
                 [self addButtonProperty:@"报名" button:_signButton];
                 [_signButton setBackgroundImage:[UIImage imageNamed:@"预约列表2"] forState:UIControlStateNormal];                _signButton.tag = 103;
                 [_signButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
