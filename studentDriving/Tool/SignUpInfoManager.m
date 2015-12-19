@@ -54,6 +54,11 @@ static NSString *const kRealUserid = @"userid";
     [NSUserStoreTool storeWithId:realName WithKey:kRealName];
 }
 
++ (void)signUpInfoSaveLearnStage:(NSString *)LearnStage {
+    
+    [NSUserStoreTool storeWithId:LearnStage WithKey:kRealLearnStage];
+}
+
 + (void)signUpInfoSaveRealIdentityCar:(NSString *)realIdentityCar {
     [NSUserStoreTool storeWithId:realIdentityCar WithKey:kRealIdentityCar];
 }
@@ -161,6 +166,8 @@ static NSString *const kRealUserid = @"userid";
     }
     return realName;
 }
+
+
 + (NSString *)getSignUpRealIdentityCar {
     NSString *realIdentityCar = @"";
     if ([NSUserStoreTool getObjectWithKey:kRealIdentityCar]) {
@@ -198,6 +205,13 @@ static NSString *const kRealUserid = @"userid";
 + (NSString *)getSignUprealClasstypeid {
     return [NSUserStoreTool getObjectWithKey:kRealClasstypeid];
 }
++ (NSString *)getSignUprealLearnStage {
+    NSString *LearnStage = @"";
+    if ([NSUserStoreTool getObjectWithKey:kRealLearnStage]) {
+        LearnStage = [NSUserStoreTool getObjectWithKey:kRealLearnStage];
+    }
+    return LearnStage;
+}
 + (NSDictionary *)getSignUpInforamtion {
     
     NSString *krealNameString = [NSUserStoreTool getObjectWithKey:kRealName];
@@ -228,11 +242,7 @@ static NSString *const kRealUserid = @"userid";
 
     }
     NSString *krealCoachidString = [NSUserStoreTool getObjectWithKey:kRealCoachid];
-    if (krealCoachidString == nil || krealCoachidString.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"教练为空"];
-        return nil;
 
-    }
     NSString *krealClasstypeidString = [NSUserStoreTool getObjectWithKey:kRealClasstypeid];
     if (krealClasstypeidString == nil || krealClasstypeidString.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"班型为空"];
@@ -245,7 +255,12 @@ static NSString *const kRealUserid = @"userid";
         return nil;
     }
     
-    return @{kRealUserid:[AcountManager manager].userid,kRealName:krealNameString,kRealIdentityCar:krealIdentityCarString,kRealTelephone:krealTelephoneString,kRealAddress:krealAddressString,kRealSchoolid:krealSchoolidString,kRealCoachid:krealCoachidString,kRealClasstypeid:krealClasstypeidString,kRealCarmodel:[JsonTransformManager dictionaryTransformJsonWith:krealCarmodelDictionary] };
+    NSString *applyAgain = [NSUserStoreTool getObjectWithKey:@"applyAgain"];
+    if (applyAgain == nil) {
+        applyAgain = @"0";
+    }
+    
+    return @{kRealUserid:[AcountManager manager].userid,kRealName:krealNameString,kRealIdentityCar:krealIdentityCarString,kRealTelephone:krealTelephoneString,kRealAddress:krealAddressString,kRealSchoolid:krealSchoolidString,kRealCoachid:krealCoachidString,kRealClasstypeid:krealClasstypeidString,kRealCarmodel:[JsonTransformManager dictionaryTransformJsonWith:krealCarmodelDictionary],@"applyagain":applyAgain };
 }
 
 + (NSDictionary *)getSignUpPassInformation {
