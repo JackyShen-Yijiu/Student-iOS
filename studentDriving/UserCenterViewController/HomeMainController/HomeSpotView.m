@@ -8,6 +8,8 @@
 
 #import "HomeSpotView.h"
 
+#import "AcountManager.h"
+
 #define systemsW [[UIScreen mainScreen] bounds].size.width
 
 #define systemsH  [[UIScreen mainScreen] bounds].size.height
@@ -87,14 +89,28 @@
         CGFloat carX = _carView.frame.origin.x + carOffsetX;
             NSLog(@"%f",carOffsetX);
         CGRect rect = CGRectMake(carX, _carView.frame.origin.y, _carView.frame.size.width, _carView.frame.size.height);
-        [UIView animateWithDuration:0.5 animations:^{
-            _carView.frame = rect;
-        } completion:nil];
+            [UIView animateWithDuration:0.5 animations:^{
+                _carView.frame = rect;
+            } completion:nil];
             //  调用代理方法
             if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
                 [_delegate horizontalMenuScrollPageIndex:carX];
             }
-            
+            // 判断是否跳转报名界面
+            NSLog(@"%@",[AcountManager manager].userApplystate);
+            NSLog(@"%f,%f",_carView.frame.origin.x,carOffsetX );
+            if ([[AcountManager manager].userApplystate isEqualToString:@"0"] && _carView.frame.origin.x
+                  == 2 * carOffsetX ) {
+                for (UIView *view in self.superview.superview.subviews) {
+                    if ([view isKindOfClass:[UIScrollView class]]) {
+                        UIScrollView *scrollView = (UIScrollView *)view;
+                        scrollView.contentOffset = CGPointMake(systemsW, 0);
+                    }
+                }
+               
+            return;
+                
+            }
             
     }  else if(sender.direction == UISwipeGestureRecognizerDirectionLeft)
     {
