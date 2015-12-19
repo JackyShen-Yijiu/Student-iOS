@@ -73,7 +73,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     self.title = @"一步学车";
     _offsetX = 0;
     self.view.backgroundColor = [UIColor clearColor];
-    
+    [self addSideMenuButton];
     
     _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 174)];
     _mainScrollView.backgroundColor = [UIColor clearColor];
@@ -584,6 +584,20 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
         [_mainScrollView addSubview:_subjectFourView];
     }
     return _subjectFourView;
+}
+- (void)addSideMenuButton {
+    
+    CGRect backframe= CGRectMake(0, 0, 24, 24);
+    UIButton* backButton= [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = backframe;
+    [backButton setImage:[UIImage imageNamed:@"side_menu"] forState:UIControlStateNormal];
+//    [backButton addTarget:self action:@selector(pushBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+}
+
+- (void)sideMenuButtonAction {
+    
+    
 }
 
 @end

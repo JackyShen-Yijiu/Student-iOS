@@ -33,19 +33,19 @@
     
     SideMenuItem * item1 = [[SideMenuItem alloc] init];
     item1.title = @"首页";
-    item1.target = @"DrivingViewController";
+    item1.target = @"";
     
     SideMenuItem * item2 = [[SideMenuItem alloc] init];
     item2.title = @"查找教练";
-    item2.target = @"ChatListViewController";
+    item2.target = @"DrivingViewController";
     
     SideMenuItem * item3 = [[SideMenuItem alloc] init];
     item3.title = @"消息";
-    item3.target = @"MagicMainTableViewController";
+    item3.target = @"ChatViewController";
     
     SideMenuItem * item4 = [[SideMenuItem alloc] init];
     item4.title = @"签到";
-    item4.target = @"MagicMainTableViewController";
+    item4.target = @"SweepCodeSignInController";
     
     SideMenuItem * item5 = [[SideMenuItem alloc] init];
     item5.title = @"商城";
@@ -53,7 +53,7 @@
     
     SideMenuItem * item6 = [[SideMenuItem alloc] init];
     item6.title = @"我";
-    item6.target = @"MagicMainTableViewController";
+    item6.target = @"UserCenterViewController";
     
     self.LeftItemArray = @[item1,item2,item3,item4,item5,item6];
     
@@ -63,9 +63,18 @@
 
 - (UIView *)headView {
     if (!_headView) {
-        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 200)];
+        _headView = [UIView new];
         _headView.backgroundColor = [UIColor clearColor];
-        UIImageView * imgView = [[UIImageView alloc] initWithFrame:CGRectMake(97, 82, 78, 78)];
+        
+        UIImageView * imgView = [UIImageView new];
+        if ([UIScreen mainScreen].bounds.size.width > 320) {
+            _headView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 200);
+            imgView.frame = CGRectMake(97, 82, 78, 78);
+        }else {
+            imgView.frame = CGRectMake(70, 80, 70, 70);
+            _headView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 170);
+        }
+        
         imgView.userInteractionEnabled = YES;
         imgView.image = [UIImage imageNamed:@"头像11"];
 //        imgView.layer.masksToBounds = YES;
@@ -96,7 +105,10 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    if ([UIScreen mainScreen].bounds.size.width > 320) {
+        return 60;
+    }
+    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -126,6 +138,10 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0) {
+        [self.sideMenuViewController hideMenuViewController];
+        return;
+    }
     SideMenuItem * item = self.LeftItemArray[indexPath.row];
     UIViewController *vc = [[NSClassFromString(item.target) alloc]init];
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
