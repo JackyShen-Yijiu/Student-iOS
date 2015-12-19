@@ -9,7 +9,7 @@
 #import "HomeMainController.h"
 #import "HomeMainView.h"
 #import "HomeSpotView.h"
-
+#import "UIViewController+SliderMenu.h"
 #import "ToolHeader.h"
 
 #import "ChatViewController.h"
@@ -369,7 +369,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             return;
         }
         // 判断是否跳转报名界面
-        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+        if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
             NSLog(@"%@",[AcountManager manager].userApplystate);
             SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
             [self.navigationController pushViewController:signUpList animated:YES];
@@ -591,13 +591,13 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     UIButton* backButton= [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = backframe;
     [backButton setImage:[UIImage imageNamed:@"side_menu"] forState:UIControlStateNormal];
-//    [backButton addTarget:self action:@selector(pushBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    [backButton addTarget:self action:@selector(sideMenuButtonAction) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 }
 
 - (void)sideMenuButtonAction {
     
-    
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 @end

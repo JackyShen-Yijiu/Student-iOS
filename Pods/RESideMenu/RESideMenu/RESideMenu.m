@@ -804,16 +804,16 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle
 {
-    UIStatusBarStyle statusBarStyle = UIStatusBarStyleDefault;
-    IF_IOS7_OR_GREATER(
-       statusBarStyle = self.visible ? self.menuPreferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
-       if (self.contentViewContainer.frame.origin.y > 10) {
-           statusBarStyle = self.menuPreferredStatusBarStyle;
-       } else {
-           statusBarStyle = self.contentViewController.preferredStatusBarStyle;
-       }
-    );
-    return statusBarStyle;
+//    UIStatusBarStyle statusBarStyle = UIStatusBarStyleDefault;
+//    IF_IOS7_OR_GREATER(
+//       statusBarStyle = self.visible ? self.menuPreferredStatusBarStyle : self.contentViewController.preferredStatusBarStyle;
+//       if (self.contentViewContainer.frame.origin.y > 10) {
+//           statusBarStyle = self.menuPreferredStatusBarStyle;
+//       } else {
+//           statusBarStyle = self.contentViewController.preferredStatusBarStyle;
+//       }
+//    );
+    return UIStatusBarStyleLightContent;
 }
 
 - (BOOL)prefersStatusBarHidden

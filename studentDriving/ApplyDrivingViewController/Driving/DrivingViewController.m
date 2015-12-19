@@ -500,4 +500,8 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 //    }
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 @end
