@@ -277,4 +277,9 @@
     detailVC.mainModel = _shopMainListArray[indexPath.row];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
+
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 @end

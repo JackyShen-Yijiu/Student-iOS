@@ -7,6 +7,7 @@
 //
 
 #import "HomeMainView.h"
+#import "CircularMotion.h"
 
 #define systemsW [[UIScreen mainScreen] bounds].size.width
 
@@ -14,6 +15,11 @@
 
 
 @interface HomeMainView ()
+
+@property (nonatomic, strong) CircularMotion * oneCM;
+@property (nonatomic, strong) CircularMotion * twoCM;
+@property (nonatomic, strong) CircularMotion * threeCM;
+
 @property (nonatomic, strong) UIButton *coachCardButton;
 
 @property (nonatomic, strong) UIButton *schoolCardButton;
@@ -82,6 +88,19 @@
                 [self addSubview:_coachCardButton];
                 [self addSubview:_schoolCardButton];
                 [self addSubview:_signButton];
+                
+                // 滚动
+//                _oneCM = [CircularMotion new];
+//                [_oneCM circularMotionWithView:_schoolCardButton Radius:10];
+//                [_oneCM startMotionWithTimeInterval:0.01];
+//                
+//                _twoCM = [CircularMotion new];
+//                [_twoCM circularMotionWithView:_coachCardButton Radius:7];
+//                [_twoCM startMotionWithTimeInterval:0.01];
+//                
+//                _threeCM = [CircularMotion new];
+//                [_threeCM circularMotionWithView:_signButton Radius:8];
+//                [_threeCM startMotionWithTimeInterval:0.01];
 
             }
                 break;

@@ -12,6 +12,7 @@
 #import "ChatListViewController.h"
 #import "LoginViewController.h"
 #import "AcountManager.h"
+#import "YBBaseNavigationController.h"
 
 @interface MenuController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -37,7 +38,7 @@
     item1.target = @"";
     
     SideMenuItem * item2 = [[SideMenuItem alloc] init];
-    item2.title = @"查找教练";
+    item2.title = @"查找驾校";
     item2.target = @"DrivingViewController";
     
     SideMenuItem * item3 = [[SideMenuItem alloc] init];
@@ -49,8 +50,8 @@
 //    item4.target = @"SweepCodeSignInController";
     
     SideMenuItem * item5 = [[SideMenuItem alloc] init];
-    item5.title = @"商城";
-    item5.target = @"MagicMainTableViewController";
+    item5.title = @"钱包";
+    item5.target = @"MyWalletViewController";
     
     SideMenuItem * item6 = [[SideMenuItem alloc] init];
     item6.title = @"我";
@@ -58,7 +59,7 @@
     
     self.LeftItemArray = @[item1,item2,item3,item5,item6];
     
-    self.LeftIconArray = @[ @"首页",@"查找教练",@"消息", @"商城", @"我" ];
+    self.LeftIconArray = @[ @"首页",@"查找教练",@"消息", @"钱包", @"我" ];
     self.tableView.tableHeaderView = self.headView;
 }
 
@@ -68,19 +69,20 @@
         _headView.backgroundColor = [UIColor clearColor];
         
         UIImageView * imgView = [UIImageView new];
+        imgView.layer.masksToBounds = YES;
         if ([UIScreen mainScreen].bounds.size.width > 320) {
             _headView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 200);
             imgView.frame = CGRectMake(97, 82, 78, 78);
+            imgView.layer.cornerRadius = 39;
         }else {
-            imgView.frame = CGRectMake(70, 80, 70, 70);
             _headView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 170);
+            imgView.frame = CGRectMake(70, 80, 70, 70);
+            imgView.layer.cornerRadius = 35;
         }
         [imgView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl];
         
         imgView.userInteractionEnabled = YES;
         imgView.image = [UIImage imageNamed:@"头像11"];
-//        imgView.layer.masksToBounds = YES;
-//        imgView.layer.cornerRadius = 39;
         [_headView addSubview:imgView];
         UITapGestureRecognizer *tapGR = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconViewIsClick)];
         [imgView addGestureRecognizer:tapGR];
@@ -96,7 +98,7 @@
         return;
     }
     UserCenterViewController *ucc = [[UserCenterViewController alloc] init];
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:ucc];
+    YBBaseNavigationController *nav = [[YBBaseNavigationController alloc] initWithRootViewController:ucc];
     [self presentViewController:nav animated:YES completion:^{
         [ucc setPresentBackBotton];
     }];
@@ -150,7 +152,7 @@
     if (indexPath.row == 2) {
         vc.title = @"消息";
     }
-    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
+    YBBaseNavigationController *nav = [[YBBaseNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:^{
         [vc setPresentBackBotton];
     }];

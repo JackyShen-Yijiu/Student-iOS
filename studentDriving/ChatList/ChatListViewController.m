@@ -620,4 +620,8 @@
 //    return chatter;
 //}
 
+- (UIStatusBarStyle)preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
+}
+
 @end

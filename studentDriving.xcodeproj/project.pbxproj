@@ -585,6 +585,11 @@
 		D965CAB51C239E2E00DCD094 /* DVVCycleShowImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CAB21C239E2E00DCD094 /* DVVCycleShowImagesView.m */; };
 		D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CAB41C239E2E00DCD094 /* DVVToolBarView.m */; };
 		D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */; };
+		D9B7F1221C2546FD00D1A143 /* UINavigationBar+NavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F11F1C2546FD00D1A143 /* UINavigationBar+NavigationBar.m */; };
+		D9B7F1231C2546FD00D1A143 /* UINavigationItem+BackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1211C2546FD00D1A143 /* UINavigationItem+BackItem.m */; };
+		D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */; };
+		D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1291C255F3400D1A143 /* CirclePoint.m */; };
+		D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F12B1C255F3400D1A143 /* CircularMotion.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1487,6 +1492,16 @@
 		D965CAB41C239E2E00DCD094 /* DVVToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVToolBarView.m; sourceTree = "<group>"; };
 		D9A46DCA1C25049900271747 /* SweepCodeSignInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SweepCodeSignInController.h; sourceTree = "<group>"; };
 		D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SweepCodeSignInController.m; sourceTree = "<group>"; };
+		D9B7F11E1C2546FD00D1A143 /* UINavigationBar+NavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+NavigationBar.h"; sourceTree = "<group>"; };
+		D9B7F11F1C2546FD00D1A143 /* UINavigationBar+NavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+NavigationBar.m"; sourceTree = "<group>"; };
+		D9B7F1201C2546FD00D1A143 /* UINavigationItem+BackItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+BackItem.h"; sourceTree = "<group>"; };
+		D9B7F1211C2546FD00D1A143 /* UINavigationItem+BackItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+BackItem.m"; sourceTree = "<group>"; };
+		D9B7F1241C254ECC00D1A143 /* YBBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseNavigationController.h; sourceTree = "<group>"; };
+		D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseNavigationController.m; sourceTree = "<group>"; };
+		D9B7F1281C255F3400D1A143 /* CirclePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CirclePoint.h; sourceTree = "<group>"; };
+		D9B7F1291C255F3400D1A143 /* CirclePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CirclePoint.m; sourceTree = "<group>"; };
+		D9B7F12A1C255F3400D1A143 /* CircularMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularMotion.h; sourceTree = "<group>"; };
+		D9B7F12B1C255F3400D1A143 /* CircularMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularMotion.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1624,6 +1639,8 @@
 		B8272D3E1C1EE49700BE0D2D /* SliderMenu */ = {
 			isa = PBXGroup;
 			children = (
+				D9B7F1241C254ECC00D1A143 /* YBBaseNavigationController.h */,
+				D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */,
 				B8272D3F1C1EE4BA00BE0D2D /* MenuController.h */,
 				B8272D401C1EE4BA00BE0D2D /* MenuController.m */,
 				B8272D421C1EE4ED00BE0D2D /* YBBaseTableController.h */,
@@ -2860,6 +2877,11 @@
 		D588B0E61BDDDC24000C5D6F /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D9B7F1271C255F0800D1A143 /* CircularMotion */,
+				D9B7F11E1C2546FD00D1A143 /* UINavigationBar+NavigationBar.h */,
+				D9B7F11F1C2546FD00D1A143 /* UINavigationBar+NavigationBar.m */,
+				D9B7F1201C2546FD00D1A143 /* UINavigationItem+BackItem.h */,
+				D9B7F1211C2546FD00D1A143 /* UINavigationItem+BackItem.m */,
 				D965CAB11C239E2E00DCD094 /* DVVCycleShowImagesView.h */,
 				D965CAB21C239E2E00DCD094 /* DVVCycleShowImagesView.m */,
 				D965CAB31C239E2E00DCD094 /* DVVToolBarView.h */,
@@ -3034,6 +3056,17 @@
 				D965CAA01C239D9F00DCD094 /* DrivingViewController.m */,
 			);
 			path = Driving;
+			sourceTree = "<group>";
+		};
+		D9B7F1271C255F0800D1A143 /* CircularMotion */ = {
+			isa = PBXGroup;
+			children = (
+				D9B7F1281C255F3400D1A143 /* CirclePoint.h */,
+				D9B7F1291C255F3400D1A143 /* CirclePoint.m */,
+				D9B7F12A1C255F3400D1A143 /* CircularMotion.h */,
+				D9B7F12B1C255F3400D1A143 /* CircularMotion.m */,
+			);
+			path = CircularMotion;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3433,6 +3466,7 @@
 				D588B0D71BDDDC14000C5D6F /* DrivingInformationCell.m in Sources */,
 				D588B10E1BDDDC2F000C5D6F /* BLPFAlertView.m in Sources */,
 				D588B0D61BDDDC14000C5D6F /* DrivingDetailCell.m in Sources */,
+				D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */,
 				D588B1201BDDDC2F000C5D6F /* BLInformationManager.m in Sources */,
 				D588B0911BDDDBDB000C5D6F /* CoachDetailViewController.m in Sources */,
 				D5604B501BF656C50020F0D7 /* MWTapDetectingView.m in Sources */,
@@ -3661,11 +3695,13 @@
 				D5604B631BF656C50020F0D7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				D5604B4F1BF656C50020F0D7 /* MWTapDetectingImageView.m in Sources */,
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
+				D9B7F1221C2546FD00D1A143 /* UINavigationBar+NavigationBar.m in Sources */,
 				D5604B401BF656C50020F0D7 /* EMCDDeviceManager+Media.m in Sources */,
 				D51256AE1BE1CF17002717DA /* StudentModel.m in Sources */,
 				D588B0D11BDDDC14000C5D6F /* CoachInformationCell.m in Sources */,
 				D51256BA1BE21EFF002717DA /* ComplainViewController.m in Sources */,
 				D5604B6D1BF656C50020F0D7 /* PSTGridLayoutItem.m in Sources */,
+				D9B7F1231C2546FD00D1A143 /* UINavigationItem+BackItem.m in Sources */,
 				D5604B781BF656C50020F0D7 /* TTGlobalUICommon.m in Sources */,
 				D965CAAC1C239D9F00DCD094 /* DrivingTableHeaderView.m in Sources */,
 				D5604B5B1BF656C50020F0D7 /* NSData+EMImageContentType.m in Sources */,
@@ -3695,8 +3731,10 @@
 				D588B13D1BDDDC65000C5D6F /* ModificationView.m in Sources */,
 				D5604B551BF656C50020F0D7 /* EMSDWebImageDecoder.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
+				D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
+				D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */,
 				D5604CC91BF83A690020F0D7 /* ChatListCell.m in Sources */,
 				D5604B811BF656C50020F0D7 /* NSString+Valid.m in Sources */,
 				D5604B5F1BF656C50020F0D7 /* UIImage+EMWebP.m in Sources */,
