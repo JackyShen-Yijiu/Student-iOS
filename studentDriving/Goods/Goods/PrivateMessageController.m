@@ -55,9 +55,9 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     
     
     self.navigationItem.title = @"一步商城";
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12],
-                                                                      
-                                                                      NSForegroundColorAttributeName:MAINCOLOR}];
+//    [self.navigationController.navigationBar setTitleTextAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:12],
+//                                                                      
+//                                                                      NSForegroundColorAttributeName:MAINCOLOR}];
 
     
 //    // 用自定义Button代替

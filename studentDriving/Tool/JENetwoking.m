@@ -163,7 +163,7 @@
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
-        [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+        [manager GET:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             if (responseObject == nil) {
                 [SVProgressHUD showErrorWithStatus:@"网络错误"];
                 return ;

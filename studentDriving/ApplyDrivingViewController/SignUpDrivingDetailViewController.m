@@ -13,7 +13,7 @@
 #import "BLPFAlertView.h"
 #import "DrivingInformationCell.h"
 #import "DrivingIntroductionCell.h"
-#import "SignUpViewController.h"
+#import "SignUpListViewController.h"
 #import "DrivingSelectedCoachCell.h"
 #import "DrvingDetailModel.h"
 #import <SVProgressHUD.h>
@@ -286,7 +286,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
     }
     for (UIViewController *targetVc in self.navigationController.viewControllers) {
-        if ([targetVc isKindOfClass:[SignUpViewController class]]) {
+        if ([targetVc isKindOfClass:[SignUpListViewController class]]) {
             [self.navigationController popToViewController:targetVc animated:YES];
         }
     }

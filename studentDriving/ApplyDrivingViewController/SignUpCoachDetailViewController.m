@@ -7,7 +7,7 @@
 //
 
 #import "SignUpCoachDetailViewController.h"
-#import "SignUpViewController.h"
+#import "SignUpListViewController.h"
 #import "DrivingDetailViewController.h"
 #import "CoachDetailCell.h"
 #import "CoachInformationCell.h"
@@ -349,7 +349,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
   
 
     for (UIViewController *targetVc in self.navigationController.viewControllers) {
-        if ([targetVc isKindOfClass:[SignUpViewController class]]) {
+        if ([targetVc isKindOfClass:[SignUpListViewController class]]) {
             [self.navigationController popToViewController:targetVc animated:YES];
         }
     }
