@@ -95,7 +95,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     [SVProgressHUD dismiss];
 }
 
-#pragma mark - network
+#pragma mark - networkCallBack
 - (void)networkCallBack {
     // 轮播图
     _cycleShowViewModel = [DrivingCycleShowViewModel new];
@@ -109,16 +109,33 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 - (void)configRefresh {
     
     __weak typeof(self) ws = self;
-    
+    // 刷新
     MJRefreshNormalHeader *refreshHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         self.isRefresh = YES;
         self.index = 1;
         [ws network];
     }];
-    
+    // 加载
     MJRefreshBackNormalFooter *refreshFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        
+        // 判断加载时当前的请求的页面
+        NSInteger dataCount = 0;
+        if (ws.dataArray.count) {
+            if (ws.dataArray.count <= 10) {
+                dataCount = 10;
+            }else {
+                NSInteger temp = ws.dataArray.count % 10;
+                if (temp) {
+                    temp += 10 - temp;
+                }
+                dataCount = ws.dataArray.count + temp;
+            }
+        }
+        NSInteger index = dataCount / 10 + 1;
+        // 设置当前请求的页面
+        self.index = index;
+        
         self.isRefresh = NO;
-        self.index += 1;
         [ws network];
     }];
     
@@ -146,17 +163,15 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     if (![self.searchName isKindOfClass:[NSNull class]]) {
         self.searchName = @"";
     }
-    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", 39.915, 116.404, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
+//    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", 39.915, 116.404, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
     
-//    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&licensetype=%li&ordertype=%li&index=%li&count=%li", self.latitude, self.longitude, self.radius, self.carTypeId, self.filterType, self.index, self.count ];
-//    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%i&index=%li&count=%li", 39.915, 116.404, 10000, self.index, self.count ];
+    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", self.latitude, self.longitude, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
+
     
-//    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",39.915, 116.404];
-    NSLog(@"%@",params);
+//    NSLog(@"%@",params);
     
     NSString *urlString = [NSString stringWithFormat:kDrivingUrl,params];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-
     
     [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
 }
@@ -203,14 +218,14 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     //latitude=40.096263&longitude=116.1270&radius=10000
 //    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
 //    NSString *locationContent =[NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
-    NSString *locationContent =[NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",39.915, 116.404];
+//    NSString *locationContent =[NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",39.915, 116.404];
 
-    NSString *urlString = [NSString stringWithFormat:kDrivingUrl,locationContent];
-    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+//    NSString *urlString = [NSString stringWithFormat:kDrivingUrl,locationContent];
+//    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
     
-    [self.dataArray removeAllObjects];
+//    [self.dataArray removeAllObjects];
     
-    [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
+//    [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
     
     // 停止位置更新服务
     [self.locationService stopUserLocationService];
@@ -219,6 +234,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     self.longitude = userLocation.location.coordinate.longitude;
     self.latitude = userLocation.location.coordinate.latitude;
     
+    // 反地理编码，获取城市名
     [self reverseGeoCodeWithLatitude:self.latitude longitude:self.longitude];
 }
 
@@ -233,10 +249,10 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     // 发起反向地理编码
     BOOL flage = [self.geoCodeSearch reverseGeoCode:reverseGeocodeOption];
     if (flage) {
-        NSLog(@"反geo检索发送成功");
+//        NSLog(@"反geo检索发送成功");
         return YES;
     }else {
-        NSLog(@"反geo检索发送失败");
+//        NSLog(@"反geo检索发送失败");
         return NO;
     }
 }
@@ -244,12 +260,16 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
     
     if (error == BMK_SEARCH_NO_ERROR) {
-        NSLog(@"%@",result);
+//        NSLog(@"%@",result);
         BMKAddressComponent *addressComponent = result.addressDetail;
-        NSLog(@"addressComponent.city===%@",addressComponent.city);
+//        NSLog(@"addressComponent.city===%@",addressComponent.city);
         // 保存城市名
         self.cityName = addressComponent.city;
         [self.naviBarRightButton setTitle:addressComponent.city forState:UIControlStateNormal];
+        self.index = 1;
+        self.isRefresh = YES;
+        // 获取网络数据
+        [self network];
     }else {
         NSLog(@"抱歉，未找到结果");
     }
@@ -264,10 +284,10 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 //    geoCodeSearchOption.address = @"海淀区上地10街10号";
     BOOL flag = [self.geoCodeSearch geoCode:geoCodeSearchOption];
     if(flag) {
-        NSLog(@"geo检索发送成功");
+//        NSLog(@"geo检索发送成功");
         return YES;
     }else {
-        NSLog(@"geo检索发送失败");
+//        NSLog(@"geo检索发送失败");
         return NO;
     }
 }
@@ -276,12 +296,13 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 - (void)onGetGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
     
     if (error == BMK_SEARCH_NO_ERROR) {
-        NSLog(@"%@",result);
+//        NSLog(@"%@",result);
         CLLocationCoordinate2D location = result.location;
-        NSLog(@"result.location.latitude===%f, result.location.longitude===%f",result.location.latitude,result.location.longitude);
+//        NSLog(@"result.location.latitude===%f, result.location.longitude===%f",result.location.latitude,result.location.longitude);
         self.latitude = location.latitude;
         self.longitude = location.longitude;
         // 刷新数据
+        self.index = 1;
         self.isRefresh = YES;
         [self network];
     }else {
@@ -364,9 +385,9 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     [view setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
         self.carTypeId = carTypeId;
         [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
-        NSLog(@"%li --- %@", carTypeId, selectedTitle);
-        self.isRefresh = YES;
+//        NSLog(@"%li --- %@", carTypeId, selectedTitle);
         self.index = 1;
+        self.isRefresh = YES;
         [self network];
     }];
     [self.view addSubview:view];
@@ -378,7 +399,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     [self.view endEditing:YES];
     self.searchName = self.tableHeaderView.searchTextField.text;
     
-    NSLog(@"longitude===%f,latitude===%f,searchName===%@,carTypeId===%li,filterType===%li",self.longitude,self.latitude,self.searchName,self.carTypeId,self.filterType);
+//    NSLog(@"longitude===%f,latitude===%f,searchName===%@,carTypeId===%li,filterType===%li",self.longitude,self.latitude,self.searchName,self.carTypeId,self.filterType);
     self.index = 1;
     self.isRefresh = YES;
     [self network];

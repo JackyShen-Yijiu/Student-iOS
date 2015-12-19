@@ -578,6 +578,7 @@
 		D965CAB01C239DE900DCD094 /* YBBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CAAF1C239DE900DCD094 /* YBBaseViewModel.m */; };
 		D965CAB51C239E2E00DCD094 /* DVVCycleShowImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CAB21C239E2E00DCD094 /* DVVCycleShowImagesView.m */; };
 		D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CAB41C239E2E00DCD094 /* DVVToolBarView.m */; };
+		D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1466,6 +1467,8 @@
 		D965CAB21C239E2E00DCD094 /* DVVCycleShowImagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCycleShowImagesView.m; sourceTree = "<group>"; };
 		D965CAB31C239E2E00DCD094 /* DVVToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVToolBarView.h; sourceTree = "<group>"; };
 		D965CAB41C239E2E00DCD094 /* DVVToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVToolBarView.m; sourceTree = "<group>"; };
+		D9A46DCA1C25049900271747 /* SweepCodeSignInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SweepCodeSignInController.h; sourceTree = "<group>"; };
+		D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SweepCodeSignInController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2661,6 +2664,8 @@
 				D52638521BDF1AED00ADC2C7 /* DrivingCandidatesViewController.m */,
 				D512569A1BDF602B002717DA /* CommonAddressViewController.h */,
 				D512569B1BDF602B002717DA /* CommonAddressViewController.m */,
+				D9A46DCA1C25049900271747 /* SweepCodeSignInController.h */,
+				D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */,
 			);
 			path = UserCenterViewController;
 			sourceTree = "<group>";
@@ -3433,6 +3438,7 @@
 				D52638561BDF1FA400ADC2C7 /* ApplyclasstypeinfoModel.m in Sources */,
 				D588B0701BDDDB90000C5D6F /* CancelAppointmentViewController.m in Sources */,
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
+				D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */,
 				D588B0DF1BDDDC14000C5D6F /* CancelAppointmentCell.m in Sources */,
 				D5604B8D1BF656C50020F0D7 /* EMSearchDisplayController.m in Sources */,
 				D5604C841BF656F30020F0D7 /* FacialView.m in Sources */,
