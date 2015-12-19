@@ -20,6 +20,7 @@
 #import "EMSearchDisplayController.h"
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "UserProfileManager.h"
+#import "SVProgressHUD.h"
 
 @implementation EMConversation (search)
 
@@ -417,6 +418,9 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    if (!self.dataSource.count) {
+        [SVProgressHUD showErrorWithStatus:@"没有消息"];
+    }
     return  self.dataSource.count;
 }
 

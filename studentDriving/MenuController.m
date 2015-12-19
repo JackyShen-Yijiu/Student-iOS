@@ -11,6 +11,7 @@
 #import "UserCenterViewController.h"
 #import "ChatListViewController.h"
 #import "LoginViewController.h"
+#import "AcountManager.h"
 
 @interface MenuController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -41,11 +42,11 @@
     
     SideMenuItem * item3 = [[SideMenuItem alloc] init];
     item3.title = @"消息";
-    item3.target = @"ChatViewController";
+    item3.target = @"ChatListViewController";
     
-    SideMenuItem * item4 = [[SideMenuItem alloc] init];
-    item4.title = @"签到";
-    item4.target = @"SweepCodeSignInController";
+//    SideMenuItem * item4 = [[SideMenuItem alloc] init];
+//    item4.title = @"签到";
+//    item4.target = @"SweepCodeSignInController";
     
     SideMenuItem * item5 = [[SideMenuItem alloc] init];
     item5.title = @"商城";
@@ -55,9 +56,9 @@
     item6.title = @"我";
     item6.target = @"UserCenterViewController";
     
-    self.LeftItemArray = @[item1,item2,item3,item4,item5,item6];
+    self.LeftItemArray = @[item1,item2,item3,item5,item6];
     
-    self.LeftIconArray = @[ @"首页",@"查找教练",@"消息", @"签到", @"商城", @"我" ];
+    self.LeftIconArray = @[ @"首页",@"查找教练",@"消息", @"商城", @"我" ];
     self.tableView.tableHeaderView = self.headView;
 }
 
@@ -74,6 +75,7 @@
             imgView.frame = CGRectMake(70, 80, 70, 70);
             _headView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 170);
         }
+        [imgView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl];
         
         imgView.userInteractionEnabled = YES;
         imgView.image = [UIImage imageNamed:@"头像11"];
@@ -142,8 +144,12 @@
         [self.sideMenuViewController hideMenuViewController];
         return;
     }
+    
     SideMenuItem * item = self.LeftItemArray[indexPath.row];
     UIViewController *vc = [[NSClassFromString(item.target) alloc]init];
+    if (indexPath.row == 2) {
+        vc.title = @"消息";
+    }
     UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:^{
         [vc setPresentBackBotton];
