@@ -17,6 +17,8 @@
 #import "SignUpListViewController.h"
 // 首页
 #import "HomeAdvantageController.h"
+#import "HomeFavourableController.h"
+#import "HomeRewardController.h"
 
 // 科目一
 #import "QuestionBankViewController.h"
@@ -85,7 +87,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     _backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, systemsW * 2, systemsH)];
     _backImage.image = [UIImage imageNamed:@"bg"];
     _imageX = 0;
-    [_backImage addSubview:_mainScrollView];
+//    [_backImage addSubview:_mainScrollView];
     
      [self.view addSubview:_backImage];
     [self.view addSubview:_mainScrollView];
@@ -154,7 +156,21 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
             }
                 break;
-                
+                case 102:
+
+            {
+                HomeFavourableController *homeAdvantageVC = [[HomeFavourableController alloc] init];
+                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+
+            }
+                break;
+                case 103:
+            {
+                HomeRewardController *homeAdvantageVC = [[HomeRewardController alloc] init];
+                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+
+            }
+                break;
             default:
                 break;
         }
@@ -348,7 +364,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     {
         
         // 判断是否跳转报名界面
-        if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
             NSLog(@"%@",[AcountManager manager].userApplystate);
             SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
             [self.navigationController pushViewController:signUpList animated:YES];
@@ -461,7 +477,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 {
        CGFloat width = self.view.frame.size.width;
     int i = (offSetImageX - _imageX) > 0 ? 1 : -1;
-    CGFloat offX = _backImage.frame.size.width * 0.125;
+    CGFloat offX = _backImage.frame.size.width * 0.125 - 8;
     CGFloat resultX =  offX * offSetImageX / width  * i;
     _backImage.frame = CGRectMake(-resultX, _backImage.frame.origin.y, _backImage.frame.size.width, _backImage.frame.size.height);
     

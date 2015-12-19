@@ -20,6 +20,10 @@
 #import "SignUpCoachViewController.h"
 #import "SignUpDrivingViewController.h"
 #import "BLPFAlertView.h"
+#import "ChooseBtnView.h"
+#import "KindlyReminderView.h"
+#import "SignUpSuccessViewController.h"
+#import "AcountManager.h"
 //245 247 250
 
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
@@ -36,11 +40,12 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 @property (strong, nonatomic) UIButton *camerBnt ;
 @property (strong, nonatomic) UIImageView *camerImage;
 @property (strong, nonatomic) NSArray *firstArray;
-@property (strong, nonatomic) NSArray *secondArray;
 @property (strong, nonatomic) NSString *qiniuToken;
 
 @property (strong, nonatomic) NSMutableDictionary *mubDictionary;
 @property (strong, nonatomic) NSDictionary *qiniuUpdic;
+@property (strong, nonatomic) UIButton *goBackButton;
+@property (strong, nonatomic) UIButton *callButton;
 
 @end
 
@@ -53,29 +58,38 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
     return _mubDictionary;
 }
 
+- (UIButton *)goBackButton{
+    if (_goBackButton == nil) {
+        _goBackButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
+        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回_click"] forState:UIControlStateNormal];
+        [_goBackButton addTarget:self action:@selector(dealGoBack) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _goBackButton;
+}
+
+- (UIButton *)callButton{
+    if (_callButton == nil) {
+        _callButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
+        [_callButton setBackgroundImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        [_callButton addTarget:self action:@selector(callBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _callButton;
+}
+
 - (NSArray *)firstArray {
     if (_firstArray == nil) {
         _firstArray = @[@"真实姓名",@"身份证号",@"联系方式",@"常用地址"];
     }
     return _firstArray;
 }
-- (NSArray *)secondArray {
-    if (_secondArray == nil) {
-        _secondArray = @[@"报考驾校",@"报考车型",@"报考教练",@"报考班型"];
-    }
-    return _secondArray;
-}
+
 - (UIButton *)referButton{
     if (_referButton == nil) {
         _referButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _referButton.backgroundColor = MAINCOLOR;
         _referButton.titleLabel.font = [UIFont systemFontOfSize:16];
-        if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-            [_referButton setTitle:@"报名成功" forState:UIControlStateNormal];
-            _referButton.userInteractionEnabled = NO;
-        }else {
-            [_referButton setTitle:@"提交" forState:UIControlStateNormal];
-        }
+        [_referButton setTitle:@"下一步" forState:UIControlStateNormal];
         [_referButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_referButton addTarget:self action:@selector(dealRefer:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -95,7 +109,12 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
     return _tableView;
 }
 - (UIView *)tableHeadView {
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 110)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 77+110)];
+    
+    ChooseBtnView *chooseBtnView = [[ChooseBtnView alloc] initWithSelectedBtn:1 leftTitle:@"选择驾校" midTitle:@"填写信息" rightTitle:@"报名验证" frame:CGRectMake(0, 10,kSystemWide , 67 )];
+    chooseBtnView.backgroundColor = [UIColor whiteColor];
+    
+    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 77, kSystemWide, 110)];
     backGroundView.backgroundColor = RGBColor(245, 247, 250);
     backGroundView.layer.borderColor = RGBColor(230, 230, 230).CGColor;
     backGroundView.layer.borderWidth = 1;
@@ -125,7 +144,11 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
         make.height.mas_equalTo(@29);
         make.width.mas_equalTo(@29);
     }];
-    return backGroundView;
+    
+    
+    [view addSubview:chooseBtnView];
+    [view addSubview:backGroundView];
+    return view;
 }
 
 - (UIView *)tableFootView {
@@ -139,9 +162,9 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
     self.view.backgroundColor = RGBColor(245, 247, 250);
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"报名";
-
   
-    
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.callButton];
     
     [self.view addSubview:self.tableView];
     self.tableView.tableHeaderView = [self tableHeadView];
@@ -153,15 +176,16 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
         make.width.equalTo(self.view);
         make.height.mas_equalTo(49);
     }];
-    
-    if ([self.tableView respondsToSelector:@selector(setSeparatorInset:)]) {
-        [self.tableView setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 15)];
-    }
-    if ([self.tableView respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 15, 0, 15)];
-    }
 }
 #pragma mark - Aciton
+
+- (void)dealGoBack {
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)callBtnClick {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://01053658566"]];
+}
 
 - (void)clickCamer:(UITapGestureRecognizer *)tap {
     
@@ -171,14 +195,12 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 10;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = RGBColor(245, 247, 250);
-    return view;
+    KindlyReminderView *krv = [[KindlyReminderView alloc] initWithContentStr:@"请认真填写以上信息，您填写的信息将作为报名信息录入车考驾照系统内，如果信息错误，将影响您的报名流程。" frame:CGRectMake(0, 0, kSystemWide, 100)];
+    return krv;
 }
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 4;
 }
@@ -187,140 +209,69 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
     if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
         [cell setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 15)];
     }
-    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
-        [self.tableView setLayoutMargins:UIEdgeInsetsMake(0, 15, 0, 15)];
-    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 0) {
-        static NSString *cellId = @"cell";
-        SignUpCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (cell == nil) {
-            cell = [[SignUpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        }
-        [cell receiveTextContent:inputArray[indexPath.row]];
-        NSString *titleString = self.firstArray[indexPath.row];
-        [cell receiveTitile:titleString andSignUpBlock:^(NSString *completionString) {
-            if (indexPath.row == 0) {
-                if (completionString == nil || completionString.length == 0) {
-                    [SVProgressHUD showErrorWithStatus:@"请输入真实姓名"];
-                    return ;
-                }
-                [SignUpInfoManager signUpInfoSaveRealName:completionString];
-                DYNSLog(@"真实名字");
-            }else if (indexPath.row == 1) {
-                if (completionString == nil || completionString.length == 0) {
-                    [SVProgressHUD showErrorWithStatus:@"请输入身份证号"];
-                    return;
-                }
-                NSString *identityCarString = completionString;
-                NSString *regex = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
-                NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-                BOOL isMatch = [pred evaluateWithObject:identityCarString];
-                if (!isMatch) {
-                    [SVProgressHUD showErrorWithStatus:@"请输入正确的身份证号"];
-                    return;
-                }
-                [SignUpInfoManager signUpInfoSaveRealIdentityCar:completionString];
-                DYNSLog(@"身份证号");
-
-            }else if (indexPath.row == 2) {
-                if (completionString == nil || completionString.length == 0) {
-                    [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
-                    return;
-                }
-                NSString *phoneNum = completionString;
-                NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
-                NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-                BOOL isMatch = [pred evaluateWithObject:phoneNum];
-                if (!isMatch) {
-                    [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
-                    return;
-                }
-                [SignUpInfoManager signUpInfoSaveRealTelephone:completionString];
-                DYNSLog(@"联系方式");
-
-            }else if (indexPath.row == 3) {
-                if (completionString == nil || completionString.length == 0) {
-                    [SVProgressHUD showErrorWithStatus:@"请输入常用地址"];
-                    return;
-                }
-                [SignUpInfoManager signUpInfoSaveRealAddress:completionString];
-                DYNSLog(@"常用地址");
+    static NSString *cellId = @"cell";
+    SignUpCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    if (cell == nil) {
+        cell = [[SignUpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+    }
+    [cell receiveTextContent:inputArray[indexPath.row]];
+    NSString *titleString = self.firstArray[indexPath.row];
+    [cell receiveTitile:titleString andSignUpBlock:^(NSString *completionString) {
+        if (indexPath.row == 0) {
+            if (completionString == nil || completionString.length == 0) {
+                [SVProgressHUD showErrorWithStatus:@"请输入真实姓名"];
+                return ;
             }
-        }];
-        
-        return cell;
-    }else if (indexPath.section == 1 ) {
-        static NSString *cellId = @"cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (cell == nil) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
-        }
-        if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-            cell.userInteractionEnabled = NO;
-        }
-        cell.textLabel.text = self.secondArray[indexPath.row];
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        DYNSLog(@"result = %@",signUpArray[indexPath.row]);
-        cell.detailTextLabel.text = signUpArray[indexPath.row];
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-        return cell;
-    }
-    return nil;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1 && indexPath.row == 0) {
-        
-//        if ([SignUpInfoManager getSignUpSchoolid] ) {
-//            [PFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-//                DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-//                NSUInteger index = selectedOtherButtonIndex + 1;
-//                if (index == 0) {
-//                    return ;
-//                }else if (index == 1) {
-//                    
-//                    [SignUpInfoManager removeSignData];
-//                    
-//                SignUpDrivingViewController *drivingVC = [[SignUpDrivingViewController alloc] init];
-//                [self.navigationController pushViewController:drivingVC animated:YES];
-//                }
-//            }];
-//            
-//        }else {
-            SignUpDrivingViewController *drivingVC = [[SignUpDrivingViewController alloc] init];
-            [self.navigationController pushViewController:drivingVC animated:YES];
-//        }
-
-       
-        
-    }else if (indexPath.section == 1 && indexPath.row == 2 ){
-            SignUpCoachViewController *coachVc = [[SignUpCoachViewController alloc] init];
-            coachVc.markNum = 1;
+            [SignUpInfoManager signUpInfoSaveRealName:completionString];
+            DYNSLog(@"真实名字");
+        }else if (indexPath.row == 1) {
+            if (completionString == nil || completionString.length == 0) {
+                [SVProgressHUD showErrorWithStatus:@"请输入身份证号"];
+                return;
+            }
+            NSString *identityCarString = completionString;
+            NSString *regex = @"^(\\d{14}|\\d{17})(\\d|[xX])$";
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+            BOOL isMatch = [pred evaluateWithObject:identityCarString];
+            if (!isMatch) {
+                [SVProgressHUD showErrorWithStatus:@"请输入正确的身份证号"];
+                return;
+            }
+            [SignUpInfoManager signUpInfoSaveRealIdentityCar:completionString];
+            DYNSLog(@"身份证号");
             
-            [self.navigationController pushViewController:coachVc animated:YES];
+        }else if (indexPath.row == 2) {
+            if (completionString == nil || completionString.length == 0) {
+                [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
+                return;
+            }
+//            NSString *phoneNum = completionString;
+//            NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+//            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+//            BOOL isMatch = [pred evaluateWithObject:phoneNum];
+//            if (!isMatch) {
+//                [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+//                return;
+//            }
+            [SignUpInfoManager signUpInfoSaveRealTelephone:completionString];
+            DYNSLog(@"联系方式");
+            
+        }else if (indexPath.row == 3) {
+            if (completionString == nil || completionString.length == 0) {
+                [SVProgressHUD showErrorWithStatus:@"请输入常用地址"];
+                return;
+            }
+            [SignUpInfoManager signUpInfoSaveRealAddress:completionString];
+            DYNSLog(@"常用地址");
+        }
+    }];
+    
+    return cell;
 
-      
-    }
-    else if (indexPath.section == 1 && indexPath.row == 1) {
-        if ([SignUpInfoManager getSignUpSchoolid] == nil || [SignUpInfoManager getSignUpSchoolid].length == 0) {
-        }
-        ExamCarViewController *carType = [[ExamCarViewController alloc] init];
-        [self.navigationController pushViewController:carType animated:YES];
-    }else if (indexPath.section == 1 && indexPath.row == 3) {
-        if ([SignUpInfoManager getSignUpSchoolid] == nil || [SignUpInfoManager getSignUpSchoolid].length == 0) {
-            [SVProgressHUD showInfoWithStatus:@"请选择驾校"];
-            return;
-        }
-        ExamClassViewController *classType = [[ExamClassViewController alloc] init];
-        [self.navigationController pushViewController:classType animated:YES];
-    }
 }
-
-
 
 - (void)dealRefer:(UIButton *)sender{
     if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
@@ -341,47 +292,33 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"1"]) {
                 kShowSuccess(@"报名成功");
-                
+                [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+                [AcountManager saveUserApplyState:@"2"];
+                NSLog(@"____%@",[AcountManager manager].userApplystate);
+                //使重新报名变为0
+                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
+                    [ud setObject:@"0" forKey:@"applyAgain"];
+                    [ud synchronize];
+                }
             }else {
                 kShowFail(param[@"msg"]);
             }
         }];
+        
+        
     }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
         [SVProgressHUD showInfoWithStatus:@"报名申请中"];
-        
     }
 
-   
+  
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    inputArray = @[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealIdentityCar],[SignUpInfoManager getSignUpRealTelephone],[SignUpInfoManager getSignUpRealAddress]];
-    
-    signUpArray = @[[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpCoachName],[SignUpInfoManager getSignUpClasstypeName]];
-    [self.tableView reloadData];
-    
-    
-    NSString *urlstring = [NSString stringWithFormat:kuserapplyState,[AcountManager manager].userid];
-    NSString *url = [NSString stringWithFormat:BASEURL,urlstring];
-    
-    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
-        NSDictionary *param = data;
-        NSNumber *type = param[@"type"];
-        if (type.integerValue == 1) {
-            NSDictionary *content = param[@"data"];
-            NSString *string = [NSString stringWithFormat:@"%@",content[@"applystate"]];
-            [AcountManager saveUserApplyState:string];
-            if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-                [_referButton setTitle:@"报名成功" forState:UIControlStateNormal];
-                _referButton.userInteractionEnabled = NO;
-            }else {
-                [_referButton setTitle:@"提交" forState:UIControlStateNormal];
-            }
-        }
-    }];
+//    inputArray = @[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealIdentityCar],[SignUpInfoManager getSignUpRealTelephone],[SignUpInfoManager getSignUpRealAddress]];
+    inputArray = @[@"",@"",@"",@""];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -420,25 +357,6 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
             }
         } option:nil];
     }];
-    
-    
-    
-    //    dispatch_group_t group = dispatch_group_create();
-    //    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    //    dispatch_group_async(group, queue, ^{
-    //        dispatch_group_async(group, dispatch_get_main_queue(), ^{
-    //        });
-    //    });
-    //    dispatch_group_async(group, queue, ^{
-    //        dispatch_group_async(group, dispatch_get_main_queue(), ^{
-    //
-    //        });
-    //    });
-    //    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-    //        NSLog(@"3");
-    //    });
-    
-    
 }
 
 - (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated {
@@ -456,5 +374,9 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [SVProgressHUD dismiss];                                                                                                                                                                                                                                                                                                                                                                                                                                                                
+}
 
 @end
