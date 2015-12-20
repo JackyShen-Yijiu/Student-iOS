@@ -49,7 +49,8 @@
     numberLabel.text = _walletstr;
     // 取出立即购买按钮,添加点击事件
     _didClickBtn = [_bottomView viewWithTag:102];
-    if ([_mainModel.is_scanconsumption isEqualToString:@"ture"]) {
+    NSLog(@"_main = %@",_mainModel.is_scanconsumption);
+    if ((_mainModel.is_scanconsumption == 1)) {
         [_didClickBtn setTitle:@"立即兑换" forState:UIControlStateNormal];
         //// 判断按钮是否能点击
         _didClickBtn.selected = [_walletstr intValue]  >=  _mainModel.productprice ? 1 : 0;
@@ -171,7 +172,7 @@
 - (UITableView *)tableView
 {
     if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 114) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height - 50) style:UITableViewStylePlain];
     }
     return _tableView;
 }

@@ -15,6 +15,7 @@
 #import "MyWallet.h"
 #import <MJRefresh.h>
 #import <SVProgressHUD.h>
+#import "UIColor+Hex.h"
 static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=%@&count=10";
 
 @interface MyWalletViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -71,7 +72,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         _inviteButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_inviteButton setTitle:@"赚积分" forState:UIControlStateNormal];
         [_inviteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _inviteButton.backgroundColor = MAINCOLOR;
+        _inviteButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
         _inviteButton.titleLabel.font = [UIFont systemFontOfSize:15];
         _inviteButton.layer.borderColor = [UIColor whiteColor].CGColor;
         _inviteButton.layer.borderWidth = 1;
@@ -85,9 +86,9 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     if (_exchangeButton == nil) {
         _exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_exchangeButton setTitle:@"兑换商品" forState:UIControlStateNormal];
-        [_exchangeButton setTitleColor:MAINCOLOR forState:UIControlStateNormal];
+        [_exchangeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
      
-        _exchangeButton.backgroundColor = [UIColor whiteColor];
+        _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
         _exchangeButton.titleLabel.font = [UIFont systemFontOfSize:15];
         _exchangeButton.layer.borderColor = MAINCOLOR.CGColor;
         _exchangeButton.layer.borderWidth = 1;

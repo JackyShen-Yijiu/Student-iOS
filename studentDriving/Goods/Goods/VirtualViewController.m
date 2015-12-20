@@ -9,6 +9,7 @@
 #import "VirtualViewController.h"
 #import "ToolHeader.h"
 #import "MyWalletViewController.h"
+#import "UIColor+Hex.h"
 
 static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 
@@ -81,8 +82,9 @@ static NSString *const knumber = @"text=www.baidu.com&size=10";
         if (data == nil) {
             return ;
         }
-        NSString *str = [data objectForKey:@"type"];
-        if ([str isEqualToString:@"1"]) {
+        NSLog(@"%@",data);
+         NSInteger type = [[data objectForKey:@"type"] integerValue];
+        if (type == 1) {
             //刷新数据
             MyWalletViewController *walletVC = [self.navigationController.viewControllers objectAtIndex:0];
             [walletVC refreshWalletData];
@@ -139,7 +141,7 @@ static NSString *const knumber = @"text=www.baidu.com&size=10";
     
     CGFloat finishButtonH = 40;
     self.finishButton.frame = CGRectMake(0, self.view.frame.size.height - finishButtonH, self.view.frame.size.width, finishButtonH);
-    [_finishButton setBackgroundColor:[UIColor orangeColor]];
+    [_finishButton setBackgroundColor:[UIColor colorWithHexString:@"ff5d35"]];
     [_finishButton setTitle:@"完成" forState:UIControlStateNormal];
     _finishButton.titleLabel.font = [UIFont systemFontOfSize:10];
     [_finishButton addTarget:self action:@selector(didFinishClick:) forControlEvents:UIControlEventTouchUpInside];

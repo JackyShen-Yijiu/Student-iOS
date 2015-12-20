@@ -39,10 +39,28 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 @property (strong, nonatomic) UILabel *contentLabel ;
 
 @property (assign, nonatomic) BOOL is_AddCoachModel;
+
+@property (strong, nonatomic) UIButton *goBackButton;
+
+
+
+
+
 @end
 
 @implementation AppointmentDrivingViewController
 #pragma mark - 控件
+
+- (UIButton *)goBackButton{
+    if (_goBackButton == nil) {
+        _goBackButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+        //        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回_click"] forState:UIControlStateNormal];
+        [_goBackButton addTarget:self action:@selector(dealGoBack) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _goBackButton;
+}
+
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
         _naviBarRightButton = [WMUITool initWithTitle:@"更多教练" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
@@ -91,6 +109,10 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     }
     return _dataArray;
 }
+
+- (void)dealGoBack {
+    [self.navigationController popViewControllerAnimated:YES];
+}
 #pragma mark - 头视图教练
 - (UICollectionView *)coachHeadCollectionView {
     if (_coachHeadCollectionView == nil) {
@@ -129,6 +151,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _is_AddCoachModel = NO;
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kCellChange) name:@"kCellChange" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kAddCoachModel) name:@"kAddCoachModel" object:nil];
     self.view.backgroundColor = [UIColor whiteColor];

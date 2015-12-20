@@ -24,6 +24,7 @@
 #import "KindlyReminderView.h"
 #import "SignUpSuccessViewController.h"
 #import "AcountManager.h"
+#import "UIColor+Hex.h"
 //245 247 250
 
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
@@ -60,9 +61,9 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 
 - (UIButton *)goBackButton{
     if (_goBackButton == nil) {
-        _goBackButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
-        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回_click"] forState:UIControlStateNormal];
+        _goBackButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+//        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回_click"] forState:UIControlStateNormal];
         [_goBackButton addTarget:self action:@selector(dealGoBack) forControlEvents:UIControlEventTouchUpInside];
     }
     return _goBackButton;
@@ -87,7 +88,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 - (UIButton *)referButton{
     if (_referButton == nil) {
         _referButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _referButton.backgroundColor = MAINCOLOR;
+        _referButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
         _referButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_referButton setTitle:@"下一步" forState:UIControlStateNormal];
         [_referButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

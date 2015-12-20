@@ -369,7 +369,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             return;
         }
         // 判断是否跳转报名界面
-        if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
             NSLog(@"%@",[AcountManager manager].userApplystate);
             SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
             [self.navigationController pushViewController:signUpList animated:YES];
