@@ -249,14 +249,14 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
                 [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
                 return;
             }
-//            NSString *phoneNum = completionString;
-//            NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
-//            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-//            BOOL isMatch = [pred evaluateWithObject:phoneNum];
-//            if (!isMatch) {
-//                [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
-//                return;
-//            }
+            NSString *phoneNum = completionString;
+            NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+            BOOL isMatch = [pred evaluateWithObject:phoneNum];
+            if (!isMatch) {
+                [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+                return;
+            }
             [SignUpInfoManager signUpInfoSaveRealTelephone:completionString];
             DYNSLog(@"联系方式");
             

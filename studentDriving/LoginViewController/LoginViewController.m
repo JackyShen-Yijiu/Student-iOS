@@ -364,14 +364,14 @@ static NSString *const kuserType = @"usertype";
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if (textField.tag == 100) {
-//        NSString *phoneNum = textField.text;
-//        NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
-//        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-//        BOOL isMatch = [pred evaluateWithObject:phoneNum];
-//        if (!isMatch) {
-//            [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号" maskType:SVProgressHUDMaskTypeBlack];
-//            return;
-//        }
+        NSString *phoneNum = textField.text;
+        NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        BOOL isMatch = [pred evaluateWithObject:phoneNum];
+        if (!isMatch) {
+            [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号" maskType:SVProgressHUDMaskTypeBlack];
+            return;
+        }
         [self.userParam setObject:textField.text forKey:kmobileNum];
     }else if (textField.tag == 101) {
         DYNSLog(@"password = %@",[textField.text DY_MD5]);

@@ -19,6 +19,7 @@
 #import "CoachDetailAppointmentViewController.h"
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
+#import "UIColor+Hex.h"
 #define StartOffset  kSystemWide/4-60/2
 
 static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
@@ -45,7 +46,7 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
 - (UIView *)menuIndicator {
     if (_menuIndicator == nil) {
         _menuIndicator = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/4-60/2,40-2, 60, 2)];
-        _menuIndicator.backgroundColor = MAINCOLOR;
+        _menuIndicator.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
     }
     return _menuIndicator;
 }
@@ -188,7 +189,7 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
     leftButton.selected = YES;
     [leftButton addTarget:self action:@selector(clickLeftBtn:) forControlEvents:UIControlEventTouchUpInside];
     leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [leftButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
+    [leftButton setTitleColor:[UIColor colorWithHexString:@"ff5d35"] forState:UIControlStateSelected];
     [backGroundView addSubview:leftButton];
     [leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(backGroundView.mas_left).offset(0);
@@ -204,7 +205,7 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
     [rightButton addTarget:self action:@selector(clickRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
 
-    [rightButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
+    [rightButton setTitleColor:[UIColor colorWithHexString:@"ff5d35"] forState:UIControlStateSelected];
     [backGroundView addSubview:rightButton];
     [rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(backGroundView.mas_right).offset(0);

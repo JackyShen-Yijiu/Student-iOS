@@ -3128,7 +3128,7 @@
 				TargetAttributes = {
 					D588AF851BDDB62C000C5D6F = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = C34F4H4R4C;
+						DevelopmentTeam = MC3VUBEH8X;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3937,9 +3937,9 @@
 					"$(PROJECT_DIR)/studentDriving/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/studentDriving/3rdparty/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a299a99e-4fd6-435f-85f3-124345d1aa2e";
+				PROVISIONING_PROFILE = "6da63392-ae8b-4301-844f-a76c5d306597";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3968,9 +3968,9 @@
 					"$(PROJECT_DIR)/studentDriving/3rdparty/VoiceConvert/opencore-amrnb",
 					"$(PROJECT_DIR)/studentDriving/3rdparty/VoiceConvert/opencore-amrwb",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a299a99e-4fd6-435f-85f3-124345d1aa2e";
+				PROVISIONING_PROFILE = "6da63392-ae8b-4301-844f-a76c5d306597";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -49,19 +49,19 @@
     numberLabel.text = _walletstr;
     // 取出立即购买按钮,添加点击事件
     _didClickBtn = [_bottomView viewWithTag:102];
-    NSLog(@"_main = %@",_mainModel.is_scanconsumption);
-    if ((_mainModel.is_scanconsumption == 1)) {
-        [_didClickBtn setTitle:@"立即兑换" forState:UIControlStateNormal];
-        //// 判断按钮是否能点击
-        _didClickBtn.selected = [_walletstr intValue]  >=  _mainModel.productprice ? 1 : 0;
-        if (_didClickBtn.selected) {
-            _didClickBtn.tag = 301;
-            [_didClickBtn setBackgroundColor:[UIColor colorWithHexString:@"ff5d35"]];
-            [_didClickBtn addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
-        }
-
-    }else
-    {
+//    NSLog(@"_main = %@",_mainModel.is_scanconsumption);
+//    if ((_mainModel.is_scanconsumption == 1)) {
+//        [_didClickBtn setTitle:@"立即兑换" forState:UIControlStateNormal];
+//        //// 判断按钮是否能点击
+//        _didClickBtn.selected = [_walletstr intValue]  >=  _mainModel.productprice ? 1 : 0;
+//        if (_didClickBtn.selected) {
+//            _didClickBtn.tag = 301;
+//            [_didClickBtn setBackgroundColor:[UIColor colorWithHexString:@"ff5d35"]];
+//            [_didClickBtn addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
+//        }
+//
+//    }else
+//    {
        [_didClickBtn setTitle:@"立即购买" forState:UIControlStateNormal];
         //// 判断按钮是否能点击
         _didClickBtn.selected = [_walletstr intValue]  >=  _mainModel.productprice ? 1 : 0;
@@ -71,7 +71,7 @@
             [_didClickBtn addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
         }
 
-    }
+//    }
     
     
     
