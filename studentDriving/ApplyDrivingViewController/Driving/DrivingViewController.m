@@ -420,8 +420,8 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     if (_naviBarRightButton == nil) {
         _naviBarRightButton = [WMUITool initWithTitle:@"未定位" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.frame = CGRectMake(0, 0, 70, 44);
-        [_naviBarRightButton setImage:[UIImage imageNamed:@"iconfont-dingwei"] forState:UIControlStateNormal];
-        [_naviBarRightButton setImage:[UIImage imageNamed:@"iconfont-dingwei"] forState:UIControlStateSelected];
+        [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateNormal];
+        [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateSelected];
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
 //        _naviBarRightButton.backgroundColor = [UIColor redColor];
     }
