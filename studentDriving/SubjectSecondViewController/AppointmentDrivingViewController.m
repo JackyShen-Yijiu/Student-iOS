@@ -16,6 +16,13 @@
 #import "BLInformationManager.h"
 #import "CoachViewController.h"
 #import <SVProgressHUD.h>
+#import "AppointmentCollectionCell.h"
+#import "StudentModel.h"
+#import "StudentDetailViewController.h"
+
+#define kSameTimeStudent @"/courseinfo/sametimestudentsv2"
+
+static NSString *const kStudentTimeStudy = @"courseinfo/sametimestudents/reservationid/%@/index/%@";
 static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1";
 static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 //http://101.200.204.240:3000/api/v1/courseinfo/getcoursebycoach?coachid=5616352721ec29041a9af889&date=2015-10-10
@@ -33,18 +40,19 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 @property (strong, nonatomic) UIScrollView *menuScrollview;
 @property (strong, nonatomic) NSMutableArray *buttonArray;
 @property (strong, nonatomic) NSString *updateTimeString;
+@property (strong, nonatomic) UICollectionView *sameTimeStudentCollectionView;
+@property (strong, nonatomic) UILabel *studentTitle;
+@property (strong, nonatomic) NSArray *stuDataArray;
 
 @property (strong, nonatomic) UIButton *naviBarRightButton;
 
 @property (strong, nonatomic) UILabel *contentLabel ;
 
 @property (assign, nonatomic) BOOL is_AddCoachModel;
-
 @property (strong, nonatomic) UIButton *goBackButton;
-
-
-
-
+@property (nonatomic ,strong) NSString *coachIdStr;
+@property (nonatomic ,strong) NSString *startTimeStr;
+@property (nonatomic ,strong) NSString *endTimeStr;
 
 @end
 
@@ -61,6 +69,27 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     return _goBackButton;
 }
 
+- (UICollectionView *)sameTimeStudentCollectionView {
+    if (_sameTimeStudentCollectionView == nil) {
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+        flowLayout.minimumInteritemSpacing = 10.0f;
+        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _sameTimeStudentCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 80, kSystemWide-30, 45) collectionViewLayout:flowLayout];
+        _sameTimeStudentCollectionView.backgroundColor = [UIColor whiteColor];
+        _sameTimeStudentCollectionView.dataSource = self;
+        _sameTimeStudentCollectionView.delegate = self;
+        _sameTimeStudentCollectionView.showsHorizontalScrollIndicator = NO;
+        [_sameTimeStudentCollectionView registerClass:[AppointmentCollectionCell class] forCellWithReuseIdentifier:@"cell"];
+    }
+    return _sameTimeStudentCollectionView;
+}
+- (UILabel *)studentTitle {
+    if (_studentTitle == nil) {
+        _studentTitle = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        _studentTitle.text  = @"同时段学员";
+    }
+    return _studentTitle;
+}
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
         _naviBarRightButton = [WMUITool initWithTitle:@"更多教练" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
@@ -152,6 +181,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     // Do any additional setup after loading the view.
     _is_AddCoachModel = NO;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
+//    _stuDataArray = @[@"1",@"2",@"3",@"1",@"2",@"3",@"1",@"2",@"3"];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kCellChange) name:@"kCellChange" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kAddCoachModel) name:@"kAddCoachModel" object:nil];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -206,11 +236,44 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     
     NSArray *beginArray = [firstModel.coursetime.begintime componentsSeparatedByString:@":"];
     NSString *beginString = beginArray.firstObject;
+    _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:_updateTimeString]];
     NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
     NSString *endString = endArray.firstObject;
-    
+    _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:_updateTimeString]];
     self.contentLabel.text = [NSString stringWithFormat:@"当前预约为科目二的第%@-%@时段",beginString,endString];
-    DYNSLog(@"self.contentLabel.text");
+    DYNSLog(@"%@",self.contentLabel.text);
+    
+    if (_endTimeStr&&_startTimeStr&&self.coachModel.coachid&&_updateTimeString) {
+        NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kSameTimeStudent];
+        NSDictionary *upData = @{@"coachid"   :self.coachModel.coachid,
+                                 @"begintime" :_startTimeStr,
+                                 @"endtime"   :_endTimeStr,
+                                 @"index"     :@"1"
+                                 };
+        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:upData WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            DYNSLog(@"param = %@",data[@"msg"]);
+            NSDictionary *param = data;
+            NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+            if ([type isEqualToString:@"1"]) {
+                NSError *error = nil;
+                self.stuDataArray = [MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error];
+                [self.sameTimeStudentCollectionView reloadData];
+            }else {
+                kShowFail(param[@"msg"]);
+            }
+        }];
+    }
+}
+
+- (int)chagetime:(NSString *)timeStr data:(NSString *)dataStr {
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    //设置格式
+    df.dateFormat = @"yyyy-MM-dd HH:mm:ss.0";
+    //将符合格式的字符串转成NSDate对象
+    NSDate *date = [df dateFromString:[NSString stringWithFormat:@"%@ %@:00:00",dataStr,timeStr]];
+    //计算一个时间和系统当前时间的时间差
+    int second = [date timeIntervalSince1970];
+    return second;
 }
 - (void)kAddCoachModel {
     
@@ -253,23 +316,50 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
         }else {
             kShowFail(msg);
         }
-        
-     
     }];
     
 }
 
+- (void)startDownLoad {
+    
+    NSString *urlString = [NSString stringWithFormat:@"1"];
+    
+    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *param = data;
+        NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+        if (type.integerValue == 1) {
+            NSError *error = nil;
+            self.stuDataArray = [MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error];
+            DYNSLog(@"error = %@",error);
+            [self.sameTimeStudentCollectionView reloadData];
+        }else {
+            kShowFail(msg);
+        }
+        
+    }];
+    
+}
 
 #pragma mark -- footview
 
 - (UIView *)tableViewFootView {
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 70)];
+    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 130)];
     _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,9, kSystemWide-100, 50)];
     _contentLabel.numberOfLines = 2;
     _contentLabel.textColor = TEXTGRAYCOLOR;
     _contentLabel.font = [UIFont systemFontOfSize:14];
     _contentLabel.text = @"";
     [backGroundView addSubview:_contentLabel];
+    
+    [backGroundView addSubview:self.studentTitle];
+    [self.studentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(backGroundView.mas_left).offset(15);
+        make.top.mas_equalTo(self.contentLabel.mas_bottom).offset(0);
+    }];
+    
+    [backGroundView addSubview:self.sameTimeStudentCollectionView];
     
     return backGroundView;
 }
@@ -287,26 +377,90 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    return self.dataArray.count;
+    if (collectionView == self.coachHeadCollectionView) {
+        return self.dataArray.count;
+    }else {
+        return self.stuDataArray.count;
+    }
 }
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellId = @"collectionCell";
-    CoachHeadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    AppointmentCoachModel *coachModel = self.dataArray[indexPath.row];
-  
-    [cell recevieCoachData:coachModel];
-    if (indexPath.row == 0) {
-//        cell.selected = YES;
-        self.coachModel = coachModel;
+    if (collectionView == self.coachHeadCollectionView) {
+        static NSString *cellId = @"collectionCell";
+        CoachHeadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+        AppointmentCoachModel *coachModel = self.dataArray[indexPath.row];
+        
+        [cell recevieCoachData:coachModel];
+        if (indexPath.row == 0) {
+            //        cell.selected = YES;
+            self.coachModel = coachModel;
+            NSString *dateString = [NSString getDayWithAddCountWithData:0];
+            NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl,coachModel.coachid,dateString];
+            NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+            [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+                DYNSLog(@"appointment = %@",data);
+                
+                NSDictionary *param = data;
+                DYNSLog(@"msg = %@",param[@"msg"]);
+                NSString *type = [NSString stringWithFormat:@"%@",param[@"msg"]];
+                if ([type isEqualToString:@"0"]) {
+                    [SVProgressHUD showInfoWithStatus:param[@"msg"]];
+                }else {
+                    NSArray *array = param[@"data"];
+                    NSError *error = nil;
+                    self.coachTimeArray = [MTLJSONAdapter modelsOfClass:AppointmentCoachTimeInfoModel.class fromJSONArray:array error:&error];
+                    DYNSLog(@"error = %@",error);
+                    [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
+                    
+                }
+                
+            }];
+        }
+         return cell;
+    }else {
+        static NSString *cellId = @"cell";
+        AppointmentCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+        if (!cell) {
+            DYNSLog(@"创建错误");
+        }
+        StudentModel *model = self.stuDataArray[indexPath.row];
+        DYNSLog(@"headImage = %@",model.userid.headportrait.originalpic);
+        [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+        return cell;
+
+    }
+   
+}
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (collectionView == self.coachHeadCollectionView) {
+        CGSize cellSize = CGSizeMake(kSystemWide*0.8125, 78);
+        return cellSize;
+    }else {
+        CGSize cellSize = CGSizeMake(45, 45);
+        return cellSize;
+    }
+}
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    if (collectionView == self.coachHeadCollectionView) {
+        return UIEdgeInsetsMake(0, 10, 0, 0);
+    }else {
+        return UIEdgeInsetsMake(0, 0, 0, 0);
+    }
+}
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    DYNSLog(@"click");
+    [SVProgressHUD show];
+
+    if (collectionView == self.coachHeadCollectionView) {
+        self.coachModel = self.dataArray[indexPath.row];
         NSString *dateString = [NSString getDayWithAddCountWithData:0];
-        NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl,coachModel.coachid,dateString];
+        NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl, self.coachModel.coachid,dateString];
         NSString *url = [NSString stringWithFormat:BASEURL,urlString];
         [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
             DYNSLog(@"appointment = %@",data);
-            
+            [SVProgressHUD dismiss];
             NSDictionary *param = data;
             DYNSLog(@"msg = %@",param[@"msg"]);
             NSString *type = [NSString stringWithFormat:@"%@",param[@"msg"]];
@@ -318,50 +472,20 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
                 self.coachTimeArray = [MTLJSONAdapter modelsOfClass:AppointmentCoachTimeInfoModel.class fromJSONArray:array error:&error];
                 DYNSLog(@"error = %@",error);
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-            
+                
             }
-           
-        }];
-    }
-    
-    if (!cell) {
-        DYNSLog(@"创建错误");
-    }
-    return cell;
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize cellSize = CGSizeMake(kSystemWide*0.8125, 78);
-    return cellSize;
-}
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 10, 0, 0);
-}
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    DYNSLog(@"click");
-    [SVProgressHUD show];
-    self.coachModel = self.dataArray[indexPath.row];
-    NSString *dateString = [NSString getDayWithAddCountWithData:0];
-    NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl, self.coachModel.coachid,dateString];
-    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"appointment = %@",data);
-        [SVProgressHUD dismiss];
-        NSDictionary *param = data;
-        DYNSLog(@"msg = %@",param[@"msg"]);
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"msg"]];
-        if ([type isEqualToString:@"0"]) {
-            [SVProgressHUD showInfoWithStatus:param[@"msg"]];
-        }else {
-            NSArray *array = param[@"data"];
-            NSError *error = nil;
-            self.coachTimeArray = [MTLJSONAdapter modelsOfClass:AppointmentCoachTimeInfoModel.class fromJSONArray:array error:&error];
-            DYNSLog(@"error = %@",error);
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             
-        }
+        }];
         
-    }];
-
+        if (_coachIdStr&&_startTimeStr&&_endTimeStr) {
+            [self startDownLoad];
+        }
+    }else {
+        StudentModel *model = self.dataArray[indexPath.row];
+        StudentDetailViewController *studentDetail = [[StudentDetailViewController alloc] init];
+        studentDetail.studetnId = model.userid.userId;
+        [self.navigationController pushViewController:studentDetail animated:YES];
+    }
 }
 
 
@@ -531,10 +655,10 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
         if (i==0) {
         [courselistString appendString:[NSString stringWithFormat:@"%@",model.infoId]];
         }else {
-           [courselistString appendString:[NSString stringWithFormat:@",%@",model.infoId]];
+        [courselistString appendString:[NSString stringWithFormat:@",%@",model.infoId]];
         }
     }
-   
+    
     /*
      {
      "userid": "560539bea694336c25c3acb9",
@@ -562,6 +686,8 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
         }
         
     }];
+    
+    
     
 }
 - (void)viewDidDisappear:(BOOL)animated{

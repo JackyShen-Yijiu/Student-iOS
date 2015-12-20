@@ -26,16 +26,13 @@ static NSString *const kStudentTimeStudy = @"courseinfo/sametimestudents/reserva
 
 static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@";
 
-@interface AppointmentDetailViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,AppointmentCellDelegate,BMKMapViewDelegate>
+@interface AppointmentDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AppointmentCellDelegate,BMKMapViewDelegate>
 @property (strong, nonatomic) BMKMapView *mapView;
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIImageView *coachImageView;
 @property (strong, nonatomic) UILabel *coachName;
 @property (strong, nonatomic) UILabel *drivingAddress;
-
-@property (strong, nonatomic) UILabel *studentTitle;
-@property (strong, nonatomic) UICollectionView *collectionView;
 
 @property (strong, nonatomic) UIButton *itemTime;
 @property (strong, nonatomic) UIButton *itemMessege;
@@ -65,26 +62,26 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     }
     return _itemMessege;
 }
-- (UICollectionView *)collectionView {
-    if (_collectionView == nil) {
-        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-        flowLayout.minimumInteritemSpacing = 10.0f;
-        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 40, kSystemWide-30, 45) collectionViewLayout:flowLayout];
-        _collectionView.backgroundColor = [UIColor whiteColor];
-        _collectionView.dataSource = self;
-        _collectionView.delegate = self;
-        [_collectionView registerClass:[AppointmentCollectionCell class] forCellWithReuseIdentifier:@"cell"];
-    }
-    return _collectionView;
-}
-- (UILabel *)studentTitle {
-    if (_studentTitle == nil) {
-        _studentTitle = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
-        _studentTitle.text  = @"同时段学员";
-    }
-    return _studentTitle;
-}
+//- (UICollectionView *)collectionView {
+//    if (_collectionView == nil) {
+//        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
+//        flowLayout.minimumInteritemSpacing = 10.0f;
+//        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+//        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 40, kSystemWide-30, 45) collectionViewLayout:flowLayout];
+//        _collectionView.backgroundColor = [UIColor whiteColor];
+//        _collectionView.dataSource = self;
+//        _collectionView.delegate = self;
+//        [_collectionView registerClass:[AppointmentCollectionCell class] forCellWithReuseIdentifier:@"cell"];
+//    }
+//    return _collectionView;
+//}
+//- (UILabel *)studentTitle {
+//    if (_studentTitle == nil) {
+//        _studentTitle = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+//        _studentTitle.text  = @"同时段学员";
+//    }
+//    return _studentTitle;
+//}
 
 - (UILabel *)coachName {
     if (_coachName == nil) {
@@ -153,8 +150,6 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     self.tableView.tableHeaderView = [self tableViewHeadView];
     
     if (self.state == AppointmentStateWait) {
-        self.tableView.tableFooterView = [self tableViewFootView];
-        [self startDownLoad];
         
     }else {
         self.tableView.tableFooterView = [[UIView alloc] init];
@@ -179,29 +174,29 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     }];
 }
 //获取同时段学员
-- (void)startDownLoad {
-    
-    NSString *urlString = [NSString stringWithFormat:kStudentTimeStudy,self.model.infoId,@"1"];
-    
-    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        NSDictionary *param = data;
-        NSNumber *type = param[@"type"];
-        NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
-        if (type.integerValue == 1) {
-            NSError *error = nil;
-            self.dataArray = [MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error];
-            DYNSLog(@"error = %@",error);
-            [self.collectionView reloadData];
-        }else {
-            kShowFail(msg);
-        }
-       
-       
-        
-    }];
-    
-}
+//- (void)startDownLoad {
+//    
+//    NSString *urlString = [NSString stringWithFormat:kStudentTimeStudy,self.model.infoId,@"1"];
+//    
+//    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+//    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+//        NSDictionary *param = data;
+//        NSNumber *type = param[@"type"];
+//        NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+//        if (type.integerValue == 1) {
+//            NSError *error = nil;
+//            self.dataArray = [MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error];
+//            DYNSLog(@"error = %@",error);
+//            [self.collectionView reloadData];
+//        }else {
+//            kShowFail(msg);
+//        }
+//       
+//       
+//        
+//    }];
+//    
+//}
 - (void)conformNavItem {
     UIBarButtonItem *navTimeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemTime];
     UIBarButtonItem *navMessegeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemMessege];
@@ -239,21 +234,21 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     self.drivingAddress.text = self.model.coachid.driveschoolinfo.name;
     return backGroundView;
 }
-- (UIView *)tableViewFootView {
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 90)];
-    
-    [backGroundView addSubview:self.studentTitle];
-    [self.studentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(backGroundView.mas_left).offset(15);
-        make.top.mas_equalTo(backGroundView.mas_top).offset(13);
-    }];
-    
-    [backGroundView addSubview:self.collectionView];
-    
-    
-    
-    return backGroundView;
-}
+//- (UIView *)tableViewFootView {
+//    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 90)];
+//    
+//    [backGroundView addSubview:self.studentTitle];
+//    [self.studentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(backGroundView.mas_left).offset(15);
+//        make.top.mas_equalTo(backGroundView.mas_top).offset(13);
+//    }];
+//    
+//    [backGroundView addSubview:self.collectionView];
+//    
+//    
+//    
+//    return backGroundView;
+//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.state == AppointmentStateWait || self.state == AppointmentStateCoachConfirm) {
         
@@ -310,38 +305,38 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     [self.navigationController pushViewController:cancelAppoint animated:YES];
 }
 #pragma mark - collectionViewDelegate
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return self.dataArray.count;
-}
-- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-    return 1;
-}
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellId = @"cell";
-    AppointmentCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    if (!cell) {
-        DYNSLog(@"创建错误");
-    }
-    StudentModel *model = self.dataArray[indexPath.row];
-    DYNSLog(@"headImage = %@",model.userid.headportrait.originalpic);
-    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
-    return cell;
-}
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize cellSize = CGSizeMake(45, 45);
-    return cellSize;
-}
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-    return UIEdgeInsetsMake(0, 0, 0, 0);
-}
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    StudentModel *model = self.dataArray[indexPath.row];
-    
-    StudentDetailViewController *studentDetail = [[StudentDetailViewController alloc] init];
-    studentDetail.studetnId = model.userid.userId;
-    [self.navigationController pushViewController:studentDetail animated:YES];
-}
+//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+//    return self.dataArray.count;
+//}
+//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+//    return 1;
+//}
+//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    static NSString *cellId = @"cell";
+//    AppointmentCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+//    if (!cell) {
+//        DYNSLog(@"创建错误");
+//    }
+//    StudentModel *model = self.dataArray[indexPath.row];
+//    DYNSLog(@"headImage = %@",model.userid.headportrait.originalpic);
+//    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+//    return cell;
+//}
+//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+//    CGSize cellSize = CGSizeMake(45, 45);
+//    return cellSize;
+//}
+//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+//    return UIEdgeInsetsMake(0, 0, 0, 0);
+//}
+//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+//    
+//    StudentModel *model = self.dataArray[indexPath.row];
+//    
+//    StudentDetailViewController *studentDetail = [[StudentDetailViewController alloc] init];
+//    studentDetail.studetnId = model.userid.userId;
+//    [self.navigationController pushViewController:studentDetail animated:YES];
+//}
 //- (void)viewDidDisappear:(BOOL)animated{
 //    [super viewDidDisappear:animated];
 //    kShowDismiss

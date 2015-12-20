@@ -8,6 +8,7 @@
 
 #import "ExamCarCollectionViewCell.h"
 #import "ToolHeader.h"
+#import "UIColor+Hex.h"
 @interface ExamCarCollectionViewCell ()
 @property (strong, nonatomic) UIView *WMSelectedbackGroundView;
 @property (strong, nonatomic) UIView *WMBackGroundView;
@@ -17,7 +18,7 @@
 - (UIView *)WMSelectedbackGroundView {
     if (_WMSelectedbackGroundView == nil) {
         _WMSelectedbackGroundView = [[UIView alloc] initWithFrame:CGRectMake(10, 5, kSystemWide-20, 70)];
-        _WMSelectedbackGroundView.backgroundColor = [UIColor whiteColor];
+        _WMSelectedbackGroundView.backgroundColor = [UIColor colorWithHexString:@"3E3E64"];
         _WMSelectedbackGroundView.layer.borderColor = MAINCOLOR.CGColor;
         _WMSelectedbackGroundView.layer.borderWidth = 2;
         UIImageView *selectedImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellSelected.png"]];
@@ -64,8 +65,7 @@
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
-        self.backgroundColor = [UIColor whiteColor];
-        
+        self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.drivingTypeLabel];
         [self addSubview:self.drivingTypeDetailLabel];
         self.selectedBackgroundView = self.WMSelectedbackGroundView;
