@@ -20,6 +20,7 @@
 #import "CoachModel.h"
 #import "CoachDetailViewController.h"
 #import "LoginViewController.h"
+#import "UIColor+Hex.h"
 static NSString *const kDrivingDetailUrl = @"driveschool/getschoolinfo/%@";
 
 static NSString *const kGetDrivingCoachUrl = @"getschoolcoach/%@/%@";
@@ -46,7 +47,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 - (UIButton *)signUpButton{
     if (_signUpButton == nil) {
         _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _signUpButton.backgroundColor = MAINCOLOR;
+        _signUpButton.backgroundColor = [UIColor colorWithHexString:@"3E3E64"];
         _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
          if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
