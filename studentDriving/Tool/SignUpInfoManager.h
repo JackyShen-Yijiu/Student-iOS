@@ -18,6 +18,8 @@ static NSString *const kRealClasstypeid = @"classtypeid";
 static NSString *const kRealCarmodel = @"carmodel";
 static NSString *const kRealLearnStage = @"learnStage";
 
+static NSString *const kRealCode = @"code";
+static NSString *const kRealSubjectID = @"subjectid";
 
 static NSString *const kSchoolParam = @"applyschoolinfo";
 static NSString *const kClasstypeParam = @"applyclasstypeinfo";
@@ -42,7 +44,8 @@ static NSString *const kPassNumber = @"ticketnumber";
 + (void)signUpInfoSaveRealTelephone:(NSString *)realTelephone;
 + (void)signUpInfoSaveRealAddress:(NSString *)realAddress;
 
-
++ (void)signUpInfoSaveRealcode:(NSString *)code;
++ (void)signUpInfoSaveRealSubjectID:(NSDictionary *)SubjectID;
 
 //缓存准考证信息
 + (void)signUpInfoSaveStudentNumber:(NSString *)studentNumber;
@@ -74,6 +77,7 @@ static NSString *const kPassNumber = @"ticketnumber";
 + (NSString *)getSignUprealClasstypeid;
 + (NSString *)getSignUprealLearnStage;
 + (NSDictionary *)getSignUpCarmodel;
++ (NSString *)getSignUpSubjectId;
 
 + (NSString *)getSignUpCoachName;
 + (NSString *)getSignUpClasstypeName;
