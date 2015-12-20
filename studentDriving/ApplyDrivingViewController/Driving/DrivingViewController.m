@@ -84,9 +84,18 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     [self.view addSubview:self.tableView];
     
     [self networkCallBack];
+    
     [self configRefresh];
     // 定位
-    [self locationManager];
+//    [self locationManager];
+    
+    // 在模拟器上定位不好用，测试是打开注释
+    self.latitude = 39.929985778080237;
+    self.longitude = 116.39564503787867;
+    self.index = 1;
+    self.isRefresh = YES;
+    // 获取网络数据
+    [self network];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -190,6 +199,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         [self.dataArray addObject:dModel];
     }
     if (!array.count) {
+        [SVProgressHUD dismiss];
         [SVProgressHUD showInfoWithStatus:@"没有找到数据！"];
     }
     
@@ -242,8 +252,8 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 - (BOOL)reverseGeoCodeWithLatitude:(double)latitude
                                longitude:(double)longitude {
     
-//    CLLocationCoordinate2D point = (CLLocationCoordinate2D){ latitude, longitude };
-    CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
+    CLLocationCoordinate2D point = (CLLocationCoordinate2D){ latitude, longitude };
+//    CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
     BMKReverseGeoCodeOption *reverseGeocodeOption = [BMKReverseGeoCodeOption new];
     reverseGeocodeOption.reverseGeoPoint = point;
     // 发起反向地理编码
@@ -418,7 +428,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 }
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"未定位" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton = [WMUITool initWithTitle:@"定位中" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.frame = CGRectMake(0, 0, 70, 44);
         [_naviBarRightButton setImage:[UIImage imageNamed:@"iconfont-dingwei"] forState:UIControlStateNormal];
         [_naviBarRightButton setImage:[UIImage imageNamed:@"iconfont-dingwei"] forState:UIControlStateSelected];
