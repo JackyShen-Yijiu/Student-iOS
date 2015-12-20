@@ -13,6 +13,9 @@
 		066BFB191C23A2C3002A1DD8 /* HomeMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB151C23A2C3002A1DD8 /* HomeMainView.m */; };
 		066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */; };
 		066BFB701C2428D0002A1DD8 /* HomeAdvantageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */; };
+		06EC02C41C2643AD0067AD16 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */; };
+		06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C61C2643BE0067AD16 /* VirtualViewController.m */; };
+		06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		554641BC1C25098C00A55326 /* ChooseBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641BA1C25098C00A55326 /* ChooseBtnView.m */; };
 		554641BF1C25099700A55326 /* KindlyReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641BD1C25099700A55326 /* KindlyReminderView.m */; };
@@ -530,14 +533,12 @@
 		D5D50EDC1BFA205000F54097 /* LTBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D50EBD1BFA205000F54097 /* LTBottomView.xib */; };
 		D5D50EDD1BFA205000F54097 /* LTNavigationView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50EBF1BFA205000F54097 /* LTNavigationView.m */; };
 		D5D50EDE1BFA205000F54097 /* LTNavigationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D50EC01BFA205000F54097 /* LTNavigationView.xib */; };
-		D5D50EDF1BFA205000F54097 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50EC31BFA205000F54097 /* MagicDetailViewController.m */; };
 		D5D50EE01BFA205000F54097 /* MagicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50EC51BFA205000F54097 /* MagicMainTableViewCell.m */; };
 		D5D50EE11BFA205000F54097 /* MagicMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D50EC61BFA205000F54097 /* MagicMainTableViewCell.xib */; };
 		D5D50EE21BFA205000F54097 /* MagicMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50EC81BFA205000F54097 /* MagicMainTableViewController.m */; };
 		D5D50EE31BFA205000F54097 /* MyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ECA1BFA205000F54097 /* MyWallet.m */; };
 		D5D50EE41BFA205000F54097 /* PrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ECC1BFA205000F54097 /* PrivateMessageCell.m */; };
 		D5D50EE51BFA205000F54097 /* PrivateMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D50ECD1BFA205000F54097 /* PrivateMessageCell.xib */; };
-		D5D50EE61BFA205000F54097 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ECF1BFA205000F54097 /* PrivateMessageController.m */; };
 		D5D50EE71BFA205000F54097 /* ShopMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ED11BFA205000F54097 /* ShopMainModel.m */; };
 		D5D50EE81BFA205000F54097 /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ED31BFA205000F54097 /* ShopModel.m */; };
 		D5D50FE71BFCC78500F54097 /* 首页_我的@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D5D50FE61BFCC78500F54097 /* 首页_我的@2x.png */; };
@@ -605,6 +606,12 @@
 		066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSpotView.m; sourceTree = "<group>"; };
 		066BFB6E1C2428D0002A1DD8 /* HomeAdvantageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAdvantageController.h; sourceTree = "<group>"; };
 		066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAdvantageController.m; sourceTree = "<group>"; };
+		06EC02C21C2643AC0067AD16 /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDetailViewController.h; sourceTree = "<group>"; };
+		06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicDetailViewController.m; sourceTree = "<group>"; };
+		06EC02C51C2643BE0067AD16 /* VirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualViewController.h; sourceTree = "<group>"; };
+		06EC02C61C2643BE0067AD16 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualViewController.m; sourceTree = "<group>"; };
+		06EC02C81C264DAB0067AD16 /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageController.h; sourceTree = "<group>"; };
+		06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		554641BA1C25098C00A55326 /* ChooseBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseBtnView.m; sourceTree = "<group>"; };
 		554641BB1C25098C00A55326 /* ChooseBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseBtnView.h; sourceTree = "<group>"; };
@@ -1410,8 +1417,6 @@
 		D5D50EBF1BFA205000F54097 /* LTNavigationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTNavigationView.m; sourceTree = "<group>"; };
 		D5D50EC01BFA205000F54097 /* LTNavigationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTNavigationView.xib; sourceTree = "<group>"; };
 		D5D50EC11BFA205000F54097 /* MagicAPIUrl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicAPIUrl.h; sourceTree = "<group>"; };
-		D5D50EC21BFA205000F54097 /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDetailViewController.h; sourceTree = "<group>"; };
-		D5D50EC31BFA205000F54097 /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicDetailViewController.m; sourceTree = "<group>"; };
 		D5D50EC41BFA205000F54097 /* MagicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicMainTableViewCell.h; sourceTree = "<group>"; };
 		D5D50EC51BFA205000F54097 /* MagicMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicMainTableViewCell.m; sourceTree = "<group>"; };
 		D5D50EC61BFA205000F54097 /* MagicMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MagicMainTableViewCell.xib; sourceTree = "<group>"; };
@@ -1422,8 +1427,6 @@
 		D5D50ECB1BFA205000F54097 /* PrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageCell.h; sourceTree = "<group>"; };
 		D5D50ECC1BFA205000F54097 /* PrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageCell.m; sourceTree = "<group>"; };
 		D5D50ECD1BFA205000F54097 /* PrivateMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateMessageCell.xib; sourceTree = "<group>"; };
-		D5D50ECE1BFA205000F54097 /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageController.h; sourceTree = "<group>"; };
-		D5D50ECF1BFA205000F54097 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
 		D5D50ED01BFA205000F54097 /* ShopMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopMainModel.h; sourceTree = "<group>"; };
 		D5D50ED11BFA205000F54097 /* ShopMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopMainModel.m; sourceTree = "<group>"; };
 		D5D50ED21BFA205000F54097 /* ShopModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopModel.h; sourceTree = "<group>"; };
@@ -3003,20 +3006,22 @@
 				D5D50EBF1BFA205000F54097 /* LTNavigationView.m */,
 				D5D50EC01BFA205000F54097 /* LTNavigationView.xib */,
 				D5D50EC11BFA205000F54097 /* MagicAPIUrl.h */,
-				D5D50EC21BFA205000F54097 /* MagicDetailViewController.h */,
-				D5D50EC31BFA205000F54097 /* MagicDetailViewController.m */,
 				D5D50EC41BFA205000F54097 /* MagicMainTableViewCell.h */,
 				D5D50EC51BFA205000F54097 /* MagicMainTableViewCell.m */,
 				D5D50EC61BFA205000F54097 /* MagicMainTableViewCell.xib */,
 				D5D50EC71BFA205000F54097 /* MagicMainTableViewController.h */,
 				D5D50EC81BFA205000F54097 /* MagicMainTableViewController.m */,
+				06EC02C21C2643AC0067AD16 /* MagicDetailViewController.h */,
+				06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */,
+				06EC02C51C2643BE0067AD16 /* VirtualViewController.h */,
+				06EC02C61C2643BE0067AD16 /* VirtualViewController.m */,
+				06EC02C81C264DAB0067AD16 /* PrivateMessageController.h */,
+				06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */,
 				D5D50EC91BFA205000F54097 /* MyWallet.h */,
 				D5D50ECA1BFA205000F54097 /* MyWallet.m */,
 				D5D50ECB1BFA205000F54097 /* PrivateMessageCell.h */,
 				D5D50ECC1BFA205000F54097 /* PrivateMessageCell.m */,
 				D5D50ECD1BFA205000F54097 /* PrivateMessageCell.xib */,
-				D5D50ECE1BFA205000F54097 /* PrivateMessageController.h */,
-				D5D50ECF1BFA205000F54097 /* PrivateMessageController.m */,
 				D5D50ED01BFA205000F54097 /* ShopMainModel.h */,
 				D5D50ED11BFA205000F54097 /* ShopMainModel.m */,
 				D5D50ED21BFA205000F54097 /* ShopModel.h */,
@@ -3490,7 +3495,6 @@
 				B8272D441C1EE4ED00BE0D2D /* YBBaseTableController.m in Sources */,
 				D588AFCE1BDDDAAB000C5D6F /* CourseTimeModel.m in Sources */,
 				D588B08D1BDDDBDB000C5D6F /* SignUpSucceedViewController.m in Sources */,
-				D5D50EDF1BFA205000F54097 /* MagicDetailViewController.m in Sources */,
 				D588B1181BDDDC2F000C5D6F /* WMUITool.m in Sources */,
 				D5604B871BF656C50020F0D7 /* EMSearchBar.m in Sources */,
 				D52638531BDF1AED00ADC2C7 /* DrivingCandidatesViewController.m in Sources */,
@@ -3600,6 +3604,7 @@
 				D5604B8A1BF656C50020F0D7 /* BaseViewController.m in Sources */,
 				D588B11A1BDDDC2F000C5D6F /* AcountManager.m in Sources */,
 				D588AFC31BDDDAAB000C5D6F /* DrvingDetailModel.m in Sources */,
+				06EC02C41C2643AD0067AD16 /* MagicDetailViewController.m in Sources */,
 				554641C81C250A1B00A55326 /* SignUpViewController.m in Sources */,
 				D5604C8C1BF656F30020F0D7 /* EMChatVideoBubbleView.m in Sources */,
 				D588B1391BDDDC65000C5D6F /* ForgetViewController.m in Sources */,
@@ -3649,7 +3654,6 @@
 				D5604B591BF656C50020F0D7 /* EMSDWebImagePrefetcher.m in Sources */,
 				D5604C7D1BF656F30020F0D7 /* ChatSendHelper.m in Sources */,
 				D5604B471BF656C50020F0D7 /* EmojiEmoticons.m in Sources */,
-				D5D50EE61BFA205000F54097 /* PrivateMessageController.m in Sources */,
 				D588B0DA1BDDDC14000C5D6F /* DrivingSelectedCoachCollectionCell.m in Sources */,
 				D51256B71BE1F084002717DA /* SubjectTwoModel.m in Sources */,
 				D588B0531BDDDB71000C5D6F /* UserCenterHeadView.m in Sources */,
@@ -3696,6 +3700,7 @@
 				D5604B4F1BF656C50020F0D7 /* MWTapDetectingImageView.m in Sources */,
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
 				D9B7F1221C2546FD00D1A143 /* UINavigationBar+NavigationBar.m in Sources */,
+				06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */,
 				D5604B401BF656C50020F0D7 /* EMCDDeviceManager+Media.m in Sources */,
 				D51256AE1BE1CF17002717DA /* StudentModel.m in Sources */,
 				D588B0D11BDDDC14000C5D6F /* CoachInformationCell.m in Sources */,
@@ -3733,6 +3738,7 @@
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
 				D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
+				06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
 				D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */,
 				D5604CC91BF83A690020F0D7 /* ChatListCell.m in Sources */,

@@ -98,6 +98,7 @@
 - (void)startDownLoad {
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,shopListAPI];
+    NSLog(@"%@",urlString);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
         
