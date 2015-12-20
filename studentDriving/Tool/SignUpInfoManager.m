@@ -54,6 +54,14 @@ static NSString *const kRealUserid = @"userid";
     [NSUserStoreTool storeWithId:realName WithKey:kRealName];
 }
 
++ (void)signUpInfoSaveRealcode:(NSString *)code {
+    [NSUserStoreTool storeWithId:code WithKey:kRealCode];
+}
+
++ (void)signUpInfoSaveRealSubjectID:(NSDictionary *)SubjectID {
+    [NSUserStoreTool storeWithId:SubjectID WithKey:kRealSubjectID];
+}
+
 + (void)signUpInfoSaveLearnStage:(NSString *)LearnStage {
     
     [NSUserStoreTool storeWithId:LearnStage WithKey:kRealLearnStage];
@@ -167,6 +175,15 @@ static NSString *const kRealUserid = @"userid";
     return realName;
 }
 
++ (NSString *)getSignUpSubjectId {
+    NSDictionary *param = [NSUserStoreTool getObjectWithKey:kRealSubjectID];
+    NSString *name = param[@"name"];
+    if (name == nil || name.length == 0) {
+        return @"";
+    }
+    return name;
+}
+
 
 + (NSString *)getSignUpRealIdentityCar {
     NSString *realIdentityCar = @"";
@@ -269,22 +286,18 @@ static NSString *const kRealUserid = @"userid";
         [SVProgressHUD showErrorWithStatus:@"名字为空"];
         return nil;
     }
-    NSString *krealIdentityCarString = [NSUserStoreTool getObjectWithKey:kRealIdentityCar];
-    if (krealIdentityCarString == nil || krealIdentityCarString.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"身份证为空"];
+    NSString *krealCode = [NSUserStoreTool getObjectWithKey:kRealCode];
+    if (krealCode == nil || krealCode.length == 0) {
+        [SVProgressHUD showErrorWithStatus:@"短信验证码为空"];
         return nil;
     }
+    
     NSString *krealTelephoneString = [NSUserStoreTool getObjectWithKey:kRealTelephone];
     if (krealTelephoneString == nil || krealTelephoneString.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"手机号为空"];
         return nil;
     }
-    NSString *krealAddressString = [NSUserStoreTool getObjectWithKey:kRealAddress];
-    if (krealAddressString == nil || krealAddressString.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"地址为空"];
-        return nil;
-        
-    }
+    
     NSString *krealSchoolidString = [NSUserStoreTool getObjectWithKey:kRealSchoolid];
     if (krealSchoolidString == nil || krealSchoolidString.length == 0) {
         [SVProgressHUD showErrorWithStatus:@"学校为空"];
@@ -303,22 +316,31 @@ static NSString *const kRealUserid = @"userid";
         return nil;
         
     }
+    NSDictionary *krealSubjectDic = [NSUserStoreTool getObjectWithKey:kRealSubjectID];
+    NSString *krealSubjectId = @"";
+    if ([[krealSubjectDic objectForKey:@"subject"] isEqualToString:krealSubjectId]&&[krealSubjectDic objectForKey:@"subject"] == nil) {
+        [SVProgressHUD showErrorWithStatus:@"科目进度为空"];
+        return nil;
+    }
+    krealSubjectId = [krealSubjectDic objectForKey:@"subject"];
+    
     NSDictionary *krealCarmodelDictionary = [NSUserStoreTool getObjectWithKey:kRealCarmodel];
     if (krealCarmodelDictionary == nil) {
         [SVProgressHUD showErrorWithStatus:@"车型为空"];
         return nil;
     }
     
-    if ([self getStudentNumber] == nil || [self getStudentNumber].length == 0 ) {
-        [SVProgressHUD showErrorWithStatus:@"学员号为空"];
-        return nil;
-    }
-    if ([self getPassNumber] == nil || [self getPassNumber].length == 0 ) {
-        [SVProgressHUD showErrorWithStatus:@"准考证号为空"];
-        return nil;
-    }
     
-    return @{kStudentNumber:[self getStudentNumber],kPassNumber:[self getPassNumber],kRealUserid:[AcountManager manager].userid,kRealName:krealNameString,kRealIdentityCar:krealIdentityCarString,kRealTelephone:krealTelephoneString,kRealAddress:krealAddressString,kRealSchoolid:krealSchoolidString,kRealCoachid:krealCoachidString,kRealClasstypeid:krealClasstypeidString,kRealCarmodel:[JsonTransformManager dictionaryTransformJsonWith:krealCarmodelDictionary] };
+    return @{@"userid":[AcountManager manager].userid,
+             @"name":krealNameString,
+             @"telephone":krealTelephoneString,
+             @"schoolid":krealSchoolidString,
+             @"coachid":krealCoachidString,
+             @"classtypeid":krealClasstypeidString,
+             @"subjectid":krealSubjectId,
+             @"code":krealCode,
+             @"carmodel":[JsonTransformManager dictionaryTransformJsonWith:krealCarmodelDictionary]
+             };
 }
 
 
@@ -332,6 +354,9 @@ static NSString *const kRealUserid = @"userid";
     [NSUserStoreTool removeObjectWithKey:kClasstypeParam];
     [NSUserStoreTool removeObjectWithKey:kPassNumber];
     [NSUserStoreTool removeObjectWithKey:kStudentNumber];
+    [NSUserStoreTool removeObjectWithKey:kRealSubjectID];
+    [NSUserStoreTool removeObjectWithKey:kRealCode];
+    [NSUserStoreTool removeObjectWithKey:kRealLearnStage];
 }
 
 @end

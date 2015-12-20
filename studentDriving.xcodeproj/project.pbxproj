@@ -24,6 +24,12 @@
 		554641C81C250A1B00A55326 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641C61C250A1B00A55326 /* SignUpViewController.m */; };
 		554641CB1C250A2200A55326 /* SignUpSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CA1C250A2200A55326 /* SignUpSuccessViewController.m */; };
 		554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CD1C250A6900A55326 /* SignUpInfoManager.m */; };
+		55901B5F1C26795800AC64FF /* VerifyPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B5E1C26795800AC64FF /* VerifyPhoneController.m */; };
+		55901B621C26796700AC64FF /* VerifyInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B611C26796700AC64FF /* VerifyInformationController.m */; };
+		55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B641C26797500AC64FF /* WhichStateViewController.m */; };
+		55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B671C26798500AC64FF /* SubmitVerificationController.m */; };
+		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
+		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
 		B8272D411C1EE4BA00BE0D2D /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D401C1EE4BA00BE0D2D /* MenuController.m */; };
 		B8272D441C1EE4ED00BE0D2D /* YBBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D431C1EE4ED00BE0D2D /* YBBaseTableController.m */; };
 		B8272D471C1EEC4D00BE0D2D /* SideMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D461C1EEC4D00BE0D2D /* SideMenuItem.m */; };
@@ -430,12 +436,10 @@
 		D588B0541BDDDB71000C5D6F /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B04A1BDDDB71000C5D6F /* FeedBackViewController.m */; };
 		D588B06A1BDDDB90000C5D6F /* SubjectSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0571BDDDB90000C5D6F /* SubjectSecondViewController.m */; };
 		D588B06B1BDDDB90000C5D6F /* AppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0591BDDDB90000C5D6F /* AppointmentViewController.m */; };
-		D588B06C1BDDDB90000C5D6F /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B05B1BDDDB90000C5D6F /* AppointmentDetailViewController.m */; };
 		D588B06D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B05D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m */; };
 		D588B06E1BDDDB90000C5D6F /* APWaitConfirmViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B05F1BDDDB90000C5D6F /* APWaitConfirmViewController.m */; };
 		D588B06F1BDDDB90000C5D6F /* APCommentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0611BDDDB90000C5D6F /* APCommentViewController.m */; };
 		D588B0701BDDDB90000C5D6F /* CancelAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0631BDDDB90000C5D6F /* CancelAppointmentViewController.m */; };
-		D588B0711BDDDB90000C5D6F /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0651BDDDB90000C5D6F /* AppointmentDrivingViewController.m */; };
 		D588B0721BDDDB90000C5D6F /* StudentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0671BDDDB90000C5D6F /* StudentDetailViewController.m */; };
 		D588B0731BDDDB90000C5D6F /* CoachDetailAppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0691BDDDB90000C5D6F /* CoachDetailAppointmentViewController.m */; };
 		D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0761BDDDBB6000C5D6F /* SubjectFirstViewController.m */; };
@@ -627,6 +631,18 @@
 		554641CA1C250A2200A55326 /* SignUpSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpSuccessViewController.m; sourceTree = "<group>"; };
 		554641CC1C250A6900A55326 /* SignUpInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpInfoManager.h; sourceTree = "<group>"; };
 		554641CD1C250A6900A55326 /* SignUpInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpInfoManager.m; sourceTree = "<group>"; };
+		55901B5D1C26795800AC64FF /* VerifyPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyPhoneController.h; sourceTree = "<group>"; };
+		55901B5E1C26795800AC64FF /* VerifyPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyPhoneController.m; sourceTree = "<group>"; };
+		55901B601C26796700AC64FF /* VerifyInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyInformationController.h; sourceTree = "<group>"; };
+		55901B611C26796700AC64FF /* VerifyInformationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyInformationController.m; sourceTree = "<group>"; };
+		55901B631C26797500AC64FF /* WhichStateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WhichStateViewController.h; sourceTree = "<group>"; };
+		55901B641C26797500AC64FF /* WhichStateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WhichStateViewController.m; sourceTree = "<group>"; };
+		55901B661C26798500AC64FF /* SubmitVerificationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubmitVerificationController.h; sourceTree = "<group>"; };
+		55901B671C26798500AC64FF /* SubmitVerificationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubmitVerificationController.m; sourceTree = "<group>"; };
+		55901B691C267F5B00AC64FF /* AppointmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailViewController.h; sourceTree = "<group>"; };
+		55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
+		55901B6C1C26811900AC64FF /* AppointmentDrivingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDrivingViewController.h; sourceTree = "<group>"; };
+		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B8272D3F1C1EE4BA00BE0D2D /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
@@ -1220,8 +1236,6 @@
 		D588B0571BDDDB90000C5D6F /* SubjectSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectSecondViewController.m; sourceTree = "<group>"; };
 		D588B0581BDDDB90000C5D6F /* AppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentViewController.h; sourceTree = "<group>"; };
 		D588B0591BDDDB90000C5D6F /* AppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentViewController.m; sourceTree = "<group>"; };
-		D588B05A1BDDDB90000C5D6F /* AppointmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailViewController.h; sourceTree = "<group>"; };
-		D588B05B1BDDDB90000C5D6F /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
 		D588B05C1BDDDB90000C5D6F /* APWaitEvaluationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APWaitEvaluationViewController.h; sourceTree = "<group>"; };
 		D588B05D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APWaitEvaluationViewController.m; sourceTree = "<group>"; };
 		D588B05E1BDDDB90000C5D6F /* APWaitConfirmViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APWaitConfirmViewController.h; sourceTree = "<group>"; };
@@ -1230,8 +1244,6 @@
 		D588B0611BDDDB90000C5D6F /* APCommentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APCommentViewController.m; sourceTree = "<group>"; };
 		D588B0621BDDDB90000C5D6F /* CancelAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CancelAppointmentViewController.h; sourceTree = "<group>"; };
 		D588B0631BDDDB90000C5D6F /* CancelAppointmentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CancelAppointmentViewController.m; sourceTree = "<group>"; };
-		D588B0641BDDDB90000C5D6F /* AppointmentDrivingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDrivingViewController.h; sourceTree = "<group>"; };
-		D588B0651BDDDB90000C5D6F /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
 		D588B0661BDDDB90000C5D6F /* StudentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StudentDetailViewController.h; sourceTree = "<group>"; };
 		D588B0671BDDDB90000C5D6F /* StudentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StudentDetailViewController.m; sourceTree = "<group>"; };
 		D588B0681BDDDB90000C5D6F /* CoachDetailAppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoachDetailAppointmentViewController.h; sourceTree = "<group>"; };
@@ -2723,8 +2735,10 @@
 				D5BCFEE41BF4924C0019402C /* BLImageViewController.m */,
 				D588B0581BDDDB90000C5D6F /* AppointmentViewController.h */,
 				D588B0591BDDDB90000C5D6F /* AppointmentViewController.m */,
-				D588B05A1BDDDB90000C5D6F /* AppointmentDetailViewController.h */,
-				D588B05B1BDDDB90000C5D6F /* AppointmentDetailViewController.m */,
+				55901B691C267F5B00AC64FF /* AppointmentDetailViewController.h */,
+				55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */,
+				55901B6C1C26811900AC64FF /* AppointmentDrivingViewController.h */,
+				55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */,
 				D588B05C1BDDDB90000C5D6F /* APWaitEvaluationViewController.h */,
 				D588B05D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m */,
 				D588B05E1BDDDB90000C5D6F /* APWaitConfirmViewController.h */,
@@ -2735,8 +2749,6 @@
 				D588B0631BDDDB90000C5D6F /* CancelAppointmentViewController.m */,
 				D51256BE1BE24442002717DA /* ConfirmStudyFinishViewController.h */,
 				D51256BF1BE24442002717DA /* ConfirmStudyFinishViewController.m */,
-				D588B0641BDDDB90000C5D6F /* AppointmentDrivingViewController.h */,
-				D588B0651BDDDB90000C5D6F /* AppointmentDrivingViewController.m */,
 				D588B0661BDDDB90000C5D6F /* StudentDetailViewController.h */,
 				D588B0671BDDDB90000C5D6F /* StudentDetailViewController.m */,
 				D588B0681BDDDB90000C5D6F /* CoachDetailAppointmentViewController.h */,
@@ -2798,6 +2810,14 @@
 				D51256A71BDFB56F002717DA /* SignUpCoachDetailViewController.m */,
 				D588B0811BDDDBDB000C5D6F /* CoachDetailViewController.h */,
 				D588B0821BDDDBDB000C5D6F /* CoachDetailViewController.m */,
+				55901B5D1C26795800AC64FF /* VerifyPhoneController.h */,
+				55901B5E1C26795800AC64FF /* VerifyPhoneController.m */,
+				55901B601C26796700AC64FF /* VerifyInformationController.h */,
+				55901B611C26796700AC64FF /* VerifyInformationController.m */,
+				55901B631C26797500AC64FF /* WhichStateViewController.h */,
+				55901B641C26797500AC64FF /* WhichStateViewController.m */,
+				55901B661C26798500AC64FF /* SubmitVerificationController.h */,
+				55901B671C26798500AC64FF /* SubmitVerificationController.m */,
 				D588B0831BDDDBDB000C5D6F /* MapViewController.h */,
 				D588B0841BDDDBDB000C5D6F /* MapViewController.m */,
 				D588B0851BDDDBDB000C5D6F /* CoachViewController.h */,
@@ -3510,6 +3530,7 @@
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
 				D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */,
 				D588B0DF1BDDDC14000C5D6F /* CancelAppointmentCell.m in Sources */,
+				55901B621C26796700AC64FF /* VerifyInformationController.m in Sources */,
 				D5604B8D1BF656C50020F0D7 /* EMSearchDisplayController.m in Sources */,
 				D5604C841BF656F30020F0D7 /* FacialView.m in Sources */,
 				D588B1161BDDDC2F000C5D6F /* NSString+DY_MD5.m in Sources */,
@@ -3518,7 +3539,9 @@
 				D5604C851BF656F30020F0D7 /* DXChatBarMoreView.m in Sources */,
 				D588AFCA1BDDDAAB000C5D6F /* ExamClassModel.m in Sources */,
 				D5604B861BF656C50020F0D7 /* BaseTableViewCell.m in Sources */,
+				55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */,
 				D588B1141BDDDC2F000C5D6F /* UIColor+RGBColor.m in Sources */,
+				55901B5F1C26795800AC64FF /* VerifyPhoneController.m in Sources */,
 				D588B0D81BDDDC14000C5D6F /* DrivingIntroductionCell.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
@@ -3526,6 +3549,7 @@
 				D5604B511BF656C50020F0D7 /* MWZoomingScrollView.m in Sources */,
 				D588B11E1BDDDC2F000C5D6F /* NSString+CurrentTimeDay.m in Sources */,
 				D588AFCD1BDDDAAB000C5D6F /* AppointmentCoachTimeInfoModel.m in Sources */,
+				55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */,
 				D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */,
 				D5604B411BF656C50020F0D7 /* EMCDDeviceManager+Microphone.m in Sources */,
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
@@ -3571,7 +3595,6 @@
 				D5D50EDB1BFA205000F54097 /* LTBottomView.m in Sources */,
 				D52638591BDF205C00ADC2C7 /* ApplycoachinfoModel.m in Sources */,
 				D5BCFEEB1BF588C60019402C /* AppDelegate+DealTool.m in Sources */,
-				D588B0711BDDDB90000C5D6F /* AppointmentDrivingViewController.m in Sources */,
 				D5604B4E1BF656C50020F0D7 /* MWPhotoBrowser.m in Sources */,
 				D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */,
 				D588B04B1BDDDB71000C5D6F /* UserCenterViewController.m in Sources */,
@@ -3608,6 +3631,7 @@
 				554641C81C250A1B00A55326 /* SignUpViewController.m in Sources */,
 				D5604C8C1BF656F30020F0D7 /* EMChatVideoBubbleView.m in Sources */,
 				D588B1391BDDDC65000C5D6F /* ForgetViewController.m in Sources */,
+				55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */,
 				D965CAA61C239D9F00DCD094 /* DrivingCycleShowDMData.m in Sources */,
 				D5604C881BF656F30020F0D7 /* EMChatBaseBubbleView.m in Sources */,
 				06073D871C251C300058B372 /* HomeRewardController.m in Sources */,
@@ -3640,6 +3664,7 @@
 				D588B0DB1BDDDC14000C5D6F /* MyReservationCell.m in Sources */,
 				D588B08F1BDDDBDB000C5D6F /* ExamCarViewController.m in Sources */,
 				D588B11D1BDDDC2F000C5D6F /* JsonTransformManager.m in Sources */,
+				55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */,
 				B8272D4A1C1EF42700BE0D2D /* UIViewController+SliderMenu.m in Sources */,
 				D5BCFEE51BF4924C0019402C /* BLImageViewController.m in Sources */,
 				D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */,
@@ -3684,7 +3709,6 @@
 				D588B0E11BDDDC14000C5D6F /* StudentInformationCell.m in Sources */,
 				D965CAA71C239D9F00DCD094 /* DrivingCycleShowDMHeadportrait.m in Sources */,
 				D588B0CD1BDDDC14000C5D6F /* ExamClassCollectionViewCell.m in Sources */,
-				D588B06C1BDDDB90000C5D6F /* AppointmentDetailViewController.m in Sources */,
 				D5604B6F1BF656C50020F0D7 /* PSTGridLayoutSection.m in Sources */,
 				D5604B6B1BF656C50020F0D7 /* PSTCollectionViewUpdateItem.m in Sources */,
 				D5D50EDA1BFA205000F54097 /* InfoModel.m in Sources */,
