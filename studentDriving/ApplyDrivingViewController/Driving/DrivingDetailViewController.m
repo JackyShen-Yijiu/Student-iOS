@@ -12,7 +12,7 @@
 #import "BLPFAlertView.h"
 #import "DrivingInformationCell.h"
 #import "DrivingIntroductionCell.h"
-#import "SignUpViewController.h"
+#import "SignUpListViewController.h"
 #import "DrivingSelectedCoachCell.h"
 #import "DrvingDetailModel.h"
 #import <SVProgressHUD.h>
@@ -70,9 +70,9 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 - (UIButton *)phoneButton {
     if (_phoneButton == nil) {
         _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneButton.frame = CGRectMake(0, 0, 50, 50);
+        _phoneButton.frame = CGRectMake(0, 0, 20, 20);
 
-        [_phoneButton setBackgroundImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        [_phoneButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
         [_phoneButton addTarget:self action:@selector(dealPhone:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneButton;
@@ -198,7 +198,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         [heart addSubview:mainColorView];
         
         UIImageView *heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
-        heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
+        heartImageView.image = [UIImage imageNamed:@"xin"];
         heartImageView.userInteractionEnabled = YES;
         [mainColorView addSubview:heartImageView];
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
@@ -305,14 +305,14 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
             NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
             [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
         }
-        SignUpViewController *signUp = [[SignUpViewController alloc] init];
+        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
         [self.navigationController pushViewController:signUp animated:YES];
         return;
     }
     
     
     if ([[AcountManager manager].applyschool.infoId isEqualToString:model.schoolid]) {
-        SignUpViewController *signUp = [[SignUpViewController alloc] init];
+        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
         [self.navigationController pushViewController:signUp animated:YES];
         return;
     }
@@ -329,7 +329,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
                 NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
                 [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
             }
-            SignUpViewController *signUp = [[SignUpViewController alloc] init];
+            SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
             [self.navigationController pushViewController:signUp animated:YES];
         }
     }];

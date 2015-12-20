@@ -71,8 +71,8 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 
 - (UIButton *)callButton{
     if (_callButton == nil) {
-        _callButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        [_callButton setBackgroundImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        _callButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [_callButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
         [_callButton addTarget:self action:@selector(callBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _callButton;
@@ -249,14 +249,14 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
                 [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
                 return;
             }
-//            NSString *phoneNum = completionString;
-//            NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
-//            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-//            BOOL isMatch = [pred evaluateWithObject:phoneNum];
-//            if (!isMatch) {
-//                [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
-//                return;
-//            }
+            NSString *phoneNum = completionString;
+            NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+            NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+            BOOL isMatch = [pred evaluateWithObject:phoneNum];
+            if (!isMatch) {
+                [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+                return;
+            }
             [SignUpInfoManager signUpInfoSaveRealTelephone:completionString];
             DYNSLog(@"联系方式");
             
@@ -294,8 +294,6 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
             if ([type isEqualToString:@"1"]) {
                 kShowSuccess(@"报名成功");
                 [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
-                [AcountManager saveUserApplyState:@"2"];
-                NSLog(@"____%@",[AcountManager manager].userApplystate);
                 //使重新报名变为0
                 NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
                 if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {

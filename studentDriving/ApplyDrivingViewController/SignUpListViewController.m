@@ -56,8 +56,8 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 
 - (UIButton *)callButton{
     if (_callButton == nil) {
-        _callButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        [_callButton setBackgroundImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        _callButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [_callButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
         [_callButton addTarget:self action:@selector(callBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _callButton;
