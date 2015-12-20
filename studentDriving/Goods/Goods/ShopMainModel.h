@@ -17,4 +17,5 @@
 @property (nonatomic,assign) int  viewcount;
 @property (nonatomic,assign) int  buycount;
 @property (nonatomic,strong) NSString *detailsimg;
+@property (nonatomic,strong) NSString *is_scanconsumption;
 @end

@@ -12,7 +12,7 @@
 #import "MyWallet.h"
 
 
-@interface PrivateMessageController : UITableViewController
+@interface PrivateMessageController : UIViewController
 @property (nonatomic,retain)UIButton *button;
 @property (nonatomic,retain)PrivateMessageCell *cell;
 @property (nonatomic,retain)UIWindow *wid;
