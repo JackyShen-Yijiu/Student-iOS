@@ -181,7 +181,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     // Do any additional setup after loading the view.
     _is_AddCoachModel = NO;
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kCellChange) name:@"kCellChange" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kAddCoachModel) name:@"kAddCoachModel" object:nil];
@@ -671,22 +671,27 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
      "endtime": "2015-09-15 12:00:00"
      }
      */
-    NSDictionary *param = @{@"userid":userid,@"coachid":coachid,@"courselist":courselistString,@"is_shuttle":is_shuttle,@"address":address,@"begintime":updateBeginTime,@"endtime":updateEndTime};
-    DYNSLog(@"param = %@",param);
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kuserUpdateParam];
-    
-    [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        NSDictionary *param = data;
-        DYNSLog(@"param = %@",param[@"msg"]);
-        NSNumber *type = param[@"type"];
-        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
-        if (type.integerValue == 1) {
-            [SVProgressHUD showSuccessWithStatus:@"预约成功"];
-        }else {
-            kShowFail(msg)
-        }
+    if (userid&&coachid&&courselistString&&is_shuttle&&address&&updateBeginTime&&updateEndTime) {
+        NSDictionary *param = @{@"userid":userid,@"coachid":coachid,@"courselist":courselistString,@"is_shuttle":is_shuttle,@"address":address,@"begintime":updateBeginTime,@"endtime":updateEndTime};
+        DYNSLog(@"param = %@",param);
+        NSString *urlString = [NSString stringWithFormat:BASEURL,kuserUpdateParam];
         
-    }];
+        [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            NSDictionary *param = data;
+            DYNSLog(@"param = %@",param[@"msg"]);
+            NSNumber *type = param[@"type"];
+            NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
+            if (type.integerValue == 1) {
+                [SVProgressHUD showSuccessWithStatus:@"预约成功"];
+            }else {
+                kShowFail(msg)
+            }
+            
+        }];
+    }else {
+        [SVProgressHUD showErrorWithStatus:@"教练信息或日期不全！"];
+    }
+    
     
     
     
