@@ -205,7 +205,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     
-    if (!array.count) {
+    if (!self.dataArray.count) {
         [SVProgressHUD showErrorWithStatus:@"没有找到数据！"];
     }
 }
@@ -412,7 +412,6 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     NSLog(@"longitude===%f,latitude===%f,searchName===%@,carTypeId===%li,filterType===%li",self.longitude,self.latitude,self.searchName,self.carTypeId,self.filterType);
     self.index = 1;
     self.isRefresh = YES;
-    [SVProgressHUD show];
     [self network];
 }
 

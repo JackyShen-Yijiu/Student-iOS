@@ -462,9 +462,6 @@
         NSNumber *wide = [NSNumber numberWithFloat:kSystemWide*0.195];
         make.width.mas_equalTo(wide);
     }];
-    
-    
-    
 }
 
 - (void)bannerChange {
@@ -479,7 +476,6 @@
     _loopview.titlesGroup = titleArray;
 }
 - (void)dealSignUp:(UIButton *)sender {
-   
     
     AppointmentDrivingViewController *appointment = [[AppointmentDrivingViewController alloc] init];
 //    appointment.markNum = 2;
