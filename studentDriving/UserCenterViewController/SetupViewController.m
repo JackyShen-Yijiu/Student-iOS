@@ -142,10 +142,12 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     }
 }
 
-- (void)gotoAppStorePageRaisal:(NSString *)nsAppId {
-    NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", nsAppId];
-    
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:nsStringToOpen]];
+- (void)gotoAppStorePageRaisal:(NSString *)AppId {
+//    NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", nsAppId];
+//    
+//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:nsStringToOpen]];
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",AppId];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 
 @end

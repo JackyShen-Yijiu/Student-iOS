@@ -40,6 +40,7 @@
 #import <UMengAnalytics-NO-IDFA/MobClick.h>
 #import "RESideMenu.h"
 #import "MenuController.h"
+#import "YBWelcomeController.h"
 
 @interface AppDelegate ()
 @property (strong, nonatomic)  HomeMainController *main;
@@ -85,7 +86,10 @@
     //注册环信聊天
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
-    
+//    [YBWelcomeController removeSavedVersion];
+    if ([YBWelcomeController isShowWelcome]) {
+        [YBWelcomeController show];
+    }
     
     return YES;
 }
