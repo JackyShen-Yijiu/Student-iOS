@@ -54,11 +54,17 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"关于我们";
     
     [self.view addSubview:self.logoImageView];
+    [self.view addSubview:self.topLabel];
+    [self.view addSubview:self.topLabelOne];
+    [self.view addSubview:self.topLabelTwo];
+    
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.top.mas_equalTo(self.view.mas_top).with.offset(50);
+        make.top.mas_equalTo(self.view.mas_top).with.offset(100);
         make.height.mas_equalTo(@90);
         make.width.mas_equalTo(@90);
     }];

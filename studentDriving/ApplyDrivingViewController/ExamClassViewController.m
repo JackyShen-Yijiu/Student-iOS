@@ -25,7 +25,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 @implementation ExamClassViewController
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.frame = CGRectMake(0, 0, 44, 44);
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
     }

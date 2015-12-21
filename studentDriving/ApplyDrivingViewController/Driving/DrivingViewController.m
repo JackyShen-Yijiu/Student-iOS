@@ -237,9 +237,6 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     
 //    [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
     
-    // 停止位置更新服务
-    [self.locationService stopUserLocationService];
-    
     // 保存经纬度
     self.longitude = userLocation.location.coordinate.longitude;
     self.latitude = userLocation.location.coordinate.latitude;
@@ -280,6 +277,9 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         self.isRefresh = YES;
         // 获取网络数据
         [self network];
+        
+        // 停止位置更新服务
+        [self.locationService stopUserLocationService];
     }else {
         NSLog(@"抱歉，未找到结果");
     }
@@ -428,7 +428,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 }
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"定位中" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton = [WMUITool initWithTitle:@"定位中" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.frame = CGRectMake(0, 0, 70, 44);
         [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateNormal];
         [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateSelected];

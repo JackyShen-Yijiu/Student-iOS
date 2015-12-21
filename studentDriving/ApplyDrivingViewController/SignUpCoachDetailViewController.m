@@ -56,7 +56,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         
         UIView *mainColorView =  [[UIView alloc] initWithFrame:CGRectMake(2, 2, 46, 46)];
         mainColorView.userInteractionEnabled = YES;
-        mainColorView.backgroundColor = MAINCOLOR;
+        mainColorView.backgroundColor = [UIColor whiteColor];
         mainColorView.layer.cornerRadius = mainColorView.frame.size.width *0.5;
         [heart addSubview:mainColorView];
         
@@ -102,6 +102,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
             [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
         }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+    
             [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
             _signUpButton.userInteractionEnabled = NO;
             
@@ -111,6 +112,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
             
         }
 
+        
         [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
     }
@@ -228,7 +230,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
     if (indexPath.row == 0 && indexPath.section == 0) {
         return 106;
     }else if (indexPath.row == 1 && indexPath.section == 0) {
-        return 177;
+        return 195;
     }else if (indexPath.row == 2 && indexPath.section == 0) {
         return 105;
     }

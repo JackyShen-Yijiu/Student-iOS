@@ -25,7 +25,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 - (UIButton *)completionButton {
     if (_completionButton == nil) {
         _completionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _completionButton.backgroundColor = MAINCOLOR;
+        _completionButton.backgroundColor = MAIN_FOREGROUND_COLOR;
         [_completionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_completionButton setTitle:@"完成" forState:UIControlStateNormal];
         [_completionButton addTarget:self action:@selector(clickCompletion:) forControlEvents:UIControlEventTouchUpInside];
@@ -85,6 +85,8 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"绑定手机号";
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     if ([UIDevice jeSystemVersion] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;

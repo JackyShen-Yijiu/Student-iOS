@@ -129,7 +129,7 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"报名信息表";
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.callButton];
     
     [self.view addSubview:self.tableView];
@@ -240,8 +240,7 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 
 - (void)dealRefer:(UIButton *)sender{
     self.chooseBtnView.hidden = YES;
-//    [SignUpInfoManager removeSignData];
-//    [AcountManager removeAllData];
+
     if (![signUpArray[0] isEqualToString:@""]&&![signUpArray[1] isEqualToString:@""]&&![signUpArray[2] isEqualToString:@""]&&![signUpArray[3] isEqualToString:@""]) {
        [self.navigationController pushViewController:[SignUpViewController new] animated:YES];
     }else {
