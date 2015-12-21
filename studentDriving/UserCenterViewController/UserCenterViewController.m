@@ -20,6 +20,8 @@
 #import "LoginViewController.h"
 //#import "MainViewController.h"
 #import <JPush/APService.h>
+
+#import <SVProgressHUD.h>
 @interface UserCenterViewController ()<UITableViewDataSource,UITableViewDelegate,UserCenterHeadViewDelegte>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIView *tableHeadView;
@@ -192,6 +194,10 @@
         SetupViewController *setup = [[SetupViewController alloc] init];
         [self.navigationController pushViewController:setup animated:YES];
     }else if (indexPath.section == 1 && indexPath.row == 2 ) {
+        if (![AcountManager isLogin]) {
+            [SVProgressHUD showErrorWithStatus:@"你还没有登录!"];
+            return;
+        }
         MyWalletViewController *myWallet = [[MyWalletViewController alloc] init];
         [self.navigationController pushViewController:myWallet animated:YES];
     }

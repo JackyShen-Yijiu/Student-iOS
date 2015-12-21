@@ -207,10 +207,10 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 
 - (void)configBarItem {
     
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -15;
+//    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    negativeSpacer.width = -15;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneBtn];
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer,rightItem];
+    self.navigationItem.rightBarButtonItems = @[rightItem];
 }
 #pragma mark - createUI
 - (void)createUI {
@@ -352,7 +352,6 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 
 #pragma  mark - btnAction
 - (void)clickPhoneBtn:(UIButton *)sender {
-    
     
    [BLPFAlertView showAlertWithTitle:@"电话号码" message:self.detailModel.mobile cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
        DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);

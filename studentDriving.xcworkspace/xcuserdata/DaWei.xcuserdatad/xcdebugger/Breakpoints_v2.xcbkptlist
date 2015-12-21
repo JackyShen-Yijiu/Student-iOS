@@ -19,45 +19,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "studentDriving/ApplyDrivingViewController/Driving/DrivingViewController.m"
-            timestampString = "472357713.181415"
+            filePath = "studentDriving/LoginViewController/LoginViewController.m"
+            timestampString = "472369963.992511"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "245"
-            endingLineNumber = "245"
-            landmarkName = "-didUpdateBMKUserLocation:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/ApplyDrivingViewController/Driving/DrivingViewController.m"
-            timestampString = "472357713.181415"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
-            landmarkName = "-reverseGeoCodeWithLatitude:longitude:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/ApplyDrivingViewController/Driving/DrivingViewController.m"
-            timestampString = "472275695.77795"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "188"
-            endingLineNumber = "188"
-            landmarkName = "-jeNetworkingCallBackData:"
+            startingLineNumber = "330"
+            endingLineNumber = "330"
+            landmarkName = "-loginWithUsername:password:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -231,7 +231,8 @@
     }else {
         self.moenyLabel.text = [NSString stringWithFormat:@"¥%@-¥%@",model.minprice,model.maxprice];
     }
-    self.distanceLabel.text = [NSString stringWithFormat:@"距离%@m",model.distance];
+    NSInteger integer = [model.distance integerValue];
+    self.distanceLabel.text = [NSString stringWithFormat:@"距离%.2fkm",integer / 1000.f];
     self.star = [model.passingrate floatValue] / 100.f * 10.f / 2.f;
     [self setStar];
     [self.drivingImage sd_setImageWithURL:[NSURL URLWithString:model.logoimg.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];

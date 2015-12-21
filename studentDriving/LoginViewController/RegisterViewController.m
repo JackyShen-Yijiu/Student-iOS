@@ -13,6 +13,7 @@
 #import "ToolHeader.h"
 #import "NSString+DY_MD5.h"
 #import <JPush/APService.h>
+#import "RegistNoteController.h"
 static NSString *const kregisterUser = @"kregisterUser";
 
 static NSString *const kregisterUrl = @"userinfo/signup";
@@ -29,7 +30,7 @@ static NSString *const kcodeGainUrl = @"code";
 @property (strong, nonatomic)UITextField *passWordTextFild;
 @property (strong, nonatomic)UITextField *affirmTextFild;
 @property (strong, nonatomic)UITextField *invitationTextFild;
-@property (strong, nonatomic)UILabel *noteLabel;
+@property (strong, nonatomic)UIButton *noteLabel;
 @property (strong, nonatomic) UILabel *topLabel;
 
 @property (strong, nonatomic) NSMutableDictionary *paramsPost;
@@ -54,15 +55,15 @@ static NSString *const kcodeGainUrl = @"code";
     return _topLabel;
 }
 
-- (UILabel *)noteLabel{
+- (UIButton *)noteLabel{
     if (_noteLabel == nil) {
-        _noteLabel = [[UILabel alloc]init];
+        _noteLabel = [UIButton buttonWithType:UIButtonTypeCustom];
         _noteLabel.backgroundColor = [UIColor whiteColor];
-        [_noteLabel setTextColor:RGBColor(153, 153, 153)];
-        [_noteLabel setText:@"点击注册则表示您同意《用户服务协议》"];
-        _noteLabel.font = [UIFont systemFontOfSize:13];
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTap:)];
-        [_noteLabel addGestureRecognizer:tap];
+        [_noteLabel setTitle:@"点击注册则表示您同意《用户服务协议》" forState:UIControlStateNormal];
+        [_noteLabel setTitleColor:RGBColor(153, 153, 153) forState:UIControlStateNormal];
+        _noteLabel.titleLabel.font = [UIFont systemFontOfSize:13];
+        _noteLabel.titleLabel.textAlignment = NSTextAlignmentLeft;
+        [_noteLabel addTarget:self action:@selector(clickTap1:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _noteLabel;
 }
@@ -182,6 +183,7 @@ static NSString *const kcodeGainUrl = @"code";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.topLabel];
@@ -281,7 +283,7 @@ static NSString *const kcodeGainUrl = @"code";
     }];
     
     [self.noteLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(20);
+        make.left.mas_equalTo(self.view.mas_left).with.offset(10);
         make.top.mas_equalTo(self.registerButton.mas_bottom).with.offset(20);
         make.height.mas_equalTo(@25);
         make.width.mas_equalTo(@250);
@@ -292,8 +294,12 @@ static NSString *const kcodeGainUrl = @"code";
 
 //http://www.ifanying.com/userAgreement.html 用户协议
 //http://www.ifanying.com/coachAgreement.html 教练协议
-- (void)clickTap:(UITapGestureRecognizer *)tap {
+- (void)clickTap1:(UIButton *)btn {
     
+    NSLog(@"---=---");
+    RegistNoteController *homeVc = [[RegistNoteController alloc] init];
+    UINavigationController *NC = [[UINavigationController alloc] initWithRootViewController:homeVc];
+    [self presentViewController:NC animated:YES completion:nil];
     
 }
 
