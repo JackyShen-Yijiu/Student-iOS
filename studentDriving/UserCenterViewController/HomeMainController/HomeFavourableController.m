@@ -11,6 +11,7 @@
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 #import "ToolHeader.h"
+#import "SignUpListViewController.h"
 
 static NSString *advantage = @"youshi.html";
 
@@ -39,11 +40,12 @@ static NSString *advantage = @"youshi.html";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"一步优惠";
     [SVProgressHUD show];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
-    
+    [self addSignUp];
     
     _webviewProgress = [[NJKWebViewProgress alloc] init];
     self.webView.delegate = _webviewProgress;
@@ -66,6 +68,28 @@ static NSString *advantage = @"youshi.html";
     
     
 }
+- (void)addSignUp
+{
+    CGRect backframe= CGRectMake(0, 0, 44, 44);
+    UIButton* backButton= [UIButton buttonWithType:UIButtonTypeSystem];
+    backButton.frame = backframe;
+    [backButton setTitle:@"报名" forState:UIControlStateNormal];
+    backButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [backButton addTarget:self action:@selector(sideMenuButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+}
+
+- (void)sideMenuButtonAction
+{
+    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+        SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
+        [self.navigationController pushViewController:signUpListVC animated:YES];
+    } else
+    {
+        [SVProgressHUD showErrorWithStatus:@"您已经报过名"];
+    }
+}
+
 - (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
 {
     [self.progressView setProgress:progress animated:YES];

@@ -61,6 +61,7 @@
                 _textImageView.image = [UIImage imageNamed:@"文字"];
                 
                 CGFloat coachCardButtonX = (systemsW - coachCardButtonW - schoolCardButton + 23) / 2 ;
+                NSLog(@"coach = %f",coachCardButtonX);
                 _coachCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _coachCardButton.frame = CGRectMake(coachCardButtonX, 120, coachCardButtonW, coachCardButtonW);
                 [self addButtonProperty:@"教练卡" button:_coachCardButton];

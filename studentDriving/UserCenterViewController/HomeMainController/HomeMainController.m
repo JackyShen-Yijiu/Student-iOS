@@ -114,7 +114,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     
     __weak HomeMainController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
+        DYNSLog(@"====================================data = %@",data);
         NSDictionary *param = data[@"data"];
         NSDictionary *subjectOne = param[@"subjectone"];
         weakSelf.questiontesturl = subjectOne[@"questiontesturl"];
@@ -129,9 +129,9 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     
     __weak HomeMainController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
+        DYNSLog(@"0000000000000000000000000000000000000000000data = %@",data);
         NSDictionary *param = data[@"data"];
-        NSDictionary *subjectOne = param[@"subjectFour"];
+        NSDictionary *subjectOne = param[@"subjectfour"];
         weakSelf.questionFourtesturl = subjectOne[@"questiontesturl"];
         weakSelf.questionFourlisturl = subjectOne[@"questionlisturl"];
         weakSelf.questionFourerrorurl = subjectOne[@"questionerrorurl"];
@@ -146,7 +146,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 #pragma mark --- 回调方法
 - (void)addBackBlock
 {
-    __block HomeMainController *mainVC = self;
+    __weak HomeMainController *mainVC = self;
     
     self.homeMainView.didClickBlock = ^(NSInteger tag){
         switch (tag) {
@@ -251,7 +251,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             case 101:
             {
                 BLAVPlayerViewController *bLAVPlayweVC = [[BLAVPlayerViewController alloc] init];
-                bLAVPlayweVC.title = @"科二课件";
+                bLAVPlayweVC.title = @"科三课件";
                 bLAVPlayweVC.markNum = [NSNumber numberWithInteger:3];
                 [mainVC.navigationController pushViewController:bLAVPlayweVC animated:YES];
             }
@@ -265,7 +265,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             case 103:
             {
                 AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
-                appointment.title = @"科二预约列表";
+                appointment.title = @"科三预约列表";
                 appointment.markNum = [NSNumber numberWithInteger:3];
                 [mainVC.navigationController pushViewController:appointment animated:YES];
             }
@@ -284,13 +284,13 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             case 101:
             {
                 QuestionBankViewController *questionBank = [[QuestionBankViewController alloc] init];
-                questionBank.questionlisturl = mainVC.questionlisturl;
+                questionBank.questionlisturl = mainVC.questionFourlisturl;
                 if ([AcountManager isLogin]) {
                     NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
-                    NSString *finalString = [mainVC.questionlisturl stringByAppendingString:appendString];
+                    NSString *finalString = [mainVC.questionFourlisturl stringByAppendingString:appendString];
                     questionBank.questionlisturl = finalString;
                 }
-                
+                questionBank.title = @"科四题库";
                 [mainVC.navigationController pushViewController:questionBank animated:YES];
 
             }
@@ -298,12 +298,12 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 case 102:
             {
                 QuestionTestViewController *questionTest = [[QuestionTestViewController alloc] init];
-                questionTest.questiontesturl = mainVC.questiontesturl;
                 if ([AcountManager isLogin]) {
                     NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
-                    NSString *finalString = [mainVC.questiontesturl stringByAppendingString:appendString];
+                    NSString *finalString = [mainVC.questionFourtesturl stringByAppendingString:appendString];
                     questionTest.questiontesturl = finalString;
                 }
+                questionTest.title = @"科四课件";
                 [mainVC.navigationController pushViewController:questionTest animated:YES];
 
             }
@@ -318,9 +318,13 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                     return;
                 }else {
                     NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
-                    NSString *finalString = [mainVC.questionerrorurl stringByAppendingString:appendString];
+                    NSLog(@"%@",appendString);
+                    NSString *finalString = [mainVC.questionFourerrorurl stringByAppendingString:appendString];
+                    NSLog(@"%@",mainVC.questionFourerrorurl);
+                    NSLog(@"__----%@",finalString);
                     wrongQuestion.questionerrorurl = finalString;
                 }
+                
                 [mainVC.navigationController pushViewController:wrongQuestion animated:YES];
 
             }
