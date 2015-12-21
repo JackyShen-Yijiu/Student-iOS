@@ -11,6 +11,8 @@
 #import "HomeSpotView.h"
 #import "UIViewController+SliderMenu.h"
 #import "ToolHeader.h"
+#import <SVProgressHUD.h>
+#import "JENetwoking.h"
 
 #import "ChatViewController.h"
 #import "LoginViewController.h"
@@ -32,7 +34,7 @@
 #import "AppointmentDrivingViewController.h"
 
 // 科目三
-
+static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
 static NSString *kConversationChatter = @"ConversationChatter";
 
@@ -121,6 +123,35 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
         weakSelf.questionlisturl = subjectOne[@"questionlisturl"];
         weakSelf.questionerrorurl = subjectOne[@"questionerrorurl"];
         
+    }];
+    
+    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
+    NSDictionary *param = @{@"userid":[AcountManager manager].userid};
+    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            NSDictionary *param = data;
+            NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+            if ([type isEqualToString:@"1"]) {
+                NSDictionary *dataDic = [param objectForKey:@"data"];
+                if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
+                    [AcountManager saveUserApplyState:@"0"];
+                    SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
+                    [self.navigationController pushViewController:signUpList animated:YES];
+                    return;
+                }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
+                    [SVProgressHUD showInfoWithStatus:@"报名申请中"];
+                    [AcountManager saveUserApplyState:@"1"];
+                }else {
+                    [AcountManager saveUserApplyState:@"2"];
+                }
+            }else {
+                [SVProgressHUD showInfoWithStatus:[data objectForKey:@"msg"]];
+            }
+        }
+    } withFailure:^(id data) {
+        [SVProgressHUD showInfoWithStatus:@"网络错误"];
     }];
 }
 - (void)startSubjectFourDownLoad

@@ -64,7 +64,7 @@
     
     if (_studentNum == nil) {
         _studentNum = [WMUITool initWithTextColor:[UIColor blackColor] withFont:    [UIFont systemFontOfSize:14]];
-        _studentNum.text = @"学院26位:";
+        _studentNum.text = @"学员0位:";
     }
     return _studentNum;
 }
@@ -72,7 +72,7 @@
     
     if (_studentNumDetail == nil) {
         _studentNumDetail = [WMUITool initWithTextColor:MAINCOLOR withFont:    [UIFont systemFontOfSize:14]];
-//        _studentNumDetail.text = @"通过率89%";
+        _studentNumDetail.text = @"通过率100%";
     }
     return _studentNumDetail;
 }
