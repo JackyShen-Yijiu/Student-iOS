@@ -106,7 +106,7 @@
     
     if (_workTimeDetail == nil) {
         _workTimeDetail = [WMUITool initWithTextColor:[UIColor blackColor] withFont:    [UIFont systemFontOfSize:14]];
-//        _workTimeDetail.text = @"周一至周五(全天)";
+        _workTimeDetail.text = @"周一至周五(全天)";
     }
     return _workTimeDetail;
 }

@@ -79,7 +79,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     
     self.view.backgroundColor = RGBColor(245, 247, 250);
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.registAgainButton];
 }
 

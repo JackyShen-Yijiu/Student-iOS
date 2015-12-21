@@ -164,7 +164,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"报名";
   
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.callButton];
     
     [self.view addSubview:self.tableView];
