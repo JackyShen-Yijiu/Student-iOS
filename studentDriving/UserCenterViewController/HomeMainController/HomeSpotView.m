@@ -14,7 +14,7 @@
 
 #define systemsH  [[UIScreen mainScreen] bounds].size.height
 
-#define carOffsetX   (systemsW - 10) * 0.2
+#define carOffsetX   ((systemsW - 10) * 0.2)
 @interface HomeSpotView ()
 
 @property (nonatomic,strong) NSMutableArray *lableitems; // 保存Label
@@ -82,18 +82,20 @@
         {
             NSLog(@"%f",self.frame.size.width);
             // 当开始向右滑动时判断是否超出边界
-            if (sender.view.frame.origin.x == self.frame.size.width)
+            if (sender.view.frame.origin.x == (systemsW - 10) * 0.9)
             {
                 return;
             }
         CGFloat carX = _carView.frame.origin.x + carOffsetX;
             NSLog(@"%f",carOffsetX);
-        CGRect rect = CGRectMake(carX, _carView.frame.origin.y, _carView.frame.size.width, _carView.frame.size.height);
-            [UIView animateWithDuration:0.5 animations:^{
-                _carView.frame = rect;
-            } completion:nil];
+//        CGRect rect = CGRectMake(carX, _carView.frame.origin.y, _carView.frame.size.width, _carView.frame.size.height);
+//            [UIView animateWithDuration:0.5 animations:^{
+//                _carView.frame = rect;
+//            } completion:nil];
             //  调用代理方法
             if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
+                NSLog(@"carX = %f",carX);
+                
                 [_delegate horizontalMenuScrollPageIndex:carX];
             }
             // 判断是否跳转报名界面
@@ -120,14 +122,14 @@
             return;
         }
     CGFloat carX = _carView.frame.origin.x - carOffsetX;
-    CGRect rect = CGRectMake(carX, _carView.frame.origin.y, _carView.frame.size.width, _carView.frame.size.height);
-//        //  调用代理方法
-//        if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
-//            [_delegate horizontalMenuScrollPageIndex:carX];
-//        }
-    [UIView animateWithDuration:0.3 animations:^{
-        _carView.frame = rect;
-    } completion:nil];
+//    CGRect rect = CGRectMake(carX, _carView.frame.origin.y, _carView.frame.size.width, _carView.frame.size.height);
+////        //  调用代理方法
+////        if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
+////            [_delegate horizontalMenuScrollPageIndex:carX];
+////        }
+//    [UIView animateWithDuration:0.3 animations:^{
+//        _carView.frame = rect;
+//    } completion:nil];
         //  调用代理方法
         if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
             [_delegate horizontalMenuScrollPageIndex:carX];
@@ -139,12 +141,12 @@
 - (void)addView
 {
     // 添加底部黑色视图
-    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, systemsW - 10, 36)];
+    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, systemsW - 10, (systemsW - 10) * 0.1)];
     backImageView.image = [UIImage imageNamed:@"底子"];
     
     //添加划过的痕迹图像
     NSArray *imagViewArray = @[@"科目1条",@"科目2条",@"科目3条",@"科目4条"];
-    CGFloat imageViewH = 27;
+    CGFloat imageViewH = (systemsW - 10) * 0.08;
 //    CGFloat imageViewW = 80;
 //    CGFloat imageView = (systemsW - 10) * (91 + 68 * i)/332;
     _imageArray = [NSMutableArray array];

@@ -38,7 +38,7 @@ static NSString *kConversationChatter = @"ConversationChatter";
 
 static NSString *const kexamquestionUrl = @"/info/examquestion";
 
-#define carOffsetX   (systemsW - 10) * 0.2
+#define carOffsetX   ((systemsW - 10) * 0.2)
 #define systemsW   self.view.frame.size.width
 #define systemsH  [[UIScreen mainScreen] bounds].size.height
 #define CARFloat carOffsetX
@@ -114,7 +114,6 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     
     __weak HomeMainController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"====================================data = %@",data);
         NSDictionary *param = data[@"data"];
         NSDictionary *subjectOne = param[@"subjectone"];
         weakSelf.questiontesturl = subjectOne[@"questiontesturl"];
@@ -129,7 +128,6 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     
     __weak HomeMainController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"0000000000000000000000000000000000000000000data = %@",data);
         NSDictionary *param = data[@"data"];
         NSDictionary *subjectOne = param[@"subjectfour"];
         weakSelf.questionFourtesturl = subjectOne[@"questiontesturl"];
@@ -318,10 +316,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                     return;
                 }else {
                     NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
-                    NSLog(@"%@",appendString);
                     NSString *finalString = [mainVC.questionFourerrorurl stringByAppendingString:appendString];
-                    NSLog(@"%@",mainVC.questionFourerrorurl);
-                    NSLog(@"__----%@",finalString);
                     wrongQuestion.questionerrorurl = finalString;
                 }
                 
@@ -350,8 +345,6 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
         }
 
     }
-    
-//    NSLog(@"------%f",scrollView.contentOffset.x);
     if (0 < scrollView.contentOffset.x && scrollView.contentOffset.x  <= systemsW)
     {
         if (scrollView.contentOffset.x == systemsW) {
@@ -380,8 +373,6 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             return;
             
         }
-
-        
         if (scrollView.contentOffset.x == systemsW * 2)
         {
             [self carMore:scrollView.contentOffset.x];
@@ -474,9 +465,13 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     {
         carX = 4 * CARFloat;
     }
-    
+    [UIView animateWithDuration:10 animations:^{
+        
+    } completion:^(BOOL finished) {
     [UIView animateWithDuration:0.3 animations:^{
         _homeSpotView.carView.frame = CGRectMake(carX, _homeSpotView.carView.frame.origin.y, _homeSpotView.carView.frame.size.width,  _homeSpotView.carView.frame.size.height);
+
+    }];
     }];
     
 }
