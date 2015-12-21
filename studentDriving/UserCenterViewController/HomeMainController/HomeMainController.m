@@ -69,6 +69,10 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 @end
 
 @implementation HomeMainController
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    self.mainScrollView.contentOffset = CGPointMake(0, 0);
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -135,10 +139,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             if ([type isEqualToString:@"1"]) {
                 NSDictionary *dataDic = [param objectForKey:@"data"];
                 if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
-                    [AcountManager saveUserApplyState:@"0"];
-                    SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
-                    [self.navigationController pushViewController:signUpList animated:YES];
-                    return;
+                    
                 }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
                     [SVProgressHUD showInfoWithStatus:@"报名申请中"];
                     [AcountManager saveUserApplyState:@"1"];
@@ -400,20 +401,22 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     }
     if (systemsW  < scrollView.contentOffset.x && scrollView.contentOffset.x <= systemsW * 2)
     {
-       
+        // 如果没登录,滑到科目2,调到登录页面
         if (![AcountManager isLogin]) {
-            LoginViewController *login = [[LoginViewController alloc] init];
-            [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+            LoginViewController *loginVC = [LoginViewController new];
+//            [self.navigationController pushViewController:loginVC animated:YES];
+            [self presentViewController:loginVC animated:YES completion:nil];
+            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }
-        // 判断是否跳转报名界面
-        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-            NSLog(@"%@",[AcountManager manager].userApplystate);
-            SignUpListViewController *signUpList = [[SignUpListViewController alloc] init];
-            [self.navigationController pushViewController:signUpList animated:YES];
+        
+        if ([[[AcountManager manager] userApplystate] isEqualToString:@"2"]) {
+            SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
+            [self.navigationController pushViewController:signUpListVC animated:YES];
+            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
-            
         }
+        
         if (scrollView.contentOffset.x == systemsW * 2)
         {
             [self carMore:scrollView.contentOffset.x];

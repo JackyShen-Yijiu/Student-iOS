@@ -9,6 +9,7 @@
 #import "HomeSpotView.h"
 
 #import "AcountManager.h"
+#import "SignUpListViewController.h"
 
 #define systemsW [[UIScreen mainScreen] bounds].size.width
 
@@ -90,19 +91,6 @@
             //  调用代理方法
             if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
                 [_delegate horizontalMenuScrollPageIndex:carX];
-            }
-            // 判断是否跳转报名界面
-            if ([[AcountManager manager].userApplystate isEqualToString:@"0"] && _carView.frame.origin.x
-                  == 2 * carOffsetX ) {
-                for (UIView *view in self.superview.superview.subviews) {
-                    if ([view isKindOfClass:[UIScrollView class]]) {
-                        UIScrollView *scrollView = (UIScrollView *)view;
-                        scrollView.contentOffset = CGPointMake(systemsW, 0);
-                    }
-                }
-               
-            return;
-                
             }
             
     }  else if(sender.direction == UISwipeGestureRecognizerDirectionLeft)

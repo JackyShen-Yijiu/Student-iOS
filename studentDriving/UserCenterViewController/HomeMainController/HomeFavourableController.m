@@ -13,7 +13,7 @@
 #import "ToolHeader.h"
 #import "SignUpListViewController.h"
 
-static NSString *advantage = @"youshi.html";
+static NSString *advantage = @"3.html";
 
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
 
@@ -40,7 +40,7 @@ static NSString *advantage = @"youshi.html";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"一步优惠";
+    self.title = @"一步优惠班";
     [SVProgressHUD show];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;

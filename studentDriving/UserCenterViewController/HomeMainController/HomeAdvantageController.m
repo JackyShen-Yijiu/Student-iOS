@@ -14,7 +14,7 @@
 #import <NJKWebViewProgressView.h>
 #import "ToolHeader.h"
 
-static NSString *advantage = @"3.html";
+static NSString *advantage = @"youshi.html";
 
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
 

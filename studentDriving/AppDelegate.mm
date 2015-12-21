@@ -30,7 +30,6 @@
  */
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "HomeMainController.h"
 #import "ToolHeader.h"
 #import "AppDelegate+DealJPushMessage.h"
 #import "AppDelegate+DealTool.h"
@@ -42,7 +41,7 @@
 #import "MenuController.h"
 
 @interface AppDelegate ()
-@property (strong, nonatomic)  HomeMainController *main;
+
 @end
 
 @implementation AppDelegate

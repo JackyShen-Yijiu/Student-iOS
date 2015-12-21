@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <BaiduMapAPI/BMapKit.h>
+#import "HomeMainController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,BMKGeneralDelegate,IChatManagerDelegate>{
     BMKMapManager *_mapManager;
@@ -16,6 +17,8 @@
 }
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic,assign)BOOL allowRotation;
+
+@property (strong, nonatomic)  HomeMainController *main;
 
 @end
 

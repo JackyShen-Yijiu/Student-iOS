@@ -40,7 +40,7 @@ static NSString *advantage = @"liuchengt.html";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-self.title = @"一步奖励";
+self.title = @"一步流程";
     [self addSignUp];
     [SVProgressHUD show];
     self.view.backgroundColor = [UIColor whiteColor];
