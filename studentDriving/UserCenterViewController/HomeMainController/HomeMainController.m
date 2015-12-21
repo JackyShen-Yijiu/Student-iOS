@@ -140,7 +140,6 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                     [self.navigationController pushViewController:signUpList animated:YES];
                     return;
                 }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
-                    [SVProgressHUD showInfoWithStatus:@"报名申请中"];
                     [AcountManager saveUserApplyState:@"1"];
                 }else {
                     [AcountManager saveUserApplyState:@"2"];

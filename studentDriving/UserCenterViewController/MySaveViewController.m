@@ -151,7 +151,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                     NSUInteger index = selectedOtherButtonIndex + 1;
                     if (index == 0) {
                         return ;
-                    }else if (index == 1) {
+                    }else {
                         if (self.coachDetailModel || self.coachDetailModel.name) {
                             NSDictionary *coachParam = @{kRealCoachid:self.coachDetailModel.coachid,@"name":self.coachDetailModel.name};
                             [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
@@ -192,7 +192,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                     NSUInteger index = selectedOtherButtonIndex + 1;
                     if (index == 0) {
                         return ;
-                    }else if (index == 1) {
+                    }else  {
                         
                         [SignUpInfoManager removeSignData];
                         

@@ -92,7 +92,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 }
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"更多教练" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton = [WMUITool initWithTitle:@"更多教练" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.frame = CGRectMake(0, 0, 100, 44);
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -180,8 +180,9 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     _is_AddCoachModel = NO;
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
-//    _stuDataArray = @[@"1",@"2",@"3",@"1",@"2",@"3",@"1",@"2",@"3"];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kCellChange) name:@"kCellChange" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kAddCoachModel) name:@"kAddCoachModel" object:nil];
     self.view.backgroundColor = [UIColor whiteColor];

@@ -322,7 +322,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         NSUInteger index = selectedOtherButtonIndex + 1;
         if (index == 0) {
             return ;
-        }else if (index == 1) {
+        }else {
 
             if (model.schoolid && model.name) {
                 DYNSLog(@"schoolinfo");

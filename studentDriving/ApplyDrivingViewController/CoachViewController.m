@@ -66,7 +66,7 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
 }
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.hidden = YES;
         _naviBarRightButton.frame = CGRectMake(0, 0, 44, 44);
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
@@ -121,7 +121,7 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
             NSUInteger index = selectedOtherButtonIndex + 1;
             if (index == 0) {
                 return ;
-            }else if (index == 1) {
+            }else {
                 if (self.detailModel || self.detailModel.name) {
                     NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
                     [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
@@ -312,7 +312,6 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
     CoachModel *model = self.dataArray[indexPath.row];
     self.detailModel = model;
     if (self.markNum == 1) {
-        self.naviBarRightButton.hidden = NO;
 
         CoachDetailViewController *detailVC = [[CoachDetailViewController alloc]init];
         DYNSLog(@"coachid = %@",model.coachid);
@@ -323,7 +322,9 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
         appointment.coachUserId = model.coachid;
         appointment.rememberModel = model;
         [self.navigationController pushViewController:appointment animated:YES];
+        return;
     }
+    self.naviBarRightButton.hidden = NO;
  
 }
 - (void)viewWillAppear:(BOOL)animated{

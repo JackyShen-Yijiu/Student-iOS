@@ -59,7 +59,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         
         UIView *mainColorView =  [[UIView alloc] initWithFrame:CGRectMake(2, 2, 46, 46)];
         mainColorView.userInteractionEnabled = YES;
-        mainColorView.backgroundColor = MAINCOLOR;
+        mainColorView.backgroundColor = [UIColor whiteColor];
         mainColorView.layer.cornerRadius = mainColorView.frame.size.width *0.5;
         [heart addSubview:mainColorView];
         
@@ -409,7 +409,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
             NSUInteger index = selectedOtherButtonIndex + 1;
             if (index == 0) {
                 return ;
-            }else if (index == 1) {
+            }else {
                 if (self.detailModel || self.detailModel.name) {
                     NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
                     [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];

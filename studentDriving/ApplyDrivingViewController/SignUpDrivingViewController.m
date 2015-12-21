@@ -87,7 +87,7 @@ static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
             NSUInteger index = selectedOtherButtonIndex + 1;
             if (index == 0) {
                 return ;
-            }else if (index == 1) {
+            }else {
                 
                 [SignUpInfoManager removeSignData];
                 

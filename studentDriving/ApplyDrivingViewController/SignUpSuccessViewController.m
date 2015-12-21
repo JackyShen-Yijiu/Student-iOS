@@ -47,7 +47,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
 
 - (UIButton *)registAgainButton {
     if (_registAgainButton == nil) {
-        _registAgainButton = [WMUITool initWithTitle:@"重新报名" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _registAgainButton = [WMUITool initWithTitle:@"重新报名" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
         _registAgainButton.frame = CGRectMake(0, 0, 80, 44);
         [_registAgainButton addTarget:self action:@selector(callBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -100,7 +100,8 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     
     [self.referButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(0);
-        make.width.equalTo(self.view);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
         make.height.mas_equalTo(49);
     }];
 }
