@@ -14,6 +14,8 @@
 #import "AcountManager.h"
 #import "YBBaseNavigationController.h"
 
+#import <SVProgressHUD.h>
+
 @interface MenuController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UIView                    *headView;
@@ -151,6 +153,12 @@
     UIViewController *vc = [[NSClassFromString(item.target) alloc]init];
     if (indexPath.row == 2) {
         vc.title = @"消息";
+    }
+    if (indexPath.row == 3) {
+        if (![AcountManager isLogin]) {
+            [SVProgressHUD showErrorWithStatus:@"你还没有登录"];
+            return;
+        }
     }
     YBBaseNavigationController *nav = [[YBBaseNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:nav animated:YES completion:^{

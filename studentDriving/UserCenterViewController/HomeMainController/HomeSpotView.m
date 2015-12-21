@@ -80,7 +80,6 @@
     
         if (sender.direction == UISwipeGestureRecognizerDirectionRight)
         {
-            NSLog(@"%f",self.frame.size.width);
             // 当开始向右滑动时判断是否超出边界
             if (sender.view.frame.origin.x == (systemsW - 10) * 0.9)
             {
@@ -88,19 +87,11 @@
             }
         CGFloat carX = _carView.frame.origin.x + carOffsetX;
             NSLog(@"%f",carOffsetX);
-//        CGRect rect = CGRectMake(carX, _carView.frame.origin.y, _carView.frame.size.width, _carView.frame.size.height);
-//            [UIView animateWithDuration:0.5 animations:^{
-//                _carView.frame = rect;
-//            } completion:nil];
             //  调用代理方法
             if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
-                NSLog(@"carX = %f",carX);
-                
                 [_delegate horizontalMenuScrollPageIndex:carX];
             }
             // 判断是否跳转报名界面
-            NSLog(@"%@",[AcountManager manager].userApplystate);
-            NSLog(@"%f,%f",_carView.frame.origin.x,carOffsetX );
             if ([[AcountManager manager].userApplystate isEqualToString:@"0"] && _carView.frame.origin.x
                   == 2 * carOffsetX ) {
                 for (UIView *view in self.superview.superview.subviews) {
@@ -122,15 +113,7 @@
             return;
         }
     CGFloat carX = _carView.frame.origin.x - carOffsetX;
-//    CGRect rect = CGRectMake(carX, _carView.frame.origin.y, _carView.frame.size.width, _carView.frame.size.height);
-////        //  调用代理方法
-////        if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
-////            [_delegate horizontalMenuScrollPageIndex:carX];
-////        }
-//    [UIView animateWithDuration:0.3 animations:^{
-//        _carView.frame = rect;
-//    } completion:nil];
-        //  调用代理方法
+    //  调用代理方法
         if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
             [_delegate horizontalMenuScrollPageIndex:carX];
         }
