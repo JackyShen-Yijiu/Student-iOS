@@ -24,6 +24,7 @@
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     DYNSLog(@"touch");
     [[IQKeyboardManager sharedManager] resignFirstResponder];
+
 }
 
 @end
