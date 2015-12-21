@@ -185,7 +185,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         [_tableHeadImageView addSubview:heart];
         
         UIView *mainColorView =  [[UIView alloc] initWithFrame:CGRectMake(2, 2, 46, 46)];
-        mainColorView.backgroundColor = MAINCOLOR;
+        mainColorView.backgroundColor = [UIColor whiteColor];
         mainColorView.layer.cornerRadius = mainColorView.frame.size.width *0.5;
         mainColorView.userInteractionEnabled = YES;
         [heart addSubview:mainColorView];

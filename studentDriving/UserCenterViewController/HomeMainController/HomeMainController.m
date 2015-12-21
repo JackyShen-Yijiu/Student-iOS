@@ -141,7 +141,6 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
                     
                 }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
-                    [SVProgressHUD showInfoWithStatus:@"报名申请中"];
                     [AcountManager saveUserApplyState:@"1"];
                 }else {
                     [AcountManager saveUserApplyState:@"2"];

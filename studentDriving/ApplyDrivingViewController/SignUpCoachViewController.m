@@ -121,7 +121,7 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
             NSUInteger index = selectedOtherButtonIndex + 1;
             if (index == 0) {
                 return ;
-            }else if (index == 1) {
+            }else  {
                 if (self.detailModel || self.detailModel.name) {
                     NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
                     [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];

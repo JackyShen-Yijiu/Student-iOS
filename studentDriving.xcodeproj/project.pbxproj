@@ -505,6 +505,7 @@
 		D5D50EE71BFA205000F54097 /* ShopMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ED11BFA205000F54097 /* ShopMainModel.m */; };
 		D5D50EE81BFA205000F54097 /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ED31BFA205000F54097 /* ShopModel.m */; };
 		D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D5101F1BFD908900F54097 /* AboutUsViewController.m */; };
+		D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D961BC791C28004200940577 /* YBWelcomeController.m */; };
 		D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA841C239D3B00DCD094 /* DrivingCell.m */; };
 		D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA881C239D9F00DCD094 /* DrivingCarTypeDMData.m */; };
 		D965CAA21C239D9F00DCD094 /* DrivingCarTypeDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA8A1C239D9F00DCD094 /* DrivingCarTypeDMRootClass.m */; };
@@ -1406,6 +1407,8 @@
 		D5D50ED31BFA205000F54097 /* ShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopModel.m; sourceTree = "<group>"; };
 		D5D5101E1BFD908900F54097 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		D5D5101F1BFD908900F54097 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		D961BC781C28004200940577 /* YBWelcomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBWelcomeController.h; sourceTree = "<group>"; };
+		D961BC791C28004200940577 /* YBWelcomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBWelcomeController.m; sourceTree = "<group>"; };
 		D965CA831C239D3B00DCD094 /* DrivingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingCell.h; sourceTree = "<group>"; };
 		D965CA841C239D3B00DCD094 /* DrivingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingCell.m; sourceTree = "<group>"; };
 		D965CA871C239D9F00DCD094 /* DrivingCarTypeDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingCarTypeDMData.h; sourceTree = "<group>"; };
@@ -2488,6 +2491,7 @@
 		D588AF881BDDB62C000C5D6F /* studentDriving */ = {
 			isa = PBXGroup;
 			children = (
+				D961BC761C27FFB700940577 /* GuidePage */,
 				B8272D3E1C1EE49700BE0D2D /* SliderMenu */,
 				D5D50EAE1BFA204A00F54097 /* Goods */,
 				D56049AD1BF656A70020F0D7 /* EaseMobManager */,
@@ -3045,6 +3049,23 @@
 				D5D50ED31BFA205000F54097 /* ShopModel.m */,
 			);
 			path = Goods;
+			sourceTree = "<group>";
+		};
+		D961BC761C27FFB700940577 /* GuidePage */ = {
+			isa = PBXGroup;
+			children = (
+				D961BC771C28004200940577 /* Welcome */,
+			);
+			path = GuidePage;
+			sourceTree = "<group>";
+		};
+		D961BC771C28004200940577 /* Welcome */ = {
+			isa = PBXGroup;
+			children = (
+				D961BC781C28004200940577 /* YBWelcomeController.h */,
+				D961BC791C28004200940577 /* YBWelcomeController.m */,
+			);
+			path = Welcome;
 			sourceTree = "<group>";
 		};
 		D965CA861C239D9F00DCD094 /* Driving */ = {
@@ -3623,6 +3644,7 @@
 				D51256C91BE348BA002717DA /* StudentCommentModel.m in Sources */,
 				D5604B611BF656C50020F0D7 /* UIImageView+EMWebCache.m in Sources */,
 				D5604B8A1BF656C50020F0D7 /* BaseViewController.m in Sources */,
+				D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */,
 				D588B11A1BDDDC2F000C5D6F /* AcountManager.m in Sources */,
 				D588AFC31BDDDAAB000C5D6F /* DrvingDetailModel.m in Sources */,
 				06EC02C41C2643AD0067AD16 /* MagicDetailViewController.m in Sources */,

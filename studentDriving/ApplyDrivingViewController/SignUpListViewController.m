@@ -139,7 +139,8 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
     
     [self.referButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(0);
-        make.width.equalTo(self.view);
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
         make.height.mas_equalTo(49);
     }];
 
