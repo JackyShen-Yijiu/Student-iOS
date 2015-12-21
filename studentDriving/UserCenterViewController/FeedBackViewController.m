@@ -10,6 +10,7 @@
 #import "UIDevice+JEsystemVersion.h"
 #import <sys/sysctl.h>
 #import <SVProgressHUD.h>
+
 @interface FeedBackViewController ()
 @property (strong, nonatomic) UITextView *textView;
 @property (strong, nonatomic) UIButton *submitButton;
@@ -99,7 +100,7 @@
         [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
         _submitButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _submitButton.backgroundColor = MAINCOLOR;
+        _submitButton.backgroundColor = MAIN_BACKGROUND_COLOR;
         [_submitButton addTarget:self action:@selector(clickSubmit:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submitButton;
@@ -146,7 +147,9 @@
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
             [SVProgressHUD showSuccessWithStatus:@"反馈成功"];
-           
+            // 成功后返回上一级窗体
+            [self popoverPresentationController];
+            
         }else {
             [SVProgressHUD showErrorWithStatus:@"反馈失败"];
         }

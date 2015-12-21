@@ -41,7 +41,7 @@
 
 - (NSArray *)imageArray {
     if (_imageArray == nil) {
-        _imageArray = @[@[@"驾校",@"车型"],@[@"喜欢",@"我的教练",@"钱包"],@[@"设置"]];
+        _imageArray = @[@[@"驾校",@"车型"],@[@"喜欢",@"我的教练",@"user_center_qianbao"],@[@"设置"]];
     }
     return _imageArray;
 }
@@ -143,8 +143,6 @@
     }
     return 0;
 }
-
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *cellId = @"cell";

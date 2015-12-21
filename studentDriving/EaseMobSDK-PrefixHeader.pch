@@ -26,4 +26,6 @@
 #import "RESideMenu.h"
 #import "UIViewController+SliderMenu.h"
 
+#import "UIColor+Hex.h"
+
 #endif /* EaseMobSDK_PrefixHeader_pch */

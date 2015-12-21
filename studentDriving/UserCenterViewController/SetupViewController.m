@@ -137,6 +137,9 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     }else if (indexPath.section == 1 && indexPath.row == 0) {
         AboutUsViewController *about = [[AboutUsViewController alloc] init];
         [self.navigationController pushViewController:about animated:YES];
+    }else if (indexPath.section == 1 && indexPath.row == 1) {
+        NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/com.jatd.studentDriving"];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     }
 }
 
