@@ -20,6 +20,8 @@
 #import "SignUpInfoManager.h"
 #import "StudentCommentModel.h"
 #import "LoginViewController.h"
+#import "SignUpListViewController.h"
+
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
 static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
@@ -87,8 +89,8 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 - (UIButton *)phoneBtn{
     if (_phoneBtn == nil) {
         _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneBtn.frame = CGRectMake(0, 0, 50, 50);
-        [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        _phoneBtn.frame = CGRectMake(0, 0, 20, 20);
+        [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
         [_phoneBtn addTarget:self action:@selector(clickPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneBtn;
@@ -388,7 +390,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
             NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
             [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
         }
-        SignUpViewController *signUp = [[SignUpViewController alloc] init];
+        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
         [self.navigationController pushViewController:signUp animated:YES];
         return;
     }
@@ -396,7 +398,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
     
     
     if ([[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo.driveSchoolId]) {
-        SignUpViewController *signUp = [[SignUpViewController alloc] init];
+        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
         [self.navigationController pushViewController:signUp animated:YES];
         return;
     }
@@ -418,7 +420,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
                     NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
                     [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
                 }
-                SignUpViewController *signUp = [[SignUpViewController alloc] init];
+                SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
                 [self.navigationController pushViewController:signUp animated:YES];
                 return;
             }

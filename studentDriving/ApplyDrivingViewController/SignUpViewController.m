@@ -71,8 +71,8 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 
 - (UIButton *)callButton{
     if (_callButton == nil) {
-        _callButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        [_callButton setBackgroundImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        _callButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+        [_callButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
         [_callButton addTarget:self action:@selector(callBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _callButton;
@@ -294,8 +294,6 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
             if ([type isEqualToString:@"1"]) {
                 kShowSuccess(@"报名成功");
                 [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
-                [AcountManager saveUserApplyState:@"2"];
-                NSLog(@"____%@",[AcountManager manager].userApplystate);
                 //使重新报名变为0
                 NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
                 if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {

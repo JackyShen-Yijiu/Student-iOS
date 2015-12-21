@@ -20,6 +20,8 @@
 #import "SignUpInfoManager.h"
 #import "CoachModel.h"
 #import "CoachDetailViewController.h"
+#import "UIColor+Hex.h"
+
 static NSString *const kDrivingDetailUrl = @"driveschool/getschoolinfo/%@";
 
 static NSString *const kGetDrivingCoachUrl = @"getschoolcoach/%@/%@";
@@ -49,7 +51,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 - (UIButton *)signUpButton{
     if (_signUpButton == nil) {
         _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _signUpButton.backgroundColor = MAINCOLOR;
+        _signUpButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
         _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
         if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
@@ -72,9 +74,9 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 - (UIButton *)phoneButton {
     if (_phoneButton == nil) {
         _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneButton.frame = CGRectMake(0, 0, 50, 50);
+        _phoneButton.frame = CGRectMake(0, 0, 20, 20);
         
-        [_phoneButton setBackgroundImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        [_phoneButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
         [_phoneButton addTarget:self action:@selector(dealPhone:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneButton;
@@ -189,7 +191,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         [heart addSubview:mainColorView];
         
         UIImageView *heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
-        heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
+        heartImageView.image = [UIImage imageNamed:@"xin"];
         heartImageView.userInteractionEnabled = YES;
         [mainColorView addSubview:heartImageView];
         
@@ -313,7 +315,6 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
             return ;
         }
     }];
-    
     
 }
 

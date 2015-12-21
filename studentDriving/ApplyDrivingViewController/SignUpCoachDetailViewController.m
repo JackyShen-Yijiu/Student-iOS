@@ -61,7 +61,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         [heart addSubview:mainColorView];
         
         UIImageView *heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
-        heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
+        heartImageView.image = [UIImage imageNamed:@"xin"];
         heartImageView.userInteractionEnabled = YES;
         [mainColorView addSubview:heartImageView];
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
@@ -86,8 +86,8 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 - (UIButton *)phoneBtn{
     if (_phoneBtn == nil) {
         _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneBtn.frame = CGRectMake(0, 0, 50, 50);
-        [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"电话"] forState:UIControlStateNormal];
+        _phoneBtn.frame = CGRectMake(0, 0, 20, 20);
+        [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
         [_phoneBtn addTarget:self action:@selector(clickPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneBtn;
@@ -184,10 +184,9 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 
 - (void)configBarItem {
     
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -15;
+
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneBtn];
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer,rightItem];
+    self.navigationItem.rightBarButtonItem = rightItem;
 }
 #pragma mark - createUI
 - (void)createUI {
