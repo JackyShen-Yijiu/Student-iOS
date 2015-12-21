@@ -87,15 +87,15 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     
     [self configRefresh];
     // 定位
-    [self locationManager];
+//    [self locationManager];
     
     // 在模拟器上定位不好用，测试是打开注释
-//    self.latitude = 39.929985778080237;
-//    self.longitude = 116.39564503787867;
-//    self.index = 1;
-//    self.isRefresh = YES;
-//    // 获取网络数据
-//    [self network];
+    self.latitude = 39.929985778080237;
+    self.longitude = 116.39564503787867;
+    self.index = 1;
+    self.isRefresh = YES;
+    // 获取网络数据
+    [self network];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -198,16 +198,16 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         DrivingModel *dModel = [MTLJSONAdapter modelOfClass:DrivingModel.class fromJSONDictionary:dic error:&error];
         [self.dataArray addObject:dModel];
     }
-    if (!array.count) {
-        [SVProgressHUD dismiss];
-        [SVProgressHUD showInfoWithStatus:@"没有找到数据！"];
-    }
     
     [self.tableView reloadData];
     
     [SVProgressHUD dismiss];
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
+    
+    if (!array.count) {
+        [SVProgressHUD showErrorWithStatus:@"没有找到数据！"];
+    }
 }
 
 #pragma mark - 定位功能
@@ -409,9 +409,10 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     [self.view endEditing:YES];
     self.searchName = self.tableHeaderView.searchTextField.text;
     
-//    NSLog(@"longitude===%f,latitude===%f,searchName===%@,carTypeId===%li,filterType===%li",self.longitude,self.latitude,self.searchName,self.carTypeId,self.filterType);
+    NSLog(@"longitude===%f,latitude===%f,searchName===%@,carTypeId===%li,filterType===%li",self.longitude,self.latitude,self.searchName,self.carTypeId,self.filterType);
     self.index = 1;
     self.isRefresh = YES;
+    [SVProgressHUD show];
     [self network];
 }
 
@@ -431,7 +432,6 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         _naviBarRightButton = [WMUITool initWithTitle:@"定位中" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.frame = CGRectMake(0, 0, 70, 44);
         [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateNormal];
-        [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateSelected];
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
 //        _naviBarRightButton.backgroundColor = [UIColor redColor];
     }

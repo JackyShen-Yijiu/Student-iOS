@@ -31,6 +31,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIButton *phoneButton;
 @property (strong, nonatomic) UIImageView *tableHeadImageView;
+@property (nonatomic, strong) UIImageView *heartImageView;
 
 @property (strong, nonatomic)UIButton *signUpButton;
 
@@ -113,6 +114,8 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     [self startDownLoad];
     
     [self startDownLoadCoach];
+    
+    [self checkCollection];
 
 }
 - (void)loginSuccess {
@@ -197,10 +200,10 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         mainColorView.userInteractionEnabled = YES;
         [heart addSubview:mainColorView];
         
-        UIImageView *heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
-        heartImageView.image = [UIImage imageNamed:@"xin"];
-        heartImageView.userInteractionEnabled = YES;
-        [mainColorView addSubview:heartImageView];
+        _heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
+        _heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
+        _heartImageView.userInteractionEnabled = YES;
+        [mainColorView addSubview:_heartImageView];
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
         [mainColorView addGestureRecognizer:tapGesture];
 
@@ -381,12 +384,40 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+            _heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
         }else {
             [SVProgressHUD showSuccessWithStatus:param[@"msg"]];
-            
         }
     }];
 }
+
+#pragma mark 检测是否收藏
+- (void)checkCollection {
+    
+    if (![AcountManager isLogin]) {
+        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+        LoginViewController *login = [[LoginViewController alloc] init];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        return;
+    }
+    
+    NSString *kSaveUrl = [NSString stringWithFormat:kSaveMyLoveDriving,self.schoolId];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
+    DYNSLog(@"urlstring = %@",urlString);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodPut withCompletion:^(id data) {
+        DYNSLog(@"data = %@",data);
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            _heartImageView.image = [UIImage imageNamed:@"心.png"];
+        }else {
+//            if ([type isEqualToString:@"已经存在"]) {
+//                _heartImageView.image = [UIImage imageNamed:@"心.png"];
+//            }
+        }
+    }];
+}
+
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     kShowDismiss

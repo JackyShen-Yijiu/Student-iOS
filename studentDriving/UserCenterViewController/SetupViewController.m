@@ -138,9 +138,14 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         AboutUsViewController *about = [[AboutUsViewController alloc] init];
         [self.navigationController pushViewController:about animated:YES];
     }else if (indexPath.section == 1 && indexPath.row == 1) {
-        NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/com.jatd.studentDriving"];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        [self gotoAppStorePageRaisal:@"1060105429"];
     }
+}
+
+- (void)gotoAppStorePageRaisal:(NSString *)nsAppId {
+    NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", nsAppId];
+    
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:nsStringToOpen]];
 }
 
 @end
