@@ -180,7 +180,7 @@
     }
     else if (indexPath.row == 1 && indexPath.section == 0) {
         
-        if (![[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
             MyExamCarViewController *examCar = [[MyExamCarViewController alloc] init];
             [self.navigationController pushViewController:examCar animated:YES];
         }

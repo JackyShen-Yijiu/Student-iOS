@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UIImageView *starImageView;
 @property (nonatomic, assign) CGFloat star;
 @property (nonatomic, strong) UILabel *commentLabel;
+@property (nonatomic, assign) NSInteger coachcount;
 
 - (void)updateAllContentWith:(DrivingModel *)model;
 @end

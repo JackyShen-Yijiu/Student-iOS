@@ -10,10 +10,12 @@
 #import "ToolHeader.h"
 #import "MyWalletViewController.h"
 #import "UIColor+Hex.h"
+#import <SVProgressHUD.h>
+#import "MagicMainTableViewController.h"
 
 static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 
-static NSString *const knumber = @"text=www.baidu.com&size=10";
+static NSString *const knumber = @"create_qrcode";
 @interface VirtualViewController ()
 
 @property (nonatomic,strong) UILabel *successLabel;
@@ -23,41 +25,13 @@ static NSString *const knumber = @"text=www.baidu.com&size=10";
 @property (nonatomic,strong) UIButton *finishButton;
 @property (nonatomic,strong) NSString *numberStr;
 
-/*
- 
- NSString *urlString = [NSString stringWithFormat:BASEURL,kBuyproduct];
- NSLog(@"urlString = %@",urlString);
- 
- // 当点击购买时向后台传送数据
- NSString *useId = [AcountManager manager].userid;
- NSString *productId =  _shopId;
- NSDictionary *dic = @{@"usertype":@"1",
- @"userid":useId,
- @"productid":productId,
- @"name":textFiledOne.text,
- @"mobile":textFiledTwo.text,
- @"address":textFiledThree.text};
- 
- 
- 
- [JENetwoking startDownLoadWithUrl:urlString postParam:dic WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
- 
- //刷新数据
- MyWalletViewController *walletVC = [self.navigationController.viewControllers objectAtIndex:0];
- [walletVC refreshWalletData];
- 
- }  withFailure:^(id data) {
- NSLog(@"errorData = %@",data);
- }];
-
- */
-
 @end
 
 @implementation VirtualViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     [self initUI];
     [self initData];
     
@@ -82,30 +56,36 @@ static NSString *const knumber = @"text=www.baidu.com&size=10";
         if (data == nil) {
             return ;
         }
-        NSLog(@"%@",data);
-         NSInteger type = [[data objectForKey:@"type"] integerValue];
-        if (type == 1) {
+    NSInteger type = [[data objectForKey:@"type"] integerValue];
+    if (type == 1)
+        {
             //刷新数据
             MyWalletViewController *walletVC = [self.navigationController.viewControllers objectAtIndex:0];
             [walletVC refreshWalletData];
             NSDictionary *dic = [data objectForKey:@"extra"];
-            NSString *resultStr = [NSString stringWithFormat:BASEURL,[dic objectForKey:@"orderscanaduiturl"]];
-            NSString *finishResultStr = [NSString stringWithFormat:@"%@,%@",resultStr,knumber];
-            [JENetwoking startDownLoadWithUrl:finishResultStr postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-                if (data == nil) {
-                    return ;
-                }
-                self.numberStr = [data objectForKey:@"content-type"];
-                // 刷新数据
-                [self refreshData];
-                
-            }];
+            NSString *resultStr = [NSString stringWithFormat:BASEURL,knumber];
+            NSString *str = @"?text=";
+            NSString *lastStr = @"&size=10";
+            NSString *finishResultStr = [NSString stringWithFormat:@"%@%@%@%@",resultStr,str,[dic objectForKey:@"orderscanaduiturl"],lastStr];
+            self.numberStr = finishResultStr;
+             _successLabel.text = @"兑换成功!";
+            [self refreshData];
+        }
+            else
+        {
+         NSString *messageStr = [data objectForKey:@"msg"];
+            
+            [SVProgressHUD showErrorWithStatus:messageStr];
+            _successLabel.text = @"兑换失败!";
+            _numberImageView.image = [UIImage imageNamed:@"cha"];
         }
         
         
         
     }  withFailure:^(id data) {
-        NSLog(@"errorData = %@",data);
+       [SVProgressHUD showErrorWithStatus:@"订单交易失败"];
+        _successLabel.text = @"兑换失败!";
+        _numberImageView.image = [UIImage imageNamed:@"cha"];
     }];
  
 }
@@ -116,7 +96,6 @@ static NSString *const knumber = @"text=www.baidu.com&size=10";
     CGFloat successLabelW = 70;
     CGFloat successLableX = (self.view.frame.size.width - successLabelW) / 2;
     self.successLabel.frame = CGRectMake(successLableX, 84, successLabelW, successLabelH);
-    _successLabel.text = @"兑换成功!";
     _successLabel.textColor = [UIColor redColor];
     _successLabel.font = [UIFont systemFontOfSize:15];
     _successLabel.textAlignment = NSTextAlignmentCenter;
@@ -161,7 +140,8 @@ static NSString *const knumber = @"text=www.baidu.com&size=10";
 #pragma maek -- Action
 - (void)didFinishClick:(UIButton *)btn
 {
-    
+    MagicMainTableViewController  *magicVC = [[MagicMainTableViewController alloc]init];
+    [self.navigationController pushViewController:magicVC animated:YES];
 }
 #pragma mark -- Lazy加载
 - (UILabel *)successLabel

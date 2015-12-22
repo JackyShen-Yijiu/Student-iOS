@@ -318,8 +318,8 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-//    inputArray = @[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealIdentityCar],[SignUpInfoManager getSignUpRealTelephone],[SignUpInfoManager getSignUpRealAddress]];
-    inputArray = @[@"",@"",@"",@""];
+    inputArray = @[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealIdentityCar],[SignUpInfoManager getSignUpRealTelephone],[SignUpInfoManager getSignUpRealAddress]];
+//    inputArray = @[@"",@"",@"",@""];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];

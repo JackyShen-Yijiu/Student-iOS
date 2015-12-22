@@ -10,7 +10,7 @@
 
 @implementation DrivingModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"address":@"address",@"distance":@"distance",@"logoimg":@"logoimg",@"latitude":@"latitude",@"longitude":@"longitude",@"maxprice":@"maxprice",@"minprice":@"minprice",@"name":@"name",@"passingrate":@"passingrate",@"schoolid":@"schoolid"};
+    return @{@"address":@"address",@"distance":@"distance",@"logoimg":@"logoimg",@"latitude":@"latitude",@"longitude":@"longitude",@"maxprice":@"maxprice",@"minprice":@"minprice",@"name":@"name",@"passingrate":@"passingrate",@"schoolid":@"schoolid",@"coachcount":@"coachcount"};
 }
 
 + (NSValueTransformer *)logoimgJSONTransformer {

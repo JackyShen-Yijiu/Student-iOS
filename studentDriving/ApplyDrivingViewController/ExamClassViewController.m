@@ -93,6 +93,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
         [self.collectionView reloadData];
     }];
 }
+
 #pragma mark - 完成
 - (void)clickRight:(UIButton *)sender {
     

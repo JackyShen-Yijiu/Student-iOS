@@ -20,7 +20,7 @@
 - (UIImageView *)logoImageView {
     if (_logoImageView == nil) {
         _logoImageView = [[UIImageView alloc] init];
-        _logoImageView.image = [UIImage imageNamed:@"logoImage.png"];
+        _logoImageView.image = [UIImage imageNamed:@"loginLogo"];
     }
     return _logoImageView;
 }
@@ -38,7 +38,7 @@
         _topLabelOne = [[UILabel alloc] init];
         _topLabelOne.textAlignment = NSTextAlignmentCenter;
         _topLabelOne.font = [UIFont boldSystemFontOfSize:14];
-        _topLabelOne.text = @"做有态度的培训驾校";
+        _topLabelOne.text = @"一步学车,专注学车美一步!";
     }
     return _topLabelOne;
 }
@@ -47,7 +47,7 @@
         _topLabelTwo = [[UILabel alloc] init];
         _topLabelTwo.textAlignment = NSTextAlignmentCenter;
         _topLabelTwo.font = [UIFont boldSystemFontOfSize:14];
-        _topLabelTwo.text = @"V 1.0";
+        _topLabelTwo.text = @"V 1.1";
     }
     return _topLabelTwo;
 }

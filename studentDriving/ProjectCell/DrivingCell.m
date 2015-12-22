@@ -107,7 +107,7 @@
 - (UILabel *)commentLabel {
     if (!_commentLabel) {
         _commentLabel = [UILabel new];
-        _commentLabel.text = @"0名认证教练";
+        _commentLabel.text = @"认证教练";
         _commentLabel.textColor = MAINCOLOR;
         _commentLabel.font = [UIFont systemFontOfSize:15];
     }
@@ -221,21 +221,31 @@
     [self clearContent];
     
     self.drivingNameLabel.text = model.name;
+    
     NSString *address = @"未填写地址";
     if (![model.address isKindOfClass:[NSNull class]] && model.address.length) {
         address = model.address;
     }
     self.drivingAddressLabel.text = address;
-    if (![model.minprice isKindOfClass:[NSNull class]] || ![model.maxprice isKindOfClass:[NSNull class]]) {
+    if ([model.minprice isKindOfClass:[NSNull class]] || [model.maxprice isKindOfClass:[NSNull class]]) {
         self.moenyLabel.text = @"未填写价格";
     }else {
         self.moenyLabel.text = [NSString stringWithFormat:@"¥%@-¥%@",model.minprice,model.maxprice];
     }
+//    if ([model.coachcount isKindOfClass:[NSNull class]]) {
+//        self.coachcount = 0;
+//    }
     NSInteger integer = [model.distance integerValue];
     self.distanceLabel.text = [NSString stringWithFormat:@"距离%.2fkm",integer / 1000.f];
     self.star = [model.passingrate floatValue] / 100.f * 10.f / 2.f;
     [self setStar];
     [self.drivingImage sd_setImageWithURL:[NSURL URLWithString:model.logoimg.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+    if (self.coachcount == 0) {
+        self.commentLabel.text = @"已认证教练";
+    }else {
+        self.commentLabel.text = [NSString stringWithFormat:@"%li名认证教练",self.coachcount];
+    }
+    
 }
 
 //设置星级

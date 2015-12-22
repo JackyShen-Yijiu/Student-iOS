@@ -12,6 +12,8 @@
 #import "ExamDetailCell.h"
 #import "SignUpInfoManager.h"
 #import "NSString+CurrentTimeDay.h"
+#import "SignUpListViewController.h"
+
 static NSString *const kexamClassDetail = @"driveschool/schoolclasstype/%@";
 @interface ExamClassDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) UITableView *tableView;
@@ -21,9 +23,22 @@ static NSString *const kexamClassDetail = @"driveschool/schoolclasstype/%@";
 
 @property (strong, nonatomic) UILabel *schoolIntroduction;
 @property (strong, nonatomic) UILabel *schoolDetailIntroduction;
+
+@property (strong, nonatomic) UIButton *naviBarRightButton;
+
 @end
 
 @implementation ExamClassDetailViewController
+
+- (UIButton *)naviBarRightButton {
+    if (_naviBarRightButton == nil) {
+        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton.frame = CGRectMake(0, 0, 44, 44);
+        [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _naviBarRightButton;
+}
+
 - (UIImageView *)locationImage {
     if (_locationImage == nil) {
         _locationImage = [[UIImageView alloc] init];
@@ -70,6 +85,11 @@ static NSString *const kexamClassDetail = @"driveschool/schoolclasstype/%@";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
+    DYNSLog(@"right = %@",self.naviBarRightButton);
+    self.navigationItem.rightBarButtonItem = rightItem;
+
     [SVProgressHUD show];
     
     self.title = @"选择驾校";
@@ -163,5 +183,19 @@ static NSString *const kexamClassDetail = @"driveschool/schoolclasstype/%@";
 
     return cell;
 }
+
+#pragma mark - 完成
+- (void)clickRight:(UIButton *)sender {
+    
+    NSDictionary *classtypeParam = @{kRealClasstypeid:self.model.classid,@"name":self.model.classname};
+    [SignUpInfoManager signUpInfoSaveRealClasstype:classtypeParam];
+    
+    for (UIViewController *targetVc in self.navigationController.viewControllers) {
+        if ([targetVc isKindOfClass:[SignUpListViewController class]]) {
+            [self.navigationController popToViewController:targetVc animated:YES];
+        }
+    }
+}
+
 
 @end
