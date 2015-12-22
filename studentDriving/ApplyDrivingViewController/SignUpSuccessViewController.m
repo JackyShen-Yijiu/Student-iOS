@@ -73,6 +73,10 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     [self startNetWork];
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [SVProgressHUD dismiss];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -104,6 +108,8 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
         make.right.mas_equalTo(0);
         make.height.mas_equalTo(49);
     }];
+    
+    [SVProgressHUD dismiss];
 }
 
 - (void)startNetWork {
@@ -130,6 +136,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     } withFailure:^(id data) {
         [SVProgressHUD showInfoWithStatus:@"网络错误"];
     }];
+    
 }
 
 - (void)dealGoBack {

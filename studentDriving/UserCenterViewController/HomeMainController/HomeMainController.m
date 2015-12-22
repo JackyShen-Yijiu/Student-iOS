@@ -143,10 +143,9 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 }else {
                     [AcountManager saveUserApplyState:@"2"];
                 }
-            }else {
-                [SVProgressHUD showInfoWithStatus:[data objectForKey:@"msg"]];
-            }
-        
+               }else {
+            [SVProgressHUD showInfoWithStatus:[data objectForKey:@"msg"]];
+        }
     } withFailure:^(id data) {
         [SVProgressHUD showInfoWithStatus:@"网络错误"];
     }];
@@ -298,8 +297,13 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 break;
             case 102:
             {
-                AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
-                [mainVC.navigationController pushViewController:appointVC animated:YES];
+                if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+                    AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
+                    [mainVC.navigationController pushViewController:appointVC animated:YES];
+
+                }else {
+                    [SVProgressHUD showErrorWithStatus:@"您未符合预约要求"];
+                }
             }
                 break;
             case 103:

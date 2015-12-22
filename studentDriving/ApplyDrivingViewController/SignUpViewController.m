@@ -296,6 +296,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
                 kShowSuccess(@"报名成功");
                 [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
                 //使重新报名变为0
+                [AcountManager saveUserApplyState:@"1"];
                 NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
                 if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
                     [ud setObject:@"0" forKey:@"applyAgain"];
