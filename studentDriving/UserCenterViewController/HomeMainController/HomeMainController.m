@@ -134,20 +134,16 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            NSDictionary *param = data;
-            NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-            if ([type isEqualToString:@"1"]) {
-                NSDictionary *dataDic = [param objectForKey:@"data"];
-                if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
-                    
-                }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
-                    [AcountManager saveUserApplyState:@"1"];
-                }else {
-                    [AcountManager saveUserApplyState:@"2"];
-                }
+            NSDictionary *dataDic = [param objectForKey:@"data"];
+            if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
+                
+            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
+                [AcountManager saveUserApplyState:@"1"];
             }else {
-                [SVProgressHUD showInfoWithStatus:[data objectForKey:@"msg"]];
+                [AcountManager saveUserApplyState:@"2"];
             }
+        }else {
+            [SVProgressHUD showInfoWithStatus:[data objectForKey:@"msg"]];
         }
     } withFailure:^(id data) {
         [SVProgressHUD showInfoWithStatus:@"网络错误"];
@@ -297,8 +293,13 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 break;
             case 102:
             {
-                AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
-                [mainVC.navigationController pushViewController:appointVC animated:YES];
+                if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+                    AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
+                    [mainVC.navigationController pushViewController:appointVC animated:YES];
+
+                }else {
+                    [SVProgressHUD showErrorWithStatus:@"您未符合预约要求"];
+                }
             }
                 break;
             case 103:

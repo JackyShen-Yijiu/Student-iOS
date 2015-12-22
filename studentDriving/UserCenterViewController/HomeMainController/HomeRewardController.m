@@ -13,6 +13,7 @@
 #import <NJKWebViewProgressView.h>
 #import "ToolHeader.h"
 #import "SignUpListViewController.h"
+#import "SignUpSuccessViewController.h"
 
 static NSString *advantage = @"liuchengt.html";
 
@@ -85,8 +86,9 @@ self.title = @"一步流程";
     if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
         SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
         [self.navigationController pushViewController:signUpListVC animated:YES];
-    } else
-    {
+    } else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+        [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+    }else {
         [SVProgressHUD showErrorWithStatus:@"您已经报过名"];
     }
 }

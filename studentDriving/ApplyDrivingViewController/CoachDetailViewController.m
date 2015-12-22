@@ -59,7 +59,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         
         UIView *mainColorView =  [[UIView alloc] initWithFrame:CGRectMake(2, 2, 46, 46)];
         mainColorView.userInteractionEnabled = YES;
-        mainColorView.backgroundColor = [UIColor whiteColor];
+        mainColorView.backgroundColor = MAINCOLOR;
         mainColorView.layer.cornerRadius = mainColorView.frame.size.width *0.5;
         [heart addSubview:mainColorView];
         

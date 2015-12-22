@@ -18,6 +18,7 @@
 #import "MySaveViewController.h"
 #import "DrivingViewController.h"
 #import "LoginViewController.h"
+#import "SignUpSuccessViewController.h"
 //#import "MainViewController.h"
 #import <JPush/APService.h>
 
@@ -36,14 +37,14 @@
 
 - (NSArray *)dataArray {
     if (_dataArray == nil) {
-        _dataArray = @[@[@"报考驾校",@"报考车型"],@[@"我的喜欢",@"我的教练",@"钱包"],@[@"设置"]];
+        _dataArray = @[@[@"报考驾校",@"报考车型"],@[@"我的喜欢",@"我的教练",@"钱包"],@[@"设置",@"报名详情"]];
     }
     return _dataArray;
 }
 
 - (NSArray *)imageArray {
     if (_imageArray == nil) {
-        _imageArray = @[@[@"驾校",@"车型"],@[@"喜欢",@"我的教练",@"user_center_qianbao"],@[@"设置"]];
+        _imageArray = @[@[@"驾校",@"车型"],@[@"喜欢",@"我的教练",@"user_center_qianbao"],@[@"设置",@"xq"]];
     }
     return _imageArray;
 }
@@ -141,7 +142,7 @@
     }else if (section == 1) {
         return 3;
     }else if (section == 2) {
-        return 1;
+        return 2;
     }
     return 0;
 }
@@ -191,8 +192,12 @@
         
         
     }else if (indexPath.section == 2) {
-        SetupViewController *setup = [[SetupViewController alloc] init];
-        [self.navigationController pushViewController:setup animated:YES];
+        if (indexPath.row == 0) {
+            SetupViewController *setup = [[SetupViewController alloc] init];
+            [self.navigationController pushViewController:setup animated:YES];
+        } else {
+            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+        }
     }else if (indexPath.section == 1 && indexPath.row == 2 ) {
         if (![AcountManager isLogin]) {
             [SVProgressHUD showErrorWithStatus:@"你还没有登录!"];
