@@ -15,6 +15,8 @@
 #import <NJKWebViewProgressView.h>
 #import "ToolHeader.h"
 
+#import "LoginViewController.h"
+
 static NSString *advantage = @"youshi.html";
 
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
@@ -89,13 +91,21 @@ static NSString *advantage = @"youshi.html";
 
 - (void)sideMenuButtonAction
 {
-    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-        SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
-        [self.navigationController pushViewController:signUpListVC animated:YES];
-    } else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-        [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
-    }else {
-        [SVProgressHUD showErrorWithStatus:@"您已经报过名"];
+    if (![AcountManager isLogin]) {
+       
+        LoginViewController *loginVC = [LoginViewController new];
+        [self presentViewController:loginVC animated:YES completion:nil];
+    }else
+    {
+        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+            SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
+            [self.navigationController pushViewController:signUpListVC animated:YES];
+        } else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+        }else {
+            [SVProgressHUD showErrorWithStatus:@"您已经报过名"];
+        }
+
     }
 }
 

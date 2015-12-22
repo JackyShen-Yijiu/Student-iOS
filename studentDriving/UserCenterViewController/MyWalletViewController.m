@@ -300,6 +300,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         for (NSDictionary *dic in list) {
             MyWallet *wallet = [[MyWallet alloc] init];
             [wallet setValuesForKeysWithDictionary:dic];
+            self.dataArray = nil;
             [self.dataArray addObject:wallet];
         }
         [self.tableView reloadData];

@@ -61,7 +61,7 @@
     
     self.LeftItemArray = @[item1,item2,item3,item5,item6];
     
-    self.LeftIconArray = @[ @"首页",@"查找教练",@"消息", @"钱包", @"我" ];
+    self.LeftIconArray = @[ @"首页",@"查找教练",@"消息", @"sideMenuqianbao", @"我" ];
     self.tableView.tableHeaderView = self.headView;
 }
 

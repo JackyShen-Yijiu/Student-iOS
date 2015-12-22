@@ -30,7 +30,7 @@
         _WMSelectedbackGroundView.backgroundColor = [UIColor whiteColor];
         _WMSelectedbackGroundView.layer.borderColor = MAINCOLOR.CGColor;
         _WMSelectedbackGroundView.layer.borderWidth = 1;
-        UIImageView *selectedImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellSelected.png"]];
+        UIImageView *selectedImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellSelected"]];
         [_WMSelectedbackGroundView addSubview:selectedImage];
         [selectedImage mas_makeConstraints:^(MASConstraintMaker *make) {
             make.right.mas_equalTo(_WMSelectedbackGroundView.mas_right).offset(0);
@@ -107,7 +107,7 @@
 - (UILabel *)commentLabel {
     if (!_commentLabel) {
         _commentLabel = [UILabel new];
-        _commentLabel.text = @"8名认证教练";
+        _commentLabel.text = @"0名认证教练";
         _commentLabel.textColor = MAINCOLOR;
         _commentLabel.font = [UIFont systemFontOfSize:15];
     }

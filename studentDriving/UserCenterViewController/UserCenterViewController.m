@@ -19,6 +19,7 @@
 #import "DrivingViewController.h"
 #import "LoginViewController.h"
 #import "SignUpSuccessViewController.h"
+#import "SignUpListViewController.h"
 //#import "MainViewController.h"
 #import <JPush/APService.h>
 
@@ -196,7 +197,17 @@
             SetupViewController *setup = [[SetupViewController alloc] init];
             [self.navigationController pushViewController:setup animated:YES];
         } else {
-            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+            if ([[[AcountManager manager] userApplystate] isEqualToString:@"1"]) {
+                [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+            }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"])
+            {
+                SignUpListViewController *signUPVC = [SignUpListViewController new];
+                [self.navigationController pushViewController:signUPVC animated:YES];
+            }else
+            {
+                [SVProgressHUD showErrorWithStatus:@"你已经报过名!"];
+            }
+           
         }
     }else if (indexPath.section == 1 && indexPath.row == 2 ) {
         if (![AcountManager isLogin]) {

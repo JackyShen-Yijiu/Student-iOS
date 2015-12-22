@@ -252,28 +252,28 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 break;
                 case 102:
             {
-                AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
-                [mainVC.navigationController pushViewController:appointVC animated:YES];
-            }
-                break;
-                case 103:
-            {
-                
                 if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
                     [SVProgressHUD showErrorWithStatus:@"报名正在审核中!"];
                     return ;
                     
                 } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"])
-                            {
-                                AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
-                                appointment.title = @"科二预约列表";
-                                appointment.markNum = [NSNumber numberWithInteger:2];
-                                [mainVC.navigationController pushViewController:appointment animated:YES];
-                            }else
-                            {
-                                [SVProgressHUD showErrorWithStatus:@"你还没有报名"];
-                            }
+                {
+                    AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
+                    [mainVC.navigationController pushViewController:appointVC animated:YES];
+                }else
+                {
+                    [SVProgressHUD showErrorWithStatus:@"你还没有报名"];
+                }
                 
+            }
+                break;
+                case 103:
+            {
+                
+                AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
+                appointment.title = @"科二预约列表";
+                appointment.markNum = [NSNumber numberWithInteger:2];
+                [mainVC.navigationController pushViewController:appointment animated:YES];
                
             }
                 break;
