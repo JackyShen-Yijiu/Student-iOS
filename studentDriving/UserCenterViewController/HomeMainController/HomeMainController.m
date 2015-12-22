@@ -131,15 +131,13 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
     NSDictionary *param = @{@"userid":[AcountManager manager].userid};
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
             NSDictionary *param = data;
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"1"]) {
                 NSDictionary *dataDic = [param objectForKey:@"data"];
                 if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
                     
+                    [AcountManager saveUserApplyState:@"0"];
                 }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
                     [AcountManager saveUserApplyState:@"1"];
                 }else {
@@ -148,7 +146,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             }else {
                 [SVProgressHUD showInfoWithStatus:[data objectForKey:@"msg"]];
             }
-        }
+        
     } withFailure:^(id data) {
         [SVProgressHUD showInfoWithStatus:@"网络错误"];
     }];
@@ -253,13 +251,13 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 [mainVC.navigationController pushViewController:bLAVPlayweVC animated:YES];
             }
                 break;
-                case 103:
+                case 102:
             {
                 AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
                 [mainVC.navigationController pushViewController:appointVC animated:YES];
             }
                 break;
-                case 102:
+                case 103:
             {
                 
                 if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
@@ -272,6 +270,9 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                                 appointment.title = @"科二预约列表";
                                 appointment.markNum = [NSNumber numberWithInteger:2];
                                 [mainVC.navigationController pushViewController:appointment animated:YES];
+                            }else
+                            {
+                                [SVProgressHUD showErrorWithStatus:@"你还没有报名"];
                             }
                 
                
@@ -409,7 +410,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             return;
         }
         
-        if ([[[AcountManager manager] userApplystate] isEqualToString:@"2"]) {
+        if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
             SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
             [self.navigationController pushViewController:signUpListVC animated:YES];
             self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
