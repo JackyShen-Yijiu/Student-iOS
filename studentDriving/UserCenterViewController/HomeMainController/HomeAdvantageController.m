@@ -16,7 +16,6 @@
 #import "ToolHeader.h"
 
 #import "LoginViewController.h"
-
 static NSString *advantage = @"youshi.html";
 
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
