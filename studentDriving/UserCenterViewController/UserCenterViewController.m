@@ -20,6 +20,8 @@
 #import "LoginViewController.h"
 #import "SignUpSuccessViewController.h"
 #import "SignUpListViewController.h"
+#import "DVVSideMenu.h"
+
 //#import "MainViewController.h"
 #import <JPush/APService.h>
 
@@ -71,7 +73,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self addSideMenuButton];
     
     self.title = @"个人中心";
     

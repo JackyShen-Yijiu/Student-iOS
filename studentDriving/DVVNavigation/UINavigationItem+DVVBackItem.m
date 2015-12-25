@@ -1,15 +1,15 @@
 //
-//  BaseTableController.m
-//  Principal
+//  UINavigationItem+DVVBackItem.m
+//  DVVSideMenu
 //
-//  Created by dawei on 15/11/25.
+//  Created by 大威 on 15/12/22.
 //  Copyright © 2015年 DaWei. All rights reserved.
 //
 
-#import "UINavigationItem+BackItem.h"
+#import "UINavigationItem+DVVBackItem.h"
 #import <objc/runtime.h>
 
-@implementation UINavigationItem (BackItem)
+@implementation UINavigationItem (DVVBackItem)
 
 +(void)load {
     static dispatch_once_t onceToken;

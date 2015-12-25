@@ -21,6 +21,7 @@
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "UserProfileManager.h"
 #import "SVProgressHUD.h"
+#import "DVVSideMenu.h"
 
 @implementation EMConversation (search)
 
@@ -66,6 +67,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.title = @"消息";
+    [self addSideMenuButton];
     [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
     [self removeEmptyConversationsFromDB];
 

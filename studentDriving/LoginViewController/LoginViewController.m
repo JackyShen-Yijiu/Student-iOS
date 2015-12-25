@@ -23,6 +23,7 @@
 #import "MenuController.h"
 #import "AppDelegate.h"
 #import "HomeMainController.h"
+#import "DVVUserManager.h"
 
 static NSString *const kloginUrl = @"userinfo/userlogin";
 
@@ -233,12 +234,16 @@ static NSString *const kuserType = @"usertype";
     [self.view addSubview:self.registerButton];
     [self.view addSubview:self.bottomButton];
 
-
     [self.bottomButton addSubview:self.rightImageView];
     
     [self.view addSubview:self.bottomLineView];
     [self.bottomLineView addSubview:self.bottomLabel];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     
+    self.navigationController.navigationBarHidden = YES;
 }
 
 - (void)DYdealRegister {
@@ -262,7 +267,7 @@ static NSString *const kuserType = @"usertype";
     [self.userParam setObject:@"1" forKey:kuserType];
     NSString *url = [NSString stringWithFormat:BASEURL,kloginUrl];
     DYNSLog(@"%@ %@",url,self.userParam);
-
+    
     [SVProgressHUD show];
     [JENetwoking startDownLoadWithUrl:url postParam:self.userParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         NSDictionary *dataDic = data;
@@ -279,64 +284,18 @@ static NSString *const kuserType = @"usertype";
             if ([AcountManager manager].userid) {
             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
              
-            
                 
             [self loginWithUsername:[AcountManager manager].userid password:self.passwordTextField.text.DY_MD5];
-
             }
             
-            AppDelegate *delegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
-            delegate.main = [HomeMainController new];
-            UINavigationController *mainNav = [[UINavigationController alloc] initWithRootViewController:delegate.main];
-            [UIApplication sharedApplication].keyWindow.rootViewController = [self sideControllerWithContentController:mainNav];
-            
-//            [self dismissViewControllerAnimated:YES completion:nil];
+            // 用户登录成功，打开相应的窗体
+            [DVVUserManager userLoginSucces];
         }
-            
-        
-      
     }];
    
    
 
 }
-
-- (UIViewController *)sideControllerWithContentController:(UINavigationController *)naviController {
-    
-    //创建sideMenu
-    MenuController * sideVC = [[MenuController alloc] init];
-    
-    //创建抽屉
-    RESideMenu *sideViewController = [[RESideMenu alloc] initWithContentViewController:naviController leftMenuViewController:sideVC rightMenuViewController:nil];
-    sideViewController.backgroundImage = [UIImage imageNamed:@""];
-    sideViewController.menuPreferredStatusBarStyle = UIStatusBarStyleDefault;
-    sideViewController.parallaxEnabled = NO;
-    //阴影颜色
-    sideViewController.contentViewShadowColor = [UIColor blackColor];
-    //阴影偏移量
-    sideViewController.contentViewShadowOffset = CGSizeMake(-5, 0);
-    //阴影不透明度
-    sideViewController.contentViewShadowOpacity = 0.5;
-    //阴影半径范围
-    sideViewController.contentViewShadowRadius = 12;
-    //是否启用阴影
-    sideViewController.contentViewShadowEnabled = YES;
-    //缩放比例 2.2～0.0
-    sideViewController.contentViewScaleValue = 0.8;
-    //是否启用缩放
-    sideViewController.scaleBackgroundImageView = NO;
-    //设置动画时间
-    sideViewController.animationDuration = 0.3;
-    
-    sideViewController.menuPrefersStatusBarHidden = NO;
-    
-    //RESideMenu默认设置的状态栏颜色总是黑色的，修改其中的preferredStatusBarStyle方法，使其返回白色状态栏
-    return sideViewController;
-    
-}
-
-
-
 
 //点击登陆后的操作
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password
@@ -424,8 +383,12 @@ static NSString *const kuserType = @"usertype";
         [self.userParam setObject:[textField.text DY_MD5] forKey:kpassword];
     }
 }
+
+#pragma mark 随便看看
 - (void)dealBottom:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // 用户需要随便看看，打开相应的窗体
+    [DVVUserManager userNeedBrowsing];
 }
 
 - (void)dealForget:(UIButton *)sender{

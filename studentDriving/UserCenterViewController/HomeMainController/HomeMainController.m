@@ -13,6 +13,7 @@
 #import "ToolHeader.h"
 #import <SVProgressHUD.h>
 #import "JENetwoking.h"
+#import "DVVSideMenu.h"
 
 #import "ChatViewController.h"
 #import "LoginViewController.h"
@@ -114,6 +115,12 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     [self startSubjectFirstDownLoad];
     [self startSubjectFourDownLoad];
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+}
+
 #pragma mark ---- 
 - (void)startSubjectFirstDownLoad {
     NSString *urlString = [NSString stringWithFormat:BASEURL,kexamquestionUrl];
@@ -631,20 +638,6 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
         [_mainScrollView addSubview:_subjectFourView];
     }
     return _subjectFourView;
-}
-- (void)addSideMenuButton {
-    
-    CGRect backframe= CGRectMake(0, 0, 24, 24);
-    UIButton* backButton= [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = backframe;
-    [backButton setImage:[UIImage imageNamed:@"side_menu"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(sideMenuButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
-}
-
-- (void)sideMenuButtonAction {
-    
-    [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 @end
