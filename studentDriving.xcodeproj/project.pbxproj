@@ -522,9 +522,19 @@
 		D96D1BCC1C2B858400F1C282 /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BC81C2B858400F1C282 /* AppDelegate.mm */; };
 		D96D1BD31C2B859C00F1C282 /* FourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BCF1C2B859C00F1C282 /* FourViewController.m */; };
 		D96D1BD41C2B859C00F1C282 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BD21C2B859C00F1C282 /* ThirdViewController.m */; };
+		D96D1BE71C2B88A000F1C282 /* UIColor+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BD71C2B88A000F1C282 /* UIColor+Extension.m */; };
+		D96D1BE81C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BD91C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.m */; };
+		D96D1BE91C2B88A000F1C282 /* UINavigationItem+DVVBackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BDB1C2B88A000F1C282 /* UINavigationItem+DVVBackItem.m */; };
+		D96D1BEA1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BDE1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.m */; };
+		D96D1BEB1C2B88A000F1C282 /* DVVSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BE01C2B88A000F1C282 /* DVVSideMenu.m */; };
+		D96D1BEC1C2B88A000F1C282 /* DVVSideMenuCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BE21C2B88A000F1C282 /* DVVSideMenuCell.m */; };
+		D96D1BED1C2B88A000F1C282 /* DVVSideMenuFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BE41C2B88A000F1C282 /* DVVSideMenuFooterView.m */; };
+		D96D1BEE1C2B88A000F1C282 /* DVVSideMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BE61C2B88A000F1C282 /* DVVSideMenuHeaderView.m */; };
+		D96D1BF71C2BD47900F1C282 /* DVVUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BF61C2BD47900F1C282 /* DVVUserManager.m */; };
+		D96D1BFA1C2BF61700F1C282 /* DVVSideMenuBlockView.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BF91C2BF61700F1C282 /* DVVSideMenuBlockView.m */; };
+		D96D1C001C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BFF1C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.m */; };
+		D96D1C031C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1C021C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m */; };
 		D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */; };
-		D9B7F1221C2546FD00D1A143 /* UINavigationBar+NavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F11F1C2546FD00D1A143 /* UINavigationBar+NavigationBar.m */; };
-		D9B7F1231C2546FD00D1A143 /* UINavigationItem+BackItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1211C2546FD00D1A143 /* UINavigationItem+BackItem.m */; };
 		D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */; };
 		D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1291C255F3400D1A143 /* CirclePoint.m */; };
 		D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F12B1C255F3400D1A143 /* CircularMotion.m */; };
@@ -1372,12 +1382,32 @@
 		D96D1BCF1C2B859C00F1C282 /* FourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourViewController.m; sourceTree = "<group>"; };
 		D96D1BD11C2B859C00F1C282 /* ThirdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		D96D1BD21C2B859C00F1C282 /* ThirdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		D96D1BD61C2B88A000F1C282 /* UIColor+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Extension.h"; sourceTree = "<group>"; };
+		D96D1BD71C2B88A000F1C282 /* UIColor+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Extension.m"; sourceTree = "<group>"; };
+		D96D1BD81C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+DVVNavigationBar.h"; sourceTree = "<group>"; };
+		D96D1BD91C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+DVVNavigationBar.m"; sourceTree = "<group>"; };
+		D96D1BDA1C2B88A000F1C282 /* UINavigationItem+DVVBackItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+DVVBackItem.h"; sourceTree = "<group>"; };
+		D96D1BDB1C2B88A000F1C282 /* UINavigationItem+DVVBackItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+DVVBackItem.m"; sourceTree = "<group>"; };
+		D96D1BDD1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVOpenControllerFromSideMenu.h; sourceTree = "<group>"; };
+		D96D1BDE1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVOpenControllerFromSideMenu.m; sourceTree = "<group>"; };
+		D96D1BDF1C2B88A000F1C282 /* DVVSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSideMenu.h; sourceTree = "<group>"; };
+		D96D1BE01C2B88A000F1C282 /* DVVSideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenu.m; sourceTree = "<group>"; };
+		D96D1BE11C2B88A000F1C282 /* DVVSideMenuCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSideMenuCell.h; sourceTree = "<group>"; };
+		D96D1BE21C2B88A000F1C282 /* DVVSideMenuCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenuCell.m; sourceTree = "<group>"; };
+		D96D1BE31C2B88A000F1C282 /* DVVSideMenuFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSideMenuFooterView.h; sourceTree = "<group>"; };
+		D96D1BE41C2B88A000F1C282 /* DVVSideMenuFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenuFooterView.m; sourceTree = "<group>"; };
+		D96D1BE51C2B88A000F1C282 /* DVVSideMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSideMenuHeaderView.h; sourceTree = "<group>"; };
+		D96D1BE61C2B88A000F1C282 /* DVVSideMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenuHeaderView.m; sourceTree = "<group>"; };
+		D96D1BF51C2BD47900F1C282 /* DVVUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVUserManager.h; sourceTree = "<group>"; };
+		D96D1BF61C2BD47900F1C282 /* DVVUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVUserManager.m; sourceTree = "<group>"; };
+		D96D1BF81C2BF61700F1C282 /* DVVSideMenuBlockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSideMenuBlockView.h; sourceTree = "<group>"; };
+		D96D1BF91C2BF61700F1C282 /* DVVSideMenuBlockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenuBlockView.m; sourceTree = "<group>"; };
+		D96D1BFE1C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSideMenuBlockViewItemButton.h; sourceTree = "<group>"; };
+		D96D1BFF1C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenuBlockViewItemButton.m; sourceTree = "<group>"; };
+		D96D1C011C2BFB2D00F1C282 /* DVVSideMenuCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSideMenuCollectionView.h; sourceTree = "<group>"; };
+		D96D1C021C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenuCollectionView.m; sourceTree = "<group>"; };
 		D9A46DCA1C25049900271747 /* SweepCodeSignInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SweepCodeSignInController.h; sourceTree = "<group>"; };
 		D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SweepCodeSignInController.m; sourceTree = "<group>"; };
-		D9B7F11E1C2546FD00D1A143 /* UINavigationBar+NavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+NavigationBar.h"; sourceTree = "<group>"; };
-		D9B7F11F1C2546FD00D1A143 /* UINavigationBar+NavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+NavigationBar.m"; sourceTree = "<group>"; };
-		D9B7F1201C2546FD00D1A143 /* UINavigationItem+BackItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationItem+BackItem.h"; sourceTree = "<group>"; };
-		D9B7F1211C2546FD00D1A143 /* UINavigationItem+BackItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationItem+BackItem.m"; sourceTree = "<group>"; };
 		D9B7F1241C254ECC00D1A143 /* YBBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseNavigationController.h; sourceTree = "<group>"; };
 		D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseNavigationController.m; sourceTree = "<group>"; };
 		D9B7F1281C255F3400D1A143 /* CirclePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CirclePoint.h; sourceTree = "<group>"; };
@@ -2354,15 +2384,17 @@
 			children = (
 				D96D1BC01C2B858400F1C282 /* AppDelegate */,
 				D961BC761C27FFB700940577 /* GuidePage */,
+				D96D1BD51C2B88A000F1C282 /* DVVNavigation */,
+				D96D1BDC1C2B88A000F1C282 /* DVVSideMenu */,
 				B8272D3E1C1EE49700BE0D2D /* SliderMenu */,
 				D5D50EAE1BFA204A00F54097 /* Goods */,
 				D56049AD1BF656A70020F0D7 /* EaseMobManager */,
+				066BFB111C23A29F002A1DD8 /* HomeMainController */,
 				D588B0781BDDDBCA000C5D6F /* ApplyDrivingViewController */,
 				D588B0741BDDDBAA000C5D6F /* SubjectFirstViewController */,
 				D588B0551BDDDB87000C5D6F /* SubjectSecondViewController */,
 				D96D1BCD1C2B859C00F1C282 /* FourViewController */,
 				D96D1BD01C2B859C00F1C282 /* ThirdViewController */,
-				066BFB111C23A29F002A1DD8 /* HomeMainController */,
 				D588B0361BDDDB65000C5D6F /* UserCenterViewController */,
 				D588B12B1BDDDC5D000C5D6F /* LoginViewController */,
 				D588B0971BDDDC05000C5D6F /* ProjectCell */,
@@ -2676,10 +2708,6 @@
 			isa = PBXGroup;
 			children = (
 				D9B7F1271C255F0800D1A143 /* CircularMotion */,
-				D9B7F11E1C2546FD00D1A143 /* UINavigationBar+NavigationBar.h */,
-				D9B7F11F1C2546FD00D1A143 /* UINavigationBar+NavigationBar.m */,
-				D9B7F1201C2546FD00D1A143 /* UINavigationItem+BackItem.h */,
-				D9B7F1211C2546FD00D1A143 /* UINavigationItem+BackItem.m */,
 				D965CAB11C239E2E00DCD094 /* DVVCycleShowImagesView.h */,
 				D965CAB21C239E2E00DCD094 /* DVVCycleShowImagesView.m */,
 				D965CAB31C239E2E00DCD094 /* DVVToolBarView.h */,
@@ -2890,6 +2918,44 @@
 				D96D1BD21C2B859C00F1C282 /* ThirdViewController.m */,
 			);
 			path = ThirdViewController;
+			sourceTree = "<group>";
+		};
+		D96D1BD51C2B88A000F1C282 /* DVVNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				D96D1BD61C2B88A000F1C282 /* UIColor+Extension.h */,
+				D96D1BD71C2B88A000F1C282 /* UIColor+Extension.m */,
+				D96D1BD81C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.h */,
+				D96D1BD91C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.m */,
+				D96D1BDA1C2B88A000F1C282 /* UINavigationItem+DVVBackItem.h */,
+				D96D1BDB1C2B88A000F1C282 /* UINavigationItem+DVVBackItem.m */,
+			);
+			path = DVVNavigation;
+			sourceTree = "<group>";
+		};
+		D96D1BDC1C2B88A000F1C282 /* DVVSideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				D96D1BF51C2BD47900F1C282 /* DVVUserManager.h */,
+				D96D1BF61C2BD47900F1C282 /* DVVUserManager.m */,
+				D96D1BDD1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.h */,
+				D96D1BDE1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.m */,
+				D96D1BDF1C2B88A000F1C282 /* DVVSideMenu.h */,
+				D96D1BE01C2B88A000F1C282 /* DVVSideMenu.m */,
+				D96D1BE11C2B88A000F1C282 /* DVVSideMenuCell.h */,
+				D96D1BE21C2B88A000F1C282 /* DVVSideMenuCell.m */,
+				D96D1BE51C2B88A000F1C282 /* DVVSideMenuHeaderView.h */,
+				D96D1BE61C2B88A000F1C282 /* DVVSideMenuHeaderView.m */,
+				D96D1BE31C2B88A000F1C282 /* DVVSideMenuFooterView.h */,
+				D96D1BE41C2B88A000F1C282 /* DVVSideMenuFooterView.m */,
+				D96D1C011C2BFB2D00F1C282 /* DVVSideMenuCollectionView.h */,
+				D96D1C021C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m */,
+				D96D1BF81C2BF61700F1C282 /* DVVSideMenuBlockView.h */,
+				D96D1BF91C2BF61700F1C282 /* DVVSideMenuBlockView.m */,
+				D96D1BFE1C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.h */,
+				D96D1BFF1C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.m */,
+			);
+			path = DVVSideMenu;
 			sourceTree = "<group>";
 		};
 		D9B7F1271C255F0800D1A143 /* CircularMotion */ = {
@@ -3231,6 +3297,7 @@
 				D588B0E01BDDDC14000C5D6F /* StudentDetailCell.m in Sources */,
 				D588B0D71BDDDC14000C5D6F /* DrivingInformationCell.m in Sources */,
 				D588B10E1BDDDC2F000C5D6F /* BLPFAlertView.m in Sources */,
+				D96D1BE71C2B88A000F1C282 /* UIColor+Extension.m in Sources */,
 				D588B0D61BDDDC14000C5D6F /* DrivingDetailCell.m in Sources */,
 				D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */,
 				D588B1201BDDDC2F000C5D6F /* BLInformationManager.m in Sources */,
@@ -3241,6 +3308,7 @@
 				D96D1BD41C2B859C00F1C282 /* ThirdViewController.m in Sources */,
 				D5604B4C1BF656C50020F0D7 /* MWGridViewController.m in Sources */,
 				D588B0CF1BDDDC14000C5D6F /* SignUpCell.m in Sources */,
+				D96D1BEE1C2B88A000F1C282 /* DVVSideMenuHeaderView.m in Sources */,
 				D965CAB01C239DE900DCD094 /* YBBaseViewModel.m in Sources */,
 				D5C240271BED078300832CF3 /* SubjectThreeModel.m in Sources */,
 				D5604C901BF656F30020F0D7 /* MessageModel.m in Sources */,
@@ -3266,6 +3334,7 @@
 				554641C51C2509EA00A55326 /* SignUpListViewController.m in Sources */,
 				066BFB181C23A2C3002A1DD8 /* HomeMainController.m in Sources */,
 				D52638561BDF1FA400ADC2C7 /* ApplyclasstypeinfoModel.m in Sources */,
+				D96D1BEC1C2B88A000F1C282 /* DVVSideMenuCell.m in Sources */,
 				D588B0701BDDDB90000C5D6F /* CancelAppointmentViewController.m in Sources */,
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
 				D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */,
@@ -3293,6 +3362,7 @@
 				55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */,
 				D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */,
 				D5604B411BF656C50020F0D7 /* EMCDDeviceManager+Microphone.m in Sources */,
+				D96D1BF71C2BD47900F1C282 /* DVVUserManager.m in Sources */,
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
 				06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */,
 				D5604C921BF656F30020F0D7 /* MessageReadManager.m in Sources */,
@@ -3337,6 +3407,7 @@
 				D52638591BDF205C00ADC2C7 /* ApplycoachinfoModel.m in Sources */,
 				D5604B4E1BF656C50020F0D7 /* MWPhotoBrowser.m in Sources */,
 				D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */,
+				D96D1BEB1C2B88A000F1C282 /* DVVSideMenu.m in Sources */,
 				D588B04B1BDDDB71000C5D6F /* UserCenterViewController.m in Sources */,
 				D5604B4A1BF656C50020F0D7 /* MWCaptionView.m in Sources */,
 				D588B13C1BDDDC65000C5D6F /* GainPasswordView.m in Sources */,
@@ -3408,6 +3479,7 @@
 				55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */,
 				B8272D4A1C1EF42700BE0D2D /* UIViewController+SliderMenu.m in Sources */,
 				D5BCFEE51BF4924C0019402C /* BLImageViewController.m in Sources */,
+				D96D1BE91C2B88A000F1C282 /* UINavigationItem+DVVBackItem.m in Sources */,
 				D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */,
 				554641BF1C25099700A55326 /* KindlyReminderView.m in Sources */,
 				D526385F1BDF4C4D00ADC2C7 /* ModifyNameViewController.m in Sources */,
@@ -3420,9 +3492,11 @@
 				D5604C7D1BF656F30020F0D7 /* ChatSendHelper.m in Sources */,
 				D5604B471BF656C50020F0D7 /* EmojiEmoticons.m in Sources */,
 				D588B0DA1BDDDC14000C5D6F /* DrivingSelectedCoachCollectionCell.m in Sources */,
+				D96D1BEA1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.m in Sources */,
 				D51256B71BE1F084002717DA /* SubjectTwoModel.m in Sources */,
 				D588B0531BDDDB71000C5D6F /* UserCenterHeadView.m in Sources */,
 				D5604B5C1BF656C50020F0D7 /* UIButton+EMWebCache.m in Sources */,
+				D96D1BED1C2B88A000F1C282 /* DVVSideMenuFooterView.m in Sources */,
 				D51256A51BDFB521002717DA /* SignUpCoachViewController.m in Sources */,
 				D5604B841BF656C50020F0D7 /* UIViewController+DismissKeyboard.m in Sources */,
 				D5D50EE81BFA205000F54097 /* ShopModel.m in Sources */,
@@ -3463,15 +3537,14 @@
 				D5604B631BF656C50020F0D7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				D5604B4F1BF656C50020F0D7 /* MWTapDetectingImageView.m in Sources */,
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
-				D9B7F1221C2546FD00D1A143 /* UINavigationBar+NavigationBar.m in Sources */,
 				06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */,
+				D96D1BE81C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.m in Sources */,
 				D5604B401BF656C50020F0D7 /* EMCDDeviceManager+Media.m in Sources */,
 				D51256AE1BE1CF17002717DA /* StudentModel.m in Sources */,
 				D588B0D11BDDDC14000C5D6F /* CoachInformationCell.m in Sources */,
 				D51256BA1BE21EFF002717DA /* ComplainViewController.m in Sources */,
 				D96D1BCC1C2B858400F1C282 /* AppDelegate.mm in Sources */,
 				D5604B6D1BF656C50020F0D7 /* PSTGridLayoutItem.m in Sources */,
-				D9B7F1231C2546FD00D1A143 /* UINavigationItem+BackItem.m in Sources */,
 				D5604B781BF656C50020F0D7 /* TTGlobalUICommon.m in Sources */,
 				D965CAAC1C239D9F00DCD094 /* DrivingTableHeaderView.m in Sources */,
 				D5604B5B1BF656C50020F0D7 /* NSData+EMImageContentType.m in Sources */,
@@ -3494,6 +3567,7 @@
 				D5604B3E1BF656C50020F0D7 /* EMAudioPlayerUtil.m in Sources */,
 				D5C23FE91BE859E000832CF3 /* ExamClassDetailViewController.m in Sources */,
 				D588AFCB1BDDDAAB000C5D6F /* ExamCarModel.m in Sources */,
+				D96D1BFA1C2BF61700F1C282 /* DVVSideMenuBlockView.m in Sources */,
 				D588AF8B1BDDB62C000C5D6F /* main.m in Sources */,
 				D588B06D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m in Sources */,
 				B8272D411C1EE4BA00BE0D2D /* MenuController.m in Sources */,
@@ -3510,6 +3584,8 @@
 				D5604CC91BF83A690020F0D7 /* ChatListCell.m in Sources */,
 				D5604B811BF656C50020F0D7 /* NSString+Valid.m in Sources */,
 				D5604B5F1BF656C50020F0D7 /* UIImage+EMWebP.m in Sources */,
+				D96D1C001C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.m in Sources */,
+				D96D1C031C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m in Sources */,
 				D5D50EE31BFA205000F54097 /* MyWallet.m in Sources */,
 				D5C240061BE9FB8A00832CF3 /* BLAVplayerCell.m in Sources */,
 				D588B0D01BDDDC14000C5D6F /* CoachDetailCell.m in Sources */,

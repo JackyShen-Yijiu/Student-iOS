@@ -16,6 +16,8 @@
 #import <MJRefresh.h>
 #import <SVProgressHUD.h>
 #import "UIColor+Hex.h"
+#import "DVVSideMenu.h"
+
 static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=%@&count=10";
 
 @interface MyWalletViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -117,6 +119,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self addSideMenuButton];
     
     self.title = @"我的钱包";
     self.automaticallyAdjustsScrollViewInsets = YES;

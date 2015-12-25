@@ -22,6 +22,7 @@
 #import "DrivingCityListView.h"
 #import <BaiduMapAPI/BMKGeocodeSearch.h>
 #import "MJRefresh.h"
+#import "DVVSideMenu.h"
 
 static NSString *const kDrivingUrl = @"searchschool?%@";
 
@@ -60,6 +61,8 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self addSideMenuButton];
     
     _radius = 10000;
     _cityName = @"";

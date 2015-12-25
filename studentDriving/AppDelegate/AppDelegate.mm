@@ -40,6 +40,10 @@
 #import "RESideMenu.h"
 #import "MenuController.h"
 #import "YBWelcomeController.h"
+#import "DVVSideMenu.h"
+
+#import "DVVUserManager.h"
+#import "DVVOpenControllerFromSideMenu.h"
 
 @interface AppDelegate ()
 
@@ -54,23 +58,15 @@
     _connectionState = eEMConnectionConnected;
 
     [MobClick startWithAppkey:@"564cba17e0f55ae100005919" reportPolicy:BATCH   channelId:@""];
-
     
     [self configBaiduMap];
     
-
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.backgroundColor = [UIColor whiteColor];
-    
-    self.main = [[HomeMainController alloc] init];
-    
-    UINavigationController *mainNav = [[UINavigationController alloc] initWithRootViewController:_main];
-    self.window.rootViewController = [self sideControllerWithContentController:mainNav];
-    [self.window makeKeyAndVisible];
-    
+    // 打开主页
+    [DVVOpenControllerFromSideMenu openControllerWithIndex:0];
+    // 检测是否打开登录页
     if (![AcountManager isLogin]) {
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [self.window.rootViewController presentViewController:login animated:YES completion:nil];
+        [DVVUserManager openLoginController];
     }
     
     
@@ -80,53 +76,17 @@
     [NetMonitor manager];
 #pragma mark - JPush
     [self JPushApplication:application didFinishLaunchingWithOptions:launchOptions];
-
     
     //注册环信聊天
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
 //    [YBWelcomeController removeSavedVersion];
-    if ([YBWelcomeController isShowWelcome]) {
-        [YBWelcomeController show];
-    }
+//    if ([YBWelcomeController isShowWelcome]) {
+//        [YBWelcomeController show];
+//    }
     
     return YES;
 }
-
-- (UIViewController *)sideControllerWithContentController:(UINavigationController *)naviController {
-    
-    //创建sideMenu
-    MenuController * sideVC = [[MenuController alloc] init];
-    
-    //创建抽屉
-    RESideMenu *sideViewController = [[RESideMenu alloc] initWithContentViewController:naviController leftMenuViewController:sideVC rightMenuViewController:nil];
-    sideViewController.backgroundImage = [UIImage imageNamed:@""];
-    sideViewController.menuPreferredStatusBarStyle = UIStatusBarStyleDefault;
-    sideViewController.parallaxEnabled = NO;
-    //阴影颜色
-    sideViewController.contentViewShadowColor = [UIColor blackColor];
-    //阴影偏移量
-    sideViewController.contentViewShadowOffset = CGSizeMake(-5, 0);
-    //阴影不透明度
-    sideViewController.contentViewShadowOpacity = 0.5;
-    //阴影半径范围
-    sideViewController.contentViewShadowRadius = 12;
-    //是否启用阴影
-    sideViewController.contentViewShadowEnabled = YES;
-    //缩放比例 2.2～0.0
-    sideViewController.contentViewScaleValue = 0.8;
-    //是否启用缩放
-    sideViewController.scaleBackgroundImageView = NO;
-    //设置动画时间
-    sideViewController.animationDuration = 0.3;
-    
-    sideViewController.menuPrefersStatusBarHidden = NO;
-    
-    //RESideMenu默认设置的状态栏颜色总是黑色的，修改其中的preferredStatusBarStyle方法，使其返回白色状态栏
-    return sideViewController;
-    
-}
-
 
 - (void)configBaiduMap {
     _mapManager = [[BMKMapManager alloc] init];
