@@ -11,13 +11,16 @@
 @interface DVVUserManager : NSObject
 
 // 打开登录窗体
-+ (void)openLoginController;
++ (void)userNeedLogin;
 
 // 获得登录窗体
 + (UIViewController *)loginController;
 
 // 用户登录成功后调用此方法打开主页
 + (void)userLoginSucces;
+
+// 用户退出登录后调用此方法
++ (void)userLogout;
 
 // 用户需要随便看看时调用此方法
 + (void)userNeedBrowsing;

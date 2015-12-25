@@ -16,6 +16,8 @@
 #import "SignUpSuccessViewController.h"
 #import "LoginViewController.h"
 
+#import "DVVUserManager.h"
+
 static NSString *advantage = @"liuchengt.html";
 
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
@@ -85,8 +87,7 @@ self.title = @"一步流程";
 - (void)sideMenuButtonAction
 {
     if (![AcountManager isLogin]) {
-        LoginViewController *loginVC = [LoginViewController new];
-        [self presentViewController:loginVC animated:YES completion:nil];
+        [DVVUserManager userNeedLogin];
     }else
     {
         if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {

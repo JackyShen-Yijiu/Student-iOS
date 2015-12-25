@@ -15,6 +15,7 @@
 #import "SignUpSuccessViewController.h"
 #import "LoginViewController.h"
 
+#import "DVVUserManager.h"
 
 static NSString *advantage = @"3.html";
 
@@ -86,8 +87,7 @@ static NSString *advantage = @"3.html";
 {
     if (![AcountManager isLogin]) {
         
-        LoginViewController *loginVC = [LoginViewController new];
-        [self presentViewController:loginVC animated:YES completion:nil];
+        [DVVUserManager userNeedLogin];
     }else
     {
         if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {

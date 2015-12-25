@@ -148,8 +148,8 @@
         
         
     }else {
-        // 处于随便看看状态
-        [DVVUserManager openLoginController];
+        // 未登录状态
+        [DVVUserManager userNeedLogin];
     }
 }
 
@@ -282,6 +282,7 @@
 - (UIImageView *)contentBackgroundImageView {
     if (!_contentBackgroundImageView) {
         _contentBackgroundImageView = [UIImageView new];
+        _contentBackgroundImageView.userInteractionEnabled = YES;
     }
     return _contentBackgroundImageView;
 }

@@ -66,7 +66,7 @@
     [DVVOpenControllerFromSideMenu openControllerWithIndex:0];
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
-        [DVVUserManager openLoginController];
+        [DVVUserManager userNeedLogin];
     }
     
     
