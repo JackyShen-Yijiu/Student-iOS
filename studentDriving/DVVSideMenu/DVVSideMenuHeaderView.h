@@ -15,6 +15,9 @@
 @property (nonatomic, strong) UILabel *drivingNameLabel;
 @property (nonatomic, strong) UILabel *markLabel;
 
+@property (nonatomic, strong) UILabel *integralLabel;
+@property (nonatomic, strong) UILabel *integralMarkLabel;
+
 @property(nonatomic, assign) CGFloat defaultHeight;
 
 @end

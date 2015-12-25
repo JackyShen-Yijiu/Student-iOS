@@ -72,7 +72,7 @@
             [window makeKeyAndVisible];
         }
             break;
-        case 4:// 我
+        case 6:// 我
         {
             UINavigationController *naviController = nil;
             

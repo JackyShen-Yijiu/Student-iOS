@@ -17,4 +17,6 @@ typedef void(^DVVSideMenuBlockViewSelectedBlock)(UIButton *button);
 
 - (instancetype)initWithTitleArray:(NSArray *)array;
 
+- (void)dvvSideMenuBlockViewItemSelected:(DVVSideMenuBlockViewSelectedBlock)handle;
+
 @end
