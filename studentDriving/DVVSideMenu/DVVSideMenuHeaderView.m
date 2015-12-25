@@ -19,12 +19,22 @@
         [self addSubview:self.nameLabel];
         [self addSubview:self.drivingNameLabel];
         [self addSubview:self.markLabel];
+        [self addSubview:self.integralLabel];
         
         _nameLabel.text = @"哒哒塔塔";
         _drivingNameLabel.text = @"驾校：未报考";
         _markLabel.text = @"我的Y码：1001010101";
+        [self setIntegralLabelText:@"0"];
     }
     return self;
+}
+
+- (void)setIntegralLabelText:(NSString *)string {
+    
+    NSMutableAttributedString *attributeStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@豆币",string]];
+    [attributeStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:(NSRange){ attributeStr.length - 2, 2 }];
+    [attributeStr addAttribute:NSForegroundColorAttributeName value:[UIColor whiteColor] range:(NSRange){ attributeStr.length - 2, 2 }];
+    self.integralLabel.attributedText = attributeStr;
 }
 
 - (void)layoutSubviews {
@@ -42,6 +52,9 @@
                                       labelHeight);
     self.drivingNameLabel.frame = CGRectMake(minX, CGRectGetMaxY(self.nameLabel.frame), labelWidth, labelHeight);
     self.markLabel.frame = CGRectMake(minX, CGRectGetMaxY(self.drivingNameLabel.frame), labelWidth, labelHeight);
+    CGFloat iconButtonMaxY = CGRectGetMaxY(self.iconButton.frame);
+    CGFloat iconButtonMinX = CGRectGetMinX(self.iconButton.frame);
+    self.integralLabel.frame = CGRectMake(iconButtonMinX, iconButtonMaxY + 20, labelWidth, 30);
 }
 
 #pragma mark - lazy load
@@ -67,7 +80,7 @@
 - (UILabel *)drivingNameLabel {
     if (!_drivingNameLabel) {
         _drivingNameLabel = [UILabel new];
-        _drivingNameLabel.font = [UIFont systemFontOfSize:14];
+        _drivingNameLabel.font = [UIFont systemFontOfSize:12];
         _drivingNameLabel.textColor = [UIColor whiteColor];
     }
     return _drivingNameLabel;
@@ -76,14 +89,30 @@
 - (UILabel *)markLabel {
     if (!_markLabel) {
         _markLabel = [UILabel new];
-        _markLabel.font = [UIFont systemFontOfSize:14];
+        _markLabel.font = [UIFont systemFontOfSize:12];
         _markLabel.textColor = [UIColor whiteColor];
     }
     return _markLabel;
 }
+- (UILabel *)integralLabel {
+    if (!_integralLabel) {
+        _integralLabel = [UILabel new];
+        _integralLabel.font = [UIFont systemFontOfSize:24];
+        _integralLabel.textColor = [UIColor redColor];
+    }
+    return _integralLabel;
+}
+- (UILabel *)integralMarkLabel {
+    if (!_integralMarkLabel) {
+        _integralMarkLabel = [UILabel new];
+        _integralMarkLabel.font = [UIFont systemFontOfSize:14];
+        _integralMarkLabel.textColor = [UIColor whiteColor];
+    }
+    return _integralMarkLabel;
+}
 
 - (CGFloat)defaultHeight {
-    return 110;
+    return 140;
 }
 
 /*

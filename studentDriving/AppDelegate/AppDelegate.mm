@@ -66,7 +66,7 @@
     [DVVOpenControllerFromSideMenu openControllerWithIndex:0];
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
-        [DVVUserManager openLoginController];
+        [DVVUserManager userNeedLogin];
     }
     
     
@@ -85,6 +85,8 @@
 //        [YBWelcomeController show];
 //    }
     
+    // 设置StatusBarStyle为白色（需要在在infor.plist中加入key:UIViewControllerBasedStatusBarAppearance 并设置其值为NO）
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     return YES;
 }
 

@@ -9,6 +9,7 @@
 #import "DVVSideMenu.h"
 #import "DVVOpenControllerFromSideMenu.h"
 #import "DVVSideMenuHeaderView.h"
+#import "DVVSideMenuFooterView.h"
 #import "DVVSideMenuBlockView.h"
 
 #import "UIButton+WebCache.h"
@@ -29,11 +30,16 @@
 @property (nonatomic, strong) NSArray * titleArray;
 @property (nonatomic, strong) NSArray * normalImages;
 @property (nonatomic, strong) NSArray * selectedImages;
+@property (nonatomic, strong) NSArray * markTitleArray;
+
+@property (nonatomic, strong) NSArray *blockTitleArray;
+@property (nonatomic, strong) NSArray *blockImagesArray;
 
 @property (nonatomic, strong) DVVSideMenuCell * lastSelectedCell;
 @property (nonatomic, assign) NSInteger selectedIdx;
 
 @property (nonatomic, strong) DVVSideMenuHeaderView *headerView;
+@property (nonatomic, strong) DVVSideMenuFooterView *footerView;
 @property (nonatomic, strong) DVVSideMenuBlockView *blockView;
 
 + (instancetype)sharedMenu;
@@ -106,15 +112,18 @@
     _selectedIdx = -1;
     
     _titleArray = @[ @"积分收益", @"商城兑换券", @"可取现金额" ];
+    _markTitleArray = @[ @"豆币", @"张", @"元" ];
+    _blockImagesArray = @[ @"side_menu_block_home", @"side_menu_block_search_driving", @"side_menu_block_message", @"side_menu_block_mall", @"side_menu_block_activity", @"side_menu_block_sign_in", @"side_menu_block_set" ];
     
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.contentView];
     [_contentView addSubview:self.contentBackgroundImageView];
     [_contentView addSubview:self.tableView];
     [_contentView addSubview:self.blockView];
+    [_contentView addSubview:self.footerView];
     
+    _contentBackgroundImageView.image = [UIImage imageNamed:@"side_menu_bg"];
     [self configLayout];
-    
     self.tableView.tableHeaderView = self.headerView;
 }
 
@@ -130,19 +139,27 @@
 #pragma mark 头像的点击事件
 - (void)iconButtonAction:(UIButton *)sender {
     
+    _selectedIdx = -1;
+    [self removeSideMenu];
     if ([AcountManager isLogin]) {
         // 登录状态
-        _selectedIdx = -1;
-        [self removeSideMenu];
         EditorUserViewController *editorUserVC = [EditorUserViewController new];
         [(UINavigationController *)([UIApplication sharedApplication].keyWindow.rootViewController) pushViewController:editorUserVC animated:YES];
         
         
     }else {
-        // 处于随便看看状态
-        [DVVUserManager openLoginController];
+        // 未登录状态
+        [DVVUserManager userNeedLogin];
     }
+}
+
+#pragma mark 方块的点击事件
+- (void)blockAction:(UIButton *)button {
     
+    // 设置当前点击的项（用于打开对应的窗体）
+    _selectedIdx = button.tag;
+    // 移除sideMenu（sideMenu移除后，会调用openViewController:打开相应窗体）
+    [self removeSideMenu];
 }
 
 #pragma mark - 从父视图移除SideMenu
@@ -190,7 +207,7 @@
     cell.nameLabel.text = _titleArray[indexPath.row];
     
     cell.contentLabel.text = @"0.34";
-    cell.markLabel.text = @"豆币";
+    cell.markLabel.text = _markTitleArray[indexPath.row];
     
     return cell;
 }
@@ -211,10 +228,10 @@
     
     _lastSelectedCell = cell;
     
-    // 设置当前点击的项（用于打开对应的窗体）
-    _selectedIdx = indexPath.row;
-    // 移除sideMenu（sideMenu移除后，会调用openViewController:打开相应窗体）
-    [self removeSideMenu];
+//    // 设置当前点击的项（用于打开对应的窗体）
+//    _selectedIdx = indexPath.row;
+//    // 移除sideMenu（sideMenu移除后，会调用openViewController:打开相应窗体）
+//    [self removeSideMenu];
 }
 
 #pragma mark - config layout
@@ -223,13 +240,14 @@
     CGRect screenRect = [UIScreen mainScreen].bounds;
     self.backgroundView.frame = screenRect;
     // 先隐藏在左边
-    self.contentView.frame = CGRectMake(- screenRect.size.width * 0.8, 0, screenRect.size.width * 0.8, screenRect.size.height);
+    CGFloat contentViewWidth = screenRect.size.width * 0.8;
+    self.contentView.frame = CGRectMake(- screenRect.size.width * 0.8, 0, contentViewWidth, screenRect.size.height);
     self.contentBackgroundImageView.frame = self.contentView.bounds;
     
     self.tableView.frame = CGRectMake(0, 0, self.contentView.bounds.size.width, self.headerView.defaultHeight + 44 * 3);
     self.headerView.frame = CGRectMake(0, 0, self.contentView.bounds.size.width, self.headerView.defaultHeight);
-    
-    self.blockView.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame) + 10, self.contentView.bounds.size.width, 200);
+    self.footerView.frame = CGRectMake(0, screenRect.size.height - 50, contentViewWidth, 50);
+    self.blockView.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame) + 10, contentViewWidth, CGRectGetMinY(self.footerView.frame) - CGRectGetMaxY(self.tableView.frame) - 10);
     
     _contentView.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
     //    _contentBackgroundImageView.image = [UIImage imageNamed:@"side_menu_bg"];
@@ -264,6 +282,7 @@
 - (UIImageView *)contentBackgroundImageView {
     if (!_contentBackgroundImageView) {
         _contentBackgroundImageView = [UIImageView new];
+        _contentBackgroundImageView.userInteractionEnabled = YES;
     }
     return _contentBackgroundImageView;
 }
@@ -276,11 +295,24 @@
     return _headerView;
 }
 
+- (DVVSideMenuFooterView *)footerView {
+    if (!_footerView) {
+        _footerView = [DVVSideMenuFooterView new];
+    }
+    return _footerView;
+}
+
 - (DVVSideMenuBlockView *)blockView {
     if (!_blockView) {
-        NSArray *titleArray = @[ @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9" ];
+        NSArray *titleArray = @[ @"1", @"2", @"3", @"4", @"5", @"6", @"7" ];
         _blockView = [[DVVSideMenuBlockView alloc] initWithTitleArray:titleArray];
-        _blockView.backgroundColor = [UIColor lightGrayColor];
+        _blockView.iconNormalArray = _blockImagesArray;
+        _blockView.backgroundColor = [UIColor clearColor];
+        __weak typeof(self) ws = self;
+        [_blockView dvvSideMenuBlockViewItemSelected:^(UIButton *button) {
+            
+            [ws blockAction:button];
+        }];
     }
     return _blockView;
 }

@@ -16,4 +16,6 @@
 @property (nonatomic, strong) UILabel *contentLabel;
 @property (nonatomic, strong) UILabel *markLabel;
 
+@property (nonatomic, strong) UIImageView *lineImageView;
+
 @end

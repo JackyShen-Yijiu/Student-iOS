@@ -8,6 +8,8 @@
 
 #import "DVVOpenControllerFromSideMenu.h"
 #import "AppDelegate.h"
+#import "AcountManager.h"
+#import "DVVUserManager.h"
 #import "LoginViewController.h"
 #import "HomeMainController.h"
 #import "DrivingViewController.h"
@@ -38,6 +40,11 @@
             break;
         case 1:// 查找驾校
         {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
+            
             UINavigationController *naviController = nil;
             
             DrivingViewController *controller = [DrivingViewController new];
@@ -50,6 +57,10 @@
             break;
         case 2:// 消息
         {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
             UINavigationController *naviController = nil;
             
             ChatListViewController *controller = [ChatListViewController new];
@@ -62,6 +73,10 @@
             break;
         case 3:// 钱包
         {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
             UINavigationController *naviController = nil;
             
             MyWalletViewController *controller = [MyWalletViewController new];
@@ -72,8 +87,12 @@
             [window makeKeyAndVisible];
         }
             break;
-        case 4:// 我
+        case 6:// 我
         {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
             UINavigationController *naviController = nil;
             
             UserCenterViewController *controller = [UserCenterViewController new];

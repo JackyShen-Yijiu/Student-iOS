@@ -14,9 +14,9 @@
 #import <SVProgressHUD.h>
 #import "JENetwoking.h"
 #import "DVVSideMenu.h"
+#import "DVVUserManager.h"
 
 #import "ChatViewController.h"
-#import "LoginViewController.h"
 #import "SignUpListViewController.h"
 // 首页
 #import "HomeAdvantageController.h"
@@ -364,8 +364,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 WrongQuestionViewController *wrongQuestion = [[WrongQuestionViewController alloc] init];
                 if (![AcountManager isLogin]) {
                     DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-                    LoginViewController *login = [[LoginViewController alloc] init];
-                    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+                    [DVVUserManager userNeedLogin];
                     return;
                 }else {
                     NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
@@ -414,9 +413,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     {
         // 如果没登录,滑到科目2,调到登录页面
         if (![AcountManager isLogin]) {
-            LoginViewController *loginVC = [LoginViewController new];
-//            [self.navigationController pushViewController:loginVC animated:YES];
-            [self presentViewController:loginVC animated:YES completion:nil];
+            [DVVUserManager userNeedLogin];
             self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }

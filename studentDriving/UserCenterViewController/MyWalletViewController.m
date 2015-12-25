@@ -286,9 +286,13 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data)  {
         DYNSLog(@"data = %@",data);
         [self.tableView.mj_header endRefreshing];
-
+        
+        if (![[data objectForKey:@"type"] integerValue]) {
+            return ;
+        }
         NSDictionary *param = [data objectForKey:@"data"];
         NSArray *list = [param objectForKey:@"list"];
+        
         NSString *walletString = [NSString stringWithFormat:@"%@",param[@"wallet"]];
         NSLog(@"walletStringTest = %@",walletString);
         

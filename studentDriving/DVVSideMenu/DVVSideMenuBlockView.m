@@ -9,6 +9,12 @@
 #import "DVVSideMenuBlockView.h"
 #import "DVVSideMenuBlockViewItemButton.h"
 
+@interface DVVSideMenuBlockView()
+
+@property (nonatomic, copy)DVVSideMenuBlockViewSelectedBlock itemSelectedBlock;
+
+@end
+
 @implementation DVVSideMenuBlockView
 
 - (instancetype)initWithTitleArray:(NSArray *)array {
@@ -21,10 +27,21 @@
             button.tag = idx;
             [button setTitle:title forState:UIControlStateNormal];
             [self addSubview:button];
-            button.backgroundColor = [UIColor redColor];
+            button.backgroundColor = [UIColor clearColor];
+            [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchDown];
         }];
     }
     return self;
+}
+
+- (void)buttonAction:(UIButton *)button {
+    if (_itemSelectedBlock) {
+        _itemSelectedBlock(button);
+    }
+}
+
+- (void)dvvSideMenuBlockViewItemSelected:(DVVSideMenuBlockViewSelectedBlock)handle {
+    _itemSelectedBlock = handle;
 }
 
 - (void)layoutSubviews {
@@ -45,8 +62,11 @@
     CGFloat buttonSideLength = 0;
     if (selfHeight < selfWidth ) {
         tempFloat = selfHeight;
+        buttonSideLength = (tempFloat - buttonSpace * (buttonNum + 1)) / buttonNum;
+    }else {
+        buttonSideLength = (tempFloat - leftMargin * 2 - buttonSpace * (buttonNum + 1)) / buttonNum;
     }
-    buttonSideLength = (tempFloat - buttonSpace * (buttonNum + 1)) / buttonNum;
+    
     if (selfHeight < selfWidth) {
         leftMargin = (selfWidth - selfHeight) / 2.f;
     }
@@ -58,12 +78,15 @@
     }else {
         line = arrayNum / buttonNum;
     }
-    for (UIButton *button in self.subviews) {
+    
+    [self.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        UIButton *button = (UIButton *)obj;
         button.frame = CGRectMake(leftMargin + buttonSpace +(buttonSpace + buttonSideLength) * (button.tag % 3),
                                   buttonSpace + (buttonSpace + buttonSideLength) * (button.tag / 3),
                                   buttonSideLength,
                                   buttonSideLength);
-    }
+        [button setBackgroundImage:[UIImage imageNamed:[_iconNormalArray objectAtIndex:idx]] forState:UIControlStateNormal];
+    }];
 }
 
 /*

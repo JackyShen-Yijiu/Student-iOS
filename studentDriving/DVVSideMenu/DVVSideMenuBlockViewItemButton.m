@@ -9,7 +9,7 @@
 #import "DVVSideMenuBlockViewItemButton.h"
 
 // 文字的高度比例
-static CGFloat kTitleRatio = 0.3f;
+static CGFloat kTitleRatio = 0.f;
 
 @implementation DVVSideMenuBlockViewItemButton
 

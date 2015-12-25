@@ -10,4 +10,7 @@
 
 @interface DVVSideMenuFooterView : UIView
 
+@property (nonatomic, strong) UILabel *contactUsLabel;
+@property (nonatomic, strong) UILabel *markLabel;
+
 @end

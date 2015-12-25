@@ -15,6 +15,8 @@
 #import <NJKWebViewProgressView.h>
 #import "ToolHeader.h"
 
+#import "DVVUserManager.h"
+
 #import "LoginViewController.h"
 static NSString *advantage = @"youshi.html";
 
@@ -91,9 +93,7 @@ static NSString *advantage = @"youshi.html";
 - (void)sideMenuButtonAction
 {
     if (![AcountManager isLogin]) {
-       
-        LoginViewController *loginVC = [LoginViewController new];
-        [self presentViewController:loginVC animated:YES completion:nil];
+        [DVVUserManager userNeedLogin];
     }else
     {
         if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {

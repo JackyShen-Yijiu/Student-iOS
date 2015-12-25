@@ -21,6 +21,8 @@
 #import "SignUpSuccessViewController.h"
 #import "SignUpListViewController.h"
 #import "DVVSideMenu.h"
+#import "DVVUserManager.h"
+#import "DVVOpenControllerFromSideMenu.h"
 
 //#import "MainViewController.h"
 #import <JPush/APService.h>
@@ -103,11 +105,12 @@
         }
     } onQueue:nil];
 
-    [self dismissViewControllerAnimated:NO completion:nil];
+//    [self dismissViewControllerAnimated:NO completion:nil];
     [APService setAlias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
-    [self.navigationController popToRootViewControllerAnimated:NO];
+//    [self.navigationController popToRootViewControllerAnimated:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kQuitSuccess" object:nil];
-    [self showLoginView];
+    [AcountManager removeAllData];
+    [DVVUserManager userLogout];
     
 }
 //取消别名标示
