@@ -63,7 +63,7 @@
 - (void)show
 {
     UINavigationController * rsm = (UINavigationController *)[[UIApplication sharedApplication].delegate window].rootViewController;
-    if (_controller && [[rsm visibleViewController] class] == _controller) {
+    if (_controller && [rsm visibleViewController] == _controller) {
         UIWindow * win = [[UIApplication sharedApplication].delegate window];
         for (UIView * view in [win subviews]) {
             if ([view isKindOfClass:[ToastAlertView class]] ) {

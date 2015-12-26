@@ -56,7 +56,7 @@
         if([self.navigationController topViewController] != self) return;
     }
 
-    ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message];
+    ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
     [alertView show];
 }
 

@@ -29,7 +29,7 @@
 + (void)userNeedLogin {
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
+    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:NO];
 }
 
 // 用户登录成功后调用此方法打开主页
