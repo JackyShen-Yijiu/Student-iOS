@@ -174,11 +174,11 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 //    
 //}
 - (void)conformNavItem {
-//    UIBarButtonItem *navTimeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemTime];
+    UIBarButtonItem *navTimeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemTime];
     UIBarButtonItem *navMessegeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemMessege];
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceItem.width = -15;
-    self.navigationItem.rightBarButtonItems = @[spaceItem,navMessegeItem];
+    self.navigationItem.rightBarButtonItems = @[spaceItem,navMessegeItem,spaceItem,navTimeItem];
 }
 - (UIView *)tableViewHeadView {
     UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 90)];
