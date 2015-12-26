@@ -37,6 +37,7 @@
 		B8272D4A1C1EF42700BE0D2D /* UIViewController+SliderMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D491C1EF42700BE0D2D /* UIViewController+SliderMenu.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
+		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
 		D512569C1BDF602B002717DA /* CommonAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D512569B1BDF602B002717DA /* CommonAddressViewController.m */; };
 		D512569F1BDFAA31002717DA /* SignUpDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D512569E1BDFAA31002717DA /* SignUpDrivingViewController.m */; };
 		D51256A21BDFAA53002717DA /* SignUpDrivingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51256A11BDFAA53002717DA /* SignUpDrivingDetailViewController.m */; };
@@ -604,6 +605,8 @@
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
 		B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Method.m"; sourceTree = "<group>"; };
+		B84D9D251C2EB28000A8BDC2 /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
+		B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B8E979B51C1DC244002DEA0A /* EaseMobSDK-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseMobSDK-PrefixHeader.pch"; sourceTree = "<group>"; };
 		D512569A1BDF602B002717DA /* CommonAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAddressViewController.h; sourceTree = "<group>"; };
 		D512569B1BDF602B002717DA /* CommonAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAddressViewController.m; sourceTree = "<group>"; };
@@ -2399,6 +2402,8 @@
 		D588AF881BDDB62C000C5D6F /* studentDriving */ = {
 			isa = PBXGroup;
 			children = (
+				B84D9D251C2EB28000A8BDC2 /* AFNetworkActivityLogger.h */,
+				B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */,
 				B84D9D1E1C2E807200A8BDC2 /* TotasView */,
 				D96D1BC01C2B858400F1C282 /* AppDelegate */,
 				D961BC761C27FFB700940577 /* GuidePage */,
@@ -3346,6 +3351,7 @@
 				D5604B871BF656C50020F0D7 /* EMSearchBar.m in Sources */,
 				D52638531BDF1AED00ADC2C7 /* DrivingCandidatesViewController.m in Sources */,
 				D588B14C1BDE157A000C5D6F /* QuestionTestViewController.m in Sources */,
+				B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */,
 				D5604B4B1BF656C50020F0D7 /* MWGridCell.m in Sources */,
 				D5604B6E1BF656C50020F0D7 /* PSTGridLayoutRow.m in Sources */,
 				D5604B491BF656C50020F0D7 /* MBProgressHUD.m in Sources */,

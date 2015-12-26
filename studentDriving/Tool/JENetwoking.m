@@ -67,39 +67,40 @@
     manager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy;
     manager.requestSerializer.timeoutInterval = 30.0f;
     if (method == JENetworkingRequestMethodGet) {
-        DYNSLog(@"token = %@",[AcountManager manager].userToken);
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
         [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            if (_completion) {
+                _completion(responseObject);
+            }
             if (responseObject == nil) {
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
                 [alertView show];
                 return ;
             }
-            if (_completion) {
-                _completion(responseObject);
-            }
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-            DYNSLog(@"error = %@",error);
+            if (_completion) {
+                _completion(nil);
+            }
             ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
-            [alertView show];        }];
+            [alertView show];
+        }];
     }else if (method == JENetworkingRequestMethodPost) {
         NSAssert(param != nil, @"param 不能为空");
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
-        DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
 
         [manager POST:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            DYNSLog(@"responseObject = %@",responseObject);
+
+            if (_completion) {
+                _completion(responseObject);
+            }
             if (responseObject == nil) {
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
                 [alertView show];
                 return ;
-            }
-            if (_completion) {
-                _completion(responseObject);
             }
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
             DYNSLog(@"error = %@",error);
@@ -114,41 +115,42 @@
         DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
         
         [manager PUT:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            DYNSLog(@"responseObject = %@",responseObject);
+            if (_completion) {
+                _completion(responseObject);
+            }
             if (responseObject == nil) {
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
                 [alertView show];
                 return ;
             }
-            if (_completion) {
-                _completion(responseObject);
-            }
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-            DYNSLog(@"error = %@",error);
             ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
             [alertView show];
+            if (_completion) {
+                _completion(nil);
+            }
             
         }];
     }else if (method == JENetworkingRequestMethodDelete) {
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
-        DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
         
         [manager DELETE:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            DYNSLog(@"responseObject = %@",responseObject);
+            if (_completion) {
+                _completion(responseObject);
+            }
             if (responseObject == nil) {
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
                 [alertView show];
                 return ;
             }
-            if (_completion) {
-                _completion(responseObject);
-            }
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-            DYNSLog(@"error = %@",error);
             ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
             [alertView show];
+            if (_completion) {
+                _completion(nil);
+            }
             
         }];
     }

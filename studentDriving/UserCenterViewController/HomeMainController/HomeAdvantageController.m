@@ -126,7 +126,6 @@ static NSString *advantage = @"youshi.html";
     
     NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
     DYNSLog(@"store = %@",string);
-    [SVProgressHUD dismiss];
     [_progressView removeFromSuperview];
     
 }
