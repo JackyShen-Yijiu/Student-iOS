@@ -17,3 +17,4 @@ profile
 *.moved-aside
 *.gcno
 *.gcda
+.DS_Store
