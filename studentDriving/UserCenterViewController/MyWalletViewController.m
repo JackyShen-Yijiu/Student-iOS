@@ -251,6 +251,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     DYNSLog(@"loadmore");
     MyWallet *wallet = [self.dataArray lastObject];
     NSString *urlString = [NSString stringWithFormat:kMyWalletUrl,[AcountManager manager].userid,[NSNumber numberWithInt:wallet.seqindex]];
+    urlString = [NSString stringWithFormat:BASEURL,urlString];
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data)  {
         DYNSLog(@"data = %@",data);
         [self.tableView.mj_footer endRefreshing];
