@@ -157,9 +157,6 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     
     __weak AppointmentViewController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:downLoadUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
-
-        [weakSelf.tableView.mj_header endRefreshing];
         
         NSDictionary *param = data;
         NSNumber *type = param[@"type"];
@@ -169,10 +166,9 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
         if (type.integerValue == 1) {
             [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error];
-            DYNSLog(@"error = %@",error);
-            [self.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error]];
-            [self.tableView reloadData];
-            [self.tableView.mj_header endRefreshing];
+            [weakSelf.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error]];
+            [weakSelf.tableView reloadData];
+            [weakSelf.tableView.mj_header endRefreshing];
         }else {
             kShowFail(msg);
         }

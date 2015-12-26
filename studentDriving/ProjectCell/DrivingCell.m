@@ -168,18 +168,21 @@
     [self.drivingNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingImage.mas_right).offset(10);
         make.top.mas_equalTo(self.drivingImage.mas_top).offset(0);
+        make.right.equalTo(self.starImageView.mas_left);
     }];
     
     [self.drivingAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingNameLabel.mas_left).offset(0);
         make.top.mas_equalTo(self.drivingNameLabel.mas_bottom).offset(7);
         NSNumber *wide = [NSNumber numberWithFloat:kSystemWide/2];
-        make.width.mas_equalTo(wide);
+        make.width.equalTo(self.drivingNameLabel);
     }];
     
     [self.moenyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingAddressLabel.mas_left).offset(0);
         make.top.mas_equalTo(self.drivingAddressLabel.mas_bottom).offset(7);
+        make.width.equalTo(self.drivingNameLabel);
+
 //        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide-100];
 //        make.width.mas_equalTo(wide);
     }];

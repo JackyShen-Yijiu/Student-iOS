@@ -303,18 +303,18 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
 
-        NSDictionary *param = data;
-        NSNumber *type = param[@"type"];
-        NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
-        if (type.integerValue == 1) {
-            DYNSLog(@"data = %@",data);
-            NSArray *array = param[@"data"];
-            NSError *error = nil;
-            [self.dataArray addObjectsFromArray: [MTLJSONAdapter modelsOfClass:AppointmentCoachModel.class fromJSONArray:array error:&error]];
-            DYNSLog(@"error = %@",error);
-            [self.coachHeadCollectionView reloadData];
-        }else {
-            kShowFail(msg);
+        if (data) {
+            NSDictionary *param = data;
+            NSNumber *type = param[@"type"];
+            NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+            if (type.integerValue == 1) {
+                NSArray *array = param[@"data"];
+                NSError *error = nil;
+                [self.dataArray addObjectsFromArray: [MTLJSONAdapter modelsOfClass:AppointmentCoachModel.class fromJSONArray:array error:&error]];
+                [self.coachHeadCollectionView reloadData];
+            }else {
+                kShowFail(msg);
+            }
         }
     }];
     
@@ -326,18 +326,19 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        NSDictionary *param = data;
-        NSNumber *type = param[@"type"];
-        NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
-        if (type.integerValue == 1) {
-            NSError *error = nil;
-            self.stuDataArray = [MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error];
-            DYNSLog(@"error = %@",error);
-            [self.sameTimeStudentCollectionView reloadData];
-        }else {
-            kShowFail(msg);
+        if (data) {
+            NSDictionary *param = data;
+            NSNumber *type = param[@"type"];
+            NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+            if (type.integerValue == 1) {
+                NSError *error = nil;
+                self.stuDataArray = [MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error];
+                DYNSLog(@"error = %@",error);
+                [self.sameTimeStudentCollectionView reloadData];
+            }else {
+                kShowFail(msg);
+            }
         }
-        
     }];
     
 }
