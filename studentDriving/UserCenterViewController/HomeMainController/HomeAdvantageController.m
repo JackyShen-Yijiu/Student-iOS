@@ -10,7 +10,6 @@
 #import "SignUpListViewController.h"
 #import "SignUpSuccessViewController.h"
 
-#import <SVProgressHUD.h>
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 #import "ToolHeader.h"
@@ -51,7 +50,6 @@ static NSString *advantage = @"youshi.html";
     [super viewDidLoad];
     self.title = @"一步优势";
     [self addSignUp];
-    [SVProgressHUD show];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
@@ -76,9 +74,8 @@ static NSString *advantage = @"youshi.html";
     
     [self.webView loadRequest:request];
     
+}
 
-
-   }
 - (void)addSignUp
 {
     CGRect backframe= CGRectMake(0, 0, 44, 44);
@@ -102,7 +99,7 @@ static NSString *advantage = @"youshi.html";
         } else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
             [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"您已经报过名"];
+            [self showTotasViewWithMes:@"您已经报过名"];
         }
 
     }
@@ -118,19 +115,18 @@ static NSString *advantage = @"youshi.html";
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
-    [SVProgressHUD dismiss];
     _webView.hidden = NO;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     DYNSLog(@"error");
-    [SVProgressHUD showErrorWithStatus:@"加载失败"];
-    
+    [self showTotasViewWithMes:@"加载失败"];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
     DYNSLog(@"store = %@",string);
+    [SVProgressHUD dismiss];
     [_progressView removeFromSuperview];
     
 }

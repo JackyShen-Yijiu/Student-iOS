@@ -17,7 +17,6 @@
 #import "DrivingDetailViewController.h"
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
-#import <SVProgressHUD.h>
 #define StartOffset  kSystemWide/4-60/2
 
 
@@ -391,9 +390,9 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
               NSDictionary *param = data;
               NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
               if ([type isEqualToString:@"0"]) {
-                  [SVProgressHUD showErrorWithStatus:@"删除失败"];
+                  [self showTotasViewWithMes:@"删除失败"];
               }else if ([type isEqualToString:@"1"]) {
-                  [SVProgressHUD showSuccessWithStatus:@"成功删除"];
+                  [self showTotasViewWithMes:@"成功删除"];
 
               }
               
@@ -413,9 +412,9 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                 NSDictionary *param = data;
                 NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
                 if ([type isEqualToString:@"0"]) {
-                    [SVProgressHUD showErrorWithStatus:@"删除失败"];
+                    [self showTotasViewWithMes:@"删除失败"];
                 }else if ([type isEqualToString:@"1"]) {
-                    [SVProgressHUD showSuccessWithStatus:@"成功删除"];
+                    [self showTotasViewWithMes:@"成功删除"];
                     
                 }
             }];

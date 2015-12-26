@@ -16,7 +16,6 @@
 #import "ModifyNickNameViewController.h"
 #import "CommonAddressViewController.h"
 #import <QiniuSDK.h>
-#import <SVProgressHUD.h>
 #import "JsonTransformManager.h"
 static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 
@@ -166,22 +165,18 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     NSData *photeoData = UIImageJPEGRepresentation(photoImage, 0.5);
     self.userHeadImage.image = photoImage;
     
-    
     __weak EditorUserViewController *weakself = self;
     __block NSData *gcdPhotoData = photeoData;
     NSString *qiniuUrl = [NSString stringWithFormat:BASEURL,kQiniuUpdateUrl];
-    [SVProgressHUD show];
     [JENetwoking startDownLoadWithUrl:qiniuUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
+
         NSDictionary *dataDic = data;
         weakself.qiniuToken = dataDic[@"data"];
         QNUploadManager *upLoadManager = [[QNUploadManager alloc] init];
         NSString *keyUrl = [NSString stringWithFormat:@"%@-%@.png",[NSString currentTimeDay],[AcountManager manager].userid];
-        DYNSLog(@"keyUrl = %@",keyUrl);
         [upLoadManager putData:gcdPhotoData key:keyUrl token:weakself.qiniuToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-            DYNSLog(@"info = %@ %@ %@",info,key,resp);
             if (info) {
-                DYNSLog(@"key = %@",key);
+
                 NSString *upImageUrl = [NSString stringWithFormat:kQiniuImageUrl,key];
                 NSString *updateUserInfoUrl = [NSString stringWithFormat:BASEURL,kupdateUserInfo];
                 NSDictionary *headPortrait  = @{@"originalpic":upImageUrl,@"thumbnailpic":@"",@"width":@"",@"height":@""};
@@ -190,16 +185,14 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
                 [JENetwoking startDownLoadWithUrl:updateUserInfoUrl postParam:dicParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
                     NSDictionary *dataParam = data;
                     NSNumber *messege = dataParam[@"type"];
-                    DYNSLog(@"msg = %@ %@",data,dataParam[@"msg"]);
                     if (messege.intValue == 1) {
-                        [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                        [self showTotasViewWithMes:@"修改成功"];
                         [AcountManager saveUserHeadImageUrl:upImageUrl];
-                        DYNSLog(@"url = %@",[AcountManager manager].userHeadImageUrl);
-
                         [weakself.userHeadImage sd_setImageWithURL:[NSURL URLWithString:[AcountManager manager].userHeadImageUrl] placeholderImage:[UIImage imageWithData:gcdPhotoData]];
 
                     }else {
-                        [SVProgressHUD showErrorWithStatus:@"修改失败"];
+                        [self showTotasViewWithMes:@"修改失败"];
+
                         return;
                     }
                 }];

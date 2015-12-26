@@ -11,7 +11,6 @@
 #import "SignUpCell.h"
 #import "ExamClassViewController.h"
 #import "ExamCarViewController.h"
-#import <SVProgressHUD.h>
 #import "SignUpInfoManager.h"
 #import "DrivingViewController.h"
 #import "SignUpCoachViewController.h"
@@ -160,7 +159,7 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
     }
     else if (indexPath.row == 2) {
         if ([SignUpInfoManager getSignUpSchoolid] == nil || [SignUpInfoManager getSignUpSchoolid].length == 0) {
-            [SVProgressHUD showInfoWithStatus:@"请选择驾校"];
+            [self showTotasViewWithMes:@"请选择驾校"];
             return;
         }
         ExamClassViewController *classType = [[ExamClassViewController alloc] init];//报考班型
@@ -178,7 +177,7 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
 
 - (void)dealRefer:(UIButton *)sender{
     if ([signUpArray[0] isEqualToString:@""]&&[signUpArray[1] isEqualToString:@""]&&[signUpArray[2] isEqualToString:@""]&&[signUpArray[3] isEqualToString:@""]&&[signUpArray[4] isEqualToString:@""]) {
-        [SVProgressHUD showInfoWithStatus:@"信息未填写完整"];
+        [self showTotasViewWithMes:@"信息未填写完整"];
     }else {
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
         NSDictionary *upData = [SignUpInfoManager getSignUpPassInformation];
@@ -201,10 +200,6 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
     
     signUpArray = @[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName],[SignUpInfoManager getSignUpSubjectId]];
     [self.tableView reloadData];
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 
 @end

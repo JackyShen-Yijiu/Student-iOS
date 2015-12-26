@@ -11,7 +11,6 @@
 #import "ExamClassViewController.h"
 #import <Masonry/Masonry.h>
 #import "ExamCarViewController.h"
-#import <SVProgressHUD.h>
 #import <IQKeyboardManager.h>
 #import "JEPhotoPickManger.h"
 #import "SignUpInfoManager.h"
@@ -224,14 +223,14 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
     [cell receiveTitile:titleString andSignUpBlock:^(NSString *completionString) {
         if (indexPath.row == 0) {
             if (completionString == nil || completionString.length == 0) {
-                [SVProgressHUD showErrorWithStatus:@"请输入真实姓名"];
+                [self showTotasViewWithMes:@"请输入真实姓名"];
                 return ;
             }
             [SignUpInfoManager signUpInfoSaveRealName:completionString];
             DYNSLog(@"真实名字");
         }else if (indexPath.row == 1) {
             if (completionString == nil || completionString.length == 0) {
-                [SVProgressHUD showErrorWithStatus:@"请输入身份证号"];
+                [self showTotasViewWithMes:@"请输入身份证号"];
                 return;
             }
             NSString *identityCarString = completionString;
@@ -239,7 +238,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
             NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
             BOOL isMatch = [pred evaluateWithObject:identityCarString];
             if (!isMatch) {
-                [SVProgressHUD showErrorWithStatus:@"请输入正确的身份证号"];
+                [self showTotasViewWithMes:@"请输入正确的身份证号"];
                 return;
             }
             [SignUpInfoManager signUpInfoSaveRealIdentityCar:completionString];
@@ -247,7 +246,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
             
         }else if (indexPath.row == 2) {
             if (completionString == nil || completionString.length == 0) {
-                [SVProgressHUD showErrorWithStatus:@"请输入手机号"];
+                [self showTotasViewWithMes:@"请输入手机号"];
                 return;
             }
             NSString *phoneNum = completionString;
@@ -255,7 +254,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
             NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
             BOOL isMatch = [pred evaluateWithObject:phoneNum];
             if (!isMatch) {
-                [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号"];
+                [self showTotasViewWithMes:@"请输入正确的手机号"];
                 return;
             }
             [SignUpInfoManager signUpInfoSaveRealTelephone:completionString];
@@ -263,7 +262,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
             
         }else if (indexPath.row == 3) {
             if (completionString == nil || completionString.length == 0) {
-                [SVProgressHUD showErrorWithStatus:@"请输入常用地址"];
+                [self showTotasViewWithMes:@"请输入常用地址"];
                 return;
             }
             [SignUpInfoManager signUpInfoSaveRealAddress:completionString];
@@ -309,7 +308,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
         
         
     }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-        [SVProgressHUD showInfoWithStatus:@"报名申请中"];
+        [self showTotasViewWithMes:@"报名申请中"];
     }
 
   
@@ -319,13 +318,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     inputArray = @[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealIdentityCar],[SignUpInfoManager getSignUpRealTelephone],[SignUpInfoManager getSignUpRealAddress]];
-//    inputArray = @[@"",@"",@"",@""];
 }
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
-}
-
 
 #pragma mark - delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
@@ -350,7 +343,7 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
         [upLoadManager putData:gcdPhotoData key:keyUrl token:weakself.qiniuToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             DYNSLog(@"info = %@ %@ %@",info,key,resp);
             if (info) {
-                [SVProgressHUD showSuccessWithStatus:@"头像上传成功"];
+                [self showTotasViewWithMes:@"头像上传成功"];
 
                 NSString *upImageUrl = [NSString stringWithFormat:kQiniuImageUrl,key];
                 NSDictionary *headPortrait  = @{@"originalpic":upImageUrl,@"thumbnailpic":@"",@"width":@"",@"height":@""};
@@ -373,11 +366,6 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 }
 - (void)clickCancel:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    [SVProgressHUD dismiss];                                                                                                                                                                                                                                                                                                                                                                                                                                                                
 }
 
 @end

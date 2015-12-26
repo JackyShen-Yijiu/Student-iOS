@@ -22,7 +22,6 @@
 #import "CoachIntroductionCell.h"
 #import "StudentCommentCell.h"
 #import "JsonTransformManager.h"
-#import <SVProgressHUD.h>
 #import "CoachDetail.h"
 #import "BLPFAlertView.h"
 #import "SignUpInfoManager.h"
@@ -184,7 +183,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
             [weakSelf.tableView reloadData];
             [self.tableHeadImageView sd_setImageWithURL:[NSURL URLWithString:weakSelf.detailModel.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"bigImage.png"]];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [self showTotasViewWithMes:@"网络错误"];
             return;
         }
     }];
@@ -217,7 +216,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return 32;
+        return 100;
     }
     return 0;
 }
@@ -241,7 +240,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
     }else if (indexPath.row == 1 && indexPath.section == 0) {
         return 200;
     }else if (indexPath.row == 2 && indexPath.section == 0) {
-        return 105;
+        return 200;
     }
     return 96;
 }
@@ -379,15 +378,11 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+            [self showTotasViewWithMes:@"收藏成功"];
         }else {
-            [SVProgressHUD showSuccessWithStatus:param[@"msg"]];
+            [self showTotasViewWithMes:param[@"msg"]];
         }
     }];
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 
 @end

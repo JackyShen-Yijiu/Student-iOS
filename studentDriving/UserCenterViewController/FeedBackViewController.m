@@ -9,7 +9,6 @@
 #import "FeedBackViewController.h"
 #import "UIDevice+JEsystemVersion.h"
 #import <sys/sysctl.h>
-#import <SVProgressHUD.h>
 #import "NSString+Helper.h"
 
 @interface FeedBackViewController ()
@@ -135,8 +134,9 @@
     }];
 }
 - (void)clickSubmit:(UIButton *)sender {
-    if (self.textView.text == nil || self.textView.text.length == 0 ) {
-        [SVProgressHUD showErrorWithStatus:@"反馈意见必须填写"];
+
+    if (self.textView.text == nil || self.textView.text.length == 0) {
+        [self showTotasViewWithMes:@"反馈意见必须填写"];
         return;
     }
     if ([self.textView.text.trimString isEqualToString:@""]) {
@@ -152,12 +152,12 @@
         NSDictionary *dataParam = data;
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
-            [SVProgressHUD showSuccessWithStatus:@"反馈成功"];
+            [self showTotasViewWithMes:@"反馈成功"];
             // 成功后返回上一级窗体
             [self.navigationController popViewControllerAnimated:YES];
             
         }else {
-            [SVProgressHUD showErrorWithStatus:@"反馈失败"];
+            [self showTotasViewWithMes:@"反馈失败"];
         }
     }];
     

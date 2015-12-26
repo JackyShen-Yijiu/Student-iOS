@@ -9,7 +9,6 @@
 #import "SubjectSecondViewController.h"
 #import "UserCenterViewController.h"
 #import <Masonry/Masonry.h>
-#import <SVProgressHUD.h>
 #import "AppointmentViewController.h"
 #import "DrivingViewController.h"
 #import "MyWalletViewController.h"
@@ -517,11 +516,6 @@
     }
     UserCenterViewController *userCenter = [[UserCenterViewController alloc] init];
     [self.navigationController pushViewController:userCenter animated:YES];
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];

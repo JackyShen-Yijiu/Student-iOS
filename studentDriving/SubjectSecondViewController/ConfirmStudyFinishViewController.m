@@ -13,7 +13,7 @@
 #import "ConfirmSubjectTwoCell.h"
 #import "MyAppointmentModel.h"
 #import "AppointmentViewController.h"
-#import <SVProgressHUD.h>
+
 static NSString *const kconfirmStudyEnd = @"/courseinfo/finishreservation";
 
 @interface ConfirmStudyFinishViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate> {
@@ -210,9 +210,5 @@ static NSString *const kconfirmStudyEnd = @"/courseinfo/finishreservation";
 }
 - (void)senderCancelMessage:(NSString *)message {
     self.cancelMessage = message;
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 @end

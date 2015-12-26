@@ -11,7 +11,6 @@
 #import "StudentDetailCell.h"
 #import "StudentCommentCell.h"
 #import "StudentInformationCell.h"
-#import <SVProgressHUD.h>
 #import "StudentDetailModel.h"
 #import "StudentCommentModel.h"
 #import "ChatViewController.h"
@@ -134,7 +133,7 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
             [weakSelf.tableHeadImageView sd_setImageWithURL:[NSURL URLWithString:studentDetail.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"bigImage.png"]];
             [weakSelf.tableView reloadData];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [self showTotasViewWithMes:@"网络错误"];
             return;
         }
     }];
@@ -248,9 +247,5 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
     NSDictionary * extParam = @{@"headUrl":self.detailModel.headportrait.originalpic,@"nickName":self.detailModel.nickname,@"userId":self.studetnId,@"userType":@"1"};
     chat.conversation.ext = extParam;
     [self.navigationController pushViewController:chat animated:YES];
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 @end

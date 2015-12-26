@@ -16,7 +16,6 @@
 #import "SignUpListViewController.h"
 #import "DrivingSelectedCoachCell.h"
 #import "DrvingDetailModel.h"
-#import <SVProgressHUD.h>
 #import "SignUpInfoManager.h"
 #import "CoachModel.h"
 #import "CoachDetailViewController.h"
@@ -142,7 +141,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     
     NSString *urlString = [NSString stringWithFormat:kDrivingDetailUrl,self.schoolId];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"result = %@",data);
         
@@ -153,13 +152,13 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
             NSDictionary *dic = data[@"data"];
             NSError *error = nil;
             DrvingDetailModel *drvingDetailModel = [MTLJSONAdapter modelOfClass:DrvingDetailModel.class fromJSONDictionary:dic error:&error];
-            DYNSLog(@"error = %@",error);
             [self.dataArray addObject:drvingDetailModel];
             [self.tableView reloadData];
-            [SVProgressHUD dismiss];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             
             [self.tableHeadImageView sd_setImageWithURL:[NSURL URLWithString:drvingDetailModel.logoimg.originalpic] placeholderImage:[UIImage imageNamed:@"bigImage.png"]];
         }else {
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
             kShowFail(msg)
         }
         
@@ -327,15 +326,11 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+            [self showTotasViewWithMes:@"收藏成功"];
         }else {
-            [SVProgressHUD showSuccessWithStatus:param[@"msg"]];
+            [self showTotasViewWithMes:param[@"msg"]];
             
         }
     }];
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 @end

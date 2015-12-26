@@ -1,0 +1,24 @@
+.DS_Store
+
+# Xcode
+build/*
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+*.xcworkspace
+!default.xcworkspace
+xcuserdata
+profile
+*.moved-aside
+*.gcno
+*.gcda
+.DS_Store
+*.ipa
+*.zip
+*.ipa
+>>>>>>> 0ac73d6b6a61c19dce5507bd7eec89dc842b07a5

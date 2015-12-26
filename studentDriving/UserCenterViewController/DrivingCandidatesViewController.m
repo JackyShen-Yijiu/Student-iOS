@@ -12,7 +12,8 @@
 #import "DrivingCell.h"
 #import <BaiduMapAPI/BMKLocationService.h>
 #import "DrivingModel.h"
-#import <SVProgressHUD.h>
+
+
 static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
 
 @interface DrivingCandidatesViewController ()<UITableViewDelegate, UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate>
@@ -41,9 +42,6 @@ static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [SVProgressHUD show];
-    
     self.title = @"选择驾校";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -87,7 +85,6 @@ static NSString *const kDrivingUrl = @"driveschool/nearbydriveschool?%@";
         [self.dataArray addObject:dModel];
     }
     [self.tableView reloadData];
-    [SVProgressHUD dismiss];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

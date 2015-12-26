@@ -14,8 +14,6 @@
 #import "AcountManager.h"
 #import "YBBaseNavigationController.h"
 
-#import <SVProgressHUD.h>
-
 @interface MenuController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic, strong) UIView                    *headView;
@@ -156,7 +154,7 @@
     }
     if (indexPath.row == 3) {
         if (![AcountManager isLogin]) {
-            [SVProgressHUD showErrorWithStatus:@"你还没有登录"];
+            [self showTotasViewWithMes:@"你还没有登录"];
             return;
         }
     }

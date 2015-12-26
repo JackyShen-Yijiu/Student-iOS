@@ -37,11 +37,9 @@ static NSString *const kQiniuUpdateUrl = @"info/qiniuuptoken";
 
 static NSString *const kQiniuImageUrl = @"http://7xnjg0.com1.z0.glb.clouddn.com/%@";
 
-#define kShowSuccess(msg) [SVProgressHUD showSuccessWithStatus:msg];
+#define kShowSuccess(msg) [self showTotasViewWithMes:msg];
 
-#define kShowDismiss     [SVProgressHUD dismiss];
-
-#define kShowFail(msg)    [SVProgressHUD showErrorWithStatus:msg];
+#define kShowFail(msg)   [self showTotasViewWithMes:msg];
 
 
 #define RGBColor(R,G,B)  [UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:1]
@@ -58,7 +56,7 @@ static NSString *const kQiniuImageUrl = @"http://7xnjg0.com1.z0.glb.clouddn.com/
 
 #define BACKGROUNDCOLOR [UIColor colorWithRed:247/255.0f green:249/255.0f blue:251/255.0f alpha:1]
 
-#define BASEURL @"http://123.57.63.15:8181/api/v1/%@"
+#define BASEURL @"http://101.200.204.240:8181/api/v1/%@"
 //http://123.57.63.15:8181/api/v1/ 正式
 //http://101.200.204.240:8181/api/v1/ 测试
 

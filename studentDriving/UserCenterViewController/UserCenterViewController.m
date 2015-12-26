@@ -23,11 +23,8 @@
 #import "DVVSideMenu.h"
 #import "DVVUserManager.h"
 #import "DVVOpenControllerFromSideMenu.h"
-
-//#import "MainViewController.h"
 #import <JPush/APService.h>
 
-#import <SVProgressHUD.h>
 @interface UserCenterViewController ()<UITableViewDataSource,UITableViewDelegate,UserCenterHeadViewDelegte>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIView *tableHeadView;
@@ -210,13 +207,13 @@
                 [self.navigationController pushViewController:signUPVC animated:YES];
             }else
             {
-                [SVProgressHUD showErrorWithStatus:@"你已经报过名!"];
+                [self showTotasViewWithMes:@"你已经报过名!"];
             }
            
         }
     }else if (indexPath.section == 1 && indexPath.row == 2 ) {
         if (![AcountManager isLogin]) {
-            [SVProgressHUD showErrorWithStatus:@"你还没有登录!"];
+            [self showTotasViewWithMes:@"你还没有登录!"];
             return;
         }
         MyWalletViewController *myWallet = [[MyWalletViewController alloc] init];

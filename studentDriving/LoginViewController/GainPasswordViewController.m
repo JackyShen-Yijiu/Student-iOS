@@ -8,7 +8,6 @@
 
 #import "GainPasswordViewController.h"
 #import <Masonry/Masonry.h>
-#import <SVProgressHUD.h>
 #import "ToolHeader.h"
 #import "NSString+DY_MD5.h"
 static NSString *const kchangePassword = @"kchangePassword";
@@ -141,7 +140,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 - (void)dealNext:(UIButton *)sender {
     
     if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
-        [SVProgressHUD showErrorWithStatus:@"请输入相同的密码"];
+        [self showTotasViewWithMes:@"请输入相同的密码"];
         return;
     }
     

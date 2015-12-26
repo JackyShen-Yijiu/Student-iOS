@@ -29,7 +29,7 @@
     if (_coachIntroductionDetail == nil) {
         _coachIntroductionDetail = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
 //        _coachIntroductionDetail.text = @"个人评价阿里圣诞节佛啊解释道佛哦OS鉴定符个人评价阿里圣诞节佛啊解释道佛哦OS鉴定符个人评价阿里圣诞节佛啊解释道佛哦OS鉴定符";
-        _coachIntroductionDetail.numberOfLines = 2;
+        _coachIntroductionDetail.numberOfLines = 0;
     }
     return _coachIntroductionDetail;
 }
@@ -42,7 +42,7 @@
 }
 - (UIView *)backGroundView {
     if (_backGroundView == nil) {
-        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 105)];
+        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 200)];
     }
     return _backGroundView;
 }

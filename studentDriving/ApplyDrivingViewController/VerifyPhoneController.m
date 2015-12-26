@@ -9,7 +9,6 @@
 #import "VerifyPhoneController.h"
 #import "ChooseBtnView.h"
 #import "KindlyReminderView.h"
-#import <SVProgressHUD.h>
 #import "VerifyInformationController.h"
 #import "SignUpInfoManager.h"
 
@@ -120,14 +119,14 @@
 #define TIME 60
 - (void)dealSend:(UIButton *)sender {
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入手机号" maskType:SVProgressHUDMaskTypeGradient];
+        [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }else {
         NSString *urlString = [NSString stringWithFormat:@"code/%@",self.phoneTextField.text];
         NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
         
         [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-            [SVProgressHUD showSuccessWithStatus:@"发送成功"];
+            [self showTotasViewWithMes:@"发送成功"];
         }];
     }
     

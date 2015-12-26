@@ -11,8 +11,8 @@
 #import "BCTextView.h"
 #import "ComplainTableViewCell.h"
 #import "UIDevice+JEsystemVersion.h"
-#import <SVProgressHUD.h>
 #import "AppointmentViewController.h"
+
 static NSString *const kuserComplainAppointment = @"courseinfo/usercomplaint";
 
 @interface ComplainViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,ComplainTableViewCellDelegate> {
@@ -78,14 +78,14 @@ static NSString *const kuserComplainAppointment = @"courseinfo/usercomplaint";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            [SVProgressHUD showSuccessWithStatus:@"投诉成功"];
+            [self showTotasViewWithMes:@"投诉成功"];
             for (UIViewController *vc in self.navigationController.viewControllers) {
                 if ([vc isKindOfClass:[AppointmentViewController class]]) {
                     [self.navigationController popToViewController:vc animated:YES];
                 }
             }
         }else if([type isEqualToString:@"0"]){
-            [SVProgressHUD showErrorWithStatus:@"投诉失败"];
+            [self showTotasViewWithMes:@"投诉失败"];
         }
         
     }];
@@ -173,8 +173,5 @@ static NSString *const kuserComplainAppointment = @"courseinfo/usercomplaint";
 - (void)senderCancelMessage:(NSString *)message {
     self.cancelMessage = message;
 }
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
-}
+
 @end

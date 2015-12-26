@@ -7,7 +7,6 @@
 //
 
 #import "BLAVDetailViewController.h"
-#import <SVProgressHUD.h>
 #import "ToolHeader.h"
 #import "AppDelegate.h"
 #import <NJKWebViewProgress.h>
@@ -49,11 +48,9 @@
     NSString *urlString = self.avPlayerString;
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-    
-    
+        
     [self.webView loadRequest:request];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(begainFullScreen) name:UIWindowDidBecomeVisibleNotification object:nil];//进入全屏
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(endFullScreen) name:UIWindowDidBecomeHiddenNotification object:nil];//退出全屏
+
     
 }
 -(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
@@ -68,7 +65,7 @@
     DYNSLog(@"finishLoad");
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
-    [SVProgressHUD showErrorWithStatus:@"加载失败"];
+    [self showTotasViewWithMes:@"加载失败"];
     DYNSLog(@"error");
     
 }
