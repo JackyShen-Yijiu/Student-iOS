@@ -35,7 +35,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 
 @property (strong, nonatomic) CoachDetail *detailModel;
 @property (strong, nonatomic)UIButton *signUpButton;
-
+@property (nonatomic, strong) UIImageView *heartImageView;
 
 @property (strong, nonatomic) NSArray *dataArray;
 @end
@@ -63,12 +63,20 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         mainColorView.layer.cornerRadius = mainColorView.frame.size.width *0.5;
         [heart addSubview:mainColorView];
         
-        UIImageView *heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
-        heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
-        heartImageView.userInteractionEnabled = YES;
-        [mainColorView addSubview:heartImageView];
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
-        [mainColorView addGestureRecognizer:tapGesture];
+        _heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
+        _heartImageView.image = [UIImage imageNamed:@"心Inner"];
+        _heartImageView.userInteractionEnabled = YES;
+        [mainColorView addSubview:_heartImageView];
+//        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
+//        [mainColorView addGestureRecognizer:tapGesture];
+        
+        UIButton *heartButton = [UIButton new];
+        heartButton.frame = heart.frame;
+        [heartButton.layer setMasksToBounds:YES];
+        [heartButton.layer setCornerRadius:heart.frame.size.width *0.5];
+        [heartButton addTarget:self action:@selector(dealLike:) forControlEvents:UIControlEventTouchDown];
+        [_tableHeadImageView addSubview:heartButton];
+        heartButton.backgroundColor = [UIColor clearColor];
         
     }
     return _tableHeadImageView;
@@ -281,11 +289,18 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         }
         DYNSLog(@"name = %@",self.detailModel.name);
         cell.coachNameLabel.text = self.detailModel.name;
-        if ([self.detailModel.address length] && [[self.detailModel platenumber] length]) {
-            cell.locationLabel.text = [NSString stringWithFormat:@"%@ %@",self.detailModel.address,self.detailModel.platenumber];
-        }else{
-            cell.locationLabel.text = @"未知位置";
+        NSString *address = @"";
+        NSString *platenumbeer = @"";
+        if (!self.detailModel.address && !self.detailModel.platenumber) {
+            address = @"未填写";
         }
+        if (self.detailModel.address) {
+            address = self.detailModel.address;
+        }
+        if (self.detailModel.platenumber) {
+            platenumbeer = self.detailModel.platenumber;
+        }
+        cell.locationLabel.text = [NSString stringWithFormat:@"%@ %@",address,platenumbeer];
         [cell.starBar displayRating:self.detailModel.starlevel.floatValue];
         if (self.detailModel.is_shuttle) {
             cell.coachStateSend.hidden = NO;
@@ -311,10 +326,10 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         }else{
             cell.studentNumDetail.text = @"暂无";
         }
-        
+
         cell.sendMeetDetail.text = self.detailModel.shuttlemsg;
         cell.workTimeDetail.text = self.detailModel.worktimedesc;
-        cell.dringAgeLabel.text = [NSString stringWithFormat:@"驾       龄:   %@年",self.detailModel.seniority];
+        cell.dringAgeLabel.text = [NSString stringWithFormat:@"驾       龄:   %@",self.detailModel.seniority];
         if (self.detailModel.subject.count >= 2) {
             cell.teachSubjcetDetail.text = @"全科";
         }else {
@@ -366,8 +381,14 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
        DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
        NSUInteger indexAlert = selectedOtherButtonIndex + 1;
        if (indexAlert == 1) {
-           NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.detailModel.mobile];
-           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+           
+           NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.detailModel.mobile];
+           UIWebView * callWebview = [[UIWebView alloc] init];
+           [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+           [self.view addSubview:callWebview];
+           
+//           NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.detailModel.mobile];
+//           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
        }else {
            return ;
        }
@@ -459,9 +480,10 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+            _heartImageView.image = [UIImage imageNamed:@"心"];
         }else {
             [SVProgressHUD showSuccessWithStatus:param[@"msg"]];
-
+            _heartImageView.image = [UIImage imageNamed:@"心"];
         }
     }];
 }

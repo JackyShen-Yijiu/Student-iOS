@@ -13,19 +13,12 @@
 @property (strong, nonatomic) UILabel *coachTitle;
 @property (strong, nonatomic) UILabel *rainingGround;
 
-@property (strong, nonatomic) UILabel *studentNum;
-
-
 @property (strong, nonatomic) UILabel *sendMeet;
 
 
 @property (strong, nonatomic) UILabel *workTime;
 
 @property (strong, nonatomic) UILabel *teachSubjcet;
-
-
-
-
 
 @end
 @implementation CoachInformationCell
