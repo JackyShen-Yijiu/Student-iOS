@@ -10,7 +10,7 @@
 
 @implementation CommentModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"commentcontent":@"commentcontent",@"starlevel":@"starlevel"};
+    return @{@"commentcontent":@"commentcontent",@"starlevel":@"starlevel",@"commenttime":@"commenttime"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {

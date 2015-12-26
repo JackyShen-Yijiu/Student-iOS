@@ -15,7 +15,6 @@
 #import "AppointmentCoachTimeInfoModel.h"
 #import "BLInformationManager.h"
 #import "CoachViewController.h"
-#import <SVProgressHUD.h>
 #import "AppointmentCollectionCell.h"
 #import "StudentModel.h"
 #import "StudentDetailViewController.h"
@@ -297,12 +296,12 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 #pragma mark -- 开始下载
 - (void)startDownLoadCoach {
     
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     NSString *urlString = [NSString stringWithFormat:BASEURL,kappointmentCoachUrl];
     DYNSLog(@"url = %@",urlString);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
 
         NSDictionary *param = data;
         NSNumber *type = param[@"type"];
@@ -407,7 +406,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
                 DYNSLog(@"msg = %@",param[@"msg"]);
                 NSString *type = [NSString stringWithFormat:@"%@",param[@"msg"]];
                 if ([type isEqualToString:@"0"]) {
-                    [SVProgressHUD showInfoWithStatus:param[@"msg"]];
+                    [self showTotasViewWithMes:param[@"msg"]];
                 }else {
                     NSArray *array = param[@"data"];
                     NSError *error = nil;
@@ -452,28 +451,29 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     DYNSLog(@"click");
-    [SVProgressHUD show];
 
     if (collectionView == self.coachHeadCollectionView) {
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.coachModel = self.dataArray[indexPath.row];
         NSString *dateString = [NSString getDayWithAddCountWithData:0];
         NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl, self.coachModel.coachid,dateString];
         NSString *url = [NSString stringWithFormat:BASEURL,urlString];
         [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
             DYNSLog(@"appointment = %@",data);
-            [SVProgressHUD dismiss];
+
             NSDictionary *param = data;
             DYNSLog(@"msg = %@",param[@"msg"]);
             NSString *type = [NSString stringWithFormat:@"%@",param[@"msg"]];
             if ([type isEqualToString:@"0"]) {
-                [SVProgressHUD showInfoWithStatus:param[@"msg"]];
+                [MBProgressHUD hideHUDForView:self.view animated:NO];
+                [self showTotasViewWithMes:param[@"msg"]];
             }else {
                 NSArray *array = param[@"data"];
                 NSError *error = nil;
                 self.coachTimeArray = [MTLJSONAdapter modelsOfClass:AppointmentCoachTimeInfoModel.class fromJSONArray:array error:&error];
                 DYNSLog(@"error = %@",error);
                 [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-                
+                [MBProgressHUD hideHUDForView:self.view animated:YES];
             }
             
         }];
@@ -593,29 +593,26 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 
 #pragma mark - AppointmentDrivingCellDelegate
 - (void)calendarClick:(NSString *)dateString {
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl,self.coachModel.coachid,dateString];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        [SVProgressHUD dismiss];
-        DYNSLog(@"data ================ %@",data);
+
         NSDictionary *param = data;
         NSArray *array = param[@"data"];
         NSError *error = nil;
         NSNumber *type = param[@"type"];
         NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
 
-        DYNSLog(@"msg = %@",param[@"msg"]);
         if (type.integerValue == 1) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             self.coachTimeArray = [MTLJSONAdapter modelsOfClass:AppointmentCoachTimeInfoModel.class fromJSONArray:array error:&error];
-            DYNSLog(@"error = %@",error);
-            DYNSLog(@"count = %ld",self.coachTimeArray.count);
+
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             kShowFail(msg);
         }
-       
-        
         
     }];
 }
@@ -682,14 +679,14 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             NSNumber *type = param[@"type"];
             NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
             if (type.integerValue == 1) {
-                [SVProgressHUD showSuccessWithStatus:@"预约成功"];
+                [self showTotasViewWithMes:@"预约成功"];
             }else {
                 kShowFail(msg)
             }
             
         }];
     }else {
-        [SVProgressHUD showErrorWithStatus:@"教练信息或日期不全！"];
+        [self showTotasViewWithMes:@"教练信息或日期不全！"];
     }
     
     
@@ -698,7 +695,6 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    kShowDismiss
 }
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];

@@ -10,7 +10,6 @@
 #import "SignUpCell.h"
 #import "ExamClassViewController.h"
 #import "ExamCarViewController.h"
-#import <SVProgressHUD.h>
 #import "SignUpInfoManager.h"
 #import "DrivingViewController.h"
 #import "SignUpCoachViewController.h"
@@ -227,7 +226,7 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
             }
     else if (indexPath.row == 2) {
         if ([SignUpInfoManager getSignUpSchoolName] == nil || [SignUpInfoManager getSignUpSchoolName].length == 0) {
-            [SVProgressHUD showInfoWithStatus:@"请选择驾校"];
+            [self showTotasViewWithMes:@"请选择驾校"];
             return;
         }
         ExamClassViewController *classType = [[ExamClassViewController alloc] init];//报考班型
@@ -245,7 +244,7 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
     if (![signUpArray[0] isEqualToString:@""]&&![signUpArray[1] isEqualToString:@""]&&![signUpArray[2] isEqualToString:@""]&&![signUpArray[3] isEqualToString:@""]) {
        [self.navigationController pushViewController:[SignUpViewController new] animated:YES];
     }else {
-        [SVProgressHUD showInfoWithStatus:@"信息未填写完整"];
+        [self showTotasViewWithMes:@"信息未填写完整"];
     }
 }
 
@@ -259,7 +258,6 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    kShowDismiss
 }
 
 @end

@@ -11,8 +11,8 @@
 #import "CancelAppointmentCell.h"
 #import "BCTextView.h"
 #import "MyAppointmentModel.h"
-#import <SVProgressHUD.h>
 #import "AppointmentViewController.h"
+
 static NSString *const kuserCancelAppointment = @"/courseinfo/cancelreservation";
 
 
@@ -177,6 +177,5 @@ static NSString *const kuserCancelAppointment = @"/courseinfo/cancelreservation"
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    kShowDismiss
 }
 @end

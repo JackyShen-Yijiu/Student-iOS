@@ -11,7 +11,6 @@
 #import "SignSuccessView.h"
 #import "SignUpInfoManager.h"
 #import "SignUpListViewController.h"
-#import <SVProgressHUD.h>
 #import "UIColor+Hex.h"
 
 
@@ -69,12 +68,8 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self startNetWork];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-    [SVProgressHUD dismiss];
 }
 
 - (void)viewDidLoad {
@@ -109,7 +104,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
         make.height.mas_equalTo(49);
     }];
     
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)startNetWork {
@@ -130,11 +125,11 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
             
             [self initUI];
         }else {
-            [SVProgressHUD showInfoWithStatus:[data objectForKey:@"msg"]];
+            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
         }
        
     } withFailure:^(id data) {
-        [SVProgressHUD showInfoWithStatus:@"网络错误"];
+        [self showTotasViewWithMes:@"网络错误"];
     }];
     
 }

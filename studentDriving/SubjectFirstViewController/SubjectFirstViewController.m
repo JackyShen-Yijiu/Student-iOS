@@ -9,7 +9,6 @@
 #import "SubjectFirstViewController.h"
 #import "UserCenterViewController.h"
 #import <Masonry/Masonry.h>
-#import <SVProgressHUD.h>
 #import "AppointmentViewController.h"
 #import "DrivingViewController.h"
 #import "MyWalletViewController.h"
@@ -557,7 +556,6 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
-    kShowDismiss
 }
 
 - (void)viewDidAppear:(BOOL)animated {

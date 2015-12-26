@@ -10,7 +10,6 @@
 #import "BLBaseViewController.h"
 #import <IQKeyboardManager.h>
 #import <IQKeyboardReturnKeyHandler.h>
-#import <SVProgressHUD.h>
 
 @implementation AppDelegate (DealTool)
 - (void)dealTool {
@@ -22,7 +21,6 @@
 //    NSDictionary *navbarTitleTextAttributes = @{NSForegroundColorAttributeName:RGBColor(255, 102, 51)};
 //    [[UINavigationBar appearance] setTitleTextAttributes:navbarTitleTextAttributes];
 //    [[UINavigationBar appearance] setTintColor:RGBColor(255, 102, 51)];
-    [SVProgressHUD setForegroundColor:[UIColor grayColor]];
 //    [SVProgressHUD setBackgroundColor:[UIColor grayColor]];
     //    UIBarButtonItem *leftItem = [UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil];
     //    [[UINavigationBar appearance] setBackIndicatorImage:[UIImage imageNamed:@"backImage.png"]];

@@ -13,8 +13,8 @@
 #import "APCommentViewController.h"
 #import "MyAppointmentModel.h"
 #import "ComplainViewController.h"
-#import <SVProgressHUD.h>
 #import "ChatViewController.h"
+
 @interface APWaitEvaluationViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) UIButton *itemMessege;
 @property (strong, nonatomic) UITableView *tableView;
@@ -207,8 +207,5 @@
     comment.model = self.model;
     [self.navigationController pushViewController:comment animated:YES];
 }
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
-}
+
 @end

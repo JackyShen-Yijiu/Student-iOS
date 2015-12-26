@@ -8,7 +8,7 @@
 
 #import "SignatureViewController.h"
 #import "UIDevice+JEsystemVersion.h"
-#import <SVProgressHUD.h>
+
 static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 @interface SignatureViewController ()
 @property (strong, nonatomic) UITextField *signatureTextField;
@@ -84,12 +84,12 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         NSDictionary *dataParam = data;
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
-            [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            [self showTotasViewWithMes:@"修改成功"];
             [AcountManager saveUserSignature:self.signatureTextField.text];
             [[NSNotificationCenter defaultCenter] postNotificationName:kSignatureChange object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"修改失败"];
+            [self showTotasViewWithMes:@"修改失败"];
             return;
         }
         

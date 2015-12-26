@@ -11,7 +11,7 @@
 #import "UIDevice+JEsystemVersion.h"
 #import "FeedBackViewController.h"
 #import "AboutUsViewController.h"
-#import <SVProgressHUD.h>
+
 static NSString *const kSettingUrl = @"userinfo/personalsetting";
 
 @interface SetupViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -83,8 +83,9 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (indexPath.section == 0) {
         UISwitch *switchControl = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
-        switchControl.onTintColor = MAINCOLOR;
+        switchControl.onTintColor = MAIN_BACKGROUND_COLOR;
         switchControl.tag = 100 + indexPath.row;
+        
         cell.accessoryView = switchControl;
         [switchControl addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
         
@@ -106,9 +107,9 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
             NSDictionary *dataParam = data;
             NSNumber *messege = dataParam[@"type"];
             if (messege.intValue == 1) {
-                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                [self showTotasViewWithMes:@"修改成功"];
             }else {
-                [SVProgressHUD showErrorWithStatus:@"修改失败"];
+                [self showTotasViewWithMes:@"修改失败"];
             }
         }];
     }else if (sender.tag - 100 == 1) {
@@ -122,9 +123,9 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
             NSDictionary *dataParam = data;
             NSNumber *messege = dataParam[@"type"];
             if (messege.intValue == 1) {
-                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                [self showTotasViewWithMes:@"修改成功"];
             }else {
-                [SVProgressHUD showErrorWithStatus:@"修改失败"];
+                [self showTotasViewWithMes:@"修改失败"];
             }
         }];
     }
@@ -146,7 +147,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 //    NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", nsAppId];
 //    
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:nsStringToOpen]];
-    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",AppId];
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/%@",AppId];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 

@@ -13,7 +13,6 @@
 #import <Masonry.h>
 #import "UIView+CalculateUIView.h"
 #import <BaiduMapAPI/BMKLocationService.h>
-#import <SVProgressHUD.h>
 #import "CoachModel.h"
 #import "SignUpInfoManager.h"
 #import "CoachDetailAppointmentViewController.h"
@@ -142,7 +141,7 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"教练";
@@ -266,7 +265,7 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
         [self.dataArray addObject:model];
     }
     [self.tableView reloadData];
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 #pragma mark - bntAciton
 - (void)clickLeftBtn:(UIButton *)sender {
@@ -335,10 +334,6 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
         [self.navigationController pushViewController:appointment animated:YES];
     }
     
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 
 @end

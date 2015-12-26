@@ -15,7 +15,6 @@
 #import "StudentDetailViewController.h"
 #import "MyAppointmentModel.h"
 #import "StudentModel.h"
-#import <SVProgressHUD.h>
 #import <BaiduMapAPI/BMapKit.h>
 #import <BaiduMapAPI/BMKMapView.h>
 #import <BaiduMapAPI/BMKPointAnnotation.h>
@@ -305,48 +304,10 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     [self.navigationController pushViewController:cancelAppoint animated:YES];
 }
 #pragma mark - collectionViewDelegate
-//- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-//    return self.dataArray.count;
-//}
-//- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
-//    return 1;
-//}
-//- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    static NSString *cellId = @"cell";
-//    AppointmentCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-//    if (!cell) {
-//        DYNSLog(@"创建错误");
-//    }
-//    StudentModel *model = self.dataArray[indexPath.row];
-//    DYNSLog(@"headImage = %@",model.userid.headportrait.originalpic);
-//    [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
-//    return cell;
-//}
-//- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-//    CGSize cellSize = CGSizeMake(45, 45);
-//    return cellSize;
-//}
-//- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
-//    return UIEdgeInsetsMake(0, 0, 0, 0);
-//}
-//- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-//    
-//    StudentModel *model = self.dataArray[indexPath.row];
-//    
-//    StudentDetailViewController *studentDetail = [[StudentDetailViewController alloc] init];
-//    studentDetail.studetnId = model.userid.userId;
-//    [self.navigationController pushViewController:studentDetail animated:YES];
-//}
-//- (void)viewDidDisappear:(BOOL)animated{
-//    [super viewDidDisappear:animated];
-//    kShowDismiss
-//}
 - (void)viewWillAppear:(BOOL)animated
 {
     [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
-    kShowDismiss
-    
     
 }
 - (void)viewWillDisappear:(BOOL)animated
@@ -354,22 +315,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     [_mapView viewWillDisappear];
     _mapView.delegate = nil; // 不用时，置nil
 }
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    
-    
-    
-    //    BMKPointAnnotation *annotation = [[BMKPointAnnotation alloc] init];
-    //    CLLocationCoordinate2D coor;
-    //    coor.latitude = self.latitudeNum.doubleValue;
-    //    coor.longitude = self.longitudeNum.doubleValue;
-    //    annotation.coordinate = coor;
-    //    NSLog(@"latitude = %@ ",annotation);
-    //    [_mapView addAnnotation:annotation];
-    //
-    //    _mapView.centerCoordinate = coor;
-    
-}
+
 - (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
 {
     

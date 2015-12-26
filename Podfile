@@ -2,7 +2,6 @@ platform:ios,'8.0'
 
 pod 'Masonry'
 pod 'AFNetworking'
-pod 'SVProgressHUD'
 pod 'BaiduMapAPI', '~> 2.8.1'
 pod 'SDWebImage', '~>3.7'
 pod 'IQKeyboardManager'

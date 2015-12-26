@@ -11,8 +11,8 @@
 #import "CommentCell.h"
 #import "MyAppointmentModel.h"
 #import "BCTextView.h"
-#import <SVProgressHUD.h>
 #import "AppointmentViewController.h"
+
 static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 
 @interface APCommentViewController ()<UITableViewDataSource,UITableViewDelegate,CommentCellDelegate,UITextViewDelegate>{
@@ -175,9 +175,5 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
     }else if (indexPath.row == 3) {
         self.abilitylevel = newProgress;
     }
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 @end

@@ -13,6 +13,7 @@
 @property (strong, nonatomic) UILabel *teachSubjcetDetail;
 @property (strong, nonatomic) UILabel *workTimeDetail;
 @property (strong, nonatomic) UILabel *sendMeetDetail;
+@property (strong, nonatomic) UILabel *studentNum;
 @property (strong, nonatomic) UILabel *studentNumDetail;
 @property (strong, nonatomic) UILabel *dringAgeLabel;
 

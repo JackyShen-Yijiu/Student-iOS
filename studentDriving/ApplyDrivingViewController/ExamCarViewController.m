@@ -12,7 +12,7 @@
 #import "ExamCarModel.h"
 #import "SignUpInfoManager.h"
 #import "BLInformationManager.h"
-#import <SVProgressHUD.h>
+
 static NSString *const kexamCar = @"info/carmodel";
 
 @interface ExamCarViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
@@ -78,10 +78,10 @@ static NSString *const kexamCar = @"info/carmodel";
 - (void)startDownLoad {
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,kexamCar];
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         NSArray *param = data[@"data"];
         NSError *error = nil;
         
@@ -97,7 +97,7 @@ static NSString *const kexamCar = @"info/carmodel";
     
     if (![[AcountManager manager].userApplystate isEqualToString:@"2"]) {
         if (self.carModel == nil) {
-            [SVProgressHUD showErrorWithStatus:@"请选择车型"];
+            [self showTotasViewWithMes:@"请选择车型"];
             return;
         }
         NSDictionary *param = @{@"modelsid":self.carModel.modelsid,@"name":self.carModel.name,@"code":self.carModel.code};
@@ -156,9 +156,5 @@ static NSString *const kexamCar = @"info/carmodel";
     self.rememberIndexPath = indexPath;
   
     self.carModel = self.dataArray[indexPath.row];
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 @end

@@ -7,7 +7,6 @@
 //
 
 #import "QuestionTestViewController.h"
-#import <SVProgressHUD.h>
 #import "ToolHeader.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
@@ -29,13 +28,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    [SVProgressHUD show];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     DYNSLog(@"request = %@",self.questiontesturl);
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.view addSubview:self.webView];
     
     _webviewProgress = [[NJKWebViewProgress alloc] init];
@@ -67,21 +64,17 @@
     self.progressView.hidden = NO;
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
-    DYNSLog(@"finishLoad");
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     _webView.hidden = NO;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
-    [SVProgressHUD showErrorWithStatus:@"加载失败"];
-
-    DYNSLog(@"error");
-    
+    [MBProgressHUD hideHUDForView:self.view animated:NO];
+    [self showTotasViewWithMes:@"加载失败"];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
     NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
-    DYNSLog(@"store = %@",string);
     [_progressView removeFromSuperview];
     
 }

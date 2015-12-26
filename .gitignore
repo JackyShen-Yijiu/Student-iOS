@@ -17,4 +17,10 @@ profile
 *.moved-aside
 *.gcno
 *.gcda
+<<<<<<< HEAD
 .DS_Store
+=======
+*.ipa
+*.zip
+*.ipa
+>>>>>>> 0ac73d6b6a61c19dce5507bd7eec89dc842b07a5

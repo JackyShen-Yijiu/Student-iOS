@@ -8,7 +8,6 @@
 
 #import "ExamClassDetailViewController.h"
 #import "ExamClassModel.h"
-#import <SVProgressHUD.h>
 #import "ExamDetailCell.h"
 #import "SignUpInfoManager.h"
 #import "NSString+CurrentTimeDay.h"
@@ -90,7 +89,7 @@ static NSString *const kexamClassDetail = @"driveschool/schoolclasstype/%@";
     DYNSLog(@"right = %@",self.naviBarRightButton);
     self.navigationItem.rightBarButtonItem = rightItem;
 
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.title = @"选择驾校";
     self.view.backgroundColor = [UIColor whiteColor];
@@ -175,7 +174,11 @@ static NSString *const kexamClassDetail = @"driveschool/schoolclasstype/%@";
         }
     cell.schoolClassLabel.text = [NSString stringWithFormat:@"适用驾照类型:%@",self.model.carmodel.code];
     cell.timeLabel.text = [NSString stringWithFormat:@"活动日期:%@-%@",[NSString getLitteLocalDateFormateUTCDate:self.model.begindate],[NSString getLitteLocalDateFormateUTCDate:self.model.enddate]];
-    cell.studyLabel.text = [NSString stringWithFormat:@"授课日程:%@",self.model.classchedule];
+    if(self.model.classchedule.length){
+        cell.studyLabel.text = [NSString stringWithFormat:@"授课日程:%@",self.model.classchedule];
+    }else{
+        cell.studyLabel.text = [NSString stringWithFormat:@"授课日程:%@",@"未知"];
+    }
     cell.carType.text = [NSString stringWithFormat:@"训练车品牌:%@",self.model.cartype];
     cell.price.text = [NSString stringWithFormat:@"价格:%@元",self.model.price];
     cell.personCount.text = [NSString stringWithFormat:@"已经报名人数:%@",self.model.applycount];

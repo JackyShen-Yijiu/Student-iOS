@@ -10,8 +10,8 @@
 #import "ExamClassCollectionViewCell.h"
 #import "SignUpInfoManager.h"
 #import "ExamClassModel.h"
-#import <SVProgressHUD.h>
 #import "ExamClassDetailViewController.h"
+
 static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 @interface ExamClassViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
@@ -72,24 +72,18 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 
 - (void)startDownLoad {
     
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.dataArray removeAllObjects];
     NSString *classString = [NSString stringWithFormat:kExamClassType,[SignUpInfoManager getSignUpSchoolid]];
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,classString];
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"res = %@",data);
         
         NSArray *param = data[@"data"];
-        
         NSError *error = nil;
-
-        
         [self.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:ExamClassModel.class fromJSONArray:param error:&error]];
-        
-        DYNSLog(@"error = %@",error);
-        [SVProgressHUD dismiss];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.collectionView reloadData];
     }];
 }
@@ -100,7 +94,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
     if (![[AcountManager manager].userApplystate isEqualToString:@"2"]){
     
     if (self.examclassmodel == nil) {
-        [SVProgressHUD showErrorWithStatus:@"请选择班级类型"];
+        [self showTotasViewWithMes:@"请选择班级类型"];
         return;
     }
     
@@ -147,9 +141,5 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
     detail.model = self.examclassmodel;
     [self.navigationController pushViewController:detail animated:YES];
     
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 @end

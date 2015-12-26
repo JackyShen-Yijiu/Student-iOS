@@ -10,7 +10,6 @@
 #import "ToolHeader.h"
 #import "MyWalletViewController.h"
 #import "UIColor+Hex.h"
-#import <SVProgressHUD.h>
 #import "MagicMainTableViewController.h"
 
 static NSString *const kBuyproduct =  @"userinfo/buyproduct";
@@ -75,7 +74,7 @@ static NSString *const knumber = @"create_qrcode";
         {
          NSString *messageStr = [data objectForKey:@"msg"];
             
-            [SVProgressHUD showErrorWithStatus:messageStr];
+            [self showTotasViewWithMes:messageStr];
             _successLabel.text = @"兑换失败!";
             _numberImageView.image = [UIImage imageNamed:@"cha"];
         }
@@ -83,7 +82,7 @@ static NSString *const knumber = @"create_qrcode";
         
         
     }  withFailure:^(id data) {
-       [SVProgressHUD showErrorWithStatus:@"订单交易失败"];
+       [self showTotasViewWithMes:@"订单交易失败"];
         _successLabel.text = @"兑换失败!";
         _numberImageView.image = [UIImage imageNamed:@"cha"];
     }];

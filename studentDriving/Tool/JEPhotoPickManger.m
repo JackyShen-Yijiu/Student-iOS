@@ -28,7 +28,7 @@
                 picker.sourceType = UIImagePickerControllerSourceTypeCamera;
                 picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
                 picker.navigationBar.barTintColor = fromController.navigationController.navigationBar.barTintColor;
-                picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
+                picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
                                                              NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
 
                 [fromController presentViewController:picker animated:YES completion:nil];
@@ -42,9 +42,8 @@
                 picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
                 picker.navigationBar.barTintColor = fromController.navigationController.navigationBar.barTintColor;
-                picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor blackColor],
+                picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
                                                              NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
-                
                 [fromController presentViewController:picker animated:YES completion:nil];
 
                 //0x00007ff7f587e0a0

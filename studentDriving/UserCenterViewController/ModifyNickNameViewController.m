@@ -8,7 +8,7 @@
 
 #import "ModifyNickNameViewController.h"
 #import "UIDevice+JEsystemVersion.h"
-#import <SVProgressHUD.h>
+
 static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 @interface ModifyNickNameViewController ()
 @property (strong, nonatomic) UITextField *modifyNameTextField;
@@ -83,12 +83,12 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         NSDictionary *dataParam = data;
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
-            [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            [self showTotasViewWithMes:@"修改成功"];
             [AcountManager saveUserNickName:self.modifyNameTextField.text];
             [[NSNotificationCenter defaultCenter] postNotificationName:kmodifyNickNameChange object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"修改失败"];
+            [self showTotasViewWithMes:@"修改失败"];
             return;
         }
         

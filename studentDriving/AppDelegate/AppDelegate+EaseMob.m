@@ -40,17 +40,11 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self registerRemoteNotification];
     
     
-#pragma mark - 环信聊天
-    NSString *easemobAppKey = nil;
-    NSString *easemobApnsCertName = nil;
-#if DEBUG
-    easemobAppKey = @"black-cat#yibuxuechetest";
-    easemobApnsCertName = @"PushStudent";
-#else
-    easemobAppKey = @"black-cat#yibuxuecheprod";
-
-#endif
+    NSString * easemobAppKey = @"black-cat#yibuxuechetest";
+    NSString * easemobApnsCertName = @"productionPush";
     
+    easemobAppKey = @"black-cat#yibuxuecheprod";
+    easemobApnsCertName = @"productionPush";
     
     EMError *error =  [[EaseMob sharedInstance] registerSDKWithAppKey:easemobAppKey
                                                              apnsCertName:easemobApnsCertName

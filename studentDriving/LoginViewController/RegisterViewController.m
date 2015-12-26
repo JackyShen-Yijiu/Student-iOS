@@ -7,9 +7,7 @@
 //
 
 #import "RegisterViewController.h"
-#import <SVProgressHUD.h>
 #import <Masonry/Masonry.h>
-//#import "MainViewController.h"
 #import "ToolHeader.h"
 #import "NSString+DY_MD5.h"
 #import <JPush/APService.h>
@@ -310,14 +308,14 @@ static NSString *const kcodeGainUrl = @"code";
     NSLog(@"发送验证码");
     
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入手机号" maskType:SVProgressHUDMaskTypeGradient];
+        [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }else {
         NSString *urlString = [NSString stringWithFormat:@"code/%@",self.phoneTextField.text];
         NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
         
         [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-            [SVProgressHUD showSuccessWithStatus:@"发送成功"];
+            [self showTotasViewWithMes:@"发送成功"];
         }];
     }
     
@@ -361,28 +359,28 @@ static NSString *const kcodeGainUrl = @"code";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     BOOL isMatch = [pred evaluateWithObject:phoneNum];
     if (!isMatch) {
-        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号" maskType:SVProgressHUDMaskTypeBlack];
+        [self showTotasViewWithMes:@"请输入正确的手机号"];
         return;
     }
     [self.paramsPost setObject:self.phoneTextField.text forKey:@"mobile"];
     if (self.authCodeTextFild.text.length <= 0 || self.authCodeTextFild.text == nil) {
-        [SVProgressHUD showErrorWithStatus:@"请输入验证码" maskType:SVProgressHUDMaskTypeBlack];
+        [self showTotasViewWithMes:@"请输入验证码"];
         return;
     }
     [self.paramsPost setObject:self.authCodeTextFild.text forKey:@"smscode"];
     if (self.passWordTextFild.text == nil || self.passWordTextFild.text.length <= 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入密码" maskType:SVProgressHUDMaskTypeBlack];
+        [self showTotasViewWithMes:@"请输入密码"];
         return;
 
     }
     
     if (self.affirmTextFild.text == nil || self.affirmTextFild.text.length <= 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入确认密码" maskType:SVProgressHUDMaskTypeBlack];
+        [self showTotasViewWithMes:@"请输入确认密码"];
         return;
     }
     NSString *passwordString = nil;
     if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
-        [SVProgressHUD showErrorWithStatus:@"两次密码不一样" maskType:SVProgressHUDMaskTypeBlack];
+        [self showTotasViewWithMes:@"两次密码不一样"];
         return;
     }
     passwordString = self.passWordTextFild.text.DY_MD5;
@@ -395,18 +393,19 @@ static NSString *const kcodeGainUrl = @"code";
     [self.paramsPost setObject:@"1" forKey:@"usertype"];
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,kregisterUrl];
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [JENetwoking startDownLoadWithUrl:urlString postParam:self.paramsPost WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
         NSDictionary *dataDic = data;
         
         NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
         if ([type isEqualToString:@"0"]) {
-            [SVProgressHUD showErrorWithStatus:dataDic[@"msg"]];
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
+            [self showTotasViewWithMes:dataDic[@"msg"]];
         }else if ([type isEqualToString:@"1"]) {
-            
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
             [AcountManager configUserInformationWith:dataDic[@"data"]];
-            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [self showTotasViewWithMes:@"登录成功"];
             [AcountManager saveUserName:self.phoneTextField.text andPassword:self.passWordTextFild.text];
             if ([AcountManager manager].userid) {
                 [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];

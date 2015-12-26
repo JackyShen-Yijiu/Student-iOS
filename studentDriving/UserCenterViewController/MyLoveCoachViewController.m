@@ -55,10 +55,15 @@ static NSString *const kGetMyCoachListUrl = @"userinfo/getmycoachlist";
         DYNSLog(@"data = %@",data);
         
         NSDictionary *param = data;
-        
-        NSError *error = nil;
-        self.dataArray = [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:param[@"data"] error:&error];
-        [self.tableView reloadData];
+        NSArray * array = param[@"data"];
+        if (array && [array isKindOfClass:[NSArray class]] && array.count) {
+            NSError *error = nil;
+            self.dataArray = [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:param[@"data"] error:&error];
+            [self.tableView reloadData];
+        }else{
+            [self showTotasViewWithMes:@"列表为空"];
+        }
+      
         
     }];
 }

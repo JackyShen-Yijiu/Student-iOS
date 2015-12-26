@@ -8,8 +8,8 @@
 
 #import "JENetwoking.h"
 #import <UIKit/UIKit.h>
-#import <SVProgressHUD.h>
 #import "ToolHeader.h"
+
 @interface JENetwoking ()
 @property (copy, nonatomic) NSString *urlString;
 @property (assign, nonatomic) JENetworkingRequestMethod method;
@@ -39,7 +39,8 @@
         manager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy;
         [manager GET:self.urlString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             if (responseObject == nil) {
-                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                [alertView show];
                 return;
             }
             if ([_delegate respondsToSelector:@selector(jeNetworkingCallBackData:)]) {
@@ -47,8 +48,8 @@
             }
             
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
-
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+            [alertView show];
         }];
     }
     
@@ -72,7 +73,8 @@
         }
         [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             if (responseObject == nil) {
-                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                [alertView show];
                 return ;
             }
             if (_completion) {
@@ -80,8 +82,8 @@
             }
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
             DYNSLog(@"error = %@",error);
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
-        }];
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+            [alertView show];        }];
     }else if (method == JENetworkingRequestMethodPost) {
         NSAssert(param != nil, @"param 不能为空");
         if ([AcountManager manager].userToken) {
@@ -92,7 +94,8 @@
         [manager POST:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             DYNSLog(@"responseObject = %@",responseObject);
             if (responseObject == nil) {
-                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                [alertView show];
                 return ;
             }
             if (_completion) {
@@ -100,8 +103,8 @@
             }
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
             DYNSLog(@"error = %@",error);
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
-
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+            [alertView show];
         }];
         
     }else if (method == JENetworkingRequestMethodPut) {
@@ -113,7 +116,8 @@
         [manager PUT:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             DYNSLog(@"responseObject = %@",responseObject);
             if (responseObject == nil) {
-                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                [alertView show];
                 return ;
             }
             if (_completion) {
@@ -121,7 +125,8 @@
             }
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
             DYNSLog(@"error = %@",error);
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+            [alertView show];
             
         }];
     }else if (method == JENetworkingRequestMethodDelete) {
@@ -133,7 +138,8 @@
         [manager DELETE:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             DYNSLog(@"responseObject = %@",responseObject);
             if (responseObject == nil) {
-                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                [alertView show];
                 return ;
             }
             if (_completion) {
@@ -141,7 +147,8 @@
             }
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
             DYNSLog(@"error = %@",error);
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+            [alertView show];
             
         }];
     }
@@ -165,7 +172,8 @@
         }
         [manager GET:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             if (responseObject == nil) {
-                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                [alertView show];
                 return ;
             }
             if (_completion) {
@@ -173,7 +181,8 @@
             }
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
             DYNSLog(@"error = %@",error);
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+            [alertView show];
             _failure(error);
         }];
     }else if (method == JENetworkingRequestMethodPost) {
@@ -186,7 +195,8 @@
         [manager POST:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             DYNSLog(@"responseObject = %@",responseObject);
             if (responseObject == nil) {
-                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                [alertView show];
                 return ;
             }
             if (_completion) {
@@ -196,8 +206,8 @@
             DYNSLog(@"error = %@",error);
             _failure(error);
 
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
-            
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+            [alertView show];
         }];
         
     }else if (method == JENetworkingRequestMethodPut) {
@@ -209,7 +219,8 @@
         [manager PUT:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             DYNSLog(@"responseObject = %@",responseObject);
             if (responseObject == nil) {
-                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                [alertView show];
                 return ;
             }
             if (_completion) {
@@ -219,7 +230,8 @@
             DYNSLog(@"error = %@",error);
             _failure(error);
 
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+            [alertView show];
             
         }];
     }else if (method == JENetworkingRequestMethodDelete) {
@@ -231,7 +243,8 @@
         [manager DELETE:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             DYNSLog(@"responseObject = %@",responseObject);
             if (responseObject == nil) {
-                [SVProgressHUD showErrorWithStatus:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                [alertView show];
                 return ;
             }
             if (_completion) {
@@ -241,7 +254,8 @@
             DYNSLog(@"error = %@",error);
             _failure(error);
 
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+            [alertView show];
             
         }];
     }

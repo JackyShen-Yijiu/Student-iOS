@@ -11,7 +11,6 @@
 #import "DrivingCell.h"
 #import <BaiduMapAPI/BMKLocationService.h>
 #import "DrivingModel.h"
-#import <SVProgressHUD.h>
 #import "DrivingModel.h"
 #import "LoginViewController.h"
 #import "SignUpInfoManager.h"
@@ -75,7 +74,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     _index = 1;
     _count = 10;
     
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     self.title = @"选择驾校";
     self.view.backgroundColor = [UIColor whiteColor];
@@ -90,21 +89,21 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     
     [self configRefresh];
     // 定位
-    [self locationManager];
+//    [self locationManager];
     
-    // 在模拟器上定位不好用，测试是打开注释
-//    self.latitude = 39.929985778080237;
-//    self.longitude = 116.39564503787867;
-//    self.index = 1;
-//    self.isRefresh = YES;
-//    // 获取网络数据
-//    [self network];
+//     在模拟器上定位不好用，测试是打开注释
+    self.latitude = 39.929985778080237;
+    self.longitude = 116.39564503787867;
+    self.index = 1;
+    self.isRefresh = YES;
+    // 获取网络数据
+    [self network];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     self.geoCodeSearch = nil;
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 #pragma mark - networkCallBack
@@ -204,13 +203,14 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     
     [self.tableView reloadData];
     
-    [SVProgressHUD dismiss];
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
     
     if (!self.dataArray.count) {
-        [SVProgressHUD showErrorWithStatus:@"没有找到数据！"];
+        [self showTotasViewWithMes:@"没有找到数据！"];
     }
+    [MBProgressHUD hideHUDForView:self.view animated:self.dataArray.count];
+
 }
 
 #pragma mark - 定位功能

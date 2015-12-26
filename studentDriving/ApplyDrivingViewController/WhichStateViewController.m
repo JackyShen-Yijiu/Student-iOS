@@ -8,7 +8,6 @@
 
 #import "WhichStateViewController.h"
 #import "SignUpInfoManager.h"
-#import <SVProgressHUD.h>
 
 @interface WhichStateViewController () <UITableViewDataSource,UITableViewDelegate>
 
@@ -93,7 +92,7 @@
         [SignUpInfoManager signUpInfoSaveRealSubjectID:param];
         [self.navigationController popViewControllerAnimated:YES];
     }else {
-        [SVProgressHUD showErrorWithStatus:@"请选择阶段"];
+        [self showTotasViewWithMes:@"请选择阶段"];
     }
     
     

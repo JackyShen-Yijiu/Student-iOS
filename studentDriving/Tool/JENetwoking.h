@@ -46,4 +46,5 @@ typedef void(^Failure)(id data);
                    postParam:(id)param
                   WithMethod:(JENetworkingRequestMethod)method
               withCompletion:(Completion)completion withFailure:(Failure)failure;
+
 @end
