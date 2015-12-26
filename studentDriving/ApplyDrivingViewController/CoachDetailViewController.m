@@ -281,7 +281,11 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         }
         DYNSLog(@"name = %@",self.detailModel.name);
         cell.coachNameLabel.text = self.detailModel.name;
-        cell.locationLabel.text = [NSString stringWithFormat:@"%@ %@",self.detailModel.address,self.detailModel.platenumber];
+        if ([self.detailModel.address length] && [[self.detailModel platenumber] length]) {
+            cell.locationLabel.text = [NSString stringWithFormat:@"%@ %@",self.detailModel.address,self.detailModel.platenumber];
+        }else{
+            cell.locationLabel.text = @"未知位置";
+        }
         [cell.starBar displayRating:self.detailModel.starlevel.floatValue];
         if (self.detailModel.is_shuttle) {
             cell.coachStateSend.hidden = NO;
@@ -302,7 +306,12 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 
         }
         cell.rainingGroundDetail.text = self.detailModel.trainFieldInfo.name;
-        cell.studentNumDetail.text = [NSString stringWithFormat:@"通过率%@%@",self.detailModel.passrate,@"%"];
+        if([self.detailModel.passrate floatValue]){
+            cell.studentNumDetail.text = [NSString stringWithFormat:@"通过率%@%@",self.detailModel.passrate,@"%"];
+        }else{
+            cell.studentNumDetail.text = @"暂无";
+        }
+        
         cell.sendMeetDetail.text = self.detailModel.shuttlemsg;
         cell.workTimeDetail.text = self.detailModel.worktimedesc;
         cell.dringAgeLabel.text = [NSString stringWithFormat:@"驾       龄:   %@年",self.detailModel.seniority];
