@@ -317,16 +317,11 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 
         }
         cell.rainingGroundDetail.text = self.detailModel.trainFieldInfo.name;
-<<<<<<< HEAD
         NSString *studentNum = @"0";
         if (self.detailModel.studentcoount) {
             studentNum = [NSString stringWithFormat:@"%@",self.detailModel.studentcoount];
         }
-        cell.studentNum.text = [NSString stringWithFormat:@"学员%@位：",studentNum];
-        if (self.detailModel.passrate) {
-=======
         if([self.detailModel.passrate floatValue]){
->>>>>>> 9937cd0285962d7771d45ba9bdb44b724ca62e02
             cell.studentNumDetail.text = [NSString stringWithFormat:@"通过率%@%@",self.detailModel.passrate,@"%"];
         }else{
             cell.studentNumDetail.text = @"暂无";

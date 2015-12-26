@@ -150,6 +150,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
             }else {
                 [self showTotasViewWithMes:@"修改失败"];
                 self.reservationreminderSwitch.on = !sender.on;
+            }
         }];
     }else if (sender.tag - 100 == 1) {
         if (sender.on == YES) {

@@ -140,7 +140,7 @@
         return;
     }
     if ([self.textView.text.trimString isEqualToString:@""]) {
-        [SVProgressHUD showErrorWithStatus:@"请输入内容"];
+        [self showTotasViewWithMes:@"请输入内容"];
         self.textView.text = @"";
         return;
     }
