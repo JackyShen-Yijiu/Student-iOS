@@ -382,7 +382,6 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
             [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
         }else {
             [SVProgressHUD showSuccessWithStatus:param[@"msg"]];
-            
         }
     }];
 }

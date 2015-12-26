@@ -83,8 +83,9 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (indexPath.section == 0) {
         UISwitch *switchControl = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
-        switchControl.onTintColor = MAINCOLOR;
+        switchControl.onTintColor = MAIN_BACKGROUND_COLOR;
         switchControl.tag = 100 + indexPath.row;
+        
         cell.accessoryView = switchControl;
         [switchControl addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
         
@@ -146,7 +147,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 //    NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", nsAppId];
 //    
 //    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:nsStringToOpen]];
-    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",AppId];
+    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/%@",AppId];
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
 }
 

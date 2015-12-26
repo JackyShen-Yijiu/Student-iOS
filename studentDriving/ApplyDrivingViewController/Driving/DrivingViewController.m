@@ -90,15 +90,15 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     
     [self configRefresh];
     // 定位
-    [self locationManager];
+//    [self locationManager];
     
-    // 在模拟器上定位不好用，测试是打开注释
-//    self.latitude = 39.929985778080237;
-//    self.longitude = 116.39564503787867;
-//    self.index = 1;
-//    self.isRefresh = YES;
-//    // 获取网络数据
-//    [self network];
+//     在模拟器上定位不好用，测试是打开注释
+    self.latitude = 39.929985778080237;
+    self.longitude = 116.39564503787867;
+    self.index = 1;
+    self.isRefresh = YES;
+    // 获取网络数据
+    [self network];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {

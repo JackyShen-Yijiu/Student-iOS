@@ -39,60 +39,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 @property (strong, nonatomic) NSArray *coachArray;
 @end
 @implementation DrivingDetailViewController
-- (NSMutableArray *)dataArray {
-    if (_dataArray == nil) {
-        _dataArray = [[NSMutableArray alloc] init];
-    }
-    return _dataArray;
-}
-- (UIButton *)signUpButton{
-    if (_signUpButton == nil) {
-        _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _signUpButton.backgroundColor = [UIColor orangeColor];
-        _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
-        [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
-         if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-            [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
-        }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-            [_signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
-        }else {
-            [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
-        }
 
-        [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-    }
-    return _signUpButton;
-}
-- (UIButton *)phoneButton {
-    if (_phoneButton == nil) {
-        _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneButton.frame = CGRectMake(0, 0, 20, 20);
-
-        [_phoneButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
-        [_phoneButton addTarget:self action:@selector(dealPhone:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _phoneButton;
-}
-- (UITableView *)tableView {
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64-49) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-    }
-    return _tableView;
-}
-- (void)configBarItem {
-    
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -15;
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneButton];
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer,rightItem];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -202,11 +149,19 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         
         _heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
         _heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
+//        _heartImageView.backgroundColor = [UIColor blackColor];
         _heartImageView.userInteractionEnabled = YES;
         [mainColorView addSubview:_heartImageView];
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
-        [mainColorView addGestureRecognizer:tapGesture];
-
+//        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
+//        [mainColorView addGestureRecognizer:tapGesture];
+        
+        UIButton *heartButton = [UIButton new];
+        heartButton.frame = heart.frame;
+        [heartButton.layer setMasksToBounds:YES];
+        [heartButton.layer setCornerRadius:heart.frame.size.width *0.5];
+        [heartButton addTarget:self action:@selector(dealLike:) forControlEvents:UIControlEventTouchDown];
+        [_tableHeadImageView addSubview:heartButton];
+        heartButton.backgroundColor = [UIColor clearColor];
         
     }
     return _tableHeadImageView;
@@ -240,7 +195,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.drivingNameLabel.text = model.name;
-        cell.locationLabel.text = [NSString stringWithFormat:@"地址%@",model.address];
+        cell.locationLabel.text = [NSString stringWithFormat:@"地址:%@",model.address];
         return cell;
     }else if (indexPath.row == 1) {
         static NSString *cellId = @"InformationCell";
@@ -384,9 +339,10 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
-            _heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
+            _heartImageView.image = [UIImage imageNamed:@"心"];
         }else {
             [SVProgressHUD showSuccessWithStatus:param[@"msg"]];
+            _heartImageView.image = [UIImage imageNamed:@"心"];
         }
     }];
 }
@@ -409,19 +365,76 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            _heartImageView.image = [UIImage imageNamed:@"心.png"];
+            _heartImageView.image = [UIImage imageNamed:@"心"];
         }else {
-//            if ([type isEqualToString:@"已经存在"]) {
-//                _heartImageView.image = [UIImage imageNamed:@"心.png"];
-//            }
+            if ([type isEqualToString:@"已经存在"]) {
+                _heartImageView.image = [UIImage imageNamed:@"心"];
+            }
         }
     }];
+}
+
+#pragma mark - lazy load
+- (NSMutableArray *)dataArray {
+    if (_dataArray == nil) {
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return _dataArray;
+}
+- (UIButton *)signUpButton{
+    if (_signUpButton == nil) {
+        _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _signUpButton.backgroundColor = [UIColor orangeColor];
+        _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
+        if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+            [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
+            _signUpButton.userInteractionEnabled = NO;
+            
+        }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+            [_signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
+            _signUpButton.userInteractionEnabled = NO;
+            
+        }else {
+            [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+        }
+        
+        [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+    }
+    return _signUpButton;
+}
+- (UIButton *)phoneButton {
+    if (_phoneButton == nil) {
+        _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _phoneButton.frame = CGRectMake(0, 0, 20, 20);
+        
+        [_phoneButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
+        [_phoneButton addTarget:self action:@selector(dealPhone:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _phoneButton;
+}
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64-49) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
+}
+- (void)configBarItem {
+    
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -15;
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneButton];
+    self.navigationItem.rightBarButtonItems = @[negativeSpacer,rightItem];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     kShowDismiss
 }
+
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
