@@ -139,15 +139,17 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         }else if (sender.on == NO) {
             [mubdic setObject:@"0" forKey:@"reservationreminder"];
         }
+        [mubdic setObject:@([AcountManager manager].newmessagereminder) forKey:@"newmessagereminder"];
         
         [JENetwoking startDownLoadWithUrl:url postParam:mubdic WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
             NSDictionary *dataParam = data;
             NSNumber *messege = dataParam[@"type"];
             if (messege.intValue == 1) {
-                [AcountManager manager].reservationreminder = !sender.on;
+                [AcountManager manager].reservationreminder = sender.on;
                 [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             }else {
                 [SVProgressHUD showErrorWithStatus:@"修改失败"];
+                self.reservationreminderSwitch.on = !sender.on;
             }
         }];
     }else if (sender.tag - 100 == 1) {
@@ -157,14 +159,17 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         }else if (sender.on == NO) {
             [mubdic setObject:@"0" forKey:@"newmessagereminder"];
         }
+        [mubdic setObject:@([AcountManager manager].reservationreminder) forKey:@"reservationreminder"];
+        
         [JENetwoking startDownLoadWithUrl:url postParam:mubdic WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
             NSDictionary *dataParam = data;
             NSNumber *messege = dataParam[@"type"];
             if (messege.intValue == 1) {
-                [AcountManager manager].newmessagereminder = !sender.on;
+                [AcountManager manager].newmessagereminder = sender.on;
                 [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             }else {
                 [SVProgressHUD showErrorWithStatus:@"修改失败"];
+                self.newmessagereminder.on = !sender.on;
             }
         }];
     }

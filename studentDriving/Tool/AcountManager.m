@@ -175,8 +175,12 @@ static  NSString    *kNewmessageReminder = @"newmessagereminder";
     if ([userInformaiton objectForKey:kUserSetting]) {
         NSDictionary *dict = [userInformaiton objectForKey:kUserSetting];
         if (dict) {
+            NSLog(@"---%@",[dict objectForKey:kReservationReminder]);
+            NSLog(@"---%@",[dict objectForKey:kNewmessageReminder]);
             [NSUserStoreTool storeWithId:[dict objectForKey:kReservationReminder] WithKey:kReservationReminder];
             [NSUserStoreTool storeWithId:[dict objectForKey:kNewmessageReminder] WithKey:kNewmessageReminder];
+//            [NSUserStoreTool storeWithId:@(1) WithKey:kReservationReminder];
+//            [NSUserStoreTool storeWithId:@(1) WithKey:kNewmessageReminder];
         }
     }
     return userInformationManager;
