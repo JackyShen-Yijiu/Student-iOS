@@ -65,9 +65,9 @@
     for (NSUInteger i = 0; i<8; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         if (i % 2 == 0) {
-            button.frame = CGRectMake(15, 60+(15)*i, 15, 15);
+            button.frame = CGRectMake(15, 60+(15)*i, 20, 20);
         }else {
-            button.frame = CGRectMake(kSystemWide/2, 60+(15)*(i-1), 15, 15);
+            button.frame = CGRectMake(kSystemWide/2, 60+(15)*(i-1), 20, 20);
         }
         [button setBackgroundImage:[UIImage imageNamed:@"cancelSelect.png"] forState:UIControlStateNormal];
         [button setBackgroundImage:[UIImage imageNamed:@"cancelSelect_click.png"] forState:UIControlStateSelected];

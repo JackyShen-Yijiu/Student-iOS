@@ -8,6 +8,7 @@
 
 #import "ComplainTableViewCell.h"
 #import "ToolHeader.h"
+#import <SVProgressHUD.h>
 @interface ComplainTableViewCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *cancelTitle;
@@ -96,6 +97,11 @@
         }
     }
     UILabel *contentLabel = self.titleArray[sender.tag - 100];
+    
+    if (!contentLabel.text) {
+        [SVProgressHUD showErrorWithStatus:@"你还没有填写任何原因!"];
+        return;
+    }
     if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {
         DYNSLog(@"content = %@",contentLabel.text);
         [_delegate senderCancelMessage:contentLabel.text];
@@ -112,6 +118,12 @@
             b.selected = YES;
         }
     }
+    if (!contentLabel.text) {
+        [SVProgressHUD showErrorWithStatus:@"你还没有填写任何原因!"];
+        return;
+    }
+
+
     if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {
         [_delegate senderCancelMessage:contentLabel.text];
     }

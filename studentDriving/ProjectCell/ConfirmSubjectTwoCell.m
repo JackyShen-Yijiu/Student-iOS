@@ -76,7 +76,6 @@
         button.tag = 1000 + i;
         [self.bntArray addObject:button];
         UILabel *contentLabel = [[UILabel alloc] init];
-        contentLabel.backgroundColor = [UIColor cyanColor];
         if (i % 2 == 0) {
             contentLabel.frame = CGRectMake(15+15+10, 60+(15)*i, (kSystemWide/2)-15, 15);
         }else {

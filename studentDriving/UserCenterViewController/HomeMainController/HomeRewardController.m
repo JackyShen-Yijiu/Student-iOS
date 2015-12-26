@@ -122,7 +122,7 @@ self.title = @"一步流程";
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+    [SVProgressHUD dismiss];
     NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
     DYNSLog(@"store = %@",string);
     [_progressView removeFromSuperview];

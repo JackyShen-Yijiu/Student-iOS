@@ -8,10 +8,12 @@
 
 #import "CancelAppointmentCell.h"
 #import "ToolHeader.h"
+#import <SVProgressHUD.h>
 @interface CancelAppointmentCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *cancelTitle;
 @property (strong, nonatomic) NSMutableArray *bntArray;
+@property (nonatomic,strong) NSMutableArray *labelArray;
 @end
 @implementation CancelAppointmentCell
 
@@ -20,6 +22,13 @@
         _bntArray = [[NSMutableArray alloc] init];
     }
     return _bntArray;
+}
+- (NSMutableArray *)labelArray
+{
+    if (_labelArray == nil) {
+        _labelArray = [[NSMutableArray alloc] init];
+    }
+    return _labelArray;
 }
 - (UIView *)backGroundView {
     if (_backGroundView == nil) {
@@ -60,6 +69,7 @@
         [button setBackgroundImage:[UIImage imageNamed:@"cancelSelect.png"] forState:UIControlStateNormal];
         [button setBackgroundImage:[UIImage imageNamed:@"cancelSelect_click.png"] forState:UIControlStateSelected];
         button.tag = 100 + i;
+        [button addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.bntArray addObject:button];
         UILabel *contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15+15+10, 60+(15+20)*i, kSystemWide/2, 15)];
         contentLabel.userInteractionEnabled = YES;
@@ -67,6 +77,7 @@
         contentLabel.font = [UIFont systemFontOfSize:14];
         contentLabel.text = titleArray[i];
         contentLabel.tag = 100 + i;
+        [self.labelArray addObject:contentLabel];
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(clickTap:)];
         [contentLabel addGestureRecognizer:tap];
         [self.backGroundView addSubview:button];
@@ -77,6 +88,28 @@
 
 //    [self.backGroundView viewWithTag:<#(NSInteger)#>] 通过tag值取view
 
+
+- (void)didClick:(UIButton *)btn
+{
+    for (UIButton *b in self.bntArray) {
+        b.selected = NO;
+        if (btn.tag == b.tag) {
+            b.selected = YES;
+            for (UILabel *label in self.labelArray) {
+                if (label.tag == b.tag) {
+                    if (!label.text) {
+                        [SVProgressHUD showErrorWithStatus:@"你还没有填写任何原因!"];
+                        return;
+                    }
+                    if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {
+                        
+                        [_delegate senderCancelMessage:label.text];
+                    }
+                }
+            }
+        }
+    }
+}
 - (void)clickTap:(UITapGestureRecognizer *)tap {
     UILabel *contentLabel = (UILabel *)tap.view;
     for (UIButton *b in self.bntArray) {
@@ -84,6 +117,10 @@
         if (b.tag == contentLabel.tag) {
             b.selected = YES;
         }
+    }
+    if (!contentLabel.text) {
+        [SVProgressHUD showErrorWithStatus:@"你还没有填写任何原因!"];
+        return;
     }
     if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {
         [_delegate senderCancelMessage:contentLabel.text];

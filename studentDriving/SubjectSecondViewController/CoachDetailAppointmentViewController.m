@@ -217,7 +217,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (section == 1) {
-        return 32;
+        return 100;
     }
     return 0;
 }
@@ -241,7 +241,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
     }else if (indexPath.row == 1 && indexPath.section == 0) {
         return 200;
     }else if (indexPath.row == 2 && indexPath.section == 0) {
-        return 105;
+        return 200;
     }
     return 96;
 }

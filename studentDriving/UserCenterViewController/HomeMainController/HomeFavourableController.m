@@ -122,7 +122,7 @@ static NSString *advantage = @"3.html";
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    
+    [SVProgressHUD dismiss];
     NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
     DYNSLog(@"store = %@",string);
     [_progressView removeFromSuperview];

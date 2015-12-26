@@ -255,7 +255,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
     }else if (indexPath.row == 1 && indexPath.section == 0) {
         return 195;
     }else if (indexPath.row == 2 && indexPath.section == 0) {
-        return 105;
+        return 200;
     }
     return 96;
 }
@@ -304,6 +304,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         cell.rainingGroundDetail.text = self.detailModel.trainFieldInfo.name;
         cell.studentNumDetail.text = [NSString stringWithFormat:@"通过率%@%@",self.detailModel.passrate,@"%"];
         cell.sendMeetDetail.text = self.detailModel.shuttlemsg;
+        
         cell.workTimeDetail.text = self.detailModel.worktimedesc;
         cell.dringAgeLabel.text = [NSString stringWithFormat:@"驾       龄:   %@年",self.detailModel.seniority];
         if (self.detailModel.subject.count >= 2) {
