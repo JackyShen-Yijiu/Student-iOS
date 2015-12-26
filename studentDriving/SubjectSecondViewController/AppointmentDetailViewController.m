@@ -44,7 +44,6 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     if (_itemTime == nil) {
         _itemTime = [UIButton buttonWithType:UIButtonTypeCustom];
         [_itemTime setBackgroundImage:[UIImage imageNamed:@"日历.png"] forState:UIControlStateNormal];
-//        _itemTime.backgroundColor = [UIColor blackColor];
         _itemTime.frame = CGRectMake(0, 0, 50, 50);
 
     }
@@ -61,26 +60,6 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     }
     return _itemMessege;
 }
-//- (UICollectionView *)collectionView {
-//    if (_collectionView == nil) {
-//        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
-//        flowLayout.minimumInteritemSpacing = 10.0f;
-//        flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-//        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 40, kSystemWide-30, 45) collectionViewLayout:flowLayout];
-//        _collectionView.backgroundColor = [UIColor whiteColor];
-//        _collectionView.dataSource = self;
-//        _collectionView.delegate = self;
-//        [_collectionView registerClass:[AppointmentCollectionCell class] forCellWithReuseIdentifier:@"cell"];
-//    }
-//    return _collectionView;
-//}
-//- (UILabel *)studentTitle {
-//    if (_studentTitle == nil) {
-//        _studentTitle = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
-//        _studentTitle.text  = @"同时段学员";
-//    }
-//    return _studentTitle;
-//}
 
 - (UILabel *)coachName {
     if (_coachName == nil) {
@@ -96,6 +75,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     }
     return _drivingAddress;
 }
+
 - (UIImageView *)coachImageView{
     if (_coachImageView == nil) {
         _coachImageView = [[UIImageView alloc] init];
@@ -112,9 +92,9 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     }
     return _tableView;
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"科目二";
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -128,13 +108,9 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     }else {
         [self createUI];
     }
-    
-    
-    
-    
-    
    
 }
+
 - (void)dealMessage:(UIButton *)sender {
     ChatViewController *chat = [[ChatViewController alloc] initWithChatter:self.model.coachid.infoId  conversationType:eConversationTypeChat];
     chat.title = self.model.coachid.name;
@@ -143,6 +119,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     chat.conversation.ext = extParam;
     [self.navigationController pushViewController:chat animated:YES];
 }
+
 - (void)createUI {
     [self.view addSubview:self.tableView];
 
@@ -197,11 +174,11 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 //    
 //}
 - (void)conformNavItem {
-    UIBarButtonItem *navTimeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemTime];
+//    UIBarButtonItem *navTimeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemTime];
     UIBarButtonItem *navMessegeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemMessege];
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceItem.width = -15;
-    self.navigationItem.rightBarButtonItems = @[spaceItem,navMessegeItem,spaceItem,navTimeItem];
+    self.navigationItem.rightBarButtonItems = @[spaceItem,navMessegeItem];
 }
 - (UIView *)tableViewHeadView {
     UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 90)];
