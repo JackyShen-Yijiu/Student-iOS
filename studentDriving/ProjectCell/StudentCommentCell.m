@@ -43,7 +43,6 @@
 - (UILabel *)commentContentLabel {
     if (_commentContentLabel == nil) {
         _commentContentLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
-//        _commentContentLabel.text = @"李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政李文政";
         _commentContentLabel.numberOfLines = 2;
     }
     return _commentContentLabel;
@@ -52,7 +51,6 @@
 - (UILabel *)commentTimeLabel {
     if (_commentTimeLabel == nil) {
         _commentTimeLabel = [WMUITool initWithTextColor:RGBColor(153, 153, 153) withFont:[UIFont systemFontOfSize:12]];
-//        _commentTimeLabel.text = @"08-27 14:58";
     }
     return _commentTimeLabel;
 }
@@ -103,6 +101,7 @@
     
     self.studentNameLabel.text = messageModel.userid.name;
     self.commentContentLabel.text = messageModel.comment.commentcontent;
+    self.commentTimeLabel.text = [self dateFromISO8601String:messageModel.comment.commenttime];
     [self.studentHeadImageView sd_setImageWithURL:[NSURL URLWithString:messageModel.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
 }
 - (void)resetContent {
@@ -110,4 +109,28 @@
     self.commentContentLabel.text = nil;
     self.studentHeadImageView.image = nil;
 }
+
+
+- (NSString *)dateFromISO8601String:(NSString *)string {
+    if (!string) return nil;
+    
+    struct tm tm;
+    time_t t;
+    
+    strptime([string cStringUsingEncoding:NSUTF8StringEncoding], "%Y-%m-%dT%H:%M:%S%z", &tm);
+    tm.tm_isdst = -1;
+    t = mktime(&tm);
+    
+    //    return [NSDate dateWithTimeIntervalSince1970:t]; // 零时区
+    NSDate * date =  [NSDate dateWithTimeIntervalSince1970:t + [[NSTimeZone localTimeZone] secondsFromGMT]];//东八区
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //设定时间格式,这里可以设置成自己需要的格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
+    //用[NSDate date]可以获取系统当前时间
+    NSString *currentDateStr = [dateFormatter stringFromDate:date];
+    
+    return currentDateStr;
+}
+
 @end

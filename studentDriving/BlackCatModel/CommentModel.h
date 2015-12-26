@@ -11,4 +11,5 @@
 @interface CommentModel : MTLModel<MTLJSONSerializing>
 @property (copy, nonatomic, readonly) NSString *commentcontent;
 @property (strong, nonatomic, readonly) NSNumber *starlevel;
+@property (nonatomic,strong,readonly)NSString * commenttime;
 @end
