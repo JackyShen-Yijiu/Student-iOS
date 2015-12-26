@@ -35,6 +35,8 @@
 		B8272D441C1EE4ED00BE0D2D /* YBBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D431C1EE4ED00BE0D2D /* YBBaseTableController.m */; };
 		B8272D471C1EEC4D00BE0D2D /* SideMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D461C1EEC4D00BE0D2D /* SideMenuItem.m */; };
 		B8272D4A1C1EF42700BE0D2D /* UIViewController+SliderMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D491C1EF42700BE0D2D /* UIViewController+SliderMenu.m */; };
+		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
+		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		D512569C1BDF602B002717DA /* CommonAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D512569B1BDF602B002717DA /* CommonAddressViewController.m */; };
 		D512569F1BDFAA31002717DA /* SignUpDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D512569E1BDFAA31002717DA /* SignUpDrivingViewController.m */; };
 		D51256A21BDFAA53002717DA /* SignUpDrivingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D51256A11BDFAA53002717DA /* SignUpDrivingDetailViewController.m */; };
@@ -598,6 +600,10 @@
 		B8272D461C1EEC4D00BE0D2D /* SideMenuItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuItem.m; sourceTree = "<group>"; };
 		B8272D481C1EF42700BE0D2D /* UIViewController+SliderMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+SliderMenu.h"; sourceTree = "<group>"; };
 		B8272D491C1EF42700BE0D2D /* UIViewController+SliderMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+SliderMenu.m"; sourceTree = "<group>"; };
+		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
+		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
+		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
+		B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+Method.m"; sourceTree = "<group>"; };
 		B8E979B51C1DC244002DEA0A /* EaseMobSDK-PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "EaseMobSDK-PrefixHeader.pch"; sourceTree = "<group>"; };
 		D512569A1BDF602B002717DA /* CommonAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonAddressViewController.h; sourceTree = "<group>"; };
 		D512569B1BDF602B002717DA /* CommonAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommonAddressViewController.m; sourceTree = "<group>"; };
@@ -1488,6 +1494,17 @@
 				B8272D491C1EF42700BE0D2D /* UIViewController+SliderMenu.m */,
 			);
 			name = SliderMenu;
+			sourceTree = "<group>";
+		};
+		B84D9D1E1C2E807200A8BDC2 /* TotasView */ = {
+			isa = PBXGroup;
+			children = (
+				B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */,
+				B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */,
+				B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */,
+				B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */,
+			);
+			name = TotasView;
 			sourceTree = "<group>";
 		};
 		BEF77C06A3D4E352E446D8FE /* Frameworks */ = {
@@ -2382,6 +2399,7 @@
 		D588AF881BDDB62C000C5D6F /* studentDriving */ = {
 			isa = PBXGroup;
 			children = (
+				B84D9D1E1C2E807200A8BDC2 /* TotasView */,
 				D96D1BC01C2B858400F1C282 /* AppDelegate */,
 				D961BC761C27FFB700940577 /* GuidePage */,
 				D96D1BD51C2B88A000F1C282 /* DVVNavigation */,
@@ -3389,6 +3407,7 @@
 				060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */,
 				D5604B691BF656C50020F0D7 /* PSTCollectionViewItemKey.m in Sources */,
 				D588B06B1BDDDB90000C5D6F /* AppointmentViewController.m in Sources */,
+				B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */,
 				D588B0521BDDDB71000C5D6F /* ModifyPhoneNumViewController.m in Sources */,
 				D588B08E1BDDDBDB000C5D6F /* ExamClassViewController.m in Sources */,
 				D51256C01BE24442002717DA /* ConfirmStudyFinishViewController.m in Sources */,
@@ -3575,6 +3594,7 @@
 				D5604B7B1BF656C50020F0D7 /* wav.mm in Sources */,
 				D588B13D1BDDDC65000C5D6F /* ModificationView.m in Sources */,
 				D5604B551BF656C50020F0D7 /* EMSDWebImageDecoder.m in Sources */,
+				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
 				D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,

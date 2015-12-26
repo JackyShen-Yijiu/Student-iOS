@@ -8,7 +8,6 @@
 
 #import "HomeRewardController.h"
 
-#import <SVProgressHUD.h>
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 #import "ToolHeader.h"
@@ -46,7 +45,7 @@ static NSString *advantage = @"liuchengt.html";
     [super viewDidLoad];
 self.title = @"一步流程";
     [self addSignUp];
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
@@ -96,7 +95,7 @@ self.title = @"一步流程";
         } else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
             [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"您已经报过名"];
+            [self showTotasViewWithMes:@"您已经报过名"];
         }
         
     }
@@ -112,12 +111,12 @@ self.title = @"一步流程";
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     _webView.hidden = NO;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
-    DYNSLog(@"error");
-    [SVProgressHUD showErrorWithStatus:@"加载失败"];
+    [MBProgressHUD hideHUDForView:self.view animated:NO];
+    [self showTotasViewWithMes:@"加载失败"];
     
 }
 - (void)viewWillDisappear:(BOOL)animated {

@@ -27,5 +27,6 @@
 #import "UIViewController+SliderMenu.h"
 
 #import "UIColor+Hex.h"
-
+#import "UIViewController+Method.h"
+#import "MBProgressHUD.h"
 #endif /* EaseMobSDK_PrefixHeader_pch */

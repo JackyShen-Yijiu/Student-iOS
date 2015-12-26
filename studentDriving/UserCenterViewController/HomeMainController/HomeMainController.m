@@ -11,7 +11,6 @@
 #import "HomeSpotView.h"
 #import "UIViewController+SliderMenu.h"
 #import "ToolHeader.h"
-#import <SVProgressHUD.h>
 #import "JENetwoking.h"
 #import "DVVSideMenu.h"
 #import "DVVUserManager.h"
@@ -151,10 +150,10 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                     [AcountManager saveUserApplyState:@"2"];
                 }
                }else {
-            [SVProgressHUD showInfoWithStatus:[data objectForKey:@"msg"]];
+                   [self showTotasViewWithMes:[data objectForKey:@"msg"]];
         }
     } withFailure:^(id data) {
-        [SVProgressHUD showInfoWithStatus:@"网络错误"];
+         [self showTotasViewWithMes:@"网络错误"];
     }];
 }
 - (void)startSubjectFourDownLoad
@@ -247,7 +246,6 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     // 科目二的回调
     self.subjectTWoView.didClickBlock = ^(NSInteger tag)
     {
-        NSLog(@"我被回调了tag = %lu",tag);
         switch (tag) {
             case 101:
             {
@@ -260,7 +258,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 case 102:
             {
                 if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-                    [SVProgressHUD showErrorWithStatus:@"报名正在审核中!"];
+                    [self showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
                     
                 } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"])
@@ -269,7 +267,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
                 }else
                 {
-                    [SVProgressHUD showErrorWithStatus:@"你还没有报名"];
+                    [self showTotasViewWithMes:@"你还没有报名"];
                 }
                 
             }
@@ -309,7 +307,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
 
                 }else {
-                    [SVProgressHUD showErrorWithStatus:@"您未符合预约要求"];
+                    [self showTotasViewWithMes:@"您未符合预约要求"];
                 }
             }
                 break;

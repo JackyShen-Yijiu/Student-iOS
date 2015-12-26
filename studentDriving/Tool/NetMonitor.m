@@ -8,7 +8,6 @@
 
 #import "NetMonitor.h"
 #import <AFNetworkActivityIndicatorManager.h>
-#import <SVProgressHUD.h>
 
 @interface NetMonitor ()
 @property (readwrite,nonatomic,assign) NetMonitorState _netMonitorState;
@@ -37,9 +36,11 @@
                     __netMonitorState = NetMonitorStateWWAN;
                     break;
                     case AFNetworkReachabilityStatusNotReachable:
-//                    NSLog(@"NetMonitorStateUnkown");
-                    [SVProgressHUD showInfoWithStatus:@"网络出错"];
-                    
+                {
+                    ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络出错"];
+                    [alertView show];
+                
+                }
                     
                 default:
                     break;

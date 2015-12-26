@@ -37,11 +37,9 @@ static NSString *const kQiniuUpdateUrl = @"info/qiniuuptoken";
 
 static NSString *const kQiniuImageUrl = @"http://7xnjg0.com1.z0.glb.clouddn.com/%@";
 
-#define kShowSuccess(msg) [SVProgressHUD showSuccessWithStatus:msg];
+#define kShowSuccess(msg) [self showTotasViewWithMes:msg];
 
-#define kShowDismiss     [SVProgressHUD dismiss];
-
-#define kShowFail(msg)    [SVProgressHUD showErrorWithStatus:msg];
+#define kShowFail(msg)   [self showTotasViewWithMes:msg];
 
 
 #define RGBColor(R,G,B)  [UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:1]

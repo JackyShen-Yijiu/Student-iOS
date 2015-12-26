@@ -15,7 +15,6 @@
 #import "SignUpListViewController.h"
 #import "DrivingSelectedCoachCell.h"
 #import "DrvingDetailModel.h"
-#import <SVProgressHUD.h>
 #import "SignUpInfoManager.h"
 #import "CoachModel.h"
 #import "CoachDetailViewController.h"
@@ -102,7 +101,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 
     NSString *urlString = [NSString stringWithFormat:kDrivingDetailUrl,self.schoolId];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"result = %@",data);
         
@@ -117,8 +116,9 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
             [self.dataArray addObject:drvingDetailModel];
             [self.tableView reloadData];
             [self.tableHeadImageView sd_setImageWithURL:[NSURL URLWithString:drvingDetailModel.logoimg.originalpic]placeholderImage:[UIImage imageNamed:@"bigImage.png"]];
-            [SVProgressHUD dismiss];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
         }else {
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
             kShowFail(msg)
         }
         
@@ -338,10 +338,10 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+            [self showTotasViewWithMes:@"收藏成功"];
             _heartImageView.image = [UIImage imageNamed:@"心"];
         }else {
-            [SVProgressHUD showSuccessWithStatus:param[@"msg"]];
+            [self showTotasViewWithMes:param[@"msg"]];
             _heartImageView.image = [UIImage imageNamed:@"心"];
         }
     }];
@@ -428,11 +428,6 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     negativeSpacer.width = -15;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneButton];
     self.navigationItem.rightBarButtonItems = @[negativeSpacer,rightItem];
-}
-
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 
 - (void)dealloc {

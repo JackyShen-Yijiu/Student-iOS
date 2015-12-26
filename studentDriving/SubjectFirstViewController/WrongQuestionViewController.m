@@ -7,7 +7,6 @@
 //
 
 #import "WrongQuestionViewController.h"
-#import <SVProgressHUD.h>
 #import "ToolHeader.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
@@ -31,7 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
@@ -69,11 +68,12 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     _webView.hidden = NO;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
-    [SVProgressHUD showErrorWithStatus:@"加载失败"];
+    [MBProgressHUD hideHUDForView:self.view animated:NO];
+    [self showTotasViewWithMes:@"加载失败"];
     DYNSLog(@"error");
     
 }

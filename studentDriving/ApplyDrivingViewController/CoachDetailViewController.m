@@ -14,7 +14,6 @@
 #import "CoachIntroductionCell.h"
 #import "StudentCommentCell.h"
 #import "JsonTransformManager.h"
-#import <SVProgressHUD.h>
 #import "CoachDetail.h"
 #import "BLPFAlertView.h"
 #import "SignUpInfoManager.h"
@@ -177,6 +176,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
             DYNSLog(@"error = %@",error);
             [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:1] withRowAnimation:UITableViewRowAnimationNone];
         }else {
+
             kShowFail(msg);
             
         }
@@ -191,21 +191,17 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
     
     __weak CoachDetailViewController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"coachDetail = %@",data);
         NSDictionary *dataParam = data;
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
             NSError *error = nil;
             CoachDetail *coachDetail = [MTLJSONAdapter modelOfClass:CoachDetail.class fromJSONDictionary:dataParam[@"data"] error:&error];
-            DYNSLog(@"error = %@",error);
             weakSelf.detailModel = coachDetail;
-            DYNSLog(@"data = %@",weakSelf.detailModel);
-            
             [weakSelf.tableView reloadData];
             
             [self.tableHeadImageView sd_setImageWithURL:[NSURL URLWithString:coachDetail.headportrait.originalpic]placeholderImage:[UIImage imageNamed:@"bigImage.png"]];
-        }else {
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+        }else{
+            [self showTotasViewWithMes:@"网络错误"];
             return;
         }
     }];
@@ -464,7 +460,6 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 }
 
 - (void)dealLike:(UITapGestureRecognizer *)tap{
-    DYNSLog(@"like");
     
     if (![AcountManager isLogin]) {
         [self showLoginView];
@@ -479,17 +474,13 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+            [self showTotasViewWithMes:@"收藏成功"];
             _heartImageView.image = [UIImage imageNamed:@"心"];
         }else {
-            [SVProgressHUD showSuccessWithStatus:param[@"msg"]];
+            [self showTotasViewWithMes:param[@"msg"]];
             _heartImageView.image = [UIImage imageNamed:@"心"];
         }
     }];
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 
 @end

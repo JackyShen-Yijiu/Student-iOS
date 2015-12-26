@@ -14,7 +14,6 @@
 #import "MagicMainTableViewController.h"
 #import "MyWallet.h"
 #import <MJRefresh.h>
-#import <SVProgressHUD.h>
 #import "UIColor+Hex.h"
 #import "DVVSideMenu.h"
 
@@ -259,7 +258,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         NSDictionary *param = [data objectForKey:@"data"];
         NSArray *list = [param objectForKey:@"list"];
         if (list.count < 10) {
-            [SVProgressHUD showInfoWithStatus:@"没有更多信息"];
+            [self showTotasViewWithMes:@"没有更多信息"];
             return ;
         }
         NSString *walletString = [NSString stringWithFormat:@"%@",param[@"wallet"]];

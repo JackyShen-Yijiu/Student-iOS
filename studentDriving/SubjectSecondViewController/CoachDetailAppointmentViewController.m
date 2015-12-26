@@ -22,7 +22,6 @@
 #import "CoachIntroductionCell.h"
 #import "StudentCommentCell.h"
 #import "JsonTransformManager.h"
-#import <SVProgressHUD.h>
 #import "CoachDetail.h"
 #import "BLPFAlertView.h"
 #import "SignUpInfoManager.h"
@@ -184,7 +183,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
             [weakSelf.tableView reloadData];
             [self.tableHeadImageView sd_setImageWithURL:[NSURL URLWithString:weakSelf.detailModel.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"bigImage.png"]];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"网络错误"];
+            [self showTotasViewWithMes:@"网络错误"];
             return;
         }
     }];
@@ -379,15 +378,11 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            [SVProgressHUD showSuccessWithStatus:@"收藏成功"];
+            [self showTotasViewWithMes:@"收藏成功"];
         }else {
-            [SVProgressHUD showSuccessWithStatus:param[@"msg"]];
+            [self showTotasViewWithMes:param[@"msg"]];
         }
     }];
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 
 @end

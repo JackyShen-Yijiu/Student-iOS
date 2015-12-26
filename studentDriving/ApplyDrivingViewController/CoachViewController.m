@@ -13,7 +13,6 @@
 #import <Masonry.h>
 #import "UIView+CalculateUIView.h"
 #import <BaiduMapAPI/BMKLocationService.h>
-#import <SVProgressHUD.h>
 #import "CoachModel.h"
 #import "LoginViewController.h"
 #import "CoachDetailAppointmentViewController.h"
@@ -142,7 +141,7 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"教练";
@@ -255,7 +254,7 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
         [self.dataArray addObject:model];
     }
     [self.tableView reloadData];
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 #pragma mark - bntAciton
 - (void)clickLeftBtn:(UIButton *)sender {
@@ -330,11 +329,6 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-}
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    
-    kShowDismiss
 }
 - (void)dealloc {
     [self.locationService stopUserLocationService];

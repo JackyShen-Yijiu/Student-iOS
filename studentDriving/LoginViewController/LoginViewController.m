@@ -11,7 +11,6 @@
 #import "NSUserStoreTool.h"
 #import "ForgetViewController.h"
 #import "RegisterViewController.h"
-#import <SVProgressHUD.h>
 #import <Masonry/Masonry.h>
 #import "ToolHeader.h"
 #import "JENetwoking.h"
@@ -254,11 +253,11 @@ static NSString *const kuserType = @"usertype";
 
 - (void)dealLogin:(UIButton *)sender {
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length  == 0) {
-        [SVProgressHUD showInfoWithStatus:@"请输入手机号"];
+        [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }
     if (self.passwordTextField.text == nil || self.passwordTextField.text.length  == 0) {
-        [SVProgressHUD showInfoWithStatus:@"请输入密码"];
+        [self showTotasViewWithMes:@"请输入密码"];
         return;
     }
     //网络请求
@@ -268,17 +267,19 @@ static NSString *const kuserType = @"usertype";
     NSString *url = [NSString stringWithFormat:BASEURL,kloginUrl];
     DYNSLog(@"%@ %@",url,self.userParam);
     
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [JENetwoking startDownLoadWithUrl:url postParam:self.userParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         NSDictionary *dataDic = data;
         
         NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
         if ([type isEqualToString:@"0"]) {
-            [SVProgressHUD showErrorWithStatus:@"密码错误"];
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
+            [self showTotasViewWithMes:@"密码错误"];
         }else if ([type isEqualToString:@"1"]) {
             
             [AcountManager configUserInformationWith:dataDic[@"data"]];
-            [SVProgressHUD showSuccessWithStatus:@"登录成功"];
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
+            [self showTotasViewWithMes:@"登录成功"];
             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
             if ([AcountManager manager].userid) {
@@ -371,7 +372,7 @@ static NSString *const kuserType = @"usertype";
         NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
         BOOL isMatch = [pred evaluateWithObject:phoneNum];
         if (!isMatch) {
-            [SVProgressHUD showInfoWithStatus:@"请输入正确的手机号" maskType:SVProgressHUDMaskTypeBlack];
+            [self showTotasViewWithMes:@"请输入正确的手机号"];
             return;
         }
         [self.userParam setObject:textField.text forKey:kmobileNum];

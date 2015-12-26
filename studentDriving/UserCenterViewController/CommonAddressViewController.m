@@ -8,7 +8,7 @@
 
 #import "CommonAddressViewController.h"
 #import "UIDevice+JEsystemVersion.h"
-#import <SVProgressHUD.h>
+
 static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 @interface CommonAddressViewController ()
 @property (strong, nonatomic) UITextField *addAddressTextField;
@@ -82,12 +82,12 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         NSDictionary *dataParam = data;
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
-            [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+            [self showTotasViewWithMes:@"修改成功"];
             [AcountManager saveUserAddress:self.addAddressTextField.text];
             [[NSNotificationCenter defaultCenter] postNotificationName:kaddAddressChange object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"修改失败"];
+            [self showTotasViewWithMes:@"修改失败"];
             return;
         }
         

@@ -7,7 +7,6 @@
 //
 
 #import "RegistNoteController.h"
-#import <SVProgressHUD.h>
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 #import "ToolHeader.h"
@@ -44,7 +43,7 @@ static NSString *advantage = @"3.html";
     [super viewDidLoad];
     self.title = @"用户协议";
     [self addSignUp];
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
@@ -96,19 +95,18 @@ static NSString *advantage = @"3.html";
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
-    [SVProgressHUD dismiss];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     _webView.hidden = NO;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
-    DYNSLog(@"error");
-    [SVProgressHUD showErrorWithStatus:@"加载失败"];
+    [MBProgressHUD hideHUDForView:self.view animated:NO];
+    [self showTotasViewWithMes:@"加载失败"];
     
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
-    DYNSLog(@"store = %@",string);
+//    NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
     [_progressView removeFromSuperview];
     
 }

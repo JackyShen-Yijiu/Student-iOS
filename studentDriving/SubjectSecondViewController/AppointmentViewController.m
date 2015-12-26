@@ -15,8 +15,8 @@
 #import "APWaitEvaluationViewController.h"
 #import "AppointmentDrivingViewController.h"
 #import "MyAppointmentModel.h"
-#import <SVProgressHUD.h>
 #import <MJRefresh.h>
+
 static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@&subjectid=%@";
 @interface AppointmentViewController ()<UITableViewDataSource,UITableViewDelegate>
 //废弃
@@ -328,10 +328,6 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     
 
     
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    kShowDismiss
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];

@@ -1,8 +1,8 @@
 #import "ForgetViewController.h"
 #import <Masonry/Masonry.h>
-#import <SVProgressHUD.h>
 #import "ToolHeader.h"
 #import "GainPasswordViewController.h"
+
 static NSString *const kchangePassword = @"kchangePassword";
 
 
@@ -152,14 +152,14 @@ static NSString *const kchangePassword = @"kchangePassword";
     NSLog(@"发送验证码");
     
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length <= 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入手机号" maskType:SVProgressHUDMaskTypeGradient];
+        [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }else {
         NSString *urlString = [NSString stringWithFormat:@"code/%@",self.phoneNumTextField.text];
         NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
         
         [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-            [SVProgressHUD showSuccessWithStatus:@"发送成功"];
+            [self showTotasViewWithMes:@"发送成功"];
         }];
     }
     
@@ -204,12 +204,12 @@ static NSString *const kchangePassword = @"kchangePassword";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     BOOL isMatch = [pred evaluateWithObject:phoneNum];
     if (!isMatch) {
-        [SVProgressHUD showErrorWithStatus:@"请输入正确的手机号" maskType:SVProgressHUDMaskTypeBlack];
+        [self showTotasViewWithMes:@"请输入正确的手机号"];
         return;
     }
     
     if (self.confirmTextField.text.length <= 0 || self.confirmTextField.text == nil) {
-        [SVProgressHUD showErrorWithStatus:@"请输入验证码" maskType:SVProgressHUDMaskTypeBlack];
+        [self showTotasViewWithMes:@"请输入验证码"];
         return;
     }
     

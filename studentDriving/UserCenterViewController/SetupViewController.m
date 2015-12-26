@@ -11,7 +11,7 @@
 #import "UIDevice+JEsystemVersion.h"
 #import "FeedBackViewController.h"
 #import "AboutUsViewController.h"
-#import <SVProgressHUD.h>
+
 static NSString *const kSettingUrl = @"userinfo/personalsetting";
 
 @interface SetupViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -107,9 +107,9 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
             NSDictionary *dataParam = data;
             NSNumber *messege = dataParam[@"type"];
             if (messege.intValue == 1) {
-                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                [self showTotasViewWithMes:@"修改成功"];
             }else {
-                [SVProgressHUD showErrorWithStatus:@"修改失败"];
+                [self showTotasViewWithMes:@"修改失败"];
             }
         }];
     }else if (sender.tag - 100 == 1) {
@@ -123,9 +123,9 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
             NSDictionary *dataParam = data;
             NSNumber *messege = dataParam[@"type"];
             if (messege.intValue == 1) {
-                [SVProgressHUD showSuccessWithStatus:@"修改成功"];
+                [self showTotasViewWithMes:@"修改成功"];
             }else {
-                [SVProgressHUD showErrorWithStatus:@"修改失败"];
+                [self showTotasViewWithMes:@"修改失败"];
             }
         }];
     }

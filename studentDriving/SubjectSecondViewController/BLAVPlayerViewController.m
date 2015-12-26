@@ -9,7 +9,6 @@
 #import "BLAVPlayerViewController.h"
 #import "UIDevice+JEsystemVersion.h"
 #import "BLAVplayerCell.h"
-#import <SVProgressHUD.h>
 #import "AVPlayModel.h"
 #import "BLAVDetailViewController.h"
 #import "BLImageViewController.h"
@@ -58,7 +57,7 @@ static NSString *const kavPlayUrl = @"getcourseware?subjectid=%@&seqindex=%@&cou
             self.dataArray = [MTLJSONAdapter modelsOfClass:AVPlayModel.class fromJSONArray:param[@"data"] error:nil];
             [self.tableView reloadData];
         }else {
-            [SVProgressHUD showErrorWithStatus:msg];
+            [self showTotasViewWithMes:msg];
         }
     }];
     

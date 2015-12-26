@@ -8,7 +8,6 @@
 
 #import "ExamClassDetailViewController.h"
 #import "ExamClassModel.h"
-#import <SVProgressHUD.h>
 #import "ExamDetailCell.h"
 #import "SignUpInfoManager.h"
 #import "NSString+CurrentTimeDay.h"
@@ -90,7 +89,7 @@ static NSString *const kexamClassDetail = @"driveschool/schoolclasstype/%@";
     DYNSLog(@"right = %@",self.naviBarRightButton);
     self.navigationItem.rightBarButtonItem = rightItem;
 
-    [SVProgressHUD show];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.title = @"选择驾校";
     self.view.backgroundColor = [UIColor whiteColor];

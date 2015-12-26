@@ -7,7 +7,6 @@
 //
 
 #import "ModifyPhoneNumViewController.h"
-#import <SVProgressHUD.h>
 #import "UIDevice+JEsystemVersion.h"
 
 static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
@@ -143,11 +142,11 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 - (void)clickCompletion:(UIButton *)sender {
  
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入手机号" maskType:SVProgressHUDMaskTypeGradient];
+        [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }
     if (self.confirmTextField.text == nil || self.confirmTextField.text.length == 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入验证码" maskType:SVProgressHUDMaskTypeGradient];
+        [self showTotasViewWithMes:@"请输入验证码"];
         return;
     }
 
@@ -162,12 +161,12 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         NSDictionary *dataParam = data;
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
-            [SVProgressHUD showSuccessWithStatus:@"绑定成功"];
+            [self showTotasViewWithMes:@"绑定成功"];
             weakSelf.nowPhoneNumLabel.text = [NSString stringWithFormat:@"您当前手机号为%@",weakSelf.phoneNumTextField.text];
             [AcountManager saveUserPhoneNum:weakSelf.phoneNumTextField.text];
             [self.navigationController popViewControllerAnimated:YES];
         }else {
-            [SVProgressHUD showErrorWithStatus:@"绑定失败"];
+            [self showTotasViewWithMes:@"绑定失败"];
         }
     }];
     
@@ -178,14 +177,14 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     NSLog(@"发送验证码");
     
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length <= 0) {
-        [SVProgressHUD showErrorWithStatus:@"请输入手机号" maskType:SVProgressHUDMaskTypeGradient];
+        [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }else {
         NSString *urlString = [NSString stringWithFormat:@"code/%@",self.phoneNumTextField.text];
         NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
         
         [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-            [SVProgressHUD showSuccessWithStatus:@"发送成功"];
+            [self showTotasViewWithMes:@"发送成功"];
         }];
     }
     

@@ -11,7 +11,6 @@
 #import "UIDevice+JEsystemVersion.h"
 #import "AppointmentCell.h"
 #import "ConfirmStudyFinishViewController.h"
-#import <SVProgressHUD.h>
 #import "APCommentViewController.h"
 #import "ChatViewController.h"
 @interface APWaitConfirmViewController ()<UITableViewDataSource,UITableViewDelegate,AppointmentCellDelegate>

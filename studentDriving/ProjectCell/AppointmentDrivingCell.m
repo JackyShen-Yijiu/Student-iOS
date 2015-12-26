@@ -11,7 +11,7 @@
 #import "AppointmentCollectionViewCell.h"
 #import "AppointmentCoachTimeInfoModel.h"
 #import "BLInformationManager.h"
-#import <SVProgressHUD.h>
+
 @interface AppointmentDrivingCell ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) UIScrollView *menuScrollview;
 @property (strong, nonatomic) UIView *backGroundView;
@@ -139,7 +139,11 @@
                 return;
             }
         }
-        [SVProgressHUD showInfoWithStatus:@"请选择连续的时间"];
+        
+        
+        ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"请选择连续的时间"];
+        [alertView show];
+
     }else if (model.is_selected == YES) {
         DYNSLog(@"unSelected");
         AppointmentCollectionViewCell *cell = (AppointmentCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
