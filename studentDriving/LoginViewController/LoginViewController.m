@@ -271,7 +271,7 @@ static NSString *const kuserType = @"usertype";
     [SVProgressHUD show];
     [JENetwoking startDownLoadWithUrl:url postParam:self.userParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         NSDictionary *dataDic = data;
-        
+        DYNSLog(@"%@",dataDic);
         NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
         if ([type isEqualToString:@"0"]) {
             [SVProgressHUD showErrorWithStatus:@"密码错误"];

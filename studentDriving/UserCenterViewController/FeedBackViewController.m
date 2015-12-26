@@ -10,6 +10,7 @@
 #import "UIDevice+JEsystemVersion.h"
 #import <sys/sysctl.h>
 #import <SVProgressHUD.h>
+#import "NSString+Helper.h"
 
 @interface FeedBackViewController ()
 @property (strong, nonatomic) UITextView *textView;
@@ -134,8 +135,13 @@
     }];
 }
 - (void)clickSubmit:(UIButton *)sender {
-    if (self.textView.text == nil || self.textView.text.length == 0) {
+    if (self.textView.text == nil || self.textView.text.length == 0 ) {
         [SVProgressHUD showErrorWithStatus:@"反馈意见必须填写"];
+        return;
+    }
+    if ([self.textView.text.trimString isEqualToString:@""]) {
+        [SVProgressHUD showErrorWithStatus:@"请输入内容"];
+        self.textView.text = @"";
         return;
     }
     
@@ -148,7 +154,7 @@
         if (messege.intValue == 1) {
             [SVProgressHUD showSuccessWithStatus:@"反馈成功"];
             // 成功后返回上一级窗体
-            [self popoverPresentationController];
+            [self.navigationController popViewControllerAnimated:YES];
             
         }else {
             [SVProgressHUD showErrorWithStatus:@"反馈失败"];

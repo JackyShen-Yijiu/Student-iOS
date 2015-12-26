@@ -498,6 +498,8 @@
 		D5D50EE71BFA205000F54097 /* ShopMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ED11BFA205000F54097 /* ShopMainModel.m */; };
 		D5D50EE81BFA205000F54097 /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ED31BFA205000F54097 /* ShopModel.m */; };
 		D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D5101F1BFD908900F54097 /* AboutUsViewController.m */; };
+		D95CCCEE1C2E636200AF1402 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCED1C2E636200AF1402 /* NSString+Helper.m */; };
+		D95CCCF71C2E84C000AF1402 /* UserSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */; };
 		D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D961BC791C28004200940577 /* YBWelcomeController.m */; };
 		D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA841C239D3B00DCD094 /* DrivingCell.m */; };
 		D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA881C239D9F00DCD094 /* DrivingCarTypeDMData.m */; };
@@ -1334,6 +1336,10 @@
 		D5D50ED31BFA205000F54097 /* ShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopModel.m; sourceTree = "<group>"; };
 		D5D5101E1BFD908900F54097 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		D5D5101F1BFD908900F54097 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		D95CCCEC1C2E636200AF1402 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
+		D95CCCED1C2E636200AF1402 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
+		D95CCCF51C2E84C000AF1402 /* UserSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingModel.h; sourceTree = "<group>"; };
+		D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingModel.m; sourceTree = "<group>"; };
 		D961BC781C28004200940577 /* YBWelcomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBWelcomeController.h; sourceTree = "<group>"; };
 		D961BC791C28004200940577 /* YBWelcomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBWelcomeController.m; sourceTree = "<group>"; };
 		D965CA831C239D3B00DCD094 /* DrivingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingCell.h; sourceTree = "<group>"; };
@@ -2484,6 +2490,8 @@
 				D5C240101BECFAD800832CF3 /* AVPlayModel.m */,
 				D5C2403B1BEF6E0400832CF3 /* VipserverModel.h */,
 				D5C2403C1BEF6E0400832CF3 /* VipserverModel.m */,
+				D95CCCF51C2E84C000AF1402 /* UserSettingModel.h */,
+				D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */,
 			);
 			path = BlackCatModel;
 			sourceTree = "<group>";
@@ -2707,6 +2715,8 @@
 		D588B0E61BDDDC24000C5D6F /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D95CCCEC1C2E636200AF1402 /* NSString+Helper.h */,
+				D95CCCED1C2E636200AF1402 /* NSString+Helper.m */,
 				D9B7F1271C255F0800D1A143 /* CircularMotion */,
 				D965CAB11C239E2E00DCD094 /* DVVCycleShowImagesView.h */,
 				D965CAB21C239E2E00DCD094 /* DVVCycleShowImagesView.m */,
@@ -3318,6 +3328,7 @@
 				554641C21C2509A000A55326 /* SignSuccessView.m in Sources */,
 				D5604B8C1BF656C50020F0D7 /* EMNavigationController.m in Sources */,
 				D588B04F1BDDDB71000C5D6F /* EditorUserViewController.m in Sources */,
+				D95CCCF71C2E84C000AF1402 /* UserSettingModel.m in Sources */,
 				D51256C61BE257DA002717DA /* ConfirmSubjectTwoCell.m in Sources */,
 				066BFB701C2428D0002A1DD8 /* HomeAdvantageController.m in Sources */,
 				D5D50ED81BFA205000F54097 /* finishMessageView.m in Sources */,
@@ -3427,6 +3438,7 @@
 				D588B1131BDDDC2F000C5D6F /* UIDevice+JEsystemVersion.m in Sources */,
 				D5604B821BF656C50020F0D7 /* UIImageView+HeadImage.m in Sources */,
 				D588AFC51BDDDAAB000C5D6F /* DriveSchoolinfo.m in Sources */,
+				D95CCCEE1C2E636200AF1402 /* NSString+Helper.m in Sources */,
 				D965CAA31C239D9F00DCD094 /* DrivingCityListDMData.m in Sources */,
 				D5604B6A1BF656C50020F0D7 /* PSTCollectionViewLayout.m in Sources */,
 				D5604B761BF656C50020F0D7 /* SRSlimeView.m in Sources */,

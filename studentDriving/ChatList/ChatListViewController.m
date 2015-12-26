@@ -68,7 +68,7 @@
 {
     [super viewDidLoad];
     self.title = @"消息";
-    [self addSideMenuButton];
+//    [self addSideMenuButton];
     [[EaseMob sharedInstance].chatManager loadAllConversationsFromDatabaseWithAppend2Chat:NO];
     [self removeEmptyConversationsFromDB];
 

@@ -16,6 +16,7 @@
 #import "SubjectTwoModel.h"
 #import "SubjectThreeModel.h"
 #import "BannerModel.h"
+
 @interface AcountManager : NSObject
 @property (readonly,copy, nonatomic) NSString *userAddress;
 @property (readonly,strong, nonatomic) ApplyclasstypeinfoModel *applyclasstype;
@@ -42,6 +43,11 @@
 @property (readonly,strong, nonatomic) SubjectModel *userSubject;
 @property (readonly, strong, nonatomic) SubjectTwoModel *subjecttwo;
 @property (readonly,strong, nonatomic) SubjectThreeModel *subjectthree;
+
+// 设置
+@property (nonatomic, assign) BOOL reservationreminder;
+@property (nonatomic, assign) BOOL newmessagereminder;
+
 + (AcountManager *)manager;
 
 + (AcountManager *)configUserInformationWith:(NSDictionary *)userInformaiton;
@@ -61,4 +67,5 @@
 + (void)saveUserApplyState:(NSString *)state;
 + (void)saveUserBanner:(NSArray *)dataArray;
 + (NSArray *)getBannerUrlArray;
+
 @end

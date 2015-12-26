@@ -12,14 +12,36 @@
 #import "FeedBackViewController.h"
 #import "AboutUsViewController.h"
 #import <SVProgressHUD.h>
+#import "AcountManager.h"
+
 static NSString *const kSettingUrl = @"userinfo/personalsetting";
 
 @interface SetupViewController ()<UITableViewDataSource,UITableViewDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSArray *dataArray;
+
+@property (nonatomic, strong) UISwitch *reservationreminderSwitch;
+@property (nonatomic, strong) UISwitch *newmessagereminder;
+
 @end
 
 @implementation SetupViewController
+- (UISwitch *)reservationreminderSwitch {
+    if (!_reservationreminderSwitch) {
+        _reservationreminderSwitch = [UISwitch new];
+        _reservationreminderSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
+        _reservationreminderSwitch.onTintColor = MAIN_BACKGROUND_COLOR;
+    }
+    return _reservationreminderSwitch;
+}
+- (UISwitch *)newmessagereminder {
+    if (!_newmessagereminder) {
+        _newmessagereminder = [UISwitch new];
+        _newmessagereminder = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
+        _newmessagereminder.onTintColor = MAIN_BACKGROUND_COLOR;
+    }
+    return _newmessagereminder;
+}
 - (NSArray *)dataArray {
     if (_dataArray == nil) {
         _dataArray = @[@[@"预约提醒",@"新消息通知"],@[@"关于我们",@"去评分",@"反馈"]];
@@ -45,6 +67,17 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     [self.view addSubview:self.tableView];
+    
+    [self checkSet];
+}
+
+- (void)checkSet {
+    
+    NSLog(@"res === %i",[AcountManager manager].reservationreminder);
+    NSLog(@"new === %i",[AcountManager manager].newmessagereminder);
+    
+    self.reservationreminderSwitch.on = [AcountManager manager].reservationreminder;
+    self.newmessagereminder.on = [AcountManager manager].newmessagereminder;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -82,13 +115,17 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     cell.textLabel.textColor = [UIColor blackColor];
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (indexPath.section == 0) {
-        UISwitch *switchControl = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
-        switchControl.onTintColor = MAIN_BACKGROUND_COLOR;
-        switchControl.tag = 100 + indexPath.row;
-        
-        cell.accessoryView = switchControl;
-        [switchControl addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
-        
+        if (indexPath.row == 0) {
+            
+            self.reservationreminderSwitch.tag = 100 + indexPath.row;
+            cell.accessoryView = self.reservationreminderSwitch;
+            [_reservationreminderSwitch addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+
+        }else if (indexPath.row == 1) {
+            self.newmessagereminder.tag = 100 + indexPath.row;
+            cell.accessoryView = self.newmessagereminder;
+            [_newmessagereminder addTarget:self action:@selector(switchAction:) forControlEvents:UIControlEventValueChanged];
+        }
     }
     return cell;
 }
@@ -107,6 +144,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
             NSDictionary *dataParam = data;
             NSNumber *messege = dataParam[@"type"];
             if (messege.intValue == 1) {
+                [AcountManager manager].reservationreminder = !sender.on;
                 [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             }else {
                 [SVProgressHUD showErrorWithStatus:@"修改失败"];
@@ -123,6 +161,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
             NSDictionary *dataParam = data;
             NSNumber *messege = dataParam[@"type"];
             if (messege.intValue == 1) {
+                [AcountManager manager].newmessagereminder = !sender.on;
                 [SVProgressHUD showSuccessWithStatus:@"修改成功"];
             }else {
                 [SVProgressHUD showErrorWithStatus:@"修改失败"];
