@@ -17,5 +17,9 @@
 @property (strong, nonatomic) UILabel *carType;
 @property (strong, nonatomic) UILabel *price;
 @property (strong, nonatomic) UILabel *personCount;
+@property (strong, nonatomic) UILabel *schoolDetailIntroduction;
+
 - (void)receiveVipList:(NSArray *)list;
+
+- (void)setUp;
 @end

@@ -20,9 +20,14 @@
 #import "SignUpSuccessViewController.h"
 #import "NSUserStoreTool.h"
 #import "UIColor+Hex.h"
+#import "ExamClassModel.h"
+#import "ExamDetailCell.h"
+#import "SignUpCell.h"
+#import "ApplyClassCell.h"
 //245 247 250
 
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
+static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 
 @interface SignUpListViewController ()<UITableViewDataSource, UITableViewDelegate>{
     NSArray *signUpArray;
@@ -31,26 +36,63 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 @property (strong, nonatomic)UITableView *tableView;
 @property (strong, nonatomic)UIButton *referButton;
 @property (strong, nonatomic) NSArray *secondArray;
-@property (strong, nonatomic) UIView *chooseBtnView;
-@property (strong, nonatomic) UIButton *goBackButton;
 @property (strong, nonatomic) UIButton *callButton;
+
+@property (strong, nonatomic) UILabel  *nameLabel;
+@property (strong, nonatomic) UILabel  *applyClassName;
+@property (strong, nonatomic) UIButton *leftBtn;
+@property (strong, nonatomic) UIButton *rightBtn;
+
+@property (assign, nonatomic) BOOL      cellIsShow;            // 用来记录班级详情时候显示
+@property (assign, nonatomic) NSInteger numberOfClass;         //班级的个数
+@property (strong, nonatomic) NSArray   *classDetailDataArray; //用来保存选择驾校后返回的班级详情信息
+@property (strong, nonatomic) NSArray   *classNameDataArray;   //用来保存班级名字
+@property (assign, nonatomic) NSInteger whichBtnClick;         //用来记录报考班型中那个cell被点击了
 
 @end
 
 @implementation SignUpListViewController
 
-- (void)clickGoback:(UIButton *)sender {
-    [self dismissViewControllerAnimated:YES completion:nil];
+- (UILabel *)nameLabel {
+    if (!_nameLabel) {
+        _nameLabel = [[UILabel alloc] init];
+        _nameLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _nameLabel;
 }
 
-- (UIButton *)goBackButton{
-    if (_goBackButton == nil) {
-        _goBackButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-//        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回_click"] forState:UIControlStateNormal];
-        [_goBackButton addTarget:self action:@selector(dealGoBack) forControlEvents:UIControlEventTouchUpInside];
+- (UILabel *)applyClassName {
+    if (!_applyClassName) {
+        _applyClassName = [[UILabel alloc] init];
+        _applyClassName.font = [UIFont systemFontOfSize:14];
     }
-    return _goBackButton;
+    return _applyClassName;
+}
+
+- (UIButton *)leftBtn {
+    if (!_leftBtn) {
+        _leftBtn = [[UIButton alloc] init];
+        [_leftBtn setTitle:@"C1小车手动挡" forState:UIControlStateNormal];
+        [_leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_leftBtn addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _leftBtn;
+}
+
+- (UIButton *)rightBtn {
+    if (!_rightBtn) {
+        _rightBtn = [[UIButton alloc] init];
+        [_rightBtn setTitle:@"C2小车自动挡" forState:UIControlStateNormal];
+        [_rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_rightBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _rightBtn;
+}
+
+- (void)clickGoback:(UIButton *)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (UIButton *)callButton{
@@ -62,34 +104,6 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
     return _callButton;
 }
 
-- (UIView *)chooseBtnView {
-    if (!_chooseBtnView) {
-        _chooseBtnView = [[UIView alloc] init];
-        _chooseBtnView.userInteractionEnabled = YES;
-        _chooseBtnView.hidden = YES;
-        
-        UIButton *upBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 145, 40)];
-        [upBtn setTitle:@"系统分配" forState:UIControlStateNormal];
-        [upBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [upBtn addTarget:self action:@selector(upBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        [_chooseBtnView addSubview:upBtn];
-        
-        UIButton *downBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 40, 145, 40)];
-        [downBtn setTitle:@"自行添加" forState:UIControlStateNormal];
-        [downBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-        [downBtn addTarget:self action:@selector(downBtnClick) forControlEvents:UIControlEventTouchUpInside];
-        [_chooseBtnView addSubview:downBtn];
-        _chooseBtnView.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"下拉框"]];
-    }
-    return _chooseBtnView;
-}
-
-- (NSArray *)secondArray {
-    if (_secondArray == nil) {
-        _secondArray = @[@"驾照类型",@"报考驾校",@"报考班型",@"报考教练"];
-    }
-    return _secondArray;
-}
 - (UIButton *)referButton{
     if (_referButton == nil) {
         _referButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -104,21 +118,18 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 
 - (UITableView *)tableView{
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight -64-49) style:UITableViewStyleGrouped];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 74, kSystemWide, kSystemHeight -64-49)];
         _tableView.backgroundColor = RGBColor(245, 247, 250);
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 120)];
+        KindlyReminderView *kindlyReminderView = [[KindlyReminderView alloc] initWithContentStr:@"请认真填写以上信息，您填写的信息将作为报名信息录入车考驾照系统内，如果信息错误，将影响您的报名流程。" frame:CGRectMake(0, 0, kSystemWide, 100)];
+        kindlyReminderView.backgroundColor = RGBColor(245, 247, 250);
+        [view addSubview:kindlyReminderView];
+        _tableView.tableFooterView = view;
     }
     return _tableView;
-}
-- (UIView *)tableHeadView {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 87)];
-    ChooseBtnView *chooseBtnView = [[ChooseBtnView alloc] initWithSelectedBtn:0 leftTitle:@"选择驾校" midTitle:@"填写信息" rightTitle:@"报名验证" frame:CGRectMake(0, 10, kSystemWide, 67)];
-    chooseBtnView.backgroundColor = [UIColor whiteColor];
-    [view addSubview:chooseBtnView];
-    return view;
 }
 
 - (void)viewDidLoad{
@@ -127,12 +138,11 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"报名信息表";
-    
+    _whichBtnClick = 1000;//仅仅为了第一次进来时报考班型按钮不为红色
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.callButton];
     
     [self.view addSubview:self.tableView];
-    self.tableView.tableHeaderView = [self tableHeadView];
 //    self.tableView.tableFooterView = [self tableFootView];
     [self.view addSubview:self.referButton];
     
@@ -145,51 +155,69 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 
 }
 
+#pragma mark -   Action
+
+- (void)leftBtnClick {
+    [self.leftBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    NSDictionary *param = @{@"modelsid":@(1),@"name":@"小型汽车手动挡",@"code":@"C1"};
+    [SignUpInfoManager  signUpInfoSaveRealCarmodel:param];
+}
+
+- (void)rightBtnClick {
+    [self.leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [self.rightBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    NSDictionary *param = @{@"modelsid":@(2),@"name":@"小型自动挡汽车",@"code":@"C2"};
+    [SignUpInfoManager  signUpInfoSaveRealCarmodel:param];
+}
+
+#pragma mark -   tableViewDelegate
+
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
-    return 100;
+    return 10;
     
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 200)];
-    KindlyReminderView *kindlyReminderView = [[KindlyReminderView alloc] initWithContentStr:@"请认真填写以上信息，您填写的信息将作为报名信息录入车考驾照系统内，如果信息错误，将影响您的报名流程。" frame:CGRectMake(0, 0, kSystemWide, 100)];
-    kindlyReminderView.backgroundColor = RGBColor(245, 247, 250);
-    [view addSubview:kindlyReminderView];
-    
-    self.chooseBtnView.frame = CGRectMake(kSystemWide-145, 0, 145, 80);
-    
-    
-    [view addSubview:self.chooseBtnView];
-    return view;
-}
-
-- (void)dealGoBack {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)callBtnClick {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://01053658566"]];
 }
 
-
-- (void)upBtnClick {
-    self.chooseBtnView.hidden = YES;
-    NSDictionary *param = @{@"coachid":@"-1",@"name":@"系统分配"};
-    [SignUpInfoManager signUpInfoSaveRealCoach:param];
-    signUpArray = @[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName]];
-    [_tableView reloadData];
-}
-
-- (void)downBtnClick {
-    self.chooseBtnView.hidden = YES;
-    SignUpCoachViewController *coachVc = [[SignUpCoachViewController alloc] init];
-    coachVc.markNum = 1;
-    [self.navigationController pushViewController:coachVc animated:YES];
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.secondArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    if (section == 0) {
+        if (_cellIsShow) {
+            return 5;
+        }else {
+            return 4;
+        }
+    }else {
+        return 2;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.section == 0 && indexPath.row ==3) {
+        if (_cellIsShow) {
+            return 420;
+        }else {
+            return 44;
+        }
+    }else if (indexPath.section == 0 && indexPath.row == 2) {
+        if (_numberOfClass == 0) {
+            return 44;
+        }
+        if (_numberOfClass%2) {
+            return 44 + 34*(_numberOfClass/2);
+        }else {
+            return 44 + 34*(_numberOfClass/2-1);
+        }
+    }else {
+        return 44;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -199,62 +227,220 @@ static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    static NSString *cellId = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellId];
+    if (indexPath.row == 0 && indexPath.section == 0) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_0"];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:0 reuseIdentifier:@"yy_0"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        self.nameLabel.frame = CGRectMake(16, 15, 80, 14);
+        self.nameLabel.text = [self.secondArray[0] objectAtIndex:0];
+        [cell.contentView addSubview:self.nameLabel];
+        self.leftBtn.frame = CGRectMake(100, 10, 100, 24);
+        [cell.contentView addSubview:self.leftBtn];
+        self.rightBtn.frame = CGRectMake(220, 10, 100, 24);
+        [cell.contentView addSubview:self.rightBtn];
+        return cell;
+    }else if ((indexPath.row == 1 &&indexPath.section == 0)||(indexPath.row == 3 && indexPath.section == 0 && !_cellIsShow)||(indexPath.row == 4 && indexPath.section == 0 && _cellIsShow)) {
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_1"];
+        if (cell == nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"yy_1"];
+        }
+        cell.textLabel.text = [self.secondArray[0] objectAtIndex:indexPath.row];;
+        cell.textLabel.font = [UIFont systemFontOfSize:14];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        NSLog(@"%zd",indexPath.row);
+        cell.detailTextLabel.text = [signUpArray[0] objectAtIndex:indexPath.row];
+        cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
+        return cell;
+    }else if (indexPath.row == 2 && indexPath.section == 0) {
+        ApplyClassCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_2"];
+//        for (UIView *view in cell.contentView.subviews) {
+//            [view removeFromSuperview];
+//        }
+        if (!cell) {
+            cell = [[ApplyClassCell alloc] initWithStyle:0 reuseIdentifier:@"yy_2"];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        if ([[_secondArray[0] objectAtIndex:indexPath.row] isKindOfClass:[NSString class]]) {
+            self.applyClassName.frame = CGRectMake(16, 16, 80, 14);
+            self.applyClassName.text = @"报考班型";
+            [cell.contentView addSubview:self.applyClassName];
+        }else {
+            cell.btnTag = _whichBtnClick;
+            [cell refreshUIWithArray:[_secondArray[0] objectAtIndex:indexPath.row]];
+            cell.refresh = ^(NSInteger tag){
+                ExamClassModel *model = _classDetailDataArray[tag];
+                NSDictionary *classtypeParam = @{kRealClasstypeid:model.classid,@"name":model.classname};
+                [SignUpInfoManager signUpInfoSaveRealClasstype:classtypeParam];
+                _whichBtnClick = tag;
+                _cellIsShow = YES;
+                _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,_classDetailDataArray,@"报考教练"],@[@"真实姓名",@"联系电话"]];
+                signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],@"",[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]]];
+                [tableView reloadData];
+            };
+        }
+        return cell;
+    }else if (indexPath.row == 3 && indexPath.section == 0 && _cellIsShow) {
+        
+        static NSString *cellId = @"cell";
+        ExamDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+
+        if (cell == nil) {
+            cell = [[ExamDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        ExamClassModel *model = [[_secondArray[0] objectAtIndex:indexPath.row] objectAtIndex:_whichBtnClick];
+        cell.schoolClassLabel.text = [NSString stringWithFormat:@"适用驾照类型:%@",model.carmodel.code];
+        cell.timeLabel.text = [NSString stringWithFormat:@"活动日期:%@-%@",[NSString getLitteLocalDateFormateUTCDate:model.begindate],[NSString getLitteLocalDateFormateUTCDate:model.enddate]];
+        cell.studyLabel.text = [NSString stringWithFormat:@"授课日程:%@",model.classchedule];
+        cell.carType.text = [NSString stringWithFormat:@"训练车品牌:%@",model.cartype];
+        cell.price.text = [NSString stringWithFormat:@"价格:%@元",model.price];
+        cell.personCount.text = [NSString stringWithFormat:@"已经报名人数:%@",model.applycount];
+        cell.schoolDetailIntroduction.text = [NSString stringWithFormat:@"%@",model.classdesc];
+        [cell receiveVipList:model.vipserverlist];
+        return cell;
+    }else if (indexPath.section == 1 ) {
+        SignUpCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_4"];
+        if (cell == nil) {
+            cell = [[SignUpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_4"];
+        }
+        //        [cell receiveTextContent:];
+        NSString *titleString = [self.secondArray[1] objectAtIndex:indexPath.row];
+        [cell receiveTitile:titleString andSignUpBlock:^(NSString *completionString) {
+            if (indexPath.row == 0) {
+                if (completionString == nil || completionString.length == 0) {
+                    [self showTotasViewWithMes:@"请输入真实姓名"];
+                    return ;
+                }
+                [SignUpInfoManager signUpInfoSaveRealName:completionString];
+                DYNSLog(@"真实名字");
+            }else if (indexPath.row == 2) {
+                if (completionString == nil || completionString.length == 0) {
+                    [self showTotasViewWithMes:@"请输入手机号"];
+                    return;
+                }
+                NSString *phoneNum = completionString;
+                NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+                NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+                BOOL isMatch = [pred evaluateWithObject:phoneNum];
+                if (!isMatch) {
+                    [self showTotasViewWithMes:@"请输入正确的手机号"];
+                    return;
+                }
+                [SignUpInfoManager signUpInfoSaveRealTelephone:completionString];
+                DYNSLog(@"联系方式");
+            }
+        }];
+        
+        return cell;
+        
     }
-    cell.textLabel.text = self.secondArray[indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-    DYNSLog(@"result = %@",signUpArray[indexPath.row]);
-    cell.detailTextLabel.text = signUpArray[indexPath.row];
-    cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-    return cell;
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    _chooseBtnView.hidden = YES;
-    if (indexPath.row == 0) {
-        if ([SignUpInfoManager getSignUpSchoolid] == nil || [SignUpInfoManager getSignUpSchoolid].length == 0) {
-        }
-        ExamCarViewController *carType = [[ExamCarViewController alloc] init];// 选择车型
-        [self.navigationController pushViewController:carType animated:YES];
-    }else if (indexPath.row == 1 ){
+
+
+    if (indexPath.row == 1 && indexPath.section == 0){
         SignUpDrivingViewController *drivingVC = [[SignUpDrivingViewController alloc] init];   //选择驾校
         [self.navigationController pushViewController:drivingVC animated:YES];
-            }
-    else if (indexPath.row == 2) {
-        if ([SignUpInfoManager getSignUpSchoolName] == nil || [SignUpInfoManager getSignUpSchoolName].length == 0) {
-            [self showTotasViewWithMes:@"请选择驾校"];
-            return;
-        }
-        ExamClassViewController *classType = [[ExamClassViewController alloc] init];//报考班型
-        [self.navigationController pushViewController:classType animated:YES];
-    }else if (indexPath.row == 3) {
-        _chooseBtnView.hidden = NO;
+    }else if ((indexPath.row == 4 && indexPath.section == 0 && _cellIsShow)||(indexPath.row == 3 && indexPath.section == 0 && !_cellIsShow)) {
+        SignUpCoachViewController *coachVc = [[SignUpCoachViewController alloc] init];
+        coachVc.markNum = 1;
+        [self.navigationController pushViewController:coachVc animated:YES];
+    }
+    
+    if(_cellIsShow) {
+        [self removeCellWhenClick];
     }
 }
 
-
-
 - (void)dealRefer:(UIButton *)sender{
-    self.chooseBtnView.hidden = YES;
-
-    if (![signUpArray[0] isEqualToString:@""]&&![signUpArray[1] isEqualToString:@""]&&![signUpArray[2] isEqualToString:@""]&&![signUpArray[3] isEqualToString:@""]) {
-       [self.navigationController pushViewController:[SignUpViewController new] animated:YES];
+    if (![[SignUpInfoManager getSignUpCarmodelName]  isEqualToString:@""]&&
+        ![[SignUpInfoManager getSignUpSchoolName]    isEqualToString:@""]&&
+        ![[SignUpInfoManager getSignUpClasstypeName] isEqualToString:@""]&&
+        ![[SignUpInfoManager getSignUpCoachName]     isEqualToString:@""]&&
+        ![[SignUpInfoManager getSignUpRealName]      isEqualToString:@""]&&
+        ![[SignUpInfoManager getSignUpRealTelephone] isEqualToString:@""]) {
+        
+        NSDictionary *param = [SignUpInfoManager getSignUpInforamtion];
+        if (param == nil) {
+            return;
+        }
+        NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
+        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            DYNSLog(@"param = %@",data[@"msg"]);
+            NSDictionary *param = data;
+            NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+            if ([type isEqualToString:@"1"]) {
+                kShowSuccess(@"报名成功");
+                [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+                [AcountManager saveUserApplyState:@"1"];
+                //使重新报名变为0
+                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
+                    [ud setObject:@"0" forKey:@"applyAgain"];
+                    [ud synchronize];
+                }
+            }else {
+                kShowFail(param[@"msg"]);
+            }
+        }];
     }else {
         [self showTotasViewWithMes:@"信息未填写完整"];
     }
 }
 
+- (void)removeCellWhenClick {
+    _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,@"报考教练"],@[@"真实姓名",@"联系电话"]];
+    signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]]];
+    _cellIsShow = NO;
+    [self.tableView reloadData];
+}
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
-    signUpArray = @[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName]];
+    if (_cellIsShow) {
+        signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],@"",[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]]];
+    }else {
+        signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]]];
+        _secondArray = @[@[@"驾照类型:",@"报考驾校",@"",@"报考教练"],@[@"真实姓名",@"联系电话"]];
+    }
     [self.tableView reloadData];
     
-    
+    if ([SignUpInfoManager getSignUpSchoolid]) {
+        NSString *classString = [NSString stringWithFormat:kExamClassType,[SignUpInfoManager getSignUpSchoolid]];
+        
+        NSString *urlString = [NSString stringWithFormat:BASEURL,classString];
+        
+        [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            DYNSLog(@"res = %@",data);
+            
+            NSArray *param = data[@"data"];
+            
+            NSError *error = nil;
+            
+            NSMutableArray *applyclassArray = [[NSMutableArray alloc] init];
+            [applyclassArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:ExamClassModel.class fromJSONArray:param error:&error]];
+            NSMutableArray *applyclassNameArray = [[NSMutableArray alloc] init];
+            for (ExamClassModel *model in applyclassArray) {
+                [applyclassNameArray addObject:model.classname];
+            }
+            _classDetailDataArray = [applyclassArray copy];
+            _classNameDataArray = [applyclassNameArray copy];
+            _numberOfClass = applyclassNameArray.count;
+            if (!_cellIsShow) {
+                _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,@"报考教练"],@[@"真实姓名",@"联系电话"]];
+            }else {
+            _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,_classDetailDataArray,@"报考教练"],@[@"真实姓名",@"联系电话"]];
+            }
+
+            
+            [self.tableView reloadData];
+        }];
+    }
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];

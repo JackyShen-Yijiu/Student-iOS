@@ -289,6 +289,8 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     for (UIViewController *targetVc in self.navigationController.viewControllers) {
         if ([targetVc isKindOfClass:[SignUpListViewController class]]) {
             [self.navigationController popToViewController:targetVc animated:YES];
+            NSDictionary *param = @{@"coachid":@"",@"name":@""};
+            [SignUpInfoManager signUpInfoSaveRealCoach:param];
         }
     }
 

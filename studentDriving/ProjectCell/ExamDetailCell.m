@@ -11,8 +11,9 @@
 #import "VipserverModel.h"
 #import "UIColor+Hex.h"
 @interface ExamDetailCell ()
-@property (strong, nonatomic) UIView *backGroundView;
-
+@property (strong, nonatomic) UIView  *backGroundView;
+@property (strong, nonatomic) UILabel *schoolIntroduction;
+@property (strong, nonatomic) UIView  *classDetailBG;
 @end
 @implementation ExamDetailCell
 - (UILabel *)schoolLabel {
@@ -77,6 +78,46 @@
     }
     return _backGroundView;
 }
+
+- (UILabel *)schoolIntroduction {
+    if (_schoolIntroduction == nil) {
+        _schoolIntroduction = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont boldSystemFontOfSize:14]];
+        _schoolIntroduction.text = @"驾校简介";
+    }
+    return _schoolIntroduction;
+}
+- (UILabel *)schoolDetailIntroduction {
+    if (_schoolDetailIntroduction == nil) {
+        _schoolDetailIntroduction = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        _schoolDetailIntroduction.numberOfLines = 2;
+    }
+    return _schoolDetailIntroduction;
+}
+
+
+- (UIView *)classDetailBG {
+    if (!_classDetailBG) {
+        _classDetailBG = [[UIView alloc] initWithFrame:CGRectMake(0, 300, kSystemWide, 120)];
+
+        _classDetailBG.backgroundColor = [UIColor whiteColor];
+        [_classDetailBG addSubview:self.schoolIntroduction];
+        [_classDetailBG addSubview:self.schoolDetailIntroduction];
+        
+        [self.schoolIntroduction mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(_classDetailBG.mas_left).offset(15);
+            make.top.mas_equalTo(_classDetailBG.mas_top).offset(15);
+        }];
+        
+        [self.schoolDetailIntroduction mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(_classDetailBG.mas_left).offset(15);
+            make.top.mas_equalTo(self.schoolIntroduction.mas_bottom).offset(15);
+            NSNumber *wide = [NSNumber numberWithFloat:kSystemWide-30];
+            make.width.mas_equalTo(wide);
+        }];
+    
+    }
+     return _classDetailBG;
+}
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setUp];
@@ -94,7 +135,7 @@
     [self.backGroundView addSubview:self.carType];
     [self.backGroundView addSubview:self.price];
     [self.backGroundView addSubview:self.personCount];
-
+    [self.contentView addSubview:self.classDetailBG];
 
     
 
@@ -133,7 +174,11 @@
     
 }
 - (void)receiveVipList:(NSArray *)list {
-    
+    for (UIView *view in self.featuredTutorials.subviews) {
+        if ([view isKindOfClass:[UIButton class]]) {
+            [view removeFromSuperview];
+        }
+    }
     for (NSInteger i = 0; i<list.count; i++) {
         NSInteger row = i / 4;
         VipserverModel *model = list[i];

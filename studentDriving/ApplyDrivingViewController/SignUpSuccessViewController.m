@@ -87,12 +87,12 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     scrollview.contentSize = CGSizeMake(kSystemWide, 500);
     [self.view addSubview:scrollview];
     
-    ChooseBtnView *cbv = [[ChooseBtnView alloc] initWithSelectedBtn:2 leftTitle:@"选择驾校" midTitle:@"填写信息" rightTitle:@"报名验证" frame:CGRectMake(0, 10, kSystemWide, 77)];
-    cbv.backgroundColor = [UIColor whiteColor];
-    [scrollview addSubview:cbv];
+//    ChooseBtnView *cbv = [[ChooseBtnView alloc] initWithSelectedBtn:2 leftTitle:@"选择驾校" midTitle:@"填写信息" rightTitle:@"报名验证" frame:CGRectMake(0, 10, kSystemWide, 77)];
+//    cbv.backgroundColor = [UIColor whiteColor];
+//    [scrollview addSubview:cbv];
     
 
-    SignSuccessView *ssv = [[SignSuccessView alloc] initWithFrame:CGRectMake(0, 97, kSystemWide, kSystemHeight-64-49-87) imageStr:_imageStr orderNumStr:_kRealOrderNumber timeStr:[NSString stringWithFormat:@"%@到%@",_kRealApplytime,_kRealEndtime] CarrydataExplainContentLb:_explainStr];
+    SignSuccessView *ssv = [[SignSuccessView alloc] initWithFrame:CGRectMake(0, 10, kSystemWide, kSystemHeight-64-49-87) imageStr:_imageStr orderNumStr:_kRealOrderNumber timeStr:[NSString stringWithFormat:@"%@到%@",_kRealApplytime,_kRealEndtime] CarrydataExplainContentLb:_explainStr];
     ssv.backgroundColor = [UIColor whiteColor];
     [scrollview addSubview:ssv];
     [self.view addSubview:self.referButton];

@@ -144,7 +144,7 @@ static NSString *const kRealUserid = @"userid";
     NSDictionary *param = [NSUserStoreTool getObjectWithKey:kCoachParam];
     NSString *name = param[@"name"];
     if (name == nil || name.length == 0) {
-        return @"";
+        return @"智能匹配";
     }
     return name;
 }
@@ -235,21 +235,10 @@ static NSString *const kRealUserid = @"userid";
         [self obj_showTotasViewWithMes:@"名字为空"];
         return nil;
     }
-    NSString *krealIdentityCarString = [NSUserStoreTool getObjectWithKey:kRealIdentityCar];
-    if (krealIdentityCarString == nil || krealIdentityCarString.length == 0) {
-        [self obj_showTotasViewWithMes:@"身份证为空"];
-        return nil;
-    }
     NSString *krealTelephoneString = [NSUserStoreTool getObjectWithKey:kRealTelephone];
     if (krealTelephoneString == nil || krealTelephoneString.length == 0) {
         [self  obj_showTotasViewWithMes:@"手机号为空"];
         return nil;
-    }
-    NSString *krealAddressString = [NSUserStoreTool getObjectWithKey:kRealAddress];
-    if (krealAddressString == nil || krealAddressString.length == 0) {
-        [self obj_showTotasViewWithMes:@"地址为空"];
-        return nil;
-
     }
     NSString *krealSchoolidString = [NSUserStoreTool getObjectWithKey:kRealSchoolid];
     if (krealSchoolidString == nil || krealSchoolidString.length == 0) {
@@ -258,6 +247,10 @@ static NSString *const kRealUserid = @"userid";
 
     }
     NSString *krealCoachidString = [NSUserStoreTool getObjectWithKey:kRealCoachid];
+    if (krealCoachidString == nil || krealCoachidString.length == 0) {
+        [self obj_showTotasViewWithMes:@"教练为空"];
+        return nil;
+    }
 
     NSString *krealClasstypeidString = [NSUserStoreTool getObjectWithKey:kRealClasstypeid];
     if (krealClasstypeidString == nil || krealClasstypeidString.length == 0) {
@@ -276,7 +269,7 @@ static NSString *const kRealUserid = @"userid";
         applyAgain = @"0";
     }
     
-    return @{kRealUserid:[AcountManager manager].userid,kRealName:krealNameString,kRealIdentityCar:krealIdentityCarString,kRealTelephone:krealTelephoneString,kRealAddress:krealAddressString,kRealSchoolid:krealSchoolidString,kRealCoachid:krealCoachidString,kRealClasstypeid:krealClasstypeidString,kRealCarmodel:[JsonTransformManager dictionaryTransformJsonWith:krealCarmodelDictionary],@"applyagain":applyAgain };
+    return @{kRealUserid:[AcountManager manager].userid,kRealName:krealNameString,kRealIdentityCar:@"",kRealTelephone:krealTelephoneString,kRealAddress:@"",kRealSchoolid:krealSchoolidString,kRealCoachid:krealCoachidString,kRealClasstypeid:krealClasstypeidString,kRealCarmodel:[JsonTransformManager dictionaryTransformJsonWith:krealCarmodelDictionary],@"applyagain":applyAgain };
 }
 
 + (NSDictionary *)getSignUpPassInformation {
