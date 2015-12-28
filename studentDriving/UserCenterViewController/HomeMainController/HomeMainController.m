@@ -308,7 +308,13 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 break;
             case 102:
             {
-                if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+               
+                NSLog(@"%@",[AcountManager manager].userSubject);
+                
+                
+                
+                
+                if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
                     AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
 
@@ -319,10 +325,20 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 break;
             case 103:
             {
-                AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
-                appointment.title = @"科三预约列表";
-                appointment.markNum = [NSNumber numberWithInteger:3];
-                [mainVC.navigationController pushViewController:appointment animated:YES];
+                if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
+                    AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
+                    appointment.title = @"科三预约列表";
+                    appointment.markNum = [NSNumber numberWithInteger:3];
+                    [mainVC.navigationController pushViewController:appointment animated:YES];
+                    
+                }else {
+                    [mainVC showTotasViewWithMes:@"您目前还没到科三进度!"];
+                }
+
+                
+                
+                
+                
             }
                 break;
                 

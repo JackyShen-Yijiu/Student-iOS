@@ -15,6 +15,7 @@
 #import "MyWalletViewController.h"
 #import "VirtualViewController.h"
 
+
 @interface MagicDetailViewController () <UITableViewDataSource,UITableViewDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
@@ -25,8 +26,14 @@
 @implementation MagicDetailViewController
 - (void)viewWillAppear:(BOOL)animated
 {
-    MyWalletViewController *walletVC = [self.navigationController.viewControllers objectAtIndex:0];
-    [walletVC refreshWalletData];
+    
+    for (UIViewController *viewCon in self.navigationController.viewControllers) {
+        if ([viewCon isKindOfClass:[MyWalletViewController class]]) {
+            MyWalletViewController *myWalletVC = (MyWalletViewController *)viewCon;
+            [myWalletVC refreshWalletData];
+        }
+        
+    }
      [self addBottomView];
 }
 
