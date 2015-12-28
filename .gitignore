@@ -20,4 +20,5 @@ profile
 *.ipa
 *.zip
 *.ipa
+Pod/*
 
