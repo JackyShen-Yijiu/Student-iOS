@@ -157,7 +157,6 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     
     __weak AppointmentViewController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:downLoadUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        
         NSDictionary *param = data;
         NSNumber *type = param[@"type"];
         NSArray *array = param[@"data"];

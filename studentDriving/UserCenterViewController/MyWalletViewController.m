@@ -397,6 +397,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 }
 - (void)refreshWalletData
 {
+    
     [self startDownLoad];
 }
 
