@@ -21,10 +21,12 @@
 		554641BC1C25098C00A55326 /* ChooseBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641BA1C25098C00A55326 /* ChooseBtnView.m */; };
 		554641BF1C25099700A55326 /* KindlyReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641BD1C25099700A55326 /* KindlyReminderView.m */; };
 		554641C21C2509A000A55326 /* SignSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641C01C2509A000A55326 /* SignSuccessView.m */; };
-		554641C51C2509EA00A55326 /* SignUpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641C31C2509EA00A55326 /* SignUpListViewController.m */; };
 		554641C81C250A1B00A55326 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641C61C250A1B00A55326 /* SignUpViewController.m */; };
 		554641CB1C250A2200A55326 /* SignUpSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CA1C250A2200A55326 /* SignUpSuccessViewController.m */; };
 		554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CD1C250A6900A55326 /* SignUpInfoManager.m */; };
+		556F42581C310E7A0052DE73 /* SignUpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F42571C310E7A0052DE73 /* SignUpListViewController.m */; };
+		556F425B1C310E980052DE73 /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F425A1C310E980052DE73 /* ApplyClassCell.m */; };
+		556F425E1C310F2D0052DE73 /* ExamDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F425D1C310F2D0052DE73 /* ExamDetailCell.m */; };
 		55901B5F1C26795800AC64FF /* VerifyPhoneController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B5E1C26795800AC64FF /* VerifyPhoneController.m */; };
 		55901B621C26796700AC64FF /* VerifyInformationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B611C26796700AC64FF /* VerifyInformationController.m */; };
 		55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B641C26797500AC64FF /* WhichStateViewController.m */; };
@@ -471,7 +473,6 @@
 		D5BCFEDC1BF317350019402C /* PushInformationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BCFEDB1BF317350019402C /* PushInformationManager.m */; };
 		D5BCFEE51BF4924C0019402C /* BLImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5BCFEE41BF4924C0019402C /* BLImageViewController.m */; };
 		D5C23FE91BE859E000832CF3 /* ExamClassDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C23FE81BE859E000832CF3 /* ExamClassDetailViewController.m */; };
-		D5C23FEF1BE8B30D00832CF3 /* ExamDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C23FEE1BE8B30D00832CF3 /* ExamDetailCell.m */; };
 		D5C23FF21BE8ED1300832CF3 /* SchoolInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C23FF11BE8ED1300832CF3 /* SchoolInfo.m */; };
 		D5C240031BE9F79B00832CF3 /* BLAVPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C240021BE9F79B00832CF3 /* BLAVPlayerViewController.m */; };
 		D5C240061BE9FB8A00832CF3 /* BLAVplayerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C240051BE9FB8A00832CF3 /* BLAVplayerCell.m */; };
@@ -573,14 +574,18 @@
 		554641BE1C25099700A55326 /* KindlyReminderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KindlyReminderView.h; sourceTree = "<group>"; };
 		554641C01C2509A000A55326 /* SignSuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignSuccessView.m; sourceTree = "<group>"; };
 		554641C11C2509A000A55326 /* SignSuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignSuccessView.h; sourceTree = "<group>"; };
-		554641C31C2509EA00A55326 /* SignUpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpListViewController.m; sourceTree = "<group>"; };
-		554641C41C2509EA00A55326 /* SignUpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpListViewController.h; sourceTree = "<group>"; };
 		554641C61C250A1B00A55326 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		554641C71C250A1B00A55326 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		554641C91C250A2200A55326 /* SignUpSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpSuccessViewController.h; sourceTree = "<group>"; };
 		554641CA1C250A2200A55326 /* SignUpSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpSuccessViewController.m; sourceTree = "<group>"; };
 		554641CC1C250A6900A55326 /* SignUpInfoManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpInfoManager.h; sourceTree = "<group>"; };
 		554641CD1C250A6900A55326 /* SignUpInfoManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpInfoManager.m; sourceTree = "<group>"; };
+		556F42561C310E7A0052DE73 /* SignUpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpListViewController.h; sourceTree = "<group>"; };
+		556F42571C310E7A0052DE73 /* SignUpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpListViewController.m; sourceTree = "<group>"; };
+		556F42591C310E980052DE73 /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
+		556F425A1C310E980052DE73 /* ApplyClassCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplyClassCell.m; sourceTree = "<group>"; };
+		556F425C1C310F2D0052DE73 /* ExamDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamDetailCell.h; sourceTree = "<group>"; };
+		556F425D1C310F2D0052DE73 /* ExamDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamDetailCell.m; sourceTree = "<group>"; };
 		55901B5D1C26795800AC64FF /* VerifyPhoneController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyPhoneController.h; sourceTree = "<group>"; };
 		55901B5E1C26795800AC64FF /* VerifyPhoneController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyPhoneController.m; sourceTree = "<group>"; };
 		55901B601C26796700AC64FF /* VerifyInformationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyInformationController.h; sourceTree = "<group>"; };
@@ -1291,8 +1296,6 @@
 		D5BCFEE41BF4924C0019402C /* BLImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLImageViewController.m; sourceTree = "<group>"; };
 		D5C23FE71BE859E000832CF3 /* ExamClassDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamClassDetailViewController.h; sourceTree = "<group>"; };
 		D5C23FE81BE859E000832CF3 /* ExamClassDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamClassDetailViewController.m; sourceTree = "<group>"; };
-		D5C23FED1BE8B30D00832CF3 /* ExamDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExamDetailCell.h; sourceTree = "<group>"; };
-		D5C23FEE1BE8B30D00832CF3 /* ExamDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExamDetailCell.m; sourceTree = "<group>"; };
 		D5C23FF01BE8ED1300832CF3 /* SchoolInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolInfo.h; sourceTree = "<group>"; };
 		D5C23FF11BE8ED1300832CF3 /* SchoolInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolInfo.m; sourceTree = "<group>"; };
 		D5C240011BE9F79B00832CF3 /* BLAVPlayerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLAVPlayerViewController.h; sourceTree = "<group>"; };
@@ -2632,8 +2635,10 @@
 				D5C23FE81BE859E000832CF3 /* ExamClassDetailViewController.m */,
 				D588B07D1BDDDBDB000C5D6F /* ExamCarViewController.h */,
 				D588B07E1BDDDBDB000C5D6F /* ExamCarViewController.m */,
-				554641C41C2509EA00A55326 /* SignUpListViewController.h */,
-				554641C31C2509EA00A55326 /* SignUpListViewController.m */,
+				556F42561C310E7A0052DE73 /* SignUpListViewController.h */,
+				556F42571C310E7A0052DE73 /* SignUpListViewController.m */,
+				556F42591C310E980052DE73 /* ApplyClassCell.h */,
+				556F425A1C310E980052DE73 /* ApplyClassCell.m */,
 				554641C71C250A1B00A55326 /* SignUpViewController.h */,
 				554641C61C250A1B00A55326 /* SignUpViewController.m */,
 				554641C91C250A2200A55326 /* SignUpSuccessViewController.h */,
@@ -2727,10 +2732,10 @@
 				D51256C21BE2542C002717DA /* ConfirmSubjectOneCell.m */,
 				D51256C41BE257DA002717DA /* ConfirmSubjectTwoCell.h */,
 				D51256C51BE257DA002717DA /* ConfirmSubjectTwoCell.m */,
-				D5C23FED1BE8B30D00832CF3 /* ExamDetailCell.h */,
-				D5C23FEE1BE8B30D00832CF3 /* ExamDetailCell.m */,
 				D5C240041BE9FB8A00832CF3 /* BLAVplayerCell.h */,
 				D5C240051BE9FB8A00832CF3 /* BLAVplayerCell.m */,
+				556F425C1C310F2D0052DE73 /* ExamDetailCell.h */,
+				556F425D1C310F2D0052DE73 /* ExamDetailCell.m */,
 			);
 			path = ProjectCell;
 			sourceTree = "<group>";
@@ -3009,11 +3014,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D588AF9D1BDDB62C000C5D6F /* Build configuration list for PBXNativeTarget "studentDriving" */;
 			buildPhases = (
-				D34A5C39145B9C441DADFADF /* Check Pods Manifest.lock */,
 				D588AF821BDDB62C000C5D6F /* Sources */,
 				D588AF831BDDB62C000C5D6F /* Frameworks */,
 				D588AF841BDDB62C000C5D6F /* Resources */,
-				9700B1883F63B649D544C4D8 /* Copy Pods Resources */,
 				3E067140CF0D277093FAA2F0 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
@@ -3290,36 +3293,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9700B1883F63B649D544C4D8 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D34A5C39145B9C441DADFADF /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -3365,8 +3338,8 @@
 				B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */,
 				D5604B4B1BF656C50020F0D7 /* MWGridCell.m in Sources */,
 				D5604B6E1BF656C50020F0D7 /* PSTGridLayoutRow.m in Sources */,
+				556F425B1C310E980052DE73 /* ApplyClassCell.m in Sources */,
 				D5604B491BF656C50020F0D7 /* MBProgressHUD.m in Sources */,
-				554641C51C2509EA00A55326 /* SignUpListViewController.m in Sources */,
 				066BFB181C23A2C3002A1DD8 /* HomeMainController.m in Sources */,
 				D52638561BDF1FA400ADC2C7 /* ApplyclasstypeinfoModel.m in Sources */,
 				D96D1BEC1C2B88A000F1C282 /* DVVSideMenuCell.m in Sources */,
@@ -3485,6 +3458,7 @@
 				D5604C881BF656F30020F0D7 /* EMChatBaseBubbleView.m in Sources */,
 				06073D871C251C300058B372 /* HomeRewardController.m in Sources */,
 				D588B0501BDDDB71000C5D6F /* SignatureViewController.m in Sources */,
+				556F425E1C310F2D0052DE73 /* ExamDetailCell.m in Sources */,
 				D588B0DE1BDDDC14000C5D6F /* WaitConfirmCell.m in Sources */,
 				D588B1491BDE126C000C5D6F /* QuestionBankViewController.m in Sources */,
 				D5604B541BF656C50020F0D7 /* EMSDWebImageCompat.m in Sources */,
@@ -3598,6 +3572,7 @@
 				D965CAAB1C239D9F00DCD094 /* DrivingSelectMotorcycleTypeView.m in Sources */,
 				D5604CCA1BF83A690020F0D7 /* ChatListViewController.m in Sources */,
 				D512569C1BDF602B002717DA /* CommonAddressViewController.m in Sources */,
+				556F42581C310E7A0052DE73 /* SignUpListViewController.m in Sources */,
 				D588B1381BDDDC65000C5D6F /* LoginViewController.m in Sources */,
 				D588B1111BDDDC2F000C5D6F /* PFActionSheetView.m in Sources */,
 				D51256AB1BE1C6C7002717DA /* BCTextView.m in Sources */,
@@ -3632,7 +3607,6 @@
 				D5604B571BF656C50020F0D7 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				D588AFC41BDDDAAB000C5D6F /* CoachModel.m in Sources */,
 				D588B13A1BDDDC65000C5D6F /* RegisterViewController.m in Sources */,
-				D5C23FEF1BE8B30D00832CF3 /* ExamDetailCell.m in Sources */,
 				D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */,
 				D588AFD01BDDDAAB000C5D6F /* MyAppointmentCoachModel.m in Sources */,
 				D51256B11BE1D005002717DA /* UserIdModel.m in Sources */,
