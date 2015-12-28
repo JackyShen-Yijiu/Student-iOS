@@ -148,7 +148,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             NSDictionary *dataDic = [param objectForKey:@"data"];
-            if (!data || ![dataDic isKindOfClass:[NSDictionary class]]) {
+            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
                 return;
             }
             if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {

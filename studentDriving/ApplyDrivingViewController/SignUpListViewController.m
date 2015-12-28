@@ -233,7 +233,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
             cell = [[UITableViewCell alloc] initWithStyle:0 reuseIdentifier:@"yy_0"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        self.nameLabel.frame = CGRectMake(16, 15, 80, 14);
+        self.nameLabel.frame = CGRectMake(20, 15, 80, 14);
         self.nameLabel.text = [self.secondArray[0] objectAtIndex:0];
         [cell.contentView addSubview:self.nameLabel];
         self.leftBtn.frame = CGRectMake(100, 10, 100, 24);
@@ -264,7 +264,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
             
         }
         if ([[_secondArray[0] objectAtIndex:indexPath.row] isKindOfClass:[NSString class]]) {
-            self.applyClassName.frame = CGRectMake(16, 16, 80, 14);
+            self.applyClassName.frame = CGRectMake(20, 16, 80, 14);
             self.applyClassName.text = @"报考班型";
             [cell.contentView addSubview:self.applyClassName];
         }else {
