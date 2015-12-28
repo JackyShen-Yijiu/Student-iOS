@@ -656,7 +656,7 @@
         [[NSUserDefaults standardUserDefaults] synchronize];
     }
     
-    return [[self flatColors] objectAtIndex:randomColorChosen];
+    return [self flatColors][randomColorChosen];
 }
 
 + (UIColor *)colorWithRandomFlatColorOfShadeStyle:(UIShadeStyle)shadeStyle {
@@ -701,7 +701,7 @@
             
             NSArray *darkColors = @[FlatBlackDark, FlatBlueDark, FlatBrownDark, FlatCoffeeDark, FlatForestGreenDark, FlatGrayDark, FlatGreenDark, FlatLimeDark, FlatMagentaDark, FlatMaroonDark, FlatMintDark, FlatNavyBlueDark, FlatOrangeDark, FlatPinkDark, FlatPlumDark, FlatPowderBlueDark, FlatPurpleDark, FlatRedDark, FlatSandDark, FlatSkyBlueDark, FlatTealDark, FlatWatermelonDark, FlatWhiteDark, FlatYellowDark];
             
-            randomColor = [darkColors objectAtIndex:randomColorChosen];
+            randomColor = darkColors[randomColorChosen];
             break;
         }
             
@@ -710,7 +710,7 @@
         
             NSArray *lightColors = @[FlatBlack, FlatBlue, FlatBrown, FlatCoffee, FlatForestGreen, FlatGray, FlatGreen, FlatLime, FlatMagenta, FlatMaroon, FlatMint, FlatNavyBlue, FlatOrange, FlatPink, FlatPlum, FlatPowderBlue, FlatPurple, FlatRed, FlatSand, FlatSkyBlue, FlatTeal, FlatWatermelon, FlatWhite, FlatYellow];
             
-            randomColor = [lightColors objectAtIndex:randomColorChosen];
+            randomColor = lightColors[randomColorChosen];
             break;
         }
     }
@@ -925,7 +925,7 @@
 + (UIColor *)nearestFlatColorForL:(CGFloat)l1 A:(CGFloat)a1 B:(CGFloat)b1 alpha:(CGFloat)alpha{
     
     //Keep track of our index
-    float index = 0;
+    int index = 0;
     
     //Start with a random big number to make sure the first comparison gets saved.
     float smallestDistance = 1000000;
@@ -967,7 +967,7 @@
     
     //Collect the RGB Values of the color where the smallest difference was found
     CGFloat red, green, blue;
-    [[[self flatColors] objectAtIndex:index] getRed:&red green:&green blue:&blue alpha:nil];
+    [[self flatColors][index] getRed:&red green:&green blue:&blue alpha:nil];
 
     //Return the closest flat color
     return rgba(red * 255, green * 255, blue * 255, alpha);

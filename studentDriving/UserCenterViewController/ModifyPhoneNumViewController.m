@@ -24,7 +24,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 - (UIButton *)completionButton {
     if (_completionButton == nil) {
         _completionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _completionButton.backgroundColor = MAIN_FOREGROUND_COLOR;
+        _completionButton.backgroundColor = MAINCOLOR;
         [_completionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_completionButton setTitle:@"完成" forState:UIControlStateNormal];
         [_completionButton addTarget:self action:@selector(clickCompletion:) forControlEvents:UIControlEventTouchUpInside];

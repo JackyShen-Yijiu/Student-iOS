@@ -118,7 +118,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self addSideMenuButton];
+//    [self addSideMenuButton];
     
     self.title = @"我的钱包";
     self.automaticallyAdjustsScrollViewInsets = YES;

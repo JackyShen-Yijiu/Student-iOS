@@ -37,7 +37,7 @@
         _contactUsLabel.font = [UIFont systemFontOfSize:12];
         _contactUsLabel.textColor = [UIColor colorWithWhite:1 alpha:0.4];
         _contactUsLabel.backgroundColor = [UIColor clearColor];
-        _contactUsLabel.text = @"联系我们：400-600-5299";
+        _contactUsLabel.text = @"联系我们：400-6269-255";
     }
     return _contactUsLabel;
 }

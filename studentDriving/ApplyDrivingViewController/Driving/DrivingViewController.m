@@ -61,7 +61,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    [self addSideMenuButton];
+//    [self addSideMenuButton];
     
     _radius = 10000;
     _cityName = @"";

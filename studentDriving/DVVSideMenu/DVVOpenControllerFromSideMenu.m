@@ -11,7 +11,6 @@
 #import "AcountManager.h"
 #import "DVVUserManager.h"
 #import "LoginViewController.h"
-#import "HomeMainController.h"
 #import "DrivingViewController.h"
 #import "ChatListViewController.h"
 #import "MyWalletViewController.h"
@@ -45,14 +44,11 @@
                 break;
             }
             
-            UINavigationController *naviController = nil;
-            
             DrivingViewController *controller = [DrivingViewController new];
-            naviController = [[UINavigationController alloc]initWithRootViewController:controller];
             
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            window.rootViewController = naviController;
-            [window makeKeyAndVisible];
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
         }
             break;
         case 2:// 消息
@@ -61,14 +57,12 @@
                 [DVVUserManager userNeedLogin];
                 break;
             }
-            UINavigationController *naviController = nil;
             
             ChatListViewController *controller = [ChatListViewController new];
-            naviController = [[UINavigationController alloc]initWithRootViewController:controller];
             
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            window.rootViewController = naviController;
-            [window makeKeyAndVisible];
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
         }
             break;
         case 3:// 钱包
@@ -77,14 +71,12 @@
                 [DVVUserManager userNeedLogin];
                 break;
             }
-            UINavigationController *naviController = nil;
             
             MyWalletViewController *controller = [MyWalletViewController new];
-            naviController = [[UINavigationController alloc]initWithRootViewController:controller];
             
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            window.rootViewController = naviController;
-            [window makeKeyAndVisible];
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
         }
             break;
         case 6:// 我
@@ -93,14 +85,12 @@
                 [DVVUserManager userNeedLogin];
                 break;
             }
-            UINavigationController *naviController = nil;
             
             UserCenterViewController *controller = [UserCenterViewController new];
-            naviController = [[UINavigationController alloc]initWithRootViewController:controller];
             
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            window.rootViewController = naviController;
-            [window makeKeyAndVisible];
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
         }
             break;
             

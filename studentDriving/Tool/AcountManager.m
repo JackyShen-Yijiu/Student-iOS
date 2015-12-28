@@ -41,6 +41,11 @@ static  NSString    *ksubject = @"subject";
 static  NSString    *ksubjectTwo = @"subjecttwo";
 static  NSString    *ksubjectThree = @"subjectthree";
 static  NSString    *kBannerUrl = @"bannerUrl";
+// 设置
+static  NSString    *kUserSetting = @"usersetting";
+static  NSString    *kReservationReminder = @"reservationreminder";
+static  NSString    *kNewmessageReminder = @"newmessagereminder";
+
 @interface AcountManager ()
 @property (readwrite,copy, nonatomic) NSString *userMobile;
 @property (readwrite,copy, nonatomic) NSString *userName;
@@ -60,6 +65,7 @@ static  NSString    *kBannerUrl = @"bannerUrl";
 @property (readwrite,copy, nonatomic) NSString *userSignature;
 @property (readwrite,strong, nonatomic) Logoimg *headportrait;
 @property (readwrite,copy, nonatomic) NSString *headImageUrl;
+
 @end
 @implementation AcountManager
 + (AcountManager *)manager {
@@ -164,6 +170,19 @@ static  NSString    *kBannerUrl = @"bannerUrl";
     if ([userInformaiton objectForKey:kMobile]) {
         [NSUserStoreTool storeWithId:[userInformaiton objectForKey:kMobile] WithKey:kMobile];
     }
+    
+    // 用户设置
+    if ([userInformaiton objectForKey:kUserSetting]) {
+        NSDictionary *dict = [userInformaiton objectForKey:kUserSetting];
+        if (dict) {
+            NSLog(@"---%@",[dict objectForKey:kReservationReminder]);
+            NSLog(@"---%@",[dict objectForKey:kNewmessageReminder]);
+            [NSUserStoreTool storeWithId:[dict objectForKey:kReservationReminder] WithKey:kReservationReminder];
+            [NSUserStoreTool storeWithId:[dict objectForKey:kNewmessageReminder] WithKey:kNewmessageReminder];
+//            [NSUserStoreTool storeWithId:@(1) WithKey:kReservationReminder];
+//            [NSUserStoreTool storeWithId:@(1) WithKey:kNewmessageReminder];
+        }
+    }
     return userInformationManager;
 }
 
@@ -264,6 +283,28 @@ static  NSString    *kBannerUrl = @"bannerUrl";
     DYNSLog(@"model = %@",param);
     return model;
 }
+// 设置
+- (BOOL)reservationreminder {
+    id object = [NSUserStoreTool getObjectWithKey:kReservationReminder];
+    if (object) {
+        return [object boolValue];
+    }
+    return NO;
+}
+- (void)setReservationreminder:(BOOL)reservationreminder {
+    [NSUserStoreTool storeWithId:@(reservationreminder) WithKey:kReservationReminder];
+}
+- (BOOL)newmessagereminder {
+    id object = [NSUserStoreTool getObjectWithKey:kNewmessageReminder];
+    if (object) {
+        return [object boolValue];
+    }
+    return NO;
+}
+- (void)setNewmessagereminder:(BOOL)newmessagereminder {
+    [NSUserStoreTool storeWithId:@(newmessagereminder) WithKey:kNewmessageReminder];
+}
+
 - (NSString *)userHeadImageUrl {
     
     NSString *kUserHeadImageString = [NSUserStoreTool getObjectWithKey:kUserHeadImage];
@@ -432,14 +473,12 @@ static  NSString    *kBannerUrl = @"bannerUrl";
     [NSUserStoreTool removeObjectWithKey:ksubject];
     [NSUserStoreTool removeObjectWithKey:ksubjectThree];
     [NSUserStoreTool removeObjectWithKey:ksubjectTwo];
-
-
-
 }
 
 + (void)saveUserBanner:(NSArray *)dataArray {
     [NSUserStoreTool storeWithId:dataArray WithKey:kBannerUrl];
 }
+
 + (NSArray *)getBannerUrlArray {
     NSArray *array = [NSUserStoreTool getObjectWithKey:kBannerUrl];
     NSArray *dataArray = [[NSArray alloc] init];

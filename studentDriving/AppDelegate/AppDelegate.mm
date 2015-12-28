@@ -44,6 +44,7 @@
 
 #import "DVVUserManager.h"
 #import "DVVOpenControllerFromSideMenu.h"
+#import "AFNetworkActivityLogger.h"
 
 @interface AppDelegate ()
 
@@ -55,6 +56,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+
     _connectionState = eEMConnectionConnected;
 
     [MobClick startWithAppkey:@"564cba17e0f55ae100005919" reportPolicy:BATCH   channelId:@""];

@@ -8,6 +8,7 @@
 
 #import "ComplainTableViewCell.h"
 #import "ToolHeader.h"
+
 @interface ComplainTableViewCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *cancelTitle;
@@ -98,7 +99,11 @@
     UILabel *contentLabel = self.titleArray[sender.tag - 100];
     
     if (!contentLabel.text) {
+
         
+
+        [self obj_showTotasViewWithMes:@"你还没有填写任何原因!"];
+
         return;
     }
     if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {
@@ -118,7 +123,12 @@
         }
     }
     if (!contentLabel.text) {
+
     return;
+
+        [self obj_showTotasViewWithMes:@"你还没有填写任何原因!"];
+        return;
+
     }
 
 

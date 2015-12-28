@@ -368,7 +368,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         DrivingDetailViewController *SelectVC = [[DrivingDetailViewController alloc]init];
         DrivingModel *model = self.dataArray[indexPath.row];
         self.drivingDetailModel = model;
-        self.naviBarRightButton.hidden = NO;
+        self.naviBarRightButton.hidden = YES;
         SelectVC.schoolId = model.schoolid;
         [self.navigationController pushViewController:SelectVC animated:YES];
         

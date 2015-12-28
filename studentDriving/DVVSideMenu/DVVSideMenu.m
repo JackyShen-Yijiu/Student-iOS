@@ -157,8 +157,14 @@
 - (void)blockAction:(UIButton *)button {
     
     // 设置当前点击的项（用于打开对应的窗体）
-    _selectedIdx = button.tag;
-    // 移除sideMenu（sideMenu移除后，会调用openViewController:打开相应窗体）
+    if (0 == button.tag) { // 如果是点击的主页则不进行操作
+        _selectedIdx = -1;
+    }else {
+        _selectedIdx = button.tag;
+    }
+    // 打开相应的窗体
+    [DVVOpenControllerFromSideMenu openControllerWithIndex:_selectedIdx];
+    // 移除sideMenu
     [self removeSideMenu];
 }
 
@@ -177,9 +183,6 @@
         [UIApplication sharedApplication].keyWindow.rootViewController.view.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     } completion:^(BOOL finished) {
         [self.view removeFromSuperview];
-        // 打开相应的窗体
-        [DVVOpenControllerFromSideMenu openControllerWithIndex:_selectedIdx];
-        
         _selectedIdx = -1;
     }];
 }

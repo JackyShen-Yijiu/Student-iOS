@@ -270,7 +270,7 @@ static NSString *const kuserType = @"usertype";
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [JENetwoking startDownLoadWithUrl:url postParam:self.userParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         NSDictionary *dataDic = data;
-        
+        DYNSLog(@"%@",dataDic);
         NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
         if ([type isEqualToString:@"0"]) {
             [MBProgressHUD hideHUDForView:self.view animated:NO];

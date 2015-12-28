@@ -317,6 +317,10 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 
         }
         cell.rainingGroundDetail.text = self.detailModel.trainFieldInfo.name;
+        NSString *studentNum = @"0";
+        if (self.detailModel.studentcoount) {
+            studentNum = [NSString stringWithFormat:@"%@",self.detailModel.studentcoount];
+        }
         if([self.detailModel.passrate floatValue]){
             cell.studentNumDetail.text = [NSString stringWithFormat:@"通过率%@%@",self.detailModel.passrate,@"%"];
         }else{

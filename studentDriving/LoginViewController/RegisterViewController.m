@@ -58,7 +58,7 @@ static NSString *const kcodeGainUrl = @"code";
         _noteLabel = [UIButton buttonWithType:UIButtonTypeCustom];
         _noteLabel.backgroundColor = [UIColor whiteColor];
         [_noteLabel setTitle:@"点击注册则表示您同意《用户服务协议》" forState:UIControlStateNormal];
-        [_noteLabel setTitleColor:RGBColor(153, 153, 153) forState:UIControlStateNormal];
+        [_noteLabel setTitleColor:RGBColor(0x28, 0x79, 0xF3) forState:UIControlStateNormal];
         _noteLabel.titleLabel.font = [UIFont systemFontOfSize:13];
         _noteLabel.titleLabel.textAlignment = NSTextAlignmentLeft;
         [_noteLabel addTarget:self action:@selector(clickTap1:) forControlEvents:UIControlEventTouchUpInside];
