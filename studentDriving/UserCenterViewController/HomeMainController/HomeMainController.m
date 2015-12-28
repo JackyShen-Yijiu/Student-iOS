@@ -147,6 +147,9 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"1"]) {
                 NSDictionary *dataDic = [param objectForKey:@"data"];
+                if ([dataDic isKindOfClass:[NSNull class]]) {
+                    return;
+                }
                 if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
                     
                     [AcountManager saveUserApplyState:@"0"];
