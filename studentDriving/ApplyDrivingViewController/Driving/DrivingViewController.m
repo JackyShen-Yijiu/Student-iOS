@@ -89,15 +89,15 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     
     [self configRefresh];
     // 定位
-//    [self locationManager];
+    [self locationManager];
     
 //     在模拟器上定位不好用，测试是打开注释
-    self.latitude = 39.929985778080237;
-    self.longitude = 116.39564503787867;
-    self.index = 1;
-    self.isRefresh = YES;
-    // 获取网络数据
-    [self network];
+//    self.latitude = 39.929985778080237;
+//    self.longitude = 116.39564503787867;
+//    self.index = 1;
+//    self.isRefresh = YES;
+//    // 获取网络数据
+//    [self network];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -461,55 +461,6 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         [self.view addSubview:cityListView];
         [cityListView show];
     }
-//    if (![AcountManager isLogin]) {
-//        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-//        LoginViewController *login = [[LoginViewController alloc] init];
-//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-//        return;
-//    }
-//    if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-//        [self.navigationController popViewControllerAnimated:YES];
-//        return;
-//    }
-//    
-//    DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
-//    
-//    if (![AcountManager manager].applyschool.infoId) {
-//        if (self.detailModel.schoolid || self.detailModel.name) {
-//            NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.schoolid,@"name":self.detailModel.name};
-//            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-//            
-//        }
-//        [self.navigationController popViewControllerAnimated:YES];
-//        return;
-//    }
-//    
-//    if ([[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.schoolid] ) {
-//        [self.navigationController popViewControllerAnimated:YES];
-//        return;
-//    }
-//    
-//    
-//    if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.schoolid]) {
-//        [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-//            DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-//            NSUInteger index = selectedOtherButtonIndex + 1;
-//            if (index == 0) {
-//                return ;
-//            }else if (index == 1) {
-//                
-//                [SignUpInfoManager removeSignData];
-//                
-//                if (self.detailModel.schoolid || self.detailModel.name) {
-//                    NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.schoolid,@"name":self.detailModel.name};
-//                    [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-//                    
-//                }
-//                [self.navigationController popViewControllerAnimated:YES];
-//                
-//            }
-//        }];
-//    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {

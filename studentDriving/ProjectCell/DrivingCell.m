@@ -71,8 +71,8 @@
         _drivingAddressLabel = [[UILabel alloc]init];
         _drivingAddressLabel.text = @"北京海淀区";
         _drivingAddressLabel.textColor = RGBColor(153, 153, 153);
-        _drivingAddressLabel.adjustsFontSizeToFitWidth = YES;
-        _drivingAddressLabel.font = [UIFont systemFontOfSize:14];
+//        _drivingAddressLabel.adjustsFontSizeToFitWidth = YES;
+        _drivingAddressLabel.font = [UIFont systemFontOfSize:12];
     }
     return _drivingAddressLabel;
 }
@@ -98,6 +98,7 @@
     if (_distanceLabel == nil) {
         _distanceLabel = [[UILabel alloc] init];
         _distanceLabel.font = [UIFont systemFontOfSize:12];
+        _distanceLabel.textAlignment = NSTextAlignmentRight;
         _distanceLabel.textColor = RGBColor(153, 153, 153);
         _distanceLabel.text = @"12789353478m";
     }
@@ -158,6 +159,25 @@
     [self.backGroundView addSubview:self.starBackgroundImageView];
     [self.backGroundView addSubview:self.starImageView];
     
+
+    [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        //        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
+        //        make.bottom.mas_equalTo(self.drivingAddressLabel.mas_bottom).offset(-1);
+        
+        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
+        make.centerY.equalTo(self.drivingAddressLabel);
+        make.width.mas_greaterThanOrEqualTo(80);
+        make.height.mas_equalTo(self.starBackgroundImageView.mas_height);
+        
+    }];
+    
+    [self.starBackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.distanceLabel.mas_right);
+        make.top.mas_equalTo(self.drivingNameLabel.mas_top).offset(0);
+        make.width.mas_equalTo(80);
+        make.height.mas_equalTo(15);
+    }];
+    
     [self.drivingImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
         make.top.mas_equalTo(self.backGroundView.mas_top).offset(15);
@@ -167,14 +187,17 @@
     
     [self.drivingNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingImage.mas_right).offset(10);
+//        make.right.mas_equalTo(self.starImageView.mas_left).offset(10);
         make.top.mas_equalTo(self.drivingImage.mas_top).offset(0);
+        make.height.mas_equalTo(@20);
     }];
     
     [self.drivingAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingNameLabel.mas_left).offset(0);
         make.top.mas_equalTo(self.drivingNameLabel.mas_bottom).offset(7);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide/2];
-        make.width.mas_equalTo(wide);
+        make.right.mas_equalTo(self.distanceLabel.mas_left).offset(-5);
+//        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide/2];
+//        make.width.mas_equalTo(wide);
     }];
     
     [self.moenyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -189,22 +212,13 @@
 //        make.top.mas_equalTo(self.backGroundView.mas_top).offset(17);
 //    }];
     
-    [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
-        make.bottom.mas_equalTo(self.drivingAddressLabel.mas_bottom).offset(-1);
-    }];
     
     [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.distanceLabel.mas_right);
         make.bottom.mas_equalTo(self.moenyLabel.mas_bottom).offset(0.5);
     }];
     
-    [self.starBackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.distanceLabel.mas_right);
-        make.top.mas_equalTo(self.drivingNameLabel.mas_top).offset(0);
-        make.width.mas_equalTo(80);
-        make.height.mas_equalTo(15);
-    }];
+
     [self.starImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.starBackgroundImageView.mas_right);
         make.top.mas_equalTo(self.starBackgroundImageView.mas_top);
@@ -214,6 +228,10 @@
     self.star = 3;
     [self setStar];
 //    self.distanceLabel.backgroundColor = [UIColor lightGrayColor];
+    
+    [self.drivingNameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.starBackgroundImageView.mas_left);
+    }];
     
 }
 
@@ -226,17 +244,22 @@
     if (![model.address isKindOfClass:[NSNull class]] && model.address.length) {
         address = model.address;
     }
+    
+    
+    
+//    if ([model.coachcount isKindOfClass:[NSNull class]]) {
+//        self.coachcount = 0;
+//    }
+    NSInteger integer = [model.distance integerValue];
+    self.distanceLabel.text = [NSString stringWithFormat:@"距离%.2fkm",integer / 1000.f];
+    
     self.drivingAddressLabel.text = address;
     if ([model.minprice isKindOfClass:[NSNull class]] || [model.maxprice isKindOfClass:[NSNull class]]) {
         self.moenyLabel.text = @"未填写价格";
     }else {
         self.moenyLabel.text = [NSString stringWithFormat:@"¥%@-¥%@",model.minprice,model.maxprice];
     }
-//    if ([model.coachcount isKindOfClass:[NSNull class]]) {
-//        self.coachcount = 0;
-//    }
-    NSInteger integer = [model.distance integerValue];
-    self.distanceLabel.text = [NSString stringWithFormat:@"距离%.2fkm",integer / 1000.f];
+    
     self.star = [model.passingrate floatValue] / 100.f * 10.f / 2.f;
     [self setStar];
     [self.drivingImage sd_setImageWithURL:[NSURL URLWithString:model.logoimg.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];

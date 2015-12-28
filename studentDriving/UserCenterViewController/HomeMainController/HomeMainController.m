@@ -261,7 +261,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                 case 102:
             {
                 if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-                    [self showTotasViewWithMes:@"报名正在审核中!"];
+                    [mainVC showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
                     
                 } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"])
@@ -270,7 +270,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
                 }else
                 {
-                    [self showTotasViewWithMes:@"你还没有报名"];
+                    [mainVC showTotasViewWithMes:@"你还没有报名"];
                 }
                 
             }
@@ -310,7 +310,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
 
                 }else {
-                    [self showTotasViewWithMes:@"您未符合预约要求"];
+                    [mainVC showTotasViewWithMes:@"您未符合预约要求"];
                 }
             }
                 break;

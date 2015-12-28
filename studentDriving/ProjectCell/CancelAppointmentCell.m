@@ -8,7 +8,7 @@
 
 #import "CancelAppointmentCell.h"
 #import "ToolHeader.h"
-#import <SVProgressHUD.h>
+
 @interface CancelAppointmentCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *cancelTitle;
@@ -98,7 +98,6 @@
             for (UILabel *label in self.labelArray) {
                 if (label.tag == b.tag) {
                     if (!label.text) {
-                        [SVProgressHUD showErrorWithStatus:@"你还没有填写任何原因!"];
                         return;
                     }
                     if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {
@@ -119,7 +118,6 @@
         }
     }
     if (!contentLabel.text) {
-        [SVProgressHUD showErrorWithStatus:@"你还没有填写任何原因!"];
         return;
     }
     if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {

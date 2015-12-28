@@ -107,7 +107,12 @@
             b.selected = YES;
         }
     }
+    
     UILabel *contentLabel = self.titleArray[sender.tag - 100];
+    if (!contentLabel.text) {
+        [self obj_showTotasViewWithMes:@"评价内容为空!"];
+        return;
+    }
     if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {
         DYNSLog(@"content = %@",contentLabel.text);
         [_delegate senderCancelMessage:contentLabel.text];
@@ -124,6 +129,11 @@
             b.selected = YES;
         }
     }
+    if (!contentLabel.text) {
+        [self obj_showTotasViewWithMes:@"评价内容为空!"];
+        return;
+    }
+
     if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {
         [_delegate senderCancelMessage:contentLabel.text];
     }
