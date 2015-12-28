@@ -140,6 +140,9 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
     NSDictionary *param = @{@"userid":[AcountManager manager].userid};
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        if (!data) {
+            return ;
+        }
             NSDictionary *param = data;
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"1"]) {

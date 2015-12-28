@@ -67,11 +67,21 @@ static NSString *const kuserCancelAppointment = @"/courseinfo/cancelreservation"
     self.cancelContent = contentField.text;
     NSString *urlString  = [NSString stringWithFormat:BASEURL,kuserCancelAppointment];
 
-    if (self.cancelContent == nil) {
-        self.cancelContent = @"";
+    
+    
+    
+    
+    NSLog(@"%@%@",self.cancelContent,self.cancelMessage);
+    if (self.cancelContent == nil || self.cancelMessage == nil) {
+       
+        [self obj_showTotasViewWithMes:@"请填写取消原因!"];
+         self.cancelContent = @"";
+        return;
     }
-    if (self.cancelMessage == nil) {
+    if (self.cancelMessage == nil || self.cancelContent == nil) {
+        [self obj_showTotasViewWithMes:@"请填写取消原因!"];
         self.cancelMessage = @"";
+        return;
     }
     NSDictionary *param = @{@"userid":[AcountManager manager].userid,@"reservationid":self.model.infoId,@"cancelcontent":self.cancelContent,@"cancelreason":self.cancelMessage};
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
