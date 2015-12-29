@@ -76,7 +76,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"一步学车";
+    self.title = @"快乐学车美一步";
     _offsetX = 0;
     self.view.backgroundColor = [UIColor clearColor];
     [self addSideMenuButton];

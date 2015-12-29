@@ -104,6 +104,8 @@
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
+    NSLog(@"%@",self.dataArray);
+    
     DYNSLog(@"clickModel = %d",model.is_selected);
     
     if (model.is_selected == NO) {
@@ -124,7 +126,7 @@
         }
         for (AppointmentCoachTimeInfoModel *UpDatemodel in self.upDateArray) {
             DYNSLog(@"upDateModel = %ld",UpDatemodel.indexPath);
-            if ((model.indexPath + 1 == UpDatemodel.indexPath )|| (model.indexPath-1 == UpDatemodel.indexPath)) {
+            if ((model.indexPath + 1 == UpDatemodel.indexPath )|| (model.indexPath - 1 == UpDatemodel.indexPath)) {
                 //            [SVProgressHUD showInfoWithStatus:@"请选择相邻的时间段"];
                 AppointmentCollectionViewCell *cell = (AppointmentCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
                 cell.startTimeLabel.textColor = MAINCOLOR;

@@ -226,6 +226,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 #pragma mark - NotifacationCenter
 - (void)kCellChange {
     NSArray *array = [BLInformationManager sharedInstance].appointmentData;
+    NSLog(@"%@",array);
     
     NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
         //obj1.coursetime.numMark < obj2.coursetime.numMark
