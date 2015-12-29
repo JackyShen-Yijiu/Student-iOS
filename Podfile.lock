@@ -35,7 +35,7 @@ PODS:
   - Mantle (2.0.6):
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
-  - Masonry (0.6.3)
+  - Masonry (0.6.4)
   - MJRefresh (3.0.8)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
@@ -89,7 +89,7 @@ SPEC CHECKSUMS:
   IQKeyboardManager: ac803e61e5b50efae6b3aeedd95a02c7c7d3b2b3
   JPush: d1a4a90294389d2c6bd2ca987df8140dd4ffcbd2
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
-  Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
+  Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Qiniu: 51a8702cddc02b50867e10cef99291b9a8a006b1

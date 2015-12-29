@@ -28,6 +28,16 @@
 
 @end
 @implementation RatingBar
+
+- (instancetype)init
+{
+    self = [super init];
+    if (self) {
+        _isIndicator = YES;
+    }
+    return self;
+}
+
 /**
  *  初始化设置未选中图片、半选中图片、全选中图片，以及评分值改变的代理（可以用
  *  Block）实现

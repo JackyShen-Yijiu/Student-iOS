@@ -98,12 +98,17 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
     self.tableView.tableFooterView = [[UIView alloc] init];
     
-    [self startDownLoad];
-    
 }
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self startDownLoad];
+}
+
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.hidden = YES;
         _naviBarRightButton.frame = CGRectMake(0, 0, 44, 44);
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
@@ -111,102 +116,102 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     return _naviBarRightButton;
 }
 - (void)clickRight:(UIButton *)sender {
-
+    
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
         [self.navigationController popViewControllerAnimated:YES];
         return;
     }
     
     DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
- 
     
     
     
-        if (_myLoveState == MyLoveStateCoach) {
-            if (![AcountManager manager].applyschool.infoId) {
-                if (self.coachDetailModel || self.coachDetailModel.name) {
-                    NSDictionary *coachParam = @{kRealCoachid:self.coachDetailModel.coachid,@"name":self.coachDetailModel.name};
-                    [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
-                    
-                }
-                if (self.coachDetailModel.driveschoolinfo.driveSchoolId && self.coachDetailModel.driveschoolinfo.name) {
-                    DYNSLog(@"schoolinfo");
-                    NSDictionary *schoolParam = @{kRealSchoolid:self.coachDetailModel.driveschoolinfo.driveSchoolId,@"name":self.coachDetailModel.driveschoolinfo.name};
-                    [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-                }
-                [self.navigationController popViewControllerAnimated:YES];
-                return;
+    
+    if (_myLoveState == MyLoveStateCoach) {
+        if (![AcountManager manager].applyschool.infoId) {
+            if (self.coachDetailModel || self.coachDetailModel.name) {
+                NSDictionary *coachParam = @{kRealCoachid:self.coachDetailModel.coachid,@"name":self.coachDetailModel.name};
+                [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+                
             }
-            
-            
-            if ([[AcountManager manager].applyschool.infoId isEqualToString:self.coachDetailModel.driveschoolinfo.driveSchoolId]) {
-                [self.navigationController popViewControllerAnimated:YES];
-                return;
+            if (self.coachDetailModel.driveschoolinfo.driveSchoolId && self.coachDetailModel.driveschoolinfo.name) {
+                DYNSLog(@"schoolinfo");
+                NSDictionary *schoolParam = @{kRealSchoolid:self.coachDetailModel.driveschoolinfo.driveSchoolId,@"name":self.coachDetailModel.driveschoolinfo.name};
+                [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
             }
-            
-            if (![[AcountManager manager].applyschool.infoId isEqualToString:self.coachDetailModel.driveschoolinfo.driveSchoolId]) {
-                [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-                    DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-                    NSUInteger index = selectedOtherButtonIndex + 1;
-                    if (index == 0) {
-                        return ;
-                    }else {
-                        if (self.coachDetailModel || self.coachDetailModel.name) {
-                            NSDictionary *coachParam = @{kRealCoachid:self.coachDetailModel.coachid,@"name":self.coachDetailModel.name};
-                            [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
-                            
-                        }
-                        if (self.coachDetailModel.driveschoolinfo.driveSchoolId && self.coachDetailModel.driveschoolinfo.name) {
-                            DYNSLog(@"schoolinfo");
-                            NSDictionary *schoolParam = @{kRealSchoolid:self.coachDetailModel.driveschoolinfo.driveSchoolId,@"name":self.coachDetailModel.driveschoolinfo.name};
-                            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-                        }
-                        [self.navigationController popViewControllerAnimated:YES];
-                        return;
-                        
-                    }
-                }];
-            }
-        }else if (_myLoveState == MyLoveStateDriving) {
-            
-            if (![AcountManager manager].applyschool.infoId) {
-                if (self.drivingDetailModel.schoolid || self.drivingDetailModel.name) {
-                    NSDictionary *schoolParam = @{kRealSchoolid:self.drivingDetailModel.schoolid,@"name":self.drivingDetailModel.name};
-                    [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-                    
-                }
-                [self.navigationController popViewControllerAnimated:YES];
-                return;
-            }
-            
-            if ([[AcountManager manager].applyschool.infoId isEqualToString:self.drivingDetailModel.schoolid] ) {
-                [self.navigationController popViewControllerAnimated:YES];
-                return;
-            }
-            
-            
-            if (![[AcountManager manager].applyschool.infoId isEqualToString:self.drivingDetailModel.schoolid]) {
-                [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-                    DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-                    NSUInteger index = selectedOtherButtonIndex + 1;
-                    if (index == 0) {
-                        return ;
-                    }else  {
-                        
-                        [SignUpInfoManager removeSignData];
-                        
-                        if (self.drivingDetailModel.schoolid || self.drivingDetailModel.name) {
-                            NSDictionary *schoolParam = @{kRealSchoolid:self.drivingDetailModel.schoolid,@"name":self.drivingDetailModel.name};
-                            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-                            
-                        }
-                        [self.navigationController popViewControllerAnimated:YES];
-                        
-                    }
-                }];
-            }
-
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
         }
+        
+        
+        if ([[AcountManager manager].applyschool.infoId isEqualToString:self.coachDetailModel.driveschoolinfo.driveSchoolId]) {
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+        
+        if (![[AcountManager manager].applyschool.infoId isEqualToString:self.coachDetailModel.driveschoolinfo.driveSchoolId]) {
+            [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+                DYNSLog(@"index = %ld",selectedOtherButtonIndex);
+                NSUInteger index = selectedOtherButtonIndex + 1;
+                if (index == 0) {
+                    return ;
+                }else {
+                    if (self.coachDetailModel || self.coachDetailModel.name) {
+                        NSDictionary *coachParam = @{kRealCoachid:self.coachDetailModel.coachid,@"name":self.coachDetailModel.name};
+                        [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+                        
+                    }
+                    if (self.coachDetailModel.driveschoolinfo.driveSchoolId && self.coachDetailModel.driveschoolinfo.name) {
+                        DYNSLog(@"schoolinfo");
+                        NSDictionary *schoolParam = @{kRealSchoolid:self.coachDetailModel.driveschoolinfo.driveSchoolId,@"name":self.coachDetailModel.driveschoolinfo.name};
+                        [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                    
+                }
+            }];
+        }
+    }else if (_myLoveState == MyLoveStateDriving) {
+        
+        if (![AcountManager manager].applyschool.infoId) {
+            if (self.drivingDetailModel.schoolid || self.drivingDetailModel.name) {
+                NSDictionary *schoolParam = @{kRealSchoolid:self.drivingDetailModel.schoolid,@"name":self.drivingDetailModel.name};
+                [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+                
+            }
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+        
+        if ([[AcountManager manager].applyschool.infoId isEqualToString:self.drivingDetailModel.schoolid] ) {
+            [self.navigationController popViewControllerAnimated:YES];
+            return;
+        }
+        
+        
+        if (![[AcountManager manager].applyschool.infoId isEqualToString:self.drivingDetailModel.schoolid]) {
+            [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+                DYNSLog(@"index = %ld",selectedOtherButtonIndex);
+                NSUInteger index = selectedOtherButtonIndex + 1;
+                if (index == 0) {
+                    return ;
+                }else  {
+                    
+                    [SignUpInfoManager removeSignData];
+                    
+                    if (self.drivingDetailModel.schoolid || self.drivingDetailModel.name) {
+                        NSDictionary *schoolParam = @{kRealSchoolid:self.drivingDetailModel.schoolid,@"name":self.drivingDetailModel.name};
+                        [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+                        
+                    }
+                    [self.navigationController popViewControllerAnimated:YES];
+                    
+                }
+            }];
+        }
+        
+    }
 }
 - (void)startDownLoad {
     
@@ -331,8 +336,8 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         CoachTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
             cell = [[CoachTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+            //            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
         }
         CoachModel *model = self.dataArray[indexPath.row];
         [cell receivedCellModelWith:model];
@@ -342,11 +347,11 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         DrivingCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
             cell = [[DrivingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-//            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            //            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
         DrivingModel *model = self.dataArray[indexPath.row];
         [cell updateAllContentWith:model];
-
+        
         return cell;
         
     }
@@ -357,8 +362,8 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     if (_myLoveState == MyLoveStateCoach) {
         CoachModel *model = self.dataArray[indexPath.row];
         self.coachDetailModel = model;
-        self.naviBarRightButton.hidden = NO;
-
+        //        self.naviBarRightButton.hidden = NO;
+        
         CoachDetailViewController *detailVC = [[CoachDetailViewController alloc]init];
         DYNSLog(@"coachid = %@",model.coachid);
         detailVC.coachUserId = model.coachid;
@@ -385,26 +390,26 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             NSString *deleteUrl = [NSString stringWithFormat:@"%@/%@",kDeleteMySaveCoach,model.coachid];
             NSString *urlString = [NSString stringWithFormat:BASEURL,deleteUrl];
             [self.dataArray removeObject:model];
-          [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
-              DYNSLog(@"data = %@",data);
-              NSDictionary *param = data;
-              NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-              if ([type isEqualToString:@"0"]) {
-                  [self showTotasViewWithMes:@"删除失败"];
-              }else if ([type isEqualToString:@"1"]) {
-                  [self showTotasViewWithMes:@"成功删除"];
-
-              }
-              
-          }];
-          
+            [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
+                DYNSLog(@"data = %@",data);
+                NSDictionary *param = data;
+                NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+                if ([type isEqualToString:@"0"]) {
+                    [self showTotasViewWithMes:@"删除失败"];
+                }else if ([type isEqualToString:@"1"]) {
+                    [self showTotasViewWithMes:@"成功删除"];
+                    
+                }
+                
+            }];
+            
             
         }else if (_myLoveState == MyLoveStateDriving) {
-          
+            
             DrivingModel *model = self.dataArray[indexPath.row];
             self.drivingDetailModel = model;
             [self.dataArray removeObject:model];
-
+            
             NSString *deleteUrl = [NSString stringWithFormat:@"%@/%@",kDeleteMySaveSchool,model.schoolid];
             NSString *urlString = [NSString stringWithFormat:BASEURL,deleteUrl];
             [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
@@ -421,7 +426,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             
         }
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-
+        
         
     }
     

@@ -217,19 +217,31 @@
 
 - (void)receivedCellModelWith:(CoachModel *)coachModel {
     [self resetContent];
-   
-//    if ([[AcountManager manager].applycoach.infoId isEqualToString:coachModel.coachid]) {
-//        self.selected = YES;
-//    }
+    
+    //    if ([[AcountManager manager].applycoach.infoId isEqualToString:coachModel.coachid]) {
+    //        self.selected = YES;
+    //    }
     
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:coachModel.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
     self.coachNameLabel.text = coachModel.name;
-    self.distanceLabel.text = [NSString stringWithFormat:@"距离%@km",coachModel.distance.stringValue];
+    if (coachModel.distance) {
+        CGFloat distance = [coachModel.distance integerValue] / 1000.f;
+        self.distanceLabel.text = [NSString stringWithFormat:@"距离:%.2fkm",distance];
+    }
+    
     self.carDriveNameLabel.text = coachModel.driveschoolinfo.name;
     self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",coachModel.Seniority] ;
-    self.successRateLabel.text = [NSString stringWithFormat:@"通过率%@%@",coachModel.passrate,@"%"];
-    self.starLabel.text = @"5";
-    [self.starBar displayRating:coachModel.starlevel.floatValue];
+    if (coachModel.passrate) {
+        self.successRateLabel.text = [NSString stringWithFormat:@"通过率:%@%@",coachModel.passrate,@"%"];
+    }else {
+        self.successRateLabel.text = [NSString stringWithFormat:@"通过率:暂无"];
+    }
+    //    self.starLabel.text = @"5";
+    CGFloat starLevel = 0;
+    if (coachModel.starlevel) {
+        starLevel = [coachModel.starlevel floatValue];
+    }
+    [self.starBar displayRating:starLevel];
     if (coachModel.is_shuttle) {
         [self.backGroundView addSubview:self.coachStateSend];
         [self.coachStateSend mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -239,8 +251,8 @@
             make.height.mas_equalTo(@14);
         }];
     }
-   
-
+    
+    
 }
 - (void)resetContent {
     [self.coachStateAll removeFromSuperview];
