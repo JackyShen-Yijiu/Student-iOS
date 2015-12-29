@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="14F1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
@@ -17,7 +17,6 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="商品规格" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqm-AR-EF7">
                         <rect key="frame" x="26" y="33" width="77" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="77" id="Jj1-d4-n4a"/>
                             <constraint firstAttribute="height" constant="21" id="jHc-aS-HM6"/>
@@ -29,7 +28,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMA-Jj-f3u">
                         <rect key="frame" x="13" y="214" width="90" height="19"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="19" id="FPW-gW-rFP"/>
                             <constraint firstAttribute="width" constant="90" id="jbb-fd-5iw"/>
@@ -49,7 +47,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMZ-LT-lpU">
                         <rect key="frame" x="113" y="214" width="90" height="19"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="90" id="JDc-2O-hrF"/>
                             <constraint firstAttribute="height" constant="19" id="QpV-2Q-aH2"/>
@@ -66,7 +63,6 @@
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R9D-XS-DKn">
                         <rect key="frame" x="13" y="84" width="113" height="113"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.62685011729999995" green="1" blue="0.22676281370000001" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="113" id="7T3-fy-SD5"/>
@@ -75,7 +71,6 @@
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Eyx-wl-NkZ">
                         <rect key="frame" x="-10" y="61" width="630" height="0.0"/>
-                        <animations/>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="0.5" id="rbi-Wu-qh9"/>
@@ -83,7 +78,6 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CMV-Ez-k0N">
                         <rect key="frame" x="243" y="167" width="300" height="32"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="300" id="ZdN-xK-Muf"/>
                             <constraint firstAttribute="height" constant="32" id="fqj-VU-dUf"/>
@@ -94,7 +88,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QKs-cm-wiq">
                         <rect key="frame" x="548" y="177" width="47" height="26"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="width" constant="47" id="9cS-02-L6j"/>
                             <constraint firstAttribute="height" constant="26" id="H5j-S6-pAa"/>
@@ -105,7 +98,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L9D-4S-Lpl">
                         <rect key="frame" x="141" y="84" width="419" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Jkt-VB-13F"/>
                             <constraint firstAttribute="width" constant="419" id="bSg-vq-7zK"/>
@@ -116,7 +108,6 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G5Q-na-LHD">
                         <rect key="frame" x="141" y="111" width="419" height="21"/>
-                        <animations/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="N1f-Kx-T1h"/>
                             <constraint firstAttribute="width" constant="419" id="Nv2-Br-nPx"/>
@@ -126,7 +117,6 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <animations/>
                 <constraints>
                     <constraint firstItem="QKs-cm-wiq" firstAttribute="top" secondItem="G5Q-na-LHD" secondAttribute="bottom" constant="45" id="1ti-3v-gqu"/>
                     <constraint firstItem="R9D-XS-DKn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="5" id="3Pf-6Q-job"/>
@@ -150,7 +140,6 @@
                     <constraint firstItem="pqm-AR-EF7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="25" id="zp4-PV-DXV"/>
                 </constraints>
             </tableViewCellContentView>
-            <animations/>
             <connections>
                 <outlet property="buyNumber" destination="GMZ-LT-lpU" id="M9B-dg-lWp"/>
                 <outlet property="moneyNumber" destination="CMV-Ez-k0N" id="I6j-GA-LNM"/>

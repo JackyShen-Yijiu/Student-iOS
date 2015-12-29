@@ -9,8 +9,12 @@
 #import "SubjectModel.h"
 
 @implementation SubjectModel
+//+ (NSDictionary *)JSONKeyPathsByPropertyKey {
+//    return @{@"cancelId":@"_id",@"name":@"name",@"subjectId":@"subjectid"};
+//}
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"cancelId":@"_id",@"name":@"name",@"subjectId":@"subjectid"};
+    return @{@"name":@"name",@"subjectId":@"subjectid"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {

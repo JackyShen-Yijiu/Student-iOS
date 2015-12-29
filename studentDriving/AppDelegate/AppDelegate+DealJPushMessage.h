@@ -4,7 +4,7 @@
 //
 //  Created by bestseller on 15/11/13.
 //  Copyright © 2015年 jatd. All rights reserved.
-////
+//
 
 #import "AppDelegate.h"
 #import <JPush/APService.h>

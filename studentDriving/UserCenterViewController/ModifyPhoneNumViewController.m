@@ -10,7 +10,7 @@
 #import "UIDevice+JEsystemVersion.h"
 
 static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
-@interface ModifyPhoneNumViewController ()
+@interface ModifyPhoneNumViewController () <UITextFieldDelegate>
 @property (strong, nonatomic) UITextField *phoneNumTextField;
 @property (strong, nonatomic) UITextField *confirmTextField;
 @property (strong, nonatomic) UIButton *gainNum;
@@ -45,7 +45,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 - (UITextField *)phoneNumTextField {
     if (_phoneNumTextField == nil) {
         _phoneNumTextField = [[UITextField alloc]init];
-        //        _phoneNumTextField.delegate = self;
+        _phoneNumTextField.delegate = self;
         _phoneNumTextField.font = [UIFont systemFontOfSize:14];
         _phoneNumTextField.tag = 102;
         _phoneNumTextField.placeholder = @"手机号";
@@ -215,6 +215,15 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         }
     });
     dispatch_resume(timer);
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == _phoneNumTextField) {
+        if (range.location>10) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 

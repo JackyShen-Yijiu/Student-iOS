@@ -19,4 +19,7 @@ typedef void(^DVVSideMenuBlockViewSelectedBlock)(UIButton *button);
 
 - (void)dvvSideMenuBlockViewItemSelected:(DVVSideMenuBlockViewSelectedBlock)handle;
 
+// 显示、隐藏小红点
+-(void)setupUnreadMessageCount;
+
 @end

@@ -33,12 +33,20 @@
 #import "AppointmentViewController.h"
 #import "AppointmentDrivingViewController.h"
 
+#import "NSUserStoreTool.h"
+
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
 static NSString *kConversationChatter = @"ConversationChatter";
 
 static NSString *const kexamquestionUrl = @"/info/examquestion";
+
+static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
+
+#define ksubject      @"subject"
+#define ksubjectTwo   @"subjecttwo"
+#define ksubjectThree @"subjectthree"
 
 #define carOffsetX   ((systemsW - 10) * 0.2)
 #define systemsW   self.view.frame.size.width
@@ -76,7 +84,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"快乐学车美一步";
+    self.title = @"一步学车";
     _offsetX = 0;
     self.view.backgroundColor = [UIColor clearColor];
     [self addSideMenuButton];
@@ -165,6 +173,38 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     } withFailure:^(id data) {
          [self showTotasViewWithMes:@"网络错误"];
     }];
+    
+    NSString *getMyProgress = [NSString stringWithFormat:BASEURL,kgetMyProgress];
+    [JENetwoking startDownLoadWithUrl:getMyProgress postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        if (!data) {
+            return ;
+        }
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            NSDictionary *dataDic = [param objectForKey:@"data"];
+            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
+                return;
+            }
+            if ([dataDic objectForKey:ksubject]) {
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:ksubject] WithKey:ksubject];
+            }
+            
+            if ([dataDic objectForKey:ksubjectTwo]) {
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:ksubjectTwo] WithKey:ksubjectTwo];
+            }
+            
+            if ([dataDic objectForKey:ksubjectThree]) {
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:ksubjectThree] WithKey:ksubjectThree];
+            }
+            
+        }else {
+            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
+        }
+    } withFailure:^(id data) {
+        [self showTotasViewWithMes:@"网络错误"];
+    }];
+    
 }
 - (void)startSubjectFourDownLoad
 {

@@ -19,12 +19,12 @@
         [self addSubview:self.nameLabel];
         [self addSubview:self.drivingNameLabel];
         [self addSubview:self.markLabel];
-        [self addSubview:self.integralLabel];
+//        [self addSubview:self.integralLabel];
         
-        _nameLabel.text = @"哒哒塔塔";
+        _nameLabel.text = @"用户名";
         _drivingNameLabel.text = @"驾校：未报考";
-        _markLabel.text = @"我的Y码：1001010101";
-        [self setIntegralLabelText:@"0"];
+        _markLabel.text = @"我的Y码：暂无";
+//        [self setIntegralLabelText:@"0"];
     }
     return self;
 }
@@ -112,7 +112,7 @@
 }
 
 - (CGFloat)defaultHeight {
-    return 140;
+    return 120;
 }
 
 /*

@@ -139,24 +139,35 @@
     CGFloat spotH = 20;
     CGFloat margin = (systemsW - 270) / 5;
     _lableitems = [NSMutableArray array];
+
     CGFloat labelY = backImageView.frame.origin.y + CGRectGetHeight(backImageView.frame) + 10;
     NSArray *arrayStr =  @[@"欢迎您",@"科目一",@"科目二",@"科目三",@"科目四"];
+
+   
     for (int i = 0; i < 5; i++) {
         UILabel *label = [[UILabel alloc] init];
         if (i == 0) {
             label.frame = CGRectMake(15, labelY, spotW, spotH);
             label.text = arrayStr[i];
             label.tag = 201;
+
             label.textColor = [UIColor colorWithHexString:@"fcfcfc"];
             label.font = [UIFont systemFontOfSize:14];
+
+            label.textColor = [UIColor orangeColor];
+            label.font = [UIFont systemFontOfSize:10];
             [_lableitems addObject:label];
             [self addSubview:label];
         }else
         {
             label.frame = CGRectMake(i * margin + i * spotW + 15, labelY, spotW, spotH);
             label.text = arrayStr[i];
+
             label.textColor = [UIColor colorWithHexString:@"fcfcfc"];
             label.font = [UIFont systemFontOfSize:12];
+
+            label.textColor = [UIColor grayColor];
+            label.font = [UIFont systemFontOfSize:10];
             label.tag = 201 + i;
             [_lableitems addObject:label];
             [self addSubview:label];
@@ -175,10 +186,10 @@
     for (UILabel *resultLabel in _lableitems) {
         if(resultLabel.tag == i)
         {
-            resultLabel.textColor = [UIColor colorWithHexString:@"ff6633"];
+            resultLabel.textColor = [UIColor orangeColor];
         }else
         {
-            resultLabel.textColor = [UIColor colorWithHexString:@"fcfcfc"];
+            resultLabel.textColor = [UIColor grayColor];
         }
     }
     // 设置划过的痕迹

@@ -226,7 +226,6 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 #pragma mark - NotifacationCenter
 - (void)kCellChange {
     NSArray *array = [BLInformationManager sharedInstance].appointmentData;
-    NSLog(@"%@",array);
     
     NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
         //obj1.coursetime.numMark < obj2.coursetime.numMark
@@ -578,6 +577,8 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     }
     self.menuScrollview.contentSize = CGSizeMake((65+15)*30, 44);
 }
+
+#pragma mark -- 日历按钮点击
 - (void)clickButton:(UIButton *)sender {
     NSUInteger index = sender.tag - 100;
     for (UIButton  *b in self.buttonArray) {
@@ -613,12 +614,14 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }else {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
+            self.coachTimeArray = nil;
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
             kShowFail(msg);
         }
         
     }];
 }
-#pragma mark -- 日历按钮点击
+
 - (void)submitClick:(UIButton *)sender {
     NSArray *array = [BLInformationManager sharedInstance].appointmentData;
     

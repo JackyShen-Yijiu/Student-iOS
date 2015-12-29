@@ -72,13 +72,14 @@
     
     self.signUpLabel.text = titleString;
     self.signUpCompletion = signUpCompletion;
-    
+
 }
 
 - (void)receiveTextContent:(NSString *)content {
     DYNSLog(@"content = %@",content);
     self.signUpTextField.text = nil;
     self.signUpTextField.text = content;
+    
 }
 
 
@@ -95,6 +96,19 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
+    return YES;
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if ([self.signUpLabel.text isEqualToString:@"联系电话"]) {
+        if (range.location>10) {
+            return NO;
+        }
+    }else if ([self.signUpLabel.text isEqualToString:@"真实姓名"]) {
+        if (range.location>5) {
+            return NO;
+        }
+    }
     return YES;
 }
 

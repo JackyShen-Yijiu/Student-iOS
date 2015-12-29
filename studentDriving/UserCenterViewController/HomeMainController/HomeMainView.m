@@ -26,6 +26,7 @@
 
 @property (nonatomic, strong) UIButton *signButton;
 
+@property (nonatomic, strong) UIImageView *textImageView;
 
 @end
 
@@ -34,7 +35,13 @@
 
 - (instancetype)initWithFrame:(CGRect)frame SearchType:(kSearchType)searchType
 {
-
+    CGFloat imageY = 20;
+    CGFloat imageViewH = 42;
+    CGFloat imageViewW = 186;
+    
+//    CGFloat coachCardButtonW = 96;
+//    CGFloat schoolCardButton = 128;
+//    CGFloat signButton = 68;
     CGFloat coachCardButtonW = systemsW * 0.3;
     
     CGFloat schoolCardButtonH = systemsW * 0.48;
@@ -42,6 +49,12 @@
     
     CGFloat signButton = systemsW * 0.25;
     NSLog(@"%f",coachCardButtonW);
+
+    
+    
+    
+    
+    
     if (self = [super initWithFrame:frame]) {
         /*
          *coachCard  ,driverSchoolCard  ,
@@ -51,9 +64,6 @@
             case kSearchMainView:
             {
                 // 首页视图
-                
-                CGFloat coachCardButtonX = (systemsW - coachCardButtonW - schoolCardButtonW + 23) / 2 ;
-                NSLog(@"coach = %f",coachCardButtonX);
                 _coachCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _coachCardButton.frame = CGRectMake(35, 195, coachCardButtonW, coachCardButtonW);
                 [self addButtonProperty:@"教练卡" button:_coachCardButton];
@@ -78,11 +88,23 @@
                 _signButton.tag = 103;
                [_signButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
                
-
+                [self addSubview:_textImageView];
                 [self addSubview:_coachCardButton];
                 [self addSubview:_schoolCardButton];
                 [self addSubview:_signButton];
                 
+                // 滚动
+//                _oneCM = [CircularMotion new];
+//                [_oneCM circularMotionWithView:_schoolCardButton Radius:10];
+//                [_oneCM startMotionWithTimeInterval:0.01];
+//                
+//                _twoCM = [CircularMotion new];
+//                [_twoCM circularMotionWithView:_coachCardButton Radius:7];
+//                [_twoCM startMotionWithTimeInterval:0.01];
+//                
+//                _threeCM = [CircularMotion new];
+//                [_threeCM circularMotionWithView:_signButton Radius:8];
+//                [_threeCM startMotionWithTimeInterval:0.01];
 
             }
                 break;
@@ -91,6 +113,9 @@
             {
                 // 科目一
                 // 首页视图
+                _textImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - imageViewW) / 2, imageY, imageViewW, imageViewH)];
+                _textImageView.image = [UIImage imageNamed:@"文字"];
+                
                 
 //                CGFloat signButtonX = (systemsW - schoolCardButtonW - coachCardButtonW + 15) / 2 ;
 
@@ -116,6 +141,7 @@
                 [_schoolCardButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
                 
                 [self addSubview:_signButton];
+                [self addSubview:_textImageView];
                 [self addSubview:_coachCardButton];
                 [self addSubview:_schoolCardButton];
                 
@@ -127,7 +153,9 @@
             {
                 // 科目二
                 // 首页视图
-        
+                
+                _textImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - imageViewW) / 2, imageY, imageViewW, imageViewH)];
+                _textImageView.image = [UIImage imageNamed:@"文字"];
                 _coachCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _coachCardButton.frame = CGRectMake(18, systemsH - schoolCardButtonH - 191, schoolCardButtonW, schoolCardButtonH);
                 [self addButtonProperty:@"科目二" button:_coachCardButton];
@@ -147,6 +175,7 @@
                 [_schoolCardButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
                 
                 
+                [self addSubview:_textImageView];
                 [self addSubview:_coachCardButton];
                 [self addSubview:_signButton];
                  [self addSubview:_schoolCardButton];
@@ -157,7 +186,9 @@
             {
                 // 科目三
                 // 首页视图
-                                
+                _textImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - imageViewW) / 2, imageY, imageViewW, imageViewH)];
+                _textImageView.image = [UIImage imageNamed:@"文字"];
+                
                 _signButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 CGFloat signButtonX = (systemsW - schoolCardButtonW - coachCardButtonW - 10) / 2;
                 _signButton.frame = CGRectMake(signButtonX, systemsW * 0.4
@@ -183,6 +214,7 @@
                 [_schoolCardButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
                 
                 [self addSubview:_signButton];
+                [self addSubview:_textImageView];
                 [self addSubview:_coachCardButton];
                 [self addSubview:_schoolCardButton];
             
@@ -193,7 +225,8 @@
             {
                 // 科目四
                 // 首页视图
-    
+                _textImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - imageViewW) / 2, imageY, imageViewW, imageViewH)];
+                _textImageView.image = [UIImage imageNamed:@"文字"];
                 
                 CGFloat signX = (systemsW - signButton - schoolCardButtonW - 10) / 2;
                 _signButton = [UIButton buttonWithType:UIButtonTypeSystem];
@@ -216,6 +249,7 @@
                 [_schoolCardButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
                 
                 [self addSubview:_signButton];
+                [self addSubview:_textImageView];
                 [self addSubview:_coachCardButton];
                 [self addSubview:_schoolCardButton];
                

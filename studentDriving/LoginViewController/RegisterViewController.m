@@ -393,22 +393,17 @@ static NSString *const kcodeGainUrl = @"code";
     [self.paramsPost setObject:@"1" forKey:@"usertype"];
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,kregisterUrl];
-    
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
     [JENetwoking startDownLoadWithUrl:urlString postParam:self.paramsPost WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        
         DYNSLog(@"data = %@",data);
-        
         NSDictionary *dataDic = data;
         
-        [MBProgressHUD hideHUDForView:self.view animated:NO];
-        
         NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
-        
         if ([type isEqualToString:@"0"]) {
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
             [self showTotasViewWithMes:dataDic[@"msg"]];
         }else if ([type isEqualToString:@"1"]) {
+            [MBProgressHUD hideHUDForView:self.view animated:NO];
             [AcountManager configUserInformationWith:dataDic[@"data"]];
             [self showTotasViewWithMes:@"登录成功"];
             [AcountManager saveUserName:self.phoneTextField.text andPassword:self.passWordTextFild.text];
@@ -421,11 +416,7 @@ static NSString *const kcodeGainUrl = @"code";
                 [[NSNotificationCenter defaultCenter] postNotificationName:kregisterUser object:nil];
             }];
         }
-        
-    } withFailure:^(id data) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:NO];
-
+       
     }];
     
 }
@@ -529,6 +520,15 @@ static NSString *const kcodeGainUrl = @"code";
      tags, alias];
     
     DYNSLog(@"TagsAlias回调:%@", callbackString);
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == _phoneTextField) {
+        if (range.location>10) {
+            return NO;
+        }
+    }
+    return YES;
 }
 
 

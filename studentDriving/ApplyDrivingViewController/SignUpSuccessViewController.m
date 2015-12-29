@@ -30,6 +30,8 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
 @property (strong, nonatomic) NSString *imageStr;
 @property (strong, nonatomic) NSString *explainStr;
 
+@property (strong, nonatomic) UIScrollView *sv;
+
 @end
 
 @implementation SignUpSuccessViewController
@@ -68,14 +70,14 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self startNetWork];
+    
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self startNetWork];
     self.view.backgroundColor = RGBColor(245, 247, 250);
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
