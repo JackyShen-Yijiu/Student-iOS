@@ -156,7 +156,7 @@ static NSString *const kuserType = @"usertype";
     if (_loginButton == nil) {
         _loginButton                 = [UIButton buttonWithType:UIButtonTypeCustom];
         _loginButton.backgroundColor = RGBColor(255, 102, 51);
-
+        
         [_loginButton addTarget:self action:@selector(dealLogin:) forControlEvents:UIControlEventTouchUpInside];
         
         [_loginButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -191,7 +191,7 @@ static NSString *const kuserType = @"usertype";
         leftView.image = [UIImage imageNamed:@"账号"];
         
         _phoneNumTextField.leftView = leftView;
-
+        
     }
     
     return _phoneNumTextField;
@@ -232,7 +232,7 @@ static NSString *const kuserType = @"usertype";
     [self.view addSubview:self.forgetButton];
     [self.view addSubview:self.registerButton];
     [self.view addSubview:self.bottomButton];
-
+    
     [self.bottomButton addSubview:self.rightImageView];
     
     [self.view addSubview:self.bottomLineView];
@@ -260,6 +260,12 @@ static NSString *const kuserType = @"usertype";
         [self showTotasViewWithMes:@"请输入密码"];
         return;
     }
+    
+    [self userExist];
+}
+
+- (void)userLogin {
+    
     //网络请求
     [self.passwordTextField resignFirstResponder];
     [self.phoneNumTextField resignFirstResponder];
@@ -283,14 +289,38 @@ static NSString *const kuserType = @"usertype";
             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
             if ([AcountManager manager].userid) {
-            [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
-             
+                [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
                 
-            [self loginWithUsername:[AcountManager manager].userid password:self.passwordTextField.text.DY_MD5];
+                
+                [self loginWithUsername:[AcountManager manager].userid password:self.passwordTextField.text.DY_MD5];
             }
             
             // 用户登录成功，打开相应的窗体
             [DVVUserManager userLoginSucces];
+        }
+    }];
+}
+
+#pragma mark 验证用户是否存在
+- (void)userExist {
+    
+    __weak typeof(self) ws = self;
+    NSString *urlString = [NSString stringWithFormat:@"userinfo/userexists?usertype=1&mobile=%@",self.phoneNumTextField.text];
+    NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
+    
+    [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"%@", data);
+        NSDictionary *params = data;
+        BOOL type = [[params objectForKey:@"type"] boolValue];
+        if (type) {
+            if ([[params objectForKey:@"data"] boolValue]) {
+                [self userLogin];
+            }else {
+                [ws showMsg:@"此用户未注册"];
+            }
+        }else {
+            [ws showMsg:@"网络错误"];
         }
     }];
 }
@@ -316,7 +346,7 @@ static NSString *const kuserType = @"usertype";
              [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
              
              //获取群组列表
-//             [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+             //             [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
              
              EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
              options.nickname = [AcountManager manager].userName;
@@ -433,7 +463,7 @@ static NSString *const kuserType = @"usertype";
         make.height.mas_equalTo(@40);
         
     }];
-
+    
     
     
     
@@ -447,7 +477,7 @@ static NSString *const kuserType = @"usertype";
         make.height.mas_equalTo(@40);
         
     }];
-
+    
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(40.5);
         make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
@@ -466,15 +496,15 @@ static NSString *const kuserType = @"usertype";
         make.height.mas_equalTo(@44);
         
     }];
-
+    
     [self.forgetButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(20);
         make.top.mas_equalTo(self.loginButton.mas_bottom).with.offset(14);
         make.width.mas_equalTo(@60);
         make.height.mas_equalTo(@25);
     }];
-
-
+    
+    
     
     [self.bottomButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(-32);
@@ -483,7 +513,7 @@ static NSString *const kuserType = @"usertype";
         make.height.mas_equalTo(@34);
     }];
     
-   
+    
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
@@ -499,9 +529,14 @@ static NSString *const kuserType = @"usertype";
         make.width.mas_equalTo(@15);
     }];
     
-  
+    
     
 }
 
+- (void)showMsg:(NSString *)message {
+    
+    ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
+    [alertView show];
+}
 
 @end

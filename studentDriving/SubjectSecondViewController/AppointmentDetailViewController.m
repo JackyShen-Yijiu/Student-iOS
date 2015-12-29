@@ -20,12 +20,13 @@
 #import <BaiduMapAPI/BMKPointAnnotation.h>
 #import <BaiduMapAPI/BMKPinAnnotationView.h>
 #import "ChatViewController.h"
+#import <BaiduMapAPI/BMKGeocodeSearch.h>
 
 static NSString *const kStudentTimeStudy = @"courseinfo/sametimestudents/reservationid/%@/index/%@";
 
 static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@";
 
-@interface AppointmentDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AppointmentCellDelegate,BMKMapViewDelegate>
+@interface AppointmentDetailViewController ()<UITableViewDataSource,UITableViewDelegate,AppointmentCellDelegate,BMKMapViewDelegate, BMKGeoCodeSearchDelegate>
 @property (strong, nonatomic) BMKMapView *mapView;
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -36,16 +37,84 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 @property (strong, nonatomic) UIButton *itemTime;
 @property (strong, nonatomic) UIButton *itemMessege;
 @property (copy, nonatomic) NSArray *dataArray;
+
+@property (nonatomic, strong) BMKGeoCodeSearch *geoCodeSearch;
 @end
 
 @implementation AppointmentDetailViewController
+
+#pragma mark - 正地理编码
+- (BOOL)geoCode {
+    BMKGeoCodeSearchOption *geoCodeSearchOption = [BMKGeoCodeSearchOption new];
+    //    geoCodeSearchOption.city = self.cityName;
+    //    geoCodeSearchOption.address = self.cityName;
+    //        geoCodeSearchOption.city= @"北京市";
+    //        geoCodeSearchOption.address = @"北京市";
+    geoCodeSearchOption.address = self.model.shuttleaddress;
+    BOOL flag = [self.geoCodeSearch geoCode:geoCodeSearchOption];
+    if(flag) {
+        NSLog(@"geo检索发送成功");
+        return YES;
+    }else {
+        NSLog(@"geo检索发送失败");
+        return NO;
+    }
+}
+
+#pragma mark 正地理编码回调
+- (void)onGetGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
+    
+    if (error == BMK_SEARCH_NO_ERROR) {
+        //        NSLog(@"%@",result);
+        CLLocationCoordinate2D location = result.location;
+        NSLog(@"result.location.latitude===%f, result.location.longitude===%f",result.location.latitude,result.location.longitude);
+        
+        //        self.latitude = location.latitude;
+        //        self.longitude = location.longitude;
+        
+        // 添加标注
+        BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+        CLLocationCoordinate2D coor;
+        //        coor.latitude = 39.915;
+        //        coor.longitude = 116.404;
+        coor.latitude = result.location.latitude;
+        coor.longitude = result.location.longitude;
+        annotation.coordinate = coor;
+        annotation.title = self.model.shuttleaddress;
+        [_mapView addAnnotation:annotation];
+        
+    }else {
+        NSLog(@"抱歉，未找到结果");
+        [self showTotasViewWithMes:@"地图定位失败"];
+    }
+}
+// 标注样式
+- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
+        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
+        newAnnotationView.pinColor = BMKPinAnnotationColorPurple;
+        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
+        return newAnnotationView;
+    }
+    return nil;
+}
+
+#pragma mark - lazy load
+- (BMKGeoCodeSearch *)geoCodeSearch {
+    if (!_geoCodeSearch) {
+        _geoCodeSearch = [BMKGeoCodeSearch new];
+        _geoCodeSearch.delegate = self;
+    }
+    return _geoCodeSearch;
+}
 
 - (UIButton *)itemTime {
     if (_itemTime == nil) {
         _itemTime = [UIButton buttonWithType:UIButtonTypeCustom];
         [_itemTime setBackgroundImage:[UIImage imageNamed:@"日历.png"] forState:UIControlStateNormal];
         _itemTime.frame = CGRectMake(0, 0, 50, 50);
-
+        
     }
     return _itemTime;
 }
@@ -54,9 +123,9 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
         _itemMessege = [UIButton buttonWithType:UIButtonTypeCustom];
         [_itemMessege setBackgroundImage:[UIImage imageNamed:@"聊天.png"] forState:UIControlStateNormal];
         _itemMessege.frame = CGRectMake(0, 0, 50, 50);
-//        _itemMessege.backgroundColor = [UIColor blackColor];
+        //        _itemMessege.backgroundColor = [UIColor blackColor];
         [_itemMessege addTarget:self action:@selector(dealMessage:) forControlEvents:UIControlEventTouchUpInside];
-
+        
     }
     return _itemMessege;
 }
@@ -96,18 +165,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    switch ([self.markNum integerValue]) {
-        case 2:
-            self.title = @"科目二预约详情";
-            break;
-            case 3:
-            self.title = @"科目三预约详情";
-            break;
-            
-        default:
-            break;
-    }
-    
+    self.title = @"科目二";
     self.automaticallyAdjustsScrollViewInsets = NO;
     if ([UIDevice jeSystemVersion] >= 7.0f) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -119,7 +177,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     }else {
         [self createUI];
     }
-   
+    
 }
 
 - (void)dealMessage:(UIButton *)sender {
@@ -133,7 +191,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 
 - (void)createUI {
     [self.view addSubview:self.tableView];
-
+    
     self.tableView.tableHeaderView = [self tableViewHeadView];
     
     if (self.state == AppointmentStateWait) {
@@ -162,9 +220,9 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 }
 //获取同时段学员
 //- (void)startDownLoad {
-//    
+//
 //    NSString *urlString = [NSString stringWithFormat:kStudentTimeStudy,self.model.infoId,@"1"];
-//    
+//
 //    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
 //    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
 //        NSDictionary *param = data;
@@ -178,11 +236,11 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 //        }else {
 //            kShowFail(msg);
 //        }
-//       
-//       
-//        
+//
+//
+//
 //    }];
-//    
+//
 //}
 - (void)conformNavItem {
     UIBarButtonItem *navTimeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemTime];
@@ -202,7 +260,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
         make.top.mas_equalTo(backGroundView.mas_top).offset(15);
         make.height.mas_equalTo(@60);
         make.width.mas_equalTo(@60);
-
+        
     }];
     
     [backGroundView addSubview:self.coachName];
@@ -223,17 +281,17 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 }
 //- (UIView *)tableViewFootView {
 //    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 90)];
-//    
+//
 //    [backGroundView addSubview:self.studentTitle];
 //    [self.studentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
 //        make.left.mas_equalTo(backGroundView.mas_left).offset(15);
 //        make.top.mas_equalTo(backGroundView.mas_top).offset(13);
 //    }];
-//    
+//
 //    [backGroundView addSubview:self.collectionView];
-//    
-//    
-//    
+//
+//
+//
 //    return backGroundView;
 //}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -270,14 +328,15 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
         cell.cancelButton.userInteractionEnabled = NO;
         cell.cancelButton.backgroundColor = RGBColor(17, 216, 136);
     }else if (self.state == AppointmentStateWait || self.state == AppointmentStateCoachConfirm) {
-
+        
         [cell.cancelButton setTitle:@"取消预约" forState:UIControlStateNormal];
         cell.cancelButton.backgroundColor = RGBColor(205, 212, 217);
         
         _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(15, 200, kSystemWide-30, 150)];
         _mapView.mapType = BMKMapTypeStandard;
-        _mapView.zoomLevel = 15;
+        _mapView.zoomLevel = 12;
         [cell.contentView addSubview:_mapView];
+        [self geoCode];
         
     }else if (self.state == AppointmentStateSystemCancel) {
         [cell.cancelButton setTitle:@"系统取消" forState:UIControlStateNormal];
@@ -297,6 +356,14 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     [_mapView viewWillAppear];
     _mapView.delegate = self; // 此处记得不用的时候需要置nil，否则影响内存的释放
     
+    //    BMKPointAnnotation* annotation = [[BMKPointAnnotation alloc]init];
+    //    CLLocationCoordinate2D coor;
+    //    coor.latitude = 39.915;
+    //    coor.longitude = 116.404;
+    //    annotation.coordinate = coor;
+    //    annotation.title = @"这里是北京";
+    //    [_mapView addAnnotation:annotation];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -304,18 +371,4 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     _mapView.delegate = nil; // 不用时，置nil
 }
 
-- (BMKAnnotationView *)mapView:(BMKMapView *)mapView viewForAnnotation:(id <BMKAnnotation>)annotation
-{
-    
-    if ([annotation isKindOfClass:[BMKPointAnnotation class]]) {
-        BMKPinAnnotationView *newAnnotationView = [[BMKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"myAnnotation"];
-        newAnnotationView.pinColor = BMKPinAnnotationColorRed;
-        newAnnotationView.animatesDrop = YES;// 设置该标注点动画显示
-        NSLog(@"new = %@",newAnnotationView);
-        
-        return newAnnotationView;
-        
-    }
-    return nil;
-}
 @end

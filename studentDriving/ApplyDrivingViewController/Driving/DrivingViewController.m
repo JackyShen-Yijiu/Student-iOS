@@ -61,7 +61,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [self addSideMenuButton];
+    //    [self addSideMenuButton];
     
     _radius = 10000;
     _cityName = @"";
@@ -75,14 +75,14 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     _count = 10;
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
+    
     self.title = @"选择驾校";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
     DYNSLog(@"right = %@",self.naviBarRightButton);
     self.navigationItem.rightBarButtonItem = rightItem;
-
+    
     [self.view addSubview:self.tableView];
     
     [self networkCallBack];
@@ -91,13 +91,13 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     // 定位
     [self locationManager];
     
-//     在模拟器上定位不好用，测试是打开注释
-//    self.latitude = 39.929985778080237;
-//    self.longitude = 116.39564503787867;
-//    self.index = 1;
-//    self.isRefresh = YES;
-//    // 获取网络数据
-//    [self network];
+    //     在模拟器上定位不好用，测试是打开注释
+    //    self.latitude = 39.929985778080237;
+    //    self.longitude = 116.39564503787867;
+    //    self.index = 1;
+    //    self.isRefresh = YES;
+    //    // 获取网络数据
+    //    [self network];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -156,30 +156,31 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 
 - (void)network {
     
-//    NSDictionary *params = @{ @"latitude": [NSString stringWithFormat:@"%f",self.latitude],
-//                              @"longitud": [NSString stringWithFormat:@"%f",self.longitude],
-//                              @"radius": [NSString stringWithFormat:@"%li",self.radius],
-//                              @"cityname": [NSString stringWithFormat:@"%@",self.cityName],
-//                              @"licensetype": [NSString stringWithFormat:@"%li",self.carTypeId],
-//                              @"schoolname": [NSString stringWithFormat:@"%@",self.searchName],
-//                              @"ordertype": [NSString stringWithFormat:@"%li",self.filterType],
-//                              @"index": [NSString stringWithFormat:@"%li",self.index],
-//                              @"count": [NSString stringWithFormat:@"%li",self.count] };
+    //    NSDictionary *params = @{ @"latitude": [NSString stringWithFormat:@"%f",self.latitude],
+    //                              @"longitud": [NSString stringWithFormat:@"%f",self.longitude],
+    //                              @"radius": [NSString stringWithFormat:@"%li",self.radius],
+    //                              @"cityname": [NSString stringWithFormat:@"%@",self.cityName],
+    //                              @"licensetype": [NSString stringWithFormat:@"%li",self.carTypeId],
+    //                              @"schoolname": [NSString stringWithFormat:@"%@",self.searchName],
+    //                              @"ordertype": [NSString stringWithFormat:@"%li",self.filterType],
+    //                              @"index": [NSString stringWithFormat:@"%li",self.index],
+    //                              @"count": [NSString stringWithFormat:@"%li",self.count] };
     
     NSString *params = @"";
     // 判断字符串是否null
     if (![self.cityName isKindOfClass:[NSNull class]]) {
         self.cityName = @"";
     }
-    if (![self.searchName isKindOfClass:[NSNull class]]) {
+    if (!self.searchName || !self.searchName.length) {
         self.searchName = @"";
     }
-//    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", 39.915, 116.404, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
+    NSLog(@"searchName === %@",self.searchName);
+    //    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", 39.915, 116.404, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
     
     params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", self.latitude, self.longitude, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
-
     
-//    NSLog(@"%@",params);
+    
+    //    NSLog(@"%@",params);
     
     NSString *urlString = [NSString stringWithFormat:kDrivingUrl,params];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
@@ -210,7 +211,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         [self showTotasViewWithMes:@"没有找到数据！"];
     }
     [MBProgressHUD hideHUDForView:self.view animated:self.dataArray.count];
-
+    
 }
 
 #pragma mark - 定位功能
@@ -229,16 +230,16 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 {
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     //latitude=40.096263&longitude=116.1270&radius=10000
-//    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
-//    NSString *locationContent =[NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
-//    NSString *locationContent =[NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",39.915, 116.404];
-
-//    NSString *urlString = [NSString stringWithFormat:kDrivingUrl,locationContent];
-//    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+    //    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
+    //    NSString *locationContent =[NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
+    //    NSString *locationContent =[NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",39.915, 116.404];
     
-//    [self.dataArray removeAllObjects];
+    //    NSString *urlString = [NSString stringWithFormat:kDrivingUrl,locationContent];
+    //    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
     
-//    [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
+    //    [self.dataArray removeAllObjects];
+    
+    //    [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
     
     // 保存经纬度
     self.longitude = userLocation.location.coordinate.longitude;
@@ -250,19 +251,19 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 
 #pragma mark - 反地理编码
 - (BOOL)reverseGeoCodeWithLatitude:(double)latitude
-                               longitude:(double)longitude {
+                         longitude:(double)longitude {
     
     CLLocationCoordinate2D point = (CLLocationCoordinate2D){ latitude, longitude };
-//    CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
+    //    CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
     BMKReverseGeoCodeOption *reverseGeocodeOption = [BMKReverseGeoCodeOption new];
     reverseGeocodeOption.reverseGeoPoint = point;
     // 发起反向地理编码
     BOOL flage = [self.geoCodeSearch reverseGeoCode:reverseGeocodeOption];
     if (flage) {
-//        NSLog(@"反geo检索发送成功");
+        //        NSLog(@"反geo检索发送成功");
         return YES;
     }else {
-//        NSLog(@"反geo检索发送失败");
+        //        NSLog(@"反geo检索发送失败");
         return NO;
     }
 }
@@ -270,9 +271,9 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 - (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
     
     if (error == BMK_SEARCH_NO_ERROR) {
-//        NSLog(@"%@",result);
+        //        NSLog(@"%@",result);
         BMKAddressComponent *addressComponent = result.addressDetail;
-//        NSLog(@"addressComponent.city===%@",addressComponent.city);
+        //        NSLog(@"addressComponent.city===%@",addressComponent.city);
         // 保存城市名
         self.cityName = addressComponent.city;
         [self.naviBarRightButton setTitle:addressComponent.city forState:UIControlStateNormal];
@@ -293,14 +294,14 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     BMKGeoCodeSearchOption *geoCodeSearchOption = [BMKGeoCodeSearchOption new];
     geoCodeSearchOption.city = self.cityName;
     geoCodeSearchOption.address = self.cityName;
-//    geoCodeSearchOption.city= @"北京市";
-//    geoCodeSearchOption.address = @"海淀区上地10街10号";
+    //    geoCodeSearchOption.city= @"北京市";
+    //    geoCodeSearchOption.address = @"海淀区上地10街10号";
     BOOL flag = [self.geoCodeSearch geoCode:geoCodeSearchOption];
     if(flag) {
-//        NSLog(@"geo检索发送成功");
+        //        NSLog(@"geo检索发送成功");
         return YES;
     }else {
-//        NSLog(@"geo检索发送失败");
+        //        NSLog(@"geo检索发送失败");
         return NO;
     }
 }
@@ -309,9 +310,9 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 - (void)onGetGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
     
     if (error == BMK_SEARCH_NO_ERROR) {
-//        NSLog(@"%@",result);
+        //        NSLog(@"%@",result);
         CLLocationCoordinate2D location = result.location;
-//        NSLog(@"result.location.latitude===%f, result.location.longitude===%f",result.location.latitude,result.location.longitude);
+        //        NSLog(@"result.location.latitude===%f, result.location.longitude===%f",result.location.latitude,result.location.longitude);
         self.latitude = location.latitude;
         self.longitude = location.longitude;
         // 刷新数据
@@ -322,7 +323,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         NSLog(@"抱歉，未找到结果");
     }
 }
-    
+
 #pragma mark - tableViwe
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100.0f;
@@ -340,7 +341,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     DrivingCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
         cell = [[DrivingCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-//        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     DrivingModel *model = self.dataArray[indexPath.row];
     [cell updateAllContentWith:model];
@@ -352,6 +353,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     DrivingModel *model = self.dataArray[indexPath.row];
     self.detailModel = model;
     SelectVC.schoolId = model.schoolid;
+    NSLog(@"%@", model.schoolid);
     [self.navigationController pushViewController:SelectVC animated:YES];
 }
 
@@ -398,7 +400,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     [view setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
         self.carTypeId = carTypeId;
         [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
-//        NSLog(@"%li --- %@", carTypeId, selectedTitle);
+        //        NSLog(@"%li --- %@", carTypeId, selectedTitle);
         self.index = 1;
         self.isRefresh = YES;
         [self network];
@@ -435,7 +437,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         _naviBarRightButton.frame = CGRectMake(0, 0, 70, 44);
         [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateNormal];
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
-//        _naviBarRightButton.backgroundColor = [UIColor redColor];
+        //        _naviBarRightButton.backgroundColor = [UIColor redColor];
     }
     return _naviBarRightButton;
 }
@@ -461,6 +463,55 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         [self.view addSubview:cityListView];
         [cityListView show];
     }
+    //    if (![AcountManager isLogin]) {
+    //        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+    //        LoginViewController *login = [[LoginViewController alloc] init];
+    //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+    //        return;
+    //    }
+    //    if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+    //        [self.navigationController popViewControllerAnimated:YES];
+    //        return;
+    //    }
+    //
+    //    DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
+    //
+    //    if (![AcountManager manager].applyschool.infoId) {
+    //        if (self.detailModel.schoolid || self.detailModel.name) {
+    //            NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.schoolid,@"name":self.detailModel.name};
+    //            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+    //
+    //        }
+    //        [self.navigationController popViewControllerAnimated:YES];
+    //        return;
+    //    }
+    //
+    //    if ([[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.schoolid] ) {
+    //        [self.navigationController popViewControllerAnimated:YES];
+    //        return;
+    //    }
+    //
+    //
+    //    if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.schoolid]) {
+    //        [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+    //            DYNSLog(@"index = %ld",selectedOtherButtonIndex);
+    //            NSUInteger index = selectedOtherButtonIndex + 1;
+    //            if (index == 0) {
+    //                return ;
+    //            }else if (index == 1) {
+    //
+    //                [SignUpInfoManager removeSignData];
+    //
+    //                if (self.detailModel.schoolid || self.detailModel.name) {
+    //                    NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.schoolid,@"name":self.detailModel.name};
+    //                    [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+    //                    
+    //                }
+    //                [self.navigationController popViewControllerAnimated:YES];
+    //                
+    //            }
+    //        }];
+    //    }
 }
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
