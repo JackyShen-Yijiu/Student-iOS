@@ -154,8 +154,7 @@
         if (messege.intValue == 1) {
             [self showTotasViewWithMes:@"反馈成功"];
             // 成功后返回上一级窗体
-            [self.navigationController popViewControllerAnimated:YES];
-            
+            [self performSelector:@selector(popVc) withObject:self afterDelay:1.0];
         }else {
             [self showTotasViewWithMes:@"反馈失败"];
         }
@@ -163,4 +162,8 @@
     
 }
 
+- (void)popVc
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end
