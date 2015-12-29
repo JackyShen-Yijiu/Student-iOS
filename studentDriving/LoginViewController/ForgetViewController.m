@@ -6,7 +6,7 @@
 static NSString *const kchangePassword = @"kchangePassword";
 
 
-@interface ForgetViewController ()
+@interface ForgetViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic) UITextField *phoneNumTextField;
 @property (strong, nonatomic) UITextField *confirmTextField;
 @property (strong, nonatomic) UIButton *gainNum;
@@ -44,7 +44,7 @@ static NSString *const kchangePassword = @"kchangePassword";
 - (UITextField *)phoneNumTextField {
     if (_phoneNumTextField == nil) {
         _phoneNumTextField = [[UITextField alloc]init];
-        //        _phoneNumTextField.delegate = self;
+        _phoneNumTextField.delegate = self;
         _phoneNumTextField.tag = 102;
         _phoneNumTextField.placeholder = @"  手机号";
         _phoneNumTextField.font = [UIFont systemFontOfSize:15];
@@ -227,6 +227,15 @@ static NSString *const kchangePassword = @"kchangePassword";
 
 - (void)dealGoBack:(UIButton *)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == _phoneNumTextField) {
+        if (range.location>10) {
+            return NO;
+        }
+    }
+    return YES;
 }
 @end
 

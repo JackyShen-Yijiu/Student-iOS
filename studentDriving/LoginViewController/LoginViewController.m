@@ -382,6 +382,15 @@ static NSString *const kuserType = @"usertype";
     }
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == _phoneNumTextField) {
+        if (range.location>10) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 #pragma mark 随便看看
 - (void)dealBottom:(UIButton *)sender {
     
