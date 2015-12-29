@@ -42,6 +42,8 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self configBarItem];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -427,7 +429,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -15;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneButton];
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer,rightItem];
+    self.navigationItem.rightBarButtonItems = @[rightItem];
 }
 
 - (void)dealloc {
