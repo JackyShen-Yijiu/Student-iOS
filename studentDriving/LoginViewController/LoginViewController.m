@@ -274,12 +274,16 @@ static NSString *const kuserType = @"usertype";
     DYNSLog(@"%@ %@",url,self.userParam);
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
     [JENetwoking startDownLoadWithUrl:url postParam:self.userParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
+
         NSDictionary *dataDic = data;
         DYNSLog(@"%@",dataDic);
+        
         NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
         if ([type isEqualToString:@"0"]) {
-            [MBProgressHUD hideHUDForView:self.view animated:NO];
             [self showTotasViewWithMes:@"密码错误"];
         }else if ([type isEqualToString:@"1"]) {
             
@@ -291,14 +295,18 @@ static NSString *const kuserType = @"usertype";
             if ([AcountManager manager].userid) {
                 [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
                 
-                
                 [self loginWithUsername:[AcountManager manager].userid password:self.passwordTextField.text.DY_MD5];
             }
             
             // 用户登录成功，打开相应的窗体
             [DVVUserManager userLoginSucces];
         }
+    } withFailure:^(id data) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
+
     }];
+    
 }
 
 #pragma mark 验证用户是否存在
@@ -313,15 +321,21 @@ static NSString *const kuserType = @"usertype";
         NSLog(@"%@", data);
         NSDictionary *params = data;
         BOOL type = [[params objectForKey:@"type"] boolValue];
+       
         if (type) {
+        
             if ([[params objectForKey:@"data"] boolValue]) {
                 [self userLogin];
             }else {
                 [ws showMsg:@"此用户未注册"];
             }
-        }else {
+        
+        }else{
+            
             [ws showMsg:@"网络错误"];
+            
         }
+        
     }];
 }
 
