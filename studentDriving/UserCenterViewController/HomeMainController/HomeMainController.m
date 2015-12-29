@@ -128,10 +128,11 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         NSDictionary *param = data[@"data"];
         NSDictionary *subjectOne = param[@"subjectone"];
-        weakSelf.questiontesturl = subjectOne[@"questiontesturl"];
-        weakSelf.questionlisturl = subjectOne[@"questionlisturl"];
-        weakSelf.questionerrorurl = subjectOne[@"questionerrorurl"];
-        
+        if (subjectOne) {
+            weakSelf.questiontesturl = subjectOne[@"questiontesturl"];
+            weakSelf.questionlisturl = subjectOne[@"questionlisturl"];
+            weakSelf.questionerrorurl = subjectOne[@"questionerrorurl"];
+        }
     }];
     
     if (![AcountManager isLogin]) {
@@ -143,20 +144,23 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
         if (!data) {
             return ;
         }
-            NSDictionary *param = data;
-            NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-            if ([type isEqualToString:@"1"]) {
-                NSDictionary *dataDic = [param objectForKey:@"data"];
-                if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
-                    
-                    [AcountManager saveUserApplyState:@"0"];
-                }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
-                    [AcountManager saveUserApplyState:@"1"];
-                }else {
-                    [AcountManager saveUserApplyState:@"2"];
-                }
-               }else {
-                   [self showTotasViewWithMes:[data objectForKey:@"msg"]];
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            NSDictionary *dataDic = [param objectForKey:@"data"];
+            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
+                return;
+            }
+            if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
+                [AcountManager saveUserApplyState:@"0"];
+            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
+                [AcountManager saveUserApplyState:@"1"];
+            }else {
+                [AcountManager saveUserApplyState:@"2"];
+            }
+
+        }else {
+            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
         }
     } withFailure:^(id data) {
          [self showTotasViewWithMes:@"网络错误"];

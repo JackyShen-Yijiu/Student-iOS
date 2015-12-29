@@ -93,10 +93,11 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -15;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneButton];
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer,rightItem];
+    self.navigationItem.rightBarButtonItems = @[rightItem];
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self configBarItem];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"驾校详情";
@@ -307,10 +308,12 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 }
 - (void)dealPhone:(UIButton *)sender {
     
-    [BLPFAlertView showAlertWithTitle:@"联系驾校" message:@"18911088136" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+    DrvingDetailModel *drvingDetailModel = [self.dataArray lastObject];
+    
+    [BLPFAlertView showAlertWithTitle:@"联系驾校" message:drvingDetailModel.phone cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         NSLog(@"index = %ld",selectedOtherButtonIndex);
         if (selectedOtherButtonIndex == 0) {
-            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"18911088136"];
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",drvingDetailModel.phone];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }else {
             return ;
