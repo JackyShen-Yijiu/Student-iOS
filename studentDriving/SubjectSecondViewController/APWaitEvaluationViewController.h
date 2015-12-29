@@ -11,5 +11,6 @@
 
 @interface APWaitEvaluationViewController : BLBaseViewController
 @property (strong, nonatomic) MyAppointmentModel *model;
+@property (strong, nonatomic) NSNumber *markNum;
 
 @end

@@ -11,4 +11,5 @@
 #import "MyAppointmentModel.h"
 @interface APWaitConfirmViewController : BLBaseViewController
 @property (strong, nonatomic) MyAppointmentModel *model;
+@property (strong, nonatomic) NSNumber *markNum;
 @end

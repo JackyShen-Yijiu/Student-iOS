@@ -26,10 +26,6 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 @property (strong, nonatomic) UILabel *headViewCoachName;
 @property (strong, nonatomic) UILabel *headViewCoachAddress;
 
-
-
-
-
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIButton *signUpButton;
 @property (strong, nonatomic) NSMutableArray *dataArray;
@@ -152,6 +148,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 - (void)startDownLoad {
     [self.dataArray removeAllObjects];
     NSString *appointmentUrl = [NSString stringWithFormat:kappointmentUrl,[AcountManager manager].userid,self.markNum];
+//    NSLog("%",[self.markNum integerValue]);
     NSString *downLoadUrl = [NSString stringWithFormat:BASEURL,appointmentUrl];
     DYNSLog(@"url = %@ %@",[AcountManager manager].userid,[AcountManager manager].userToken);
     
@@ -172,8 +169,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
             kShowFail(msg);
         }
     }];
-    
-   
+
 }
 
 - (void)dealSignUp:(UIButton *)sender{
@@ -203,22 +199,6 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollWithIndex:)];
     [view addGestureRecognizer:tap];
-//    [self.headViewImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(view.mas_left).offset(15);
-//        make.top.mas_equalTo(self.headViewTitleButton.mas_bottom).offset(13);
-//        make.height.mas_equalTo(@60);
-//        make.width.mas_equalTo(@60);
-//    }];
-//    
-//    [self.headViewCoachName mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.headViewImageView.mas_right).offset(10);
-//        make.top.mas_equalTo(self.headViewImageView.mas_top).offset(9);
-//    }];
-//    
-//    [self.headViewCoachAddress mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.headViewImageView.mas_right).offset(10);
-//        make.top.mas_equalTo(self.headViewCoachName.mas_bottom).offset(5);
-//    }];
     
     return view;
 }
@@ -241,17 +221,32 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     }
     
     MyAppointmentModel *model = self.dataArray[indexPath.row];
-    if ([AcountManager manager].subjecttwo.progress) {
-        if (self.markNum.integerValue == 2) {
-            if ([model.courseprocessdesc containsString:[AcountManager manager].subjecttwo.progress]) {
-                self.scrollIndexPath = indexPath;
-            }
-        }else if (self.markNum.integerValue == 3) {
-            if ([model.courseprocessdesc containsString:[AcountManager manager].subjecttwo.progress]) {
+    if ([AcountManager manager].subjecttwo.progress)
+    {
+        NSLog(@"subjecttwo=%@",[AcountManager manager].subjecttwo.progress);
+        NSLog(@"subjectthree = %@",[AcountManager manager].subjectthree.progress);
+        NSLog(@"%lu",[self.markNum integerValue]);
+        if (self.markNum.integerValue == 2)
+        {
+            if ([model.courseprocessdesc containsString:[AcountManager manager].subjecttwo.progress])
+             {
                 self.scrollIndexPath = indexPath;
             }
         }
+//            else if (self.markNum.integerValue == 3) {
+//            if ([model.courseprocessdesc containsString:[AcountManager manager].subjecttwo.progress]) {
+//                self.scrollIndexPath = indexPath;
+//            }
+//        }
         
+    } else if ([AcountManager manager].subjectthree.progress)
+    {
+        
+        if (self.markNum.integerValue == 3) {
+            if ([model.courseprocessdesc containsString:[AcountManager manager].subjectthree.progress]) {
+                self.scrollIndexPath = indexPath;
+            }
+        }
     }
     
     
@@ -273,13 +268,14 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         detail.state = AppointmentStateWait;
         detail.isPushInformation = NO;
         DYNSLog(@"address = %@",model.shuttleaddress);
+        detail.markNum =  self.markNum;
         [self.navigationController pushViewController:detail animated:YES];
     }else if (state == AppointmentStateSelfCancel) {
         AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
         detail.model = model;
         detail.isPushInformation = NO;
-
         detail.state = AppointmentStateSelfCancel;
+        detail.markNum =  self.markNum;
         [self.navigationController pushViewController:detail animated:YES];
     }else if (state == AppointmentStateCoachConfirm) {
         AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
@@ -287,6 +283,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         detail.isPushInformation = NO;
 
         detail.state = AppointmentStateCoachConfirm;
+        detail.markNum =  self.markNum;
         [self.navigationController pushViewController:detail animated:YES];
         
     }else if (state == AppointmentStateCoachCancel) {
@@ -295,15 +292,18 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         detail.isPushInformation = NO;
 
         detail.state = AppointmentStateCoachCancel;
+        detail.markNum =  self.markNum;
         [self.navigationController pushViewController:detail animated:YES];
         
     }else if (state == AppointmentStateConfirmEnd) {
         APWaitConfirmViewController *wait = [[APWaitConfirmViewController alloc] init];
         wait.model = model;
+        wait.markNum =  self.markNum;
         [self.navigationController pushViewController:wait animated:YES];
     }else if (state == AppointmentStateWaitComment) {
         APWaitEvaluationViewController *waitEvaluation = [[APWaitEvaluationViewController alloc] init];
         waitEvaluation.model = model;
+        waitEvaluation.markNum =  self.markNum;
         [self.navigationController pushViewController:waitEvaluation animated:YES];
     }else if (state == AppointmentStateFinish) {
         AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
@@ -311,6 +311,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         detail.isPushInformation = NO;
 
         detail.state = AppointmentStateFinish;
+        detail.markNum =  self.markNum;
         [self.navigationController pushViewController:detail animated:YES];
     }else if (state == AppointmentStateSystemCancel) {
         AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
@@ -318,6 +319,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         detail.isPushInformation = NO;
 
         detail.state = AppointmentStateSystemCancel;
+        detail.markNum =  self.markNum;
         [self.navigationController pushViewController:detail animated:YES];
     }
     

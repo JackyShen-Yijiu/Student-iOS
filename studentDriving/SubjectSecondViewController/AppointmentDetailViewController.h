@@ -15,5 +15,6 @@
 @property (assign, nonatomic) AppointmentState state;
 @property (copy, nonatomic) NSString *infoId;
 @property (assign, nonatomic) BOOL isPushInformation;
+@property (strong, nonatomic) NSNumber *markNum; 
 
 @end

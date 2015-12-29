@@ -96,7 +96,18 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"科目二";
+    switch ([self.markNum integerValue]) {
+        case 2:
+            self.title = @"科目二预约详情";
+            break;
+            case 3:
+            self.title = @"科目三预约详情";
+            break;
+            
+        default:
+            break;
+    }
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     if ([UIDevice jeSystemVersion] >= 7.0f) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
