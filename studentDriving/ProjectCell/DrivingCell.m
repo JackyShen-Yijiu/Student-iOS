@@ -234,7 +234,7 @@
         make.width.mas_equalTo(self.starBackgroundImageView.mas_width);
         make.height.mas_equalTo(self.starBackgroundImageView.mas_height);
     }];
-    self.star = 3;
+    self.star = 0;
     [self setStar];
 //    self.distanceLabel.backgroundColor = [UIColor lightGrayColor];
     
@@ -247,7 +247,10 @@
 - (void)updateAllContentWith:(DrivingModel *)model {
     [self clearContent];
     
-    self.drivingNameLabel.text = model.name;
+    self.drivingNameLabel.text = @"未填写";
+    if (model.name) {
+        self.drivingNameLabel.text = model.name;
+    }
     
     NSString *address = @"未填写地址";
     if (![model.address isKindOfClass:[NSNull class]] && model.address.length) {
@@ -263,21 +266,29 @@
     self.distanceLabel.text = [NSString stringWithFormat:@"距离%.2fkm",integer / 1000.f];
     
     self.drivingAddressLabel.text = address;
-    if ([model.minprice isKindOfClass:[NSNull class]] || [model.maxprice isKindOfClass:[NSNull class]]) {
+    
+    if (!model.minprice || !model.maxprice) {
         self.moenyLabel.text = @"未填写价格";
     }else {
         self.moenyLabel.text = [NSString stringWithFormat:@"¥%@-¥%@",model.minprice,model.maxprice];
     }
     
-    self.star = [model.passingrate floatValue] / 100.f * 10.f / 2.f;
+//    self.star = [model.passingrate floatValue] / 100.f * 10.f / 2.f;
+    self.star = 0;
+    if (model.schoollevel) {
+        self.star = [model.schoollevel integerValue];
+    }
     [self setStar];
     [self.drivingImage sd_setImageWithURL:[NSURL URLWithString:model.logoimg.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
-    if (self.coachcount == 0) {
-        self.commentLabel.text = @"已认证教练";
-    }else {
-        self.commentLabel.text = [NSString stringWithFormat:@"%li名认证教练",self.coachcount];
+//    if (self.coachcount == 0) {
+//        self.commentLabel.text = @"已认证教练";
+//    }else {
+//        self.commentLabel.text = [NSString stringWithFormat:@"%li名认证教练",self.coachcount];
+//    }
+    self.commentLabel.text = @"暂无认证教练";
+    if (model.coachcount) {
+        self.commentLabel.text = [NSString stringWithFormat:@"%@位已认证教练",model.coachcount];
     }
-    
 }
 
 //设置星级

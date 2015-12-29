@@ -24,7 +24,9 @@ static NSString *const kDrivingDetailUrl = @"driveschool/getschoolinfo/%@";
 
 static NSString *const kGetDrivingCoachUrl = @"getschoolcoach/%@/%@";
 
-static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
+static NSString *const kCheckMyLoveDriving = @"userinfo/favoriteschool";
+static NSString *const kAddLoveDriving = @"userinfo/favoriteschool/%@";
+static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 
 @interface DrivingDetailViewController () <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,DrivingSelectedCoachCellDelegate>
 @property (strong, nonatomic) UITableView *tableView;
@@ -61,9 +63,11 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     
     [self startDownLoadCoach];
     
+    // 检查是否已经收藏
     [self checkCollection];
-
 }
+
+
 - (void)loginSuccess {
     DYNSLog(@"login");
     if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
@@ -98,7 +102,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     }];
 }
 - (void)startDownLoad {
-
+    
     NSString *urlString = [NSString stringWithFormat:kDrivingDetailUrl,self.schoolId];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -131,7 +135,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         _tableHeadImageView.userInteractionEnabled = YES;
         UIImageView *maskView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 240-129, kSystemWide, 129)];
         maskView.image = [UIImage imageNamed:@"渐变"];
-//        _tableHeadImageView.image = [UIImage imageNamed:@"av.jpg"];
+        //        _tableHeadImageView.image = [UIImage imageNamed:@"av.jpg"];
         [_tableHeadImageView addSubview:maskView];
         
         UIView *heart = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide-15-50, 240-24, 50, 50)];
@@ -149,11 +153,11 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         
         _heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
         _heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
-//        _heartImageView.backgroundColor = [UIColor blackColor];
+        //        _heartImageView.backgroundColor = [UIColor blackColor];
         _heartImageView.userInteractionEnabled = YES;
         [mainColorView addSubview:_heartImageView];
-//        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
-//        [mainColorView addGestureRecognizer:tapGesture];
+        //        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
+        //        [mainColorView addGestureRecognizer:tapGesture];
         
         UIButton *heartButton = [UIButton new];
         heartButton.frame = heart.frame;
@@ -233,7 +237,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 #pragma mark - tableView selected
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     DrvingDetailModel *model = self.dataArray.firstObject;
-
+    
     if (indexPath.row == 0) {
         MapViewController *mapview = [[MapViewController alloc] init];
         mapview.latitudeNum = model.latitude;
@@ -257,7 +261,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
     
     if (![AcountManager manager].applyschool.infoId) {
-
+        
         if (model.schoolid && model.name) {
             DYNSLog(@"schoolinfo");
             NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
@@ -281,7 +285,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         if (index == 0) {
             return ;
         }else {
-
+            
             if (model.schoolid && model.name) {
                 DYNSLog(@"schoolinfo");
                 NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
@@ -293,9 +297,9 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     }];
     
     
-  
+    
 }
-#pragma mark - delegateCoach 
+#pragma mark - delegateCoach
 
 - (void)senderCoachModel:(CoachModel *)model {
     NSString *coachId = model.coachid;
@@ -309,7 +313,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 
 - (void)dealPhone:(UIButton *)sender {
     DrvingDetailModel *model = self.dataArray.firstObject;
-
+    
     
     [BLPFAlertView showAlertWithTitle:@"联系驾校" message:model.phone cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         NSLog(@"index = %ld",selectedOtherButtonIndex);
@@ -318,31 +322,6 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }else {
             return ;
-        }
-    }];
-}
-- (void)dealLike:(UITapGestureRecognizer *)tap {
-    
-    if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-        return;
-    }
-    
-    NSString *kSaveUrl = [NSString stringWithFormat:kSaveMyLoveDriving,self.schoolId];
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
-    DYNSLog(@"urlstring = %@",urlString);
-    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodPut withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
-            [self showTotasViewWithMes:@"收藏成功"];
-            _heartImageView.image = [UIImage imageNamed:@"心"];
-        }else {
-            [self showTotasViewWithMes:param[@"msg"]];
-            _heartImageView.image = [UIImage imageNamed:@"心"];
         }
     }];
 }
@@ -357,7 +336,50 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         return;
     }
     
-    NSString *kSaveUrl = [NSString stringWithFormat:kSaveMyLoveDriving,self.schoolId];
+    NSString *kSaveUrl = [NSString stringWithFormat:kCheckMyLoveDriving];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
+    DYNSLog(@"urlstring = %@",urlString);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        DYNSLog(@"data = %@",data);
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            
+            if ([[data objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *array = [data objectForKey:@"data"];
+                for (int i = 0; i < array.count; i++) {
+                    NSString *schoolId = [array[i] objectForKey:@"schoolid"];
+                    if ([schoolId isEqualToString:self.schoolId]) {
+                        _heartImageView.image = [UIImage imageNamed:@"心"];
+                        _heartImageView.tag = 1;
+                        return ;
+                    }
+                }
+            }
+        }
+    }];
+}
+
+- (void)dealLike:(UITapGestureRecognizer *)tap {
+    
+    if (![AcountManager isLogin]) {
+        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+        LoginViewController *login = [[LoginViewController alloc] init];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        return;
+    }
+    
+    if (_heartImageView.tag) {
+        [self deleteLoveSchool];
+    }else {
+        [self addLoveSchool];
+    }
+}
+
+#pragma mark 添加喜欢的驾校
+- (void)addLoveSchool {
+    
+    NSString *kSaveUrl = [NSString stringWithFormat:kAddLoveDriving,self.schoolId];
     NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
     DYNSLog(@"urlstring = %@",urlString);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodPut withCompletion:^(id data) {
@@ -366,10 +388,31 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             _heartImageView.image = [UIImage imageNamed:@"心"];
+            [self showTotasViewWithMes:@"收藏成功"];
+            _heartImageView.tag = 1;
         }else {
-            if ([type isEqualToString:@"已经存在"]) {
-                _heartImageView.image = [UIImage imageNamed:@"心"];
-            }
+            [self showTotasViewWithMes:@"收藏失败"];
+        }
+    }];
+    
+}
+
+#pragma mark 删除喜欢的驾校
+- (void)deleteLoveSchool {
+    
+    NSString *kSaveUrl = [NSString stringWithFormat:kDeleteLoveDriving,self.schoolId];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
+    DYNSLog(@"urlstring = %@",urlString);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
+        DYNSLog(@"data = %@",data);
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            _heartImageView.image = [UIImage imageNamed:@"心Inner"];
+            [self showTotasViewWithMes:@"已取消收藏"];
+            _heartImageView.tag = 0;
+        }else {
+            [self showTotasViewWithMes:@"取消收藏失败"];
         }
     }];
 }

@@ -10,7 +10,8 @@
 
 @implementation ApplyschoolinfoModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"infoId":@"id",@"name":@"name"};
+    return @{@"infoId":@"id",
+             @"name":@"name"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {
