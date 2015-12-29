@@ -72,7 +72,23 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 
 - (void)clickRight:(UIButton *)sender {
     DYNSLog(@"上传");
-    //
+    if (self.modifyNameTextField.text && [self.modifyNameTextField.text length]!=0) {
+        
+        if ([self.modifyNameTextField.text length]>14) {
+            
+            kShowFail(@"最多不超过14个字");
+            return;
+        }
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[\\u4e00-\\u9fa5\\w\\-_]+"];
+        if(![predicate evaluateWithObject:self.modifyNameTextField.text])
+        {
+            kShowFail(@"你输入的昵称中含有非法字符");
+            return;
+        }
+        
+    }
+    
     DYNSLog(@"userid = %@",self.modifyNameTextField.text);
     NSString *updateUserInfoUrl = [NSString stringWithFormat:BASEURL,kupdateUserInfo];
     

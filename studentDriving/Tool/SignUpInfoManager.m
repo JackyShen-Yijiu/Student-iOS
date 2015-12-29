@@ -248,8 +248,7 @@ static NSString *const kRealUserid = @"userid";
     }
     NSString *krealCoachidString = [NSUserStoreTool getObjectWithKey:kRealCoachid];
     if (krealCoachidString == nil || krealCoachidString.length == 0) {
-        [self obj_showTotasViewWithMes:@"教练为空"];
-        return nil;
+        krealCoachidString = @"-1";
     }
 
     NSString *krealClasstypeidString = [NSUserStoreTool getObjectWithKey:kRealClasstypeid];

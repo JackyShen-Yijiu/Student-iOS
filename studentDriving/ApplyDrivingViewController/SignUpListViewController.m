@@ -29,6 +29,8 @@
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 
+#define h_width [UIScreen mainScreen].bounds.size.width/320
+
 @interface SignUpListViewController ()<UITableViewDataSource, UITableViewDelegate>{
     NSArray *signUpArray;
 }
@@ -233,7 +235,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
             cell = [[UITableViewCell alloc] initWithStyle:0 reuseIdentifier:@"yy_0"];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        self.nameLabel.frame = CGRectMake(20, 15, 80, 14);
+        self.nameLabel.frame = CGRectMake(16*h_width, 15, 80, 14);
         self.nameLabel.text = [self.secondArray[0] objectAtIndex:0];
         [cell.contentView addSubview:self.nameLabel];
         self.leftBtn.frame = CGRectMake(100, 10, 100, 24);
@@ -264,7 +266,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
             
         }
         if ([[_secondArray[0] objectAtIndex:indexPath.row] isKindOfClass:[NSString class]]) {
-            self.applyClassName.frame = CGRectMake(20, 16, 80, 14);
+            self.applyClassName.frame = CGRectMake(16*h_width, 16, 80, 14);
             self.applyClassName.text = @"报考班型";
             [cell.contentView addSubview:self.applyClassName];
         }else {
@@ -316,7 +318,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
                 }
                 [SignUpInfoManager signUpInfoSaveRealName:completionString];
                 DYNSLog(@"真实名字");
-            }else if (indexPath.row == 2) {
+            }else if (indexPath.row == 1) {
                 if (completionString == nil || completionString.length == 0) {
                     [self showTotasViewWithMes:@"请输入手机号"];
                     return;

@@ -522,5 +522,14 @@ static NSString *const kcodeGainUrl = @"code";
     DYNSLog(@"TagsAlias回调:%@", callbackString);
 }
 
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    if (textField == _phoneTextField) {
+        if (range.location>10) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 
 @end
