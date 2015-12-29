@@ -152,50 +152,56 @@ static NSString *const kchangePassword = @"kchangePassword";
     NSLog(@"发送验证码");
     
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length <= 0) {
-        [self showTotasViewWithMes:@"请输入手机号"];
+        [self showMsg:@"请输入手机号"];
         return;
     }else {
-        NSString *urlString = [NSString stringWithFormat:@"code/%@",self.phoneNumTextField.text];
-        NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
-        
-        [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-            [self showTotasViewWithMes:@"发送成功"];
-        }];
+        // 检测用户是否存在
+        [self userExist];
     }
     
-    sender.userInteractionEnabled = NO;
-    __block int count = TIME;
-    dispatch_queue_t myQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, myQueue);
-    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
-    dispatch_source_set_event_handler(timer, ^{
-        if (count < 0) {
-            dispatch_source_cancel(timer);
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-                self.gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
-                self.gainNum.backgroundColor  = MAINCOLOR;
-                [self.gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
-                self.gainNum.userInteractionEnabled = YES;
-
-            });
-        }else {
-            NSString *str = [NSString stringWithFormat:@"剩余(%d)s",count];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.gainNum.backgroundColor = RGBColor(204, 204, 204);
-                [self.gainNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-                [self.gainNum setTitle:str forState:UIControlStateNormal];
-                
-            });
-            count--;
-        }
-    });
-    dispatch_resume(timer);
 }
 
-
-
-
+#pragma mark 发送验证码
+- (void)sendSMS {
+    
+    NSString *urlString = [NSString stringWithFormat:@"code/%@",self.phoneNumTextField.text];
+    NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
+    
+    [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        [self showMsg:@"发送成功"];
+        // 验证码输入框获取焦点
+        [self.confirmTextField becomeFirstResponder];
+        
+        self.gainNum.userInteractionEnabled = NO;
+        __block int count = TIME;
+        dispatch_queue_t myQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+        dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, myQueue);
+        dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+        dispatch_source_set_event_handler(timer, ^{
+            if (count < 0) {
+                dispatch_source_cancel(timer);
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    self.gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
+                    self.gainNum.backgroundColor  = MAINCOLOR;
+                    [self.gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
+                    self.gainNum.userInteractionEnabled = YES;
+                    
+                });
+            }else {
+                NSString *str = [NSString stringWithFormat:@"剩余(%d)s",count];
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    self.gainNum.backgroundColor = RGBColor(204, 204, 204);
+                    [self.gainNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                    [self.gainNum setTitle:str forState:UIControlStateNormal];
+                    
+                });
+                count--;
+            }
+        });
+        dispatch_resume(timer);
+    }];
+}
 
 - (void)dealNext:(UIButton *)sender {
     
@@ -204,20 +210,73 @@ static NSString *const kchangePassword = @"kchangePassword";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     BOOL isMatch = [pred evaluateWithObject:phoneNum];
     if (!isMatch) {
-        [self showTotasViewWithMes:@"请输入正确的手机号"];
+        [self showMsg:@"请输入正确的手机号"];
         return;
     }
     
     if (self.confirmTextField.text.length <= 0 || self.confirmTextField.text == nil) {
-        [self showTotasViewWithMes:@"请输入验证码"];
+        [self showMsg:@"请输入验证码"];
         return;
     }
     
-    GainPasswordViewController *gain = [[GainPasswordViewController alloc] init];
-    gain.confirmString = self.confirmTextField.text;
-    gain.mobile = self.phoneNumTextField.text;
-    [self presentViewController:gain animated:YES completion:nil];
+    // 验证验证码
+    [self verificationSMSCode];
+}
+
+#pragma mark - 验证用户是否存在
+- (void)userExist {
     
+    __weak typeof(self) ws = self;
+    NSString *urlString = [NSString stringWithFormat:@"userinfo/userexists?usertype=1&mobile=%@",self.phoneNumTextField.text];
+    NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
+    
+    [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"%@", data);
+        NSDictionary *params = data;
+        BOOL type = [[params objectForKey:@"type"] boolValue];
+        if (type) {
+            if ([[params objectForKey:@"data"] boolValue]) {
+                // 发送验证码
+                [self sendSMS];
+            }else {
+                ws.confirmTextField.text = @"";
+                [ws showMsg:@"此用户未注册"];
+            }
+        }else {
+            [ws showMsg:@"网络错误"];
+        }
+    }];
+}
+
+#pragma mark - 验证验证码
+- (void)verificationSMSCode {
+    
+    __weak typeof(self) ws = self;
+    NSString *urlString = [NSString stringWithFormat:@"Verificationsmscode?mobile=%@&code=%@",self.phoneNumTextField.text,self.confirmTextField.text];
+    NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
+    
+    [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"%@", data);
+        NSDictionary *params = data;
+        BOOL type = [[params objectForKey:@"type"] boolValue];
+        if (type) {
+            GainPasswordViewController *gain = [[GainPasswordViewController alloc] init];
+            gain.confirmString = ws.confirmTextField.text;
+            gain.mobile = ws.phoneNumTextField.text;
+            [ws presentViewController:gain animated:YES completion:nil];
+        }else {
+            ws.confirmTextField.text = @"";
+            [ws showMsg:@"验证码错误"];
+        }
+    }];
+}
+
+- (void)showMsg:(NSString *)message {
+    
+    ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
+    [alertView show];
 }
 
 - (void)dealChangePassword{
@@ -237,5 +296,6 @@ static NSString *const kchangePassword = @"kchangePassword";
     }
     return YES;
 }
+
 @end
 
