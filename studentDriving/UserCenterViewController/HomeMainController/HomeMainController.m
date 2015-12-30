@@ -35,6 +35,8 @@
 
 #import "NSUserStoreTool.h"
 
+#import <BaiduMapAPI/BMKLocationService.h>
+
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
@@ -53,7 +55,10 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 #define systemsH  [[UIScreen mainScreen] bounds].size.height
 #define CARFloat carOffsetX
 
-@interface HomeMainController () <UIScrollViewDelegate,HomeSpotViewDelegate>
+@interface HomeMainController () <UIScrollViewDelegate,HomeSpotViewDelegate,BMKLocationServiceDelegate>
+
+// 定位
+@property (nonatomic, strong) BMKLocationService *locationService;
 
 @property (nonatomic,strong) HomeSpotView *homeSpotView;
 @property (nonatomic,strong) UIScrollView *mainScrollView;
@@ -77,17 +82,31 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 @end
 
 @implementation HomeMainController
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    self.mainScrollView.contentOffset = CGPointMake(0, 0);
-//}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setBackgroundImage:nil
+                                                 forBarPosition:UIBarPositionAny
+                                                     barMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
+    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:22.0]}];
+    [self addLoadSubjectProress];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"一步学车";
+    self.title = @"快乐学车美一步";
     _offsetX = 0;
     self.view.backgroundColor = [UIColor clearColor];
     [self addSideMenuButton];
+    
+    
     
     _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 174)];
     _mainScrollView.backgroundColor = [UIColor clearColor];
@@ -101,15 +120,15 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     _backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, systemsW * 2, systemsH)];
     _backImage.image = [UIImage imageNamed:@"bg"];
     _imageX = 0;
-//    [_backImage addSubview:_mainScrollView];
+
     
      [self.view addSubview:_backImage];
     [self.view addSubview:_mainScrollView];
    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 83, self.view.frame.size.width, 83)];
-//    view.backgroundColor = [UIColor orangeColor];
+
     self.homeSpotView.frame = CGRectMake(0,0, systemsW, 83);
-//    _homeSpotView.backgroundColor = [UIColor whiteColor];
+
     _homeSpotView.delegate = self;
     [view addSubview:_homeSpotView];
     
@@ -121,14 +140,13 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 
     [self startSubjectFirstDownLoad];
     [self startSubjectFourDownLoad];
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
     
+    // 定位服务
+    [self locationManager];
 }
 
-#pragma mark ---- 
+
+#pragma mark ----
 - (void)startSubjectFirstDownLoad {
     NSString *urlString = [NSString stringWithFormat:BASEURL,kexamquestionUrl];
     
@@ -146,6 +164,11 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     if (![AcountManager isLogin]) {
         return;
     }
+    
+    
+}
+- (void)addLoadSubjectProress
+{
     NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
     NSDictionary *param = @{@"userid":[AcountManager manager].userid};
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
@@ -166,37 +189,6 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
             }else {
                 [AcountManager saveUserApplyState:@"2"];
             }
-
-        }else {
-            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
-        }
-    } withFailure:^(id data) {
-         [self showTotasViewWithMes:@"网络错误"];
-    }];
-    
-    NSString *getMyProgress = [NSString stringWithFormat:BASEURL,kgetMyProgress];
-    [JENetwoking startDownLoadWithUrl:getMyProgress postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        if (!data) {
-            return ;
-        }
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
-            NSDictionary *dataDic = [param objectForKey:@"data"];
-            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
-                return;
-            }
-            if ([dataDic objectForKey:ksubject]) {
-                [NSUserStoreTool storeWithId:[dataDic objectForKey:ksubject] WithKey:ksubject];
-            }
-            
-            if ([dataDic objectForKey:ksubjectTwo]) {
-                [NSUserStoreTool storeWithId:[dataDic objectForKey:ksubjectTwo] WithKey:ksubjectTwo];
-            }
-            
-            if ([dataDic objectForKey:ksubjectThree]) {
-                [NSUserStoreTool storeWithId:[dataDic objectForKey:ksubjectThree] WithKey:ksubjectThree];
-            }
             
         }else {
             [self showTotasViewWithMes:[data objectForKey:@"msg"]];
@@ -204,7 +196,7 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     } withFailure:^(id data) {
         [self showTotasViewWithMes:@"网络错误"];
     }];
-    
+
 }
 - (void)startSubjectFourDownLoad
 {
@@ -311,25 +303,34 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
                     [mainVC showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
                     
-                } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"])
+                } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目二"])
                 {
                     AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
-                }else
+                }else if([[AcountManager manager].userSubject.name isEqualToString:@"科目三"])
+                    
                 {
-                    [mainVC showTotasViewWithMes:@"你还没有报名"];
+                     [mainVC showTotasViewWithMes:@"科目二您已经通过!"];
                 }
                 
             }
                 break;
                 case 103:
             {
-                
-                AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
-                appointment.title = @"科二预约列表";
-                appointment.markNum = [NSNumber numberWithInteger:2];
-                [mainVC.navigationController pushViewController:appointment animated:YES];
-               
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                    [mainVC showTotasViewWithMes:@"报名正在审核中!"];
+                    return ;
+                    
+                } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目二"])
+                {
+                    AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
+                    appointment.title = @"科二预约列表";
+                    appointment.markNum = [NSNumber numberWithInteger:2];
+                    [mainVC.navigationController pushViewController:appointment animated:YES];
+                }else
+                {
+                    [mainVC showTotasViewWithMes:@"科目二您已经通过!"];
+                }
             }
                 break;
                 
@@ -358,30 +359,32 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
                 
                 
                 
-                if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
+                if ([[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
                     AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
 
-                }else {
-                    [mainVC showTotasViewWithMes:@"您未符合预约要求"];
+                }else if([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
+                    [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
+                }else
+                {
+                    [mainVC showTotasViewWithMes:@"你已经通过科目三,不能再预约了"];
                 }
             }
                 break;
             case 103:
             {
-                if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
+                if ([[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
                     AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
                     appointment.title = @"科三预约列表";
                     appointment.markNum = [NSNumber numberWithInteger:3];
                     [mainVC.navigationController pushViewController:appointment animated:YES];
                     
-                }else {
-                    [mainVC showTotasViewWithMes:@"您目前还没到科三进度!"];
+                } else if([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
+                    [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
+                }else
+                {
+                    [mainVC showTotasViewWithMes:@"你已经通过科目三,不能再查看了"];
                 }
-
-                
-                
-                
                 
             }
                 break;
@@ -644,8 +647,29 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     }
 }
 
+#pragma mark - 检查是否有活动
+- (void)checkActivityWithCityName:(NSString *)cityName {
+    
+    NSString *urlString = [NSString stringWithFormat:@"getactivity?cityname=%@",cityName];
+    [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL, urlString] postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSLog(@"checkActivityWithCity%@",data);
+    }];
+}
+#pragma mark - 定位功能
+- (void)locationManager {
+    
+    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    [BMKLocationService setLocationDistanceFilter:10000.0f];
+    
+    self.locationService = [[BMKLocationService alloc] init];
+    self.locationService.delegate = self;
+    [self.locationService startUserLocationService];
+}
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
+    
+}
 
-#pragma mark ---- Lazy加载
+#pragma mark - Lazy加载
 - (HomeSpotView *)homeSpotView
 {
     if (!_homeSpotView) {
