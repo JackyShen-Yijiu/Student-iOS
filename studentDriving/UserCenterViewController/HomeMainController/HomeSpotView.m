@@ -55,7 +55,6 @@
     _carView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 70, 17)];
     _carView.userInteractionEnabled = YES;
     _carView.image = [UIImage imageNamed:@"兰博基尼"];
-//    [_carView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"car"]]];
     
     for (int i = 0 ; i < 4 ; i++)
     {
@@ -71,7 +70,6 @@
     }
     _carView.layer.masksToBounds = YES;
     _carView.layer.cornerRadius  =  20 / 2;
-//    self.userInteractionEnabled = YES;
     [self addSubview:_carView];
 }
 
@@ -121,18 +119,14 @@
     // 加载telescopeView
     UIImageView *telescopeView = [[UIImageView alloc] initWithFrame:CGRectMake(systemsW  - 8, 0, -telescopeW, -telescopeH)];
     telescopeView.image = [UIImage imageNamed:@"望远镜"];
-//    telescopeView.backgroundColor = [UIColor redColor];
     [backImageView addSubview:telescopeView];
-    
-    
     
     
     //添加划过的痕迹图像
     NSArray *imagViewArray = @[@"科目1条",@"科目2条",@"科目3条",@"科目4条"];
-//    CGFloat imageViewH = (systemsW - 10) * 0.08;
+
     CGFloat imageViewH = 5;
-//    CGFloat imageViewW = 80;
-//    CGFloat imageView = (systemsW - 10) * (91 + 68 * i)/332;
+
     _imageArray = [NSMutableArray array];
     for (int i = 0;i < imagViewArray.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
