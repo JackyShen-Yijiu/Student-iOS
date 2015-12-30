@@ -645,6 +645,12 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 }
 
 
+#pragma mark - 检查是否有活动
+- (void)checkActivity {
+    
+//    NSString *urlString = [NSString stringWithFormat:@""]
+}
+
 #pragma mark ---- Lazy加载
 - (HomeSpotView *)homeSpotView
 {
