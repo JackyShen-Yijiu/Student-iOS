@@ -133,8 +133,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     
     [self.view addSubview:[self tableViewHead]];
     self.tableView.tableFooterView = [[UIView alloc] init];
-    self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(startDownLoad)];
-    
+    //self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector()];
     
     [self.view addSubview:self.signUpButton];
 

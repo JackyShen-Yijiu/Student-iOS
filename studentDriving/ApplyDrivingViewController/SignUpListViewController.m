@@ -24,6 +24,7 @@
 #import "ExamDetailCell.h"
 #import "SignUpCell.h"
 #import "ApplyClassCell.h"
+#import "BLPFAlertView.h"
 //245 247 250
 
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
@@ -183,6 +184,17 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 
 - (void)callBtnClick {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://01053658566"]];
+    [BLPFAlertView showAlertWithTitle:@"电话号码" message:@"010-53658566" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+        DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
+        NSUInteger indexAlert = selectedOtherButtonIndex + 1;
+        if (indexAlert == 1) {
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"01053658566"];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }else {
+            return ;
+        }
+        
+    }];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -197,7 +209,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
             return 4;
         }
     }else {
-        return 2;
+        return 3;
     }
 }
 
@@ -279,7 +291,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
                 _whichBtnClick = tag;
                 _cellIsShow = YES;
                 _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,_classDetailDataArray,@"报考教练"],@[@"真实姓名",@"联系电话"]];
-                signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],@"",[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]]];
+                signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],@"",[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]],@""];
                 [tableView reloadData];
             };
         }
@@ -333,6 +345,8 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
                 }
                 [SignUpInfoManager signUpInfoSaveRealTelephone:completionString];
                 DYNSLog(@"联系方式");
+            }else if (indexPath.row == 2) {
+                [self showTotasViewWithMes:@"呵呵"];
             }
         }];
         
@@ -397,7 +411,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 
 - (void)removeCellWhenClick {
     _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,@"报考教练"],@[@"真实姓名",@"联系电话"]];
-    signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]]];
+    signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]],@""];
     _cellIsShow = NO;
     [self.tableView reloadData];
 }
@@ -405,10 +419,10 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     if (_cellIsShow) {
-        signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],@"",[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]]];
+        signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],@"",[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]],@""];
     }else {
-        signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]]];
-        _secondArray = @[@[@"驾照类型:",@"报考驾校",@"",@"报考教练"],@[@"真实姓名",@"联系电话"]];
+        signUpArray = @[@[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName]],@[[SignUpInfoManager getSignUpRealName],[SignUpInfoManager getSignUpRealTelephone]],@""];
+        _secondArray = @[@[@"驾照类型:",@"报考驾校",@"",@"报考教练"],@[@"真实姓名",@"联系电话",@"验证Y码"]];
     }
     [self.tableView reloadData];
     
@@ -434,9 +448,9 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
             _classNameDataArray = [applyclassNameArray copy];
             _numberOfClass = applyclassNameArray.count;
             if (!_cellIsShow) {
-                _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,@"报考教练"],@[@"真实姓名",@"联系电话"]];
+                _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,@"报考教练"],@[@"真实姓名",@"联系电话",@"验证Y码"]];
             }else {
-            _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,_classDetailDataArray,@"报考教练"],@[@"真实姓名",@"联系电话"]];
+            _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,_classDetailDataArray,@"报考教练"],@[@"真实姓名",@"联系电话",@"验证Y码"]];
             }
 
             
