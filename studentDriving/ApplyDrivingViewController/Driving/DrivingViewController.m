@@ -23,7 +23,7 @@
 #import "MJRefresh.h"
 #import "DVVSideMenu.h"
 
-static NSString *const kDrivingUrl = @"searchschool?%@";
+static NSString *const kDrivingUrl = @"searchschool";
 
 @interface DrivingViewController ()<UITableViewDelegate, UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate, UITextFieldDelegate, BMKGeoCodeSearchDelegate>
 @property (strong, nonatomic)UITableView *tableView;
@@ -166,7 +166,7 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
     //                              @"index": [NSString stringWithFormat:@"%li",self.index],
     //                              @"count": [NSString stringWithFormat:@"%li",self.count] };
     
-    NSString *params = @"";
+//    NSString *params = @"";
     // 判断字符串是否null
     if (![self.cityName isKindOfClass:[NSNull class]]) {
         self.cityName = @"";
@@ -175,17 +175,39 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
         self.searchName = @"";
     }
     NSLog(@"searchName === %@",self.searchName);
-    //    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", 39.915, 116.404, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
     
-    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", self.latitude, self.longitude, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
+    NSString *latitude = [NSString stringWithFormat:@"%f", self.latitude];
+    NSString *longitude = [NSString stringWithFormat:@"%f", self.longitude];
+    NSString *radius = [NSString stringWithFormat:@"%li", self.radius];
+    NSString *cityName = [NSString stringWithFormat:@"%@", self.cityName];
+    NSString *carTypeId = [NSString stringWithFormat:@"%li", self.carTypeId];
+    NSString *searchName = [NSString stringWithFormat:@"%@", self.searchName];
+    NSString *filterType = [NSString stringWithFormat:@"%li", self.filterType];
+    NSString *index = [NSString stringWithFormat:@"%li", self.index];
+    NSString *count = [NSString stringWithFormat:@"%li", self.count];
     
+//    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", self.latitude, self.longitude, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
     
     //    NSLog(@"%@",params);
     
-    NSString *urlString = [NSString stringWithFormat:kDrivingUrl,params];
-    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+    NSDictionary *params = @{ @"latitude": latitude,
+                          @"longitude": longitude,
+                          @"radius": radius,
+                          @"cityname": cityName,
+                          @"licensetype": carTypeId,
+                          @"schoolname": searchName,
+                          @"ordertype": filterType,
+                          @"index": index,
+                          @"count": count };
+    NSLog(@"%@",params);
+    NSString *url = [NSString stringWithFormat:BASEURL,kDrivingUrl];
     
-    [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
+    [JENetwoking startDownLoadWithUrl:url postParam:params WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        [self jeNetworkingCallBackData:data];
+    } withFailure:^(id data) {
+        [self showTotasViewWithMes:@"网络错误"];
+    }];
 }
 
 - (void)jeNetworkingCallBackData:(id)data {

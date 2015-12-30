@@ -307,6 +307,10 @@ static NSString *const kcodeGainUrl = @"code";
 - (void)dealSend:(UIButton *)sender {
     NSLog(@"发送验证码");
     
+    [self sendYanZhengMa:sender];
+}
+#pragma mark 发送验证码
+- (void)sendYanZhengMa:(UIButton *)sender {
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
         [self showTotasViewWithMes:@"请输入手机号"];
         return;
@@ -339,8 +343,8 @@ static NSString *const kcodeGainUrl = @"code";
                 self.sendButton.backgroundColor = RGBColor(204, 204, 204);
                 [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [self.sendButton setTitle:str forState:UIControlStateNormal];
-
-    
+                
+                
             });
             count--;
         }
@@ -355,34 +359,41 @@ static NSString *const kcodeGainUrl = @"code";
 - (void)dealRegister:(UIButton *)sender {
     
     NSString *phoneNum = self.phoneTextField.text;
-    NSString *regex = @"^((13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     BOOL isMatch = [pred evaluateWithObject:phoneNum];
     if (!isMatch) {
-        [self showTotasViewWithMes:@"请输入正确的手机号"];
+        [self showMsg:@"请输入正确的手机号"];
         return;
     }
     [self.paramsPost setObject:self.phoneTextField.text forKey:@"mobile"];
     if (self.authCodeTextFild.text.length <= 0 || self.authCodeTextFild.text == nil) {
-        [self showTotasViewWithMes:@"请输入验证码"];
+        [self showMsg:@"请输入验证码"];
         return;
     }
     [self.paramsPost setObject:self.authCodeTextFild.text forKey:@"smscode"];
     if (self.passWordTextFild.text == nil || self.passWordTextFild.text.length <= 0) {
-        [self showTotasViewWithMes:@"请输入密码"];
+        [self showMsg:@"请输入密码"];
         return;
 
     }
     
     if (self.affirmTextFild.text == nil || self.affirmTextFild.text.length <= 0) {
-        [self showTotasViewWithMes:@"请输入确认密码"];
+        [self showMsg:@"请输入确认密码"];
         return;
     }
-    NSString *passwordString = nil;
     if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
-        [self showTotasViewWithMes:@"两次密码不一样"];
+        [self showMsg:@"两次密码不一样"];
         return;
     }
+    // 测试手机号是否注册
+    [self userExist];
+}
+
+// 向服务器注册用户
+- (void)userRegister {
+    
+    NSString *passwordString = nil;
     passwordString = self.passWordTextFild.text.DY_MD5;
     [self.paramsPost setObject:passwordString forKey:@"password"];
     //网络请求
@@ -416,9 +427,8 @@ static NSString *const kcodeGainUrl = @"code";
                 [[NSNotificationCenter defaultCenter] postNotificationName:kregisterUser object:nil];
             }];
         }
-       
+        
     }];
-    
 }
 
 //注册账号
@@ -453,6 +463,32 @@ static NSString *const kcodeGainUrl = @"code";
          }
      } onQueue:nil];
 }
+
+#pragma mark 验证用户是否存在
+- (void)userExist {
+    
+    __weak typeof(self) ws = self;
+    NSString *urlString = [NSString stringWithFormat:@"userinfo/userexists?usertype=1&mobile=%@",self.phoneTextField.text];
+    NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
+    
+    [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"%@", data);
+        NSDictionary *params = data;
+        BOOL type = [[params objectForKey:@"type"] boolValue];
+        if (type) {
+            if ([[params objectForKey:@"data"] boolValue]) {
+                [self showMsg:@"此用户已经注册"];
+            }else {
+                [self userRegister];
+            }
+        }else {
+            [ws showMsg:@"网络错误"];
+        }
+    }];
+}
+
+
 //点击登陆后的操作
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password
 {
@@ -531,5 +567,10 @@ static NSString *const kcodeGainUrl = @"code";
     return YES;
 }
 
+- (void)showMsg:(NSString *)message {
+    
+    ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
+    [alertView show];
+}
 
 @end
