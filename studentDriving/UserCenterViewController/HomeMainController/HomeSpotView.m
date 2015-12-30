@@ -116,6 +116,17 @@
     backImageView.backgroundColor = [UIColor redColor];
     backImageView.image = [UIImage imageNamed:@"Loader"];
     
+    CGFloat telescopeH = 72;
+    CGFloat telescopeW = 44;
+    // 加载telescopeView
+    UIImageView *telescopeView = [[UIImageView alloc] initWithFrame:CGRectMake(systemsW  - 8, 0, -telescopeW, -telescopeH)];
+    telescopeView.image = [UIImage imageNamed:@"望远镜"];
+//    telescopeView.backgroundColor = [UIColor redColor];
+    [backImageView addSubview:telescopeView];
+    
+    
+    
+    
     //添加划过的痕迹图像
     NSArray *imagViewArray = @[@"科目1条",@"科目2条",@"科目3条",@"科目4条"];
 //    CGFloat imageViewH = (systemsW - 10) * 0.08;
@@ -186,10 +197,10 @@
     for (UILabel *resultLabel in _lableitems) {
         if(resultLabel.tag == i)
         {
-            resultLabel.textColor = [UIColor orangeColor];
+            resultLabel.textColor = [UIColor colorWithHexString:@"ffff00"];
         }else
         {
-            resultLabel.textColor = [UIColor grayColor];
+            resultLabel.textColor = [UIColor colorWithHexString:@"fcfcfc"];
         }
     }
     // 设置划过的痕迹
