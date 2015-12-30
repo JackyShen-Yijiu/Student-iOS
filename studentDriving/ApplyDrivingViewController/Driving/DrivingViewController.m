@@ -191,6 +191,9 @@ static NSString *const kDrivingUrl = @"searchschool?%@";
 - (void)jeNetworkingCallBackData:(id)data {
     
     DYNSLog(@"result = %@",data);
+    if (![data objectForKey:@"data"]) {
+        [self showTotasViewWithMes:@"没有找到数据！"];
+    }
     NSArray *array = data[@"data"];
     // 如果是刷新则清空数组
     if (self.isRefresh) {

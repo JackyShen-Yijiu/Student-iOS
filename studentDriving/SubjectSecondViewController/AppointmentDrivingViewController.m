@@ -18,6 +18,7 @@
 #import "AppointmentCollectionCell.h"
 #import "StudentModel.h"
 #import "StudentDetailViewController.h"
+#import "AppointmentViewController.h"
 
 #define kSameTimeStudent @"/courseinfo/sametimestudentsv2"
 
@@ -685,6 +686,12 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
             if (type.integerValue == 1) {
                 [self showTotasViewWithMes:@"预约成功"];
+                
+                AppointmentViewController *vc = [[AppointmentViewController alloc] init];
+                vc.markNum = @2;
+                vc.title = @"预约列表";
+                [self.navigationController pushViewController:vc animated:YES];
+                
             }else {
                 kShowFail(msg)
             }
