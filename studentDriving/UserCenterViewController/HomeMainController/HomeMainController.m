@@ -35,6 +35,8 @@
 
 #import "NSUserStoreTool.h"
 
+#import <BaiduMapAPI/BMKLocationService.h>
+
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
@@ -53,7 +55,10 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 #define systemsH  [[UIScreen mainScreen] bounds].size.height
 #define CARFloat carOffsetX
 
-@interface HomeMainController () <UIScrollViewDelegate,HomeSpotViewDelegate>
+@interface HomeMainController () <UIScrollViewDelegate,HomeSpotViewDelegate,BMKLocationServiceDelegate>
+
+// 定位
+@property (nonatomic, strong) BMKLocationService *locationService;
 
 @property (nonatomic,strong) HomeSpotView *homeSpotView;
 @property (nonatomic,strong) UIScrollView *mainScrollView;
@@ -121,6 +126,9 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 
     [self startSubjectFirstDownLoad];
     [self startSubjectFourDownLoad];
+    
+    // 定位服务
+    [self locationManager];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -128,7 +136,7 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     
 }
 
-#pragma mark ---- 
+#pragma mark ----
 - (void)startSubjectFirstDownLoad {
     NSString *urlString = [NSString stringWithFormat:BASEURL,kexamquestionUrl];
     
@@ -644,14 +652,29 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     }
 }
 
-
 #pragma mark - 检查是否有活动
-- (void)checkActivity {
+- (void)checkActivityWithCityName:(NSString *)cityName {
     
-//    NSString *urlString = [NSString stringWithFormat:@""]
+    NSString *urlString = [NSString stringWithFormat:@"getactivity?cityname=%@",cityName];
+    [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL, urlString] postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSLog(@"checkActivityWithCity%@",data);
+    }];
+}
+#pragma mark - 定位功能
+- (void)locationManager {
+    
+    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    [BMKLocationService setLocationDistanceFilter:10000.0f];
+    
+    self.locationService = [[BMKLocationService alloc] init];
+    self.locationService.delegate = self;
+    [self.locationService startUserLocationService];
+}
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
+    
 }
 
-#pragma mark ---- Lazy加载
+#pragma mark - Lazy加载
 - (HomeSpotView *)homeSpotView
 {
     if (!_homeSpotView) {

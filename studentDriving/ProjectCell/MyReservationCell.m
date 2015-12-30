@@ -188,11 +188,11 @@
 }
 - (void)receiveDataModel:(MyAppointmentModel *)myModel {
     self.remindImageView.image = nil;
-//    self.contentTitle.text = nil;
+    //    self.contentTitle.text = nil;
     self.contentStateView.backgroundColor = [UIColor clearColor];
     self.contentStateTitle.text = nil;
     self.contentStateTitle.textColor = [UIColor blackColor];
-
+    
     self.contentTitle.text = myModel.courseprocessdesc;
     self.contentTime.text = myModel.classdatetimedesc;
     [self.contentHeadView sd_setImageWithURL:[NSURL URLWithString:myModel.coachid.headportrait.originalpic]placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
@@ -201,36 +201,36 @@
         //课程申请待确认中
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
-        self.contentStateTitle.text = myModel.reservationcreatetime;
-
+        self.contentStateTitle.text = @"申请待确认中";
+        
     }else if (myModel.reservationstate.integerValue == 2) {
         //取消预约(自己取消)
         self.remindImageView.image = [UIImage imageNamed:@"完成corner.png"];
         self.contentStateView.backgroundColor = RGBColor(17, 216, 136);
-        self.contentStateTitle.text = @"取消预约";
+        self.contentStateTitle.text = @"您已取消";
         self.contentStateTitle.textColor =  RGBColor(17, 216, 136);
-
+        
     }else if (myModel.reservationstate.integerValue == 3) {
         //已经确认
         self.remindImageView.image = [UIImage imageNamed:@"待评价corner.png"];
         self.contentStateView.backgroundColor = RGBColor(255, 150, 24);
-        self.contentStateTitle.text = @"教练确认";
+        self.contentStateTitle.text = @"已提交";
         self.contentStateTitle.textColor = RGBColor(255, 150, 24);
-
+        
     }else if (myModel.reservationstate.integerValue == 4) {
         //已取消(教练取消)
         self.remindImageView.image = [UIImage imageNamed:@"完成corner.png"];
         self.contentStateView.backgroundColor =  RGBColor(17, 216, 136);
         self.contentStateTitle.text = @"教练取消";
         self.contentStateTitle.textColor =  RGBColor(17, 216, 136);
-
+        
     }else if (myModel.reservationstate.integerValue == 5) {
         //待确认
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
         self.contentStateTitle.text = @"待确认";
         self.contentStateTitle.textColor = MAINCOLOR;
-
+        
     }else if (myModel.reservationstate.integerValue == 6) {
         //待评价
         self.remindImageView.image = [UIImage imageNamed:@"待评价corner.png"];
