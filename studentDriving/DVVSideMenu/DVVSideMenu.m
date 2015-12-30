@@ -140,6 +140,7 @@
     [super viewWillAppear:animated];
     
     if (![AcountManager isLogin]) {
+        [self.headerView.iconButton setImage:[UIImage imageNamed:@"side_user_header"] forState:UIControlStateNormal];
         self.headerView.nameLabel.text = @"用户名";
         self.headerView.drivingNameLabel.text = @"驾校：未报考";
         self.headerView.markLabel.text = @"我的Y码：暂无";
