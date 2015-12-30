@@ -9,9 +9,13 @@
 #import "DVVSideMenuBlockView.h"
 #import "DVVSideMenuBlockViewItemButton.h"
 
+#define badgeLabelWidth 20
+
 @interface DVVSideMenuBlockView()
 
 @property (nonatomic, copy)DVVSideMenuBlockViewSelectedBlock itemSelectedBlock;
+
+@property (nonatomic, strong) UILabel *badgeLabel;
 
 @end
 
@@ -32,6 +36,38 @@
         }];
     }
     return self;
+}
+
+#pragma mark 显示、隐藏小红点
+- (void)showBadge {
+    for (UIView *view in self.subviews) {
+        if (2 == view.tag) {
+            CGFloat viewWidth = view.frame.size.width;
+            self.badgeLabel.center = CGPointMake(viewWidth - badgeLabelWidth / 2.f, badgeLabelWidth / 2.f);
+            [view addSubview:self.badgeLabel];
+        }
+    }
+}
+- (void)removeBadge {
+    [self.badgeLabel removeFromSuperview];
+}
+
+-(void)setupUnreadMessageCount
+{
+    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    if (unreadCount > 0) {
+//        [self showMessCountInTabBar:unreadCount];
+        [self showBadge];
+    }else{
+//        [self hiddenMessCountInTabBar];
+        [self removeBadge];
+    }
+//    UIApplication *application = [UIApplication sharedApplication];
+//    [application setApplicationIconBadgeNumber:unreadCount];
 }
 
 - (void)buttonAction:(UIButton *)button {
@@ -55,7 +91,7 @@
     // 视图的左侧内边距
     CGFloat leftMargin = 12;
     // 按钮的间距
-    CGFloat buttonSpace = 3;
+    CGFloat buttonSpace = 1;
     // 一行按钮的个数
     NSUInteger buttonNum = 3;
     // 按钮的边长
@@ -87,6 +123,16 @@
                                   buttonSideLength);
         [button setBackgroundImage:[UIImage imageNamed:[_iconNormalArray objectAtIndex:idx]] forState:UIControlStateNormal];
     }];
+}
+
+#pragma mark - lazy load
+- (UILabel *)badgeLabel {
+    if (!_badgeLabel) {
+        _badgeLabel = [UILabel new];
+        _badgeLabel.backgroundColor = [UIColor redColor];
+        _badgeLabel.frame = CGRectMake(0, 0, badgeLabelWidth, badgeLabelWidth);
+    }
+    return _badgeLabel;
 }
 
 /*

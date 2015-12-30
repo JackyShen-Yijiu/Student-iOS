@@ -20,5 +20,6 @@
 @property (copy,readonly , nonatomic) NSString *name;
 @property (strong,readonly, nonatomic) NSNumber *passingrate;
 @property (copy,readonly , nonatomic) NSString *schoolid;
-@property (assign,readonly, nonatomic) NSInteger coachcount;
+@property (strong,readonly, nonatomic) NSNumber *coachcount;
+@property (copy, readonly, nonatomic) NSString *schoollevel;
 @end

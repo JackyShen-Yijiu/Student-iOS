@@ -21,6 +21,16 @@
     return self;
 }
 
+#pragma mark - action
+#pragma mark 联系我们
+- (void)contactUsLabelAction {
+    
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"4006269255"];
+    UIWebView * callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:callWebview];
+}
+
 - (void)layoutSubviews {
     [super layoutSubviews];
     
@@ -35,9 +45,12 @@
     if (!_contactUsLabel) {
         _contactUsLabel = [UILabel new];
         _contactUsLabel.font = [UIFont systemFontOfSize:12];
-        _contactUsLabel.textColor = [UIColor colorWithWhite:1 alpha:0.4];
+        _contactUsLabel.textColor = [UIColor colorWithWhite:1 alpha:1];
         _contactUsLabel.backgroundColor = [UIColor clearColor];
-        _contactUsLabel.text = @"联系我们：400-6269-255";
+        _contactUsLabel.text = @"联系我们：400-626-9255";
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contactUsLabelAction)];
+        [_contactUsLabel addGestureRecognizer:tapGesture];
+        _contactUsLabel.userInteractionEnabled = YES;
     }
     return _contactUsLabel;
 }
@@ -45,9 +58,9 @@
     if (!_markLabel) {
         _markLabel = [UILabel new];
         _markLabel.font = [UIFont systemFontOfSize:12];
-        _markLabel.textColor = [UIColor colorWithWhite:1 alpha:0.4];
+        _markLabel.textColor = [UIColor colorWithWhite:1 alpha:1];
         _markLabel.backgroundColor = [UIColor clearColor];
-        _markLabel.text = @"如有疑问，请致电，谢谢您！";
+        _markLabel.text = @"北京一步科技有限公司荣誉出品";
     }
     return _markLabel;
 }

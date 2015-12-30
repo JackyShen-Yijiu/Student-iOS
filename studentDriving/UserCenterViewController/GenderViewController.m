@@ -8,6 +8,7 @@
 
 #import "GenderViewController.h"
 #import "UIDevice+JEsystemVersion.h"
+#import "NSString+Helper.h"
 
 static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 
@@ -49,6 +50,8 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     if (_genderTextField == nil) {
         _genderTextField = [[UITextField alloc] initWithFrame:CGRectMake(0, 20, kSystemWide, 44)];
         _genderTextField.backgroundColor = [UIColor whiteColor];
+        // 不可编辑
+        //        _genderTextField.userInteractionEnabled = NO;
     }
     return _genderTextField;
 }
@@ -76,12 +79,12 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarLeftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
-
+    
     
     [self.view addSubview:self.genderTextField];
     self.genderTextField.inputView = self.pickerView;
     [self.genderTextField becomeFirstResponder];
-
+    
 }
 - (void)clickLeft:(UIButton *)sender {
     if (self.genderTextField.text == nil || self.genderTextField.text.length == 0) {
@@ -90,28 +93,32 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)clickRight:(UIButton *)sender {
-    DYNSLog(@"userid = %@",self.genderTextField.text);
-    NSString *updateUserInfoUrl = [NSString stringWithFormat:BASEURL,kupdateUserInfo];
     
-    NSDictionary *dicParam = @{@"gender":self.genderTextField.text,@"userid":[AcountManager manager].userid};
-    
-    
-    [JENetwoking startDownLoadWithUrl:updateUserInfoUrl postParam:dicParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        NSDictionary *dataParam = data;
-        NSNumber *messege = dataParam[@"type"];
-        if (messege.intValue == 1) {
-            [self showTotasViewWithMes:@"修改成功"];
-            [AcountManager saveUserGender:self.genderTextField.text];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kGenderChange object:nil];
-            [self.navigationController popViewControllerAnimated:YES];
-        }else {
-            [self showTotasViewWithMes:@"修改失败"];
-            return;
-        }
-   
-    }];
-    
-    
+    if ([self.genderTextField.text isEqualToString:@"男"] || [self.genderTextField.text isEqualToString:@"女"]) {
+        
+        DYNSLog(@"userid = %@",self.genderTextField.text);
+        NSString *updateUserInfoUrl = [NSString stringWithFormat:BASEURL,kupdateUserInfo];
+        
+        NSDictionary *dicParam = @{@"gender":self.genderTextField.text,@"userid":[AcountManager manager].userid};
+        
+        
+        [JENetwoking startDownLoadWithUrl:updateUserInfoUrl postParam:dicParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            NSDictionary *dataParam = data;
+            NSNumber *messege = dataParam[@"type"];
+            if (messege.intValue == 1) {
+                [self showTotasViewWithMes:@"修改成功"];
+                [AcountManager saveUserGender:self.genderTextField.text];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kGenderChange object:nil];
+                [self.navigationController popViewControllerAnimated:YES];
+            }else {
+                [self showTotasViewWithMes:@"修改失败"];
+                return;
+            }
+            
+        }];
+    }else {
+        [self showTotasViewWithMes:@"信息填写不正确"];
+    }
 }
 
 // returns the number of 'columns' to display.
@@ -129,7 +136,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
     NSString *resultString = self.dataArray[row];
     self.genderTextField.text = resultString;
-
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

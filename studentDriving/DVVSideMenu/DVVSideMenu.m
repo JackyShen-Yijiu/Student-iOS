@@ -18,6 +18,10 @@
 
 #import "EditorUserViewController.h"
 
+#import "JENetwoking.h"
+
+#import "AcountManager.h"
+
 #define AnimateDuration 0.5
 
 @interface DVVSideMenu : UIViewController
@@ -41,6 +45,9 @@
 @property (nonatomic, strong) DVVSideMenuHeaderView *headerView;
 @property (nonatomic, strong) DVVSideMenuFooterView *footerView;
 @property (nonatomic, strong) DVVSideMenuBlockView *blockView;
+
+// 用户豆币、兑换券和现金额
+@property (nonatomic, strong) NSArray *moneyArray;
 
 + (instancetype)sharedMenu;
 
@@ -112,6 +119,7 @@
     _selectedIdx = -1;
     
     _titleArray = @[ @"积分收益", @"商城兑换券", @"可取现金额" ];
+    _moneyArray = @[ @"0", @"0", @"0" ];
     _markTitleArray = @[ @"豆币", @"张", @"元" ];
     _blockImagesArray = @[ @"side_menu_block_home", @"side_menu_block_search_driving", @"side_menu_block_message", @"side_menu_block_mall", @"side_menu_block_activity", @"side_menu_block_sign_in", @"side_menu_block_set" ];
     
@@ -127,12 +135,54 @@
     self.tableView.tableHeaderView = self.headerView;
 }
 
-// 因为此侧边栏用static修饰了，所以在这里加载用户头像
+// 因为此侧边栏用static修饰了，所以在这里加载用户信息
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    if (![AcountManager isLogin]) {
+        return;
+    }
+    
     // 设置头像
     [self.headerView.iconButton sd_setBackgroundImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"side_user_header"]];
+    // 用户名、报考驾校
+    if ([AcountManager manager].userName && [AcountManager manager].userName.length) {
+        self.headerView.nameLabel.text = [AcountManager manager].userName;
+    }else {
+        if ([AcountManager manager].userMobile) {
+            self.headerView.nameLabel.text = [AcountManager manager].userMobile;
+        }
+    }
+    if ([AcountManager manager].applyschool.name && [AcountManager manager].applyschool.name.length) {
+        self.headerView.drivingNameLabel.text = [NSString stringWithFormat:@"驾校：%@", [AcountManager manager].applyschool.name];
+    }
+    
+    // 检查新消息
+    [self.blockView setupUnreadMessageCount];
+
+    
+    NSString *urlString = [NSString stringWithFormat:@"/userinfo/getmymoney?userid=%@&usertype=1", [AcountManager manager].userid];
+    // 请求数据显示豆币相关信息
+    [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL,urlString] postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSLog(@"=== %@",data);
+        NSDictionary *dict = data;
+        if ([dict objectForKey:@"type"]) {
+            NSDictionary *paramsDict = [dict objectForKey:@"data"];
+            if (paramsDict) {
+                NSString *fcode = [paramsDict objectForKey:@"fcode"];
+                NSInteger wallet = [[paramsDict objectForKey:@"wallet"] integerValue];
+                NSInteger money = [[paramsDict objectForKey:@"money"] integerValue];
+                NSInteger couponcount = [[paramsDict objectForKey:@"couponcount"] integerValue];
+                if (fcode && fcode.length) {
+                    self.headerView.markLabel.text = [NSString stringWithFormat:@"我的Y码：%@", fcode];
+                }
+                _moneyArray = @[ [NSString stringWithFormat:@"%li", wallet],
+                                 [NSString stringWithFormat:@"%li", couponcount],
+                                 [NSString stringWithFormat:@"%li", money] ];
+                [self.tableView reloadData];
+            }
+        }
+    }];
 }
 
 #pragma mark - action
@@ -209,7 +259,7 @@
     cell.iconImageView.image = [UIImage imageNamed:_normalImages[indexPath.row]];
     cell.nameLabel.text = _titleArray[indexPath.row];
     
-    cell.contentLabel.text = @"0.34";
+    cell.contentLabel.text = [_moneyArray objectAtIndex:indexPath.row];
     cell.markLabel.text = _markTitleArray[indexPath.row];
     
     return cell;
