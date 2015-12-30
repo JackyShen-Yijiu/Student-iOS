@@ -48,7 +48,7 @@
 // 用户需要随便看看时调用此方法
 + (void)userNeedBrowsing {
     
-    [[self loginController].navigationController popViewControllerAnimated:YES];
+    [[self loginController].navigationController popToRootViewControllerAnimated:YES];
     [self showNaviBar];
 }
 
