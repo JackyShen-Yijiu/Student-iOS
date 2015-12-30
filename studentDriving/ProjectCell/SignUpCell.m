@@ -40,7 +40,6 @@
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        
        
         [self setUp];
     }
@@ -71,6 +70,9 @@
     [self clearCellUIData];
     
     self.signUpLabel.text = titleString;
+    if ([titleString isEqualToString:@"验证Y码"]) {
+        self.signUpTextField.placeholder = @"选填（如有Y码,可得丰厚奖励）";
+    }
     self.signUpCompletion = signUpCompletion;
 
 }
