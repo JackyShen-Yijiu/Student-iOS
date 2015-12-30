@@ -93,6 +93,14 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    //存值用来消除登出再登入时小车还这原位的问题；
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    if ([ud integerForKey:@"isCarReset"] == 1) {
+        self.mainScrollView.contentOffset =CGPointMake(0, 0);
+        [ud setInteger:0 forKey:@"isCarReset"];
+        [ud synchronize];
+    }
+    
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
     [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:22.0]}];

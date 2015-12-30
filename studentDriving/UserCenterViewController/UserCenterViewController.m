@@ -108,7 +108,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kQuitSuccess" object:nil];
     [AcountManager removeAllData];
     [DVVUserManager userLogout];
-    
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:1 forKey:@"isCarReset"];
+    [ud synchronize];
 }
 //取消别名标示
 - (void)tagsAliasCallback:(int)iResCode
