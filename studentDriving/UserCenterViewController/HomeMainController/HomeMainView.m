@@ -42,18 +42,12 @@
 //    CGFloat coachCardButtonW = 96;
 //    CGFloat schoolCardButton = 128;
 //    CGFloat signButton = 68;
-    CGFloat coachCardButtonW = systemsW * 0.3;
+    
     
     CGFloat schoolCardButtonH = systemsW * 0.48;
     CGFloat schoolCardButtonW = systemsW * 0.4;
-    
-    CGFloat signButton = systemsW * 0.25;
-    NSLog(@"%f",coachCardButtonW);
-
-    
-    
-    
-    
+    CGFloat coachCardButtonW = systemsW * 0.3;
+    CGFloat signButton = systemsW * 0.3;
     
     if (self = [super initWithFrame:frame]) {
         /*
@@ -93,18 +87,6 @@
                 [self addSubview:_schoolCardButton];
                 [self addSubview:_signButton];
                 
-                // 滚动
-//                _oneCM = [CircularMotion new];
-//                [_oneCM circularMotionWithView:_schoolCardButton Radius:10];
-//                [_oneCM startMotionWithTimeInterval:0.01];
-//                
-//                _twoCM = [CircularMotion new];
-//                [_twoCM circularMotionWithView:_coachCardButton Radius:7];
-//                [_twoCM startMotionWithTimeInterval:0.01];
-//                
-//                _threeCM = [CircularMotion new];
-//                [_threeCM circularMotionWithView:_signButton Radius:8];
-//                [_threeCM startMotionWithTimeInterval:0.01];
 
             }
                 break;
@@ -113,11 +95,6 @@
             {
                 // 科目一
                 // 首页视图
-                _textImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - imageViewW) / 2, imageY, imageViewW, imageViewH)];
-                _textImageView.image = [UIImage imageNamed:@"文字"];
-                
-                
-//                CGFloat signButtonX = (systemsW - schoolCardButtonW - coachCardButtonW + 15) / 2 ;
 
                 _signButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _signButton.frame = CGRectMake(38, systemsH - schoolCardButtonH - 185 - 64, schoolCardButtonW, schoolCardButtonH);
@@ -154,8 +131,6 @@
                 // 科目二
                 // 首页视图
                 
-                _textImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - imageViewW) / 2, imageY, imageViewW, imageViewH)];
-                _textImageView.image = [UIImage imageNamed:@"文字"];
                 _coachCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _coachCardButton.frame = CGRectMake(18, systemsH - schoolCardButtonH - 191, schoolCardButtonW, schoolCardButtonH);
                 [self addButtonProperty:@"科目二" button:_coachCardButton];
@@ -174,8 +149,7 @@
                 [_schoolCardButton setBackgroundImage:[UIImage imageNamed:@"课件"] forState:UIControlStateNormal];                _schoolCardButton.tag = 101;
                 [_schoolCardButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
                 
-                
-                [self addSubview:_textImageView];
+        
                 [self addSubview:_coachCardButton];
                 [self addSubview:_signButton];
                  [self addSubview:_schoolCardButton];
