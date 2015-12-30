@@ -106,6 +106,14 @@
     AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
     DYNSLog(@"clickModel = %d",model.is_selected);
     
+    DYNSLog(@"self.upDateArray.count:%lu",self.upDateArray.count);
+    if (self.upDateArray.count>=4) {
+        
+        ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"您最多可预约4个课时"];
+        [alertView show];
+        return;
+    }
+    
     if (model.is_selected == NO) {
         DYNSLog(@"Selected");
 
