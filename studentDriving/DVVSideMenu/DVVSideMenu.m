@@ -20,6 +20,8 @@
 
 #import "JENetwoking.h"
 
+#import "AcountManager.h"
+
 #define AnimateDuration 0.5
 
 @interface DVVSideMenu : UIViewController
@@ -137,6 +139,10 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    if (![AcountManager isLogin]) {
+        return;
+    }
+    
     // 设置头像
     [self.headerView.iconButton sd_setBackgroundImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"side_user_header"]];
     // 用户名、报考驾校
@@ -153,6 +159,7 @@
     
     // 检查新消息
     [self.blockView setupUnreadMessageCount];
+
     
     NSString *urlString = [NSString stringWithFormat:@"/userinfo/getmymoney?userid=%@&usertype=1", [AcountManager manager].userid];
     // 请求数据显示豆币相关信息
