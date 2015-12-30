@@ -23,6 +23,7 @@
 #import "AppDelegate.h"
 #import "HomeMainController.h"
 #import "DVVUserManager.h"
+#import "VerifyPhoneController.h"
 
 static NSString *const kloginUrl = @"userinfo/userlogin";
 
@@ -82,7 +83,7 @@ static NSString *const kuserType = @"usertype";
         _checkButton.titleLabel.textAlignment = 1;
         _checkButton.backgroundColor = [UIColor clearColor];
         _checkButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_checkButton addTarget:self action:@selector(checkButtonAction) forControlEvents:UIControlStateNormal];
+        [_checkButton addTarget:self action:@selector(checkButtonAction) forControlEvents:UIControlEventTouchDown];
     }
     return _checkButton;
 }
@@ -270,13 +271,18 @@ static NSString *const kuserType = @"usertype";
     self.navigationController.navigationBarHidden = YES;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    self.navigationController.navigationBarHidden = NO;
+}
+
 - (void)DYdealRegister {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - action
 - (void)checkButtonAction {
-    
+    VerifyPhoneController *verifyPhoneVC = [VerifyPhoneController new];
+    [self.navigationController pushViewController:verifyPhoneVC animated:YES];
 }
 
 #pragma mark - loginAction

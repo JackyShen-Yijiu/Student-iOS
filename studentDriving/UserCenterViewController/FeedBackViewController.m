@@ -136,11 +136,11 @@
 - (void)clickSubmit:(UIButton *)sender {
 
     if (self.textView.text == nil || self.textView.text.length == 0) {
-        [self showTotasViewWithMes:@"反馈意见必须填写"];
+        [self showToastWithMsg:@"反馈意见必须填写"];
         return;
     }
     if ([self.textView.text.trimString isEqualToString:@""]) {
-        [self showTotasViewWithMes:@"请输入内容"];
+        [self showToastWithMsg:@"请输入内容"];
         self.textView.text = @"";
         return;
     }
@@ -152,14 +152,21 @@
         NSDictionary *dataParam = data;
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
-            [self showTotasViewWithMes:@"反馈成功"];
+            [self showToastWithMsg:@"反馈成功"];
             // 成功后返回上一级窗体
-            [self performSelector:@selector(popVc) withObject:self afterDelay:1.0];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self performSelector:@selector(popVc) withObject:self afterDelay:1.0];
+            });
         }else {
-            [self showTotasViewWithMes:@"反馈失败"];
+            [self showToastWithMsg:@"反馈失败"];
         }
     }];
     
+}
+
+- (void)showToastWithMsg:(NSString *)message {
+    ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
+    [alertView show];
 }
 
 - (void)popVc

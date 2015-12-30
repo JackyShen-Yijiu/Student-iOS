@@ -43,7 +43,7 @@
     for (UIView *view in self.subviews) {
         if (2 == view.tag) {
             CGFloat viewWidth = view.frame.size.width;
-            self.badgeLabel.center = CGPointMake(viewWidth - badgeLabelWidth / 2.f, badgeLabelWidth / 2.f);
+            self.badgeLabel.center = CGPointMake(viewWidth, 0);
             [view addSubview:self.badgeLabel];
         }
     }
@@ -131,6 +131,8 @@
         _badgeLabel = [UILabel new];
         _badgeLabel.backgroundColor = [UIColor redColor];
         _badgeLabel.frame = CGRectMake(0, 0, badgeLabelWidth, badgeLabelWidth);
+        [_badgeLabel.layer setMasksToBounds:YES];
+        [_badgeLabel.layer setCornerRadius:badgeLabelWidth / 2.f];
     }
     return _badgeLabel;
 }

@@ -167,6 +167,11 @@
     [self.navigationController pushViewController:[VerifyInformationController new] animated:YES];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.title = @"验证手机号";
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

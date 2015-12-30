@@ -502,6 +502,7 @@
 		D5D50EE71BFA205000F54097 /* ShopMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ED11BFA205000F54097 /* ShopMainModel.m */; };
 		D5D50EE81BFA205000F54097 /* ShopModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ED31BFA205000F54097 /* ShopModel.m */; };
 		D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D5101F1BFD908900F54097 /* AboutUsViewController.m */; };
+		D93EC2F21C32BF97005D7141 /* HomeActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93EC2F11C32BF97005D7141 /* HomeActivityController.m */; };
 		D95CCCEE1C2E636200AF1402 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCED1C2E636200AF1402 /* NSString+Helper.m */; };
 		D95CCCF71C2E84C000AF1402 /* UserSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */; };
 		D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D961BC791C28004200940577 /* YBWelcomeController.m */; };
@@ -1348,6 +1349,8 @@
 		D5D50ED31BFA205000F54097 /* ShopModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopModel.m; sourceTree = "<group>"; };
 		D5D5101E1BFD908900F54097 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		D5D5101F1BFD908900F54097 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		D93EC2F01C32BF97005D7141 /* HomeActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeActivityController.h; sourceTree = "<group>"; };
+		D93EC2F11C32BF97005D7141 /* HomeActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeActivityController.m; sourceTree = "<group>"; };
 		D95CCCEC1C2E636200AF1402 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
 		D95CCCED1C2E636200AF1402 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		D95CCCF51C2E84C000AF1402 /* UserSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingModel.h; sourceTree = "<group>"; };
@@ -1467,6 +1470,8 @@
 			children = (
 				066BFB121C23A2C3002A1DD8 /* HomeMainController.h */,
 				066BFB131C23A2C3002A1DD8 /* HomeMainController.m */,
+				D93EC2F01C32BF97005D7141 /* HomeActivityController.h */,
+				D93EC2F11C32BF97005D7141 /* HomeActivityController.m */,
 				066BFB141C23A2C3002A1DD8 /* HomeMainView.h */,
 				066BFB151C23A2C3002A1DD8 /* HomeMainView.m */,
 				066BFB161C23A2C3002A1DD8 /* HomeSpotView.h */,
@@ -3484,6 +3489,7 @@
 				D588B10F1BDDDC2F000C5D6F /* NSUserStoreTool.m in Sources */,
 				D5604B451BF656C50020F0D7 /* EMAlertView.m in Sources */,
 				D5604C801BF656F30020F0D7 /* ConvertToCommonEmoticonsHelper.m in Sources */,
+				D93EC2F21C32BF97005D7141 /* HomeActivityController.m in Sources */,
 				D588B0DB1BDDDC14000C5D6F /* MyReservationCell.m in Sources */,
 				D588B08F1BDDDBDB000C5D6F /* ExamCarViewController.m in Sources */,
 				D588B11D1BDDDC2F000C5D6F /* JsonTransformManager.m in Sources */,

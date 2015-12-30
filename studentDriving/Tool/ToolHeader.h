@@ -61,7 +61,7 @@ static NSString *const kQiniuImageUrl = @"http://7xnjg0.com1.z0.glb.clouddn.com/
 //http://101.200.204.240:8181/api/v1/ 测试
 
 // 切换正式库时要单独进行切换!!!!!!!!!!!!!!!!!!! 首页H5页面
-#define BTH5   @"http://101.200.204.240:8181/%@"
+#define BTH5   @"http://123.57.63.15:8181/%@"
 //http://123.57.63.15:8181/ 正式库
 // http://101.200.204.240:8181/ 测试库
 

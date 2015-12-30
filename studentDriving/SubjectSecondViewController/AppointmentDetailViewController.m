@@ -318,11 +318,11 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     if (self.state == AppointmentStateSelfCancel) {
         [cell.cancelButton setTitle:@"已取消" forState:UIControlStateNormal];
         cell.cancelButton.userInteractionEnabled = NO;
-        cell.cancelButton.backgroundColor = RGBColor(17, 216, 136);
+        cell.cancelButton.backgroundColor = [UIColor lightGrayColor];
     }else if (self.state == AppointmentStateCoachCancel) {
         [cell.cancelButton setTitle:@"教练取消" forState:UIControlStateNormal];
         cell.cancelButton.userInteractionEnabled = NO;
-        cell.cancelButton.backgroundColor = RGBColor(17, 216, 136);
+        cell.cancelButton.backgroundColor = [UIColor lightGrayColor];
     }else if (self.state == AppointmentStateFinish) {
         [cell.cancelButton setTitle:@"课程已学完" forState:UIControlStateNormal];
         cell.cancelButton.userInteractionEnabled = NO;
