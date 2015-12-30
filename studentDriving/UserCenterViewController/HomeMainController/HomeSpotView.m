@@ -52,9 +52,9 @@
 {
     
     
-    _carView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 5, 61, 61)];
+    _carView = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 70, 17)];
     _carView.userInteractionEnabled = YES;
-    _carView.image = [UIImage imageNamed:@"car"];
+    _carView.image = [UIImage imageNamed:@"兰博基尼"];
 //    [_carView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"car"]]];
     
     for (int i = 0 ; i < 4 ; i++)
@@ -112,19 +112,21 @@
 - (void)addView
 {
     // 添加底部黑色视图
-    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 20, systemsW - 10, (systemsW - 10) * 0.1)];
-    backImageView.image = [UIImage imageNamed:@"底子"];
+    UIImageView *backImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 10, systemsW, 7)];
+    backImageView.backgroundColor = [UIColor redColor];
+    backImageView.image = [UIImage imageNamed:@"Loader"];
     
     //添加划过的痕迹图像
     NSArray *imagViewArray = @[@"科目1条",@"科目2条",@"科目3条",@"科目4条"];
-    CGFloat imageViewH = (systemsW - 10) * 0.08;
+//    CGFloat imageViewH = (systemsW - 10) * 0.08;
+    CGFloat imageViewH = 5;
 //    CGFloat imageViewW = 80;
 //    CGFloat imageView = (systemsW - 10) * (91 + 68 * i)/332;
     _imageArray = [NSMutableArray array];
     for (int i = 0;i < imagViewArray.count; i++) {
         UIImageView *imageView = [[UIImageView alloc] init];
-        imageView.frame = CGRectMake(5, 5, (systemsW - 10) * (91 + 68 * i)/332, imageViewH);
-        imageView.image = [UIImage imageNamed:imagViewArray[i]];
+        imageView.frame = CGRectMake(0, 0, (systemsW) * (91 + 68 * i)/332, imageViewH);
+        imageView.image = [UIImage imageNamed:@"绿色-拷贝"];
         imageView.hidden = YES;
         imageView.tag = i + 301;
         [_imageArray addObject:imageView];
@@ -133,26 +135,37 @@
     [self addSubview:backImageView];
     
     // 添加底部label
-    CGFloat spotW = 30;
+    CGFloat spotW = 50;
     CGFloat spotH = 20;
-    CGFloat margin = (systemsW - 180) / 4;
+    CGFloat margin = (systemsW - 270) / 5;
     _lableitems = [NSMutableArray array];
-    CGFloat labelY = backImageView.frame.origin.y + CGRectGetHeight(backImageView.frame) + 15;
-    NSArray *arrayStr =  @[@"一步介绍",@"科目1",@"科目2",@"科目3",@"科目4"];
+
+    CGFloat labelY = backImageView.frame.origin.y + CGRectGetHeight(backImageView.frame) + 10;
+    NSArray *arrayStr =  @[@"欢迎您",@"科目一",@"科目二",@"科目三",@"科目四"];
+
+   
     for (int i = 0; i < 5; i++) {
         UILabel *label = [[UILabel alloc] init];
         if (i == 0) {
-            label.frame = CGRectMake(-5, labelY, spotW + 10, spotH);
+            label.frame = CGRectMake(15, labelY, spotW, spotH);
             label.text = arrayStr[i];
             label.tag = 201;
+
+            label.textColor = [UIColor colorWithHexString:@"fcfcfc"];
+            label.font = [UIFont systemFontOfSize:14];
+
             label.textColor = [UIColor orangeColor];
             label.font = [UIFont systemFontOfSize:10];
             [_lableitems addObject:label];
             [self addSubview:label];
         }else
         {
-            label.frame = CGRectMake(i * margin + i * spotW, labelY, spotW, spotH);
+            label.frame = CGRectMake(i * margin + i * spotW + 15, labelY, spotW, spotH);
             label.text = arrayStr[i];
+
+            label.textColor = [UIColor colorWithHexString:@"fcfcfc"];
+            label.font = [UIFont systemFontOfSize:12];
+
             label.textColor = [UIColor grayColor];
             label.font = [UIFont systemFontOfSize:10];
             label.tag = 201 + i;

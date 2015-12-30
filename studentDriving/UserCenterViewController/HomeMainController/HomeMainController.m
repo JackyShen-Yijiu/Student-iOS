@@ -106,9 +106,9 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
      [self.view addSubview:_backImage];
     [self.view addSubview:_mainScrollView];
    
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 110, self.view.frame.size.width, 110)];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 83, self.view.frame.size.width, 83)];
 //    view.backgroundColor = [UIColor orangeColor];
-    self.homeSpotView.frame = CGRectMake(10,0, systemsW - 10, 110);
+    self.homeSpotView.frame = CGRectMake(0,0, systemsW, 83);
 //    _homeSpotView.backgroundColor = [UIColor whiteColor];
     _homeSpotView.delegate = self;
     [view addSubview:_homeSpotView];
