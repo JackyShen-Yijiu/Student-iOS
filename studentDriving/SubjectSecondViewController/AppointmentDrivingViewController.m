@@ -19,7 +19,7 @@
 #import "StudentModel.h"
 #import "StudentDetailViewController.h"
 
-#define kSameTimeStudent @"/courseinfo/sametimestudentsv2"
+#define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
 static NSString *const kStudentTimeStudy = @"courseinfo/sametimestudents/reservationid/%@/index/%@";
 static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1";
@@ -242,9 +242,14 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:_updateTimeString]];
     self.contentLabel.text = [NSString stringWithFormat:@"当前预约为科目二的第%@-%@时段",beginString,endString];
     DYNSLog(@"%@",self.contentLabel.text);
+    NSLog(@"%@",self.coachModel.coachid);
+    NSLog(@"%@",_endTimeStr);
+    NSLog(@"%@",_startTimeStr);
     
     if (_endTimeStr&&_startTimeStr&&self.coachModel.coachid&&_updateTimeString) {
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kSameTimeStudent];
+        
+        NSLog(@"%@",applyUrlString);
         NSDictionary *upData = @{@"coachid"   :self.coachModel.coachid,
                                  @"begintime" :_startTimeStr,
                                  @"endtime"   :_endTimeStr,

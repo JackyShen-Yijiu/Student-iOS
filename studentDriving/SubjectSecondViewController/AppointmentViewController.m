@@ -122,6 +122,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [self startDownLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    if ([UIDevice jeSystemVersion] >= 7.0f) {
@@ -146,7 +147,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     
 }
 - (void)startDownLoad {
-    [self.dataArray removeAllObjects];
+    
     NSString *appointmentUrl = [NSString stringWithFormat:kappointmentUrl,[AcountManager manager].userid,self.markNum];
 //    NSLog("%",[self.markNum integerValue]);
     NSString *downLoadUrl = [NSString stringWithFormat:BASEURL,appointmentUrl];
@@ -158,13 +159,16 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         NSNumber *type = param[@"type"];
         NSArray *array = param[@"data"];
         NSError *error = nil;
-
+        
+        [weakSelf.dataArray removeAllObjects];
+        
         NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
         if (type.integerValue == 1) {
-            [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error];
             [weakSelf.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error]];
+            
             [weakSelf.tableView reloadData];
             [weakSelf.tableView.mj_header endRefreshing];
+            
         }else {
             kShowFail(msg);
         }
@@ -328,7 +332,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self startDownLoad];
+    
 
 }
 @end

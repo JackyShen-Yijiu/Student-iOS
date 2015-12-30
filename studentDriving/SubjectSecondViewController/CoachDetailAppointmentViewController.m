@@ -196,7 +196,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
     UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     negativeSpacer.width = -15;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneBtn];
-    self.navigationItem.rightBarButtonItems = @[negativeSpacer,rightItem];
+    self.navigationItem.rightBarButtonItems = @[rightItem];
 }
 #pragma mark - createUI
 - (void)createUI {
