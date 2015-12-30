@@ -267,6 +267,8 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             }else {
                 kShowFail(param[@"msg"]);
             }
+        } withFailure:^(id data) {
+            kShowFail(@"网络连接失败，请检查网络连接");
         }];
     }
 }
