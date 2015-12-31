@@ -204,7 +204,7 @@ static NSString *const kuserType = @"usertype";
         _phoneNumTextField.tag = 100;
         
         _phoneNumTextField.placeholder        = @" 请填写手机号";
-        
+        _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
         
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
