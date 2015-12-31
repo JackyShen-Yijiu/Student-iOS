@@ -72,11 +72,11 @@
         [DVVUserManager userNeedLogin];
     }
     
-    
 #pragma mark - 处理工具及样式
     [self dealTool];
 #pragma mark - 监听网络
     [NetMonitor manager];
+    
 #pragma mark - JPush
     [self JPushApplication:application didFinishLaunchingWithOptions:launchOptions];
     
@@ -90,8 +90,10 @@
     
     // 设置StatusBarStyle为白色（需要在在infor.plist中加入key:UIViewControllerBasedStatusBarAppearance 并设置其值为NO）
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     return YES;
 }
+
 
 - (void)configBaiduMap {
     _mapManager = [[BMKMapManager alloc] init];
@@ -130,13 +132,13 @@
     return;
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
 #pragma mark - JPush注册token require
-    [self JPushApplication:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    [APService registerDeviceToken:deviceToken];
+    
     [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 
-
-    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -152,19 +154,33 @@
     
     
 }
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
     
+    completionHandler(UIBackgroundFetchResultNewData);
+    //推送消息统一处理
+#warning YJG APP在前台接受到消息推送，处理消息逻辑
+#warning YJG APP在在后台，点击消息提醒，唤醒APP，处理消息逻辑
+
+#warning YJG 服务器发送 APP在前台接受到消息推送，处理消息逻辑
+/*
+ {
+ "_j_msgid" = 1612910701;
+ aps =     {
+ alert = "\U60a8\U5df2\U6210\U529f\U62a5\U540d\U9a7e\U6821\Uff0c\U8d76\U5feb\U5f00\U542f\U5b66\U8f66\U4e4b\U65c5\U5427";
+ badge = 1;
+ sound = "sound.caf";
+ };
+ data =     {
+ userid = 5644b9549aedea5c3e02a4ac;
+ };
+ type = userapplysuccess;
+ }
+ */
     DYNSLog(@"userInfo = %@",userInfo);
 #pragma mark - 推送消息统一接受JPush
     [self JPushfetchCompletionHandlerApplication:application didReceiveRemoteNotification:userInfo];
     
-    
-    
-    
-    
-    
-    completionHandler(UIBackgroundFetchResultNewData);
-    //推送消息统一处理
 }
 
 

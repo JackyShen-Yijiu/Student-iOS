@@ -166,7 +166,6 @@
     
     // 检查新消息
     [self.blockView setupUnreadMessageCount];
-
     
     NSString *urlString = [NSString stringWithFormat:@"/userinfo/getmymoney?userid=%@&usertype=1", [AcountManager manager].userid];
     // 请求数据显示豆币相关信息

@@ -16,7 +16,7 @@
 - (void)JPushApplication:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification;
 
 //注册token
-- (void)JPushApplication:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
+//- (void)JPushApplication:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken;
 
 //接受推送消息
 - (void)JPushApplication:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo;

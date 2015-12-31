@@ -71,7 +71,10 @@
     
     self.signUpLabel.text = titleString;
     if ([titleString isEqualToString:@"验证Y码"]) {
-        self.signUpTextField.placeholder = @"选填（如有Y码,可得丰厚奖励）";
+        self.signUpTextField.placeholder = @"(Y码不影响报名!如有Y码,可得丰厚奖励)";
+        [self.signUpTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
+    }else {
+        self.signUpTextField.placeholder = @"";
     }
     self.signUpCompletion = signUpCompletion;
 

@@ -27,6 +27,8 @@ static NSString *const kCoachParam = @"applycoachinfo";
 
 static NSString *const kStudentNumber = @"studentid";
 static NSString *const kPassNumber = @"ticketnumber";
+static NSString *const kFcode = @"fcode";
+
 @interface SignUpInfoManager : NSObject
 @property (copy, readonly, nonatomic) NSString *realName;
 @property (copy, readonly, nonatomic) NSString *realIdentityCar;
@@ -45,6 +47,7 @@ static NSString *const kPassNumber = @"ticketnumber";
 + (void)signUpInfoSaveRealAddress:(NSString *)realAddress;
 
 + (void)signUpInfoSaveRealcode:(NSString *)code;
++ (void)signUpInfoSaveRealFcode:(NSString *)Fcode;
 + (void)signUpInfoSaveRealSubjectID:(NSDictionary *)SubjectID;
 
 //缓存准考证信息

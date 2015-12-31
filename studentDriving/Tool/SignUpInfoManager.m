@@ -57,6 +57,10 @@ static NSString *const kRealUserid = @"userid";
     [NSUserStoreTool storeWithId:code WithKey:kRealCode];
 }
 
++ (void)signUpInfoSaveRealFcode:(NSString *)Fcode {
+    [NSUserStoreTool storeWithId:Fcode WithKey:kFcode];
+}
+
 + (void)signUpInfoSaveRealSubjectID:(NSDictionary *)SubjectID {
     [NSUserStoreTool storeWithId:SubjectID WithKey:kRealSubjectID];
 }
@@ -268,7 +272,12 @@ static NSString *const kRealUserid = @"userid";
         applyAgain = @"0";
     }
     
-    return @{kRealUserid:[AcountManager manager].userid,kRealName:krealNameString,kRealIdentityCar:@"",kRealTelephone:krealTelephoneString,kRealAddress:@"",kRealSchoolid:krealSchoolidString,kRealCoachid:krealCoachidString,kRealClasstypeid:krealClasstypeidString,kRealCarmodel:[JsonTransformManager dictionaryTransformJsonWith:krealCarmodelDictionary],@"applyagain":applyAgain };
+    NSString *kFcode = [NSUserStoreTool getObjectWithKey:@"fcode"];
+    if (kFcode == nil || kFcode.length == 0) {
+        kFcode = @"";
+    }
+    
+    return @{kRealUserid:[AcountManager manager].userid,kRealName:krealNameString,kRealIdentityCar:@"",kRealTelephone:krealTelephoneString,kRealAddress:@"",kRealSchoolid:krealSchoolidString,kRealCoachid:krealCoachidString,kRealClasstypeid:krealClasstypeidString,kRealCarmodel:[JsonTransformManager dictionaryTransformJsonWith:krealCarmodelDictionary],@"fcode":kFcode,@"applyagain":applyAgain };
 }
 
 + (NSDictionary *)getSignUpPassInformation {
@@ -348,6 +357,7 @@ static NSString *const kRealUserid = @"userid";
     [NSUserStoreTool removeObjectWithKey:kRealSubjectID];
     [NSUserStoreTool removeObjectWithKey:kRealCode];
     [NSUserStoreTool removeObjectWithKey:kRealLearnStage];
+    [NSUserStoreTool removeObjectWithKey:kFcode];
 }
 
 @end

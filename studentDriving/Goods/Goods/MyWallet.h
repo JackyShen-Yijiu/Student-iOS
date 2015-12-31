@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 
 @interface MyWallet : NSObject
-@property (nonatomic,assign) int amount;
+
+@property (nonatomic,copy) NSString *amount;
+
 @property (nonatomic,assign) int type;
 @property (nonatomic,assign) int seqindex;
 
-@property (nonatomic,assign) NSString * wallet;
+@property (nonatomic,copy) NSString * wallet;
 
 @property (nonatomic,copy) NSString *createtime;
 
