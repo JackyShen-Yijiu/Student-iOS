@@ -38,6 +38,8 @@
 #import <BaiduMapAPI/BMKLocationService.h>
 #import <BaiduMapAPI/BMKGeocodeSearch.h>
 
+#import "HomeActivityController.h"
+
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
@@ -96,8 +98,6 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     [self.navigationController.navigationBar setBackgroundImage:nil
                                                  forBarPosition:UIBarPositionAny
                                                      barMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -111,7 +111,6 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
     [self addLoadSubjectProress];
 }
 
@@ -121,9 +120,6 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     _offsetX = 0;
     self.view.backgroundColor = [UIColor clearColor];
     [self addSideMenuButton];
-    
-    NSString *name = [AcountManager manager].userSubject.name;
-    
     
     _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 174)];
     _mainScrollView.backgroundColor = [UIColor clearColor];
@@ -699,10 +695,15 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
         //        NSLog(@"%@",result);
         BMKAddressComponent *addressComponent = result.addressDetail;
         //        NSLog(@"addressComponent.city===%@",addressComponent.city);
+        // 存储定位到的城市名
+//        [AcountManager manager].userCity = addressComponent.city;
+        [AcountManager manager].userCity = @"北京";
+
         // 检查是否有活动
 //        [self checkActivityWithCityName:addressComponent.city];
 //        [self checkActivityWithCityName:@"beijing"];
         [self checkActivityWithCityName:@"北京"];
+        [self getLocationShowTypeWithCity:@"北京"];
         
         // 停止位置更新服务
         [self.locationService stopUserLocationService];
@@ -715,11 +716,94 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     
     NSString *urlString = [NSString stringWithFormat:@"getactivity"];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-    
-    [JENetwoking startDownLoadWithUrl:url postParam:@{ @"?cityname": cityName } WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        NSLog(@"df");
+    NSLog(@"userCity === %@", cityName);
+    [JENetwoking startDownLoadWithUrl:url postParam:@{ @"cityname": cityName } WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSLog(@"%@",data);
+        [self loadActivityWithData:data];
     } withFailure:^(id data) {
-        NSLog(@"jkhjk");
+        NSLog(@"%@", data);
+//        [self showMsg:@"获取活动错误"];
+    }];
+}
+- (void)loadActivityWithData:(id)data {
+    
+    BOOL flage = NO;
+    NSDictionary *rootDict = data;
+    if (![rootDict objectForKey:@"type"]) {
+        flage = YES;
+    }
+    if (![[rootDict objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
+        flage = YES;
+    }
+    NSArray *array = [rootDict objectForKey:@"data"];
+    if (![array isKindOfClass:[NSArray class]]) {
+        flage = YES;
+    }
+    NSDictionary *paramsDict = [array firstObject];
+    if (![paramsDict isKindOfClass:[NSDictionary class]]) {
+        flage = YES;
+    }
+    if (flage) {
+//        [self showMsg:@"暂时还没有活动哟"];
+        return ;
+    }
+    
+    //                        id:item._id,
+    //                    name:item.name,
+    //                    titleimg:item.titleimg,
+    //                    begindate:item.begindate,
+    //                    contenturl:item.contenturl,
+    //                    enddate:item.enddate,
+    //                    address:item.address,
+    NSString *title = @"一步活动";
+    NSString *contentUrl = @"";
+    if ([paramsDict objectForKey:@"name"]) {
+        title = [paramsDict objectForKey:@"name"];
+    }
+    if ([paramsDict objectForKey:@"contenturl"]) {
+        contentUrl = [paramsDict objectForKey:@"contenturl"];
+    }
+    
+    HomeActivityController *activityVC = [HomeActivityController new];
+    activityVC.title = title;
+    activityVC.activityUrl = contentUrl;
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+    [naviVC pushViewController:activityVC animated:YES];
+}
+
+#pragma mark - 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
+- (void)getLocationShowTypeWithCity:(NSString *)cityName {
+    
+    NSString *interface = [NSString stringWithFormat:@"getlocationShowType"];
+    NSString *url = [NSString stringWithFormat:BASEURL,interface];
+    NSLog(@"userCity === %@", cityName);
+    [JENetwoking startDownLoadWithUrl:url postParam:@{ @"cityname": cityName } WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSLog(@"%@",data);
+        BOOL flage = YES;
+        NSDictionary *rootDict = data;
+        if (![rootDict objectForKey:@"type"]) {
+            flage = NO;
+        }
+        if (![[rootDict objectForKey:@"data"] isKindOfClass:[NSDictionary class]]) {
+            flage = NO;
+        }
+        if (!flage) {
+            return ;
+        }
+        NSDictionary *paramsDict = [rootDict objectForKey:@"data"];
+        if ([paramsDict objectForKey:@"showtype"]) {
+            // 把用户所在城市驾校为主还是以教练为主的信息存储到AcountManager
+            if ([[paramsDict objectForKey:@"showtype"] boolValue] == kLocationShowTypeDriving) {
+                [AcountManager manager].userLocationShowType = kLocationShowTypeDriving;
+            }else if ([[paramsDict objectForKey:@"showtype"] boolValue] == kLocationShowTypeCoach) {
+                [AcountManager manager].userLocationShowType = kLocationShowTypeCoach;
+            }
+        }
+
+    } withFailure:^(id data) {
+        [self showMsg:@"网络错误"];
     }];
 }
 
@@ -796,6 +880,11 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
         [_mainScrollView addSubview:_subjectFourView];
     }
     return _subjectFourView;
+}
+
+- (void)showMsg:(NSString *)msg {
+    ToastAlertView *toast = [[ToastAlertView alloc] initWithTitle:msg];
+    [toast show];
 }
 
 @end

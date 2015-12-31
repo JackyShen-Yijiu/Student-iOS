@@ -69,10 +69,10 @@
     rect.origin.x = 0;
     [UIView animateWithDuration:AnimateDuration animations:^{
         
-        sideMenu.backgroundView.alpha = 0.5;
+        sideMenu.backgroundView.alpha = 0.1;
         sideMenu.contentView.frame = rect;
         
-        [UIApplication sharedApplication].keyWindow.rootViewController.view.frame = CGRectMake(60, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [UIApplication sharedApplication].keyWindow.rootViewController.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * 0.6, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     }];
 }
 
@@ -124,7 +124,13 @@
     _titleArray = @[ @"积分收益", @"商城兑换券", @"可取现金额" ];
     _moneyArray = @[ @"0", @"0", @"0" ];
     _markTitleArray = @[ @"豆币", @"张", @"元" ];
-    _blockImagesArray = @[ @"side_menu_block_home", @"side_menu_block_search_driving", @"side_menu_block_message", @"side_menu_block_mall", @"side_menu_block_activity", @"side_menu_block_sign_in", @"side_menu_block_set" ];
+    _blockImagesArray = @[ @"iconfont-shouyeshouye",
+                           @"iconfont-dingwei",
+                           @"iconfont-xiaoxi",
+                           @"iconfont-shangcheng1",
+                           @"iconfont-huodong",
+                           @"iconfont-xiaoyuanqiandao",
+                           @"iconfont-shezhi" ];
     
     [self.view addSubview:self.backgroundView];
     [self.view addSubview:self.contentView];
@@ -143,7 +149,7 @@
     [super viewWillAppear:animated];
     
     if (![AcountManager isLogin]) {
-        [self.headerView.iconButton setImage:[UIImage imageNamed:@"side_user_header"] forState:UIControlStateNormal];
+        [self.headerView.iconButton setImage:[UIImage imageNamed:@"side_menu_header"] forState:UIControlStateNormal];
         self.headerView.nameLabel.text = @"用户名";
         self.headerView.drivingNameLabel.text = @"驾校：未报考";
         self.headerView.markLabel.text = @"我的Y码：暂无";
@@ -152,9 +158,10 @@
         
         return;
     }
-    
+    // 显示搜索的类型是驾校还是教练
+    [self.blockView setLocationShowType];
     // 设置头像
-    [self.headerView.iconButton sd_setBackgroundImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"side_user_header"]];
+    [self.headerView.iconButton sd_setBackgroundImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"side_menu_header"]];
     // 用户名、报考驾校
     if ([AcountManager manager].userName && [AcountManager manager].userName.length) {
         self.headerView.nameLabel.text = [AcountManager manager].userName;
@@ -166,9 +173,6 @@
     if ([AcountManager manager].applyschool.name && [AcountManager manager].applyschool.name.length) {
         self.headerView.drivingNameLabel.text = [NSString stringWithFormat:@"驾校：%@", [AcountManager manager].applyschool.name];
     }
-    
-    // 检查新消息
-    [self.blockView setupUnreadMessageCount];
     
     NSString *urlString = [NSString stringWithFormat:@"/userinfo/getmymoney?userid=%@&usertype=1", [AcountManager manager].userid];
     // 请求数据显示豆币相关信息
@@ -192,6 +196,11 @@
             }
         }
     }];
+}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    // 检查新消息
+    [self.blockView setupUnreadMessageCount];
 }
 
 #pragma mark - action
@@ -377,9 +386,10 @@
 
 - (DVVSideMenuBlockView *)blockView {
     if (!_blockView) {
-        NSArray *titleArray = @[ @"1", @"2", @"3", @"4", @"5", @"6", @"7" ];
-        _blockView = [[DVVSideMenuBlockView alloc] initWithTitleArray:titleArray];
-        _blockView.iconNormalArray = _blockImagesArray;
+        NSArray *titleArray = @[ @"首页", @"查找驾校", @"消息", @"商城", @"活动", @"签到", @"设置" ];
+        
+        _blockView = [[DVVSideMenuBlockView alloc] initWithTitleArray:titleArray
+                                                      iconNormalArray:_blockImagesArray];
         _blockView.backgroundColor = [UIColor clearColor];
         __weak typeof(self) ws = self;
         [_blockView dvvSideMenuBlockViewItemSelected:^(UIButton *button) {

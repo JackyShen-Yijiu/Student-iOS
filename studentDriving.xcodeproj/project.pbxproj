@@ -555,6 +555,7 @@
 		D96D1C001C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BFF1C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.m */; };
 		D96D1C031C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1C021C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m */; };
 		D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */; };
+		D9A5DF541C35128B009DF18A /* SearchCoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DF531C35128B009DF18A /* SearchCoachController.m */; };
 		D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */; };
 		D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1291C255F3400D1A143 /* CirclePoint.m */; };
 		D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F12B1C255F3400D1A143 /* CircularMotion.m */; };
@@ -1461,6 +1462,8 @@
 		D96D1C021C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenuCollectionView.m; sourceTree = "<group>"; };
 		D9A46DCA1C25049900271747 /* SweepCodeSignInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SweepCodeSignInController.h; sourceTree = "<group>"; };
 		D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SweepCodeSignInController.m; sourceTree = "<group>"; };
+		D9A5DF521C35128B009DF18A /* SearchCoachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCoachController.h; sourceTree = "<group>"; };
+		D9A5DF531C35128B009DF18A /* SearchCoachController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCoachController.m; sourceTree = "<group>"; };
 		D9B7F1241C254ECC00D1A143 /* YBBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseNavigationController.h; sourceTree = "<group>"; };
 		D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseNavigationController.m; sourceTree = "<group>"; };
 		D9B7F1281C255F3400D1A143 /* CirclePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CirclePoint.h; sourceTree = "<group>"; };
@@ -2992,6 +2995,8 @@
 				D965CA9E1C239D9F00DCD094 /* DrivingTableHeaderView.m */,
 				D965CA9F1C239D9F00DCD094 /* DrivingViewController.h */,
 				D965CAA01C239D9F00DCD094 /* DrivingViewController.m */,
+				D9A5DF521C35128B009DF18A /* SearchCoachController.h */,
+				D9A5DF531C35128B009DF18A /* SearchCoachController.m */,
 			);
 			path = Driving;
 			sourceTree = "<group>";
@@ -3493,6 +3498,7 @@
 				D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */,
 				D96D1BEB1C2B88A000F1C282 /* DVVSideMenu.m in Sources */,
 				D588B04B1BDDDB71000C5D6F /* UserCenterViewController.m in Sources */,
+				D9A5DF541C35128B009DF18A /* SearchCoachController.m in Sources */,
 				D5604B4A1BF656C50020F0D7 /* MWCaptionView.m in Sources */,
 				D588B13C1BDDDC65000C5D6F /* GainPasswordView.m in Sources */,
 				D5604B881BF656C50020F0D7 /* EMTextView.m in Sources */,

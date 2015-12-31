@@ -9,7 +9,7 @@
 #import "DVVSideMenuBlockViewItemButton.h"
 
 // 文字的高度比例
-static CGFloat kTitleRatio = 0.f;
+static CGFloat kTitleRatio = 0.3f;
 
 @implementation DVVSideMenuBlockViewItemButton
 
@@ -39,7 +39,7 @@ static CGFloat kTitleRatio = 0.f;
     self.titleLabel.font = [UIFont systemFontOfSize:12];
     
     // 图片的内容模式
-    self.imageView.contentMode = UIViewContentModeScaleToFill;
+    self.imageView.contentMode = UIViewContentModeCenter;
 }
 
 #pragma mark 覆盖父类在highlighted时的所有操作
