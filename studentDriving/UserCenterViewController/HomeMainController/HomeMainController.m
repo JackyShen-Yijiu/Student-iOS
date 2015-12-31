@@ -43,9 +43,9 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
 static NSString *kConversationChatter = @"ConversationChatter";
 
-static NSString *const kexamquestionUrl = @"/info/examquestion";
+static NSString *const kexamquestionUrl = @"info/examquestion";
 
-static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
+static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 #define ksubject      @"subject"
 #define ksubjectTwo   @"subjecttwo"
@@ -101,7 +101,7 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
-    //存值用来消除登出再登入时小车还这原位的问题；
+    //存值用来消除登出再登入时小车还在原位的问题；
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if ([ud integerForKey:@"isCarReset"] == 1) {
         self.mainScrollView.contentOffset =CGPointMake(0, 0);
@@ -121,9 +121,6 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     _offsetX = 0;
     self.view.backgroundColor = [UIColor clearColor];
     [self addSideMenuButton];
-    
-    NSString *name = [AcountManager manager].userSubject.name;
-    
     
     _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 174)];
     _mainScrollView.backgroundColor = [UIColor clearColor];
@@ -205,6 +202,37 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
                 [AcountManager saveUserApplyState:@"1"];
             }else {
                 [AcountManager saveUserApplyState:@"2"];
+            }
+            
+        }else {
+            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
+        }
+    } withFailure:^(id data) {
+        [self showTotasViewWithMes:@"网络错误"];
+    }];
+    
+    NSString *getMyProgress = [NSString stringWithFormat:BASEURL,kgetMyProgress];
+    [JENetwoking startDownLoadWithUrl:getMyProgress postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        if (!data) {
+            return ;
+        }
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            NSDictionary *dataDic = [param objectForKey:@"data"];
+            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
+                return;
+            }
+            if ([data objectForKey:ksubject]) {
+                [NSUserStoreTool storeWithId:[data objectForKey:ksubject] WithKey:ksubject];
+            }
+            
+            if ([data objectForKey:ksubjectTwo]) {
+                [NSUserStoreTool storeWithId:[data objectForKey:ksubjectTwo] WithKey:ksubjectTwo];
+            }
+            
+            if ([data objectForKey:ksubjectThree]) {
+                [NSUserStoreTool storeWithId:[data objectForKey:ksubjectThree] WithKey:ksubjectThree];
             }
             
         }else {
