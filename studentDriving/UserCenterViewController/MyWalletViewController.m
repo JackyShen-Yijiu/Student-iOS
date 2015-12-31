@@ -24,6 +24,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 
 @property (strong, nonatomic) UILabel *myWalletTitle;
 @property (strong, nonatomic) UILabel *moneyDisplay;
+@property (strong, nonatomic) UILabel *YBLabel;
 @property (strong, nonatomic) UIButton *inviteButton;
 @property (strong, nonatomic) UIButton *exchangeButton;
 
@@ -67,6 +68,15 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         _moneyDisplay.text = @"0";
     }
     return _moneyDisplay;
+}
+- (UILabel *)YBLabel
+{
+    if (_YBLabel == nil) {
+        _YBLabel = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:16]];
+//        _YBLabel.backgroundColor = [UIColor greenColor];
+        _YBLabel.text = @"YB";
+    }
+    return _YBLabel;
 }
 - (UIButton *)inviteButton {
     if (_inviteButton == nil) {
@@ -302,7 +312,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         
         DYNSLog(@"wallet = %@",walletString);
         if (walletString && walletString.length != 0) {
-            self.moneyDisplay.text =  [NSString stringWithFormat:@"%@YB",walletString];
+            self.moneyDisplay.text =  [NSString stringWithFormat:@"%@",walletString];
         }
         for (NSDictionary *dic in list) {
             MyWallet *wallet = [[MyWallet alloc] init];
@@ -330,6 +340,13 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         make.top.mas_equalTo(self.myWalletTitle.mas_bottom).offset(0);
         make.centerX.mas_equalTo(view.mas_centerX);
 
+    }];
+    [view addSubview:self.YBLabel];
+    [self.YBLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.moneyDisplay.mas_right).offset(1);
+        make.top.mas_equalTo(self.myWalletTitle.mas_bottom).offset(40);
+        make.height.mas_equalTo(@20);
+        make.width.mas_equalTo(@40);
     }];
   
     return view;
