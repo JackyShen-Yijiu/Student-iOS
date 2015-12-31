@@ -328,7 +328,7 @@ static NSString *const kuserType = @"usertype";
                 [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
                 
                 
-                [self loginWithUsername:[AcountManager manager].userid password:self.passwordTextField.text.DY_MD5];
+//                [self loginWithUsername:[AcountManager manager].userid password:self.passwordTextField.text.DY_MD5];
             }
             
             // 用户登录成功，打开相应的窗体

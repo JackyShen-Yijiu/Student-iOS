@@ -721,7 +721,8 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
         NSLog(@"%@",data);
         [self loadActivityWithData:data];
     } withFailure:^(id data) {
-        [self showMsg:@"网络错误"];
+        NSLog(@"%@", data);
+//        [self showMsg:@"获取活动错误"];
     }];
 }
 - (void)loadActivityWithData:(id)data {
@@ -743,7 +744,7 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
         flage = YES;
     }
     if (flage) {
-        [self showMsg:@"暂时还没有活动哟"];
+//        [self showMsg:@"暂时还没有活动哟"];
         return ;
     }
     

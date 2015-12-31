@@ -94,6 +94,14 @@
 {
     [super viewWillDisappear:animated];
     [self unregisterNotifications];
+    
+    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount;
+
 }
 
 - (void)removeEmptyConversationsFromDB

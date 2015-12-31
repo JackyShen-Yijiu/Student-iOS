@@ -72,16 +72,16 @@
         [(UINavigationController *)(self.window.rootViewController) pushViewController:[DVVUserManager loginController] animated:NO];
     }
     
-    
 #pragma mark - 处理工具及样式
     [self dealTool];
 #pragma mark - 监听网络
     [NetMonitor manager];
+    
 #pragma mark - JPush
     [self JPushApplication:application didFinishLaunchingWithOptions:launchOptions];
     
     //注册环信聊天
-    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
+//    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
 //    [YBWelcomeController removeSavedVersion];
 //    if ([YBWelcomeController isShowWelcome]) {
@@ -90,8 +90,10 @@
     
     // 设置StatusBarStyle为白色（需要在在infor.plist中加入key:UIViewControllerBasedStatusBarAppearance 并设置其值为NO）
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
     return YES;
 }
+
 
 - (void)configBaiduMap {
     _mapManager = [[BMKMapManager alloc] init];
@@ -118,25 +120,26 @@
 //}
 
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
     DYNSLog(@"UILocalNotification = %@",notification);
-    NSString *info = notification.userInfo[@"ConversationChatter"];
-    if (info) {
-        [_main dealInfo:notification.userInfo];
-    }
-#pragma mark - JPush推送
-    [self JPushApplication:application didReceiveLocalNotification:notification];
     
-    return;
+//    NSString *info = notification.userInfo[@"ConversationChatter"];
+//    if (info) {
+//        [_main dealInfo:notification.userInfo];
+//    }
+//#pragma mark - JPush推送
+//    [self JPushApplication:application didReceiveLocalNotification:notification];
+//    
 }
 
-- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
 #pragma mark - JPush注册token require
-    [self JPushApplication:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    [APService registerDeviceToken:deviceToken];
+    
     [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 
-
-    
 }
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
@@ -152,19 +155,33 @@
     
     
 }
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
+{
     
+    completionHandler(UIBackgroundFetchResultNewData);
+    //推送消息统一处理
+#warning YJG APP在前台接受到消息推送，处理消息逻辑
+#warning YJG APP在在后台，点击消息提醒，唤醒APP，处理消息逻辑
+
+#warning YJG 服务器发送 APP在前台接受到消息推送，处理消息逻辑
+/*
+ {
+ "_j_msgid" = 1612910701;
+ aps =     {
+   alert = "\U60a8\U5df2\U6210\U529f\U62a5\U540d\U9a7e\U6821\Uff0c\U8d76\U5feb\U5f00\U542f\U5b66\U8f66\U4e4b\U65c5\U5427";
+   badge = 1;
+   sound = "sound.caf";
+ };
+ data =     {
+   userid = 5644b9549aedea5c3e02a4ac;
+ };
+ type = userapplysuccess;
+ }
+ */
     DYNSLog(@"userInfo = %@",userInfo);
 #pragma mark - 推送消息统一接受JPush
     [self JPushfetchCompletionHandlerApplication:application didReceiveRemoteNotification:userInfo];
     
-    
-    
-    
-    
-    
-    completionHandler(UIBackgroundFetchResultNewData);
-    //推送消息统一处理
 }
 
 
@@ -189,6 +206,41 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (void)didReceiveMessage:(EMMessage *)message
+{
+    
+    NSLog(@"message.messageBodies:%@",message.messageBodies);
+    
+    //发送本地推送
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    
+    notification.fireDate = [NSDate date]; //触发通知的时间
+    
+    notification.alertBody = [NSString stringWithFormat:@"%@",@"你有一条新消息,快点击查看吧"];
+    
+    notification.alertAction = NSLocalizedString(@"打开", @"打开");
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    
+    //发送通知
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        
+    });
+    
+    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount;
+
 }
 
 @end

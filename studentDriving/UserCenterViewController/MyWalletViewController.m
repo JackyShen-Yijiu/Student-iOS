@@ -16,6 +16,7 @@
 #import <MJRefresh.h>
 #import "UIColor+Hex.h"
 #import "DVVSideMenu.h"
+#import "MyWalletViewCell.h"
 
 static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=%@&count=10";
 
@@ -24,6 +25,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 
 @property (strong, nonatomic) UILabel *myWalletTitle;
 @property (strong, nonatomic) UILabel *moneyDisplay;
+@property (strong, nonatomic) UILabel *YBLabel;
 @property (strong, nonatomic) UIButton *inviteButton;
 @property (strong, nonatomic) UIButton *exchangeButton;
 
@@ -48,7 +50,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     if (_inviteNum == nil) {
         _inviteNum = [[UILabel alloc] init];
         _inviteNum.font = [UIFont systemFontOfSize:14];
-        _inviteNum.text = [NSString stringWithFormat:@"我的邀请码:%@",[AcountManager manager].userInvitationcode];
+        _inviteNum.text = [NSString stringWithFormat:@"我的Y码:%@",[AcountManager manager].userInvitationcode];
     }
     return _inviteNum;
 }
@@ -68,10 +70,19 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     }
     return _moneyDisplay;
 }
+- (UILabel *)YBLabel
+{
+    if (_YBLabel == nil) {
+        _YBLabel = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:16]];
+//        _YBLabel.backgroundColor = [UIColor greenColor];
+        _YBLabel.text = @"YB";
+    }
+    return _YBLabel;
+}
 - (UIButton *)inviteButton {
     if (_inviteButton == nil) {
         _inviteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_inviteButton setTitle:@"赚积分" forState:UIControlStateNormal];
+        [_inviteButton setTitle:@"邀请好友" forState:UIControlStateNormal];
         [_inviteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _inviteButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
         _inviteButton.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -86,7 +97,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 - (UIButton *)exchangeButton {
     if (_exchangeButton == nil) {
         _exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_exchangeButton setTitle:@"兑换商品" forState:UIControlStateNormal];
+        [_exchangeButton setTitle:@"积分兑换" forState:UIControlStateNormal];
         [_exchangeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
      
         _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
@@ -101,7 +112,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 - (UILabel *)myWalletTitle {
     if (_myWalletTitle == nil) {
         _myWalletTitle = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:15]];
-        _myWalletTitle.text = @"我的零钱";
+//        _myWalletTitle.text = @"我的零钱";
     }
     return _myWalletTitle;
 }
@@ -120,7 +131,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     // Do any additional setup after loading the view.
 //    [self addSideMenuButton];
     
-    self.title = @"我的钱包";
+    self.title = @"积分";
     self.automaticallyAdjustsScrollViewInsets = YES;
     if ([UIDevice jeSystemVersion] >= 7.0f) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -129,13 +140,11 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 
     
     self.tableView.tableHeaderView = [self tableViewHead];
-    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(startDownLoad)];
+
     self.tableView.tableFooterView = [[UIView alloc] init];
     
     self.tableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreLoad)];
-//    self.tableView.mj_footer.automaticallyHidden = NO;
-//    DYNSLog(@"footview = %@",self.tableView.mj_footer);
-    
+
     [self.view addSubview:self.bottomView];
     [self.bottomView addSubview:self.inviteNum];
     [self.bottomView addSubview:self.inviteButton];
@@ -247,12 +256,17 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 }
 
 - (void)loadMoreLoad {
+    
     DYNSLog(@"loadmore");
-    MyWallet *wallet = [self.dataArray lastObject];
-    NSString *urlString = [NSString stringWithFormat:kMyWalletUrl,[AcountManager manager].userid,[NSNumber numberWithInt:wallet.seqindex]];
+    
+    NSDictionary *wallet = [self.dataArray lastObject];
+    
+    NSLog(@"________________%@",wallet[@"seqindex"]);
+    NSString *urlString = [NSString stringWithFormat:kMyWalletUrl,[AcountManager manager].userid,wallet[@"seqindex"]];
     urlString = [NSString stringWithFormat:BASEURL,urlString];
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data)  {
-        DYNSLog(@"data = %@",data);
+       
+        DYNSLog(@"钱包data = %@",data);
         [self.tableView.mj_footer endRefreshing];
         
         NSDictionary *param = [data objectForKey:@"data"];
@@ -263,15 +277,22 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         }
         NSString *walletString = [NSString stringWithFormat:@"%@",param[@"wallet"]];
         DYNSLog(@"wallet = %@",walletString);
-        if (walletString && walletString.length != 0) {
-            self.moneyDisplay.text =  [NSString stringWithFormat:@"%@",walletString];
-            wallet.wallet = [NSString stringWithFormat:@"%@",walletString];
+        
+
+        
+        NSMutableArray *tempArray = [NSMutableArray array];
+        
+        for (NSDictionary *dic in list) {
+
+            [tempArray addObject:dic];
+            
         }
-        for (NSDictionary *dic in data) {
-            MyWallet *wallet = [[MyWallet alloc] init];
-            [wallet setValuesForKeysWithDictionary:dic];
-            [self.dataArray addObject:wallet];
-        }
+
+        NSMutableArray *dataArr = [[NSMutableArray alloc] init];
+        [dataArr addObjectsFromArray:self.dataArray];
+        [dataArr addObjectsFromArray:tempArray];
+        self.dataArray = dataArr;
+        
         [self.tableView reloadData];
         
     } withFailure:^(id data) {
@@ -281,12 +302,16 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 }
 
 - (void)startDownLoad {
+    
     NSString *url = [NSString stringWithFormat:kMyWalletUrl,[AcountManager manager].userid,@"0"];
+    
     NSString *urlString = [NSString stringWithFormat:BASEURL,url];
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data)  {
-        DYNSLog(@"data = %@",data);
+        DYNSLog(@"我的钱包start data = %@",data);
         [self.tableView.mj_header endRefreshing];
         
+        [self.dataArray removeAllObjects];
+
         if (![[data objectForKey:@"type"] integerValue]) {
             return ;
         }
@@ -305,11 +330,11 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
             self.moneyDisplay.text =  [NSString stringWithFormat:@"%@",walletString];
         }
         for (NSDictionary *dic in list) {
-            MyWallet *wallet = [[MyWallet alloc] init];
-            [wallet setValuesForKeysWithDictionary:dic];
-            self.dataArray = nil;
-            [self.dataArray addObject:wallet];
+            
+            [self.dataArray addObject:dic];
+            
         }
+        
         [self.tableView reloadData];
 
     } withFailure:^(id data) {
@@ -330,6 +355,13 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         make.top.mas_equalTo(self.myWalletTitle.mas_bottom).offset(0);
         make.centerX.mas_equalTo(view.mas_centerX);
 
+    }];
+    [view addSubview:self.YBLabel];
+    [self.YBLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.moneyDisplay.mas_right).offset(1);
+        make.top.mas_equalTo(self.myWalletTitle.mas_bottom).offset(40);
+        make.height.mas_equalTo(@20);
+        make.width.mas_equalTo(@40);
     }];
   
     return view;
@@ -374,26 +406,15 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
 //    if (indexPath.section == 1) {
-        static NSString *cellId = @"cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        }
-        MyWallet *wallet = self.dataArray[indexPath.row];
-        
-        cell.textLabel.text = @"分享收益";
-        cell.textLabel.font = [UIFont systemFontOfSize:14];
-        cell.textLabel.textColor = [UIColor blackColor];
-        cell.detailTextLabel.text = [NSString getLitteLocalDateFormateUTCDate:wallet.createtime];
-        cell.detailTextLabel.textColor = TEXTGRAYCOLOR;
-        cell.detailTextLabel.font = [UIFont systemFontOfSize:14];
-        UILabel *moneyDisplay = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 100, 44)];
-        moneyDisplay.textColor = MAINCOLOR;
-        moneyDisplay.font = [UIFont systemFontOfSize:22];
-        moneyDisplay.text = [NSString stringWithFormat:@"%@",[NSNumber numberWithInt:wallet.amount]] ;
-        cell.accessoryView = moneyDisplay;
-        return cell;
+    
+    MyWalletViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy"];
+    if (!cell) {
+        cell = [[MyWalletViewCell alloc] initWithStyle:0 reuseIdentifier:@"yy"];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    }
+    [cell refreshWithModel:_dataArray[indexPath.row]];
+    
+    return cell;
 }
 - (void)refreshWalletData
 {

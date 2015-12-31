@@ -71,7 +71,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 }
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+40, kSystemWide, kSystemHeight-64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+40, kSystemWide, kSystemHeight-64-40) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }

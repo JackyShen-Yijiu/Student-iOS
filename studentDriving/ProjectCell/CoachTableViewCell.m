@@ -230,7 +230,13 @@
     }
     
     self.carDriveNameLabel.text = coachModel.driveschoolinfo.name;
-    self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",coachModel.Seniority] ;
+   
+    if (coachModel.Seniority) {
+      self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",coachModel.Seniority] ;
+    }else{
+        self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",@"0"] ;
+    }
+    
     if (coachModel.passrate) {
         self.successRateLabel.text = [NSString stringWithFormat:@"通过率:%@%@",coachModel.passrate,@"%"];
     }else {
