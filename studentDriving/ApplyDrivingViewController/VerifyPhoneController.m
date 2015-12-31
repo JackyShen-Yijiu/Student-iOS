@@ -163,6 +163,24 @@
 }
 
 - (void)dealRefer:(UIButton *)sender{
+    
+    if ([_phoneTextField.text isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"手机号为空！"];
+        return;
+    }
+    if ([_realNameTF.text isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"真实姓名为空！"];
+        return;
+    }
+    if (_realNameTF.text.length > 6) {
+        [self showTotasViewWithMes:@"姓名长度不得超过6个字"];
+        return;
+    }
+    
+    if ([_authCodeTextFild.text isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"验证码为空！"];
+        return;
+    }
 
     [SignUpInfoManager signUpInfoSaveRealTelephone:_phoneTextField.text];
     [SignUpInfoManager signUpInfoSaveRealName:_realNameTF.text];
@@ -223,6 +241,23 @@
         make.width.equalTo(self.view);
         make.height.mas_equalTo(49);
     }];
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (textField == _phoneTextField) {
+        NSString *phoneNum = _phoneTextField.text;
+        NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        BOOL isMatch = [pred evaluateWithObject:phoneNum];
+        if (!isMatch) {
+            [self showTotasViewWithMes:@"请输入正确的手机号"];
+            return;
+        }
+    }else if (textField == _realNameTF) {
+        if (textField.text.length > 6) {
+            [self showTotasViewWithMes:@"姓名长度不得超过6个字"];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {

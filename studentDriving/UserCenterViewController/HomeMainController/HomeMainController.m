@@ -222,17 +222,22 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
                 return;
             }
-            if ([data objectForKey:ksubject]) {
-                [NSUserStoreTool storeWithId:[data objectForKey:ksubject] WithKey:ksubject];
+            if ([dataDic objectForKey:@"subject"]) {
+                NSLog(@"heheh %@",[dataDic objectForKey:@"subject"]);
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subject"] WithKey:ksubject];
             }
             
-            if ([data objectForKey:ksubjectTwo]) {
-                [NSUserStoreTool storeWithId:[data objectForKey:ksubjectTwo] WithKey:ksubjectTwo];
+            if ([dataDic objectForKey:@"subjecttwo"]) {
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjecttwo"] WithKey:ksubjectTwo];
             }
             
-            if ([data objectForKey:ksubjectThree]) {
-                [NSUserStoreTool storeWithId:[data objectForKey:ksubjectThree] WithKey:ksubjectThree];
+            if ([dataDic objectForKey:@"subjectthree"]) {
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjectthree"] WithKey:ksubjectThree];
             }
+            
+            NSLog(@"__%@",[AcountManager manager].userSubject.name);
+            NSLog(@"%@",[AcountManager manager].subjecttwo.progress);
+            NSLog(@"__%@",[AcountManager manager].subjectthree.progress);
             
         }else {
             [self showTotasViewWithMes:[data objectForKey:@"msg"]];
@@ -343,6 +348,8 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 break;
                 case 102:
             {
+                NSLog(@"%@",[AcountManager manager].userApplystate);
+                NSLog(@"%@",[AcountManager manager].userSubject.name);
                 if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
                     [mainVC showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
@@ -398,7 +405,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             case 102:
             {
                
-                NSLog(@"%@",[AcountManager manager].userSubject);
+                NSLog(@"%@",[AcountManager manager].userSubject.name);
                 
                 
                 
@@ -409,9 +416,13 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
                 }else if([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
                     [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
-                }else
+                }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目四"]) {
+                    [mainVC showTotasViewWithMes:@"你已经通过科目三,不能再预约了!"];
+                }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目一"])
                 {
-                    [mainVC showTotasViewWithMes:@"你已经通过科目三,不能再预约了"];
+                    [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
+                }else {
+                    [mainVC showTotasViewWithMes:@"报名审核中"];
                 }
             }
                 break;
@@ -425,10 +436,15 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                     
                 } else if([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
                     [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
-                }else
+                }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目一"])
                 {
-                    [mainVC showTotasViewWithMes:@"你已经通过科目三,不能再查看了"];
+                    [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
+                }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目四"]) {
+                    [mainVC showTotasViewWithMes:@"你已经通过科目三,不能再预约了!"];
+                }else {
+                    [mainVC showTotasViewWithMes:@"报名审核中"];
                 }
+
                 
             }
                 break;

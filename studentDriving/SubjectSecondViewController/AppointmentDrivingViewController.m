@@ -491,9 +491,10 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             [self startDownLoad];
         }
     }else {
-        StudentModel *model = self.dataArray[indexPath.row];
+        StudentModel *model = self.stuDataArray[indexPath.row];
         StudentDetailViewController *studentDetail = [[StudentDetailViewController alloc] init];
-        studentDetail.studetnId = model.userid.userId;
+        UserIdModel *userIdModel = model.userid;
+        studentDetail.studetnId = userIdModel.userId;
         [self.navigationController pushViewController:studentDetail animated:YES];
     }
 }
