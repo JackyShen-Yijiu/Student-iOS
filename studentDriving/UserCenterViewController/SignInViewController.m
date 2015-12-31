@@ -30,22 +30,16 @@
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"使用帮助" highTitle:@"使用帮助" target:self action:@selector(helpDidClick) isRightItem:YES];
     
+    [self loadQRCodeImg];
+    
 }
 
 
 - (void)loadQRCodeImg
 {
     
-    NSString *urlString = [NSString stringWithFormat:BASEURL,@""];
-    
-    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data)  {
+    [self.QRCodeImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://101.200.204.240:8181/api/v1/create_qrcode?text=www.baidu.com&size=10"]]];
 
-        NSLog(@"loadQRCodeImg data:%@",data);
-        
-    } withFailure:^(id data) {
-
-    }];
-    
 }
 
 - (void)helpDidClick
@@ -73,5 +67,6 @@
 */
 
 - (IBAction)completeBtnDidClick:(id)sender {
+    [self.navigationController popViewControllerAnimated:YES];
 }
 @end

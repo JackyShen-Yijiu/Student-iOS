@@ -16,12 +16,12 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button setTitle:title forState:UIControlStateNormal];
     [button setTitle:highTitle forState:UIControlStateHighlighted];
-    button.titleLabel.font = [UIFont systemFontOfSize:16];
-    [button setTitleColor:[UIColor colorWithRed:250 green:104 blue:51 alpha:1.0] forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor colorWithRed:250 green:104 blue:51 alpha:1.0] forState:UIControlStateHighlighted];
+    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    [button setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
     
     CGFloat itemX = 0.0;
-    CGFloat itemW = [title sizeWithFont:[UIFont systemFontOfSize:15]].width;
+    CGFloat itemW = [title sizeWithFont:[UIFont systemFontOfSize:14]].width;
     CGFloat itemH = 44;
     if (isRightItem==YES) {
         itemX = 10+5;
@@ -34,15 +34,7 @@
     
     [button addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
     
-    UIView *buview = [[UIView alloc] init];
-    buview.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:target action:action];
-    [buview addGestureRecognizer:tap];
-    buview.backgroundColor = [UIColor clearColor];
-    buview.frame = CGRectMake(0, 0, [title sizeWithFont:[UIFont systemFontOfSize:16]].width+10+5, itemH+8);
-    [buview addSubview:button];
-    
-    return [[UIBarButtonItem alloc] initWithCustomView:buview];
+    return [[UIBarButtonItem alloc] initWithCustomView:button];
     
 }
 
