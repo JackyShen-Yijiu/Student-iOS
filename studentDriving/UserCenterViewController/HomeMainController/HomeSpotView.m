@@ -191,7 +191,7 @@
     for (UILabel *resultLabel in _lableitems) {
         if(resultLabel.tag == i)
         {
-            resultLabel.textColor = [UIColor colorWithHexString:@"ffff00"];
+            resultLabel.textColor = [UIColor colorWithHexString:@"68e6ff"];
         }else
         {
             resultLabel.textColor = [UIColor colorWithHexString:@"fcfcfc"];

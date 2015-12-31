@@ -36,6 +36,7 @@
 #import "NSUserStoreTool.h"
 
 #import <BaiduMapAPI/BMKLocationService.h>
+#import <BaiduMapAPI/BMKGeocodeSearch.h>
 
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
@@ -55,10 +56,11 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 #define systemsH  [[UIScreen mainScreen] bounds].size.height
 #define CARFloat carOffsetX
 
-@interface HomeMainController () <UIScrollViewDelegate,HomeSpotViewDelegate,BMKLocationServiceDelegate>
+@interface HomeMainController () <UIScrollViewDelegate,HomeSpotViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 
 // 定位
 @property (nonatomic, strong) BMKLocationService *locationService;
+@property (nonatomic, strong) BMKGeoCodeSearch *geoCodeSearch;
 
 @property (nonatomic,strong) HomeSpotView *homeSpotView;
 @property (nonatomic,strong) UIScrollView *mainScrollView;
@@ -85,6 +87,12 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
 
 - (void)viewWillDisappear:(BOOL)animated
 {
+    [super viewWillDisappear:animated];
+    
+    self.locationService = nil;
+    self.geoCodeSearch = nil;
+
+    
     [self.navigationController.navigationBar setBackgroundImage:nil
                                                  forBarPosition:UIBarPositionAny
                                                      barMetrics:UIBarMetricsDefault];
@@ -103,7 +111,7 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     
     [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
     [self.navigationController.navigationBar setShadowImage:[UIImage new]];
-    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:22.0]}];
+    [self.navigationController.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName: [UIColor whiteColor],NSFontAttributeName:[UIFont systemFontOfSize:16.0]}];
     [self addLoadSubjectProress];
 }
 
@@ -655,29 +663,85 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     }
 }
 
-#pragma mark - 检查是否有活动
-- (void)checkActivityWithCityName:(NSString *)cityName {
-    
-    NSString *urlString = [NSString stringWithFormat:@"getactivity?cityname=%@",cityName];
-    [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL, urlString] postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        NSLog(@"checkActivityWithCity%@",data);
-    }];
-}
 #pragma mark - 定位功能
 - (void)locationManager {
     
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-    [BMKLocationService setLocationDistanceFilter:10000.0f];
-    
-    self.locationService = [[BMKLocationService alloc] init];
-    self.locationService.delegate = self;
     [self.locationService startUserLocationService];
 }
+#pragma mark 定位成功
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
     
+//    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    
+    [self reverseGeoCodeWithLatitude:userLocation.location.coordinate.latitude longitude:userLocation.location.coordinate.longitude];
+}
+#pragma mark - 反地理编码
+- (BOOL)reverseGeoCodeWithLatitude:(double)latitude
+                         longitude:(double)longitude {
+    
+    CLLocationCoordinate2D point = (CLLocationCoordinate2D){ latitude, longitude };
+    //    CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
+    BMKReverseGeoCodeOption *reverseGeocodeOption = [BMKReverseGeoCodeOption new];
+    reverseGeocodeOption.reverseGeoPoint = point;
+    // 发起反向地理编码
+    BOOL flage = [self.geoCodeSearch reverseGeoCode:reverseGeocodeOption];
+    if (flage) {
+        return YES;
+    }else {
+        return NO;
+    }
+}
+#pragma mark 反地理编码回调
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
+    
+    if (error == BMK_SEARCH_NO_ERROR) {
+        //        NSLog(@"%@",result);
+        BMKAddressComponent *addressComponent = result.addressDetail;
+        //        NSLog(@"addressComponent.city===%@",addressComponent.city);
+        // 检查是否有活动
+//        [self checkActivityWithCityName:addressComponent.city];
+//        [self checkActivityWithCityName:@"beijing"];
+        [self checkActivityWithCityName:@"北京"];
+        
+        // 停止位置更新服务
+        [self.locationService stopUserLocationService];
+    }else {
+        NSLog(@"抱歉，未找到结果");
+    }
+}
+#pragma mark - 检查是否有活动
+- (void)checkActivityWithCityName:(NSString *)cityName {
+    
+    NSString *urlString = [NSString stringWithFormat:@"getactivity"];
+    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+    
+    [JENetwoking startDownLoadWithUrl:url postParam:@{ @"?cityname": cityName } WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSLog(@"df");
+    } withFailure:^(id data) {
+        NSLog(@"jkhjk");
+    }];
 }
 
-#pragma mark - Lazy加载
+#pragma mark - Lazy load
+#pragma mark 地理编码
+- (BMKGeoCodeSearch *)geoCodeSearch {
+    if (!_geoCodeSearch) {
+        _geoCodeSearch = [BMKGeoCodeSearch new];
+        _geoCodeSearch.delegate = self;
+    }
+    return _geoCodeSearch;
+}
+#pragma mark 定位
+- (BMKLocationService *)locationService {
+    if (!_locationService) {
+        [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+        [BMKLocationService setLocationDistanceFilter:10000.0f];
+        _locationService = [[BMKLocationService alloc] init];
+        _locationService.delegate = self;
+    }
+    return _locationService;
+}
+
 - (HomeSpotView *)homeSpotView
 {
     if (!_homeSpotView) {

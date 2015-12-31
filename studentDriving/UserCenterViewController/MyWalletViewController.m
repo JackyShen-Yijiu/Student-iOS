@@ -25,6 +25,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 
 @property (strong, nonatomic) UILabel *myWalletTitle;
 @property (strong, nonatomic) UILabel *moneyDisplay;
+@property (strong, nonatomic) UILabel *YBLabel;
 @property (strong, nonatomic) UIButton *inviteButton;
 @property (strong, nonatomic) UIButton *exchangeButton;
 
@@ -49,7 +50,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     if (_inviteNum == nil) {
         _inviteNum = [[UILabel alloc] init];
         _inviteNum.font = [UIFont systemFontOfSize:14];
-        _inviteNum.text = [NSString stringWithFormat:@"我的邀请码:%@",[AcountManager manager].userInvitationcode];
+        _inviteNum.text = [NSString stringWithFormat:@"我的Y码:%@",[AcountManager manager].userInvitationcode];
     }
     return _inviteNum;
 }
@@ -69,10 +70,19 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     }
     return _moneyDisplay;
 }
+- (UILabel *)YBLabel
+{
+    if (_YBLabel == nil) {
+        _YBLabel = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:16]];
+//        _YBLabel.backgroundColor = [UIColor greenColor];
+        _YBLabel.text = @"YB";
+    }
+    return _YBLabel;
+}
 - (UIButton *)inviteButton {
     if (_inviteButton == nil) {
         _inviteButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_inviteButton setTitle:@"赚积分" forState:UIControlStateNormal];
+        [_inviteButton setTitle:@"邀请好友" forState:UIControlStateNormal];
         [_inviteButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _inviteButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
         _inviteButton.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -87,7 +97,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 - (UIButton *)exchangeButton {
     if (_exchangeButton == nil) {
         _exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_exchangeButton setTitle:@"兑换商品" forState:UIControlStateNormal];
+        [_exchangeButton setTitle:@"积分兑换" forState:UIControlStateNormal];
         [_exchangeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
      
         _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
@@ -102,7 +112,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 - (UILabel *)myWalletTitle {
     if (_myWalletTitle == nil) {
         _myWalletTitle = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:15]];
-        _myWalletTitle.text = @"我的零钱";
+//        _myWalletTitle.text = @"我的零钱";
     }
     return _myWalletTitle;
 }
@@ -121,7 +131,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     // Do any additional setup after loading the view.
 //    [self addSideMenuButton];
     
-    self.title = @"我的钱包";
+    self.title = @"积分";
     self.automaticallyAdjustsScrollViewInsets = YES;
     if ([UIDevice jeSystemVersion] >= 7.0f) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -345,6 +355,13 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         make.top.mas_equalTo(self.myWalletTitle.mas_bottom).offset(0);
         make.centerX.mas_equalTo(view.mas_centerX);
 
+    }];
+    [view addSubview:self.YBLabel];
+    [self.YBLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.moneyDisplay.mas_right).offset(1);
+        make.top.mas_equalTo(self.myWalletTitle.mas_bottom).offset(40);
+        make.height.mas_equalTo(@20);
+        make.width.mas_equalTo(@40);
     }];
   
     return view;
