@@ -46,6 +46,11 @@ static  NSString    *kUserSetting = @"usersetting";
 static  NSString    *kReservationReminder = @"reservationreminder";
 static  NSString    *kNewmessageReminder = @"newmessagereminder";
 
+// 定位到的城市
+static  NSString    *kUserCity = @"kUserCity";
+// 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
+static  NSString    *kUserLocationShowType = @"kUserLocationShowType";
+
 @interface AcountManager ()
 @property (readwrite,copy, nonatomic) NSString *userMobile;
 @property (readwrite,copy, nonatomic) NSString *userName;
@@ -487,6 +492,30 @@ static  NSString    *kNewmessageReminder = @"newmessagereminder";
         dataArray = [MTLJSONAdapter modelsOfClass:BannerModel.class fromJSONArray:array error:&error];
     }
     return dataArray;
+}
+
+// 存储定位到的城市
+- (void)setUserCity:(NSString *)userCity {
+    [NSUserStoreTool storeWithId:userCity WithKey:kUserCity];
+}
+- (NSString *)userCity {
+    
+    if ([NSUserStoreTool getObjectWithKey:kUserCity]) {
+        return [NSUserStoreTool getObjectWithKey:kUserCity];
+    }else {
+        return @"";
+    }
+}
+// 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
+- (void)setUserLocationShowType:(BOOL)userLocationShowType {
+    [NSUserStoreTool storeWithId:@(userLocationShowType) WithKey:kUserLocationShowType];
+}
+- (BOOL)userLocationShowType {
+    if ([NSUserStoreTool getObjectWithKey:kUserLocationShowType]) {
+        return [[NSUserStoreTool getObjectWithKey:kUserLocationShowType] boolValue];
+    }else {
+        return NO;
+    }
 }
 
 - (void)dealloc {

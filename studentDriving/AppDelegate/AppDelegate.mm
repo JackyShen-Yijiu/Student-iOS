@@ -69,7 +69,7 @@
     [DVVOpenControllerFromSideMenu openControllerWithIndex:0];
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
-        [DVVUserManager userNeedLogin];
+        [(UINavigationController *)(self.window.rootViewController) pushViewController:[DVVUserManager loginController] animated:NO];
     }
     
     
