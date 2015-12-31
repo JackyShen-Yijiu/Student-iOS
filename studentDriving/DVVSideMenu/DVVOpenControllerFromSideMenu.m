@@ -20,6 +20,7 @@
 #import "ToastAlertView.h"
 #import "SearchCoachController.h"
 #import "DiscountWalletController.h"
+#import "SignInViewController.h"
 
 @implementation DVVOpenControllerFromSideMenu
 
@@ -108,7 +109,23 @@
             }];
         }
             break;
-
+            
+        case 5:// 签到
+        {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
+            
+            SignInViewController *controller = [SignInViewController new];
+            
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+            
+        }
+            break;
+            
         case 6:// 我
         {
             if (![AcountManager isLogin]) {

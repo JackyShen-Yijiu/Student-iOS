@@ -188,11 +188,22 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 }
 
 - (void)gotoAppStorePageRaisal:(NSString *)AppId {
-//    NSString  * nsStringToOpen = [NSString  stringWithFormat: @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@", nsAppId];
-//    
-//    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:nsStringToOpen]];
-    NSString *str = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/%@",AppId];
+    
+    // 评分
+    NSString *str;
+    
+    if( ([[[UIDevice currentDevice] systemVersion] doubleValue]>=7.0))
+        
+    {
+        str = [NSString stringWithFormat:@"http://itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?id=%@&pageNumber=0&sortOrdering=2&type=Purple+Software&mt=8",AppId];
+    }else
+    {
+        str = [NSString stringWithFormat:
+               @"itms-apps://ax.itunes.apple.com/WebObjects/MZStore.woa/wa/viewContentsUserReviews?type=Purple+Software&id=%@",AppId];
+    }
+    
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    
 }
 
 @end
