@@ -120,16 +120,17 @@
 //}
 
 
-- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
+{
     DYNSLog(@"UILocalNotification = %@",notification);
-    NSString *info = notification.userInfo[@"ConversationChatter"];
-    if (info) {
-        [_main dealInfo:notification.userInfo];
-    }
-#pragma mark - JPush推送
-    [self JPushApplication:application didReceiveLocalNotification:notification];
     
-    return;
+//    NSString *info = notification.userInfo[@"ConversationChatter"];
+//    if (info) {
+//        [_main dealInfo:notification.userInfo];
+//    }
+//#pragma mark - JPush推送
+//    [self JPushApplication:application didReceiveLocalNotification:notification];
+//    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -167,12 +168,12 @@
  {
  "_j_msgid" = 1612910701;
  aps =     {
- alert = "\U60a8\U5df2\U6210\U529f\U62a5\U540d\U9a7e\U6821\Uff0c\U8d76\U5feb\U5f00\U542f\U5b66\U8f66\U4e4b\U65c5\U5427";
- badge = 1;
- sound = "sound.caf";
+   alert = "\U60a8\U5df2\U6210\U529f\U62a5\U540d\U9a7e\U6821\Uff0c\U8d76\U5feb\U5f00\U542f\U5b66\U8f66\U4e4b\U65c5\U5427";
+   badge = 1;
+   sound = "sound.caf";
  };
  data =     {
- userid = 5644b9549aedea5c3e02a4ac;
+   userid = 5644b9549aedea5c3e02a4ac;
  };
  type = userapplysuccess;
  }
@@ -205,6 +206,41 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+
+- (void)didReceiveMessage:(EMMessage *)message
+{
+    
+    NSLog(@"message.messageBodies:%@",message.messageBodies);
+    
+    //发送本地推送
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    
+    notification.fireDate = [NSDate date]; //触发通知的时间
+    
+    notification.alertBody = [NSString stringWithFormat:@"%@",@"你有一条新消息,快点击查看吧"];
+    
+    notification.alertAction = NSLocalizedString(@"打开", @"打开");
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    
+    //发送通知
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        
+    });
+    
+    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount;
+
 }
 
 @end
