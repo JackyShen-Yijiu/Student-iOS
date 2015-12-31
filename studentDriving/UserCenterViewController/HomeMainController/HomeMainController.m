@@ -21,6 +21,7 @@
 #import "HomeAdvantageController.h"
 #import "HomeFavourableController.h"
 #import "HomeRewardController.h"
+#import "DrivingViewController.h"
 
 // 科目一
 #import "QuestionBankViewController.h"
@@ -144,7 +145,6 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
     _homeSpotView.delegate = self;
     [view addSubview:_homeSpotView];
-    
     
     [self.view addSubview:view];
     
@@ -289,8 +289,8 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 break;
                 case 103:
             {
-                HomeRewardController *homeAdvantageVC = [[HomeRewardController alloc] init];
-                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+                DrivingViewController *controller = [DrivingViewController new];
+                [mainVC.navigationController pushViewController:controller animated:YES];
 
             }
                 break;
@@ -850,7 +850,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         }
 
     } withFailure:^(id data) {
-        [self showMsg:@"网络错误"];
+//        [self showMsg:@"网络错误"];
     }];
 }
 

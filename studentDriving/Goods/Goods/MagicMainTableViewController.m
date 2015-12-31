@@ -19,6 +19,8 @@
 #import "JENetwoking.h"
 #import "ToolHeader.h"
 
+static NSString *kMagicShop = @"getmailproduct?index=1&count=10&producttype=0";
+
 
 #define k_Count  3
 #define k_Height 150
@@ -58,9 +60,10 @@
 
 - (void)startDownLoad {
     
-    NSString *urlString = [NSString stringWithFormat:BASEURL,shopListAPI];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kMagicShop];
     NSLog(@"%@",urlString);
-    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+    NSDictionary *parm = @{@"cityname":@"北京"};
+    [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
         if (data == nil) {
             return ;
@@ -80,7 +83,7 @@
                         [self.tableView reloadData];
         
         
-    }];
+    } ];
 
 }
 

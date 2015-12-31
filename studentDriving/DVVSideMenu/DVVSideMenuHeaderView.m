@@ -20,11 +20,13 @@
         [self addSubview:self.drivingNameLabel];
         [self addSubview:self.markLabel];
 //        [self addSubview:self.integralLabel];
+        [self addSubview:self.coinCertificateLabel];
         
         _nameLabel.text = @"用户名";
         _drivingNameLabel.text = @"驾校：未报考";
         _markLabel.text = @"我的Y码：暂无";
 //        [self setIntegralLabelText:@"0"];
+        _coinCertificateLabel.text = @"暂无兑换券";
     }
     return self;
 }
@@ -55,6 +57,7 @@
     CGFloat iconButtonMaxY = CGRectGetMaxY(self.iconButton.frame);
     CGFloat iconButtonMinX = CGRectGetMinX(self.iconButton.frame);
     self.integralLabel.frame = CGRectMake(iconButtonMinX, iconButtonMaxY + 20, labelWidth, 30);
+    self.coinCertificateLabel.frame = CGRectMake(15, iconButtonMaxY + 10, self.bounds.size.width - 15, 30);
 }
 
 #pragma mark - lazy load
@@ -110,9 +113,17 @@
     }
     return _integralMarkLabel;
 }
+- (UILabel *)coinCertificateLabel {
+    if (!_coinCertificateLabel) {
+        _coinCertificateLabel = [UILabel new];
+        _coinCertificateLabel.font = [UIFont systemFontOfSize:16];
+        _coinCertificateLabel.textColor = [UIColor whiteColor];
+    }
+    return _coinCertificateLabel;
+}
 
 - (CGFloat)defaultHeight {
-    return 120;
+    return 130;
 }
 
 /*

@@ -1,5 +1,5 @@
 //
-//  DiscountShopCell.h
+//  DiscountShopDatailController.h
 //  studentDriving
 //
 //  Created by ytzhang on 15/12/31.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "DiscountShopModel.h"
-@interface DiscountShopCell : UITableViewCell
-@property (nonatomic,strong) DiscountShopModel *discountModel;
 
+@interface DiscountShopDatailController : UIViewController
+
+@property (nonatomic,strong)DiscountShopModel *discountShopModel;
 @end

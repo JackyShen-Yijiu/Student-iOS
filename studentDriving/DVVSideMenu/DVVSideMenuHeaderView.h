@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) UILabel *integralLabel;
 @property (nonatomic, strong) UILabel *integralMarkLabel;
+// 兑换券
+@property (nonatomic, strong) UILabel *coinCertificateLabel;
 
 @property(nonatomic, assign) CGFloat defaultHeight;
 

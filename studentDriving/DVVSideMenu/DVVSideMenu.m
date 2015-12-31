@@ -25,6 +25,8 @@
 
 #import "AcountManager.h"
 
+#import "CoinCertificateController.h"
+
 #define AnimateDuration 0.5
 
 @interface DVVSideMenu : UIViewController
@@ -193,6 +195,8 @@
                                  [NSString stringWithFormat:@"%li", couponcount],
                                  [NSString stringWithFormat:@"%li", money] ];
                 [self.tableView reloadData];
+                // 存储兑换券
+                [AcountManager manager].userCoinCertificate = couponcount;
             }
         }
     }];
@@ -220,7 +224,18 @@
         [DVVUserManager userNeedLogin];
     }
 }
-
+#pragma mark 兑换券
+- (void)coinCertificateLabelAction {
+    if (![AcountManager manager].userCoinCertificate) {
+        [self showMsg:@"暂无兑换券"];
+        return ;
+    }
+    CoinCertificateController *ccVC = [CoinCertificateController new];
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+    [naviVC pushViewController:ccVC animated:YES];
+    [self removeSideMenu];
+}
 #pragma mark 方块的点击事件
 - (void)blockAction:(UIButton *)button {
     
@@ -287,14 +302,14 @@
     
     // 将上次点击的单元格，恢复默认
     if (_lastSelectedCell) {
-        _lastSelectedCell.backgroundImageView.image = nil;
-        _lastSelectedCell.iconImageView.image = [UIImage imageNamed:_normalImages[_lastSelectedCell.tag]];
-        _lastSelectedCell.nameLabel.textColor = [UIColor lightGrayColor];
+//        _lastSelectedCell.backgroundImageView.image = nil;
+//        _lastSelectedCell.iconImageView.image = [UIImage imageNamed:_normalImages[_lastSelectedCell.tag]];
+//        _lastSelectedCell.nameLabel.textColor = [UIColor lightGrayColor];
     }
     DVVSideMenuCell *cell = (DVVSideMenuCell *)[tableView cellForRowAtIndexPath:indexPath];
     // 设置本次点击的单元格背景图
-    cell.backgroundImageView.image = [UIImage imageNamed:@"ic_fragment_item_click"];
-    cell.iconImageView.image = [UIImage imageNamed:_selectedImages[indexPath.row]];
+//    cell.backgroundImageView.image = [UIImage imageNamed:@"ic_fragment_item_click"];
+//    cell.iconImageView.image = [UIImage imageNamed:_selectedImages[indexPath.row]];
     cell.nameLabel.textColor = [UIColor whiteColor];
     
     _lastSelectedCell = cell;
@@ -373,6 +388,9 @@
     if (!_headerView) {
         _headerView = [DVVSideMenuHeaderView new];
         [_headerView.iconButton addTarget:self action:@selector(iconButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(coinCertificateLabelAction)];
+        [_headerView.coinCertificateLabel addGestureRecognizer:tapGesture];
+        _headerView.coinCertificateLabel.userInteractionEnabled = YES;
     }
     return _headerView;
 }
@@ -398,6 +416,13 @@
         }];
     }
     return _blockView;
+}
+
+#pragma mark - toast
+- (void)showMsg:(NSString *)message {
+    
+    ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
+    [alertView show];
 }
 
 - (void)didReceiveMemoryWarning {

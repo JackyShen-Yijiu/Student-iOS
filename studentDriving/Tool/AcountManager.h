@@ -52,6 +52,9 @@
 @property (nonatomic, assign) BOOL reservationreminder;
 @property (nonatomic, assign) BOOL newmessagereminder;
 
+// 兑换券
+@property (nonatomic, assign) NSUInteger userCoinCertificate;
+
 + (AcountManager *)manager;
 
 + (AcountManager *)configUserInformationWith:(NSDictionary *)userInformaiton;
