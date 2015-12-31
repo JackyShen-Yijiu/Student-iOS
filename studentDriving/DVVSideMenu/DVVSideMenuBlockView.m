@@ -8,6 +8,7 @@
 
 #import "DVVSideMenuBlockView.h"
 #import "DVVSideMenuBlockViewItemButton.h"
+#import "AcountManager.h"
 
 #define badgeLabelWidth 20
 
@@ -21,7 +22,8 @@
 
 @implementation DVVSideMenuBlockView
 
-- (instancetype)initWithTitleArray:(NSArray *)array {
+- (instancetype)initWithTitleArray:(NSArray *)array
+                   iconNormalArray:(NSArray *)iconNormalArray {
     self = [super init];
     if (self) {
         [array enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -30,8 +32,11 @@
             DVVSideMenuBlockViewItemButton *button = [DVVSideMenuBlockViewItemButton new];
             button.tag = idx;
             [button setTitle:title forState:UIControlStateNormal];
+            
+            [button setImage:[UIImage imageNamed:[iconNormalArray objectAtIndex:idx]] forState:UIControlStateNormal];
+            
             [self addSubview:button];
-            button.backgroundColor = [UIColor clearColor];
+            button.backgroundColor = [UIColor colorWithWhite:1 alpha:0.1];
             [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchDown];
         }];
     }
@@ -68,6 +73,23 @@
     }
 //    UIApplication *application = [UIApplication sharedApplication];
 //    [application setApplicationIconBadgeNumber:unreadCount];
+}
+
+#pragma mark 显示搜索的类型是驾校还是教练
+- (void)setLocationShowType {
+    
+    if (![AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
+        [self setShowTypeWithTitle:@"查找驾校"];
+    }else {
+        [self setShowTypeWithTitle:@"查找教练"];
+    }
+}
+- (void)setShowTypeWithTitle:(NSString *)title {
+    for (DVVSideMenuBlockViewItemButton *button in self.subviews) {
+        if (1 == button.tag) {
+            [button setTitle:title forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (void)buttonAction:(UIButton *)button {

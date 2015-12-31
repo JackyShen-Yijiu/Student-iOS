@@ -69,7 +69,7 @@
     [DVVOpenControllerFromSideMenu openControllerWithIndex:0];
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
-        [DVVUserManager userNeedLogin];
+        [(UINavigationController *)(self.window.rootViewController) pushViewController:[DVVUserManager loginController] animated:NO];
     }
     
 #pragma mark - 处理工具及样式
@@ -81,7 +81,7 @@
     [self JPushApplication:application didFinishLaunchingWithOptions:launchOptions];
     
     //注册环信聊天
-    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
+//    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
 //    [YBWelcomeController removeSavedVersion];
 //    if ([YBWelcomeController isShowWelcome]) {

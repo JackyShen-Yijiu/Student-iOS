@@ -15,11 +15,14 @@ typedef void(^DVVSideMenuBlockViewSelectedBlock)(UIButton *button);
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *iconNormalArray;
 
-- (instancetype)initWithTitleArray:(NSArray *)array;
+- (instancetype)initWithTitleArray:(NSArray *)array
+                   iconNormalArray:(NSArray *)iconNormalArray;
 
 - (void)dvvSideMenuBlockViewItemSelected:(DVVSideMenuBlockViewSelectedBlock)handle;
 
 // 显示、隐藏小红点
--(void)setupUnreadMessageCount;
+- (void)setupUnreadMessageCount;
+// 显示搜索的类型是驾校还是教练
+- (void)setLocationShowType;
 
 @end

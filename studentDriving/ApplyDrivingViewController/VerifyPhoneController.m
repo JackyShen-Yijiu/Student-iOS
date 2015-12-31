@@ -50,6 +50,8 @@
         _phoneTextField.layer.borderWidth = 1;
         _phoneTextField.font  = [UIFont systemFontOfSize:15];
         _phoneTextField.textColor = RGBColor(153, 153, 153);
+        _phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
+
     }
     return _phoneTextField;
 }
@@ -80,6 +82,7 @@
         _authCodeTextFild.layer.borderWidth = 1;
         _authCodeTextFild.font  = [UIFont systemFontOfSize:15];
         _authCodeTextFild.textColor = RGBColor(153, 153, 153);
+        _authCodeTextFild.keyboardType = UIKeyboardTypeNumberPad;
     }
     return _authCodeTextFild;
 }

@@ -16,7 +16,10 @@
 #import <MJRefresh.h>
 #import "UIColor+Hex.h"
 #import "DVVSideMenu.h"
+#import "DiscountShopController.h"
+
 #import "MyWalletViewCell.h"
+
 
 static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=%@&count=10";
 

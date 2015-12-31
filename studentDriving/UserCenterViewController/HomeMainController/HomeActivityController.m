@@ -28,7 +28,6 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"一步活动";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
@@ -40,15 +39,39 @@
     
     CGFloat progressBarHeight = 2.f;
     CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
+    navigationBarBounds.size.height = 2;
     CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height, navigationBarBounds.size.width, progressBarHeight);
     self.progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
     self.progressView.progressBarView.backgroundColor = [UIColor orangeColor];
     self.progressView.hidden = YES;
     
+    [self addBackButton];
+    
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.activityUrl]];
-    
-    
     [self.webView loadRequest:request];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void)addBackButton {
+    
+    CGRect backframe= CGRectMake(15, 20, 35, 35);
+    UIButton* backButton= [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = backframe;
+    [backButton setImage:[UIImage imageNamed:@"iconfont-guanbi2"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+}
+
+#pragma mark - action
+- (void)backButtonAction {
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - webView delegate
@@ -72,7 +95,7 @@
 #pragma mark - lazy load
 - (UIWebView *)webView {
     if (!_webView) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
         _webView.hidden = YES;
     }
     return _webView;
