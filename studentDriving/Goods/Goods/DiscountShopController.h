@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface DiscountShopController : UIViewController
+@property (nonatomic,strong) NSMutableArray *disCountListArray;
 
 @end

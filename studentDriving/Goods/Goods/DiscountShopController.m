@@ -9,7 +9,12 @@
 #import "DiscountShopController.h"
 
 #import "DiscountShopCell.h"
+#import "AcountManager.h"
+#import "ToolHeader.h"
+#import "DiscountShopModel.h"
+#import "DiscountShopDatailController.h"
 
+static NSString *const kDiscountListUrl = @"getmailproduct?index=1&count=10&producttype=1";
 @interface DiscountShopController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic,strong) UITableView *discountView;
 
@@ -26,16 +31,56 @@
     self.discountView.delegate = self;
     self.discountView.dataSource = self;
     [self.view addSubview:self.discountView];
+    self.disCountListArray = [NSMutableArray array];
     
+    
+    [self startDownLoad];
     
 }
+
+- (void)startDownLoad {
+    
+    NSString *url = [NSString stringWithFormat:kDiscountListUrl];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,url];
+    NSDictionary *parm = @{@"cityname":@"北京"};
+    [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data)  {
+        DYNSLog(@"我的钱包start data = %@",data);
+        
+        DYNSLog(@"data = %@",data);
+        if (data == nil) {
+            return ;
+        }
+        NSDictionary *dataDic = [data objectForKey:@"data"];
+        
+        {
+            NSArray *array = [dataDic objectForKey:@"mainlist"];
+            for (NSDictionary *dic in array)
+            {
+                DiscountShopModel *mainDodel = [[DiscountShopModel alloc] init];
+                [mainDodel setValuesForKeysWithDictionary:dic];
+                [self.disCountListArray addObject:mainDodel];
+            }
+        }
+        
+        [self.discountView reloadData];
+        
+        
+    } withFailure:^(id data) {
+        
+        
+    }];
+    
+    
+    }
+
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return self.disCountListArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellID = @"discountID";
@@ -44,6 +89,7 @@
         cell = [[DiscountShopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         
     }
+    cell.discountModel = self.disCountListArray[indexPath.row];
     return cell;
 }
 - (void)didReceiveMemoryWarning {
@@ -57,11 +103,17 @@
 - (UITableView *)discountView
 {
     if (_discountView == nil) {
-        _discountView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height -64) style:UITableViewStylePlain];
+        _discountView = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, self.view.frame.size.width, self.view.frame.size.height - 10) style:UITableViewStylePlain];
+        _discountView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
     }
     
     return _discountView;
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    DiscountShopDatailController *discountDatailVC = [[DiscountShopDatailController alloc] init];
+    discountDatailVC.discountShopModel = self.disCountListArray[indexPath.row];
+    [self.navigationController pushViewController:discountDatailVC animated:YES];
+    
+}
 @end

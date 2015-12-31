@@ -207,6 +207,13 @@
                 _coachCardButton.tag = 101;
                 [_coachCardButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
                 
+                CGFloat telescopeH = 72;
+                CGFloat telescopeW = 44;
+                // 加载telescopeView
+                UIImageView *telescopeView = [[UIImageView alloc] initWithFrame:CGRectMake(systemsW - 50, systemsH - 230, telescopeW, telescopeH)];
+                telescopeView.image = [UIImage imageNamed:@"望远镜"];
+                [self addSubview:telescopeView];
+                
                 [self addSubview:_schoolCardButton];
                 [self addSubview:_signButton];
                 [self addSubview:_textImageView];

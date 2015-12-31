@@ -73,6 +73,7 @@
     if (_discountNameLabel == nil){
     _discountNameLabel = [WMUITool initWithTextColor:[UIColor colorWithHexString:@"333333"] withFont:[UIFont systemFontOfSize:12]];
     _discountNameLabel.text = @"获得北京一步互联网驾校";
+//        _discountNameLabel.text = _discountWalletModel.
 //    _discountNameLabel.backgroundColor = [UIColor greenColor];
     }
     return _discountNameLabel;

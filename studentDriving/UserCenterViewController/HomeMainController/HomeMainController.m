@@ -21,6 +21,7 @@
 #import "HomeAdvantageController.h"
 #import "HomeFavourableController.h"
 #import "HomeRewardController.h"
+#import "DrivingViewController.h"
 
 // 科目一
 #import "QuestionBankViewController.h"
@@ -257,8 +258,8 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
                 break;
                 case 103:
             {
-                HomeRewardController *homeAdvantageVC = [[HomeRewardController alloc] init];
-                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+                DrivingViewController *controller = [DrivingViewController new];
+                [mainVC.navigationController pushViewController:controller animated:YES];
 
             }
                 break;

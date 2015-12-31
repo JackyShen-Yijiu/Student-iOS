@@ -191,9 +191,9 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
     if (!cell) {
         cell = [[DiscountWalletCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+//        cell.discountWalletModel = self.dataArray[indexPath.row];
     }
 
-    
     return cell;
 }
 
@@ -243,7 +243,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
 - (UIButton *)exchangeButton {
     if (_exchangeButton == nil) {
         _exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_exchangeButton setTitle:@"兑换劵兑换" forState:UIControlStateNormal];
+        [_exchangeButton setTitle:@"兑换" forState:UIControlStateNormal];
         [_exchangeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
         _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
