@@ -20,5 +20,8 @@
 
 @property (strong, nonatomic)  HomeMainController *main;
 
+
+@property (nonatomic , assign) BOOL isSendLocationNotification;
+
 @end
 

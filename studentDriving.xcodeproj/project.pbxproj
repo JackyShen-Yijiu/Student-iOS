@@ -23,6 +23,14 @@
 		06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C61C2643BE0067AD16 /* VirtualViewController.m */; };
 		06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
+		550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 550C07331C33FF700051433B /* MyWalletViewCell.m */; };
+		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; };
+		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
+		5510F8801C34F58F00A431CD /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87F1C34F58F00A431CD /* SystemConfiguration.framework */; };
+		5510F8821C34F5A700A431CD /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8811C34F5A700A431CD /* CoreGraphics.framework */; };
+		5510F8841C34F5C700A431CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8831C34F5C700A431CD /* Foundation.framework */; };
+		5510F8861C34F5D800A431CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8851C34F5D800A431CD /* UIKit.framework */; };
+		5510F8881C34F5EB00A431CD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8871C34F5EB00A431CD /* Security.framework */; };
 		554641BC1C25098C00A55326 /* ChooseBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641BA1C25098C00A55326 /* ChooseBtnView.m */; };
 		554641BF1C25099700A55326 /* KindlyReminderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641BD1C25099700A55326 /* KindlyReminderView.m */; };
 		554641C21C2509A000A55326 /* SignSuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641C01C2509A000A55326 /* SignSuccessView.m */; };
@@ -584,6 +592,15 @@
 		06EC02C81C264DAB0067AD16 /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageController.h; sourceTree = "<group>"; };
 		06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		550C07321C33FF700051433B /* MyWalletViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewCell.h; sourceTree = "<group>"; };
+		550C07331C33FF700051433B /* MyWalletViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewCell.m; sourceTree = "<group>"; };
+		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		5510F87D1C34F52300A431CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
+		5510F87F1C34F58F00A431CD /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5510F8811C34F5A700A431CD /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5510F8831C34F5C700A431CD /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		5510F8851C34F5D800A431CD /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		5510F8871C34F5EB00A431CD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		554641BA1C25098C00A55326 /* ChooseBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseBtnView.m; sourceTree = "<group>"; };
 		554641BB1C25098C00A55326 /* ChooseBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseBtnView.h; sourceTree = "<group>"; };
 		554641BD1C25099700A55326 /* KindlyReminderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KindlyReminderView.m; sourceTree = "<group>"; };
@@ -1457,6 +1474,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5510F8881C34F5EB00A431CD /* Security.framework in Frameworks */,
+				5510F8861C34F5D800A431CD /* UIKit.framework in Frameworks */,
+				5510F8841C34F5C700A431CD /* Foundation.framework in Frameworks */,
+				5510F8821C34F5A700A431CD /* CoreGraphics.framework in Frameworks */,
+				5510F8801C34F58F00A431CD /* SystemConfiguration.framework in Frameworks */,
+				5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */,
+				5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */,
 				D5604CBD1BF65E1F0020F0D7 /* Social.framework in Frameworks */,
 				D5604CBB1BF65E030020F0D7 /* Twitter.framework in Frameworks */,
 				D5604CB91BF65DD50020F0D7 /* libstdc++.6.0.9.tbd in Frameworks */,
@@ -1559,6 +1583,13 @@
 		BEF77C06A3D4E352E446D8FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				5510F8871C34F5EB00A431CD /* Security.framework */,
+				5510F8851C34F5D800A431CD /* UIKit.framework */,
+				5510F8831C34F5C700A431CD /* Foundation.framework */,
+				5510F8811C34F5A700A431CD /* CoreGraphics.framework */,
+				5510F87F1C34F58F00A431CD /* SystemConfiguration.framework */,
+				5510F87D1C34F52300A431CD /* CoreTelephony.framework */,
+				5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */,
 				D5604CBC1BF65E1F0020F0D7 /* Social.framework */,
 				D5604CBA1BF65E030020F0D7 /* Twitter.framework */,
 				D5604CB71BF65DB20020F0D7 /* Accounts.framework */,
@@ -2773,6 +2804,8 @@
 				D5C240051BE9FB8A00832CF3 /* BLAVplayerCell.m */,
 				556F425C1C310F2D0052DE73 /* ExamDetailCell.h */,
 				556F425D1C310F2D0052DE73 /* ExamDetailCell.m */,
+				550C07321C33FF700051433B /* MyWalletViewCell.h */,
+				550C07331C33FF700051433B /* MyWalletViewCell.m */,
 			);
 			path = ProjectCell;
 			sourceTree = "<group>";
@@ -3394,6 +3427,7 @@
 				D588B0E51BDDDC14000C5D6F /* CoachHeadCell.m in Sources */,
 				D5604C851BF656F30020F0D7 /* DXChatBarMoreView.m in Sources */,
 				D588AFCA1BDDDAAB000C5D6F /* ExamClassModel.m in Sources */,
+				550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */,
 				D5604B861BF656C50020F0D7 /* BaseTableViewCell.m in Sources */,
 				55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */,
 				D588B1141BDDDC2F000C5D6F /* UIColor+RGBColor.m in Sources */,
@@ -3716,8 +3750,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -3740,7 +3774,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
+				PROVISIONING_PROFILE = "186730fd-fa68-4099-8433-b970523decc9";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -3763,8 +3797,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -3780,7 +3814,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
+				PROVISIONING_PROFILE = "186730fd-fa68-4099-8433-b970523decc9";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -3793,8 +3827,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3813,7 +3847,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cc5057e9-6b66-4d7d-982b-c1da0f271c92";
+				PROVISIONING_PROFILE = "186730fd-fa68-4099-8433-b970523decc9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3824,8 +3858,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3844,7 +3878,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "cc5057e9-6b66-4d7d-982b-c1da0f271c92";
+				PROVISIONING_PROFILE = "186730fd-fa68-4099-8433-b970523decc9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

@@ -122,6 +122,7 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     self.view.backgroundColor = [UIColor clearColor];
     [self addSideMenuButton];
     
+    NSString *name = [AcountManager manager].userSubject.name;
     
     
     _mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 174)];
