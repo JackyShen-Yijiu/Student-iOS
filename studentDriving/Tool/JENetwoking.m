@@ -167,12 +167,18 @@
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     manager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy;
     manager.requestSerializer.timeoutInterval = 30.0f;
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html", @"text/json", @"text/javascript",@"application/x-javascript",@"text/plain",@"image/gif", @"image/png",nil];
+    
     if (method == JENetworkingRequestMethodGet) {
+        
         DYNSLog(@"token = %@",[AcountManager manager].userToken);
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
+        
         }
         [manager GET:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            
             if (responseObject == nil) {
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
                 [alertView show];
@@ -181,6 +187,7 @@
             if (_completion) {
                 _completion(responseObject);
             }
+            
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
             DYNSLog(@"error = %@",error);
             ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];

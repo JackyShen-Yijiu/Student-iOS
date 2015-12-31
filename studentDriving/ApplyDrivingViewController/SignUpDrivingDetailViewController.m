@@ -7,7 +7,6 @@
 //
 
 #import "SignUpDrivingDetailViewController.h"
-#import "ToolHeader.h"
 #import "DrivingDetailCell.h"
 #import "MapViewController.h"
 #import "BLPFAlertView.h"
@@ -19,85 +18,35 @@
 #import "SignUpInfoManager.h"
 #import "CoachModel.h"
 #import "CoachDetailViewController.h"
+#import "LoginViewController.h"
 #import "UIColor+Hex.h"
-
 static NSString *const kDrivingDetailUrl = @"driveschool/getschoolinfo/%@";
 
 static NSString *const kGetDrivingCoachUrl = @"getschoolcoach/%@/%@";
 
-
-static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
-
+static NSString *const kCheckMyLoveDriving = @"userinfo/favoriteschool";
+static NSString *const kAddLoveDriving = @"userinfo/favoriteschool/%@";
+static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 
 @interface SignUpDrivingDetailViewController () <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,DrivingSelectedCoachCellDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIButton *phoneButton;
 @property (strong, nonatomic) UIImageView *tableHeadImageView;
+@property (nonatomic, strong) UIImageView *heartImageView;
 
 @property (strong, nonatomic)UIButton *signUpButton;
 
 @property (strong, nonatomic) NSMutableArray *dataArray;
 @property (strong, nonatomic) NSArray *coachArray;
-
 @end
 @implementation SignUpDrivingDetailViewController
-- (NSMutableArray *)dataArray {
-    if (_dataArray == nil) {
-        _dataArray = [[NSMutableArray alloc] init];
-    }
-    return _dataArray;
-}
-- (UIButton *)signUpButton{
-    if (_signUpButton == nil) {
-        _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _signUpButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
-        _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
-        [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
-        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-            [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
-        }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-            [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
-        }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-            [_signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
-        }
 
-        [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-    }
-    return _signUpButton;
-}
-- (UIButton *)phoneButton {
-    if (_phoneButton == nil) {
-        _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneButton.frame = CGRectMake(0, 0, 20, 20);
-        
-        [_phoneButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
-        [_phoneButton addTarget:self action:@selector(dealPhone:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _phoneButton;
-}
-- (UITableView *)tableView {
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64-49) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-    }
-    return _tableView;
-}
-- (void)configBarItem {
-    
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -15;
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneButton];
-    self.navigationItem.rightBarButtonItems = @[rightItem];
-}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     [self configBarItem];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"驾校详情";
@@ -115,27 +64,43 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     [self startDownLoad];
     
     [self startDownLoadCoach];
-
     
+    // 检查是否已经收藏
+    [self checkCollection];
+}
+
+
+- (void)loginSuccess {
+    DYNSLog(@"login");
+    if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+        [self.signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
+        self.signUpButton.userInteractionEnabled = NO;
+        
+    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+        [self.signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
+        self.signUpButton.userInteractionEnabled = NO;
+        
+    }else {
+        [self.signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+    }
 }
 - (void)startDownLoadCoach {
     
-    NSString *urlString = [NSString stringWithFormat:kGetDrivingCoachUrl,@"56163c376816a9741248b7f9",[NSNumber numberWithInt:1]];
+    NSString *urlString = [NSString stringWithFormat:kGetDrivingCoachUrl,self.schoolId,[NSNumber numberWithInt:1]];
     NSString *getCoachUrlString = [NSString stringWithFormat:BASEURL,urlString];
     [JENetwoking startDownLoadWithUrl:getCoachUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"coachData = %@",data);
         NSDictionary *param = data;
+        NSError *error = nil;
+        
         NSNumber *type = param[@"type"];
         NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
         if (type.integerValue == 1) {
-            NSError *error = nil;
             self.coachArray = [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:param[@"data"] error:&error];
             [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }else {
-        kShowFail(msg)
+            kShowFail(msg)
         }
-        
-       
     }];
 }
 - (void)startDownLoad {
@@ -147,25 +112,23 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         DYNSLog(@"result = %@",data);
         
         NSDictionary *param = data;
-        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
         NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
         if (type.integerValue == 1) {
             NSDictionary *dic = data[@"data"];
             NSError *error = nil;
             DrvingDetailModel *drvingDetailModel = [MTLJSONAdapter modelOfClass:DrvingDetailModel.class fromJSONDictionary:dic error:&error];
+            DYNSLog(@"error = %@",error);
             [self.dataArray addObject:drvingDetailModel];
             [self.tableView reloadData];
+            [self.tableHeadImageView sd_setImageWithURL:[NSURL URLWithString:drvingDetailModel.logoimg.originalpic]placeholderImage:[UIImage imageNamed:@"bigImage.png"]];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            
-            [self.tableHeadImageView sd_setImageWithURL:[NSURL URLWithString:drvingDetailModel.logoimg.originalpic] placeholderImage:[UIImage imageNamed:@"bigImage.png"]];
         }else {
             [MBProgressHUD hideHUDForView:self.view animated:NO];
             kShowFail(msg)
         }
         
-      
-
-
+        
     }];
 }
 - (UIImageView *)tableHeadImageView {
@@ -174,14 +137,14 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         _tableHeadImageView.userInteractionEnabled = YES;
         UIImageView *maskView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 240-129, kSystemWide, 129)];
         maskView.image = [UIImage imageNamed:@"渐变"];
-//        _tableHeadImageView.image = [UIImage imageNamed:@"av.jpg"];
+        //        _tableHeadImageView.image = [UIImage imageNamed:@"av.jpg"];
         [_tableHeadImageView addSubview:maskView];
         
         UIView *heart = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide-15-50, 240-24, 50, 50)];
         heart.backgroundColor = [UIColor whiteColor];
         heart.layer.masksToBounds = YES;
-        heart.layer.cornerRadius = heart.frame.size.width *0.5;
         heart.userInteractionEnabled = YES;
+        heart.layer.cornerRadius = heart.frame.size.width *0.5;
         [_tableHeadImageView addSubview:heart];
         
         UIView *mainColorView =  [[UIView alloc] initWithFrame:CGRectMake(2, 2, 46, 46)];
@@ -190,14 +153,21 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         mainColorView.userInteractionEnabled = YES;
         [heart addSubview:mainColorView];
         
-        UIImageView *heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
-        heartImageView.image = [UIImage imageNamed:@"心Inner"];
-        heartImageView.userInteractionEnabled = YES;
-        [mainColorView addSubview:heartImageView];
+        _heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
+        _heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
+        //        _heartImageView.backgroundColor = [UIColor blackColor];
+        _heartImageView.userInteractionEnabled = YES;
+        [mainColorView addSubview:_heartImageView];
+        //        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
+        //        [mainColorView addGestureRecognizer:tapGesture];
         
-        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
-        [mainColorView addGestureRecognizer:tapGesture];
-
+        UIButton *heartButton = [UIButton new];
+        heartButton.frame = heart.frame;
+        [heartButton.layer setMasksToBounds:YES];
+        [heartButton.layer setCornerRadius:heart.frame.size.width *0.5];
+        [heartButton addTarget:self action:@selector(dealLike:) forControlEvents:UIControlEventTouchDown];
+        [_tableHeadImageView addSubview:heartButton];
+        heartButton.backgroundColor = [UIColor clearColor];
         
     }
     return _tableHeadImageView;
@@ -221,7 +191,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     DrvingDetailModel *model = self.dataArray.firstObject;
-    
+    DYNSLog(@"model = %@",model.name);
     if (indexPath.row == 0) {
         static NSString *cellId = @"Addresscell";
         DrivingDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -231,7 +201,7 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.drivingNameLabel.text = model.name;
-        cell.locationLabel.text = [NSString stringWithFormat:@"地址%@",model.address];
+        cell.locationLabel.text = [NSString stringWithFormat:@"地址:%@",model.address];
         return cell;
     }else if (indexPath.row == 1) {
         static NSString *cellId = @"InformationCell";
@@ -251,7 +221,6 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.drivingIntroductionDetail.text = model.introduction;
-
         return cell;
     }else if (indexPath.row == 3) {
         static NSString *cellId = @"DrivingSelected";
@@ -294,7 +263,6 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
             [SignUpInfoManager signUpInfoSaveRealCoach:param];
         }
     }
-
 }
 #pragma mark - delegateCoach
 
@@ -306,24 +274,77 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
     [self.navigationController pushViewController:coachDetail animated:YES];
     
 }
+
+
 - (void)dealPhone:(UIButton *)sender {
+    DrvingDetailModel *model = self.dataArray.firstObject;
     
-    DrvingDetailModel *drvingDetailModel = [self.dataArray lastObject];
     
-    [BLPFAlertView showAlertWithTitle:@"联系驾校" message:drvingDetailModel.phone cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+    [BLPFAlertView showAlertWithTitle:@"联系驾校" message:model.phone cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         NSLog(@"index = %ld",selectedOtherButtonIndex);
         if (selectedOtherButtonIndex == 0) {
-            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",drvingDetailModel.phone];
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",model.phone];
             [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         }else {
             return ;
         }
     }];
+}
+
+#pragma mark 检测是否收藏
+- (void)checkCollection {
     
+    if (![AcountManager isLogin]) {
+        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+        LoginViewController *login = [[LoginViewController alloc] init];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        return;
+    }
+    
+    NSString *kSaveUrl = [NSString stringWithFormat:kCheckMyLoveDriving];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
+    DYNSLog(@"urlstring = %@",urlString);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        DYNSLog(@"data = %@",data);
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            
+            if ([[data objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *array = [data objectForKey:@"data"];
+                for (int i = 0; i < array.count; i++) {
+                    NSString *schoolId = [array[i] objectForKey:@"schoolid"];
+                    if ([schoolId isEqualToString:self.schoolId]) {
+                        _heartImageView.image = [UIImage imageNamed:@"心"];
+                        _heartImageView.tag = 1;
+                        return ;
+                    }
+                }
+            }
+        }
+    }];
 }
 
 - (void)dealLike:(UITapGestureRecognizer *)tap {
-    NSString *kSaveUrl = [NSString stringWithFormat:kSaveMyLoveDriving,self.schoolId];
+    
+    if (![AcountManager isLogin]) {
+        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+        LoginViewController *login = [[LoginViewController alloc] init];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        return;
+    }
+    
+    if (_heartImageView.tag) {
+        [self deleteLoveSchool];
+    }else {
+        [self addLoveSchool];
+    }
+}
+
+#pragma mark 添加喜欢的驾校
+- (void)addLoveSchool {
+    
+    NSString *kSaveUrl = [NSString stringWithFormat:kAddLoveDriving,self.schoolId];
     NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
     DYNSLog(@"urlstring = %@",urlString);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodPut withCompletion:^(id data) {
@@ -331,11 +352,93 @@ static NSString *const kSaveMyLoveDriving = @"userinfo/favoriteschool/%@";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
+            _heartImageView.image = [UIImage imageNamed:@"心"];
             [self showTotasViewWithMes:@"收藏成功"];
+            _heartImageView.tag = 1;
         }else {
-            [self showTotasViewWithMes:param[@"msg"]];
-            
+            [self showTotasViewWithMes:@"收藏失败"];
         }
     }];
+    
+}
+
+#pragma mark 删除喜欢的驾校
+- (void)deleteLoveSchool {
+    
+    NSString *kSaveUrl = [NSString stringWithFormat:kDeleteLoveDriving,self.schoolId];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
+    DYNSLog(@"urlstring = %@",urlString);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
+        DYNSLog(@"data = %@",data);
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            _heartImageView.image = [UIImage imageNamed:@"心Inner"];
+            [self showTotasViewWithMes:@"已取消收藏"];
+            _heartImageView.tag = 0;
+        }else {
+            [self showTotasViewWithMes:@"取消收藏失败"];
+        }
+    }];
+}
+
+#pragma mark - lazy load
+- (NSMutableArray *)dataArray {
+    if (_dataArray == nil) {
+        _dataArray = [[NSMutableArray alloc] init];
+    }
+    return _dataArray;
+}
+- (UIButton *)signUpButton{
+    if (_signUpButton == nil) {
+        _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _signUpButton.backgroundColor = [UIColor orangeColor];
+        _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
+        [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
+        if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+            [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
+            _signUpButton.userInteractionEnabled = NO;
+            
+        }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+            [_signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
+            _signUpButton.userInteractionEnabled = NO;
+            
+        }else {
+            [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+        }
+        
+        [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        
+    }
+    return _signUpButton;
+}
+- (UIButton *)phoneButton {
+    if (_phoneButton == nil) {
+        _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _phoneButton.frame = CGRectMake(0, 0, 20, 20);
+        
+        [_phoneButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
+        [_phoneButton addTarget:self action:@selector(dealPhone:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _phoneButton;
+}
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64-49) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+    }
+    return _tableView;
+}
+- (void)configBarItem {
+    
+    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    negativeSpacer.width = -15;
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneButton];
+    self.navigationItem.rightBarButtonItems = @[rightItem];
+}
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end

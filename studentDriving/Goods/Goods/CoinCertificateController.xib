@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CoinCertificateController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="恭喜您，验证成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VCA-BV-DdR">
+                    <rect key="frame" x="0.0" y="80" width="320" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="ykZ-pg-czM"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="0.22485943063808689" blue="0.23895648952073922" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="iconfont-wancheng" translatesAutoresizingMaskIntoConstraints="NO" id="yBR-Ve-LSY">
+                    <rect key="frame" x="110" y="109" width="100" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="mzO-kE-9Fn"/>
+                        <constraint firstAttribute="height" constant="100" id="r9g-Ne-RRV"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdX-QS-kFh">
+                    <rect key="frame" x="8" y="239" width="150" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.36590616274145293" blue="0.10618228467241564" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="e9L-Rj-Pgx"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="兑换商城券">
+                        <color key="titleColor" red="0.9861215734980755" green="0.98622328487303978" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dR7-70-50z">
+                    <rect key="frame" x="162" y="239" width="150" height="40"/>
+                    <color key="backgroundColor" red="1" green="0.36590616269999998" blue="0.1061822847" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="80L-mm-JGl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="兑换商城券">
+                        <color key="titleColor" red="0.98612157349999996" green="0.9862232849" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商城兑换券说明：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC3-Es-4le">
+                    <rect key="frame" x="8" y="302" width="304" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="0.22485943059999999" blue="0.23895648950000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="立减100元说明：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zq-2y-jqv">
+                    <rect key="frame" x="8" y="344" width="304" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="0.22485943059999999" blue="0.23895648950000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择立减100元，可以在你报名时抵扣100元现金。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aV-tr-Pcw">
+                    <rect key="frame" x="36" y="366" width="276" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.01960294957" green="0.019669349749999999" blue="0.01930205477" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="温馨提示：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EqA-pt-Ude">
+                    <rect key="frame" x="8" y="386" width="304" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="1" green="0.22485943059999999" blue="0.23895648950000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="本次验证福利只有一次选择的机会，请您慎重选择。本活动最终解释权归北京一步科技有限公司所有！" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLt-14-NKA">
+                    <rect key="frame" x="36" y="403" width="276" height="36"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="E7X-K3-LVy"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.01960294957" green="0.019669349749999999" blue="0.01930205477" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择兑换券可以在积分商城里兑换您喜欢的商品。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrN-zo-fEF">
+                    <rect key="frame" x="36" y="324" width="276" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.019602949570583828" green="0.019669349747474696" blue="0.019302054771505921" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="VCA-BV-DdR" secondAttribute="trailing" id="337-kX-RO4"/>
+                <constraint firstAttribute="trailing" secondItem="dR7-70-50z" secondAttribute="trailing" constant="8" id="8Hw-dl-sSt"/>
+                <constraint firstItem="dR7-70-50z" firstAttribute="leading" secondItem="VdX-QS-kFh" secondAttribute="trailing" constant="4" id="8sn-eB-KPa"/>
+                <constraint firstItem="VdX-QS-kFh" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="Cnc-fy-Dmr"/>
+                <constraint firstItem="VCA-BV-DdR" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="80" id="LZK-Yc-R9b"/>
+                <constraint firstItem="dR7-70-50z" firstAttribute="width" secondItem="VdX-QS-kFh" secondAttribute="width" id="Ndz-PS-b5N"/>
+                <constraint firstItem="dLt-14-NKA" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="36" id="Qtt-Qy-dqF"/>
+                <constraint firstItem="yBR-Ve-LSY" firstAttribute="top" secondItem="VCA-BV-DdR" secondAttribute="bottom" constant="8" id="UJj-4O-m7A"/>
+                <constraint firstItem="yBR-Ve-LSY" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ZQQ-Cy-hPz"/>
+                <constraint firstItem="VdX-QS-kFh" firstAttribute="top" secondItem="yBR-Ve-LSY" secondAttribute="bottom" constant="30" id="eej-Pj-7mt"/>
+                <constraint firstItem="dR7-70-50z" firstAttribute="top" secondItem="yBR-Ve-LSY" secondAttribute="bottom" constant="30" id="fBa-ik-xlY"/>
+                <constraint firstItem="VCA-BV-DdR" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fKi-W6-CcZ"/>
+                <constraint firstItem="dR7-70-50z" firstAttribute="leading" secondItem="VdX-QS-kFh" secondAttribute="trailing" constant="4" id="ulc-Lk-j2T"/>
+                <constraint firstAttribute="trailing" secondItem="dLt-14-NKA" secondAttribute="trailing" constant="8" id="v8J-X9-tnp"/>
+            </constraints>
+            <point key="canvasLocation" x="457" y="312"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iconfont-wancheng" width="70" height="70"/>
+    </resources>
+</document>

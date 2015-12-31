@@ -46,10 +46,13 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     easemobAppKey = @"black-cat#yibuxuecheprod";
     easemobApnsCertName = @"productionPush";
     
-    EMError *error =  [[EaseMob sharedInstance] registerSDKWithAppKey:easemobAppKey
-                                                             apnsCertName:easemobApnsCertName
-                                        otherConfig:@{kSDKConfigEnableConsoleLogger:@YES}];
-    DYNSLog(@"error = %@",error.description);
+//    EMError *error =  [[EaseMob sharedInstance] registerSDKWithAppKey:easemobAppKey
+//                                                             apnsCertName:easemobApnsCertName
+//                                        otherConfig:@{kSDKConfigEnableConsoleLogger:@YES}];
+//    DYNSLog(@"error = %@",error.description);
+    [[EaseMob sharedInstance] registerSDKWithAppKey:@"yikaojiuguo#yikaojiuguo"
+                                       apnsCertName:easemobApnsCertName];
+    
     
     // 登录成功后，自动去取好友列表
     // SDK获取结束后，会回调

@@ -29,4 +29,15 @@
 #import "UIColor+Hex.h"
 #import "UIViewController+Method.h"
 #import "MBProgressHUD.h"
+
+/**
+ *  根据城市名获取用户所在的城市是以驾校为主还是以教练为主
+ */
+typedef NS_ENUM(NSInteger, kLocationShowType){
+    // 驾校
+    kLocationShowTypeDriving = 0,
+    // 教练
+    kLocationShowTypeCoach,
+};
+
 #endif /* EaseMobSDK_PrefixHeader_pch */

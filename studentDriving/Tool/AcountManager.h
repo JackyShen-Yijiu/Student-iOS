@@ -43,10 +43,17 @@
 @property (readonly,strong, nonatomic) SubjectModel *userSubject;
 @property (readonly, strong, nonatomic) SubjectTwoModel *subjecttwo;
 @property (readonly,strong, nonatomic) SubjectThreeModel *subjectthree;
+// 定位到的城市
+@property (nonatomic, copy) NSString *userCity;
+// 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
+@property (nonatomic, assign) BOOL userLocationShowType;
 
 // 设置
 @property (nonatomic, assign) BOOL reservationreminder;
 @property (nonatomic, assign) BOOL newmessagereminder;
+
+// 兑换券
+@property (nonatomic, assign) NSUInteger userCoinCertificate;
 
 + (AcountManager *)manager;
 

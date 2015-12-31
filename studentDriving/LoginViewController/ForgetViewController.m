@@ -51,6 +51,8 @@ static NSString *const kchangePassword = @"kchangePassword";
         _phoneNumTextField.textColor = RGBColor(153, 153, 153);
         _phoneNumTextField.layer.borderWidth = 1;
         _phoneNumTextField.layer.borderColor = RGBColor(230, 230, 230).CGColor;
+        _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
+
     }
     return _phoneNumTextField;
 }
@@ -63,6 +65,8 @@ static NSString *const kchangePassword = @"kchangePassword";
         _confirmTextField.textColor = RGBColor(153, 153, 153);
         _confirmTextField.layer.borderWidth = 1;
         _confirmTextField.layer.borderColor = RGBColor(230, 230, 230).CGColor;
+        _confirmTextField.keyboardType = UIKeyboardTypeNumberPad;
+
     }
     return _confirmTextField;
 }

@@ -10,6 +10,7 @@
 #import "ToolHeader.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
+#import "AFNetworkActivityLogger.h"
 
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
 #define kSystemHeight [UIScreen mainScreen].bounds.size.height
@@ -27,11 +28,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    self.title = @"一步活动";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
+    
     
     _webviewProgress = [[NJKWebViewProgress alloc] init];
     self.webView.delegate = _webviewProgress;
@@ -39,16 +41,38 @@
     self.webviewProgress.progressDelegate = self;
     
     CGFloat progressBarHeight = 2.f;
-    CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
-    CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height, navigationBarBounds.size.width, progressBarHeight);
+    CGRect barFrame = CGRectMake(0, 0, kSystemWide, progressBarHeight);
     self.progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
     self.progressView.progressBarView.backgroundColor = [UIColor orangeColor];
     self.progressView.hidden = YES;
     
+    [self addBackButton];
+    
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.activityUrl]];
-    
-    
     [self.webView loadRequest:request];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.navigationController setNavigationBarHidden:NO];
+}
+
+- (void)addBackButton {
+    
+    CGRect backframe= CGRectMake(15, 20, 35, 35);
+    UIButton* backButton= [UIButton buttonWithType:UIButtonTypeCustom];
+    backButton.frame = backframe;
+    [backButton setImage:[UIImage imageNamed:@"iconfont-guanbi2"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backButton];
+}
+
+#pragma mark - action
+- (void)backButtonAction {
+    
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - webView delegate
@@ -58,21 +82,25 @@
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     DYNSLog(@"startLoad");
+    
     self.progressView.hidden = NO;
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
     _webView.hidden = NO;
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     DYNSLog(@"error");
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self showTotasViewWithMes:@"加载失败"];
 }
 
 #pragma mark - lazy load
 - (UIWebView *)webView {
     if (!_webView) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
         _webView.hidden = YES;
     }
     return _webView;

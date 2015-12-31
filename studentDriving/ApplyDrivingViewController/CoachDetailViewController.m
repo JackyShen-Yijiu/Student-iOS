@@ -529,6 +529,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodPut withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
         NSDictionary *param = data;
+        [self showTotasViewWithMes:[param objectForKey:@"msg"]];
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             _heartImageView.image = [UIImage imageNamed:@"心"];
