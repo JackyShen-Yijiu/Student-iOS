@@ -19,6 +19,7 @@
 #import "JENetwoking.h"
 #import "ToastAlertView.h"
 #import "SearchCoachController.h"
+#import "DiscountWalletController.h"
 
 @implementation DVVOpenControllerFromSideMenu
 
@@ -122,6 +123,36 @@
             [naviVC pushViewController:controller animated:YES];
         }
             break;
+        case 10:// 兑换劵
+        {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
+            
+            DiscountWalletController *controller = [DiscountWalletController new];
+            
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+        }
+            break;
+        case 11:// 积分商城
+        {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
+            
+            MyWalletViewController *controller = [MyWalletViewController new];
+            
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+
+        }
+            break;
+
             
         default:
             break;

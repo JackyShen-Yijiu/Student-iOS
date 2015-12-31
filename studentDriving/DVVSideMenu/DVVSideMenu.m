@@ -12,6 +12,9 @@
 #import "DVVSideMenuFooterView.h"
 #import "DVVSideMenuBlockView.h"
 
+#import "MyWalletViewController.h"
+#import "DiscountWalletController.h"
+
 #import "UIButton+WebCache.h"
 #import "AcountManager.h"
 #import "DVVUserManager.h"
@@ -300,6 +303,17 @@
 //    _selectedIdx = indexPath.row;
 //    // 移除sideMenu（sideMenu移除后，会调用openViewController:打开相应窗体）
 //    [self removeSideMenu];
+    if (1 == indexPath.row) {
+        [DVVOpenControllerFromSideMenu openControllerWithIndex:10];
+        // 移除sideMenu
+        [self removeSideMenu];
+    }
+    if (0 == indexPath.row) {
+        [DVVOpenControllerFromSideMenu openControllerWithIndex:11];
+        // 移除sideMenu
+        [self removeSideMenu];
+    }
+
 }
 
 #pragma mark - config layout

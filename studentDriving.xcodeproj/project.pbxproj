@@ -10,6 +10,11 @@
 		06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06073D831C251BF60058B372 /* HomeFavourableController.m */; };
 		06073D871C251C300058B372 /* HomeRewardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06073D861C251C300058B372 /* HomeRewardController.m */; };
 		060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060FC6A51C27CB030039DDBB /* RegistNoteController.m */; };
+		0647A5B61C34BB8700DBB8A3 /* DiscountShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */; };
+		0647A5B91C34C1DE00DBB8A3 /* DiscountShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B81C34C1DE00DBB8A3 /* DiscountShopCell.m */; };
+		0647A5BC1C34FE5F00DBB8A3 /* DiscountWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5BB1C34FE5F00DBB8A3 /* DiscountWalletController.m */; };
+		0647A5BF1C3509F700DBB8A3 /* DiscountWalletModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5BE1C3509F700DBB8A3 /* DiscountWalletModel.m */; };
+		0647A5C51C35135F00DBB8A3 /* DiscountWalletCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5C41C35135F00DBB8A3 /* DiscountWalletCell.m */; };
 		066BFB181C23A2C3002A1DD8 /* HomeMainController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB131C23A2C3002A1DD8 /* HomeMainController.m */; };
 		066BFB191C23A2C3002A1DD8 /* HomeMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB151C23A2C3002A1DD8 /* HomeMainView.m */; };
 		066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */; };
@@ -563,6 +568,16 @@
 		06073D861C251C300058B372 /* HomeRewardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeRewardController.m; sourceTree = "<group>"; };
 		060FC6A41C27CB030039DDBB /* RegistNoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistNoteController.h; sourceTree = "<group>"; };
 		060FC6A51C27CB030039DDBB /* RegistNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistNoteController.m; sourceTree = "<group>"; };
+		0647A5B41C34BB8700DBB8A3 /* DiscountShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopController.h; sourceTree = "<group>"; };
+		0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountShopController.m; sourceTree = "<group>"; };
+		0647A5B71C34C1DE00DBB8A3 /* DiscountShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopCell.h; sourceTree = "<group>"; };
+		0647A5B81C34C1DE00DBB8A3 /* DiscountShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountShopCell.m; sourceTree = "<group>"; };
+		0647A5BA1C34FE5F00DBB8A3 /* DiscountWalletController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountWalletController.h; sourceTree = "<group>"; };
+		0647A5BB1C34FE5F00DBB8A3 /* DiscountWalletController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountWalletController.m; sourceTree = "<group>"; };
+		0647A5BD1C3509F700DBB8A3 /* DiscountWalletModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountWalletModel.h; sourceTree = "<group>"; };
+		0647A5BE1C3509F700DBB8A3 /* DiscountWalletModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountWalletModel.m; sourceTree = "<group>"; };
+		0647A5C31C35135F00DBB8A3 /* DiscountWalletCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountWalletCell.h; sourceTree = "<group>"; };
+		0647A5C41C35135F00DBB8A3 /* DiscountWalletCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountWalletCell.m; sourceTree = "<group>"; };
 		066BFB121C23A2C3002A1DD8 /* HomeMainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainController.h; sourceTree = "<group>"; };
 		066BFB131C23A2C3002A1DD8 /* HomeMainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainController.m; sourceTree = "<group>"; };
 		066BFB141C23A2C3002A1DD8 /* HomeMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeMainView.h; sourceTree = "<group>"; };
@@ -1492,6 +1507,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0647A5B31C34BB5500DBB8A3 /* DiscountShop */ = {
+			isa = PBXGroup;
+			children = (
+				0647A5B41C34BB8700DBB8A3 /* DiscountShopController.h */,
+				0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */,
+				0647A5B71C34C1DE00DBB8A3 /* DiscountShopCell.h */,
+				0647A5B81C34C1DE00DBB8A3 /* DiscountShopCell.m */,
+				0647A5C31C35135F00DBB8A3 /* DiscountWalletCell.h */,
+				0647A5C41C35135F00DBB8A3 /* DiscountWalletCell.m */,
+				0647A5BA1C34FE5F00DBB8A3 /* DiscountWalletController.h */,
+				0647A5BB1C34FE5F00DBB8A3 /* DiscountWalletController.m */,
+				0647A5BD1C3509F700DBB8A3 /* DiscountWalletModel.h */,
+				0647A5BE1C3509F700DBB8A3 /* DiscountWalletModel.m */,
+			);
+			name = DiscountShop;
+			sourceTree = "<group>";
+		};
 		066BFB111C23A29F002A1DD8 /* HomeMainController */ = {
 			isa = PBXGroup;
 			children = (
@@ -2874,6 +2906,7 @@
 		D5D50EAF1BFA205000F54097 /* Goods */ = {
 			isa = PBXGroup;
 			children = (
+				0647A5B31C34BB5500DBB8A3 /* DiscountShop */,
 				D5D50EB01BFA205000F54097 /* DetailIntroduceCell.h */,
 				D5D50EB11BFA205000F54097 /* DetailIntroduceCell.m */,
 				D5D50EB21BFA205000F54097 /* DetailIntroduceCell.xib */,
@@ -3363,6 +3396,7 @@
 				D5604C901BF656F30020F0D7 /* MessageModel.m in Sources */,
 				D588AFC21BDDDAAB000C5D6F /* Logoimg.m in Sources */,
 				D5C240031BE9F79B00832CF3 /* BLAVPlayerViewController.m in Sources */,
+				0647A5B61C34BB8700DBB8A3 /* DiscountShopController.m in Sources */,
 				D965CAB51C239E2E00DCD094 /* DVVCycleShowImagesView.m in Sources */,
 				554641C21C2509A000A55326 /* SignSuccessView.m in Sources */,
 				D5604B8C1BF656C50020F0D7 /* EMNavigationController.m in Sources */,
@@ -3413,6 +3447,7 @@
 				D588AFCD1BDDDAAB000C5D6F /* AppointmentCoachTimeInfoModel.m in Sources */,
 				55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */,
 				D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */,
+				0647A5B91C34C1DE00DBB8A3 /* DiscountShopCell.m in Sources */,
 				D5604B411BF656C50020F0D7 /* EMCDDeviceManager+Microphone.m in Sources */,
 				D96D1BF71C2BD47900F1C282 /* DVVUserManager.m in Sources */,
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
@@ -3457,6 +3492,7 @@
 				D5604C8F1BF656F30020F0D7 /* EMChatViewCell.m in Sources */,
 				D588B1101BDDDC2F000C5D6F /* UIView+CalculateUIView.m in Sources */,
 				D5D50EDB1BFA205000F54097 /* LTBottomView.m in Sources */,
+				0647A5C51C35135F00DBB8A3 /* DiscountWalletCell.m in Sources */,
 				D52638591BDF205C00ADC2C7 /* ApplycoachinfoModel.m in Sources */,
 				D5604B4E1BF656C50020F0D7 /* MWPhotoBrowser.m in Sources */,
 				D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */,
@@ -3567,6 +3603,7 @@
 				D588B0D21BDDDC14000C5D6F /* UserCenterCell.m in Sources */,
 				D5604B851BF656C50020F0D7 /* UIViewController+HUD.m in Sources */,
 				D5604B891BF656C50020F0D7 /* EMRemarkImageView.m in Sources */,
+				0647A5BC1C34FE5F00DBB8A3 /* DiscountWalletController.m in Sources */,
 				D5604CCD1BF840C20020F0D7 /* RealtimeSearchUtil.m in Sources */,
 				D588B1121BDDDC2F000C5D6F /* JEPhotoPickManger.m in Sources */,
 				D588B0E31BDDDC14000C5D6F /* AppointmentCollectionViewCell.m in Sources */,
@@ -3657,6 +3694,7 @@
 				D588AFD01BDDDAAB000C5D6F /* MyAppointmentCoachModel.m in Sources */,
 				D51256B11BE1D005002717DA /* UserIdModel.m in Sources */,
 				554641BC1C25098C00A55326 /* ChooseBtnView.m in Sources */,
+				0647A5BF1C3509F700DBB8A3 /* DiscountWalletModel.m in Sources */,
 				D5604C7E1BF656F30020F0D7 /* ChatViewController+Category.m in Sources */,
 				D5604B7C1BF656C50020F0D7 /* EMVoiceConverter.mm in Sources */,
 				554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */,
