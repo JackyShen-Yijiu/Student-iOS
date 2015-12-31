@@ -23,6 +23,10 @@
 		06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C61C2643BE0067AD16 /* VirtualViewController.m */; };
 		06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
+		4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB821C3538D7001CF897 /* SignInViewController.m */; };
+		4761DB851C3538D7001CF897 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4761DB831C3538D7001CF897 /* SignInViewController.xib */; };
+		4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB8B1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m */; };
+		4761DB8F1C354AA0001CF897 /* SignInHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */; };
 		550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 550C07331C33FF700051433B /* MyWalletViewCell.m */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -592,6 +596,13 @@
 		06EC02C61C2643BE0067AD16 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualViewController.m; sourceTree = "<group>"; };
 		06EC02C81C264DAB0067AD16 /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageController.h; sourceTree = "<group>"; };
 		06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
+		4761DB811C3538D7001CF897 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		4761DB821C3538D7001CF897 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		4761DB831C3538D7001CF897 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		4761DB8A1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+JGBarButtonItem.h"; sourceTree = "<group>"; };
+		4761DB8B1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+JGBarButtonItem.m"; sourceTree = "<group>"; };
+		4761DB8D1C354AA0001CF897 /* SignInHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInHelpViewController.h; sourceTree = "<group>"; };
+		4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInHelpViewController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		550C07321C33FF700051433B /* MyWalletViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewCell.h; sourceTree = "<group>"; };
 		550C07331C33FF700051433B /* MyWalletViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewCell.m; sourceTree = "<group>"; };
@@ -2632,6 +2643,11 @@
 				D512569B1BDF602B002717DA /* CommonAddressViewController.m */,
 				D9A46DCA1C25049900271747 /* SweepCodeSignInController.h */,
 				D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */,
+				4761DB811C3538D7001CF897 /* SignInViewController.h */,
+				4761DB821C3538D7001CF897 /* SignInViewController.m */,
+				4761DB831C3538D7001CF897 /* SignInViewController.xib */,
+				4761DB8D1C354AA0001CF897 /* SignInHelpViewController.h */,
+				4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */,
 			);
 			path = UserCenterViewController;
 			sourceTree = "<group>";
@@ -3079,6 +3095,8 @@
 				D9B7F1291C255F3400D1A143 /* CirclePoint.m */,
 				D9B7F12A1C255F3400D1A143 /* CircularMotion.h */,
 				D9B7F12B1C255F3400D1A143 /* CircularMotion.m */,
+				4761DB8A1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.h */,
+				4761DB8B1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m */,
 			);
 			path = CircularMotion;
 			sourceTree = "<group>";
@@ -3301,6 +3319,7 @@
 				D5604BCA1BF656C50020F0D7 /* chatBar_more_card@2x.png in Resources */,
 				D5604B971BF656C50020F0D7 /* VoiceSearchFeedback001.png in Resources */,
 				D5604BC51BF656C50020F0D7 /* call_silence_h.png in Resources */,
+				4761DB851C3538D7001CF897 /* SignInViewController.xib in Resources */,
 				D5604BC61BF656C50020F0D7 /* call_silence_h@2x.png in Resources */,
 				D5604C081BF656C50020F0D7 /* chatBar_more_photo@2x.png in Resources */,
 				D5604BC01BF656C50020F0D7 /* call_out@2x.png in Resources */,
@@ -3640,6 +3659,7 @@
 				D96D1BCC1C2B858400F1C282 /* AppDelegate.mm in Sources */,
 				D5604B6D1BF656C50020F0D7 /* PSTGridLayoutItem.m in Sources */,
 				D5604B781BF656C50020F0D7 /* TTGlobalUICommon.m in Sources */,
+				4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */,
 				D965CAAC1C239D9F00DCD094 /* DrivingTableHeaderView.m in Sources */,
 				D5604B5B1BF656C50020F0D7 /* NSData+EMImageContentType.m in Sources */,
 				D5C2403D1BEF6E0400832CF3 /* VipserverModel.m in Sources */,
@@ -3691,6 +3711,7 @@
 				D588AFC41BDDDAAB000C5D6F /* CoachModel.m in Sources */,
 				D588B13A1BDDDC65000C5D6F /* RegisterViewController.m in Sources */,
 				D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */,
+				4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */,
 				D588AFD01BDDDAAB000C5D6F /* MyAppointmentCoachModel.m in Sources */,
 				D51256B11BE1D005002717DA /* UserIdModel.m in Sources */,
 				554641BC1C25098C00A55326 /* ChooseBtnView.m in Sources */,
@@ -3699,6 +3720,7 @@
 				D5604B7C1BF656C50020F0D7 /* EMVoiceConverter.mm in Sources */,
 				554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */,
 				D5D50EE71BFA205000F54097 /* ShopMainModel.m in Sources */,
+				4761DB8F1C354AA0001CF897 /* SignInHelpViewController.m in Sources */,
 				D588B04D1BDDDB71000C5D6F /* MyLoveCoachViewController.m in Sources */,
 				D5D50ED61BFA205000F54097 /* DetailPriceCell.m in Sources */,
 				D5604C7F1BF656F30020F0D7 /* ChatViewController.m in Sources */,

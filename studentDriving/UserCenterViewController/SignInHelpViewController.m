@@ -8,15 +8,29 @@
 
 #import "SignInHelpViewController.h"
 
-@interface SignInHelpViewController ()
-
+@interface SignInHelpViewController ()<UIWebViewDelegate>
+@property (nonatomic , weak) UIWebView *webView;
 @end
 
 @implementation SignInHelpViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title = @"使用帮助";
+    
+    
+    CGFloat height = self.view.frame.size.height;
+    UIWebView *webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, height)];
+    webView.delegate = self;
+    self.webView = webView;
+    [self.view addSubview:webView];
+
+    NSURLRequest *request =[NSURLRequest requestWithURL:[NSURL URLWithString:_url]];
+    webView.scalesPageToFit=YES;
+    webView.backgroundColor = [UIColor whiteColor];
+    [webView loadRequest:request];
+    
 }
 
 - (void)didReceiveMemoryWarning {

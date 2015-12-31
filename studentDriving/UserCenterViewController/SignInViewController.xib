@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInViewController">
             <connections>
+                <outlet property="QRCodeImageView" destination="u7v-n3-Vma" id="bg7-HV-fPY"/>
+                <outlet property="completeBtn" destination="Opw-wm-oZl" id="Zji-Ex-2KO"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -13,7 +16,37 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="u7v-n3-Vma">
+                    <rect key="frame" x="140" y="140" width="320" height="320"/>
+                    <animations/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Opw-wm-oZl">
+                    <rect key="frame" x="0.0" y="560" width="600" height="40"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.96258491277694702" green="0.41662129759788513" blue="0.12426943331956863" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="A8R-Y9-f5y"/>
+                    </constraints>
+                    <state key="normal" title="完成">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="completeBtnDidClick:" destination="-1" eventType="touchUpInside" id="RHL-Xo-dMv"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="u7v-n3-Vma" secondAttribute="trailing" constant="140" id="7aB-3a-5KI"/>
+                <constraint firstItem="u7v-n3-Vma" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="140" id="K2C-DK-bPL"/>
+                <constraint firstItem="u7v-n3-Vma" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="140" id="Ovl-2v-EPf"/>
+                <constraint firstAttribute="bottom" secondItem="Opw-wm-oZl" secondAttribute="bottom" id="Qkf-vE-YjL"/>
+                <constraint firstItem="Opw-wm-oZl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="TIj-7Q-eNQ"/>
+                <constraint firstAttribute="bottom" secondItem="u7v-n3-Vma" secondAttribute="bottom" constant="140" id="nYn-i6-GBe"/>
+                <constraint firstAttribute="trailing" secondItem="Opw-wm-oZl" secondAttribute="trailing" id="yw8-mh-IQe"/>
+            </constraints>
         </view>
     </objects>
 </document>
