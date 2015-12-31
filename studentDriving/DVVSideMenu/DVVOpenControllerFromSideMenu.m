@@ -112,10 +112,10 @@
             
         case 5:// 签到
         {
-//            if (![AcountManager isLogin]) {
-//                [DVVUserManager userNeedLogin];
-//                break;
-//            }
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
             
             SignInViewController *controller = [SignInViewController new];
             
