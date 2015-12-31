@@ -51,6 +51,9 @@ static  NSString    *kUserCity = @"kUserCity";
 // 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
 static  NSString    *kUserLocationShowType = @"kUserLocationShowType";
 
+// 兑换券
+static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
+
 @interface AcountManager ()
 @property (readwrite,copy, nonatomic) NSString *userMobile;
 @property (readwrite,copy, nonatomic) NSString *userName;
@@ -478,6 +481,15 @@ static  NSString    *kUserLocationShowType = @"kUserLocationShowType";
     [NSUserStoreTool removeObjectWithKey:ksubject];
     [NSUserStoreTool removeObjectWithKey:ksubjectThree];
     [NSUserStoreTool removeObjectWithKey:ksubjectTwo];
+    
+    
+    [NSUserStoreTool removeObjectWithKey:kUserCity];
+    [NSUserStoreTool removeObjectWithKey:kUserLocationShowType];
+    
+    [NSUserStoreTool removeObjectWithKey:kReservationReminder];
+    [NSUserStoreTool removeObjectWithKey:kNewmessageReminder];
+    
+    [NSUserStoreTool removeObjectWithKey:kUserCoinCertificate];
 }
 
 + (void)saveUserBanner:(NSArray *)dataArray {
@@ -515,6 +527,17 @@ static  NSString    *kUserLocationShowType = @"kUserLocationShowType";
         return [[NSUserStoreTool getObjectWithKey:kUserLocationShowType] boolValue];
     }else {
         return NO;
+    }
+}
+// 兑换券
+- (void)setUserCoinCertificate:(NSUInteger)userCoinCertificate {
+    [NSUserStoreTool storeWithId:@(userCoinCertificate) WithKey:kUserCoinCertificate];
+}
+- (NSUInteger)userCoinCertificate {
+    if ([NSUserStoreTool getObjectWithKey:kUserCoinCertificate]) {
+        return [[NSUserStoreTool getObjectWithKey:kUserCoinCertificate] integerValue];
+    }else {
+        return 0;
     }
 }
 

@@ -556,6 +556,8 @@
 		D96D1C031C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1C021C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m */; };
 		D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */; };
 		D9A5DF541C35128B009DF18A /* SearchCoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DF531C35128B009DF18A /* SearchCoachController.m */; };
+		D9A5DF5E1C35288A009DF18A /* CoinCertificateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DF5C1C35288A009DF18A /* CoinCertificateController.m */; };
+		D9A5DF5F1C35288A009DF18A /* CoinCertificateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A5DF5D1C35288A009DF18A /* CoinCertificateController.xib */; };
 		D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */; };
 		D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1291C255F3400D1A143 /* CirclePoint.m */; };
 		D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F12B1C255F3400D1A143 /* CircularMotion.m */; };
@@ -1464,6 +1466,9 @@
 		D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SweepCodeSignInController.m; sourceTree = "<group>"; };
 		D9A5DF521C35128B009DF18A /* SearchCoachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCoachController.h; sourceTree = "<group>"; };
 		D9A5DF531C35128B009DF18A /* SearchCoachController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCoachController.m; sourceTree = "<group>"; };
+		D9A5DF5B1C35288A009DF18A /* CoinCertificateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinCertificateController.h; sourceTree = "<group>"; };
+		D9A5DF5C1C35288A009DF18A /* CoinCertificateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinCertificateController.m; sourceTree = "<group>"; };
+		D9A5DF5D1C35288A009DF18A /* CoinCertificateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinCertificateController.xib; sourceTree = "<group>"; };
 		D9B7F1241C254ECC00D1A143 /* YBBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseNavigationController.h; sourceTree = "<group>"; };
 		D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseNavigationController.m; sourceTree = "<group>"; };
 		D9B7F1281C255F3400D1A143 /* CirclePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CirclePoint.h; sourceTree = "<group>"; };
@@ -1520,6 +1525,9 @@
 				0647A5BB1C34FE5F00DBB8A3 /* DiscountWalletController.m */,
 				0647A5BD1C3509F700DBB8A3 /* DiscountWalletModel.h */,
 				0647A5BE1C3509F700DBB8A3 /* DiscountWalletModel.m */,
+				D9A5DF5B1C35288A009DF18A /* CoinCertificateController.h */,
+				D9A5DF5C1C35288A009DF18A /* CoinCertificateController.m */,
+				D9A5DF5D1C35288A009DF18A /* CoinCertificateController.xib */,
 			);
 			name = DiscountShop;
 			sourceTree = "<group>";
@@ -3241,6 +3249,7 @@
 				D5604C1F1BF656C50020F0D7 /* chat_sender_audio_playing_003@2x.png in Resources */,
 				D5D50EE11BFA205000F54097 /* MagicMainTableViewCell.xib in Resources */,
 				D5604BD01BF656C50020F0D7 /* chatBar_more_faceSelected@2x.png in Resources */,
+				D9A5DF5F1C35288A009DF18A /* CoinCertificateController.xib in Resources */,
 				D5604BF91BF656C50020F0D7 /* chatBar_colorMore_photo@2x.png in Resources */,
 				D5604BDA1BF656C50020F0D7 /* chat_location_preview@2x.png in Resources */,
 				D5604BEB1BF656C50020F0D7 /* chatBar_record.png in Resources */,
@@ -3622,6 +3631,7 @@
 				D5D50EDA1BFA205000F54097 /* InfoModel.m in Sources */,
 				D51256C31BE2542C002717DA /* ConfirmSubjectOneCell.m in Sources */,
 				D51256BD1BE22181002717DA /* ComplainTableViewCell.m in Sources */,
+				D9A5DF5E1C35288A009DF18A /* CoinCertificateController.m in Sources */,
 				D5604B801BF656C50020F0D7 /* NSDateFormatter+Category.m in Sources */,
 				D965CAA91C239D9F00DCD094 /* DrivingCycleShowViewModel.m in Sources */,
 				D5604B5D1BF656C50020F0D7 /* UIImage+EMGIF.m in Sources */,

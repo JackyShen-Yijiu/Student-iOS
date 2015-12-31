@@ -10,6 +10,7 @@
 #import "ToolHeader.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
+#import "AFNetworkActivityLogger.h"
 
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
 #define kSystemHeight [UIScreen mainScreen].bounds.size.height
@@ -27,10 +28,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
+    
     
     _webviewProgress = [[NJKWebViewProgress alloc] init];
     self.webView.delegate = _webviewProgress;
@@ -38,9 +41,7 @@
     self.webviewProgress.progressDelegate = self;
     
     CGFloat progressBarHeight = 2.f;
-    CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
-    navigationBarBounds.size.height = 2;
-    CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height, navigationBarBounds.size.width, progressBarHeight);
+    CGRect barFrame = CGRectMake(0, 0, kSystemWide, progressBarHeight);
     self.progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
     self.progressView.progressBarView.backgroundColor = [UIColor orangeColor];
     self.progressView.hidden = YES;
@@ -81,14 +82,18 @@
 }
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     DYNSLog(@"startLoad");
+    
     self.progressView.hidden = NO;
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
     _webView.hidden = NO;
+    
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     DYNSLog(@"error");
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     [self showTotasViewWithMes:@"加载失败"];
 }
 

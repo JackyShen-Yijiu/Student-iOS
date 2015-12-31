@@ -145,7 +145,6 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
     _homeSpotView.delegate = self;
     [view addSubview:_homeSpotView];
     
-    
     [self.view addSubview:view];
     
     // 点击时的回调
@@ -803,7 +802,7 @@ static NSString *const kgetMyProgress = @"/userinfo/getmyprogress";
         }
 
     } withFailure:^(id data) {
-        [self showMsg:@"网络错误"];
+//        [self showMsg:@"网络错误"];
     }];
 }
 
