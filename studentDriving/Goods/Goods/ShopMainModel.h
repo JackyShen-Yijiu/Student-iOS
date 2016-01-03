@@ -18,4 +18,6 @@
 @property (nonatomic,assign) int  buycount;
 @property (nonatomic,strong) NSString *detailsimg;
 @property (nonatomic,assign) int is_scanconsumption;
+
+@property (nonatomic,strong) NSString *detailurl;
 @end
