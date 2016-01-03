@@ -78,7 +78,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         
         if ([self.modifyNameTextField.text length]>6) {
             
-            kShowFail(@"最多不超过14个字");
+            kShowFail(@"最多不超过6个字");
             return;
         }
         
