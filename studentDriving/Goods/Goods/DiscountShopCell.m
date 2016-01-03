@@ -9,6 +9,7 @@
 #import "DiscountShopCell.h"
 #import "WMUITool.h"
 #import <Masonry.h>
+#import "UIImageView+EMWebCache.h"
 
 @interface DiscountShopCell()
 @property (nonatomic,strong) UIView *backView;
@@ -52,21 +53,7 @@
 }
 - (void)createCellUI
 {
-   
-//    [self.contentView addSubview:self.backView];
-//    
-//    [self.backView addSubview:self.imageView];
-//    
-//    [self.imageView addSubview:self.bgView];
-//    [self.bgView addSubview:self.shopNumLabel];
-//    [self.bgView addSubview:self.shopAddressLabel];
-//    [self.bgView addSubview:self.shopPriceLabel];
-//    [self.bgView addSubview:self.shopAreaLabel];
-//    [self.bgView addSubview:self.shopDidtanceLable];
-//    [self.bgView addSubview:self.shopPeoleLabel];
-//    [self.bgView addSubview:self.lineImageView];
-//    [self.bgView addSubview:self.shopLeftLabel];
-    
+       
     [self.contentView addSubview:self.shopImageView];
     [self.shopImageView addSubview:self.bgView];
     [self.bgView addSubview:self.shopNumLabel];
@@ -102,13 +89,13 @@
         make.top.mas_equalTo(self.shopNumLabel.mas_bottom).offset(10);
         make.left.mas_equalTo(self.bgView.mas_left).offset(20);
         make.height.mas_equalTo(@10);
-        make.width.mas_equalTo(@80);
+        make.width.mas_equalTo(@200);
     }];
     [self.shopPriceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.shopAddressLabel.mas_bottom).offset(10);
         make.left.mas_equalTo(self.bgView.mas_left).offset(20);
         make.height.mas_equalTo(@10);
-        make.width.mas_equalTo(@40);
+        make.width.mas_equalTo(@150);
     }];
     [self.shopAreaLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.bgView.mas_top).offset(10);
@@ -126,7 +113,7 @@
         make.top.mas_equalTo(self.shopDidtanceLable.mas_bottom).offset(10);
         make.right.mas_equalTo(self.bgView.mas_right).offset(-20);
         make.height.mas_equalTo(@10);
-        make.width.mas_equalTo(@40);
+        make.width.mas_equalTo(@50);
     }];
     [self.lineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.bgView.mas_bottom).offset(-5);
@@ -138,7 +125,7 @@
         make.top.mas_equalTo(self.shopDidtanceLable.mas_bottom).offset(10);
         make.right.mas_equalTo(self.lineImageView.mas_left).offset(-5);
         make.height.mas_equalTo(@10);
-        make.width.mas_equalTo(@40);
+        make.width.mas_equalTo(@50);
     }];
 
 
@@ -165,8 +152,8 @@
 {
     if (_bgView == nil) {
         _bgView = [[UIView alloc] init];
-        _bgView.backgroundColor = [UIColor redColor];
-        _bgView.alpha = 0.3;
+        _bgView.backgroundColor = [UIColor whiteColor];
+        _bgView.alpha = 0.2;
         
         
     }
@@ -186,7 +173,7 @@
     if (_shopAddressLabel == nil) {
 
          _shopAddressLabel = [WMUITool initWithTextColor:[UIColor colorWithHexString:@"333333"] withFont:[UIFont systemFontOfSize:12]];
-        _shopAddressLabel.text = @"北京市海淀区中关村大街18号";
+        _shopAddressLabel.text = _discountModel.address;
     }
     return _shopAddressLabel;
 }
@@ -202,7 +189,7 @@
     if (_shopAreaLabel == nil) {
 
          _shopAreaLabel = [WMUITool initWithTextColor:[UIColor colorWithHexString:@"333333"] withFont:[UIFont systemFontOfSize:12]];
-        _shopAreaLabel.text = @"海淀区";
+        _shopAreaLabel.text = _discountModel.county;
     }
     return _shopAreaLabel;
 }
@@ -240,5 +227,12 @@
         _shopLeftLabel.text = @"剩余80份";
     }
     return _shopLeftLabel;
+}
+- (void)setDiscountModel:(DiscountShopModel *)discountModel
+{
+    self.shopAddressLabel.text = discountModel.address;
+    self.shopAreaLabel.text = discountModel.county;
+    NSURL *url = [NSURL URLWithString:discountModel.detailsimg];
+    [self.shopImageView sd_setImageWithURL:url placeholderImage:nil];
 }
 @end

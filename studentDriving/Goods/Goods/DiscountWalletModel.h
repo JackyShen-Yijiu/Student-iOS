@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface DiscountWalletModel : NSObject
+
 @property (nonatomic,strong) NSString *_id;
 
 @property (nonatomic,assign) NSNumber *state;

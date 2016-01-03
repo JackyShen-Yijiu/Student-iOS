@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DiscountWalletCell : UITableViewCell
+#import "DiscountWalletModel.h"
 
+@interface DiscountWalletCell : UITableViewCell
+@property (nonatomic,strong) DiscountWalletModel *discountWalletModel;
 @end

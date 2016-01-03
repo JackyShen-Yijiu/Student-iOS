@@ -114,13 +114,6 @@
     backImageView.backgroundColor = [UIColor redColor];
     backImageView.image = [UIImage imageNamed:@"Loader"];
     
-    CGFloat telescopeH = 72;
-    CGFloat telescopeW = 44;
-    // 加载telescopeView
-    UIImageView *telescopeView = [[UIImageView alloc] initWithFrame:CGRectMake(systemsW  - 8, 0, -telescopeW, -telescopeH)];
-    telescopeView.image = [UIImage imageNamed:@"望远镜"];
-    [backImageView addSubview:telescopeView];
-    
     
     //添加划过的痕迹图像
     NSArray *imagViewArray = @[@"科目1条",@"科目2条",@"科目3条",@"科目4条"];

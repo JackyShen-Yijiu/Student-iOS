@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "DiscountShopModel.h"
 @interface DiscountShopCell : UITableViewCell
+@property (nonatomic,strong) DiscountShopModel *discountModel;
 
 @end
