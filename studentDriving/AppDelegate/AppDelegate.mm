@@ -136,9 +136,9 @@
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
 #pragma mark - JPush注册token require
-    [APService registerDeviceToken:deviceToken];
+//    [APService registerDeviceToken:deviceToken];
     
-    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+//    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 
 }
 

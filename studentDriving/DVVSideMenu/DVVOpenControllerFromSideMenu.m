@@ -214,13 +214,15 @@
         contentUrl = [paramsDict objectForKey:@"contenturl"];
     }
     
-    HomeActivityController *activityVC = [HomeActivityController new];
+    static HomeActivityController *activityVC = nil;
+    activityVC = [HomeActivityController new];
     activityVC.title = title;
     activityVC.activityUrl = contentUrl;
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
-    [naviVC pushViewController:activityVC animated:YES];
+//    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+//    [naviVC pushViewController:activityVC animated:YES];
+    [window addSubview:activityVC.view];
 }
 
 + (void)showMsg:(NSString *)msg {

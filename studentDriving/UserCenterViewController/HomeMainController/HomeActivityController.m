@@ -18,8 +18,10 @@
 @interface HomeActivityController ()<NJKWebViewProgressDelegate,UIWebViewDelegate>
 
 @property(nonatomic,strong) UIWebView *webView;
-@property (strong, nonatomic) NJKWebViewProgress *webviewProgress;
+@property (strong, nonatomic) NJKWebViewProgress *webViewProgress;
 @property (strong, nonatomic) NJKWebViewProgressView *progressView;
+@property (nonatomic, strong) UIImageView *backgroundImageView;
+@property (nonatomic, strong) UIButton *backButton;
 
 @end
 
@@ -30,49 +32,43 @@
     // Do any additional setup after loading the view.
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor clearColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self.view addSubview:self.backgroundImageView];
     [self.view addSubview:self.webView];
+    [self.view addSubview:self.progressView];
+    [self.view addSubview:self.backButton];
     
+    [self configUI];
     
-    _webviewProgress = [[NJKWebViewProgress alloc] init];
-    self.webView.delegate = _webviewProgress;
-    self.webviewProgress.webViewProxyDelegate = self;
-    self.webviewProgress.progressDelegate = self;
-    
-    CGFloat progressBarHeight = 2.f;
-    CGRect barFrame = CGRectMake(0, 0, kSystemWide, progressBarHeight);
-    self.progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
-    self.progressView.progressBarView.backgroundColor = [UIColor orangeColor];
-    self.progressView.hidden = YES;
-    
-    [self addBackButton];
-    
+    // 加载网址
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:self.activityUrl]];
     [self.webView loadRequest:request];
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self.navigationController setNavigationBarHidden:YES];
+    // 背景渐现
+    self.view.alpha = 0;
+    self.backgroundImageView.alpha = 0;
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.alpha = 1;
+        self.backgroundImageView.alpha = 0.3;
+    }];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
 }
 
-- (void)addBackButton {
-    
-    CGRect backframe= CGRectMake(15, 20, 35, 35);
-    UIButton* backButton= [UIButton buttonWithType:UIButtonTypeCustom];
-    backButton.frame = backframe;
-    [backButton setImage:[UIImage imageNamed:@"iconfont-guanbi2"] forState:UIControlStateNormal];
-    [backButton addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:backButton];
-}
-
 #pragma mark - action
 - (void)backButtonAction {
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [UIView animateWithDuration:0.3 animations:^{
+        self.view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [self.view removeFromSuperview];
+    }];
 }
 
 #pragma mark - webView delegate
@@ -83,11 +79,9 @@
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     DYNSLog(@"startLoad");
     
-    self.progressView.hidden = NO;
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
-    _webView.hidden = NO;
     
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
@@ -97,15 +91,59 @@
     [self showTotasViewWithMes:@"加载失败"];
 }
 
+#pragma mark configUI
+- (void)configUI {
+    CGFloat leftMargin = 30;
+    CGFloat rightMargin = 30;
+    CGFloat topMargin = 100;
+    CGFloat bottomMargin = 100;
+    _backgroundImageView.frame = CGRectMake(0, 0, kSystemWide, kSystemHeight);
+    _webView.frame = CGRectMake(leftMargin, topMargin, kSystemWide - leftMargin - rightMargin, kSystemHeight - topMargin - bottomMargin);
+    [_webView.layer setMasksToBounds:YES];
+    [_webView.layer setCornerRadius:10];
+    _progressView.frame = CGRectMake(0, topMargin - 2, kSystemWide, 2);
+    _backButton.frame = CGRectMake(leftMargin + 8, topMargin + 8, 20, 20);
+    
+    _backgroundImageView.backgroundColor = [UIColor blackColor];
+}
+
 #pragma mark - lazy load
+- (UIImageView *)backgroundImageView {
+    if (!_backgroundImageView) {
+        _backgroundImageView = [UIImageView new];
+    }
+    return _backgroundImageView;
+}
 - (UIWebView *)webView {
     if (!_webView) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
-        _webView.hidden = YES;
+        _webView = [[UIWebView alloc] init];
+        _webView.delegate = self.webViewProgress;
     }
     return _webView;
 }
-
+- (NJKWebViewProgressView *)progressView {
+    if (!_progressView) {
+        _progressView = [[NJKWebViewProgressView alloc] init];
+        _progressView.progressBarView.backgroundColor = [UIColor orangeColor];
+    }
+    return _progressView;
+}
+- (NJKWebViewProgress *)webViewProgress {
+    if (!_webViewProgress) {
+        _webViewProgress = [[NJKWebViewProgress alloc] init];
+        _webViewProgress.webViewProxyDelegate = self;
+        _webViewProgress.progressDelegate = self;
+    }
+    return _webViewProgress;
+}
+- (UIButton *)backButton {
+    if (!_backButton) {
+        _backButton= [UIButton buttonWithType:UIButtonTypeCustom];
+        [_backButton setBackgroundImage:[UIImage imageNamed:@"iconfont-guanbi2"] forState:UIControlStateNormal];
+        [_backButton addTarget:self action:@selector(backButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _backButton;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

@@ -83,6 +83,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 @property (copy, nonatomic) NSString *questionFourlisturl;
 @property (copy, nonatomic) NSString *questionFourtesturl;
 @property (copy, nonatomic) NSString *questionFourerrorurl;
+
+@property (nonatomic, strong) HomeActivityController *activityVC;
+
 @end
 
 @implementation HomeMainController
@@ -794,13 +797,14 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         contentUrl = [paramsDict objectForKey:@"contenturl"];
     }
     
-    HomeActivityController *activityVC = [HomeActivityController new];
-    activityVC.title = title;
-    activityVC.activityUrl = contentUrl;
+    _activityVC = [HomeActivityController new];
+    _activityVC.title = title;
+    _activityVC.activityUrl = contentUrl;
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
-    [naviVC pushViewController:activityVC animated:YES];
+//    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+//    [naviVC pushViewController:activityVC animated:NO];
+    [window addSubview:_activityVC.view];
 }
 
 #pragma mark - 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
