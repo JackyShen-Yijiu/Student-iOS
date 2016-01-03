@@ -12,4 +12,7 @@
 @interface DiscountShopDatailController : UIViewController
 
 @property (nonatomic,strong)DiscountShopModel *discountShopModel;
+
+@property (nonatomic,strong) NSString *orderscanaduiturl;
+@property (nonatomic,strong) NSString *finishorderurl;
 @end

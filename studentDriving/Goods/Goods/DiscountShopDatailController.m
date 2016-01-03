@@ -12,6 +12,7 @@
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 #import "ToolHeader.h"
+#import "DiscountOrderController.h"
 
 #import "DVVUserManager.h"
 
@@ -21,7 +22,7 @@
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
 
 #define kSystemHeight [UIScreen mainScreen].bounds.size.height
-static NSString *kDiscountShopAPI = @"userinfo/buyproduct";
+
 
 
 @interface DiscountShopDatailController ()<UIWebViewDelegate,NJKWebViewProgressDelegate>
@@ -44,7 +45,7 @@ static NSString *kDiscountShopAPI = @"userinfo/buyproduct";
 - (UIButton *)changebutton
 {
     if (_changebutton == nil) {
-        _changebutton = [[UIButton alloc] initWithFrame:CGRectMake(15,kSystemHeight - 40, self.view.frame.size.width - 30, 40)];
+        _changebutton = [[UIButton alloc] initWithFrame:CGRectMake(15,kSystemHeight - 45, self.view.frame.size.width - 30, 40)];
         _changebutton.backgroundColor = [UIColor colorWithHexString:@"ff6633"];
         [_changebutton setTitle:@"立即兑换" forState:UIControlStateNormal];
         [_changebutton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -86,48 +87,14 @@ static NSString *kDiscountShopAPI = @"userinfo/buyproduct";
 
    
 }
-//- (void)startDownLoad {
-//    
-//   
-//    NSString *urlString = [NSString stringWithFormat:BASEURL,kDiscountShopAPI];
-//    NSDictionary *parm = @{@"usertype":@"1",
-//                           @"userid":[AcountManager manager].userid,
-//                           @"productid":self.discountShopModel.productid,
-//                           @"couponid":self.discountShopModel.};
-//    
-//    [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data)  {
-//        DYNSLog(@"我的钱包start data = %@",data);
-//        
-//        DYNSLog(@"data = %@",data);
-//        if (data == nil) {
-//            return ;
-//        }
-//        NSDictionary *dataDic = [data objectForKey:@"data"];
-//        
-//        {
-//            NSArray *array = [dataDic objectForKey:@"mainlist"];
-//            for (NSDictionary *dic in array)
-//            {
-//                DiscountShopModel *mainDodel = [[DiscountShopModel alloc] init];
-//                [mainDodel setValuesForKeysWithDictionary:dic];
-//                [self.disCountListArray addObject:mainDodel];
-//            }
-//        }
-//        
-//        [self.discountView reloadData];
-//        
-//        
-//    } withFailure:^(id data) {
-//        
-//        
-//    }];
-//    
-//    
-//}
 
 
 - (void)didClick:(UIButton *)btn{
     
+    DiscountOrderController *orderVC = [[DiscountOrderController alloc] init];
+    orderVC.productid = _discountShopModel.productid;
+  
+    [self.navigationController pushViewController:orderVC animated:YES];
 }
 - (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
 {

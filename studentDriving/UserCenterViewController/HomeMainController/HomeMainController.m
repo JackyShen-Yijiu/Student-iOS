@@ -258,9 +258,6 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
  
 }
 
-
-
-
 #pragma mark --- 回调方法
 - (void)addBackBlock
 {

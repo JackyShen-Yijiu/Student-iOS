@@ -53,7 +53,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     if (_inviteNum == nil) {
         _inviteNum = [[UILabel alloc] init];
         _inviteNum.font = [UIFont systemFontOfSize:14];
-        _inviteNum.text = [NSString stringWithFormat:@"我的Y码:%@",[AcountManager manager].userInvitationcode];
+        _inviteNum.text = [NSString stringWithFormat:@"我的邀请码:%@",[AcountManager manager].userInvitationcode];
     }
     return _inviteNum;
 }

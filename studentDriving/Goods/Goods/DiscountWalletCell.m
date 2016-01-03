@@ -103,4 +103,11 @@
     }
     return _numberLabel;
 }
+// 赋值
+- (void)setDiscountWalletModel:(DiscountWalletModel *)discountWalletModel
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:discountWalletModel._id forKey:@"DiscountWalletStr"];
+
+}
 @end
