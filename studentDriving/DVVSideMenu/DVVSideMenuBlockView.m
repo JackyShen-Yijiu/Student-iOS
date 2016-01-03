@@ -10,7 +10,7 @@
 #import "DVVSideMenuBlockViewItemButton.h"
 #import "AcountManager.h"
 
-#define badgeLabelWidth 20
+#define badgeLabelWidth 6
 
 @interface DVVSideMenuBlockView()
 

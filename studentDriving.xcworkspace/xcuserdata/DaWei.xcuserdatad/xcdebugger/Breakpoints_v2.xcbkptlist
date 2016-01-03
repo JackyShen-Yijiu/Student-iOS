@@ -15,7 +15,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "459"
             endingLineNumber = "459"
-            landmarkName = "-collectionView:didSelectItemAtIndexPath:"
+            landmarkName = "-collectionView:layout:insetForSectionAtIndex:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -74,11 +74,11 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/Student-iOS/studentDriving/SubjectSecondViewController/AppointmentDrivingViewController.m"
-                  timestampString = "473260038.783492"
+                  timestampString = "473497772.914299"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "689"
-                  endingLineNumber = "689"
+                  startingLineNumber = "690"
+                  endingLineNumber = "690"
                   offsetFromSymbolStart = "2516">
                </Location>
                <Location
@@ -89,11 +89,11 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/Student-iOS/studentDriving/SubjectSecondViewController/AppointmentDrivingViewController.m"
-                  timestampString = "473260038.783745"
+                  timestampString = "473497772.914447"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "689"
-                  endingLineNumber = "689"
+                  startingLineNumber = "690"
+                  endingLineNumber = "690"
                   offsetFromSymbolStart = "39">
                </Location>
             </Locations>
@@ -161,6 +161,38 @@
             endingLineNumber = "477"
             landmarkName = "-userExist"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[RegisterViewController userExist]"
+                  moduleName = "studentDriving"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/DaWei/Desktop/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
+                  timestampString = "473497772.917602"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "477"
+                  endingLineNumber = "477"
+                  offsetFromSymbolStart = "364">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__35-[RegisterViewController userExist]_block_invoke"
+                  moduleName = "studentDriving"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/DaWei/Desktop/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
+                  timestampString = "473497772.917814"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "477"
+                  endingLineNumber = "477"
+                  offsetFromSymbolStart = "46">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

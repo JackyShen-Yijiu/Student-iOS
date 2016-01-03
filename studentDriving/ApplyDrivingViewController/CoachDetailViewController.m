@@ -145,7 +145,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     [self createUI];
     
     [self startDownLoad];
-    
+    // 下载教练
     [self startDownLoadComment];
     
     [self checkCollection];

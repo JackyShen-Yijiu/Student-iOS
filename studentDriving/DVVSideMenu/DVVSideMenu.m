@@ -125,7 +125,7 @@
     
     _titleArray = @[ @"积分收益", @"商城兑换券", @"可取现金额" ];
     _moneyArray = @[ @"0", @"0", @"0" ];
-    _markTitleArray = @[ @"豆币", @"张", @"元" ];
+    _markTitleArray = @[ @"Y币", @"张", @"元" ];
     _blockImagesArray = @[ @"iconfont-shouyeshouye",
                            @"iconfont-dingwei",
                            @"iconfont-xiaoxi",
@@ -150,14 +150,14 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [self.headerView.iconButton setBackgroundImage:[UIImage imageNamed:@"side_menu_header"] forState:UIControlStateNormal];
+    self.headerView.nameLabel.text = @"用户名";
+    self.headerView.drivingNameLabel.text = @"驾校：未报考";
+    self.headerView.markLabel.text = @"我的Y码：暂无";
+    _moneyArray = @[@"0",@"0",@"0"];
+    [self.tableView reloadData];
+
     if (![AcountManager isLogin]) {
-        [self.headerView.iconButton setImage:[UIImage imageNamed:@"side_menu_header"] forState:UIControlStateNormal];
-        self.headerView.nameLabel.text = @"用户名";
-        self.headerView.drivingNameLabel.text = @"驾校：未报考";
-        self.headerView.markLabel.text = @"我的Y码：暂无";
-        _moneyArray = @[@"0",@"0",@"0"];
-        [self.tableView reloadData];
-        
         return;
     }
     // 显示搜索的类型是驾校还是教练
@@ -328,6 +328,12 @@
         // 移除sideMenu
         [self removeSideMenu];
     }
+    if (2 == indexPath.row) {
+        [DVVOpenControllerFromSideMenu openControllerWithIndex:12];
+        // 移除sideMenu
+        [self removeSideMenu];
+    }
+
 
 }
 
@@ -344,7 +350,12 @@
     self.tableView.frame = CGRectMake(0, 0, self.contentView.bounds.size.width, self.headerView.defaultHeight + 44 * 3);
     self.headerView.frame = CGRectMake(0, 0, self.contentView.bounds.size.width, self.headerView.defaultHeight);
     self.footerView.frame = CGRectMake(0, screenRect.size.height - 50, contentViewWidth, 50);
-    self.blockView.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame) + 10, contentViewWidth, CGRectGetMinY(self.footerView.frame) - CGRectGetMaxY(self.tableView.frame) - 10);
+
+    if (screenRect.size.width > 320) {
+        self.blockView.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame) + 10, contentViewWidth, CGRectGetMinY(self.footerView.frame) - CGRectGetMaxY(self.tableView.frame) - 10);
+    }else {
+        self.blockView.frame = CGRectMake(0, CGRectGetMaxY(self.tableView.frame) + 0, contentViewWidth, CGRectGetMinY(self.footerView.frame) - CGRectGetMaxY(self.tableView.frame) - 10);
+    }
     
     _contentView.backgroundColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
     //    _contentBackgroundImageView.image = [UIImage imageNamed:@"side_menu_bg"];

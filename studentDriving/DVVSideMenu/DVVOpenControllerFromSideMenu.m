@@ -21,6 +21,7 @@
 #import "SearchCoachController.h"
 #import "DiscountWalletController.h"
 #import "SignInViewController.h"
+#import "MoneyShopController.h"
 
 @implementation DVVOpenControllerFromSideMenu
 
@@ -169,6 +170,21 @@
 
         }
             break;
+        case 12:// 可取现金额
+        {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
+            
+            MoneyShopController *controller = [MoneyShopController new];
+            
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+            
+        }
+            break;
 
             
         default:
@@ -214,13 +230,15 @@
         contentUrl = [paramsDict objectForKey:@"contenturl"];
     }
     
-    HomeActivityController *activityVC = [HomeActivityController new];
+    static HomeActivityController *activityVC = nil;
+    activityVC = [HomeActivityController new];
     activityVC.title = title;
     activityVC.activityUrl = contentUrl;
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
-    [naviVC pushViewController:activityVC animated:YES];
+//    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+//    [naviVC pushViewController:activityVC animated:YES];
+    [window addSubview:activityVC.view];
 }
 
 + (void)showMsg:(NSString *)msg {

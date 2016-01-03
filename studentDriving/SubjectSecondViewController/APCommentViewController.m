@@ -52,7 +52,12 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     commentTitleArray = @[@"总体评价",@"守时",@"态度",@"能力"];
-    self.starProgress = 0;
+    // 默认4颗星
+    _starProgress = 4;
+    _attitudelevel = 4;
+    _timelevel = 4;
+    _abilitylevel = 4;
+
     bctextView.text = @"";
     self.title = @"评论";
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -68,7 +73,13 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
     
-    NSDictionary *param = @{@"userid":[AcountManager manager].userid,@"reservationid":self.model.infoId,@"starlevel":[NSString stringWithFormat:@"%f",self.starProgress],@"abilitylevel":[NSString stringWithFormat:@"%f",self.abilitylevel],@"timelevel":[NSString stringWithFormat:@"%f",self.timelevel],@"attitudelevel":[NSString stringWithFormat:@"%f",self.attitudelevel],@"commentcontent":bctextView.text};
+    NSDictionary *param = @{@"userid":[AcountManager manager].userid,
+                            @"reservationid":self.model.infoId,
+                            @"starlevel":[NSString stringWithFormat:@"%f",self.starProgress],
+                            @"abilitylevel":[NSString stringWithFormat:@"%f",self.abilitylevel],
+                            @"timelevel":[NSString stringWithFormat:@"%f",self.timelevel],
+                            @"attitudelevel":[NSString stringWithFormat:@"%f",self.attitudelevel],
+                            @"commentcontent":bctextView.text};
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
         NSDictionary *param = data;
@@ -134,6 +145,7 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
         }
         cell.topLabel.text = commentTitleArray[indexPath.row];
         [cell receiveIndex:indexPath];
+        [cell.starBar displayRating:4];
         return cell;
 
     }else if (indexPath.section == 1) {
