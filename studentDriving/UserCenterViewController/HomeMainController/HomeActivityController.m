@@ -37,7 +37,7 @@
     
     [self.view addSubview:self.backgroundImageView];
     [self.view addSubview:self.webView];
-    [self.view addSubview:self.progressView];
+//    [self.view addSubview:self.progressView];
     [self.view addSubview:self.backButton];
     
     [self configUI];

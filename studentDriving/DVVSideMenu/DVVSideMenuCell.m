@@ -53,7 +53,7 @@
                                       nameLabelWidth - rightMargin,
                                       selfHeight);
     self.markLabel.frame = CGRectMake(selfWidth - 26 - rightMargin, 0, 26, selfHeight);
-    self.contentLabel.frame = CGRectMake(0, 0, selfWidth - 26 - rightMargin, selfHeight);
+    self.contentLabel.frame = CGRectMake(0, 0, selfWidth - 20 - rightMargin, selfHeight);
     self.lineImageView.frame = CGRectMake(minX, CGRectGetMaxY(self.contentLabel.frame) - 10, selfWidth - minX - rightMargin, 0.5);
 }
 
