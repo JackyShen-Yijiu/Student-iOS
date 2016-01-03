@@ -10,12 +10,8 @@
 #import "MagicMainTableViewCell.h"
 #import "MagicDetailViewController.h"
 #import "LTBottomView.h"
-#import "ShopModel.h"
 #import "ShopMainModel.h"
-//#import "UIImageView+WebCache.h"
 #import "AFNetworking.h"
-
-#import "MagicAPIUrl.h"
 #import "JENetwoking.h"
 #import "ToolHeader.h"
 
