@@ -21,6 +21,7 @@
 #import "SearchCoachController.h"
 #import "DiscountWalletController.h"
 #import "SignInViewController.h"
+#import "MoneyShopController.h"
 
 @implementation DVVOpenControllerFromSideMenu
 
@@ -167,6 +168,21 @@
             UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
             [naviVC pushViewController:controller animated:YES];
 
+        }
+            break;
+        case 12:// 可取现金额
+        {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
+            
+            MoneyShopController *controller = [MoneyShopController new];
+            
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+            
         }
             break;
 

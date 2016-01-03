@@ -11,6 +11,7 @@
 		06073D871C251C300058B372 /* HomeRewardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06073D861C251C300058B372 /* HomeRewardController.m */; };
 		060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060FC6A51C27CB030039DDBB /* RegistNoteController.m */; };
 		061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */; };
+		061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADE1C39001C008C51C3 /* MoneyShopController.m */; };
 		0647A5B61C34BB8700DBB8A3 /* DiscountShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */; };
 		0647A5B91C34C1DE00DBB8A3 /* DiscountShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B81C34C1DE00DBB8A3 /* DiscountShopCell.m */; };
 		0647A5BC1C34FE5F00DBB8A3 /* DiscountWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5BB1C34FE5F00DBB8A3 /* DiscountWalletController.m */; };
@@ -579,6 +580,8 @@
 		060FC6A51C27CB030039DDBB /* RegistNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistNoteController.m; sourceTree = "<group>"; };
 		061E7AD91C38C20D008C51C3 /* DiscountOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountOrderController.h; sourceTree = "<group>"; };
 		061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountOrderController.m; sourceTree = "<group>"; };
+		061E7ADD1C39001C008C51C3 /* MoneyShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyShopController.h; sourceTree = "<group>"; };
+		061E7ADE1C39001C008C51C3 /* MoneyShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyShopController.m; sourceTree = "<group>"; };
 		0647A5B41C34BB8700DBB8A3 /* DiscountShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopController.h; sourceTree = "<group>"; };
 		0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountShopController.m; sourceTree = "<group>"; };
 		0647A5B71C34C1DE00DBB8A3 /* DiscountShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopCell.h; sourceTree = "<group>"; };
@@ -1532,6 +1535,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		061E7ADC1C38FFE5008C51C3 /* MoneyShop */ = {
+			isa = PBXGroup;
+			children = (
+				061E7ADD1C39001C008C51C3 /* MoneyShopController.h */,
+				061E7ADE1C39001C008C51C3 /* MoneyShopController.m */,
+			);
+			name = MoneyShop;
+			sourceTree = "<group>";
+		};
 		0647A5B31C34BB5500DBB8A3 /* DiscountShop */ = {
 			isa = PBXGroup;
 			children = (
@@ -2945,6 +2957,7 @@
 		D5D50EAF1BFA205000F54097 /* Goods */ = {
 			isa = PBXGroup;
 			children = (
+				061E7ADC1C38FFE5008C51C3 /* MoneyShop */,
 				0647A5B31C34BB5500DBB8A3 /* DiscountShop */,
 				D5D50EB01BFA205000F54097 /* DetailIntroduceCell.h */,
 				D5D50EB11BFA205000F54097 /* DetailIntroduceCell.m */,
@@ -3537,6 +3550,7 @@
 				D588B1101BDDDC2F000C5D6F /* UIView+CalculateUIView.m in Sources */,
 				D5D50EDB1BFA205000F54097 /* LTBottomView.m in Sources */,
 				0647A5C51C35135F00DBB8A3 /* DiscountWalletCell.m in Sources */,
+				061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */,
 				D52638591BDF205C00ADC2C7 /* ApplycoachinfoModel.m in Sources */,
 				D5604B4E1BF656C50020F0D7 /* MWPhotoBrowser.m in Sources */,
 				D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */,

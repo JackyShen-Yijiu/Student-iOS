@@ -78,7 +78,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     if (_YBLabel == nil) {
         _YBLabel = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:16]];
 //        _YBLabel.backgroundColor = [UIColor greenColor];
-        _YBLabel.text = @"YB";
+        _YBLabel.text = @"Y币";
     }
     return _YBLabel;
 }

@@ -328,6 +328,12 @@
         // 移除sideMenu
         [self removeSideMenu];
     }
+    if (2 == indexPath.row) {
+        [DVVOpenControllerFromSideMenu openControllerWithIndex:12];
+        // 移除sideMenu
+        [self removeSideMenu];
+    }
+
 
 }
 
