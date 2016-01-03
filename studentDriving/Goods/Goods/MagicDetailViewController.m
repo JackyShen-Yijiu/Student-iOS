@@ -7,23 +7,33 @@
 //
 
 #import "MagicDetailViewController.h"
-#import "DetailIntroduceCell.h"
-#import "DetailPriceCell.h"
 #import "PrivateMessageController.h"
 #import "UIImageView+EMWebCache.h"
 #import "UIColor+Hex.h"
 #import "MyWalletViewController.h"
 #import "VirtualViewController.h"
+#import <NJKWebViewProgress.h>
+#import <NJKWebViewProgressView.h>
 
 
-@interface MagicDetailViewController () <UITableViewDataSource,UITableViewDelegate>
-
-@property (nonatomic,strong) UITableView *tableView;
+@interface MagicDetailViewController ()<NJKWebViewProgressDelegate,UIWebViewDelegate>
+@property(nonatomic,strong) UIWebView *webView;
+@property (strong, nonatomic) NJKWebViewProgress *webviewProgress;
+@property (strong, nonatomic) NJKWebViewProgressView *progressView;
 
 @property (nonatomic,strong) NSString *walletstr;
 @end
 
 @implementation MagicDetailViewController
+- (UIWebView *)webView
+{
+    if (_webView == nil) {
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide - 40, kSystemHeight - 104)];
+        _webView.hidden = YES;
+    }
+    return _webView;
+}
+
 - (void)viewWillAppear:(BOOL)animated
 {
     
@@ -34,14 +44,35 @@
         }
         
     }
+    [self.navigationController.navigationBar addSubview:_progressView];
      [self addBottomView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.delegate = self;
-    self.tableView.dataSource = self;
-    [self.view addSubview:self.tableView];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    [self.view addSubview:self.webView];
+    _webviewProgress = [[NJKWebViewProgress alloc] init];
+    self.webView.delegate = _webviewProgress;
+    self.webviewProgress.webViewProxyDelegate = self;
+    self.webviewProgress.progressDelegate = self;
+    
+    CGFloat progressBarHeight = 2.f;
+    CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
+    CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height, navigationBarBounds.size.width, progressBarHeight);
+    self.progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
+    self.progressView.progressBarView.backgroundColor = [UIColor orangeColor];
+    self.progressView.hidden = YES;
+    
+    NSString *urlString = self.mainModel.detailurl;
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
+    
+    
+    [self.webView loadRequest:request];
+
+    
    
 }
 #pragma mark -----加载底部View
@@ -95,104 +126,46 @@
 
 - (void)didClick:(UIButton *)btn
 {
-    if (btn.tag == 301) {
-        VirtualViewController *virtualVC = [[VirtualViewController alloc] init];
-        virtualVC.shopId = _mainModel.productid;
-        [self.navigationController pushViewController:virtualVC animated:YES];
-
-    }else if (btn.tag == 302)
-    {
-        PrivateMessageController *privateMessageVC = [[PrivateMessageController alloc] init];
-        
-        privateMessageVC.shopId = _mainModel.productid;
-        [self.navigationController pushViewController:privateMessageVC animated:YES];
-    }
+    
+    PrivateMessageController *privateMessageVC = [[PrivateMessageController alloc] init];
+    privateMessageVC.shopId = _mainModel.productid;
+    [self.navigationController pushViewController:privateMessageVC animated:YES];
+    
 
     
 }
-
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 2;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
 {
-    static NSString *definition = @"myCell";
-    BOOL nibsRegistered = NO;
-    // 加载第一部分Cell
-    if (indexPath.row == 0)
-    {
-        if (!nibsRegistered)
-        {
-            
-            UINib *nib = [UINib nibWithNibName:@"DetailPriceCell" bundle:nil];
-            [tableView registerNib:nib forCellReuseIdentifier:definition];
-            nibsRegistered = YES;
-        }
-        DetailPriceCell *cell = [tableView dequeueReusableCellWithIdentifier:definition];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        NSString *textStr = [NSString stringWithFormat:@" 浏览   %d次",(int)_mainModel.viewcount];
-        NSString *buyStr = [NSString stringWithFormat:@" 兑换   %d次",(int)_mainModel.buycount];
-        NSString *moneyStr = [NSString stringWithFormat:@"%d",_mainModel.productprice];
-        NSString *descStr  = _mainModel.productdesc;
-        _moneyCount = _mainModel.productprice;
-        cell.scanNumber.text = textStr;
-        cell.buyNumber.text = buyStr;
-        cell.moneyNumber.text = moneyStr;
-        cell.shopDetailName.text = descStr;
-        NSString *encoded = [_mainModel.detailsimg stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [cell.shopImageView sd_setImageWithURL:[NSURL URLWithString:encoded] placeholderImage:[UIImage imageNamed:@"nav_bg"]];
-        return cell;
-    }
-    // 加载第二部分Cell
-    else
-    {
-        if (!nibsRegistered)
-        {
-            
-            UINib *nib = [UINib nibWithNibName:@"DetailIntroduceCell" bundle:nil];
-            [tableView registerNib:nib forCellReuseIdentifier:definition];
-            nibsRegistered = YES;
-        }
-        DetailIntroduceCell *cell = [tableView dequeueReusableCellWithIdentifier:definition];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        NSString *encoded = [_mainModel.detailsimg stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-        [cell.imgView sd_setImageWithURL:[NSURL URLWithString:encoded] placeholderImage:[UIImage imageNamed:@"nav_bg"]];
-        return cell;
-    }
-
+    [self.progressView setProgress:progress animated:YES];
 }
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    DYNSLog(@"startLoad");
+    self.progressView.hidden = NO;
+}
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    DYNSLog(@"finishLoad");
+    _webView.hidden = NO;
+}
+- (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
+    DYNSLog(@"error");
+    [self showTotasViewWithMes:@"加载失败"];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
+    [_progressView removeFromSuperview];
+    
+}
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    
 }
 
-#pragma mark ---- Lazy加载
-- (UITableView *)tableView
-{
-    if (!_tableView) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height - 50) style:UITableViewStylePlain];
-    }
-    return _tableView;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.row == 0) {
-        return 250;
-    }
-    else
-    {
-        return  300;
-    }
-}
 
 @end
