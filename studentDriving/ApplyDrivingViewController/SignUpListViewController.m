@@ -391,39 +391,30 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 }
 
 - (void)dealRefer:(UIButton *)sender{
-    if (![[SignUpInfoManager getSignUpCarmodelName]  isEqualToString:@""]&&
-        ![[SignUpInfoManager getSignUpSchoolName]    isEqualToString:@""]&&
-        ![[SignUpInfoManager getSignUpClasstypeName] isEqualToString:@""]&&
-        ![[SignUpInfoManager getSignUpCoachName]     isEqualToString:@""]&&
-        ![[SignUpInfoManager getSignUpRealName]      isEqualToString:@""]&&
-        ![[SignUpInfoManager getSignUpRealTelephone] isEqualToString:@""]) {
-        
-        NSDictionary *param = [SignUpInfoManager getSignUpInforamtion];
-        if (param == nil) {
-            return;
-        }
-        NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
-        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-            DYNSLog(@"param = %@",data[@"msg"]);
-            NSDictionary *param = data;
-            NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-            if ([type isEqualToString:@"1"]) {
-                kShowSuccess(@"报名成功");
-                [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
-                [AcountManager saveUserApplyState:@"1"];
-                //使重新报名变为0
-                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-                if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
-                    [ud setObject:@"0" forKey:@"applyAgain"];
-                    [ud synchronize];
-                }
-            }else {
-                kShowFail(param[@"msg"]);
-            }
-        }];
-    }else {
-        [self showTotasViewWithMes:@"信息未填写完整"];
+    
+    NSDictionary *param = [SignUpInfoManager getSignUpInforamtion];
+    if (param == nil) {
+        return;
     }
+    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
+    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        DYNSLog(@"param = %@",data[@"msg"]);
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            kShowSuccess(@"报名成功");
+            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+            [AcountManager saveUserApplyState:@"1"];
+            //使重新报名变为0
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
+                [ud setObject:@"0" forKey:@"applyAgain"];
+                [ud synchronize];
+            }
+        }else {
+            kShowFail(param[@"msg"]);
+        }
+    }];
 }
 
 - (void)removeCellWhenClick {

@@ -385,6 +385,7 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
 
 - (SubjectModel *)userSubject {
     NSDictionary *userSubject = [NSUserStoreTool getObjectWithKey:ksubject];
+    NSLog(@"*****%@",userSubject);
     NSError *error = nil;
     SubjectModel *model = [MTLJSONAdapter modelOfClass:SubjectModel.class fromJSONDictionary:userSubject error:&error];
     DYNSLog(@"error = %@",error);

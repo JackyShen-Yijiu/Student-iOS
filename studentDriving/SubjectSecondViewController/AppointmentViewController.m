@@ -122,7 +122,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    [self startDownLoad];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
 //    if ([UIDevice jeSystemVersion] >= 7.0f) {
@@ -331,7 +331,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    [self startDownLoad];
 
 }
 @end

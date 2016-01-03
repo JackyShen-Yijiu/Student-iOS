@@ -241,9 +241,10 @@ static NSString *const kRealUserid = @"userid";
     }
     NSString *krealTelephoneString = [NSUserStoreTool getObjectWithKey:kRealTelephone];
     if (krealTelephoneString == nil || krealTelephoneString.length == 0) {
-        [self  obj_showTotasViewWithMes:@"手机号为空"];
+        [self  obj_showTotasViewWithMes:@"请输入正确的手机号"];
         return nil;
     }
+
     NSString *krealSchoolidString = [NSUserStoreTool getObjectWithKey:kRealSchoolid];
     if (krealSchoolidString == nil || krealSchoolidString.length == 0) {
         [self obj_showTotasViewWithMes:@"学校为空"];
@@ -358,6 +359,8 @@ static NSString *const kRealUserid = @"userid";
     [NSUserStoreTool removeObjectWithKey:kRealCode];
     [NSUserStoreTool removeObjectWithKey:kRealLearnStage];
     [NSUserStoreTool removeObjectWithKey:kFcode];
+    [NSUserStoreTool removeObjectWithKey:kRealName];
+    [NSUserStoreTool removeObjectWithKey:kRealTelephone];
 }
 
 @end

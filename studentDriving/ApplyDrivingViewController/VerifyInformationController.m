@@ -23,6 +23,7 @@
 #import "SignUpInfoManager.h"
 #import "ToolHeader.h"
 #import "AcountManager.h"
+#import "DrivingViewController.h"
 
 
 
@@ -154,7 +155,7 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
         ExamCarViewController *carType = [[ExamCarViewController alloc] init];// 选择车型
         [self.navigationController pushViewController:carType animated:YES];
     }else if (indexPath.row == 1 ){
-        SignUpDrivingViewController *drivingVC = [[SignUpDrivingViewController alloc] init];   //选择驾校
+        DrivingViewController *drivingVC = [[DrivingViewController alloc] init];   //选择驾校
         [self.navigationController pushViewController:drivingVC animated:YES];
     }
     else if (indexPath.row == 2) {
@@ -176,7 +177,7 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
 
 
 - (void)dealRefer:(UIButton *)sender{
-    if ([signUpArray[0] isEqualToString:@""]&&[signUpArray[1] isEqualToString:@""]&&[signUpArray[2] isEqualToString:@""]&&[signUpArray[3] isEqualToString:@""]&&[signUpArray[4] isEqualToString:@""]) {
+    if (!([signUpArray[0] isEqualToString:@""]&&[signUpArray[1] isEqualToString:@""]&&[signUpArray[2] isEqualToString:@""]&&[signUpArray[3] isEqualToString:@""]&&[signUpArray[4] isEqualToString:@""])) {
         [self showTotasViewWithMes:@"信息未填写完整"];
     }else {
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
