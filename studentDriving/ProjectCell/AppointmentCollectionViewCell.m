@@ -91,18 +91,17 @@
         self.finalTimeLabel.textColor = [UIColor blackColor];
         self.remainingPersonLabel.textColor = MAINCOLOR;
         
-    }
-
-    else if (coachTimeInfo.coursestudentcount.intValue - coachTimeInfo.selectedstudentcount.intValue == 0) {
+    }else if (coachTimeInfo.coursestudentcount.intValue - coachTimeInfo.selectedstudentcount.intValue == 0) {
         self.startTimeLabel.textColor = TEXTGRAYCOLOR;
         self.finalTimeLabel.textColor = TEXTGRAYCOLOR;
         self.remainingPersonLabel.textColor = TEXTGRAYCOLOR;
-
-
     }else  {
         self.userInteractionEnabled = YES;
 
     }
+    //coursedate = "2016-01-04T00:00:00.000Z";
+    NSLog(@"%@",coachTimeInfo.coursedate);
+    NSLog(@"%@",coachTimeInfo.coursetime.begintime);
     
     self.startTimeLabel.text = [self dealStringWithTime:coachTimeInfo.coursetime.begintime];
     self.finalTimeLabel.text = [self dealStringWithTime:coachTimeInfo.coursetime.endtime];
@@ -111,8 +110,39 @@
     }else {
         self.remainingPersonLabel.text = [NSString stringWithFormat:@"剩余%d个名额",coachTimeInfo.coursestudentcount.intValue - coachTimeInfo.selectedstudentcount.intValue];
     }
+    //此方法判断当前时间是否大于预约的时间；
+    [self isCellCanClick:coachTimeInfo.coursedate startTimeStr:coachTimeInfo.coursetime.begintime];
     
 }
+
+- (void)isCellCanClick:(NSString *)couresebegintimeStr startTimeStr:(NSString *)startTimeStr{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateStyle:NSDateFormatterMediumStyle];
+    [formatter setTimeStyle:NSDateFormatterShortStyle];
+    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+    NSDate *datenow = [NSDate date];
+    NSString *nowtimeStr = [formatter stringFromDate:datenow];//当前的时间 YYYY-MM-dd HH:mm:ss
+    NSRange range = NSMakeRange(0, 10);
+    NSString *nowTimeStr = [nowtimeStr substringWithRange:range];//当前的时间 YYYY-MM-dd
+    NSString *appointTimeStr = [couresebegintimeStr substringWithRange:range];//预约课程的时间 YYYY-MM-dd
+    if ([appointTimeStr isEqualToString:nowTimeStr]) {
+        NSArray *indexArray= [startTimeStr componentsSeparatedByString:@":"];//课程开始的时间 hh:mm
+        NSString *indexString = indexArray.firstObject;
+        NSInteger startTime = indexString.integerValue;
+        NSRange range = NSMakeRange(11,8);
+        NSString *subNowTimeStr = [nowtimeStr substringWithRange:range];//现在的时间 HH:mm:ss
+        NSArray *nowTimeArray= [subNowTimeStr componentsSeparatedByString:@":"];//课程开始的时间 hh:mm
+        NSString *nowTimeStr = nowTimeArray.firstObject;
+        NSInteger nowTime = nowTimeStr.integerValue;
+        if (startTime <= nowTime) {
+            self.startTimeLabel.textColor = TEXTGRAYCOLOR;
+            self.finalTimeLabel.textColor = TEXTGRAYCOLOR;
+            self.remainingPersonLabel.textColor = TEXTGRAYCOLOR;
+            self.userInteractionEnabled = NO;
+        }
+    }
+}
+
 - (NSString *)dealStringWithTime:(NSString *)value {
     NSUInteger lenth = value.length;
     NSUInteger lastLenth = lenth-3;
