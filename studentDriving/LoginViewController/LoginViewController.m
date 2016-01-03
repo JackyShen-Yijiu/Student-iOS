@@ -384,6 +384,9 @@ static NSString *const kuserType = @"usertype";
                                                       completion:
      ^(NSDictionary *loginInfo, EMError *error) {
          [self hideHud];
+         
+         NSLog(@"error.description:%@",error.description);
+         
          if (loginInfo && !error) {
              DYNSLog(@"登录");
              //设置是否自动登录

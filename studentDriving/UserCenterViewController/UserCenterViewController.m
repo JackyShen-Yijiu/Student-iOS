@@ -23,6 +23,7 @@
 #import "DVVSideMenu.h"
 #import "DVVUserManager.h"
 #import "DVVOpenControllerFromSideMenu.h"
+#import "VerifyPhoneController.h"
 #import <JPush/APService.h>
 
 @interface UserCenterViewController ()<UITableViewDataSource,UITableViewDelegate,UserCenterHeadViewDelegte>
@@ -39,14 +40,14 @@
 
 - (NSArray *)dataArray {
     if (_dataArray == nil) {
-        _dataArray = @[@[@"报考驾校",@"报考车型"],@[@"我的喜欢",@"我的教练",@"钱包"],@[@"设置",@"报名详情"]];
+        _dataArray = @[@[@"报考驾校",@"报考车型"],@[@"我的喜欢",@"我的教练",@"钱包"],@[@"设置",@"报名详情",@"验证报名信息"]];
     }
     return _dataArray;
 }
 
 - (NSArray *)imageArray {
     if (_imageArray == nil) {
-        _imageArray = @[@[@"驾校",@"车型"],@[@"喜欢",@"我的教练",@"user_center_qianbao"],@[@"设置",@"xq"]];
+        _imageArray = @[@[@"驾校",@"车型"],@[@"喜欢",@"我的教练",@"user_center_qianbao"],@[@"设置",@"xq",@""]];
     }
     return _imageArray;
 }
@@ -147,7 +148,7 @@
     }else if (section == 1) {
         return 3;
     }else if (section == 2) {
-        return 2;
+        return 3;
     }
     return 0;
 }
@@ -200,7 +201,7 @@
         if (indexPath.row == 0) {
             SetupViewController *setup = [[SetupViewController alloc] init];
             [self.navigationController pushViewController:setup animated:YES];
-        } else {
+        } else if (indexPath.row == 1) {
             if ([[[AcountManager manager] userApplystate] isEqualToString:@"1"]) {
                 [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
             }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"])
@@ -209,9 +210,17 @@
                 [self.navigationController pushViewController:signUPVC animated:YES];
             }else
             {
-                [self showTotasViewWithMes:@"你已经报过名!"];
+                [self showTotasViewWithMes:@"您已经报过名!"];
             }
            
+        }else {
+            if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+                [self.navigationController pushViewController:[VerifyPhoneController new] animated:YES];
+            }else {
+                [self showTotasViewWithMes:@"您已经报过名!"];
+            }
+           
+            
         }
     }else if (indexPath.section == 1 && indexPath.row == 2 ) {
         if (![AcountManager isLogin]) {
