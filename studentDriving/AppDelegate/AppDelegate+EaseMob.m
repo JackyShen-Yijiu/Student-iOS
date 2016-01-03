@@ -27,19 +27,6 @@
 - (void)easemobApplication:(UIApplication *)application
 didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
-    _connectionState = eEMConnectionConnected;
-    
-   // [self registerRemoteNotification];
-    
-    NSString * easemobAppKey = @"black-cat#yibuxuechetest";
-    NSString * easemobApnsCertName = @"productionPush";
-    
-    easemobAppKey = @"black-cat#yibuxuecheprod";
-    easemobApnsCertName = @"productionPush";
-    
-    [[EaseMob sharedInstance] registerSDKWithAppKey:easemobAppKey
-                                       apnsCertName:easemobApnsCertName];
-    
     if (launchOptions) {
         NSDictionary*userInfo = [launchOptions objectForKey:@"UIApplicationLaunchOptionsRemoteNotificationKey"];
         if(userInfo)
@@ -48,14 +35,33 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
         }
     }
     
+    _connectionState = eEMConnectionConnected;
+    
+    [self registerRemoteNotification];
+    
+    
+    NSString * easemobAppKey = @"black-cat#yibuxuechetest";
+    NSString * easemobApnsCertName = @"productionPush";
+    
+    easemobAppKey = @"black-cat#yibuxuecheprod";
+    easemobApnsCertName = @"productionPush";
+    
+    EMError *error =  [[EaseMob sharedInstance] registerSDKWithAppKey:easemobAppKey
+                                                         apnsCertName:easemobApnsCertName
+                                                          otherConfig:@{kSDKConfigEnableConsoleLogger:@YES}];
+    DYNSLog(@"error = %@",error.description);
+    
+    // 登录成功后，自动去取好友列表
+    // SDK获取结束后，会回调
+    // - (void)didFetchedBuddyList:(NSArray *)buddyList error:(EMError *)error方法。
+    [[EaseMob sharedInstance].chatManager setIsAutoFetchBuddyList:YES];
+    
     // 注册环信监听
     [self registerEaseMobNotification];
-    
     [[EaseMob sharedInstance] application:application
             didFinishLaunchingWithOptions:launchOptions];
     
     [self setupNotifiers];
-    
 }
 
 // 监听系统生命周期回调，以便将需要的事件传给SDK
