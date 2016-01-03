@@ -10,7 +10,7 @@
 #import "DVVSideMenuBlockViewItemButton.h"
 #import "AcountManager.h"
 
-#define badgeLabelWidth 6
+#define badgeLabelWidth 9
 
 @interface DVVSideMenuBlockView()
 
@@ -67,6 +67,7 @@
     if (unreadCount > 0) {
 //        [self showMessCountInTabBar:unreadCount];
         [self showBadge];
+        self.badgeLabel.text = [NSString stringWithFormat:@"%li",unreadCount];
     }else{
 //        [self hiddenMessCountInTabBar];
         [self removeBadge];
@@ -155,6 +156,7 @@
         _badgeLabel.frame = CGRectMake(0, 0, badgeLabelWidth, badgeLabelWidth);
         [_badgeLabel.layer setMasksToBounds:YES];
         [_badgeLabel.layer setCornerRadius:badgeLabelWidth / 2.f];
+        _badgeLabel.font = [UIFont systemFontOfSize:badgeLabelWidth];
     }
     return _badgeLabel;
 }
