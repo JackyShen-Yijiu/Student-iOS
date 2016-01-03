@@ -72,15 +72,19 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
     }];
     [self.exchangeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bottomView.mas_right).offset(-15);
-        make.bottom.mas_equalTo(self.bottomView.mas_bottom).offset(-10);
+        make.bottom.mas_equalTo(self.bottomView.mas_bottom).offset(-5);
         make.height.mas_equalTo(@40);
-        NSNumber *wide = [NSNumber numberWithFloat:(kSystemWide)-20];
+        NSNumber *wide = [NSNumber numberWithFloat:(kSystemWide)-30];
         make.width.mas_equalTo(wide);
     }];
     
-    
-    
     [self startDownLoad];
+    if ([AcountManager manager].userCoinCertificate == 0) {
+        self.exchangeButton.userInteractionEnabled = NO;
+        self.exchangeButton.backgroundColor = [UIColor grayColor];
+        _exchangeButton.layer.borderColor = [UIColor grayColor].CGColor;
+        
+    }
 }
 - (void)clickExchange:(UIButton *)sender {
    DiscountShopController  *vc = [[DiscountShopController alloc] init];
@@ -128,7 +132,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
         DYNSLog(@"data = %@",data);
         [self.tableView.mj_header endRefreshing];
         
-        if (![[data objectForKey:@"type"] integerValue]) {
+        if (![[data objectForKey:@"type"] integerValue] || data == nil) {
             return ;
         }
         NSArray *param = [data objectForKey:@"data"];
@@ -180,7 +184,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 6;
+    return self.dataArray.count;
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -193,6 +197,10 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 //        cell.discountWalletModel = self.dataArray[indexPath.row];
     }
+    if (self.dataArray) {
+        cell.discountWalletModel = self.dataArray[indexPath.row];
+    };
+    
 
     return cell;
 }
@@ -211,7 +219,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
     if (_inviteNum == nil) {
         _inviteNum = [[UILabel alloc] init];
         _inviteNum.font = [UIFont systemFontOfSize:14];
-        _inviteNum.text = [NSString stringWithFormat:@"我的Y码:%@",[AcountManager manager].userInvitationcode];
+//        _inviteNum.text = [NSString stringWithFormat:@"我的Y码:%@",[AcountManager manager].userInvitationcode];
     }
     return _inviteNum;
 }
@@ -227,7 +235,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
 - (UILabel *)moneyDisplay {
     if (_moneyDisplay == nil) {
         _moneyDisplay = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:65]];
-        _moneyDisplay.text = @"0";
+        _moneyDisplay.text = [NSString stringWithFormat:@"%lu",[AcountManager manager].userCoinCertificate];
     }
     return _moneyDisplay;
 }
@@ -245,7 +253,6 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
         _exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_exchangeButton setTitle:@"兑换" forState:UIControlStateNormal];
         [_exchangeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
         _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
         _exchangeButton.titleLabel.font = [UIFont systemFontOfSize:15];
         _exchangeButton.layer.borderColor = MAINCOLOR.CGColor;

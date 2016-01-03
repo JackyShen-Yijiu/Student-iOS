@@ -10,6 +10,7 @@
 		06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06073D831C251BF60058B372 /* HomeFavourableController.m */; };
 		06073D871C251C300058B372 /* HomeRewardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06073D861C251C300058B372 /* HomeRewardController.m */; };
 		060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060FC6A51C27CB030039DDBB /* RegistNoteController.m */; };
+		061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */; };
 		0647A5B61C34BB8700DBB8A3 /* DiscountShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */; };
 		0647A5B91C34C1DE00DBB8A3 /* DiscountShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B81C34C1DE00DBB8A3 /* DiscountShopCell.m */; };
 		0647A5BC1C34FE5F00DBB8A3 /* DiscountWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5BB1C34FE5F00DBB8A3 /* DiscountWalletController.m */; };
@@ -576,6 +577,8 @@
 		06073D861C251C300058B372 /* HomeRewardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeRewardController.m; sourceTree = "<group>"; };
 		060FC6A41C27CB030039DDBB /* RegistNoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistNoteController.h; sourceTree = "<group>"; };
 		060FC6A51C27CB030039DDBB /* RegistNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistNoteController.m; sourceTree = "<group>"; };
+		061E7AD91C38C20D008C51C3 /* DiscountOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountOrderController.h; sourceTree = "<group>"; };
+		061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountOrderController.m; sourceTree = "<group>"; };
 		0647A5B41C34BB8700DBB8A3 /* DiscountShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopController.h; sourceTree = "<group>"; };
 		0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountShopController.m; sourceTree = "<group>"; };
 		0647A5B71C34C1DE00DBB8A3 /* DiscountShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopCell.h; sourceTree = "<group>"; };
@@ -1536,6 +1539,8 @@
 				0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */,
 				0647A5C91C354A7100DBB8A3 /* DiscountShopDatailController.h */,
 				0647A5CA1C354A7100DBB8A3 /* DiscountShopDatailController.m */,
+				061E7AD91C38C20D008C51C3 /* DiscountOrderController.h */,
+				061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */,
 				0647A5B71C34C1DE00DBB8A3 /* DiscountShopCell.h */,
 				0647A5B81C34C1DE00DBB8A3 /* DiscountShopCell.m */,
 				0647A5C31C35135F00DBB8A3 /* DiscountWalletCell.h */,
@@ -1549,7 +1554,6 @@
 				D9A5DF5B1C35288A009DF18A /* CoinCertificateController.h */,
 				D9A5DF5C1C35288A009DF18A /* CoinCertificateController.m */,
 				D9A5DF5D1C35288A009DF18A /* CoinCertificateController.xib */,
-
 			);
 			name = DiscountShop;
 			sourceTree = "<group>";
@@ -3512,6 +3516,7 @@
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
 				D5604B4D1BF656C50020F0D7 /* MWPhoto.m in Sources */,
+				061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */,
 				060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */,
 				D5604B691BF656C50020F0D7 /* PSTCollectionViewItemKey.m in Sources */,
 				D588B06B1BDDDB90000C5D6F /* AppointmentViewController.m in Sources */,
@@ -3878,8 +3883,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3898,7 +3903,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "186730fd-fa68-4099-8433-b970523decc9";
+				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -3909,8 +3914,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3929,7 +3934,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "186730fd-fa68-4099-8433-b970523decc9";
+				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
