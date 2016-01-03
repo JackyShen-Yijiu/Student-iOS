@@ -110,7 +110,7 @@
         _commentLabel = [UILabel new];
         _commentLabel.text = @"认证教练";
         _commentLabel.textColor = MAINCOLOR;
-        _commentLabel.font = [UIFont systemFontOfSize:15];
+        _commentLabel.font = [UIFont systemFontOfSize:12];
     }
     return _commentLabel;
 }
@@ -224,7 +224,8 @@
     
     [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.distanceLabel.mas_right);
-        make.bottom.mas_equalTo(self.moenyLabel.mas_bottom).offset(0.5);
+        make.bottom.mas_equalTo(self.moenyLabel.mas_bottom);
+//        make.centerY.mas_equalTo(self.moenyLabel.mas_centerY);
     }];
     
 
@@ -287,7 +288,7 @@
 //    }
     self.commentLabel.text = @"暂无认证教练";
     if (model.coachcount) {
-        self.commentLabel.text = [NSString stringWithFormat:@"%@位已认证教练",model.coachcount];
+        self.commentLabel.text = [NSString stringWithFormat:@"%@位认证教练",model.coachcount];
     }
 }
 

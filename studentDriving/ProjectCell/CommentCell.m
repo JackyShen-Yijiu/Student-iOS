@@ -18,6 +18,7 @@
 - (RatingBar *)starBar {
     if (_starBar == nil) {
         _starBar = [[RatingBar alloc] init];
+        
         [_starBar setImageDeselected:@"starUnSelected30.png" halfSelected:nil fullSelected:@"starSelected30.png" andDelegate:self];
         _starBar.isIndicator = NO;
     }
