@@ -161,6 +161,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 #pragma mark ----
 - (void)startSubjectFirstDownLoad {
+    
     NSString *urlString = [NSString stringWithFormat:BASEURL,kexamquestionUrl];
     
     __weak HomeMainController *weakSelf = self;
@@ -174,14 +175,16 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         }
     }];
     
-    if (![AcountManager isLogin]) {
-        return;
-    }
+    
     
     
 }
 - (void)addLoadSubjectProress
 {
+    if (![AcountManager isLogin]) {
+        return;
+    }
+    
     NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
     NSDictionary *param = @{@"userid":[AcountManager manager].userid};
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
@@ -204,6 +207,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             }
             
         }else {
+            
+            NSLog(@"1:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
+            
             [self showTotasViewWithMes:[data objectForKey:@"msg"]];
         }
     } withFailure:^(id data) {
@@ -240,6 +246,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             NSLog(@"__%@",[AcountManager manager].subjectthree.progress);
             
         }else {
+            
+            NSLog(@"2:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
+
             [self showTotasViewWithMes:[data objectForKey:@"msg"]];
         }
     } withFailure:^(id data) {
