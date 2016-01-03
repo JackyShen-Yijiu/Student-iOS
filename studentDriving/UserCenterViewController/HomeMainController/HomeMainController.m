@@ -236,7 +236,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             }
             
             NSLog(@"__%@",[AcountManager manager].userSubject.name);
-            NSLog(@"%@",[AcountManager manager].subjecttwo.progress);
+            NSLog(@"——%@",[AcountManager manager].subjecttwo.progress);
             NSLog(@"__%@",[AcountManager manager].subjectthree.progress);
             
         }else {
