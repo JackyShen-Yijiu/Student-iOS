@@ -156,7 +156,7 @@
         _badgeLabel.frame = CGRectMake(0, 0, badgeLabelWidth, badgeLabelWidth);
         [_badgeLabel.layer setMasksToBounds:YES];
         [_badgeLabel.layer setCornerRadius:badgeLabelWidth / 2.f];
-        _badgeLabel.font = [UIFont systemFontOfSize:badgeLabelWidth];
+        _badgeLabel.font = [UIFont systemFontOfSize:badgeLabelWidth - 3];
     }
     return _badgeLabel;
 }
