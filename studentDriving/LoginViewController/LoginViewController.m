@@ -29,7 +29,6 @@ static NSString *const kloginUrl = @"userinfo/userlogin";
 
 static NSString *const kregisterUser = @"kregisterUser";
 
-
 static NSString *const kmobileNum = @"mobile";
 
 static NSString *const kpassword = @"password";
@@ -78,12 +77,14 @@ static NSString *const kuserType = @"usertype";
 - (UIButton *)checkButton {
     if (!_checkButton) {
         _checkButton = [UIButton new];
-        [_checkButton setTitle:@"验证学车进度" forState:UIControlStateNormal];
+        [_checkButton setTitle:@"" forState:UIControlStateNormal];
         [_checkButton setTitleColor:RGBColor(255, 102, 51) forState:UIControlStateNormal];
         _checkButton.titleLabel.textAlignment = 1;
         _checkButton.backgroundColor = [UIColor clearColor];
         _checkButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_checkButton addTarget:self action:@selector(checkButtonAction) forControlEvents:UIControlEventTouchDown];
+        _checkButton.userInteractionEnabled = NO;
+        
     }
     return _checkButton;
 }
@@ -595,7 +596,7 @@ static NSString *const kuserType = @"usertype";
         make.width.mas_equalTo(self.bottomButton.mas_width);
         make.height.mas_equalTo(self.bottomButton.mas_height);
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.bottom.mas_equalTo(self.bottomButton.mas_top).offset(-10);
+        make.bottom.mas_equalTo(self.bottomButton.mas_top).offset(30);
     }];
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
