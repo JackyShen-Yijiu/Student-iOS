@@ -46,6 +46,7 @@
 		554641CB1C250A2200A55326 /* SignUpSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CA1C250A2200A55326 /* SignUpSuccessViewController.m */; };
 		554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CD1C250A6900A55326 /* SignUpInfoManager.m */; };
 		554E8E881C3A89CC00233F2B /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 554E8E851C3A89CC00233F2B /* EaseMob.bundle */; };
+		554E8E8A1C3A985D00233F2B /* libEaseMobClientSDKLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */; };
 		556F42581C310E7A0052DE73 /* SignUpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F42571C310E7A0052DE73 /* SignUpListViewController.m */; };
 		556F425B1C310E980052DE73 /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F425A1C310E980052DE73 /* ApplyClassCell.m */; };
 		556F425E1C310F2D0052DE73 /* ExamDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F425D1C310F2D0052DE73 /* ExamDetailCell.m */; };
@@ -718,6 +719,7 @@
 		554E8E7F1C3A89CC00233F2B /* EMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMError.h; sourceTree = "<group>"; };
 		554E8E801C3A89CC00233F2B /* EMErrorDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMErrorDefs.h; sourceTree = "<group>"; };
 		554E8E851C3A89CC00233F2B /* EaseMob.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseMob.bundle; sourceTree = "<group>"; };
+		554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDKLite.a; sourceTree = "<group>"; };
 		556F42561C310E7A0052DE73 /* SignUpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpListViewController.h; sourceTree = "<group>"; };
 		556F42571C310E7A0052DE73 /* SignUpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpListViewController.m; sourceTree = "<group>"; };
 		556F42591C310E980052DE73 /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -1586,6 +1588,7 @@
 				D5604CAA1BF6598B0020F0D7 /* libxml2.tbd in Frameworks */,
 				D5604CA81BF659830020F0D7 /* libresolv.tbd in Frameworks */,
 				D5604CA61BF659790020F0D7 /* libiconv.tbd in Frameworks */,
+				554E8E8A1C3A985D00233F2B /* libEaseMobClientSDKLite.a in Frameworks */,
 				D5604CA41BF659710020F0D7 /* libz.tbd in Frameworks */,
 				D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */,
 				D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */,
@@ -1960,6 +1963,7 @@
 		554E8E811C3A89CC00233F2B /* lib */ = {
 			isa = PBXGroup;
 			children = (
+				554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
