@@ -25,6 +25,7 @@
 #import "DVVOpenControllerFromSideMenu.h"
 #import "VerifyPhoneController.h"
 #import <JPush/APService.h>
+#import "SignUpInfoManager.h"
 
 @interface UserCenterViewController ()<UITableViewDataSource,UITableViewDelegate,UserCenterHeadViewDelegte>
 @property (strong, nonatomic) UITableView *tableView;
@@ -47,7 +48,7 @@
 
 - (NSArray *)imageArray {
     if (_imageArray == nil) {
-        _imageArray = @[@[@"驾校",@"车型"],@[@"喜欢",@"我的教练",@"user_center_qianbao"],@[@"设置",@"xq",@""]];
+        _imageArray = @[@[@"驾校",@"车型"],@[@"喜欢",@"我的教练",@"user_center_qianbao"],@[@"设置",@"xq",@"认证"]];
     }
     return _imageArray;
 }
@@ -96,7 +97,9 @@
     
 }
 - (void)clickQuit:(UIButton *)sender {
+    
     [AcountManager removeAllData];
+    
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
         DYNSLog(@"退出成功 = %@ %@",info,error);
         if (!error && info) {
@@ -109,6 +112,7 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kQuitSuccess" object:nil];
     [AcountManager removeAllData];
     [DVVUserManager userLogout];
+    [SignUpInfoManager removeSignData];
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     [ud setInteger:1 forKey:@"isCarReset"];
     [ud synchronize];
@@ -214,12 +218,12 @@
             }
            
         }else {
-            if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+            if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
                 [self.navigationController pushViewController:[VerifyPhoneController new] animated:YES];
             }else {
                 [self showTotasViewWithMes:@"您已经报过名!"];
+
             }
-           
             
         }
     }else if (indexPath.section == 1 && indexPath.row == 2 ) {

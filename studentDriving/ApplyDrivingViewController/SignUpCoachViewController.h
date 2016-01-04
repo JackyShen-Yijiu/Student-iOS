@@ -10,4 +10,5 @@
 
 @interface SignUpCoachViewController : BLBaseViewController
 @property (assign, nonatomic) NSUInteger markNum;
+@property (nonatomic, assign) BOOL isVerify;
 @end

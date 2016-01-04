@@ -124,6 +124,10 @@ static NSString *const kRealUserid = @"userid";
     if (name == nil || name.length == 0) {
         return @"";
     }
+    if (param[@"id"]) {
+        [self signUpInfoSaveRealClasstypeid:param[@"id"]];
+    }
+    
     return name;
 }
 
@@ -149,6 +153,33 @@ static NSString *const kRealUserid = @"userid";
     NSString *name = param[@"name"];
     if (name == nil || name.length == 0) {
         return @"智能匹配";
+    }
+    return name;
+}
+
+#warning  由于验证和报名的key相同，修改一个
+//缓存验证教练
++ (void)signUpInfoSaveVerifyRealCoach:(NSDictionary *)CoachParam {
+    if (CoachParam == nil || [CoachParam isEqual:[NSNull null]]) {
+        return;
+    }
+    NSLog(@"param = %@",CoachParam);
+    
+    NSDictionary *param = @{@"id":CoachParam[@"verifycoachid"],@"name":CoachParam[@"name"]};
+    
+    [NSUserStoreTool storeWithId:param WithKey:kVerifyCoachParam];
+    [self signUpInfoSaveVerifyRealCoachid:CoachParam[kVerifyCoachid]];
+}
+
++ (void)signUpInfoSaveVerifyRealCoachid:(NSString *)realCoachid {
+    [NSUserStoreTool storeWithId:realCoachid WithKey:kVerifyCoachid];
+}
+//获取验证教练名字
++ (NSString *)getSignUpVerifyCoachName {
+    NSDictionary *param = [NSUserStoreTool getObjectWithKey:kVerifyCoachParam];
+    NSString *name = param[@"name"];
+    if (name == nil || name.length == 0) {
+        return @"";
     }
     return name;
 }
@@ -305,7 +336,7 @@ static NSString *const kRealUserid = @"userid";
         return nil;
         
     }
-    NSString *krealCoachidString = [NSUserStoreTool getObjectWithKey:kRealCoachid];
+    NSString *krealCoachidString = [NSUserStoreTool getObjectWithKey:kVerifyCoachid];
     if (krealCoachidString == nil || krealCoachidString.length == 0) {
         [self obj_showTotasViewWithMes:@"教练为空"];
         return nil;
@@ -361,6 +392,8 @@ static NSString *const kRealUserid = @"userid";
     [NSUserStoreTool removeObjectWithKey:kFcode];
     [NSUserStoreTool removeObjectWithKey:kRealName];
     [NSUserStoreTool removeObjectWithKey:kRealTelephone];
+    [NSUserStoreTool removeObjectWithKey:kVerifyCoachid];
+    [NSUserStoreTool removeObjectWithKey:kVerifyCoachParam];
 }
 
 @end

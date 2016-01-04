@@ -33,7 +33,7 @@
 #import "ToolHeader.h"
 #import "AppDelegate+DealJPushMessage.h"
 #import "AppDelegate+DealTool.h"
-#import <EaseMobHeaders.h>
+#import "EaseMob.h"
 #import "AppDelegate+EaseMob.h"
 #import "ChatListViewController.h"
 #import <UMengAnalytics-NO-IDFA/MobClick.h>
@@ -83,6 +83,7 @@
     //注册环信聊天
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
+//    // 引导页
 //    [YBWelcomeController removeSavedVersion];
 //    if ([YBWelcomeController isShowWelcome]) {
 //        [YBWelcomeController show];

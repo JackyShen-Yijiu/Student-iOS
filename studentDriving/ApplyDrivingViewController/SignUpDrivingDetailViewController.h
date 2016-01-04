@@ -10,5 +10,5 @@
 
 @interface SignUpDrivingDetailViewController : BLBaseViewController
 @property (copy, nonatomic) NSString *schoolId;
-
+@property (nonatomic, assign) BOOL isVerify;
 @end

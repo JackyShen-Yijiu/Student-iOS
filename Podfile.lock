@@ -28,9 +28,8 @@ PODS:
   - ChameleonFramework (2.0.6):
     - ChameleonFramework/Default (= 2.0.6)
   - ChameleonFramework/Default (2.0.6)
-  - EaseMobSDKFull (2.2.1.2)
   - HappyDNS (0.2.3)
-  - IQKeyboardManager (3.3.4)
+  - IQKeyboardManager (3.3.5)
   - JPush (1.8.8)
   - Mantle (2.0.6):
     - Mantle/extobjc (= 2.0.6)
@@ -57,7 +56,6 @@ DEPENDENCIES:
   - AFNetworking
   - BaiduMapAPI (~> 2.8.1)
   - ChameleonFramework
-  - EaseMobSDKFull (from `https://github.com/easemob/sdk-ios-cocoapods-integration.git`)
   - IQKeyboardManager
   - JPush (~> 1.8.7)
   - Mantle (~> 2.0.5)
@@ -71,22 +69,12 @@ DEPENDENCIES:
   - SSKeychain
   - UMengAnalytics-NO-IDFA
 
-EXTERNAL SOURCES:
-  EaseMobSDKFull:
-    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
-
-CHECKOUT OPTIONS:
-  EaseMobSDKFull:
-    :commit: f27db4da9c6285f91a71811c2d55af8427368dbf
-    :git: https://github.com/easemob/sdk-ios-cocoapods-integration.git
-
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   BaiduMapAPI: 2d03e12a51d5c6c49ece555c6bdda8562635cc02
   ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
-  EaseMobSDKFull: f8d6281b9b58b90d5594fe7d40e1529790035d65
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
-  IQKeyboardManager: ac803e61e5b50efae6b3aeedd95a02c7c7d3b2b3
+  IQKeyboardManager: 128bcb96b3ec03ff87942cdd7fa7f44491aa3d08
   JPush: d1a4a90294389d2c6bd2ca987df8140dd4ffcbd2
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2

@@ -29,7 +29,6 @@ static NSString *const kloginUrl = @"userinfo/userlogin";
 
 static NSString *const kregisterUser = @"kregisterUser";
 
-
 static NSString *const kmobileNum = @"mobile";
 
 static NSString *const kpassword = @"password";
@@ -78,12 +77,14 @@ static NSString *const kuserType = @"usertype";
 - (UIButton *)checkButton {
     if (!_checkButton) {
         _checkButton = [UIButton new];
-        [_checkButton setTitle:@"验证学车进度" forState:UIControlStateNormal];
+        [_checkButton setTitle:@"" forState:UIControlStateNormal];
         [_checkButton setTitleColor:RGBColor(255, 102, 51) forState:UIControlStateNormal];
         _checkButton.titleLabel.textAlignment = 1;
         _checkButton.backgroundColor = [UIColor clearColor];
         _checkButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_checkButton addTarget:self action:@selector(checkButtonAction) forControlEvents:UIControlEventTouchDown];
+        _checkButton.userInteractionEnabled = NO;
+        
     }
     return _checkButton;
 }
@@ -329,7 +330,7 @@ static NSString *const kuserType = @"usertype";
         }else if ([type isEqualToString:@"1"]) {
             
             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-            NSLog(@"self.phoneNumTextField.textL%@",self.phoneNumTextField.text);
+            NSLog(@"self.phoneNumTextField.text:%@",self.phoneNumTextField.text);
             NSLog(@"self.passwordTextField.text:%@",self.passwordTextField.text);
             
             [self loginWithUsername:self.phoneNumTextField.text password:pwdKey  dataDic:dataDic];
@@ -362,16 +363,12 @@ static NSString *const kuserType = @"usertype";
     }];
 }
 
+
 // 点击登陆后的操作
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password  dataDic:(NSDictionary *)dataDic
 {
     [self showHudInView:self.view hint:NSLocalizedString(@"登陆中...", @"登陆中...")];
-    //
-    //    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:password];
-    //
-    //    NSDictionary *dict = [[EaseMob sharedInstance].chatManager loginWithUsername:username password:password error:nil];
-    //    NSLog(@"dict:%@",dict);
-    //
+   
     BOOL isLoggedIn = [[EaseMob sharedInstance].chatManager isLoggedIn];
     NSLog(@"isLoggedIn:%d",isLoggedIn);
     
@@ -382,7 +379,7 @@ static NSString *const kuserType = @"usertype";
     
     if (userid==nil) {
         userid = @"";
-    }
+     }
     NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
     
     // 异步登陆账号
@@ -396,13 +393,15 @@ static NSString *const kuserType = @"usertype";
          
          if (loginInfo && !error) {
              
-             DYNSLog(@"登录");
+             DYNSLog(@"登录成功");
              
              [AcountManager saveUserName:userid andPassword:password];
              
              [AcountManager configUserInformationWith:dataDic[@"data"]];
              
              [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
+             
+             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
              
              [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
              
@@ -597,7 +596,7 @@ static NSString *const kuserType = @"usertype";
         make.width.mas_equalTo(self.bottomButton.mas_width);
         make.height.mas_equalTo(self.bottomButton.mas_height);
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.bottom.mas_equalTo(self.bottomButton.mas_top).offset(-10);
+        make.bottom.mas_equalTo(self.bottomButton.mas_top).offset(30);
     }];
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {

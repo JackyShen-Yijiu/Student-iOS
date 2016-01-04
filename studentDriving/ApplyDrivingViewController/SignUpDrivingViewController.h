@@ -10,4 +10,6 @@
 
 @interface SignUpDrivingViewController : BLBaseViewController
 
+@property (nonatomic, assign) BOOL isVerify;
+
 @end

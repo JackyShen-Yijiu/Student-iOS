@@ -11,7 +11,7 @@
  */
 
 #import "AppDelegate+EaseMob.h"
-#import <EaseMobHeaders.h>
+#import "EaseMob.h"
 
 //#import "AppDelegate+EaseMobDebug.h"
 //#import "AppDelegate+Parse.h"
@@ -49,7 +49,7 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     EMError *error =  [[EaseMob sharedInstance] registerSDKWithAppKey:easemobAppKey
                                                          apnsCertName:easemobApnsCertName
                                                           otherConfig:@{kSDKConfigEnableConsoleLogger:@YES}];
-    DYNSLog(@"error = %@",error.description);
+    DYNSLog(@"%s error = %@",__func__,error.description);
     
     // 登录成功后，自动去取好友列表
     // SDK获取结束后，会回调

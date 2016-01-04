@@ -95,15 +95,15 @@ static NSString *const kexamCar = @"info/carmodel";
 
 - (void)clickRight:(UIButton *)sender {
     
-    if (![[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-        if (self.carModel == nil) {
-            [self showTotasViewWithMes:@"请选择车型"];
-            return;
-        }
-        NSDictionary *param = @{@"modelsid":self.carModel.modelsid,@"name":self.carModel.name,@"code":self.carModel.code};
-        [SignUpInfoManager  signUpInfoSaveRealCarmodel:param];
-        [self.navigationController popViewControllerAnimated:YES];
-    }
+//    if (![[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+//        if (self.carModel == nil) {
+//            [self showTotasViewWithMes:@"请选择车型"];
+//            return;
+//        }
+    NSDictionary *param = @{@"modelsid":self.carModel.modelsid,@"name":self.carModel.name,@"code":self.carModel.code};
+    [SignUpInfoManager  signUpInfoSaveRealCarmodel:param];
+    [self.navigationController popViewControllerAnimated:YES];
+//    }
   
     
 }

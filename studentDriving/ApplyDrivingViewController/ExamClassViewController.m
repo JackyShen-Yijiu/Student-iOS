@@ -91,17 +91,17 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 #pragma mark - 完成
 - (void)clickRight:(UIButton *)sender {
     
-    if (![[AcountManager manager].userApplystate isEqualToString:@"2"]){
-    
-    if (self.examclassmodel == nil) {
-        [self showTotasViewWithMes:@"请选择班级类型"];
-        return;
-    }
+//    if (![[AcountManager manager].userApplystate isEqualToString:@"2"]){
+//    
+//    if (self.examclassmodel == nil) {
+//        [self showTotasViewWithMes:@"请选择班级类型"];
+//        return;
+//    }
     
     NSDictionary *classtypeParam = @{kRealClasstypeid:self.examclassmodel.classid,@"name":self.examclassmodel.classname};
     [SignUpInfoManager signUpInfoSaveRealClasstype:classtypeParam];
     [self.navigationController popViewControllerAnimated:YES];
-    }
+//    }
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {

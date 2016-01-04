@@ -226,10 +226,10 @@
 }
 #pragma mark 兑换券
 - (void)coinCertificateLabelAction {
-    if (![AcountManager manager].userCoinCertificate) {
-        [self showMsg:@"暂无兑换券"];
-        return ;
-    }
+//    if (![AcountManager manager].userCoinCertificate) {
+//        [self showMsg:@"暂无兑换券"];
+//        return ;
+//    }
     CoinCertificateController *ccVC = [CoinCertificateController new];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);

@@ -10,5 +10,5 @@
 
 @interface SignUpCoachDetailViewController : BLBaseViewController
 @property (copy, nonatomic) NSString *coachUserId;
-
+@property (nonatomic, assign) BOOL isVerify;
 @end
