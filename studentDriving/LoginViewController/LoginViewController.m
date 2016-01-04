@@ -329,7 +329,7 @@ static NSString *const kuserType = @"usertype";
         }else if ([type isEqualToString:@"1"]) {
             
             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-            NSLog(@"self.phoneNumTextField.textL%@",self.phoneNumTextField.text);
+            NSLog(@"self.phoneNumTextField.text:%@",self.phoneNumTextField.text);
             NSLog(@"self.passwordTextField.text:%@",self.passwordTextField.text);
             
             [self loginWithUsername:self.phoneNumTextField.text password:pwdKey  dataDic:dataDic];
@@ -366,12 +366,7 @@ static NSString *const kuserType = @"usertype";
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password  dataDic:(NSDictionary *)dataDic
 {
     [self showHudInView:self.view hint:NSLocalizedString(@"登陆中...", @"登陆中...")];
-    //
-    //    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:password];
-    //
-    //    NSDictionary *dict = [[EaseMob sharedInstance].chatManager loginWithUsername:username password:password error:nil];
-    //    NSLog(@"dict:%@",dict);
-    //
+   
     BOOL isLoggedIn = [[EaseMob sharedInstance].chatManager isLoggedIn];
     NSLog(@"isLoggedIn:%d",isLoggedIn);
     
@@ -396,13 +391,15 @@ static NSString *const kuserType = @"usertype";
          
          if (loginInfo && !error) {
              
-             DYNSLog(@"登录");
+             DYNSLog(@"登录成功");
              
              [AcountManager saveUserName:userid andPassword:password];
              
              [AcountManager configUserInformationWith:dataDic[@"data"]];
              
              [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
+             
+             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
              
              [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
              

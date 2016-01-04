@@ -33,7 +33,7 @@
 #import "ToolHeader.h"
 #import "AppDelegate+DealJPushMessage.h"
 #import "AppDelegate+DealTool.h"
-#import <EaseMobHeaders.h>
+#import "EaseMob.h"
 #import "AppDelegate+EaseMob.h"
 #import "ChatListViewController.h"
 #import <UMengAnalytics-NO-IDFA/MobClick.h>

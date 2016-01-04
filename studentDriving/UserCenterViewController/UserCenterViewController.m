@@ -96,7 +96,9 @@
     
 }
 - (void)clickQuit:(UIButton *)sender {
+    
     [AcountManager removeAllData];
+    
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
         DYNSLog(@"退出成功 = %@ %@",info,error);
         if (!error && info) {
