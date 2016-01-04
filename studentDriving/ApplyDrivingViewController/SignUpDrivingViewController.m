@@ -7,7 +7,8 @@
 //
 
 #import "SignUpDrivingViewController.h"
-#import "SignUpDrivingDetailViewController.h"
+#import "DrivingViewController.h"
+#import "DrivingDetailViewController.h"
 #import "DrivingCell.h"
 #import <BaiduMapAPI/BMKLocationService.h>
 #import "DrivingModel.h"
@@ -22,6 +23,7 @@
 #import <BaiduMapAPI/BMKGeocodeSearch.h>
 #import "MJRefresh.h"
 #import "DVVSideMenu.h"
+#import "SignUpDrivingDetailViewController.h"
 
 static NSString *const kDrivingUrl = @"searchschool";
 
@@ -376,6 +378,7 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     SignUpDrivingDetailViewController *SelectVC = [[SignUpDrivingDetailViewController alloc]init];
+    SelectVC.isVerify = self.isVerify;
     DrivingModel *model = self.dataArray[indexPath.row];
     self.detailModel = model;
     SelectVC.schoolId = model.schoolid;

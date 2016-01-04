@@ -88,8 +88,13 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
     
     if (![AcountManager manager].applyschool.infoId) {
         if (self.detailModel || self.detailModel.name) {
-            NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
-            [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+            if (self.isVerify) {
+                NSDictionary *coachParam = @{kVerifyCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+                [SignUpInfoManager signUpInfoSaveVerifyRealCoach:coachParam];
+            }else {
+                NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+                [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+            }
             
         }
         if (self.detailModel.driveschoolinfo.driveSchoolId && self.detailModel.driveschoolinfo.name) {
@@ -102,8 +107,13 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
     }
     if ([AcountManager manager].applyschool.infoId) {
         if (self.detailModel || self.detailModel.name) {
-            NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
-            [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+            if (self.isVerify) {
+                NSDictionary *coachParam = @{kVerifyCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+                [SignUpInfoManager signUpInfoSaveVerifyRealCoach:coachParam];
+            }else {
+                NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+                [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+            }
         }
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -122,8 +132,13 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
                 return ;
             }else  {
                 if (self.detailModel || self.detailModel.name) {
-                    NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
-                    [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+                    if (self.isVerify) {
+                        NSDictionary *coachParam = @{kVerifyCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+                        [SignUpInfoManager signUpInfoSaveVerifyRealCoach:coachParam];
+                    }else {
+                        NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+                        [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+                    }
                     
                 }
                 if (self.detailModel.driveschoolinfo.driveSchoolId && self.detailModel.driveschoolinfo.name) {
@@ -325,6 +340,7 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
     self.naviBarRightButton.hidden = NO;
     if (self.markNum == 1) {
         SignUpCoachDetailViewController *detailVC = [[SignUpCoachDetailViewController alloc]init];
+        detailVC.isVerify = self.isVerify;
         detailVC.coachUserId = model.coachid;
         [self.navigationController pushViewController:detailVC animated:YES];
     }else if (self.markNum == 2) {

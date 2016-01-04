@@ -18,6 +18,7 @@
 #import "BLPFAlertView.h"
 #import "SignUpInfoManager.h"
 #import "StudentCommentModel.h"
+#import "VerifyInformationController.h"
 static NSString *const kCoachDetailInfo = @"/userinfo/getuserinfo/2/userid/%@";
 static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
 
@@ -43,7 +44,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         _tableHeadImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 240)];
         UIImageView *maskView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 240-129, kSystemWide, 129)];
         maskView.image = [UIImage imageNamed:@"渐变"];
-        _tableHeadImageView.image = [UIImage imageNamed:@"mv.jpg"];
+//        _tableHeadImageView.image = [UIImage imageNamed:@"mv.jpg"];
         _tableHeadImageView.userInteractionEnabled = YES;
         [_tableHeadImageView addSubview:maskView];
         
@@ -98,17 +99,21 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         _signUpButton.backgroundColor = MAINCOLOR;
         _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
-        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-            [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
-        }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-    
-            [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
-        }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-            [_signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
+        if (self.isVerify) {
+            [_signUpButton setTitle:@"验证" forState:UIControlStateNormal];
+        }else {
+            if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+                [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+            }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                
+                [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
+                _signUpButton.userInteractionEnabled = NO;
+                
+            }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+                [_signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
+                _signUpButton.userInteractionEnabled = NO;
+                
+            }
         }
 
         
@@ -340,8 +345,13 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)dealSignUp:(UIButton *)sender{
     
     if (self.detailModel.coachid && self.detailModel.name) {
-        NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
-        [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+        if (self.isVerify) {
+            NSDictionary *coachParam = @{kVerifyCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+            [SignUpInfoManager signUpInfoSaveVerifyRealCoach:coachParam];
+        }else {
+            NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+            [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+        }
         NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
         [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
     }
@@ -352,6 +362,10 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         if ([targetVc isKindOfClass:[SignUpListViewController class]]) {
             [self.navigationController popToViewController:targetVc animated:YES];
         }
+        if ([targetVc isKindOfClass:[VerifyInformationController class]]) {
+            [self.navigationController popToViewController:targetVc animated:YES];
+        }
+
     }
     
    

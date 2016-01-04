@@ -12,6 +12,7 @@
 #import "SignUpInfoManager.h"
 #import "NSString+CurrentTimeDay.h"
 #import "SignUpListViewController.h"
+#import "VerifyInformationController.h"
 
 static NSString *const kexamClassDetail = @"driveschool/schoolclasstype/%@";
 @interface ExamClassDetailViewController ()<UITableViewDelegate, UITableViewDataSource>
@@ -195,6 +196,9 @@ static NSString *const kexamClassDetail = @"driveschool/schoolclasstype/%@";
     
     for (UIViewController *targetVc in self.navigationController.viewControllers) {
         if ([targetVc isKindOfClass:[SignUpListViewController class]]) {
+            [self.navigationController popToViewController:targetVc animated:YES];
+        }
+        if ([targetVc isKindOfClass:[VerifyInformationController class]]) {
             [self.navigationController popToViewController:targetVc animated:YES];
         }
     }

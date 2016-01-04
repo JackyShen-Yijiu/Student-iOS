@@ -7,6 +7,7 @@
 //
 
 #import "SignUpDrivingDetailViewController.h"
+#import "DrivingDetailViewController.h"
 #import "DrivingDetailCell.h"
 #import "MapViewController.h"
 #import "BLPFAlertView.h"
@@ -20,6 +21,7 @@
 #import "CoachDetailViewController.h"
 #import "LoginViewController.h"
 #import "UIColor+Hex.h"
+#import "VerifyInformationController.h"
 static NSString *const kDrivingDetailUrl = @"driveschool/getschoolinfo/%@";
 
 static NSString *const kGetDrivingCoachUrl = @"getschoolcoach/%@/%@";
@@ -72,16 +74,20 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 
 - (void)loginSuccess {
     DYNSLog(@"login");
-    if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-        [self.signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
-        self.signUpButton.userInteractionEnabled = NO;
-        
-    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-        [self.signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
-        self.signUpButton.userInteractionEnabled = NO;
-        
+    if (self.isVerify) {
+        [self.signUpButton setTitle:@"验证" forState:UIControlStateNormal];
     }else {
-        [self.signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+        if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+            [self.signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
+            self.signUpButton.userInteractionEnabled = NO;
+            
+        }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+            [self.signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
+            self.signUpButton.userInteractionEnabled = NO;
+            
+        }else {
+            [self.signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+        }
     }
 }
 - (void)startDownLoadCoach {
@@ -252,17 +258,69 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 - (void)dealSignUp:(UIButton *)sender{
     
     DrvingDetailModel *model = self.dataArray.firstObject;
-    if (model.schoolid && model.name) {
-        NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
-        [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+    
+    if (![AcountManager isLogin]) {
+        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+        LoginViewController *login = [[LoginViewController alloc] init];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        return;
     }
-    for (UIViewController *targetVc in self.navigationController.viewControllers) {
-        if ([targetVc isKindOfClass:[SignUpListViewController class]]) {
-            [self.navigationController popToViewController:targetVc animated:YES];
-            NSDictionary *param = @{@"coachid":@"",@"name":@""};
-            [SignUpInfoManager signUpInfoSaveRealCoach:param];
+    
+    DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
+    
+    if (![AcountManager manager].applyschool.infoId) {
+        
+        if (model.schoolid && model.name) {
+            DYNSLog(@"schoolinfo");
+            NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
+            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
         }
+        if (!self.isVerify) {
+            SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
+            [self.navigationController pushViewController:signUp animated:YES];
+        }else {
+            VerifyInformationController *signUp = [[VerifyInformationController alloc] init];
+            [self.navigationController pushViewController:signUp animated:YES];
+        }
+        return;
     }
+    
+    
+    if ([[AcountManager manager].applyschool.infoId isEqualToString:model.schoolid]) {
+        if (!self.isVerify) {
+            SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
+            [self.navigationController pushViewController:signUp animated:YES];
+        }else {
+            VerifyInformationController *signUp = [[VerifyInformationController alloc] init];
+            [self.navigationController pushViewController:signUp animated:YES];
+        }
+        return;
+    }
+    
+    [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+        DYNSLog(@"index = %ld",selectedOtherButtonIndex);
+        NSUInteger index = selectedOtherButtonIndex + 1;
+        if (index == 0) {
+            return ;
+        }else {
+            
+            if (model.schoolid && model.name) {
+                DYNSLog(@"schoolinfo");
+                NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
+                [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+            }
+            if (!self.isVerify) {
+                SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
+                [self.navigationController pushViewController:signUp animated:YES];
+            }else {
+                VerifyInformationController *signUp = [[VerifyInformationController alloc] init];
+                [self.navigationController pushViewController:signUp animated:YES];
+            }
+        }
+    }];
+    
+    
+    
 }
 #pragma mark - delegateCoach
 
@@ -395,18 +453,12 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
         _signUpButton.backgroundColor = [UIColor orangeColor];
         _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
-        if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-            [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
-        }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-            [_signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
+        if (self.isVerify) {
+            [_signUpButton setTitle:@"验证" forState:UIControlStateNormal];
         }else {
             [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
         }
-        
+
         [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
     }

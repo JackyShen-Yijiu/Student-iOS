@@ -24,7 +24,7 @@
 #import "ToolHeader.h"
 #import "AcountManager.h"
 #import "DrivingViewController.h"
-
+#import "SignUpCoachDetailViewController.h"
 
 
 
@@ -155,7 +155,8 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
         ExamCarViewController *carType = [[ExamCarViewController alloc] init];// 选择车型
         [self.navigationController pushViewController:carType animated:YES];
     }else if (indexPath.row == 1 ){
-        DrivingViewController *drivingVC = [[DrivingViewController alloc] init];   //选择驾校
+        SignUpDrivingViewController *drivingVC = [[SignUpDrivingViewController alloc] init];   //选择驾校
+        drivingVC.isVerify = YES;
         [self.navigationController pushViewController:drivingVC animated:YES];
     }
     else if (indexPath.row == 2) {
@@ -167,6 +168,7 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
         [self.navigationController pushViewController:classType animated:YES];
     }else if (indexPath.row == 3) {
         SignUpCoachViewController *coachVc = [[SignUpCoachViewController alloc] init];
+        coachVc.isVerify = YES;
         coachVc.markNum = 1;
         [self.navigationController pushViewController:coachVc animated:YES];
     }else if (indexPath.row == 4) {
@@ -177,9 +179,30 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
 
 
 - (void)dealRefer:(UIButton *)sender{
-    if (!([signUpArray[0] isEqualToString:@""]&&[signUpArray[1] isEqualToString:@""]&&[signUpArray[2] isEqualToString:@""]&&[signUpArray[3] isEqualToString:@""]&&[signUpArray[4] isEqualToString:@""])) {
-        [self showTotasViewWithMes:@"信息未填写完整"];
-    }else {
+    NSLog(@"__%@",signUpArray);
+
+    if ([signUpArray[0] isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"驾照类型为空"];
+        return;
+    }
+    if ([signUpArray[1] isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"驾校为空"];
+        return;
+    }
+    if ([signUpArray[2] isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"班型为空"];
+        return;
+    }
+    if ([signUpArray[3] isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"教练为空"];
+        return;
+    }
+    if ([signUpArray[4] isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"科目进度为空"];
+        return;
+    }
+    
+    
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
         NSDictionary *upData = [SignUpInfoManager getSignUpPassInformation];
         [JENetwoking startDownLoadWithUrl:applyUrlString postParam:upData WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
@@ -192,14 +215,14 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
                 kShowFail(param[@"msg"]);
             }
         }];
-    }
+
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    signUpArray = @[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpCoachName],[SignUpInfoManager getSignUpSubjectId]];
+    signUpArray = @[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpVerifyCoachName],[SignUpInfoManager getSignUpSubjectId]];
     [self.tableView reloadData];
 }
 

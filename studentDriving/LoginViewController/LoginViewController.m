@@ -362,6 +362,7 @@ static NSString *const kuserType = @"usertype";
     }];
 }
 
+
 // 点击登陆后的操作
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password  dataDic:(NSDictionary *)dataDic
 {
