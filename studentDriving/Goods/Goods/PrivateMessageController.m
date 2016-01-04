@@ -175,6 +175,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     _cell.tag = [tagArray[indexPath.row]intValue];
     
     [_cellArray addObject:_cell];
+     _cell.messageTextField.tag = [tagArray[indexPath.row]intValue];
     [_textFiledArray addObject:_cell.messageTextField];
       return _cell;
     }
@@ -217,16 +218,18 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     
     //获得textfield
     textFiledTwo.keyboardType = UIKeyboardTypeNumberPad;
-
-    NSString *phoneNum = textFiledTwo.text;
-    NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    BOOL isMatch = [pred evaluateWithObject:phoneNum];
-    if (!isMatch) {
-        [self showTotasViewWithMes:@"请输入正确的手机号"];
-        return;
+    UITextField *textFile = (UITextField *)notification.object;
+    if (textFile.tag == 201) {
+        NSString *phoneNum = textFiledTwo.text;
+        NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+        BOOL isMatch = [pred evaluateWithObject:phoneNum];
+        if (!isMatch) {
+            [self showTotasViewWithMes:@"请输入正确的手机号"];
+            return;
+        }
+ 
     }
-
     
     _didClickBtn.enabled =  textFiledOne.text.length != 0 && textFiledTwo.text.length != 0 && textFiledThree.text.length != 0 ;
     if ( _didClickBtn.enabled == 1) {
