@@ -103,7 +103,7 @@
     {
        [_didClickBtn setTitle:@"立即购买" forState:UIControlStateNormal];
         //// 判断按钮是否能点击
-        _didClickBtn.selected = [_walletstr intValue]  >=  _mainModel.productprice ? 0 : 1;
+        _didClickBtn.selected = [_walletstr intValue]  >=  _mainModel.productprice ? 1 : 0;
         if (_didClickBtn.selected) {
             _didClickBtn.tag = 302;
             [_didClickBtn setBackgroundColor:[UIColor colorWithHexString:@"ff5d35"]];

@@ -195,7 +195,7 @@
 
                 _signButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _signButton.frame = CGRectMake(0, 0, signButton, signButton);
-                _signButton.center = CGPointMake(_schoolCardButton.center.x + signButton - 30, _schoolCardButton.center.y + schoolCardButtonW);
+                _signButton.center = CGPointMake(_schoolCardButton.center.x + signButton - 45, _schoolCardButton.center.y + schoolCardButtonW);
                 [_signButton setBackgroundImage:[UIImage imageNamed:@"错题"] forState:UIControlStateNormal];
                 _signButton.tag = 103;
                 [_signButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
