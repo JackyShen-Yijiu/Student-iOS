@@ -377,7 +377,7 @@ static NSString *const kuserType = @"usertype";
     
     if (userid==nil) {
         userid = @"";
-    }
+     }
     NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
     
     // 异步登陆账号
