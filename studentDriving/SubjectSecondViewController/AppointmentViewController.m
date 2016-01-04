@@ -62,7 +62,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 }
 - (UILabel *)headViewTitleLabel {
     if (_headViewTitleLabel == nil) {
-        _headViewTitleLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:16]];
+        _headViewTitleLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
         if ([AcountManager manager].subjecttwo.progress == nil || [AcountManager manager].subjecttwo.progress.length == 0) {
             _headViewTitleLabel.text = @"您还没有学车记录";
         }else {

@@ -59,7 +59,7 @@
 }
 - (UILabel *)contentTitle {
     if (_contentTitle == nil) {
-        _contentTitle = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:16]];
+        _contentTitle = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
         _contentTitle.text = @"科目二";
     }
     return _contentTitle;
