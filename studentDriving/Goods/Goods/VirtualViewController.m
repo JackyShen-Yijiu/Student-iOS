@@ -59,8 +59,13 @@ static NSString *const knumber = @"create_qrcode";
     if (type == 1)
         {
             //刷新数据
-            MyWalletViewController *walletVC = [self.navigationController.viewControllers objectAtIndex:0];
-            [walletVC refreshWalletData];
+            for (UIViewController *viewCon in self.navigationController.viewControllers) {
+                if ([viewCon isKindOfClass:[MyWalletViewController class]]) {
+                    MyWalletViewController *myWalletVC = (MyWalletViewController *)viewCon;
+                    [myWalletVC refreshWalletData];
+                }
+                
+            }
             NSDictionary *dic = [data objectForKey:@"extra"];
             NSString *resultStr = [NSString stringWithFormat:BASEURL,knumber];
             NSString *str = @"?text=";

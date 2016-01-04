@@ -130,10 +130,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     return _tableView;
 }
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    [self addSideMenuButton];
-    
+    [super viewDidLoad];    
     self.title = @"积分";
     self.automaticallyAdjustsScrollViewInsets = YES;
     if ([UIDevice jeSystemVersion] >= 7.0f) {
@@ -379,36 +376,19 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         sectionTitle.textColor = [UIColor blackColor];
         return sectionTitle;
 }
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
     return 1;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-//    if (section == 1) {
-        return  29;
-//    }else if (section== 0) {
-//        return 0;
-//    }
-//    return 0;
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+return self.dataArray.count;
 }
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (indexPath.section == 0) {
-//        return 230;
-//    }else if (indexPath.section == 1) {
-        return 70;
-//    }
-//    return 0;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-//    if (section == 0) {
-//        return 1;
-//    }else if (section == 1) {
-        return self.dataArray.count;
-//    }
-//    return 0;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     
-//    if (indexPath.section == 1) {
+
     
     MyWalletViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy"];
     if (!cell) {
@@ -419,6 +399,15 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
     
     return cell;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return  29;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70;
+}
+
 - (void)refreshWalletData
 {
     
