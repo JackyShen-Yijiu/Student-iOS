@@ -83,6 +83,7 @@
     //注册环信聊天
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
+//    // 引导页
 //    [YBWelcomeController removeSavedVersion];
 //    if ([YBWelcomeController isShowWelcome]) {
 //        [YBWelcomeController show];
