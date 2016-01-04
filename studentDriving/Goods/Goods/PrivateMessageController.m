@@ -169,7 +169,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(selectorCell:) name:UITextFieldTextDidBeginEditingNotification object:_cell.messageTextField];
     
     // 添加值改变的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeValue:) name:UITextFieldTextDidChangeNotification object:_cell.messageTextField];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeEndValue:) name:UITextFieldTextDidEndEditingNotification object:_cell.messageTextField];
   UILabel *label = [_cell viewWithTag:101];
     label.text = [strArray objectAtIndex:indexPath.row];
     _cell.tag = [tagArray[indexPath.row]intValue];
@@ -209,7 +209,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 
 
 
-- (void)changeValue:(NSNotification *)notification
+- (void)changeEndValue:(NSNotification *)notification
 {
     UITextField *textFiledOne = [_textFiledArray objectAtIndex:0];
     UITextField *textFiledTwo = [_textFiledArray objectAtIndex:1];
@@ -218,7 +218,15 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     //获得textfield
     textFiledTwo.keyboardType = UIKeyboardTypeNumberPad;
 
-    
+    NSString *phoneNum = textFiledTwo.text;
+    NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isMatch = [pred evaluateWithObject:phoneNum];
+    if (!isMatch) {
+        [self showTotasViewWithMes:@"请输入正确的手机号"];
+        return;
+    }
+
     
     _didClickBtn.enabled =  textFiledOne.text.length != 0 && textFiledTwo.text.length != 0 && textFiledThree.text.length != 0 ;
     if ( _didClickBtn.enabled == 1) {
@@ -252,8 +260,13 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     [JENetwoking startDownLoadWithUrl:urlString postParam:dic WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         
         //刷新数据
-        MyWalletViewController *walletVC = [self.navigationController.viewControllers objectAtIndex:0];
-        [walletVC refreshWalletData];
+        for (UIViewController *viewCon in self.navigationController.viewControllers) {
+            if ([viewCon isKindOfClass:[MyWalletViewController class]]) {
+                MyWalletViewController *myWalletVC = (MyWalletViewController *)viewCon;
+                [myWalletVC refreshWalletData];
+            }
+            
+        }
         
     }  withFailure:^(id data) {
         NSLog(@"errorData = %@",data);
