@@ -106,8 +106,8 @@ static NSString *const kuserType = @"usertype";
     if (_bottomButton == nil) {
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_bottomButton setTitle:@"先随便看看" forState:UIControlStateNormal];
-//        _bottomButton.layer.borderColor = RGBColor(253, 86, 50).CGColor;
-//        _bottomButton.layer.borderWidth = 1;
+        //        _bottomButton.layer.borderColor = RGBColor(253, 86, 50).CGColor;
+        //        _bottomButton.layer.borderWidth = 1;
         [_bottomButton setTitleColor:RGBColor(255, 102, 51) forState:UIControlStateNormal];
         _bottomButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_bottomButton addTarget:self action:@selector(dealBottom:) forControlEvents:UIControlEventTouchUpInside];
@@ -261,7 +261,7 @@ static NSString *const kuserType = @"usertype";
     [self.bottomButton addSubview:self.rightImageView];
     
     [self.view addSubview:self.bottomLineView];
-//    [self.bottomLineView addSubview:self.bottomLabel];
+    //    [self.bottomLineView addSubview:self.bottomLabel];
     [self.view addSubview:self.checkButton];
 }
 
@@ -305,46 +305,34 @@ static NSString *const kuserType = @"usertype";
     //网络请求
     [self.passwordTextField resignFirstResponder];
     [self.phoneNumTextField resignFirstResponder];
-    [self.userParam setObject:@"1" forKey:kuserType];
-    NSString *url = [NSString stringWithFormat:BASEURL,kloginUrl];
-    DYNSLog(@"%@ %@",url,self.userParam);
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.userParam setObject:@"1" forKey:kuserType];
+    [self.userParam setObject:self.phoneNumTextField.text forKey:kmobileNum];
+    NSString *pwdKey = [self.passwordTextField.text DY_MD5];
+    [self.userParam setObject:pwdKey forKey:kpassword];
+    
+    NSString *url = [NSString stringWithFormat:BASEURL,kloginUrl];
+    
+    DYNSLog(@"%s url:%@ self.userParam:%@",__func__,url,self.userParam);
     
     [JENetwoking startDownLoadWithUrl:url postParam:self.userParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         
         NSDictionary *dataDic = data;
-        DYNSLog(@"%@",dataDic);
+        DYNSLog(@"%s dataDic:%@",__func__,dataDic);
         
         NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
         
         if ([type isEqualToString:@"0"]) {
             
-            [MBProgressHUD hideHUDForView:self.view animated:NO];
             [self showTotasViewWithMes:@"密码错误"];
             
         }else if ([type isEqualToString:@"1"]) {
             
-            [AcountManager configUserInformationWith:dataDic[@"data"]];
+            NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+            NSLog(@"self.phoneNumTextField.textL%@",self.phoneNumTextField.text);
+            NSLog(@"self.passwordTextField.text:%@",self.passwordTextField.text);
             
-            [MBProgressHUD hideHUDForView:self.view animated:NO];
-            
-            [self showTotasViewWithMes:@"登录成功"];
-           
-            [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
-           
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
-           
-            if ([AcountManager manager].userid) {
-                
-                [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
-                
-                [self loginWithUsername:[AcountManager manager].userid password:self.passwordTextField.text.DY_MD5];
-                
-            }
-            
-            // 用户登录成功，打开相应的窗体
-            [DVVUserManager userLoginSucces];
+            [self loginWithUsername:self.phoneNumTextField.text password:pwdKey  dataDic:dataDic];
             
         }
     }];
@@ -374,18 +362,50 @@ static NSString *const kuserType = @"usertype";
     }];
 }
 
-//点击登陆后的操作
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password
+// 点击登陆后的操作
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password  dataDic:(NSDictionary *)dataDic
 {
-    [self showHudInView:self.view hint:NSLocalizedString(@"login.ongoing", @"Is Login...")];
-    //异步登陆账号
-    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username
+    [self showHudInView:self.view hint:NSLocalizedString(@"登陆中...", @"登陆中...")];
+    //
+    //    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username password:password];
+    //
+    //    NSDictionary *dict = [[EaseMob sharedInstance].chatManager loginWithUsername:username password:password error:nil];
+    //    NSLog(@"dict:%@",dict);
+    //
+    BOOL isLoggedIn = [[EaseMob sharedInstance].chatManager isLoggedIn];
+    NSLog(@"isLoggedIn:%d",isLoggedIn);
+    
+    NSLog(@"username:%@ password:%@",username,password);
+    
+    NSString *userid = [NSString stringWithFormat:@"%@",dataDic[@"data"][@"userid"]];
+    NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
+    
+    if (userid==nil) {
+        userid = @"";
+    }
+    NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
+    
+    // 异步登陆账号
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:userid
                                                         password:password
                                                       completion:
      ^(NSDictionary *loginInfo, EMError *error) {
-         [self hideHud];
+         
+         NSLog(@"error:%@",error);
+         [MBProgressHUD hideHUDForView:self.view animated:NO];
+         
          if (loginInfo && !error) {
+             
              DYNSLog(@"登录");
+             
+             [AcountManager saveUserName:userid andPassword:password];
+             
+             [AcountManager configUserInformationWith:dataDic[@"data"]];
+             
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
+             
+             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+             
              //设置是否自动登录
              [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
              
@@ -401,11 +421,14 @@ static NSString *const kuserType = @"usertype";
              options.nickname = [AcountManager manager].userName;
              options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
              
-             
              //发送自动登陆状态通知
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
              
              //保存最近一次登录用户名
+             
+             // 用户登录成功，打开相应的窗体
+             [DVVUserManager userLoginSucces];
+             
          }
          else
          {
@@ -431,7 +454,10 @@ static NSString *const kuserType = @"usertype";
                      break;
              }
          }
+         
      } onQueue:nil];
+    
+    
 }
 - (void)tagsAliasCallback:(int)iResCode
                      tags:(NSSet *)tags
@@ -454,10 +480,8 @@ static NSString *const kuserType = @"usertype";
             [self showTotasViewWithMes:@"请输入正确的手机号"];
             return;
         }
-        [self.userParam setObject:textField.text forKey:kmobileNum];
     }else if (textField.tag == 101) {
         DYNSLog(@"password = %@",[textField.text DY_MD5]);
-        [self.userParam setObject:[textField.text DY_MD5] forKey:kpassword];
     }
 }
 

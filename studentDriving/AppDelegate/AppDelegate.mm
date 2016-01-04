@@ -81,7 +81,7 @@
     [self JPushApplication:application didFinishLaunchingWithOptions:launchOptions];
     
     //注册环信聊天
-//    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
+    [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
 //    [YBWelcomeController removeSavedVersion];
 //    if ([YBWelcomeController isShowWelcome]) {
