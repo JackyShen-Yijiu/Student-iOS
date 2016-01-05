@@ -335,7 +335,7 @@ static NSString *const kuserType = @"usertype";
         
         if ([type isEqualToString:@"0"]) {
             
-            [self showTotasViewWithMes:@"密码错误"];
+            [self obj_showTotasViewWithMes:@"密码错误"];
             
         }else if ([type isEqualToString:@"1"]) {
             
