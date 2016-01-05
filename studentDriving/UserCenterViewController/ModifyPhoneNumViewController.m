@@ -52,6 +52,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         _phoneNumTextField.backgroundColor = [UIColor whiteColor];
         _phoneNumTextField.layer.borderColor = TEXTGRAYCOLOR.CGColor;
         _phoneNumTextField.layer.borderWidth = 0.5;
+        _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
         
     }
     return _phoneNumTextField;
@@ -139,7 +140,8 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     
 }
 
-- (void)clickCompletion:(UIButton *)sender {
+- (void)clickCompletion:(UIButton *)sender
+{
  
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length == 0) {
         [self showTotasViewWithMes:@"请输入手机号"];
@@ -149,7 +151,10 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         [self showTotasViewWithMes:@"请输入验证码"];
         return;
     }
-
+    if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
+        [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+        return;
+    }
    
     NSDictionary *param = @{@"smscode":self.confirmTextField.text,@"mobile":self.phoneNumTextField.text};
     
@@ -180,6 +185,12 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }else {
+        
+        if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
+            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            return;
+        }
+        
         NSString *urlString = [NSString stringWithFormat:@"code/%@",self.phoneNumTextField.text];
         NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
         
@@ -218,6 +229,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
     if (textField == _phoneNumTextField) {
         if (range.location>10) {
             return NO;

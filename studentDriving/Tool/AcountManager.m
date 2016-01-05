@@ -545,4 +545,13 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
 - (void)dealloc {
 //    DYNSLog(@"对象销毁");
 }
+
++(BOOL)isValidateMobile:(NSString *)mobile
+{
+    NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
+    BOOL isMatch = [pred evaluateWithObject:mobile];
+    return isMatch;
+}
+
 @end

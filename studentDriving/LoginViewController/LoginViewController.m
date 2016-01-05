@@ -277,7 +277,10 @@ static NSString *const kuserType = @"usertype";
 }
 
 - (void)DYdealRegister {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // 用户登录成功，打开相应的窗体
+    [DVVUserManager userLoginSucces];
+    
 }
 
 #pragma mark - action
@@ -289,12 +292,19 @@ static NSString *const kuserType = @"usertype";
 #pragma mark - loginAction
 
 - (void)dealLogin:(UIButton *)sender {
+    
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length  == 0) {
         [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }
+    
     if (self.passwordTextField.text == nil || self.passwordTextField.text.length  == 0) {
         [self showTotasViewWithMes:@"请输入密码"];
+        return;
+    }
+    
+    if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
+        [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
         return;
     }
     
@@ -348,7 +358,8 @@ static NSString *const kuserType = @"usertype";
     
     [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
-        NSLog(@"%@", data);
+        NSLog(@"验证用户是否存在:%@", data);
+        
         NSDictionary *params = data;
         BOOL type = [[params objectForKey:@"type"] boolValue];
         if (type) {
@@ -395,7 +406,7 @@ static NSString *const kuserType = @"usertype";
              
              DYNSLog(@"登录成功");
              
-             [AcountManager saveUserName:userid andPassword:password];
+             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
              
              [AcountManager configUserInformationWith:dataDic[@"data"]];
              
@@ -469,21 +480,6 @@ static NSString *const kuserType = @"usertype";
 }
 #pragma mark - textfieldDelegate 业务逻辑
 
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (textField.tag == 100) {
-        NSString *phoneNum = textField.text;
-        NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-        BOOL isMatch = [pred evaluateWithObject:phoneNum];
-        if (!isMatch) {
-            [self showTotasViewWithMes:@"请输入正确的手机号"];
-            return;
-        }
-    }else if (textField.tag == 101) {
-        DYNSLog(@"password = %@",[textField.text DY_MD5]);
-    }
-}
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField == _phoneNumTextField) {
         if (range.location>10) {
@@ -508,8 +504,7 @@ static NSString *const kuserType = @"usertype";
 - (void)dealRegister:(UIButton *)sender{
     RegisterViewController *registerVc = [[RegisterViewController alloc]init];
     [self presentViewController:registerVc animated:YES completion:nil];
-    
-    
+
 }
 
 - (void)viewWillLayoutSubviews {

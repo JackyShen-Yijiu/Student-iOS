@@ -363,16 +363,16 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                     [mainVC showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
                     
-                } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目二"])
-                {
+                } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目一"]){
+                    [mainVC showTotasViewWithMes:@"您科一还没通过哦!"];
+                }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
                     AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
-                }else if([[AcountManager manager].userSubject.name isEqualToString:@"科目三"])
+                }else if([[AcountManager manager].userSubject.name isEqualToString:@"科目三"] || [[AcountManager manager].userSubject.name isEqualToString:@"科目四"])
                     
                 {
-                     [mainVC showTotasViewWithMes:@"科目二您已经通过!"];
+                    [mainVC showTotasViewWithMes:@"科目二您已经通过!"];
                 }
-                
             }
                 break;
                 case 103:
@@ -381,15 +381,19 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                     [mainVC showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
                     
-                } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目二"])
+                }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目一"]){
+                    [mainVC showTotasViewWithMes:@"您科一还没通过哦!"];
+                    return;
+                }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目二"])
                 {
                     AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
                     appointment.title = @"科二预约列表";
                     appointment.markNum = [NSNumber numberWithInteger:2];
                     [mainVC.navigationController pushViewController:appointment animated:YES];
-                }else
+                }else if([[AcountManager manager].userSubject.name isEqualToString:@"科目三"] || [[AcountManager manager].userSubject.name isEqualToString:@"科目四"])
                 {
                     [mainVC showTotasViewWithMes:@"科目二您已经通过!"];
+                    return;
                 }
             }
                 break;
@@ -415,46 +419,46 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             {
                
                 NSLog(@"%@",[AcountManager manager].userSubject.name);
-                
-                
-                
-                
-                if ([[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                    [mainVC showTotasViewWithMes:@"报名正在审核中!"];
+                    return ;
+                    
+                }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目一"]){
+                    [mainVC showTotasViewWithMes:@"您科一还没通过哦!"];
+                    return;
+                }else if([[AcountManager manager].userApplystate isEqualToString:@"2"] &&[[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
                     AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
 
                 }else if([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
                     [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
+                    return;
                 }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目四"]) {
                     [mainVC showTotasViewWithMes:@"你已经通过科目三,不能再预约了!"];
-                }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目一"])
-                {
-                    [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
-                }else {
-                    [mainVC showTotasViewWithMes:@"报名审核中"];
+                    return;
                 }
             }
                 break;
             case 103:
             {
-                if ([[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                    [mainVC showTotasViewWithMes:@"报名正在审核中!"];
+                    return ;
+                    
+                }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目一"]){
+                    [mainVC showTotasViewWithMes:@"您科一还没通过哦!"];
+                    return;
+                }else if([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
+                    [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
+                } else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
                     AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
                     appointment.title = @"科三预约列表";
                     appointment.markNum = [NSNumber numberWithInteger:3];
                     [mainVC.navigationController pushViewController:appointment animated:YES];
                     
-                } else if([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
-                    [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
-                }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目一"])
-                {
-                    [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
-                }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目四"]) {
+                } else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目四"]) {
                     [mainVC showTotasViewWithMes:@"你已经通过科目三,不能再预约了!"];
-                }else {
-                    [mainVC showTotasViewWithMes:@"报名审核中"];
                 }
-
-                
             }
                 break;
                 
