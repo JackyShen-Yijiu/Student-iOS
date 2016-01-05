@@ -75,4 +75,7 @@
 + (void)saveUserBanner:(NSArray *)dataArray;
 + (NSArray *)getBannerUrlArray;
 
+// 判断手机号格式是否正确
++(BOOL)isValidateMobile:(NSString *)mobile;
+
 @end

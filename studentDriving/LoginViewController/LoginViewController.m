@@ -289,12 +289,19 @@ static NSString *const kuserType = @"usertype";
 #pragma mark - loginAction
 
 - (void)dealLogin:(UIButton *)sender {
+    
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length  == 0) {
         [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }
+    
     if (self.passwordTextField.text == nil || self.passwordTextField.text.length  == 0) {
         [self showTotasViewWithMes:@"请输入密码"];
+        return;
+    }
+    
+    if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
+        [self showTotasViewWithMes:@"请输入正确的手机号"];
         return;
     }
     
@@ -468,21 +475,6 @@ static NSString *const kuserType = @"usertype";
     DYNSLog(@"TagsAlias回调:%@", callbackString);
 }
 #pragma mark - textfieldDelegate 业务逻辑
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (textField.tag == 100) {
-        NSString *phoneNum = textField.text;
-        NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
-        NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-        BOOL isMatch = [pred evaluateWithObject:phoneNum];
-        if (!isMatch) {
-            [self showTotasViewWithMes:@"请输入正确的手机号"];
-            return;
-        }
-    }else if (textField.tag == 101) {
-        DYNSLog(@"password = %@",[textField.text DY_MD5]);
-    }
-}
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     if (textField == _phoneNumTextField) {
