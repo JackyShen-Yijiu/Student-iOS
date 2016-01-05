@@ -149,7 +149,10 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         [self showTotasViewWithMes:@"请输入验证码"];
         return;
     }
-
+    if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
+        [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+        return;
+    }
    
     NSDictionary *param = @{@"smscode":self.confirmTextField.text,@"mobile":self.phoneNumTextField.text};
     
@@ -180,6 +183,12 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         [self showTotasViewWithMes:@"请输入手机号"];
         return;
     }else {
+        
+        if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
+            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            return;
+        }
+        
         NSString *urlString = [NSString stringWithFormat:@"code/%@",self.phoneNumTextField.text];
         NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
         

@@ -308,22 +308,37 @@ static NSString *const kcodeGainUrl = @"code";
 
 #define TIME 60
 - (void)dealSend:(UIButton *)sender {
+    
     NSLog(@"发送验证码");
     
     [self sendYanZhengMa:sender];
+    
 }
+
 #pragma mark 发送验证码
-- (void)sendYanZhengMa:(UIButton *)sender {
+- (void)sendYanZhengMa:(UIButton *)sender
+{
+    
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
-        [self showTotasViewWithMes:@"请输入手机号"];
+        
+        [self obj_showTotasViewWithMes:@"请输入手机号"];
+
         return;
+        
     }else {
+        
+        if (![AcountManager isValidateMobile:self.phoneTextField.text]) {
+            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            return;
+        }
+        
         NSString *urlString = [NSString stringWithFormat:@"code/%@",self.phoneTextField.text];
         NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
         
         [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-            [self showTotasViewWithMes:@"发送成功"];
+            [self obj_showTotasViewWithMes:@"发送成功"];
         }];
+        
     }
     
     sender.userInteractionEnabled = NO;
@@ -347,7 +362,6 @@ static NSString *const kcodeGainUrl = @"code";
                 [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 [self.sendButton setTitle:str forState:UIControlStateNormal];
                 
-                
             });
             count--;
         }
@@ -361,14 +375,21 @@ static NSString *const kcodeGainUrl = @"code";
 
 - (void)dealRegister:(UIButton *)sender {
     
-    NSString *phoneNum = self.phoneTextField.text;
-    NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
-    NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
-    BOOL isMatch = [pred evaluateWithObject:phoneNum];
-    if (!isMatch) {
-        [self showMsg:@"请输入正确的手机号"];
+    if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
+        
+        [self obj_showTotasViewWithMes:@"请输入手机号"];
+        
         return;
+        
+    }else {
+        
+        if (![AcountManager isValidateMobile:self.phoneTextField.text]) {
+            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            return;
+        }
+        
     }
+    
     [self.paramsPost setObject:self.phoneTextField.text forKey:@"mobile"];
     if (self.authCodeTextFild.text.length <= 0 || self.authCodeTextFild.text == nil) {
         [self showMsg:@"请输入验证码"];

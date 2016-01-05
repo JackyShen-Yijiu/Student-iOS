@@ -159,6 +159,12 @@ static NSString *const kchangePassword = @"kchangePassword";
         [self showMsg:@"请输入手机号"];
         return;
     }else {
+        
+        if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
+            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            return;
+        }
+        
         // 检测用户是否存在
         [self userExist];
     }
@@ -210,7 +216,7 @@ static NSString *const kchangePassword = @"kchangePassword";
 - (void)dealNext:(UIButton *)sender {
     
     if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
-        [self showTotasViewWithMes:@"请输入正确的手机号"];
+        [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
         return;
     }
     

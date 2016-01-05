@@ -301,7 +301,7 @@ static NSString *const kuserType = @"usertype";
     }
     
     if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
-        [self showTotasViewWithMes:@"请输入正确的手机号"];
+        [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
         return;
     }
     
