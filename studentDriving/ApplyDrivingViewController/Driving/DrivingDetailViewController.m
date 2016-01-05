@@ -20,6 +20,8 @@
 #import "CoachDetailViewController.h"
 #import "LoginViewController.h"
 #import "UIColor+Hex.h"
+#import "DVVUserManager.h"
+
 static NSString *const kDrivingDetailUrl = @"driveschool/getschoolinfo/%@";
 
 static NSString *const kGetDrivingCoachUrl = @"getschoolcoach/%@/%@";
@@ -257,10 +259,12 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
     DrvingDetailModel *model = self.dataArray.firstObject;
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-        return;
+//        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+//        LoginViewController *login = [[LoginViewController alloc] init];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+//        return;
+        [DVVUserManager userNeedLogin];
+        return ;
     }
     
     DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
@@ -337,12 +341,12 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 #pragma mark 检测是否收藏
 - (void)checkCollection {
     
-    if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-        return;
-    }
+//    if (![AcountManager isLogin]) {
+//        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+//        LoginViewController *login = [[LoginViewController alloc] init];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+//        return;
+//    }
     
     NSString *kSaveUrl = [NSString stringWithFormat:kCheckMyLoveDriving];
     NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
@@ -371,10 +375,13 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 - (void)dealLike:(UITapGestureRecognizer *)tap {
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-        return;
+//        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+//        LoginViewController *login = [[LoginViewController alloc] init];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+//        return;
+        
+        [self showTotasViewWithMes:@"您还没有登录哟"];
+        return ;
     }
     
     if (_heartImageView.tag) {
@@ -435,7 +442,7 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 - (UIButton *)signUpButton{
     if (_signUpButton == nil) {
         _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _signUpButton.backgroundColor = [UIColor orangeColor];
+        _signUpButton.backgroundColor = MAINCOLOR;
         _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
         if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {

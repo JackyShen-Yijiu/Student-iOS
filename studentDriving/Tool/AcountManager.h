@@ -53,7 +53,7 @@
 @property (nonatomic, assign) BOOL newmessagereminder;
 
 // 兑换券
-@property (nonatomic, assign) NSUInteger userCoinCertificate;
+@property (atomic, assign) NSUInteger userCoinCertificate;
 
 + (AcountManager *)manager;
 
@@ -74,5 +74,8 @@
 + (void)saveUserApplyState:(NSString *)state;
 + (void)saveUserBanner:(NSArray *)dataArray;
 + (NSArray *)getBannerUrlArray;
+
+// 判断手机号格式是否正确
++(BOOL)isValidateMobile:(NSString *)mobile;
 
 @end

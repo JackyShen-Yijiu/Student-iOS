@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CoinCertificateController">
             <connections>
+                <outlet property="deductibleAmountButton" destination="dR7-70-50z" id="kxs-Hs-rQT"/>
+                <outlet property="exchangeCouponButton" destination="VdX-QS-kFh" id="3fk-ae-AJh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -41,6 +43,9 @@
                     <state key="normal" title="兑换商城券">
                         <color key="titleColor" red="0.9861215734980755" green="0.98622328487303978" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="exchangeCouponButtonAction:" destination="-1" eventType="touchUpInside" id="ewg-Gs-tfv"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dR7-70-50z">
                     <rect key="frame" x="162" y="239" width="150" height="40"/>
@@ -49,9 +54,12 @@
                         <constraint firstAttribute="height" constant="40" id="80L-mm-JGl"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="兑换商城券">
+                    <state key="normal" title="返现100元">
                         <color key="titleColor" red="0.98612157349999996" green="0.9862232849" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="deductibleAmountButtonAction:" destination="-1" eventType="touchUpInside" id="rzc-LK-JE8"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商城兑换券说明：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC3-Es-4le">
                     <rect key="frame" x="8" y="302" width="304" height="21"/>
@@ -59,16 +67,10 @@
                     <color key="textColor" red="1" green="0.22485943059999999" blue="0.23895648950000001" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="立减100元说明：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zq-2y-jqv">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="返现100元说明：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6zq-2y-jqv">
                     <rect key="frame" x="8" y="344" width="304" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="1" green="0.22485943059999999" blue="0.23895648950000001" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择立减100元，可以在你报名时抵扣100元现金。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aV-tr-Pcw">
-                    <rect key="frame" x="36" y="366" width="276" height="12"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" red="0.01960294957" green="0.019669349749999999" blue="0.01930205477" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="温馨提示：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EqA-pt-Ude">
@@ -78,7 +80,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="本次验证福利只有一次选择的机会，请您慎重选择。本活动最终解释权归北京一步科技有限公司所有！" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dLt-14-NKA">
-                    <rect key="frame" x="36" y="403" width="276" height="36"/>
+                    <rect key="frame" x="22" y="406" width="276" height="36"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="36" id="E7X-K3-LVy"/>
                     </constraints>
@@ -87,9 +89,15 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择兑换券可以在积分商城里兑换您喜欢的商品。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrN-zo-fEF">
-                    <rect key="frame" x="36" y="324" width="276" height="12"/>
+                    <rect key="frame" x="22" y="326" width="276" height="12"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.019602949570583828" green="0.019669349747474696" blue="0.019302054771505921" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="选择返现100元，系统将向您的账户返现100元现金。" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4aV-tr-Pcw">
+                    <rect key="frame" x="22" y="371" width="290" height="12"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.01960294957" green="0.019669349749999999" blue="0.01930205477" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>

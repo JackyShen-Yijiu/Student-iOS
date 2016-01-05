@@ -182,14 +182,16 @@
     }
     
 #warning 以下三行代码必须写，注册为SDK的ChatManager的delegate
+    
     [EMCDDeviceManager sharedInstance].delegate = self;
+    
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
     //注册为SDK的ChatManager的delegate
     [[EaseMob sharedInstance].chatManager addDelegate:self delegateQueue:nil];
     
-    [[EaseMob sharedInstance].callManager removeDelegate:self];
+    //[[EaseMob sharedInstance].callManager removeDelegate:self];
     // 注册为Call的Delegate
-    [[EaseMob sharedInstance].callManager addDelegate:self delegateQueue:nil];
+    //[[EaseMob sharedInstance].callManager addDelegate:self delegateQueue:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(removeAllMessages:) name:@"RemoveAllMessages" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(exitGroup) name:@"ExitGroup" object:nil];
@@ -309,7 +311,7 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 #warning 以下第一行代码必须写，将self从ChatManager的代理中移除
     [[EaseMob sharedInstance].chatManager removeDelegate:self];
-    [[EaseMob sharedInstance].callManager removeDelegate:self];
+   // [[EaseMob sharedInstance].callManager removeDelegate:self];
     if (_conversation.conversationType == eConversationTypeChatRoom && !_isKicked)
     {
         //退出聊天室，删除会话

@@ -65,12 +65,6 @@
     [self configBaiduMap];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    // 打开主页
-    [DVVOpenControllerFromSideMenu openControllerWithIndex:0];
-    // 检测是否打开登录页
-    if (![AcountManager isLogin]) {
-        [(UINavigationController *)(self.window.rootViewController) pushViewController:[DVVUserManager loginController] animated:NO];
-    }
     
 #pragma mark - 处理工具及样式
     [self dealTool];
@@ -82,6 +76,14 @@
     
     //注册环信聊天
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
+    
+    // 打开主页
+    [DVVOpenControllerFromSideMenu openControllerWithIndex:0];
+    
+    // 检测是否打开登录页
+    if (![AcountManager isLogin]) {
+        [(UINavigationController *)(self.window.rootViewController) pushViewController:[DVVUserManager loginController] animated:NO];
+    }
     
 //    // 引导页
 //    [YBWelcomeController removeSavedVersion];

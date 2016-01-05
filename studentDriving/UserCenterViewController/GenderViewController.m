@@ -117,7 +117,8 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
             
         }];
     }else {
-        [self showTotasViewWithMes:@"信息填写不正确"];
+        ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"信息填写不正确"];
+        [alertView show];
     }
 }
 

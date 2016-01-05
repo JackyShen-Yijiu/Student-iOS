@@ -19,21 +19,32 @@
 + (void)pickPhotofromController:(UIViewController <UINavigationControllerDelegate,UIImagePickerControllerDelegate>*)fromController{
     
     [PFActionSheetView showAlertWithTitle:nil message:nil cancelButtonTitle:@"取消" otherButtonTitles:@[@"拍照",@"从相册选取"] withVc:fromController completion:^(NSUInteger selectedOtherButtonIndex) {
+        
         if (selectedOtherButtonIndex == 0) {
+            
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                
                 DYNSLog(@"camera");
+                
                 UIImagePickerController *picker = [[UIImagePickerController alloc] init];
                 picker.allowsEditing = YES;
                 picker.delegate = fromController;
-                picker.sourceType = UIImagePickerControllerSourceTypeCamera;
-                picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
+                UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypeCamera;
+                if (![UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                    type = UIImagePickerControllerSourceTypePhotoLibrary;
+                }
+                picker.sourceType = type;
+
                 picker.navigationBar.barTintColor = fromController.navigationController.navigationBar.barTintColor;
                 picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
                                                              NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
 
                 [fromController presentViewController:picker animated:YES completion:nil];
+                
             }
+            
         }else if (selectedOtherButtonIndex == 1) {
+            
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
 
                 UIImagePickerController *picker = [[UIImagePickerController alloc] init];
