@@ -179,7 +179,10 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
     }else if (indexPath.row == 1) {
         return 105;
     }else if (indexPath.row == 2) {
-        return 105;
+        DrvingDetailModel *model = self.dataArray.firstObject;
+        NSString *contentStr = model.introduction;
+        CGSize size = [contentStr boundingRectWithSize:CGSizeMake(self.view.frame.size.width -30 , CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14] forKey:NSFontAttributeName] context:nil].size;
+        return size.height + 44 + 18 +5;
     }else if (indexPath.row == 3) {
         return 150;
     }

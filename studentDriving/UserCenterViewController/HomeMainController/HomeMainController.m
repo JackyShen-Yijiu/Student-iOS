@@ -232,7 +232,6 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 return;
             }
             if ([dataDic objectForKey:@"subject"]) {
-                NSLog(@"heheh %@",[dataDic objectForKey:@"subject"]);
                 [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subject"] WithKey:ksubject];
             }
             

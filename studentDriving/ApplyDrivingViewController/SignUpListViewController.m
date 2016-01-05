@@ -46,6 +46,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 @property (strong, nonatomic) UILabel  *applyClassName;
 @property (strong, nonatomic) UIButton *leftBtn;
 @property (strong, nonatomic) UIButton *rightBtn;
+@property (strong, nonatomic) UIView   *YcodeFootView;
 
 @property (assign, nonatomic) BOOL      cellIsShow;            // 用来记录班级详情时候显示
 @property (assign, nonatomic) NSInteger numberOfClass;         //班级的个数
@@ -56,6 +57,24 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 @end
 
 @implementation SignUpListViewController
+
+- (UIView *)YcodeFootView {
+    if (!_YcodeFootView) {
+        _YcodeFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 40)];
+        UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 60, 20)];
+        labelTitle.text = @"Y码须知:";
+        labelTitle.font = [UIFont systemFontOfSize:12];
+        labelTitle.textColor = [UIColor redColor];
+        [_YcodeFootView addSubview:labelTitle];
+        UILabel *labelContent = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, kSystemWide-30, 30)];
+        labelContent.text = @"       Y码不影响您的报名流程!填写正确的Y码,即可获得丰厚的奖励。";
+        labelContent.font = [UIFont systemFontOfSize:12];
+        labelContent.numberOfLines = 2;
+        labelContent.textColor = [UIColor blackColor];
+        [_YcodeFootView addSubview:labelContent];
+    }
+    return _YcodeFootView;
+}
 
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
@@ -136,6 +155,15 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     return _tableView;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
+    if (section == 1) {
+       
+        
+        return self.YcodeFootView;
+    }
+    return nil;
+}
+
 - (void)viewDidLoad{
     [super  viewDidLoad];
     
@@ -179,7 +207,12 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     
-    return 10;
+    if (section == 1) {
+        return 50;
+    }else {
+       return 10;
+    }
+    
     
 }
 

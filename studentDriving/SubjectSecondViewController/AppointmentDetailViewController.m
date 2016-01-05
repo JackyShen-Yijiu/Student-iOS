@@ -247,7 +247,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     UIBarButtonItem *navMessegeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemMessege];
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     spaceItem.width = -15;
-    self.navigationItem.rightBarButtonItems = @[spaceItem,navMessegeItem,spaceItem,navTimeItem];
+    self.navigationItem.rightBarButtonItems = @[spaceItem,navMessegeItem];
 }
 - (UIView *)tableViewHeadView {
     UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 90)];
@@ -295,10 +295,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 //    return backGroundView;
 //}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (self.state == AppointmentStateWait || self.state == AppointmentStateCoachConfirm) {
-        
-        return 340;
-    }
+
     return 200;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -332,11 +329,11 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
         [cell.cancelButton setTitle:@"取消预约" forState:UIControlStateNormal];
         cell.cancelButton.backgroundColor = RGBColor(205, 212, 217);
         
-        _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(15, 200, kSystemWide-30, 150)];
-        _mapView.mapType = BMKMapTypeStandard;
-        _mapView.zoomLevel = 12;
-        [cell.contentView addSubview:_mapView];
-        [self geoCode];
+//        _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(15, 200, kSystemWide-30, 150)];
+//        _mapView.mapType = BMKMapTypeStandard;
+//        _mapView.zoomLevel = 12;
+//        [cell.contentView addSubview:_mapView];
+//        [self geoCode];
         
     }else if (self.state == AppointmentStateSystemCancel) {
         [cell.cancelButton setTitle:@"系统取消" forState:UIControlStateNormal];
