@@ -7,6 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CoinCertificateController">
             <connections>
+                <outlet property="deductibleAmountButton" destination="dR7-70-50z" id="kxs-Hs-rQT"/>
+                <outlet property="exchangeCouponButton" destination="VdX-QS-kFh" id="3fk-ae-AJh"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -41,6 +43,9 @@
                     <state key="normal" title="兑换商城券">
                         <color key="titleColor" red="0.9861215734980755" green="0.98622328487303978" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="exchangeCouponButtonAction:" destination="-1" eventType="touchUpInside" id="ewg-Gs-tfv"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dR7-70-50z">
                     <rect key="frame" x="162" y="239" width="150" height="40"/>
@@ -49,9 +54,12 @@
                         <constraint firstAttribute="height" constant="40" id="80L-mm-JGl"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <state key="normal" title="兑换商城券">
+                    <state key="normal" title="立减100元">
                         <color key="titleColor" red="0.98612157349999996" green="0.9862232849" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <connections>
+                        <action selector="deductibleAmountButtonAction:" destination="-1" eventType="touchUpInside" id="rzc-LK-JE8"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="商城兑换券说明：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rC3-Es-4le">
                     <rect key="frame" x="8" y="302" width="304" height="21"/>

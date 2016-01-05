@@ -195,6 +195,12 @@
                                  [NSString stringWithFormat:@"%li", couponcount],
                                  [NSString stringWithFormat:@"%li", money] ];
                 [self.tableView reloadData];
+                // 显示我的优惠券信息
+                NSString *couponString = @"暂无优惠券";
+                if (couponcount) {
+                    couponString = [NSString stringWithFormat:@"还有%li张兑换券(点击兑换)",couponcount];
+                }
+                self.headerView.coinCertificateLabel.text = couponString;
                 // 存储兑换券
                 [AcountManager manager].userCoinCertificate = couponcount;
             }
@@ -226,10 +232,10 @@
 }
 #pragma mark 兑换券
 - (void)coinCertificateLabelAction {
-//    if (![AcountManager manager].userCoinCertificate) {
-//        [self showMsg:@"暂无兑换券"];
-//        return ;
-//    }
+    if (![AcountManager manager].userCoinCertificate) {
+        [self showMsg:@"暂无兑换券"];
+        return ;
+    }
     CoinCertificateController *ccVC = [CoinCertificateController new];
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);

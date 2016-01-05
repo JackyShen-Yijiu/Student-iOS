@@ -415,11 +415,11 @@ static NSString *const kcodeGainUrl = @"code";
         NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
         if ([type isEqualToString:@"0"]) {
             [MBProgressHUD hideHUDForView:self.view animated:NO];
-            [self showTotasViewWithMes:dataDic[@"msg"]];
+            [self showMsg:dataDic[@"msg"]];
         }else if ([type isEqualToString:@"1"]) {
             [MBProgressHUD hideHUDForView:self.view animated:NO];
             [AcountManager configUserInformationWith:dataDic[@"data"]];
-            [self showTotasViewWithMes:@"登录成功"];
+            [self showMsg:@"登录成功"];
             [AcountManager saveUserName:self.phoneTextField.text andPassword:self.passWordTextFild.text];
             if ([AcountManager manager].userid) {
                 [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
