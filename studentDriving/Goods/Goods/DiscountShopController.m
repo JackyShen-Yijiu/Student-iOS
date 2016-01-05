@@ -54,6 +54,10 @@ static NSString *const kDiscountListUrl = @"getmailproduct?index=1&count=10&prod
         
         {
             NSArray *array = [dataDic objectForKey:@"mainlist"];
+            if (array.count == 0) {
+                [self obj_showTotasViewWithMes:@"还没有商品哦!"];
+                return;
+            }
             for (NSDictionary *dic in array)
             {
                 DiscountShopModel *mainDodel = [[DiscountShopModel alloc] init];

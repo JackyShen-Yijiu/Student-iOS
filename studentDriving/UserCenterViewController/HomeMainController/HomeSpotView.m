@@ -149,10 +149,10 @@
             label.text = arrayStr[i];
             label.tag = 201;
 
-            label.textColor = [UIColor colorWithHexString:@"fcfcfc"];
+//            label.textColor = [UIColor colorWithHexString:@"fcfcfc"];
             label.font = [UIFont systemFontOfSize:14];
 
-            label.textColor = [UIColor orangeColor];
+            label.textColor = [UIColor colorWithHexString:@"68e6ff"];
             label.font = [UIFont systemFontOfSize:10];
             [_lableitems addObject:label];
             [self addSubview:label];
