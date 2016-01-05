@@ -414,80 +414,6 @@ static NSString *const kcodeGainUrl = @"code";
     [self userExist];
 }
 
-// 向服务器注册用户
-- (void)userRegister {
-    
-    NSString *passwordString = nil;
-    passwordString = self.passWordTextFild.text.DY_MD5;
-    [self.paramsPost setObject:passwordString forKey:@"password"];
-    //网络请求
-    
-    if (self.invitationTextFild.text.length >0 && self.invitationTextFild.text != nil) {
-        [self.paramsPost setObject:self.invitationTextFild.text forKey:@"referrerCode"];
-    }
-    [self.paramsPost setObject:@"1" forKey:@"usertype"];
-    
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kregisterUrl];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [JENetwoking startDownLoadWithUrl:urlString postParam:self.paramsPost WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
-        NSDictionary *dataDic = data;
-        
-        NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
-        if ([type isEqualToString:@"0"]) {
-            [MBProgressHUD hideHUDForView:self.view animated:NO];
-            [self showTotasViewWithMes:dataDic[@"msg"]];
-        }else if ([type isEqualToString:@"1"]) {
-            [MBProgressHUD hideHUDForView:self.view animated:NO];
-            [AcountManager configUserInformationWith:dataDic[@"data"]];
-            [self showTotasViewWithMes:@"登录成功"];
-            [AcountManager saveUserName:self.phoneTextField.text andPassword:self.passWordTextFild.text];
-            if ([AcountManager manager].userid) {
-                [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
-                [self registerUserId:[AcountManager manager].userid withPassword:self.passWordTextFild.text.DY_MD5];
-            }
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
-            [self dismissViewControllerAnimated:YES completion:^{
-                [[NSNotificationCenter defaultCenter] postNotificationName:kregisterUser object:nil];
-            }];
-        }
-        
-    }];
-}
-
-//注册账号
-- (void)registerUserId:(NSString *)userid withPassword:(NSString *)password {
-    [[EaseMob sharedInstance].chatManager asyncRegisterNewAccount:userid
-                                                         password:password
-                                                   withCompletion:
-     ^(NSString *username, NSString *password, EMError *error) {
-         [self hideHud];
-         
-         if (!error) {
-             TTAlertNoTitle(NSLocalizedString(@"register.success", @"Registered successfully, please log in"));
-             [self loginWithUsername:userid password:password];
-         }else{
-             switch (error.errorCode) {
-                 case EMErrorServerNotReachable:
-                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
-                     break;
-                 case EMErrorServerDuplicatedAccount:
-                     TTAlertNoTitle(NSLocalizedString(@"register.repeat", @"You registered user already exists!"));
-                     break;
-                 case EMErrorNetworkNotConnected:
-                     TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
-                     break;
-                 case EMErrorServerTimeout:
-                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
-                     break;
-                 default:
-                     TTAlertNoTitle(NSLocalizedString(@"register.fail", @"Registration failed"));
-                     break;
-             }
-         }
-     } onQueue:nil];
-}
-
 #pragma mark 验证用户是否存在
 - (void)userExist {
     
@@ -512,19 +438,73 @@ static NSString *const kcodeGainUrl = @"code";
     }];
 }
 
+// 向服务器注册用户
+- (void)userRegister {
+    
+    NSString *passwordString = nil;
+    passwordString = self.passWordTextFild.text.DY_MD5;
+    
+    [self.paramsPost setObject:passwordString forKey:@"password"];
+    //网络请求
+    
+    if (self.invitationTextFild.text.length >0 && self.invitationTextFild.text != nil) {
+        [self.paramsPost setObject:self.invitationTextFild.text forKey:@"referrerCode"];
+    }
+    [self.paramsPost setObject:@"1" forKey:@"usertype"];
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kregisterUrl];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:self.paramsPost WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        [MBProgressHUD hideHUDForView:self.view animated:NO];
+
+        DYNSLog(@"向服务器注册用户data = %@",data);
+        
+        NSDictionary *dataDic = data;
+        
+        NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
+        
+        if ([type isEqualToString:@"0"]) {
+            
+            [self showTotasViewWithMes:dataDic[@"msg"]];
+            
+        }else if ([type isEqualToString:@"1"]) {
+            
+            NSString *userid = [NSString stringWithFormat:@"%@",dataDic[@"data"][@"userid"]];
+            NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
+            
+            [self loginWithUserID:userid password:passwordString dataDic:dataDic];
+
+        }
+        
+    }];
+}
 
 //点击登陆后的操作
-- (void)loginWithUsername:(NSString *)username password:(NSString *)password
+- (void)loginWithUserID:(NSString *)userID password:(NSString *)password dataDic:(NSDictionary *)dataDic
 {
-    [self showHudInView:self.view hint:NSLocalizedString(@"login.ongoing", @"Is Login...")];
+    [self showHudInView:self.view hint:NSLocalizedString(@"登陆中...", @"登陆中...")];
+    
     //异步登陆账号
-    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:username
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:userID
                                                         password:password
                                                       completion:
      ^(NSDictionary *loginInfo, EMError *error) {
+         
          [self hideHud];
+         
          if (loginInfo && !error) {
-             DYNSLog(@"登录");
+             
+             DYNSLog(@"登录成功");
+             
+             [AcountManager configUserInformationWith:dataDic[@"data"]];
+             
+             [AcountManager saveUserName:self.phoneTextField.text andPassword:self.passWordTextFild.text];
+             
+             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+             
              //设置是否自动登录
              [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
              
@@ -540,11 +520,17 @@ static NSString *const kcodeGainUrl = @"code";
              options.nickname = [AcountManager manager].userName;
              options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
              
-             
              //发送自动登陆状态通知
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
              
              //保存最近一次登录用户名
+             
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
+             
+             [self dismissViewControllerAnimated:NO completion:^{
+                 [[NSNotificationCenter defaultCenter] postNotificationName:kregisterUser object:nil];
+             }];
+             
          }
          else
          {

@@ -277,7 +277,10 @@ static NSString *const kuserType = @"usertype";
 }
 
 - (void)DYdealRegister {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    // 用户登录成功，打开相应的窗体
+    [DVVUserManager userLoginSucces];
+    
 }
 
 #pragma mark - action
@@ -355,7 +358,8 @@ static NSString *const kuserType = @"usertype";
     
     [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
-        NSLog(@"%@", data);
+        NSLog(@"验证用户是否存在:%@", data);
+        
         NSDictionary *params = data;
         BOOL type = [[params objectForKey:@"type"] boolValue];
         if (type) {
@@ -402,7 +406,7 @@ static NSString *const kuserType = @"usertype";
              
              DYNSLog(@"登录成功");
              
-             [AcountManager saveUserName:userid andPassword:password];
+             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
              
              [AcountManager configUserInformationWith:dataDic[@"data"]];
              
@@ -500,8 +504,7 @@ static NSString *const kuserType = @"usertype";
 - (void)dealRegister:(UIButton *)sender{
     RegisterViewController *registerVc = [[RegisterViewController alloc]init];
     [self presentViewController:registerVc animated:YES completion:nil];
-    
-    
+
 }
 
 - (void)viewWillLayoutSubviews {
