@@ -80,8 +80,8 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     [self startNetWork];
     self.view.backgroundColor = RGBColor(245, 247, 250);
     self.automaticallyAdjustsScrollViewInsets = NO;
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.goBackButton];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.registAgainButton];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UILabel new]];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.registAgainButton];
 }
 
 - (void)initUI {

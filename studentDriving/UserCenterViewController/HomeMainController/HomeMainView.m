@@ -52,6 +52,8 @@
                 // 创建telescopeView
 //                UIView
                 
+                
+                
                 _coachCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _coachCardButton.frame = CGRectMake(35, 195, coachCardButtonW, coachCardButtonW);
                 [_coachCardButton setBackgroundImage:[UIImage imageNamed:@"优势"] forState:UIControlStateNormal];
@@ -74,7 +76,7 @@
                 _signButton.tag = 103;
                [_signButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
                
-                [self addSubview:_textImageView];
+//                [self addSubview:fireImageView];
                 [self addSubview:_coachCardButton];
                 [self addSubview:_schoolCardButton];
                 [self addSubview:_signButton];

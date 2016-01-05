@@ -69,7 +69,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
             if (self.markNum.integerValue == 2) {
                 _headViewTitleLabel.text = [AcountManager manager].subjecttwo.progress;
 
-            }else if (self.markNum.integerValue == 2) {
+            }else if (self.markNum.integerValue == 3) {
                 _headViewTitleLabel.text = [AcountManager manager].subjectthree.progress;
 
             }
@@ -151,22 +151,22 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 //    NSLog("%",[self.markNum integerValue]);
     NSString *downLoadUrl = [NSString stringWithFormat:BASEURL,appointmentUrl];
     DYNSLog(@"url = %@ %@",[AcountManager manager].userid,[AcountManager manager].userToken);
-    
-    __weak AppointmentViewController *weakSelf = self;
+
+    __weak typeof (self) ws = self;
     [JENetwoking startDownLoadWithUrl:downLoadUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         NSDictionary *param = data;
         NSNumber *type = param[@"type"];
         NSArray *array = param[@"data"];
         NSError *error = nil;
         
-        [weakSelf.dataArray removeAllObjects];
+        [ws.dataArray removeAllObjects];
         
         NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
         if (type.integerValue == 1) {
-            [weakSelf.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error]];
+            [ws.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error]];
             
-            [weakSelf.tableView reloadData];
-            [weakSelf.tableView.mj_header endRefreshing];
+            [ws.tableView reloadData];
+            [ws.tableView.mj_header endRefreshing];
             
         }else {
             kShowFail(msg);
@@ -185,7 +185,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64,kSystemWide,44)];
     view.backgroundColor = [UIColor whiteColor];
     
-    [view addSubview:self.headViewTitleButton];
+    [view addSubview:self.headViewTitleButton];   //黄色的小圆圈
     
     [view addSubview:self.headViewTitleLabel];
     
@@ -280,7 +280,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         detail.state = AppointmentStateSelfCancel;
         detail.markNum =  self.markNum;
         [self.navigationController pushViewController:detail animated:YES];
-    }else if (state == AppointmentStateCoachConfirm) {
+    }else if (state == AppointmentStateCoachConfirm) {         //已提交
         AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
         detail.model = model;
         detail.isPushInformation = NO;
@@ -298,7 +298,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         detail.markNum =  self.markNum;
         [self.navigationController pushViewController:detail animated:YES];
         
-    }else if (state == AppointmentStateConfirmEnd) {
+    }else if (state == AppointmentStateConfirmEnd) {         //待确认
         APWaitConfirmViewController *wait = [[APWaitConfirmViewController alloc] init];
         wait.model = model;
         wait.markNum =  self.markNum;
@@ -308,7 +308,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         waitEvaluation.model = model;
         waitEvaluation.markNum =  self.markNum;
         [self.navigationController pushViewController:waitEvaluation animated:YES];
-    }else if (state == AppointmentStateFinish) {
+    }else if (state == AppointmentStateFinish) {              //已完成
         AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
         detail.model = model;
         detail.isPushInformation = NO;

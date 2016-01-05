@@ -18,7 +18,7 @@
     if (_drivingIntroductionDetail == nil) {
         _drivingIntroductionDetail = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
         _drivingIntroductionDetail.text = @"个人评价阿里圣诞节佛啊解释道佛哦OS鉴定符个人评价阿里圣诞节佛啊解释道佛哦OS鉴定符个人评价阿里圣诞节佛啊解释道佛哦OS鉴定符";
-        _drivingIntroductionDetail.numberOfLines = 2;
+        _drivingIntroductionDetail.numberOfLines = 0;
     }
     return _drivingIntroductionDetail;
 }
@@ -58,6 +58,7 @@
         NSNumber *wide = [NSNumber numberWithFloat:kSystemWide-30];
         make.width.mas_equalTo(wide);
     }];
+    [self.drivingIntroductionDetail sizeToFit];
     
    
 }
