@@ -150,7 +150,7 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self.headerView.iconButton setBackgroundImage:[UIImage imageNamed:@"side_menu_header"] forState:UIControlStateNormal];
+    [self.headerView.iconButton setBackgroundImage:[UIImage imageNamed:@"side_user_header"] forState:UIControlStateNormal];
     self.headerView.nameLabel.text = @"用户名";
     self.headerView.drivingNameLabel.text = @"驾校：未报考";
     self.headerView.markLabel.text = @"我的Y码：暂无";
@@ -163,7 +163,7 @@
     // 显示搜索的类型是驾校还是教练
     [self.blockView setLocationShowType];
     // 设置头像
-    [self.headerView.iconButton sd_setBackgroundImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"side_menu_header"]];
+    [self.headerView.iconButton sd_setBackgroundImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"side_user_header"]];
     // 用户名、报考驾校
     if ([AcountManager manager].userName && [AcountManager manager].userName.length) {
         self.headerView.nameLabel.text = [AcountManager manager].userName;
@@ -196,7 +196,7 @@
                                  [NSString stringWithFormat:@"%li", money] ];
                 [self.tableView reloadData];
                 // 显示我的优惠券信息
-                NSString *couponString = @"暂无优惠券";
+                NSString *couponString = @"";
                 if (couponcount) {
                     couponString = [NSString stringWithFormat:@"还有%li张兑换券(点击兑换)",couponcount];
                 }
@@ -233,7 +233,7 @@
 #pragma mark 兑换券
 - (void)coinCertificateLabelAction {
     if (![AcountManager manager].userCoinCertificate) {
-        [self showMsg:@"暂无兑换券"];
+//        [self showMsg:@"暂无兑换券"];
         return ;
     }
     CoinCertificateController *ccVC = [CoinCertificateController new];

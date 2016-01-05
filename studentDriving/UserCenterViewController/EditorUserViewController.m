@@ -118,7 +118,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         cell.accessoryView = self.userHeadImage;
         if ([AcountManager manager].userHeadImageUrl) {
             DYNSLog(@"imageUrl = %@",[AcountManager manager].userHeadImageUrl);
-            [self.userHeadImage sd_setImageWithURL:[NSURL URLWithString:[AcountManager manager].userHeadImageUrl]placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+            [self.userHeadImage sd_setImageWithURL:[NSURL URLWithString:[AcountManager manager].userHeadImageUrl]placeholderImage:[UIImage imageNamed:@"side_user_header"]];
         }
         self.userHeadImage.backgroundColor = MAINCOLOR;
     }else {
