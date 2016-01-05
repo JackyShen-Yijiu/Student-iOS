@@ -60,19 +60,14 @@ static NSString *kMagicShop = @"getmailproduct?index=1&count=10&producttype=0";
     NSLog(@"%@",urlString);
     NSDictionary *parm = @{@"cityname":@"北京"};
     [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"----------------------------------------=============data = %@",data);
+        DYNSLog(@"data = %@",data);
         if (data == nil) {
-            [self obj_showTotasViewWithMes:@"还没有数据额!"];
             return ;
         }
         NSDictionary *dataDic = [data objectForKey:@"data"];
        
                             {
                                 NSArray *array = [dataDic objectForKey:@"mainlist"];
-                                if (array.count == 0) {
-                                    [self obj_showTotasViewWithMes:@"还没有数据额!"];
-                                    return;
-                                }
                                 for (NSDictionary *dic in array)
                                 {
                                     ShopMainModel *mainDodel = [[ShopMainModel alloc] init];

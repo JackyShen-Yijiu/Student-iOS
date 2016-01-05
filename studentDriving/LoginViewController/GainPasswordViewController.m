@@ -147,17 +147,29 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     NSString *urlString = [NSString stringWithFormat:BASEURL,kchangePasswordUrl];
     
     NSDictionary *param = @{@"smscode":self.confirmString,@"password":[self.passWordTextFild.text DY_MD5],@"mobile":self.mobile};
+    
+    NSLog(@"param:%@",param);
+    
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        NSDictionary *param = data;
-        DYNSLog(@"param = %@",param[@"msg"]);
+        
+        NSDictionary *resultData = data;
+        
+        DYNSLog(@"resultData.message = %@",resultData[@"msg"]);
+        
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        
         if ([type isEqualToString:@"1"]) {
+            
             kShowSuccess(@"修改成功");
+            
             [self dismissViewControllerAnimated:YES completion:^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:kchangePassword object:nil];
             }];
+            
         }else {
+            
             kShowFail(param[@"msg"]);
+            
         }
     }];
     
