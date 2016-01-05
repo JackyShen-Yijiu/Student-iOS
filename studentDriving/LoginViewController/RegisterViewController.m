@@ -485,7 +485,7 @@ static NSString *const kcodeGainUrl = @"code";
 //点击登陆后的操作
 - (void)loginWithUserID:(NSString *)userID password:(NSString *)password dataDic:(NSDictionary *)dataDic
 {
-    [self showHudInView:self.view hint:NSLocalizedString(@"登陆中...", @"登陆中...")];
+    [self showHudInView:self.view hint:NSLocalizedString(@"登录中...", @"登录中...")];
     
     //异步登陆账号
     [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:userID
