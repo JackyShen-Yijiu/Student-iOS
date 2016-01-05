@@ -138,9 +138,16 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     _backImage.image = [UIImage imageNamed:@"bg"];
     _imageX = 0;
 
-    
+    // 加载流星视图
+    CGFloat fireH = 320;
+    CGFloat fireW = 338;
+    UIImageView *fireImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - fireW) / 2 + 20, 44, fireW, fireH)];
+    fireImageView.backgroundColor = [UIColor clearColor];
+    fireImageView.image = [UIImage imageNamed:@"流星"];
+
      [self.view addSubview:_backImage];
-    [self.view addSubview:_mainScrollView];
+    
+    
    
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 83, self.view.frame.size.width, 83)];
 
@@ -148,8 +155,10 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
     _homeSpotView.delegate = self;
     [view addSubview:_homeSpotView];
-    
+    [self.view addSubview:fireImageView];
     [self.view addSubview:view];
+    [self.view addSubview:_mainScrollView];
+    
     
     // 点击时的回调
     [self addBackBlock];
