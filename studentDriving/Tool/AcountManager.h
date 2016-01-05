@@ -53,7 +53,7 @@
 @property (nonatomic, assign) BOOL newmessagereminder;
 
 // 兑换券
-@property (nonatomic, assign) NSUInteger userCoinCertificate;
+@property (atomic, assign) NSUInteger userCoinCertificate;
 
 + (AcountManager *)manager;
 

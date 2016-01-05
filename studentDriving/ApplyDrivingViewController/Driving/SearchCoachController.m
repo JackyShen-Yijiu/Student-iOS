@@ -236,25 +236,24 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
     self.locationService.delegate = self;
     
     [self.locationService startUserLocationService];
+    
 }
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
     NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     //latitude=40.096263&longitude=116.1270&radius=10000
     //    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
+    
     NSString *locationContent =  [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
+    
+//    NSString *locationContent =  [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",40.096263,116.1270];
+
     [self.dataArray removeAllObjects];
     
     
     NSString *urlString = [NSString stringWithFormat:kCoachUrl,locationContent];
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
     [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
-    
-    
-    
-    
-    
-    
 }
 - (void)jeNetworkingCallBackData:(id)data {
     DYNSLog(@"result = %@",data);

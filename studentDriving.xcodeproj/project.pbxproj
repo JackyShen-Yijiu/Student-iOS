@@ -564,6 +564,12 @@
 		D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */; };
 		D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1291C255F3400D1A143 /* CirclePoint.m */; };
 		D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F12B1C255F3400D1A143 /* CircularMotion.m */; };
+		D9D4BA0F1C3B916D00F62BE9 /* LJSwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4BA0E1C3B916D00F62BE9 /* LJSwizzleMethod.m */; };
+		D9D4BA1B1C3B918600F62BE9 /* JRSwizzle.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4BA121C3B918600F62BE9 /* JRSwizzle.m */; };
+		D9D4BA1C1C3B918600F62BE9 /* LJException.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4BA141C3B918600F62BE9 /* LJException.m */; };
+		D9D4BA1D1C3B918600F62BE9 /* NSArray+adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4BA161C3B918600F62BE9 /* NSArray+adapter.m */; };
+		D9D4BA1E1C3B918600F62BE9 /* NSDictionary+adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4BA181C3B918600F62BE9 /* NSDictionary+adapter.m */; };
+		D9D4BA1F1C3B918600F62BE9 /* NSMutableArray+adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4BA1A1C3B918600F62BE9 /* NSMutableArray+adapter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1567,6 +1573,18 @@
 		D9B7F1291C255F3400D1A143 /* CirclePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CirclePoint.m; sourceTree = "<group>"; };
 		D9B7F12A1C255F3400D1A143 /* CircularMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularMotion.h; sourceTree = "<group>"; };
 		D9B7F12B1C255F3400D1A143 /* CircularMotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularMotion.m; sourceTree = "<group>"; };
+		D9D4BA0D1C3B916D00F62BE9 /* LJSwizzleMethod.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJSwizzleMethod.h; sourceTree = "<group>"; };
+		D9D4BA0E1C3B916D00F62BE9 /* LJSwizzleMethod.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJSwizzleMethod.m; sourceTree = "<group>"; };
+		D9D4BA111C3B918600F62BE9 /* JRSwizzle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JRSwizzle.h; sourceTree = "<group>"; };
+		D9D4BA121C3B918600F62BE9 /* JRSwizzle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JRSwizzle.m; sourceTree = "<group>"; };
+		D9D4BA131C3B918600F62BE9 /* LJException.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LJException.h; sourceTree = "<group>"; };
+		D9D4BA141C3B918600F62BE9 /* LJException.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LJException.m; sourceTree = "<group>"; };
+		D9D4BA151C3B918600F62BE9 /* NSArray+adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+adapter.h"; sourceTree = "<group>"; };
+		D9D4BA161C3B918600F62BE9 /* NSArray+adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+adapter.m"; sourceTree = "<group>"; };
+		D9D4BA171C3B918600F62BE9 /* NSDictionary+adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+adapter.h"; sourceTree = "<group>"; };
+		D9D4BA181C3B918600F62BE9 /* NSDictionary+adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+adapter.m"; sourceTree = "<group>"; };
+		D9D4BA191C3B918600F62BE9 /* NSMutableArray+adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+adapter.h"; sourceTree = "<group>"; };
+		D9D4BA1A1C3B918600F62BE9 /* NSMutableArray+adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+adapter.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3243,6 +3261,7 @@
 		D588B0E61BDDDC24000C5D6F /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D9D4B9EF1C3B911100F62BE9 /* Exception */,
 				D95CCCEC1C2E636200AF1402 /* NSString+Helper.h */,
 				D95CCCED1C2E636200AF1402 /* NSString+Helper.m */,
 				D9B7F1271C255F0800D1A143 /* CircularMotion */,
@@ -3466,6 +3485,41 @@
 				4761DB8B1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m */,
 			);
 			path = CircularMotion;
+			sourceTree = "<group>";
+		};
+		D9D4B9EF1C3B911100F62BE9 /* Exception */ = {
+			isa = PBXGroup;
+			children = (
+				D9D4BA101C3B918600F62BE9 /* LJException */,
+				D9D4BA0C1C3B916D00F62BE9 /* LJRumtime */,
+			);
+			path = Exception;
+			sourceTree = "<group>";
+		};
+		D9D4BA0C1C3B916D00F62BE9 /* LJRumtime */ = {
+			isa = PBXGroup;
+			children = (
+				D9D4BA0D1C3B916D00F62BE9 /* LJSwizzleMethod.h */,
+				D9D4BA0E1C3B916D00F62BE9 /* LJSwizzleMethod.m */,
+			);
+			path = LJRumtime;
+			sourceTree = "<group>";
+		};
+		D9D4BA101C3B918600F62BE9 /* LJException */ = {
+			isa = PBXGroup;
+			children = (
+				D9D4BA111C3B918600F62BE9 /* JRSwizzle.h */,
+				D9D4BA121C3B918600F62BE9 /* JRSwizzle.m */,
+				D9D4BA131C3B918600F62BE9 /* LJException.h */,
+				D9D4BA141C3B918600F62BE9 /* LJException.m */,
+				D9D4BA151C3B918600F62BE9 /* NSArray+adapter.h */,
+				D9D4BA161C3B918600F62BE9 /* NSArray+adapter.m */,
+				D9D4BA171C3B918600F62BE9 /* NSDictionary+adapter.h */,
+				D9D4BA181C3B918600F62BE9 /* NSDictionary+adapter.m */,
+				D9D4BA191C3B918600F62BE9 /* NSMutableArray+adapter.h */,
+				D9D4BA1A1C3B918600F62BE9 /* NSMutableArray+adapter.m */,
+			);
+			path = LJException;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -3804,6 +3858,7 @@
 				D5604B491BF656C50020F0D7 /* MBProgressHUD.m in Sources */,
 				066BFB181C23A2C3002A1DD8 /* HomeMainController.m in Sources */,
 				D52638561BDF1FA400ADC2C7 /* ApplyclasstypeinfoModel.m in Sources */,
+				D9D4BA0F1C3B916D00F62BE9 /* LJSwizzleMethod.m in Sources */,
 				D96D1BEC1C2B88A000F1C282 /* DVVSideMenuCell.m in Sources */,
 				D588B0701BDDDB90000C5D6F /* CancelAppointmentViewController.m in Sources */,
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
@@ -3927,6 +3982,7 @@
 				D588B0501BDDDB71000C5D6F /* SignatureViewController.m in Sources */,
 				556F425E1C310F2D0052DE73 /* ExamDetailCell.m in Sources */,
 				D588B0DE1BDDDC14000C5D6F /* WaitConfirmCell.m in Sources */,
+				D9D4BA1C1C3B918600F62BE9 /* LJException.m in Sources */,
 				D588B1491BDE126C000C5D6F /* QuestionBankViewController.m in Sources */,
 				D5604B541BF656C50020F0D7 /* EMSDWebImageCompat.m in Sources */,
 				D588B0CC1BDDDC14000C5D6F /* ExamCarCollectionViewCell.m in Sources */,
@@ -3935,6 +3991,7 @@
 				D5D50EE41BFA205000F54097 /* PrivateMessageCell.m in Sources */,
 				D588B14F1BDE166A000C5D6F /* WrongQuestionViewController.m in Sources */,
 				D588B04C1BDDDB71000C5D6F /* MyWalletViewController.m in Sources */,
+				D9D4BA1D1C3B918600F62BE9 /* NSArray+adapter.m in Sources */,
 				D5604C9A1BF657AA0020F0D7 /* UserProfileManager.m in Sources */,
 				D5604C991BF657AA0020F0D7 /* InvitationManager.m in Sources */,
 				D965CAA51C239D9F00DCD094 /* DrivingCityListView.m in Sources */,
@@ -3954,6 +4011,7 @@
 				D588B0DB1BDDDC14000C5D6F /* MyReservationCell.m in Sources */,
 				D588B08F1BDDDBDB000C5D6F /* ExamCarViewController.m in Sources */,
 				D588B11D1BDDDC2F000C5D6F /* JsonTransformManager.m in Sources */,
+				D9D4BA1F1C3B918600F62BE9 /* NSMutableArray+adapter.m in Sources */,
 				55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */,
 				B8272D4A1C1EF42700BE0D2D /* UIViewController+SliderMenu.m in Sources */,
 				D5BCFEE51BF4924C0019402C /* BLImageViewController.m in Sources */,
@@ -4055,6 +4113,7 @@
 				D588B06D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m in Sources */,
 				B8272D411C1EE4BA00BE0D2D /* MenuController.m in Sources */,
 				D96D1BCB1C2B858400F1C282 /* AppDelegate+EaseMob.m in Sources */,
+				D9D4BA1B1C3B918600F62BE9 /* JRSwizzle.m in Sources */,
 				D5604B7B1BF656C50020F0D7 /* wav.mm in Sources */,
 				D588B13D1BDDDC65000C5D6F /* ModificationView.m in Sources */,
 				D5604B551BF656C50020F0D7 /* EMSDWebImageDecoder.m in Sources */,
@@ -4081,6 +4140,7 @@
 				D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */,
 				4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */,
 				D588AFD01BDDDAAB000C5D6F /* MyAppointmentCoachModel.m in Sources */,
+				D9D4BA1E1C3B918600F62BE9 /* NSDictionary+adapter.m in Sources */,
 				D51256B11BE1D005002717DA /* UserIdModel.m in Sources */,
 				554641BC1C25098C00A55326 /* ChooseBtnView.m in Sources */,
 				0647A5BF1C3509F700DBB8A3 /* DiscountWalletModel.m in Sources */,

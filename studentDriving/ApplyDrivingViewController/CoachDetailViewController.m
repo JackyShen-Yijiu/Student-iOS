@@ -20,6 +20,7 @@
 #import "StudentCommentModel.h"
 #import "LoginViewController.h"
 #import "SignUpListViewController.h"
+#import "DVVUserManager.h"
 
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
@@ -406,7 +407,8 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)dealSignUp:(UIButton *)sender{
     
     if (![AcountManager isLogin]) {
-        [self showLoginView];
+//        [self showLoginView];
+        [DVVUserManager userNeedLogin];
         return;
     }
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
@@ -473,12 +475,12 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 #pragma mark 检测是否收藏
 - (void)checkCollection {
     
-    if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-        return;
-    }
+//    if (![AcountManager isLogin]) {
+//        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+//        LoginViewController *login = [[LoginViewController alloc] init];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+//        return;
+//    }
     
     NSString *kSaveUrl = [NSString stringWithFormat:kCheckLoveCoach];
     NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
@@ -507,10 +509,12 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)dealLike:(UITapGestureRecognizer *)tap {
     
     if (![AcountManager isLogin]) {
-        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        LoginViewController *login = [[LoginViewController alloc] init];
-        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-        return;
+//        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+//        LoginViewController *login = [[LoginViewController alloc] init];
+//        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+//        return;
+        [self showTotasViewWithMes:@"您还没有登录哟"];
+        return ;
     }
     
     if (_heartImageView.tag) {

@@ -67,7 +67,7 @@
     manager.requestSerializer.cachePolicy = NSURLRequestUseProtocolCachePolicy;
     manager.requestSerializer.timeoutInterval = 30.0f;
     if (method == JENetworkingRequestMethodGet) {
-        if ([AcountManager manager].userToken) {
+        if ([AcountManager manager].userToken && [AcountManager manager].userToken.length) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
         [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
@@ -180,7 +180,7 @@
         [manager GET:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             
             if (responseObject == nil) {
-                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"没有数据"];
                 [alertView show];
                 return ;
             }
