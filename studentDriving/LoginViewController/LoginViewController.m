@@ -294,12 +294,12 @@ static NSString *const kuserType = @"usertype";
 - (void)dealLogin:(UIButton *)sender {
     
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length  == 0) {
-        [self showTotasViewWithMes:@"请输入手机号"];
+        [self obj_showTotasViewWithMes:@"请输入手机号"];
         return;
     }
     
     if (self.passwordTextField.text == nil || self.passwordTextField.text.length  == 0) {
-        [self showTotasViewWithMes:@"请输入密码"];
+        [self obj_showTotasViewWithMes:@"请输入密码"];
         return;
     }
     

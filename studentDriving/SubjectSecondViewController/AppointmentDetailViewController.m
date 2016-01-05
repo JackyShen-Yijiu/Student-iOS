@@ -181,12 +181,14 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 }
 
 - (void)dealMessage:(UIButton *)sender {
+    
     ChatViewController *chat = [[ChatViewController alloc] initWithChatter:self.model.coachid.infoId  conversationType:eConversationTypeChat];
     chat.title = self.model.coachid.name;
     
     NSDictionary * extParam = @{@"headUrl":self.model.coachid.headportrait.originalpic,@"nickName":self.model.coachid.name,@"userId":self.model.coachid.infoId,@"userType":@"2"};
     chat.conversation.ext = extParam;
     [self.navigationController pushViewController:chat animated:YES];
+    
 }
 
 - (void)createUI {
