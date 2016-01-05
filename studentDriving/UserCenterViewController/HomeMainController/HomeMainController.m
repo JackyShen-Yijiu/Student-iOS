@@ -139,12 +139,12 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     _imageX = 0;
 
     // 加载流星视图
-    CGFloat fireH = 320;
-    CGFloat fireW = 338;
+    CGFloat fireH = 200;
+    CGFloat fireW = 640;
     UIImageView *fireImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - fireW) / 2 + 20, 44, fireW, fireH)];
     fireImageView.backgroundColor = [UIColor clearColor];
     fireImageView.image = [UIImage imageNamed:@"流星"];
-
+    [_backImage addSubview:fireImageView];
      [self.view addSubview:_backImage];
     
     
@@ -155,7 +155,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
     _homeSpotView.delegate = self;
     [view addSubview:_homeSpotView];
-    [self.view addSubview:fireImageView];
+//    [self.view addSubview:fireImageView];
     [self.view addSubview:view];
     [self.view addSubview:_mainScrollView];
     
