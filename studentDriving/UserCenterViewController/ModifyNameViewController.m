@@ -78,14 +78,14 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         
         if ([self.modifyNameTextField.text length]>6) {
             
-            kShowFail(@"最多不超过6个字");
+            [self obj_showTotasViewWithMes:@"最多不超过6个字"];
             return;
         }
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[\\u4e00-\\u9fa5\\w\\-_]+"];
         if(![predicate evaluateWithObject:self.modifyNameTextField.text])
         {
-            kShowFail(@"你输入的昵称中含有非法字符");
+            [self obj_showTotasViewWithMes:@"你输入的昵称中含有非法字符"];
             return;
         }
         

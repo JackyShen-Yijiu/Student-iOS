@@ -226,7 +226,11 @@
     self.coachNameLabel.text = coachModel.name;
     if (coachModel.distance) {
         CGFloat distance = [coachModel.distance integerValue] / 1000.f;
-        self.distanceLabel.text = [NSString stringWithFormat:@"距离:%.2fkm",distance];
+        if (distance >10000) {
+            self.distanceLabel.text = @"该教练无训练场";
+        }else {
+            self.distanceLabel.text = [NSString stringWithFormat:@"距离:%.2fkm",distance];
+        }
     }
     
     self.carDriveNameLabel.text = coachModel.driveschoolinfo.name;

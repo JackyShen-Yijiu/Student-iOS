@@ -67,6 +67,8 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         _confirmTextField.backgroundColor = [UIColor whiteColor];
         _confirmTextField.layer.borderColor = TEXTGRAYCOLOR.CGColor;
         _confirmTextField.layer.borderWidth = 0.5;
+        _confirmTextField.keyboardType = UIKeyboardTypeNumberPad;
+
     }
     return _confirmTextField;
 }
@@ -144,11 +146,11 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 {
  
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length == 0) {
-        [self showTotasViewWithMes:@"请输入手机号"];
+        [self obj_showTotasViewWithMes:@"请输入手机号"];
         return;
     }
     if (self.confirmTextField.text == nil || self.confirmTextField.text.length == 0) {
-        [self showTotasViewWithMes:@"请输入验证码"];
+        [self obj_showTotasViewWithMes:@"请输入验证码"];
         return;
     }
     if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
@@ -163,15 +165,19 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     
     __weak ModifyPhoneNumViewController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:kupdateMobileNum postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
         NSDictionary *dataParam = data;
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
-            [self showTotasViewWithMes:@"绑定成功"];
+            
+            [self obj_showTotasViewWithMes:@"绑定成功"];
+            
             weakSelf.nowPhoneNumLabel.text = [NSString stringWithFormat:@"您当前手机号为%@",weakSelf.phoneNumTextField.text];
             [AcountManager saveUserPhoneNum:weakSelf.phoneNumTextField.text];
             [self.navigationController popViewControllerAnimated:YES];
+            
         }else {
-            [self showTotasViewWithMes:@"绑定失败"];
+            [self obj_showTotasViewWithMes:@"绑定失败"];
         }
     }];
     
