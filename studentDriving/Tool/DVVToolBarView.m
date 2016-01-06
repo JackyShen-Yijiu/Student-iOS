@@ -9,7 +9,7 @@
 #import "DVVToolBarView.h"
 
 //文字颜色
-#define TITLE_COLOR [UIColor colorWithRed:0 green:0.5 blue:1 alpha:1]
+#define TITLE_COLOR [UIColor orangeColor]
 
 #define WIDTH self.bounds.size.width
 #define HEIGHT self.bounds.size.height

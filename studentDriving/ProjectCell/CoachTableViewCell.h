@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-@class CoachModel;
+@class CoachDMData;
 @interface CoachTableViewCell : UITableViewCell
-- (void)receivedCellModelWith:(CoachModel *)coachModel;
+- (void)receivedCellModelWith:(CoachDMData *)coachModel;
 @end

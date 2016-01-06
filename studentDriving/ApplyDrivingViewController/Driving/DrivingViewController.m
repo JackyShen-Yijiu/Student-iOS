@@ -10,6 +10,7 @@
 #import "DrivingDetailViewController.h"
 #import "DrivingCell.h"
 #import <BaiduMapAPI/BMKLocationService.h>
+#import <BaiduMapAPI/BMKGeocodeSearch.h>
 #import "DrivingModel.h"
 #import "DrivingModel.h"
 #import "LoginViewController.h"
@@ -19,7 +20,6 @@
 #import "DrivingCycleShowViewModel.h"
 #import "DrivingSelectMotorcycleTypeView.h"
 #import "DrivingCityListView.h"
-#import <BaiduMapAPI/BMKGeocodeSearch.h>
 #import "MJRefresh.h"
 #import "DVVSideMenu.h"
 
