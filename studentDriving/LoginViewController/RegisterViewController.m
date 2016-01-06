@@ -12,6 +12,7 @@
 #import "NSString+DY_MD5.h"
 #import <JPush/APService.h>
 #import "RegistNoteController.h"
+
 static NSString *const kregisterUser = @"kregisterUser";
 
 static NSString *const kregisterUrl = @"userinfo/signup";

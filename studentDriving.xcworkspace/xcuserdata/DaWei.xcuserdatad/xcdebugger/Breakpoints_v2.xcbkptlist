@@ -58,7 +58,7 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/Student-iOS/studentDriving/SubjectSecondViewController/AppointmentDrivingViewController.m"
-                  timestampString = "473674515.147125"
+                  timestampString = "473734968.073961"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "690"
@@ -73,7 +73,7 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/Student-iOS/studentDriving/SubjectSecondViewController/AppointmentDrivingViewController.m"
-                  timestampString = "473674515.147411"
+                  timestampString = "473734968.074257"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "690"
@@ -113,38 +113,6 @@
             endingLineNumber = "411"
             landmarkName = "-dealRegister:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[RegisterViewController userRegister]"
-                  moduleName = "studentDriving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DaWei/Desktop/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "473674515.1556"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "411"
-                  endingLineNumber = "411"
-                  offsetFromSymbolStart = "1092">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__38-[RegisterViewController userRegister]_block_invoke"
-                  moduleName = "studentDriving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DaWei/Desktop/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "473674515.155828"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "411"
-                  endingLineNumber = "411"
-                  offsetFromSymbolStart = "46">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -175,8 +143,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "417"
             endingLineNumber = "417"
-            landmarkName = "-userExist"
-            landmarkType = "5">
+            landmarkName = "@implementation RegisterViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
