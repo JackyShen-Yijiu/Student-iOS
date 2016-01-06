@@ -127,13 +127,13 @@
 {
     DYNSLog(@"UILocalNotification = %@",notification);
     
-//    NSString *info = notification.userInfo[@"ConversationChatter"];
-//    if (info) {
-//        [_main dealInfo:notification.userInfo];
-//    }
-//#pragma mark - JPush推送
-//    [self JPushApplication:application didReceiveLocalNotification:notification];
-//    
+    NSString *info = notification.userInfo[@"ConversationChatter"];
+    if (info) {
+        [_main dealInfo:notification.userInfo];
+    }
+#pragma mark - JPush推送
+    [self JPushApplication:application didReceiveLocalNotification:notification];
+    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken

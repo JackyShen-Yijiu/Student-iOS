@@ -61,7 +61,7 @@
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
     NSString *type = [NSString stringWithFormat:@"%@", userInfo[@"type"]];
-    
+    NSLog(@"_______%ld",(long)application.applicationState);
     if (application.applicationState == UIApplicationStateActive) {
         
         [BLPFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
@@ -83,6 +83,7 @@
     else {
         [PushInformationManager receivePushInformation:userInfo];
     }
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
 #endif
     [APService handleRemoteNotification:userInfo];
 }
