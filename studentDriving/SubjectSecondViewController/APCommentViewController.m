@@ -17,18 +17,42 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 
 @interface APCommentViewController ()<UITableViewDataSource,UITableViewDelegate,CommentCellDelegate,UITextViewDelegate>{
     BCTextView *bctextView;
-    NSArray *commentTitleArray;
+    CommentCell *totleCell;
 }
 @property (strong, nonatomic) UITableView *tableView;
+
+// 总体评论星级
 @property (assign, nonatomic) CGFloat starProgress;
-@property (assign, nonatomic) CGFloat attitudelevel;
-@property (assign, nonatomic) CGFloat timelevel;
+// 能力
 @property (assign, nonatomic) CGFloat abilitylevel;
+// 时间
+@property (assign, nonatomic) CGFloat timelevel;
+// 态度
+@property (assign, nonatomic) CGFloat attitudelevel;
+// 卫生
+@property (assign, nonatomic) CGFloat hygienelevel;
 
 @property (strong, nonatomic) UIButton *submitBtn;
+
+@property (nonatomic , strong) NSMutableArray *commentTitleArray;
+
 @end
 
 @implementation APCommentViewController
+
+- (NSMutableArray *)commentTitleArray
+{
+    if (_commentTitleArray == nil) {
+        
+        _commentTitleArray = [NSMutableArray arrayWithObjects:@{@"title":@"守时",@"progress":@5},
+                                                                @{@"title":@"态度",@"progress":@5},
+                                                                @{@"title":@"能力",@"progress":@5},
+                                                                @{@"title":@"卫生",@"progress":@5},
+                                                                @{@"title":@"总体评价",@"progress":@5}
+                                                                , nil];
+    }
+    return _commentTitleArray;
+}
 
 - (UIButton *)submitBtn {
     if (_submitBtn == nil) {
@@ -44,19 +68,25 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = BACKGROUNDCOLOR;
-        _tableView.scrollEnabled = NO;
+        //_tableView.scrollEnabled = NO;
     }
     return _tableView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    commentTitleArray = @[@"总体评价",@"守时",@"态度",@"能力"];
-    // 默认4颗星
-    _starProgress = 4;
-    _attitudelevel = 4;
-    _timelevel = 4;
-    _abilitylevel = 4;
+    
+    // 默认5颗星
+    // 总体评论星级
+    _starProgress = 5;
+    // 能力
+    _abilitylevel = 5;
+    // 时间
+    _timelevel = 5;
+    // 态度
+    _attitudelevel = 5;
+    // 卫生
+    _hygienelevel = 5;
 
     bctextView.text = @"";
     self.title = @"评论";
@@ -65,26 +95,48 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
         //当你的容器是navigation controller时，默认的布局将从navigation bar的顶部开始。这就是为什么所有的UI元素都往上漂移了44pt
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
+    
     [self.view addSubview:self.tableView];
     
     self.tableView.tableFooterView = [self tableViewFootView];
+ 
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
+    
+    
 }
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+
 - (void)clickSubmit:(UIButton *)sender {
+    
+    NSLog(@"self.starProgress:%f",self.starProgress);
+    if (self.starProgress==1 && bctextView.text == nil) {
+        [self obj_showTotasViewWithMes:@"请填写评价内容"];
+        return;
+    }
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
     
     NSDictionary *param = @{@"userid":[AcountManager manager].userid,
                             @"reservationid":self.model.infoId,
-                            @"starlevel":[NSString stringWithFormat:@"%f",self.starProgress],
-                            @"abilitylevel":[NSString stringWithFormat:@"%f",self.abilitylevel],
-                            @"timelevel":[NSString stringWithFormat:@"%f",self.timelevel],
-                            @"attitudelevel":[NSString stringWithFormat:@"%f",self.attitudelevel],
+                            @"starlevel":[NSString stringWithFormat:@"%f",self.starProgress],// 总体评论星级
+                            @"abilitylevel":[NSString stringWithFormat:@"%f",self.abilitylevel],// 能力
+                            @"timelevel":[NSString stringWithFormat:@"%f",self.timelevel],// 时间
+                            @"attitudelevel":[NSString stringWithFormat:@"%f",self.attitudelevel],// 态度
+                            @"hygienelevel":[NSString stringWithFormat:@"%f",self.hygienelevel],// 卫生
                             @"commentcontent":bctextView.text};
+    
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
+        
+        DYNSLog(@"%s data = %@",__func__,data);
+        
         NSDictionary *param = data;
         NSNumber *type = param[@"type"];
         NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+        
         if (type.integerValue == 1) {
             kShowSuccess(@"评论成功");
            
@@ -102,6 +154,7 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 }
 
 - (UIView *)tableViewFootView {
+    
     UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 80)];
     [backGroundView addSubview:self.submitBtn];
     
@@ -130,25 +183,46 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 4;
+        return 5;
     }
     return 1;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.section == 0) {
+        
         static NSString *cellId = @"cellOne";
         CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        
         if (!cell) {
             cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.delegate = self;
         }
-        cell.topLabel.text = commentTitleArray[indexPath.row];
+        
+        if (indexPath.row==4) {
+            cell.userInteractionEnabled = NO;
+            totleCell = cell;
+            cell.topLabel.textColor = [UIColor orangeColor];
+        }else{
+            cell.userInteractionEnabled = YES;
+            totleCell = nil;
+            cell.topLabel.textColor = [UIColor blackColor];
+        }
+        
+        cell.topLabel.text = self.commentTitleArray[indexPath.row][@"title"];
+        
         [cell receiveIndex:indexPath];
-        [cell.starBar displayRating:4];
+        
+        CGFloat progress = [self.commentTitleArray[indexPath.row][@"progress"] floatValue];
+        NSLog(@"创建cell progress:%f",progress);
+        
+        [cell.starBar setUpRating:progress];
+        
         return cell;
 
     }else if (indexPath.section == 1) {
+        
         static NSString *cellId = @"cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
@@ -177,15 +251,39 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
     }
     return YES;
 }
-- (void)senderStarProgress:(CGFloat)newProgress withIndex:(NSIndexPath *)indexPath{
+
+- (void)senderStarProgress:(CGFloat)newProgress withIndex:(NSIndexPath *)indexPath
+{
+    NSLog(@"%s indexPath.section:%ld indexPath.row:%ld",__func__ ,(long)indexPath.section,(long)indexPath.row);
+    
+    // 上面4个评价
+    NSString *title = self.commentTitleArray[indexPath.row][@"title"];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"progress"] = [NSString stringWithFormat:@"%f",newProgress];
+    dict[@"title"] = title;
+    [self.commentTitleArray replaceObjectAtIndex:indexPath.row withObject:dict];
+    
     if (indexPath.row == 0) {
-        self.starProgress = newProgress;
+        _abilitylevel = newProgress;
     }else if (indexPath.row == 1) {
-        self.timelevel = newProgress;
+        _timelevel = newProgress;
     }else if (indexPath.row == 2) {
-        self.attitudelevel = newProgress;
+        _attitudelevel = newProgress;
     }else if (indexPath.row == 3) {
-        self.abilitylevel = newProgress;
+        _hygienelevel = newProgress;
     }
+
+    // 总体评价
+    _starProgress = (_abilitylevel + _timelevel + _attitudelevel + _hygienelevel) / 4;
+    NSString *totleTitle = self.commentTitleArray[4][@"title"];
+    NSMutableDictionary *totleDict = [NSMutableDictionary dictionary];
+    totleDict[@"progress"] = [NSString stringWithFormat:@"%f",_starProgress];
+    totleDict[@"title"] = totleTitle;
+    [self.commentTitleArray replaceObjectAtIndex:4 withObject:totleDict];
+
+    NSLog(@"self.commentTitleArray:%@",self.commentTitleArray);
+
+    [self.tableView reloadData];
+    
 }
 @end
