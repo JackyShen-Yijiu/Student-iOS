@@ -71,19 +71,22 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 }
 
 - (void)clickRight:(UIButton *)sender {
+    
     DYNSLog(@"上传");
     if (self.modifyNameTextField.text && [self.modifyNameTextField.text length]!=0) {
         
         if ([self.modifyNameTextField.text length]>14) {
             
-            kShowFail(@"最多不超过14个字");
+            [self obj_showTotasViewWithMes:@"最多不超过14个字"];
+            
             return;
         }
         
         NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[\\u4e00-\\u9fa5\\w\\-_]+"];
         if(![predicate evaluateWithObject:self.modifyNameTextField.text])
         {
-            kShowFail(@"你输入的昵称中含有非法字符");
+            [self obj_showTotasViewWithMes:@"你输入的昵称中含有非法字符"];
+
             return;
         }
         
@@ -99,12 +102,12 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         NSDictionary *dataParam = data;
         NSNumber *messege = dataParam[@"type"];
         if (messege.intValue == 1) {
-            [self showTotasViewWithMes:@"修改成功"];
+            [self obj_showTotasViewWithMes:@"修改成功"];
             [AcountManager saveUserNickName:self.modifyNameTextField.text];
             [[NSNotificationCenter defaultCenter] postNotificationName:kmodifyNickNameChange object:nil];
             [self.navigationController popViewControllerAnimated:YES];
         }else {
-            [self showTotasViewWithMes:@"修改失败"];
+            [self obj_showTotasViewWithMes:@"修改失败"];
             return;
         }
         

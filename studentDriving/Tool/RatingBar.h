@@ -30,6 +30,7 @@
  *  @param rating 评分值
  */
 - (void)displayRating:(CGFloat)rating;
+- (void)setUpRating:(CGFloat)rating;
 
 /**
  *  获取当前的评分值
