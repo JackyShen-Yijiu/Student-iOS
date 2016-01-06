@@ -22,7 +22,7 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 @property (strong, nonatomic) UITableView *tableView;
 
 // 总体评论星级
-@property (assign, nonatomic) CGFloat starProgress;
+@property (assign, nonatomic) int starProgress;
 // 能力
 @property (assign, nonatomic) CGFloat abilitylevel;
 // 时间
@@ -112,45 +112,51 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 
 - (void)clickSubmit:(UIButton *)sender {
     
-    NSLog(@"self.starProgress:%f",self.starProgress);
-    if (self.starProgress==1 && bctextView.text == nil) {
+    NSLog(@"self.starProgress:%d bctextView.text:%@",self.starProgress ,bctextView.text);
+    NSLog(@"bctextView.text.length:%lu",(unsigned long)bctextView.text.length);
+    
+    if (self.starProgress != 1 || (bctextView.text && bctextView.text.length!=0)) {
+     
+        NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
+        
+        NSDictionary *param = @{@"userid":[AcountManager manager].userid,
+                                @"reservationid":self.model.infoId,
+                                @"starlevel":[NSString stringWithFormat:@"%d",self.starProgress],// 总体评论星级
+                                @"abilitylevel":[NSString stringWithFormat:@"%f",self.abilitylevel],// 能力
+                                @"timelevel":[NSString stringWithFormat:@"%f",self.timelevel],// 时间
+                                @"attitudelevel":[NSString stringWithFormat:@"%f",self.attitudelevel],// 态度
+                                @"hygienelevel":[NSString stringWithFormat:@"%f",self.hygienelevel],// 卫生
+                                @"commentcontent":bctextView.text};
+        
+        [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            
+            DYNSLog(@"%s data = %@",__func__,data);
+            
+            NSDictionary *param = data;
+            NSNumber *type = param[@"type"];
+            NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+            
+            if (type.integerValue == 1) {
+                kShowSuccess(@"评论成功");
+                
+                for (UIViewController *vc in self.navigationController.viewControllers) {
+                    if ([vc isKindOfClass:[AppointmentViewController class]]) {
+                        [self.navigationController popToViewController:vc animated:YES];
+                    }
+                }
+                
+                
+            }else {
+                kShowFail(msg);
+            }
+        }];
+        
+    }else{
+        
         [self obj_showTotasViewWithMes:@"请填写评价内容"];
-        return;
+        
     }
     
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
-    
-    NSDictionary *param = @{@"userid":[AcountManager manager].userid,
-                            @"reservationid":self.model.infoId,
-                            @"starlevel":[NSString stringWithFormat:@"%f",self.starProgress],// 总体评论星级
-                            @"abilitylevel":[NSString stringWithFormat:@"%f",self.abilitylevel],// 能力
-                            @"timelevel":[NSString stringWithFormat:@"%f",self.timelevel],// 时间
-                            @"attitudelevel":[NSString stringWithFormat:@"%f",self.attitudelevel],// 态度
-                            @"hygienelevel":[NSString stringWithFormat:@"%f",self.hygienelevel],// 卫生
-                            @"commentcontent":bctextView.text};
-    
-    [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        
-        DYNSLog(@"%s data = %@",__func__,data);
-        
-        NSDictionary *param = data;
-        NSNumber *type = param[@"type"];
-        NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
-        
-        if (type.integerValue == 1) {
-            kShowSuccess(@"评论成功");
-           
-            for (UIViewController *vc in self.navigationController.viewControllers) {
-                if ([vc isKindOfClass:[AppointmentViewController class]]) {
-                    [self.navigationController popToViewController:vc animated:YES];
-                }
-            }
-            
-            
-        }else {
-            kShowFail(msg);
-        }
-    }];
 }
 
 - (UIView *)tableViewFootView {
@@ -256,6 +262,10 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 {
     NSLog(@"%s indexPath.section:%ld indexPath.row:%ld",__func__ ,(long)indexPath.section,(long)indexPath.row);
     
+    if (newProgress==0) {
+        newProgress = 1;
+    }
+    
     // 上面4个评价
     NSString *title = self.commentTitleArray[indexPath.row][@"title"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -277,7 +287,7 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
     _starProgress = (_abilitylevel + _timelevel + _attitudelevel + _hygienelevel) / 4;
     NSString *totleTitle = self.commentTitleArray[4][@"title"];
     NSMutableDictionary *totleDict = [NSMutableDictionary dictionary];
-    totleDict[@"progress"] = [NSString stringWithFormat:@"%f",_starProgress];
+    totleDict[@"progress"] = [NSString stringWithFormat:@"%d",_starProgress];
     totleDict[@"title"] = totleTitle;
     [self.commentTitleArray replaceObjectAtIndex:4 withObject:totleDict];
 
