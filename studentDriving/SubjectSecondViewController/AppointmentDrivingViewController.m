@@ -77,7 +77,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             NSInteger appointCourse = [AcountManager manager].subjectthree.reservation.integerValue;
             NSInteger totalCourse = [AcountManager manager].subjectthree.totalcourse.integerValue;
             NSInteger restCourse = totalCourse - doneCourse - appointCourse;
-            _appointDetailLabel.text = [NSString stringWithFormat:@"您已完成%zd课时，总共预约了%zd课时,科目二的可预约课时剩余%zd课时。",doneCourse,appointCourse,restCourse];
+            _appointDetailLabel.text = [NSString stringWithFormat:@"您已完成%zd课时，总共预约了%zd课时,科目三的可预约课时剩余%zd课时。",doneCourse,appointCourse,restCourse];
         }
         
     }
