@@ -11,5 +11,9 @@
 
 @interface ComplainViewController : BLBaseViewController
 @property (strong, nonatomic) MyAppointmentModel *model;
+@property  (strong,nonatomic) NSArray *buttonArray;
+@property (strong,nonatomic) NSArray *labelArray;
+
+
 
 @end
