@@ -18,10 +18,12 @@
 #import "CoachDetailAppointmentViewController.h"
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
+#import "AppointmentCoachModel.h"
 #import "UIColor+Hex.h"
 #define StartOffset  kSystemWide/4-60/2
 
-static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
+//static NSString *const kCoachUrl = @"getschoolcoach/%@/1";
+static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1";
 
 @interface CoachViewController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate>
 @property (strong, nonatomic) UITableView *tableView;
@@ -157,7 +159,6 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
     
     
     
-    
     [self locationManager];
 
     
@@ -221,41 +222,62 @@ static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
 }
 
 - (void)locationManager {
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
-    [BMKLocationService setLocationDistanceFilter:10000.0f];
-    
-    self.locationService = [[BMKLocationService alloc] init];
-    self.locationService.delegate = self;
-    [self.locationService startUserLocationService];
+//    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+//    [BMKLocationService setLocationDistanceFilter:10000.0f];
+//    
+//    self.locationService = [[BMKLocationService alloc] init];
+//    self.locationService.delegate = self;
+//    [self.locationService startUserLocationService];
 
+    NSString *url = [NSString stringWithFormat:BASEURL,kappointmentCoachUrl];
+
+    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        
+        if (data) {
+            NSDictionary *param = data;
+            NSNumber *type = param[@"type"];
+            NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+            if (type.integerValue == 1) {
+                NSArray *array = param[@"data"];
+                NSError *error = nil;
+                [self.dataArray addObjectsFromArray: [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:array error:&error]];
+                for (CoachDetail *coachModel in self.dataArray) {
+                    if ([coachModel.coachid isEqualToString:[AcountManager manager].applycoach.infoId]) {
+                        [self.dataArray removeObject:coachModel];
+                    }
+                    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                    NSArray *modelArr = [ud objectForKey:@"appointCoachModelArr"];
+                    for (AppointmentCoachModel *appointModel in modelArr) {
+                        if ([coachModel.coachid isEqualToString:appointModel.coachid]) {
+                            [self.dataArray removeObject:coachModel];
+                        }
+                    }
+                }
+                [self.tableView reloadData];
+            }else {
+                kShowFail(msg);
+            }
+        }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    }];
     
 }
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-    //latitude=40.096263&longitude=116.1270&radius=10000
-//    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
-   NSString *locationContent =    [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
-    NSString *urlString = [NSString stringWithFormat:kCoachUrl,locationContent];
-    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-    
-    [self.dataArray removeAllObjects];
-    [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
+//    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+//    //latitude=40.096263&longitude=116.1270&radius=10000
+////    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
+//   NSString *locationContent =    [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
+//    NSString *urlString = [NSString stringWithFormat:kCoachUrl,locationContent];
+//    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+//    
+//    [self.dataArray removeAllObjects];
+//    [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
     
     
 }
-- (void)jeNetworkingCallBackData:(id)data {
-    DYNSLog(@"result = %@",data);
-    NSArray *array = data[@"data"];
-    for (NSDictionary *dic in array) {
-        NSError *error = nil;
-        CoachModel *model = [MTLJSONAdapter modelOfClass:CoachModel.class fromJSONDictionary:dic error:&error];
-        DYNSLog(@"error = %@",error);
-        [self.dataArray addObject:model];
-    }
-    [self.tableView reloadData];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
+
 #pragma mark - bntAciton
 - (void)clickLeftBtn:(UIButton *)sender {
     for (UIButton *b in self.buttonArray) {

@@ -224,6 +224,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             }else {
                 [AcountManager saveUserApplyState:@"2"];
             }
+            [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
             
         }else {
             

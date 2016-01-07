@@ -22,6 +22,7 @@ static  NSString    *kuserCarmodels = @"carmodel";
 static  NSString    *kuserLogintime = @"logintime";
 static  NSString    *kuserInvitationcode = @"invitationcode";
 static  NSString    *kuserApplystate = @"applystate";
+static  NSString    *kuserApplycount = @"applycount";
 static  NSString    *kuserDisplayuserid = @"displayuserid";
 static  NSString    *kuserIs_lock = @"is_lock";
 static  NSString    *kuserid = @"userid";
@@ -118,6 +119,9 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
     if ([userInformaiton objectForKey:kuserApplystate]) {
         [NSUserStoreTool storeWithId:[userInformaiton objectForKey:kuserApplystate] WithKey:kuserApplystate];
     }
+    if ([userInformaiton objectForKey:kuserApplycount]) {
+        [NSUserStoreTool storeWithId:[userInformaiton objectForKey:kuserApplycount] WithKey:kuserApplycount];
+    }
     if ([userInformaiton objectForKey:kuserDisplayuserid]) {
         [NSUserStoreTool storeWithId:[userInformaiton objectForKey:kuserDisplayuserid] WithKey:kuserDisplayuserid];
     }
@@ -197,6 +201,11 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
 + (void)saveUserApplyState:(NSString *)state {
     if (state) {
         [NSUserStoreTool storeWithId:state WithKey:kuserApplystate];
+    }
+}
++ (void)saveUserApplyCount:(NSString *)count {
+    if (count) {
+        [NSUserStoreTool storeWithId:count WithKey:kuserApplycount];
     }
 }
 
@@ -410,6 +419,12 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
 
     return userApplystateString;
 }
+- (NSString *)userApplycount {
+    NSString *userApplyCountString = [NSString stringWithFormat:@"%@",[NSUserStoreTool getObjectWithKey:kuserApplycount]];
+    if (userApplyCountString == nil) return @"";
+    
+    return userApplyCountString;
+}
 - (NSString *)userDisplayuserid {
     NSString *userDisplayuseridString = [NSUserStoreTool getObjectWithKey:kuserDisplayuserid];
     if (userDisplayuseridString == nil) return @"";
@@ -462,6 +477,7 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
     [NSUserStoreTool removeObjectWithKey:kuserLogintime];
     [NSUserStoreTool removeObjectWithKey:kuserInvitationcode];
     [NSUserStoreTool removeObjectWithKey:kuserApplystate];
+    [NSUserStoreTool removeObjectWithKey:kuserApplycount];
     [NSUserStoreTool removeObjectWithKey:kuserDisplayuserid];
     [NSUserStoreTool removeObjectWithKey:kuserIs_lock];
     [NSUserStoreTool removeObjectWithKey:kuserid];
