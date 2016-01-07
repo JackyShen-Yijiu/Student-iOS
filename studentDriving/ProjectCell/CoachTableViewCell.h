@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @class CoachDMData;
+@class CoachModel;
 @interface CoachTableViewCell : UITableViewCell
-- (void)receivedCellModelWith:(CoachDMData *)coachModel;
+
+- (void)refreshData:(CoachDMData *)coachModel;
+- (void)receivedCellModelWith:(CoachModel *)coachModel;
+
 @end

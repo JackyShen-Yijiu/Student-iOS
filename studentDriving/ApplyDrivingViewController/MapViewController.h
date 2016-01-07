@@ -10,4 +10,5 @@
 @interface MapViewController : UIViewController
 @property (strong, nonatomic) NSNumber *latitudeNum;
 @property (strong, nonatomic) NSNumber *longitudeNum;
+
 @end
