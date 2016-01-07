@@ -151,7 +151,7 @@
     }
     
     CoachDMData *model = _searchCoachViewModel.dataArray[indexPath.row];
-    [cell receivedCellModelWith:model];
+    [cell refreshData:model];
     
     return cell;
 }
