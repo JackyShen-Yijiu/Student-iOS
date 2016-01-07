@@ -26,7 +26,8 @@
         _drivingNameLabel.text = @"驾校：未报考";
         _markLabel.text = @"我的Y码：暂无";
 //        [self setIntegralLabelText:@"0"];
-        _coinCertificateLabel.text = @"暂无兑换券";
+        // 兑换券
+        _coinCertificateLabel.text = @"";
     }
     return self;
 }

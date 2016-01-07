@@ -45,6 +45,8 @@
 #import "DVVUserManager.h"
 #import "DVVOpenControllerFromSideMenu.h"
 #import "AFNetworkActivityLogger.h"
+// 容错处理
+#import "LJException.h"
 
 @interface AppDelegate ()
 
@@ -55,6 +57,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // 容错处理
+    [LJException startExtern];
     
     [[AFNetworkActivityLogger sharedLogger] startLogging];
 

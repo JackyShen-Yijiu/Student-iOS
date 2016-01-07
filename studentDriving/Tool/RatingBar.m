@@ -117,51 +117,59 @@
 -(CGFloat)rating{
     return starRating;
 }
-/**
- *  设置评分值
- *
- *  @param rating 评分值
- */
--(void)displayRating:(CGFloat)rating{
+
+- (void)setUpRating:(CGFloat)rating
+{
     [_s1 setImage:unSelectedImage];
     [_s2 setImage:unSelectedImage];
     [_s3 setImage:unSelectedImage];
     [_s4 setImage:unSelectedImage];
     [_s5 setImage:unSelectedImage];
     
-//    if (rating >= 0.5) {
-//        [_s1 setImage:halfSelectedImage];
-//    }
+    //    if (rating >= 0.5) {
+    //        [_s1 setImage:halfSelectedImage];
+    //    }
     if (rating >= 1) {
         [_s1 setImage:fullSelectedImage];
     }
-//    if (rating >= 1.5) {
-//        [_s2 setImage:halfSelectedImage];
-//    }
+    //    if (rating >= 1.5) {
+    //        [_s2 setImage:halfSelectedImage];
+    //    }
     if (rating >= 2) {
         [_s2 setImage:fullSelectedImage];
     }
-//    if (rating >= 2.5) {
-//        [_s3 setImage:halfSelectedImage];
-//    }
+    //    if (rating >= 2.5) {
+    //        [_s3 setImage:halfSelectedImage];
+    //    }
     if (rating >= 3) {
         [_s3 setImage:fullSelectedImage];
     }
-//    if (rating >= 3.5) {
-//        [_s4 setImage:halfSelectedImage];
-//    }
+    //    if (rating >= 3.5) {
+    //        [_s4 setImage:halfSelectedImage];
+    //    }
     if (rating >= 4) {
         [_s4 setImage:fullSelectedImage];
     }
-//    if (rating >= 4.5) {
-//        [_s5 setImage:halfSelectedImage];
-//    }
+    //    if (rating >= 4.5) {
+    //        [_s5 setImage:halfSelectedImage];
+    //    }
     if (rating >= 5) {
         [_s5 setImage:fullSelectedImage];
     }
     
     starRating = rating;
     lastRating = rating;
+    
+}
+/**
+ *  设置评分值
+ *
+ *  @param rating 评分值
+ */
+-(void)displayRating:(CGFloat)rating
+{
+    [self setUpRating:rating];
+   
     if ([_delegate respondsToSelector:@selector(ratingChanged:)]) {
         [_delegate ratingChanged:rating];
     }

@@ -9,7 +9,7 @@
 #import "CoachTableViewCell.h"
 #import "ToolHeader.h"
 #import <Masonry.h>
-#import "CoachModel.h"
+#import "CoachDMData.h"
 #import "RatingBar.h"
 @interface CoachTableViewCell ()
 @property (strong, nonatomic) UIImageView *headImageView;
@@ -215,7 +215,7 @@
     
 }
 
-- (void)receivedCellModelWith:(CoachModel *)coachModel {
+- (void)receivedCellModelWith:(CoachDMData *)coachModel {
     [self resetContent];
     
     //    if ([[AcountManager manager].applycoach.infoId isEqualToString:coachModel.coachid]) {
@@ -225,7 +225,7 @@
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:coachModel.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
     self.coachNameLabel.text = coachModel.name;
     if (coachModel.distance) {
-        CGFloat distance = [coachModel.distance integerValue] / 1000.f;
+        CGFloat distance = coachModel.distance / 1000.f;
         if (distance >10000) {
             self.distanceLabel.text = @"该教练无训练场";
         }else {
@@ -235,24 +235,24 @@
     
     self.carDriveNameLabel.text = coachModel.driveschoolinfo.name;
    
-    if (coachModel.Seniority) {
-      self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",coachModel.Seniority] ;
+    if (coachModel.seniority) {
+      self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",coachModel.seniority] ;
     }else{
         self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",@"0"] ;
     }
     
     if (coachModel.passrate) {
-        self.successRateLabel.text = [NSString stringWithFormat:@"通过率:%@%@",coachModel.passrate,@"%"];
+        self.successRateLabel.text = [NSString stringWithFormat:@"通过率:%li%@",coachModel.passrate,@"%"];
     }else {
         self.successRateLabel.text = [NSString stringWithFormat:@"通过率:暂无"];
     }
     //    self.starLabel.text = @"5";
     CGFloat starLevel = 0;
     if (coachModel.starlevel) {
-        starLevel = [coachModel.starlevel floatValue];
+        starLevel = coachModel.starlevel;
     }
     [self.starBar displayRating:starLevel];
-    if (coachModel.is_shuttle) {
+    if (coachModel.isShuttle) {
         [self.backGroundView addSubview:self.coachStateSend];
         [self.coachStateSend mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.coachNameLabel.mas_right).offset(10);
