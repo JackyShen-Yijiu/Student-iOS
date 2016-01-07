@@ -76,8 +76,6 @@ static NSString *const kDrivingUrl = @"searchschool";
     _index = 1;
     _count = 10;
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
     self.title = @"选择驾校";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -90,22 +88,23 @@ static NSString *const kDrivingUrl = @"searchschool";
     [self networkCallBack];
     
     [self configRefresh];
-    // 定位
-    //    [self locationManager];
     
-    //         在模拟器上定位不好用，测试是打开注释
-    self.latitude = 39.929985778080237;
-    self.longitude = 116.39564503787867;
-    self.index = 1;
-    self.isRefresh = YES;
-    // 获取网络数据
-    [self network];
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    // 定位
+    [self locationManager];
+//    // 在模拟器上定位不好用，测试是打开注释
+//    self.latitude = 39.929985778080237;
+//    self.longitude = 116.39564503787867;
+//    self.index = 1;
+//    self.isRefresh = YES;
+//    // 获取网络数据
+//    [self network];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     self.geoCodeSearch = nil;
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    [MBProgressHUD hideHUDForView:self.tableView animated:YES];
 }
 
 #pragma mark - networkCallBack
@@ -214,6 +213,8 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (void)jeNetworkingCallBackData:(id)data {
     
+    [MBProgressHUD hideHUDForView:self.tableView animated:self.dataArray.count];
+
     DYNSLog(@"result = %@",data);
     if (![[data objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
         [self showTotasViewWithMes:@"没有找到数据！"];
@@ -238,7 +239,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     if (!self.dataArray.count) {
         [self showTotasViewWithMes:@"没有找到数据！"];
     }
-    [MBProgressHUD hideHUDForView:self.view animated:self.dataArray.count];
+    [MBProgressHUD hideHUDForView:self.tableView animated:self.dataArray.count];
     
 }
 

@@ -40,6 +40,7 @@
 #import <BaiduMapAPI/BMKGeocodeSearch.h>
 
 #import "HomeActivityController.h"
+#import "DVVCheckActivity.h"
 
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
@@ -95,9 +96,12 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 {
     [super viewWillDisappear:animated];
     
-    self.locationService = nil;
-    self.geoCodeSearch = nil;
-
+    if (_locationService) {
+        _locationService = nil;
+    }
+    if (_geoCodeSearch) {
+        _geoCodeSearch = nil;
+    }
     
     [self.navigationController.navigationBar setBackgroundImage:nil
                                                  forBarPosition:UIBarPositionAny
@@ -168,6 +172,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     // 定位服务
     [self locationManager];
+    
+    #pragma mark 当程序由后台进入前台后，调用检查活动的方法，检查今天是否有活动
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForegroundCheckActivity) name:@"kCheckActivity" object:nil];
 }
 
 
@@ -217,6 +224,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             }else {
                 [AcountManager saveUserApplyState:@"2"];
             }
+            [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
             
         }else {
             
@@ -748,7 +756,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                          longitude:(double)longitude {
     
     CLLocationCoordinate2D point = (CLLocationCoordinate2D){ latitude, longitude };
-    //    CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
+//        CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
     BMKReverseGeoCodeOption *reverseGeocodeOption = [BMKReverseGeoCodeOption new];
     reverseGeocodeOption.reverseGeoPoint = point;
     // 发起反向地理编码
@@ -767,14 +775,18 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         BMKAddressComponent *addressComponent = result.addressDetail;
         //        NSLog(@"addressComponent.city===%@",addressComponent.city);
         // 存储定位到的城市名
-//        [AcountManager manager].userCity = addressComponent.city;
-        [AcountManager manager].userCity = @"北京";
+        [AcountManager manager].userCity = addressComponent.city;
+//        [AcountManager manager].userCity = @"北京";
 
         // 检查是否有活动
-//        [self checkActivityWithCityName:addressComponent.city];
-//        [self checkActivityWithCityName:@"beijing"];
-        [self checkActivityWithCityName:@"北京"];
-        [self getLocationShowTypeWithCity:@"北京"];
+//        [DVVCheckActivity test]; //测试活动时打开此注释
+        if ([DVVCheckActivity checkActivity]) {
+            [self checkActivityWithCityName:addressComponent.city];
+//            [self checkActivityWithCityName:@"北京"];
+        }
+        
+        [self getLocationShowTypeWithCity:addressComponent.city];
+//        [self getLocationShowTypeWithCity:@"北京"];
         
         // 停止位置更新服务
         [self.locationService stopUserLocationService];
@@ -782,6 +794,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         NSLog(@"抱歉，未找到结果");
     }
 }
+
 #pragma mark - 检查是否有活动
 - (void)checkActivityWithCityName:(NSString *)cityName {
     
@@ -839,7 +852,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     _activityVC.title = title;
     _activityVC.activityUrl = contentUrl;
     
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UIWindow *window = [[UIApplication sharedApplication].delegate window];
 //    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
 //    [naviVC pushViewController:activityVC animated:NO];
     [window addSubview:_activityVC.view];
@@ -877,6 +890,20 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     } withFailure:^(id data) {
 //        [self showMsg:@"网络错误"];
     }];
+}
+
+#pragma mark 当程序由后台进入前台后，调用检查活动的方法，检查今天是否有活动
+- (void)applicationWillEnterForegroundCheckActivity {
+    
+    NSString *cityName = [AcountManager manager].userCity;
+    if (cityName) {
+        if (!cityName.length) {
+            return ;
+        }
+    }
+    if ([DVVCheckActivity checkActivity]) {
+        [self checkActivityWithCityName:cityName];
+    }
 }
 
 #pragma mark - Lazy load

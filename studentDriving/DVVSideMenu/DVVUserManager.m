@@ -41,7 +41,7 @@
 
 // 用户退出登录后调用此方法
 + (void)userLogout {
-    [DVVOpenControllerFromSideMenu openControllerWithIndex:0];
+    [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeHomeMainController];
     [self userNeedLogin];
 }
 

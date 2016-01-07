@@ -79,11 +79,11 @@
 #pragma mark 显示搜索的类型是驾校还是教练
 - (void)setLocationShowType {
     
-    if (![AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
-        [self setShowTypeWithTitle:@"查找驾校"];
-    }else {
-        [self setShowTypeWithTitle:@"查找教练"];
-    }
+//    if ([AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
+//        [self setShowTypeWithTitle:@"查找驾校"];
+//    }else {
+//        [self setShowTypeWithTitle:@"查找教练"];
+//    }
 }
 - (void)setShowTypeWithTitle:(NSString *)title {
     for (DVVSideMenuBlockViewItemButton *button in self.subviews) {

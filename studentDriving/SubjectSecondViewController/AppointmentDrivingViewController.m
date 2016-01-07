@@ -19,6 +19,7 @@
 #import "StudentModel.h"
 #import "StudentDetailViewController.h"
 #import "AppointmentViewController.h"
+#import "ChatSendHelper.h"
 
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
@@ -27,6 +28,7 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
 static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 //http://101.200.204.240:3000/api/v1/courseinfo/getcoursebycoach?coachid=5616352721ec29041a9af889&date=2015-10-10
 //http://101.200.204.240:3000/api/v1/courseinfo/userreservationcourse
+static NSString *const kcoachDataParam = @"userinfo/getuserinfo/2/userid/%@";
 
 static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?coachid=%@&date=%@";
 @interface AppointmentDrivingViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,AppointmentDrivingCellDelegate>
@@ -335,8 +337,8 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 - (void)startDownLoadCoach {
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kappointmentCoachUrl];
+    NSString *str = [NSString stringWithFormat:kcoachDataParam,[AcountManager manager].applycoach.infoId];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,str];
     DYNSLog(@"url = %@",urlString);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -346,9 +348,15 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             NSNumber *type = param[@"type"];
             NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
             if (type.integerValue == 1) {
-                NSArray *array = param[@"data"];
+                NSArray *array = @[param[@"data"]];
                 NSError *error = nil;
+
                 [self.dataArray addObjectsFromArray: [MTLJSONAdapter modelsOfClass:AppointmentCoachModel.class fromJSONArray:array error:&error]];
+                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                NSArray *modelArr = [ud objectForKey:@"appointCoachModelArr"];
+                for (AppointmentCoachModel *model in modelArr) {
+                    [self.dataArray addObject:model];
+                }
                 [self.coachHeadCollectionView reloadData];
             }else {
                 kShowFail(msg);
@@ -726,10 +734,50 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             if (type.integerValue == 1) {
                 [self showTotasViewWithMes:@"预约成功"];
                 
+                NSString *userName = [AcountManager manager].userName;
+                NSString *yearFormatString = @"yyyy";
+                NSString *monthFormatString = @"MM";
+                NSString *dayFormatString = @"dd";
+                NSString *year = [self dateFromLocalWithFormatString:yearFormatString];
+                NSString *month = [self dateFromLocalWithFormatString:monthFormatString];
+                NSString *day = [self dateFromLocalWithFormatString:dayFormatString];
+                
+                NSString *content = [NSString stringWithFormat:@"%@学员,于%@年%@月%@日预约了您的课程,请查看!", userName, year, month, day];
+                
+                // 预约成功后，通过环信给教练发送一条提示消息
+                EMMessage *message = [ChatSendHelper sendTextMessageWithString:content toUsername:self.coachModel.coachid isChatGroup:NO requireEncryption:NO ext:nil];
+                
+                [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil prepare:^(EMMessage *message, EMError *error) {
+                    
+                    
+                } onQueue:nil completion:^(EMMessage *message, EMError *error) {
+                    
+                    if(!error){
+                        
+                    }
+                    
+                } onQueue:nil];
+                
+                
                 AppointmentViewController *vc = [[AppointmentViewController alloc] init];
                 vc.markNum = @2;
                 vc.title = @"预约列表";
                 [self.navigationController pushViewController:vc animated:YES];
+                
+                //存储预约的教练
+                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                NSMutableArray *modelArr = [[ud objectForKey:@"appointCoachModelArr"] mutableCopy];
+                BOOL isSave = YES;
+                for (AppointmentCoachModel *model in modelArr) {
+                    if ([model.coachid isEqualToString:self.coachModel.coachid]||[model.coachid isEqualToString:[AcountManager manager].applycoach.infoId]) {
+                        isSave = NO;
+                    }
+                }
+                if (isSave) {
+                    [modelArr addObject:self.coachModel];
+                    [ud setObject:[modelArr copy] forKey:@"appointCoachModelArr"];
+                    [ud synchronize];
+                }
                 
             }else {
                 kShowFail(msg)
@@ -744,6 +792,16 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     
     
 }
+
+- (NSString *)dateFromLocalWithFormatString:(NSString *)formatString {
+    
+    NSDate *localDate = [NSDate new];
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:formatString];
+    return [dateFormatter stringFromDate:localDate];
+}
+
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }

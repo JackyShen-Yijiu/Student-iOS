@@ -58,8 +58,10 @@
     [self configRefresh];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-//    [self locationManager];
-    [self refresh];
+    
+    [self locationManager];
+    // 在模拟器上定位不好用，测试时打开数据
+//    [self refresh];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];

@@ -25,11 +25,11 @@
 
 @implementation DVVOpenControllerFromSideMenu
 
-+ (void)openControllerWithIndex:(NSUInteger)idx {
++ (void)openControllerWithControllerType:(kOpenControllerType)controllerType {
     
-    switch (idx) {
+    switch (controllerType) {
             break;
-        case 0:// 主页
+        case kOpenControllerTypeHomeMainController:// 主页
         {
             static UINavigationController *naviController = nil;
             
@@ -44,7 +44,20 @@
             [window makeKeyAndVisible];
         }
             break;
-        case 1:// 查找驾校/教练
+        case kOpenControllerTypeDrivingViewController:// 查找驾校
+        {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
+            
+            UIViewController *controller = [DrivingViewController new];
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+        }
+            break;
+        case kOpenControllerTypeSearchCoachController:// 查找教练
         {
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
@@ -52,18 +65,18 @@
             }
             
             UIViewController *controller = nil;
-            if (![AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
-                controller = [DrivingViewController new];
-            }else {
-                controller = [SearchCoachController new];
-            }
+            //            if (![AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
+            //                controller = [DrivingViewController new];
+            //            }else {
+            controller = [SearchCoachController new];
+            //            }
             
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
             UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
             [naviVC pushViewController:controller animated:YES];
         }
             break;
-        case 2:// 消息
+        case kOpenControllerTypeChatListViewController:// 消息
         {
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
@@ -77,7 +90,7 @@
             [naviVC pushViewController:controller animated:YES];
         }
             break;
-        case 3:// 钱包
+        case kOpenControllerTypeMyWalletViewController:// 钱包
         {
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
@@ -92,7 +105,7 @@
         }
             break;
             
-        case 4:// 活动
+        case kOpenControllerTypeHomeActivityController:// 活动
         {
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
@@ -111,7 +124,7 @@
         }
             break;
             
-        case 5:// 签到
+        case kOpenControllerTypeSignInViewController:// 签到
         {
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
@@ -127,7 +140,7 @@
         }
             break;
             
-        case 6:// 我
+        case kOpenControllerTypeUserCenterViewController:// 我
         {
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
@@ -141,7 +154,7 @@
             [naviVC pushViewController:controller animated:YES];
         }
             break;
-        case 10:// 兑换劵
+        case kOpenControllerTypeDiscountWalletController:// 兑换劵
         {
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
@@ -155,22 +168,7 @@
             [naviVC pushViewController:controller animated:YES];
         }
             break;
-        case 11:// 积分商城
-        {
-            if (![AcountManager isLogin]) {
-                [DVVUserManager userNeedLogin];
-                break;
-            }
-            
-            MyWalletViewController *controller = [MyWalletViewController new];
-            
-            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
-            [naviVC pushViewController:controller animated:YES];
-
-        }
-            break;
-        case 12:// 可取现金额
+        case kOpenControllerTypeMoneyShopController:// 可取现金额
         {
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
@@ -185,7 +183,7 @@
             
         }
             break;
-
+            
             
         default:
             break;
