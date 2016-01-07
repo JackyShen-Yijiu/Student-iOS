@@ -312,7 +312,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.courseProgress.text = self.model.courseprocessdesc;
-    cell.courseLocation.text = [NSString stringWithFormat:@"接送地点:%@",self.model.shuttleaddress] ;
+    cell.courseLocation.text = @"";
     cell.courseTime.text = self.model.classdatetimedesc;
     if (self.state == AppointmentStateSelfCancel) {
         [cell.cancelButton setTitle:@"已取消" forState:UIControlStateNormal];

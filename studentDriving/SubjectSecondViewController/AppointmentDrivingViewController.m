@@ -47,6 +47,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 @property (strong, nonatomic) UIButton *naviBarRightButton;
 
 @property (strong, nonatomic) UILabel *contentLabel ;
+@property (strong, nonatomic) UILabel *appointDetailLabel;
 
 @property (assign, nonatomic) BOOL is_AddCoachModel;
 @property (strong, nonatomic) UIButton *goBackButton;
@@ -58,6 +59,30 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 
 @implementation AppointmentDrivingViewController
 #pragma mark - 控件
+
+- (UILabel *)appointDetailLabel {
+    if (!_appointDetailLabel) {
+        _appointDetailLabel = [[UILabel alloc] init];
+        _appointDetailLabel.numberOfLines = 2;
+        _appointDetailLabel.textColor = TEXTGRAYCOLOR;
+        _appointDetailLabel.font = [UIFont systemFontOfSize:14];
+        if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
+            NSInteger doneCourse = [AcountManager manager].subjecttwo.finishcourse.integerValue;
+            NSInteger appointCourse = [AcountManager manager].subjecttwo.reservation.integerValue;
+            NSInteger totalCourse = [AcountManager manager].subjecttwo.totalcourse.integerValue;
+            NSInteger restCourse = totalCourse - doneCourse - appointCourse;
+            _appointDetailLabel.text = [NSString stringWithFormat:@"您已完成%zd课时，总共预约了%zd课时,科目二的可预约课时剩余%zd课时。",doneCourse,appointCourse,restCourse];
+        }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
+            NSInteger doneCourse = [AcountManager manager].subjectthree.finishcourse.integerValue;
+            NSInteger appointCourse = [AcountManager manager].subjectthree.reservation.integerValue;
+            NSInteger totalCourse = [AcountManager manager].subjectthree.totalcourse.integerValue;
+            NSInteger restCourse = totalCourse - doneCourse - appointCourse;
+            _appointDetailLabel.text = [NSString stringWithFormat:@"您已完成%zd课时，总共预约了%zd课时,科目二的可预约课时剩余%zd课时。",doneCourse,appointCourse,restCourse];
+        }
+        
+    }
+    return _appointDetailLabel;
+}
 
 - (UIButton *)goBackButton{
     if (_goBackButton == nil) {
@@ -74,7 +99,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumInteritemSpacing = 10.0f;
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _sameTimeStudentCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 80, kSystemWide-30, 45) collectionViewLayout:flowLayout];
+        _sameTimeStudentCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(15, 100, kSystemWide-30, 45) collectionViewLayout:flowLayout];
         _sameTimeStudentCollectionView.backgroundColor = [UIColor whiteColor];
         _sameTimeStudentCollectionView.dataSource = self;
         _sameTimeStudentCollectionView.delegate = self;
@@ -241,7 +266,12 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
     NSString *endString = endArray.firstObject;
     _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:_updateTimeString]];
-    self.contentLabel.text = [NSString stringWithFormat:@"当前预约为科目二的第%@-%@时段",beginString,endString];
+    if (beginString && endString) {
+        self.contentLabel.text = [NSString stringWithFormat:@"当前预约为科目二的第%@-%@时段",beginString,endString];
+    }else {
+        self.contentLabel.text = @"";
+    }
+    
     DYNSLog(@"%@",self.contentLabel.text);
     NSLog(@"%@",self.coachModel.coachid);
     NSLog(@"%@",_endTimeStr);
@@ -354,18 +384,20 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 #pragma mark -- footview
 
 - (UIView *)tableViewFootView {
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 130)];
-    _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,9, kSystemWide-100, 50)];
-    _contentLabel.numberOfLines = 2;
+    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 150)];
+    _contentLabel = [[UILabel alloc] initWithFrame:CGRectMake(15,9, kSystemWide-100, 20)];
     _contentLabel.textColor = TEXTGRAYCOLOR;
     _contentLabel.font = [UIFont systemFontOfSize:14];
     _contentLabel.text = @"";
     [backGroundView addSubview:_contentLabel];
     
+    self.appointDetailLabel.frame = CGRectMake(15, 20, kSystemWide-30, 50);
+    [backGroundView addSubview:self.appointDetailLabel];
+    
     [backGroundView addSubview:self.studentTitle];
     [self.studentTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(backGroundView.mas_left).offset(15);
-        make.top.mas_equalTo(self.contentLabel.mas_bottom).offset(0);
+        make.top.mas_equalTo(self.appointDetailLabel.mas_bottom).offset(0);
     }];
     
     [backGroundView addSubview:self.sameTimeStudentCollectionView];
@@ -558,7 +590,6 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
         UIImageView *rightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 23, 23)];
         rightView.image = [UIImage imageNamed:@"地点.png"];
         cell.accessoryView = rightView;
-        
         return cell;
     }
     return nil;

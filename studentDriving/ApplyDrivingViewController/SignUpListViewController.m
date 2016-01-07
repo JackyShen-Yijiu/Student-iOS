@@ -60,7 +60,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
 - (UIView *)YcodeFootView {
     if (!_YcodeFootView) {
-        _YcodeFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 40)];
+        _YcodeFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 60)];
         UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 60, 20)];
         labelTitle.text = @"Y码须知:";
         labelTitle.font = [UIFont systemFontOfSize:12];
@@ -146,22 +146,14 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 120)];
-        KindlyReminderView *kindlyReminderView = [[KindlyReminderView alloc] initWithContentStr:@"请认真填写以上信息，您填写的信息将作为报名信息录入车考驾照系统内，如果信息错误，将影响您的报名流程。" frame:CGRectMake(0, 0, kSystemWide, 100)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 160)];
+        [view addSubview:self.YcodeFootView];
+        KindlyReminderView *kindlyReminderView = [[KindlyReminderView alloc] initWithContentStr:@"请认真填写以上信息，您填写的信息将作为报名信息录入车考驾照系统内，如果信息错误，将影响您的报名流程。" frame:CGRectMake(0, 60, kSystemWide, 100)];
         kindlyReminderView.backgroundColor = RGBColor(245, 247, 250);
         [view addSubview:kindlyReminderView];
         _tableView.tableFooterView = view;
     }
     return _tableView;
-}
-
-- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
-    if (section == 1) {
-       
-        
-        return self.YcodeFootView;
-    }
-    return nil;
 }
 
 - (void)viewDidLoad{
@@ -206,14 +198,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 #pragma mark -   tableViewDelegate
 
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    
-    if (section == 1) {
-        return 50;
-    }else {
        return 10;
-    }
-    
-    
 }
 
 - (void)callBtnClick {

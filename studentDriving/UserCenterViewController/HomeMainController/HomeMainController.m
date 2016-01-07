@@ -373,6 +373,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                     
                 } else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目一"]){
                     [mainVC showTotasViewWithMes:@"您科一还没通过哦!"];
+                    return;
                 }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"] && [[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
                     AppointmentDrivingViewController *appointVC = [[AppointmentDrivingViewController alloc] init];
                     [mainVC.navigationController pushViewController:appointVC animated:YES];
@@ -458,6 +459,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                     return;
                 }else if([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
                     [mainVC showTotasViewWithMes:@"您还没到科三进度!"];
+                    return;
                 } else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目三"]) {
                     AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
                     appointment.title = @"科三预约列表";
@@ -466,6 +468,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                     
                 } else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目四"]) {
                     [mainVC showTotasViewWithMes:@"你已经通过科目三,不能再预约了!"];
+                    return;
                 }
             }
                 break;
