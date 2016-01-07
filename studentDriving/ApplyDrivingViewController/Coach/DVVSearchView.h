@@ -8,10 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DVVSearchView : UIView
+typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
+
+@interface DVVSearchView : UIView<UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UITextField *textField;
 @property (nonatomic, strong) UIButton *searchButton;
+
+// textField开始编辑
+- (void)setDVVTextFieldDidBeginEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
+// textField结束编辑
+- (void)setDVVTextFieldDidEndEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
 
 @end
