@@ -45,6 +45,8 @@
 #import "DVVUserManager.h"
 #import "DVVOpenControllerFromSideMenu.h"
 #import "AFNetworkActivityLogger.h"
+// 容错处理
+#import "LJException.h"
 
 @interface AppDelegate ()
 
@@ -55,6 +57,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // 容错处理
+    [LJException startExtern];
     
     [[AFNetworkActivityLogger sharedLogger] startLogging];
 
@@ -127,21 +132,21 @@
 {
     DYNSLog(@"UILocalNotification = %@",notification);
     
-//    NSString *info = notification.userInfo[@"ConversationChatter"];
-//    if (info) {
-//        [_main dealInfo:notification.userInfo];
-//    }
-//#pragma mark - JPush推送
-//    [self JPushApplication:application didReceiveLocalNotification:notification];
-//    
+    NSString *info = notification.userInfo[@"ConversationChatter"];
+    if (info) {
+        [_main dealInfo:notification.userInfo];
+    }
+#pragma mark - JPush推送
+    [self JPushApplication:application didReceiveLocalNotification:notification];
+    
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
 #pragma mark - JPush注册token require
-//    [APService registerDeviceToken:deviceToken];
+    [APService registerDeviceToken:deviceToken];
     
-//    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
+    [[EaseMob sharedInstance] application:application didRegisterForRemoteNotificationsWithDeviceToken:deviceToken];
 
 }
 

@@ -16,7 +16,7 @@
 
 static NSString *const kconfirmStudyEnd = @"/courseinfo/finishreservation";
 
-@interface ConfirmStudyFinishViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate> {
+@interface ConfirmStudyFinishViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,ConfirmSubjectOneCellDelegate,ConfirmSubjectTwoCellDelegate> {
     BCTextView *contentField;
 }
 @property (strong, nonatomic) UITableView *tableView;
@@ -35,7 +35,7 @@ static NSString *const kconfirmStudyEnd = @"/courseinfo/finishreservation";
 
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.frame = CGRectMake(0, 0, 44, 44);
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -96,7 +96,7 @@ static NSString *const kconfirmStudyEnd = @"/courseinfo/finishreservation";
     if (self.cancelMessage == nil) {
         self.cancelMessage = @"";
     }
-    NSDictionary *param = @{@"userid":[AcountManager manager].userid,@"reservationid":self.model.infoId,@"learningcontent":self.cancelContent,@"cancelreason":self.cancelMessage};
+    NSDictionary *param = @{@"userid":[AcountManager manager].userid,@"reservationid":self.model.infoId,@"learningcontent":self.cancelMessage,@"contentremarks":self.cancelContent};
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
         NSDictionary *param = data;
@@ -166,6 +166,7 @@ static NSString *const kconfirmStudyEnd = @"/courseinfo/finishreservation";
             if (!cell) {
                 cell = [[ConfirmSubjectOneCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.delegate = self;
             }
             return cell;
         }else if (self.model.subjectModel.subjectId.integerValue == 3) {
@@ -174,6 +175,7 @@ static NSString *const kconfirmStudyEnd = @"/courseinfo/finishreservation";
             if (!cell) {
                 cell = [[ConfirmSubjectTwoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                cell.delegate = self;
             }
             return cell;
         }

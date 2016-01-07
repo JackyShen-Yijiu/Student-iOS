@@ -118,6 +118,8 @@
     if (!_webView) {
         _webView = [[UIWebView alloc] init];
         _webView.delegate = self.webViewProgress;
+        _webView.scrollView.showsHorizontalScrollIndicator = NO;
+        _webView.scrollView.showsVerticalScrollIndicator = NO;
     }
     return _webView;
 }

@@ -10,7 +10,17 @@
 
 @implementation CoachModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"Seniority":@"Seniority",@"coachid":@"coachid",@"distance":@"distance",@"name":@"name",@"driveschoolinfo":@"driveschoolinfo",@"headportrait":@"headportrait",@"is_shuttle":@"is_shuttle",@"latitude":@"latitude",@"longitude":@"longitude",@"passrate":@"passrate",@"starlevel":@"starlevel"};
+    return @{@"Seniority":@"Seniority",
+             @"coachid":@"coachid",
+             @"distance":@"distance",
+             @"name":@"name",
+             @"driveschoolinfo":@"driveschoolinfo",
+             @"headportrait":@"headportrait",
+             @"is_shuttle":@"is_shuttle",
+             @"latitude":@"latitude",
+             @"longitude":@"longitude",
+             @"passrate":@"passrate",
+             @"starlevel":@"starlevel"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {

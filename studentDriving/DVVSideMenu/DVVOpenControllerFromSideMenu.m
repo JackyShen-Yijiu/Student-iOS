@@ -52,7 +52,7 @@
             }
             
             UIViewController *controller = nil;
-            if ([AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
+            if (![AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
                 controller = [DrivingViewController new];
             }else {
                 controller = [SearchCoachController new];

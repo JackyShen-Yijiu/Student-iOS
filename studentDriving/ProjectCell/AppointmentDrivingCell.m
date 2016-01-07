@@ -107,16 +107,16 @@
     DYNSLog(@"clickModel = %d",model.is_selected);
     
     DYNSLog(@"self.upDateArray.count:%lu",self.upDateArray.count);
-    if (self.upDateArray.count>=4) {
-        
-        ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"您最多可预约4个课时"];
-        [alertView show];
-        return;
-    }
+    
     
     if (model.is_selected == NO) {
         DYNSLog(@"Selected");
-
+        if (self.upDateArray.count>=4) {
+            
+            ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"您最多可预约4个课时"];
+            [alertView show];
+            return;
+        }
         if (self.upDateArray.count == 0) {
             AppointmentCollectionViewCell *cell = (AppointmentCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
             cell.startTimeLabel.textColor = MAINCOLOR;
@@ -153,6 +153,33 @@
         [alertView show];
 
     }else if (model.is_selected == YES) {
+        if (self.upDateArray.count == 4) {
+            NSArray *array = [BLInformationManager sharedInstance].appointmentData;
+            
+            NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
+                //obj1.coursetime.numMark < obj2.coursetime.numMark
+                return obj1.coursetime.numMark > obj2.coursetime.numMark ;
+            }];
+            AppointmentCoachTimeInfoModel *fistModel = resultArray.firstObject;
+            AppointmentCoachTimeInfoModel *lastModel = resultArray.lastObject;
+            if ([fistModel.infoId isEqualToString:model.infoId]||[lastModel.infoId isEqualToString:model.infoId]) {
+                DYNSLog(@"unSelected");
+                AppointmentCollectionViewCell *cell = (AppointmentCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+                cell.startTimeLabel.textColor = [UIColor blackColor];
+                cell.finalTimeLabel.textColor = [UIColor blackColor];
+                cell.remainingPersonLabel.textColor = TEXTGRAYCOLOR;
+                model.is_selected = NO;
+                [self.upDateArray removeObject:model];
+                [self.dataArray replaceObjectAtIndex:indexPath.row withObject:model];
+                [BLInformationManager sharedInstance].appointmentData = self.upDateArray;
+                [[NSNotificationCenter defaultCenter] postNotificationName:@"kCellChange" object:nil];
+                return;
+            }else {
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"次操作会造成预约时间不连续!"];
+                [alertView show];
+            }
+            return;
+        }
         DYNSLog(@"unSelected");
         AppointmentCollectionViewCell *cell = (AppointmentCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
         cell.startTimeLabel.textColor = [UIColor blackColor];
