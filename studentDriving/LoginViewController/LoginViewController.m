@@ -479,13 +479,23 @@ static NSString *const kuserType = @"usertype";
     DYNSLog(@"TagsAlias回调:%@", callbackString);
 }
 #pragma mark - textfieldDelegate 业务逻辑
-
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    
     if (textField == _phoneNumTextField) {
+        if ([string isEqualToString:@""]) {
+            return YES;
+        }
         if (range.location>10) {
             return NO;
+        }else {
+            if (11 - textField.text.length >0) {
+                return YES;
+            }else {
+                return NO;
+            }
         }
     }
+    
     return YES;
 }
 
