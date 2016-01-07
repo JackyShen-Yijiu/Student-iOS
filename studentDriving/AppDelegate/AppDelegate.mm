@@ -83,7 +83,7 @@
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
     // 打开主页
-    [DVVOpenControllerFromSideMenu openControllerWithIndex:0];
+    [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeHomeMainController];
     
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
@@ -206,6 +206,9 @@
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    // 当程序由后台进入前台后，调用检查活动的方法，检查今天是否有活动
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kCheckActivity" object:nil];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

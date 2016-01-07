@@ -569,6 +569,7 @@
 		D970D39B1C3CFFEB003FCED3 /* CoachDMSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D970D3961C3CFFEB003FCED3 /* CoachDMSubject.m */; };
 		D970D3A21C3D0468003FCED3 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D970D39E1C3D0468003FCED3 /* NSObject+YYModel.m */; };
 		D970D3A31C3D0468003FCED3 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D970D3A01C3D0468003FCED3 /* YYClassInfo.m */; };
+		D98E06141C3E4570009BFA81 /* DVVCheckActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */; };
 		D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */; };
 		D9A5DF5E1C35288A009DF18A /* CoinCertificateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DF5C1C35288A009DF18A /* CoinCertificateController.m */; };
 		D9A5DF5F1C35288A009DF18A /* CoinCertificateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A5DF5D1C35288A009DF18A /* CoinCertificateController.xib */; };
@@ -1596,6 +1597,8 @@
 		D970D39F1C3D0468003FCED3 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
 		D970D3A01C3D0468003FCED3 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
 		D970D3A11C3D0468003FCED3 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
+		D98E06121C3E4570009BFA81 /* DVVCheckActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCheckActivity.h; sourceTree = "<group>"; };
+		D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCheckActivity.m; sourceTree = "<group>"; };
 		D9A46DCA1C25049900271747 /* SweepCodeSignInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SweepCodeSignInController.h; sourceTree = "<group>"; };
 		D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SweepCodeSignInController.m; sourceTree = "<group>"; };
 		D9A5DF5B1C35288A009DF18A /* CoinCertificateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinCertificateController.h; sourceTree = "<group>"; };
@@ -1745,6 +1748,8 @@
 				06073D831C251BF60058B372 /* HomeFavourableController.m */,
 				06073D851C251C300058B372 /* HomeRewardController.h */,
 				06073D861C251C300058B372 /* HomeRewardController.m */,
+				D98E06121C3E4570009BFA81 /* DVVCheckActivity.h */,
+				D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */,
 			);
 			name = HomeMainController;
 			path = UserCenterViewController/HomeMainController;
@@ -4118,6 +4123,7 @@
 				D51256A51BDFB521002717DA /* SignUpCoachViewController.m in Sources */,
 				D5604B841BF656C50020F0D7 /* UIViewController+DismissKeyboard.m in Sources */,
 				D5604B621BF656C50020F0D7 /* UIView+EMWebCacheOperation.m in Sources */,
+				D98E06141C3E4570009BFA81 /* DVVCheckActivity.m in Sources */,
 				D5604B8E1BF656C50020F0D7 /* XHMessageTextView.m in Sources */,
 				D5604B681BF656C50020F0D7 /* PSTCollectionViewFlowLayout.m in Sources */,
 				D5604B6C1BF656C50020F0D7 /* PSTGridLayoutInfo.m in Sources */,

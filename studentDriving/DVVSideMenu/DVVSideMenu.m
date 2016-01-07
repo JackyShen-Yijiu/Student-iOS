@@ -128,6 +128,7 @@
     _markTitleArray = @[ @"Y币", @"张", @"元" ];
     _blockImagesArray = @[ @"iconfont-shouyeshouye",
                            @"iconfont-dingwei",
+                           @"iconfont-chazhao_coach",
                            @"iconfont-xiaoxi",
                            @"iconfont-shangcheng1",
                            @"iconfont-huodong",
@@ -161,7 +162,7 @@
         return;
     }
     // 显示搜索的类型是驾校还是教练
-    [self.blockView setLocationShowType];
+//    [self.blockView setLocationShowType];
     // 设置头像
     [self.headerView.iconButton sd_setBackgroundImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"side_user_header"]];
     // 用户名、报考驾校
@@ -251,10 +252,49 @@
     }else {
         _selectedIdx = button.tag;
     }
-    // 打开相应的窗体
-    [DVVOpenControllerFromSideMenu openControllerWithIndex:_selectedIdx];
-    // 移除sideMenu
-    [self removeSideMenu];
+    
+    if ([AcountManager manager].userLocationShowType == kLocationShowTypeCoach && _selectedIdx == kOpenControllerTypeDrivingViewController) {
+//        [self showMsg:@"您所在的地区暂无合作驾校，建议您搜索教练试一试"];
+        ToastAlertView *toast = [[ToastAlertView alloc] initWithTitle:@"您所在的地区暂无合作驾校,请搜索教练"];
+        [toast show];
+    }else {
+        // 打开相应的窗体
+        [DVVOpenControllerFromSideMenu openControllerWithControllerType:[self checkControllerTypeWithIndex:_selectedIdx]];
+        // 移除sideMenu
+        [self removeSideMenu];
+    }
+}
+- (kOpenControllerType)checkControllerTypeWithIndex:(NSInteger)index {
+    kOpenControllerType type = -1;
+    switch (index) {
+        case kOpenControllerTypeHomeMainController:
+            type = kOpenControllerTypeHomeMainController;
+            break;
+        case kOpenControllerTypeDrivingViewController:
+            type = kOpenControllerTypeDrivingViewController;
+            break;
+        case kOpenControllerTypeSearchCoachController:
+            type = kOpenControllerTypeSearchCoachController;
+            break;
+        case kOpenControllerTypeChatListViewController:
+            type = kOpenControllerTypeChatListViewController;
+            break;
+        case kOpenControllerTypeMyWalletViewController:
+            type = kOpenControllerTypeMyWalletViewController;
+            break;
+        case kOpenControllerTypeHomeActivityController:
+            type = kOpenControllerTypeHomeActivityController;
+            break;
+        case kOpenControllerTypeSignInViewController:
+            type = kOpenControllerTypeSignInViewController;
+            break;
+        case kOpenControllerTypeUserCenterViewController:
+            type = kOpenControllerTypeUserCenterViewController;
+            break;
+        default:
+            break;
+    }
+    return type;
 }
 
 #pragma mark - 从父视图移除SideMenu
@@ -325,17 +365,17 @@
 //    // 移除sideMenu（sideMenu移除后，会调用openViewController:打开相应窗体）
 //    [self removeSideMenu];
     if (1 == indexPath.row) {
-        [DVVOpenControllerFromSideMenu openControllerWithIndex:10];
+        [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeDiscountWalletController];
         // 移除sideMenu
         [self removeSideMenu];
     }
     if (0 == indexPath.row) {
-        [DVVOpenControllerFromSideMenu openControllerWithIndex:11];
+        [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeMyWalletViewController];
         // 移除sideMenu
         [self removeSideMenu];
     }
     if (2 == indexPath.row) {
-        [DVVOpenControllerFromSideMenu openControllerWithIndex:12];
+        [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeMoneyShopController];
         // 移除sideMenu
         [self removeSideMenu];
     }
@@ -421,7 +461,7 @@
 
 - (DVVSideMenuBlockView *)blockView {
     if (!_blockView) {
-        NSArray *titleArray = @[ @"首页", @"查找驾校", @"消息", @"商城", @"活动", @"签到", @"设置" ];
+        NSArray *titleArray = @[ @"首页", @"查找驾校", @"搜索教练", @"消息", @"商城", @"活动", @"签到", @"设置" ];
         
         _blockView = [[DVVSideMenuBlockView alloc] initWithTitleArray:titleArray
                                                       iconNormalArray:_blockImagesArray];
