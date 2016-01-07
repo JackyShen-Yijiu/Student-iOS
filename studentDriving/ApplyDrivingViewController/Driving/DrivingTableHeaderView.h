@@ -10,7 +10,7 @@
 #import "DVVCycleShowImagesView.h"
 #import "DVVToolBarView.h"
 
-@interface DrivingTableHeaderView : UIView
+@interface DrivingTableHeaderView : UIView<UITextFieldDelegate>
 
 @property (nonatomic, assign) CGFloat defaultHeight;
 @property (nonatomic, strong) DVVCycleShowImagesView *cycleShowImagesView;

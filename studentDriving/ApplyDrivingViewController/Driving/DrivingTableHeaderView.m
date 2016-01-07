@@ -53,15 +53,24 @@
     self.searchView.frame = CGRectMake(0, cycleShowViewHeight + filterViewHeight, VIEW_WIDTH, searchViewHeight);
     self.searchBackgroundImageView.frame = CGRectMake(10, 5, VIEW_WIDTH - 20, searchViewHeight - 10);
     [self.searchBackgroundImageView.layer setCornerRadius:(searchViewHeight - 10) / 2.f];
-    CGFloat searchButtonWidth = 50;
-    self.searchTextField.frame = CGRectMake(20, 0, VIEW_WIDTH - searchButtonWidth - 30, searchViewHeight);
-    self.searchButton.frame = CGRectMake(VIEW_WIDTH - searchButtonWidth - 10, 0, searchButtonWidth, searchViewHeight);
+    CGFloat searchButtonWidth = 26;
+//    self.searchTextField.frame = CGRectMake(20, 0, VIEW_WIDTH - searchButtonWidth - 30, searchViewHeight);
+//    self.searchButton.frame = CGRectMake(VIEW_WIDTH - searchButtonWidth - 10, 0, searchButtonWidth, searchViewHeight);
+    CGFloat radius = searchViewHeight / 2.f;
+    self.searchButton.frame = CGRectMake(radius, 0, searchButtonWidth, searchViewHeight);
+    self.searchTextField.frame = CGRectMake(radius + searchButtonWidth, 0, VIEW_WIDTH - radius * 2.f - searchButtonWidth, searchViewHeight);
     
     self.searchBackgroundImageView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
-    [self.searchTextField setTintColor:[UIColor orangeColor]];
+    [self.searchTextField setTintColor:[UIColor grayColor]];
 }
 
 #pragma mark - action
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
 
 #pragma mark - lazy load
 
@@ -115,7 +124,7 @@
     if (!_searchButton) {
         _searchButton = [UIButton new];
         [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
-        _searchButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        _searchButton.titleLabel.font = [UIFont systemFontOfSize:13];
         [_searchButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         
 //        [_searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchDown];
@@ -126,6 +135,8 @@
 - (UITextField *)searchTextField {
     if (!_searchTextField) {
         _searchTextField = [UITextField new];
+        _searchTextField.font = [UIFont systemFontOfSize:13];
+        _searchTextField.delegate = self;
     }
     return _searchTextField;
 }

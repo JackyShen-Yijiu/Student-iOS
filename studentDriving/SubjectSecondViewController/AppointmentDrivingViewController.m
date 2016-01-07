@@ -19,6 +19,7 @@
 #import "StudentModel.h"
 #import "StudentDetailViewController.h"
 #import "AppointmentViewController.h"
+#import "ChatSendHelper.h"
 
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
@@ -732,6 +733,32 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
             if (type.integerValue == 1) {
                 [self showTotasViewWithMes:@"预约成功"];
+                
+                NSString *userName = [AcountManager manager].userName;
+                NSString *yearFormatString = @"yyyy";
+                NSString *monthFormatString = @"MM";
+                NSString *dayFormatString = @"dd";
+                NSString *year = [self dateFromLocalWithFormatString:yearFormatString];
+                NSString *month = [self dateFromLocalWithFormatString:monthFormatString];
+                NSString *day = [self dateFromLocalWithFormatString:dayFormatString];
+                
+                NSString *content = [NSString stringWithFormat:@"%@学员,于%@年%@月%@日预约了您的课程,请查看!", userName, year, month, day];
+                
+                // 预约成功后，通过环信给教练发送一条提示消息
+                EMMessage *message = [ChatSendHelper sendTextMessageWithString:content toUsername:self.coachModel.coachid isChatGroup:NO requireEncryption:NO ext:nil];
+                
+                [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil prepare:^(EMMessage *message, EMError *error) {
+                    
+                    
+                } onQueue:nil completion:^(EMMessage *message, EMError *error) {
+                    
+                    if(!error){
+                        
+                    }
+                    
+                } onQueue:nil];
+                
+                
                 AppointmentViewController *vc = [[AppointmentViewController alloc] init];
                 vc.markNum = @2;
                 vc.title = @"预约列表";
@@ -765,6 +792,16 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     
     
 }
+
+- (NSString *)dateFromLocalWithFormatString:(NSString *)formatString {
+    
+    NSDate *localDate = [NSDate new];
+    
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:formatString];
+    return [dateFormatter stringFromDate:localDate];
+}
+
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }

@@ -36,7 +36,7 @@
     CGFloat radius = viewHeight / 2.f;
     CGFloat searchButtonWidth = 40;
     _backgroundImageView.frame = CGRectMake(0, 0, viewWidth, viewHeight);
-    _textField.frame = CGRectMake(radius, 2, viewWidth - radius - searchButtonWidth + 8, viewHeight - 2);
+    _textField.frame = CGRectMake(radius, 0, viewWidth - radius - searchButtonWidth + 8, viewHeight);
     // 搜索按钮在中心显示
     _searchButton.frame = CGRectMake((viewWidth - searchButtonWidth) / 2.f, 0, searchButtonWidth, viewHeight);
     
@@ -44,15 +44,16 @@
     [_searchButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     [_searchButton setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
     _searchButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    _textField.font = [UIFont systemFontOfSize:13];
     
     _backgroundImageView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
     
-    _textField.tintColor = [UIColor lightGrayColor];
+    _textField.tintColor = [UIColor grayColor];
     // 设置背景视图为圆角
     [_backgroundImageView.layer setMasksToBounds:YES];
     [_backgroundImageView.layer setCornerRadius:radius];
     
-    _textField.backgroundColor = [UIColor redColor];
+//    _textField.backgroundColor = [UIColor redColor];
 //    _searchButton.backgroundColor = [UIColor orangeColor];
 }
 
@@ -64,13 +65,14 @@
     }
     [UIView animateWithDuration:0.2 animations:^{
         
-        // 搜索按钮在右侧显示
+        // 搜索按钮在左侧显示
         CGFloat viewWidth = self.bounds.size.width;
         CGFloat viewHeight = self.bounds.size.height;
+//        CGFloat radius = viewHeight / 2.f;
         CGFloat searchButtonWidth = 40;
         _searchButton.frame = CGRectMake(viewWidth - searchButtonWidth, 0, searchButtonWidth, viewHeight);
     } completion:^(BOOL finished) {
-        
+        _textField.placeholder = @"请输入搜索内容";
         _searchButton.userInteractionEnabled = YES;
     }];
 }
@@ -83,6 +85,8 @@
     if (textField.text.length) {
         return ;
     }
+    
+    _textField.placeholder = @"";
     [UIView animateWithDuration:0.2 animations:^{
         
         // 搜索按钮在中心显示

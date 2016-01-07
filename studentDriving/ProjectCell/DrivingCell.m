@@ -209,7 +209,7 @@
     
     [self.moenyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingAddressLabel.mas_left).offset(0);
-        make.top.mas_equalTo(self.drivingAddressLabel.mas_bottom).offset(7);
+        make.top.mas_equalTo(self.drivingAddressLabel.mas_bottom).offset(10);
         make.width.equalTo(self.drivingNameLabel);
 
 //        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide-100];
@@ -224,7 +224,7 @@
     
     [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.distanceLabel.mas_right);
-        make.bottom.mas_equalTo(self.moenyLabel.mas_bottom);
+        make.bottom.mas_equalTo(self.moenyLabel.mas_bottom).offset(-1);
 //        make.centerY.mas_equalTo(self.moenyLabel.mas_centerY);
     }];
     

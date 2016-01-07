@@ -8,9 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
+typedef NS_ENUM(NSInteger, kOpenControllerType) {
+    
+    kOpenControllerTypeHomeMainController = 0, //首页
+    kOpenControllerTypeDrivingViewController, //查找驾校
+    kOpenControllerTypeSearchCoachController, //查找教练
+    kOpenControllerTypeChatListViewController, //消息
+    kOpenControllerTypeMyWalletViewController, //钱包
+    kOpenControllerTypeHomeActivityController, //活动
+    kOpenControllerTypeSignInViewController, //签到
+    kOpenControllerTypeUserCenterViewController, //我
+    kOpenControllerTypeDiscountWalletController, //兑换劵
+    kOpenControllerTypeMoneyShopController, //可取现金额
+};
+
 @interface DVVOpenControllerFromSideMenu : NSObject
 
 // 用这个方法打开对应的窗体
-+ (void)openControllerWithIndex:(NSUInteger)idx;
++ (void)openControllerWithControllerType:(kOpenControllerType)controllerType;
 
 @end
