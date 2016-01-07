@@ -16,6 +16,7 @@
 
 static NSString *const kUserInfo = @"/userinfo/getapplyschoolinfo";
 static NSString *const kCreatQrcode = @"/create_qrcode";
+static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
 @interface SignUpSuccessViewController ()
 
@@ -71,6 +72,40 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
+    NSDictionary *param = @{@"userid":[AcountManager manager].userid};
+    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        if (!data) {
+            return ;
+        }
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            NSDictionary *dataDic = [param objectForKey:@"data"];
+            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
+                return;
+            }
+            if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
+                [AcountManager saveUserApplyState:@"0"];
+            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
+                [AcountManager saveUserApplyState:@"1"];
+            }else {
+                [AcountManager saveUserApplyState:@"2"];
+            }
+            [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
+            if ([[AcountManager manager].userApplycount isEqualToString:@"0"]) {
+                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.registAgainButton];
+            }
+        }else {
+            
+            NSLog(@"1:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
+            
+            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
+        }
+    } withFailure:^(id data) {
+        [self showTotasViewWithMes:@"网络错误"];
+    }];
+    
 }
 
 - (void)viewDidLoad {
@@ -81,7 +116,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     self.view.backgroundColor = RGBColor(245, 247, 250);
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UILabel new]];
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.registAgainButton];
+    
 }
 
 - (void)initUI {

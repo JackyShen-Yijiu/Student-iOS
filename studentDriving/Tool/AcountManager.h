@@ -33,6 +33,7 @@
 @property (readonly,copy, nonatomic) NSString *userLogintime;
 @property (readonly,copy, nonatomic) NSString *userInvitationcode;
 @property (readonly,copy, nonatomic) NSString *userApplystate;
+@property (readonly,copy, nonatomic) NSString *userApplycount;
 @property (readonly,copy, nonatomic) NSString *userDisplayuserid;
 @property (readonly,copy, nonatomic) NSString *userIs_lock;
 @property (readonly,copy, nonatomic) NSString *userid;
@@ -72,6 +73,7 @@
 + (void)removeAllData;
 
 + (void)saveUserApplyState:(NSString *)state;
++ (void)saveUserApplyCount:(NSString *)count;
 + (void)saveUserBanner:(NSArray *)dataArray;
 + (NSArray *)getBannerUrlArray;
 
