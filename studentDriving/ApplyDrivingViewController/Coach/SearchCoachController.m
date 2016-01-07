@@ -22,7 +22,7 @@
 #import "DrivingCityListView.h"
 #import "CoachDetailViewController.h"
 
-@interface SearchCoachController ()<UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate>
+@interface SearchCoachController ()<UITableViewDataSource, UITableViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate>
 
 @property (nonatomic, strong) UIButton *naviBarRightButton;
 
@@ -58,7 +58,8 @@
     [self configRefresh];
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self locationManager];
+//    [self locationManager];
+    [self refresh];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -131,7 +132,10 @@
 - (void)searchButtonAction {
     
     _searchCoachViewModel.searchName = self.searchView.textField.text;
-    
+    [self refresh];
+}
+- (void)dvvTextFieldDidEndEditingBlock:(UITextField *)textField {
+    _searchCoachViewModel.searchName = textField.text;
     [self refresh];
 }
 
@@ -305,8 +309,11 @@
 - (DVVSearchView *)searchView {
     if (!_searchView) {
         _searchView = [DVVSearchView new];
-        _searchView.textField.delegate = self;
         [_searchView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchDown];
+        __weak typeof(self) ws = self;
+        [_searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
+            [ws dvvTextFieldDidEndEditingBlock:textField];
+        }];
     }
     return _searchView;
 }

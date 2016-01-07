@@ -215,7 +215,7 @@
     
 }
 
-- (void)receivedCellModelWith:(CoachDMData *)coachModel {
+- (void)refreshData:(CoachDMData *)coachModel {
     [self resetContent];
     
     //    if ([[AcountManager manager].applycoach.infoId isEqualToString:coachModel.coachid]) {
