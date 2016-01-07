@@ -331,11 +331,11 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
         [cell.cancelButton setTitle:@"取消预约" forState:UIControlStateNormal];
         cell.cancelButton.backgroundColor = RGBColor(205, 212, 217);
         
-//        _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(15, 200, kSystemWide-30, 150)];
-//        _mapView.mapType = BMKMapTypeStandard;
-//        _mapView.zoomLevel = 12;
-//        [cell.contentView addSubview:_mapView];
-//        [self geoCode];
+        _mapView = [[BMKMapView alloc] initWithFrame:CGRectMake(15, 200, kSystemWide-30, 150)];
+        _mapView.mapType = BMKMapTypeStandard;
+        _mapView.zoomLevel = 12;
+        [cell.contentView addSubview:_mapView];
+        [self geoCode];
         
     }else if (self.state == AppointmentStateSystemCancel) {
         [cell.cancelButton setTitle:@"系统取消" forState:UIControlStateNormal];
