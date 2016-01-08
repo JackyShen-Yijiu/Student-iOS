@@ -63,6 +63,24 @@
     return self;
 }
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isInChatVc"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isInChatVc"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
