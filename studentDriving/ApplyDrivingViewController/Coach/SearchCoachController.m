@@ -21,6 +21,7 @@
 #import "ToolHeader.h"
 #import "DrivingCityListView.h"
 #import "CoachDetailViewController.h"
+#import "AcountManager.h"
 
 @interface SearchCoachController ()<UITableViewDataSource, UITableViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate>
 
@@ -59,9 +60,19 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    [self locationManager];
-    // 在模拟器上定位不好用，测试时打开数据
-//    [self refresh];
+    if ([AcountManager manager].userCity) {
+        
+        if ([AcountManager manager].userCity.length) {
+            _searchCoachViewModel.cityName = [AcountManager manager].userCity;
+            [self.naviBarRightButton setTitle:[AcountManager manager].userCity forState:UIControlStateNormal];
+            [self refresh];
+        }else {
+            
+            [self locationManager];
+            // 在模拟器上定位不好用，测试时打开注释
+            //    [self refresh];
+        }
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -131,11 +142,7 @@
     
     [self refresh];
 }
-- (void)searchButtonAction {
-    
-    _searchCoachViewModel.searchName = self.searchView.textField.text;
-    [self refresh];
-}
+#pragma mark 搜索框结束编辑
 - (void)dvvTextFieldDidEndEditingBlock:(UITextField *)textField {
     _searchCoachViewModel.searchName = textField.text;
     [self refresh];
@@ -311,7 +318,6 @@
 - (DVVSearchView *)searchView {
     if (!_searchView) {
         _searchView = [DVVSearchView new];
-        [_searchView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchDown];
         __weak typeof(self) ws = self;
         [_searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
             [ws dvvTextFieldDidEndEditingBlock:textField];

@@ -14,11 +14,20 @@ typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
 
 @property (nonatomic, strong) UIImageView *backgroundImageView;
 @property (nonatomic, strong) UITextField *textField;
-@property (nonatomic, strong) UIButton *searchButton;
 
-// textField开始编辑
+@property (nonatomic, readonly, assign) CGFloat defaultHeight;
+
+/**
+ *  textField开始编辑
+ *
+ *  @param handle DVVSearchViewUITextFieldDelegateBlock
+ */
 - (void)setDVVTextFieldDidBeginEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
-// textField结束编辑
+/**
+ *  textField结束编辑
+ *
+ *  @param handle DVVSearchViewUITextFieldDelegateBlock
+ */
 - (void)setDVVTextFieldDidEndEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
 
 @end
