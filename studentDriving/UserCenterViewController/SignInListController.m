@@ -65,8 +65,8 @@
     
     SignInDataModel *dataModel = _viewModel.todayArray[indexPath.row];
     cell.coachNameLabel.text = dataModel.coachDataModel.name;
-//    cell.beginTimeLabel.text = dataModel.beginTime;
-    cell.beginTimeLabel.text = @"12:00:00";
+    cell.beginTimeLabel.text = dataModel.beginTime;
+//    cell.beginTimeLabel.text = @"12:00:00";
     cell.markLabel.text = dataModel.courseprocessdesc;
     if (dataModel.signInStatus) {
         cell.signInStatusLabel.text = @"可签到";

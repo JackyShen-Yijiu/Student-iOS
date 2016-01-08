@@ -44,8 +44,9 @@
     NSString *userId = [AcountManager manager].userid;
     // 详细地址
     NSString *locationAddress = [AcountManager manager].locationAddress;
-    NSString *formatString = @"yyyy-MM-dd";
+    NSString *formatString = @"yyyy-MM-dd HH:mm:ss";
     NSString *currentTime = [self dateFromLocalWithFormatString:formatString];
+    
     NSDictionary *dict = @{ @"userid": userId,
                             @"orderid": self.dataModel.ID,
                             @"currenttime": currentTime,
