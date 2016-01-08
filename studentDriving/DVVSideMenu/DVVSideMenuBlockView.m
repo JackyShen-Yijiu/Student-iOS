@@ -64,10 +64,10 @@
     for (EMConversation *conversation in conversations) {
         unreadCount += conversation.unreadMessagesCount;
     }
-    if (unreadCount == 0) {
+    if (unreadCount) {
 //        [self showMessCountInTabBar:unreadCount];
         [self showBadge];
-        self.badgeLabel.text = [NSString stringWithFormat:@"%d",15];
+        self.badgeLabel.text = [NSString stringWithFormat:@"%li",unreadCount];
     }else{
 //        [self hiddenMessCountInTabBar];
         [self removeBadge];
