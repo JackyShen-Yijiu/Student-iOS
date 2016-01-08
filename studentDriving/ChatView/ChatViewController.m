@@ -81,7 +81,23 @@
 @end
 
 @implementation ChatViewController
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isInChatVc"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"isInChatVc"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
 - (NSDictionary *)extParam {
     if (_extParam == nil) {
         _extParam = @{@"headUrl":[AcountManager manager].userHeadImageUrl,@"nickName":[AcountManager manager].userNickName,@"userId":[AcountManager manager].userid,@"userType":@"1"};

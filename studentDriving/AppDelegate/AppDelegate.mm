@@ -225,6 +225,10 @@
     
     NSLog(@"message.messageBodies:%@",message.messageBodies);
     
+    if (([UIApplication sharedApplication].applicationState == UIApplicationStateActive) && [[NSUserDefaults standardUserDefaults] boolForKey:@"isInChatVc"]==YES) {
+        return;
+    }
+    
     //发送本地推送
     UILocalNotification *notification = [[UILocalNotification alloc] init];
     
