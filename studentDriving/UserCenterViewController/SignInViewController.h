@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SignInDataModel.h"
 
 @interface SignInViewController : UIViewController
+
+@property (nonatomic, strong) SignInDataModel *dataModel;
 
 @end

@@ -49,6 +49,8 @@ static  NSString    *kNewmessageReminder = @"newmessagereminder";
 
 // 定位到的城市
 static  NSString    *kUserCity = @"kUserCity";
+static  NSString    *kLocationAddress = @"kLocationAddress";
+
 // 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
 static  NSString    *kUserLocationShowType = @"kUserLocationShowType";
 
@@ -507,6 +509,8 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
     [NSUserStoreTool removeObjectWithKey:kNewmessageReminder];
     
     [NSUserStoreTool removeObjectWithKey:kUserCoinCertificate];
+    [NSUserStoreTool removeObjectWithKey:kLocationAddress];
+    
 }
 
 + (void)saveUserBanner:(NSArray *)dataArray {
@@ -532,9 +536,22 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
     if ([NSUserStoreTool getObjectWithKey:kUserCity]) {
         return [NSUserStoreTool getObjectWithKey:kUserCity];
     }else {
-        return @"";
+        return nil;
     }
 }
+// 定位到的详细地址
+- (void)setLocationAddress:(NSString *)locationAddress {
+    [NSUserStoreTool storeWithId:locationAddress WithKey:kLocationAddress];
+}
+- (NSString *)locationAddress {
+    if ([NSUserStoreTool getObjectWithKey:kLocationAddress]) {
+        return [NSUserStoreTool getObjectWithKey:kLocationAddress];
+    }else {
+        return nil;
+    }
+
+}
+
 // 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
 - (void)setUserLocationShowType:(BOOL)userLocationShowType {
     [NSUserStoreTool storeWithId:@(userLocationShowType) WithKey:kUserLocationShowType];
