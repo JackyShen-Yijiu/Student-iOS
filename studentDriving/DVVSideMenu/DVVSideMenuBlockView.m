@@ -10,7 +10,7 @@
 #import "DVVSideMenuBlockViewItemButton.h"
 #import "AcountManager.h"
 
-#define badgeLabelWidth 9
+#define badgeLabelWidth 15
 
 @interface DVVSideMenuBlockView()
 
@@ -46,9 +46,9 @@
 #pragma mark 显示、隐藏小红点
 - (void)showBadge {
     for (UIView *view in self.subviews) {
-        if (2 == view.tag) {
+        if (3 == view.tag) {
             CGFloat viewWidth = view.frame.size.width;
-            self.badgeLabel.center = CGPointMake(viewWidth, 0);
+            self.badgeLabel.center = CGPointMake(viewWidth / 2 + 10, 15);
             [view addSubview:self.badgeLabel];
         }
     }
@@ -64,10 +64,10 @@
     for (EMConversation *conversation in conversations) {
         unreadCount += conversation.unreadMessagesCount;
     }
-    if (unreadCount > 0) {
+    if (unreadCount == 0) {
 //        [self showMessCountInTabBar:unreadCount];
         [self showBadge];
-        self.badgeLabel.text = [NSString stringWithFormat:@"%li",unreadCount];
+        self.badgeLabel.text = [NSString stringWithFormat:@"%d",15];
     }else{
 //        [self hiddenMessCountInTabBar];
         [self removeBadge];
@@ -156,7 +156,10 @@
         _badgeLabel.frame = CGRectMake(0, 0, badgeLabelWidth, badgeLabelWidth);
         [_badgeLabel.layer setMasksToBounds:YES];
         [_badgeLabel.layer setCornerRadius:badgeLabelWidth / 2.f];
+        _badgeLabel.textColor = [UIColor whiteColor];
+        _badgeLabel.textAlignment = NSTextAlignmentCenter;
         _badgeLabel.font = [UIFont systemFontOfSize:badgeLabelWidth - 3];
+//        [_badgeLabel sizeToFit];
     }
     return _badgeLabel;
 }
