@@ -90,11 +90,11 @@
         [(UINavigationController *)(self.window.rootViewController) pushViewController:[DVVUserManager loginController] animated:NO];
     }
     
-//    // 引导页
+    // 引导页
 //    [YBWelcomeController removeSavedVersion];
-//    if ([YBWelcomeController isShowWelcome]) {
-//        [YBWelcomeController show];
-//    }
+    if ([YBWelcomeController isShowWelcome]) {
+        [YBWelcomeController show];
+    }
     
     // 设置StatusBarStyle为白色（需要在在infor.plist中加入key:UIViewControllerBasedStatusBarAppearance 并设置其值为NO）
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];

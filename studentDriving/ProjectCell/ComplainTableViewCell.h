@@ -15,4 +15,7 @@
 @interface ComplainTableViewCell : UITableViewCell
 @property (weak, nonatomic) id<ComplainTableViewCellDelegate>delegate;
 
+@property (strong, nonatomic) NSMutableArray *bntArray;
+@property (strong, nonatomic) NSMutableArray *titleArray;
+
 @end

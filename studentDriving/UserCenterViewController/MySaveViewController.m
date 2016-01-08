@@ -80,6 +80,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
     self.title = @"我的喜欢";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -103,6 +104,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self startDownLoad];
 }
 
@@ -235,6 +237,14 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             [self.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:DrivingModel.class fromJSONArray:param[@"data"] error:&error]];
         }
         [self.tableView reloadData];
+        if (!self.dataArray.count) {
+            NSString *msg = @"没有喜欢的驾校";
+            if (_myLoveState == MyLoveStateCoach) {
+                msg = @"没有喜欢的教练";
+            }
+            [self showTotasViewWithMes:msg];
+        }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
         
     }];
 }

@@ -10,6 +10,8 @@
 
 @interface DVVSearchView ()
 
+@property (nonatomic, strong) UIButton *cancelButton;
+
 @property (nonatomic, copy) DVVSearchViewUITextFieldDelegateBlock didBeginEditingBlock;
 @property (nonatomic, strong) DVVSearchViewUITextFieldDelegateBlock didEndEditingBlock;
 
@@ -23,7 +25,7 @@
         
         [self addSubview:self.backgroundImageView];
         [self addSubview:self.textField];
-        [self addSubview:self.searchButton];
+        [self addSubview:self.cancelButton];
     }
     return self;
 }
@@ -38,12 +40,12 @@
     _backgroundImageView.frame = CGRectMake(0, 0, viewWidth, viewHeight);
     _textField.frame = CGRectMake(radius, 0, viewWidth - radius - searchButtonWidth + 8, viewHeight);
     // 搜索按钮在中心显示
-    _searchButton.frame = CGRectMake((viewWidth - searchButtonWidth) / 2.f, 0, searchButtonWidth, viewHeight);
+    _cancelButton.frame = CGRectMake((viewWidth - searchButtonWidth) / 2.f, 0, searchButtonWidth, viewHeight);
     
-    [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
-    [_searchButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-    [_searchButton setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
-    _searchButton.titleLabel.font = [UIFont systemFontOfSize:13];
+    [_cancelButton setTitle:@"搜索" forState:UIControlStateNormal];
+    [_cancelButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [_cancelButton setTitleColor:[UIColor grayColor] forState:UIControlStateSelected];
+    _cancelButton.titleLabel.font = [UIFont systemFontOfSize:13];
     _textField.font = [UIFont systemFontOfSize:13];
     
     _backgroundImageView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
@@ -57,6 +59,17 @@
 //    _searchButton.backgroundColor = [UIColor orangeColor];
 }
 
+#pragma mark - action
+
+#pragma mark - 取消按钮
+- (void)cancelButtonAction:(UIButton *)sender {
+    
+    self.textField.text = @"";
+    [self.textField resignFirstResponder];
+    [self statusNormal];
+    
+}
+
 #pragma mark - UITextFieldDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
     // 回调
@@ -65,15 +78,16 @@
     }
     [UIView animateWithDuration:0.2 animations:^{
         
-        // 搜索按钮在左侧显示
+        // 取消按钮在右侧显示
         CGFloat viewWidth = self.bounds.size.width;
         CGFloat viewHeight = self.bounds.size.height;
 //        CGFloat radius = viewHeight / 2.f;
         CGFloat searchButtonWidth = 40;
-        _searchButton.frame = CGRectMake(viewWidth - searchButtonWidth, 0, searchButtonWidth, viewHeight);
+        _cancelButton.frame = CGRectMake(viewWidth - searchButtonWidth, 0, searchButtonWidth, viewHeight);
+        [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     } completion:^(BOOL finished) {
         _textField.placeholder = @"请输入搜索内容";
-        _searchButton.userInteractionEnabled = YES;
+        _cancelButton.userInteractionEnabled = YES;
     }];
 }
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -81,27 +95,32 @@
     if (_didEndEditingBlock) {
         _didEndEditingBlock(textField);
     }
-    // 如果textField内容不为空时则搜索按钮不回到中心，还可以响应用户点击
+    // 如果textField内容不为空时则取消按钮不回到中心，还可以响应用户点击
     if (textField.text.length) {
         return ;
     }
-    
-    _textField.placeholder = @"";
-    [UIView animateWithDuration:0.2 animations:^{
-        
-        // 搜索按钮在中心显示
-        CGFloat viewWidth = self.bounds.size.width;
-        CGFloat viewHeight = self.bounds.size.height;
-        CGFloat searchButtonWidth = 40;
-        _searchButton.frame = CGRectMake((viewWidth - searchButtonWidth) / 2.f, 0, searchButtonWidth, viewHeight);
-    } completion:^(BOOL finished) {
-        
-        _searchButton.userInteractionEnabled = NO;
-    }];
+    [self statusNormal];
 }
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
+}
+#pragma mark 搜索框无文本输入，并且取消搜索状态时
+- (void)statusNormal {
+    
+    _textField.placeholder = @"";
+    [UIView animateWithDuration:0.2 animations:^{
+        
+        // 取消按钮在中心显示（显示文字为“搜索”）
+        CGFloat viewWidth = self.bounds.size.width;
+        CGFloat viewHeight = self.bounds.size.height;
+        CGFloat searchButtonWidth = 40;
+        _cancelButton.frame = CGRectMake((viewWidth - searchButtonWidth) / 2.f, 0, searchButtonWidth, viewHeight);
+        [_cancelButton setTitle:@"搜索" forState:UIControlStateNormal];
+    } completion:^(BOOL finished) {
+        
+        _cancelButton.userInteractionEnabled = NO;
+    }];
 }
 
 #pragma mark set block
@@ -127,12 +146,16 @@
     }
     return _textField;
 }
-- (UIButton *)searchButton {
-    if (!_searchButton) {
-        _searchButton = [UIButton new];
-        _searchButton.userInteractionEnabled = NO;
+- (UIButton *)cancelButton {
+    if (!_cancelButton) {
+        _cancelButton = [UIButton new];
+        _cancelButton.userInteractionEnabled = NO;
+        [_cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
-    return _searchButton;
+    return _cancelButton;
+}
+- (CGFloat)defaultHeight {
+    return 24;
 }
 
 /*

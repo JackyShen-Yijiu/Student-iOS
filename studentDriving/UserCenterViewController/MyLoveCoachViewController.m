@@ -45,6 +45,7 @@ static NSString *const kGetMyCoachListUrl = @"userinfo/getmycoachlist";
     
     self.tableView.tableFooterView = [[UIView alloc] init];
     
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     [self startDownLoad];
     
 }
@@ -60,11 +61,11 @@ static NSString *const kGetMyCoachListUrl = @"userinfo/getmycoachlist";
             NSError *error = nil;
             self.dataArray = [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:param[@"data"] error:&error];
             [self.tableView reloadData];
+            [MBProgressHUD hideHUDForView:self.tableView animated:YES];
         }else{
             [self showTotasViewWithMes:@"列表为空"];
+            [MBProgressHUD hideHUDForView:self.tableView animated:YES];
         }
-      
-        
     }];
 }
 #pragma mark - bntAciton

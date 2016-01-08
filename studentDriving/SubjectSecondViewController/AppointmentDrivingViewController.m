@@ -254,7 +254,6 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 #pragma mark - NotifacationCenter
 - (void)kCellChange {
     NSArray *array = [BLInformationManager sharedInstance].appointmentData;
-    
     NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
         //obj1.coursetime.numMark < obj2.coursetime.numMark
         return obj1.coursetime.numMark > obj2.coursetime.numMark ;
@@ -306,6 +305,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 }
 
 - (int)chagetime:(NSString *)timeStr data:(NSString *)dataStr {
+    NSLog(@"%@%@",timeStr,dataStr);
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     //设置格式
     df.dateFormat = @"yyyy-MM-dd HH:mm:ss.0";

@@ -51,11 +51,6 @@
                 break;
             }
             
-            
-//            if (![AcountManager manager].userLocationShowType == kLocationShowTypeCoach) {
-//                [self showMsg:@"您所在的地区暂无合作驾校，建议您搜索教练试一试"];
-//                return ;
-//            }
             UIViewController *controller = [DrivingViewController new];
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
             UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
