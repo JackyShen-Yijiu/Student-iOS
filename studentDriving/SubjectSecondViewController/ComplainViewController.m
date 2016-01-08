@@ -63,6 +63,11 @@ static NSString *const kuserComplainAppointment = @"courseinfo/usercomplaint";
     self.tableView.tableFooterView = [self tableViewFootView];
 }
 - (void)clickSubmit:(UIButton *)sender {
+    for (UIButton *btn in self.buttonArray) {
+        if (btn.selected) {
+            
+        }
+    }
     self.cancelContent = contentField.text;
     NSString *urlString  = [NSString stringWithFormat:BASEURL,kuserComplainAppointment];
     
@@ -138,6 +143,8 @@ static NSString *const kuserComplainAppointment = @"courseinfo/usercomplaint";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             cell.delegate = self;
         }
+        self.buttonArray = cell.bntArray;
+        self.labelArray = cell.titleArray;
         return cell;
         
     }else if (indexPath.section == 1) {
