@@ -262,6 +262,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     AppointmentCoachTimeInfoModel *lastModel = resultArray.lastObject;
     
     NSArray *beginArray = [firstModel.coursetime.begintime componentsSeparatedByString:@":"];
+    NSLog(@"________----------------===================================%@",firstModel);
     NSString *beginString = beginArray.firstObject;
     _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:_updateTimeString]];
     NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
