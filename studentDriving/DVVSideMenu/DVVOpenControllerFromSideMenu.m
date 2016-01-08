@@ -20,7 +20,7 @@
 #import "ToastAlertView.h"
 #import "SearchCoachController.h"
 #import "DiscountWalletController.h"
-#import "SignInViewController.h"
+#import "SignInListController.h"
 #import "MoneyShopController.h"
 
 @implementation DVVOpenControllerFromSideMenu
@@ -131,7 +131,7 @@
                 break;
             }
             
-            SignInViewController *controller = [SignInViewController new];
+            SignInListController *controller = [SignInListController new];
             
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
             UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
