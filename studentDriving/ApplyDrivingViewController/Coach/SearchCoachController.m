@@ -305,7 +305,7 @@
     if (!_filterView) {
         _filterView = [DVVFilterView new];
         _filterView.toolBarView.selectButtonInteger = -1;
-        _filterView.leftButtonTitleString = @"点击筛选车型";
+        _filterView.leftButtonTitleString = @"车型选择";
         _filterView.titleArray = @[ @"距离最近", @"评分最高" ];
         [_filterView.leftButton addTarget:self action:@selector(filterLeftButtonAction) forControlEvents:UIControlEventTouchDown];
         __weak typeof(self) ws = self;

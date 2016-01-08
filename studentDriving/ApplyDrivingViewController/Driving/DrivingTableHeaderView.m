@@ -49,7 +49,7 @@
     
     self.cycleShowImagesView.frame = CGRectMake(0, 0, VIEW_WIDTH, cycleShowViewHeight);
     self.motorcycleTypeButton.frame = CGRectMake(0, cycleShowViewHeight, 120, filterViewHeight);
-    self.filterView.frame = CGRectMake(120, cycleShowViewHeight, VIEW_WIDTH - 120, filterViewHeight);
+    self.filterView.frame = CGRectMake(100, cycleShowViewHeight, VIEW_WIDTH - 120, filterViewHeight);
     self.searchView.frame = CGRectMake(0, cycleShowViewHeight + filterViewHeight, VIEW_WIDTH, searchViewHeight);
     self.searchBackgroundImageView.frame = CGRectMake(10, 5, VIEW_WIDTH - 20, searchViewHeight - 10);
     [self.searchBackgroundImageView.layer setCornerRadius:(searchViewHeight - 10) / 2.f];
@@ -87,7 +87,7 @@
 - (UIButton *)motorcycleTypeButton {
     if (!_motorcycleTypeButton) {
         _motorcycleTypeButton = [UIButton new];
-        [_motorcycleTypeButton setTitle:@"点击筛选车型" forState:UIControlStateNormal];
+        [_motorcycleTypeButton setTitle:@"车型选择" forState:UIControlStateNormal];
         [_motorcycleTypeButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
         _motorcycleTypeButton.titleLabel.font = [UIFont systemFontOfSize:14];
     }
