@@ -47,7 +47,8 @@ static NSString *const kuserType = @"usertype";
 @property (strong, nonatomic) UIButton *bottomButton;
 @property (strong, nonatomic) UIImageView *rightImageView;
 @property (strong, nonatomic) NSMutableDictionary *userParam;
-@property (strong, nonatomic) UIView *bottomLineView;
+@property (strong, nonatomic) UIView *bottomLeftLineView;
+@property (strong, nonatomic) UIView *bottomRightLineView;
 @property (strong, nonatomic) UILabel *bottomLabel;
 
 @property (nonatomic, strong) UIButton *checkButton;
@@ -55,17 +56,29 @@ static NSString *const kuserType = @"usertype";
 
 @implementation LoginViewController
 
-- (UIView *)bottomLineView {
-    if (_bottomLineView == nil) {
-        _bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight-95, kSystemWide-30, 1)];
-        _bottomLineView.backgroundColor = [UIColor clearColor];
+- (UIView *)bottomLeftLineView {
+    if (_bottomLeftLineView == nil) {
+        _bottomLeftLineView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight-58, (kSystemWide-60)/2, 1)];
+        _bottomLeftLineView.backgroundColor = MAINCOLOR;
     }
-    return _bottomLineView;
+    return _bottomLeftLineView;
 }
+
+- (UIView *)bottomRightLineView {
+    if (_bottomRightLineView == nil) {
+        _bottomRightLineView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2+15, kSystemHeight-58, (kSystemWide-60)/2, 1)];
+        _bottomRightLineView.backgroundColor = MAINCOLOR;
+    }
+    return _bottomRightLineView;
+}
+
 - (UILabel *)bottomLabel {
     if (_bottomLabel == nil) {
-        _bottomLabel = [[UILabel alloc ] initWithFrame:CGRectMake((kSystemWide-300)/2-30/2, -15, 300, 30)];
-        _bottomLabel.text = @"验证学车进度";
+        _bottomLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, 30, 30)];
+        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-58);
+        _bottomLabel.text = @"or";
+        _bottomLabel.layer.cornerRadius = 10;
+        _bottomLabel.clipsToBounds = YES;
         _bottomLabel.textColor = RGBColor(255, 102, 51);
         _bottomLabel.textAlignment = NSTextAlignmentCenter;
         _bottomLabel.backgroundColor = [UIColor clearColor];
@@ -261,8 +274,9 @@ static NSString *const kuserType = @"usertype";
     
     [self.bottomButton addSubview:self.rightImageView];
     
-    [self.view addSubview:self.bottomLineView];
-    //    [self.bottomLineView addSubview:self.bottomLabel];
+    [self.view addSubview:self.bottomLeftLineView];
+    [self.view addSubview:self.bottomRightLineView];
+    [self.view addSubview:self.bottomLabel];
     [self.view addSubview:self.checkButton];
 }
 
@@ -591,7 +605,7 @@ static NSString *const kuserType = @"usertype";
     }];
     
     [self.bottomButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(-50);
+        make.top.mas_equalTo(self.bottomLabel.mas_bottom).with.offset(5);
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(@122);
         make.height.mas_equalTo(@25);
@@ -606,7 +620,7 @@ static NSString *const kuserType = @"usertype";
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.bottom.mas_equalTo(self.checkButton.mas_top).offset(-10);
+        make.bottom.mas_equalTo(self.bottomLabel.mas_top).offset(-5);
         make.width.mas_equalTo(@200);
         make.height.mas_equalTo(@25);
     }];

@@ -155,12 +155,14 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         NSDictionary *resultData = data;
         
         DYNSLog(@"resultData.message = %@",resultData[@"msg"]);
+        NSLog(@"data:%@",data);
         
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        NSString *type = [NSString stringWithFormat:@"%@",resultData[@"type"]];
+        NSLog(@"type:%@",type);
         
         if ([type isEqualToString:@"1"]) {
             
-            kShowSuccess(@"修改成功");
+            [self obj_showTotasViewWithMes:@"修改成功"];
             
             [self dismissViewControllerAnimated:YES completion:^{
                 [[NSNotificationCenter defaultCenter] postNotificationName:kchangePassword object:nil];
@@ -168,8 +170,8 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
             
         }else {
             
-            kShowFail(param[@"msg"]);
-            
+            [self obj_showTotasViewWithMes:param[@"msg"]];
+
         }
     }];
     

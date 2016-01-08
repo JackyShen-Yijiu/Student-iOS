@@ -250,6 +250,12 @@
         carModelName = @"";
     }
     _signArray = @[schoolName,carModelName];
+    
+    
+    //
+    if ([AcountManager manager].userName) {
+        self.userCenterView.userPhoneNum.text = [AcountManager manager].userName;
+    }
     [self.tableView reloadData];
 }
 

@@ -106,7 +106,7 @@
             b.selected = YES;
         }
     }
-    UILabel *contentLabel = self.titleArray[sender.tag - 100];
+    UILabel *contentLabel = self.titleArray[sender.tag - 1000];
     if ([_delegate respondsToSelector:@selector(senderCancelMessage:)]) {
         DYNSLog(@"content = %@",contentLabel.text);
         [_delegate senderCancelMessage:contentLabel.text];

@@ -296,7 +296,7 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
     return model;
 }
 - (SubjectThreeModel *)subjectthree {
-    NSDictionary *param = [NSUserStoreTool getObjectWithKey:ksubjectTwo];
+    NSDictionary *param = [NSUserStoreTool getObjectWithKey:ksubjectThree];
     NSError *error = nil;
     SubjectThreeModel *model = [MTLJSONAdapter modelOfClass:SubjectThreeModel.class fromJSONDictionary:param error:&error];
     DYNSLog(@"model = %@",param);

@@ -46,6 +46,7 @@
 		554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CD1C250A6900A55326 /* SignUpInfoManager.m */; };
 		554E8E881C3A89CC00233F2B /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 554E8E851C3A89CC00233F2B /* EaseMob.bundle */; };
 		554E8E8A1C3A985D00233F2B /* libEaseMobClientSDKLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */; };
+		556994AA1C3F885B00CD8BAF /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 556994A91C3F885B00CD8BAF /* mapapi.bundle */; };
 		556F42581C310E7A0052DE73 /* SignUpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F42571C310E7A0052DE73 /* SignUpListViewController.m */; };
 		556F425B1C310E980052DE73 /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F425A1C310E980052DE73 /* ApplyClassCell.m */; };
 		556F425E1C310F2D0052DE73 /* ExamDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F425D1C310F2D0052DE73 /* ExamDetailCell.m */; };
@@ -742,6 +743,7 @@
 		554E8E801C3A89CC00233F2B /* EMErrorDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMErrorDefs.h; sourceTree = "<group>"; };
 		554E8E851C3A89CC00233F2B /* EaseMob.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseMob.bundle; sourceTree = "<group>"; };
 		554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDKLite.a; sourceTree = "<group>"; };
+		556994A91C3F885B00CD8BAF /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		556F42561C310E7A0052DE73 /* SignUpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpListViewController.h; sourceTree = "<group>"; };
 		556F42571C310E7A0052DE73 /* SignUpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpListViewController.m; sourceTree = "<group>"; };
 		556F42591C310E980052DE73 /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -3008,6 +3010,7 @@
 			isa = PBXGroup;
 			children = (
 				B8E979B51C1DC244002DEA0A /* EaseMobSDK-PrefixHeader.pch */,
+				556994A91C3F885B00CD8BAF /* mapapi.bundle */,
 				D588AF921BDDB62C000C5D6F /* Main.storyboard */,
 				D588AF951BDDB62C000C5D6F /* Assets.xcassets */,
 				D588AF971BDDB62C000C5D6F /* LaunchScreen.storyboard */,
@@ -3776,6 +3779,7 @@
 				D5604BA91BF656C50020F0D7 /* VoiceSearchFeedback010.png in Resources */,
 				D5604BBE1BF656C50020F0D7 /* VoiceSearchFeedback020@2x.png in Resources */,
 				D5604C121BF656C50020F0D7 /* chat_receiver_audio_playing003.png in Resources */,
+				556994AA1C3F885B00CD8BAF /* mapapi.bundle in Resources */,
 				D5604BCE1BF656C50020F0D7 /* chatBar_more_face@2x.png in Resources */,
 				D5604BB31BF656C50020F0D7 /* VoiceSearchFeedback015.png in Resources */,
 				D5604C201BF656C50020F0D7 /* chat_sender_audio_playing_full.png in Resources */,
@@ -4484,7 +4488,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
+				PROVISIONING_PROFILE = "186730fd-fa68-4099-8433-b970523decc9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4575,7 +4579,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
+				PROVISIONING_PROFILE = "186730fd-fa68-4099-8433-b970523decc9";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

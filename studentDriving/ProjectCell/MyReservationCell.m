@@ -201,7 +201,7 @@
         //课程申请待确认中
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
-        self.contentStateTitle.text = @"申请待确认中";
+        self.contentStateTitle.text = @"申请中";
         
     }else if (myModel.reservationstate.integerValue == 2) {
         //取消预约(自己取消)
