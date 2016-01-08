@@ -340,6 +340,10 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 - (void)dealPhone:(UIButton *)sender {
     DrvingDetailModel *model = self.dataArray.firstObject;
     
+    if (model.phone == nil &&[model.phone isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"该驾校未录入电话!"];
+        return;
+    }
     
     [BLPFAlertView showAlertWithTitle:@"联系驾校" message:model.phone cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         NSLog(@"index = %ld",selectedOtherButtonIndex);

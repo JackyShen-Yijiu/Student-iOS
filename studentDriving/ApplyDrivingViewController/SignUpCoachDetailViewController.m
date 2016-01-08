@@ -328,6 +328,10 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 #pragma  mark - btnAction
 - (void)clickPhoneBtn:(UIButton *)sender {
     
+    if (self.detailModel.mobile == nil &&[self.detailModel.mobile isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"该驾校未录入电话!"];
+        return;
+    }
     
     [BLPFAlertView showAlertWithTitle:@"电话号码" message:self.detailModel.mobile cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
