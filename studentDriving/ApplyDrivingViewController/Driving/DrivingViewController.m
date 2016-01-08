@@ -59,6 +59,10 @@ static NSString *const kDrivingUrl = @"searchschool";
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
+    // 添加取消键盘的手势
+    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+    tapGestureRecognizer.cancelsTouchesInView = NO;
+    [self.view addGestureRecognizer:tapGestureRecognizer];
     // Do any additional setup after loading the view.
     
     //    [self addSideMenuButton];
@@ -100,7 +104,9 @@ static NSString *const kDrivingUrl = @"searchschool";
 //        // 获取网络数据
 //        [self network];
 }
-
+- (void)keyboardHide:(UITapGestureRecognizer *)tap{
+    [_tableHeaderView.searchTextField resignFirstResponder];
+}
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     self.geoCodeSearch = nil;

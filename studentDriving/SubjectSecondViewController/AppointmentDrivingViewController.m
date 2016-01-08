@@ -262,6 +262,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     AppointmentCoachTimeInfoModel *lastModel = resultArray.lastObject;
     
     NSArray *beginArray = [firstModel.coursetime.begintime componentsSeparatedByString:@":"];
+    NSLog(@"________----------------===================================%@",firstModel);
     NSString *beginString = beginArray.firstObject;
     _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:_updateTimeString]];
     NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
@@ -760,7 +761,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
                 
                 
                 AppointmentViewController *vc = [[AppointmentViewController alloc] init];
-                vc.markNum = @2;
+                vc.markNum = [AcountManager manager].userSubject.subjectId;
                 vc.title = @"预约列表";
                 [self.navigationController pushViewController:vc animated:YES];
                 

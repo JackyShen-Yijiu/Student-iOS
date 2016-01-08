@@ -70,7 +70,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
                 _headViewTitleLabel.text = [AcountManager manager].subjecttwo.progress;
 
             }else if (self.markNum.integerValue == 3) {
-                _headViewTitleLabel.text = [AcountManager manager].subjectthree.progress;
+                _headViewTitleLabel.text =  [AcountManager manager].subjectthree.progress;
 
             }
 

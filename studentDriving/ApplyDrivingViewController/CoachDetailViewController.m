@@ -53,7 +53,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         _tableHeadImageView.userInteractionEnabled = YES;
         [_tableHeadImageView addSubview:maskView];
         
-        UIView *heart = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide-15-50, 240-24, 50, 50)];
+        UIView *heart = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide-15-50, 240- 50, 50, 50)];
         heart.backgroundColor = [UIColor whiteColor];
         heart.layer.masksToBounds = YES;
         heart.layer.cornerRadius = heart.frame.size.width *0.5;
