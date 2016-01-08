@@ -213,6 +213,8 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (void)jeNetworkingCallBackData:(id)data {
     
+    [MBProgressHUD hideHUDForView:self.tableView animated:self.dataArray.count];
+
     DYNSLog(@"result = %@",data);
     if (![[data objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
         [self showTotasViewWithMes:@"没有找到数据！"];
@@ -237,8 +239,6 @@ static NSString *const kDrivingUrl = @"searchschool";
     if (!self.dataArray.count) {
         [self showTotasViewWithMes:@"没有找到数据！"];
     }
-    [MBProgressHUD hideHUDForView:self.view animated:self.dataArray.count];
-    
 }
 
 #pragma mark - 定位功能
