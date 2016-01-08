@@ -185,7 +185,17 @@ static NSString *const kuserapplyState = @"/userinfo/getmyapplystate?userid=%@";
 }
 
 - (void)callBtnClick {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://01053658566"]];
+    [BLPFAlertView showAlertWithTitle:@"电话号码" message:@"010-53658566" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+        DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
+        NSUInteger indexAlert = selectedOtherButtonIndex + 1;
+        if (indexAlert == 1) {
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",@"01053658566"];
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }else {
+            return ;
+        }
+        
+    }];
 }
 
 - (void)clickCamer:(UITapGestureRecognizer *)tap {

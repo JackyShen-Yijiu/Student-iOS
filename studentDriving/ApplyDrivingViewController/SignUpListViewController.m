@@ -202,7 +202,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 }
 
 - (void)callBtnClick {
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"tel://01053658566"]];
+
     [BLPFAlertView showAlertWithTitle:@"电话号码" message:@"010-53658566" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
         DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
         NSUInteger indexAlert = selectedOtherButtonIndex + 1;
