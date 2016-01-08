@@ -760,7 +760,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
                 
                 
                 AppointmentViewController *vc = [[AppointmentViewController alloc] init];
-                vc.markNum = @2;
+                vc.markNum = [AcountManager manager].userSubject.subjectId;
                 vc.title = @"预约列表";
                 [self.navigationController pushViewController:vc animated:YES];
                 
