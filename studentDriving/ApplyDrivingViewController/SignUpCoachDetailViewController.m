@@ -329,7 +329,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)clickPhoneBtn:(UIButton *)sender {
     
     if (self.detailModel.mobile == nil &&[self.detailModel.mobile isEqualToString:@""]) {
-        [self showTotasViewWithMes:@"该驾校未录入电话!"];
+        [self showTotasViewWithMes:@"该教练未录入电话!"];
         return;
     }
     

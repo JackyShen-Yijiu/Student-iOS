@@ -212,9 +212,11 @@
             {
                 SignUpListViewController *signUPVC = [SignUpListViewController new];
                 [self.navigationController pushViewController:signUPVC animated:YES];
-            }else
-            {
+            }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"3"]) {
+                [self showTotasViewWithMes:@"验证报名中"];
+            }else {
                 [self showTotasViewWithMes:@"您已经报过名!"];
+
             }
            
         }else {

@@ -43,8 +43,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     NSString * easemobAppKey = @"black-cat#yibuxuechetest";
     NSString * easemobApnsCertName = @"productionPush";
     
-//    easemobAppKey = @"black-cat#yibuxuecheprod";
-//    easemobApnsCertName = @"productionPush";
+    easemobAppKey = @"black-cat#yibuxuecheprod";
+    easemobApnsCertName = @"productionPush";
     
     EMError *error =  [[EaseMob sharedInstance] registerSDKWithAppKey:easemobAppKey
                                                          apnsCertName:easemobApnsCertName

@@ -221,8 +221,10 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 [AcountManager saveUserApplyState:@"0"];
             }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
                 [AcountManager saveUserApplyState:@"1"];
-            }else {
+            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 2) {
                 [AcountManager saveUserApplyState:@"2"];
+            }else {
+                [AcountManager saveUserApplyState:@"3"];
             }
             [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
             
