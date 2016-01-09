@@ -328,7 +328,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 #pragma  mark - btnAction
 - (void)clickPhoneBtn:(UIButton *)sender {
     
-    if (self.detailModel.mobile == nil &&[self.detailModel.mobile isEqualToString:@""]) {
+    if (self.detailModel.mobile == nil  || [self.detailModel.mobile isEqualToString:@""]) {
         [self showTotasViewWithMes:@"该驾校未录入电话!"];
         return;
     }

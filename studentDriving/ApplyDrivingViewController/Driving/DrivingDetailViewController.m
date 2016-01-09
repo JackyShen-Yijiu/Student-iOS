@@ -322,8 +322,7 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 
 - (void)dealPhone:(UIButton *)sender {
     DrvingDetailModel *model = self.dataArray.firstObject;
-    
-    if (!model.phone) {
+    if (!model.phone || [model.phone isEqualToString:@""]) {
         [self showTotasViewWithMes:@"此驾校暂无预留电话"];
         return ;
     }
