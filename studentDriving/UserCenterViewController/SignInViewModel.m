@@ -44,8 +44,8 @@
         for (NSDictionary *dict in array) {
             
             SignInDataModel *dataModel = [SignInDataModel yy_modelWithDictionary:dict];
-//            [self.dataArray addObject:dataModel];
-            [self.todayArray addObject:dataModel];
+            [self.dataArray addObject:dataModel];
+//            [self.todayArray addObject:dataModel];
         }
         
         NSString *formatString = @"yyyy-MM-dd";
