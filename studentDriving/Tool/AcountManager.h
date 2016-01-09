@@ -46,6 +46,8 @@
 @property (readonly,strong, nonatomic) SubjectThreeModel *subjectthree;
 // 定位到的城市
 @property (nonatomic, copy) NSString *userCity;
+// 定位到的详细地址
+@property (nonatomic, copy) NSString *locationAddress;
 // 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
 @property (nonatomic, assign) BOOL userLocationShowType;
 

@@ -87,8 +87,9 @@ static NSString *const kMyWalletUrl = @"userinfo/getmycupon?userid=%@";
     }
 }
 - (void)clickExchange:(UIButton *)sender {
-   DiscountShopController  *vc = [[DiscountShopController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+   DiscountShopController  *discountVc = [[DiscountShopController alloc] init];
+//    [self presentViewController:discountVc animated:YES completion:nil];
+    [self.navigationController pushViewController:discountVc animated:YES];
 }
 
 - (void)loadMoreLoad {

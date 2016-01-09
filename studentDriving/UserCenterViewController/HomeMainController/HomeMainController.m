@@ -745,6 +745,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 - (void)locationManager {
     
     [self.locationService startUserLocationService];
+//    [self didUpdateBMKUserLocation:nil];
 }
 #pragma mark 定位成功
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation {
@@ -774,10 +775,14 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     if (error == BMK_SEARCH_NO_ERROR) {
         //        NSLog(@"%@",result);
+        NSLog(@"%@", result.address);
+        
         BMKAddressComponent *addressComponent = result.addressDetail;
         //        NSLog(@"addressComponent.city===%@",addressComponent.city);
         // 存储定位到的城市名
         [AcountManager manager].userCity = addressComponent.city;
+        // 存储详细地址
+        [AcountManager manager].locationAddress = result.address;
 //        [AcountManager manager].userCity = @"北京";
 
         // 检查是否有活动

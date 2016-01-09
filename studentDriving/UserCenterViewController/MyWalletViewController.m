@@ -108,7 +108,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
         _exchangeButton.layer.borderColor = MAINCOLOR.CGColor;
         _exchangeButton.layer.borderWidth = 1;
         _exchangeButton.layer.cornerRadius = 2;
-        [_exchangeButton addTarget:self action:@selector(clickExchange:) forControlEvents:UIControlEventTouchUpInside];
+        [_exchangeButton addTarget:self action:@selector(clickExchangeReal:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _exchangeButton;
 }
@@ -250,7 +250,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 - (void)clickDismiss:(UIButton *)sender {
     [self.groundView removeFromSuperview];
 }
-- (void)clickExchange:(UIButton *)sender {
+- (void)clickExchangeReal:(UIButton *)sender {
     MagicMainTableViewController *vc = [[MagicMainTableViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
