@@ -377,7 +377,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             {
                 NSLog(@"%@",[AcountManager manager].userApplystate);
                 NSLog(@"%@",[AcountManager manager].userSubject.name);
-                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"] || [[AcountManager manager].userApplystate isEqualToString:@"3"]) {
                     [mainVC showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
                     
@@ -396,7 +396,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 break;
                 case 103:
             {
-                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"] || [[AcountManager manager].userApplystate isEqualToString:@"3"]) {
                     [mainVC showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
                     
@@ -438,7 +438,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             {
                
                 NSLog(@"%@",[AcountManager manager].userSubject.name);
-                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"] || [[AcountManager manager].userApplystate isEqualToString:@"3"]) {
                     [mainVC showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
                     
@@ -460,7 +460,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 break;
             case 103:
             {
-                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"] ||[[AcountManager manager].userApplystate isEqualToString:@"3"]) {
                     [mainVC showTotasViewWithMes:@"报名正在审核中!"];
                     return ;
                     
