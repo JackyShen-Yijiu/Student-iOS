@@ -581,7 +581,8 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
 
 +(BOOL)isValidateMobile:(NSString *)mobile
 {
-    NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+//    NSString *regex = @"^((17[0-9])|(13[0-9])|(147)|(15[^4,\\D])|(18[0,5-9]))\\d{8}$";
+    NSString *regex = @"^(1[0-9])\\d{9}$";
     NSPredicate *pred = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", regex];
     BOOL isMatch = [pred evaluateWithObject:mobile];
     return isMatch;
