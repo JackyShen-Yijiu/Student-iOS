@@ -536,7 +536,7 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
     if ([NSUserStoreTool getObjectWithKey:kUserCity]) {
         return [NSUserStoreTool getObjectWithKey:kUserCity];
     }else {
-        return nil;
+        return @"";
     }
 }
 // 定位到的详细地址
@@ -547,7 +547,7 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
     if ([NSUserStoreTool getObjectWithKey:kLocationAddress]) {
         return [NSUserStoreTool getObjectWithKey:kLocationAddress];
     }else {
-        return nil;
+        return @"";
     }
 
 }

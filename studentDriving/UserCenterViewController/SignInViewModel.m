@@ -38,6 +38,7 @@
             return ;
         }
         
+        NSLog(@"%@", data);
         _dataArray = [NSMutableArray array];
         _todayArray = [NSMutableArray array];
         NSArray *array = [data objectForKey:@"data"];
