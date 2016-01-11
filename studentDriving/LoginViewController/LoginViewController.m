@@ -44,6 +44,7 @@ static NSString *const kuserType = @"usertype";
 @property (strong, nonatomic) UIImageView *logoImageView;
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UIView *lineView;
+@property (strong, nonatomic) UIView *lineViewBottom;
 @property (strong, nonatomic) UIButton *bottomButton;
 @property (strong, nonatomic) UIImageView *rightImageView;
 @property (strong, nonatomic) NSMutableDictionary *userParam;
@@ -75,7 +76,7 @@ static NSString *const kuserType = @"usertype";
 - (UILabel *)bottomLabel {
     if (_bottomLabel == nil) {
         _bottomLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-58);
+        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-63);
         _bottomLabel.text = @"or";
         _bottomLabel.layer.cornerRadius = 10;
         _bottomLabel.clipsToBounds = YES;
@@ -119,7 +120,7 @@ static NSString *const kuserType = @"usertype";
 - (UIButton *)bottomButton {
     if (_bottomButton == nil) {
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_bottomButton setTitle:@"先随便看看" forState:UIControlStateNormal];
+        [_bottomButton setTitle:@"随便看看" forState:UIControlStateNormal];
         //        _bottomButton.layer.borderColor = RGBColor(253, 86, 50).CGColor;
         //        _bottomButton.layer.borderWidth = 1;
         [_bottomButton setTitleColor:RGBColor(255, 102, 51) forState:UIControlStateNormal];
@@ -134,8 +135,8 @@ static NSString *const kuserType = @"usertype";
 - (UIView *)backGroundView {
     if (_backGroundView == nil) {
         _backGroundView = [[UIView alloc] init];
-        _backGroundView.layer.borderColor = RGBColor(204, 204, 204).CGColor;
-        _backGroundView.layer.borderWidth = 1;
+//        _backGroundView.layer.borderColor = RGBColor(204, 204, 204).CGColor;
+//        _backGroundView.layer.borderWidth = 1;
         _backGroundView.userInteractionEnabled = YES;
     }
     return _backGroundView;
@@ -144,10 +145,19 @@ static NSString *const kuserType = @"usertype";
     if (_lineView == nil) {
         _lineView = [[UIView alloc] init];
         _lineView.layer.borderWidth = 1;
-        _lineView.layer.borderColor = RGBColor(230, 230, 230).CGColor;
+        _lineView.layer.borderColor = [UIColor colorWithHexString:@"bfbfbf"].CGColor;
     }
     return _lineView;
 }
+- (UIView *)lineViewBottom {
+    if (_lineViewBottom == nil) {
+        _lineViewBottom = [[UIView alloc] init];
+        _lineViewBottom.layer.borderWidth = 1;
+        _lineViewBottom.layer.borderColor = [UIColor colorWithHexString:@"bfbfbf"].CGColor;
+    }
+    return _lineViewBottom;
+}
+
 - (UIImageView *)logoImageView {
     if (_logoImageView == nil) {
         _logoImageView = [[UIImageView alloc] init];
@@ -165,7 +175,7 @@ static NSString *const kuserType = @"usertype";
         _registerButton.backgroundColor = [UIColor clearColor];
         [_registerButton addTarget:self action:@selector(dealRegister:) forControlEvents:UIControlEventTouchUpInside];
         [_registerButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [_registerButton setTitle:@"现在注册账号" forState:UIControlStateNormal];
+        [_registerButton setTitle:@"注册账号" forState:UIControlStateNormal];
         _registerButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_registerButton setTitleColor:RGBColor(255, 102, 51)  forState:UIControlStateNormal];
         
@@ -213,11 +223,16 @@ static NSString *const kuserType = @"usertype";
         _phoneNumTextField.delegate           = self;
         
         _phoneNumTextField.font = [UIFont systemFontOfSize:15];
-        _phoneNumTextField.textColor = RGBColor(51, 51, 51);
+//        text.borderStyle = UITextBorderStyleRoundedRect
+//        _phoneNumTextField.borderStyle = UITextBorderStyleNone;
+       _phoneNumTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
+    
         
         _phoneNumTextField.tag = 100;
         
-        _phoneNumTextField.placeholder        = @" 请填写手机号";
+        _phoneNumTextField.placeholder        = @" 手机号";
+        [_phoneNumTextField setValue:[UIColor colorWithHexString:@"#d9d9d9"] forKeyPath:@"_placeholderLabel.textColor"];
+        [_phoneNumTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
         _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
         
@@ -225,8 +240,9 @@ static NSString *const kuserType = @"usertype";
         leftView.image = [UIImage imageNamed:@"账号"];
         
         _phoneNumTextField.leftView = leftView;
+        _phoneNumTextField.backgroundColor = [UIColor clearColor];
         
-        _phoneNumTextField.backgroundColor = [UIColor colorWithWhite:1 alpha:0.9];
+//        _phoneNumTextField.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
         
     }
     
@@ -238,18 +254,20 @@ static NSString *const kuserType = @"usertype";
     if (_passwordTextField == nil) {
         _passwordTextField = [[UITextField alloc] init];
         _passwordTextField.delegate = self;
-        _passwordTextField.placeholder = @" 请填写密码";
+        _passwordTextField.placeholder = @" 密码";
+        [_passwordTextField setValue:[UIColor colorWithHexString:@"#d9d9d9"] forKeyPath:@"_placeholderLabel.textColor"];
+        [_passwordTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
         _passwordTextField.tag = 101;
         _passwordTextField.leftViewMode = UITextFieldViewModeAlways;
         _passwordTextField.font = [UIFont systemFontOfSize:15];
-        _passwordTextField.textColor = RGBColor(51, 51, 51);
+         _passwordTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
         leftView.image = [UIImage imageNamed:@"密码"];
         
         _passwordTextField.leftView = leftView;
         _passwordTextField.secureTextEntry = YES;
         
-        _passwordTextField.backgroundColor = [UIColor colorWithWhite:1 alpha:0.9];
+//        _passwordTextField.backgroundColor = [UIColor colorWithWhite:1 alpha:0.9];
     }
     return _passwordTextField;
 }
@@ -268,6 +286,7 @@ static NSString *const kuserType = @"usertype";
     [self.backGroundView addSubview:self.lineView];
     [self.backGroundView addSubview:self.phoneNumTextField];
     [self.backGroundView addSubview:self.passwordTextField];
+    [self.backGroundView addSubview:self.lineViewBottom];
     [self.view addSubview:self.forgetButton];
     [self.view addSubview:self.registerButton];
     [self.view addSubview:self.bottomButton];
@@ -593,11 +612,18 @@ static NSString *const kuserType = @"usertype";
     }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(40.5);
+        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(35.5);
         make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
         make.height.mas_equalTo(@1);
     }];
+    [self.lineViewBottom mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(75.5);
+        make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
+        make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
+        make.height.mas_equalTo(@1);
+    }];
+
     
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -605,7 +631,7 @@ static NSString *const kuserType = @"usertype";
         
         make.right.mas_equalTo(self.view.mas_right).with.offset(-20);
         
-        make.top.mas_equalTo(self.backGroundView.mas_bottom).with.offset(20);
+        make.top.mas_equalTo(self.backGroundView.mas_bottom).with.offset(60);
         
         make.height.mas_equalTo(@44);
         
@@ -613,7 +639,7 @@ static NSString *const kuserType = @"usertype";
     
     [self.forgetButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(20);
-        make.top.mas_equalTo(self.loginButton.mas_bottom).with.offset(14);
+        make.top.mas_equalTo(self.loginButton.mas_bottom).with.offset(6);
         make.width.mas_equalTo(@60);
         make.height.mas_equalTo(@25);
     }];
@@ -634,7 +660,7 @@ static NSString *const kuserType = @"usertype";
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.bottom.mas_equalTo(self.bottomLabel.mas_top).offset(-5);
+        make.bottom.mas_equalTo(self.bottomLabel.mas_top).offset(0);
         make.width.mas_equalTo(@200);
         make.height.mas_equalTo(@25);
     }];
