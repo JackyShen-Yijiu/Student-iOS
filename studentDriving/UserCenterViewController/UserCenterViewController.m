@@ -99,6 +99,13 @@
 - (void)clickQuit:(UIButton *)sender {
     
     [AcountManager removeAllData];
+    [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:nil];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+        DYNSLog(@"asyncLogoffWithUnbindDeviceToken%@",error);
+    } onQueue:nil];
     
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
         DYNSLog(@"退出成功 = %@ %@",info,error);
@@ -107,7 +114,9 @@
     } onQueue:nil];
 
 //    [self dismissViewControllerAnimated:NO completion:nil];
-    [APService setAlias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+//    [APService setAlias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+    NSSet *set = [NSSet setWithObjects:@"", nil];
+    [APService setTags:set alias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
 //    [self.navigationController popToRootViewControllerAnimated:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kQuitSuccess" object:nil];
     [AcountManager removeAllData];

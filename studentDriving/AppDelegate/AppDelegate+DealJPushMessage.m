@@ -30,7 +30,8 @@
     [APService setupWithOption:launchOptions];
 
     if ([AcountManager manager].userid) {
-        [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+        NSSet *set = [NSSet setWithObjects:@"jpushStudent", nil];
+        [APService setTags:set alias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
     }
     
 }
