@@ -61,8 +61,8 @@
     NSString *coachName = self.dataModel.coachDataModel.name;
     NSString *courseProcessDesc = self.dataModel.courseProcessDesc;
     
-    NSDictionary *dict = @{ @"userId": userId,
-                            @"userName": userName,
+    NSDictionary *dict = @{ @"studentId": userId,
+                            @"studentName": userName,
                             @"orderId": orderId,
                             @"currentTime": currentTime,
                             @"locationAddress": locationAddress,
