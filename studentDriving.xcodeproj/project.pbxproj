@@ -4408,10 +4408,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-
-				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
-
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4488,12 +4486,9 @@
 					"-force_load",
 					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawei.TestOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
-				PROVISIONING_PROFILE = "186730fd-fa68-4099-8433-b970523decc9";
-
-
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4504,10 +4499,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-
-				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
-
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4584,16 +4577,9 @@
 					"-force_load",
 					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
+				PRODUCT_BUNDLE_IDENTIFIER = com.dawei.TestOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-
-
-
-
-				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
-
-
-
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

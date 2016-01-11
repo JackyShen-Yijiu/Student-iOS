@@ -51,6 +51,9 @@
     NSString *formatString = @"yyyy-MM-dd HH:mm:ss";
     NSString *currentTime = [self dateFromLocalWithFormatString:formatString];
     
+    NSLog(@"%@", userId);
+    NSLog(@"%@", userName);
+    NSLog(@"locationAddress === %@", locationAddress);
     NSLog(@"%@",self.dataModel.ID);
     NSLog(@"%@",self.dataModel.coachDataModel.name);
     NSLog(@"%@",self.dataModel.courseProcessDesc);
