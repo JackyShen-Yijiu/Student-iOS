@@ -55,6 +55,7 @@
     }else if ([type isEqualToString:@"walletupdate"]) {
         
         MyWalletViewController *detail = [[MyWalletViewController alloc] init];
+        
         [[HMControllerManager slideMainNavController] pushViewController:detail animated:YES];
         
     }
