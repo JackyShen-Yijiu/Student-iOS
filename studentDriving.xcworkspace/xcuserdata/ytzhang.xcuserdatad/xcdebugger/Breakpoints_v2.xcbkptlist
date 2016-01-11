@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "studentDriving/LoginViewController/LoginViewController.m"
-            timestampString = "474193890.374688"
+            timestampString = "474198571.410259"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "380"
-            endingLineNumber = "380"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "-userLogin"
             landmarkType = "5">
          </BreakpointContent>
