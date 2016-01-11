@@ -76,7 +76,7 @@ static NSString *const kuserType = @"usertype";
 - (UILabel *)bottomLabel {
     if (_bottomLabel == nil) {
         _bottomLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-58);
+        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-63);
         _bottomLabel.text = @"or";
         _bottomLabel.layer.cornerRadius = 10;
         _bottomLabel.clipsToBounds = YES;
@@ -612,13 +612,13 @@ static NSString *const kuserType = @"usertype";
     }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(40.5);
+        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(35.5);
         make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
         make.height.mas_equalTo(@1);
     }];
     [self.lineViewBottom mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(80.5);
+        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(75.5);
         make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
         make.height.mas_equalTo(@1);
@@ -639,7 +639,7 @@ static NSString *const kuserType = @"usertype";
     
     [self.forgetButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(20);
-        make.top.mas_equalTo(self.loginButton.mas_bottom).with.offset(14);
+        make.top.mas_equalTo(self.loginButton.mas_bottom).with.offset(6);
         make.width.mas_equalTo(@60);
         make.height.mas_equalTo(@25);
     }];
@@ -660,7 +660,7 @@ static NSString *const kuserType = @"usertype";
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.bottom.mas_equalTo(self.bottomLabel.mas_top).offset(-5);
+        make.bottom.mas_equalTo(self.bottomLabel.mas_top).offset(0);
         make.width.mas_equalTo(@200);
         make.height.mas_equalTo(@25);
     }];
