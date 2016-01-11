@@ -14,7 +14,7 @@
 @property (nonatomic, copy) NSString *ID;
 @property (nonatomic, copy) NSString *beginTime;
 @property (nonatomic, copy) NSString *endTime;
-@property (nonatomic, copy) NSString *courseprocessdesc;
+@property (nonatomic, copy) NSString *courseProcessDesc;
 
 @property (nonatomic, strong) SignInCoachDataModel *coachDataModel;
 
