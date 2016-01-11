@@ -55,8 +55,10 @@
         
     }else if ([type isEqualToString:@"walletupdate"]) {
         
+
 //        MyWalletViewController *detail = [[MyWalletViewController alloc] init];
         [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeMyWalletViewController];
+
         
     }
     
