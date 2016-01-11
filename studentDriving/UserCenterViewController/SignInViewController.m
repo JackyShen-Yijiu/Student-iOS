@@ -51,14 +51,23 @@
     NSString *formatString = @"yyyy-MM-dd HH:mm:ss";
     NSString *currentTime = [self dateFromLocalWithFormatString:formatString];
     
+    NSLog(@"%@", userId);
+    NSLog(@"%@", userName);
+    NSLog(@"locationAddress === %@", locationAddress);
+    NSLog(@"%@",self.dataModel.ID);
+    NSLog(@"%@",self.dataModel.coachDataModel.name);
+    NSLog(@"%@",self.dataModel.courseProcessDesc);
+    NSString *orderId = self.dataModel.ID;
+    NSString *coachName = self.dataModel.coachDataModel.name;
+    NSString *courseProcessDesc = self.dataModel.courseProcessDesc;
     
-    NSDictionary *dict = @{ @"userId": userId,
-                            @"userName": userName,
-                            @"orderId": self.dataModel.ID,
+    NSDictionary *dict = @{ @"studentId": userId,
+                            @"studentName": userName,
+                            @"orderId": orderId,
                             @"currentTime": currentTime,
                             @"locationAddress": locationAddress,
-                            @"coachName": self.dataModel.coachDataModel.name,
-                            @"courseProcessDesc": self.dataModel.courseProcessDesc };
+                            @"coachName": coachName,
+                            @"courseProcessDesc": courseProcessDesc };
     
     NSString *string = [NSString stringWithFormat:@"%@", dict];
     
@@ -166,7 +175,7 @@
         _explainLabel = [UILabel new];
         _explainLabel.numberOfLines = 0;
         _explainLabel.font = [UIFont systemFontOfSize:12];
-        _explainLabel.text = @"        签到开放的时间为,预定学车开始前的15分钟至学车结束后15分钟，请您及时签到。如不签到，可能会影响您的学时记录以及教练的工时记录。\n如有疑问，请拨打400-626-9255";
+        _explainLabel.text = @"        签到开放的时间为,预定学车开始前的15分钟至学车时间结束，请您及时签到。如不签到，可能会影响您的学时记录以及教练的工时记录。\n如有疑问，请拨打400-626-9255";
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         
         [paragraphStyle setLineSpacing:8];//调整行间距

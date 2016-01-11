@@ -58,7 +58,7 @@ static NSString *kMagicShop = @"getmailproduct?index=1&count=10&producttype=0";
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,kMagicShop];
     NSLog(@"%@",urlString);
-    NSDictionary *parm = @{@"cityname":[AcountManager manager].userAddress};
+    NSDictionary *parm = @{@"cityname":[AcountManager manager].userCity};
 //    NSLog(@"%@",[AcountManager manager].userCity);
     [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);

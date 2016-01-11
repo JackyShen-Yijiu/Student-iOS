@@ -42,7 +42,7 @@ static NSString *const kDiscountListUrl = @"getmailproduct?index=1&count=10&prod
     NSString *url = [NSString stringWithFormat:kDiscountListUrl];
     NSString *urlString = [NSString stringWithFormat:BASEURL,url];
     
-    NSDictionary *parm = @{@"cityname":[AcountManager manager].userAddress};
+    NSDictionary *parm = @{@"cityname":[AcountManager manager].userCity};
     [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data)  {
         DYNSLog(@"我的钱包start data = %@",data);
         
