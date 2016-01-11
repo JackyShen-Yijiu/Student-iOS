@@ -4488,11 +4488,9 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-				PROVISIONING_PROFILE = "";
-=======
+
 				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
->>>>>>> 90f6a709dd27c990a3726ab3b468d10d9c951316
+
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4583,11 +4581,10 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-<<<<<<< HEAD
-				PROVISIONING_PROFILE = "";
-=======
+
+
+
 				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
->>>>>>> 90f6a709dd27c990a3726ab3b468d10d9c951316
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
