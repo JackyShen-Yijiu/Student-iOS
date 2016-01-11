@@ -11,6 +11,7 @@
 #import "SignInDataModel.h"
 #import "SignInViewController.h"
 #import "SignInListCell.h"
+#import "MJRefresh.h"
 
 @interface SignInListController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -31,7 +32,7 @@
     _tableView.backgroundColor = [UIColor whiteColor];
     
     [self configViewModel];
-    
+    [self configRefresh];
 }
 
 #pragma mark - config ViewModel
@@ -41,10 +42,22 @@
     __weak typeof(self) ws = self;
     [_viewModel setDVVRefreshSuccessBlock:^{
         
+        [ws.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     }];
     // 请求网络数据
     [_viewModel dvvNetworkRequestRefresh];
+}
+
+#pragma mark - config refresh
+- (void)configRefresh {
+    
+    // 刷新
+    MJRefreshNormalHeader *refreshHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [_viewModel dvvNetworkRequestRefresh];
+    }];
+    
+    self.tableView.mj_header = refreshHeader;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -65,9 +78,9 @@
     
     SignInDataModel *dataModel = _viewModel.todayArray[indexPath.row];
     cell.coachNameLabel.text = dataModel.coachDataModel.name;
-    cell.beginTimeLabel.text = dataModel.beginTime;
+    cell.beginTimeLabel.text = [NSString stringWithFormat:@"%@-%@", dataModel.beginTime, dataModel.endTime];
 //    cell.beginTimeLabel.text = @"12:00:00";
-    cell.markLabel.text = dataModel.courseprocessdesc;
+    cell.markLabel.text = dataModel.courseProcessDesc;
     if (dataModel.signInStatus) {
         cell.signInStatusLabel.text = @"可签到";
     }else {

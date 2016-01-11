@@ -61,17 +61,19 @@
             // 如果有，则保存下来
             if ([beginTime isEqualToString:todayTime]) {
                 
-                NSString *format = @"HH:mm:ss";
+                NSString *format = @"HH:mm";
                 NSString *time = [self getLocalDateFormateUTCDate:item.beginTime format:format];
-                NSString *string = [NSString stringWithFormat:@"%@", time];
-                item.beginTime = string;
+                NSString *beginString = [NSString stringWithFormat:@"%@", time];
+                item.beginTime = beginString;
+                NSString *endString = [self getLocalDateFormateUTCDate:item.endTime format:format];
+                item.endTime = endString;
                 
                 // 判断当前的时间是否可以签到
                 NSString *currentHH = [self dateFromLocalWithFormatString:@"HH"];
                 NSString *currentMM = [self dateFromLocalWithFormatString:@"mm"];
-                NSString *beginHH = [self getLocalDateFormateUTCDate:item.beginTime format:@"HH"];
+                NSString *beginHH = [item.beginTime substringToIndex:2];
                 
-                
+                // 在开始前的15分钟之内
                 if ([currentHH integerValue] < [beginHH integerValue]) {
                     if (1 == ([beginHH integerValue] - [currentHH integerValue])) {
                         
@@ -81,10 +83,14 @@
                     }
                 }
                 
-                NSString *endHH = [self getLocalDateFormateUTCDate:item.beginTime format:@"HH"];
-                if ([currentHH integerValue] < [endHH integerValue]) {
-                    if (1 == [endHH integerValue] - [currentHH integerValue]) {
-                        if ([currentHH integerValue] <= 15) {
+                NSString *endHH = [item.endTime substringToIndex:2];
+                NSLog(@"%@---%@---%@", currentHH, beginHH, endHH);
+                // 学车过程中
+                if ([currentHH integerValue] <= [endHH integerValue] && currentHH >= beginHH) {
+                        item.signInStatus = YES;
+                }else { // 结束后15分钟
+                    if (1 == [currentHH integerValue] - [endHH integerValue]) {
+                        if ([currentMM integerValue] <= 15) {
                             item.signInStatus = YES;
                         }
                     }

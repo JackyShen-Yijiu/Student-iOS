@@ -3662,7 +3662,7 @@
 				TargetAttributes = {
 					D588AF851BDDB62C000C5D6F = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = MC3VUBEH8X;
+						DevelopmentTeam = F2PW74LLJK;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -4408,8 +4408,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4488,7 +4488,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
+				PROVISIONING_PROFILE = "";
+=======
 				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
+>>>>>>> 90f6a709dd27c990a3726ab3b468d10d9c951316
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4499,8 +4503,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4579,7 +4583,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+<<<<<<< HEAD
+				PROVISIONING_PROFILE = "";
+=======
 				PROVISIONING_PROFILE = "c158a7eb-09fa-4b74-89af-e0460a26208a";
+>>>>>>> 90f6a709dd27c990a3726ab3b468d10d9c951316
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

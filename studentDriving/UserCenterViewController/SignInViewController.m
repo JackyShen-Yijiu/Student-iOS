@@ -41,16 +41,25 @@
     
     [self configUI];
     
+    // 用户id
     NSString *userId = [AcountManager manager].userid;
+    // 用户名
+    NSString *userName = [AcountManager manager].userName;
     // 详细地址
     NSString *locationAddress = [AcountManager manager].locationAddress;
+    // 当前的时间
     NSString *formatString = @"yyyy-MM-dd HH:mm:ss";
     NSString *currentTime = [self dateFromLocalWithFormatString:formatString];
     
-    NSDictionary *dict = @{ @"userid": userId,
-                            @"orderid": self.dataModel.ID,
-                            @"currenttime": currentTime,
-                            @"locationaddress": locationAddress };
+    
+    NSDictionary *dict = @{ @"userId": userId,
+                            @"userName": userName,
+                            @"orderId": self.dataModel.ID,
+                            @"currentTime": currentTime,
+                            @"locationAddress": locationAddress,
+                            @"coachName": self.dataModel.coachDataModel.name,
+                            @"courseProcessDesc": self.dataModel.courseProcessDesc };
+    
     NSString *string = [NSString stringWithFormat:@"%@", dict];
     
     // 显示二维码

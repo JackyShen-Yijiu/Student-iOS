@@ -19,6 +19,7 @@
     return @{ @"ID": @"_id",
               @"beginTime": @"begintime",
               @"endTime": @"endtime",
+              @"courseProcessDesc": @"courseprocessdesc",
               @"coachDataModel": @"coachid" };
 }
 
