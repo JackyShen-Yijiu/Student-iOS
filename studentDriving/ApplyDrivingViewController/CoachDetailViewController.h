@@ -10,4 +10,5 @@
 #import "BLBaseViewController.h"
 @interface CoachDetailViewController : BLBaseViewController
 @property (copy, nonatomic) NSString *coachUserId;
+@property (nonatomic, assign) BOOL isVerify;
 @end

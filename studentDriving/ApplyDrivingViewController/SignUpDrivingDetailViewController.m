@@ -22,6 +22,7 @@
 #import "LoginViewController.h"
 #import "UIColor+Hex.h"
 #import "VerifyInformationController.h"
+#import "NSUserStoreTool.h"
 static NSString *const kDrivingDetailUrl = @"driveschool/getschoolinfo/%@";
 
 static NSString *const kGetDrivingCoachUrl = @"getschoolcoach/%@/%@";
@@ -316,6 +317,8 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
                 SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
                 [self.navigationController pushViewController:signUp animated:YES];
             }else {
+                [NSUserStoreTool removeObjectWithKey:kClasstypeParam];
+                [NSUserStoreTool removeObjectWithKey:kVerifyCoachParam];
                 VerifyInformationController *signUp = [[VerifyInformationController alloc] init];
                 [self.navigationController pushViewController:signUp animated:YES];
             }
@@ -329,9 +332,13 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 
 - (void)senderCoachModel:(CoachModel *)model {
     NSString *coachId = model.coachid;
+    if (self.isVerify) {
+        return;
+    }
     
     CoachDetailViewController *coachDetail = [[CoachDetailViewController alloc] init];
     coachDetail.coachUserId = coachId;
+    coachDetail.isVerify = self.isVerify;
     [self.navigationController pushViewController:coachDetail animated:YES];
     
 }
@@ -340,7 +347,7 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
 - (void)dealPhone:(UIButton *)sender {
     DrvingDetailModel *model = self.dataArray.firstObject;
     
-    if (model.phone == nil &&[model.phone isEqualToString:@""]) {
+    if (model.phone == nil  || [model.phone isEqualToString:@""]) {
         [self showTotasViewWithMes:@"该驾校未录入电话!"];
         return;
     }

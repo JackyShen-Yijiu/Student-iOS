@@ -210,7 +210,7 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"1"]) {
                [self.navigationController pushViewController:[SubmitVerificationController new] animated:YES];
-                [AcountManager saveUserApplyState:@"2"];
+                [AcountManager saveUserApplyState:@"3"];
             }else {
                 kShowFail(param[@"msg"]);
             }
