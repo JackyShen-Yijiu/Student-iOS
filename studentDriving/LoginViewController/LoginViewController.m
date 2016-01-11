@@ -442,7 +442,9 @@ static NSString *const kuserType = @"usertype";
              
              NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
              
-             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+//             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+             NSSet *set = [NSSet setWithObjects:@"jpushStudent", nil];
+             [APService setTags:set alias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
              
              //设置是否自动登录
              [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];

@@ -22,6 +22,8 @@
 #import "DrivingCityListView.h"
 #import "CoachDetailViewController.h"
 #import "AcountManager.h"
+#import "BLPFAlertView.h"
+#import "DVVOpenControllerFromSideMenu.h"
 
 @interface SearchCoachController ()<UITableViewDataSource, UITableViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate>
 
@@ -87,9 +89,16 @@
     _searchCoachViewModel = [SearchCoachViewModel new];
     __weak typeof(self) ws = self;
     [_searchCoachViewModel setDVVRefreshSuccessBlock:^{
-        [ws.tableView reloadData];
-        [ws.tableView.mj_header endRefreshing];
         [MBProgressHUD hideHUDForView:ws.view animated:YES];
+        if (_searchCoachViewModel.dataArray.count == 0) {
+            [BLPFAlertView showAlertWithTitle:@"提示" message:@"对不起，该地区暂无合作教练，请您在侧边栏搜驾校。如有疑问，请致电 400-626-9255"cancelButtonTitle:@"返回" otherButtonTitles:nil completion:^(NSUInteger selectedOtherButtonIndex) {
+                DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
+                [ws.navigationController popViewControllerAnimated:YES];
+            }];
+        }else {
+            [ws.tableView reloadData];
+            [ws.tableView.mj_header endRefreshing];
+        }
     }];
     [_searchCoachViewModel setDVVLoadMoreSuccessBlock:^{
         [ws.tableView reloadData];
