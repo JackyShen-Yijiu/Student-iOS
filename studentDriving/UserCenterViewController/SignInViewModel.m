@@ -34,6 +34,7 @@
     [JENetwoking startDownLoadWithUrl:url postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
         if ([self checkErrorWithData:data]) {
+            [self dvvRefreshSuccess];
             [self showMsg:@"今天没有预约"];
             return ;
         }
