@@ -59,7 +59,7 @@ static NSString *const kuserType = @"usertype";
 
 - (UIView *)bottomLeftLineView {
     if (_bottomLeftLineView == nil) {
-        _bottomLeftLineView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight-58, (kSystemWide-60)/2, 1)];
+        _bottomLeftLineView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
         _bottomLeftLineView.backgroundColor = MAINCOLOR;
     }
     return _bottomLeftLineView;
@@ -67,7 +67,7 @@ static NSString *const kuserType = @"usertype";
 
 - (UIView *)bottomRightLineView {
     if (_bottomRightLineView == nil) {
-        _bottomRightLineView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2+15, kSystemHeight-58, (kSystemWide-60)/2, 1)];
+        _bottomRightLineView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2+15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
         _bottomRightLineView.backgroundColor = MAINCOLOR;
     }
     return _bottomRightLineView;
@@ -76,7 +76,7 @@ static NSString *const kuserType = @"usertype";
 - (UILabel *)bottomLabel {
     if (_bottomLabel == nil) {
         _bottomLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-63);
+        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-43);
         _bottomLabel.text = @"or";
         _bottomLabel.layer.cornerRadius = 10;
         _bottomLabel.clipsToBounds = YES;
@@ -121,8 +121,6 @@ static NSString *const kuserType = @"usertype";
     if (_bottomButton == nil) {
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_bottomButton setTitle:@"随便看看" forState:UIControlStateNormal];
-        //        _bottomButton.layer.borderColor = RGBColor(253, 86, 50).CGColor;
-        //        _bottomButton.layer.borderWidth = 1;
         [_bottomButton setTitleColor:RGBColor(255, 102, 51) forState:UIControlStateNormal];
         _bottomButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_bottomButton addTarget:self action:@selector(dealBottom:) forControlEvents:UIControlEventTouchUpInside];
@@ -135,8 +133,6 @@ static NSString *const kuserType = @"usertype";
 - (UIView *)backGroundView {
     if (_backGroundView == nil) {
         _backGroundView = [[UIView alloc] init];
-//        _backGroundView.layer.borderColor = RGBColor(204, 204, 204).CGColor;
-//        _backGroundView.layer.borderWidth = 1;
         _backGroundView.userInteractionEnabled = YES;
     }
     return _backGroundView;
@@ -223,9 +219,7 @@ static NSString *const kuserType = @"usertype";
         _phoneNumTextField.delegate           = self;
         
         _phoneNumTextField.font = [UIFont systemFontOfSize:15];
-//        text.borderStyle = UITextBorderStyleRoundedRect
-//        _phoneNumTextField.borderStyle = UITextBorderStyleNone;
-       _phoneNumTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
+          _phoneNumTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
     
         
         _phoneNumTextField.tag = 100;
@@ -241,8 +235,6 @@ static NSString *const kuserType = @"usertype";
         
         _phoneNumTextField.leftView = leftView;
         _phoneNumTextField.backgroundColor = [UIColor clearColor];
-        
-//        _phoneNumTextField.backgroundColor = [UIColor colorWithWhite:1 alpha:0];
         
     }
     
@@ -645,7 +637,7 @@ static NSString *const kuserType = @"usertype";
     }];
     
     [self.bottomButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.bottomLabel.mas_bottom).with.offset(5);
+        make.top.mas_equalTo(self.bottomLabel.mas_bottom).with.offset(-8);
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(@122);
         make.height.mas_equalTo(@25);
@@ -660,7 +652,7 @@ static NSString *const kuserType = @"usertype";
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.bottom.mas_equalTo(self.bottomLabel.mas_top).offset(0);
+        make.bottom.mas_equalTo(self.bottomLabel.mas_top).offset(10);
         make.width.mas_equalTo(@200);
         make.height.mas_equalTo(@25);
     }];
