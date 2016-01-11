@@ -112,6 +112,7 @@
 }
 
 - (void)dealRefer:(UIButton *)sender{
+    [AcountManager saveUserApplyState:@"3"];
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
