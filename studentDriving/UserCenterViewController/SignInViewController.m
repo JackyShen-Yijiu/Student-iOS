@@ -51,14 +51,20 @@
     NSString *formatString = @"yyyy-MM-dd HH:mm:ss";
     NSString *currentTime = [self dateFromLocalWithFormatString:formatString];
     
+    NSLog(@"%@",self.dataModel.ID);
+    NSLog(@"%@",self.dataModel.coachDataModel.name);
+    NSLog(@"%@",self.dataModel.courseProcessDesc);
+    NSString *orderId = self.dataModel.ID;
+    NSString *coachName = self.dataModel.coachDataModel.name;
+    NSString *courseProcessDesc = self.dataModel.courseProcessDesc;
     
     NSDictionary *dict = @{ @"userId": userId,
                             @"userName": userName,
-                            @"orderId": self.dataModel.ID,
+                            @"orderId": orderId,
                             @"currentTime": currentTime,
                             @"locationAddress": locationAddress,
-                            @"coachName": self.dataModel.coachDataModel.name,
-                            @"courseProcessDesc": self.dataModel.courseProcessDesc };
+                            @"coachName": coachName,
+                            @"courseProcessDesc": courseProcessDesc };
     
     NSString *string = [NSString stringWithFormat:@"%@", dict];
     
