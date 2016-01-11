@@ -115,7 +115,11 @@
             NSString *urlString = [NSString stringWithFormat:@"getactivity"];
             NSString *url = [NSString stringWithFormat:BASEURL,urlString];
             NSLog(@"userCity === %@", [AcountManager manager].userCity);
-            [JENetwoking startDownLoadWithUrl:url postParam:@{ @"cityname": [AcountManager manager].userCity } WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            NSString *userCity = [AcountManager manager].userCity;
+            if (!userCity) {
+                userCity = @"";
+            }
+            [JENetwoking startDownLoadWithUrl:url postParam:@{ @"cityname": userCity } WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
                 NSLog(@"%@",data);
                 [self loadActivityWithData:data];
             } withFailure:^(id data) {

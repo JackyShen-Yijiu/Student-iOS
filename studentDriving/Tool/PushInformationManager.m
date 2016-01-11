@@ -10,6 +10,7 @@
 #import "AcountManager.h"
 #import "MyWalletViewController.h"
 #import "AppointmentDetailViewController.h"
+#import "DVVOpenControllerFromSideMenu.h"
 @implementation PushInformationManager
 
 + (void)receivePushInformation:(NSDictionary *)pushInformation {
@@ -54,9 +55,10 @@
         
     }else if ([type isEqualToString:@"walletupdate"]) {
         
-        MyWalletViewController *detail = [[MyWalletViewController alloc] init];
-        
-        [[HMControllerManager slideMainNavController] pushViewController:detail animated:YES];
+
+//        MyWalletViewController *detail = [[MyWalletViewController alloc] init];
+        [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeMyWalletViewController];
+
         
     }
     
