@@ -396,13 +396,27 @@ static NSString *const kuserType = @"usertype";
    
     BOOL isLoggedIn = [[EaseMob sharedInstance].chatManager isLoggedIn];
     NSLog(@"isLoggedIn:%d",isLoggedIn);
+    if (isLoggedIn) {
+        [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:nil];
+        
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES];
+        
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+            DYNSLog(@"asyncLogoffWithUnbindDeviceToken%@",error);
+        } onQueue:nil];
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+            DYNSLog(@"退出成功 = %@ %@",info,error);
+            if (!error && info) {
+            }
+        } onQueue:nil];
+    }
     
     NSLog(@"username:%@ password:%@",username,password);
     
     NSString *userid = [NSString stringWithFormat:@"%@",dataDic[@"data"][@"userid"]];
     NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
     
-    if (userid==nil) {
+    if (!userid) {
         userid = @"";
      }
     NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);

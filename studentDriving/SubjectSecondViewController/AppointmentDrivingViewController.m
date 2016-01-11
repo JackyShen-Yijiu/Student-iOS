@@ -44,7 +44,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 @property (strong, nonatomic) NSString *updateTimeString;
 @property (strong, nonatomic) UICollectionView *sameTimeStudentCollectionView;
 @property (strong, nonatomic) UILabel *studentTitle;
-@property (strong, nonatomic) NSArray *stuDataArray;
+@property (strong, nonatomic) NSMutableArray *stuDataArray;
 
 @property (strong, nonatomic) UIButton *naviBarRightButton;
 
@@ -269,7 +269,11 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     NSString *endString = endArray.firstObject;
     _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:_updateTimeString]];
     if (beginString && endString) {
-        self.contentLabel.text = [NSString stringWithFormat:@"当前预约为科目二的第%@-%@时段",beginString,endString];
+        if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
+            self.contentLabel.text = [NSString stringWithFormat:@"当前预约为科目二的第%@-%@时段",beginString,endString];
+        }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
+            self.contentLabel.text = [NSString stringWithFormat:@"当前预约为科目三的第%@-%@时段",beginString,endString];
+        }
     }else {
         self.contentLabel.text = @"";
     }
@@ -294,7 +298,12 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"1"]) {
                 NSError *error = nil;
-                self.stuDataArray = [MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error];
+                self.stuDataArray = [[MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error] mutableCopy];
+                for (StudentModel *studentModel in self.stuDataArray) {
+                    if ([studentModel.userid.userId isEqualToString:[AcountManager manager].userid]) {
+                        [self.stuDataArray removeObject:studentModel];
+                    }
+                }
                 [self.sameTimeStudentCollectionView reloadData];
             }else {
                 kShowFail(param[@"msg"]);
