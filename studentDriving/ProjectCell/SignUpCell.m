@@ -12,7 +12,7 @@
 @interface SignUpCell ()<UITextFieldDelegate>
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *signUpLabel;
-@property (strong, nonatomic) UITextField *signUpTextField;
+
 @end
 @implementation SignUpCell
 
@@ -71,7 +71,6 @@
     
     self.signUpLabel.text = titleString;
     self.signUpCompletion = signUpCompletion;
-
 }
 
 - (void)receiveTextContent:(NSString *)content {
@@ -103,13 +102,11 @@
         if (range.location>10) {
             return NO;
         }
-    }else if ([self.signUpLabel.text isEqualToString:@"真实姓名"]) {
-        if (range.location>5) {
-            return NO;
-        }
     }
     return YES;
 }
+
+
 
 
 @end

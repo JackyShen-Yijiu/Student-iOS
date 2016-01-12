@@ -116,6 +116,7 @@
         [self addSubview:self.coachAddress];
         [self.coachAddress mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(self.coachNameLabel.mas_left).offset(0);
+            make.right.mas_equalTo(self.mas_right).offset(5);
             make.top.mas_equalTo(self.coachNameLabel.mas_bottom).offset(7);
         }];
         [self addSubview:self.coachStateSend];
