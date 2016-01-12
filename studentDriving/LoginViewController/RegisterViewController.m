@@ -504,7 +504,7 @@ static NSString *const kcodeGainUrl = @"code";
              
              [AcountManager saveUserName:self.phoneTextField.text andPassword:self.passWordTextFild.text];
              
-             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+//             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
              
              //设置是否自动登录
              [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];

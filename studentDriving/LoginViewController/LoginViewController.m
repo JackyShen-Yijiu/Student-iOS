@@ -225,7 +225,7 @@ static NSString *const kuserType = @"usertype";
         _phoneNumTextField.tag = 100;
         
         _phoneNumTextField.placeholder        = @" 手机号";
-        [_phoneNumTextField setValue:[UIColor colorWithHexString:@"#d9d9d9"] forKeyPath:@"_placeholderLabel.textColor"];
+        [_phoneNumTextField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
         [_phoneNumTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
         _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -247,7 +247,7 @@ static NSString *const kuserType = @"usertype";
         _passwordTextField = [[UITextField alloc] init];
         _passwordTextField.delegate = self;
         _passwordTextField.placeholder = @" 密码";
-        [_passwordTextField setValue:[UIColor colorWithHexString:@"#d9d9d9"] forKeyPath:@"_placeholderLabel.textColor"];
+        [_passwordTextField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
         [_passwordTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
         _passwordTextField.tag = 101;
         _passwordTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -453,7 +453,9 @@ static NSString *const kuserType = @"usertype";
              
              NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
              
-             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+//             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+             NSSet *set = [NSSet setWithObjects:@"jpushStudent", nil];
+             [APService setTags:set alias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
              
              //设置是否自动登录
              [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];

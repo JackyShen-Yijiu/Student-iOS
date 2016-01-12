@@ -23,7 +23,7 @@
         
         // 检测是否有数据
         if ([self checkErrorWithData:data]) {
-            [self showMsg:@"没有找到数据"];
+//            [self showMsg:@"没有找到数据"];
             [self.dataArray removeAllObjects];
             [self dvvRefreshSuccess];
             return ;
