@@ -47,13 +47,14 @@ static  NSString    *kUserSetting = @"usersetting";
 static  NSString    *kReservationReminder = @"reservationreminder";
 static  NSString    *kNewmessageReminder = @"newmessagereminder";
 
+// 定位到的经纬度
+static  NSString    *kLatitude = @"kLatitude";
+static  NSString    *kLongitude = @"kLongitude";
 // 定位到的城市
 static  NSString    *kUserCity = @"kUserCity";
 static  NSString    *kLocationAddress = @"kLocationAddress";
-
 // 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
 static  NSString    *kUserLocationShowType = @"kUserLocationShowType";
-
 // 兑换券
 static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
 
@@ -526,7 +527,27 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
     }
     return dataArray;
 }
-
+// 定位到的经纬度
+- (void)setLatitude:(NSString *)latitude {
+    [NSUserStoreTool storeWithId:latitude WithKey:kLatitude];
+}
+- (NSString *)latitude {
+    if ([NSUserStoreTool getObjectWithKey:kLatitude]) {
+        return [NSUserStoreTool getObjectWithKey:kLatitude];
+    }else {
+        return @"";
+    }
+}
+- (void)setLongitude:(NSString *)longitude {
+    [NSUserStoreTool storeWithId:longitude WithKey:kLongitude];
+}
+- (NSString *)longitude {
+    if ([NSUserStoreTool getObjectWithKey:kLongitude]) {
+        return [NSUserStoreTool getObjectWithKey:kLongitude];
+    }else {
+        return @"";
+    }
+}
 // 存储定位到的城市
 - (void)setUserCity:(NSString *)userCity {
     [NSUserStoreTool storeWithId:userCity WithKey:kUserCity];

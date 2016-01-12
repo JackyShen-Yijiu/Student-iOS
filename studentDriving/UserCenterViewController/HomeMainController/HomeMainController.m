@@ -758,6 +758,10 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 - (BOOL)reverseGeoCodeWithLatitude:(double)latitude
                          longitude:(double)longitude {
     
+    // 存储定位到的经纬度
+    [AcountManager manager].latitude = [NSString stringWithFormat:@"%f",latitude];
+    [AcountManager manager].longitude = [NSString stringWithFormat:@"%f",longitude];
+    
     CLLocationCoordinate2D point = (CLLocationCoordinate2D){ latitude, longitude };
 //        CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
     BMKReverseGeoCodeOption *reverseGeocodeOption = [BMKReverseGeoCodeOption new];
@@ -925,7 +929,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 #pragma mark 定位
 - (BMKLocationService *)locationService {
     if (!_locationService) {
-        [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+        [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
         [BMKLocationService setLocationDistanceFilter:10000.0f];
         _locationService = [[BMKLocationService alloc] init];
         _locationService.delegate = self;
