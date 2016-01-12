@@ -347,6 +347,11 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                     [self showTotasViewWithMes:@"请输入真实姓名"];
                     return ;
                 }
+                if(completionString.length>6) {
+                    cell.signUpTextField.text = @"";
+                    [self showTotasViewWithMes:@"最大输入6个中文字符"];
+                    return;
+                }
                 [SignUpInfoManager signUpInfoSaveRealName:completionString];
                 DYNSLog(@"真实名字");
             }else if (indexPath.row == 1) {
