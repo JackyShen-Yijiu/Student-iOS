@@ -69,7 +69,8 @@
                             @"coachName": coachName,
                             @"courseProcessDesc": courseProcessDesc };
     
-    NSString *string = [NSString stringWithFormat:@"%@", dict];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     // 显示二维码
     [self showQRCodeImageWithContent:string];
