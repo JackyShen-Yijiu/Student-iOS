@@ -47,9 +47,12 @@
     NSString *userName = [AcountManager manager].userName;
     // 详细地址
     NSString *locationAddress = [AcountManager manager].locationAddress;
-    // 当前的时间
-    NSString *formatString = @"yyyy-MM-dd HH:mm:ss";
-    NSString *currentTime = [self dateFromLocalWithFormatString:formatString];
+    // 经纬度
+    NSString *latitude = [AcountManager manager].latitude;
+    NSString *longitude = [AcountManager manager].longitude;
+    // 当前的时间(时间戳)
+    NSDate *nowDate = [NSDate date];
+    NSString *nowTimeStamp = [NSString stringWithFormat:@"%zi", (long)[nowDate timeIntervalSince1970]];
     
     NSLog(@"%@", userId);
     NSLog(@"%@", userName);
@@ -64,8 +67,10 @@
     NSDictionary *dict = @{ @"studentId": userId,
                             @"studentName": userName,
                             @"orderId": orderId,
-                            @"currentTime": currentTime,
+                            @"currentTime": nowTimeStamp,
                             @"locationAddress": locationAddress,
+                            @"latitude": latitude,
+                            @"longitude": longitude,
                             @"coachName": coachName,
                             @"courseProcessDesc": courseProcessDesc };
     

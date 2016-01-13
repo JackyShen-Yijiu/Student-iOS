@@ -243,7 +243,7 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
 }
 
 - (void)locationManager {
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     [BMKLocationService setLocationDistanceFilter:10000.0f];
     
     self.locationService = [[BMKLocationService alloc] init];

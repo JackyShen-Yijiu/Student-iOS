@@ -246,7 +246,7 @@ static NSString *const kDrivingUrl = @"searchschool";
 #pragma mark - 定位功能
 - (void)locationManager {
     
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     [BMKLocationService setLocationDistanceFilter:10000.0f];
     
     self.locationService = [[BMKLocationService alloc] init];

@@ -62,9 +62,10 @@
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
-    if ([AcountManager manager].userCity) {
+    [AcountManager manager].userCity = @"北京市";
+    if ([AcountManager manager].userCity && [AcountManager manager].latitude && [AcountManager manager].longitude) {
         
-        if ([AcountManager manager].userCity.length) {
+        if ([AcountManager manager].userCity.length && [AcountManager manager].latitude.length && [AcountManager manager].longitude.length) {
             _searchCoachViewModel.cityName = [AcountManager manager].userCity;
             [self.naviBarRightButton setTitle:[AcountManager manager].userCity forState:UIControlStateNormal];
             [self refresh];
@@ -76,12 +77,12 @@
         }
     }
 }
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    self.locationService = nil;
-    self.geoCodeSearch = nil;
-}
+//- (void)viewWillDisappear:(BOOL)animated {
+//    [super viewWillDisappear:animated];
+//    
+//    self.locationService = nil;
+//    self.geoCodeSearch = nil;
+//}
 
 #pragma mark - config viewModel
 - (void)configViewModel {
@@ -90,15 +91,18 @@
     __weak typeof(self) ws = self;
     [_searchCoachViewModel setDVVRefreshSuccessBlock:^{
         [MBProgressHUD hideHUDForView:ws.view animated:YES];
-        if (_searchCoachViewModel.dataArray.count == 0) {
-            [BLPFAlertView showAlertWithTitle:@"提示" message:@"对不起，该地区暂无合作教练，请您在侧边栏搜驾校。如有疑问，请致电 400-626-9255"cancelButtonTitle:@"返回" otherButtonTitles:nil completion:^(NSUInteger selectedOtherButtonIndex) {
+
+        if (0 == _searchCoachViewModel.dataArray.count && 0 == _searchCoachViewModel.licenseType && 0 == _searchCoachViewModel.orderType) {
+            [BLPFAlertView showAlertWithTitle:@"提示" message:@"对不起，该地区暂无合作教练。如有疑问，请致电 400-626-9255"cancelButtonTitle:@"返回" otherButtonTitles:nil completion:^(NSUInteger selectedOtherButtonIndex) {
                 DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
                 [ws.navigationController popViewControllerAnimated:YES];
             }];
         }else {
-            [ws.tableView reloadData];
-            [ws.tableView.mj_header endRefreshing];
+            ToastAlertView *toast = [[ToastAlertView alloc] initWithTitle:@"没有搜索到教练"];
+            [toast show];
         }
+        [ws.tableView reloadData];
+        [ws.tableView.mj_header endRefreshing];
     }];
     [_searchCoachViewModel setDVVLoadMoreSuccessBlock:^{
         [ws.tableView reloadData];
@@ -204,7 +208,7 @@
 #pragma mark - 定位功能
 - (void)locationManager {
     
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyNearestTenMeters];
+    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     [BMKLocationService setLocationDistanceFilter:10000.0f];
     
     [self.locationService startUserLocationService];
