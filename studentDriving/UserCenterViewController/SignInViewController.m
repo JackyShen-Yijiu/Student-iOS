@@ -60,14 +60,14 @@
     NSLog(@"%@",self.dataModel.ID);
     NSLog(@"%@",self.dataModel.coachDataModel.name);
     NSLog(@"%@",self.dataModel.courseProcessDesc);
-    NSString *orderId = self.dataModel.ID;
+    NSString *reservationId = self.dataModel.ID;
     NSString *coachName = self.dataModel.coachDataModel.name;
     NSString *courseProcessDesc = self.dataModel.courseProcessDesc;
     
     NSDictionary *dict = @{ @"studentId": userId,
                             @"studentName": userName,
-                            @"orderId": orderId,
-                            @"currentTime": nowTimeStamp,
+                            @"reservationId": reservationId,
+                            @"createTime": nowTimeStamp,
                             @"locationAddress": locationAddress,
                             @"latitude": latitude,
                             @"longitude": longitude,
