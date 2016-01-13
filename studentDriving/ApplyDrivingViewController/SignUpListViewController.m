@@ -96,7 +96,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     if (!_leftBtn) {
         _leftBtn = [[UIButton alloc] init];
         [_leftBtn setTitle:@"C1小车手动挡" forState:UIControlStateNormal];
-        [_leftBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [_leftBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
         _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_leftBtn addTarget:self action:@selector(leftBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -159,6 +159,10 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 - (void)viewDidLoad{
     [super  viewDidLoad];
     
+    
+    NSDictionary *param = @{@"modelsid":@(1),@"name":@"小型汽车手动挡",@"code":@"C1"};
+    [SignUpInfoManager signUpInfoSaveRealCarmodel:param];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"报名信息表";
@@ -186,6 +190,9 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     [self.rightBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     NSDictionary *param = @{@"modelsid":@(1),@"name":@"小型汽车手动挡",@"code":@"C1"};
     [SignUpInfoManager  signUpInfoSaveRealCarmodel:param];
+    if ([SignUpInfoManager getSignUpSchoolName]) {
+        [self getSchoolClassType];
+    }
 }
 
 - (void)rightBtnClick {
@@ -193,6 +200,9 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     [self.rightBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     NSDictionary *param = @{@"modelsid":@(2),@"name":@"小型自动挡汽车",@"code":@"C2"};
     [SignUpInfoManager  signUpInfoSaveRealCarmodel:param];
+    if ([SignUpInfoManager getSignUpSchoolName]) {
+        [self getSchoolClassType];
+    }
 }
 
 #pragma mark -   tableViewDelegate
@@ -347,6 +357,11 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                     [self showTotasViewWithMes:@"请输入真实姓名"];
                     return ;
                 }
+                if(completionString.length>6) {
+                    cell.signUpTextField.text = @"";
+                    [self showTotasViewWithMes:@"最大输入6个中文字符"];
+                    return;
+                }
                 [SignUpInfoManager signUpInfoSaveRealName:completionString];
                 DYNSLog(@"真实名字");
             }else if (indexPath.row == 1) {
@@ -449,37 +464,45 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     [self.tableView reloadData];
     
     if ([SignUpInfoManager getSignUpSchoolid]) {
-        NSString *classString = [NSString stringWithFormat:kExamClassType,[SignUpInfoManager getSignUpSchoolid]];
-        
-        NSString *urlString = [NSString stringWithFormat:BASEURL,classString];
-        
-        [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-            DYNSLog(@"res = %@",data);
-            
-            NSArray *param = data[@"data"];
-            
-            NSError *error = nil;
-            
-            NSMutableArray *applyclassArray = [[NSMutableArray alloc] init];
-            [applyclassArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:ExamClassModel.class fromJSONArray:param error:&error]];
-            NSMutableArray *applyclassNameArray = [[NSMutableArray alloc] init];
-            for (ExamClassModel *model in applyclassArray) {
-                [applyclassNameArray addObject:model.classname];
-            }
-            _classDetailDataArray = [applyclassArray copy];
-            _classNameDataArray = [applyclassNameArray copy];
-            _numberOfClass = applyclassNameArray.count;
-            if (!_cellIsShow) {
-                _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,@"报考教练"],@[@"真实姓名",@"联系电话",@"验证Y码"]];
-            }else {
-            _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,_classDetailDataArray,@"报考教练"],@[@"真实姓名",@"联系电话",@"验证Y码"]];
-            }
-
-            
-            [self.tableView reloadData];
-        }];
+        [self getSchoolClassType];
     }
 }
+
+- (void)getSchoolClassType {
+    NSString *classString = [NSString stringWithFormat:kExamClassType,[SignUpInfoManager getSignUpSchoolid]];
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,classString];
+    NSString *carTypeStr = [NSString stringWithFormat:@"%@",[[SignUpInfoManager getSignUpCarmodel] objectForKey:@"modelsid"]];
+    [JENetwoking startDownLoadWithUrl:urlString postParam:@{@"cartype":carTypeStr} WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        DYNSLog(@"res = %@",data);
+        
+        NSArray *param = data[@"data"];
+        
+        NSError *error = nil;
+        
+        NSMutableArray *applyclassArray = [[NSMutableArray alloc] init];
+        [applyclassArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:ExamClassModel.class fromJSONArray:param error:&error]];
+        NSMutableArray *applyclassNameArray = [[NSMutableArray alloc] init];
+        for (ExamClassModel *model in applyclassArray) {
+            [applyclassNameArray addObject:model.classname];
+        }
+        _classDetailDataArray = [applyclassArray copy];
+        _classNameDataArray = [applyclassNameArray copy];
+        _numberOfClass = applyclassNameArray.count;
+        if (!_cellIsShow) {
+            _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,@"报考教练"],@[@"真实姓名",@"联系电话",@"验证Y码"]];
+        }else {
+            _secondArray = @[@[@"驾照类型:",@"报考驾校",_classNameDataArray,_classDetailDataArray,@"报考教练"],@[@"真实姓名",@"联系电话",@"验证Y码"]];
+        }
+        
+        
+        [self.tableView reloadData];
+    }withFailure:^(id data) {
+        [self showTotasViewWithMes:@"网络连接失败，请检查网络连接"];
+    }];
+
+}
+
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
 }

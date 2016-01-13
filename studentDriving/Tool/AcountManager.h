@@ -44,6 +44,11 @@
 @property (readonly,strong, nonatomic) SubjectModel *userSubject;
 @property (readonly, strong, nonatomic) SubjectTwoModel *subjecttwo;
 @property (readonly,strong, nonatomic) SubjectThreeModel *subjectthree;
+
+// 定位到的经纬度
+@property (nonatomic, copy) NSString *latitude;
+@property (nonatomic, copy) NSString *longitude;
+
 // 定位到的城市
 @property (nonatomic, copy) NSString *userCity;
 // 定位到的详细地址

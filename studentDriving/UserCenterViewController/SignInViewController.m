@@ -47,9 +47,12 @@
     NSString *userName = [AcountManager manager].userName;
     // 详细地址
     NSString *locationAddress = [AcountManager manager].locationAddress;
-    // 当前的时间
-    NSString *formatString = @"yyyy-MM-dd HH:mm:ss";
-    NSString *currentTime = [self dateFromLocalWithFormatString:formatString];
+    // 经纬度
+    NSString *latitude = [AcountManager manager].latitude;
+    NSString *longitude = [AcountManager manager].longitude;
+    // 当前的时间(时间戳)
+    NSDate *nowDate = [NSDate date];
+    NSString *nowTimeStamp = [NSString stringWithFormat:@"%zi", (long)[nowDate timeIntervalSince1970]];
     
     NSLog(@"%@", userId);
     NSLog(@"%@", userName);
@@ -57,19 +60,22 @@
     NSLog(@"%@",self.dataModel.ID);
     NSLog(@"%@",self.dataModel.coachDataModel.name);
     NSLog(@"%@",self.dataModel.courseProcessDesc);
-    NSString *orderId = self.dataModel.ID;
+    NSString *reservationId = self.dataModel.ID;
     NSString *coachName = self.dataModel.coachDataModel.name;
     NSString *courseProcessDesc = self.dataModel.courseProcessDesc;
     
     NSDictionary *dict = @{ @"studentId": userId,
                             @"studentName": userName,
-                            @"orderId": orderId,
-                            @"currentTime": currentTime,
+                            @"reservationId": reservationId,
+                            @"createTime": nowTimeStamp,
                             @"locationAddress": locationAddress,
+                            @"latitude": latitude,
+                            @"longitude": longitude,
                             @"coachName": coachName,
                             @"courseProcessDesc": courseProcessDesc };
     
-    NSString *string = [NSString stringWithFormat:@"%@", dict];
+    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     
     // 显示二维码
     [self showQRCodeImageWithContent:string];

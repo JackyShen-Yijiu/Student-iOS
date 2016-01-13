@@ -11,6 +11,7 @@
 typedef void(^SIGNUPCOMPLETION)(NSString *completionString);
 @interface SignUpCell : UITableViewCell
 @property (copy, nonatomic) SIGNUPCOMPLETION signUpCompletion;
+@property (strong, nonatomic) UITextField *signUpTextField;
 - (void)receiveTitile:(NSString *)titleString andSignUpBlock:(SIGNUPCOMPLETION)signUpCompletion;
 
 - (void)receiveTextContent:(NSString *)content;
