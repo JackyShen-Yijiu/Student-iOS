@@ -30,7 +30,11 @@
     [APService setupWithOption:launchOptions];
 
     if ([AcountManager manager].userid) {
-        NSSet *set = [NSSet setWithObjects:@"jpushStudent", nil];
+        NSString *str = @"";
+        if ([AcountManager manager].applyschool.infoId != nil && ![[AcountManager manager].applyschool.infoId isEqualToString:@""]) {
+            str = [AcountManager manager].applyschool.infoId;
+        }
+        NSSet *set = [NSSet setWithObjects:str, nil];
         [APService setTags:set alias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
     }
     

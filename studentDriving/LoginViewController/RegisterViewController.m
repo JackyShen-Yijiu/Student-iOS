@@ -465,13 +465,14 @@ static NSString *const kcodeGainUrl = @"code";
         
         NSDictionary *dataDic = data;
         
-        NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
+//        NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
         
-        if ([type isEqualToString:@"0"]) {
+        if ([[data objectForKey:@"type"] integerValue] == 0) {
             
-            [self showTotasViewWithMes:dataDic[@"msg"]];
+//            [self showTotasViewWithMes:];
+            [self obj_showTotasViewWithMes:dataDic[@"msg"]];
             
-        }else if ([type isEqualToString:@"1"]) {
+        }else if ([[data objectForKey:@"type"] integerValue] == 1) {
             
             NSString *userid = [NSString stringWithFormat:@"%@",dataDic[@"data"][@"userid"]];
             NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
