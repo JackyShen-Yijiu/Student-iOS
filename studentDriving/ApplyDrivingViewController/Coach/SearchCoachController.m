@@ -24,6 +24,7 @@
 #import "AcountManager.h"
 #import "BLPFAlertView.h"
 #import "DVVOpenControllerFromSideMenu.h"
+#import "DVVLocationStatus.h"
 
 @interface SearchCoachController ()<UITableViewDataSource, UITableViewDelegate, BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate>
 
@@ -37,6 +38,7 @@
 @property (strong, nonatomic) BMKLocationService *locationService;
 @property (nonatomic, strong) BMKGeoCodeSearch *geoCodeSearch;
 
+@property (nonatomic, strong) DVVLocationStatus *dvvLocationStatus;
 
 @end
 
@@ -60,29 +62,10 @@
     [self configViewModel];
     [self configRefresh];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
-    [AcountManager manager].userCity = @"北京市";
-    if ([AcountManager manager].userCity && [AcountManager manager].latitude && [AcountManager manager].longitude) {
-        
-        if ([AcountManager manager].userCity.length && [AcountManager manager].latitude.length && [AcountManager manager].longitude.length) {
-            _searchCoachViewModel.cityName = [AcountManager manager].userCity;
-            [self.naviBarRightButton setTitle:[AcountManager manager].userCity forState:UIControlStateNormal];
-            [self refresh];
-        }else {
-            
-            [self locationManager];
-            // 在模拟器上定位不好用，测试时打开注释
-            //    [self refresh];
-        }
-    }
+    [self locationManager];
+    // 在模拟器上定位不好用，测试时打开注释
+    //    [self refresh];
 }
-//- (void)viewWillDisappear:(BOOL)animated {
-//    [super viewWillDisappear:animated];
-//    
-//    self.locationService = nil;
-//    self.geoCodeSearch = nil;
-//}
 
 #pragma mark - config viewModel
 - (void)configViewModel {
@@ -208,9 +191,23 @@
 #pragma mark - 定位功能
 - (void)locationManager {
     
+    // 检查定位功能是否可用
+    _dvvLocationStatus = [DVVLocationStatus new];
+    __weak typeof(self) ws = self;
+    [_dvvLocationStatus setSelectCancelButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    [_dvvLocationStatus setSelectOkButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    if (![_dvvLocationStatus checkLocationStatus]) {
+        [_dvvLocationStatus remindUser];
+        return ;
+    }
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     [BMKLocationService setLocationDistanceFilter:10000.0f];
     
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.locationService startUserLocationService];
 }
 

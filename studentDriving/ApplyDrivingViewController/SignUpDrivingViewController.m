@@ -24,6 +24,7 @@
 #import "MJRefresh.h"
 #import "DVVSideMenu.h"
 #import "SignUpDrivingDetailViewController.h"
+#import "DVVLocationStatus.h"
 
 static NSString *const kDrivingUrl = @"searchschool";
 
@@ -38,6 +39,7 @@ static NSString *const kDrivingUrl = @"searchschool";
 @property (nonatomic, strong) DrivingSelectMotorcycleTypeView *selectMotorcycleTypeView;
 
 @property (nonatomic, strong) BMKGeoCodeSearch *geoCodeSearch;
+@property (nonatomic, strong) DVVLocationStatus *dvvLocationStatus;
 
 @property (nonatomic, assign) BOOL isRefresh;
 
@@ -246,6 +248,19 @@ static NSString *const kDrivingUrl = @"searchschool";
 #pragma mark - 定位功能
 - (void)locationManager {
     
+    // 检查定位功能是否可用
+    _dvvLocationStatus = [DVVLocationStatus new];
+    __weak typeof(self) ws = self;
+    [_dvvLocationStatus setSelectCancelButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    [_dvvLocationStatus setSelectOkButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    if (![_dvvLocationStatus checkLocationStatus]) {
+        [_dvvLocationStatus remindUser];
+        return ;
+    }
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     [BMKLocationService setLocationDistanceFilter:10000.0f];
     
