@@ -24,9 +24,9 @@
         [self addSubview:self.motorcycleTypeButton];
         [self addSubview:self.filterView];
         [self addSubview:self.searchView];
-        [self.searchView addSubview:self.searchBackgroundImageView];
-        [self.searchView addSubview:self.searchTextField];
-        [self.searchView addSubview:self.searchButton];
+//        [self.searchView addSubview:self.searchBackgroundImageView];
+//        [self.searchView addSubview:self.searchTextField];
+//        [self.searchView addSubview:self.searchButton];
         
 //        _cycleShowImagesView.backgroundColor = [UIColor redColor];
 //        _motorcycleTypeButton.backgroundColor = [UIColor greenColor];
@@ -50,18 +50,18 @@
     self.cycleShowImagesView.frame = CGRectMake(0, 0, VIEW_WIDTH, cycleShowViewHeight);
     self.motorcycleTypeButton.frame = CGRectMake(0, cycleShowViewHeight, 120, filterViewHeight);
     self.filterView.frame = CGRectMake(100, cycleShowViewHeight, VIEW_WIDTH - 120, filterViewHeight);
-    self.searchView.frame = CGRectMake(0, cycleShowViewHeight + filterViewHeight, VIEW_WIDTH, searchViewHeight);
-    self.searchBackgroundImageView.frame = CGRectMake(10, 5, VIEW_WIDTH - 20, searchViewHeight - 10);
-    [self.searchBackgroundImageView.layer setCornerRadius:(searchViewHeight - 10) / 2.f];
-    CGFloat searchButtonWidth = 26;
+    self.searchView.frame = CGRectMake(15, cycleShowViewHeight + filterViewHeight + 5.5, VIEW_WIDTH - 30, searchViewHeight - 11);
+//    self.searchBackgroundImageView.frame = CGRectMake(10, 5, VIEW_WIDTH - 20, searchViewHeight - 10);
+//    [self.searchBackgroundImageView.layer setCornerRadius:(searchViewHeight - 10) / 2.f];
+//    CGFloat searchButtonWidth = 26;
 //    self.searchTextField.frame = CGRectMake(20, 0, VIEW_WIDTH - searchButtonWidth - 30, searchViewHeight);
 //    self.searchButton.frame = CGRectMake(VIEW_WIDTH - searchButtonWidth - 10, 0, searchButtonWidth, searchViewHeight);
-    CGFloat radius = searchViewHeight / 2.f;
-    self.searchButton.frame = CGRectMake(radius, 0, searchButtonWidth, searchViewHeight);
-    self.searchTextField.frame = CGRectMake(radius + searchButtonWidth, 0, VIEW_WIDTH - radius * 2.f - searchButtonWidth, searchViewHeight);
-    
-    self.searchBackgroundImageView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
-    [self.searchTextField setTintColor:[UIColor grayColor]];
+//    CGFloat radius = searchViewHeight / 2.f;
+//    self.searchButton.frame = CGRectMake(radius, 0, searchButtonWidth, searchViewHeight);
+//    self.searchTextField.frame = CGRectMake(radius + searchButtonWidth, 0, VIEW_WIDTH - radius * 2.f - searchButtonWidth, searchViewHeight);
+//    
+//    self.searchBackgroundImageView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
+//    [self.searchTextField setTintColor:[UIColor grayColor]];
 }
 
 #pragma mark - action
@@ -107,39 +107,39 @@
 
 - (UIView *)searchView {
     if (!_searchView) {
-        _searchView = [UIView new];
+        _searchView = [DVVSearchView new];
     }
     return _searchView;
 }
 
-- (UIImageView *)searchBackgroundImageView {
-    if (!_searchBackgroundImageView) {
-        _searchBackgroundImageView = [UIImageView new];
-        [_searchBackgroundImageView.layer setMasksToBounds:YES];
-    }
-    return _searchBackgroundImageView;
-}
-
-- (UIButton *)searchButton {
-    if (!_searchButton) {
-        _searchButton = [UIButton new];
-        [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
-        _searchButton.titleLabel.font = [UIFont systemFontOfSize:13];
-        [_searchButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
-        
-//        [_searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchDown];
-    }
-    return _searchButton;
-}
-
-- (UITextField *)searchTextField {
-    if (!_searchTextField) {
-        _searchTextField = [UITextField new];
-        _searchTextField.font = [UIFont systemFontOfSize:13];
-        _searchTextField.delegate = self;
-    }
-    return _searchTextField;
-}
+//- (UIImageView *)searchBackgroundImageView {
+//    if (!_searchBackgroundImageView) {
+//        _searchBackgroundImageView = [UIImageView new];
+//        [_searchBackgroundImageView.layer setMasksToBounds:YES];
+//    }
+//    return _searchBackgroundImageView;
+//}
+//
+//- (UIButton *)searchButton {
+//    if (!_searchButton) {
+//        _searchButton = [UIButton new];
+//        [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
+//        _searchButton.titleLabel.font = [UIFont systemFontOfSize:13];
+//        [_searchButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//        
+////        [_searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchDown];
+//    }
+//    return _searchButton;
+//}
+//
+//- (UITextField *)searchTextField {
+//    if (!_searchTextField) {
+//        _searchTextField = [UITextField new];
+//        _searchTextField.font = [UIFont systemFontOfSize:13];
+//        _searchTextField.delegate = self;
+//    }
+//    return _searchTextField;
+//}
 
 - (CGFloat)defaultHeight {
     return cycleShowViewHeight + filterViewHeight + searchViewHeight;

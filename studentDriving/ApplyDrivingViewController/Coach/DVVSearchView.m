@@ -22,7 +22,7 @@
 {
     self = [super init];
     if (self) {
-        
+        self.userInteractionEnabled = YES;
         [self addSubview:self.backgroundImageView];
         [self addSubview:self.textField];
         [self addSubview:self.cancelButton];
@@ -64,8 +64,8 @@
 #pragma mark - 取消按钮
 - (void)cancelButtonAction:(UIButton *)sender {
     
-    self.textField.text = @"";
-    [self.textField resignFirstResponder];
+    _textField.text = @"";
+    [_textField resignFirstResponder];
     [self statusNormal];
     
 }
@@ -150,7 +150,7 @@
     if (!_cancelButton) {
         _cancelButton = [UIButton new];
         _cancelButton.userInteractionEnabled = NO;
-        [_cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_cancelButton addTarget:self action:@selector(cancelButtonAction:) forControlEvents:UIControlEventTouchDown];
     }
     return _cancelButton;
 }
