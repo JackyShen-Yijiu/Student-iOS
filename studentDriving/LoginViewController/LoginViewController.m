@@ -341,7 +341,6 @@ static NSString *const kuserType = @"usertype";
     //网络请求
     [self.passwordTextField resignFirstResponder];
     [self.phoneNumTextField resignFirstResponder];
-    
     [self.userParam setObject:@"1" forKey:kuserType];
     [self.userParam setObject:self.phoneNumTextField.text forKey:kmobileNum];
     NSString *pwdKey = [self.passwordTextField.text DY_MD5];
