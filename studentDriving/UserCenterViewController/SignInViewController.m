@@ -12,8 +12,12 @@
 #import "SignInHelpViewController.h"
 #import "DVVCreateQRCode.h"
 #import "Masonry.h"
+#import "NSString+Helper.h"
+#import <BaiduMapAPI/BMKLocationService.h>
+#import <BaiduMapAPI/BMKGeocodeSearch.h>
+#import "DVVLocationStatus.h"
 
-@interface SignInViewController ()
+@interface SignInViewController ()<BMKLocationServiceDelegate, BMKGeoCodeSearchDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) UIImageView *qrCodeImageView;
 @property (nonatomic, strong) UIButton *completeButton;
@@ -21,6 +25,10 @@
 
 @property (nonatomic, strong) UILabel *explainTitleLabel;
 @property (nonatomic, strong) UILabel *explainLabel;
+
+@property (strong, nonatomic) BMKLocationService *locationService;
+@property (nonatomic, strong) BMKGeoCodeSearch *geoCodeSearch;
+@property (nonatomic, strong) DVVLocationStatus *dvvLocationStatus;
 
 @end
 
@@ -41,44 +49,7 @@
     
     [self configUI];
     
-    // 用户id
-    NSString *userId = [AcountManager manager].userid;
-    // 用户名
-    NSString *userName = [AcountManager manager].userName;
-    // 详细地址
-    NSString *locationAddress = [AcountManager manager].locationAddress;
-    // 经纬度
-    NSString *latitude = [AcountManager manager].latitude;
-    NSString *longitude = [AcountManager manager].longitude;
-    // 当前的时间(时间戳)
-    NSDate *nowDate = [NSDate date];
-    NSString *nowTimeStamp = [NSString stringWithFormat:@"%zi", (long)[nowDate timeIntervalSince1970]];
-    
-    NSLog(@"%@", userId);
-    NSLog(@"%@", userName);
-    NSLog(@"locationAddress === %@", locationAddress);
-    NSLog(@"%@",self.dataModel.ID);
-    NSLog(@"%@",self.dataModel.coachDataModel.name);
-    NSLog(@"%@",self.dataModel.courseProcessDesc);
-    NSString *reservationId = self.dataModel.ID;
-    NSString *coachName = self.dataModel.coachDataModel.name;
-    NSString *courseProcessDesc = self.dataModel.courseProcessDesc;
-    
-    NSDictionary *dict = @{ @"studentId": userId,
-                            @"studentName": userName,
-                            @"reservationId": reservationId,
-                            @"createTime": nowTimeStamp,
-                            @"locationAddress": locationAddress,
-                            @"latitude": latitude,
-                            @"longitude": longitude,
-                            @"coachName": coachName,
-                            @"courseProcessDesc": courseProcessDesc };
-    
-    NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
-    NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-    
-    // 显示二维码
-    [self showQRCodeImageWithContent:string];
+    [self locationManager];
 }
 
 - (NSString *)dateFromLocalWithFormatString:(NSString *)formatString {
@@ -134,7 +105,163 @@
     }];
 }
 
+#pragma mark - 定位功能
+- (void)locationManager {
+    
+    // 检查定位功能是否可用
+    _dvvLocationStatus = [DVVLocationStatus new];
+    __weak typeof(self) ws = self;
+    [_dvvLocationStatus setSelectCancelButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    [_dvvLocationStatus setSelectOkButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    if (![_dvvLocationStatus checkLocationStatus]) {
+        [_dvvLocationStatus remindUser];
+        return ;
+    }
+    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
+    [BMKLocationService setLocationDistanceFilter:10000.0f];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    [self.locationService startUserLocationService];
+}
+
+#pragma mark 处理位置坐标更新
+- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
+{
+    //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
+    
+    // 反地理编码，获取城市名
+    [self reverseGeoCodeWithLatitude:userLocation.location.coordinate.latitude
+                           longitude:userLocation.location.coordinate.longitude];
+}
+#pragma mark 定位失败
+- (void)didFailToLocateUserWithError:(NSError *)error {
+    // 这个代理方法会调用两次，导致会弹出两个失败的弹窗 所以在这里将代理设为nil
+    self.locationService.delegate = nil;
+    [self remindUserLocationError];
+}
+
+#pragma mark - 反地理编码
+- (BOOL)reverseGeoCodeWithLatitude:(double)latitude
+                         longitude:(double)longitude {
+    
+    // 存储定位到的经纬度
+    [AcountManager manager].latitude = [NSString stringWithFormat:@"%f",latitude];
+    [AcountManager manager].longitude = [NSString stringWithFormat:@"%f",longitude];
+    
+    CLLocationCoordinate2D point = (CLLocationCoordinate2D){ latitude, longitude };
+    //    CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
+    BMKReverseGeoCodeOption *reverseGeocodeOption = [BMKReverseGeoCodeOption new];
+    reverseGeocodeOption.reverseGeoPoint = point;
+    // 发起反向地理编码
+    BOOL flage = [self.geoCodeSearch reverseGeoCode:reverseGeocodeOption];
+    if (flage) {
+        //        NSLog(@"反geo检索发送成功");
+        return YES;
+    }else {
+        [self remindUserLocationError];
+        //        NSLog(@"反geo检索发送失败");
+        return NO;
+    }
+}
+#pragma mark 反地理编码回调
+- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher
+                           result:(BMKReverseGeoCodeResult *)result
+                        errorCode:(BMKSearchErrorCode)error {
+    
+    if (error == BMK_SEARCH_NO_ERROR) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        //        NSLog(@"%@",result);
+//        BMKAddressComponent *addressComponent = result.addressDetail;
+        //        NSLog(@"addressComponent.city===%@",addressComponent.city);
+        // 用户id
+        NSString *userId = [AcountManager manager].userid;
+        // 用户名
+        NSString *userName = [AcountManager manager].userName;
+        // 详细地址
+        NSString *locationAddress = result.address;
+        // 经纬度
+        NSString *latitude = [AcountManager manager].latitude;
+        NSString *longitude = [AcountManager manager].longitude;
+        // 当前的时间(时间戳)
+        NSDate *nowDate = [NSDate date];
+        NSString *nowTimeStamp = [NSString stringWithFormat:@"%zi", (long)[nowDate timeIntervalSince1970]];
+        
+        NSLog(@"%@", userId);
+        NSLog(@"%@", userName);
+        NSLog(@"locationAddress === %@", locationAddress);
+        NSLog(@"%@",self.dataModel.ID);
+        NSLog(@"%@",self.dataModel.coachDataModel.name);
+        NSLog(@"%@",self.dataModel.courseProcessDesc);
+        NSString *reservationId = @"";
+        if (![self.dataModel.ID isEmptyString]) {
+            reservationId = self.dataModel.ID;
+        }
+        NSString *coachName = @"";
+        if (![self.dataModel.coachDataModel.name isEmptyString]) {
+            coachName = self.dataModel.coachDataModel.name;
+        }
+        NSString *courseProcessDesc = @"";
+        if (![self.dataModel.courseProcessDesc isEmptyString]) {
+            courseProcessDesc = self.dataModel.courseProcessDesc;
+        }
+        
+        NSDictionary *dict = @{ @"studentId": userId,
+                                @"studentName": userName,
+                                @"reservationId": reservationId,
+                                @"createTime": nowTimeStamp,
+                                @"locationAddress": locationAddress,
+                                @"latitude": latitude,
+                                @"longitude": longitude,
+                                @"coachName": coachName,
+                                @"courseProcessDesc": courseProcessDesc };
+        
+        NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
+        NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        
+        // 显示二维码
+        [self showQRCodeImageWithContent:string];
+        // 显示提示文字
+        _markLabel.textColor = [UIColor blackColor];
+        
+        // 停止位置更新服务
+        [self.locationService stopUserLocationService];
+    }else {
+        [self remindUserLocationError];
+        NSLog(@"抱歉，未找到结果");
+    }
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (0 == buttonIndex) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
+
+#pragma mark 定位失败后提示用户
+- (void)remindUserLocationError {
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"定位失败，请重新定位！" delegate:self cancelButtonTitle:@"返回" otherButtonTitles:nil, nil];
+    [alertView show];
+}
+
 #pragma mark - lazy load
+- (BMKLocationService *)locationService {
+    if (!_locationService) {
+        _locationService = [BMKLocationService new];
+        _locationService.delegate = self;
+    }
+    return _locationService;
+}
+- (BMKGeoCodeSearch *)geoCodeSearch {
+    if (!_geoCodeSearch) {
+        _geoCodeSearch = [BMKGeoCodeSearch new];
+        _geoCodeSearch.delegate = self;
+    }
+    return _geoCodeSearch;
+}
 - (UIImageView *)qrCodeImageView {
     if (!_qrCodeImageView) {
         _qrCodeImageView = [UIImageView new];
@@ -164,6 +291,7 @@
         _markLabel.font = [UIFont systemFontOfSize:14];
         _markLabel.textAlignment = 1;
         _markLabel.text = @"扫一扫上面的二维码图案,立即签到";
+        _markLabel.textColor = self.view.backgroundColor;
     }
     return _markLabel;
 }
