@@ -24,6 +24,7 @@
 #import "MJRefresh.h"
 #import "DVVSideMenu.h"
 #import "SignUpDrivingDetailViewController.h"
+#import "DVVLocationStatus.h"
 
 static NSString *const kDrivingUrl = @"searchschool";
 
@@ -38,6 +39,7 @@ static NSString *const kDrivingUrl = @"searchschool";
 @property (nonatomic, strong) DrivingSelectMotorcycleTypeView *selectMotorcycleTypeView;
 
 @property (nonatomic, strong) BMKGeoCodeSearch *geoCodeSearch;
+@property (nonatomic, strong) DVVLocationStatus *dvvLocationStatus;
 
 @property (nonatomic, assign) BOOL isRefresh;
 
@@ -246,6 +248,19 @@ static NSString *const kDrivingUrl = @"searchschool";
 #pragma mark - 定位功能
 - (void)locationManager {
     
+    // 检查定位功能是否可用
+    _dvvLocationStatus = [DVVLocationStatus new];
+    __weak typeof(self) ws = self;
+    [_dvvLocationStatus setSelectCancelButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    [_dvvLocationStatus setSelectOkButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    if (![_dvvLocationStatus checkLocationStatus]) {
+        [_dvvLocationStatus remindUser];
+        return ;
+    }
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     [BMKLocationService setLocationDistanceFilter:10000.0f];
     
@@ -419,7 +434,11 @@ static NSString *const kDrivingUrl = @"searchschool";
             [self network];
         }];
         // 搜索按钮点击事件
-        [_tableHeaderView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_tableHeaderView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) ws = self;
+        [_tableHeaderView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
+            [ws searchButtonAction:textField];
+        }];
     }
     return _tableHeaderView;
 }
@@ -439,10 +458,10 @@ static NSString *const kDrivingUrl = @"searchschool";
     [view show];
 }
 
-- (void)searchButtonAction {
+- (void)searchButtonAction:(UITextField *)textField {
     
     [self.view endEditing:YES];
-    self.searchName = self.tableHeaderView.searchTextField.text;
+    self.searchName = textField.text;
     
     NSLog(@"longitude===%f,latitude===%f,searchName===%@,carTypeId===%li,filterType===%li",self.longitude,self.latitude,self.searchName,self.carTypeId,self.filterType);
     self.index = 1;

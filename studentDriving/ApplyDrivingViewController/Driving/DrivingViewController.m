@@ -22,10 +22,11 @@
 #import "DrivingCityListView.h"
 #import "MJRefresh.h"
 #import "DVVSideMenu.h"
+#import "DVVLocationStatus.h"
 
 static NSString *const kDrivingUrl = @"searchschool";
 
-@interface DrivingViewController ()<UITableViewDelegate, UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate, UITextFieldDelegate, BMKGeoCodeSearchDelegate>
+@interface DrivingViewController ()<UITableViewDelegate, UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate, UITextFieldDelegate, BMKGeoCodeSearchDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic)UITableView *tableView;
 @property (strong, nonatomic) BMKLocationService *locationService;
 @property (strong, nonatomic) NSMutableArray *dataArray;
@@ -34,6 +35,8 @@ static NSString *const kDrivingUrl = @"searchschool";
 @property (nonatomic, strong) DrivingTableHeaderView *tableHeaderView;
 @property (nonatomic, strong) DrivingCycleShowViewModel *cycleShowViewModel;
 @property (nonatomic, strong) DrivingSelectMotorcycleTypeView *selectMotorcycleTypeView;
+
+@property (nonatomic, strong) DVVLocationStatus *dvvLocationStatus;
 
 @property (nonatomic, strong) BMKGeoCodeSearch *geoCodeSearch;
 
@@ -60,9 +63,9 @@ static NSString *const kDrivingUrl = @"searchschool";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 添加取消键盘的手势
-    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
-    tapGestureRecognizer.cancelsTouchesInView = NO;
-    [self.view addGestureRecognizer:tapGestureRecognizer];
+//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
+//    tapGestureRecognizer.cancelsTouchesInView = NO;
+//    [self.view addGestureRecognizer:tapGestureRecognizer];
     // Do any additional setup after loading the view.
     
     //    [self addSideMenuButton];
@@ -95,7 +98,6 @@ static NSString *const kDrivingUrl = @"searchschool";
     [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     // 定位
     [self locationManager];
-    
 ////         在模拟器上定位不好用，测试是打开注释
 //        self.latitude = 39.929985778080237;
 //        self.longitude = 116.39564503787867;
@@ -104,12 +106,11 @@ static NSString *const kDrivingUrl = @"searchschool";
 //        // 获取网络数据
 //        [self network];
 }
-- (void)keyboardHide:(UITapGestureRecognizer *)tap{
-    [_tableHeaderView.searchTextField resignFirstResponder];
-}
+//- (void)keyboardHide:(UITapGestureRecognizer *)tap{
+//    [self.view endEditing:YES];
+//}
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    self.geoCodeSearch = nil;
     [MBProgressHUD hideHUDForView:self.tableView animated:YES];
 }
 
@@ -249,6 +250,20 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 #pragma mark - 定位功能
 - (void)locationManager {
+    
+    // 检查定位功能是否可用
+    _dvvLocationStatus = [DVVLocationStatus new];
+    __weak typeof(self) ws = self;
+    [_dvvLocationStatus setSelectCancelButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    [_dvvLocationStatus setSelectOkButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    if (![_dvvLocationStatus checkLocationStatus]) {
+        [_dvvLocationStatus remindUser];
+        return ;
+    }
     
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     [BMKLocationService setLocationDistanceFilter:10000.0f];
@@ -422,7 +437,11 @@ static NSString *const kDrivingUrl = @"searchschool";
             [self network];
         }];
         // 搜索按钮点击事件
-        [_tableHeaderView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchUpInside];
+//        [_tableHeaderView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        __weak typeof(self) ws = self;
+        [_tableHeaderView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
+            [ws searchButtonAction:textField];
+        }];
     }
     return _tableHeaderView;
 }
@@ -442,10 +461,10 @@ static NSString *const kDrivingUrl = @"searchschool";
     [view show];
 }
 
-- (void)searchButtonAction {
+- (void)searchButtonAction:(UITextField *)textField {
     
     [self.view endEditing:YES];
-    self.searchName = self.tableHeaderView.searchTextField.text;
+    self.searchName = textField.text;
     
     NSLog(@"longitude===%f,latitude===%f,searchName===%@,carTypeId===%li,filterType===%li",self.longitude,self.latitude,self.searchName,self.carTypeId,self.filterType);
     self.index = 1;

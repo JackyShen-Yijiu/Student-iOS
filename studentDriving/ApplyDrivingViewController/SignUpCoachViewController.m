@@ -18,6 +18,9 @@
 #import "CoachDetailAppointmentViewController.h"
 #import "BLPFAlertView.h"
 #import "LoginViewController.h"
+
+#import "DVVLocationStatus.h"
+
 #define StartOffset  kSystemWide/4-60/2
 
 static NSString *const kCoachUrl = @"userinfo/nearbycoach?%@";
@@ -32,6 +35,8 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
 @property (strong, nonatomic) BMKLocationService *locationService;
 @property (strong, nonatomic) UIButton *naviBarRightButton;
 @property (strong, nonatomic) CoachModel *detailModel;
+
+@property (nonatomic, strong) DVVLocationStatus *dvvLocationStatus;
 
 @end
 @implementation SignUpCoachViewController
@@ -243,6 +248,21 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
 }
 
 - (void)locationManager {
+    
+    // 检查定位功能是否可用
+    _dvvLocationStatus = [DVVLocationStatus new];
+    __weak typeof(self) ws = self;
+    [_dvvLocationStatus setSelectCancelButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    [_dvvLocationStatus setSelectOkButtonBlock:^{
+        [ws.navigationController popViewControllerAnimated:YES];
+    }];
+    if (![_dvvLocationStatus checkLocationStatus]) {
+        [_dvvLocationStatus remindUser];
+        return ;
+    }
+    
     [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     [BMKLocationService setLocationDistanceFilter:10000.0f];
     

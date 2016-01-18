@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DVVCycleShowImagesView.h"
 #import "DVVToolBarView.h"
+#import "DVVSearchView.h"
 
 @interface DrivingTableHeaderView : UIView<UITextFieldDelegate>
 
@@ -16,9 +17,10 @@
 @property (nonatomic, strong) DVVCycleShowImagesView *cycleShowImagesView;
 @property (nonatomic, strong) UIButton *motorcycleTypeButton;
 @property (nonatomic, strong) DVVToolBarView *filterView;
-@property (nonatomic, strong) UIView *searchView;
-@property (nonatomic, strong) UIImageView *searchBackgroundImageView;
-@property (nonatomic, strong) UIButton *searchButton;
-@property (nonatomic, strong) UITextField *searchTextField;
+//@property (nonatomic, strong) UIView *searchView;
+//@property (nonatomic, strong) UIImageView *searchBackgroundImageView;
+//@property (nonatomic, strong) UIButton *searchButton;
+//@property (nonatomic, strong) UITextField *searchTextField;
+@property (nonatomic, strong) DVVSearchView *searchView;
 
 @end
