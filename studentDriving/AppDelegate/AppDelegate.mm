@@ -48,8 +48,10 @@
 // 容错处理
 #import "LJException.h"
 
-@interface AppDelegate ()
-
+@interface AppDelegate ()<UIAlertViewDelegate>
+{
+    BOOL isReceiveMessage;
+}
 @end
 
 @implementation AppDelegate
@@ -137,8 +139,30 @@
         [_main dealInfo:notification.userInfo];
     }
 #pragma mark - JPush推送
-    [self JPushApplication:application didReceiveLocalNotification:notification];
     
+    NSLog(@"[UIApplication sharedApplication].applicationState:%ld",(long)[UIApplication sharedApplication].applicationState);
+    
+    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
+        NSLog(@"----------");
+
+        if (isReceiveMessage==NO) {
+            isReceiveMessage=YES;
+            
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"你有一条新消息,快点击查看吧" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+            [alertView show];
+            
+        }
+        
+    }else{
+        NSLog(@"+++++++++");
+        [self JPushApplication:application didReceiveLocalNotification:notification];
+    }
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    isReceiveMessage = NO;
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -225,7 +249,7 @@
     
     NSLog(@"message.messageBodies:%@",message.messageBodies);
     
-    if (([UIApplication sharedApplication].applicationState == UIApplicationStateActive) && [[NSUserDefaults standardUserDefaults] boolForKey:@"isInChatVc"]==YES) {
+    if (([UIApplication sharedApplication].applicationState == UIApplicationStateActive)&&([[NSUserDefaults standardUserDefaults] boolForKey:@"isInChatVc"])) {
         return;
     }
     
