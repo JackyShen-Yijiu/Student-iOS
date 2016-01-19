@@ -263,7 +263,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     
     MyAppointmentModel *model = self.dataArray[indexPath.row];
     
-    AppointmentState state = model.reservationstate.integerValue - 1;
+    AppointmentState state = model.reservationstate.integerValue;
    
     if (state == AppointmentStateWait) {
         AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
@@ -303,6 +303,12 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
         wait.model = model;
         wait.markNum =  self.markNum;
         [self.navigationController pushViewController:wait animated:YES];
+    }else if (state == AppointmentStateSignin) {         //已签到
+        APWaitConfirmViewController *wait = [[APWaitConfirmViewController alloc] init];
+        wait.model = model;
+        wait.markNum =  self.markNum;
+        [self.navigationController pushViewController:wait animated:YES];
+    }else if (state == AppointmentStateNoSignIn) {         //已漏课
     }else if (state == AppointmentStateWaitComment) {
         APWaitEvaluationViewController *waitEvaluation = [[APWaitEvaluationViewController alloc] init];
         waitEvaluation.model = model;

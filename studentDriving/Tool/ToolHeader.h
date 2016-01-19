@@ -22,14 +22,17 @@ typedef NS_ENUM(NSUInteger,SubjectState){
 };
 
 typedef NS_ENUM(NSUInteger,AppointmentState){
-    AppointmentStateWait,
-    AppointmentStateSelfCancel,
-    AppointmentStateCoachConfirm,
-    AppointmentStateCoachCancel,
-    AppointmentStateConfirmEnd,
-    AppointmentStateWaitComment,
-    AppointmentStateFinish,
-    AppointmentStateSystemCancel
+    AppointmentStateWait = 1, //  预约中
+    AppointmentStateSelfCancel, //  学生取消
+    AppointmentStateCoachConfirm, //  新订单
+    AppointmentStateCoachCancel, //  已取消
+    AppointmentStateConfirmEnd, // 待确认完成
+    AppointmentStateWaitComment, // 待评价
+    AppointmentStateOnCommended, // 评论成功
+    AppointmentStateFinish, // 订单完成
+    AppointmentStateSystemCancel, // 系统取消
+    AppointmentStateSignin, // 已签到
+    AppointmentStateNoSignIn // 已漏课
 };
 
 
