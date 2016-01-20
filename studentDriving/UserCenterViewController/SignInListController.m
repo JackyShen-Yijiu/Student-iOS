@@ -26,7 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"我的预约";
+    self.title = @"今天的预约";
     
     [self.view addSubview:self.tableView];
     _tableView.backgroundColor = [UIColor whiteColor];
@@ -42,9 +42,15 @@
     __weak typeof(self) ws = self;
     [_viewModel setDVVRefreshSuccessBlock:^{
         
+        [MBProgressHUD hideHUDForView:ws.view animated:YES];
         [ws.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     }];
+    [_viewModel setDVVRefreshErrorBlock:^{
+        [MBProgressHUD hideHUDForView:ws.view animated:YES];
+        [ws showTotasViewWithMes:@"加载失败"];
+    }];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     // 请求网络数据
     [_viewModel dvvNetworkRequestRefresh];
 }
@@ -95,7 +101,7 @@
     SignInDataModel *dataModel = _viewModel.todayArray[indexPath.row];
     
     if (!dataModel.signInStatus) {
-        [self showTotasViewWithMes:@"您还没到签到时间"];
+        [self showTotasViewWithMes:@"请在规定的时间内签到"];
         return ;
     }
     SignInViewController *vc = [SignInViewController new];

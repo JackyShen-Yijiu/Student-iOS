@@ -74,6 +74,7 @@
                 NSString *currentHH = [self dateFromLocalWithFormatString:@"HH"];
                 NSString *currentMM = [self dateFromLocalWithFormatString:@"mm"];
                 NSString *beginHH = [item.beginTime substringToIndex:2];
+                NSString *endHH = [item.endTime substringToIndex:2];
                 
                 // 在开始前的15分钟之内
                 if ([currentHH integerValue] < [beginHH integerValue]) {
@@ -85,18 +86,18 @@
                     }
                 }
                 
-                NSString *endHH = [item.endTime substringToIndex:2];
                 NSLog(@"%@---%@---%@", currentHH, beginHH, endHH);
                 // 学车过程中
                 if ([currentHH integerValue] <= [endHH integerValue] && currentHH >= beginHH) {
                         item.signInStatus = YES;
-                }else { // 结束后15分钟
-                    if (1 == [currentHH integerValue] - [endHH integerValue]) {
-                        if ([currentMM integerValue] <= 15) {
-                            item.signInStatus = YES;
-                        }
-                    }
                 }
+//                    else { // 结束后15分钟
+//                    if (1 == [currentHH integerValue] - [endHH integerValue]) {
+//                        if ([currentMM integerValue] <= 15) {
+//                            item.signInStatus = YES;
+//                        }
+//                    }
+//                }
                 
                 [self.todayArray addObject:item];
                 
@@ -112,6 +113,7 @@
         
     } withFailure:^(id data) {
         
+        [self dvvRefreshError];
         NSLog(@"%@", data);
     }];
 }
