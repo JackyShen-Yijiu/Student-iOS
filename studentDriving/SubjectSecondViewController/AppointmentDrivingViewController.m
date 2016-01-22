@@ -327,15 +327,33 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
 }
 - (void)kAddCoachModel {
     
+    if ([self checkSameCoach]) {
+        return ;
+    }
+    
     if (_is_AddCoachModel == NO) {
+        
         [self.dataArray insertObject:[BLInformationManager sharedInstance].appointmentCoachModel atIndex:0];
         self.is_AddCoachModel = YES;
     }else if (_is_AddCoachModel == YES) {
+        
         [self.dataArray replaceObjectAtIndex:0 withObject:[BLInformationManager sharedInstance].appointmentCoachModel];
     }
     [self.coachHeadCollectionView reloadData];
     
 }
+#pragma mark 当添加教练的时候先检测是否有这个教练已经存在列表中
+- (BOOL)checkSameCoach {
+    
+    NSString *coachId = [BLInformationManager sharedInstance].appointmentCoachModel.coachid;
+    for (AppointmentCoachModel *model in self.dataArray) {
+        if ([model.coachid isEqualToString:coachId]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 #pragma mark -- 导航button
 - (void)conformNavItem {
     UIBarButtonItem *navMessegeItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];

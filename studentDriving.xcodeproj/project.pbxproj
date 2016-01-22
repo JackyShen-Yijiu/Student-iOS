@@ -576,6 +576,7 @@
 		D970D3A21C3D0468003FCED3 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D970D39E1C3D0468003FCED3 /* NSObject+YYModel.m */; };
 		D970D3A31C3D0468003FCED3 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D970D3A01C3D0468003FCED3 /* YYClassInfo.m */; };
 		D978ACD11C47957F00D633B4 /* DVVLocationStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */; };
+		D980218A1C51D21C00596C86 /* DVVAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = D98021891C51D21C00596C86 /* DVVAlert.m */; };
 		D98E06141C3E4570009BFA81 /* DVVCheckActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */; };
 		D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */; };
 		D9A5DF5E1C35288A009DF18A /* CoinCertificateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DF5C1C35288A009DF18A /* CoinCertificateController.m */; };
@@ -1618,6 +1619,8 @@
 		D970D3A11C3D0468003FCED3 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
 		D978ACCF1C47957F00D633B4 /* DVVLocationStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVLocationStatus.h; sourceTree = "<group>"; };
 		D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVLocationStatus.m; sourceTree = "<group>"; };
+		D98021881C51D21C00596C86 /* DVVAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVAlert.h; sourceTree = "<group>"; };
+		D98021891C51D21C00596C86 /* DVVAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVAlert.m; sourceTree = "<group>"; };
 		D98E06121C3E4570009BFA81 /* DVVCheckActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCheckActivity.h; sourceTree = "<group>"; };
 		D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCheckActivity.m; sourceTree = "<group>"; };
 		D9A46DCA1C25049900271747 /* SweepCodeSignInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SweepCodeSignInController.h; sourceTree = "<group>"; };
@@ -3500,6 +3503,8 @@
 				D965CAA01C239D9F00DCD094 /* DrivingViewController.m */,
 				D978ACCF1C47957F00D633B4 /* DVVLocationStatus.h */,
 				D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */,
+				D98021881C51D21C00596C86 /* DVVAlert.h */,
+				D98021891C51D21C00596C86 /* DVVAlert.m */,
 			);
 			path = Driving;
 			sourceTree = "<group>";
@@ -4086,6 +4091,7 @@
 				D5604B6A1BF656C50020F0D7 /* PSTCollectionViewLayout.m in Sources */,
 				D5604B761BF656C50020F0D7 /* SRSlimeView.m in Sources */,
 				D970D39A1C3CFFEB003FCED3 /* CoachDMRootClass.m in Sources */,
+				D980218A1C51D21C00596C86 /* DVVAlert.m in Sources */,
 				D588AFCC1BDDDAAB000C5D6F /* AppointmentCoachModel.m in Sources */,
 				D965CAA41C239D9F00DCD094 /* DrivingCityListDMRootClass.m in Sources */,
 				D965CAA81C239D9F00DCD094 /* DrivingCycleShowDMRootClass.m in Sources */,

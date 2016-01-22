@@ -88,7 +88,7 @@
                 
                 NSLog(@"%@---%@---%@", currentHH, beginHH, endHH);
                 // 学车过程中
-                if ([currentHH integerValue] <= [endHH integerValue] && currentHH >= beginHH) {
+                if ([currentHH integerValue] <= [endHH integerValue] && [currentHH integerValue] >= [beginHH integerValue]) {
                         item.signInStatus = YES;
                 }
 //                    else { // 结束后15分钟

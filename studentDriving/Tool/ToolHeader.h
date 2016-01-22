@@ -59,9 +59,10 @@ static NSString *const kQiniuImageUrl = @"http://7xnjg0.com1.z0.glb.clouddn.com/
 
 #define BACKGROUNDCOLOR [UIColor colorWithRed:247/255.0f green:249/255.0f blue:251/255.0f alpha:1]
 
+// 正式库
 #define BASEURL @"http://api.yibuxueche.com/api/v1/%@"
-//http://123.57.63.15:8181/api/v1/ 正式
-//http://101.200.204.240:8181/api/v1/ 测试
+// 测试库
+//#define BASEURL @"http://101.200.204.240:8181/api/v1/%@"
 
 // 切换正式库时要单独进行切换!!!!!!!!!!!!!!!!!!! 首页H5页面
 #define BTH5   @"http://api.yibuxueche.com/%@"

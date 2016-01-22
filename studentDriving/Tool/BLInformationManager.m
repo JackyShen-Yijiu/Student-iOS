@@ -12,6 +12,7 @@
 @end
 @implementation BLInformationManager
 + (BLInformationManager *)sharedInstance {
+    
     static BLInformationManager *manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

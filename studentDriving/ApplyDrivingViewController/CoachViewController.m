@@ -240,20 +240,24 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
             NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
             if (type.integerValue == 1) {
                 NSArray *array = param[@"data"];
+                NSLog(@"%@", array);
+                if (!self.dataArray.count && !array.count) {
+                    [self showTotasViewWithMes:@"没有查询到教练"];
+                }
                 NSError *error = nil;
                 [self.dataArray addObjectsFromArray: [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:array error:&error]];
-                for (CoachDetail *coachModel in self.dataArray) {
-                    if ([coachModel.coachid isEqualToString:[AcountManager manager].applycoach.infoId]) {
-                        [self.dataArray removeObject:coachModel];
-                    }
-                    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-                    NSArray *modelArr = [ud objectForKey:@"appointCoachModelArr"];
-                    for (AppointmentCoachModel *appointModel in modelArr) {
-                        if ([coachModel.coachid isEqualToString:appointModel.coachid]) {
-                            [self.dataArray removeObject:coachModel];
-                        }
-                    }
-                }
+//                for (CoachDetail *coachModel in self.dataArray) {
+//                    if ([coachModel.coachid isEqualToString:[AcountManager manager].applycoach.infoId]) {
+//                        [self.dataArray removeObject:coachModel];
+//                    }
+//                    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//                    NSArray *modelArr = [ud objectForKey:@"appointCoachModelArr"];
+//                    for (AppointmentCoachModel *appointModel in modelArr) {
+//                        if ([coachModel.coachid isEqualToString:appointModel.coachid]) {
+//                            [self.dataArray removeObject:coachModel];
+//                        }
+//                    }
+//                }
                 [self.tableView reloadData];
             }else {
                 kShowFail(msg);

@@ -164,17 +164,6 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (void)network {
     
-    //    NSDictionary *params = @{ @"latitude": [NSString stringWithFormat:@"%f",self.latitude],
-    //                              @"longitud": [NSString stringWithFormat:@"%f",self.longitude],
-    //                              @"radius": [NSString stringWithFormat:@"%li",self.radius],
-    //                              @"cityname": [NSString stringWithFormat:@"%@",self.cityName],
-    //                              @"licensetype": [NSString stringWithFormat:@"%li",self.carTypeId],
-    //                              @"schoolname": [NSString stringWithFormat:@"%@",self.searchName],
-    //                              @"ordertype": [NSString stringWithFormat:@"%li",self.filterType],
-    //                              @"index": [NSString stringWithFormat:@"%li",self.index],
-    //                              @"count": [NSString stringWithFormat:@"%li",self.count] };
-    
-//    NSString *params = @"";
     // 判断字符串是否null
     if (![self.cityName isKindOfClass:[NSNull class]]) {
         self.cityName = @"";
@@ -224,10 +213,13 @@ static NSString *const kDrivingUrl = @"searchschool";
 
     DYNSLog(@"result = %@",data);
     if (![[data objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
-        [self showTotasViewWithMes:@"没有找到数据！"];
+        [self showTotasViewWithMes:@"没有找到数据"];
         return ;
     }
     NSArray *array = data[@"data"];
+    if (!array.count) {
+        [self showTotasViewWithMes:@"没有更多数据啦"];
+    }
     // 如果是刷新则清空数组
     if (self.isRefresh) {
         [self.dataArray removeAllObjects];
@@ -244,7 +236,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     [self.tableView.mj_footer endRefreshing];
     
     if (!self.dataArray.count) {
-        [self showTotasViewWithMes:@"没有找到数据！"];
+        [self showTotasViewWithMes:@"没有找到数据"];
     }
 }
 
