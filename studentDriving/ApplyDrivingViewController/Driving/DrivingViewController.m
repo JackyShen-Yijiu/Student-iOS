@@ -224,10 +224,13 @@ static NSString *const kDrivingUrl = @"searchschool";
 
     DYNSLog(@"result = %@",data);
     if (![[data objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
-        [self showTotasViewWithMes:@"没有找到数据！"];
+        [self showTotasViewWithMes:@"没有找到数据"];
         return ;
     }
     NSArray *array = data[@"data"];
+    if (!array.count) {
+        [self showTotasViewWithMes:@"没有更多数据啦"];
+    }
     // 如果是刷新则清空数组
     if (self.isRefresh) {
         [self.dataArray removeAllObjects];
@@ -244,7 +247,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     [self.tableView.mj_footer endRefreshing];
     
     if (!self.dataArray.count) {
-        [self showTotasViewWithMes:@"没有找到数据！"];
+        [self showTotasViewWithMes:@"没有找到数据"];
     }
 }
 

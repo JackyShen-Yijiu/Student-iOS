@@ -217,8 +217,8 @@
 //    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
     
     // 保存经纬度
-    _searchCoachViewModel.longitude = userLocation.location.coordinate.latitude;
-    _searchCoachViewModel.latitude = userLocation.location.coordinate.longitude;
+    _searchCoachViewModel.latitude = userLocation.location.coordinate.latitude;
+    _searchCoachViewModel.longitude = userLocation.location.coordinate.longitude;
     
     // 反地理编码，获取城市名
     [self reverseGeoCodeWithLatitude:_searchCoachViewModel.latitude longitude:_searchCoachViewModel.longitude];
@@ -248,7 +248,7 @@
     if (error == BMK_SEARCH_NO_ERROR) {
         //        NSLog(@"%@",result);
         BMKAddressComponent *addressComponent = result.addressDetail;
-        //        NSLog(@"addressComponent.city===%@",addressComponent.city);
+                NSLog(@"addressComponent.city===%@",addressComponent.city);
         // 保存城市名
         _searchCoachViewModel.cityName = addressComponent.city;
         [self.naviBarRightButton setTitle:addressComponent.city forState:UIControlStateNormal];

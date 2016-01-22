@@ -9,6 +9,8 @@
 #import "JEPhotoPickManger.h"
 #import "PFActionSheetView.h"
 #import "ToolHeader.h"
+#import <AVFoundation/AVFoundation.h>
+
 @interface JEPhotoPickManger ()
 @property (weak, nonatomic) UIViewController<UINavigationControllerDelegate,UIImagePickerControllerDelegate> *fromVc;
 
@@ -21,6 +23,19 @@
     [PFActionSheetView showAlertWithTitle:nil message:nil cancelButtonTitle:@"取消" otherButtonTitles:@[@"拍照",@"从相册选取"] withVc:fromController completion:^(NSUInteger selectedOtherButtonIndex) {
         
         if (selectedOtherButtonIndex == 0) {
+            
+            // 如果用户没有打开相机，则提示用户去设置中打开
+            AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
+            if (authStatus == AVAuthorizationStatusAuthorized) {
+                // 已经授权
+                
+            }else {
+                // 没有授权
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相机不可用" message:@"请在设置中开启相机服务" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"我知道了", nil];
+                [alertView show];
+                
+                return ;
+            }
             
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 

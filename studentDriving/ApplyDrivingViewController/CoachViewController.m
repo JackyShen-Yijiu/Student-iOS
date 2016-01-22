@@ -240,6 +240,7 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
             NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
             if (type.integerValue == 1) {
                 NSArray *array = param[@"data"];
+                NSLog(@"%@", array);
                 NSError *error = nil;
                 [self.dataArray addObjectsFromArray: [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:array error:&error]];
                 for (CoachDetail *coachModel in self.dataArray) {
