@@ -547,6 +547,12 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    
+    // 打开侧边栏
+    if (scrollView.contentOffset.x < -50) {
+        [self showSideMenu];
+    }
+    
     [self setBackImageOffet:scrollView.contentOffset.x];
     
     if (scrollView.contentOffset.x == 0) {
