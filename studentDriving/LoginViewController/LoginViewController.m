@@ -108,7 +108,6 @@ static NSString *const kuserType = @"usertype";
     }
     return _userParam;
 }
-
 - (UIImageView *)rightImageView {
     if (_rightImageView == nil) {
         _rightImageView = [[UIImageView alloc] init];
