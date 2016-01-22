@@ -197,67 +197,68 @@
     self.contentTime.text = myModel.classdatetimedesc;
     [self.contentHeadView sd_setImageWithURL:[NSURL URLWithString:myModel.coachid.headportrait.originalpic]placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
     DYNSLog(@"state = %@",myModel.reservationstate);
-    if (myModel.reservationstate.integerValue == 1) {
+    
+     AppointmentState state = myModel.reservationstate.integerValue;
+    if (state == AppointmentStateWait) {
         //课程申请待确认中
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
         self.contentStateTitle.text = @"申请中";
         
-    }else if (myModel.reservationstate.integerValue == 2) {
+    }else if (state == AppointmentStateSelfCancel) {
         //取消预约(自己取消)
         self.remindImageView.image = [UIImage imageNamed:@"完成corner.png"];
         self.contentStateView.backgroundColor = RGBColor(17, 216, 136);
         self.contentStateTitle.text = @"您已取消";
         self.contentStateTitle.textColor =  RGBColor(17, 216, 136);
         
-    }else if (myModel.reservationstate.integerValue == 3) {
+    }else if (state == AppointmentStateCoachConfirm) {
         //已经确认
         self.remindImageView.image = [UIImage imageNamed:@"待评价corner.png"];
         self.contentStateView.backgroundColor = RGBColor(255, 150, 24);
         self.contentStateTitle.text = @"已提交";
         self.contentStateTitle.textColor = RGBColor(255, 150, 24);
         
-    }else if (myModel.reservationstate.integerValue == 4) {
+    }else if (state == AppointmentStateCoachCancel) {
         //已取消(教练取消)
         self.remindImageView.image = [UIImage imageNamed:@"完成corner.png"];
         self.contentStateView.backgroundColor =  RGBColor(17, 216, 136);
         self.contentStateTitle.text = @"教练取消";
         self.contentStateTitle.textColor =  RGBColor(17, 216, 136);
-        
-    }else if (myModel.reservationstate.integerValue == 5) {
+    }else if (state == AppointmentStateConfirmEnd) {
         //待确认
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
         self.contentStateTitle.text = @"待确认";
         self.contentStateTitle.textColor = MAINCOLOR;
         
-    }else if (myModel.reservationstate.integerValue == 6) {
+    }else if (state == AppointmentStateWaitComment) {
         //待评价
         self.remindImageView.image = [UIImage imageNamed:@"待评价corner.png"];
         self.contentStateView.backgroundColor = RGBColor(255, 150, 24);
         self.contentStateTitle.text = @"待评价";
         self.contentStateTitle.textColor = RGBColor(255, 150, 24);
-    }else if (myModel.reservationstate.integerValue == 7) {
+    }else if (state == AppointmentStateFinish) {
         //已成功
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
         self.contentStateTitle.text = @"已完成";
         self.contentStateTitle.textColor = MAINCOLOR;
         
-    }else if (myModel.reservationstate.integerValue == 8) {
+    }else if (state == AppointmentStateSystemCancel) {
         //系统取消
         self.remindImageView.image = [UIImage imageNamed:@"完成corner.png"];
         self.contentStateView.backgroundColor =  RGBColor(17, 216, 136);
         self.contentStateTitle.text = @"系统取消";
         self.contentStateTitle.textColor =  RGBColor(17, 216, 136);
-    }else if (myModel.reservationstate.integerValue == 9) {
+    }else if (state == AppointmentStateSignin) {
         //已签到
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
         self.contentStateTitle.text = @"已签到";
         self.contentStateTitle.textColor = MAINCOLOR;
         
-    }else if (myModel.reservationstate.integerValue == 10) {
+    }else if (state == AppointmentStateNoSignIn) {
         //已签到
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;

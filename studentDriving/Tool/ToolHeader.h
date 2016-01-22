@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger,AppointmentState){
     AppointmentStateCoachCancel, //  已取消
     AppointmentStateConfirmEnd, // 待确认完成
     AppointmentStateWaitComment, // 待评价
-    AppointmentStateOnCommended, // 评论成功
+//    AppointmentStateOnCommended, // 评论成功
     AppointmentStateFinish, // 订单完成
     AppointmentStateSystemCancel, // 系统取消
     AppointmentStateSignin, // 已签到
