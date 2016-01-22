@@ -164,17 +164,6 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (void)network {
     
-    //    NSDictionary *params = @{ @"latitude": [NSString stringWithFormat:@"%f",self.latitude],
-    //                              @"longitud": [NSString stringWithFormat:@"%f",self.longitude],
-    //                              @"radius": [NSString stringWithFormat:@"%li",self.radius],
-    //                              @"cityname": [NSString stringWithFormat:@"%@",self.cityName],
-    //                              @"licensetype": [NSString stringWithFormat:@"%li",self.carTypeId],
-    //                              @"schoolname": [NSString stringWithFormat:@"%@",self.searchName],
-    //                              @"ordertype": [NSString stringWithFormat:@"%li",self.filterType],
-    //                              @"index": [NSString stringWithFormat:@"%li",self.index],
-    //                              @"count": [NSString stringWithFormat:@"%li",self.count] };
-    
-//    NSString *params = @"";
     // 判断字符串是否null
     if (![self.cityName isKindOfClass:[NSNull class]]) {
         self.cityName = @"";
