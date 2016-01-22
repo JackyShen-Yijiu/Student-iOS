@@ -238,27 +238,27 @@
         self.contentStateTitle.text = @"待评价";
         self.contentStateTitle.textColor = RGBColor(255, 150, 24);
     }else if (myModel.reservationstate.integerValue == 7) {
-        //评价成功
+        //已成功
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
-        self.contentStateTitle.text = @"评价成功";
+        self.contentStateTitle.text = @"已完成";
         self.contentStateTitle.textColor = MAINCOLOR;
         
     }else if (myModel.reservationstate.integerValue == 8) {
-        //已完成
+        //系统取消
         self.remindImageView.image = [UIImage imageNamed:@"完成corner.png"];
         self.contentStateView.backgroundColor =  RGBColor(17, 216, 136);
-        self.contentStateTitle.text = @"已完成";
+        self.contentStateTitle.text = @"系统取消";
         self.contentStateTitle.textColor =  RGBColor(17, 216, 136);
-    }else if (myModel.reservationstate.integerValue == 10) {
+    }else if (myModel.reservationstate.integerValue == 9) {
         //已签到
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
         self.contentStateTitle.text = @"已签到";
         self.contentStateTitle.textColor = MAINCOLOR;
         
-    }else if (myModel.reservationstate.integerValue == 11) {
-        //已漏课
+    }else if (myModel.reservationstate.integerValue == 10) {
+        //已签到
         self.remindImageView.image = [UIImage imageNamed:@"预约corner.png"];
         self.contentStateView.backgroundColor = MAINCOLOR;
         self.contentStateTitle.text = @"已漏课";
