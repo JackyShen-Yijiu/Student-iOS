@@ -56,6 +56,7 @@
 		55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B671C26798500AC64FF /* SubmitVerificationController.m */; };
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
+		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B8272D411C1EE4BA00BE0D2D /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D401C1EE4BA00BE0D2D /* MenuController.m */; };
 		B8272D441C1EE4ED00BE0D2D /* YBBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D431C1EE4ED00BE0D2D /* YBBaseTableController.m */; };
 		B8272D471C1EEC4D00BE0D2D /* SideMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D461C1EEC4D00BE0D2D /* SideMenuItem.m */; };
@@ -766,6 +767,8 @@
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
+		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B8272D3F1C1EE4BA00BE0D2D /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
 		B8272D401C1EE4BA00BE0D2D /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
 		B8272D421C1EE4ED00BE0D2D /* YBBaseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseTableController.h; sourceTree = "<group>"; };
@@ -3505,6 +3508,8 @@
 				D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */,
 				D98021881C51D21C00596C86 /* DVVAlert.h */,
 				D98021891C51D21C00596C86 /* DVVAlert.m */,
+				B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */,
+				B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */,
 			);
 			path = Driving;
 			sourceTree = "<group>";
@@ -4034,6 +4039,7 @@
 				D5D50EE21BFA205000F54097 /* MagicMainTableViewController.m in Sources */,
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
+				B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */,
 				D5604B4D1BF656C50020F0D7 /* MWPhoto.m in Sources */,
 				061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */,
 				060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */,

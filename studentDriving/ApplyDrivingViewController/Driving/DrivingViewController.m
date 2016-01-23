@@ -17,14 +17,17 @@
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
 #import "DrivingTableHeaderView.h"
-#import "DrivingCycleShowViewModel.h"
 #import "DrivingSelectMotorcycleTypeView.h"
 #import "DrivingCityListView.h"
 #import "MJRefresh.h"
 #import "DVVSideMenu.h"
 #import "DVVLocationStatus.h"
 
+#import "JGSelectDrivingVcHead.h"
+
 static NSString *const kDrivingUrl = @"searchschool";
+
+#define selectHeadViewH 35
 
 @interface DrivingViewController ()<UITableViewDelegate, UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate, UITextFieldDelegate, BMKGeoCodeSearchDelegate, UIAlertViewDelegate>
 @property (strong, nonatomic)UITableView *tableView;
@@ -32,8 +35,9 @@ static NSString *const kDrivingUrl = @"searchschool";
 @property (strong, nonatomic) NSMutableArray *dataArray;
 @property (strong, nonatomic) UIButton *naviBarRightButton;
 @property (strong, nonatomic) DrivingModel *detailModel;
-@property (nonatomic, strong) DrivingTableHeaderView *tableHeaderView;
-@property (nonatomic, strong) DrivingCycleShowViewModel *cycleShowViewModel;
+
+@property (nonatomic, strong) JGSelectDrivingVcHead *tableHeaderView;
+
 @property (nonatomic, strong) DrivingSelectMotorcycleTypeView *selectMotorcycleTypeView;
 
 @property (nonatomic, strong) DVVLocationStatus *dvvLocationStatus;
@@ -81,7 +85,6 @@ static NSString *const kDrivingUrl = @"searchschool";
     _index = 1;
     _count = 10;
     
-    
     self.title = @"选择驾校";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -91,20 +94,18 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     [self.view addSubview:self.tableView];
     
-    [self networkCallBack];
-    
     [self configRefresh];
     
     [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
     // 定位
-    [self locationManager];
-////         在模拟器上定位不好用，测试是打开注释
-//        self.latitude = 39.929985778080237;
-//        self.longitude = 116.39564503787867;
-//        self.index = 1;
-//        self.isRefresh = YES;
-//        // 获取网络数据
-//        [self network];
+//    [self locationManager];
+//         在模拟器上定位不好用，测试是打开注释
+        self.latitude = 39.929985778080237;
+        self.longitude = 116.39564503787867;
+        self.index = 1;
+        self.isRefresh = YES;
+        // 获取网络数据
+        [self network];
 }
 //- (void)keyboardHide:(UITapGestureRecognizer *)tap{
 //    [self.view endEditing:YES];
@@ -114,16 +115,6 @@ static NSString *const kDrivingUrl = @"searchschool";
     [MBProgressHUD hideHUDForView:self.tableView animated:YES];
 }
 
-#pragma mark - networkCallBack
-- (void)networkCallBack {
-    // 轮播图
-    _cycleShowViewModel = [DrivingCycleShowViewModel new];
-    __weak typeof(self) ws = self;
-    [_cycleShowViewModel setSuccessRefreshBlock:^{
-        [ws.tableHeaderView.cycleShowImagesView reloadDataWithArray:ws.cycleShowViewModel.imagesUrlArray];
-    }];
-    [_cycleShowViewModel networkRequestRefresh];
-}
 #pragma mark - 刷新和加载
 - (void)configRefresh {
     
@@ -412,46 +403,55 @@ static NSString *const kDrivingUrl = @"searchschool";
     return _dataArray;
 }
 
-- (DrivingTableHeaderView *)tableHeaderView {
+- (JGSelectDrivingVcHead *)tableHeaderView {
+    
     if (!_tableHeaderView) {
-        _tableHeaderView = [DrivingTableHeaderView new];
-        _tableHeaderView.frame = CGRectMake(0, 0, kSystemWide, _tableHeaderView.defaultHeight);
-        _tableHeaderView.backgroundColor = [UIColor whiteColor];
+        
+        _tableHeaderView = [[JGSelectDrivingVcHead alloc] init];
+        
+        _tableHeaderView.frame = CGRectMake(0, 0, kSystemWide, selectHeadViewH);
+        
+        _tableHeaderView.selectDriving = ^(NSInteger selIndex){
+            
+            NSLog(@"selIndex:%ld",(long)selIndex);
+            
+        };
         
         // 选择车型点击事件
-        [_tableHeaderView.motorcycleTypeButton addTarget:self action:@selector(motorcycleTypeButtonAction) forControlEvents:UIControlEventTouchUpInside];
+       // [_tableHeaderView.motorcycleTypeButton addTarget:self action:@selector(motorcycleTypeButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        
         // 筛选条件点击事件
-        [_tableHeaderView.filterView dvvToolBarViewItemSelected:^(UIButton *button) {
-            self.filterType = button.tag + 1;
-            NSLog(@"%li",button.tag);
-            self.index = 1;
-            self.isRefresh = YES;
-            [self network];
-        }];
+//        [_tableHeaderView.filterView dvvToolBarViewItemSelected:^(UIButton *button) {
+//            self.filterType = button.tag + 1;
+//            NSLog(@"%li",button.tag);
+//            self.index = 1;
+//            self.isRefresh = YES;
+//            [self network];
+//        }];
         // 搜索按钮点击事件
 //        [_tableHeaderView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        __weak typeof(self) ws = self;
-        [_tableHeaderView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
-            [ws searchButtonAction:textField];
-        }];
+//        __weak typeof(self) ws = self;
+//        [_tableHeaderView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
+//            [ws searchButtonAction:textField];
+//        }];
     }
     return _tableHeaderView;
 }
 
-- (void)motorcycleTypeButtonAction {
-    DrivingSelectMotorcycleTypeView *view = [DrivingSelectMotorcycleTypeView new];
-    view.frame = self.view.bounds;
-    [view setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
-        self.carTypeId = carTypeId;
-        [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
-        //        NSLog(@"%li --- %@", carTypeId, selectedTitle);
-        self.index = 1;
-        self.isRefresh = YES;
-        [self network];
-    }];
-    [self.view addSubview:view];
-    [view show];
-}
+//- (void)motorcycleTypeButtonAction {
+//    DrivingSelectMotorcycleTypeView *view = [DrivingSelectMotorcycleTypeView new];
+//    view.frame = self.view.bounds;
+//    [view setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
+//        self.carTypeId = carTypeId;
+//        [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
+//        //        NSLog(@"%li --- %@", carTypeId, selectedTitle);
+//        self.index = 1;
+//        self.isRefresh = YES;
+//        [self network];
+//    }];
+//    [self.view addSubview:view];
+//    [view show];
+//}
 
 - (void)searchButtonAction:(UITextField *)textField {
     
@@ -556,10 +556,6 @@ static NSString *const kDrivingUrl = @"searchschool";
     //            }
     //        }];
     //    }
-}
-
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
 }
 
 @end
