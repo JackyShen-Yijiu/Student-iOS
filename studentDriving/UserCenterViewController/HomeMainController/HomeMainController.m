@@ -550,6 +550,13 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     // 打开注释背景移动
 //    [self setBackImageOffet:scrollView.contentOffset.x];
     
+    // 打开侧边栏
+    if (scrollView.contentOffset.x < -50) {
+        [self showSideMenu];
+    }
+    
+    [self setBackImageOffet:scrollView.contentOffset.x];
+
     if (scrollView.contentOffset.x == 0) {
         [self carMore:scrollView.contentOffset.x];
         [_homeSpotView changLableColor:scrollView.contentOffset.x];
