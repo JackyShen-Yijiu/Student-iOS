@@ -44,13 +44,16 @@ PODS:
   - Qiniu (7.0.16):
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.2)
-  - RESideMenu (4.0.7)
   - SDCycleScrollView (1.3)
   - SDWebImage (3.7.3):
     - SDWebImage/Core (= 3.7.3)
   - SDWebImage/Core (3.7.3)
   - SSKeychain (1.3.1)
+  - TencentOpenApiSDK (2.9.5):
+    - TencentOpenApiSDK/Basic (= 2.9.5)
+  - TencentOpenApiSDK/Basic (2.9.5)
   - UMengAnalytics-NO-IDFA (3.6.7)
+  - UMengSocial (4.4)
 
 DEPENDENCIES:
   - AFNetworking
@@ -63,11 +66,12 @@ DEPENDENCIES:
   - MJRefresh
   - NJKWebViewProgress
   - Qiniu (~> 7.0)
-  - RESideMenu (~> 4.0.7)
   - SDCycleScrollView (~> 1.3)
   - SDWebImage (~> 3.7)
   - SSKeychain
+  - TencentOpenApiSDK (~> 2.9.5)
   - UMengAnalytics-NO-IDFA
+  - UMengSocial (~> 4.4)
 
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
@@ -81,10 +85,11 @@ SPEC CHECKSUMS:
   MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Qiniu: 51a8702cddc02b50867e10cef99291b9a8a006b1
-  RESideMenu: f24c508404b49c667344c54aba7e590883533958
   SDCycleScrollView: 90e43636fcc8e6a7f74e8b64d87418a8e96549b4
   SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
+  TencentOpenApiSDK: a0d7716edd6eb438d65828168e8e5137301b436d
   UMengAnalytics-NO-IDFA: 6d02561a00579b2e37718f204eb81347df5d7b8b
+  UMengSocial: aba7296602310385114d82c255539a7bef3b7ab0
 
 COCOAPODS: 0.39.0

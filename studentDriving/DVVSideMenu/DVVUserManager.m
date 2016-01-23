@@ -60,4 +60,11 @@
     naviVC.navigationBarHidden = NO;
 }
 
++ (void)pushController:(UIViewController *)controller {
+    
+    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+    [naviVC pushViewController:controller animated:YES];
+}
+
 @end

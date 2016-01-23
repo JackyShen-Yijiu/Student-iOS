@@ -77,7 +77,7 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
 - (void)clickRight:(UIButton *)sender {
     
     if (![AcountManager isLogin]) {
-        [self showLoginView];
+        [DVVUserManager userNeedLogin];
         return;
     }
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {

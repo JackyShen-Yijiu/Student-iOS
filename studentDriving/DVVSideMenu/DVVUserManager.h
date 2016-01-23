@@ -25,4 +25,7 @@
 // 用户需要随便看看时调用此方法
 + (void)userNeedBrowsing;
 
+// Push一个视图
++ (void)pushController:(UIViewController *)controller;
+
 @end

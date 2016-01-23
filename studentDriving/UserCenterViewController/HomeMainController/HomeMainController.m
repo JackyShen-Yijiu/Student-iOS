@@ -9,7 +9,6 @@
 #import "HomeMainController.h"
 #import "HomeMainView.h"
 #import "HomeSpotView.h"
-#import "UIViewController+SliderMenu.h"
 #import "ToolHeader.h"
 #import "JENetwoking.h"
 #import "DVVSideMenu.h"

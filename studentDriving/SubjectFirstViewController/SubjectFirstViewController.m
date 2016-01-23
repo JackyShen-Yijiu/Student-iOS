@@ -535,7 +535,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 - (void)dealCard:(UIButton *)sender{
     WrongQuestionViewController *wrongQuestion = [[WrongQuestionViewController alloc] init];
     if (![AcountManager isLogin]) {
-        [self showLoginView];
+        [DVVUserManager userNeedLogin];
         return;
     }else {
         NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
@@ -548,7 +548,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 
 - (void)dealMyself:(UIButton *)sender {
     if (![AcountManager isLogin]) {
-        [self showLoginView];
+        [DVVUserManager userNeedLogin];
         return;
     }
     UserCenterViewController *userCenter = [[UserCenterViewController alloc] init];
