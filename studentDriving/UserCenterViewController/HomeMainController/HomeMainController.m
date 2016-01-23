@@ -137,7 +137,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     [_mainScrollView setShowsHorizontalScrollIndicator:NO];
 
     // 添加UIImageView,用于当滑动时,背景滑动1/4
-    _backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, systemsW * 2, systemsH)];
+    _backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, systemsW, systemsH)];
     _backImage.image = [UIImage imageNamed:@"bg"];
     _imageX = 0;
 
@@ -147,7 +147,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     UIImageView *fireImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - fireW) / 2 + 20, 44, fireW, fireH)];
     fireImageView.backgroundColor = [UIColor clearColor];
     fireImageView.image = [UIImage imageNamed:@"流星"];
-    [_backImage addSubview:fireImageView];
+//    [_backImage addSubview:fireImageView];
      [self.view addSubview:_backImage];
     
     
@@ -546,14 +546,16 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
+    // 打开注释背景移动
+//    [self setBackImageOffet:scrollView.contentOffset.x];
     
     // 打开侧边栏
     if (scrollView.contentOffset.x < -50) {
         [self showSideMenu];
     }
     
-    [self setBackImageOffet:scrollView.contentOffset.x];
-    
+//    [self setBackImageOffet:scrollView.contentOffset.x];
+
     if (scrollView.contentOffset.x == 0) {
         [self carMore:scrollView.contentOffset.x];
         [_homeSpotView changLableColor:scrollView.contentOffset.x];

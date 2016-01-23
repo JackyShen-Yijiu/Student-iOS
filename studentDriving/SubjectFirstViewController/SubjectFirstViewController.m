@@ -94,7 +94,7 @@ static NSString *const kexamquestionUrl = @"/info/examquestion";
 - (UIImageView *)coachImageView {
     if (_coachImageView == nil) {
         _coachImageView = [[UIImageView alloc] init];
-        _coachImageView.image = [UIImage imageNamed:@"题库.png"];
+        _coachImageView.image = [UIImage imageNamed:@"题库1.png"];
     }
     return _coachImageView;
 }

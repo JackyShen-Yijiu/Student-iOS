@@ -22,6 +22,7 @@
 #import "HomeMainController.h"
 #import "DVVUserManager.h"
 #import "VerifyPhoneController.h"
+#import "UIColor+Extension.h"
 
 static NSString *const kloginUrl = @"userinfo/userlogin";
 
@@ -58,7 +59,7 @@ static NSString *const kuserType = @"usertype";
 - (UIView *)bottomLeftLineView {
     if (_bottomLeftLineView == nil) {
         _bottomLeftLineView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
-        _bottomLeftLineView.backgroundColor = MAINCOLOR;
+        _bottomLeftLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
     }
     return _bottomLeftLineView;
 }
@@ -66,7 +67,7 @@ static NSString *const kuserType = @"usertype";
 - (UIView *)bottomRightLineView {
     if (_bottomRightLineView == nil) {
         _bottomRightLineView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2+15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
-        _bottomRightLineView.backgroundColor = MAINCOLOR;
+        _bottomRightLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
     }
     return _bottomRightLineView;
 }
@@ -78,7 +79,7 @@ static NSString *const kuserType = @"usertype";
         _bottomLabel.text = @"or";
         _bottomLabel.layer.cornerRadius = 10;
         _bottomLabel.clipsToBounds = YES;
-        _bottomLabel.textColor = RGBColor(255, 102, 51);
+        _bottomLabel.textColor = [UIColor colorWithWhite:1 alpha:0.6];
         _bottomLabel.textAlignment = NSTextAlignmentCenter;
         _bottomLabel.backgroundColor = [UIColor clearColor];
         _bottomLabel.font = [UIFont systemFontOfSize:14];
@@ -110,6 +111,7 @@ static NSString *const kuserType = @"usertype";
     if (_rightImageView == nil) {
         _rightImageView = [[UIImageView alloc] init];
         _rightImageView.image = [UIImage imageNamed:@"随便看看"];
+        _rightImageView.alpha = 0.6;
     }
     return _rightImageView;
 }
@@ -118,7 +120,7 @@ static NSString *const kuserType = @"usertype";
     if (_bottomButton == nil) {
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_bottomButton setTitle:@"随便看看" forState:UIControlStateNormal];
-        [_bottomButton setTitleColor:RGBColor(255, 102, 51) forState:UIControlStateNormal];
+        [_bottomButton setTitleColor:[UIColor colorWithWhite:1 alpha:0.6] forState:UIControlStateNormal];
         _bottomButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_bottomButton addTarget:self action:@selector(dealBottom:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
@@ -137,16 +139,17 @@ static NSString *const kuserType = @"usertype";
 - (UIView *)lineView {
     if (_lineView == nil) {
         _lineView = [[UIView alloc] init];
-        _lineView.layer.borderWidth = 1;
-        _lineView.layer.borderColor = [UIColor colorWithHexString:@"bfbfbf"].CGColor;
+        _lineView.layer.borderWidth = 0.5;
+        _lineView.layer.borderColor = [UIColor colorWithHexString:@"999999" alpha:1].CGColor;
+        
     }
     return _lineView;
 }
 - (UIView *)lineViewBottom {
     if (_lineViewBottom == nil) {
         _lineViewBottom = [[UIView alloc] init];
-        _lineViewBottom.layer.borderWidth = 1;
-        _lineViewBottom.layer.borderColor = [UIColor colorWithHexString:@"bfbfbf"].CGColor;
+        _lineViewBottom.layer.borderWidth = 0.5;
+        _lineViewBottom.layer.borderColor = [UIColor colorWithHexString:@"999999" alpha:1].CGColor;
     }
     return _lineViewBottom;
 }
@@ -657,7 +660,7 @@ static NSString *const kuserType = @"usertype";
     
     [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerY.mas_equalTo(self.bottomButton.mas_centerY);
-        make.right.mas_equalTo(self.bottomButton.mas_right).with.offset(-15);
+        make.right.mas_equalTo(self.bottomButton.mas_right).with.offset(-22);
         make.height.mas_equalTo(@15);
         make.width.mas_equalTo(@15);
     }];

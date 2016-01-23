@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "kesanyuyue.png",
+      "filename" : "科三预约.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "kesanyuyue@2x.png",
+      "filename" : "科三预约@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "kesanyuyue@3x.png",
+      "filename" : "科三预约@3x.png",
       "scale" : "3x"
     }
   ],
