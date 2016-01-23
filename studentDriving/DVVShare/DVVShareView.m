@@ -93,7 +93,7 @@
     [super layoutSubviews];
     
     _backgroundImageView.backgroundColor = [UIColor blackColor];
-    _backgroundImageView.alpha = 0.2;
+    _backgroundImageView.alpha = 0.5;
     
     _collectionView.backgroundColor = [UIColor whiteColor];
     
@@ -277,14 +277,16 @@
 - (UIImageView *)titleBackgroundImageView {
     if (!_titleBackgroundImageView) {
         _titleBackgroundImageView = [UIImageView new];
-        _titleBackgroundImageView.image = [UIImage imageNamed:@"bg"];
+        _titleBackgroundImageView.image = [UIImage imageNamed:@"share_background"];
+        _titleBackgroundImageView.backgroundColor = [UIColor redColor];
     }
     return _titleBackgroundImageView;
 }
 - (UIImageView *)walletImageView {
     if (!_walletImageView) {
         _walletImageView = [UIImageView new];
-        _walletImageView.image = [UIImage imageNamed:@"120"];
+        _walletImageView.contentMode = UIViewContentModeCenter;
+        _walletImageView.image = [UIImage imageNamed:@"share_wallet_icon"];
     }
     return _walletImageView;
 }
@@ -311,7 +313,7 @@
 - (UIButton *)closeButton {
     if (!_closeButton) {
         _closeButton = [UIButton new];
-        [_closeButton setBackgroundImage:[UIImage imageNamed:@"120"] forState:UIControlStateNormal];
+        [_closeButton setBackgroundImage:[UIImage imageNamed:@"share_close_icon"] forState:UIControlStateNormal];
         [_closeButton addTarget:self action:@selector(hide) forControlEvents:UIControlEventTouchUpInside];
         [_closeButton.layer setMasksToBounds:YES];
     }
