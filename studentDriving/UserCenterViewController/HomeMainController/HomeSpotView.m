@@ -148,24 +148,16 @@
             label.frame = CGRectMake(15, labelY, spotW, spotH);
             label.text = arrayStr[i];
             label.tag = 201;
-
-//            label.textColor = [UIColor colorWithHexString:@"fcfcfc"];
             label.font = [UIFont systemFontOfSize:14];
-
-            label.textColor = [UIColor colorWithHexString:@"68e6ff"];
-            label.font = [UIFont systemFontOfSize:10];
+            label.textColor = [UIColor colorWithHexString:@"ff6633"];
             [_lableitems addObject:label];
             [self addSubview:label];
         }else
         {
             label.frame = CGRectMake(i * margin + i * spotW + 15, labelY, spotW, spotH);
             label.text = arrayStr[i];
-
-            label.textColor = [UIColor colorWithHexString:@"fcfcfc"];
             label.font = [UIFont systemFontOfSize:12];
-
-            label.textColor = [UIColor grayColor];
-            label.font = [UIFont systemFontOfSize:10];
+            label.textColor = [UIColor whiteColor];
             label.tag = 201 + i;
             [_lableitems addObject:label];
             [self addSubview:label];
@@ -184,10 +176,10 @@
     for (UILabel *resultLabel in _lableitems) {
         if(resultLabel.tag == i)
         {
-            resultLabel.textColor = [UIColor colorWithHexString:@"68e6ff"];
+            resultLabel.textColor = [UIColor colorWithHexString:@"ff6633"];
         }else
         {
-            resultLabel.textColor = [UIColor colorWithHexString:@"fcfcfc"];
+            resultLabel.textColor = [UIColor whiteColor];
         }
     }
     // 设置划过的痕迹

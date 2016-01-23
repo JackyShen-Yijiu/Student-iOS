@@ -555,7 +555,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         [self showSideMenu];
     }
     
-    [self setBackImageOffet:scrollView.contentOffset.x];
+//    [self setBackImageOffet:scrollView.contentOffset.x];
 
     if (scrollView.contentOffset.x == 0) {
         [self carMore:scrollView.contentOffset.x];
