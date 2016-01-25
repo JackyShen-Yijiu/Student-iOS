@@ -14,6 +14,7 @@
 #import "JsonTransformManager.h"
 #import <UIImageView+WebCache.h>
 #import "NSString+CurrentTimeDay.h"
+#import "UIColor+Extension.h"
 typedef NS_ENUM(NSUInteger,SubjectState){
     SubjectStateTime,
     SubjectStateWaitConfirm,

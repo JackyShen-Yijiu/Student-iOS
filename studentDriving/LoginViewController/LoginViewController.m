@@ -562,7 +562,6 @@ static NSString *const kuserType = @"usertype";
     [super viewWillLayoutSubviews];
 #pragma make - 自动布局
     
-    
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.top.mas_equalTo(self.view.mas_top).with.offset(50);
