@@ -87,10 +87,12 @@
         [ws.tableView reloadData];
         [ws.tableView.mj_header endRefreshing];
     }];
+    
     [_searchCoachViewModel setDVVLoadMoreSuccessBlock:^{
         [ws.tableView reloadData];
         [ws.tableView.mj_footer endRefreshing];
     }];
+    
 }
 
 #pragma mark - config refresh
