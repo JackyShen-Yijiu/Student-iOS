@@ -486,7 +486,7 @@
 - (void)dealSignUp:(UIButton *)sender {
     if (![AcountManager isLogin]) {
         DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        [self showLoginView];
+        [DVVUserManager userNeedLogin];
         return;
     }
     SignUpViewController *signUp = [[SignUpViewController alloc] init];
@@ -503,7 +503,7 @@
 - (void)dealPurse:(UIButton *)sender {
     
     if (![AcountManager isLogin]) {
-        [self showLoginView];
+        [DVVUserManager userNeedLogin];
         return;
     }
 
@@ -513,7 +513,7 @@
 #pragma mark - 教练点击事件
 - (void)dealCoach:(UIButton *)sender{
     NSLog(@"sender");
-    [self.slideMenu presentLeftMenuViewController];
+//    [self.slideMenu presentLeftMenuViewController];
     return;
     CoachViewController *CoachVC = [[CoachViewController alloc]init];
     CoachVC.markNum = 1;
@@ -528,7 +528,7 @@
 
 - (void)dealMyself:(UIButton *)sender {
     if (![AcountManager isLogin]) {   
-        [self showLoginView];
+        [DVVUserManager userNeedLogin];
         return;
     }
     UserCenterViewController *userCenter = [[UserCenterViewController alloc] init];

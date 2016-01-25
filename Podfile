@@ -1,4 +1,4 @@
-platform:ios,'8.0'
+platform:ios,'9.0'
 
 pod 'Masonry'
 pod 'AFNetworking'
@@ -14,4 +14,5 @@ pod 'NJKWebViewProgress'
 pod 'JPush', '~> 1.8.7'
 pod 'MJRefresh'
 pod 'UMengAnalytics-NO-IDFA'
-pod 'RESideMenu', '~> 4.0.7'
+pod 'UMengSocial', '~> 4.4'
+pod 'TencentOpenApiSDK', '~> 2.9.5'

@@ -508,7 +508,7 @@
 
 - (void)dealMyself:(UIButton *)sender {
     if (![AcountManager isLogin]) {
-        [self showLoginView];
+        [DVVUserManager userNeedLogin];
         return;
     }
     UserCenterViewController *userCenter = [[UserCenterViewController alloc] init];

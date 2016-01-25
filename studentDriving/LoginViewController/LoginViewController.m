@@ -18,8 +18,6 @@
 #import <AFNetworking.h>
 #import "AcountManager.h"
 #import <JPush/APService.h>
-#import "RESideMenu.h"
-#import "MenuController.h"
 #import "AppDelegate.h"
 #import "HomeMainController.h"
 #import "DVVUserManager.h"

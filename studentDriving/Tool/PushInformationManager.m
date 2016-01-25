@@ -36,7 +36,7 @@
         detail.isPushInformation = YES;
         detail.infoId = string;
         detail.state = AppointmentStateCoachConfirm;
-        [[HMControllerManager slideMainNavController] pushViewController:detail animated:YES];
+        [DVVUserManager pushController:detail];
         
         
     }else if ([type isEqualToString:@"reservationcancel"]) {
@@ -47,7 +47,7 @@
         detail.isPushInformation = YES;
         detail.infoId = string;
         detail.state = AppointmentStateCoachCancel;
-        [[HMControllerManager slideMainNavController] pushViewController:detail animated:YES];
+        [DVVUserManager pushController:detail];
         
     }else if ([type isEqualToString:@"reservationcoachcomment"]) {
         
