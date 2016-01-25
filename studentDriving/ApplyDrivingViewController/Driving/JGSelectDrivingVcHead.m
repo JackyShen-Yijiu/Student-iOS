@@ -2,13 +2,21 @@
 //  JGSelectDrivingVcHead.m
 //  studentDriving
 //
-//  Created by JiangangYang on 16/1/23.
-//  Copyright © 2016年 jatd. All rights reserved.
+//  Created by 大威 on 15/12/14.
+//  Copyright © 2015年 jatd. All rights reserved.
 //
 
 #import "JGSelectDrivingVcHead.h"
 
-#define selectHeadViewH 35
+#define VIEW_WIDTH [UIScreen mainScreen].bounds.size.width
+
+#define filterViewHeight 35
+
+@interface JGSelectDrivingVcHead ()
+
+@property (nonatomic,strong) UIView *footDelive;
+
+@end
 
 @implementation JGSelectDrivingVcHead
 
@@ -16,70 +24,160 @@
 {
     self = [super init];
     if (self) {
-        
-        self.backgroundColor = [UIColor whiteColor];
 
-        NSArray *titleArray = [NSArray arrayWithObjects:@"班型选择",@"距离最近",@"评分最高",@"价格最高", nil];
-        NSArray *titleImg = [NSArray arrayWithObjects:@"iconfont-xiaoyuanqiandao.png",@"iconfont-xiaoyuanqiandao.png",@"iconfont-xiaoyuanqiandao.png",@"iconfont-xiaoyuanqiandao.png", nil];
+        // @"车型选择"
+        [self addSubview:self.motorcycleTypeButton];
+       
+        // @[ @"距离最近", @"评分最高", @"价格最低" ]
+        [self addSubview:self.filterView];
+
+        // 底部分割线
+        [self addSubview:self.footDelive];
         
-        for (int i = 0; i<titleArray.count; i++) {
+        // 按钮分割线
+        for (int i = 0; i<4; i++) {
             
-            UIButton *btn = [[UIButton alloc] init];
-            [btn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateNormal];
-            [btn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateSelected];
-            [btn setTitle:[titleArray objectAtIndex:i] forState:UIControlStateHighlighted];
-            [btn setImage:[UIImage imageNamed:[titleImg objectAtIndex:i]] forState:UIControlStateNormal];
-            [btn setImage:[UIImage imageNamed:[titleImg objectAtIndex:i]] forState:UIControlStateSelected];
-            [btn setImage:[UIImage imageNamed:[titleImg objectAtIndex:i]] forState:UIControlStateHighlighted];
-            [btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-            [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
-            [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateHighlighted];
-            btn.titleLabel.font = [UIFont systemFontOfSize:14];
-            btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-            btn.backgroundColor = [UIColor clearColor];
-            btn.tag = i+100;
-            
-            CGFloat btnH = selectHeadViewH;
-            CGFloat btnW = kSystemWide/titleArray.count;
-            CGFloat btnX = i * btnW;
-            CGFloat btnY = 0;
-            btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
-            
-            [btn addTarget:self action:@selector(btnDidClick:) forControlEvents:UIControlEventTouchUpInside];
-            [self addSubview:btn];
-            
-            if (i<titleArray.count-1) {
-                
-                // 分割线
-                UIView *delive = [[UIView alloc] init];
-                delive.backgroundColor = [UIColor lightGrayColor];
-                delive.alpha = 0.3;
-                
-                CGFloat deliveX = i * btnW;
-                CGFloat deliveY = 5;
-                CGFloat deliveW = 0.5;
-                CGFloat deliveH = btnH - 2 * deliveY;
-                delive.frame = CGRectMake(deliveX, deliveY, deliveW, deliveH);
-                
-                [self addSubview:delive];
-                
-            }
+            UIView *delive = [[UIView alloc] init];
+            CGFloat deliveX = VIEW_WIDTH/4 * (i+1);
+            CGFloat deliveY = 5;
+            CGFloat deliveW = 0.5;
+            CGFloat deliveH = filterViewHeight - 2 * deliveY;
+            delive.frame = CGRectMake(deliveX, deliveY, deliveW, deliveH);
+            delive.backgroundColor = [UIColor lightGrayColor];
+            delive.alpha = 0.3;
+            [self addSubview:delive];
             
         }
         
-        UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, selectHeadViewH-1, kSystemWide, 0.5)];
-        footView.backgroundColor = [UIColor lightGrayColor];
-        footView.alpha = 0.3;
-        [self addSubview:footView];
+        // 箭头
+        for (int j = 0; j<1; j++) {
+            
+            UIImageView *img = [[UIImageView alloc] init];
+            img.backgroundColor = [UIColor clearColor];
+            img.image = [UIImage imageNamed:j == 0 ? @"selectDringBtnSelectImg" : @"selectDringBtnImg"];
+            CGFloat imgw = 10;
+            CGFloat imgH = 5;
+            CGFloat imgx = VIEW_WIDTH/4 * (j+1)-imgw-3;
+            CGFloat imgy = filterViewHeight/2-imgH/2;
+            img.frame = CGRectMake(imgx, imgy, imgw, imgH);
+            img.tag = j+1000;
+            [self addSubview:img];
+            
+        }
         
+        //        [self.searchView addSubview:self.searchBackgroundImageView];
+        //        [self.searchView addSubview:self.searchTextField];
+        //        [self.searchView addSubview:self.searchButton];
         
+        //        _cycleShowImagesView.backgroundColor = [UIColor redColor];
+        //        _motorcycleTypeButton.backgroundColor = [UIColor greenColor];
+        //        _filterView.backgroundColor = [UIColor orangeColor];
+        //        _searchView.backgroundColor = [UIColor magentaColor];
+        //        _searchButton.backgroundColor = [UIColor orangeColor];
+        //        _searchTextField.backgroundColor = [UIColor lightGrayColor];
     }
     return self;
 }
 
-- (void)btnDidClick:(UIButton *)btn
-{
-    _selectDriving(btn.tag-100);
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    [self configUI];
+}
+
+#pragma mark - configUI
+- (void)configUI {
+    
+    self.motorcycleTypeButton.frame = CGRectMake(0, 0, VIEW_WIDTH/4, filterViewHeight);
+    
+    self.filterView.frame = CGRectMake(CGRectGetMaxX(self.motorcycleTypeButton.frame), 0, VIEW_WIDTH - (VIEW_WIDTH/4), filterViewHeight);
+
+    self.footDelive.frame = CGRectMake(0, filterViewHeight-1, VIEW_WIDTH, 0.5);
+    
+    //    self.searchBackgroundImageView.frame = CGRectMake(10, 5, VIEW_WIDTH - 20, searchViewHeight - 10);
+    //    [self.searchBackgroundImageView.layer setCornerRadius:(searchViewHeight - 10) / 2.f];
+    //    CGFloat searchButtonWidth = 26;
+    //    self.searchTextField.frame = CGRectMake(20, 0, VIEW_WIDTH - searchButtonWidth - 30, searchViewHeight);
+    //    self.searchButton.frame = CGRectMake(VIEW_WIDTH - searchButtonWidth - 10, 0, searchButtonWidth, searchViewHeight);
+    //    CGFloat radius = searchViewHeight / 2.f;
+    //    self.searchButton.frame = CGRectMake(radius, 0, searchButtonWidth, searchViewHeight);
+    //    self.searchTextField.frame = CGRectMake(radius + searchButtonWidth, 0, VIEW_WIDTH - radius * 2.f - searchButtonWidth, searchViewHeight);
+    //
+    //    self.searchBackgroundImageView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
+    //    [self.searchTextField setTintColor:[UIColor grayColor]];
+}
+
+#pragma mark - action
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    
+    [textField resignFirstResponder];
+    return YES;
+}
+
+
+#pragma mark - lazy load
+
+- (UIButton *)motorcycleTypeButton {
+    if (!_motorcycleTypeButton) {
+        _motorcycleTypeButton = [UIButton new];
+        [_motorcycleTypeButton setTitle:@"车型选择" forState:UIControlStateNormal];
+        [_motorcycleTypeButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        _motorcycleTypeButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    }
+    return _motorcycleTypeButton;
+}
+
+- (DVVToolBarView *)filterView {
+    if (!_filterView) {
+        _filterView = [DVVToolBarView new];
+        _filterView.titleArray = @[ @"距离最近", @"评分最高", @"价格最低" ];
+        _filterView.titleSelectColor = [UIColor orangeColor];
+        _filterView.followBarColor = [UIColor clearColor];
+        _filterView.selectButtonInteger = -1;
+    }
+    return _filterView;
+}
+- (UIView *)footDelive {
+    if (!_footDelive) {
+        _footDelive = [[UIView alloc] init];
+        _footDelive.backgroundColor = [UIColor lightGrayColor];
+        _footDelive.alpha = 0.3;
+    }
+    return _footDelive;
+}
+
+
+//- (UIImageView *)searchBackgroundImageView {
+//    if (!_searchBackgroundImageView) {
+//        _searchBackgroundImageView = [UIImageView new];
+//        [_searchBackgroundImageView.layer setMasksToBounds:YES];
+//    }
+//    return _searchBackgroundImageView;
+//}
+//
+//- (UIButton *)searchButton {
+//    if (!_searchButton) {
+//        _searchButton = [UIButton new];
+//        [_searchButton setTitle:@"搜索" forState:UIControlStateNormal];
+//        _searchButton.titleLabel.font = [UIFont systemFontOfSize:13];
+//        [_searchButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+//
+////        [_searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchDown];
+//    }
+//    return _searchButton;
+//}
+//
+//- (UITextField *)searchTextField {
+//    if (!_searchTextField) {
+//        _searchTextField = [UITextField new];
+//        _searchTextField.font = [UIFont systemFontOfSize:13];
+//        _searchTextField.delegate = self;
+//    }
+//    return _searchTextField;
+//}
+
+- (CGFloat)defaultHeight {
+    return filterViewHeight;
 }
 
 /*
@@ -89,4 +187,5 @@
  // Drawing code
  }
  */
+
 @end

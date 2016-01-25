@@ -37,10 +37,12 @@
 
 #pragma mark - show method
 - (void)show {
+    
     [self network];
     self.alpha = 0;
     [UIView animateWithDuration:0.3 animations:^{
         self.alpha = 1;
+        self.isShow = YES;
     }];
 }
 
@@ -104,6 +106,7 @@
 
 - (void)closeSelf {
     [UIView animateWithDuration:0.3 animations:^{
+        self.isShow = NO;
         self.alpha = 0;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
@@ -119,7 +122,7 @@
         height = self.dataList.count * 44;
     }
     self.tableView.frame = CGRectMake(0, 0, width, height);
-    self.tableView.center = CGPointMake(width, self.bounds.size.height / 2.f);
+    //self.tableView.center = CGPointMake(width, self.bounds.size.height / 2.f);
 }
 
 #pragma mark - lazy load

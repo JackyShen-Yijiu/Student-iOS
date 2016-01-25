@@ -53,7 +53,7 @@
     _textField.tintColor = [UIColor grayColor];
     // 设置背景视图为圆角
     [_backgroundImageView.layer setMasksToBounds:YES];
-    [_backgroundImageView.layer setCornerRadius:radius];
+    [_backgroundImageView.layer setCornerRadius:5];
     
 //    _textField.backgroundColor = [UIColor redColor];
 //    _searchButton.backgroundColor = [UIColor orangeColor];

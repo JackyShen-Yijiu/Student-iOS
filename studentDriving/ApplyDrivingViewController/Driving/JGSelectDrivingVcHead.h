@@ -2,16 +2,24 @@
 //  JGSelectDrivingVcHead.h
 //  studentDriving
 //
-//  Created by JiangangYang on 16/1/23.
-//  Copyright © 2016年 jatd. All rights reserved.
+//  Created by 大威 on 15/12/14.
+//  Copyright © 2015年 jatd. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "DVVToolBarView.h"
 
-typedef void (^selectDriving) (NSInteger selectIndex);
+@interface JGSelectDrivingVcHead : UIView<UITextFieldDelegate>
 
-@interface JGSelectDrivingVcHead : UIView
+@property (nonatomic, assign) CGFloat defaultHeight;
 
-@property (nonatomic,copy) selectDriving selectDriving;
+@property (nonatomic, strong) UIButton *motorcycleTypeButton;
+@property (nonatomic, strong) DVVToolBarView *filterView;
+
+
+//@property (nonatomic, strong) UIView *searchView;
+//@property (nonatomic, strong) UIImageView *searchBackgroundImageView;
+//@property (nonatomic, strong) UIButton *searchButton;
+//@property (nonatomic, strong) UITextField *searchTextField;
 
 @end

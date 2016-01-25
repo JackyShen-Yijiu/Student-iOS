@@ -22,6 +22,7 @@
 #import "MJRefresh.h"
 #import "DVVSideMenu.h"
 #import "DVVLocationStatus.h"
+#import "JGSelectDrivingVcHeadSearch.h"
 
 #import "JGSelectDrivingVcHead.h"
 
@@ -29,7 +30,10 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 #define selectHeadViewH 35
 
-@interface DrivingViewController ()<UITableViewDelegate, UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate, UITextFieldDelegate, BMKGeoCodeSearchDelegate, UIAlertViewDelegate>
+#define searchHeadViewH 35
+
+@interface DrivingViewController ()<UITableViewDelegate, UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate, UITextFieldDelegate, BMKGeoCodeSearchDelegate, UIAlertViewDelegate,UIScrollViewDelegate>
+
 @property (strong, nonatomic)UITableView *tableView;
 @property (strong, nonatomic) BMKLocationService *locationService;
 @property (strong, nonatomic) NSMutableArray *dataArray;
@@ -37,6 +41,7 @@ static NSString *const kDrivingUrl = @"searchschool";
 @property (strong, nonatomic) DrivingModel *detailModel;
 
 @property (nonatomic, strong) JGSelectDrivingVcHead *tableHeaderView;
+@property (nonatomic, strong) JGSelectDrivingVcHeadSearch *searchView;
 
 @property (nonatomic, strong) DrivingSelectMotorcycleTypeView *selectMotorcycleTypeView;
 
@@ -59,6 +64,9 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, assign) NSInteger count;
+
+@property (nonatomic,weak) DrivingSelectMotorcycleTypeView *typeView;
+
 @end
 
 @implementation DrivingViewController
@@ -91,6 +99,8 @@ static NSString *const kDrivingUrl = @"searchschool";
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
     DYNSLog(@"right = %@",self.naviBarRightButton);
     self.navigationItem.rightBarButtonItem = rightItem;
+    
+    [self.view addSubview:self.tableHeaderView];
     
     [self.view addSubview:self.tableView];
     
@@ -193,6 +203,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     [JENetwoking startDownLoadWithUrl:url postParam:params WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
         [self jeNetworkingCallBackData:data];
+        
     } withFailure:^(id data) {
         [self showTotasViewWithMes:@"网络错误"];
     }];
@@ -222,6 +233,11 @@ static NSString *const kDrivingUrl = @"searchschool";
     }
     
     [self.tableView reloadData];
+    
+    // 设置contentInset隐藏搜索框
+    [UIView animateWithDuration:0.5 animations:^{
+        self.tableView.contentInset = UIEdgeInsetsMake(-searchHeadViewH, 0, 0, 0);
+    }];
     
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
@@ -407,51 +423,79 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     if (!_tableHeaderView) {
         
-        _tableHeaderView = [[JGSelectDrivingVcHead alloc] init];
-        
-        _tableHeaderView.frame = CGRectMake(0, 0, kSystemWide, selectHeadViewH);
-        
-        _tableHeaderView.selectDriving = ^(NSInteger selIndex){
-            
-            NSLog(@"selIndex:%ld",(long)selIndex);
-            
-        };
+        _tableHeaderView = [JGSelectDrivingVcHead new];
+        _tableHeaderView.frame = CGRectMake(0, 64, kSystemWide, _tableHeaderView.defaultHeight);
+        _tableHeaderView.backgroundColor = [UIColor whiteColor];
         
         // 选择车型点击事件
-       // [_tableHeaderView.motorcycleTypeButton addTarget:self action:@selector(motorcycleTypeButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        
+        [_tableHeaderView.motorcycleTypeButton addTarget:self action:@selector(motorcycleTypeButtonAction) forControlEvents:UIControlEventTouchUpInside];
         // 筛选条件点击事件
-//        [_tableHeaderView.filterView dvvToolBarViewItemSelected:^(UIButton *button) {
-//            self.filterType = button.tag + 1;
-//            NSLog(@"%li",button.tag);
-//            self.index = 1;
-//            self.isRefresh = YES;
-//            [self network];
-//        }];
-        // 搜索按钮点击事件
-//        [_tableHeaderView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchUpInside];
-//        __weak typeof(self) ws = self;
-//        [_tableHeaderView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
-//            [ws searchButtonAction:textField];
-//        }];
+        [_tableHeaderView.filterView dvvToolBarViewItemSelected:^(UIButton *button) {
+            self.filterType = button.tag + 1;
+            NSLog(@"%li",button.tag);
+            self.index = 1;
+            self.isRefresh = YES;
+            [self network];
+        }];
+       
     }
     return _tableHeaderView;
 }
 
-//- (void)motorcycleTypeButtonAction {
-//    DrivingSelectMotorcycleTypeView *view = [DrivingSelectMotorcycleTypeView new];
-//    view.frame = self.view.bounds;
-//    [view setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
-//        self.carTypeId = carTypeId;
-//        [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
-//        //        NSLog(@"%li --- %@", carTypeId, selectedTitle);
-//        self.index = 1;
-//        self.isRefresh = YES;
-//        [self network];
-//    }];
-//    [self.view addSubview:view];
-//    [view show];
-//}
+- (JGSelectDrivingVcHeadSearch *)searchView {
+    
+    if (!_searchView) {
+        
+        _searchView = [JGSelectDrivingVcHeadSearch new];
+        
+        _searchView.frame = CGRectMake(0, 0, kSystemWide, _searchView.defaultHeight);
+        
+        _searchView.backgroundColor = RGBColor(255, 255, 255);
+        
+        // 搜索按钮点击事件
+        __weak typeof(self) ws = self;
+        [_searchView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
+            [ws searchButtonAction:textField];
+        }];
+        
+        
+    }
+    return _searchView;
+}
+
+- (void)motorcycleTypeButtonAction {
+    
+    if (self.typeView.isShow) {
+        [self.typeView closeSelf];
+        return;
+    }
+    
+     DrivingSelectMotorcycleTypeView *typeView = [DrivingSelectMotorcycleTypeView new];
+    
+    CGFloat viewX = 0;
+    CGFloat viewY = CGRectGetMaxY(self.tableHeaderView.frame)+1;
+    CGFloat viewW = self.view.frame.size.width;
+    CGFloat viewH = self.view.frame.size.height;
+    typeView.frame = CGRectMake(viewX, viewY, viewW, viewH);
+    
+    [typeView setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
+        
+        self.carTypeId = carTypeId;
+        [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
+        //        NSLog(@"%li --- %@", carTypeId, selectedTitle);
+        self.index = 1;
+        self.isRefresh = YES;
+        [self network];
+        
+    }];
+    
+    [self.view addSubview:typeView];
+    
+    [typeView show];
+    
+    self.typeView = typeView;
+    
+}
 
 - (void)searchButtonAction:(UITextField *)textField {
     
@@ -466,11 +510,11 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (UITableView *)tableView{
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64)  style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableHeaderView.frame), kSystemWide, kSystemHeight-64-self.tableHeaderView.frame.size.height)  style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.tableHeaderView = self.tableHeaderView;
         _tableView.tableFooterView = [[UIView alloc] init];
+        _tableView.tableHeaderView = self.searchView;
         _tableView.backgroundColor = [UIColor whiteColor];
     }
     return _tableView;
@@ -485,6 +529,25 @@ static NSString *const kDrivingUrl = @"searchschool";
     }
     return _naviBarRightButton;
 }
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+
+    CGPoint offY = scrollView.contentOffset;
+    NSLog(@"offY.y:%f",offY.y);
+    if (offY.y<=searchHeadViewH) {// 不需要刷新
+        [UIView animateWithDuration:0.5 animations:^{
+            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+        }];
+    }else{// 刷新
+        [UIView animateWithDuration:0.5 animations:^{
+            self.tableView.contentInset = UIEdgeInsetsMake(-searchHeadViewH, 0, 0, 0);
+        }];
+    }
+    
+}
+
 - (void)clickRight:(UIButton *)sender {
     
     BOOL flage = 0;
