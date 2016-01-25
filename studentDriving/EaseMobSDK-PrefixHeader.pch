@@ -27,6 +27,7 @@
 #import "UIViewController+Method.h"
 #import "MBProgressHUD.h"
 #import "ToolHeader.h"
+#import "DVVUserManager.h"
 
 /**
  *  根据城市名获取用户所在的城市是以驾校为主还是以教练为主

@@ -29,13 +29,13 @@ PODS:
     - ChameleonFramework/Default (= 2.0.6)
   - ChameleonFramework/Default (2.0.6)
   - HappyDNS (0.2.3)
-  - IQKeyboardManager (3.3.5)
+  - IQKeyboardManager (3.3.6)
   - JPush (1.8.8)
   - Mantle (2.0.6):
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
   - Masonry (0.6.4)
-  - MJRefresh (3.0.8)
+  - MJRefresh (3.1.0)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
     - NJKWebViewProgress/ProgressView (= 0.2.3)
@@ -44,10 +44,11 @@ PODS:
   - Qiniu (7.0.16):
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.2)
-  - SDCycleScrollView (1.3)
-  - SDWebImage (3.7.3):
-    - SDWebImage/Core (= 3.7.3)
-  - SDWebImage/Core (3.7.3)
+  - SDCycleScrollView (1.6):
+    - SDWebImage (~> 3.7)
+  - SDWebImage (3.7.5):
+    - SDWebImage/Core (= 3.7.5)
+  - SDWebImage/Core (3.7.5)
   - SSKeychain (1.3.1)
   - TencentOpenApiSDK (2.9.5):
     - TencentOpenApiSDK/Basic (= 2.9.5)
@@ -78,15 +79,15 @@ SPEC CHECKSUMS:
   BaiduMapAPI: 2d03e12a51d5c6c49ece555c6bdda8562635cc02
   ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
-  IQKeyboardManager: 128bcb96b3ec03ff87942cdd7fa7f44491aa3d08
+  IQKeyboardManager: 037cf3aec1d0a045108859a47818714eb1bfc149
   JPush: d1a4a90294389d2c6bd2ca987df8140dd4ffcbd2
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
-  MJRefresh: fafde8f18f4afd66b434331a9beb67a6c0264056
+  MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Qiniu: 51a8702cddc02b50867e10cef99291b9a8a006b1
-  SDCycleScrollView: 90e43636fcc8e6a7f74e8b64d87418a8e96549b4
-  SDWebImage: 1d2b1a1efda1ade1b00b6f8498865f8ddedc8a84
+  SDCycleScrollView: 436ccec76258f9f280365af5c07b289a71382601
+  SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
   TencentOpenApiSDK: a0d7716edd6eb438d65828168e8e5137301b436d
   UMengAnalytics-NO-IDFA: 6d02561a00579b2e37718f204eb81347df5d7b8b
