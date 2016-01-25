@@ -37,8 +37,6 @@
 #import "AppDelegate+EaseMob.h"
 #import "ChatListViewController.h"
 #import <UMengAnalytics-NO-IDFA/MobClick.h>
-#import "RESideMenu.h"
-#import "MenuController.h"
 #import "YBWelcomeController.h"
 #import "DVVSideMenu.h"
 
@@ -47,6 +45,7 @@
 #import "AFNetworkActivityLogger.h"
 // 容错处理
 #import "LJException.h"
+#import "AppDelegate+UMSocial.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 {
@@ -69,7 +68,10 @@
 
     [MobClick startWithAppkey:@"564cba17e0f55ae100005919" reportPolicy:BATCH   channelId:@""];
     
+    // 配置百度地图
     [self configBaiduMap];
+    // 配置友盟分享
+    [self configUMSocial];
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
@@ -179,7 +181,7 @@
     NSString *info = userInfo[@"ConversationChatter"];
     if (info) {
         ChatListViewController *chatlist = [[ChatListViewController alloc] init];
-        [[HMControllerManager slideMainNavController] pushViewController:chatlist animated:YES];
+        [DVVUserManager pushController:chatlist];
     }
 #pragma mark - JPush接受推送消息 require
     [self JPushApplication:application didReceiveRemoteNotification:userInfo];
@@ -216,6 +218,15 @@
     
 }
 
+
+- (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    BOOL result = [UMSocialSnsService handleOpenURL:url];
+    if (result == FALSE) {
+        // 调用其他SDK，例如支付宝SDK等
+    }
+    return result;
+}
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

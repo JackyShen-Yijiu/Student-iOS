@@ -56,6 +56,7 @@
 		55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B671C26798500AC64FF /* SubmitVerificationController.m */; };
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
+		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B8272D411C1EE4BA00BE0D2D /* MenuController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D401C1EE4BA00BE0D2D /* MenuController.m */; };
 		B8272D441C1EE4ED00BE0D2D /* YBBaseTableController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D431C1EE4ED00BE0D2D /* YBBaseTableController.m */; };
 		B8272D471C1EEC4D00BE0D2D /* SideMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B8272D461C1EEC4D00BE0D2D /* SideMenuItem.m */; };
@@ -578,10 +579,12 @@
 		D978ACD11C47957F00D633B4 /* DVVLocationStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */; };
 		D980218A1C51D21C00596C86 /* DVVAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = D98021891C51D21C00596C86 /* DVVAlert.m */; };
 		D98E06141C3E4570009BFA81 /* DVVCheckActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */; };
+		D9A34F3A1C5318FA0044CC25 /* DVVShareCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A34F371C5318FA0044CC25 /* DVVShareCell.m */; };
+		D9A34F3B1C5318FA0044CC25 /* DVVShareView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A34F391C5318FA0044CC25 /* DVVShareView.m */; };
+		D9A34F3E1C53191F0044CC25 /* AppDelegate+UMSocial.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A34F3D1C53191F0044CC25 /* AppDelegate+UMSocial.m */; };
 		D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */; };
 		D9A5DF5E1C35288A009DF18A /* CoinCertificateController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9A5DF5C1C35288A009DF18A /* CoinCertificateController.m */; };
 		D9A5DF5F1C35288A009DF18A /* CoinCertificateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A5DF5D1C35288A009DF18A /* CoinCertificateController.xib */; };
-		D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */; };
 		D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F1291C255F3400D1A143 /* CirclePoint.m */; };
 		D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B7F12B1C255F3400D1A143 /* CircularMotion.m */; };
 		D9D4BA0F1C3B916D00F62BE9 /* LJSwizzleMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = D9D4BA0E1C3B916D00F62BE9 /* LJSwizzleMethod.m */; };
@@ -766,6 +769,8 @@
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
+		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B8272D3F1C1EE4BA00BE0D2D /* MenuController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuController.h; sourceTree = "<group>"; };
 		B8272D401C1EE4BA00BE0D2D /* MenuController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuController.m; sourceTree = "<group>"; };
 		B8272D421C1EE4ED00BE0D2D /* YBBaseTableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseTableController.h; sourceTree = "<group>"; };
@@ -1623,13 +1628,17 @@
 		D98021891C51D21C00596C86 /* DVVAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVAlert.m; sourceTree = "<group>"; };
 		D98E06121C3E4570009BFA81 /* DVVCheckActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCheckActivity.h; sourceTree = "<group>"; };
 		D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCheckActivity.m; sourceTree = "<group>"; };
+		D9A34F361C5318FA0044CC25 /* DVVShareCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVShareCell.h; sourceTree = "<group>"; };
+		D9A34F371C5318FA0044CC25 /* DVVShareCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVShareCell.m; sourceTree = "<group>"; };
+		D9A34F381C5318FA0044CC25 /* DVVShareView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVShareView.h; sourceTree = "<group>"; };
+		D9A34F391C5318FA0044CC25 /* DVVShareView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVShareView.m; sourceTree = "<group>"; };
+		D9A34F3C1C53191F0044CC25 /* AppDelegate+UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+UMSocial.h"; sourceTree = "<group>"; };
+		D9A34F3D1C53191F0044CC25 /* AppDelegate+UMSocial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+UMSocial.m"; sourceTree = "<group>"; };
 		D9A46DCA1C25049900271747 /* SweepCodeSignInController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SweepCodeSignInController.h; sourceTree = "<group>"; };
 		D9A46DCB1C25049900271747 /* SweepCodeSignInController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SweepCodeSignInController.m; sourceTree = "<group>"; };
 		D9A5DF5B1C35288A009DF18A /* CoinCertificateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinCertificateController.h; sourceTree = "<group>"; };
 		D9A5DF5C1C35288A009DF18A /* CoinCertificateController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinCertificateController.m; sourceTree = "<group>"; };
 		D9A5DF5D1C35288A009DF18A /* CoinCertificateController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CoinCertificateController.xib; sourceTree = "<group>"; };
-		D9B7F1241C254ECC00D1A143 /* YBBaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseNavigationController.h; sourceTree = "<group>"; };
-		D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseNavigationController.m; sourceTree = "<group>"; };
 		D9B7F1281C255F3400D1A143 /* CirclePoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CirclePoint.h; sourceTree = "<group>"; };
 		D9B7F1291C255F3400D1A143 /* CirclePoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CirclePoint.m; sourceTree = "<group>"; };
 		D9B7F12A1C255F3400D1A143 /* CircularMotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularMotion.h; sourceTree = "<group>"; };
@@ -2055,23 +2064,6 @@
 				554E8E851C3A89CC00233F2B /* EaseMob.bundle */,
 			);
 			path = resources;
-			sourceTree = "<group>";
-		};
-		B8272D3E1C1EE49700BE0D2D /* SliderMenu */ = {
-			isa = PBXGroup;
-			children = (
-				D9B7F1241C254ECC00D1A143 /* YBBaseNavigationController.h */,
-				D9B7F1251C254ECC00D1A143 /* YBBaseNavigationController.m */,
-				B8272D3F1C1EE4BA00BE0D2D /* MenuController.h */,
-				B8272D401C1EE4BA00BE0D2D /* MenuController.m */,
-				B8272D421C1EE4ED00BE0D2D /* YBBaseTableController.h */,
-				B8272D431C1EE4ED00BE0D2D /* YBBaseTableController.m */,
-				B8272D451C1EEC4D00BE0D2D /* SideMenuItem.h */,
-				B8272D461C1EEC4D00BE0D2D /* SideMenuItem.m */,
-				B8272D481C1EF42700BE0D2D /* UIViewController+SliderMenu.h */,
-				B8272D491C1EF42700BE0D2D /* UIViewController+SliderMenu.m */,
-			);
-			name = SliderMenu;
 			sourceTree = "<group>";
 		};
 		B84D9D1E1C2E807200A8BDC2 /* TotasView */ = {
@@ -2984,6 +2976,7 @@
 		D588AF881BDDB62C000C5D6F /* studentDriving */ = {
 			isa = PBXGroup;
 			children = (
+				D9A34F351C5318FA0044CC25 /* DVVShare */,
 				554E8E181C3A89CB00233F2B /* EaseMobSDK */,
 				B84D9D251C2EB28000A8BDC2 /* AFNetworkActivityLogger.h */,
 				B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */,
@@ -2992,7 +2985,6 @@
 				D961BC761C27FFB700940577 /* GuidePage */,
 				D96D1BD51C2B88A000F1C282 /* DVVNavigation */,
 				D96D1BDC1C2B88A000F1C282 /* DVVSideMenu */,
-				B8272D3E1C1EE49700BE0D2D /* SliderMenu */,
 				D5D50EAE1BFA204A00F54097 /* Goods */,
 				D56049AD1BF656A70020F0D7 /* EaseMobManager */,
 				066BFB111C23A29F002A1DD8 /* HomeMainController */,
@@ -3505,6 +3497,8 @@
 				D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */,
 				D98021881C51D21C00596C86 /* DVVAlert.h */,
 				D98021891C51D21C00596C86 /* DVVAlert.m */,
+				B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */,
+				B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */,
 			);
 			path = Driving;
 			sourceTree = "<group>";
@@ -3512,6 +3506,8 @@
 		D96D1BC01C2B858400F1C282 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
+				D9A34F3C1C53191F0044CC25 /* AppDelegate+UMSocial.h */,
+				D9A34F3D1C53191F0044CC25 /* AppDelegate+UMSocial.m */,
 				D96D1BC11C2B858400F1C282 /* AppDelegate+DealJPushMessage.h */,
 				D96D1BC21C2B858400F1C282 /* AppDelegate+DealJPushMessage.m */,
 				D96D1BC31C2B858400F1C282 /* AppDelegate+DealTool.h */,
@@ -3590,6 +3586,17 @@
 				D970D3A11C3D0468003FCED3 /* YYModel.h */,
 			);
 			path = YYModel;
+			sourceTree = "<group>";
+		};
+		D9A34F351C5318FA0044CC25 /* DVVShare */ = {
+			isa = PBXGroup;
+			children = (
+				D9A34F361C5318FA0044CC25 /* DVVShareCell.h */,
+				D9A34F371C5318FA0044CC25 /* DVVShareCell.m */,
+				D9A34F381C5318FA0044CC25 /* DVVShareView.h */,
+				D9A34F391C5318FA0044CC25 /* DVVShareView.m */,
+			);
+			path = DVVShare;
 			sourceTree = "<group>";
 		};
 		D9B7F1271C255F0800D1A143 /* CircularMotion */ = {
@@ -3672,7 +3679,7 @@
 				TargetAttributes = {
 					D588AF851BDDB62C000C5D6F = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = MC3VUBEH8X;
+						DevelopmentTeam = C34F4H4R4C;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -3964,7 +3971,6 @@
 				D51256C61BE257DA002717DA /* ConfirmSubjectTwoCell.m in Sources */,
 				066BFB701C2428D0002A1DD8 /* HomeAdvantageController.m in Sources */,
 				D5D50ED81BFA205000F54097 /* finishMessageView.m in Sources */,
-				B8272D441C1EE4ED00BE0D2D /* YBBaseTableController.m in Sources */,
 				D588AFCE1BDDDAAB000C5D6F /* CourseTimeModel.m in Sources */,
 				D588B08D1BDDDBDB000C5D6F /* SignUpSucceedViewController.m in Sources */,
 				D588B1181BDDDC2F000C5D6F /* WMUITool.m in Sources */,
@@ -4034,6 +4040,7 @@
 				D5D50EE21BFA205000F54097 /* MagicMainTableViewController.m in Sources */,
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
+				B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */,
 				D5604B4D1BF656C50020F0D7 /* MWPhoto.m in Sources */,
 				061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */,
 				060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */,
@@ -4044,7 +4051,6 @@
 				D588B08E1BDDDBDB000C5D6F /* ExamClassViewController.m in Sources */,
 				D51256C01BE24442002717DA /* ConfirmStudyFinishViewController.m in Sources */,
 				D588B0931BDDDBDB000C5D6F /* CoachViewController.m in Sources */,
-				B8272D471C1EEC4D00BE0D2D /* SideMenuItem.m in Sources */,
 				D5604B3F1BF656C50020F0D7 /* EMAudioRecorderUtil.m in Sources */,
 				D970D3971C3CFFEB003FCED3 /* CoachDMData.m in Sources */,
 				D51256CF1BE36239002717DA /* MyExamCarViewController.m in Sources */,
@@ -4069,6 +4075,7 @@
 				D588B13C1BDDDC65000C5D6F /* GainPasswordView.m in Sources */,
 				D5604B881BF656C50020F0D7 /* EMTextView.m in Sources */,
 				D5604B561BF656C50020F0D7 /* EMSDWebImageDownloader.m in Sources */,
+				D9A34F3B1C5318FA0044CC25 /* DVVShareView.m in Sources */,
 				D5604C8E1BF656F30020F0D7 /* EMChatViewBaseCell.m in Sources */,
 				D96712E81C3FD1830099C3B9 /* SignInCoachDataModel.m in Sources */,
 				D5604C811BF656F30020F0D7 /* LocationViewController.m in Sources */,
@@ -4145,7 +4152,7 @@
 				D588B11D1BDDDC2F000C5D6F /* JsonTransformManager.m in Sources */,
 				D9D4BA1F1C3B918600F62BE9 /* NSMutableArray+adapter.m in Sources */,
 				55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */,
-				B8272D4A1C1EF42700BE0D2D /* UIViewController+SliderMenu.m in Sources */,
+				D9A34F3E1C53191F0044CC25 /* AppDelegate+UMSocial.m in Sources */,
 				D5BCFEE51BF4924C0019402C /* BLImageViewController.m in Sources */,
 				D96D1BE91C2B88A000F1C282 /* UINavigationItem+DVVBackItem.m in Sources */,
 				D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */,
@@ -4205,6 +4212,7 @@
 				D5604B5A1BF656C50020F0D7 /* MKAnnotationView+EMWebCache.m in Sources */,
 				D5BCFEDC1BF317350019402C /* PushInformationManager.m in Sources */,
 				D588AFC81BDDDAAB000C5D6F /* SubjectModel.m in Sources */,
+				D9A34F3A1C5318FA0044CC25 /* DVVShareCell.m in Sources */,
 				D5604B631BF656C50020F0D7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				D5604B4F1BF656C50020F0D7 /* MWTapDetectingImageView.m in Sources */,
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
@@ -4248,7 +4256,6 @@
 				D96D1BFA1C2BF61700F1C282 /* DVVSideMenuBlockView.m in Sources */,
 				D588AF8B1BDDB62C000C5D6F /* main.m in Sources */,
 				D588B06D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m in Sources */,
-				B8272D411C1EE4BA00BE0D2D /* MenuController.m in Sources */,
 				D96D1BCB1C2B858400F1C282 /* AppDelegate+EaseMob.m in Sources */,
 				D9D4BA1B1C3B918600F62BE9 /* JRSwizzle.m in Sources */,
 				D5604B7B1BF656C50020F0D7 /* wav.mm in Sources */,
@@ -4256,7 +4263,6 @@
 				D5604B551BF656C50020F0D7 /* EMSDWebImageDecoder.m in Sources */,
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
-				D9B7F1261C254ECC00D1A143 /* YBBaseNavigationController.m in Sources */,
 				D96712DF1C3FA4B80099C3B9 /* SignInDataModel.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
 				06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */,
@@ -4343,8 +4349,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = NO;
@@ -4367,7 +4373,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "501154a9-6626-45e0-b775-c1aa2d03a4db";
+				PROVISIONING_PROFILE = "22434bc0-7c8f-4b7b-b4d1-a6e1c6fc433e";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -4390,8 +4396,8 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Wei Ai Chi Kuang Tech Co. Ltd (MC3VUBEH8X)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = NO;
@@ -4407,7 +4413,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "501154a9-6626-45e0-b775-c1aa2d03a4db";
+				PROVISIONING_PROFILE = "22434bc0-7c8f-4b7b-b4d1-a6e1c6fc433e";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -4420,8 +4426,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4500,7 +4506,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9fe64bd0-4d36-4e32-8196-798e56d60dc7";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4511,8 +4517,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -4591,7 +4597,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9fe64bd0-4d36-4e32-8196-798e56d60dc7";
+				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

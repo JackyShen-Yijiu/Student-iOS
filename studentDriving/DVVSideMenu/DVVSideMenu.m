@@ -74,7 +74,7 @@
         sideMenu.backgroundView.alpha = 0.1;
         sideMenu.contentView.frame = rect;
         
-        [UIApplication sharedApplication].keyWindow.rootViewController.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * 0.6, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
+        [UIApplication sharedApplication].keyWindow.rootViewController.view.frame = CGRectMake([UIScreen mainScreen].bounds.size.width * 0.65, 0, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
     }];
 }
 

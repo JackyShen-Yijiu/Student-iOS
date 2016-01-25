@@ -105,6 +105,7 @@
         }
         
         if (!self.todayArray.count) {
+            [self dvvRefreshSuccess];
             [self showMsg:@"您今天没有预约"];
             return ;
         }
