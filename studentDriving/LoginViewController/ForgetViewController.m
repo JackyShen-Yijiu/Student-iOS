@@ -2,6 +2,7 @@
 #import <Masonry/Masonry.h>
 #import "ToolHeader.h"
 #import "GainPasswordViewController.h"
+#import "AddlineButtomTextField.h"
 
 static NSString *const kchangePassword = @"kchangePassword";
 
@@ -23,7 +24,7 @@ static NSString *const kchangePassword = @"kchangePassword";
         _topLabel = [[UILabel alloc] init];
         _topLabel.textAlignment = NSTextAlignmentCenter;
         _topLabel.font = [UIFont boldSystemFontOfSize:18];
-        _topLabel.textColor = RGBColor(51, 51, 51);
+        _topLabel.textColor = [UIColor whiteColor];
         _topLabel.text = @"找回密码";
     }
     return _topLabel;
@@ -32,8 +33,7 @@ static NSString *const kchangePassword = @"kchangePassword";
 - (UIButton *)goBackButton{
     if (_goBackButton == nil) {
         _goBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
-        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回_click"] forState:UIControlStateNormal];
+        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"Back-Icon"] forState:UIControlStateNormal];
         [_goBackButton addTarget:self action:@selector(dealGoBack:) forControlEvents:UIControlEventTouchUpInside];
         [_goBackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
@@ -43,14 +43,16 @@ static NSString *const kchangePassword = @"kchangePassword";
 }
 - (UITextField *)phoneNumTextField {
     if (_phoneNumTextField == nil) {
-        _phoneNumTextField = [[UITextField alloc]init];
+        _phoneNumTextField = [[AddlineButtomTextField alloc]init];
         _phoneNumTextField.delegate = self;
         _phoneNumTextField.tag = 102;
         _phoneNumTextField.placeholder = @"  手机号";
+        _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+        leftView.image = [UIImage imageNamed:@"账号"];
+        _phoneNumTextField.leftView = leftView;
         _phoneNumTextField.font = [UIFont systemFontOfSize:15];
-        _phoneNumTextField.textColor = RGBColor(153, 153, 153);
-        _phoneNumTextField.layer.borderWidth = 1;
-        _phoneNumTextField.layer.borderColor = RGBColor(230, 230, 230).CGColor;
+        _phoneNumTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
 
     }
@@ -58,13 +60,15 @@ static NSString *const kchangePassword = @"kchangePassword";
 }
 - (UITextField *)confirmTextField {
     if (_confirmTextField == nil) {
-        _confirmTextField = [[UITextField alloc]init];
+        _confirmTextField = [[AddlineButtomTextField alloc]init];
         _confirmTextField.tag = 103;
         _confirmTextField.placeholder = @"  验证码";
+        _confirmTextField.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+        leftView.image = [UIImage imageNamed:@"yanzhengma"];
+        _confirmTextField.leftView = leftView;
         _confirmTextField.font = [UIFont systemFontOfSize:15];
-        _confirmTextField.textColor = RGBColor(153, 153, 153);
-        _confirmTextField.layer.borderWidth = 1;
-        _confirmTextField.layer.borderColor = RGBColor(230, 230, 230).CGColor;
+        _confirmTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _confirmTextField.keyboardType = UIKeyboardTypeNumberPad;
 
     }
@@ -73,10 +77,10 @@ static NSString *const kchangePassword = @"kchangePassword";
 - (UIButton *)gainNum {
     if (_gainNum == nil) {
         _gainNum = [UIButton buttonWithType:UIButtonTypeCustom];
-        _gainNum.backgroundColor = RGBColor(255, 102, 51);
+        _gainNum.backgroundColor = [UIColor clearColor];
         [_gainNum addTarget:self action:@selector(dealSend:) forControlEvents:UIControlEventTouchUpInside];
         _gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
-        
+        [_gainNum setTitleColor:[UIColor colorWithHexString:@"ff6633"] forState:UIControlStateNormal];
         [_gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
     }
     return _gainNum;
@@ -116,16 +120,16 @@ static NSString *const kchangePassword = @"kchangePassword";
     }];
     
     [self.goBackButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(0);
-        make.top.mas_equalTo(self.view.mas_top).with.offset(20);
-        make.width.mas_equalTo(@50);
-        make.height.mas_equalTo(@50);
+        make.left.mas_equalTo(self.view.mas_left).with.offset(10);
+        make.top.mas_equalTo(self.view.mas_top).with.offset(35);
+        make.width.mas_equalTo(@20);
+        make.height.mas_equalTo(@20);
     }];
     
     [self.phoneNumTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(15);
         make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
-        make.top.mas_equalTo(self.view.mas_top).with.offset(20+55);
+        make.top.mas_equalTo(self.view.mas_top).with.offset(20+55 + 40);
         make.height.mas_equalTo(@44);
     }];
     
@@ -194,16 +198,16 @@ static NSString *const kchangePassword = @"kchangePassword";
                 dispatch_async(dispatch_get_main_queue(), ^{
                     
                     self.gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
-                    self.gainNum.backgroundColor  = MAINCOLOR;
                     [self.gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
+                    [_gainNum setTitleColor:[UIColor colorWithHexString:@"ff6633"] forState:UIControlStateNormal];
                     self.gainNum.userInteractionEnabled = YES;
                     
                 });
             }else {
                 NSString *str = [NSString stringWithFormat:@"剩余(%d)s",count];
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    self.gainNum.backgroundColor = RGBColor(204, 204, 204);
-                    [self.gainNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                    self.gainNum.backgroundColor = [UIColor clearColor];
+                    [self.gainNum setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
                     [self.gainNum setTitle:str forState:UIControlStateNormal];
                     
                 });

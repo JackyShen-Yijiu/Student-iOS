@@ -118,7 +118,7 @@ static NSString *const kcodeGainUrl = @"code";
         
         _phoneTextField.leftView = leftView;
         _phoneTextField.font  = [UIFont systemFontOfSize:15];
-        _phoneTextField.textColor = [UIColor colorWithHexString:@"999999"];
+        _phoneTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
     return _phoneTextField;
@@ -135,7 +135,7 @@ static NSString *const kcodeGainUrl = @"code";
         leftView.image = [UIImage imageNamed:@"密码"];
         _passWordTextFild.leftView = leftView;
         _passWordTextFild.font  = [UIFont systemFontOfSize:15];
-        _passWordTextFild.textColor = [UIColor colorWithHexString:@"999999"];
+        _passWordTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _passWordTextFild.secureTextEntry = YES;
     }
     return _passWordTextFild;
@@ -152,7 +152,7 @@ static NSString *const kcodeGainUrl = @"code";
         leftView.image = [UIImage imageNamed:@"yanzhengma"];
         _authCodeTextFild.leftView = leftView;
         _authCodeTextFild.font  = [UIFont systemFontOfSize:15];
-        _authCodeTextFild.textColor = [UIColor colorWithHexString:@"999999"];
+        _authCodeTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _authCodeTextFild.keyboardType = UIKeyboardTypeNumberPad;
         
     }
@@ -170,7 +170,7 @@ static NSString *const kcodeGainUrl = @"code";
         leftView.image = [UIImage imageNamed:@"密码"];
         _affirmTextFild.leftView = leftView;
         _affirmTextFild.font  = [UIFont systemFontOfSize:15];
-        _affirmTextFild.textColor = [UIColor colorWithHexString:@"999999"];
+        _affirmTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _affirmTextFild.secureTextEntry = YES;
     }
     return _affirmTextFild;
@@ -187,7 +187,7 @@ static NSString *const kcodeGainUrl = @"code";
         leftView.image = [UIImage imageNamed:@"yaoqingma"];
         _invitationTextFild.leftView = leftView;
         _invitationTextFild.font  = [UIFont systemFontOfSize:15];
-        _invitationTextFild.textColor = [UIColor colorWithHexString:@"999999"];
+        _invitationTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
     }
     return _invitationTextFild;
 }
