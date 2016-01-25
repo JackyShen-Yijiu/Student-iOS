@@ -23,24 +23,29 @@
 #import "DVVSideMenu.h"
 #import "DVVLocationStatus.h"
 #import "JGSelectDrivingVcHeadSearch.h"
-
 #import "JGSelectDrivingVcHead.h"
 
 static NSString *const kDrivingUrl = @"searchschool";
 
 #define selectHeadViewH 35
-
-#define searchHeadViewH 35
+#define searchHeadViewH selectHeadViewH
 
 @interface DrivingViewController ()<UITableViewDelegate, UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate, UITextFieldDelegate, BMKGeoCodeSearchDelegate, UIAlertViewDelegate,UIScrollViewDelegate>
 
 @property (strong, nonatomic)UITableView *tableView;
+
 @property (strong, nonatomic) BMKLocationService *locationService;
+
 @property (strong, nonatomic) NSMutableArray *dataArray;
-@property (strong, nonatomic) UIButton *naviBarRightButton;
+
+@property (strong, nonatomic) UIButton *naviBarRightselectjiaxiao;
+
+@property (strong, nonatomic) UIButton *naviBarRightselectjiaolian;
+
 @property (strong, nonatomic) DrivingModel *detailModel;
 
 @property (nonatomic, strong) JGSelectDrivingVcHead *tableHeaderView;
+
 @property (nonatomic, strong) JGSelectDrivingVcHeadSearch *searchView;
 
 @property (nonatomic, strong) DrivingSelectMotorcycleTypeView *selectMotorcycleTypeView;
@@ -67,6 +72,9 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 @property (nonatomic,weak) DrivingSelectMotorcycleTypeView *typeView;
 
+// 0:找驾校 1:找教练
+@property (nonatomic,assign) NSInteger selectType;
+
 @end
 
 @implementation DrivingViewController
@@ -74,13 +82,6 @@ static NSString *const kDrivingUrl = @"searchschool";
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 添加取消键盘的手势
-//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
-//    tapGestureRecognizer.cancelsTouchesInView = NO;
-//    [self.view addGestureRecognizer:tapGestureRecognizer];
-    // Do any additional setup after loading the view.
-    
-    //    [self addSideMenuButton];
     
     _radius = 10000;
     _cityName = @"";
@@ -93,33 +94,35 @@ static NSString *const kDrivingUrl = @"searchschool";
     _index = 1;
     _count = 10;
     
-    self.title = @"选择驾校";
+    _selectType = 1;
+    
+    self.title = @"一步学车";
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
-    DYNSLog(@"right = %@",self.naviBarRightButton);
-    self.navigationItem.rightBarButtonItem = rightItem;
-    
+   
     [self.view addSubview:self.tableHeaderView];
     
     [self.view addSubview:self.tableView];
     
+    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+    
+    // 初始化网络请求
     [self configRefresh];
     
-    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
-    // 定位
+    // 初始化筛选模式（找驾校、找教练）
+    [self clickRight];
+    
+        // 定位
 //    [self locationManager];
 //         在模拟器上定位不好用，测试是打开注释
         self.latitude = 39.929985778080237;
         self.longitude = 116.39564503787867;
         self.index = 1;
         self.isRefresh = YES;
-        // 获取网络数据
-        [self network];
+   
 }
-//- (void)keyboardHide:(UITapGestureRecognizer *)tap{
-//    [self.view endEditing:YES];
-//}
+
 - (void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
     [MBProgressHUD hideHUDForView:self.tableView animated:YES];
@@ -156,7 +159,9 @@ static NSString *const kDrivingUrl = @"searchschool";
         self.index = index;
         
         self.isRefresh = NO;
+        
         [ws network];
+        
     }];
     
     self.tableView.mj_header = refreshHeader;
@@ -323,7 +328,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         //        NSLog(@"addressComponent.city===%@",addressComponent.city);
         // 保存城市名
         self.cityName = addressComponent.city;
-        [self.naviBarRightButton setTitle:addressComponent.city forState:UIControlStateNormal];
+       // [self.naviBarRightButton setTitle:addressComponent.city forState:UIControlStateNormal];
         self.index = 1;
         self.isRefresh = YES;
         // 获取网络数据
@@ -375,6 +380,7 @@ static NSString *const kDrivingUrl = @"searchschool";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100.0f;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (self.dataArray.count == 0) {
         tableView.hidden = NO;
@@ -383,6 +389,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     }
     return self.dataArray.count;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *cellId = @"cell";
     DrivingCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -458,7 +465,6 @@ static NSString *const kDrivingUrl = @"searchschool";
             [ws searchButtonAction:textField];
         }];
         
-        
     }
     return _searchView;
 }
@@ -519,17 +525,26 @@ static NSString *const kDrivingUrl = @"searchschool";
     }
     return _tableView;
 }
-- (UIButton *)naviBarRightButton {
-    if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"定位中" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
-        _naviBarRightButton.frame = CGRectMake(0, 0, 70, 44);
-        [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateNormal];
-        [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
-        //        _naviBarRightButton.backgroundColor = [UIColor redColor];
-    }
-    return _naviBarRightButton;
-}
+- (UIButton *)naviBarRightselectjiaolian {
+    if (_naviBarRightselectjiaolian == nil) {
+        
+        _naviBarRightselectjiaolian = [WMUITool initWithTitle:@"找教练" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightselectjiaolian.frame = CGRectMake(0, 0, 70, 44);
+        [_naviBarRightselectjiaolian addTarget:self action:@selector(clickRight) forControlEvents:UIControlEventTouchUpInside];
 
+    }
+    return _naviBarRightselectjiaolian;
+}
+- (UIButton *)naviBarRightselectjiaxiao {
+    if (_naviBarRightselectjiaxiao == nil) {
+        
+        _naviBarRightselectjiaxiao = [WMUITool initWithTitle:@"找驾校" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightselectjiaxiao.frame = CGRectMake(0, 0, 70, 44);
+        [_naviBarRightselectjiaxiao addTarget:self action:@selector(clickRight) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _naviBarRightselectjiaxiao;
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
@@ -548,77 +563,25 @@ static NSString *const kDrivingUrl = @"searchschool";
     
 }
 
-- (void)clickRight:(UIButton *)sender {
+- (void)clickRight
+{
     
-    BOOL flage = 0;
-    for (UIView *view in self.view.subviews) {
-        if ([view isKindOfClass:[DrivingCityListView class]]) {
-            flage = 1;
-            return;
-        }
+    UIBarButtonItem *rightItem;
+    if (self.selectType==0) {
+        self.selectType=1;
+        rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightselectjiaolian];
+    }else{
+        self.selectType=0;
+        rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightselectjiaxiao];
     }
-    if (!flage) {
-        DrivingCityListView *cityListView = [DrivingCityListView new];
-        [cityListView setSelectedItemBlock:^(NSString *cityName) {
-            
-            [self.naviBarRightButton setTitle:cityName forState:UIControlStateNormal];
-            self.cityName = cityName;
-            [self geoCode];
-        }];
-        CGRect rect = self.view.bounds;
-        cityListView.frame = CGRectMake(0, 64, rect.size.width, rect.size.height - 64);
-        [self.view addSubview:cityListView];
-        [cityListView show];
-    }
-    //    if (![AcountManager isLogin]) {
-    //        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-    //        LoginViewController *login = [[LoginViewController alloc] init];
-    //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-    //        return;
-    //    }
-    //    if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-    //        [self.navigationController popViewControllerAnimated:YES];
-    //        return;
-    //    }
-    //
-    //    DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
-    //
-    //    if (![AcountManager manager].applyschool.infoId) {
-    //        if (self.detailModel.schoolid || self.detailModel.name) {
-    //            NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.schoolid,@"name":self.detailModel.name};
-    //            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-    //
-    //        }
-    //        [self.navigationController popViewControllerAnimated:YES];
-    //        return;
-    //    }
-    //
-    //    if ([[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.schoolid] ) {
-    //        [self.navigationController popViewControllerAnimated:YES];
-    //        return;
-    //    }
-    //
-    //
-    //    if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.schoolid]) {
-    //        [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-    //            DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-    //            NSUInteger index = selectedOtherButtonIndex + 1;
-    //            if (index == 0) {
-    //                return ;
-    //            }else if (index == 1) {
-    //
-    //                [SignUpInfoManager removeSignData];
-    //
-    //                if (self.detailModel.schoolid || self.detailModel.name) {
-    //                    NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.schoolid,@"name":self.detailModel.name};
-    //                    [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-    //                    
-    //                }
-    //                [self.navigationController popViewControllerAnimated:YES];
-    //                
-    //            }
-    //        }];
-    //    }
+    self.navigationItem.rightBarButtonItem = rightItem;
+
+    // 刷新列表
+    [self.tableView reloadData];
+
+    // 刷新数据
+    [self.tableView.mj_header beginRefreshing];
+    
 }
 
 @end
