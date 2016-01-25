@@ -57,6 +57,8 @@
 		55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B671C26798500AC64FF /* SubmitVerificationController.m */; };
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
+		B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */; };
+		B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818031C5606CD00F973A7 /* JGItemButton.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
@@ -768,6 +770,10 @@
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B21817FF1C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHeadSearch.h; sourceTree = "<group>"; };
+		B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHeadSearch.m; sourceTree = "<group>"; };
+		B21818021C5606CD00F973A7 /* JGItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGItemButton.h; path = CircularMotion/JGItemButton.h; sourceTree = "<group>"; };
+		B21818031C5606CD00F973A7 /* JGItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGItemButton.m; path = CircularMotion/JGItemButton.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
@@ -3331,6 +3337,8 @@
 				D965CAB21C239E2E00DCD094 /* DVVCycleShowImagesView.m */,
 				D965CAB31C239E2E00DCD094 /* DVVToolBarView.h */,
 				D965CAB41C239E2E00DCD094 /* DVVToolBarView.m */,
+				B21818021C5606CD00F973A7 /* JGItemButton.h */,
+				B21818031C5606CD00F973A7 /* JGItemButton.m */,
 				D965CAAE1C239DE900DCD094 /* YBBaseViewModel.h */,
 				D965CAAF1C239DE900DCD094 /* YBBaseViewModel.m */,
 				D588B0E71BDDDC2F000C5D6F /* BLPFAlertView.h */,
@@ -3492,6 +3500,8 @@
 				D98021891C51D21C00596C86 /* DVVAlert.m */,
 				B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */,
 				B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */,
+				B21817FF1C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.h */,
+				B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */,
 			);
 			path = Driving;
 			sourceTree = "<group>";
@@ -4059,6 +4069,7 @@
 				D5D50EDB1BFA205000F54097 /* LTBottomView.m in Sources */,
 				0647A5C51C35135F00DBB8A3 /* DiscountWalletCell.m in Sources */,
 				D970D3A31C3D0468003FCED3 /* YYClassInfo.m in Sources */,
+				B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */,
 				061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */,
 				D52638591BDF205C00ADC2C7 /* ApplycoachinfoModel.m in Sources */,
 				D5604B4E1BF656C50020F0D7 /* MWPhotoBrowser.m in Sources */,
@@ -4211,6 +4222,7 @@
 				D5604B4F1BF656C50020F0D7 /* MWTapDetectingImageView.m in Sources */,
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
 				06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */,
+				B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */,
 				D96D1BE81C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.m in Sources */,
 				D5604B401BF656C50020F0D7 /* EMCDDeviceManager+Media.m in Sources */,
 				D51256AE1BE1CF17002717DA /* StudentModel.m in Sources */,

@@ -21,6 +21,11 @@ typedef void(^DVVToolBarViewBlock)(UIButton *button);
 //按钮选中时的颜色
 @property(nonatomic,strong) UIColor *buttonSelectColor;
 
+//按钮正常情况下的颜色
+@property(nonatomic,strong) UIImage *buttonNormalImg;
+//按钮选中时的颜色
+@property(nonatomic,strong) UIImage *buttonSelectImg;
+
 //存放全部标题的数组
 @property(nonatomic,strong) NSArray *titleArray;
 //标题字体大小
