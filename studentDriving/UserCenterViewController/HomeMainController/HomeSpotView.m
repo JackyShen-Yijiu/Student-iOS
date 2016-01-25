@@ -15,7 +15,9 @@
 
 #define systemsH  [[UIScreen mainScreen] bounds].size.height
 
-#define carOffsetX   ((systemsW - 10) * 0.2)
+//#define carOffsetX   (((systemsW - 10) * 0.2) - 10)
+
+#define carOffsetX   (((systemsW - 260.0) / 5 ) + 50)
 @interface HomeSpotView ()
 
 @property (nonatomic,strong) NSMutableArray *lableitems; // 保存Label
@@ -68,8 +70,6 @@
         // 为self.view 控件添加手势处理器  
         [_carView addGestureRecognizer:gesture];
     }
-    _carView.layer.masksToBounds = YES;
-    _carView.layer.cornerRadius  =  20 / 2;
     [self addSubview:_carView];
 }
 
@@ -79,8 +79,8 @@
     
         if (sender.direction == UISwipeGestureRecognizerDirectionRight)
         {
-            // 当开始向右滑动时判断是否超出边界
-            if (sender.view.frame.origin.x == (systemsW - 10) * 0.9)
+            // 当开始向右滑动时判断是否超出边界 (systemsW - 10) * 0.9 + 10
+            if (sender.view.frame.origin.x ==  (carOffsetX * 4) + 10)
             {
                 return;
             }
@@ -94,11 +94,11 @@
     }  else if(sender.direction == UISwipeGestureRecognizerDirectionLeft)
     {
          // 当开始向左滑动时判断是否超出边界
-        if (sender.view.frame.origin.x == 0)
+        if (sender.view.frame.origin.x == 10)
         {
             return;
         }
-    CGFloat carX = _carView.frame.origin.x - carOffsetX;
+    CGFloat carX = (_carView.frame.origin.x) - (carOffsetX);
     //  调用代理方法
         if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {
             [_delegate horizontalMenuScrollPageIndex:carX];
@@ -135,7 +135,7 @@
     // 添加底部label
     CGFloat spotW = 50;
     CGFloat spotH = 20;
-    CGFloat margin = (systemsW - 270) / 5;
+    CGFloat margin = (systemsW - 260) / 5;
     _lableitems = [NSMutableArray array];
 
     CGFloat labelY = backImageView.frame.origin.y + CGRectGetHeight(backImageView.frame) + 10;
@@ -145,7 +145,7 @@
     for (int i = 0; i < 5; i++) {
         UILabel *label = [[UILabel alloc] init];
         if (i == 0) {
-            label.frame = CGRectMake(15, labelY, spotW, spotH);
+            label.frame = CGRectMake(10, labelY, spotW, spotH);
             label.text = arrayStr[i];
             label.tag = 201;
             label.font = [UIFont systemFontOfSize:14];
@@ -154,7 +154,7 @@
             [self addSubview:label];
         }else
         {
-            label.frame = CGRectMake(i * margin + i * spotW + 15, labelY, spotW, spotH);
+            label.frame = CGRectMake(i * margin + i * spotW + 10, labelY, spotW, spotH);
             label.text = arrayStr[i];
             label.font = [UIFont systemFontOfSize:12];
             label.textColor = [UIColor whiteColor];

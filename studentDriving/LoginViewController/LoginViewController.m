@@ -624,7 +624,7 @@ static NSString *const kuserType = @"usertype";
         
         make.right.mas_equalTo(self.view.mas_right).with.offset(-20);
         
-        make.top.mas_equalTo(self.backGroundView.mas_bottom).with.offset(60);
+        make.top.mas_equalTo(self.lineViewBottom.mas_bottom).with.offset(20);
         
         make.height.mas_equalTo(@44);
         
