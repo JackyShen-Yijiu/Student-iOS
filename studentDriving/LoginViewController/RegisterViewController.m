@@ -12,6 +12,7 @@
 #import "NSString+DY_MD5.h"
 #import <JPush/APService.h>
 #import "RegistNoteController.h"
+#import "AddlineButtomTextField.h"
 
 static NSString *const kregisterUser = @"kregisterUser";
 
@@ -48,7 +49,7 @@ static NSString *const kcodeGainUrl = @"code";
         _topLabel = [[UILabel alloc] init];
         _topLabel.textAlignment = NSTextAlignmentCenter;
         _topLabel.font = [UIFont boldSystemFontOfSize:18];
-        _topLabel.textColor = RGBColor(51, 51, 51);
+        _topLabel.textColor = [UIColor whiteColor];
         _topLabel.text = @"注册";
     }
     return _topLabel;
@@ -57,9 +58,9 @@ static NSString *const kcodeGainUrl = @"code";
 - (UIButton *)noteLabel{
     if (_noteLabel == nil) {
         _noteLabel = [UIButton buttonWithType:UIButtonTypeCustom];
-        _noteLabel.backgroundColor = [UIColor whiteColor];
+//        _noteLabel.backgroundColor = [UIColor whiteColor];
         [_noteLabel setTitle:@"点击注册则表示您同意《用户服务协议》" forState:UIControlStateNormal];
-        [_noteLabel setTitleColor:RGBColor(0x28, 0x79, 0xF3) forState:UIControlStateNormal];
+        [_noteLabel setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
         _noteLabel.titleLabel.font = [UIFont systemFontOfSize:13];
         _noteLabel.titleLabel.textAlignment = NSTextAlignmentLeft;
         [_noteLabel addTarget:self action:@selector(clickTap1:) forControlEvents:UIControlEventTouchUpInside];
@@ -70,8 +71,7 @@ static NSString *const kcodeGainUrl = @"code";
 - (UIButton *)goBackButton{
     if (_goBackButton == nil) {
         _goBackButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回"] forState:UIControlStateNormal];
-        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回_click"] forState:UIControlStateNormal];
+        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"Back-Icon"] forState:UIControlStateNormal];\
         [_goBackButton addTarget:self action:@selector(dealGoBack:) forControlEvents:UIControlEventTouchUpInside];
         [_goBackButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         
@@ -83,11 +83,11 @@ static NSString *const kcodeGainUrl = @"code";
 - (UIButton *)sendButton{
     if (_sendButton == nil) {
         _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _sendButton.backgroundColor = RGBColor(255, 102, 51);
+        _sendButton.backgroundColor = [UIColor clearColor];
         [_sendButton addTarget:self action:@selector(dealSend:) forControlEvents:UIControlEventTouchUpInside];
-        [_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _sendButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_sendButton setTitleColor:[UIColor colorWithHexString:@"ff6633"] forState:UIControlStateNormal];
         [_sendButton setTitle:@"发送验证码" forState:UIControlStateNormal];
         
     }
@@ -108,14 +108,17 @@ static NSString *const kcodeGainUrl = @"code";
 
 - (UITextField *)phoneTextField{
     if (_phoneTextField == nil) {
-        _phoneTextField = [[UITextField alloc]init];
+        _phoneTextField = [[AddlineButtomTextField alloc] init];
         _phoneTextField.delegate = self;
         _phoneTextField.tag = 102;
         _phoneTextField.placeholder = @"    手机号";
-        _phoneTextField.layer.borderColor = RGBColor(204, 204, 204).CGColor;
-        _phoneTextField.layer.borderWidth = 1;
+        _phoneTextField.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+        leftView.image = [UIImage imageNamed:@"账号"];
+        
+        _phoneTextField.leftView = leftView;
         _phoneTextField.font  = [UIFont systemFontOfSize:15];
-        _phoneTextField.textColor = RGBColor(153, 153, 153);
+        _phoneTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _phoneTextField.keyboardType = UIKeyboardTypeNumberPad;
     }
     return _phoneTextField;
@@ -123,14 +126,16 @@ static NSString *const kcodeGainUrl = @"code";
 
 - (UITextField *)passWordTextFild{
     if (_passWordTextFild == nil) {
-        _passWordTextFild = [[UITextField alloc]init];
+        _passWordTextFild = [[AddlineButtomTextField alloc]init];
         _passWordTextFild.delegate = self;
         _passWordTextFild.tag = 103;
         _passWordTextFild.placeholder = @"    密码";
-        _passWordTextFild.layer.borderColor = RGBColor(204, 204, 204).CGColor;
-        _passWordTextFild.layer.borderWidth = 1;
+        _passWordTextFild.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+        leftView.image = [UIImage imageNamed:@"密码"];
+        _passWordTextFild.leftView = leftView;
         _passWordTextFild.font  = [UIFont systemFontOfSize:15];
-        _passWordTextFild.textColor = RGBColor(153, 153, 153);
+        _passWordTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _passWordTextFild.secureTextEntry = YES;
     }
     return _passWordTextFild;
@@ -138,14 +143,16 @@ static NSString *const kcodeGainUrl = @"code";
 
 - (UITextField *)authCodeTextFild{
     if (_authCodeTextFild == nil) {
-        _authCodeTextFild = [[UITextField alloc]init];
+        _authCodeTextFild = [[AddlineButtomTextField alloc]init];
         _authCodeTextFild.delegate = self;
         _authCodeTextFild.tag = 104;
         _authCodeTextFild.placeholder = @"    验证码";
-        _authCodeTextFild.layer.borderColor = RGBColor(204, 204, 204).CGColor;
-        _authCodeTextFild.layer.borderWidth = 1;
+        _authCodeTextFild.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+        leftView.image = [UIImage imageNamed:@"yanzhengma"];
+        _authCodeTextFild.leftView = leftView;
         _authCodeTextFild.font  = [UIFont systemFontOfSize:15];
-        _authCodeTextFild.textColor = RGBColor(153, 153, 153);
+        _authCodeTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _authCodeTextFild.keyboardType = UIKeyboardTypeNumberPad;
         
     }
@@ -154,14 +161,16 @@ static NSString *const kcodeGainUrl = @"code";
 
 - (UITextField *)affirmTextFild{
     if (_affirmTextFild == nil) {
-        _affirmTextFild = [[UITextField alloc]init];
+        _affirmTextFild = [[AddlineButtomTextField alloc]init];
         _affirmTextFild.delegate = self;
         _affirmTextFild.tag = 105;
         _affirmTextFild.placeholder = @"    确认密码";
-        _affirmTextFild.layer.borderColor = RGBColor(204, 204, 204).CGColor;
-        _affirmTextFild.layer.borderWidth = 1;
+        _affirmTextFild.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+        leftView.image = [UIImage imageNamed:@"密码"];
+        _affirmTextFild.leftView = leftView;
         _affirmTextFild.font  = [UIFont systemFontOfSize:15];
-        _affirmTextFild.textColor = RGBColor(153, 153, 153);
+        _affirmTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _affirmTextFild.secureTextEntry = YES;
     }
     return _affirmTextFild;
@@ -169,14 +178,16 @@ static NSString *const kcodeGainUrl = @"code";
 
 - (UITextField *)invitationTextFild{
     if (_invitationTextFild == nil) {
-        _invitationTextFild = [[UITextField alloc]init];
+        _invitationTextFild = [[AddlineButtomTextField alloc]init];
         _invitationTextFild.delegate = self;
         _invitationTextFild.tag = 106;
         _invitationTextFild.placeholder = @"    输入邀请码,获得奖励";
-        _invitationTextFild.layer.borderColor = RGBColor(204, 204, 204).CGColor;
-        _invitationTextFild.layer.borderWidth = 1;
+        _invitationTextFild.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+        leftView.image = [UIImage imageNamed:@"yaoqingma"];
+        _invitationTextFild.leftView = leftView;
         _invitationTextFild.font  = [UIFont systemFontOfSize:15];
-        _invitationTextFild.textColor = RGBColor(153, 153, 153);
+        _invitationTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
     }
     return _invitationTextFild;
 }
@@ -186,7 +197,7 @@ static NSString *const kcodeGainUrl = @"code";
     // Do any additional setup after loading the view.
     
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     
     [self.view addSubview:self.topLabel];
     
@@ -227,17 +238,17 @@ static NSString *const kcodeGainUrl = @"code";
     
     
     [self.goBackButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(0);
-        make.top.mas_equalTo(self.view.mas_top).with.offset(20);
-        make.width.mas_equalTo(@50);
-        make.height.mas_equalTo(@50);
+        make.left.mas_equalTo(self.view.mas_left).with.offset(10);
+        make.top.mas_equalTo(self.view.mas_top).with.offset(30);
+        make.width.mas_equalTo(@20);
+        make.height.mas_equalTo(@20);
     }];
     
     [self.phoneTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(15);
         make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
-        make.top.mas_equalTo(self.goBackButton.mas_bottom).with.offset(7);
-        make.height.mas_equalTo(@44);
+        make.top.mas_equalTo(self.goBackButton.mas_bottom).with.offset(55);
+        make.height.mas_equalTo(@40);
     }];
     
     [self.sendButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -251,7 +262,7 @@ static NSString *const kcodeGainUrl = @"code";
         make.left.mas_equalTo(self.view.mas_left).with.offset(15);
         make.right.mas_equalTo(self.sendButton.mas_left).with.offset(-10);
         make.top.mas_equalTo(self.phoneTextField.mas_bottom).with.offset(10);
-        make.height.mas_equalTo(@44);
+        make.height.mas_equalTo(@40);
     }];
     
     
@@ -352,15 +363,16 @@ static NSString *const kcodeGainUrl = @"code";
             dispatch_source_cancel(timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.sendButton.titleLabel.font = [UIFont systemFontOfSize:15];
-                self.sendButton.backgroundColor  = MAINCOLOR;
+                self.sendButton.backgroundColor  = [UIColor clearColor];
+                [_sendButton setTitleColor:[UIColor colorWithHexString:@"ff6633"] forState:UIControlStateNormal];
                 [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
                 self.sendButton.userInteractionEnabled = YES;
             });
         }else {
             NSString *str = [NSString stringWithFormat:@"剩余(%d)s",count];
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.sendButton.backgroundColor = RGBColor(204, 204, 204);
-                [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+                self.sendButton.backgroundColor = [UIColor clearColor];
+                [self.sendButton setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
                 [self.sendButton setTitle:str forState:UIControlStateNormal];
                 
             });
@@ -584,4 +596,6 @@ static NSString *const kcodeGainUrl = @"code";
     ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:message controller:self];
     [alertView show];
 }
+// 添加底部的线
+
 @end

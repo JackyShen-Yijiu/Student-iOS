@@ -23,6 +23,7 @@
 		066BFB191C23A2C3002A1DD8 /* HomeMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB151C23A2C3002A1DD8 /* HomeMainView.m */; };
 		066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */; };
 		066BFB701C2428D0002A1DD8 /* HomeAdvantageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */; };
+		068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 068716621C5607C50055D9DC /* AddlineButtomTextField.m */; };
 		06EC02C41C2643AD0067AD16 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */; };
 		06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C61C2643BE0067AD16 /* VirtualViewController.m */; };
 		06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */; };
@@ -626,6 +627,8 @@
 		066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSpotView.m; sourceTree = "<group>"; };
 		066BFB6E1C2428D0002A1DD8 /* HomeAdvantageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAdvantageController.h; sourceTree = "<group>"; };
 		066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAdvantageController.m; sourceTree = "<group>"; };
+		068716611C5607C50055D9DC /* AddlineButtomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddlineButtomTextField.h; sourceTree = "<group>"; };
+		068716621C5607C50055D9DC /* AddlineButtomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddlineButtomTextField.m; sourceTree = "<group>"; };
 		06EC02C21C2643AC0067AD16 /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MagicDetailViewController.h; path = ../MagicDetailViewController.h; sourceTree = "<group>"; };
 		06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MagicDetailViewController.m; path = ../MagicDetailViewController.m; sourceTree = "<group>"; };
 		06EC02C51C2643BE0067AD16 /* VirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualViewController.h; path = ../VirtualViewController.h; sourceTree = "<group>"; };
@@ -3404,6 +3407,8 @@
 				D588B1371BDDDC65000C5D6F /* ModificationView.m */,
 				060FC6A41C27CB030039DDBB /* RegistNoteController.h */,
 				060FC6A51C27CB030039DDBB /* RegistNoteController.m */,
+				068716611C5607C50055D9DC /* AddlineButtomTextField.h */,
+				068716621C5607C50055D9DC /* AddlineButtomTextField.m */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -3945,6 +3950,7 @@
 				D95E3DB41C3CEDC600F0B5A0 /* SearchCoachViewModel.m in Sources */,
 				D588B0D61BDDDC14000C5D6F /* DrivingDetailCell.m in Sources */,
 				D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */,
+				068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */,
 				D588B1201BDDDC2F000C5D6F /* BLInformationManager.m in Sources */,
 				D588B0911BDDDBDB000C5D6F /* CoachDetailViewController.m in Sources */,
 				D5604B501BF656C50020F0D7 /* MWTapDetectingView.m in Sources */,
