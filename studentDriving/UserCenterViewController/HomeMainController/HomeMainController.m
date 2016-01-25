@@ -55,10 +55,10 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 #define ksubjectTwo   @"subjecttwo"
 #define ksubjectThree @"subjectthree"
 
-#define carOffsetX   ((systemsW - 10) * 0.2)
-#define systemsW   self.view.frame.size.width
+//#define carOffsetX   (((systemsW - 10) * 0.2) - 10)
+#define systemsW   [[UIScreen mainScreen] bounds].size.width
 #define systemsH  [[UIScreen mainScreen] bounds].size.height
-#define CARFloat carOffsetX
+#define CARFloat ((((systemsW - 260.0) / 5 ) + 50))
 
 @interface HomeMainController () <UIScrollViewDelegate,HomeSpotViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 
@@ -175,6 +175,19 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     #pragma mark 当程序由后台进入前台后，调用检查活动的方法，检查今天是否有活动
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForegroundCheckActivity) name:@"kCheckActivity" object:nil];
+    
+//    [self changeScrollViewContentSize];
+}
+
+- (void)changeScrollViewContentSize {
+    
+    if (1 == [[AcountManager manager].userApplystate integerValue]) {
+        
+        _mainScrollView.contentSize = CGSizeMake(systemsW * 2, 0);
+    }else if (1 == [[AcountManager manager].userApplystate integerValue]) {
+        
+        _mainScrollView.contentSize = CGSizeMake(systemsW * 3, 0);
+    }
 }
 
 
@@ -227,6 +240,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 [AcountManager saveUserApplyState:@"3"];
             }
             [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
+//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeScrollViewContentSize) name:nil object:nil];
             
         }else {
             
@@ -568,8 +582,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     }
     if (0 < scrollView.contentOffset.x && scrollView.contentOffset.x  <= systemsW)
     {
+        [self carMore:scrollView.contentOffset.x];
         if (scrollView.contentOffset.x == systemsW) {
-            [self carMore:scrollView.contentOffset.x];
+            
             [_homeSpotView changLableColor:scrollView.contentOffset.x];
         }
         
@@ -594,9 +609,19 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             return;
         }
         
+        if ([[[AcountManager manager] userApplystate] isEqualToString:@"1"]) {
+            
+            if (scrollView.contentOffset.x >= systemsW) {
+                NSLog(@"%f-----%f", scrollView.contentOffset.x, systemsW);
+            }
+            [self obj_showTotasViewWithMes:@"报名正在审核中"];
+            return;
+        }
+
+
+        [self carMore:scrollView.contentOffset.x];
         if (scrollView.contentOffset.x == systemsW * 2)
         {
-            [self carMore:scrollView.contentOffset.x];
             [_homeSpotView changLableColor:scrollView.contentOffset.x];
         }
 
@@ -608,10 +633,10 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     }
     if (systemsW * 2  < scrollView.contentOffset.x && scrollView.contentOffset.x <= systemsW * 3)
     {
-        
+      [self carMore:scrollView.contentOffset.x];
         if (scrollView.contentOffset.x == systemsW * 3)
         {
-            [self carMore:scrollView.contentOffset.x];
+            
             [_homeSpotView changLableColor:scrollView.contentOffset.x];
         }
         if (!_subjectThreeView)
@@ -629,8 +654,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     }
     if (systemsW * 3  < scrollView.contentOffset.x  && scrollView.contentOffset.x<= systemsW * 4)
         {
+            [self carMore:scrollView.contentOffset.x];
             if (scrollView.contentOffset.x == systemsW *4) {
-                [self carMore:scrollView.contentOffset.x];
+                
                 [_homeSpotView changLableColor:scrollView.contentOffset.x];
             }
 
@@ -642,24 +668,33 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         }
     
 }
-
+ 
 #pragma  mark --- 实现协议方法
 - (void)horizontalMenuScrollPageIndex:(CGFloat)offSet
 {
+    
+    
+    
+    NSLog(@"______________(((((((()))))))))))+++++++++++++++++++%f",offSet);
+//    if ( 1 == [[AcountManager manager].userApplystate integerValue]) {
+//        _mainScrollView.contentSize = CGSizeMake(systemsW * 2, 0);
+//    }
+    NSLog(@"%f",systemsW);
     CGFloat contentOffsetX ;
     CGFloat width = self.view.frame.size.width;
-    if (offSet == 0 ) {
+//    contentOffsetX = offSet * width / carOffsetX;
+    if (offSet == 10 ) {
         contentOffsetX = 0;
-    }else if (offSet == CARFloat){
+    }else if (offSet == CARFloat + 10){
         
         contentOffsetX = width;
-    }else if (offSet == 2 * CARFloat){
+    }else if (offSet == 2.0 * (CARFloat) + 10){
         
-        contentOffsetX = width *2;
-    }else if (offSet == 3 * CARFloat ){
+        contentOffsetX = width * 2;
+    }else if (offSet == (3.0 * (CARFloat)) + 10){
         
         contentOffsetX = width *3;
-    }else if (offSet == 4 * CARFloat){
+    }else if (offSet == (4 * (CARFloat)) + 10){
         contentOffsetX = width * 4 ;
     }
     [UIView animateWithDuration:0.5 animations:^{
@@ -674,23 +709,12 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 {
     CGFloat width = self.view.frame.size.width;
     CGFloat carX ;
-    if (offset == 0 ) {
-        carX = 0;
-    }else if (offset ==  width){
-        carX = CARFloat;
-    }else if (offset == 2 * width ){
-        carX = 2 * CARFloat;
-    }else if (offset  == 3 * width){
-        carX = 3 * CARFloat;
-    }else if (offset == 4 * width)
-    {
-        carX = 4 * CARFloat;
-    }
+    carX = (offset  * (CARFloat)) / (width);
     [UIView animateWithDuration:10 animations:^{
         
     } completion:^(BOOL finished) {
     [UIView animateWithDuration:0.3 animations:^{
-        _homeSpotView.carView.frame = CGRectMake(carX, _homeSpotView.carView.frame.origin.y, _homeSpotView.carView.frame.size.width,  _homeSpotView.carView.frame.size.height);
+        _homeSpotView.carView.frame = CGRectMake(carX + 10, _homeSpotView.carView.frame.origin.y, _homeSpotView.carView.frame.size.width,  _homeSpotView.carView.frame.size.height);
 
     }];
     }];

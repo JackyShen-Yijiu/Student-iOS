@@ -21,13 +21,14 @@
     [bar setBackIndicatorImage:[UIImage imageNamed:@"navi_back"]];
     [bar setBackIndicatorTransitionMaskImage:[UIImage imageNamed:@"navi_back"]];
     
-    // 背景色
-    [bar setBarTintColor:[UIColor colorWithHexString:@"3E3E64"]];
+    // 背景色 393f4b
+    [bar setBarTintColor:[UIColor colorWithHexString:@"393f4b"]];
+    [bar setBackgroundColor:[UIColor colorWithHexString:@"393f4b"]];
     // 返回按钮颜色
     [bar setTintColor:[UIColor whiteColor]];
     
     // 标题字体颜色
-    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont italicSystemFontOfSize:17]}];
+    [bar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:17]}];
     
     UIBarButtonItem *item = [UIBarButtonItem appearance];
     [item setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor],NSFontAttributeName:[UIFont boldSystemFontOfSize:16]} forState:UIControlStateNormal];
