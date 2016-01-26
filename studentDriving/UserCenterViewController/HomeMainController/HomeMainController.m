@@ -148,7 +148,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     fireImageView.backgroundColor = [UIColor clearColor];
     fireImageView.image = [UIImage imageNamed:@"流星"];
 //    [_backImage addSubview:fireImageView];
-     [self.view addSubview:_backImage];
+     [self.view addSubview:_backImage]; 
     
     
    
@@ -562,14 +562,11 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 {
     // 打开注释背景移动
 //    [self setBackImageOffet:scrollView.contentOffset.x];
-    
     // 打开侧边栏
     if (scrollView.contentOffset.x < -50) {
         [self showSideMenu];
     }
     
-//    [self setBackImageOffet:scrollView.contentOffset.x];
-
     if (scrollView.contentOffset.x == 0) {
         [self carMore:scrollView.contentOffset.x];
         [_homeSpotView changLableColor:scrollView.contentOffset.x];
@@ -600,20 +597,17 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }
-        
+         // 如果没有报名,滑到科目2,跳转报名界面
         if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
             SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
             [self.navigationController pushViewController:signUpListVC animated:YES];
             self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }
-        
+        // 状态正在审核中时,弹出提示信息
         if ([[[AcountManager manager] userApplystate] isEqualToString:@"1"]) {
-            
-            if (scrollView.contentOffset.x >= systemsW) {
-                NSLog(@"%f-----%f", scrollView.contentOffset.x, systemsW);
-            }
             [self obj_showTotasViewWithMes:@"报名正在审核中"];
+            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }
 
