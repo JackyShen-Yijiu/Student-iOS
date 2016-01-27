@@ -9,6 +9,7 @@
 #import "HomeAdvantageController.h"
 #import "SignUpListViewController.h"
 #import "SignUpSuccessViewController.h"
+#import "CheckProgressController.h"
 
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
@@ -89,20 +90,23 @@ static NSString *advantage = @"youshi.html";
 
 - (void)sideMenuButtonAction
 {
-    if (![AcountManager isLogin]) {
-        [DVVUserManager userNeedLogin];
-    }else
-    {
-        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-            SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
-            [self.navigationController pushViewController:signUpListVC animated:YES];
-        } else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
-        }else {
-            [self showTotasViewWithMes:@"您已经报过名"];
-        }
-
-    }
+//    if (![AcountManager isLogin]) {
+//        [DVVUserManager userNeedLogin];
+//    }else
+//    {
+//        if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+//            SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
+//            [self.navigationController pushViewController:signUpListVC animated:YES];
+//        } else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+//            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+//        }else {
+//            [self showTotasViewWithMes:@"您已经报过名"];
+//        }
+//
+//    }
+    
+    CheckProgressController *checkVC = [[CheckProgressController alloc] init];
+    [self.navigationController pushViewController:checkVC animated:YES];
 }
 
 - (void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
