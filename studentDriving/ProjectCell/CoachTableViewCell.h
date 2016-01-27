@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YBBaseTableCell.h"
 @class CoachDMData;
 @class CoachModel;
-@interface CoachTableViewCell : UITableViewCell
+@interface CoachTableViewCell : YBBaseTableCell
 
 - (void)refreshData:(CoachDMData *)coachModel;
 - (void)receivedCellModelWith:(CoachModel *)coachModel;
