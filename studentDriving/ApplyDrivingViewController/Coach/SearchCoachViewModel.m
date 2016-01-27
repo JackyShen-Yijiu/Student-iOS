@@ -18,22 +18,27 @@
     
     NSString *interface = @"searchcoach";
     NSString *url = [NSString stringWithFormat:BASEURL, interface];
-    NSLog(@"paramters === %@",[self paramtersDict]);
+
     [JENetwoking startDownLoadWithUrl:url postParam:[self paramtersDict] WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
+        [self.dataArray removeAllObjects];
+
         // 检测是否有数据
         if ([self checkErrorWithData:data]) {
-//            [self showMsg:@"没有找到数据"];
-            [self.dataArray removeAllObjects];
             [self dvvRefreshSuccess];
             return ;
         }
-        [self.dataArray removeAllObjects];
+        
         NSArray *array = data[@"data"];
+        
         for (NSDictionary *dict in array) {
+            
             CoachDMData *dmData = [CoachDMData yy_modelWithDictionary:dict];
+            
             [self.dataArray addObject:dmData];
+            
         }
+        
         [self dvvRefreshSuccess];
         
     } withFailure:^(id data) {
@@ -61,7 +66,7 @@
     
     NSString *interface = @"searchcoach";
     NSString *url = [NSString stringWithFormat:BASEURL, interface];
-    NSLog(@"paramters === %@",[self paramtersDict]);
+
     [JENetwoking startDownLoadWithUrl:url postParam:[self paramtersDict] WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
         // 检测是否有数据
@@ -74,6 +79,7 @@
             [self dvvLoadMoreSuccess];
             return ;
         }
+        
         NSArray *array = data[@"data"];
         for (NSDictionary *dict in array) {
             CoachDMData *dmData = [CoachDMData yy_modelWithDictionary:dict];

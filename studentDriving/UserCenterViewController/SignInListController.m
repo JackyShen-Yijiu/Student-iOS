@@ -40,13 +40,13 @@
     
     _viewModel = [SignInViewModel new];
     __weak typeof(self) ws = self;
-    [_viewModel setDVVRefreshSuccessBlock:^{
+    [_viewModel dvvSetRefreshSuccessBlock:^{
         
         [MBProgressHUD hideHUDForView:ws.view animated:YES];
         [ws.tableView.mj_header endRefreshing];
         [ws.tableView reloadData];
     }];
-    [_viewModel setDVVRefreshErrorBlock:^{
+    [_viewModel dvvSetRefreshErrorBlock:^{
         [MBProgressHUD hideHUDForView:ws.view animated:YES];
         [ws showTotasViewWithMes:@"加载失败"];
     }];

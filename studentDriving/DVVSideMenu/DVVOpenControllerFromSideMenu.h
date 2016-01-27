@@ -12,7 +12,6 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
     kOpenControllerTypeHomeMainController = 0, //首页
     kOpenControllerTypeDrivingViewController, //查找驾校
-    kOpenControllerTypeSearchCoachController, //查找教练
     kOpenControllerTypeChatListViewController, //消息
     kOpenControllerTypeMyWalletViewController, //钱包
     kOpenControllerTypeHomeActivityController, //活动

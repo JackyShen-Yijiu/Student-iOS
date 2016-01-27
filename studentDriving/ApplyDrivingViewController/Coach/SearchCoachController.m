@@ -62,9 +62,9 @@
     [self configViewModel];
     [self configRefresh];
     
-    [self locationManager];
+    //[self locationManager];
     // 在模拟器上定位不好用，测试时打开注释
-//        [self refresh];
+       [self refresh];
 }
 
 #pragma mark - config viewModel
@@ -72,7 +72,7 @@
     
     _searchCoachViewModel = [SearchCoachViewModel new];
     __weak typeof(self) ws = self;
-    [_searchCoachViewModel setDVVRefreshSuccessBlock:^{
+    [_searchCoachViewModel dvvSetRefreshSuccessBlock:^{
         [MBProgressHUD hideHUDForView:ws.view animated:YES];
 
         if (0 == _searchCoachViewModel.dataArray.count && 0 == _searchCoachViewModel.licenseType && 0 == _searchCoachViewModel.orderType) {
@@ -87,8 +87,7 @@
         [ws.tableView reloadData];
         [ws.tableView.mj_header endRefreshing];
     }];
-    
-    [_searchCoachViewModel setDVVLoadMoreSuccessBlock:^{
+    [_searchCoachViewModel dvvSetRefreshErrorBlock:^{
         [ws.tableView reloadData];
         [ws.tableView.mj_footer endRefreshing];
     }];

@@ -15,4 +15,6 @@
 - (void)refreshData:(CoachDMData *)coachModel;
 - (void)receivedCellModelWith:(CoachModel *)coachModel;
 
+@property (nonatomic,assign) BOOL isSelectCoachVc;
+
 @end

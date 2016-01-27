@@ -20,7 +20,7 @@
 
 #import "MyWalletViewCell.h"
 
-#import "DVVShareView.h"
+#import "DVVShare.h"
 
 static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=%@&count=10";
 
@@ -40,25 +40,9 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 
 @property (strong, nonatomic) UIView *groundView ;
 
-@property (nonatomic, strong) DVVShareView *dvvShareView;
-
 @end
 
 @implementation MyWalletViewController
-
-- (DVVShareView *)dvvShareView {
-    if (!_dvvShareView) {
-        _dvvShareView = [DVVShareView new];
-        _dvvShareView.frame = self.view.window.bounds;
-        _dvvShareView.presentedController = self;
-        __weak typeof(self) ws = self;
-        [_dvvShareView setShareSuccessBlock:^(NSString *platformName) {
-            
-            [ws obj_showTotasViewWithMes:@"分享成功了哟"];
-        }];
-    }
-    return _dvvShareView;
-}
 
 - (NSMutableArray *)dataArray {
     if (_dataArray == nil) {
@@ -198,74 +182,14 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
 }
 - (void)dealInvite:(UIButton *)sender {
     
-    [self.view.window addSubview:self.dvvShareView];
-    _dvvShareView.shareTitle = @"一步学车";
-    _dvvShareView.shareContent = @"一步学车，就是让你so esay的通过驾照考试！ http://www.ybxch.com/";
-    _dvvShareView.shareImage = [UIImage imageNamed:@"ybxch_official_website_qrcode"];
-    [_dvvShareView show];
-    
-//    self.groundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
-//    self.groundView.backgroundColor = [UIColor colorWithWhite:0.8 alpha:0.5];
-//
-//    
-//    UIView *backImageView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2-250/2, kSystemHeight/2-250/2, 250, 250)];
-//    backImageView.backgroundColor = [UIColor whiteColor];
-//    UIImageView *backView = [[UIImageView alloc] initWithFrame:CGRectMake(-1, -1, 252, 200)];
-//    backView.image = [UIImage imageNamed:@"红包_background.png"];
-//    
-//    UIImageView *redImage = [[UIImageView alloc] initWithFrame:CGRectMake(250/2-75/2, 10, 75, 58)];
-//    redImage.layer.masksToBounds = YES;
-//    redImage.image = [UIImage imageNamed:@"红包.png"];
-//    [backView addSubview:redImage];
-//    [backImageView addSubview:backView];
-//    
-//    UILabel *labelone = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, 250, 20)];
-//    labelone.textAlignment = NSTextAlignmentCenter;
-//    labelone.text = @"一步学车设计了最先进的用户激励机制";
-//    labelone.textColor = [UIColor whiteColor];
-//    labelone.font = [UIFont systemFontOfSize:14];
-//    UILabel *labeltwo = [[UILabel alloc] initWithFrame:CGRectMake(0, 100, 250, 20)];
-//    labeltwo.font = [UIFont systemFontOfSize:13];
-//    labeltwo.textColor = [UIColor whiteColor];
-//
-//
-//    labeltwo.textAlignment = NSTextAlignmentCenter;
-//
-//    labeltwo.text = @"推荐用户和学员可以长久的获利";
-//    UILabel *labelthree = [[UILabel alloc] initWithFrame:CGRectMake(0, 120, 250, 20)];
-//    labelthree.font = [UIFont systemFontOfSize:13];
-//    labelthree.textColor = [UIColor whiteColor];
-//
-//
-//    labelthree.textAlignment = NSTextAlignmentCenter;
-//
-//    labelthree.text = @"赶快去邀请小伙伴来用吧";
-//    UILabel *labelfour = [[UILabel alloc] initWithFrame:CGRectMake(0, 140, 250,20)];
-//    labelfour.textAlignment = NSTextAlignmentCenter;
-//    labelfour.font = [UIFont systemFontOfSize:13];
-//    labelfour.textColor = [UIColor whiteColor];
-//
-//
-//    labelfour.text = @"记得让他们注册的时候填写你的邀请码哟";
-//    
-//    [backView addSubview:labelone];
-//    [backView addSubview:labeltwo];
-//    [backView addSubview:labelthree];
-//    [backView addSubview:labelfour];
-//    
-//    
-//    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-//    button.backgroundColor = RGBColor(241, 81, 27);
-//    button.frame = CGRectMake(250/2-200/2, 205, 200, 40);
-//    [button setTitle:@"我要分享" forState:UIControlStateNormal];
-//    button.titleLabel.font = [UIFont systemFontOfSize:14];
-//    [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-//    [button addTarget:self action:@selector(clickDismiss:) forControlEvents:UIControlEventTouchUpInside];
-//    [backImageView addSubview:button];
-//    
-//    [self.groundView addSubview:backImageView];
-//    
-//    [[UIApplication sharedApplication].keyWindow addSubview:self.groundView];
+    [DVVShare shareWithTitle:DVV_Share_Default_Title
+                     content:DVV_Share_Default_Content
+                       image:DVV_Share_Default_Image
+                    location:nil
+                 urlResource:nil
+                     success:^(NSString *platformName) {
+        [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
+    }];
 }
 
 - (void)clickExchangeReal:(UIButton *)sender {

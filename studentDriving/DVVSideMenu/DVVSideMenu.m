@@ -23,11 +23,9 @@
 
 #import "JENetwoking.h"
 
-#import "AcountManager.h"
-
 #import "CoinCertificateController.h"
 
-#define AnimateDuration 0.5
+#define AnimateDuration 0.4
 
 @interface DVVSideMenu : UIViewController
 
@@ -116,6 +114,7 @@
     return sideMenu;
 }
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -126,9 +125,11 @@
     _titleArray = @[ @"积分收益", @"商城兑换券", @"可取现金额" ];
     _moneyArray = @[ @"0", @"0", @"0" ];
     _markTitleArray = @[ @"Y币", @"张", @"元" ];
-    _blockImagesArray = @[ @"iconfont-shouyeshouye",
-                           @"iconfont-dingwei",
-                           @"iconfont-chazhao_coach",
+    
+    _blockTitleArray = @[ @"报名", @"消息", @"签到", @"班车", @"商城", @"活动", @"投诉", @"设置" ];
+    _blockImagesArray = @[ @"iconfont-shezhi",
+                           @"iconfont-xiaoxi",
+                           @"iconfont-xiaoyuanqiandao",
                            @"iconfont-xiaoxi",
                            @"iconfont-shangcheng1",
                            @"iconfont-huodong",
@@ -247,11 +248,7 @@
 - (void)blockAction:(UIButton *)button {
     
     // 设置当前点击的项（用于打开对应的窗体）
-    if (0 == button.tag) { // 如果是点击的主页则不进行操作
-        _selectedIdx = -1;
-    }else {
-        _selectedIdx = button.tag;
-    }
+    _selectedIdx = button.tag;
     
     if ([AcountManager manager].userLocationShowType == kLocationShowTypeCoach && _selectedIdx == kOpenControllerTypeDrivingViewController) {
 //        [self showMsg:@"您所在的地区暂无合作驾校，建议您搜索教练试一试"];
@@ -267,28 +264,23 @@
 - (kOpenControllerType)checkControllerTypeWithIndex:(NSInteger)index {
     kOpenControllerType type = -1;
     switch (index) {
-        case kOpenControllerTypeHomeMainController:
-            type = kOpenControllerTypeHomeMainController;
-            break;
-        case kOpenControllerTypeDrivingViewController:
+            
+        case 0:
             type = kOpenControllerTypeDrivingViewController;
             break;
-        case kOpenControllerTypeSearchCoachController:
-            type = kOpenControllerTypeSearchCoachController;
-            break;
-        case kOpenControllerTypeChatListViewController:
+        case 1:
             type = kOpenControllerTypeChatListViewController;
             break;
-        case kOpenControllerTypeMyWalletViewController:
-            type = kOpenControllerTypeMyWalletViewController;
-            break;
-        case kOpenControllerTypeHomeActivityController:
-            type = kOpenControllerTypeHomeActivityController;
-            break;
-        case kOpenControllerTypeSignInViewController:
+        case 2:
             type = kOpenControllerTypeSignInViewController;
             break;
-        case kOpenControllerTypeUserCenterViewController:
+        case 5:
+            type = kOpenControllerTypeHomeActivityController;
+            break;
+        case 4:
+            type = kOpenControllerTypeMyWalletViewController;
+            break;
+        case 7:
             type = kOpenControllerTypeUserCenterViewController;
             break;
         default:
@@ -461,9 +453,8 @@
 
 - (DVVSideMenuBlockView *)blockView {
     if (!_blockView) {
-        NSArray *titleArray = @[ @"首页", @"查找驾校", @"搜索教练", @"消息", @"商城", @"活动", @"签到", @"设置" ];
         
-        _blockView = [[DVVSideMenuBlockView alloc] initWithTitleArray:titleArray
+        _blockView = [[DVVSideMenuBlockView alloc] initWithTitleArray:_blockTitleArray
                                                       iconNormalArray:_blockImagesArray];
         _blockView.backgroundColor = [UIColor clearColor];
         __weak typeof(self) ws = self;

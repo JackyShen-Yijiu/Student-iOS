@@ -103,9 +103,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         _geoCodeSearch = nil;
     }
     
-    [self.navigationController.navigationBar setBackgroundImage:nil
-                                                 forBarPosition:UIBarPositionAny
-                                                     barMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setBackgroundImage:nil
+//                                                 forBarPosition:UIBarPositionAny
+//                                                     barMetrics:UIBarMetricsDefault];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -117,8 +117,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         [ud synchronize];
     }
     
-    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
+//    [self.navigationController.navigationBar setShadowImage:[UIImage new]];
+    
     [self addLoadSubjectProress];
 }
 

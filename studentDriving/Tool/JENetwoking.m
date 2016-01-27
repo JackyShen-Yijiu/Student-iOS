@@ -71,6 +71,9 @@
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
         [manager GET:urlString parameters:nil success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            
+            NSLog(@"JENetworkingRequestMethodGet urlString:%@ param:%@ responseObject:%@",urlString,param,responseObject);
+
             if (_completion) {
                 _completion(responseObject);
             }
@@ -94,6 +97,8 @@
 
         [manager POST:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
 
+            NSLog(@"JENetworkingRequestMethodPost urlString:%@ param:%@ responseObject:%@",urlString,param,responseObject);
+
             if (_completion) {
                 _completion(responseObject);
             }
@@ -109,12 +114,16 @@
         }];
         
     }else if (method == JENetworkingRequestMethodPut) {
+        
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
         DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
         
         [manager PUT:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            
+            NSLog(@"JENetworkingRequestMethodPut urlString:%@ param:%@ responseObject:%@",urlString,param,responseObject);
+
             if (_completion) {
                 _completion(responseObject);
             }
@@ -132,11 +141,15 @@
             
         }];
     }else if (method == JENetworkingRequestMethodDelete) {
+        
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
         
         [manager DELETE:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
+            
+            NSLog(@"JENetworkingRequestMethodDelete urlString:%@ param:%@ responseObject:%@",urlString,param,responseObject);
+
             if (_completion) {
                 _completion(responseObject);
             }
@@ -179,6 +192,8 @@
         }
         [manager GET:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             
+            NSLog(@"JENetworkingRequestMethodGet urlString:%@ param:%@ responseObject:%@",urlString,param,responseObject);
+            
             if (responseObject == nil) {
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"没有数据"];
                 [alertView show];
@@ -189,12 +204,16 @@
             }
             
         } failure:^(AFHTTPRequestOperation * _Nonnull operation, NSError * _Nonnull error) {
+            
             DYNSLog(@"error = %@",error);
             ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
             [alertView show];
             _failure(error);
+            
         }];
+        
     }else if (method == JENetworkingRequestMethodPost) {
+        
         NSAssert(param != nil, @"param 不能为空");
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
@@ -202,7 +221,9 @@
         DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
         
         [manager POST:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            DYNSLog(@"responseObject = %@",responseObject);
+
+            NSLog(@"JENetworkingRequestMethodPost urlString:%@ param:%@ responseObject:%@",urlString,param,responseObject);
+
             if (responseObject == nil) {
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
                 [alertView show];
@@ -220,13 +241,16 @@
         }];
         
     }else if (method == JENetworkingRequestMethodPut) {
+        
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
         DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
         
         [manager PUT:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            DYNSLog(@"responseObject = %@",responseObject);
+
+            NSLog(@"JENetworkingRequestMethodPut urlString:%@ param:%@ responseObject:%@",urlString,param,responseObject);
+
             if (responseObject == nil) {
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
                 [alertView show];
@@ -244,13 +268,16 @@
             
         }];
     }else if (method == JENetworkingRequestMethodDelete) {
+        
         if ([AcountManager manager].userToken) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         }
         DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
         
         [manager DELETE:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
-            DYNSLog(@"responseObject = %@",responseObject);
+
+            NSLog(@"JENetworkingRequestMethodPut urlString:%@ param:%@ responseObject:%@",urlString,param,responseObject);
+
             if (responseObject == nil) {
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"网络错误"];
                 [alertView show];
