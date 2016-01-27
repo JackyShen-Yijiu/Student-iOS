@@ -104,6 +104,7 @@
         _dringAgeLabel.font = [UIFont systemFontOfSize:12];
         _dringAgeLabel.textColor = RGBColor(153, 153, 153);
         _dringAgeLabel.text = @"驾龄:5年";
+        _dringAgeLabel.textAlignment = NSTextAlignmentRight;
         
     }
     return _dringAgeLabel;
@@ -200,8 +201,12 @@
     }];
     
     [self.dringAgeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.successRateLabel.mas_right).offset(10);
-        make.top.mas_equalTo(self.successRateLabel.mas_top).offset(0);
+        
+        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
+        make.centerY.equalTo(self.carDriveNameLabel);
+        make.width.mas_greaterThanOrEqualTo(80);
+        make.height.mas_equalTo(self.carDriveNameLabel.mas_height);
+        
     }];
     
     [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -236,6 +241,8 @@
     }
     
     self.carDriveNameLabel.text = coachModel.driveschoolinfo.name;
+    
+    NSLog(@"coachModel.Seniority:%@",coachModel.Seniority);
     
     if (coachModel.Seniority) {
         self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",coachModel.Seniority] ;
@@ -275,7 +282,9 @@
     //    }
     
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:coachModel.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+    
     self.coachNameLabel.text = coachModel.name;
+    
     if (coachModel.distance) {
         CGFloat distance = coachModel.distance / 1000.f;
         if (distance >10000) {
@@ -287,23 +296,38 @@
     
     self.carDriveNameLabel.text = coachModel.driveschoolinfo.name;
    
-    if (coachModel.seniority) {
-      self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",coachModel.seniority] ;
+    if (self.isSelectCoachVc) {
+
+        if (coachModel.minprice) {
+            self.successRateLabel.text = [NSString stringWithFormat:@"¥%lu起",coachModel.minprice];
+        }else {
+            self.successRateLabel.text = [NSString stringWithFormat:@"暂无价格"];
+        }
+        
     }else{
-        self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",@"0"] ;
+        
+        if (coachModel.passrate) {
+            self.successRateLabel.text = [NSString stringWithFormat:@"通过率:%li%@",coachModel.passrate,@"%"];
+        }else {
+            self.successRateLabel.text = [NSString stringWithFormat:@"通过率:暂无"];
+        }
     }
     
-    if (coachModel.passrate) {
-        self.successRateLabel.text = [NSString stringWithFormat:@"通过率:%li%@",coachModel.passrate,@"%"];
-    }else {
-        self.successRateLabel.text = [NSString stringWithFormat:@"通过率:暂无"];
+    NSLog(@"驾龄coachModel.Seniority:%@",coachModel.seniority);
+
+    if (coachModel.seniority) {
+        self.dringAgeLabel.text = [NSString stringWithFormat:@"%@年驾龄",coachModel.seniority] ;
+    }else{
+        self.dringAgeLabel.text = [NSString stringWithFormat:@"无驾龄"] ;
     }
+    
     //    self.starLabel.text = @"5";
     CGFloat starLevel = 0;
     if (coachModel.starlevel) {
         starLevel = coachModel.starlevel;
     }
     [self.starBar displayRating:starLevel];
+    
     if (coachModel.isShuttle) {
         [self.backGroundView addSubview:self.coachStateSend];
         [self.coachStateSend mas_makeConstraints:^(MASConstraintMaker *make) {

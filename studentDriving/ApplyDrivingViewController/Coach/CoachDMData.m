@@ -20,4 +20,14 @@
               @"isShuttle": @"is_shuttle" };
 }
 
+- (NSString *)seniority
+{
+    // 判断字符串包含“年”字
+    NSRange range = [_seniority rangeOfString:@"年"];
+    if (range.length==0) return _seniority;
+    
+    return [_seniority substringToIndex:range.location];
+    
+}
+
 @end

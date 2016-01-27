@@ -20,4 +20,8 @@ typedef void(^DrivingSelectMotorcycleTypeViewSelectedItemBlock)(NSInteger carTyp
 
 - (void)show;
 
+@property (nonatomic,assign)BOOL isShow;
+
+- (void)closeSelf;
+
 @end

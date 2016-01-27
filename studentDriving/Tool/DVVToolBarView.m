@@ -7,6 +7,7 @@
 //
 
 #import "DVVToolBarView.h"
+#import "JGItemButton.h"
 
 //文字颜色
 #define TITLE_COLOR [UIColor orangeColor]
@@ -55,6 +56,9 @@
     _titleNormalColor = [UIColor grayColor];
     _titleSelectColor = TITLE_COLOR;
     
+    _buttonNormalImg = [UIImage imageNamed:@"selectDringBtnImg.png"];
+    _buttonSelectImg = [UIImage imageNamed:@"selectDringBtnSelectImg.png"];
+    
     //跟随条
     _followBarColor = TITLE_COLOR;
     _followBarHeight = 2;
@@ -88,6 +92,7 @@
                     button.backgroundColor = _buttonNormalColor;
                     //上次按下的字体色为正常情况下的颜色
                     [button setTitleColor:_titleNormalColor forState:UIControlStateNormal];
+                    [button setImage:_buttonNormalImg forState:UIControlStateNormal];
                 }
             }
         }
@@ -111,6 +116,8 @@
             //改变背景色和字体颜色为选中时的颜色
             button.backgroundColor=_buttonSelectColor;
             [button setTitleColor:_titleSelectColor forState:UIControlStateNormal];
+            [button setImage:_buttonSelectImg forState:UIControlStateNormal];
+
         }
     }
     //更改当前选中的按钮tag值
@@ -135,7 +142,7 @@
     //循环创建所有的按钮
     for (int i = 0; i < _titleArray.count; i++) {
         
-        UIButton *itemButton = [self createOneButtonWithTitle:_titleArray[i] Size:buttonSize MinX:i*buttonSize.width Tag:i];
+        JGItemButton *itemButton = [self createOneButtonWithTitle:_titleArray[i] Size:buttonSize MinX:i*buttonSize.width Tag:i];
         
         [self addSubview:itemButton];
     }
@@ -160,9 +167,9 @@
 }
 
 #pragma mark 创建一个按钮
-- (UIButton *)createOneButtonWithTitle:(NSString *)title Size:(CGSize)size MinX:(CGFloat)mimX Tag:(NSInteger)tag {
+- (JGItemButton *)createOneButtonWithTitle:(NSString *)title Size:(CGSize)size MinX:(CGFloat)mimX Tag:(NSInteger)tag {
     
-    UIButton *btn = [UIButton new];
+    JGItemButton *btn = [JGItemButton new];
     //位置和大小
     btn.frame = CGRectMake(mimX, 0, size.width, size.height);
     //字体
@@ -171,6 +178,8 @@
     [btn setTitle:title forState:UIControlStateNormal];
     //显示文字颜色
     [btn setTitleColor:_titleNormalColor forState:UIControlStateNormal];
+    // 显示箭头
+    [btn setImage:_buttonNormalImg forState:UIControlStateNormal];
     //tag值
     btn.tag=tag;
     //点击事件

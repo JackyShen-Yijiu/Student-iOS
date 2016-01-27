@@ -9,36 +9,50 @@
 #import "DrivingViewController.h"
 #import "DrivingDetailViewController.h"
 #import "DrivingCell.h"
-#import <BaiduMapAPI/BMKLocationService.h>
-#import <BaiduMapAPI/BMKGeocodeSearch.h>
 #import "DrivingModel.h"
 #import "DrivingModel.h"
 #import "LoginViewController.h"
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
 #import "DrivingTableHeaderView.h"
-#import "DrivingCycleShowViewModel.h"
 #import "DrivingSelectMotorcycleTypeView.h"
 #import "DrivingCityListView.h"
 #import "MJRefresh.h"
 #import "DVVSideMenu.h"
 #import "DVVLocationStatus.h"
+#import "JGSelectDrivingVcHeadSearch.h"
+#import "JGSelectDrivingVcHead.h"
+#import "CoachDetailViewController.h"
+#import "CoachTableViewCell.h"
+#import "SearchCoachViewModel.h"
+#import "CoachDMData.h"
 
 static NSString *const kDrivingUrl = @"searchschool";
 
-@interface DrivingViewController ()<UITableViewDelegate, UITableViewDataSource,BMKLocationServiceDelegate,JENetwokingDelegate, UITextFieldDelegate, BMKGeoCodeSearchDelegate, UIAlertViewDelegate>
+#define selectHeadViewH 35
+#define searchHeadViewH selectHeadViewH
+
+@interface DrivingViewController ()<UITableViewDelegate, UITableViewDataSource,JENetwokingDelegate, UITextFieldDelegate, UIAlertViewDelegate,UIScrollViewDelegate>
+
 @property (strong, nonatomic)UITableView *tableView;
+
 @property (strong, nonatomic) BMKLocationService *locationService;
+
 @property (strong, nonatomic) NSMutableArray *dataArray;
-@property (strong, nonatomic) UIButton *naviBarRightButton;
+
+@property (strong, nonatomic) UIButton *naviBarRightselectjiaxiao;
+
+@property (strong, nonatomic) UIButton *naviBarRightselectjiaolian;
+
 @property (strong, nonatomic) DrivingModel *detailModel;
-@property (nonatomic, strong) DrivingTableHeaderView *tableHeaderView;
-@property (nonatomic, strong) DrivingCycleShowViewModel *cycleShowViewModel;
+
+@property (nonatomic, strong) JGSelectDrivingVcHead *tableHeaderView;
+
+@property (nonatomic, strong) JGSelectDrivingVcHeadSearch *searchView;
+
 @property (nonatomic, strong) DrivingSelectMotorcycleTypeView *selectMotorcycleTypeView;
 
 @property (nonatomic, strong) DVVLocationStatus *dvvLocationStatus;
-
-@property (nonatomic, strong) BMKGeoCodeSearch *geoCodeSearch;
 
 @property (nonatomic, assign) BOOL isRefresh;
 
@@ -55,6 +69,14 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, assign) NSInteger count;
+
+@property (nonatomic,weak) DrivingSelectMotorcycleTypeView *typeView;
+
+// 0:找驾校 1:找教练
+@property (nonatomic,assign) NSInteger selectType;
+
+@property (nonatomic, strong) SearchCoachViewModel *searchCoachViewModel;
+
 @end
 
 @implementation DrivingViewController
@@ -62,13 +84,6 @@ static NSString *const kDrivingUrl = @"searchschool";
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // 添加取消键盘的手势
-//    UITapGestureRecognizer *tapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(keyboardHide:)];
-//    tapGestureRecognizer.cancelsTouchesInView = NO;
-//    [self.view addGestureRecognizer:tapGestureRecognizer];
-    // Do any additional setup after loading the view.
-    
-    //    [self addSideMenuButton];
     
     _radius = 10000;
     _cityName = @"";
@@ -81,88 +96,103 @@ static NSString *const kDrivingUrl = @"searchschool";
     _index = 1;
     _count = 10;
     
+    _selectType = 0;
     
-    self.title = @"选择驾校";
+    self.title = @"一步学车";
+    
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
-    DYNSLog(@"right = %@",self.naviBarRightButton);
-    self.navigationItem.rightBarButtonItem = rightItem;
+   
+    [self.view addSubview:self.tableHeaderView];
     
     [self.view addSubview:self.tableView];
     
-    [self networkCallBack];
+    [self configViewModel];
     
+    // 初始化网络请求刷新控件
     [self configRefresh];
+    [self.tableView.mj_header beginRefreshing];
     
-    [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
-    // 定位
-    [self locationManager];
-////         在模拟器上定位不好用，测试是打开注释
-//        self.latitude = 39.929985778080237;
-//        self.longitude = 116.39564503787867;
-//        self.index = 1;
-//        self.isRefresh = YES;
-//        // 获取网络数据
-//        [self network];
-}
-//- (void)keyboardHide:(UITapGestureRecognizer *)tap{
-//    [self.view endEditing:YES];
-//}
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-    [MBProgressHUD hideHUDForView:self.tableView animated:YES];
+    // 初始化筛选模式（找驾校、找教练）
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightselectjiaolian];
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+        // 定位
+//    [self locationManager];
+//         在模拟器上定位不好用，测试是打开注释
+        self.latitude = 39.929985778080237;
+        self.longitude = 116.39564503787867;
+        self.index = 1;
+        self.isRefresh = YES;
+   
 }
 
-#pragma mark - networkCallBack
-- (void)networkCallBack {
-    // 轮播图
-    _cycleShowViewModel = [DrivingCycleShowViewModel new];
-    __weak typeof(self) ws = self;
-    [_cycleShowViewModel setSuccessRefreshBlock:^{
-        [ws.tableHeaderView.cycleShowImagesView reloadDataWithArray:ws.cycleShowViewModel.imagesUrlArray];
-    }];
-    [_cycleShowViewModel networkRequestRefresh];
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+
 }
+
 #pragma mark - 刷新和加载
 - (void)configRefresh {
     
     __weak typeof(self) ws = self;
     // 刷新
     MJRefreshNormalHeader *refreshHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        self.isRefresh = YES;
-        self.index = 1;
-        [ws network];
+        
+        ws.isRefresh = YES;
+
+        if (ws.selectType==1) {// 找教练
+            
+            [ws refresh];
+            
+        }else{// 0:找驾校
+            
+            ws.index = 1;
+           
+            [ws network];
+        }
+        
     }];
     // 加载
     MJRefreshBackNormalFooter *refreshFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
-        // 判断加载时当前的请求的页面
-        NSInteger dataCount = 0;
-        if (ws.dataArray.count) {
-            if (ws.dataArray.count <= 10) {
-                dataCount = 10;
-            }else {
-                NSInteger temp = ws.dataArray.count % 10;
-                if (temp) {
-                    temp += 10 - temp;
+        ws.isRefresh = NO;
+
+        if (ws.selectType==1) {//
+            
+            [ws.searchCoachViewModel dvvNetworkRequestLoadMore];
+            
+        }else{// 0:找驾校
+            
+            // 判断加载时当前的请求的页面
+            NSInteger dataCount = 0;
+            if (ws.dataArray.count) {
+                if (ws.dataArray.count <= 10) {
+                    dataCount = 10;
+                }else {
+                    NSInteger temp = ws.dataArray.count % 10;
+                    if (temp) {
+                        temp += 10 - temp;
+                    }
+                    dataCount = ws.dataArray.count + temp;
                 }
-                dataCount = ws.dataArray.count + temp;
             }
+            NSInteger index = dataCount / 10 + 1;
+            // 设置当前请求的页面
+            ws.index = index;
+            
+            [ws network];
         }
-        NSInteger index = dataCount / 10 + 1;
-        // 设置当前请求的页面
-        self.index = index;
         
-        self.isRefresh = NO;
-        [ws network];
     }];
     
     self.tableView.mj_header = refreshHeader;
     self.tableView.mj_footer = refreshFooter;
+   
 }
 
-- (void)network {
+- (void)network
+{
     
     // 判断字符串是否null
     if (![self.cityName isKindOfClass:[NSNull class]]) {
@@ -171,7 +201,6 @@ static NSString *const kDrivingUrl = @"searchschool";
     if (!self.searchName || !self.searchName.length) {
         self.searchName = @"";
     }
-    NSLog(@"searchName === %@",self.searchName);
     
     NSString *latitude = [NSString stringWithFormat:@"%f", self.latitude];
     NSString *longitude = [NSString stringWithFormat:@"%f", self.longitude];
@@ -183,10 +212,6 @@ static NSString *const kDrivingUrl = @"searchschool";
     NSString *index = [NSString stringWithFormat:@"%li", self.index];
     NSString *count = [NSString stringWithFormat:@"%li", self.count];
     
-//    params = [NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=%li&cityname=%@&licensetype=%li&schoolname=%@&ordertype=%li&index=%li&count=%li", self.latitude, self.longitude, self.radius, self.cityName, self.carTypeId, self.searchName, self.filterType, self.index, self.count ];
-    
-    //    NSLog(@"%@",params);
-    
     NSDictionary *params = @{ @"latitude": latitude,
                           @"longitude": longitude,
                           @"radius": radius,
@@ -196,12 +221,13 @@ static NSString *const kDrivingUrl = @"searchschool";
                           @"ordertype": filterType,
                           @"index": index,
                           @"count": count };
-    NSLog(@"%@",params);
+
     NSString *url = [NSString stringWithFormat:BASEURL,kDrivingUrl];
     
     [JENetwoking startDownLoadWithUrl:url postParam:params WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
         [self jeNetworkingCallBackData:data];
+        
     } withFailure:^(id data) {
         [self showTotasViewWithMes:@"网络错误"];
     }];
@@ -209,8 +235,6 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (void)jeNetworkingCallBackData:(id)data {
     
-    [MBProgressHUD hideHUDForView:self.tableView animated:self.dataArray.count];
-
     DYNSLog(@"result = %@",data);
     if (![[data objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
         [self showTotasViewWithMes:@"没有找到数据"];
@@ -234,133 +258,14 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     [self.tableView.mj_header endRefreshing];
     [self.tableView.mj_footer endRefreshing];
+   
+    // 设置contentInset隐藏搜索框
+    [UIView animateWithDuration:0.5 animations:^{
+        self.tableView.contentInset = UIEdgeInsetsMake(-searchHeadViewH, 0, 0, 0);
+    }];
     
     if (!self.dataArray.count) {
         [self showTotasViewWithMes:@"没有找到数据"];
-    }
-}
-
-#pragma mark - 定位功能
-- (void)locationManager {
-    
-    // 检查定位功能是否可用
-    _dvvLocationStatus = [DVVLocationStatus new];
-    __weak typeof(self) ws = self;
-    [_dvvLocationStatus setSelectCancelButtonBlock:^{
-        [ws.navigationController popViewControllerAnimated:YES];
-    }];
-    [_dvvLocationStatus setSelectOkButtonBlock:^{
-        [ws.navigationController popViewControllerAnimated:YES];
-    }];
-    if (![_dvvLocationStatus checkLocationStatus]) {
-        [_dvvLocationStatus remindUser];
-        return ;
-    }
-    
-    [BMKLocationService setLocationDesiredAccuracy:kCLLocationAccuracyHundredMeters];
-    [BMKLocationService setLocationDistanceFilter:10000.0f];
-    
-    self.locationService = [[BMKLocationService alloc] init];
-    self.locationService.delegate = self;
-    [self.locationService startUserLocationService];
-}
-
-//处理位置坐标更新
-- (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
-{
-    NSLog(@"didUpdateUserLocation lat %f,long %f",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude);
-    //latitude=40.096263&longitude=116.1270&radius=10000
-    //    NSString *locationContent = @"latitude=40.096263&longitude=116.1270&radius=10000";
-    //    NSString *locationContent =[NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",userLocation.location.coordinate.latitude,userLocation.location.coordinate.longitude];
-    //    NSString *locationContent =[NSString stringWithFormat:@"latitude=%f&longitude=%f&radius=10000",39.915, 116.404];
-    
-    //    NSString *urlString = [NSString stringWithFormat:kDrivingUrl,locationContent];
-    //    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-    
-    //    [self.dataArray removeAllObjects];
-    
-    //    [JENetwoking initWithUrl:url WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
-    
-    // 保存经纬度
-    self.longitude = userLocation.location.coordinate.longitude;
-    self.latitude = userLocation.location.coordinate.latitude;
-    
-    // 反地理编码，获取城市名
-    [self reverseGeoCodeWithLatitude:self.latitude longitude:self.longitude];
-}
-
-#pragma mark - 反地理编码
-- (BOOL)reverseGeoCodeWithLatitude:(double)latitude
-                         longitude:(double)longitude {
-    
-    CLLocationCoordinate2D point = (CLLocationCoordinate2D){ latitude, longitude };
-    //    CLLocationCoordinate2D point = (CLLocationCoordinate2D){39.929986, 116.395645};
-    BMKReverseGeoCodeOption *reverseGeocodeOption = [BMKReverseGeoCodeOption new];
-    reverseGeocodeOption.reverseGeoPoint = point;
-    // 发起反向地理编码
-    BOOL flage = [self.geoCodeSearch reverseGeoCode:reverseGeocodeOption];
-    if (flage) {
-        //        NSLog(@"反geo检索发送成功");
-        return YES;
-    }else {
-        //        NSLog(@"反geo检索发送失败");
-        return NO;
-    }
-}
-#pragma mark 反地理编码回调
-- (void)onGetReverseGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKReverseGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
-    
-    if (error == BMK_SEARCH_NO_ERROR) {
-        //        NSLog(@"%@",result);
-        BMKAddressComponent *addressComponent = result.addressDetail;
-        //        NSLog(@"addressComponent.city===%@",addressComponent.city);
-        // 保存城市名
-        self.cityName = addressComponent.city;
-        [self.naviBarRightButton setTitle:addressComponent.city forState:UIControlStateNormal];
-        self.index = 1;
-        self.isRefresh = YES;
-        // 获取网络数据
-        [self network];
-        
-        // 停止位置更新服务
-        [self.locationService stopUserLocationService];
-    }else {
-        NSLog(@"抱歉，未找到结果");
-    }
-}
-
-#pragma mark - 正地理编码
-- (BOOL)geoCode {
-    BMKGeoCodeSearchOption *geoCodeSearchOption = [BMKGeoCodeSearchOption new];
-    geoCodeSearchOption.city = self.cityName;
-    geoCodeSearchOption.address = self.cityName;
-    //    geoCodeSearchOption.city= @"北京市";
-    //    geoCodeSearchOption.address = @"海淀区上地10街10号";
-    BOOL flag = [self.geoCodeSearch geoCode:geoCodeSearchOption];
-    if(flag) {
-        //        NSLog(@"geo检索发送成功");
-        return YES;
-    }else {
-        //        NSLog(@"geo检索发送失败");
-        return NO;
-    }
-}
-
-#pragma mark 正地理编码回调
-- (void)onGetGeoCodeResult:(BMKGeoCodeSearch *)searcher result:(BMKGeoCodeResult *)result errorCode:(BMKSearchErrorCode)error {
-    
-    if (error == BMK_SEARCH_NO_ERROR) {
-        //        NSLog(@"%@",result);
-        CLLocationCoordinate2D location = result.location;
-        //        NSLog(@"result.location.latitude===%f, result.location.longitude===%f",result.location.latitude,result.location.longitude);
-        self.latitude = location.latitude;
-        self.longitude = location.longitude;
-        // 刷新数据
-        self.index = 1;
-        self.isRefresh = YES;
-        [self network];
-    }else {
-        NSLog(@"抱歉，未找到结果");
     }
 }
 
@@ -368,15 +273,40 @@ static NSString *const kDrivingUrl = @"searchschool";
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 100.0f;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+  
+    if (self.selectType==1) {
+        return _searchCoachViewModel.dataArray.count;
+    }
+    
     if (self.dataArray.count == 0) {
         tableView.hidden = NO;
     }else {
         tableView.hidden = NO;
     }
     return self.dataArray.count;
+    
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (self.selectType==1) {// 找教练
+        
+        static NSString *cellIdentifier = @"cellIdentifier";
+        CoachTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        if (!cell) {
+            cell = [[CoachTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        }
+        cell.isSelectCoachVc = YES;
+        
+        CoachDMData *model = _searchCoachViewModel.dataArray[indexPath.row];
+       
+        [cell refreshData:model];
+        
+        return cell;
+    }
+    
     static NSString *cellId = @"cell";
     DrivingCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
     if (cell == nil) {
@@ -389,6 +319,14 @@ static NSString *const kDrivingUrl = @"searchschool";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (self.selectType==1) {
+        CoachDMData *model = _searchCoachViewModel.dataArray[indexPath.row];
+        CoachDetailViewController *detailVC = [CoachDetailViewController new];
+        detailVC.coachUserId = model.coachid;
+        [self.navigationController pushViewController:detailVC animated:YES];
+        return;
+    }
     DrivingDetailViewController *SelectVC = [[DrivingDetailViewController alloc]init];
     DrivingModel *model = self.dataArray[indexPath.row];
     self.detailModel = model;
@@ -398,12 +336,36 @@ static NSString *const kDrivingUrl = @"searchschool";
 }
 
 #pragma mark - lazy load
-- (BMKGeoCodeSearch *)geoCodeSearch {
-    if (!_geoCodeSearch) {
-        _geoCodeSearch = [BMKGeoCodeSearch new];
-        _geoCodeSearch.delegate = self;
+- (UITableView *)tableView{
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, CGRectGetMaxY(self.tableHeaderView.frame), kSystemWide, kSystemHeight-64-self.tableHeaderView.frame.size.height)  style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.dataSource = self;
+        _tableView.tableFooterView = [[UIView alloc] init];
+        _tableView.tableHeaderView = self.searchView;
+        _tableView.backgroundColor = [UIColor whiteColor];
     }
-    return _geoCodeSearch;
+    return _tableView;
+}
+- (UIButton *)naviBarRightselectjiaolian {
+    if (_naviBarRightselectjiaolian == nil) {
+        
+        _naviBarRightselectjiaolian = [WMUITool initWithTitle:@"找教练" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightselectjiaolian.frame = CGRectMake(0, 0, 70, 44);
+        [_naviBarRightselectjiaolian addTarget:self action:@selector(clickRight) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _naviBarRightselectjiaolian;
+}
+- (UIButton *)naviBarRightselectjiaxiao {
+    if (_naviBarRightselectjiaxiao == nil) {
+        
+        _naviBarRightselectjiaxiao = [WMUITool initWithTitle:@"找驾校" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightselectjiaxiao.frame = CGRectMake(0, 0, 70, 44);
+        [_naviBarRightselectjiaxiao addTarget:self action:@selector(clickRight) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _naviBarRightselectjiaxiao;
 }
 - (NSMutableArray *)dataArray {
     if (_dataArray == nil) {
@@ -412,10 +374,12 @@ static NSString *const kDrivingUrl = @"searchschool";
     return _dataArray;
 }
 
-- (DrivingTableHeaderView *)tableHeaderView {
+- (JGSelectDrivingVcHead *)tableHeaderView {
+    
     if (!_tableHeaderView) {
-        _tableHeaderView = [DrivingTableHeaderView new];
-        _tableHeaderView.frame = CGRectMake(0, 0, kSystemWide, _tableHeaderView.defaultHeight);
+        
+        _tableHeaderView = [JGSelectDrivingVcHead new];
+        _tableHeaderView.frame = CGRectMake(0, 64, kSystemWide, _tableHeaderView.defaultHeight);
         _tableHeaderView.backgroundColor = [UIColor whiteColor];
         
         // 选择车型点击事件
@@ -428,138 +392,212 @@ static NSString *const kDrivingUrl = @"searchschool";
             self.isRefresh = YES;
             [self network];
         }];
-        // 搜索按钮点击事件
-//        [_tableHeaderView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        __weak typeof(self) ws = self;
-        [_tableHeaderView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
-            [ws searchButtonAction:textField];
-        }];
+       
     }
     return _tableHeaderView;
 }
 
+- (JGSelectDrivingVcHeadSearch *)searchView {
+    
+    if (!_searchView) {
+        
+        _searchView = [JGSelectDrivingVcHeadSearch new];
+        
+        _searchView.frame = CGRectMake(0, 0, kSystemWide, _searchView.defaultHeight);
+        
+        _searchView.backgroundColor = RGBColor(255, 255, 255);
+        
+        // 搜索按钮点击事件
+        __weak typeof(self) ws = self;
+        [_searchView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
+            [ws searchButtonAction:textField];
+        }];
+        
+    }
+    return _searchView;
+}
+
 - (void)motorcycleTypeButtonAction {
-    DrivingSelectMotorcycleTypeView *view = [DrivingSelectMotorcycleTypeView new];
-    view.frame = self.view.bounds;
-    [view setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
-        self.carTypeId = carTypeId;
-        [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
-        //        NSLog(@"%li --- %@", carTypeId, selectedTitle);
-        self.index = 1;
-        self.isRefresh = YES;
-        [self network];
+    
+    if (self.typeView.isShow) {
+        [self.typeView closeSelf];
+        return;
+    }
+    
+     DrivingSelectMotorcycleTypeView *typeView = [DrivingSelectMotorcycleTypeView new];
+    
+    CGFloat viewX = 0;
+    CGFloat viewY = CGRectGetMaxY(self.tableHeaderView.frame)+1;
+    CGFloat viewW = self.view.frame.size.width;
+    CGFloat viewH = self.view.frame.size.height;
+    typeView.frame = CGRectMake(viewX, viewY, viewW, viewH);
+    
+    [typeView setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
+        
+        if (self.selectType==1) {
+            
+         _searchCoachViewModel.orderType = carTypeId;
+            
+          _searchCoachViewModel.licenseType = carTypeId;
+
+          [self refresh];
+            
+        }else{
+           
+            self.carTypeId = carTypeId;
+            [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
+
+            self.index = 1;
+            self.isRefresh = YES;
+            [self network];
+        }
+        
+        
     }];
-    [self.view addSubview:view];
-    [view show];
+    
+    [self.view addSubview:typeView];
+    
+    [typeView show];
+    
+    self.typeView = typeView;
+    
 }
 
 - (void)searchButtonAction:(UITextField *)textField {
     
     [self.view endEditing:YES];
+    
+    if (self.selectType==1) {
+        
+        _searchCoachViewModel.searchName = textField.text;
+        
+        [self refresh];
+    
+        return;
+    }
+    
     self.searchName = textField.text;
     
-    NSLog(@"longitude===%f,latitude===%f,searchName===%@,carTypeId===%li,filterType===%li",self.longitude,self.latitude,self.searchName,self.carTypeId,self.filterType);
     self.index = 1;
-    self.isRefresh = YES;
-    [self network];
-}
-
-- (UITableView *)tableView{
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64)  style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-        _tableView.tableHeaderView = self.tableHeaderView;
-        _tableView.tableFooterView = [[UIView alloc] init];
-        _tableView.backgroundColor = [UIColor whiteColor];
-    }
-    return _tableView;
-}
-- (UIButton *)naviBarRightButton {
-    if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"定位中" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
-        _naviBarRightButton.frame = CGRectMake(0, 0, 70, 44);
-        [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateNormal];
-        [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
-        //        _naviBarRightButton.backgroundColor = [UIColor redColor];
-    }
-    return _naviBarRightButton;
-}
-- (void)clickRight:(UIButton *)sender {
     
-    BOOL flage = 0;
-    for (UIView *view in self.view.subviews) {
-        if ([view isKindOfClass:[DrivingCityListView class]]) {
-            flage = 1;
-            return;
-        }
-    }
-    if (!flage) {
-        DrivingCityListView *cityListView = [DrivingCityListView new];
-        [cityListView setSelectedItemBlock:^(NSString *cityName) {
-            
-            [self.naviBarRightButton setTitle:cityName forState:UIControlStateNormal];
-            self.cityName = cityName;
-            [self geoCode];
-        }];
-        CGRect rect = self.view.bounds;
-        cityListView.frame = CGRectMake(0, 64, rect.size.width, rect.size.height - 64);
-        [self.view addSubview:cityListView];
-        [cityListView show];
-    }
-    //    if (![AcountManager isLogin]) {
-    //        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-    //        LoginViewController *login = [[LoginViewController alloc] init];
-    //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-    //        return;
-    //    }
-    //    if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-    //        [self.navigationController popViewControllerAnimated:YES];
-    //        return;
-    //    }
-    //
-    //    DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
-    //
-    //    if (![AcountManager manager].applyschool.infoId) {
-    //        if (self.detailModel.schoolid || self.detailModel.name) {
-    //            NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.schoolid,@"name":self.detailModel.name};
-    //            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-    //
-    //        }
-    //        [self.navigationController popViewControllerAnimated:YES];
-    //        return;
-    //    }
-    //
-    //    if ([[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.schoolid] ) {
-    //        [self.navigationController popViewControllerAnimated:YES];
-    //        return;
-    //    }
-    //
-    //
-    //    if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.schoolid]) {
-    //        [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-    //            DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-    //            NSUInteger index = selectedOtherButtonIndex + 1;
-    //            if (index == 0) {
-    //                return ;
-    //            }else if (index == 1) {
-    //
-    //                [SignUpInfoManager removeSignData];
-    //
-    //                if (self.detailModel.schoolid || self.detailModel.name) {
-    //                    NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.schoolid,@"name":self.detailModel.name};
-    //                    [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-    //                    
-    //                }
-    //                [self.navigationController popViewControllerAnimated:YES];
-    //                
-    //            }
-    //        }];
-    //    }
+    self.isRefresh = YES;
+    
+    [self network];
+    
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+
+    CGPoint offY = scrollView.contentOffset;
+    NSLog(@"offY.y:%f",offY.y);
+    NSLog(@"self.isRefresh:%d",self.isRefresh);
+    NSLog(@"self.tableView.contentInset.top:%f",self.tableView.contentInset.top);
+    
+    if (self.selectType==1) {
+        
+        if (offY.y<=0) {// 不需要刷新
+            [UIView animateWithDuration:0.5 animations:^{
+                self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            }];
+        }else{// 刷新
+//            [UIView animateWithDuration:0.5 animations:^{
+//                self.tableView.contentInset = UIEdgeInsetsMake(-searchHeadViewH, 0, 0, 0);
+//            }];
+        }
+        
+    }else{
+     
+        if (offY.y<=searchHeadViewH) {// 不需要刷新
+            [UIView animateWithDuration:0.5 animations:^{
+                self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+            }];
+        }else{// 刷新
+            [UIView animateWithDuration:0.5 animations:^{
+                self.tableView.contentInset = UIEdgeInsetsMake(-searchHeadViewH, 0, 0, 0);
+            }];
+        }
+        
+    }
+    
+    
+}
+
+- (void)clickRight
+{
+    UIBarButtonItem *rightItem;
+    if (self.selectType==0) {
+        self.selectType=1;
+        rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightselectjiaxiao];
+    }else{
+        self.selectType=0;
+        rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightselectjiaolian];
+    }
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
+    // 刷新列表
+    [self.tableView reloadData];
+    
+    // 刷新数据
+    [self.tableView.mj_header beginRefreshing];
+    
+}
+
+- (void)refresh
+{
+    
+    _searchCoachViewModel.index = 1;
+    
+    [_searchCoachViewModel dvvNetworkRequestRefresh];
+    
+}
+
+#pragma mark - config viewModel
+- (void)configViewModel {
+    
+    _searchCoachViewModel = [SearchCoachViewModel new];
+    __weak typeof(self) ws = self;
+    
+    [_searchCoachViewModel dvvSetRefreshSuccessBlock:^{
+        
+        if (0 == _searchCoachViewModel.dataArray.count && 0 == _searchCoachViewModel.licenseType && 0 == _searchCoachViewModel.orderType) {
+            
+            [BLPFAlertView showAlertWithTitle:@"提示" message:@"对不起，该地区暂无合作教练。如有疑问，请致电 400-626-9255"cancelButtonTitle:@"返回" otherButtonTitles:nil completion:^(NSUInteger selectedOtherButtonIndex) {
+                DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
+                [ws.navigationController popViewControllerAnimated:YES];
+            }];
+            
+        }else {
+            
+            ToastAlertView *toast = [[ToastAlertView alloc] initWithTitle:@"没有搜索到教练"];
+            [toast show];
+            
+        }
+       
+        [ws.tableView reloadData];
+
+        [ws.tableView.mj_header endRefreshing];
+        
+        NSLog(@"ws.tableView.contentInset.top:%f",ws.tableView.contentInset.top);
+        
+        // 设置contentInset隐藏搜索框
+        [UIView animateWithDuration:0.5 animations:^{
+            ws.tableView.contentInset = UIEdgeInsetsMake(-searchHeadViewH, 0, 0, 0);
+        }];
+
+        NSLog(@"设置contentInset隐藏搜索框 ws.tableView.contentInset.top:%f",ws.tableView.contentInset.top);
+
+    }];
+    
+    [_searchCoachViewModel dvvSetLoadMoreSuccessBlock:^{
+        
+        [ws.tableView reloadData];
+        
+        [ws.tableView.mj_footer endRefreshing];
+        
+    }];
+    
+    
 }
 
 @end

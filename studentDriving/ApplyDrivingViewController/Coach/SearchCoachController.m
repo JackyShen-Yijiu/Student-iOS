@@ -62,9 +62,9 @@
     [self configViewModel];
     [self configRefresh];
     
-    [self locationManager];
+    //[self locationManager];
     // 在模拟器上定位不好用，测试时打开注释
-//        [self refresh];
+       [self refresh];
 }
 
 #pragma mark - config viewModel
@@ -91,6 +91,7 @@
         [ws.tableView reloadData];
         [ws.tableView.mj_footer endRefreshing];
     }];
+    
 }
 
 #pragma mark - config refresh
