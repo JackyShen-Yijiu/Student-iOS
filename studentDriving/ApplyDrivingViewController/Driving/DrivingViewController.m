@@ -292,6 +292,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         [ws.tableView reloadData];
         
         [ws.tableView.mj_header endRefreshing];
+        [ws.tableView.mj_footer endRefreshing];
         
         NSLog(@"ws.tableView.contentInset.top:%f",ws.tableView.contentInset.top);
         
@@ -304,7 +305,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         
     }];
     
-    [_searchCoachViewModel dvvSetRefreshSuccessBlock:^{
+    [_searchCoachViewModel dvvSetLoadMoreSuccessBlock:^{
         
         [ws.tableView reloadData];
         
