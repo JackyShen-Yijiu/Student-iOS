@@ -10,7 +10,7 @@
 #import <MTLJSONAdapter.h>
 
 @interface CarModel : MTLModel<MTLJSONSerializing>
-@property (copy, readonly, nonatomic) NSString *code;
-@property (strong, readonly, nonatomic) NSNumber *modelsid;
-@property (copy, readonly, nonatomic) NSString *name;
+@property (copy, nonatomic) NSString *code;
+@property (strong, nonatomic) NSNumber *modelsid;
+@property (copy, nonatomic) NSString *name;
 @end

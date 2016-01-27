@@ -9,5 +9,5 @@
 #import "BLBaseViewController.h"
 
 @interface JGDrivingDetailViewController : BLBaseViewController
-@property (copy, nonatomic) NSString *schoolId;
+@property (copy, nonatomic) NSString *coachUserId;
 @end

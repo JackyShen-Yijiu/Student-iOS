@@ -22,7 +22,7 @@
 #import "DVVLocationStatus.h"
 #import "JGSelectDrivingVcHeadSearch.h"
 #import "JGSelectDrivingVcHead.h"
-#import "CoachDetailViewController.h"
+#import "DrivingDetailViewController.h"
 #import "CoachTableViewCell.h"
 #import "SearchCoachViewModel.h"
 #import "CoachDMData.h"
@@ -367,18 +367,18 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.selectType==1) {
+    if (self.selectType==1) {// 教练详情
         CoachDMData *model = _searchCoachViewModel.dataArray[indexPath.row];
-        CoachDetailViewController *detailVC = [CoachDetailViewController new];
+        JGDrivingDetailViewController *detailVC = [JGDrivingDetailViewController new];
         detailVC.coachUserId = model.coachid;
         [self.navigationController pushViewController:detailVC animated:YES];
         return;
     }
-    JGDrivingDetailViewController *SelectVC = [[JGDrivingDetailViewController alloc]init];
+    // 驾校详情
+    DrivingDetailViewController *SelectVC = [[DrivingDetailViewController alloc]init];
     DrivingModel *model = self.dataArray[indexPath.row];
     self.detailModel = model;
     SelectVC.schoolId = model.schoolid;
-    NSLog(@"%@", model.schoolid);
     [self.navigationController pushViewController:SelectVC animated:YES];
 }
 

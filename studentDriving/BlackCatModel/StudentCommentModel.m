@@ -10,7 +10,8 @@
 
 @implementation StudentCommentModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"infoId":@"_id",@"comment":@"comment",@"userid":@"userid"};
+    return @{@"infoId":@"_id",@"comment":@"comment",@"userid":@"userid",@"finishtime":@"finishtime",@"timestamp":@"timestamp"};
+
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {

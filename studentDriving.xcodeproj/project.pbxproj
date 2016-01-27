@@ -64,6 +64,11 @@
 		B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */; };
 		B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818031C5606CD00F973A7 /* JGItemButton.m */; };
 		B21818111C58675C00F973A7 /* JGDrivingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */; };
+		B21818141C58AC5500F973A7 /* JGDrivingDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */; };
+		B21818171C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */; };
+		B218181A1C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */; };
+		B218181D1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */; };
+		B21818231C58E76300F973A7 /* Applyclasstypeinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
@@ -798,6 +803,16 @@
 		B21818031C5606CD00F973A7 /* JGItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGItemButton.m; path = CircularMotion/JGItemButton.m; sourceTree = "<group>"; };
 		B218180F1C58675C00F973A7 /* JGDrivingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailViewController.h; sourceTree = "<group>"; };
 		B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailViewController.m; sourceTree = "<group>"; };
+		B21818121C58AC5500F973A7 /* JGDrivingDetailTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailTopCell.h; sourceTree = "<group>"; };
+		B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailTopCell.m; sourceTree = "<group>"; };
+		B21818151C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailTeachingNewsCell.h; sourceTree = "<group>"; };
+		B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailTeachingNewsCell.m; sourceTree = "<group>"; };
+		B21818181C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailPersonalNoteCell.h; sourceTree = "<group>"; };
+		B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailPersonalNoteCell.m; sourceTree = "<group>"; };
+		B218181B1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailEvalutionCell.h; sourceTree = "<group>"; };
+		B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailEvalutionCell.m; sourceTree = "<group>"; };
+		B21818211C58E76300F973A7 /* Applyclasstypeinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Applyclasstypeinfo.h; sourceTree = "<group>"; };
+		B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Applyclasstypeinfo.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
@@ -3140,6 +3155,8 @@
 				D5C2403C1BEF6E0400832CF3 /* VipserverModel.m */,
 				D95CCCF51C2E84C000AF1402 /* UserSettingModel.h */,
 				D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */,
+				B21818211C58E76300F973A7 /* Applyclasstypeinfo.h */,
+				B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */,
 			);
 			path = BlackCatModel;
 			sourceTree = "<group>";
@@ -3575,20 +3592,28 @@
 				D965CA9C1C239D9F00DCD094 /* DrivingSelectMotorcycleTypeView.m */,
 				D965CA9D1C239D9F00DCD094 /* DrivingTableHeaderView.h */,
 				D965CA9E1C239D9F00DCD094 /* DrivingTableHeaderView.m */,
-				D965CA9F1C239D9F00DCD094 /* DrivingViewController.h */,
-				D965CAA01C239D9F00DCD094 /* DrivingViewController.m */,
 				D978ACCF1C47957F00D633B4 /* DVVLocationStatus.h */,
 				D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */,
 				D9873B631C56456F000A3F6F /* DVVLocation.h */,
 				D9873B641C56456F000A3F6F /* DVVLocation.m */,
 				D98021881C51D21C00596C86 /* DVVAlert.h */,
 				D98021891C51D21C00596C86 /* DVVAlert.m */,
+				D965CA9F1C239D9F00DCD094 /* DrivingViewController.h */,
+				D965CAA01C239D9F00DCD094 /* DrivingViewController.m */,
 				B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */,
 				B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */,
 				B21817FF1C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.h */,
 				B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */,
 				B218180F1C58675C00F973A7 /* JGDrivingDetailViewController.h */,
 				B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */,
+				B21818121C58AC5500F973A7 /* JGDrivingDetailTopCell.h */,
+				B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */,
+				B21818151C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.h */,
+				B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */,
+				B21818181C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.h */,
+				B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */,
+				B218181B1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.h */,
+				B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */,
 			);
 			path = Driving;
 			sourceTree = "<group>";
@@ -3767,6 +3792,7 @@
 		D588AF7E1BDDB62C000C5D6F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = jatd;
 				TargetAttributes = {
@@ -4139,6 +4165,7 @@
 				D5D50EE21BFA205000F54097 /* MagicMainTableViewController.m in Sources */,
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
+				B218181D1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m in Sources */,
 				B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */,
 				064184041C57AE2D00A33D88 /* CheckProgressCell.m in Sources */,
 				D5604B4D1BF656C50020F0D7 /* MWPhoto.m in Sources */,
@@ -4330,6 +4357,7 @@
 				D51256AE1BE1CF17002717DA /* StudentModel.m in Sources */,
 				D588B0D11BDDDC14000C5D6F /* CoachInformationCell.m in Sources */,
 				D51256BA1BE21EFF002717DA /* ComplainViewController.m in Sources */,
+				B21818141C58AC5500F973A7 /* JGDrivingDetailTopCell.m in Sources */,
 				D96D1BCC1C2B858400F1C282 /* AppDelegate.mm in Sources */,
 				D5604B6D1BF656C50020F0D7 /* PSTGridLayoutItem.m in Sources */,
 				D5604B781BF656C50020F0D7 /* TTGlobalUICommon.m in Sources */,
@@ -4378,6 +4406,8 @@
 				06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
 				D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */,
+				B21818231C58E76300F973A7 /* Applyclasstypeinfo.m in Sources */,
+				B218181A1C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m in Sources */,
 				D5604CC91BF83A690020F0D7 /* ChatListCell.m in Sources */,
 				D5604B811BF656C50020F0D7 /* NSString+Valid.m in Sources */,
 				D5604B5F1BF656C50020F0D7 /* UIImage+EMWebP.m in Sources */,
@@ -4392,6 +4422,7 @@
 				D588AFC41BDDDAAB000C5D6F /* CoachModel.m in Sources */,
 				D588B13A1BDDDC65000C5D6F /* RegisterViewController.m in Sources */,
 				D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */,
+				B21818171C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */,
 				D588AFD01BDDDAAB000C5D6F /* MyAppointmentCoachModel.m in Sources */,
 				D9D4BA1E1C3B918600F62BE9 /* NSDictionary+adapter.m in Sources */,
@@ -4536,6 +4567,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				ENABLE_BITCODE = NO;
@@ -4617,6 +4649,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4627,6 +4661,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				ENABLE_BITCODE = NO;
@@ -4708,6 +4743,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
