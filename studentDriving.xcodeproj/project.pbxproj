@@ -12,6 +12,10 @@
 		060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060FC6A51C27CB030039DDBB /* RegistNoteController.m */; };
 		061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */; };
 		061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADE1C39001C008C51C3 /* MoneyShopController.m */; };
+		064183F71C57552E00A33D88 /* HomeCheckProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183F61C57552E00A33D88 /* HomeCheckProgressView.m */; };
+		064183FB1C57A8AC00A33D88 /* CheckProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183FA1C57A8AC00A33D88 /* CheckProgressController.m */; };
+		064184011C57AD6F00A33D88 /* YBBaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064184001C57AD6F00A33D88 /* YBBaseTableCell.m */; };
+		064184041C57AE2D00A33D88 /* CheckProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064184031C57AE2D00A33D88 /* CheckProgressCell.m */; };
 		0647A5B61C34BB8700DBB8A3 /* DiscountShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */; };
 		0647A5B91C34C1DE00DBB8A3 /* DiscountShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B81C34C1DE00DBB8A3 /* DiscountShopCell.m */; };
 		0647A5BC1C34FE5F00DBB8A3 /* DiscountWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5BB1C34FE5F00DBB8A3 /* DiscountWalletController.m */; };
@@ -605,6 +609,14 @@
 		061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountOrderController.m; sourceTree = "<group>"; };
 		061E7ADD1C39001C008C51C3 /* MoneyShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyShopController.h; sourceTree = "<group>"; };
 		061E7ADE1C39001C008C51C3 /* MoneyShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyShopController.m; sourceTree = "<group>"; };
+		064183F51C57552E00A33D88 /* HomeCheckProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCheckProgressView.h; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.h; sourceTree = SOURCE_ROOT; };
+		064183F61C57552E00A33D88 /* HomeCheckProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCheckProgressView.m; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.m; sourceTree = SOURCE_ROOT; };
+		064183F91C57A8AC00A33D88 /* CheckProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressController.h; sourceTree = "<group>"; };
+		064183FA1C57A8AC00A33D88 /* CheckProgressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProgressController.m; sourceTree = "<group>"; };
+		064183FF1C57AD6600A33D88 /* YBBaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseTableCell.h; sourceTree = "<group>"; };
+		064184001C57AD6F00A33D88 /* YBBaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseTableCell.m; sourceTree = "<group>"; };
+		064184021C57AE2D00A33D88 /* CheckProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressCell.h; sourceTree = "<group>"; };
+		064184031C57AE2D00A33D88 /* CheckProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProgressCell.m; sourceTree = "<group>"; };
 		0647A5B41C34BB8700DBB8A3 /* DiscountShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopController.h; sourceTree = "<group>"; };
 		0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountShopController.m; sourceTree = "<group>"; };
 		0647A5B71C34C1DE00DBB8A3 /* DiscountShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopCell.h; sourceTree = "<group>"; };
@@ -1734,6 +1746,21 @@
 			path = Goods/RealShop;
 			sourceTree = "<group>";
 		};
+		064183F81C57A78700A33D88 /* HomeCheckProgress */ = {
+			isa = PBXGroup;
+			children = (
+				064183F51C57552E00A33D88 /* HomeCheckProgressView.h */,
+				064183F61C57552E00A33D88 /* HomeCheckProgressView.m */,
+				064183F91C57A8AC00A33D88 /* CheckProgressController.h */,
+				064183FA1C57A8AC00A33D88 /* CheckProgressController.m */,
+				064184021C57AE2D00A33D88 /* CheckProgressCell.h */,
+				064184031C57AE2D00A33D88 /* CheckProgressCell.m */,
+				064183FF1C57AD6600A33D88 /* YBBaseTableCell.h */,
+				064184001C57AD6F00A33D88 /* YBBaseTableCell.m */,
+			);
+			path = HomeCheckProgress;
+			sourceTree = "<group>";
+		};
 		0647A5B31C34BB5500DBB8A3 /* DiscountShop */ = {
 			isa = PBXGroup;
 			children = (
@@ -1780,6 +1807,7 @@
 				06073D861C251C300058B372 /* HomeRewardController.m */,
 				D98E06121C3E4570009BFA81 /* DVVCheckActivity.h */,
 				D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */,
+				064183F81C57A78700A33D88 /* HomeCheckProgress */,
 			);
 			name = HomeMainController;
 			path = UserCenterViewController/HomeMainController;
@@ -4045,6 +4073,7 @@
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
 				B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */,
+				064184041C57AE2D00A33D88 /* CheckProgressCell.m in Sources */,
 				D5604B4D1BF656C50020F0D7 /* MWPhoto.m in Sources */,
 				061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */,
 				060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */,
@@ -4070,6 +4099,7 @@
 				0647A5C51C35135F00DBB8A3 /* DiscountWalletCell.m in Sources */,
 				D970D3A31C3D0468003FCED3 /* YYClassInfo.m in Sources */,
 				B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */,
+				064183FB1C57A8AC00A33D88 /* CheckProgressController.m in Sources */,
 				061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */,
 				D52638591BDF205C00ADC2C7 /* ApplycoachinfoModel.m in Sources */,
 				D5604B4E1BF656C50020F0D7 /* MWPhotoBrowser.m in Sources */,
@@ -4104,6 +4134,7 @@
 				D5604B761BF656C50020F0D7 /* SRSlimeView.m in Sources */,
 				D970D39A1C3CFFEB003FCED3 /* CoachDMRootClass.m in Sources */,
 				D980218A1C51D21C00596C86 /* DVVAlert.m in Sources */,
+				064183F71C57552E00A33D88 /* HomeCheckProgressView.m in Sources */,
 				D588AFCC1BDDDAAB000C5D6F /* AppointmentCoachModel.m in Sources */,
 				D965CAA41C239D9F00DCD094 /* DrivingCityListDMRootClass.m in Sources */,
 				D965CAA81C239D9F00DCD094 /* DrivingCycleShowDMRootClass.m in Sources */,
@@ -4247,6 +4278,7 @@
 				D588B11C1BDDDC2F000C5D6F /* NetMonitor.m in Sources */,
 				D970D3991C3CFFEB003FCED3 /* CoachDMHeadportrait.m in Sources */,
 				D51256CC1BE348DC002717DA /* CommentModel.m in Sources */,
+				064184011C57AD6F00A33D88 /* YBBaseTableCell.m in Sources */,
 				D5604B421BF656C50020F0D7 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				D965CAAB1C239D9F00DCD094 /* DrivingSelectMotorcycleTypeView.m in Sources */,
 				0647A5C81C352DAD00DBB8A3 /* DiscountShopModel.m in Sources */,
