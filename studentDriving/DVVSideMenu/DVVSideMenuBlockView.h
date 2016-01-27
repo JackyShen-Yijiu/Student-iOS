@@ -22,7 +22,7 @@ typedef void(^DVVSideMenuBlockViewSelectedBlock)(UIButton *button);
 
 // 显示、隐藏小红点
 - (void)setupUnreadMessageCount;
-// 显示搜索的类型是驾校还是教练
-- (void)setLocationShowType;
+//// 显示搜索的类型是驾校还是教练
+//- (void)setLocationShowType;
 
 @end

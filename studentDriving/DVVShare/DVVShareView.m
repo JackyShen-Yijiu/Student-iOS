@@ -15,9 +15,10 @@
 
 #define kShareCell_Identifier @"kShareCellIdentifier"
 
-#define kShareCell_SideLength 55.f
+#define kShareCell_Width 55.f
+#define kShareCell_Height 55.f
 #define kNumInLine 5
-#define kCollectionView_Width (kShareCell_SideLength * kNumInLine)
+#define kCollectionView_Width (kShareCell_Width * kNumInLine)
 
 @interface DVVShareView()<UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,UMSocialUIDelegate>
 
@@ -32,6 +33,8 @@
 @property (nonatomic, strong) UIImageView *walletImageView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *titleDetailLabel;
+
+@property (nonatomic, strong) UILabel *markLabel;
 
 @property (nonatomic, strong) UIButton *closeButton;
 
@@ -50,6 +53,7 @@
         [_titleBackgroundImageView addSubview:self.walletImageView];
         [_titleBackgroundImageView addSubview:self.titleLabel];
         [_titleBackgroundImageView addSubview:self.titleDetailLabel];
+        [_contentView addSubview:self.markLabel];
         [_contentView addSubview:self.collectionView];
         [self addSubview:self.closeButton];
     }
@@ -114,14 +118,16 @@
     if (0 == lineNum) {
         lineNum = 1;
     }
-    _collectionView.bounds = CGRectMake(0, 0, kCollectionView_Width, lineNum * kShareCell_SideLength);
+    _collectionView.bounds = CGRectMake(0, 0, kCollectionView_Width, lineNum * kShareCell_Height);
     if (shareCellCount < kNumInLine) {
-        _collectionView.bounds = CGRectMake(0, 0, kShareCell_SideLength * shareCellCount, lineNum * kShareCell_SideLength);
+        _collectionView.bounds = CGRectMake(0, 0, kShareCell_Width * shareCellCount, lineNum * kShareCell_Height);
     }
     
     CGFloat titleBackgroundImageViewHeight = kCollectionView_Width * 0.7;
     _titleBackgroundImageView.frame = CGRectMake(0, 0, kCollectionView_Width, titleBackgroundImageViewHeight);
-    _collectionView.frame = CGRectMake(kCollectionView_Width / 2.f - _collectionView.bounds.size.width / 2.f, titleBackgroundImageViewHeight, _collectionView.bounds.size.width, _collectionView.bounds.size.height);
+    CGFloat markLabelHeight = 5;
+    _markLabel.frame = CGRectMake(0, titleBackgroundImageViewHeight, kCollectionView_Width, markLabelHeight);
+    _collectionView.frame = CGRectMake(kCollectionView_Width / 2.f - _collectionView.bounds.size.width / 2.f, titleBackgroundImageViewHeight + markLabelHeight, _collectionView.bounds.size.width, _collectionView.bounds.size.height);
     CGFloat walletImageViewWidth = 100.f;
     CGFloat walletImageViewHeight = walletImageViewWidth * 0.7;
     _walletImageView.bounds = CGRectMake(0, 0, walletImageViewWidth, walletImageViewHeight);
@@ -136,7 +142,7 @@
     _titleLabel.center = CGPointMake(centerX, centerY + titleLabelHeight);
     _titleDetailLabel.center = CGPointMake(centerX, centerY + titleLabelHeight + titleDetailLabelHeight);
     
-    CGFloat contentViewHeight = titleBackgroundImageViewHeight + _collectionView.bounds.size.height;
+    CGFloat contentViewHeight = titleBackgroundImageViewHeight + markLabelHeight + _collectionView.bounds.size.height;
     _contentView.frame = CGRectMake(self.bounds.size.width / 2.f - kCollectionView_Width / 2.f, self.bounds.size.height / 2.f - contentViewHeight / 2.f, kCollectionView_Width, contentViewHeight);
     
     _closeButton.frame = CGRectMake(CGRectGetMaxX(_contentView.frame) - 15, CGRectGetMinY(_contentView.frame) - 15, 30, 30);
@@ -232,7 +238,7 @@
 #pragma mark - collectionView flowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    return CGSizeMake(kShareCell_SideLength, kShareCell_SideLength);
+    return CGSizeMake(kShareCell_Width, kShareCell_Height);
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -293,7 +299,7 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
-        _titleLabel.text = @"邀请好友得现金";
+        _titleLabel.text = @"分享好友得现金";
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.font = [UIFont boldSystemFontOfSize:17];
         _titleLabel.textAlignment = 1;
@@ -303,12 +309,22 @@
 - (UILabel *)titleDetailLabel {
     if (!_titleDetailLabel) {
         _titleDetailLabel = [UILabel new];
-        _titleDetailLabel.text = @"成功邀请月月入利";
+        _titleDetailLabel.text = @"成功分享月月入利";
         _titleDetailLabel.textColor = [UIColor colorWithHexString:@"#F2F2F2"];
         _titleDetailLabel.font = [UIFont systemFontOfSize:14];
         _titleDetailLabel.textAlignment = 1;
     }
     return _titleDetailLabel;
+}
+- (UILabel *)markLabel {
+    if (!_markLabel) {
+        _markLabel = [UILabel new];
+        _markLabel.font = [UIFont systemFontOfSize:14];
+        _markLabel.textColor = [UIColor blackColor];
+        _markLabel.textAlignment = 1;
+        _markLabel.text = @"";
+    }
+    return _markLabel;
 }
 - (UIButton *)closeButton {
     if (!_closeButton) {

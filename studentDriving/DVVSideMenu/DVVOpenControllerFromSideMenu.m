@@ -57,25 +57,6 @@
             [naviVC pushViewController:controller animated:YES];
         }
             break;
-        case kOpenControllerTypeSearchCoachController:// 查找教练
-        {
-            if (![AcountManager isLogin]) {
-                [DVVUserManager userNeedLogin];
-                break;
-            }
-            
-            UIViewController *controller = nil;
-            //            if (![AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
-            //                controller = [DrivingViewController new];
-            //            }else {
-            controller = [SearchCoachController new];
-            //            }
-            
-            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
-            [naviVC pushViewController:controller animated:YES];
-        }
-            break;
         case kOpenControllerTypeChatListViewController:// 消息
         {
             if (![AcountManager isLogin]) {

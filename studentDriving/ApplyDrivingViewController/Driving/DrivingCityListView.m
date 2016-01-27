@@ -10,6 +10,7 @@
 #import "JENetwoking.h"
 #import "ToolHeader.h"
 #import "DrivingCityListDMRootClass.h"
+#import "CityListCell.h"
 
 @interface DrivingCityListView()<JENetwokingDelegate>
 
@@ -43,7 +44,7 @@
 
 - (void)configLayout {
     
-    CGFloat width = 85;
+    CGFloat width = 60;
     CGFloat height = self.bounds.size.height / 2.f;
     if (self.dataList.count * 44 < height) {
         height = self.dataList.count * 44;
@@ -81,20 +82,19 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataList.count;
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 30;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *kCellId = @"cellId";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
+    CityListCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellId];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellId];
-        cell.textLabel.font = [UIFont systemFontOfSize:15];
-        cell.textLabel.textAlignment =1;
-        cell.textLabel.textColor = [UIColor orangeColor];
-        cell.backgroundColor = [UIColor clearColor];
+        cell = [[CityListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellId];
     }
     DrivingCityListDMData *data = self.dataList[indexPath.row];
+    cell.nameLabel.text = data.name;
     
-    cell.textLabel.text = data.name;
     return cell;
 }
 
@@ -124,8 +124,9 @@
         _tableView = [UITableView new];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.backgroundColor = [UIColor colorWithRed:0.99 green:0.99 blue:0.99 alpha:1];
-//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor = [UIColor clearColor];
 //        _tableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 //        _tableView.layer.borderWidth = 1;
     }

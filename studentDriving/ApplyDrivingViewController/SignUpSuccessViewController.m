@@ -13,6 +13,7 @@
 #import "SignUpListViewController.h"
 #import "UIColor+Hex.h"
 
+#import "DVVShare.h"
 
 static NSString *const kUserInfo = @"/userinfo/getapplyschoolinfo";
 static NSString *const kCreatQrcode = @"/create_qrcode";
@@ -119,6 +120,10 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UILabel new]];
     
+    // 显示分享
+    [DVVShare shareWithTitle:DVV_Share_Default_Title content:DVV_Share_Default_Content image:DVV_Share_Default_Image location:nil urlResource:nil success:^(NSString *platformName) {
+        [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
+    }];
 }
 
 - (void)initUI {
