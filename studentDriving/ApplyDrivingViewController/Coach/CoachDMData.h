@@ -17,4 +17,8 @@
 @property (nonatomic, assign) NSInteger passrate;
 @property (nonatomic, assign) NSInteger starlevel;
 @property (nonatomic, strong) NSArray * subject;
+
+@property (nonatomic, assign) NSInteger maxprice;
+@property (nonatomic, assign) NSInteger minprice;
+
 @end

@@ -291,13 +291,14 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.selectType==1) {
+    if (self.selectType==1) {// 找教练
         
         static NSString *cellIdentifier = @"cellIdentifier";
         CoachTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (!cell) {
             cell = [[CoachTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         }
+        cell.isSelectCoachVc = YES;
         
         CoachDMData *model = _searchCoachViewModel.dataArray[indexPath.row];
        
@@ -572,7 +573,7 @@ static NSString *const kDrivingUrl = @"searchschool";
             [toast show];
             
         }
-        
+       
         [ws.tableView reloadData];
 
         [ws.tableView.mj_header endRefreshing];
