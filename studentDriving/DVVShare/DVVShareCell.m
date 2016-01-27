@@ -20,10 +20,13 @@
         // config UI
         CGFloat viewWidth = frame.size.width;
         CGFloat viewHeight = frame.size.height;
-        CGRect imageViewFrame = CGRectMake(0, 0, viewWidth, viewHeight * 0.7);
-        CGRect labelFrame = CGRectMake(0, viewHeight * 0.7, viewWidth, viewHeight * 0.3);
+        CGFloat labelHeight = 25.f;
+        CGRect imageViewFrame = CGRectMake(0, 0, viewWidth, viewHeight - labelHeight);
+        CGRect labelFrame = CGRectMake(0, viewHeight - labelHeight, viewWidth, labelHeight);
         _imageView.frame = imageViewFrame;
         _label.frame = labelFrame;
+        
+//        _imageView.backgroundColor = [UIColor orangeColor];
     }
     return self;
 }
@@ -33,6 +36,8 @@
     if (!_imageView) {
         _imageView = [UIImageView new];
         _imageView.contentMode = UIViewContentModeCenter;
+        [_imageView.layer setMasksToBounds:YES];
+        [_imageView.layer setCornerRadius:5];
     }
     return _imageView;
 }

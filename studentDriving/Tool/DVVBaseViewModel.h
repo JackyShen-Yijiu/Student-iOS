@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void(^DVVBaseViewModelBlock)();
 typedef void(^DVVBaseViewModelUpdataBlock)();
 
 @interface DVVBaseViewModel : NSObject
@@ -18,18 +19,28 @@ typedef void(^DVVBaseViewModelUpdataBlock)();
 // 处理完网络数据后，调用加载成功、失败的回调
 - (void)dvvLoadMoreSuccess;
 - (void)dvvLoadMoreError;
+// 检测完服务器返回的数据为空时的回调
+- (void)dvvNilResponseObject;
+// 网络加载失败的回调
+- (void)dvvNetworkError;
 
 // 设置刷新成功、失败时的回调Block
-- (void)setDVVRefreshSuccessBlock:(DVVBaseViewModelUpdataBlock)refreshSuccessBlock;
-- (void)setDVVRefreshErrorBlock:(DVVBaseViewModelUpdataBlock)refreshErrorBlock;
-
+- (void)dvvSetRefreshSuccessBlock:(DVVBaseViewModelUpdataBlock)refreshSuccessBlock;
+- (void)dvvSetRefreshErrorBlock:(DVVBaseViewModelUpdataBlock)refreshErrorBlock;
 // 设置加载成功、失败时的回调Block
-- (void)setDVVLoadMoreSuccessBlock:(DVVBaseViewModelUpdataBlock)loadMoreSuccessBlock;
-- (void)setDVVLoadMoreErrorBlock:(DVVBaseViewModelUpdataBlock)loadMoreErrorBlock;
+- (void)dvvSetLoadMoreSuccessBlock:(DVVBaseViewModelUpdataBlock)loadMoreSuccessBlock;
+- (void)dvvSetLoadMoreErrorBlock:(DVVBaseViewModelUpdataBlock)loadMoreErrorBlock;
+// 设置服务器返回的数据为空时的回调Block
+- (void)dvvSetNilResponseObjectBlock:(DVVBaseViewModelBlock)nilResponseObjectBlock;
+// 设置网络加载失败的回调Block
+- (void)dvvSetNetworkErrorBlock:(DVVBaseViewModelBlock)netwrokErrorBlock;
 
 // 1、刷新时的网络请求
 - (void)dvvNetworkRequestRefresh;
 // 2、加载时的网络请求
 - (void)dvvNetworkRequestLoadMore;
+
+// 检测服务器返回的数据
+- (BOOL)dvvCheckErrorWithResponseObject:(id)responseObject;
 
 @end

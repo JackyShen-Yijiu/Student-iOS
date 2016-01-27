@@ -46,7 +46,7 @@
 #pragma mark 显示、隐藏小红点
 - (void)showBadge {
     for (UIView *view in self.subviews) {
-        if (3 == view.tag) {
+        if (1 == view.tag) {
             CGFloat viewWidth = view.frame.size.width;
             self.badgeLabel.center = CGPointMake(viewWidth / 2 + 10, 15);
             [view addSubview:self.badgeLabel];
@@ -76,22 +76,22 @@
 //    [application setApplicationIconBadgeNumber:unreadCount];
 }
 
-#pragma mark 显示搜索的类型是驾校还是教练
-- (void)setLocationShowType {
-    
-//    if ([AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
-//        [self setShowTypeWithTitle:@"查找驾校"];
-//    }else {
-//        [self setShowTypeWithTitle:@"查找教练"];
+//#pragma mark 显示搜索的类型是驾校还是教练
+//- (void)setLocationShowType {
+//    
+////    if ([AcountManager manager].userLocationShowType == kLocationShowTypeDriving) {
+////        [self setShowTypeWithTitle:@"查找驾校"];
+////    }else {
+////        [self setShowTypeWithTitle:@"查找教练"];
+////    }
+//}
+//- (void)setShowTypeWithTitle:(NSString *)title {
+//    for (DVVSideMenuBlockViewItemButton *button in self.subviews) {
+//        if (1 == button.tag) {
+//            [button setTitle:title forState:UIControlStateNormal];
+//        }
 //    }
-}
-- (void)setShowTypeWithTitle:(NSString *)title {
-    for (DVVSideMenuBlockViewItemButton *button in self.subviews) {
-        if (1 == button.tag) {
-            [button setTitle:title forState:UIControlStateNormal];
-        }
-    }
-}
+//}
 
 - (void)buttonAction:(UIButton *)button {
     if (_itemSelectedBlock) {

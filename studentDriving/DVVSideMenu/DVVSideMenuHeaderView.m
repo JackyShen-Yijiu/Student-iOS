@@ -21,7 +21,6 @@
         [self addSubview:self.markLabel];
 //        [self addSubview:self.integralLabel];
         [self addSubview:self.coinCertificateLabel];
-        
         _nameLabel.text = @"用户名";
         _drivingNameLabel.text = @"驾校：未报考";
         _markLabel.text = @"我的Y码：暂无";
@@ -53,6 +52,7 @@
                                       CGRectGetMinY(self.iconButton.frame),
                                       labelWidth,
                                       labelHeight);
+    
     self.drivingNameLabel.frame = CGRectMake(minX, CGRectGetMaxY(self.nameLabel.frame), labelWidth, labelHeight);
     self.markLabel.frame = CGRectMake(minX, CGRectGetMaxY(self.drivingNameLabel.frame), labelWidth, labelHeight);
     CGFloat iconButtonMaxY = CGRectGetMaxY(self.iconButton.frame);
@@ -125,6 +125,17 @@
 
 - (CGFloat)defaultHeight {
     return 130;
+}
+
+- (CGFloat)autoWidthWithString:(NSString *)string font:(UIFont *)font {
+    
+    CGSize boundRectSize = CGSizeMake(MAXFLOAT, font.lineHeight);
+    NSDictionary *fontDict = @{ NSFontAttributeName: font };
+    CGFloat newFloat = [string boundingRectWithSize:boundRectSize
+                                            options: NSStringDrawingUsesLineFragmentOrigin
+                        | NSStringDrawingUsesFontLeading
+                                         attributes:fontDict context:nil].size.width;
+    return newFloat;
 }
 
 /*

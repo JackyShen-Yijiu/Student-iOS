@@ -21,6 +21,8 @@
 #import "AppointmentViewController.h"
 #import "ChatSendHelper.h"
 
+#import "DVVShare.h"
+
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
 static NSString *const kStudentTimeStudy = @"courseinfo/sametimestudents/reservationid/%@/index/%@";
@@ -760,7 +762,13 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             NSNumber *type = param[@"type"];
             NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
             if (type.integerValue == 1) {
-                [self showTotasViewWithMes:@"预约成功"];
+                
+                // 显示分享
+                [DVVShare shareWithTitle:DVV_Share_Default_Title content:DVV_Share_Default_Content image:DVV_Share_Default_Image location:nil urlResource:nil success:^(NSString *platformName) {
+                    [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
+                }];
+                
+                [self obj_showTotasViewWithMes:@"预约成功"];
                 
                 NSString *userName = [AcountManager manager].userName;
                 NSString *yearFormatString = @"yyyy";

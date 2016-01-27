@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "dingwei.png",
+      "filename" : "dingwei_icon.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "dingwei@2x.png",
+      "filename" : "dingwei_icon@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "dingwei@3x.png",
+      "filename" : "dingwei_icon@3x.png",
       "scale" : "3x"
     }
   ],

@@ -15,6 +15,7 @@
 @property (nonatomic, strong) UILabel *drivingNameLabel;
 @property (nonatomic, strong) UILabel *markLabel;
 
+// 豆币
 @property (nonatomic, strong) UILabel *integralLabel;
 @property (nonatomic, strong) UILabel *integralMarkLabel;
 // 兑换券

@@ -191,7 +191,6 @@
 }
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
-    
     completionHandler(UIBackgroundFetchResultNewData);
     //推送消息统一处理
 #warning YJG APP在前台接受到消息推送，处理消息逻辑

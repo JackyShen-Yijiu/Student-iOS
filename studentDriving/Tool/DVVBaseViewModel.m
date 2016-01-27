@@ -14,6 +14,8 @@
 @property (nonatomic, copy) DVVBaseViewModelUpdataBlock refreshErrorBlock;
 @property (nonatomic, copy) DVVBaseViewModelUpdataBlock loadMoreSuccessBlock;
 @property (nonatomic, copy) DVVBaseViewModelUpdataBlock loadMoreErrorBlock;
+@property (nonatomic, copy) DVVBaseViewModelBlock nilResponseObjectBlock;
+@property (nonatomic, copy) DVVBaseViewModelBlock networkErrorBlock;
 
 @end
 
@@ -24,6 +26,11 @@
 }
 - (void)dvvNetworkRequestLoadMore {
     // 重写此方法加载数据（需自己调用加载回调）
+}
+- (BOOL)dvvCheckErrorWithResponseObject:(id)responseObject {
+    
+    // 重写此方法检测服务器是否返回了数据
+    return NO;
 }
 
 #pragma mark - call back
@@ -47,19 +54,35 @@
         _loadMoreErrorBlock();
     }
 }
+- (void)dvvNilResponseObject {
+    if (_nilResponseObjectBlock) {
+        _nilResponseObjectBlock();
+    }
+}
+- (void)dvvNetworkError {
+    if (_networkErrorBlock) {
+        _networkErrorBlock();
+    }
+}
 
 #pragma mark - set block
-- (void)setDVVRefreshSuccessBlock:(DVVBaseViewModelUpdataBlock)refreshSuccessBlock {
+- (void)dvvSetRefreshSuccessBlock:(DVVBaseViewModelUpdataBlock)refreshSuccessBlock {
     _refreshSuccessBlock = refreshSuccessBlock;
 }
-- (void)setDVVRefreshErrorBlock:(DVVBaseViewModelUpdataBlock)refreshErrorBlock {
+- (void)dvvSetRefreshErrorBlock:(DVVBaseViewModelUpdataBlock)refreshErrorBlock {
     _refreshErrorBlock = refreshErrorBlock;
 }
-- (void)setDVVLoadMoreSuccessBlock:(DVVBaseViewModelUpdataBlock)loadMoreSuccessBlock {
+- (void)dvvSetLoadMoreSuccessBlock:(DVVBaseViewModelUpdataBlock)loadMoreSuccessBlock {
     _loadMoreSuccessBlock = loadMoreSuccessBlock;
 }
-- (void)setDVVLoadMoreErrorBlock:(DVVBaseViewModelUpdataBlock)loadMoreErrorBlock {
+- (void)dvvSetLoadMoreErrorBlock:(DVVBaseViewModelUpdataBlock)loadMoreErrorBlock {
     _loadMoreErrorBlock = loadMoreErrorBlock;
+}
+- (void)dvvSetNilResponseObjectBlock:(DVVBaseViewModelBlock)nilResponseObjectBlock {
+    _nilResponseObjectBlock = nilResponseObjectBlock;
+}
+- (void)dvvSetNetworkErrorBlock:(DVVBaseViewModelBlock)netwrokErrorBlock {
+    _networkErrorBlock = netwrokErrorBlock;
 }
 
 @end
