@@ -51,7 +51,7 @@
                 break;
             }
             
-            UIViewController *controller = [DrivingViewController new];
+            DrivingViewController *controller = [DrivingViewController new];
             UIWindow *window = [UIApplication sharedApplication].keyWindow;
             UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
             [naviVC pushViewController:controller animated:YES];

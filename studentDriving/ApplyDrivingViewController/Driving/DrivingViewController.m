@@ -278,7 +278,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     _searchCoachViewModel = [SearchCoachViewModel new];
     __weak typeof(self) ws = self;
     
-    [_searchCoachViewModel setDVVRefreshSuccessBlock:^{
+    [_searchCoachViewModel dvvSetRefreshSuccessBlock:^{
         
         if (0 == _searchCoachViewModel.dataArray.count && 0 == _searchCoachViewModel.licenseType && 0 == _searchCoachViewModel.orderType) {
             
@@ -304,7 +304,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         
     }];
     
-    [_searchCoachViewModel setDVVLoadMoreSuccessBlock:^{
+    [_searchCoachViewModel dvvSetRefreshSuccessBlock:^{
         
         [ws.tableView reloadData];
         
