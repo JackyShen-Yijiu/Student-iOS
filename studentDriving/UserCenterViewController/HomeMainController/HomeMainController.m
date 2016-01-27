@@ -13,6 +13,7 @@
 #import "JENetwoking.h"
 #import "DVVSideMenu.h"
 #import "DVVUserManager.h"
+#import "HomeCheckProgressView.h"
 
 #import "ChatViewController.h"
 #import "SignUpListViewController.h"
@@ -86,7 +87,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 @property (copy, nonatomic) NSString *questionFourerrorurl;
 
 @property (nonatomic, strong) HomeActivityController *activityVC;
-
+@property (nonatomic, strong) HomeCheckProgressView *homeCheckProgressView;
 @end
 
 @implementation HomeMainController
@@ -140,15 +141,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     _backImage = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, systemsW, systemsH)];
     _backImage.image = [UIImage imageNamed:@"bg"];
     _imageX = 0;
-
-    // 加载流星视图
-    CGFloat fireH = 200;
-    CGFloat fireW = 640;
-    UIImageView *fireImageView = [[UIImageView alloc] initWithFrame:CGRectMake((systemsW - fireW) / 2 + 20, 44, fireW, fireH)];
-    fireImageView.backgroundColor = [UIColor clearColor];
-    fireImageView.image = [UIImage imageNamed:@"流星"];
-//    [_backImage addSubview:fireImageView];
-     [self.view addSubview:_backImage];
+    [self.view addSubview:_backImage];
     
     
    
@@ -158,14 +151,13 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
     _homeSpotView.delegate = self;
     [view addSubview:_homeSpotView];
-//    [self.view addSubview:fireImageView];
     [self.view addSubview:view];
     [self.view addSubview:_mainScrollView];
     
+
     
     // 点击时的回调
     [self addBackBlock];
-
     [self startSubjectFirstDownLoad];
     [self startSubjectFourDownLoad];
     
@@ -231,6 +223,12 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             }
             if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
                 [AcountManager saveUserApplyState:@"0"];
+                
+//                // 弹出验证学车进度窗体
+//                _homeCheckProgressView = [[HomeCheckProgressView alloc] init];
+////                _mainScrollView.userInteractionEnabled = NO;
+//                [[UIApplication sharedApplication].keyWindow addSubview:_homeCheckProgressView];
+                
             }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
                 [AcountManager saveUserApplyState:@"1"];
             }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 2) {
@@ -239,7 +237,6 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 [AcountManager saveUserApplyState:@"3"];
             }
             [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
-//            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeScrollViewContentSize) name:nil object:nil];
             
         }else {
             
@@ -556,20 +553,18 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         }
     };
 }
+
 #pragma mark - UIScrollViewDelegate method
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     // 打开注释背景移动
 //    [self setBackImageOffet:scrollView.contentOffset.x];
-    
     // 打开侧边栏
     if (scrollView.contentOffset.x < -50) {
         [self showSideMenu];
     }
     
-//    [self setBackImageOffet:scrollView.contentOffset.x];
-
     if (scrollView.contentOffset.x == 0) {
         [self carMore:scrollView.contentOffset.x];
         [_homeSpotView changLableColor:scrollView.contentOffset.x];
@@ -600,20 +595,17 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }
-        
+         // 如果没有报名,滑到科目2,跳转报名界面
         if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
             SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
             [self.navigationController pushViewController:signUpListVC animated:YES];
             self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }
-        
+        // 状态正在审核中时,弹出提示信息
         if ([[[AcountManager manager] userApplystate] isEqualToString:@"1"]) {
-            
-            if (scrollView.contentOffset.x >= systemsW) {
-                NSLog(@"%f-----%f", scrollView.contentOffset.x, systemsW);
-            }
             [self obj_showTotasViewWithMes:@"报名正在审核中"];
+            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }
 
@@ -671,13 +663,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 #pragma  mark --- 实现协议方法
 - (void)horizontalMenuScrollPageIndex:(CGFloat)offSet
 {
-    
-    
-    
+
     NSLog(@"______________(((((((()))))))))))+++++++++++++++++++%f",offSet);
-//    if ( 1 == [[AcountManager manager].userApplystate integerValue]) {
-//        _mainScrollView.contentSize = CGSizeMake(systemsW * 2, 0);
-//    }
+
     NSLog(@"%f",systemsW);
     CGFloat contentOffsetX ;
     CGFloat width = self.view.frame.size.width;
