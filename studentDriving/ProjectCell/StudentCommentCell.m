@@ -151,7 +151,7 @@
     
     [cell layoutIfNeeded];
     
-    return cell.studentHeadImageView.frame.size.height + cell.commentContentLabel.frame.size.height + cell.commentTimeLabel.frame.size.height + TopH * 2.5;
+    return cell.studentHeadImageView.frame.size.height + cell.commentContentLabel.frame.size.height + cell.commentTimeLabel.frame.size.height + TopH * 2.5+1;
     
 }
 

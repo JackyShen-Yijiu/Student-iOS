@@ -2,290 +2,288 @@
 //  JGDrivingDetailTopCell.m
 //  BlackCat
 //
-//  Created by 董博 on 15/9/9.
-//  Copyright (c) 2015年 lord. All rights reserved.
+//  Created by bestseller on 15/9/28.
+//  Copyright © 2015年 lord. All rights reserved.
 //
 
 #import "JGDrivingDetailTopCell.h"
 #import "ToolHeader.h"
-#import <Masonry.h>
-#import "CoachDMData.h"
 #import "RatingBar.h"
+#import "CoachDetail.h"
 
-@interface JGDrivingDetailTopCell ()
+#define margin 10
 
-@property (strong, nonatomic) UIImageView *headImageView;
-@property (strong, nonatomic) UILabel *coachNameLabel;
-@property (strong, nonatomic) UILabel *carDriveNameLabel;
-@property (strong, nonatomic) UILabel *starLabel;
+@interface JGDrivingDetailTopCell ()<RatingBarDelegate>
+
 @property (strong, nonatomic) UIView *backGroundView;
-@property (strong, nonatomic) UILabel *successRateLabel;
-@property (strong, nonatomic) UILabel *dringAgeLabel;
+// 姓名
+@property (strong, nonatomic) UILabel *coachNameLabel;
+// 星级
 @property (strong, nonatomic) RatingBar *starBar;
-@property (strong, nonatomic) UIView *WMSelectedbackGroundView;
-
-@property (strong, nonatomic) UILabel *distanceLabel;
-@property (strong, nonatomic) UIButton *coachStateSend;
-@property (strong, nonatomic) UIButton *coachStateAll;
+// 头像
+@property (nonatomic,strong) UIImageView *headImgView;
+// 驾龄
+@property (nonatomic,strong) UILabel *jialingLabel;
+// 授课类型
+@property (nonatomic,strong) UILabel *shoukeleixingLabel;
+// 可授科目
+@property (nonatomic,strong) UILabel *keshoukemuLabel;
+// 距离
+@property (nonatomic,strong) UILabel *juliLabel;
+// 是否收藏
+@property (nonatomic,strong) UIButton *collectionBtn;
+// 灰色底部
+@property (nonatomic,strong) UIView *footView;
 
 @end
+
 @implementation JGDrivingDetailTopCell
 
-- (UIView *)WMSelectedbackGroundView {
-    if (_WMSelectedbackGroundView == nil) {
-        _WMSelectedbackGroundView = [[UIView alloc] initWithFrame:CGRectMake(10, 5, kSystemWide-20, 70)];
-        _WMSelectedbackGroundView.backgroundColor = [UIColor whiteColor];
-        _WMSelectedbackGroundView.layer.borderColor = MAINCOLOR.CGColor;
-        _WMSelectedbackGroundView.layer.borderWidth = 1;
-        UIImageView *selectedImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cellSelected.png"]];
-        [_WMSelectedbackGroundView addSubview:selectedImage];
-        [selectedImage mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.right.mas_equalTo(_WMSelectedbackGroundView.mas_right).offset(0);
-            make.top.mas_equalTo(_WMSelectedbackGroundView.mas_top).offset(0);
-            make.height.mas_equalTo(@30);
-            make.width.mas_equalTo(@30);
-        }];
-        
-        
+- (UIView *)backGroundView {
+    if (_backGroundView == nil) {
+        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,kSystemWide , 160)];
     }
-    return _WMSelectedbackGroundView;
+    return _backGroundView;
 }
-
+// 星级
 - (RatingBar *)starBar {
     if (_starBar == nil) {
         _starBar = [[RatingBar alloc] init];
-        [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:nil];
+        [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:self];
+        _starBar.isIndicator = YES;
+        [_starBar displayRating:3];
     }
     return _starBar;
 }
 
-- (UIButton *)coachStateSend {
-    if (_coachStateSend == nil) {
-        _coachStateSend = [UIButton buttonWithType:UIButtonTypeCustom];
-        _coachStateSend.layer.borderColor = MAINCOLOR.CGColor;
-        _coachStateSend.layer.borderWidth = 0.8;
-        _coachStateSend.layer.cornerRadius = 2;
-        _coachStateSend.titleLabel.font  = [UIFont systemFontOfSize:8];
-        _coachStateSend.userInteractionEnabled = NO;
-        [_coachStateSend setTitle:@"接送" forState:UIControlStateNormal];
-        [_coachStateSend setTitleColor:MAINCOLOR forState:UIControlStateNormal];
-    }
-    return _coachStateSend;
-}
-
-- (UIButton *)coachStateAll {
-    if (_coachStateAll == nil) {
-        _coachStateAll = [UIButton buttonWithType:UIButtonTypeCustom];
-        _coachStateAll.layer.borderColor = RGBColor(44, 143, 245).CGColor;
-        _coachStateAll.layer.borderWidth = 0.8;
-        _coachStateAll.layer.cornerRadius = 2;
-        _coachStateAll.titleLabel.font = [UIFont systemFontOfSize:8];
-        _coachStateAll.userInteractionEnabled = NO;
-        [_coachStateAll setTitle:@"全科" forState:UIControlStateNormal];
-        [_coachStateAll setTitleColor:RGBColor(44, 143, 245) forState:UIControlStateNormal];
-    }
-    return _coachStateAll;
-}
-
-- (UILabel *)distanceLabel {
-    if (_distanceLabel == nil) {
-        _distanceLabel = [[UILabel alloc] init];
-        _distanceLabel.font = [UIFont systemFontOfSize:12];
-        _distanceLabel.textColor = RGBColor(153, 153, 153);
-        _distanceLabel.text = @"1278km";
-        
-    }
-    return _distanceLabel;
-}
-- (UILabel *)dringAgeLabel {
-    if (_dringAgeLabel == nil) {
-        _dringAgeLabel = [[UILabel alloc] init];
-        _dringAgeLabel.font = [UIFont systemFontOfSize:12];
-        _dringAgeLabel.textColor = RGBColor(153, 153, 153);
-        _dringAgeLabel.text = @"驾龄:5年";
-        _dringAgeLabel.textAlignment = NSTextAlignmentRight;
-        
-    }
-    return _dringAgeLabel;
-}
-
-
-- (UIView *)backGroundView {
-    if (_backGroundView == nil) {
-        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 100)];
-        _backGroundView.backgroundColor = [UIColor whiteColor];
-    }
-    return _backGroundView;
-}
-
-- (UIImageView *)headImageView {
-    if (_headImageView == nil) {
-        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 70, 70)];
-        _headImageView.backgroundColor = MAINCOLOR;
-    }
-    return _headImageView;
-}
-
-- (UILabel *)coachNameLabel{
+// 用户名
+- (UILabel *)coachNameLabel {
     if (_coachNameLabel == nil) {
-        _coachNameLabel = [[UILabel alloc]init];
-        _coachNameLabel.text = @"李文正";
-        _coachNameLabel.font = [UIFont systemFontOfSize:16];
+        _coachNameLabel = [[UILabel alloc] init];
+        //        _coachNameLabel.text = @"李敏申";
+        _coachNameLabel.font = [UIFont boldSystemFontOfSize:15];
         _coachNameLabel.textColor = [UIColor blackColor];
     }
     return _coachNameLabel;
 }
-
-- (UILabel *)carDriveNameLabel{
-    if (_carDriveNameLabel == nil) {
-        _carDriveNameLabel = [[UILabel alloc]init];
-        _carDriveNameLabel.text = @"北京海淀区明城驾校";
-        _carDriveNameLabel.textColor = RGBColor(153, 153, 153);
-        _carDriveNameLabel.font = [UIFont systemFontOfSize:14];
+// 头像
+- (UIImageView *)headImgView
+{
+    if (_headImgView==nil) {
+        _headImgView = [[UIImageView alloc] init];
     }
-    return _carDriveNameLabel;
+    return _headImgView;
 }
 
-- (UILabel *)starLabel{
-    if (_starLabel == nil) {
-        _starLabel = [[UILabel alloc]init];
-        _starLabel.text = @"星级";
-        _starLabel.font = [UIFont systemFontOfSize:10];
+// 驾龄
+- (UILabel *)jialingLabel {
+    if (_jialingLabel == nil) {
+        _jialingLabel = [[UILabel alloc] init];
+        _jialingLabel.font = [UIFont systemFontOfSize:12];
+        _jialingLabel.textColor = [UIColor lightGrayColor];
     }
-    return _starLabel;
+    return _jialingLabel;
+}
+// 授课类型
+- (UILabel *)shoukeleixingLabel {
+    if (_shoukeleixingLabel == nil) {
+        _shoukeleixingLabel = [[UILabel alloc] init];
+        _shoukeleixingLabel.font = [UIFont systemFontOfSize:13];
+        _shoukeleixingLabel.textColor = [UIColor lightGrayColor];
+    }
+    return _shoukeleixingLabel;
+}
+// 可授科目
+- (UILabel *)keshoukemuLabel {
+    if (_keshoukemuLabel == nil) {
+        _keshoukemuLabel = [[UILabel alloc] init];
+        _keshoukemuLabel.font = [UIFont systemFontOfSize:13];
+        _keshoukemuLabel.textColor = [UIColor lightGrayColor];
+    }
+    return _keshoukemuLabel;
+}
+// 距离
+- (UILabel *)juliLabel {
+    if (_juliLabel == nil) {
+        _juliLabel = [[UILabel alloc] init];
+        _juliLabel.font = [UIFont boldSystemFontOfSize:13];
+        _juliLabel.textColor = [UIColor lightGrayColor];
+    }
+    return _juliLabel;
+}
+// 是否收藏
+- (UIButton *)collectionBtn {
+    if (_collectionBtn == nil) {
+        _collectionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_nomal"] forState:UIControlStateNormal];
+        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_select"] forState:UIControlStateSelected];
+    }
+    return _collectionBtn;
+}
+- (UIView *)footView
+{
+    if (_footView == nil) {
+        _footView = [[UIView alloc] init];
+        _footView.backgroundColor = RGBColor(245, 247, 250);
+    }
+    return _footView;
 }
 
-- (UILabel *)successRateLabel {
-    if (_successRateLabel == nil) {
-        _successRateLabel = [[UILabel alloc] init];
-        _successRateLabel.font = [UIFont systemFontOfSize:12];
-        _successRateLabel.textColor = RGBColor(153, 153, 153);
-        _successRateLabel.text = @"通过率:95%";
-    }
-    return _successRateLabel;
-}
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        [self createCellUI];
+        [self setUp];
     }
     return self;
 }
-- (void)createCellUI {
-    
-    self.selectedBackgroundView = self.WMSelectedbackGroundView;
+- (void)setUp {
     
     [self.contentView addSubview:self.backGroundView];
     
-    [self.backGroundView addSubview:self.headImageView];
+    // 头像
+    [self.backGroundView addSubview:self.headImgView];
+    
+    // 姓名
     [self.backGroundView addSubview:self.coachNameLabel];
-    [self.backGroundView addSubview:self.carDriveNameLabel];
-    [self.backGroundView addSubview:self.starLabel];
-    [self.backGroundView addSubview:self.successRateLabel];
-    [self.backGroundView addSubview:self.dringAgeLabel];
-    [self.backGroundView addSubview:self.distanceLabel];
+    
+    // 驾龄
+    [self.backGroundView addSubview:self.jialingLabel];
+    
+    // 星级
     [self.backGroundView addSubview:self.starBar];
     
+    // 授课类型
+    [self.backGroundView addSubview:self.shoukeleixingLabel];
+    
+    // 可授科目
+    [self.backGroundView addSubview:self.keshoukemuLabel];
+    
+    // 距离
+    [self.backGroundView addSubview:self.juliLabel];
+    
+    // 是否收藏
+    [self.backGroundView addSubview:self.collectionBtn];
+    
+    // 灰色底部
+    [self.backGroundView addSubview:self.footView];
+    
+    // 头像
+    [self.headImgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.backGroundView.mas_left).offset(margin);
+        make.top.mas_equalTo(self.backGroundView.mas_top).offset(margin);
+        make.width.mas_equalTo(70);
+        make.height.mas_equalTo(70);
+    }];
+    
+    // 姓名
     [self.coachNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.headImageView.mas_right).offset(10);
-        make.top.mas_equalTo(self.backGroundView.mas_top).offset(20);
-    }];
-    [self.carDriveNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.coachNameLabel.mas_left).offset(0);
-        make.top.mas_equalTo(self.coachNameLabel.mas_bottom).offset(5);
+        make.left.mas_equalTo(self.headImgView.mas_right).offset(margin);
+        make.top.mas_equalTo(self.headImgView.mas_top).offset(margin/2);
+        make.height.mas_equalTo(@20);
     }];
     
-    [self.successRateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.coachNameLabel.mas_left).offset(0);
-        make.top.mas_equalTo(self.carDriveNameLabel.mas_bottom).offset(5);
+    // 驾龄
+    [self.jialingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.headImgView.mas_right).offset(margin);
+        make.top.mas_equalTo(self.coachNameLabel.mas_bottom);
+        make.height.mas_equalTo(@20);
     }];
     
-    [self.dringAgeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
-        make.centerY.equalTo(self.carDriveNameLabel);
-        make.width.mas_greaterThanOrEqualTo(80);
-        make.height.mas_equalTo(self.carDriveNameLabel.mas_height);
-        
-    }];
-    
-    [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-10);
-        make.bottom.mas_equalTo(self.backGroundView.mas_bottom).offset(-20);
-    }];
+    // 星级
     [self.starBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-10);
-        make.top.mas_equalTo(self.coachNameLabel.mas_top).offset(2);
+        make.left.mas_equalTo(self.headImgView.mas_right).offset(margin);
+        make.top.mas_equalTo(self.jialingLabel.mas_bottom);
         make.width.mas_equalTo(@75);
         make.height.mas_equalTo(@15);
     }];
     
+    // 授课类型
+    [self.shoukeleixingLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.headImgView);
+        make.top.mas_equalTo(self.headImgView.mas_bottom).offset(margin/2);
+        make.height.mas_equalTo(@15);
+    }];
+    
+    // 可授科目
+    [self.keshoukemuLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.headImgView);
+        make.top.mas_equalTo(self.shoukeleixingLabel.mas_bottom).offset(margin/2);
+        make.height.mas_equalTo(@15);
+    }];
+    
+    // 距离
+    [self.juliLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-margin);
+        make.top.mas_equalTo(self.keshoukemuLabel.mas_top);
+        make.height.mas_equalTo(@15);
+    }];
+    
+    // 是否收藏
+    [self.collectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-margin);
+        make.top.mas_equalTo(self.backGroundView.mas_top).offset(30);
+        make.height.mas_equalTo(@40);
+        make.width.mas_equalTo(@40);
+    }];
+    
+    // 灰色底部
+    [self.footView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.backGroundView.mas_left);
+        make.top.mas_equalTo(self.keshoukemuLabel.mas_bottom).offset(margin);
+        make.height.mas_equalTo(margin);
+        make.width.mas_equalTo(self.backGroundView);
+    }];
+    
 }
 
-- (void)refreshData:(CoachDMData *)coachModel {
+- (void)receiveDetailsModel:(CoachDetail *)_detailModel
+{
+    // 头像
+    [self.headImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_detailModel.headportrait.originalpic]] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
     
-    [self resetContent];
+    // 姓名
+    self.coachNameLabel.text = _detailModel.name;
     
-    //    if ([[AcountManager manager].applycoach.infoId isEqualToString:coachModel.coachid]) {
-    //        self.selected = YES;
-    //    }
-    
-    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:coachModel.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
-    
-    self.coachNameLabel.text = coachModel.name;
-    
-    if (coachModel.distance) {
-        CGFloat distance = coachModel.distance / 1000.f;
-        if (distance >10000) {
-            self.distanceLabel.text = @"该教练无训练场";
-        }else {
-            self.distanceLabel.text = [NSString stringWithFormat:@"距离:%.2fkm",distance];
-        }
-    }
-    
-    self.carDriveNameLabel.text = coachModel.driveschoolinfo.name;
-    
-    if (coachModel.passrate) {
-        self.successRateLabel.text = [NSString stringWithFormat:@"通过率:%li%@",coachModel.passrate,@"%"];
-    }else {
-        self.successRateLabel.text = [NSString stringWithFormat:@"通过率:暂无"];
-    }
-    
-    NSLog(@"驾龄coachModel.Seniority:%@",coachModel.seniority);
-    
-    if (coachModel.seniority) {
-        self.dringAgeLabel.text = [NSString stringWithFormat:@"%@年驾龄",coachModel.seniority] ;
+    // 驾龄
+    if (_detailModel.seniority) {
+        self.jialingLabel.text = [NSString stringWithFormat:@"驾龄:%@",_detailModel.seniority];
     }else{
-        self.dringAgeLabel.text = [NSString stringWithFormat:@"无驾龄"] ;
+        self.jialingLabel.text = @"无驾龄";
     }
     
-    //    self.starLabel.text = @"5";
-    CGFloat starLevel = 0;
-    if (coachModel.starlevel) {
-        starLevel = coachModel.starlevel;
-    }
-    [self.starBar displayRating:starLevel];
+    // 星级
+    [_starBar displayRating:[_detailModel.starlevel floatValue]];
     
-    if (coachModel.isShuttle) {
-        [self.backGroundView addSubview:self.coachStateSend];
-        [self.coachStateSend mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.coachNameLabel.mas_right).offset(10);
-            make.top.mas_equalTo(self.coachNameLabel.mas_top).offset(2);
-            make.width.mas_equalTo(@20);
-            make.height.mas_equalTo(@14);
-        }];
-    }
+    // 授课类型
+    self.shoukeleixingLabel.text = [NSString stringWithFormat:@"授课车型:%@",_detailModel.carmodel.name];
     
+    // 可授科目
+    NSMutableString *subStr = [NSMutableString string];
+    for (int i = 0; i<_detailModel.subject.count; i++) {
+        NSDictionary *dict = _detailModel.subject[i];
+        [subStr appendFormat:@"%@ ",dict[@"name"]];
+    }
+    self.keshoukemuLabel.text = [NSString stringWithFormat:@"可授科目:%@",subStr];
+    
+    // 距离
+    self.juliLabel.text = _detailModel.name;
+    
+    // 是否收藏
+    self.collectionBtn.selected = _detailModel.is_lock;
+    [self.collectionBtn addTarget:self action:@selector(collectionBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
     
 }
-- (void)resetContent {
-    [self.coachStateAll removeFromSuperview];
-    [self.coachStateSend removeFromSuperview];
-    self.headImageView.image = nil;
-    self.coachNameLabel.text = nil;
-    self.carDriveNameLabel.text = nil;
-    self.successRateLabel.text = nil;
-    self.dringAgeLabel.text = nil;
-    self.distanceLabel.text = nil;
-    [self.starBar displayRating:0];
+
+- (void)collectionBtnDidClick
+{
+    self.collectionBtn.selected = !self.collectionBtn.selected;
+    
+    NSLog(@"发送收藏、取消收藏请求");
+    
 }
+
+- (void)ratingChanged:(CGFloat)newRating {
+    
+}
+
+
 @end

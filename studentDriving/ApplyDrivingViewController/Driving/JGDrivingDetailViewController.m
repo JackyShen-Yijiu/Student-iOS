@@ -9,7 +9,6 @@
 #import "JGDrivingDetailViewController.h"
 #import "SignUpViewController.h"
 #import "DrivingDetailViewController.h"
-#import "CoachDetailCell.h"
 #import "CoachInformationCell.h"
 #import "CoachIntroductionCell.h"
 #import "StudentCommentCell.h"
@@ -130,6 +129,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     
     [self createUI];
     
+    // 获取用户信息数据
     [self startDownLoad];
     
     // 下载教练
@@ -283,7 +283,9 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
             
             NSError *error = nil;
             
-            CoachDetail *coachDetail = [MTLJSONAdapter modelOfClass:CoachDetail.class fromJSONDictionary:dataParam[@"data"] error:&error];
+           // CoachDetail *coachDetail = [MTLJSONAdapter modelOfClass:CoachDetail.class fromJSONDictionary:dataParam[@"data"] error:&error];
+           
+            CoachDetail *coachDetail = [CoachDetail yy_modelWithDictionary:dataParam[@"data"]];
             
             weakSelf.detailModel = coachDetail;
             
@@ -307,15 +309,13 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)createUI {
     
     [self.view addSubview:self.tableView];
-    
-    [self.view addSubview:self.signUpButton];
-    
-    [self.signUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(0);
-        make.right.mas_equalTo(self.view.mas_right).offset(0);
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(0);
-        make.height.mas_equalTo(@49);
-    }];
+        
+//    [self.signUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.view.mas_left).offset(0);
+//        make.right.mas_equalTo(self.view.mas_right).offset(0);
+//        make.bottom.mas_equalTo(self.view.mas_bottom).offset(0);
+//        make.height.mas_equalTo(@49);
+//    }];
     
 }
 
@@ -344,7 +344,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         titleLabe.backgroundColor = [UIColor clearColor];
         titleLabe.frame = headerView.bounds;
         titleLabe.text = @"   学员评价";
-        titleLabe.font = [UIFont systemFontOfSize:13];
+        titleLabe.font = [UIFont boldSystemFontOfSize:13];
         [headerView addSubview:titleLabe];
         
         return headerView;
@@ -355,7 +355,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0 && indexPath.section == 0) {// 个人信息
-        return 112;
+        return 160;
     }else if (indexPath.row == 1 && indexPath.section == 0) {//授课信息(高度自定制)
         return 235;
     }else if (indexPath.row == 2 && indexPath.section == 0) {// 个人说明(展开、合并)高度自定制
@@ -379,36 +379,14 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     if (indexPath.row == 0 && indexPath.section == 0) {//个人信息
         
         static NSString *cellId = @"cellOne";
-        CoachDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        JGDrivingDetailTopCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
-            cell = [[CoachDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+            cell = [[JGDrivingDetailTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell.accessoryType = UITableViewCellAccessoryNone;
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        DYNSLog(@"name = %@",self.detailModel.name);
-        cell.coachNameLabel.text = self.detailModel.name;
-        NSString *address = @"";
-        NSString *platenumbeer = @"";
-       
-        if (!self.detailModel.address && !self.detailModel.platenumber) {
-            address = @"未填写";
-        }
-        if (self.detailModel.address) {
-            address = self.detailModel.address;
-        }
-        if (self.detailModel.platenumber) {
-            platenumbeer = self.detailModel.platenumber;
-        }
-        cell.locationLabel.text = [NSString stringWithFormat:@"%@ %@",address,platenumbeer];
-        
-        [cell.starBar displayRating:self.detailModel.starlevel.floatValue];
-        
-        if (self.detailModel.is_shuttle) {
-            cell.coachStateSend.hidden = NO;
-        }
-        
-        if (self.detailModel.subject.count >= 2) {
-            cell.coachStateAll.hidden = NO;
+        if (self.detailModel) {
+            [cell receiveDetailsModel:self.detailModel];
         }
         
         return cell;

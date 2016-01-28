@@ -7,10 +7,11 @@
 //  顶部个人信息
 
 #import <UIKit/UIKit.h>
-@class CoachDMData;
+
+@class CoachDetail;
 
 @interface JGDrivingDetailTopCell : UITableViewCell
 
-- (void)refreshData:(CoachDMData *)coachModel;
+- (void)receiveDetailsModel:(CoachDetail *)_detailModel;
 
 @end
