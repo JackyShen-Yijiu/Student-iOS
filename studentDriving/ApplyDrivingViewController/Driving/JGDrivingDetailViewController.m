@@ -72,8 +72,9 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,64, kSystemWide, kSystemHeight-64-49) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,64, kSystemWide, kSystemHeight-64) style:UITableViewStylePlain];
         _tableView.delegate = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.dataSource = self;
     }
     return _tableView;
@@ -360,7 +361,12 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     }else if (indexPath.row == 2 && indexPath.section == 0) {// 个人说明(展开、合并)高度自定制
         return 135;
     }
-    return 96;// 学员评价
+    
+    // 更新高度
+    StudentCommentModel *model = self.commentArray[indexPath.row];
+    return [StudentCommentCell heightWithModel:model];
+    
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 1) {
