@@ -1,13 +1,19 @@
 //
 //  JGDrivingDetailTeachingNewsCell.h
-//  studentDriving
+//  BlackCat
 //
-//  Created by JiangangYang on 16/1/27.
-//  Copyright © 2016年 jatd. All rights reserved.
-//  中间授课信息
+//  Created by bestseller on 15/9/28.
+//  Copyright © 2015年 lord. All rights reserved.
+//  授课信息
 
 #import <UIKit/UIKit.h>
 
+@class CoachDetail;
+
 @interface JGDrivingDetailTeachingNewsCell : UITableViewCell
+
+@property (nonatomic,strong) CoachDetail *detailModel;
+
++ (CGFloat)heightWithModel:(CoachDetail *)model;
 
 @end

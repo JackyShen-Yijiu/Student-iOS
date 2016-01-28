@@ -11,4 +11,5 @@
 @interface TrainFieldInfoModel : MTLModel<MTLJSONSerializing>
 @property (copy, nonatomic) NSString *TrainFieldInfoModelId;
 @property (copy, nonatomic) NSString *name;
+@property (strong, nonatomic) NSArray *pictures;
 @end

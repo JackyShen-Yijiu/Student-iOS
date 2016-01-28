@@ -69,6 +69,9 @@
 		B218181A1C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */; };
 		B218181D1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */; };
 		B21818231C58E76300F973A7 /* Applyclasstypeinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */; };
+		B21818301C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */; };
+		B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */; };
+		B21818361C5A42F600F973A7 /* trainfieldPictures.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818351C5A42F600F973A7 /* trainfieldPictures.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
@@ -813,6 +816,12 @@
 		B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailEvalutionCell.m; sourceTree = "<group>"; };
 		B21818211C58E76300F973A7 /* Applyclasstypeinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Applyclasstypeinfo.h; sourceTree = "<group>"; };
 		B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Applyclasstypeinfo.m; sourceTree = "<group>"; };
+		B218182E1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailKeChengFeiYongCell.h; sourceTree = "<group>"; };
+		B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailKeChengFeiYongCell.m; sourceTree = "<group>"; };
+		B21818311C5A3E3900F973A7 /* JGTeachingNewsChangDiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGTeachingNewsChangDiView.h; sourceTree = "<group>"; };
+		B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGTeachingNewsChangDiView.m; sourceTree = "<group>"; };
+		B21818341C5A42F600F973A7 /* trainfieldPictures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trainfieldPictures.h; sourceTree = "<group>"; };
+		B21818351C5A42F600F973A7 /* trainfieldPictures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = trainfieldPictures.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
@@ -3157,6 +3166,8 @@
 				D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */,
 				B21818211C58E76300F973A7 /* Applyclasstypeinfo.h */,
 				B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */,
+				B21818341C5A42F600F973A7 /* trainfieldPictures.h */,
+				B21818351C5A42F600F973A7 /* trainfieldPictures.m */,
 			);
 			path = BlackCatModel;
 			sourceTree = "<group>";
@@ -3610,6 +3621,10 @@
 				B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */,
 				B21818151C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.h */,
 				B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */,
+				B21818311C5A3E3900F973A7 /* JGTeachingNewsChangDiView.h */,
+				B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */,
+				B218182E1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.h */,
+				B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */,
 				B21818181C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.h */,
 				B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */,
 				B218181B1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.h */,
@@ -4128,6 +4143,7 @@
 				D588B1141BDDDC2F000C5D6F /* UIColor+RGBColor.m in Sources */,
 				55901B5F1C26795800AC64FF /* VerifyPhoneController.m in Sources */,
 				D588B0D81BDDDC14000C5D6F /* DrivingIntroductionCell.m in Sources */,
+				B21818361C5A42F600F973A7 /* trainfieldPictures.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
 				D5C240111BECFAD800832CF3 /* AVPlayModel.m in Sources */,
@@ -4137,6 +4153,7 @@
 				D588AFCD1BDDDAAB000C5D6F /* AppointmentCoachTimeInfoModel.m in Sources */,
 				55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */,
 				D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */,
+				B21818301C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m in Sources */,
 				D96712D91C3F8A150099C3B9 /* DVVCreateQRCode.m in Sources */,
 				D96248381C57A16D0028EE62 /* ComplaintController.m in Sources */,
 				0647A5B91C34C1DE00DBB8A3 /* DiscountShopCell.m in Sources */,
@@ -4373,6 +4390,7 @@
 				0647A5CB1C354A7100DBB8A3 /* DiscountShopDatailController.m in Sources */,
 				D95E3DA81C3CC0AB00F0B5A0 /* DVVSearchView.m in Sources */,
 				D588AFC61BDDDAAB000C5D6F /* CoachDetail.m in Sources */,
+				B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */,
 				D96712DC1C3F9A470099C3B9 /* SignInViewModel.m in Sources */,
 				D588B11C1BDDDC2F000C5D6F /* NetMonitor.m in Sources */,
 				D970D3991C3CFFEB003FCED3 /* CoachDMHeadportrait.m in Sources */,
