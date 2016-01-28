@@ -63,7 +63,7 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
 }
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+40, kSystemWide, kSystemHeight-64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
     }
@@ -164,7 +164,7 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = @"教练";
+    self.title = @"报考教练";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     
@@ -173,8 +173,6 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
     self.navigationItem.rightBarButtonItem = rightItem;
 
     
-    
-    [self.view addSubview:[self tableViewHeadView]];
     self.tableView.tableFooterView = [[UIView alloc] init];
     
     if ([AcountManager manager].applyschool.infoId) {
@@ -197,55 +195,6 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
     
 }
 
-- (UIView *)tableViewHeadView {
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, 40)];
-    backGroundView.backgroundColor = [UIColor whiteColor];
-    
-    backGroundView.layer.shadowColor = RGBColor(204, 204, 204).CGColor;
-    backGroundView.layer.shadowOffset = CGSizeMake(0, 1);
-    backGroundView.layer.shadowOpacity = 0.5;
-    backGroundView.userInteractionEnabled = YES;
-    UIView *centerView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2-1/2, 40/2-18/2, 1, 18)];
-    centerView.backgroundColor = RGBColor(230, 230, 230);
-    [backGroundView addSubview:centerView];
-    
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setTitle:@"距离" forState:UIControlStateNormal];
-    [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    leftButton.selected = YES;
-    [leftButton addTarget:self action:@selector(clickLeftBtn:) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [leftButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
-    [backGroundView addSubview:leftButton];
-    [leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(backGroundView.mas_left).offset(0);
-        make.top.mas_equalTo(backGroundView.mas_top).offset(0);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide/2];
-        make.width.mas_equalTo(height);
-        make.height.mas_equalTo(@40);
-    }];
-    [self.buttonArray addObject:leftButton];
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setTitle:@"评分" forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(clickRightBtn:) forControlEvents:UIControlEventTouchUpInside];
-    rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    
-    [rightButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
-    [backGroundView addSubview:rightButton];
-    [rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(backGroundView.mas_right).offset(0);
-        make.top.mas_equalTo(backGroundView.mas_top).offset(0);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide/2];
-        make.width.mas_equalTo(height);
-        make.height.mas_equalTo(@40);
-    }];
-    [self.buttonArray addObject:rightButton];
-    
-    [backGroundView addSubview:self.menuIndicator];
-    
-    return backGroundView;
-}
 
 - (void)locationManager {
     
