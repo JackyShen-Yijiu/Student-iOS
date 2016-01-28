@@ -1,444 +1,94 @@
 //
-//  SelectViewController.m
+//  DetailViewController.m
 //  BlackCat
 //
-//  Created by 董博 on 15/9/13.
+//  Created by 董博 on 15/9/17.
 //  Copyright (c) 2015年 lord. All rights reserved.
 //
 
 #import "JGDrivingDetailViewController.h"
-#import "DrivingDetailCell.h"
-#import "MapViewController.h"
+#import "SignUpViewController.h"
+#import "DrivingDetailViewController.h"
+#import "CoachInformationCell.h"
+#import "CoachIntroductionCell.h"
+#import "StudentCommentCell.h"
+#import "JsonTransformManager.h"
+#import "CoachDetail.h"
 #import "BLPFAlertView.h"
-#import "DrivingInformationCell.h"
-#import "DrivingIntroductionCell.h"
-#import "SignUpListViewController.h"
-#import "DrivingSelectedCoachCell.h"
-#import "DrvingDetailModel.h"
 #import "SignUpInfoManager.h"
-#import "CoachModel.h"
-#import "CoachDetailViewController.h"
+#import "StudentCommentModel.h"
 #import "LoginViewController.h"
-#import "UIColor+Hex.h"
+#import "SignUpListViewController.h"
 #import "DVVUserManager.h"
+#import "MJRefresh.h"
+#import "SearchCoachViewModel.h"
+#import "YYModel.h"
 
+#import "JGDrivingDetailTopCell.h"
+#import "JGDrivingDetailTeachingNewsCell.h"
+#import "JGDrivingDetailPersonalNoteCell.h"
+#import "JGDrivingDetailEvalutionCell.h"
 
-static NSString *const kDrivingDetailUrl = @"driveschool/getschoolinfo/%@";
+static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
-static NSString *const kGetDrivingCoachUrl = @"getschoolcoach/%@/%@";
+static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
 
-static NSString *const kCheckMyLoveDriving = @"userinfo/favoriteschool";
-static NSString *const kAddLoveDriving = @"userinfo/favoriteschool/%@";
-static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
+static NSString *const kCheckLoveCoach = @"userinfo/favoritecoach";
+static NSString *const kAddLoveCoach = @"userinfo/favoritecoach/%@";
+static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
-@interface JGDrivingDetailViewController () <UITableViewDelegate,UITableViewDataSource,UIActionSheetDelegate,DrivingSelectedCoachCellDelegate>
+@interface JGDrivingDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@property (strong, nonatomic)UIButton *phoneBtn;
 @property (strong, nonatomic) UITableView *tableView;
-@property (strong, nonatomic) UIButton *phoneButton;
-@property (strong, nonatomic) UIImageView *tableHeadImageView;
-@property (nonatomic, strong) UIImageView *heartImageView;
 
 @property (strong, nonatomic)UIButton *signUpButton;
+@property (nonatomic, strong) UIImageView *heartImageView;
 
-@property (strong, nonatomic) NSMutableArray *dataArray;
-@property (strong, nonatomic) NSArray *coachArray;
+
+
+/*
+ * 教练详情信息
+ */
+@property (strong, nonatomic) CoachDetail *detailModel;
+/*
+ * 教练详情底部评论列表
+ */
+@property (strong, nonatomic) NSMutableArray *commentArray;
+
 @end
+
 @implementation JGDrivingDetailViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self configBarItem];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
-    self.view.backgroundColor = [UIColor whiteColor];
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = @"驾校详情";
-    [self.view addSubview:self.tableView];
-    [self.view addSubview:self.signUpButton];
-    self.tableView.tableHeaderView = [self tableHeadImageView];
-    
-    [self.signUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(0);
-        make.right.mas_equalTo(self.view.mas_right).offset(0);
-        make.bottom.mas_equalTo(self.view.mas_bottom).offset(0);
-        make.height.mas_equalTo(@49);
-    }];
-    
-    [self startDownLoad];
-    
-    [self startDownLoadCoach];
-    
-    // 检查是否已经收藏
-    [self checkCollection];
+- (NSMutableArray *)commentArray
+{
+    if (_commentArray == nil) {
+        
+        _commentArray = [NSMutableArray array];
+        
+    }
+    return _commentArray;
 }
 
-
-- (void)loginSuccess {
-    DYNSLog(@"login");
-    if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-        [self.signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
-        self.signUpButton.userInteractionEnabled = NO;
-        
-    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-        [self.signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
-        self.signUpButton.userInteractionEnabled = NO;
-        
-    }else {
-        [self.signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+- (UITableView *)tableView {
+    if (_tableView == nil) {
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,64, kSystemWide, kSystemHeight-64) style:UITableViewStylePlain];
+        _tableView.delegate = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.dataSource = self;
     }
-}
-- (void)startDownLoadCoach {
-    
-    NSString *urlString = [NSString stringWithFormat:kGetDrivingCoachUrl,self.schoolId,[NSNumber numberWithInt:1]];
-    NSString *getCoachUrlString = [NSString stringWithFormat:BASEURL,urlString];
-    [JENetwoking startDownLoadWithUrl:getCoachUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"coachData = %@",data);
-        NSDictionary *param = data;
-        NSError *error = nil;
-        
-        NSNumber *type = param[@"type"];
-        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
-        if (type.integerValue == 1) {
-            self.coachArray = [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:param[@"data"] error:&error];
-            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:3 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
-        }else {
-            kShowFail(msg)
-        }
-    }];
-}
-- (void)startDownLoad {
-    
-    NSString *urlString = [NSString stringWithFormat:kDrivingDetailUrl,self.schoolId];
-    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"result = %@",data);
-        
-        NSDictionary *param = data;
-        NSNumber *type = param[@"type"];
-        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
-        if (type.integerValue == 1) {
-            NSDictionary *dic = data[@"data"];
-            NSError *error = nil;
-            DrvingDetailModel *drvingDetailModel = [MTLJSONAdapter modelOfClass:DrvingDetailModel.class fromJSONDictionary:dic error:&error];
-            DYNSLog(@"error = %@",error);
-            [self.dataArray addObject:drvingDetailModel];
-            [self.tableView reloadData];
-            [self.tableHeadImageView sd_setImageWithURL:[NSURL URLWithString:drvingDetailModel.logoimg.originalpic]placeholderImage:[UIImage imageNamed:@"bigImage.png"]];
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-        }else {
-            [MBProgressHUD hideHUDForView:self.view animated:NO];
-            kShowFail(msg)
-        }
-        
-        
-    }];
-}
-- (UIImageView *)tableHeadImageView {
-    if (_tableHeadImageView == nil) {
-        _tableHeadImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 240)];
-        _tableHeadImageView.userInteractionEnabled = YES;
-        UIImageView *maskView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 240-129, kSystemWide, 129)];
-        maskView.image = [UIImage imageNamed:@"渐变"];
-        //        _tableHeadImageView.image = [UIImage imageNamed:@"av.jpg"];
-        [_tableHeadImageView addSubview:maskView];
-        
-        UIView *heart = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide-15-50, 240-50, 50, 50)];
-        heart.backgroundColor = [UIColor whiteColor];
-        heart.layer.masksToBounds = YES;
-        heart.userInteractionEnabled = YES;
-        heart.layer.cornerRadius = heart.frame.size.width *0.5;
-        [_tableHeadImageView addSubview:heart];
-        
-        UIView *mainColorView =  [[UIView alloc] initWithFrame:CGRectMake(2, 2, 46, 46)];
-        mainColorView.backgroundColor = MAINCOLOR;
-        mainColorView.layer.cornerRadius = mainColorView.frame.size.width *0.5;
-        mainColorView.userInteractionEnabled = YES;
-        [heart addSubview:mainColorView];
-        
-        _heartImageView = [[UIImageView alloc] initWithFrame:CGRectMake(46/2-21/2, 46/2-21/2, 21, 21)];
-        _heartImageView.image = [UIImage imageNamed:@"心Inner.png"];
-        //        _heartImageView.backgroundColor = [UIColor blackColor];
-        _heartImageView.userInteractionEnabled = YES;
-        [mainColorView addSubview:_heartImageView];
-        //        UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dealLike:)];
-        //        [mainColorView addGestureRecognizer:tapGesture];
-        
-        UIButton *heartButton = [UIButton new];
-        heartButton.frame = heart.frame;
-        [heartButton.layer setMasksToBounds:YES];
-        [heartButton.layer setCornerRadius:heart.frame.size.width *0.5];
-        [heartButton addTarget:self action:@selector(dealLike:) forControlEvents:UIControlEventTouchDown];
-        [_tableHeadImageView addSubview:heartButton];
-        heartButton.backgroundColor = [UIColor clearColor];
-        
-    }
-    return _tableHeadImageView;
-    
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0) {
-        return 86;
-    }else if (indexPath.row == 1) {
-        return 105;
-    }else if (indexPath.row == 2) {
-        DrvingDetailModel *model = self.dataArray.firstObject;
-        NSString *contentStr = model.introduction;
-        CGSize size = [contentStr boundingRectWithSize:CGSizeMake(self.view.frame.size.width -30 , CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin attributes:[NSDictionary dictionaryWithObject:[UIFont systemFontOfSize:14] forKey:NSFontAttributeName] context:nil].size;
-        return size.height + 44 + 18 +5;
-    }else if (indexPath.row == 3) {
-        return 150;
-    }
-    return 0;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    DrvingDetailModel *model = self.dataArray.firstObject;
-    DYNSLog(@"model = %@",model.name);
-    if (indexPath.row == 0) {
-        static NSString *cellId = @"Addresscell";
-        DrivingDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (cell == nil) {
-            cell = [[DrivingDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.drivingNameLabel.text = model.name;
-        cell.locationLabel.text = [NSString stringWithFormat:@"地址:%@",model.address];
-        return cell;
-    }else if (indexPath.row == 1) {
-        static NSString *cellId = @"InformationCell";
-        DrivingInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (cell == nil) {
-            cell = [[DrivingInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.workTimeDetail.text = model.hours;
-        cell.successRateDetailLabel.text = [NSString stringWithFormat:@"通过率%@%@",model.passingrate,@"%"];
-        return cell;
-    }else if (indexPath.row == 2) {
-        static NSString *cellId = @"Introduction";
-        DrivingIntroductionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (cell == nil) {
-            cell = [[DrivingIntroductionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.drivingIntroductionDetail.text = model.introduction;
-        return cell;
-    }else if (indexPath.row == 3) {
-        static NSString *cellId = @"DrivingSelected";
-        DrivingSelectedCoachCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (cell == nil) {
-            cell = [[DrivingSelectedCoachCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-        }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.delegate = self;
-        [cell receiveGetCoachMessage:self.coachArray];
-        return cell;
-    }
-    
-    return nil;
-}
-#pragma mark - tableView selected
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    DrvingDetailModel *model = self.dataArray.firstObject;
-    
-    if (indexPath.row == 0) {
-        MapViewController *mapview = [[MapViewController alloc] init];
-        mapview.latitudeNum = model.latitude;
-        mapview.longitudeNum = model.longitude;
-        [self.navigationController pushViewController:mapview animated:YES];
-    }
+    return _tableView;
 }
 
-#pragma mark - buttonAciton
-- (void)dealSignUp:(UIButton *)sender{
-    
-    DrvingDetailModel *model = self.dataArray.firstObject;
-    
-    if (![AcountManager isLogin]) {
-        //        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        //        LoginViewController *login = [[LoginViewController alloc] init];
-        //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-        //        return;
-        [DVVUserManager userNeedLogin];
-        return ;
+- (UIButton *)phoneBtn{
+    if (_phoneBtn == nil) {
+        _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        _phoneBtn.frame = CGRectMake(0, 0, 20, 20);
+        [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
+        [_phoneBtn addTarget:self action:@selector(clickPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
-    
-    DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
-    
-    if (![AcountManager manager].applyschool.infoId) {
-        
-        if (model.schoolid && model.name) {
-            DYNSLog(@"schoolinfo");
-            NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
-            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-        }
-        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
-        [self.navigationController pushViewController:signUp animated:YES];
-        return;
-    }
-    
-    
-    if ([[AcountManager manager].applyschool.infoId isEqualToString:model.schoolid]) {
-        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
-        [self.navigationController pushViewController:signUp animated:YES];
-        return;
-    }
-    
-    [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-        DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-        NSUInteger index = selectedOtherButtonIndex + 1;
-        if (index == 0) {
-            return ;
-        }else {
-            
-            if (model.schoolid && model.name) {
-                DYNSLog(@"schoolinfo");
-                NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
-                [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-            }
-            SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
-            [self.navigationController pushViewController:signUp animated:YES];
-        }
-    }];
-    
-    
-    
-}
-#pragma mark - delegateCoach
-
-- (void)senderCoachModel:(CoachModel *)model {
-    NSString *coachId = model.coachid;
-    
-    CoachDetailViewController *coachDetail = [[CoachDetailViewController alloc] init];
-    coachDetail.coachUserId = coachId;
-    [self.navigationController pushViewController:coachDetail animated:YES];
-    
+    return _phoneBtn;
 }
 
-- (void)dealPhone:(UIButton *)sender {
-    DrvingDetailModel *model = self.dataArray.firstObject;
-    if (!model.phone || [model.phone isEqualToString:@""]) {
-        [self showTotasViewWithMes:@"此驾校暂无预留电话"];
-        return ;
-    }
-    
-    [BLPFAlertView showAlertWithTitle:@"联系驾校" message:model.phone cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-        NSLog(@"index = %ld",selectedOtherButtonIndex);
-        if (selectedOtherButtonIndex == 0) {
-            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",model.phone];
-            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-        }else {
-            return ;
-        }
-    }];
-}
-
-#pragma mark 检测是否收藏
-- (void)checkCollection {
-    
-    //    if (![AcountManager isLogin]) {
-    //        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-    //        LoginViewController *login = [[LoginViewController alloc] init];
-    //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-    //        return;
-    //    }
-    
-    NSString *kSaveUrl = [NSString stringWithFormat:kCheckMyLoveDriving];
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
-    DYNSLog(@"urlstring = %@",urlString);
-    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
-            
-            if ([[data objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
-                NSArray *array = [data objectForKey:@"data"];
-                for (int i = 0; i < array.count; i++) {
-                    NSString *schoolId = [array[i] objectForKey:@"schoolid"];
-                    if ([schoolId isEqualToString:self.schoolId]) {
-                        _heartImageView.image = [UIImage imageNamed:@"心"];
-                        _heartImageView.tag = 1;
-                        return ;
-                    }
-                }
-            }
-        }
-    }];
-}
-
-- (void)dealLike:(UITapGestureRecognizer *)tap {
-    
-    if (![AcountManager isLogin]) {
-        //        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-        //        LoginViewController *login = [[LoginViewController alloc] init];
-        //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
-        //        return;
-        
-        [self showTotasViewWithMes:@"您还没有登录哟"];
-        return ;
-    }
-    
-    if (_heartImageView.tag) {
-        [self deleteLoveSchool];
-    }else {
-        [self addLoveSchool];
-    }
-}
-
-#pragma mark 添加喜欢的驾校
-- (void)addLoveSchool {
-    
-    NSString *kSaveUrl = [NSString stringWithFormat:kAddLoveDriving,self.schoolId];
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
-    DYNSLog(@"urlstring = %@",urlString);
-    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodPut withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
-            _heartImageView.image = [UIImage imageNamed:@"心"];
-            [self showTotasViewWithMes:@"收藏成功"];
-            _heartImageView.tag = 1;
-        }else {
-            [self showTotasViewWithMes:@"收藏失败"];
-        }
-    }];
-    
-}
-
-#pragma mark 删除喜欢的驾校
-- (void)deleteLoveSchool {
-    
-    NSString *kSaveUrl = [NSString stringWithFormat:kDeleteLoveDriving,self.schoolId];
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
-    DYNSLog(@"urlstring = %@",urlString);
-    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
-        DYNSLog(@"data = %@",data);
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
-            _heartImageView.image = [UIImage imageNamed:@"心Inner"];
-            [self showTotasViewWithMes:@"已取消收藏"];
-            _heartImageView.tag = 0;
-        }else {
-            [self showTotasViewWithMes:@"取消收藏失败"];
-        }
-    }];
-}
-
-#pragma mark - lazy load
-- (NSMutableArray *)dataArray {
-    if (_dataArray == nil) {
-        _dataArray = [[NSMutableArray alloc] init];
-    }
-    return _dataArray;
-}
 - (UIButton *)signUpButton{
     if (_signUpButton == nil) {
         _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -456,39 +106,553 @@ static NSString *const kDeleteLoveDriving = @"userinfo/favoriteschool/%@";
         }else {
             [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
         }
-        
         [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         
     }
     return _signUpButton;
 }
-- (UIButton *)phoneButton {
-    if (_phoneButton == nil) {
-        _phoneButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneButton.frame = CGRectMake(0, 0, 20, 20);
-        
-        [_phoneButton setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
-        [_phoneButton addTarget:self action:@selector(dealPhone:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _phoneButton;
-}
-- (UITableView *)tableView {
-    if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64-49) style:UITableViewStylePlain];
-        _tableView.delegate = self;
-        _tableView.dataSource = self;
-    }
-    return _tableView;
-}
-- (void)configBarItem {
+
+
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view.
     
-    UIBarButtonItem *negativeSpacer = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    negativeSpacer.width = -15;
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneButton];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.title = @"教练详情";
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    [self configBarItem];
+    
+    [self createUI];
+    
+    // 获取用户信息数据
+    [self startDownLoad];
+    
+    // 下载教练
+    [self startDownLoadComment];
+    
+    [self checkCollection];
+    
+}
+- (void)loginSuccess {
+    
+    DYNSLog(@"login");
+    if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+        [self.signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
+        self.signUpButton.userInteractionEnabled = NO;
+        
+    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+        [self.signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
+        self.signUpButton.userInteractionEnabled = NO;
+        
+    }else {
+        [self.signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+    }
+}
+
+#pragma mark ----- 加载评论列表
+- (void)startDownLoadComment {
+    
+    __block NSString *urlString = [NSString stringWithFormat:kGetCommentInfo,self.coachUserId,[NSNumber numberWithInt:1]];
+    
+    __block NSString *urlComment = [NSString stringWithFormat:BASEURL,urlString];
+    
+    [JENetwoking startDownLoadWithUrl:urlComment postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSDictionary *param = data;
+        NSError *error = nil;
+        NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
+        
+        if (type.integerValue == 1) {
+            
+//            self.commentArray = [[MTLJSONAdapter modelsOfClass:StudentCommentModel.class fromJSONArray:param[@"data"] error:&error] mutableCopy];
+            
+            NSArray *array = data[@"data"];
+            
+            for (NSDictionary *dict in array) {
+                
+                StudentCommentModel *dmData = [StudentCommentModel yy_modelWithDictionary:dict];
+                
+                [self.commentArray addObject:dmData];
+                
+            }
+            
+            [self.tableView reloadData];
+            
+        }else {
+            
+            kShowFail(msg);
+            
+        }
+        
+    }];
+    
+    __weak typeof(self) ws = self;
+
+    // 加载
+    MJRefreshBackNormalFooter *refreshFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        
+        // 判断加载时当前的请求的页面
+        NSInteger dataCount = 0;
+        if (self.commentArray.count) {
+            if (self.commentArray.count <= 10) {
+                dataCount = 10;
+            }else {
+                NSInteger temp = self.commentArray.count % 10;
+                if (temp) {
+                    temp += 10 - temp;
+                }
+                dataCount = self.commentArray.count + temp;
+            }
+        }
+        NSInteger index = dataCount / 10 + 1;
+        NSLog(@"index:%ld",(long)index);
+        
+        urlString = [NSString stringWithFormat:kGetCommentInfo,ws.coachUserId,[NSNumber numberWithInt:(int)index]];
+        urlComment = [NSString stringWithFormat:BASEURL,urlString];
+
+        [JENetwoking startDownLoadWithUrl:urlComment postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            
+            NSDictionary *param = data;
+            NSError *error = nil;
+            NSNumber *type = param[@"type"];
+            
+            NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
+            
+            if (type.integerValue == 1) {
+                
+                NSArray *array = data[@"data"];
+               
+//                NSArray *dataArray = [MTLJSONAdapter modelsOfClass:StudentCommentModel.class fromJSONArray:param[@"data"] error:&error];
+                
+                if (array && array.count!=0) {
+                    
+                    NSMutableArray *tempArray = [NSMutableArray array];
+                    
+                    for (NSDictionary *dict in array) {
+                        
+                        StudentCommentModel *dmData = [StudentCommentModel yy_modelWithDictionary:dict];
+                        
+                        [tempArray addObject:dmData];
+                        
+                    }
+                    [ws.commentArray addObjectsFromArray:tempArray];
+                    
+                    [ws.tableView reloadData];
+                    
+                }else{
+                    
+                    [self showTotasViewWithMes:@"已经加载完成全部数据"];
+
+                }
+                
+            }else {
+                
+                kShowFail(msg);
+                
+            }
+           
+            [ws.tableView.mj_footer endRefreshing];
+
+        }];
+        
+    }];
+    
+    self.tableView.mj_footer = refreshFooter;
+    
+}
+
+- (void)startDownLoad {
+    
+    NSString *infoString = [NSString stringWithFormat:kCoachDetailInfo,self.coachUserId];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,infoString];
+    DYNSLog(@"urlString = %@",urlString);
+    
+    __weak JGDrivingDetailViewController *weakSelf = self;
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSDictionary *dataParam = data;
+        NSNumber *messege = dataParam[@"type"];
+        
+        if (messege.intValue == 1) {
+            
+            NSError *error = nil;
+            
+           // CoachDetail *coachDetail = [MTLJSONAdapter modelOfClass:CoachDetail.class fromJSONDictionary:dataParam[@"data"] error:&error];
+           
+            CoachDetail *coachDetail = [CoachDetail yy_modelWithDictionary:dataParam[@"data"]];
+            
+            weakSelf.detailModel = coachDetail;
+            
+            [weakSelf.tableView reloadData];
+
+        }else{
+            [self showTotasViewWithMes:@"网络错误"];
+            return;
+        }
+    }];
+    
+}
+
+
+- (void)configBarItem {
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneBtn];
     self.navigationItem.rightBarButtonItems = @[rightItem];
 }
 
-- (void)dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
+#pragma mark - createUI
+- (void)createUI {
+    
+    [self.view addSubview:self.tableView];
+        
+//    [self.signUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.view.mas_left).offset(0);
+//        make.right.mas_equalTo(self.view.mas_right).offset(0);
+//        make.bottom.mas_equalTo(self.view.mas_bottom).offset(0);
+//        make.height.mas_equalTo(@49);
+//    }];
+    
 }
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+#pragma mark - delegation
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+
+    if (section==1) {
+        return 40;
+    }
+    return 0;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+   
+    if (section==1) {
+        
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 40)];
+        headerView.backgroundColor = RGBColor(251, 251, 251);
+        
+        UILabel *titleLabe = [[UILabel alloc] init];
+        titleLabe.textColor = MAINCOLOR;
+        titleLabe.textAlignment = NSTextAlignmentLeft;
+        titleLabe.backgroundColor = [UIColor clearColor];
+        titleLabe.frame = headerView.bounds;
+        titleLabe.text = @"   学员评价";
+        titleLabe.font = [UIFont boldSystemFontOfSize:13];
+        [headerView addSubview:titleLabe];
+        
+        return headerView;
+        
+    }
+    return nil;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == 0 && indexPath.section == 0) {// 个人信息
+        return 160;
+    }else if (indexPath.row == 1 && indexPath.section == 0) {//授课信息(高度自定制)
+        return 235;
+    }else if (indexPath.row == 2 && indexPath.section == 0) {// 个人说明(展开、合并)高度自定制
+        return 135;
+    }
+    
+    // 更新高度
+    StudentCommentModel *model = self.commentArray[indexPath.row];
+    return [StudentCommentCell heightWithModel:model];
+    
+    
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 1) {
+        return self.commentArray.count;
+    }
+    return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0 && indexPath.section == 0) {//个人信息
+        
+        static NSString *cellId = @"cellOne";
+        JGDrivingDetailTopCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[JGDrivingDetailTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        if (self.detailModel) {
+            [cell receiveDetailsModel:self.detailModel];
+        }
+        
+        return cell;
+        
+    }else if (indexPath.row == 1 && indexPath.section == 0) {// 授课信息
+        
+        static NSString *cellId = @"cellTwo";
+        CoachInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[CoachInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        cell.rainingGroundDetail.text = self.detailModel.trainFieldInfo.name;
+        NSString *studentNum = @"0";
+        if (self.detailModel.studentcoount) {
+            studentNum = [NSString stringWithFormat:@"%@",self.detailModel.studentcoount];
+        }
+        cell.studentNum.text = [NSString stringWithFormat:@"学员%@位：",studentNum];
+        
+        if([self.detailModel.passrate floatValue]){
+            cell.studentNumDetail.text = [NSString stringWithFormat:@"通过率%@%@",self.detailModel.passrate,@"%"];
+        }else{
+            cell.studentNumDetail.text = @"暂无";
+        }
+        
+        cell.sendMeetDetail.text = self.detailModel.shuttlemsg;
+        
+        cell.workTimeDetail.text = self.detailModel.worktimedesc;
+        cell.dringAgeLabel.text = [NSString stringWithFormat:@"驾       龄:   %@",self.detailModel.seniority];
+        if (self.detailModel.subject.count >= 2) {
+            cell.teachSubjcetDetail.text = @"全科";
+        }else {
+            SubjectModel *subjectInfo = self.detailModel.subject.firstObject;
+            cell.teachSubjcetDetail.text = subjectInfo.subjectId.stringValue;
+        }
+        return cell;
+        
+    }else if (indexPath.row == 2 && indexPath.section == 0) {// 个人说明
+        
+        static NSString *cellId = @"cellThree";
+        CoachIntroductionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[CoachIntroductionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+        }
+        cell.coachIntroductionDetail.text = self.detailModel.introduction;
+        return cell;
+        
+    }else if ( indexPath.section == 1) {// 评论
+        
+        static NSString *cellId = @"cellFour";
+        StudentCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[StudentCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        }
+        StudentCommentModel *model = self.commentArray[indexPath.row];
+        [cell receiveCommentMessage:model];
+        return cell;
+    }
+    
+    
+    
+    return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0 && indexPath.section == 0) {//
+        DrivingDetailViewController *drivingDetail = [[DrivingDetailViewController alloc] init];
+        drivingDetail.schoolId = self.detailModel.driveschoolinfo.driveSchoolId;
+        [self.navigationController pushViewController:drivingDetail animated:YES];
+    }
+    
+}
+
+#pragma  mark - btnAction
+- (void)clickPhoneBtn:(UIButton *)sender {
+    if (self.detailModel.mobile == nil ||[self.detailModel.mobile isEqualToString:@""]) {
+        [self showTotasViewWithMes:@"该教练未录入电话!"];
+        return;
+    }
+    
+    [BLPFAlertView showAlertWithTitle:@"电话号码" message:self.detailModel.mobile cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+        DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
+        NSUInteger indexAlert = selectedOtherButtonIndex + 1;
+        if (indexAlert == 1) {
+            
+            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.detailModel.mobile];
+            UIWebView * callWebview = [[UIWebView alloc] init];
+            [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+            [self.view addSubview:callWebview];
+            
+            //           NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.detailModel.mobile];
+            //           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        }else {
+            return ;
+        }
+        
+    }];
+}
+
+- (void)dealSignUp:(UIButton *)sender{
+    
+    if (![AcountManager isLogin]) {
+        //        [self showLoginView];
+        [DVVUserManager userNeedLogin];
+        return;
+    }
+    if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+        [self.navigationController popViewControllerAnimated:YES];
+        return;
+    }
+    DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
+    
+    if (![AcountManager manager].applyschool.infoId) {
+        if (self.detailModel || self.detailModel.name) {
+            NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+            [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+            
+        }
+        if (self.detailModel.driveschoolinfo.driveSchoolId && self.detailModel.driveschoolinfo.name) {
+            DYNSLog(@"schoolinfo");
+            NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
+            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+        }
+        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
+        [self.navigationController pushViewController:signUp animated:YES];
+        return;
+    }
+    
+    
+    
+    if ([[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo.driveSchoolId]) {
+        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
+        [self.navigationController pushViewController:signUp animated:YES];
+        return;
+    }
+    
+    if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo.driveSchoolId]) {
+        [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+            DYNSLog(@"index = %ld",selectedOtherButtonIndex);
+            NSUInteger index = selectedOtherButtonIndex + 1;
+            if (index == 0) {
+                return ;
+            }else {
+                if (self.detailModel || self.detailModel.name) {
+                    NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
+                    [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
+                    
+                }
+                if (self.detailModel.driveschoolinfo.driveSchoolId && self.detailModel.driveschoolinfo.name) {
+                    DYNSLog(@"schoolinfo");
+                    NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
+                    [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+                }
+                SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
+                [self.navigationController pushViewController:signUp animated:YES];
+                return;
+            }
+        }];
+        
+        
+        
+    }
+    
+    
+    
+}
+
+#pragma mark 检测是否收藏
+- (void)checkCollection {
+    
+    //    if (![AcountManager isLogin]) {
+    //        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+    //        LoginViewController *login = [[LoginViewController alloc] init];
+    //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+    //        return;
+    //    }
+    
+    NSString *kSaveUrl = [NSString stringWithFormat:kCheckLoveCoach];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
+    DYNSLog(@"urlstring = %@",urlString);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        DYNSLog(@"data = %@",data);
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            
+            if ([[data objectForKey:@"data"] isKindOfClass:[NSArray class]]) {
+                NSArray *array = [data objectForKey:@"data"];
+                for (int i = 0; i < array.count; i++) {
+                    NSString *schoolId = [array[i] objectForKey:@"coachid"];
+                    if ([schoolId isEqualToString:self.coachUserId]) {
+                        _heartImageView.image = [UIImage imageNamed:@"心"];
+                        _heartImageView.tag = 1;
+                        return ;
+                    }
+                }
+            }
+        }
+    }];
+}
+
+- (void)dealLike:(UITapGestureRecognizer *)tap {
+    
+    if (![AcountManager isLogin]) {
+        //        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+        //        LoginViewController *login = [[LoginViewController alloc] init];
+        //        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:login animated:YES completion:nil];
+        //        return;
+        [self showTotasViewWithMes:@"您还没有登录哟"];
+        return ;
+    }
+    
+    if (_heartImageView.tag) {
+        [self deleteLoveSchool];
+    }else {
+        [self addLoveSchool];
+    }
+}
+
+#pragma mark 添加喜欢的驾校
+- (void)addLoveSchool {
+    
+    NSString *kSaveUrl = [NSString stringWithFormat:kAddLoveCoach,self.coachUserId];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
+    DYNSLog(@"urlstring = %@",urlString);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodPut withCompletion:^(id data) {
+        DYNSLog(@"data = %@",data);
+        NSDictionary *param = data;
+        [self showTotasViewWithMes:[param objectForKey:@"msg"]];
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            _heartImageView.image = [UIImage imageNamed:@"心"];
+            [self showTotasViewWithMes:@"收藏成功"];
+            _heartImageView.tag = 1;
+        }else {
+            //            [self showTotasViewWithMes:param[@"msg"]];
+            [self showTotasViewWithMes:@"收藏失败"];
+        }
+    }];
+    
+}
+
+#pragma mark 删除喜欢的驾校
+- (void)deleteLoveSchool {
+    
+    NSString *kSaveUrl = [NSString stringWithFormat:kDeleteLoveCoach,self.coachUserId];
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
+    DYNSLog(@"urlstring = %@",urlString);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
+        DYNSLog(@"data = %@",data);
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            _heartImageView.image = [UIImage imageNamed:@"心Inner"];
+            [self showTotasViewWithMes:@"已取消收藏"];
+            _heartImageView.tag = 0;
+        }else {
+            [self showTotasViewWithMes:@"取消收藏失败"];
+        }
+    }];
+}
+
+
 @end

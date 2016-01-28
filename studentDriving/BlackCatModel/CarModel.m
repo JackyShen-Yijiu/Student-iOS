@@ -9,6 +9,7 @@
 #import "CarModel.h"
 
 @implementation CarModel
+
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{@"code":@"code",@"modelsid":@"modelsid",@"name":@"name"};
 }
@@ -19,4 +20,5 @@
     
     return self;
 }
+
 @end

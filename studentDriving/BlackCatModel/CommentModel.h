@@ -9,7 +9,21 @@
 #import "MTLModel.h"
 #import <MTLJSONAdapter.h>
 @interface CommentModel : MTLModel<MTLJSONSerializing>
-@property (copy, nonatomic, readonly) NSString *commentcontent;
-@property (strong, nonatomic, readonly) NSNumber *starlevel;
-@property (nonatomic,strong,readonly)NSString * commenttime;
+@property (strong, nonatomic) NSNumber *abilitylevel;
+@property (strong, nonatomic) NSNumber *attitudelevel;
+@property (nonatomic,copy)NSString * commentcontent;
+@property (nonatomic,copy)NSString * commenttime;
+@property (nonatomic,strong)NSNumber * starlevel;
+@property (nonatomic,strong)NSNumber * timelevel;
 @end
+
+/*
+ {
+ "timelevel": 0,
+ "starlevel": 0,
+ "commenttime": "2016-01-21T12:15:15.816Z",
+ "commentcontent": "基金经理",
+ "attitudelevel": 0,
+ "abilitylevel": 0
+ },
+*/

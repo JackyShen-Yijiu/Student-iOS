@@ -9,21 +9,26 @@
 #import "StudentCommentCell.h"
 #import "ToolHeader.h"
 #import "StudentCommentModel.h"
-@interface StudentCommentCell ()
-@property (strong, nonatomic) UIView *backGroundView;
 
+#define TopH 10
+
+@interface StudentCommentCell ()
+
+// 头像
 @property (strong, nonatomic) UIImageView *studentHeadImageView;
+// 姓名
 @property (strong, nonatomic) UILabel *studentNameLabel;
+// C1普通班级
+@property (strong, nonatomic) UILabel *classLabel;
+// 评论时间
 @property (strong, nonatomic) UILabel *commentTimeLabel;
+// 评论内容
 @property (strong, nonatomic) UILabel *commentContentLabel;
+
+@property (nonatomic,strong)UIView *delive;
+
 @end
 @implementation StudentCommentCell
-- (UIView *)backGroundView {
-    if (_backGroundView == nil) {
-        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 96)];
-    }
-    return _backGroundView;
-}
 
 - (UIImageView *)studentHeadImageView {
     if (_studentHeadImageView == nil) {
@@ -34,16 +39,24 @@
 }
 - (UILabel *)studentNameLabel {
     if (_studentNameLabel == nil) {
-        _studentNameLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont boldSystemFontOfSize:14]];
+        _studentNameLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
         _studentNameLabel.text = @"李文政";
         
     }
     return _studentNameLabel;
 }
+- (UILabel *)classLabel
+{
+    if (_classLabel == nil) {
+        _classLabel = [WMUITool initWithTextColor:[UIColor lightGrayColor] withFont:[UIFont systemFontOfSize:13]];
+        _classLabel.text = @"C1普通班";
+    }
+    return _classLabel;
+}
 - (UILabel *)commentContentLabel {
     if (_commentContentLabel == nil) {
         _commentContentLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
-        _commentContentLabel.numberOfLines = 2;
+        _commentContentLabel.numberOfLines = 0;
     }
     return _commentContentLabel;
 }
@@ -54,6 +67,17 @@
     }
     return _commentTimeLabel;
 }
+- (UIView *)delive
+{
+    if (_delive == nil) {
+        
+        _delive = [[UIView alloc] init];
+        _delive.backgroundColor = [UIColor lightGrayColor];
+        _delive.alpha = 0.3;
+    }
+    return _delive;
+}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setUp];
@@ -62,48 +86,97 @@
 }
 
 - (void)setUp {
-    [self.contentView addSubview:self.backGroundView];
     
-    [self.backGroundView addSubview:self.studentHeadImageView];
+    [self.contentView addSubview:self.studentHeadImageView];
     
-    [self.backGroundView addSubview:self.studentNameLabel];
+    [self.contentView addSubview:self.studentNameLabel];
     
-    [self.backGroundView addSubview:self.commentTimeLabel];
+    [self.contentView addSubview:self.classLabel];
     
-    [self.backGroundView addSubview:self.commentContentLabel];
+    [self.contentView addSubview:self.commentTimeLabel];
     
+    [self.contentView addSubview:self.commentContentLabel];
+    
+    [self.contentView addSubview:self.delive];
+    
+    // 头像
     [self.studentHeadImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
-        make.top.mas_equalTo(self.backGroundView.mas_top).offset(13);
-        make.height.mas_equalTo(@24);
-        make.width.mas_equalTo(@24);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(TopH);
+        make.top.mas_equalTo(self.contentView.mas_top).offset(TopH);//
+        make.height.mas_equalTo(@40);
+        make.width.mas_equalTo(@40);
     }];
     
+    // 姓名
     [self.studentNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.studentHeadImageView.mas_right).offset(9);
+        make.left.mas_equalTo(self.studentHeadImageView.mas_right).offset(TopH);
         make.top.mas_equalTo(self.studentHeadImageView.mas_top).offset(2);
+        make.height.mas_equalTo(@20);
     }];
     
+    // C1普通班级
+    [self.classLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.studentHeadImageView.mas_right).offset(TopH);
+        make.top.mas_equalTo(self.studentNameLabel.mas_bottom);
+        make.height.mas_equalTo(@20);
+    }];
+    
+    // 评论内容
     [self.commentContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.studentHeadImageView.mas_right).offset(10);
-        make.top.mas_equalTo(self.studentNameLabel.mas_bottom).offset(5);
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide-30-24-10];
-        make.width.mas_equalTo(wide);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(TopH);
+        make.right.mas_equalTo(self.contentView).offset(-TopH);
+        make.top.mas_equalTo(self.studentHeadImageView.mas_bottom).offset(TopH/2);//
+    }];
+    // 评论时间
+    [self.commentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.commentContentLabel.mas_bottom).offset(TopH/2);//
+        make.right.mas_equalTo(self.contentView.mas_right).offset(-TopH);
+        make.height.mas_equalTo(@20);
+    }];
+    // 分割线
+    [self.delive mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(@0);
+        make.right.mas_equalTo(@0);
+        make.height.mas_equalTo(@0.5);
+        make.top.mas_equalTo(self.commentTimeLabel.mas_bottom).offset(TopH/2);//
     }];
     
-    [self.commentTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
-        make.top.mas_equalTo(self.backGroundView.mas_top).offset(13);
-    }];
 }
+
++ (CGFloat)heightWithModel:(StudentCommentModel *)model {
+    
+    StudentCommentCell *cell = [[StudentCommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellFour"];
+    
+    [cell receiveCommentMessage:model];
+    
+    [cell layoutIfNeeded];
+    
+    return cell.studentHeadImageView.frame.size.height + cell.commentContentLabel.frame.size.height + cell.commentTimeLabel.frame.size.height + TopH * 2.5+1;
+    
+}
+
 - (void)receiveCommentMessage:(StudentCommentModel *)messageModel {
     [self resetContent];
     
-    self.studentNameLabel.text = messageModel.userid.name;
-    self.commentContentLabel.text = messageModel.comment.commentcontent;
-    self.commentTimeLabel.text = [self dateFromISO8601String:messageModel.comment.commenttime];
     [self.studentHeadImageView sd_setImageWithURL:[NSURL URLWithString:messageModel.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+
+    self.studentNameLabel.text = messageModel.userid.name;
+
+    if (messageModel.userid.carmodel.code && messageModel.userid.applyclasstypeinfo.name) {
+        self.classLabel.text = [NSString stringWithFormat:@"%@ %@",messageModel.userid.carmodel.code,messageModel.userid.applyclasstypeinfo.name];
+    }
+    NSLog(@"messageModel.comment.commentcontent:%@",messageModel.comment.commentcontent);
+    
+    if (messageModel.comment.commentcontent&&[messageModel.comment.commentcontent length]!=0) {
+        self.commentContentLabel.text = messageModel.comment.commentcontent;
+    }else{
+        self.commentContentLabel.text = @"好评";
+    }
+    
+    self.commentTimeLabel.text = [self dateFromISO8601String:messageModel.comment.commenttime];
+    
 }
+
 - (void)resetContent {
     self.studentNameLabel.text = nil;
     self.commentContentLabel.text = nil;

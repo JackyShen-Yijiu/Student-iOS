@@ -13,6 +13,8 @@ typedef void(^DVVBaseViewModelUpdataBlock)();
 
 @interface DVVBaseViewModel : NSObject
 
+- (BOOL)checkErrorWithData:(id)data;
+
 // 处理完网络数据后，调用刷新成功、失败的回调
 - (void)dvvRefreshSuccess;
 - (void)dvvRefreshError;

@@ -10,6 +10,6 @@
 #import <MTLJSONAdapter.h>
 
 @interface DriveSchoolinfo : MTLModel<MTLJSONSerializing>
-@property (copy, nonatomic, readonly) NSString *driveSchoolId;
-@property (copy, nonatomic, readonly) NSString *name;
+@property (copy, nonatomic) NSString *driveSchoolId;
+@property (copy, nonatomic) NSString *name;
 @end

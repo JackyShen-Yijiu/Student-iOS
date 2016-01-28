@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 @class StudentCommentModel;
 @interface StudentCommentCell : UITableViewCell
+
 - (void)receiveCommentMessage:(StudentCommentModel *)messageModel;
+
++ (CGFloat)heightWithModel:(StudentCommentModel *)model;
+
 @end

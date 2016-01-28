@@ -25,9 +25,9 @@ PODS:
   - BaiduMapAPI/Default (2.8.1):
     - BaiduMapAPI/Universal
   - BaiduMapAPI/Universal (2.8.1)
-  - ChameleonFramework (2.0.6):
-    - ChameleonFramework/Default (= 2.0.6)
-  - ChameleonFramework/Default (2.0.6)
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
   - HappyDNS (0.2.3)
   - IQKeyboardManager (3.3.6)
   - JPush (1.8.8)
@@ -77,7 +77,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   AFNetworking: cb8d14a848e831097108418f5d49217339d4eb60
   BaiduMapAPI: 2d03e12a51d5c6c49ece555c6bdda8562635cc02
-  ChameleonFramework: a6b466873ff9a4ce3a5196c20bccf1a97ad9f446
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
   IQKeyboardManager: 037cf3aec1d0a045108859a47818714eb1bfc149
   JPush: d1a4a90294389d2c6bd2ca987df8140dd4ffcbd2

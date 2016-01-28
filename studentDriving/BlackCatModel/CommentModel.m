@@ -10,7 +10,7 @@
 
 @implementation CommentModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"commentcontent":@"commentcontent",@"starlevel":@"starlevel",@"commenttime":@"commenttime"};
+    return @{@"timelevel":@"timelevel",@"starlevel":@"starlevel",@"commenttime":@"commenttime",@"commentcontent":@"commentcontent",@"attitudelevel":@"attitudelevel",@"abilitylevel":@"abilitylevel"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {
@@ -20,3 +20,13 @@
     return self;
 }
 @end
+/*
+ {
+ "timelevel": 0,
+ "starlevel": 0,
+ "commenttime": "2016-01-21T12:15:15.816Z",
+ "commentcontent": "基金经理",
+ "attitudelevel": 0,
+ "abilitylevel": 0
+ },
+ */
