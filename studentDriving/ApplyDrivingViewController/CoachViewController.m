@@ -138,7 +138,7 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = @"教练列表";
+    self.title = @"预约教练";
     self.view.backgroundColor = [UIColor whiteColor];
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
     DYNSLog(@"right = %@",self.naviBarRightButton);
