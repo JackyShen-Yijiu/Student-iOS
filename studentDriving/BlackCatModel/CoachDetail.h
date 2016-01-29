@@ -52,4 +52,6 @@
 
 @property (nonatomic,strong) trainfieldModel *trainfield;
 
+@property (nonatomic,strong) NSArray *tagslist;
+
 @end

@@ -112,13 +112,11 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     return _signUpButton;
 }
 
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.coachUserId = @"568cdd3c60535c54738a8756";
+//    self.coachUserId = @"568cdd3c60535c54738a8756";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
     

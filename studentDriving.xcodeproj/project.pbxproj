@@ -79,6 +79,8 @@
 		B21818301C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */; };
 		B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */; };
 		B21818361C5A42F600F973A7 /* trainfieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818351C5A42F600F973A7 /* trainfieldModel.m */; };
+		B21818391C5B1C6F00F973A7 /* GBTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818381C5B1C6F00F973A7 /* GBTagListView.m */; };
+		B218183C1C5B201D00F973A7 /* tagslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B218183B1C5B201D00F973A7 /* tagslistModel.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
@@ -871,6 +873,10 @@
 		B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGTeachingNewsChangDiView.m; sourceTree = "<group>"; };
 		B21818341C5A42F600F973A7 /* trainfieldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trainfieldModel.h; sourceTree = "<group>"; };
 		B21818351C5A42F600F973A7 /* trainfieldModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = trainfieldModel.m; sourceTree = "<group>"; };
+		B21818371C5B1C6F00F973A7 /* GBTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBTagListView.h; sourceTree = "<group>"; };
+		B21818381C5B1C6F00F973A7 /* GBTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBTagListView.m; sourceTree = "<group>"; };
+		B218183A1C5B201D00F973A7 /* tagslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagslistModel.h; sourceTree = "<group>"; };
+		B218183B1C5B201D00F973A7 /* tagslistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagslistModel.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
@@ -3287,6 +3293,8 @@
 				B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */,
 				B21818341C5A42F600F973A7 /* trainfieldModel.h */,
 				B21818351C5A42F600F973A7 /* trainfieldModel.m */,
+				B218183A1C5B201D00F973A7 /* tagslistModel.h */,
+				B218183B1C5B201D00F973A7 /* tagslistModel.m */,
 			);
 			path = BlackCatModel;
 			sourceTree = "<group>";
@@ -3806,6 +3814,8 @@
 				B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */,
 				B21818311C5A3E3900F973A7 /* JGTeachingNewsChangDiView.h */,
 				B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */,
+				B21818371C5B1C6F00F973A7 /* GBTagListView.h */,
+				B21818381C5B1C6F00F973A7 /* GBTagListView.m */,
 				B218182E1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.h */,
 				B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */,
 				B21818181C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.h */,
@@ -4274,6 +4284,7 @@
 				D588B0D71BDDDC14000C5D6F /* DrivingInformationCell.m in Sources */,
 				D588B10E1BDDDC2F000C5D6F /* BLPFAlertView.m in Sources */,
 				D96D1BE71C2B88A000F1C282 /* UIColor+Extension.m in Sources */,
+				B21818391C5B1C6F00F973A7 /* GBTagListView.m in Sources */,
 				D95E3DB41C3CEDC600F0B5A0 /* SearchCoachViewModel.m in Sources */,
 				D588B0D61BDDDC14000C5D6F /* DrivingDetailCell.m in Sources */,
 				D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */,
@@ -4521,6 +4532,7 @@
 				D588B0541BDDDB71000C5D6F /* FeedBackViewController.m in Sources */,
 				D5604B481BF656C50020F0D7 /* MBProgressHUD+Add.m in Sources */,
 				062734B81C59C9A90056B0BC /* SignUpController.m in Sources */,
+				B218183C1C5B201D00F973A7 /* tagslistModel.m in Sources */,
 				D5604C911BF656F30020F0D7 /* MessageModelManager.m in Sources */,
 				D5604C8D1BF656F30020F0D7 /* EMChatTimeCell.m in Sources */,
 				D5604B5E1BF656C50020F0D7 /* UIImage+EMMultiFormat.m in Sources */,
