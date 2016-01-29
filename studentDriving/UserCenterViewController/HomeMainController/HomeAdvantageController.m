@@ -11,6 +11,7 @@
 #import "SignUpSuccessViewController.h"
 #import "CheckProgressController.h"
 #import "SignUpController.h"
+#import "SignUpFirmOrderController.h"
 
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
@@ -111,6 +112,8 @@ static NSString *advantage = @"youshi.html";
     
     SignUpController *checkVC = [[SignUpController alloc] init];
         [self.navigationController pushViewController:checkVC animated:YES];
+//    SignUpFirmOrderController *checkVC = [[SignUpFirmOrderController alloc] init];
+//    [self.navigationController pushViewController:checkVC animated:YES];
     
 }
 
