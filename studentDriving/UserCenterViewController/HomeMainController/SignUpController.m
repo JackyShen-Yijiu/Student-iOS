@@ -60,6 +60,8 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
 @property (nonatomic, strong) NSArray *strArray;
 @property (nonatomic, strong) NSArray *infoArray;
+@property (nonatomic, strong) UILabel *realPayLabel;
+@property (nonatomic, strong) UILabel *moneyPayLabel;
 @end
 
 @implementation SignUpController
@@ -114,7 +116,25 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     }
     return _referButton;
 }
-
+- (UILabel *)realPayLabel{
+    if (_realPayLabel == nil) {
+        _realPayLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 100, 40)];
+        _realPayLabel.text = @"实际支付";
+        _realPayLabel.textColor = [UIColor colorWithHexString:@"333333"];
+        
+    }
+    return _realPayLabel;
+}
+- (UILabel *)moneyPayLabel{
+    if (_moneyPayLabel == nil) {
+        _moneyPayLabel = [[UILabel alloc] init];
+        _moneyPayLabel = [[UILabel alloc] initWithFrame:CGRectMake(kSystemWide - 115, 20, 100, 40)];
+        _moneyPayLabel.text = @"32288元";
+        _moneyPayLabel.textColor = [UIColor colorWithHexString:@"333333"];
+        _moneyPayLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _moneyPayLabel;
+}
 - (UITableView *)tableView{
     if (_tableView == nil) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight -64-49)];
@@ -122,11 +142,19 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 160)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 280)];
         view.backgroundColor  = [UIColor whiteColor];
         [view addSubview:self.YcodeFootView];
         KindlyReminderView *kindlyReminderView = [[KindlyReminderView alloc] initWithContentStr:@"请认真填写以上信息，您填写的信息将作为报名信息录入车考驾照系统内，如果信息错误，将影响您的报名流程。" frame:CGRectMake(0, 60, kSystemWide, 100)];
         [view addSubview:kindlyReminderView];
+        
+        
+        // pay view
+        UIView *payView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, kSystemWide, 80)];
+        payView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+        [payView addSubview:self.realPayLabel];
+        [payView addSubview:self.moneyPayLabel];
+        [view addSubview:payView];
         _tableView.tableFooterView.backgroundColor = [UIColor whiteColor];
         _tableView.tableFooterView = view;
     }
