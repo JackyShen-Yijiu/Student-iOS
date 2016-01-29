@@ -27,7 +27,7 @@
 - (void)dvvNetworkRequestLoadMore {
     // 重写此方法加载数据（需自己调用加载回调）
 }
-- (BOOL)dvvCheckErrorWithResponseObject:(id)responseObject {
+- (BOOL)dvvCheckError:(id)responseObject {
     
     // 重写此方法检测服务器是否返回了数据
     return NO;

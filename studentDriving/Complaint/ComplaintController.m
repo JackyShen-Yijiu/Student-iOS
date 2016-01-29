@@ -9,15 +9,19 @@
 #import "ComplaintController.h"
 #import "ComplaintCoachView.h"
 #import "ComplaintDrivingView.h"
+#import "ComplaintCoachListController.h"
 
 @interface ComplaintController ()
 
 @property (weak, nonatomic) IBOutlet UIButton *coachButton;
 @property (weak, nonatomic) IBOutlet UIButton *DrivingButton;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UIView *contentView;
+
 
 @property (nonatomic, strong) ComplaintCoachView *coachView;
 @property (nonatomic, strong) ComplaintDrivingView *drivingView;
+
+@property (nonatomic, strong) ComplaintCoachListController *coachListVC;
 
 @end
 
@@ -27,16 +31,62 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = @"投诉";
     
-    [self.scrollView addSubview:self.coachView];
-    [self.scrollView addSubview:self.drivingView];
-}
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    [_contentView addSubview:self.coachView];
+    [_contentView addSubview:self.drivingView];
     
-    CGSize size = self.view.bounds.size;
+    [_coachButton setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+    [_DrivingButton setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
+    _coachButton.selected = YES;
+    
+    _coachView.superController = self;
+    _drivingView.superController = self;
+    
+    CGSize size = _contentView.bounds.size;
     _coachView.frame = CGRectMake(0, 0, size.width, size.height);
     _drivingView.frame = CGRectMake(size.width, 0, size.width, size.height);
+}
+
+- (IBAction)coachButtonAction:(UIButton *)sender {
+    
+    [self scrollToCoach];
+}
+- (IBAction)drivingButtonAction:(UIButton *)sender {
+    
+    [self scrollToDriving];
+}
+
+- (void)scrollToCoach {
+    _coachButton.selected = YES;
+    _DrivingButton.selected = NO;
+    
+    CGRect rect = _coachView.frame;
+    rect.origin.x = 0;
+    
+    CGRect rectDriving = _drivingView.frame;
+    rectDriving.origin.x = rectDriving.size.width;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        _coachView.frame = rect;
+        _drivingView.frame = rectDriving;
+    }];
+}
+- (void)scrollToDriving {
+    _coachButton.selected = NO;
+    _DrivingButton.selected = YES;
+    
+    CGRect rect = _coachView.frame;
+    rect.origin.x = - rect.size.width;
+    
+    CGRect rectDriving = _drivingView.frame;
+    rectDriving.origin.x = 0;
+    
+    [UIView animateWithDuration:0.3 animations:^{
+        
+        _coachView.frame = rect;
+        _drivingView.frame = rectDriving;
+    }];
 }
 
 #pragma mark - lazy load

@@ -46,6 +46,14 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         
+        [self addSubview:self.scrollView];
+        
+        [self.scrollView addSubview:self.leftImageView];
+        [self.scrollView addSubview:self.centerImageView];
+        [self.scrollView addSubview:self.rightImageView];
+        
+        [self addSubview:self.pageControl];
+        
         [self initialProperty];
     }
     return self;
@@ -84,13 +92,10 @@
 
 - (void)layoutSubviews {
     
-    [self addSubview:self.scrollView];
-    
-    [self.scrollView addSubview:self.leftImageView];
-    [self.scrollView addSubview:self.centerImageView];
-    [self.scrollView addSubview:self.rightImageView];
-    
-    [self addSubview:self.pageControl];
+    _scrollView.frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
+    _leftImageView.frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
+    _centerImageView.frame = CGRectMake(VIEW_WIDTH, 0, VIEW_WIDTH, VIEW_HEIGHT);
+    _rightImageView.frame = CGRectMake(VIEW_WIDTH * 2, 0, VIEW_WIDTH, VIEW_HEIGHT);
     _pageControl.numberOfPages = _imagesUrlArray.count;
     
     [self setPageControlFrame];
@@ -241,7 +246,6 @@
         _scrollView = [UIScrollView new];
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.delegate = self;
-        _scrollView.frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
         self.scrollView.contentSize = CGSizeMake(VIEW_WIDTH * 3, VIEW_HEIGHT);
         _scrollView.contentOffset = CGPointMake(VIEW_WIDTH, 0);
         _scrollView.pagingEnabled = YES;
@@ -265,7 +269,6 @@
     if (!_leftImageView){
         _leftImageView = [UIImageView new];
         _leftImageView.backgroundColor = [UIColor clearColor];
-        _leftImageView.frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
         if (_placeImage) {
             _leftImageView.image = _placeImage;
         }
@@ -276,7 +279,6 @@
     if (!_centerImageView){
         _centerImageView = [UIImageView new];
         _centerImageView.backgroundColor = [UIColor clearColor];
-        _centerImageView.frame = CGRectMake(VIEW_WIDTH, 0, VIEW_WIDTH, VIEW_HEIGHT);
         [self addTouchForImageView:_centerImageView];
         if (_placeImage) {
             _centerImageView.image = _placeImage;
@@ -298,7 +300,6 @@
     if (!_rightImageView){
         _rightImageView = [UIImageView new];
         _rightImageView.backgroundColor = [UIColor clearColor];
-        _rightImageView.frame = CGRectMake(VIEW_WIDTH * 2, 0, VIEW_WIDTH, VIEW_HEIGHT);
         if (_placeImage) {
             _rightImageView.image = _placeImage;
         }

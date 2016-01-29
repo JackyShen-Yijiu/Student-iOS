@@ -61,8 +61,8 @@
  *  @param 字体大小
  */
 + (CGFloat)autoHeightWithString:(NSString *)string
-                        Width:(CGFloat)width
-                         Font:(UIFont *)font;
+                        width:(CGFloat)width
+                         font:(UIFont *)font;
 
 /**
  *  一串字符在一行中正常显示所需要的宽度
@@ -71,6 +71,6 @@
  *  @param 字体大小
  */
 + (CGFloat)autoWidthWithString:(NSString *)string
-                         Font:(UIFont *)font;
+                         font:(UIFont *)font;
 
 @end

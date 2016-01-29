@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="233" id="KGk-i7-Jjw" customClass="DrivingDetailSignUpCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="229.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TKN-gj-ckP">
+                        <rect key="frame" x="0.0" y="8" width="320" height="44"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3i-PU-Ft0">
+                                <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="课程费用">
+                                    <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="courseButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pt3-Zi-3qx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHS-oY-bTf">
+                                <rect key="frame" x="160" y="0.0" width="160" height="44"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="教练信息">
+                                    <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="coachButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FWw-bx-hEV"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Pxy-E3-gRL">
+                                <rect key="frame" x="160" y="11" width="1" height="22"/>
+                                <color key="backgroundColor" red="0.50196081400000003" green="0.50196081400000003" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="18F-0i-dVY"/>
+                                    <constraint firstAttribute="width" constant="1" id="miO-c9-ZcG"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.7554056187" green="0.7554056187" blue="0.7554056187" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pxy-E3-gRL" firstAttribute="centerX" secondItem="TKN-gj-ckP" secondAttribute="centerX" id="95y-4K-oga"/>
+                            <constraint firstItem="Pxy-E3-gRL" firstAttribute="leading" secondItem="h3i-PU-Ft0" secondAttribute="trailing" id="9db-Rs-6Hm"/>
+                            <constraint firstItem="h3i-PU-Ft0" firstAttribute="top" secondItem="TKN-gj-ckP" secondAttribute="top" id="ENz-0t-dOg"/>
+                            <constraint firstItem="Pxy-E3-gRL" firstAttribute="centerY" secondItem="TKN-gj-ckP" secondAttribute="centerY" id="ItH-zN-SdU"/>
+                            <constraint firstAttribute="trailing" secondItem="EHS-oY-bTf" secondAttribute="trailing" id="OsY-Du-Ajb"/>
+                            <constraint firstAttribute="bottom" secondItem="h3i-PU-Ft0" secondAttribute="bottom" id="Tjn-yT-CJ4"/>
+                            <constraint firstItem="EHS-oY-bTf" firstAttribute="width" secondItem="h3i-PU-Ft0" secondAttribute="width" id="afE-Jf-OrK"/>
+                            <constraint firstItem="h3i-PU-Ft0" firstAttribute="leading" secondItem="TKN-gj-ckP" secondAttribute="leading" id="auF-pN-xHg"/>
+                            <constraint firstItem="EHS-oY-bTf" firstAttribute="height" secondItem="h3i-PU-Ft0" secondAttribute="height" id="cGB-4m-KEx"/>
+                            <constraint firstAttribute="height" constant="44" id="cvA-Tu-6jW"/>
+                            <constraint firstItem="EHS-oY-bTf" firstAttribute="leading" secondItem="h3i-PU-Ft0" secondAttribute="trailing" id="eTj-ef-sra"/>
+                            <constraint firstAttribute="bottom" secondItem="EHS-oY-bTf" secondAttribute="bottom" id="pl6-8n-jVx"/>
+                            <constraint firstItem="EHS-oY-bTf" firstAttribute="top" secondItem="TKN-gj-ckP" secondAttribute="top" id="vva-40-Jgi"/>
+                        </constraints>
+                    </view>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GpU-U5-ZMS">
+                        <rect key="frame" x="0.0" y="60" width="320" height="169.5"/>
+                    </scrollView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="GpU-U5-ZMS" secondAttribute="bottom" id="CwE-Lm-jE7"/>
+                    <constraint firstItem="GpU-U5-ZMS" firstAttribute="top" secondItem="TKN-gj-ckP" secondAttribute="bottom" constant="8" id="DP8-TP-qJ1"/>
+                    <constraint firstItem="TKN-gj-ckP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Fj7-WM-0Fu"/>
+                    <constraint firstAttribute="trailing" secondItem="GpU-U5-ZMS" secondAttribute="trailing" id="MK3-R6-MTN"/>
+                    <constraint firstItem="GpU-U5-ZMS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VnW-5I-UTy"/>
+                    <constraint firstAttribute="trailing" secondItem="TKN-gj-ckP" secondAttribute="trailing" id="kQC-XE-gjD"/>
+                    <constraint firstItem="TKN-gj-ckP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="uGQ-0e-BJe"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="coachButton" destination="EHS-oY-bTf" id="osJ-7w-Fjr"/>
+                <outlet property="courseButton" destination="h3i-PU-Ft0" id="RLi-HL-AMk"/>
+                <outlet property="scrollView" destination="GpU-U5-ZMS" id="Pu6-I0-20k"/>
+            </connections>
+            <point key="canvasLocation" x="68" y="425"/>
+        </tableViewCell>
+    </objects>
+</document>
