@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CheckProgressTextField.h"
+#import "SignUpTextField.h"
 typedef void(^SIGNUPCOMPLETION)(NSString *completionString);
 
 @interface SignUpInfoCell : UITableViewCell
 @property (copy, nonatomic) SIGNUPCOMPLETION signUpCompletion;
-@property (strong, nonatomic) CheckProgressTextField *signUpTextField;
+@property (strong, nonatomic) SignUpTextField *signUpTextField;
 - (void)receiveTitile:(NSString *)titleString andSignUpBlock:(SIGNUPCOMPLETION)signUpCompletion;
 
 - (void)receiveTextContent:(NSString *)content;

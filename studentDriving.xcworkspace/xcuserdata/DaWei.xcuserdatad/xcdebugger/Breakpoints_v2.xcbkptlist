@@ -33,38 +33,6 @@
             endingLineNumber = "705"
             landmarkName = "-submitClick:"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[AppointmentDrivingViewController submitClick:]"
-                  moduleName = "studentDriving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/SubjectSecondViewController/AppointmentDrivingViewController.m"
-                  timestampString = "475504300.713718"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "706"
-                  endingLineNumber = "706"
-                  offsetFromSymbolStart = "176">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__48-[AppointmentDrivingViewController submitClick:]_block_invoke"
-                  moduleName = "studentDriving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/SubjectSecondViewController/AppointmentDrivingViewController.m"
-                  timestampString = "475504300.71403"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "706"
-                  endingLineNumber = "706"
-                  offsetFromSymbolStart = "80">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -219,22 +187,6 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/Tool/JEPhotoPickManger.m"
-            timestampString = "475123705.152198"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "+pickPhotofromController:"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

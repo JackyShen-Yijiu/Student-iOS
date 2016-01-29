@@ -9,7 +9,7 @@
             <connections>
                 <outlet property="DrivingButton" destination="9Av-AX-pq4" id="Ghd-fS-nMM"/>
                 <outlet property="coachButton" destination="d9J-Pa-Y62" id="cCg-iM-Vga"/>
-                <outlet property="scrollView" destination="RhS-om-Ux6" id="k2U-H8-D1S"/>
+                <outlet property="contentView" destination="X2S-F9-AIM" id="L3k-iT-XiN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,54 +24,63 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9J-Pa-Y62">
                             <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" title="投诉教练">
                                 <color key="titleColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="coachButtonAction:" destination="-1" eventType="touchUpInside" id="gcj-Pd-2lY"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Av-AX-pq4">
                             <rect key="frame" x="160" y="0.0" width="160" height="44"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <state key="normal" title="投诉驾校">
                                 <color key="titleColor" red="0.20000000298023224" green="0.20000000298023224" blue="0.20000000298023224" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="drivingButtonAction:" destination="-1" eventType="touchUpInside" id="qhp-iA-iqA"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GbW-Ju-waw">
-                            <rect key="frame" x="159" y="11" width="1" height="22"/>
+                            <rect key="frame" x="159.5" y="11" width="1" height="22"/>
+                            <color key="backgroundColor" red="0.50196081399917603" green="0.50196081399917603" blue="0.50196081399917603" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="22" id="Lel-uS-TVD"/>
-                                <constraint firstAttribute="width" constant="1" id="odn-eh-FwQ"/>
+                                <constraint firstAttribute="height" constant="22" id="D4N-3y-G68"/>
+                                <constraint firstAttribute="width" constant="1" id="er2-Gc-HD4"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.75540561868686873" green="0.75540561868686873" blue="0.75540561868686873" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstItem="9Av-AX-pq4" firstAttribute="top" secondItem="W5E-f6-9Oa" secondAttribute="top" id="1rQ-Ep-6j0"/>
-                        <constraint firstItem="9Av-AX-pq4" firstAttribute="leading" secondItem="GbW-Ju-waw" secondAttribute="trailing" id="Bso-Q6-byE"/>
                         <constraint firstItem="d9J-Pa-Y62" firstAttribute="leading" secondItem="W5E-f6-9Oa" secondAttribute="leading" id="Cpa-Du-6fH"/>
                         <constraint firstAttribute="trailing" secondItem="9Av-AX-pq4" secondAttribute="trailing" id="Kxg-kv-Z3q"/>
+                        <constraint firstItem="GbW-Ju-waw" firstAttribute="centerX" secondItem="W5E-f6-9Oa" secondAttribute="centerX" id="Wja-UX-a3e"/>
                         <constraint firstItem="d9J-Pa-Y62" firstAttribute="top" secondItem="W5E-f6-9Oa" secondAttribute="top" id="as7-nS-Tsa"/>
+                        <constraint firstItem="GbW-Ju-waw" firstAttribute="centerY" secondItem="W5E-f6-9Oa" secondAttribute="centerY" id="bHS-ax-Szd"/>
                         <constraint firstItem="9Av-AX-pq4" firstAttribute="leading" secondItem="d9J-Pa-Y62" secondAttribute="trailing" id="c0T-rX-2gy"/>
                         <constraint firstAttribute="bottom" secondItem="9Av-AX-pq4" secondAttribute="bottom" id="f1N-ox-D2N"/>
                         <constraint firstItem="9Av-AX-pq4" firstAttribute="width" secondItem="d9J-Pa-Y62" secondAttribute="width" id="qbm-Ro-DL6"/>
                         <constraint firstAttribute="height" constant="44" id="sZo-q2-xe9"/>
-                        <constraint firstItem="GbW-Ju-waw" firstAttribute="centerY" secondItem="W5E-f6-9Oa" secondAttribute="centerY" id="sqB-jo-Rr7"/>
                         <constraint firstAttribute="bottom" secondItem="d9J-Pa-Y62" secondAttribute="bottom" id="tDt-lM-fZ6"/>
-                        <constraint firstItem="GbW-Ju-waw" firstAttribute="centerX" secondItem="W5E-f6-9Oa" secondAttribute="centerX" id="wGB-CZ-WEa"/>
                     </constraints>
                 </view>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RhS-om-Ux6">
-                    <rect key="frame" x="0.0" y="124" width="320" height="444"/>
-                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2S-F9-AIM">
+                    <rect key="frame" x="0.0" y="122" width="320" height="446"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.91053109217171713" green="0.91053109217171713" blue="0.91053109217171713" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
+                <constraint firstAttribute="bottom" secondItem="X2S-F9-AIM" secondAttribute="bottom" id="398-6O-F1o"/>
                 <constraint firstItem="W5E-f6-9Oa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EdZ-Fq-qHW"/>
                 <constraint firstItem="W5E-f6-9Oa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="KEk-jS-2Jg"/>
-                <constraint firstAttribute="bottom" secondItem="RhS-om-Ux6" secondAttribute="bottom" id="X0E-Rv-d05"/>
-                <constraint firstItem="RhS-om-Ux6" firstAttribute="top" secondItem="W5E-f6-9Oa" secondAttribute="bottom" constant="16" id="bU7-hR-67F"/>
-                <constraint firstItem="RhS-om-Ux6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jgi-W1-6aq"/>
+                <constraint firstAttribute="trailing" secondItem="X2S-F9-AIM" secondAttribute="trailing" id="aDL-6O-Cix"/>
+                <constraint firstItem="X2S-F9-AIM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iMh-vO-s0M"/>
+                <constraint firstItem="X2S-F9-AIM" firstAttribute="top" secondItem="W5E-f6-9Oa" secondAttribute="bottom" constant="14" id="l1E-dT-AVp"/>
                 <constraint firstAttribute="trailing" secondItem="W5E-f6-9Oa" secondAttribute="trailing" id="w2K-Kb-a8F"/>
-                <constraint firstAttribute="trailing" secondItem="RhS-om-Ux6" secondAttribute="trailing" id="yzY-g0-RLm"/>
             </constraints>
             <point key="canvasLocation" x="612" y="284"/>
         </view>

@@ -75,9 +75,13 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-#pragma mark 一串字符在固定宽度下，正常显示所需要的高度 method
-+ (CGFloat)autoHeightWithString:(NSString *)string Width:(CGFloat)width Font:(UIFont *)font {
-    
+#pragma mark 一串字符在固定宽度下，正常显示所需要的高度
++ (CGFloat)autoHeightWithString:(NSString *)string
+                          width:(CGFloat)width
+                           font:(UIFont *)font {
+    if (!string) {
+        return 0;
+    }
     //大小
     CGSize boundRectSize = CGSizeMake(width, MAXFLOAT);
     //绘制属性（字典）
@@ -90,9 +94,12 @@
     return newFloat;
 }
 
-#pragma mark 一串字符在一行中正常显示所需要的宽度 method
-+ (CGFloat)autoWidthWithString:(NSString *)string Font:(UIFont *)font {
-    
+#pragma mark 一串字符在一行中正常显示所需要的宽度
++ (CGFloat)autoWidthWithString:(NSString *)string
+                          font:(UIFont *)font {
+    if (!string) {
+        return 0;
+    }
     //大小
     CGSize boundRectSize = CGSizeMake(MAXFLOAT, font.lineHeight);
     //绘制属性（字典）

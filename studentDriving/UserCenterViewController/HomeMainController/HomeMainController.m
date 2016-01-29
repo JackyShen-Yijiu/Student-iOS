@@ -42,6 +42,10 @@
 #import "HomeActivityController.h"
 #import "DVVCheckActivity.h"
 
+#import "ComplaintController.h"
+#import "ShuttleBusController.h"
+#import "DrivingDetailController.h"
+
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
@@ -167,6 +171,17 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     #pragma mark 当程序由后台进入前台后，调用检查活动的方法，检查今天是否有活动
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForegroundCheckActivity) name:@"kCheckActivity" object:nil];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        ComplaintController *complainVC = [ComplaintController new];
+//        [self.navigationController pushViewController:complainVC animated:YES];
+        
+//        ShuttleBusController *busVC = [ShuttleBusController new];
+//        [self.navigationController pushViewController:busVC animated:YES];
+        
+        DrivingDetailController *detailVC = [DrivingDetailController new];
+        [self.navigationController pushViewController:detailVC animated:YES];
+    });
     
 //    [self changeScrollViewContentSize];
 }
