@@ -44,14 +44,15 @@
     return _detailLabel;
 }
 - (void)layoutSubviews{
+    [super layoutSubviews];
     [self.rightLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.contentView.mas_top).with.offset(17);
+        make.top.mas_equalTo(self.contentView.mas_top).with.offset(20);
         make.left.mas_equalTo(self.contentView.mas_left).with.offset(15);
         make.width.mas_equalTo(@100);
         make.height.mas_equalTo(@10);
     }];
     [self.detailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.contentView.mas_top).with.offset(17);
+        make.top.mas_equalTo(self.contentView.mas_top).with.offset(20);
         make.right.mas_equalTo(self.contentView.mas_right).with.offset(-15);
         make.width.mas_equalTo(@200);
         make.height.mas_equalTo(@10);
