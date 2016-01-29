@@ -20,6 +20,7 @@
 #import "SignUpPayCell.h"
 #import "SignUpInfoCell.h"
 #import "SignUpFirmOrderFooterView.h"
+#import "HomeCheckProgressView.h"
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 static NSString *const kVerifyFcode = @"verifyfcodecorrect";
@@ -45,6 +46,10 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 @property (nonatomic, strong) NSArray *infoArray;
 @property (nonatomic, strong) UILabel *realPayLabel;
 @property (nonatomic, strong) UILabel *moneyPayLabel;
+@property (nonatomic, strong) HomeCheckProgressView *YView;
+@property (nonatomic, strong) SignUpPayCell *payCell;
+@property (nonatomic, strong) NSString *HMoneyStr; // 活动立减的金额
+@property (nonatomic, assign) NSInteger tag; // 支付方式
 @end
 
 @implementation SignUpFirmOrderController
@@ -76,7 +81,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         _referButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _referButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
         _referButton.titleLabel.font = [UIFont systemFontOfSize:16];
-        [_referButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_referButton setTitle:@"立即支付" forState:UIControlStateNormal];
         [_referButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_referButton addTarget:self action:@selector(dealRefer:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -167,33 +172,77 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     }
     return 55;
 }
-
-//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
-//    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
-//        [cell setSeparatorInset:UIEdgeInsetsMake(0, 15, 0, 15)];
-//    }
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        SignUpSchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_0"];
-        if (!cell) {
-            cell = [[SignUpSchoolInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_0"];
+        if (0 == indexPath.row) {
+            // 一步活动折扣验证
+            NSString *infoCellID = @"infoCellID";
+            SignUpInfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:infoCellID];
+            if (!infoCell) {
+                infoCell = [[SignUpInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:infoCellID];
+            }
+            infoCell.signUpTextField.placeholder = @"一步活动折扣券";
+            infoCell.signUpCompletion = ^(NSString *YDiscountStr){
+               // 验证活动折扣券是否正确
+                [JENetwoking startDownLoadWithUrl:nil postParam:nil WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+                    DYNSLog(@"param = %@",data[@"msg"]);
+                    NSDictionary *param = data;
+                    NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+                    if ([type isEqualToString:@"0"]) {
+                        kShowSuccess(@"报名成功");
+                        [self.tableView reloadData];
+                        
+                        
+                        
+                    }else {
+                        kShowFail(param[@"msg"]);
+                        // 弹出提示信息
+                        _YView = [[HomeCheckProgressView alloc]initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
+                        _YView.imgView.image = [UIImage imageNamed:@"错"];
+                        _YView.topLabel.text = @"一步活动折扣券不正确,请重新填写";
+                        _YView.bottomLabel.text = @"";
+                        _YView.topLabel.font = [UIFont systemFontOfSize:16];
+                        _YView.bottomLabel.font = [UIFont systemFontOfSize:12];
+                        _YView.bottomLabel.textColor = [UIColor colorWithHexString:@"e6e6e6"];
+                        [_YView.rightButtton setTitle:@"下一步" forState:UIControlStateNormal];
+                        [_YView.wrongButton setTitle:@"重新填写" forState:UIControlStateNormal];
+                        [[UIApplication sharedApplication].keyWindow addSubview:_YView];
+                        __weak typeof(self) ws = self;
+                        _YView.didClickBlock = ^(NSInteger tag){
+                            // 点击下一步或者重新填写时的回调
+                            [ws.YView removeFromSuperview];
+                        };
+
+                    }
+                }];
+            };
+            return infoCell;
+            
+        }else{
+            SignUpSchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_0"];
+            if (!cell) {
+                cell = [[SignUpSchoolInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_0"];
+            }
+            cell.rightLabel.text = self.strArray[indexPath.row];
+            cell.detailLabel.text = @"一步互联网驾校";
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            return cell;
+
         }
-        cell.rightLabel.text = self.strArray[indexPath.row];
-        cell.detailLabel.text = @"一步互联网驾校";
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        return cell;
     }else if (1 == indexPath.section){
         NSString *cellID = @"payCell";
-        SignUpPayCell *payCell  = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!payCell) {
-            payCell = [[SignUpPayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        _payCell  = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!_payCell) {
+            _payCell = [[SignUpPayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
-        payCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        payCell.payLineUPLabel.text = @"微信支付";
-        payCell.payLineDownLabel.text = @"支付宝支付";
-        return payCell;
+        _payCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        _payCell.payLineUPLabel.text = @"微信支付";
+        _payCell.payLineDownLabel.text = @"支付宝支付";
+        _payCell.clickPayWayBlock = ^(NSInteger tag){
+            _tag = tag;
+        };
+
+        return _payCell;
     }
     return nil;
 }
@@ -219,33 +268,12 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 }
 
 - (void)dealRefer:(UIButton *)sender{
-    
-    NSDictionary *param = [SignUpInfoManager getSignUpInforamtion];
-    if (param == nil) {
-        return;
+    if (200 == _tag) {
+        // 微信支付
+    }else if (201 == _tag){
+        // 支付宝支付
     }
-    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
-    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        DYNSLog(@"param = %@",data[@"msg"]);
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
-            kShowSuccess(@"报名成功");
-//            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
-            [AcountManager saveUserApplyState:@"1"];
-            //使重新报名变为0
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
-                [ud setObject:@"0" forKey:@"applyAgain"];
-                [ud synchronize];
-            }
-        }else {
-            kShowFail(param[@"msg"]);
-        }
-    }];
 }
-
-
 
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
