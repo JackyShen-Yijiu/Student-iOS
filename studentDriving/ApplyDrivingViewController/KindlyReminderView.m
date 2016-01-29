@@ -48,7 +48,7 @@
     _contentLb.numberOfLines = 0;
     
     _titleLb.textColor = [UIColor redColor];
-    _contentLb.textColor = [UIColor blackColor];
+    _contentLb.textColor = [UIColor colorWithHexString:@"999999"];
 }
 
 - (void)updateUI {

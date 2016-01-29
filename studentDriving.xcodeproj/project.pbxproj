@@ -16,6 +16,7 @@
 		062734C71C5A00060056B0BC /* SignUpSchoolInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734C61C5A00060056B0BC /* SignUpSchoolInfoCell.m */; };
 		062734CA1C5A0C550056B0BC /* SignUpPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734C91C5A0C550056B0BC /* SignUpPayCell.m */; };
 		062734CD1C5A2C860056B0BC /* SignUpInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */; };
+		062734D01C5A46410056B0BC /* SignUpTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734CF1C5A46410056B0BC /* SignUpTextField.m */; };
 		064183F71C57552E00A33D88 /* HomeCheckProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183F61C57552E00A33D88 /* HomeCheckProgressView.m */; };
 		064183FB1C57A8AC00A33D88 /* CheckProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183FA1C57A8AC00A33D88 /* CheckProgressController.m */; };
 		064184011C57AD6F00A33D88 /* YBBaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064184001C57AD6F00A33D88 /* YBBaseTableCell.m */; };
@@ -636,6 +637,8 @@
 		062734C91C5A0C550056B0BC /* SignUpPayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpPayCell.m; sourceTree = "<group>"; };
 		062734CB1C5A2C860056B0BC /* SignUpInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpInfoCell.h; sourceTree = "<group>"; };
 		062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpInfoCell.m; sourceTree = "<group>"; };
+		062734CE1C5A46410056B0BC /* SignUpTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTextField.h; sourceTree = "<group>"; };
+		062734CF1C5A46410056B0BC /* SignUpTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTextField.m; sourceTree = "<group>"; };
 		064183F51C57552E00A33D88 /* HomeCheckProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCheckProgressView.h; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.h; sourceTree = SOURCE_ROOT; };
 		064183F61C57552E00A33D88 /* HomeCheckProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCheckProgressView.m; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.m; sourceTree = SOURCE_ROOT; };
 		064183F91C57A8AC00A33D88 /* CheckProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressController.h; sourceTree = "<group>"; };
@@ -1812,6 +1815,8 @@
 				062734C61C5A00060056B0BC /* SignUpSchoolInfoCell.m */,
 				062734C81C5A0C550056B0BC /* SignUpPayCell.h */,
 				062734C91C5A0C550056B0BC /* SignUpPayCell.m */,
+				062734CE1C5A46410056B0BC /* SignUpTextField.h */,
+				062734CF1C5A46410056B0BC /* SignUpTextField.m */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -4173,6 +4178,7 @@
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
 				06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */,
 				D5604C921BF656F30020F0D7 /* MessageReadManager.m in Sources */,
+				062734D01C5A46410056B0BC /* SignUpTextField.m in Sources */,
 				D588AFC71BDDDAAB000C5D6F /* CarModel.m in Sources */,
 				D588AFC91BDDDAAB000C5D6F /* TrainFieldInfoModel.m in Sources */,
 				D5C23FF21BE8ED1300832CF3 /* SchoolInfo.m in Sources */,

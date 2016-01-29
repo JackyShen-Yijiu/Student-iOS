@@ -15,9 +15,9 @@
 @end
 @implementation SignUpInfoCell
 
-- (CheckProgressTextField *)signUpTextField {
+- (SignUpTextField *)signUpTextField {
     if (_signUpTextField == nil) {
-        _signUpTextField = [[CheckProgressTextField alloc] init];
+        _signUpTextField = [[SignUpTextField alloc] init];
         _signUpTextField.delegate = self;
         _signUpTextField.returnKeyType = UIReturnKeyDone;
     }
@@ -37,7 +37,7 @@
     [self.signUpTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView.mas_left).offset(15);
         make.top.mas_equalTo(self.contentView.mas_top).offset(17);
-        NSNumber *weigh = [[NSNumber alloc] initWithFloat:self.contentView.frame.size.width];
+        NSNumber *weigh = [[NSNumber alloc] initWithFloat:self.contentView.frame.size.width - 30];
         make.width.mas_equalTo(weigh);
         make.height.mas_equalTo(@45);
         
