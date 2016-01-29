@@ -1,29 +1,17 @@
 //
-//  SignUpController.m
+//  SignUpFirmOrderController.m
 //  studentDriving
 //
-//  Created by ytzhang on 16/1/28.
+//  Created by ytzhang on 16/1/29.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "SignUpController.h"
+#import "SignUpFirmOrderController.h"
 #import "SignUpCell.h"
-#import "ExamClassViewController.h"
-#import "ExamCarViewController.h"
-#import "SignUpInfoManager.h"
-#import "DrivingViewController.h"
-#import "SignUpCoachViewController.h"
-#import "SignUpDrivingViewController.h"
-#import "ChooseBtnView.h"
 #import "KindlyReminderView.h"
-#import "SignUpViewController.h"
-#import "SignUpSuccessViewController.h"
+#import "SignUpInfoManager.h"
 #import "NSUserStoreTool.h"
 #import "UIColor+Hex.h"
-#import "ExamClassModel.h"
-#import "ExamDetailCell.h"
-#import "SignUpCell.h"
-#import "ApplyClassCell.h"
 #import "BLPFAlertView.h"
 #include "CoachViewController.h"
 #import "YBBaseTableCell.h"
@@ -31,13 +19,14 @@
 #import "SignUpSchoolInfoCell.h"
 #import "SignUpPayCell.h"
 #import "SignUpInfoCell.h"
+#import "SignUpFirmOrderFooterView.h"
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
 #define h_width [UIScreen mainScreen].bounds.size.width/320
 
-@interface SignUpController ()<UITableViewDataSource, UITableViewDelegate>{
+@interface SignUpFirmOrderController ()<UITableViewDataSource, UITableViewDelegate>{
     NSArray *signUpArray;
 }
 
@@ -52,37 +41,14 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 @property (strong, nonatomic) UIButton *rightBtn;
 @property (strong, nonatomic) UIView   *YcodeFootView;
 
-@property (assign, nonatomic) BOOL      cellIsShow;            // 用来记录班级详情时候显示
-@property (assign, nonatomic) NSInteger numberOfClass;         //班级的个数
-@property (strong, nonatomic) NSArray   *classDetailDataArray; //用来保存选择驾校后返回的班级详情信息
-@property (strong, nonatomic) NSArray   *classNameDataArray;   //用来保存班级名字
-@property (assign, nonatomic) NSInteger whichBtnClick;         //用来记录报考班型中那个cell被点击了
-
 @property (nonatomic, strong) NSArray *strArray;
 @property (nonatomic, strong) NSArray *infoArray;
 @property (nonatomic, strong) UILabel *realPayLabel;
 @property (nonatomic, strong) UILabel *moneyPayLabel;
 @end
 
-@implementation SignUpController
+@implementation SignUpFirmOrderController
 
-- (UIView *)YcodeFootView {
-    if (!_YcodeFootView) {
-        _YcodeFootView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 60)];
-        UILabel *labelTitle = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 60, 20)];
-        labelTitle.text = @"Y码须知:";
-        labelTitle.font = [UIFont systemFontOfSize:12];
-        labelTitle.textColor = [UIColor redColor];
-        [_YcodeFootView addSubview:labelTitle];
-        UILabel *labelContent = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, kSystemWide-30, 30)];
-        labelContent.text = @"       Y码不影响您的报名流程!填写正确的Y码,即可获得丰厚的奖励。";
-        labelContent.font = [UIFont systemFontOfSize:12];
-        labelContent.numberOfLines = 2;
-        labelContent.textColor = [UIColor colorWithHexString:@"999999"];
-        [_YcodeFootView addSubview:labelContent];
-    }
-    return _YcodeFootView;
-}
 
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
@@ -142,32 +108,20 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 280)];
-        view.backgroundColor  = [UIColor whiteColor];
-        [view addSubview:self.YcodeFootView];
-        KindlyReminderView *kindlyReminderView = [[KindlyReminderView alloc] initWithContentStr:@"请认真填写以上信息，您填写的信息将作为报名信息录入车考驾照系统内，如果信息错误，将影响您的报名流程。" frame:CGRectMake(0, 60, kSystemWide, 100)];
-        [view addSubview:kindlyReminderView];
-        
-        
-        // pay view
-        UIView *payView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, kSystemWide, 80)];
-        payView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
-        [payView addSubview:self.realPayLabel];
-        [payView addSubview:self.moneyPayLabel];
-        [view addSubview:payView];
-        _tableView.tableFooterView.backgroundColor = [UIColor whiteColor];
-        _tableView.tableFooterView = view;
+        SignUpFirmOrderFooterView *footerView = [[SignUpFirmOrderFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide,300) Discount:@"yib" realMoney:@"应付:" schoolName:@"一步驾校"];
+        footerView.backgroundColor = [UIColor whiteColor];
+        _tableView.tableFooterView = footerView;
     }
     return _tableView;
 }
 
 - (void)viewDidLoad{
     [super  viewDidLoad];
-
+    
     self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = @"报名";
-    self.strArray = [NSArray arrayWithObjects:@"班级类型",@"报考驾校",@"报考教练", nil];
+    self.title = @"确认订单";
+    self.strArray = [NSArray arrayWithObjects:@"一步活动折扣券",@"商品名称",@"商品金额",@"折扣(当前账户可使用Y码一张)", nil];
     self.infoArray = [NSArray arrayWithObjects:@"真实姓名",@"联系电话",@"验证Y码", nil];
     [self.view addSubview:self.tableView];
     //    self.tableView.tableFooterView = [self tableFootView];
@@ -194,22 +148,22 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     return 0;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0 || section == 1) {
-                   return 3;
-            }else if(section == 2){
-                return 1;
-        }
+    if (section == 0 ) {
+        return 4;
+    }else if(section == 1){
+        return 1;
+    }
     return 0;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 2 ) {
+    if (indexPath.section == 1) {
         
-            return 44;
+        return 44;
     }
     return 55;
 }
@@ -230,68 +184,15 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         cell.detailLabel.text = @"一步互联网驾校";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
-    }else if (indexPath.section == 1 ) {
-        SignUpInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_4"];
-        if (cell == nil) {
-            cell = [[SignUpInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_4"];
-        }
-        cell.signUpTextField.placeholder = _infoArray[indexPath.row];
-        //        [cell receiveTextContent:];
-        NSString *titleString = [self.secondArray[1] objectAtIndex:indexPath.row];
-        [cell receiveTitile:titleString andSignUpBlock:^(NSString *completionString) {
-            if (indexPath.row == 0) {
-                if (completionString == nil || completionString.length == 0) {
-                    [self showTotasViewWithMes:@"请输入真实姓名"];
-                    return ;
-                }
-                if(completionString.length>6) {
-                    cell.signUpTextField.text = @"";
-                    [self showTotasViewWithMes:@"最大输入6个中文字符"];
-                    return;
-                }
-                [SignUpInfoManager signUpInfoSaveRealName:completionString];
-                DYNSLog(@"真实名字");
-            }else if (indexPath.row == 1) {
-                if (completionString == nil || completionString.length == 0) {
-                    [self showTotasViewWithMes:@"请输入手机号"];
-                    return;
-                }
-                if (![AcountManager isValidateMobile:completionString]) {
-                    [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
-                    return;
-                }
-                [SignUpInfoManager signUpInfoSaveRealTelephone:completionString];
-                DYNSLog(@"联系方式");
-            }else if (indexPath.row == 2) {
-                NSDictionary *param = @{@"userid":[AcountManager manager].userid,
-                                        @"fcode":completionString};
-                NSString *verifyFcode = [NSString stringWithFormat:BASEURL,kVerifyFcode];
-                
-                [JENetwoking startDownLoadWithUrl:verifyFcode postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-                    DYNSLog(@"param = %@",data[@"msg"]);
-                    NSDictionary *param = data;
-                    NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-                    if ([type isEqualToString:@"1"]) {
-                        kShowSuccess(@"Y码验证成功");
-                        [SignUpInfoManager signUpInfoSaveRealFcode:completionString];
-                    }else {
-                        kShowFail(@"未查询到此Y码");
-                    }
-                } withFailure:^(id data) {
-                    [self showTotasViewWithMes:@"网络连接失败，请检查网络连接"];
-                }];
-            }
-        }];
-        
-        return cell;
-        
-    }else if (2 == indexPath.section){
+    }else if (1 == indexPath.section){
         NSString *cellID = @"payCell";
         SignUpPayCell *payCell  = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!payCell) {
             payCell = [[SignUpPayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
         payCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        payCell.payLineUPLabel.text = @"微信支付";
+        payCell.payLineDownLabel.text = @"支付宝支付";
         return payCell;
     }
     return nil;
@@ -330,7 +231,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             kShowSuccess(@"报名成功");
-            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+//            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
             [AcountManager saveUserApplyState:@"1"];
             //使重新报名变为0
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];

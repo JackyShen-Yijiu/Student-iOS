@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06073D831C251BF60058B372 /* HomeFavourableController.m */; };
 		06073D871C251C300058B372 /* HomeRewardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06073D861C251C300058B372 /* HomeRewardController.m */; };
+		060DB4021C5B1E390039C30F /* SignUpFirmOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060DB4011C5B1E390039C30F /* SignUpFirmOrderController.m */; };
+		060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 060DB4041C5B3E850039C30F /* SignUpFirmOrderFooterView.m */; };
 		060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060FC6A51C27CB030039DDBB /* RegistNoteController.m */; };
 		061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */; };
 		061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADE1C39001C008C51C3 /* MoneyShopController.m */; };
@@ -654,6 +656,10 @@
 		06073D831C251BF60058B372 /* HomeFavourableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFavourableController.m; sourceTree = "<group>"; };
 		06073D851C251C300058B372 /* HomeRewardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeRewardController.h; sourceTree = "<group>"; };
 		06073D861C251C300058B372 /* HomeRewardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeRewardController.m; sourceTree = "<group>"; };
+		060DB4001C5B1E390039C30F /* SignUpFirmOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpFirmOrderController.h; sourceTree = "<group>"; };
+		060DB4011C5B1E390039C30F /* SignUpFirmOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpFirmOrderController.m; sourceTree = "<group>"; };
+		060DB4031C5B3E850039C30F /* SignUpFirmOrderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpFirmOrderFooterView.h; sourceTree = "<group>"; };
+		060DB4041C5B3E850039C30F /* SignUpFirmOrderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpFirmOrderFooterView.m; sourceTree = "<group>"; };
 		060FC6A41C27CB030039DDBB /* RegistNoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistNoteController.h; sourceTree = "<group>"; };
 		060FC6A51C27CB030039DDBB /* RegistNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistNoteController.m; sourceTree = "<group>"; };
 		061E7AD91C38C20D008C51C3 /* DiscountOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountOrderController.h; sourceTree = "<group>"; };
@@ -1894,6 +1900,10 @@
 			children = (
 				062734B61C59C9A90056B0BC /* SignUpController.h */,
 				062734B71C59C9A90056B0BC /* SignUpController.m */,
+				060DB4001C5B1E390039C30F /* SignUpFirmOrderController.h */,
+				060DB4011C5B1E390039C30F /* SignUpFirmOrderController.m */,
+				060DB4031C5B3E850039C30F /* SignUpFirmOrderFooterView.h */,
+				060DB4041C5B3E850039C30F /* SignUpFirmOrderFooterView.m */,
 				062734CB1C5A2C860056B0BC /* SignUpInfoCell.h */,
 				062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */,
 				062734C51C5A00060056B0BC /* SignUpSchoolInfoCell.h */,
@@ -4312,6 +4322,7 @@
 				D96D1BEC1C2B88A000F1C282 /* DVVSideMenuCell.m in Sources */,
 				D588B0701BDDDB90000C5D6F /* CancelAppointmentViewController.m in Sources */,
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
+				060DB4021C5B1E390039C30F /* SignUpFirmOrderController.m in Sources */,
 				D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */,
 				D588B0DF1BDDDC14000C5D6F /* CancelAppointmentCell.m in Sources */,
 				55901B621C26796700AC64FF /* VerifyInformationController.m in Sources */,
@@ -4331,6 +4342,7 @@
 				D588B0D81BDDDC14000C5D6F /* DrivingIntroductionCell.m in Sources */,
 				B21818361C5A42F600F973A7 /* trainfieldModel.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
+				060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
 				D5C240111BECFAD800832CF3 /* AVPlayModel.m in Sources */,
 				D5604B511BF656C50020F0D7 /* MWZoomingScrollView.m in Sources */,
@@ -4374,7 +4386,6 @@
 				B218181D1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m in Sources */,
 				B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */,
 				D92B2DA91C59D0030050EE84 /* DrivingDetailTrainingGroundCell.m in Sources */,
-				064184041C57AE2D00A33D88 /* CheckProgressCell.m in Sources */,
 				D5604B4D1BF656C50020F0D7 /* MWPhoto.m in Sources */,
 				061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */,
 				060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */,
