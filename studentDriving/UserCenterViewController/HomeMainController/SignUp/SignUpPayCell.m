@@ -60,12 +60,19 @@
 {
         btn.selected = YES;
         _payLineDownButton.selected = NO;
+    if (_clickPayWayBlock) {
+        _clickPayWayBlock(btn.tag);
+    }
+
 
 }
 - (void)didDownPay:(UIButton *)btn{
    
         btn.selected = YES;
         _payLineUPButton.selected = NO;
+    if (_clickPayWayBlock) {
+        _clickPayWayBlock(btn.tag);
+    }
     
 }
 - (UIButton *)payLineUPButton{
@@ -73,6 +80,7 @@
         _payLineUPButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_payLineUPButton setBackgroundImage:[UIImage imageNamed:@"cancelSelect"] forState:UIControlStateNormal];
         [_payLineUPButton setBackgroundImage:[UIImage imageNamed:@"cancelSelect_click"] forState:UIControlStateSelected];
+        _payLineUPButton.userInteractionEnabled = YES;
         [_payLineUPButton addTarget:self action:@selector(didUpPay:) forControlEvents:UIControlEventTouchUpInside];
         _payLineUPButton.tag = 200;
     }

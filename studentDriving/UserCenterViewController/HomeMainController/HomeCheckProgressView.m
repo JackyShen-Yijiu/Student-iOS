@@ -38,6 +38,7 @@
 
 }
 - (void)layoutSubviews{
+    [super layoutSubviews];
     [self.bgView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.groundView.mas_left).with.offset(20);
         make.right.mas_equalTo(self.groundView.mas_right).with.offset(-20);
@@ -145,7 +146,7 @@
         _wrongButton.layer.borderWidth = 1;
         _wrongButton.layer.cornerRadius = 2;
         _wrongButton.tag = 201;
-//        [_wrongButton addTarget:self action:@selector(dikClickBack:) forControlEvents:UIControlEventTouchUpInside];
+        [_wrongButton addTarget:self action:@selector(dikClickBackTouch:) forControlEvents:UIControlEventTouchUpInside];
         
     }
     return _wrongButton;
@@ -156,9 +157,9 @@
 {
     
     
-//    if (_didClickBlock) {
-//        _didClickBlock(btn.tag);
-//    }
+    if (_didClickBlock) {
+        _didClickBlock(btn.tag);
+    }
 }
 
 @end
