@@ -9,6 +9,7 @@
 #import "JGDrivingDetailTeachingNewsCell.h"
 #import "CoachDetail.h"
 #import "JGTeachingNewsChangDiView.h"
+#import "GBTagListView.h"
 
 #define JGMargin 10
 
@@ -27,9 +28,12 @@
 // 个性标签标题
 @property (strong, nonatomic) UILabel *gexingbiaoqianTitleLabel;
 // 个性标签内容
-@property (strong, nonatomic) UIView *gexingbiaoqianView;
+@property (strong, nonatomic) GBTagListView *gexingbiaoqianView;
 // 底部分割线
 @property (strong, nonatomic) UIView *footView;
+
+@property (strong, nonatomic) UILabel *notCountLabel;
+@property (strong, nonatomic) UILabel *notBiaoqianLabel;
 
 @end
 
@@ -102,11 +106,11 @@
 }
 
 // 个性标签内容
-- (UIView *)gexingbiaoqianView
+- (GBTagListView *)gexingbiaoqianView
 {
     if (_gexingbiaoqianView== nil) {
-        _gexingbiaoqianView = [[UIView alloc] init];
-        _gexingbiaoqianView.backgroundColor = [UIColor redColor];
+        _gexingbiaoqianView = [[GBTagListView alloc] init];
+        _gexingbiaoqianView.backgroundColor = [UIColor whiteColor];
     }
     return _gexingbiaoqianView;
 }
@@ -121,6 +125,26 @@
     return _footView;
 }
 
+- (UILabel *)notCountLabel {
+    
+    if (_notCountLabel == nil) {
+        _notCountLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
+        _notCountLabel.text = @"暂无练车场地图片";
+        _notCountLabel.textColor = [UIColor lightGrayColor];
+        _notCountLabel.numberOfLines = 1;
+    }
+    return _notCountLabel;
+}
+- (UILabel *)notBiaoqianLabel {
+    
+    if (_notBiaoqianLabel == nil) {
+        _notBiaoqianLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
+        _notBiaoqianLabel.text = @"该教练暂无个性标签";
+        _notBiaoqianLabel.textColor = [UIColor lightGrayColor];
+        _notBiaoqianLabel.numberOfLines = 1;
+    }
+    return _notBiaoqianLabel;
+}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
@@ -142,7 +166,8 @@
 
     // 场地图片
     [self.contentView addSubview:self.photosView];
-    
+    [self.photosView addSubview:self.notCountLabel];
+
     // 分割线
     [self.contentView addSubview:self.midDelive];
 
@@ -151,10 +176,12 @@
 
     // 个性标签内容
     [self.contentView addSubview:self.gexingbiaoqianView];
+    [self.gexingbiaoqianView addSubview:self.notBiaoqianLabel];
 
     // 底部分割线
     [self.contentView addSubview:self.footView];
 
+    
     // 授课信息title
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.contentView.mas_top);
@@ -183,6 +210,13 @@
         make.height.equalTo(@70);
         make.width.equalTo(@(kSystemWide-JGMargin*2));
     }];
+    // 占位图片
+    [self.notCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(@0);
+        make.right.mas_equalTo(@0);
+        make.top.mas_equalTo(@0);
+        make.height.equalTo(self.photosView);
+    }];
     
     // 分割线
     [self.midDelive mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -205,7 +239,14 @@
         make.top.equalTo(self.gexingbiaoqianTitleLabel.mas_top);
         make.left.equalTo(self.gexingbiaoqianTitleLabel.mas_right).offset(JGMargin/2);
         make.width.equalTo(@(kSystemWide-60-JGMargin*2.5));
-        make.height.equalTo(@50);
+        make.height.equalTo(@60);
+    }];
+    // 占位图片
+    [self.notBiaoqianLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(@0);
+        make.right.mas_equalTo(@0);
+        make.top.mas_equalTo(@0);
+        make.height.equalTo(self.gexingbiaoqianView);
     }];
     
     // 灰色底部
@@ -216,7 +257,6 @@
         make.width.mas_equalTo(self.contentView);
     }];
 }
-
 
 - (void)setDetailModel:(CoachDetail *)detailModel
 {
@@ -232,15 +272,21 @@
         self.lianchechangdiLabel.text = @"暂无训练场地";
     }
 
-    // 场地图片  自定制
-//    @property (strong, nonatomic) UIView *photosView;
-    NSLog(@"_detailModel.trainFieldInfo.pictures:%@",_detailModel.trainfield.pictures);
+    // 场地图片
+    if (_detailModel.trainfield.pictures&&_detailModel.trainfield.pictures.count!=0) {
+        self.notCountLabel.hidden = YES;
+        self.photosView.pictures = _detailModel.trainfield.pictures;
+    }else{
+        self.notCountLabel.hidden = NO;
+    }
     
-    self.photosView.pictures = _detailModel.trainfield.pictures;
-    
-    // 个性标签内容 自定制
-//    @property (strong, nonatomic) UIView *gexingbiaoqianView;
-    
+    // 个性标签内容
+    if (_detailModel.tagslist&&_detailModel.tagslist.count!=0) {
+        self.notCountLabel.hidden = YES;
+        [self.gexingbiaoqianView setTagWithTagArray:_detailModel.tagslist];
+    }else{
+        self.notCountLabel.hidden = NO;
+    }
     
 }
 
