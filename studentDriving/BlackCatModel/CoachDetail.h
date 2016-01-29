@@ -52,6 +52,12 @@
 
 @property (nonatomic,strong) trainfieldModel *trainfield;
 
+// 个性标签
 @property (nonatomic,strong) NSArray *tagslist;
+// 课程费用
+@property (nonatomic,strong) NSArray *serverclasslist;
+
+
+@property (nonatomic,assign) BOOL isMore;
 
 @end
