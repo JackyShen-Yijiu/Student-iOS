@@ -118,6 +118,8 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.coachUserId = @"568cdd3c60535c54738a8756";
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
     
     self.view.backgroundColor = [UIColor whiteColor];
@@ -426,6 +428,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
             }
+            cell.parentViewController = self;
             
             cell.detailModel = self.detailModel;
             

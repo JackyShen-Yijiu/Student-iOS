@@ -44,7 +44,7 @@ PODS:
   - Qiniu (7.0.16):
     - AFNetworking (~> 2.0)
     - HappyDNS (~> 0.2)
-  - SDCycleScrollView (1.6):
+  - SDCycleScrollView (1.61):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.7.5):
     - SDWebImage/Core (= 3.7.5)
@@ -86,7 +86,7 @@ SPEC CHECKSUMS:
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Qiniu: 51a8702cddc02b50867e10cef99291b9a8a006b1
-  SDCycleScrollView: 436ccec76258f9f280365af5c07b289a71382601
+  SDCycleScrollView: a002d85b30cfa9d0ac74069cd3973ca19ff4f22f
   SDWebImage: 69c6303e3348fba97e03f65d65d4fbc26740f461
   SSKeychain: 04c4ec40f4c3deda524e269bc76e5f30e638a174
   TencentOpenApiSDK: a0d7716edd6eb438d65828168e8e5137301b436d
