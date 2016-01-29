@@ -9,7 +9,6 @@
 #import "JGDrivingDetailViewController.h"
 #import "SignUpViewController.h"
 #import "DrivingDetailViewController.h"
-#import "CoachInformationCell.h"
 #import "CoachIntroductionCell.h"
 #import "StudentCommentCell.h"
 #import "JsonTransformManager.h"
@@ -28,6 +27,7 @@
 #import "JGDrivingDetailTeachingNewsCell.h"
 #import "JGDrivingDetailPersonalNoteCell.h"
 #import "JGDrivingDetailEvalutionCell.h"
+#import "JGDrivingDetailKeChengFeiYongCell.h"
 
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
@@ -320,20 +320,34 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 }
 
 
+#pragma mark --- 4组数据
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
+    return 4;
 }
-#pragma mark - delegation
+#pragma mark --- 每一组有多少行
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    if (section==0) {// 个人信息、授课信息
+        return 2;
+    }else if (section==1){// 课程费用(需要根据服务器返回数组个数来判断)
+        return 2;
+    }else if (section==2){// 个人说明
+        return 1;
+    }else if (section==3){// 学员评价
+        return self.commentArray.count;
+    }
+    return 0;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-
-    if (section==1) {
+    
+    if (section==1 || section==3){// 课程费用、学员评价
         return 40;
     }
     return 0;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-   
-    if (section==1) {
+    
+    if (section==1 || section==3) {
         
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 40)];
         headerView.backgroundColor = RGBColor(251, 251, 251);
@@ -344,6 +358,9 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         titleLabe.backgroundColor = [UIColor clearColor];
         titleLabe.frame = headerView.bounds;
         titleLabe.text = @"   学员评价";
+        if (section==1) {
+            titleLabe.text = @"   课程费用";
+        }
         titleLabe.font = [UIFont boldSystemFontOfSize:13];
         [headerView addSubview:titleLabe];
         
@@ -354,78 +371,81 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0 && indexPath.section == 0) {// 个人信息
-        return 160;
-    }else if (indexPath.row == 1 && indexPath.section == 0) {//授课信息(高度自定制)
-        return 235;
-    }else if (indexPath.row == 2 && indexPath.section == 0) {// 个人说明(展开、合并)高度自定制
+    
+    if (indexPath.section==0) {// 个人信息、授课信息
+        
+        if (indexPath.row==0) {// 个人信息
+            return 150;
+        }else if (indexPath.row==1){// 授课信息
+            return [JGDrivingDetailTeachingNewsCell heightWithModel:self.detailModel];
+        }
+
+    }else if (indexPath.section==1){// 课程费用
+        return 130;
+    }else if (indexPath.section==2){// 个人说明
         return 135;
+    }else if (indexPath.section==3){// 学员评价
+        
+        // 更新高度
+        StudentCommentModel *model = self.commentArray[indexPath.row];
+        return [StudentCommentCell heightWithModel:model];
+        
     }
     
-    // 更新高度
-    StudentCommentModel *model = self.commentArray[indexPath.row];
-    return [StudentCommentCell heightWithModel:model];
-    
+    return 0;
     
 }
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 1) {
-        return self.commentArray.count;
-    }
-    return 1;
-}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 0 && indexPath.section == 0) {//个人信息
+    if (indexPath.section==0) {// 个人信息、授课信息
         
-        static NSString *cellId = @"cellOne";
-        JGDrivingDetailTopCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (!cell) {
-            cell = [[JGDrivingDetailTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-            cell.accessoryType = UITableViewCellAccessoryNone;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        if (indexPath.row==0) {//个人信息
+            
+            static NSString *cellId = @"cellOne";
+            JGDrivingDetailTopCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+            if (!cell) {
+                cell = [[JGDrivingDetailTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+                cell.accessoryType = UITableViewCellAccessoryNone;
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            }
+            if (self.detailModel) {
+                [cell receiveDetailsModel:self.detailModel];
+            }
+            
+            return cell;
+            
+        }else if (indexPath.row==1){// 授课信息
+            
+            static NSString *cellId = @"cellTwo";
+            
+            JGDrivingDetailTeachingNewsCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+            
+            if (!cell) {
+                cell = [[JGDrivingDetailTeachingNewsCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
+                
+            }
+            
+            cell.detailModel = self.detailModel;
+            
+            return cell;
+            
         }
-        if (self.detailModel) {
-            [cell receiveDetailsModel:self.detailModel];
-        }
         
-        return cell;
-        
-    }else if (indexPath.row == 1 && indexPath.section == 0) {// 授课信息
-        
-        static NSString *cellId = @"cellTwo";
-        CoachInformationCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+    }else if (indexPath.section==1){// 课程费用
+       
+        static NSString *cellId = @"kechengfeiyong";
+        JGDrivingDetailKeChengFeiYongCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
-            cell = [[CoachInformationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell = [[JGDrivingDetailKeChengFeiYongCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
-        cell.rainingGroundDetail.text = self.detailModel.trainFieldInfo.name;
-        NSString *studentNum = @"0";
-        if (self.detailModel.studentcoount) {
-            studentNum = [NSString stringWithFormat:@"%@",self.detailModel.studentcoount];
-        }
-        cell.studentNum.text = [NSString stringWithFormat:@"学员%@位：",studentNum];
-        
-        if([self.detailModel.passrate floatValue]){
-            cell.studentNumDetail.text = [NSString stringWithFormat:@"通过率%@%@",self.detailModel.passrate,@"%"];
-        }else{
-            cell.studentNumDetail.text = @"暂无";
-        }
-        
-        cell.sendMeetDetail.text = self.detailModel.shuttlemsg;
-        
-        cell.workTimeDetail.text = self.detailModel.worktimedesc;
-        cell.dringAgeLabel.text = [NSString stringWithFormat:@"驾       龄:   %@",self.detailModel.seniority];
-        if (self.detailModel.subject.count >= 2) {
-            cell.teachSubjcetDetail.text = @"全科";
-        }else {
-            SubjectModel *subjectInfo = self.detailModel.subject.firstObject;
-            cell.teachSubjcetDetail.text = subjectInfo.subjectId.stringValue;
-        }
+//        cell.coachIntroductionDetail.text = self.detailModel.introduction;
         return cell;
         
-    }else if (indexPath.row == 2 && indexPath.section == 0) {// 个人说明
+    }else if (indexPath.section==2){// 个人说明
         
         static NSString *cellId = @"cellThree";
         CoachIntroductionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -437,7 +457,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         cell.coachIntroductionDetail.text = self.detailModel.introduction;
         return cell;
         
-    }else if ( indexPath.section == 1) {// 评论
+    }else if (indexPath.section==3){// 评论
         
         static NSString *cellId = @"cellFour";
         StudentCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -449,8 +469,6 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         [cell receiveCommentMessage:model];
         return cell;
     }
-    
-    
     
     return nil;
 }

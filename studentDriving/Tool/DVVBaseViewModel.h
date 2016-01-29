@@ -43,6 +43,6 @@ typedef void(^DVVBaseViewModelUpdataBlock)();
 - (void)dvvNetworkRequestLoadMore;
 
 // 检测服务器返回的数据
-- (BOOL)dvvCheckErrorWithResponseObject:(id)responseObject;
+- (BOOL)dvvCheckError:(id)responseObject;
 
 @end

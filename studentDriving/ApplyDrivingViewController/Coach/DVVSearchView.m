@@ -67,7 +67,10 @@
     _textField.text = @"";
     [_textField resignFirstResponder];
     [self statusNormal];
-    
+  
+    if (_didEndEditingBlock) {
+        _didEndEditingBlock(_textField);
+    }
 }
 
 #pragma mark - UITextFieldDelegate
@@ -143,6 +146,7 @@
         _textField = [UITextField new];
         _textField.delegate = self;
         _textField.keyboardType = UIKeyboardTypeDefault;
+        _textField.returnKeyType = UIReturnKeySearch;
     }
     return _textField;
 }
