@@ -10,7 +10,7 @@
 
 @implementation TrainFieldInfoModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"TrainFieldInfoModelId":@"_id",@"name":@"name",@"pictures":@"pictures"};
+    return @{@"TrainFieldInfoModelId":@"_id",@"name":@"name"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {

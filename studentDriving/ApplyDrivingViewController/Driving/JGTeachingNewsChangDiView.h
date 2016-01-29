@@ -7,8 +7,7 @@
 //  训练场地图片
 
 #import <UIKit/UIKit.h>
-@class CoachDetail;
 
 @interface JGTeachingNewsChangDiView : UIView
-@property (nonatomic,strong) CoachDetail *detailModel;
+@property (nonatomic,strong) NSArray *pictures;
 @end

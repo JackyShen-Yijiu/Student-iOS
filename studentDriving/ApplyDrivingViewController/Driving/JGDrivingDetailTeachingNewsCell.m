@@ -71,7 +71,7 @@
 }
 
 // 场地图片
-- (UIView *)photosView
+- (JGTeachingNewsChangDiView *)photosView
 {
     if (_photosView== nil) {
         _photosView = [[JGTeachingNewsChangDiView alloc] init];
@@ -142,7 +142,7 @@
 
     // 场地图片
     [self.contentView addSubview:self.photosView];
-
+    
     // 分割线
     [self.contentView addSubview:self.midDelive];
 
@@ -226,15 +226,17 @@
     self.suoshujiaxiaoLabel.text = [NSString stringWithFormat:@"所属驾校:%@",_detailModel.driveschoolinfo.name];
 
     // 练车场地
-    if (_detailModel.trainFieldInfo.name) {
-        self.lianchechangdiLabel.text = [NSString stringWithFormat:@"练车场地:%@",_detailModel.trainFieldInfo.name];
+    if (_detailModel.trainfield.fieldname) {
+        self.lianchechangdiLabel.text = [NSString stringWithFormat:@"练车场地:%@",_detailModel.trainfield.fieldname];
     }else{
         self.lianchechangdiLabel.text = @"暂无训练场地";
     }
 
     // 场地图片  自定制
 //    @property (strong, nonatomic) UIView *photosView;
-    self.photosView.detailModel = _detailModel;
+    NSLog(@"_detailModel.trainFieldInfo.pictures:%@",_detailModel.trainfield.pictures);
+    
+    self.photosView.pictures = _detailModel.trainfield.pictures;
     
     // 个性标签内容 自定制
 //    @property (strong, nonatomic) UIView *gexingbiaoqianView;

@@ -16,4 +16,6 @@
 
 + (CGFloat)heightWithModel:(CoachDetail *)model;
 
+@property (nonatomic,weak) UIViewController *parentViewController;
+
 @end
