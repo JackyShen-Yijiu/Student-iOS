@@ -7,7 +7,7 @@
 //
 
 #import "DrivingViewController.h"
-#import "DrivingDetailViewController.h"
+#import "JGDrivingDetailViewController.h"
 #import "DrivingCell.h"
 #import "DrivingModel.h"
 #import "DrivingModel.h"
@@ -22,7 +22,7 @@
 #import "DVVLocationStatus.h"
 #import "JGSelectDrivingVcHeadSearch.h"
 #import "JGSelectDrivingVcHead.h"
-#import "CoachDetailViewController.h"
+#import "DrivingDetailViewController.h"
 #import "CoachTableViewCell.h"
 #import "SearchCoachViewModel.h"
 #import "CoachDMData.h"
@@ -54,28 +54,32 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 @property (nonatomic, strong) DVVLocationStatus *dvvLocationStatus;
 
+@property (nonatomic,weak) DrivingSelectMotorcycleTypeView *typeView;
+
+@property (nonatomic, strong) SearchCoachViewModel *searchCoachViewModel;
+
 @property (nonatomic, assign) BOOL isRefresh;
 
 // 搜索参数
+// 车型选择(服务器返回类型)
+@property (nonatomic, assign) NSInteger licensetype;
+// 0 默认 1距离 2评分 3价格
+@property (nonatomic, assign) NSInteger ordertype;
+
 @property (nonatomic, assign) double latitude;
 @property (nonatomic, assign) double longitude;
+// 可选
 @property (nonatomic, assign) NSInteger radius;
-@property (nonatomic, copy) NSString *cityName;
-@property (nonatomic, copy) NSString *address;
-
-@property (nonatomic, assign) NSInteger carTypeId;
-@property (nonatomic, assign) NSInteger filterType;
+// 城市名称
+@property (nonatomic, copy) NSString *cityname;
+// 搜索名字（coachname schoolname）
 @property (nonatomic, copy) NSString *searchName;
 
 @property (nonatomic, assign) NSInteger index;
 @property (nonatomic, assign) NSInteger count;
 
-@property (nonatomic,weak) DrivingSelectMotorcycleTypeView *typeView;
-
 // 0:找驾校 1:找教练
 @property (nonatomic,assign) NSInteger selectType;
-
-@property (nonatomic, strong) SearchCoachViewModel *searchCoachViewModel;
 
 @end
 
@@ -85,17 +89,13 @@ static NSString *const kDrivingUrl = @"searchschool";
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _licensetype = 0;
+    _ordertype = 0;
     _radius = 10000;
-    _cityName = @"";
-    _address = @"";
-    
-    _carTypeId = 0;
-    _filterType = 0;
     _searchName = @"";
-    
     _index = 1;
     _count = 10;
-    
+
     _selectType = 0;
     
     self.title = @"一步学车";
@@ -122,14 +122,7 @@ static NSString *const kDrivingUrl = @"searchschool";
 //         在模拟器上定位不好用，测试是打开注释
         self.latitude = 39.929985778080237;
         self.longitude = 116.39564503787867;
-        self.index = 1;
-        self.isRefresh = YES;
    
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
-
 }
 
 #pragma mark - 刷新和加载
@@ -140,15 +133,20 @@ static NSString *const kDrivingUrl = @"searchschool";
     MJRefreshNormalHeader *refreshHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         
         ws.isRefresh = YES;
-
+        
         if (ws.selectType==1) {// 找教练
+            
+            _searchCoachViewModel.index = 1;
+            _searchCoachViewModel.orderType = ws.ordertype;
+            _searchCoachViewModel.licenseType = self.licensetype;
+            _searchCoachViewModel.searchName = self.searchName;
             
             [ws refresh];
             
         }else{// 0:找驾校
             
             ws.index = 1;
-           
+
             [ws network];
         }
         
@@ -195,8 +193,8 @@ static NSString *const kDrivingUrl = @"searchschool";
 {
     
     // 判断字符串是否null
-    if (![self.cityName isKindOfClass:[NSNull class]]) {
-        self.cityName = @"";
+    if (![self.cityname isKindOfClass:[NSNull class]]) {
+        self.cityname = @"";
     }
     if (!self.searchName || !self.searchName.length) {
         self.searchName = @"";
@@ -205,10 +203,10 @@ static NSString *const kDrivingUrl = @"searchschool";
     NSString *latitude = [NSString stringWithFormat:@"%f", self.latitude];
     NSString *longitude = [NSString stringWithFormat:@"%f", self.longitude];
     NSString *radius = [NSString stringWithFormat:@"%li", self.radius];
-    NSString *cityName = [NSString stringWithFormat:@"%@", self.cityName];
-    NSString *carTypeId = [NSString stringWithFormat:@"%li", self.carTypeId];
+    NSString *cityName = [NSString stringWithFormat:@"%@", self.cityname];
+    NSString *carTypeId = [NSString stringWithFormat:@"%li", self.licensetype];
     NSString *searchName = [NSString stringWithFormat:@"%@", self.searchName];
-    NSString *filterType = [NSString stringWithFormat:@"%li", self.filterType];
+    NSString *filterType = [NSString stringWithFormat:@"%li", self.ordertype];
     NSString *index = [NSString stringWithFormat:@"%li", self.index];
     NSString *count = [NSString stringWithFormat:@"%li", self.count];
     
@@ -268,6 +266,55 @@ static NSString *const kDrivingUrl = @"searchschool";
         [self showTotasViewWithMes:@"没有找到数据"];
     }
 }
+#pragma mark - 找教练
+- (void)refresh
+{
+    [_searchCoachViewModel dvvNetworkRequestRefresh];
+    
+}
+#pragma mark - config viewModel
+- (void)configViewModel {
+    
+    _searchCoachViewModel = [SearchCoachViewModel new];
+    __weak typeof(self) ws = self;
+    
+    [_searchCoachViewModel dvvSetRefreshSuccessBlock:^{
+        
+        if (0 == _searchCoachViewModel.dataArray.count && 0 == _searchCoachViewModel.licenseType && 0 == _searchCoachViewModel.orderType) {
+            
+            [BLPFAlertView showAlertWithTitle:@"提示" message:@"对不起，该地区暂无合作教练。如有疑问，请致电 400-626-9255"cancelButtonTitle:@"返回" otherButtonTitles:nil completion:^(NSUInteger selectedOtherButtonIndex) {
+                DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
+                [ws.navigationController popViewControllerAnimated:YES];
+            }];
+            
+        }
+        
+        [ws.tableView reloadData];
+        
+        [ws.tableView.mj_header endRefreshing];
+        [ws.tableView.mj_footer endRefreshing];
+        
+        NSLog(@"ws.tableView.contentInset.top:%f",ws.tableView.contentInset.top);
+        
+        // 设置contentInset隐藏搜索框
+        [UIView animateWithDuration:0.5 animations:^{
+            ws.tableView.contentInset = UIEdgeInsetsMake(-searchHeadViewH, 0, 0, 0);
+        }];
+        
+        NSLog(@"设置contentInset隐藏搜索框 ws.tableView.contentInset.top:%f",ws.tableView.contentInset.top);
+        
+    }];
+    
+    [_searchCoachViewModel dvvSetLoadMoreSuccessBlock:^{
+        
+        [ws.tableView reloadData];
+        
+        [ws.tableView.mj_footer endRefreshing];
+        
+    }];
+    
+    
+}
 
 #pragma mark - tableViwe
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -320,18 +367,18 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.selectType==1) {
+    if (self.selectType==1) {// 教练详情
         CoachDMData *model = _searchCoachViewModel.dataArray[indexPath.row];
-        CoachDetailViewController *detailVC = [CoachDetailViewController new];
+        JGDrivingDetailViewController *detailVC = [JGDrivingDetailViewController new];
         detailVC.coachUserId = model.coachid;
         [self.navigationController pushViewController:detailVC animated:YES];
         return;
     }
+    // 驾校详情
     DrivingDetailViewController *SelectVC = [[DrivingDetailViewController alloc]init];
     DrivingModel *model = self.dataArray[indexPath.row];
     self.detailModel = model;
     SelectVC.schoolId = model.schoolid;
-    NSLog(@"%@", model.schoolid);
     [self.navigationController pushViewController:SelectVC animated:YES];
 }
 
@@ -384,13 +431,14 @@ static NSString *const kDrivingUrl = @"searchschool";
         
         // 选择车型点击事件
         [_tableHeaderView.motorcycleTypeButton addTarget:self action:@selector(motorcycleTypeButtonAction) forControlEvents:UIControlEventTouchUpInside];
+       
         // 筛选条件点击事件
         [_tableHeaderView.filterView dvvToolBarViewItemSelected:^(UIButton *button) {
-            self.filterType = button.tag + 1;
-            NSLog(@"%li",button.tag);
-            self.index = 1;
-            self.isRefresh = YES;
-            [self network];
+            
+            self.ordertype = button.tag + 1;
+            
+            [self.tableView.mj_header beginRefreshing];
+            
         }];
        
     }
@@ -417,6 +465,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     return _searchView;
 }
 
+#pragma mark --- 车型选择
 - (void)motorcycleTypeButtonAction {
     
     if (self.typeView.isShow) {
@@ -424,7 +473,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         return;
     }
     
-     DrivingSelectMotorcycleTypeView *typeView = [DrivingSelectMotorcycleTypeView new];
+    DrivingSelectMotorcycleTypeView *typeView = [DrivingSelectMotorcycleTypeView new];
     
     CGFloat viewX = 0;
     CGFloat viewY = CGRectGetMaxY(self.tableHeaderView.frame)+1;
@@ -434,25 +483,12 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     [typeView setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
         
-        if (self.selectType==1) {
-            
-         _searchCoachViewModel.orderType = carTypeId;
-            
-          _searchCoachViewModel.licenseType = carTypeId;
+        [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
 
-          [self refresh];
-            
-        }else{
-           
-            self.carTypeId = carTypeId;
-            [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
+        self.licensetype = carTypeId;
+       
+        [self.tableView.mj_header beginRefreshing];
 
-            self.index = 1;
-            self.isRefresh = YES;
-            [self network];
-        }
-        
-        
     }];
     
     [self.view addSubview:typeView];
@@ -466,23 +502,10 @@ static NSString *const kDrivingUrl = @"searchschool";
 - (void)searchButtonAction:(UITextField *)textField {
     
     [self.view endEditing:YES];
-    
-    if (self.selectType==1) {
-        
-        _searchCoachViewModel.searchName = textField.text;
-        
-        [self refresh];
-    
-        return;
-    }
-    
+
     self.searchName = textField.text;
     
-    self.index = 1;
-    
-    self.isRefresh = YES;
-    
-    [self network];
+    [self.tableView.mj_header beginRefreshing];
     
 }
 
@@ -540,63 +563,6 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     // 刷新数据
     [self.tableView.mj_header beginRefreshing];
-    
-}
-
-- (void)refresh
-{
-    
-    _searchCoachViewModel.index = 1;
-    
-    [_searchCoachViewModel dvvNetworkRequestRefresh];
-    
-}
-
-#pragma mark - config viewModel
-- (void)configViewModel {
-    
-    _searchCoachViewModel = [SearchCoachViewModel new];
-    __weak typeof(self) ws = self;
-    
-    [_searchCoachViewModel dvvSetRefreshSuccessBlock:^{
-        
-        if (0 == _searchCoachViewModel.dataArray.count && 0 == _searchCoachViewModel.licenseType && 0 == _searchCoachViewModel.orderType) {
-            
-            [BLPFAlertView showAlertWithTitle:@"提示" message:@"对不起，该地区暂无合作教练。如有疑问，请致电 400-626-9255"cancelButtonTitle:@"返回" otherButtonTitles:nil completion:^(NSUInteger selectedOtherButtonIndex) {
-                DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
-                [ws.navigationController popViewControllerAnimated:YES];
-            }];
-            
-        }else {
-            
-            ToastAlertView *toast = [[ToastAlertView alloc] initWithTitle:@"没有搜索到教练"];
-            [toast show];
-            
-        }
-       
-        [ws.tableView reloadData];
-
-        [ws.tableView.mj_header endRefreshing];
-        
-        NSLog(@"ws.tableView.contentInset.top:%f",ws.tableView.contentInset.top);
-        
-        // 设置contentInset隐藏搜索框
-        [UIView animateWithDuration:0.5 animations:^{
-            ws.tableView.contentInset = UIEdgeInsetsMake(-searchHeadViewH, 0, 0, 0);
-        }];
-
-        NSLog(@"设置contentInset隐藏搜索框 ws.tableView.contentInset.top:%f",ws.tableView.contentInset.top);
-
-    }];
-    
-    [_searchCoachViewModel dvvSetLoadMoreSuccessBlock:^{
-        
-        [ws.tableView reloadData];
-        
-        [ws.tableView.mj_footer endRefreshing];
-        
-    }];
-    
     
 }
 

@@ -33,7 +33,7 @@
 - (UIImageView *)lineImageView {
     if (!_lineImageView) {
         _lineImageView = [UIImageView new];
-        _lineImageView.backgroundColor = [UIColor colorWithHexString:@"999999"];
+        _lineImageView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
         _lineImageView.layer.shadowColor = [UIColor whiteColor].CGColor;
         _lineImageView.layer.shadowOffset = CGSizeMake(0, 1);
         _lineImageView.layer.shadowOpacity = 0.3;

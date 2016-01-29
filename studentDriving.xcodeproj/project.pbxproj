@@ -12,10 +12,13 @@
 		060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060FC6A51C27CB030039DDBB /* RegistNoteController.m */; };
 		061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */; };
 		061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADE1C39001C008C51C3 /* MoneyShopController.m */; };
+		062734B81C59C9A90056B0BC /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734B71C59C9A90056B0BC /* SignUpController.m */; };
+		062734C71C5A00060056B0BC /* SignUpSchoolInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734C61C5A00060056B0BC /* SignUpSchoolInfoCell.m */; };
+		062734CA1C5A0C550056B0BC /* SignUpPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734C91C5A0C550056B0BC /* SignUpPayCell.m */; };
+		062734CD1C5A2C860056B0BC /* SignUpInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */; };
 		064183F71C57552E00A33D88 /* HomeCheckProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183F61C57552E00A33D88 /* HomeCheckProgressView.m */; };
 		064183FB1C57A8AC00A33D88 /* CheckProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183FA1C57A8AC00A33D88 /* CheckProgressController.m */; };
 		064184011C57AD6F00A33D88 /* YBBaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064184001C57AD6F00A33D88 /* YBBaseTableCell.m */; };
-		064184041C57AE2D00A33D88 /* CheckProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064184031C57AE2D00A33D88 /* CheckProgressCell.m */; };
 		0647A5B61C34BB8700DBB8A3 /* DiscountShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */; };
 		0647A5B91C34C1DE00DBB8A3 /* DiscountShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5B81C34C1DE00DBB8A3 /* DiscountShopCell.m */; };
 		0647A5BC1C34FE5F00DBB8A3 /* DiscountWalletController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0647A5BB1C34FE5F00DBB8A3 /* DiscountWalletController.m */; };
@@ -31,6 +34,7 @@
 		06EC02C41C2643AD0067AD16 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */; };
 		06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C61C2643BE0067AD16 /* VirtualViewController.m */; };
 		06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */; };
+		06F805A31C585AC400396445 /* CheckProgressTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F805A21C585AC400396445 /* CheckProgressTextField.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB821C3538D7001CF897 /* SignInViewController.m */; };
 		4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB8B1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m */; };
@@ -63,6 +67,15 @@
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
 		B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */; };
 		B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818031C5606CD00F973A7 /* JGItemButton.m */; };
+		B21818111C58675C00F973A7 /* JGDrivingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */; };
+		B21818141C58AC5500F973A7 /* JGDrivingDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */; };
+		B21818171C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */; };
+		B218181A1C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */; };
+		B218181D1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */; };
+		B21818231C58E76300F973A7 /* Applyclasstypeinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */; };
+		B21818301C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */; };
+		B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */; };
+		B21818361C5A42F600F973A7 /* trainfieldPictures.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818351C5A42F600F973A7 /* trainfieldPictures.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
@@ -646,14 +659,20 @@
 		061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountOrderController.m; sourceTree = "<group>"; };
 		061E7ADD1C39001C008C51C3 /* MoneyShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoneyShopController.h; sourceTree = "<group>"; };
 		061E7ADE1C39001C008C51C3 /* MoneyShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoneyShopController.m; sourceTree = "<group>"; };
+		062734B61C59C9A90056B0BC /* SignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignUpController.h; path = studentDriving/UserCenterViewController/HomeMainController/SignUpController.h; sourceTree = SOURCE_ROOT; };
+		062734B71C59C9A90056B0BC /* SignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignUpController.m; path = studentDriving/UserCenterViewController/HomeMainController/SignUpController.m; sourceTree = SOURCE_ROOT; };
+		062734C51C5A00060056B0BC /* SignUpSchoolInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpSchoolInfoCell.h; sourceTree = "<group>"; };
+		062734C61C5A00060056B0BC /* SignUpSchoolInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpSchoolInfoCell.m; sourceTree = "<group>"; };
+		062734C81C5A0C550056B0BC /* SignUpPayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpPayCell.h; sourceTree = "<group>"; };
+		062734C91C5A0C550056B0BC /* SignUpPayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpPayCell.m; sourceTree = "<group>"; };
+		062734CB1C5A2C860056B0BC /* SignUpInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpInfoCell.h; sourceTree = "<group>"; };
+		062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpInfoCell.m; sourceTree = "<group>"; };
 		064183F51C57552E00A33D88 /* HomeCheckProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCheckProgressView.h; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.h; sourceTree = SOURCE_ROOT; };
 		064183F61C57552E00A33D88 /* HomeCheckProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCheckProgressView.m; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.m; sourceTree = SOURCE_ROOT; };
 		064183F91C57A8AC00A33D88 /* CheckProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressController.h; sourceTree = "<group>"; };
 		064183FA1C57A8AC00A33D88 /* CheckProgressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProgressController.m; sourceTree = "<group>"; };
 		064183FF1C57AD6600A33D88 /* YBBaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseTableCell.h; sourceTree = "<group>"; };
 		064184001C57AD6F00A33D88 /* YBBaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseTableCell.m; sourceTree = "<group>"; };
-		064184021C57AE2D00A33D88 /* CheckProgressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressCell.h; sourceTree = "<group>"; };
-		064184031C57AE2D00A33D88 /* CheckProgressCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProgressCell.m; sourceTree = "<group>"; };
 		0647A5B41C34BB8700DBB8A3 /* DiscountShopController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopController.h; sourceTree = "<group>"; };
 		0647A5B51C34BB8700DBB8A3 /* DiscountShopController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountShopController.m; sourceTree = "<group>"; };
 		0647A5B71C34C1DE00DBB8A3 /* DiscountShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountShopCell.h; sourceTree = "<group>"; };
@@ -684,6 +703,8 @@
 		06EC02C61C2643BE0067AD16 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualViewController.m; path = ../VirtualViewController.m; sourceTree = "<group>"; };
 		06EC02C81C264DAB0067AD16 /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessageController.h; path = ../PrivateMessageController.h; sourceTree = "<group>"; };
 		06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessageController.m; path = ../PrivateMessageController.m; sourceTree = "<group>"; };
+		06F805A11C585AC400396445 /* CheckProgressTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressTextField.h; sourceTree = "<group>"; };
+		06F805A21C585AC400396445 /* CheckProgressTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProgressTextField.m; sourceTree = "<group>"; };
 		4761DB811C3538D7001CF897 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
 		4761DB821C3538D7001CF897 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		4761DB8A1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+JGBarButtonItem.h"; sourceTree = "<group>"; };
@@ -823,6 +844,24 @@
 		B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHeadSearch.m; sourceTree = "<group>"; };
 		B21818021C5606CD00F973A7 /* JGItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGItemButton.h; path = CircularMotion/JGItemButton.h; sourceTree = "<group>"; };
 		B21818031C5606CD00F973A7 /* JGItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JGItemButton.m; path = CircularMotion/JGItemButton.m; sourceTree = "<group>"; };
+		B218180F1C58675C00F973A7 /* JGDrivingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailViewController.h; sourceTree = "<group>"; };
+		B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailViewController.m; sourceTree = "<group>"; };
+		B21818121C58AC5500F973A7 /* JGDrivingDetailTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailTopCell.h; sourceTree = "<group>"; };
+		B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailTopCell.m; sourceTree = "<group>"; };
+		B21818151C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailTeachingNewsCell.h; sourceTree = "<group>"; };
+		B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailTeachingNewsCell.m; sourceTree = "<group>"; };
+		B21818181C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailPersonalNoteCell.h; sourceTree = "<group>"; };
+		B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailPersonalNoteCell.m; sourceTree = "<group>"; };
+		B218181B1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailEvalutionCell.h; sourceTree = "<group>"; };
+		B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailEvalutionCell.m; sourceTree = "<group>"; };
+		B21818211C58E76300F973A7 /* Applyclasstypeinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Applyclasstypeinfo.h; sourceTree = "<group>"; };
+		B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Applyclasstypeinfo.m; sourceTree = "<group>"; };
+		B218182E1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailKeChengFeiYongCell.h; sourceTree = "<group>"; };
+		B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailKeChengFeiYongCell.m; sourceTree = "<group>"; };
+		B21818311C5A3E3900F973A7 /* JGTeachingNewsChangDiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGTeachingNewsChangDiView.h; sourceTree = "<group>"; };
+		B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGTeachingNewsChangDiView.m; sourceTree = "<group>"; };
+		B21818341C5A42F600F973A7 /* trainfieldPictures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trainfieldPictures.h; sourceTree = "<group>"; };
+		B21818351C5A42F600F973A7 /* trainfieldPictures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = trainfieldPictures.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
@@ -1847,6 +1886,21 @@
 			path = Goods/RealShop;
 			sourceTree = "<group>";
 		};
+		062734B21C59C8F70056B0BC /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				062734B61C59C9A90056B0BC /* SignUpController.h */,
+				062734B71C59C9A90056B0BC /* SignUpController.m */,
+				062734CB1C5A2C860056B0BC /* SignUpInfoCell.h */,
+				062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */,
+				062734C51C5A00060056B0BC /* SignUpSchoolInfoCell.h */,
+				062734C61C5A00060056B0BC /* SignUpSchoolInfoCell.m */,
+				062734C81C5A0C550056B0BC /* SignUpPayCell.h */,
+				062734C91C5A0C550056B0BC /* SignUpPayCell.m */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
 		064183F81C57A78700A33D88 /* HomeCheckProgress */ = {
 			isa = PBXGroup;
 			children = (
@@ -1854,8 +1908,8 @@
 				064183F61C57552E00A33D88 /* HomeCheckProgressView.m */,
 				064183F91C57A8AC00A33D88 /* CheckProgressController.h */,
 				064183FA1C57A8AC00A33D88 /* CheckProgressController.m */,
-				064184021C57AE2D00A33D88 /* CheckProgressCell.h */,
-				064184031C57AE2D00A33D88 /* CheckProgressCell.m */,
+				06F805A11C585AC400396445 /* CheckProgressTextField.h */,
+				06F805A21C585AC400396445 /* CheckProgressTextField.m */,
 				064183FF1C57AD6600A33D88 /* YBBaseTableCell.h */,
 				064184001C57AD6F00A33D88 /* YBBaseTableCell.m */,
 			);
@@ -1908,6 +1962,7 @@
 				06073D861C251C300058B372 /* HomeRewardController.m */,
 				D98E06121C3E4570009BFA81 /* DVVCheckActivity.h */,
 				D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */,
+				062734B21C59C8F70056B0BC /* SignUp */,
 				064183F81C57A78700A33D88 /* HomeCheckProgress */,
 			);
 			name = HomeMainController;
@@ -3213,6 +3268,10 @@
 				D5C2403C1BEF6E0400832CF3 /* VipserverModel.m */,
 				D95CCCF51C2E84C000AF1402 /* UserSettingModel.h */,
 				D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */,
+				B21818211C58E76300F973A7 /* Applyclasstypeinfo.h */,
+				B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */,
+				B21818341C5A42F600F973A7 /* trainfieldPictures.h */,
+				B21818351C5A42F600F973A7 /* trainfieldPictures.m */,
 			);
 			path = BlackCatModel;
 			sourceTree = "<group>";
@@ -3712,18 +3771,32 @@
 				D965CA9C1C239D9F00DCD094 /* DrivingSelectMotorcycleTypeView.m */,
 				D965CA9D1C239D9F00DCD094 /* DrivingTableHeaderView.h */,
 				D965CA9E1C239D9F00DCD094 /* DrivingTableHeaderView.m */,
-				D965CA9F1C239D9F00DCD094 /* DrivingViewController.h */,
-				D965CAA01C239D9F00DCD094 /* DrivingViewController.m */,
 				D978ACCF1C47957F00D633B4 /* DVVLocationStatus.h */,
 				D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */,
 				D9873B631C56456F000A3F6F /* DVVLocation.h */,
 				D9873B641C56456F000A3F6F /* DVVLocation.m */,
 				D98021881C51D21C00596C86 /* DVVAlert.h */,
 				D98021891C51D21C00596C86 /* DVVAlert.m */,
+				D965CA9F1C239D9F00DCD094 /* DrivingViewController.h */,
+				D965CAA01C239D9F00DCD094 /* DrivingViewController.m */,
 				B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */,
 				B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */,
 				B21817FF1C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.h */,
 				B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */,
+				B218180F1C58675C00F973A7 /* JGDrivingDetailViewController.h */,
+				B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */,
+				B21818121C58AC5500F973A7 /* JGDrivingDetailTopCell.h */,
+				B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */,
+				B21818151C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.h */,
+				B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */,
+				B21818311C5A3E3900F973A7 /* JGTeachingNewsChangDiView.h */,
+				B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */,
+				B218182E1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.h */,
+				B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */,
+				B21818181C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.h */,
+				B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */,
+				B218181B1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.h */,
+				B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */,
 			);
 			path = Driving;
 			sourceTree = "<group>";
@@ -3902,6 +3975,7 @@
 		D588AF7E1BDDB62C000C5D6F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0720;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = jatd;
 				TargetAttributes = {
@@ -4250,6 +4324,7 @@
 				D588B1141BDDDC2F000C5D6F /* UIColor+RGBColor.m in Sources */,
 				55901B5F1C26795800AC64FF /* VerifyPhoneController.m in Sources */,
 				D588B0D81BDDDC14000C5D6F /* DrivingIntroductionCell.m in Sources */,
+				B21818361C5A42F600F973A7 /* trainfieldPictures.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
 				D5C240111BECFAD800832CF3 /* AVPlayModel.m in Sources */,
@@ -4260,6 +4335,7 @@
 				55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */,
 				D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */,
 				D98581AD1C58B1C80044E029 /* DVVImagePickerControllerManager.m in Sources */,
+				B21818301C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m in Sources */,
 				D96712D91C3F8A150099C3B9 /* DVVCreateQRCode.m in Sources */,
 				D96248381C57A16D0028EE62 /* ComplaintController.m in Sources */,
 				0647A5B91C34C1DE00DBB8A3 /* DiscountShopCell.m in Sources */,
@@ -4289,6 +4365,7 @@
 				D5D50EE21BFA205000F54097 /* MagicMainTableViewController.m in Sources */,
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
+				B218181D1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m in Sources */,
 				B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */,
 				D92B2DA91C59D0030050EE84 /* DrivingDetailTrainingGroundCell.m in Sources */,
 				064184041C57AE2D00A33D88 /* CheckProgressCell.m in Sources */,
@@ -4322,6 +4399,7 @@
 				061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */,
 				D52638591BDF205C00ADC2C7 /* ApplycoachinfoModel.m in Sources */,
 				D5604B4E1BF656C50020F0D7 /* MWPhotoBrowser.m in Sources */,
+				B21818111C58675C00F973A7 /* JGDrivingDetailViewController.m in Sources */,
 				D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */,
 				D96D1BEB1C2B88A000F1C282 /* DVVSideMenu.m in Sources */,
 				D588B04B1BDDDB71000C5D6F /* UserCenterViewController.m in Sources */,
@@ -4354,6 +4432,7 @@
 				D5604B761BF656C50020F0D7 /* SRSlimeView.m in Sources */,
 				D970D39A1C3CFFEB003FCED3 /* CoachDMRootClass.m in Sources */,
 				D980218A1C51D21C00596C86 /* DVVAlert.m in Sources */,
+				06F805A31C585AC400396445 /* CheckProgressTextField.m in Sources */,
 				064183F71C57552E00A33D88 /* HomeCheckProgressView.m in Sources */,
 				D588AFCC1BDDDAAB000C5D6F /* AppointmentCoachModel.m in Sources */,
 				D98581A21C58669B0044E029 /* ComplaintDrivingView.m in Sources */,
@@ -4369,6 +4448,7 @@
 				D588B11A1BDDDC2F000C5D6F /* AcountManager.m in Sources */,
 				D588AFC31BDDDAAB000C5D6F /* DrvingDetailModel.m in Sources */,
 				06EC02C41C2643AD0067AD16 /* MagicDetailViewController.m in Sources */,
+				062734CD1C5A2C860056B0BC /* SignUpInfoCell.m in Sources */,
 				554641C81C250A1B00A55326 /* SignUpViewController.m in Sources */,
 				D5604C8C1BF656F30020F0D7 /* EMChatVideoBubbleView.m in Sources */,
 				D588B1391BDDDC65000C5D6F /* ForgetViewController.m in Sources */,
@@ -4423,6 +4503,7 @@
 				D92B2D9A1C59C2F40050EE84 /* DrivingDetailInfoCell.m in Sources */,
 				D588B0541BDDDB71000C5D6F /* FeedBackViewController.m in Sources */,
 				D5604B481BF656C50020F0D7 /* MBProgressHUD+Add.m in Sources */,
+				062734B81C59C9A90056B0BC /* SignUpController.m in Sources */,
 				D5604C911BF656F30020F0D7 /* MessageModelManager.m in Sources */,
 				D5604C8D1BF656F30020F0D7 /* EMChatTimeCell.m in Sources */,
 				D5604B5E1BF656C50020F0D7 /* UIImage+EMMultiFormat.m in Sources */,
@@ -4490,6 +4571,7 @@
 				D51256AE1BE1CF17002717DA /* StudentModel.m in Sources */,
 				D588B0D11BDDDC14000C5D6F /* CoachInformationCell.m in Sources */,
 				D51256BA1BE21EFF002717DA /* ComplainViewController.m in Sources */,
+				B21818141C58AC5500F973A7 /* JGDrivingDetailTopCell.m in Sources */,
 				D96D1BCC1C2B858400F1C282 /* AppDelegate.mm in Sources */,
 				D5604B6D1BF656C50020F0D7 /* PSTGridLayoutItem.m in Sources */,
 				D5604B781BF656C50020F0D7 /* TTGlobalUICommon.m in Sources */,
@@ -4498,6 +4580,7 @@
 				D5604B5B1BF656C50020F0D7 /* NSData+EMImageContentType.m in Sources */,
 				D5C2403D1BEF6E0400832CF3 /* VipserverModel.m in Sources */,
 				D5604B431BF656C50020F0D7 /* EMCDDeviceManager+Remind.m in Sources */,
+				062734C71C5A00060056B0BC /* SignUpSchoolInfoCell.m in Sources */,
 				D5604B8B1BF656C50020F0D7 /* EMChooseViewController.m in Sources */,
 				D588B06A1BDDDB90000C5D6F /* SubjectSecondViewController.m in Sources */,
 				D5604B651BF656C50020F0D7 /* PSTCollectionViewCell.m in Sources */,
@@ -4505,6 +4588,7 @@
 				0647A5CB1C354A7100DBB8A3 /* DiscountShopDatailController.m in Sources */,
 				D95E3DA81C3CC0AB00F0B5A0 /* DVVSearchView.m in Sources */,
 				D588AFC61BDDDAAB000C5D6F /* CoachDetail.m in Sources */,
+				B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */,
 				D96712DC1C3F9A470099C3B9 /* SignInViewModel.m in Sources */,
 				D588B11C1BDDDC2F000C5D6F /* NetMonitor.m in Sources */,
 				D970D3991C3CFFEB003FCED3 /* CoachDMHeadportrait.m in Sources */,
@@ -4540,11 +4624,14 @@
 				06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
 				D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */,
+				B21818231C58E76300F973A7 /* Applyclasstypeinfo.m in Sources */,
+				B218181A1C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m in Sources */,
 				D5604CC91BF83A690020F0D7 /* ChatListCell.m in Sources */,
 				D5604B811BF656C50020F0D7 /* NSString+Valid.m in Sources */,
 				D5604B5F1BF656C50020F0D7 /* UIImage+EMWebP.m in Sources */,
 				D96D1C001C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.m in Sources */,
 				D96D1C031C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m in Sources */,
+				062734CA1C5A0C550056B0BC /* SignUpPayCell.m in Sources */,
 				D5D50EE31BFA205000F54097 /* MyWallet.m in Sources */,
 				D5C240061BE9FB8A00832CF3 /* BLAVplayerCell.m in Sources */,
 				D588B0D01BDDDC14000C5D6F /* CoachDetailCell.m in Sources */,
@@ -4554,6 +4641,7 @@
 				D588AFC41BDDDAAB000C5D6F /* CoachModel.m in Sources */,
 				D588B13A1BDDDC65000C5D6F /* RegisterViewController.m in Sources */,
 				D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */,
+				B21818171C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */,
 				D588AFD01BDDDAAB000C5D6F /* MyAppointmentCoachModel.m in Sources */,
 				D9D4BA1E1C3B918600F62BE9 /* NSDictionary+adapter.m in Sources */,
@@ -4698,6 +4786,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				ENABLE_BITCODE = NO;
@@ -4779,6 +4868,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -4789,6 +4880,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				ENABLE_BITCODE = NO;
@@ -4870,6 +4962,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

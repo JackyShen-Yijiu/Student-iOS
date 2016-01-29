@@ -248,11 +248,7 @@
 - (void)blockAction:(UIButton *)button {
     
     // 设置当前点击的项（用于打开对应的窗体）
-    if (0 == button.tag) { // 如果是点击的主页则不进行操作
-        _selectedIdx = -1;
-    }else {
-        _selectedIdx = button.tag;
-    }
+    _selectedIdx = button.tag;
     
     if ([AcountManager manager].userLocationShowType == kLocationShowTypeCoach && _selectedIdx == kOpenControllerTypeDrivingViewController) {
 //        [self showMsg:@"您所在的地区暂无合作驾校，建议您搜索教练试一试"];
@@ -268,6 +264,10 @@
 - (kOpenControllerType)checkControllerTypeWithIndex:(NSInteger)index {
     kOpenControllerType type = -1;
     switch (index) {
+            
+        case 0:
+            type = kOpenControllerTypeDrivingViewController;
+            break;
         case 1:
             type = kOpenControllerTypeChatListViewController;
             break;

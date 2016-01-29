@@ -25,6 +25,7 @@
 #import "SignUpCell.h"
 #import "ApplyClassCell.h"
 #import "BLPFAlertView.h"
+#include "CoachViewController.h"
 //245 247 250
 
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
@@ -409,6 +410,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         SignUpDrivingViewController *drivingVC = [[SignUpDrivingViewController alloc] init];   //选择驾校
         [self.navigationController pushViewController:drivingVC animated:YES];
     }else if ((indexPath.row == 4 && indexPath.section == 0 && _cellIsShow)||(indexPath.row == 3 && indexPath.section == 0 && !_cellIsShow)) {
+       
         SignUpCoachViewController *coachVc = [[SignUpCoachViewController alloc] init];
         coachVc.markNum = 1;
         [self.navigationController pushViewController:coachVc animated:YES];
