@@ -14,6 +14,8 @@
 #import "Logoimg.h"
 #import "TrainFieldInfoModel.h"
 #import <MTLJSONAdapter.h>
+#import "trainfieldModel.h"
+
 @interface CoachDetail : MTLModel<MTLJSONSerializing>
 //资质
 @property (copy, nonatomic) NSString *seniority;
@@ -32,6 +34,7 @@
 //是否接送
 @property (assign, nonatomic) BOOL is_shuttle;
 @property (assign, nonatomic) BOOL is_validation;
+@property (assign, nonatomic) BOOL is_favoritcoach;
 @property (copy, nonatomic) NSString *logintime;
 @property (copy, nonatomic) NSString *mobile;
 @property (copy, nonatomic) NSString *name;
@@ -47,4 +50,15 @@
 @property (strong, nonatomic) TrainFieldInfoModel *trainFieldInfo;
 @property (strong, nonatomic) NSNumber *validationstate;
 @property (copy, nonatomic) NSString *worktimedesc;
+
+@property (nonatomic,strong) trainfieldModel *trainfield;
+
+// 个性标签
+@property (nonatomic,strong) NSArray *tagslist;
+// 课程费用
+@property (nonatomic,strong) NSArray *serverclasslist;
+
+
+@property (nonatomic,assign) BOOL isMore;
+
 @end

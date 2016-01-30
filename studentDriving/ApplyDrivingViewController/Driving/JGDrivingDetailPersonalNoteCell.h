@@ -1,13 +1,28 @@
 //
 //  JGDrivingDetailPersonalNoteCell.h
-//  studentDriving
+//  BlackCat
 //
-//  Created by JiangangYang on 16/1/27.
-//  Copyright © 2016年 jatd. All rights reserved.
-//  中间个人说明
+//  Created by bestseller on 15/9/29.
+//  Copyright © 2015年 lord. All rights reserved.
+//  个人说明
 
 #import <UIKit/UIKit.h>
 
+@class CoachDetail;
+@class JGDrivingDetailPersonalNoteCell;
+
+@protocol JGDrivingDetailPersonalNoteCellDelegate <NSObject>
+
+- (void)JGDrivingDetailPersonalNoteCellWithMoreBtnDidClick:(JGDrivingDetailPersonalNoteCell *)cell;
+
+@end
+
 @interface JGDrivingDetailPersonalNoteCell : UITableViewCell
+
+@property (nonatomic,strong) CoachDetail *detailModel;
+
++ (CGFloat)heightWithModel:(CoachDetail *)model indexPath:(NSIndexPath *)indexPath;
+
+@property (nonatomic,weak)id<JGDrivingDetailPersonalNoteCellDelegate>delegate;
 
 @end

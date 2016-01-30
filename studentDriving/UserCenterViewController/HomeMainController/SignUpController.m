@@ -30,6 +30,9 @@
 //245 247 250
 #import "SignUpSchoolInfoCell.h"
 #import "SignUpPayCell.h"
+#import "SignUpInfoCell.h"
+#import "HomeCheckProgressView.h"
+#import "SignUpFirmOrderController.h"
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 static NSString *const kVerifyFcode = @"verifyfcodecorrect";
@@ -59,6 +62,11 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
 @property (nonatomic, strong) NSArray *strArray;
 @property (nonatomic, strong) NSArray *infoArray;
+@property (nonatomic, strong) UILabel *realPayLabel;
+@property (nonatomic, strong) UILabel *moneyPayLabel;
+@property (nonatomic, strong) HomeCheckProgressView *YView;
+@property (nonatomic, strong) SignUpPayCell *payCell;
+@property (nonatomic,assign) NSInteger tag ; // tag = 200 线上支付,tag = 201 线下支付
 @end
 
 @implementation SignUpController
@@ -75,7 +83,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         labelContent.text = @"       Y码不影响您的报名流程!填写正确的Y码,即可获得丰厚的奖励。";
         labelContent.font = [UIFont systemFontOfSize:12];
         labelContent.numberOfLines = 2;
-        labelContent.textColor = [UIColor blackColor];
+        labelContent.textColor = [UIColor colorWithHexString:@"999999"];
         [_YcodeFootView addSubview:labelContent];
     }
     return _YcodeFootView;
@@ -113,19 +121,45 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     }
     return _referButton;
 }
-
+- (UILabel *)realPayLabel{
+    if (_realPayLabel == nil) {
+        _realPayLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 100, 40)];
+        _realPayLabel.text = @"实际支付";
+        _realPayLabel.textColor = [UIColor colorWithHexString:@"333333"];
+        
+    }
+    return _realPayLabel;
+}
+- (UILabel *)moneyPayLabel{
+    if (_moneyPayLabel == nil) {
+        _moneyPayLabel = [[UILabel alloc] init];
+        _moneyPayLabel = [[UILabel alloc] initWithFrame:CGRectMake(kSystemWide - 115, 20, 100, 40)];
+        _moneyPayLabel.text = @"32288元";
+        _moneyPayLabel.textColor = [UIColor colorWithHexString:@"333333"];
+        _moneyPayLabel.textAlignment = NSTextAlignmentRight;
+    }
+    return _moneyPayLabel;
+}
 - (UITableView *)tableView{
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 74, kSystemWide, kSystemHeight -64-49)];
-        _tableView.backgroundColor = RGBColor(245, 247, 250);
+        _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight -64-49)];
+        _tableView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 160)];
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 280)];
+        view.backgroundColor  = [UIColor whiteColor];
         [view addSubview:self.YcodeFootView];
         KindlyReminderView *kindlyReminderView = [[KindlyReminderView alloc] initWithContentStr:@"请认真填写以上信息，您填写的信息将作为报名信息录入车考驾照系统内，如果信息错误，将影响您的报名流程。" frame:CGRectMake(0, 60, kSystemWide, 100)];
-        kindlyReminderView.backgroundColor = RGBColor(245, 247, 250);
         [view addSubview:kindlyReminderView];
+        
+        // pay view
+        UIView *payView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, kSystemWide, 80)];
+        payView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+        [payView addSubview:self.realPayLabel];
+        [payView addSubview:self.moneyPayLabel];
+        [view addSubview:payView];
+        _tableView.tableFooterView.backgroundColor = [UIColor whiteColor];
         _tableView.tableFooterView = view;
     }
     return _tableView;
@@ -134,13 +168,12 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 - (void)viewDidLoad{
     [super  viewDidLoad];
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.title = @"报名信息表";
+    self.title = @"报名";
     self.strArray = [NSArray arrayWithObjects:@"班级类型",@"报考驾校",@"报考教练", nil];
     self.infoArray = [NSArray arrayWithObjects:@"真实姓名",@"联系电话",@"验证Y码", nil];
     [self.view addSubview:self.tableView];
-    //    self.tableView.tableFooterView = [self tableFootView];
     [self.view addSubview:self.referButton];
     
     [self.referButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -157,7 +190,12 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
     return 10;
 }
-
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (0 == section) {
+        return 10;
+    }
+    return 0;
+}
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 3;
 }
@@ -193,11 +231,12 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         }
         cell.rightLabel.text = self.strArray[indexPath.row];
         cell.detailLabel.text = @"一步互联网驾校";
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else if (indexPath.section == 1 ) {
-        SignUpCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_4"];
+        SignUpInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_4"];
         if (cell == nil) {
-            cell = [[SignUpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_4"];
+            cell = [[SignUpInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_4"];
         }
         cell.signUpTextField.placeholder = _infoArray[indexPath.row];
         //        [cell receiveTextContent:];
@@ -240,6 +279,24 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                         [SignUpInfoManager signUpInfoSaveRealFcode:completionString];
                     }else {
                         kShowFail(@"未查询到此Y码");
+                        
+                        // 弹出提示信息
+                        _YView = [[HomeCheckProgressView alloc]initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
+                        _YView.imgView.image = [UIImage imageNamed:@"错"];
+                        _YView.topLabel.text = @"您的Y码不正确,请重新填写";
+                         _YView.bottomLabel.text = @"亲, Y码不仅能省钱还能挣钱哦亲!";
+                        _YView.topLabel.font = [UIFont systemFontOfSize:16];
+                        _YView.bottomLabel.font = [UIFont systemFontOfSize:12];
+                        _YView.bottomLabel.textColor = [UIColor colorWithHexString:@"e6e6e6"];
+                        [_YView.rightButtton setTitle:@"下一步" forState:UIControlStateNormal];
+                        [_YView.wrongButton setTitle:@"重新填写" forState:UIControlStateNormal];
+                        [[UIApplication sharedApplication].keyWindow addSubview:_YView];
+                        __weak typeof(self) ws = self;
+                        _YView.didClickBlock = ^(NSInteger tag){
+                            // 点击下一步或者重新填写时的回调
+                            [ws.YView removeFromSuperview];
+                        };
+                        
                     }
                 } withFailure:^(id data) {
                     [self showTotasViewWithMes:@"网络连接失败，请检查网络连接"];
@@ -251,29 +308,84 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         
     }else if (2 == indexPath.section){
         NSString *cellID = @"payCell";
-        SignUpPayCell *payCell  = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!payCell) {
-            payCell = [[SignUpPayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        _payCell  = [tableView dequeueReusableCellWithIdentifier:cellID];
+        if (!_payCell) {
+            _payCell = [[SignUpPayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
-        return payCell;
+        _payCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        // 点击支付方式的回调
+        _payCell.clickPayWayBlock = ^(NSInteger tag){
+            _tag = tag;
+        };
+        return _payCell;
     }
     return nil;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
+    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 1)];
+    topLineView.backgroundColor = [UIColor redColor];
+    [view addSubview:topLineView];
+    UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
+    bottomLineView.backgroundColor = [UIColor redColor];
+    [view addSubview:bottomLineView];
+    return view;
+}
+-(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
+    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
+    bottomLineView.backgroundColor = [UIColor redColor];
+    [view addSubview:bottomLineView];
+    return view;
+}
+
 - (void)dealRefer:(UIButton *)sender{
+    NSLog(@"%lu",_tag);
     
-    NSDictionary *param = [SignUpInfoManager getSignUpInforamtion];
-    if (param == nil) {
-        return;
+    // 当_tag = 200 ,线上支付
+    if (201 == _tag) {
+        // 线下支付
+        NSDictionary *param = @{@"class":@"你好",
+                                @"scholl":@"da",
+                                @"coach":@"oo"};
+        NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
+        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            DYNSLog(@"param = %@",data[@"msg"]);
+            NSDictionary *param = data;
+            NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+            if ([type isEqualToString:@"0"]) {
+                kShowSuccess(@"报名成功");
+                [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+                [AcountManager saveUserApplyState:@"1"];
+                //使重新报名变为0
+                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
+                    [ud setObject:@"0" forKey:@"applyAgain"];
+                    [ud synchronize];
+                }
+            }else {
+                kShowFail(param[@"msg"]);
+            }
+        }];
+
+        
+    }else if (200 == _tag){
+        // 线上支付
     }
+    NSDictionary *param = @{@"class":@"你好",
+                            @"scholl":@"da",
+                            @"coach":@"oo"};
     NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         DYNSLog(@"param = %@",data[@"msg"]);
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
+        if ([type isEqualToString:@"0"]) {
             kShowSuccess(@"报名成功");
-            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+            [self.navigationController pushViewController:[SignUpFirmOrderController new] animated:YES];
             [AcountManager saveUserApplyState:@"1"];
             //使重新报名变为0
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -285,7 +397,8 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             kShowFail(param[@"msg"]);
         }
     }];
-}
+
+    }
 
 
 

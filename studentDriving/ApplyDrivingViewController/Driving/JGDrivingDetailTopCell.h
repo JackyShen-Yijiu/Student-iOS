@@ -12,6 +12,6 @@
 
 @interface JGDrivingDetailTopCell : UITableViewCell
 
-- (void)receiveDetailsModel:(CoachDetail *)_detailModel;
+@property (nonatomic,strong) CoachDetail *detailModel;
 
 @end

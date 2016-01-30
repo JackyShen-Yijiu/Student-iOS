@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06073D831C251BF60058B372 /* HomeFavourableController.m */; };
 		06073D871C251C300058B372 /* HomeRewardController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06073D861C251C300058B372 /* HomeRewardController.m */; };
+		060DB4021C5B1E390039C30F /* SignUpFirmOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060DB4011C5B1E390039C30F /* SignUpFirmOrderController.m */; };
+		060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 060DB4041C5B3E850039C30F /* SignUpFirmOrderFooterView.m */; };
 		060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 060FC6A51C27CB030039DDBB /* RegistNoteController.m */; };
 		061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADA1C38C20D008C51C3 /* DiscountOrderController.m */; };
 		061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */ = {isa = PBXBuildFile; fileRef = 061E7ADE1C39001C008C51C3 /* MoneyShopController.m */; };
@@ -16,6 +18,10 @@
 		062734C71C5A00060056B0BC /* SignUpSchoolInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734C61C5A00060056B0BC /* SignUpSchoolInfoCell.m */; };
 		062734CA1C5A0C550056B0BC /* SignUpPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734C91C5A0C550056B0BC /* SignUpPayCell.m */; };
 		062734CD1C5A2C860056B0BC /* SignUpInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */; };
+		062734D01C5A46410056B0BC /* SignUpTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734CF1C5A46410056B0BC /* SignUpTextField.m */; };
+		063BB1EB1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 063BB1EA1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m */; };
+		063BB1EE1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 063BB1ED1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m */; };
+		063BB1F11C5C524400A5F3D5 /* SchoolClassDetailDisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 063BB1F01C5C524400A5F3D5 /* SchoolClassDetailDisCell.m */; };
 		064183F71C57552E00A33D88 /* HomeCheckProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183F61C57552E00A33D88 /* HomeCheckProgressView.m */; };
 		064183FB1C57A8AC00A33D88 /* CheckProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183FA1C57A8AC00A33D88 /* CheckProgressController.m */; };
 		064184011C57AD6F00A33D88 /* YBBaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064184001C57AD6F00A33D88 /* YBBaseTableCell.m */; };
@@ -65,6 +71,8 @@
 		55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B671C26798500AC64FF /* SubmitVerificationController.m */; };
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
+		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
+		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */; };
 		B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818031C5606CD00F973A7 /* JGItemButton.m */; };
 		B21818111C58675C00F973A7 /* JGDrivingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */; };
@@ -75,7 +83,9 @@
 		B21818231C58E76300F973A7 /* Applyclasstypeinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */; };
 		B21818301C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */; };
 		B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */; };
-		B21818361C5A42F600F973A7 /* trainfieldPictures.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818351C5A42F600F973A7 /* trainfieldPictures.m */; };
+		B21818361C5A42F600F973A7 /* trainfieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818351C5A42F600F973A7 /* trainfieldModel.m */; };
+		B21818391C5B1C6F00F973A7 /* GBTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818381C5B1C6F00F973A7 /* GBTagListView.m */; };
+		B218183C1C5B201D00F973A7 /* tagslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B218183B1C5B201D00F973A7 /* tagslistModel.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
@@ -671,6 +681,10 @@
 		06073D831C251BF60058B372 /* HomeFavourableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeFavourableController.m; sourceTree = "<group>"; };
 		06073D851C251C300058B372 /* HomeRewardController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeRewardController.h; sourceTree = "<group>"; };
 		06073D861C251C300058B372 /* HomeRewardController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeRewardController.m; sourceTree = "<group>"; };
+		060DB4001C5B1E390039C30F /* SignUpFirmOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpFirmOrderController.h; sourceTree = "<group>"; };
+		060DB4011C5B1E390039C30F /* SignUpFirmOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpFirmOrderController.m; sourceTree = "<group>"; };
+		060DB4031C5B3E850039C30F /* SignUpFirmOrderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpFirmOrderFooterView.h; sourceTree = "<group>"; };
+		060DB4041C5B3E850039C30F /* SignUpFirmOrderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpFirmOrderFooterView.m; sourceTree = "<group>"; };
 		060FC6A41C27CB030039DDBB /* RegistNoteController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistNoteController.h; sourceTree = "<group>"; };
 		060FC6A51C27CB030039DDBB /* RegistNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistNoteController.m; sourceTree = "<group>"; };
 		061E7AD91C38C20D008C51C3 /* DiscountOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountOrderController.h; sourceTree = "<group>"; };
@@ -685,6 +699,14 @@
 		062734C91C5A0C550056B0BC /* SignUpPayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpPayCell.m; sourceTree = "<group>"; };
 		062734CB1C5A2C860056B0BC /* SignUpInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpInfoCell.h; sourceTree = "<group>"; };
 		062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpInfoCell.m; sourceTree = "<group>"; };
+		062734CE1C5A46410056B0BC /* SignUpTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTextField.h; sourceTree = "<group>"; };
+		062734CF1C5A46410056B0BC /* SignUpTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTextField.m; sourceTree = "<group>"; };
+		063BB1E91C5C4E6F00A5F3D5 /* SchoolClassDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolClassDetailController.h; sourceTree = "<group>"; };
+		063BB1EA1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolClassDetailController.m; sourceTree = "<group>"; };
+		063BB1EC1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolClassDetailMessageCell.h; sourceTree = "<group>"; };
+		063BB1ED1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolClassDetailMessageCell.m; sourceTree = "<group>"; };
+		063BB1EF1C5C524400A5F3D5 /* SchoolClassDetailDisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolClassDetailDisCell.h; sourceTree = "<group>"; };
+		063BB1F01C5C524400A5F3D5 /* SchoolClassDetailDisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolClassDetailDisCell.m; sourceTree = "<group>"; };
 		064183F51C57552E00A33D88 /* HomeCheckProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCheckProgressView.h; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.h; sourceTree = SOURCE_ROOT; };
 		064183F61C57552E00A33D88 /* HomeCheckProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCheckProgressView.m; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.m; sourceTree = SOURCE_ROOT; };
 		064183F91C57A8AC00A33D88 /* CheckProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressController.h; sourceTree = "<group>"; };
@@ -858,6 +880,10 @@
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
+		B20DBBB71C5B4B130023676E /* serverclasslistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = serverclasslistModel.m; sourceTree = "<group>"; };
+		B20DBBB91C5C7F3C0023676E /* JGCoachDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGCoachDetailViewController.h; sourceTree = "<group>"; };
+		B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCoachDetailViewController.m; sourceTree = "<group>"; };
 		B21817FF1C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHeadSearch.h; sourceTree = "<group>"; };
 		B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHeadSearch.m; sourceTree = "<group>"; };
 		B21818021C5606CD00F973A7 /* JGItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGItemButton.h; path = CircularMotion/JGItemButton.h; sourceTree = "<group>"; };
@@ -878,8 +904,12 @@
 		B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailKeChengFeiYongCell.m; sourceTree = "<group>"; };
 		B21818311C5A3E3900F973A7 /* JGTeachingNewsChangDiView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGTeachingNewsChangDiView.h; sourceTree = "<group>"; };
 		B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGTeachingNewsChangDiView.m; sourceTree = "<group>"; };
-		B21818341C5A42F600F973A7 /* trainfieldPictures.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trainfieldPictures.h; sourceTree = "<group>"; };
-		B21818351C5A42F600F973A7 /* trainfieldPictures.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = trainfieldPictures.m; sourceTree = "<group>"; };
+		B21818341C5A42F600F973A7 /* trainfieldModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = trainfieldModel.h; sourceTree = "<group>"; };
+		B21818351C5A42F600F973A7 /* trainfieldModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = trainfieldModel.m; sourceTree = "<group>"; };
+		B21818371C5B1C6F00F973A7 /* GBTagListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GBTagListView.h; sourceTree = "<group>"; };
+		B21818381C5B1C6F00F973A7 /* GBTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBTagListView.m; sourceTree = "<group>"; };
+		B218183A1C5B201D00F973A7 /* tagslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagslistModel.h; sourceTree = "<group>"; };
+		B218183B1C5B201D00F973A7 /* tagslistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagslistModel.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
@@ -1944,12 +1974,24 @@
 			children = (
 				062734B61C59C9A90056B0BC /* SignUpController.h */,
 				062734B71C59C9A90056B0BC /* SignUpController.m */,
+				060DB4001C5B1E390039C30F /* SignUpFirmOrderController.h */,
+				060DB4011C5B1E390039C30F /* SignUpFirmOrderController.m */,
+				060DB4031C5B3E850039C30F /* SignUpFirmOrderFooterView.h */,
+				060DB4041C5B3E850039C30F /* SignUpFirmOrderFooterView.m */,
 				062734CB1C5A2C860056B0BC /* SignUpInfoCell.h */,
 				062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */,
 				062734C51C5A00060056B0BC /* SignUpSchoolInfoCell.h */,
 				062734C61C5A00060056B0BC /* SignUpSchoolInfoCell.m */,
 				062734C81C5A0C550056B0BC /* SignUpPayCell.h */,
 				062734C91C5A0C550056B0BC /* SignUpPayCell.m */,
+				062734CE1C5A46410056B0BC /* SignUpTextField.h */,
+				062734CF1C5A46410056B0BC /* SignUpTextField.m */,
+				063BB1E91C5C4E6F00A5F3D5 /* SchoolClassDetailController.h */,
+				063BB1EA1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m */,
+				063BB1EC1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.h */,
+				063BB1ED1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m */,
+				063BB1EF1C5C524400A5F3D5 /* SchoolClassDetailDisCell.h */,
+				063BB1F01C5C524400A5F3D5 /* SchoolClassDetailDisCell.m */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -3323,8 +3365,12 @@
 				D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */,
 				B21818211C58E76300F973A7 /* Applyclasstypeinfo.h */,
 				B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */,
-				B21818341C5A42F600F973A7 /* trainfieldPictures.h */,
-				B21818351C5A42F600F973A7 /* trainfieldPictures.m */,
+				B21818341C5A42F600F973A7 /* trainfieldModel.h */,
+				B21818351C5A42F600F973A7 /* trainfieldModel.m */,
+				B218183A1C5B201D00F973A7 /* tagslistModel.h */,
+				B218183B1C5B201D00F973A7 /* tagslistModel.m */,
+				B20DBBB61C5B4B130023676E /* serverclasslistModel.h */,
+				B20DBBB71C5B4B130023676E /* serverclasslistModel.m */,
 			);
 			path = BlackCatModel;
 			sourceTree = "<group>";
@@ -3872,12 +3918,16 @@
 				B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */,
 				B218180F1C58675C00F973A7 /* JGDrivingDetailViewController.h */,
 				B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */,
+				B20DBBB91C5C7F3C0023676E /* JGCoachDetailViewController.h */,
+				B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */,
 				B21818121C58AC5500F973A7 /* JGDrivingDetailTopCell.h */,
 				B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */,
 				B21818151C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.h */,
 				B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */,
 				B21818311C5A3E3900F973A7 /* JGTeachingNewsChangDiView.h */,
 				B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */,
+				B21818371C5B1C6F00F973A7 /* GBTagListView.h */,
+				B21818381C5B1C6F00F973A7 /* GBTagListView.m */,
 				B218182E1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.h */,
 				B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */,
 				B21818181C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.h */,
@@ -4363,7 +4413,9 @@
 				D92B2DE71C5A0FC10050EE84 /* DrivingDetailViewModel.m in Sources */,
 				D588B0D71BDDDC14000C5D6F /* DrivingInformationCell.m in Sources */,
 				D588B10E1BDDDC2F000C5D6F /* BLPFAlertView.m in Sources */,
+				B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */,
 				D96D1BE71C2B88A000F1C282 /* UIColor+Extension.m in Sources */,
+				B21818391C5B1C6F00F973A7 /* GBTagListView.m in Sources */,
 				D95E3DB41C3CEDC600F0B5A0 /* SearchCoachViewModel.m in Sources */,
 				D588B0D61BDDDC14000C5D6F /* DrivingDetailCell.m in Sources */,
 				D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */,
@@ -4416,6 +4468,7 @@
 				D96D1BEC1C2B88A000F1C282 /* DVVSideMenuCell.m in Sources */,
 				D588B0701BDDDB90000C5D6F /* CancelAppointmentViewController.m in Sources */,
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
+				060DB4021C5B1E390039C30F /* SignUpFirmOrderController.m in Sources */,
 				D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */,
 				D588B0DF1BDDDC14000C5D6F /* CancelAppointmentCell.m in Sources */,
 				55901B621C26796700AC64FF /* VerifyInformationController.m in Sources */,
@@ -4434,8 +4487,9 @@
 				D588B1141BDDDC2F000C5D6F /* UIColor+RGBColor.m in Sources */,
 				55901B5F1C26795800AC64FF /* VerifyPhoneController.m in Sources */,
 				D588B0D81BDDDC14000C5D6F /* DrivingIntroductionCell.m in Sources */,
-				B21818361C5A42F600F973A7 /* trainfieldPictures.m in Sources */,
+				B21818361C5A42F600F973A7 /* trainfieldModel.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
+				060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
 				D966E77A1C5B4363007848B4 /* ClassTypeDMVipserverlist.m in Sources */,
 				D5C240111BECFAD800832CF3 /* AVPlayModel.m in Sources */,
@@ -4455,6 +4509,7 @@
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
 				06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */,
 				D5604C921BF656F30020F0D7 /* MessageReadManager.m in Sources */,
+				062734D01C5A46410056B0BC /* SignUpTextField.m in Sources */,
 				D588AFC71BDDDAAB000C5D6F /* CarModel.m in Sources */,
 				D588AFC91BDDDAAB000C5D6F /* TrainFieldInfoModel.m in Sources */,
 				D5C23FF21BE8ED1300832CF3 /* SchoolInfo.m in Sources */,
@@ -4557,6 +4612,7 @@
 				D51256C91BE348BA002717DA /* StudentCommentModel.m in Sources */,
 				D5604B611BF656C50020F0D7 /* UIImageView+EMWebCache.m in Sources */,
 				D5604B8A1BF656C50020F0D7 /* BaseViewController.m in Sources */,
+				063BB1EB1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m in Sources */,
 				D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */,
 				D588B11A1BDDDC2F000C5D6F /* AcountManager.m in Sources */,
 				D588AFC31BDDDAAB000C5D6F /* DrvingDetailModel.m in Sources */,
@@ -4567,6 +4623,7 @@
 				D588B1391BDDDC65000C5D6F /* ForgetViewController.m in Sources */,
 				55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */,
 				D965CAA61C239D9F00DCD094 /* DrivingCycleShowDMData.m in Sources */,
+				063BB1EE1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m in Sources */,
 				D5604C881BF656F30020F0D7 /* EMChatBaseBubbleView.m in Sources */,
 				06073D871C251C300058B372 /* HomeRewardController.m in Sources */,
 				D588B0501BDDDB71000C5D6F /* SignatureViewController.m in Sources */,
@@ -4618,6 +4675,7 @@
 				D588B0541BDDDB71000C5D6F /* FeedBackViewController.m in Sources */,
 				D5604B481BF656C50020F0D7 /* MBProgressHUD+Add.m in Sources */,
 				062734B81C59C9A90056B0BC /* SignUpController.m in Sources */,
+				B218183C1C5B201D00F973A7 /* tagslistModel.m in Sources */,
 				D5604C911BF656F30020F0D7 /* MessageModelManager.m in Sources */,
 				D5604C8D1BF656F30020F0D7 /* EMChatTimeCell.m in Sources */,
 				D5604B5E1BF656C50020F0D7 /* UIImage+EMMultiFormat.m in Sources */,
@@ -4678,6 +4736,7 @@
 				D5BCFEDC1BF317350019402C /* PushInformationManager.m in Sources */,
 				D92B2DF21C5A17BE0050EE84 /* DrivingDetailDMLogoimg.m in Sources */,
 				D588AFC81BDDDAAB000C5D6F /* SubjectModel.m in Sources */,
+				063BB1F11C5C524400A5F3D5 /* SchoolClassDetailDisCell.m in Sources */,
 				D9A34F3A1C5318FA0044CC25 /* DVVShareCell.m in Sources */,
 				D5604B631BF656C50020F0D7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				D5604B4F1BF656C50020F0D7 /* MWTapDetectingImageView.m in Sources */,
@@ -4773,6 +4832,7 @@
 				D5604B7C1BF656C50020F0D7 /* EMVoiceConverter.mm in Sources */,
 				554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */,
 				D5D50EE71BFA205000F54097 /* ShopMainModel.m in Sources */,
+				B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */,
 				4761DB8F1C354AA0001CF897 /* SignInHelpViewController.m in Sources */,
 				D588B04D1BDDDB71000C5D6F /* MyLoveCoachViewController.m in Sources */,
 				D5604C7F1BF656F30020F0D7 /* ChatViewController.m in Sources */,
@@ -4834,7 +4894,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -4881,7 +4941,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_BITCODE = NO;
+				ENABLE_BITCODE = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

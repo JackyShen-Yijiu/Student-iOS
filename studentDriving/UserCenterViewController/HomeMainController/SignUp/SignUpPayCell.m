@@ -33,33 +33,56 @@
     }];
     [self.payLineUPLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).with.offset(10);
-        make.left.mas_equalTo(self.contentView.mas_left).with.offset(45);
-        make.width.mas_equalTo(@100);
-        make.height.mas_equalTo(@15);
+        make.left.mas_equalTo(self.payLineUPButton.mas_right).with.offset(15);
+        make.width.mas_equalTo(@70);
+        make.height.mas_equalTo(@25);
         
     }];
     [self.payLineDownLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).with.offset(10);
         make.right.mas_equalTo(self.contentView.mas_right).with.offset(-50);
-        make.width.mas_equalTo(@100);
-        make.height.mas_equalTo(@15);
+        make.width.mas_equalTo(@70);
+        make.height.mas_equalTo(@25);
         
     }];
 
     [self.payLineDownButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).with.offset(10);
-        make.right.mas_equalTo(self.payLineDownButton.mas_left).with.offset(-15);
+        make.right.mas_equalTo(self.payLineDownLabel.mas_left).with.offset(-15);
         make.width.mas_equalTo(@25);
         make.height.mas_equalTo(@25);
         
     }];
     
 }
+#pragma mark --- Action
+- (void)didUpPay:(UIButton *)btn
+{
+        btn.selected = YES;
+        _payLineDownButton.selected = NO;
+    if (_clickPayWayBlock) {
+        _clickPayWayBlock(btn.tag);
+    }
+
+
+}
+- (void)didDownPay:(UIButton *)btn{
+   
+        btn.selected = YES;
+        _payLineUPButton.selected = NO;
+    if (_clickPayWayBlock) {
+        _clickPayWayBlock(btn.tag);
+    }
+    
+}
 - (UIButton *)payLineUPButton{
-    if (_payLineDownButton == nil) {
-        _payLineDownButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_payLineDownButton setBackgroundImage:[UIImage imageNamed:@"cancelSelect"] forState:UIControlStateNormal];
-        [_payLineDownButton setBackgroundImage:[UIImage imageNamed:@"cancelSelect_click"] forState:UIControlStateSelected];
+    if (_payLineUPButton == nil) {
+        _payLineUPButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_payLineUPButton setBackgroundImage:[UIImage imageNamed:@"cancelSelect"] forState:UIControlStateNormal];
+        [_payLineUPButton setBackgroundImage:[UIImage imageNamed:@"cancelSelect_click"] forState:UIControlStateSelected];
+        _payLineUPButton.userInteractionEnabled = YES;
+        [_payLineUPButton addTarget:self action:@selector(didUpPay:) forControlEvents:UIControlEventTouchUpInside];
+        _payLineUPButton.tag = 200;
     }
     return _payLineUPButton;
     
@@ -69,6 +92,9 @@
         _payLineDownButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_payLineDownButton setBackgroundImage:[UIImage imageNamed:@"cancelSelect"] forState:UIControlStateNormal];
         [_payLineDownButton setBackgroundImage:[UIImage imageNamed:@"cancelSelect_click"] forState:UIControlStateSelected];
+        [_payLineDownButton addTarget:self action:@selector(didDownPay:) forControlEvents:UIControlEventTouchUpInside];
+         _payLineDownButton.tag = 201;
+        
     }
     return _payLineDownButton;
     
