@@ -8,9 +8,12 @@
 
 #import "DVVBaseViewModel.h"
 
-@interface CourseViewModel : DVVBaseViewModel
+@interface ClassTypeViewModel : DVVBaseViewModel
+
+@property (nonatomic, copy) NSString *schoolID;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *heightArray;
+@property (nonatomic, assign) CGFloat totalHeight;
 
 @end

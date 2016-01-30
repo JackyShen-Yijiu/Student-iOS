@@ -26,6 +26,12 @@
     return self;
 }
 
+- (void)refreshData:(DrivingDetailDMSchoolbusroute *)dmBus {
+    
+    _titleLabel.text = dmBus.routename;
+    _contentLabel.text = dmBus.routecontent;
+}
+
 + (CGFloat)dynamicHeight:(NSString *)string {
     
     return [self autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 8 * 2 font:[UIFont systemFontOfSize:14]] + 18 + 8;

@@ -10,4 +10,6 @@
 
 @interface DrivingDetailController : UIViewController
 
+@property (nonatomic, copy) NSString *schoolID;
+
 @end

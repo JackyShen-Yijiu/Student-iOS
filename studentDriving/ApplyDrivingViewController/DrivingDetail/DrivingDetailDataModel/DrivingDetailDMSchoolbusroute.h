@@ -2,9 +2,9 @@
 
 @interface DrivingDetailDMSchoolbusroute : NSObject
 
-@property (nonatomic, assign) NSInteger __v;
-@property (nonatomic, strong) NSString * _id;
-@property (nonatomic, strong) NSString * routecontent;
-@property (nonatomic, strong) NSString * routename;
-@property (nonatomic, strong) NSString * schoolid;
+//@property (nonatomic, assign) NSInteger __v;
+//@property (nonatomic, copy) NSString * _id;
+@property (nonatomic, copy) NSString * routecontent;
+@property (nonatomic, copy) NSString * routename;
+@property (nonatomic, copy) NSString * schoolid;
 @end

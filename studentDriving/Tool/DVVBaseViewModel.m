@@ -16,6 +16,7 @@
 @property (nonatomic, copy) DVVBaseViewModelUpdataBlock loadMoreErrorBlock;
 @property (nonatomic, copy) DVVBaseViewModelBlock nilResponseObjectBlock;
 @property (nonatomic, copy) DVVBaseViewModelBlock networkErrorBlock;
+@property (nonatomic, copy) dispatch_block_t networkCallBackBlock;
 
 @end
 
@@ -26,6 +27,10 @@
 }
 - (void)dvvNetworkRequestLoadMore {
     // 重写此方法加载数据（需自己调用加载回调）
+}
+- (void)dvvNetworkRequestWithIndex:(NSUInteger)index
+                         isRefresh:(BOOL)isRefresh {
+    
 }
 - (BOOL)dvvCheckError:(id)responseObject {
     
@@ -64,6 +69,11 @@
         _networkErrorBlock();
     }
 }
+- (void)dvvNetworkCallBack {
+    if (_networkCallBackBlock) {
+        _networkCallBackBlock();
+    }
+}
 
 #pragma mark - set block
 - (void)dvvSetRefreshSuccessBlock:(DVVBaseViewModelUpdataBlock)refreshSuccessBlock {
@@ -84,11 +94,13 @@
 - (void)dvvSetNetworkErrorBlock:(DVVBaseViewModelBlock)netwrokErrorBlock {
     _networkErrorBlock = netwrokErrorBlock;
 }
+- (void)dvvSetNetworkCallBackBlock:(dispatch_block_t)handle {
+    _networkCallBackBlock = handle;
+}
 
 #pragma mark 检测是否有数据
 - (BOOL)checkErrorWithData:(id)data {
     
-    DYNSLog(@"%@",data);
     if (!data) {
         return YES;
     }

@@ -11,12 +11,12 @@
 
 @interface DrivingDetailShuttleBusCell : UITableViewCell
 
-@property (nonatomic, assign)BOOL isShowMoreContent;
+@property (weak, nonatomic) IBOutlet UIButton *moreButton;
 
 @property (weak, nonatomic) IBOutlet UILabel *shuttleBusLabel;
 
 - (void)refreshData:(DrivingDetailDMData *)dmData;
 
-+ (CGFloat)dynamicHeight:(NSString *)string;
++ (CGFloat)dynamicHeight:(DrivingDetailDMData *)dmData;
 
 @end

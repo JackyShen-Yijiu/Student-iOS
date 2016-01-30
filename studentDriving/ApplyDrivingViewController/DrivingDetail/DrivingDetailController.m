@@ -15,13 +15,20 @@
 #import "DrivingDetailSignUpCell.h"
 #import "DrivingDetailViewModel.h"
 
+#import "ShuttleBusController.h"
+#import "CoachListController.h"
+
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, assign) BOOL isShowMore;
+@property (nonatomic, assign) __block BOOL isShowMore;
 
 @property (nonatomic, strong) DrivingDetailViewModel *viewModel;
+
+// 这个要动态调高度，放里面不好动态调  而且也没有复用性   所以放这里
+@property (nonatomic, strong) DrivingDetailSignUpCell *signUpCell;
+@property (nonatomic, strong) DrivingDetailBriefIntroductionCell *introductionCell;
 
 @end
 
@@ -32,6 +39,9 @@
     // Do any additional setup after loading the view.
     self.title = @"驾校详情";
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    NSLog(@"%@", [AcountManager manager].applyschool.infoId);
+    _schoolID = @"562dcc3ccb90f25c3bde40da";
     
     [self.view addSubview:self.tableView];
     
@@ -60,10 +70,27 @@
     [_viewModel dvvNetworkRequestRefresh];
 }
 
+#pragma mark - action
+
+#pragma mark 班车路线
+- (void)shuttleBusMoreButtonAction {
+    
+    ShuttleBusController *busVC = [ShuttleBusController new];
+    busVC.dataArray = _viewModel.dmData.schoolbusroute;
+    [self.navigationController pushViewController:busVC animated:YES];
+}
+#pragma mark 更多教练
+- (void)allCoachInSchoolAction {
+    
+    CoachListController *coachListVC = [CoachListController new];
+    coachListVC.schoolID = _schoolID;
+    [self.navigationController pushViewController:coachListVC animated:YES];
+}
+
 #pragma mark - table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_viewModel.dmData) {
-        return 2;
+        return 6;
     }
     return 0;
 }
@@ -77,35 +104,67 @@
         return [DrivingDetailInfoCell defaultHeight];
     }else if (2 == indexPath.row) {
         // 班车路线
-        return [DrivingDetailShuttleBusCell dynamicHeight:@"用于计算动态高度的内容"];
+        return [DrivingDetailShuttleBusCell dynamicHeight:_viewModel.dmData];
     }else if (3 == indexPath.row) {
         // 驾校简介
-        
+        return [DrivingDetailBriefIntroductionCell dynamicHeight:_viewModel.dmData.introduction isShowMore:_isShowMore];
     }else if (4 == indexPath.row) {
         // 训练场
+        return [DrivingDetailTrainingGroundCell defaultHeight];
     }else if (5 == indexPath.row) {
         // 报名（班型和教练信息）
+        return [self.signUpCell dynamicHeight];
     }
     return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    // 地址和名称
     if (0 == indexPath.row) {
-        DrivingDetailAddressCell *cell = [[DrivingDetailAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kAddressCell"];
+        
+        DrivingDetailAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kAddressCell"];
+        if (!cell) {
+            cell = [[DrivingDetailAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kAddressCell"];
+        }
         [cell refreshData:_viewModel.dmData];
         return cell;
     }
+    // 驾校信息
     if (1 == indexPath.row) {
-        DrivingDetailInfoCell *cell = [[DrivingDetailInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kInfoCell"];
+        DrivingDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kInfoCell"];
+        if (!cell) {
+            cell = [[DrivingDetailInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kInfoCell"];
+        }
         [cell refreshData:_viewModel.dmData];
         return cell;
     }
+    // 班车路线
     if (2 == indexPath.row) {
-        DrivingDetailShuttleBusCell *cell = [[DrivingDetailShuttleBusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kShuttleBusCell"];
+        DrivingDetailShuttleBusCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kShuttleBusCell"];
+        if (!cell) {
+            cell = [[DrivingDetailShuttleBusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kShuttleBusCell"];
+            [cell.moreButton addTarget:self action:@selector(shuttleBusMoreButtonAction) forControlEvents:UIControlEventTouchDown];
+        }
         [cell refreshData:_viewModel.dmData];
         return cell;
     }
-    return nil;
+    // 驾校简介
+    if (3 == indexPath.row) {
+        
+        [self.introductionCell refreshData:_viewModel.dmData];
+        return _introductionCell;
+    }
+    // 训练场
+    if (4 == indexPath.row) {
+        DrivingDetailTrainingGroundCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kTrainingCell"];
+        if (!cell) {
+            cell = [[DrivingDetailTrainingGroundCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kTrainingCell"];
+        }
+        [cell refreshData:_viewModel.dmData];
+        return cell;
+    }
+    // 报名（班型和教练信息）
+    return self.signUpCell;
 }
 
 - (UITableView *)tableView {
@@ -115,9 +174,32 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.tableFooterView = [UITableView new];
-//        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
+}
+
+- (DrivingDetailBriefIntroductionCell *)introductionCell {
+    if (!_introductionCell) {
+        _introductionCell = [[DrivingDetailBriefIntroductionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kIntroCell"];
+        __weak typeof(self) ws = self;
+        [_introductionCell setShowMoreButtonTouchDownBlock:^(BOOL isShowMore) {
+            
+            ws.isShowMore = isShowMore;
+            [ws.tableView reloadData];
+        }];
+    }
+    return _introductionCell;
+}
+
+- (DrivingDetailSignUpCell *)signUpCell {
+    if (!_signUpCell) {
+        _signUpCell = [[DrivingDetailSignUpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kSignUpCell"];
+        [_signUpCell.coachListView.bottomButton addTarget:self action:@selector(allCoachInSchoolAction) forControlEvents:UIControlEventTouchUpInside];
+        _signUpCell.tableView = self.tableView;
+        _signUpCell.schoolID = _schoolID;
+    }
+    return _signUpCell;
 }
 
 - (void)didReceiveMemoryWarning {
