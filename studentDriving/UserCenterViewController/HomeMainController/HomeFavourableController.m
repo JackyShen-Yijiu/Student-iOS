@@ -48,7 +48,7 @@ static NSString *advantage = @"3.html";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
-    [self addSignUp];
+//    [self addSignUp];
     
     _webviewProgress = [[NJKWebViewProgress alloc] init];
     self.webView.delegate = _webviewProgress;
