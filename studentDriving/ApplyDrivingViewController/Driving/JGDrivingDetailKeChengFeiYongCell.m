@@ -40,9 +40,9 @@
 - (UILabel *)countentLabel {
     
     if (_countentLabel == nil) {
-        _countentLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
-        _countentLabel.text = @"新款桑塔纳，新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳新款桑塔纳";
-        _countentLabel.textColor = [UIColor blackColor];
+        _countentLabel = [[UILabel alloc] init];
+        _countentLabel.font = [UIFont systemFontOfSize:12];
+        _countentLabel.numberOfLines = 0;
     }
     return _countentLabel;
 }
@@ -85,8 +85,37 @@
     
     // 分割线
     [self.contentView addSubview:self.delive];
+   
+    // 授课信息title
+    [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(@(JGMargin));
+        make.left.equalTo(self.contentView.mas_left).offset(JGMargin*3);
+        make.right.equalTo(self.contentView.mas_right).offset(-JGMargin*3);
+        make.height.equalTo(@15);
+    }];
     
+    // 课程内容
+    [self.countentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.typeLabel.mas_bottom).offset(JGMargin/2);//
+        make.left.equalTo(self.typeLabel.mas_left);
+        make.right.equalTo(self.contentView.mas_right).offset(-JGMargin*3);
+    }];
     
+    // 报名按钮
+    [self.baomingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.countentLabel.mas_bottom).offset(JGMargin);//
+        make.width.equalTo(@(130));
+        make.height.equalTo(@(44));
+        make.left.equalTo(@(kSystemWide/2-130/2));
+    }];
+    
+    // 分割线
+    [self.delive mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.baomingBtn.mas_bottom).offset(JGMargin);//
+        make.left.equalTo(self.contentView.mas_left).offset(JGMargin);
+        make.height.equalTo(@0.5);
+        make.width.equalTo(@(kSystemWide-JGMargin));
+    }];
 }
 
 - (void)setDetailModel:(serverclasslistModel *)detailModel
@@ -95,7 +124,19 @@
     
     self.typeLabel.text = _detailModel.classname;
   
-    self.countentLabel.text = _detailModel.classdesc;
+    
+    NSString *num1 = _detailModel.classdesc;
+    NSInteger range1 = [num1 length];
+    
+    NSString *num2 = [NSString stringWithFormat:@"¥%ld",(long)_detailModel.price];
+    NSInteger range2 = [num2 length];
+
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@",num1,num2]];
+    
+    [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor blackColor] range:NSMakeRange(0, range1)];
+    [attStr addAttribute:NSForegroundColorAttributeName value:MAINCOLOR range:NSMakeRange(range1, range2+1)];
+    
+    self.countentLabel.attributedText = attStr;
     
     if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
         
@@ -123,7 +164,7 @@
     if (_indexPath.row==0) {
         
         // 授课信息title
-        [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.typeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(@(0));
             make.left.equalTo(self.contentView.mas_left).offset(JGMargin*3);
             make.right.equalTo(self.contentView.mas_right).offset(-JGMargin*3);
@@ -133,7 +174,7 @@
     }else{
         
         // 授课信息title
-        [self.typeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.typeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(@(JGMargin));
             make.left.equalTo(self.contentView.mas_left).offset(JGMargin*3);
             make.right.equalTo(self.contentView.mas_right).offset(-JGMargin*3);
@@ -142,28 +183,6 @@
         
     }
     
-    // 课程内容
-    [self.countentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.typeLabel.mas_bottom).offset(JGMargin/2);//
-        make.left.equalTo(self.typeLabel.mas_left);
-        make.right.equalTo(self.contentView.mas_right).offset(-JGMargin*3);
-    }];
-    
-    // 报名按钮
-    [self.baomingBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.countentLabel.mas_bottom).offset(JGMargin);//
-        make.width.equalTo(@(130));
-        make.height.equalTo(@(44));
-        make.left.equalTo(@(kSystemWide/2-130/2));
-    }];
-    
-    // 分割线
-    [self.delive mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.baomingBtn.mas_bottom).offset(JGMargin);//
-        make.left.equalTo(self.contentView.mas_left).offset(JGMargin);
-        make.height.equalTo(@0.5);
-        make.width.equalTo(@(kSystemWide-JGMargin));
-    }];
     
 }
 

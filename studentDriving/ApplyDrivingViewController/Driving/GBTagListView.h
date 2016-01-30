@@ -19,14 +19,13 @@
  *
  *
  */
+
 @interface GBTagListView : UIView{
     NSMutableArray*_tagArr;
     CGRect previousFrame;
 }
 
-@property (nonatomic,assign) CGFloat tagListViewH;
-
-@property (nonatomic,assign) int totalHeight ;
+typedef void (^listHeighBlock) (int listHeight);
 
 /**
  * 整个view的背景色
@@ -45,6 +44,6 @@
 /**
  *  标签文本赋值
  */
--(void)setTagWithTagArray:(NSArray*)arr;
+-(void)setTagWithTagArray:(NSArray*)arr listWidth:(float)width listHeight:(listHeighBlock)listHeight;
 
 @end

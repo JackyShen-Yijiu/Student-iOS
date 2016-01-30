@@ -40,11 +40,8 @@
 - (UIButton *)moreBtn {
     if (_moreBtn == nil) {
         _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_moreBtn setTitle:@"更多" forState:UIControlStateNormal];
-        [_moreBtn setTitle:@"更多" forState:UIControlStateHighlighted];
-        _moreBtn.titleLabel.textColor = [UIColor lightGrayColor];
-        _moreBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-        _moreBtn.backgroundColor = [UIColor redColor];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg"] forState:UIControlStateNormal];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg"] forState:UIControlStateHighlighted];
         [_moreBtn addTarget:self action:@selector(moreBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
 
     }
@@ -53,7 +50,7 @@
 // 内容
 - (UILabel *)countLabel {
     if (_countLabel == nil) {
-        _countLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        _countLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
         _countLabel.text = @"个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明";
         _countLabel.numberOfLines = 0;
     }
@@ -118,8 +115,8 @@
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.titleLabel.mas_top);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-JGMargin);
-        make.height.mas_equalTo(self.titleLabel.mas_height);
-        make.width.mas_equalTo(@50);
+        make.height.mas_equalTo(@11);
+        make.width.mas_equalTo(@34);
     }];
     
     // 内容 (展开、收起)
@@ -184,7 +181,7 @@
     
     [cell layoutIfNeeded];
     
-    return cell.topView.frame.size.height+cell.titleLabel.frame.size.height+cell.countLabel.frame.size.height+cell.footView.frame.size.height+0.5+JGMargin*3;
+    return cell.topView.frame.size.height+cell.titleLabel.frame.size.height+cell.countLabel.frame.size.height+cell.footView.frame.size.height+JGMargin*3;
     
 }
 

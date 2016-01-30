@@ -34,6 +34,7 @@
 //是否接送
 @property (assign, nonatomic) BOOL is_shuttle;
 @property (assign, nonatomic) BOOL is_validation;
+@property (assign, nonatomic) BOOL is_favoritcoach;
 @property (copy, nonatomic) NSString *logintime;
 @property (copy, nonatomic) NSString *mobile;
 @property (copy, nonatomic) NSString *name;
