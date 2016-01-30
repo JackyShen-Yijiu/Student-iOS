@@ -22,6 +22,7 @@
 #import "DiscountWalletController.h"
 #import "SignInListController.h"
 #import "MoneyShopController.h"
+#import "JGActivityViewController.h"
 
 @implementation DVVOpenControllerFromSideMenu
 
@@ -93,19 +94,24 @@
                 break;
             }
             
-            NSString *urlString = [NSString stringWithFormat:@"getactivity"];
-            NSString *url = [NSString stringWithFormat:BASEURL,urlString];
-            NSLog(@"userCity === %@", [AcountManager manager].userCity);
-            NSString *userCity = [AcountManager manager].userCity;
-            if (!userCity) {
-                userCity = @"";
-            }
-            [JENetwoking startDownLoadWithUrl:url postParam:@{ @"cityname": userCity } WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-                NSLog(@"%@",data);
-                [self loadActivityWithData:data];
-            } withFailure:^(id data) {
-                [self showMsg:@"网络错误"];
-            }];
+            JGActivityViewController *controller = [JGActivityViewController new];
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+//            
+//            NSString *urlString = [NSString stringWithFormat:@"getactivity"];
+//            NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+//            NSLog(@"userCity === %@", [AcountManager manager].userCity);
+//            NSString *userCity = [AcountManager manager].userCity;
+//            if (!userCity) {
+//                userCity = @"";
+//            }
+//            [JENetwoking startDownLoadWithUrl:url postParam:@{ @"cityname": userCity } WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+//                NSLog(@"%@",data);
+//                [self loadActivityWithData:data];
+//            } withFailure:^(id data) {
+//                [self showMsg:@"网络错误"];
+//            }];
         }
             break;
             

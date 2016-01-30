@@ -13,6 +13,8 @@
 
 @interface DrivingDetailAddressCell : UITableViewCell
 
+@property (nonatomic, copy) NSString *schoolID;
+
 @property (nonatomic, strong) DVVCycleShowImagesView *cycleShowImagesView;
 
 @property (nonatomic, strong) UIImageView *collectionImageView;

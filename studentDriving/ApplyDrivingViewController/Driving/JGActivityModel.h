@@ -8,6 +8,14 @@
 
 #import <Mantle/Mantle.h>
 
+typedef NS_ENUM(NSInteger,activityState){
+    
+    activitystateRead,// 0:未开始,敬请期待,准备中
+    activitystateIng,// 1:正在进行
+    activitystateComplete,// 2:已过期,已结束
+    
+};
+
 @interface JGActivityModel : MTLModel<MTLJSONSerializing>
 
 @property (copy, readonly, nonatomic) NSString *address;
@@ -23,6 +31,8 @@
 @property (copy, readonly, nonatomic) NSString *name;
 
 @property (copy, readonly, nonatomic) NSString *titleimg;
+
+@property (assign, readonly, nonatomic) activityState activitystate;
 
 @end
 

@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *activityLabel;
 
+@property (weak, nonatomic) IBOutlet UIImageView *stateImgViww;
+
 @property (weak, nonatomic) IBOutlet UILabel *activityTimeLabel;
 
 @property (nonatomic,strong)JGActivityModel *activityModel;

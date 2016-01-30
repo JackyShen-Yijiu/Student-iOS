@@ -77,6 +77,7 @@
 		B20DBBC41C5CA4B60023676E /* JGActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBC31C5CA4B60023676E /* JGActivityCell.m */; };
 		B20DBBC61C5CA4C90023676E /* JGActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20DBBC51C5CA4C90023676E /* JGActivityCell.xib */; };
 		B20DBBC91C5CB3A00023676E /* JGActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBC81C5CB3A00023676E /* JGActivityModel.m */; };
+		B20DBBCC1C5CDF930023676E /* JGActivityDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBCB1C5CDF930023676E /* JGActivityDetailsViewController.m */; };
 		B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */; };
 		B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818031C5606CD00F973A7 /* JGItemButton.m */; };
 		B21818111C58675C00F973A7 /* JGDrivingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */; };
@@ -894,6 +895,8 @@
 		B20DBBC51C5CA4C90023676E /* JGActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JGActivityCell.xib; sourceTree = "<group>"; };
 		B20DBBC71C5CB3A00023676E /* JGActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGActivityModel.h; sourceTree = "<group>"; };
 		B20DBBC81C5CB3A00023676E /* JGActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGActivityModel.m; sourceTree = "<group>"; };
+		B20DBBCA1C5CDF930023676E /* JGActivityDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGActivityDetailsViewController.h; sourceTree = "<group>"; };
+		B20DBBCB1C5CDF930023676E /* JGActivityDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGActivityDetailsViewController.m; sourceTree = "<group>"; };
 		B21817FF1C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHeadSearch.h; sourceTree = "<group>"; };
 		B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHeadSearch.m; sourceTree = "<group>"; };
 		B21818021C5606CD00F973A7 /* JGItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGItemButton.h; path = CircularMotion/JGItemButton.h; sourceTree = "<group>"; };
@@ -3947,6 +3950,8 @@
 				B20DBBC51C5CA4C90023676E /* JGActivityCell.xib */,
 				B20DBBC71C5CB3A00023676E /* JGActivityModel.h */,
 				B20DBBC81C5CB3A00023676E /* JGActivityModel.m */,
+				B20DBBCA1C5CDF930023676E /* JGActivityDetailsViewController.h */,
+				B20DBBCB1C5CDF930023676E /* JGActivityDetailsViewController.m */,
 			);
 			path = Driving;
 			sourceTree = "<group>";
@@ -4547,6 +4552,7 @@
 				D588B0921BDDDBDB000C5D6F /* MapViewController.m in Sources */,
 				D5D50EE21BFA205000F54097 /* MagicMainTableViewController.m in Sources */,
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
+				B20DBBCC1C5CDF930023676E /* JGActivityDetailsViewController.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
 				B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */,
 				D92B2DA91C59D0030050EE84 /* DrivingDetailTrainingGroundCell.m in Sources */,
