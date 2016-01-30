@@ -137,6 +137,7 @@
         DrivingDetailAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kAddressCell"];
         if (!cell) {
             cell = [[DrivingDetailAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kAddressCell"];
+            cell.schoolID = _schoolID;
         }
         [cell refreshData:_viewModel.dmData];
         return cell;
