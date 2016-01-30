@@ -73,6 +73,10 @@
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
 		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
+		B20DBBC11C5CA20B0023676E /* JGActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBC01C5CA20B0023676E /* JGActivityViewController.m */; };
+		B20DBBC41C5CA4B60023676E /* JGActivityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBC31C5CA4B60023676E /* JGActivityCell.m */; };
+		B20DBBC61C5CA4C90023676E /* JGActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B20DBBC51C5CA4C90023676E /* JGActivityCell.xib */; };
+		B20DBBC91C5CB3A00023676E /* JGActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBC81C5CB3A00023676E /* JGActivityModel.m */; };
 		B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */; };
 		B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818031C5606CD00F973A7 /* JGItemButton.m */; };
 		B21818111C58675C00F973A7 /* JGDrivingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */; };
@@ -884,6 +888,13 @@
 		B20DBBB71C5B4B130023676E /* serverclasslistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = serverclasslistModel.m; sourceTree = "<group>"; };
 		B20DBBB91C5C7F3C0023676E /* JGCoachDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGCoachDetailViewController.h; sourceTree = "<group>"; };
 		B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCoachDetailViewController.m; sourceTree = "<group>"; };
+		B20DBBBF1C5CA20B0023676E /* JGActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGActivityViewController.h; sourceTree = "<group>"; };
+		B20DBBC01C5CA20B0023676E /* JGActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGActivityViewController.m; sourceTree = "<group>"; };
+		B20DBBC21C5CA4B60023676E /* JGActivityCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGActivityCell.h; sourceTree = "<group>"; };
+		B20DBBC31C5CA4B60023676E /* JGActivityCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGActivityCell.m; sourceTree = "<group>"; };
+		B20DBBC51C5CA4C90023676E /* JGActivityCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JGActivityCell.xib; sourceTree = "<group>"; };
+		B20DBBC71C5CB3A00023676E /* JGActivityModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGActivityModel.h; sourceTree = "<group>"; };
+		B20DBBC81C5CB3A00023676E /* JGActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGActivityModel.m; sourceTree = "<group>"; };
 		B21817FF1C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHeadSearch.h; sourceTree = "<group>"; };
 		B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHeadSearch.m; sourceTree = "<group>"; };
 		B21818021C5606CD00F973A7 /* JGItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGItemButton.h; path = CircularMotion/JGItemButton.h; sourceTree = "<group>"; };
@@ -3934,6 +3945,13 @@
 				B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */,
 				B218181B1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.h */,
 				B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */,
+				B20DBBBF1C5CA20B0023676E /* JGActivityViewController.h */,
+				B20DBBC01C5CA20B0023676E /* JGActivityViewController.m */,
+				B20DBBC21C5CA4B60023676E /* JGActivityCell.h */,
+				B20DBBC31C5CA4B60023676E /* JGActivityCell.m */,
+				B20DBBC51C5CA4C90023676E /* JGActivityCell.xib */,
+				B20DBBC71C5CB3A00023676E /* JGActivityModel.h */,
+				B20DBBC81C5CB3A00023676E /* JGActivityModel.m */,
 			);
 			path = Driving;
 			sourceTree = "<group>";
@@ -4244,6 +4262,7 @@
 				D5604BA71BF656C50020F0D7 /* VoiceSearchFeedback009.png in Resources */,
 				D5604C341BF656C50020F0D7 /* groupPrivateHeader@2x.png in Resources */,
 				D5604C3E1BF656C50020F0D7 /* tabbar_contactsHL.png in Resources */,
+				B20DBBC61C5CA4C90023676E /* JGActivityCell.xib in Resources */,
 				D5604BDB1BF656C50020F0D7 /* faceDelete.png in Resources */,
 				D5604BC21BF656C50020F0D7 /* call_out_h@2x.png in Resources */,
 				D92B2DA51C59CD9D0050EE84 /* DrivingDetailBriefIntroductionCell.xib in Resources */,
@@ -4489,6 +4508,7 @@
 				D588B0D81BDDDC14000C5D6F /* DrivingIntroductionCell.m in Sources */,
 				B21818361C5A42F600F973A7 /* trainfieldModel.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
+				B20DBBC41C5CA4B60023676E /* JGActivityCell.m in Sources */,
 				060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
 				D966E77A1C5B4363007848B4 /* ClassTypeDMVipserverlist.m in Sources */,
@@ -4496,6 +4516,7 @@
 				D5604B511BF656C50020F0D7 /* MWZoomingScrollView.m in Sources */,
 				D588B11E1BDDDC2F000C5D6F /* NSString+CurrentTimeDay.m in Sources */,
 				D96D1BCA1C2B858400F1C282 /* AppDelegate+DealTool.m in Sources */,
+				B20DBBC11C5CA20B0023676E /* JGActivityViewController.m in Sources */,
 				D588AFCD1BDDDAAB000C5D6F /* AppointmentCoachTimeInfoModel.m in Sources */,
 				55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */,
 				D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */,
@@ -4625,6 +4646,7 @@
 				D965CAA61C239D9F00DCD094 /* DrivingCycleShowDMData.m in Sources */,
 				063BB1EE1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m in Sources */,
 				D5604C881BF656F30020F0D7 /* EMChatBaseBubbleView.m in Sources */,
+				B20DBBC91C5CB3A00023676E /* JGActivityModel.m in Sources */,
 				06073D871C251C300058B372 /* HomeRewardController.m in Sources */,
 				D588B0501BDDDB71000C5D6F /* SignatureViewController.m in Sources */,
 				D96149431C5C587200E3007F /* CoachListDMRootClass.m in Sources */,
