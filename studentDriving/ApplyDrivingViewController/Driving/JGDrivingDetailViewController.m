@@ -120,7 +120,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.coachUserId = @"5666365ef14c20d07ffa6ae8";
+//    self.coachUserId = @"5666365ef14c20d07ffa6ae8";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
     
@@ -496,8 +496,8 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    JGCoachDetailViewController *vc = [[JGCoachDetailViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    JGCoachDetailViewController *vc = [[JGCoachDetailViewController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
 
 }
 

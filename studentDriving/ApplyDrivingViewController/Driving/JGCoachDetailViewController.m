@@ -119,7 +119,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.coachUserId = @"5666365ef14c20d07ffa6ae8";
+//    self.coachUserId = @"5666365ef14c20d07ffa6ae8";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
     
@@ -459,11 +459,11 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (indexPath.row == 0 && indexPath.section == 0) {//
-        DrivingDetailViewController *drivingDetail = [[DrivingDetailViewController alloc] init];
-        drivingDetail.schoolId = self.detailModel.driveschoolinfo.driveSchoolId;
-        [self.navigationController pushViewController:drivingDetail animated:YES];
-    }
+//    if (indexPath.row == 0 && indexPath.section == 0) {//
+//        DrivingDetailViewController *drivingDetail = [[DrivingDetailViewController alloc] init];
+//        drivingDetail.schoolId = self.detailModel.driveschoolinfo.driveSchoolId;
+//        [self.navigationController pushViewController:drivingDetail animated:YES];
+//    }
     
 }
 
