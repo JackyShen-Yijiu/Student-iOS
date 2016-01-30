@@ -77,7 +77,7 @@ alpha:1.0]
         }
         [tagBtn setTitleColor:[UIColor colorWithHexString:color] forState:UIControlStateNormal];
 //        [tagBtn setTitleColor:R_G_B_16(color) forState:UIControlStateSelected];
-        tagBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        tagBtn.titleLabel.font = [UIFont systemFontOfSize:13];
         [tagBtn addTarget:self action:@selector(tagBtnClick:) forControlEvents:UIControlEventTouchUpInside];
         [tagBtn setTitle:tagname forState:UIControlStateNormal];
 //        [tagBtn setTitle:tagname forState:UIControlStateSelected];
@@ -86,7 +86,7 @@ alpha:1.0]
         tagBtn.layer.borderColor=[UIColor colorWithHexString:color].CGColor;
         tagBtn.layer.borderWidth=0.3;
         tagBtn.clipsToBounds=YES;
-        NSDictionary *attrs = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:14]};
+        NSDictionary *attrs = @{NSFontAttributeName : [UIFont systemFontOfSize:13]};
         CGSize Size_str=[tagname sizeWithAttributes:attrs];
         Size_str.width += HORIZONTAL_PADDING*3;
         Size_str.height += VERTICAL_PADDING*3;

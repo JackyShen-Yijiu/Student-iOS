@@ -50,7 +50,7 @@
 // 内容
 - (UILabel *)countLabel {
     if (_countLabel == nil) {
-        _countLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        _countLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
         _countLabel.text = @"个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明个人说明";
         _countLabel.numberOfLines = 0;
     }
@@ -181,7 +181,7 @@
     
     [cell layoutIfNeeded];
     
-    return cell.topView.frame.size.height+cell.titleLabel.frame.size.height+cell.countLabel.frame.size.height+cell.footView.frame.size.height+0.5+JGMargin*3;
+    return cell.topView.frame.size.height+cell.titleLabel.frame.size.height+cell.countLabel.frame.size.height+cell.footView.frame.size.height+JGMargin*3;
     
 }
 

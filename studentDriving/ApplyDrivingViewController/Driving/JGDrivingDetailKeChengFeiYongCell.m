@@ -41,7 +41,7 @@
     
     if (_countentLabel == nil) {
         _countentLabel = [[UILabel alloc] init];
-        _countentLabel.font = [UIFont systemFontOfSize:13];
+        _countentLabel.font = [UIFont systemFontOfSize:12];
         _countentLabel.numberOfLines = 0;
     }
     return _countentLabel;
