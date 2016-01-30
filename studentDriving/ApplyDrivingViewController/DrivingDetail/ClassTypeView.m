@@ -17,6 +17,8 @@
 @property (nonatomic, strong) ClassTypeViewModel *viewModel;
 
 @property (nonatomic, copy) ClassTypeViewBlock networkSuccessBlock;
+@property (nonatomic, copy) ClassTypeViewCellBlock signUpButtonBlock;
+@property (nonatomic, copy) ClassTypeViewCellBlock cellDidSelectBlock;
 
 @end
 
@@ -31,8 +33,6 @@
         self.bounces = NO;
         self.dataSource = self;
         self.delegate = self;
-        
-        [self registerClass:[ClassTypeCell class] forCellReuseIdentifier:kCellIdentifier];
         
         [self configViewModel];
     }
@@ -79,6 +79,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ClassTypeCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    if (!cell) {
+        cell = [[ClassTypeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
+        [cell.signUpButton addTarget:self action:@selector(signUpButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    cell.signUpButton.tag = indexPath.row;
     [cell refreshData:_viewModel.dataArray[indexPath.row]];
     
     if (_viewModel.dataArray.count == indexPath.row + 1) {
@@ -91,12 +96,27 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ClassTypeDMData *dmData = _viewModel.dataArray[indexPath.row];
+    if (_cellDidSelectBlock) {
+        _cellDidSelectBlock(dmData);
+    }
+}
+- (void)signUpButtonAction:(UIButton *)sender {
     
+    if (_signUpButtonBlock) {
+        ClassTypeDMData *dmData = _viewModel.dataArray[sender.tag];
+        _signUpButtonBlock(dmData);
+    }
 }
 
 - (void)setClassTypeNetworkSuccessBlock:(ClassTypeViewBlock)handle {
     
     _networkSuccessBlock = handle;
+}
+- (void)setClassTypeSignUpButtonActionBlock:(ClassTypeViewCellBlock)handle {
+    _signUpButtonBlock = handle;
+}
+- (void)setClassTypeViewCellDidSelectBlock:(ClassTypeViewCellBlock)handel {
+    _cellDidSelectBlock = handel;
 }
 
 /*

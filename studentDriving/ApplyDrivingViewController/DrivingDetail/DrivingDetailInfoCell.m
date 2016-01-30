@@ -23,13 +23,15 @@
         
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        
+        _passRateLabel.textColor = MAINCOLOR;
     }
     return self;
 }
 
 - (void)refreshData:(DrivingDetailDMData *)dmData {
     
-    _passRateLabel.text = [NSString stringWithFormat:@"通  过  率：%zi%%", dmData.passingrate];
+    _passRateLabel.text = [NSString stringWithFormat:@"%zi%%", dmData.passingrate];
     _learnTimeLabel.text = [NSString stringWithFormat:@"营业时间：%@", dmData.hours];
 }
 

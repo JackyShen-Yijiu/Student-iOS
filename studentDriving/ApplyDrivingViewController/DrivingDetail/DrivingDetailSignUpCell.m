@@ -26,6 +26,8 @@
         
         [_courseButton setTitle:@"课程费用" forState:UIControlStateSelected];
         [_coachButton setTitle:@"教练信息" forState:UIControlStateSelected];
+        [_courseButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
+        [_coachButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
         _courseButton.selected = YES;
         
         [_scrollView addSubview:self.classTypeView];
