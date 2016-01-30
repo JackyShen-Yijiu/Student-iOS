@@ -41,14 +41,14 @@
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qk-rD-TJj" userLabel="topLineView">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="exK-SI-bbE"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qST-xE-SBG" userLabel="splitLIneView">
                                 <rect key="frame" x="159" y="11" width="1" height="22"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="1" id="CBa-wL-qFw"/>
                                     <constraint firstAttribute="height" constant="22" id="zJh-kx-pxQ"/>
@@ -56,13 +56,13 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Euq-iv-iHE" userLabel="bottomLineView">
                                 <rect key="frame" x="0.0" y="43" width="320" height="1"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="hDh-Zz-zKt"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.7554056187" green="0.7554056187" blue="0.7554056187" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="h3i-PU-Ft0" firstAttribute="top" secondItem="TKN-gj-ckP" secondAttribute="top" id="ENz-0t-dOg"/>
                             <constraint firstItem="Euq-iv-iHE" firstAttribute="leading" secondItem="TKN-gj-ckP" secondAttribute="leading" id="NQm-xG-xGC"/>
@@ -88,6 +88,7 @@
                         <rect key="frame" x="0.0" y="52" width="320" height="177.5"/>
                     </scrollView>
                 </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="GpU-U5-ZMS" secondAttribute="bottom" id="CwE-Lm-jE7"/>
                     <constraint firstItem="GpU-U5-ZMS" firstAttribute="top" secondItem="TKN-gj-ckP" secondAttribute="bottom" id="DP8-TP-qJ1"/>

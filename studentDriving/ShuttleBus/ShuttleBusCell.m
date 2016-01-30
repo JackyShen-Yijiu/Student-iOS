@@ -7,6 +7,7 @@
 //
 
 #import "ShuttleBusCell.h"
+#import "NSString+Helper.h"
 
 @implementation ShuttleBusCell
 
@@ -22,6 +23,8 @@
         
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        
+//        self.contentView.backgroundColor = [UIColor colorWithRed:247 green:249 blue:251 alpha:1];
     }
     return self;
 }
@@ -34,18 +37,7 @@
 
 + (CGFloat)dynamicHeight:(NSString *)string {
     
-    return [self autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 8 * 2 font:[UIFont systemFontOfSize:14]] + 18 + 8;
-}
-
-+ (CGFloat)autoHeightWithString:(NSString *)string width:(CGFloat)width font:(UIFont *)font {
-    
-    CGSize boundRectSize = CGSizeMake(width, MAXFLOAT);
-    NSDictionary *fontDict = @{ NSFontAttributeName: font };
-    CGFloat newFloat = [string boundingRectWithSize:boundRectSize
-                                            options: NSStringDrawingUsesLineFragmentOrigin
-                        | NSStringDrawingUsesFontLeading
-                                         attributes:fontDict context:nil].size.height;
-    return newFloat;
+    return 8 + 8 + 21 + 8 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 8 * 2 font:[UIFont systemFontOfSize:14]] + 8;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

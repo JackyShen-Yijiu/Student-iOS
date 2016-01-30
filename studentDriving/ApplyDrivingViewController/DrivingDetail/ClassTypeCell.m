@@ -24,6 +24,9 @@
         
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        
+        _priceLabel.textColor = MAINCOLOR;
+        _signUpButton.backgroundColor = MAINCOLOR;
     }
     return self;
 }

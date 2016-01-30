@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "ClassTypeViewModel.h"
+#import "ClassTypeDMData.h"
 
 typedef void(^ClassTypeViewBlock)(ClassTypeViewModel *viewModel);
+typedef void(^ClassTypeViewCellBlock)(ClassTypeDMData *dmData);
 
 @interface ClassTypeView : UITableView
 
@@ -20,4 +22,8 @@ typedef void(^ClassTypeViewBlock)(ClassTypeViewModel *viewModel);
 - (void)setClassTypeNetworkSuccessBlock:(ClassTypeViewBlock)handle;
 
 - (void)beginNetworkRequest:(NSString *)schoolID;
+
+- (void)setClassTypeSignUpButtonActionBlock:(ClassTypeViewCellBlock)handle;
+- (void)setClassTypeViewCellDidSelectBlock:(ClassTypeViewCellBlock)handel;
+
 @end

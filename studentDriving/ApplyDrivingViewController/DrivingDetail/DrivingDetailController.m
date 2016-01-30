@@ -86,6 +86,18 @@
     coachListVC.schoolID = _schoolID;
     [self.navigationController pushViewController:coachListVC animated:YES];
 }
+#pragma mark 班型cell单击事件
+- (void)classTypeCellDidSelectAction:(ClassTypeDMData *)dmData {
+    
+}
+#pragma mark班型cell中的报名按钮单击事件
+- (void)signInButtonAction:(ClassTypeDMData *)dmData {
+    
+}
+#pragma mark 教练cell的点击事件
+- (void)coachListViewCellDidSelectAction:(CoachListDMData *)dmData {
+    
+}
 
 #pragma mark - table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -125,6 +137,7 @@
         DrivingDetailAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kAddressCell"];
         if (!cell) {
             cell = [[DrivingDetailAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kAddressCell"];
+            cell.schoolID = _schoolID;
         }
         [cell refreshData:_viewModel.dmData];
         return cell;
@@ -195,6 +208,16 @@
 - (DrivingDetailSignUpCell *)signUpCell {
     if (!_signUpCell) {
         _signUpCell = [[DrivingDetailSignUpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kSignUpCell"];
+        __weak typeof(self) ws = self;
+        [_signUpCell.classTypeView setClassTypeSignUpButtonActionBlock:^(ClassTypeDMData *dmData) {
+            [ws signInButtonAction:dmData];
+        }];
+        [_signUpCell.classTypeView setClassTypeViewCellDidSelectBlock:^(ClassTypeDMData *dmData) {
+            [ws classTypeCellDidSelectAction:dmData];
+        }];
+        [_signUpCell.coachListView setCoachListViewCellDidSelectBlock:^(CoachListDMData *dmData) {
+            [ws coachListViewCellDidSelectAction:dmData];
+        }];
         [_signUpCell.coachListView.bottomButton addTarget:self action:@selector(allCoachInSchoolAction) forControlEvents:UIControlEventTouchUpInside];
         _signUpCell.tableView = self.tableView;
         _signUpCell.schoolID = _schoolID;

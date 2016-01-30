@@ -7,6 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoachListDataModel/CoachListDMData.h"
+
+typedef void(^CoachListViewCellBlock)(CoachListDMData *dmData);
 
 @interface CoachListView : UITableView
 
@@ -14,5 +17,7 @@
 @property (nonatomic, strong) UIButton *bottomButton;
 
 - (void)beginNetworkRequest:(NSString *)schoolID;
+
+- (void)setCoachListViewCellDidSelectBlock:(CoachListViewCellBlock)handel;
 
 @end
