@@ -31,6 +31,8 @@
 
 #import "JGCoachDetailViewController.h"
 #import "JGActivityViewController.h"
+// 报名
+#import "SignUpController.h"
 
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
@@ -466,7 +468,11 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
     }
     
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-        [self.navigationController popViewControllerAnimated:YES];
+        // 跳转报名界面
+//        [self.navigationController popViewControllerAnimated:YES];
+        SignUpController *signUpVC = [[SignUpController alloc] init];
+        [self.navigationController pushViewController:signUpVC animated:YES];
+        
         return;
     }
     
