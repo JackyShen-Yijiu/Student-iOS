@@ -23,6 +23,8 @@
         
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        
+        _priceLabel.textColor = MAINCOLOR;
         [self addSubview:self.cycleShowImagesView];
         [self addSubview:self.collectionImageView];
     }

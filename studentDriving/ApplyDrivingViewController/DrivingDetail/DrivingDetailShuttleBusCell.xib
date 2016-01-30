@@ -16,14 +16,14 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="班车路线" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mTH-Bo-WSo">
                         <rect key="frame" x="8" y="8" width="246" height="21"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="班车路线" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="giI-9T-870">
                         <rect key="frame" x="8" y="37" width="304" height="14"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -31,7 +31,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njx-NO-g18">
                         <rect key="frame" x="262" y="8" width="50" height="20"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IwA-p4-s2X">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="地点" translatesAutoresizingMaskIntoConstraints="NO" id="IwA-p4-s2X">
                                 <rect key="frame" x="30" y="0.0" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="Nj7-H7-BFI"/>
@@ -40,7 +40,7 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="更多" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Q7-6O-zYz">
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
-                                <color key="backgroundColor" red="1" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -49,7 +49,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="qRd-0d-MiI" firstAttribute="top" secondItem="njx-NO-g18" secondAttribute="top" id="3kH-cN-xaw"/>
                             <constraint firstItem="IwA-p4-s2X" firstAttribute="leading" secondItem="0Q7-6O-zYz" secondAttribute="trailing" id="6Iy-Ba-jwp"/>
@@ -65,9 +65,19 @@
                             <constraint firstItem="0Q7-6O-zYz" firstAttribute="leading" secondItem="njx-NO-g18" secondAttribute="leading" id="zCm-ar-tUi"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dje-pS-9Mw" userLabel="bottomLineView">
+                        <rect key="frame" x="8" y="58" width="304" height="0.5"/>
+                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="OHe-w7-eFp"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstAttribute="trailing" secondItem="dje-pS-9Mw" secondAttribute="trailing" constant="8" id="83w-C3-pwB"/>
                     <constraint firstItem="njx-NO-g18" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="IRY-YL-XGn"/>
+                    <constraint firstAttribute="bottom" secondItem="dje-pS-9Mw" secondAttribute="bottom" id="dsL-dl-5SG"/>
+                    <constraint firstItem="dje-pS-9Mw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="dzi-WV-0eG"/>
                     <constraint firstAttribute="trailing" secondItem="njx-NO-g18" secondAttribute="trailing" constant="8" id="xN5-lP-vSo"/>
                 </constraints>
             </tableViewCellContentView>
@@ -78,4 +88,7 @@
             <point key="canvasLocation" x="272" y="286.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="地点" width="46" height="46"/>
+    </resources>
 </document>

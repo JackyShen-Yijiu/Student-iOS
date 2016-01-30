@@ -16,7 +16,7 @@
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Il-HL-jEs">
                         <rect key="frame" x="36" y="37" width="276" height="21"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="c9c-g2-jEV"/>
                         </constraints>
@@ -24,7 +24,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="S41-bY-vNK">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="地点" translatesAutoresizingMaskIntoConstraints="NO" id="S41-bY-vNK">
                         <rect key="frame" x="8" y="37" width="21" height="21"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="21" id="BxF-VA-cBJ"/>
@@ -33,17 +33,17 @@
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="￥3980 - ￥3980" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O2x-gn-SQl">
                         <rect key="frame" x="8" y="66" width="304" height="21"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Zzo-f3-iDO"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="驾校名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xbH-cG-FBG">
                         <rect key="frame" x="8" y="8" width="304" height="21"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="mMY-bs-44t"/>
                         </constraints>
@@ -51,6 +51,13 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RwR-ur-iXY" userLabel="bottomLineView">
+                        <rect key="frame" x="8" y="94" width="304" height="0.5"/>
+                        <color key="backgroundColor" red="0.80000001190000003" green="0.80000001190000003" blue="0.80000001190000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="0.5" id="o3o-8i-Nhz"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="O2x-gn-SQl" secondAttribute="trailing" constant="8" id="42p-GG-jaG"/>
@@ -61,7 +68,10 @@
                     <constraint firstItem="S41-bY-vNK" firstAttribute="top" secondItem="xbH-cG-FBG" secondAttribute="bottom" constant="8" id="Nfl-tr-hz0"/>
                     <constraint firstItem="4Il-HL-jEs" firstAttribute="leading" secondItem="S41-bY-vNK" secondAttribute="trailing" constant="7" id="Pio-ov-f13"/>
                     <constraint firstItem="xbH-cG-FBG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="U5t-Cw-DB4"/>
+                    <constraint firstItem="RwR-ur-iXY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="aG4-de-aDB"/>
                     <constraint firstItem="O2x-gn-SQl" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="gAh-KH-Zo9"/>
+                    <constraint firstAttribute="trailing" secondItem="RwR-ur-iXY" secondAttribute="trailing" constant="8" id="i1N-RX-8zn"/>
+                    <constraint firstAttribute="bottom" secondItem="RwR-ur-iXY" secondAttribute="bottom" id="i2I-q6-Sh8"/>
                     <constraint firstAttribute="bottom" secondItem="O2x-gn-SQl" secondAttribute="bottom" constant="7.5" id="jfA-FS-Wp9"/>
                     <constraint firstAttribute="trailing" secondItem="4Il-HL-jEs" secondAttribute="trailing" constant="8" id="qzZ-PR-DTN"/>
                 </constraints>
@@ -74,4 +84,7 @@
             <point key="canvasLocation" x="402" y="313.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="地点" width="46" height="46"/>
+    </resources>
 </document>

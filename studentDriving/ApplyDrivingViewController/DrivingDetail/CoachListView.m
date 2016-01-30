@@ -17,6 +17,8 @@
 
 @property (nonatomic, strong) CoachListViewModel *viewModel;
 
+@property (nonatomic, copy) CoachListViewCellBlock cellDidSelectBlock;
+
 @end
 
 @implementation CoachListView
@@ -85,32 +87,34 @@
     CoachListCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     [cell refreshData:_viewModel.dataArray[indexPath.row]];
     
-    if (indexPath.row == 1) {
-        cell.bottomLineView.hidden = YES;
-    }else {
-        cell.bottomLineView.hidden = NO;
-    }
+//    if (indexPath.row == 1) {
+//        cell.bottomLineView.hidden = YES;
+//    }else {
+//        cell.bottomLineView.hidden = NO;
+//    }
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     CoachListDMData *dmData = _viewModel.dataArray[indexPath.row];
-    
+    if (_cellDidSelectBlock) {
+        _cellDidSelectBlock(dmData);
+    }
 }
 
 - (UIButton *)bottomButton {
     if (!_bottomButton) {
         _bottomButton = [UIButton new];
         _bottomButton.frame = CGRectMake(0, 0, 0, 40);
-        _bottomButton.backgroundColor = [UIColor colorWithWhite:0.7 alpha:1];
+        _bottomButton.backgroundColor = [UIColor whiteColor];
         [_bottomButton setTitle:@"查看该校全部教练" forState:UIControlStateNormal];
-        [_bottomButton addTarget:self action:@selector(bottomButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        [_bottomButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
     }
     return _bottomButton;
 }
-- (void)bottomButtonAction {
-    
-    
+
+- (void)setCoachListViewCellDidSelectBlock:(CoachListViewCellBlock)handel {
+    _cellDidSelectBlock = handel;
 }
 
 /*

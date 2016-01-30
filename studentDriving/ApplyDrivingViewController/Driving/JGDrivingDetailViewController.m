@@ -27,10 +27,10 @@
 #import "JGDrivingDetailTopCell.h"
 #import "JGDrivingDetailTeachingNewsCell.h"
 #import "JGDrivingDetailPersonalNoteCell.h"
-#import "JGDrivingDetailEvalutionCell.h"
 #import "JGDrivingDetailKeChengFeiYongCell.h"
 
 #import "JGCoachDetailViewController.h"
+#import "JGActivityViewController.h"
 
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
@@ -40,8 +40,6 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
 
 @property (strong, nonatomic)UIButton *phoneBtn;
 @property (strong, nonatomic) UITableView *tableView;
-
-@property (nonatomic, strong) UIImageView *heartImageView;
 
 /*
  * 教练详情信息
@@ -450,6 +448,12 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
     }
     
     return nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    JGActivityViewController *vc = [[JGActivityViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)JGDrivingDetailKeChengFeiYongCellWithBaomingDidClick:(JGDrivingDetailKeChengFeiYongCell *)cell

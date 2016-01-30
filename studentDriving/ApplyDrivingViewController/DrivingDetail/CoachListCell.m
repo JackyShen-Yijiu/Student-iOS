@@ -24,6 +24,8 @@
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
         
+        _priceLabel.textColor = MAINCOLOR;
+        
         [self.contentView addSubview:self.starBar];
         __weak typeof(self) ws = self;
         [_starBar mas_makeConstraints:^(MASConstraintMaker *make) {
