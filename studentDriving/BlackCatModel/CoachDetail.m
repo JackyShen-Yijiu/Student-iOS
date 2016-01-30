@@ -38,19 +38,19 @@
     
 }
 
-//- (NSArray *)serverclasslist
-//{
-//    NSMutableArray *tempArray = [NSMutableArray array];
-//    
-//    [tempArray addObjectsFromArray:_serverclasslist];
-//    [tempArray addObjectsFromArray:_serverclasslist];
-//    [tempArray addObjectsFromArray:_serverclasslist];
-//    [tempArray addObjectsFromArray:_serverclasslist];
-//    [tempArray addObjectsFromArray:_serverclasslist];
-//    [tempArray addObjectsFromArray:_serverclasslist];
-//
-//    return [tempArray copy];
-//}
+- (NSArray *)serverclasslist
+{
+    NSMutableArray *tempArray = [NSMutableArray array];
+    
+    [tempArray addObjectsFromArray:_serverclasslist];
+    [tempArray addObjectsFromArray:_serverclasslist];
+    [tempArray addObjectsFromArray:_serverclasslist];
+    [tempArray addObjectsFromArray:_serverclasslist];
+    [tempArray addObjectsFromArray:_serverclasslist];
+    [tempArray addObjectsFromArray:_serverclasslist];
+
+    return [tempArray copy];
+}
 
 //- (NSArray *)tagslist
 //{
