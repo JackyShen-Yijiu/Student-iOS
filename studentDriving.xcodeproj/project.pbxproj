@@ -19,6 +19,9 @@
 		062734CA1C5A0C550056B0BC /* SignUpPayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734C91C5A0C550056B0BC /* SignUpPayCell.m */; };
 		062734CD1C5A2C860056B0BC /* SignUpInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */; };
 		062734D01C5A46410056B0BC /* SignUpTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 062734CF1C5A46410056B0BC /* SignUpTextField.m */; };
+		063BB1EB1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 063BB1EA1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m */; };
+		063BB1EE1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 063BB1ED1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m */; };
+		063BB1F11C5C524400A5F3D5 /* SchoolClassDetailDisCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 063BB1F01C5C524400A5F3D5 /* SchoolClassDetailDisCell.m */; };
 		064183F71C57552E00A33D88 /* HomeCheckProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183F61C57552E00A33D88 /* HomeCheckProgressView.m */; };
 		064183FB1C57A8AC00A33D88 /* CheckProgressController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064183FA1C57A8AC00A33D88 /* CheckProgressController.m */; };
 		064184011C57AD6F00A33D88 /* YBBaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064184001C57AD6F00A33D88 /* YBBaseTableCell.m */; };
@@ -680,6 +683,12 @@
 		062734CC1C5A2C860056B0BC /* SignUpInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpInfoCell.m; sourceTree = "<group>"; };
 		062734CE1C5A46410056B0BC /* SignUpTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpTextField.h; sourceTree = "<group>"; };
 		062734CF1C5A46410056B0BC /* SignUpTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpTextField.m; sourceTree = "<group>"; };
+		063BB1E91C5C4E6F00A5F3D5 /* SchoolClassDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolClassDetailController.h; sourceTree = "<group>"; };
+		063BB1EA1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolClassDetailController.m; sourceTree = "<group>"; };
+		063BB1EC1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolClassDetailMessageCell.h; sourceTree = "<group>"; };
+		063BB1ED1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolClassDetailMessageCell.m; sourceTree = "<group>"; };
+		063BB1EF1C5C524400A5F3D5 /* SchoolClassDetailDisCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SchoolClassDetailDisCell.h; sourceTree = "<group>"; };
+		063BB1F01C5C524400A5F3D5 /* SchoolClassDetailDisCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SchoolClassDetailDisCell.m; sourceTree = "<group>"; };
 		064183F51C57552E00A33D88 /* HomeCheckProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeCheckProgressView.h; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.h; sourceTree = SOURCE_ROOT; };
 		064183F61C57552E00A33D88 /* HomeCheckProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeCheckProgressView.m; path = studentDriving/UserCenterViewController/HomeMainController/HomeCheckProgressView.m; sourceTree = SOURCE_ROOT; };
 		064183F91C57A8AC00A33D88 /* CheckProgressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressController.h; sourceTree = "<group>"; };
@@ -1924,6 +1933,12 @@
 				062734C91C5A0C550056B0BC /* SignUpPayCell.m */,
 				062734CE1C5A46410056B0BC /* SignUpTextField.h */,
 				062734CF1C5A46410056B0BC /* SignUpTextField.m */,
+				063BB1E91C5C4E6F00A5F3D5 /* SchoolClassDetailController.h */,
+				063BB1EA1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m */,
+				063BB1EC1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.h */,
+				063BB1ED1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m */,
+				063BB1EF1C5C524400A5F3D5 /* SchoolClassDetailDisCell.h */,
+				063BB1F01C5C524400A5F3D5 /* SchoolClassDetailDisCell.m */,
 			);
 			path = SignUp;
 			sourceTree = "<group>";
@@ -4482,6 +4497,7 @@
 				D51256C91BE348BA002717DA /* StudentCommentModel.m in Sources */,
 				D5604B611BF656C50020F0D7 /* UIImageView+EMWebCache.m in Sources */,
 				D5604B8A1BF656C50020F0D7 /* BaseViewController.m in Sources */,
+				063BB1EB1C5C4E6F00A5F3D5 /* SchoolClassDetailController.m in Sources */,
 				D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */,
 				D92B2DB41C59F69F0050EE84 /* CourseCell.m in Sources */,
 				D588B11A1BDDDC2F000C5D6F /* AcountManager.m in Sources */,
@@ -4493,6 +4509,7 @@
 				D588B1391BDDDC65000C5D6F /* ForgetViewController.m in Sources */,
 				55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */,
 				D965CAA61C239D9F00DCD094 /* DrivingCycleShowDMData.m in Sources */,
+				063BB1EE1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m in Sources */,
 				D5604C881BF656F30020F0D7 /* EMChatBaseBubbleView.m in Sources */,
 				06073D871C251C300058B372 /* HomeRewardController.m in Sources */,
 				D588B0501BDDDB71000C5D6F /* SignatureViewController.m in Sources */,
@@ -4599,6 +4616,7 @@
 				D5BCFEDC1BF317350019402C /* PushInformationManager.m in Sources */,
 				D92B2DF21C5A17BE0050EE84 /* DrivingDetailDMLogoimg.m in Sources */,
 				D588AFC81BDDDAAB000C5D6F /* SubjectModel.m in Sources */,
+				063BB1F11C5C524400A5F3D5 /* SchoolClassDetailDisCell.m in Sources */,
 				D9A34F3A1C5318FA0044CC25 /* DVVShareCell.m in Sources */,
 				D5604B631BF656C50020F0D7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				D5604B4F1BF656C50020F0D7 /* MWTapDetectingImageView.m in Sources */,
