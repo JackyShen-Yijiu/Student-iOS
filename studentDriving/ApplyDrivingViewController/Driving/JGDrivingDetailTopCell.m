@@ -29,7 +29,7 @@
 // 可授科目
 @property (nonatomic,strong) UILabel *keshoukemuLabel;
 // 距离
-@property (nonatomic,strong) UILabel *juliLabel;
+//@property (nonatomic,strong) UILabel *juliLabel;
 // 是否收藏
 @property (nonatomic,strong) UIButton *collectionBtn;
 // 灰色底部
@@ -103,14 +103,14 @@
     return _keshoukemuLabel;
 }
 // 距离
-- (UILabel *)juliLabel {
-    if (_juliLabel == nil) {
-        _juliLabel = [[UILabel alloc] init];
-        _juliLabel.font = [UIFont boldSystemFontOfSize:13];
-        _juliLabel.textColor = [UIColor lightGrayColor];
-    }
-    return _juliLabel;
-}
+//- (UILabel *)juliLabel {
+//    if (_juliLabel == nil) {
+//        _juliLabel = [[UILabel alloc] init];
+//        _juliLabel.font = [UIFont boldSystemFontOfSize:13];
+//        _juliLabel.textColor = [UIColor lightGrayColor];
+//    }
+//    return _juliLabel;
+//}
 // 是否收藏
 - (UIButton *)collectionBtn {
     if (_collectionBtn == nil) {
@@ -158,7 +158,7 @@
     [self.backGroundView addSubview:self.keshoukemuLabel];
     
     // 距离
-    [self.backGroundView addSubview:self.juliLabel];
+  //  [self.backGroundView addSubview:self.juliLabel];
     
     // 是否收藏
     [self.backGroundView addSubview:self.collectionBtn];
@@ -211,12 +211,12 @@
     }];
     
     // 距离
-    [self.juliLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-margin);
-        make.top.mas_equalTo(self.keshoukemuLabel.mas_top);
-        make.height.mas_equalTo(@15);
-    }];
-    
+//    [self.juliLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-margin);
+//        make.top.mas_equalTo(self.keshoukemuLabel.mas_top);
+//        make.height.mas_equalTo(@15);
+//    }];
+//    
     // 是否收藏
     [self.collectionBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.backGroundView.mas_right).offset(-margin);
@@ -265,7 +265,7 @@
     self.keshoukemuLabel.text = [NSString stringWithFormat:@"可授科目:%@",subStr];
     
     // 距离
-    self.juliLabel.text = _detailModel.name;
+   // self.juliLabel.text = _detailModel.name;
     
     // 是否收藏
     self.collectionBtn.selected = _detailModel.is_lock;

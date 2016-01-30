@@ -38,40 +38,40 @@
     
 }
 
-- (NSArray *)serverclasslist
-{
-    NSMutableArray *tempArray = [NSMutableArray array];
-    
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-
-    return [tempArray copy];
-}
+//- (NSArray *)serverclasslist
+//{
+//    NSMutableArray *tempArray = [NSMutableArray array];
+//    
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//
+//    return [tempArray copy];
+//}
 
 //- (NSArray *)tagslist
 //{
 //    NSMutableArray *tempArray = [NSMutableArray array];
 //    
-//    [tempArray addObjectsFromArray:_tagslist];
-//    [tempArray addObjectsFromArray:_tagslist];
-//    [tempArray addObjectsFromArray:_tagslist];
-//    [tempArray addObjectsFromArray:_tagslist];
-//    [tempArray addObjectsFromArray:_tagslist];
-//    [tempArray addObjectsFromArray:_tagslist];
-//    [tempArray addObjectsFromArray:_tagslist];
-//    [tempArray addObjectsFromArray:_tagslist];
-//    [tempArray addObjectsFromArray:_tagslist];
+////    [tempArray addObjectsFromArray:_tagslist];
+////    [tempArray addObjectsFromArray:_tagslist];
+////    [tempArray addObjectsFromArray:_tagslist];
+////    [tempArray addObjectsFromArray:_tagslist];
+////    [tempArray addObjectsFromArray:_tagslist];
+////    [tempArray addObjectsFromArray:_tagslist];
+////    [tempArray addObjectsFromArray:_tagslist];
+////    [tempArray addObjectsFromArray:_tagslist];
+////    [tempArray addObjectsFromArray:_tagslist];
 //
 //    return [tempArray copy];
 //}
 
-- (NSString *)introduction
-{
-    return @"我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近";
-}
+//- (NSString *)introduction
+//{
+//    return @"我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近我是一个人生闷气，我的人生是不是很多，我的人生是不是很多，我就是我距离近";
+//}
 
 @end

@@ -40,11 +40,8 @@
 - (UIButton *)moreBtn {
     if (_moreBtn == nil) {
         _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_moreBtn setTitle:@"更多" forState:UIControlStateNormal];
-        [_moreBtn setTitle:@"更多" forState:UIControlStateHighlighted];
-        _moreBtn.titleLabel.textColor = [UIColor lightGrayColor];
-        _moreBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-        _moreBtn.backgroundColor = [UIColor redColor];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg"] forState:UIControlStateNormal];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg"] forState:UIControlStateHighlighted];
         [_moreBtn addTarget:self action:@selector(moreBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
 
     }
@@ -118,8 +115,8 @@
     [self.moreBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.titleLabel.mas_top);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-JGMargin);
-        make.height.mas_equalTo(self.titleLabel.mas_height);
-        make.width.mas_equalTo(@50);
+        make.height.mas_equalTo(@11);
+        make.width.mas_equalTo(@34);
     }];
     
     // 内容 (展开、收起)
