@@ -17,6 +17,9 @@
 
 #import "ChatViewController.h"
 #import "SignUpListViewController.h"
+// 新报名界面
+#import "SignUpController.h"
+#import "VerifyPhoneController.h"
 // 首页
 #import "HomeAdvantageController.h"
 #import "HomeFavourableController.h"
@@ -240,10 +243,24 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
                 [AcountManager saveUserApplyState:@"0"];
                 
-//                // 弹出验证学车进度窗体
-//                _homeCheckProgressView = [[HomeCheckProgressView alloc] init];
-////                _mainScrollView.userInteractionEnabled = NO;
-//                [[UIApplication sharedApplication].keyWindow addSubview:_homeCheckProgressView];
+                // 弹出验证学车进度窗体
+                _homeCheckProgressView = [[HomeCheckProgressView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
+                 __weak typeof(self) ws = self;
+                _homeCheckProgressView.didClickBlock = ^(NSInteger tag){
+                    // tag = 200 答对了
+                    
+                    if (200 == tag) {
+                        // 验证学车进度
+                        [ws.homeCheckProgressView removeFromSuperview];
+                        VerifyPhoneController *verifyVC = [[VerifyPhoneController alloc] init];
+                        [ws.navigationController pushViewController:verifyVC animated:YES];
+                        
+                    }else if(201 == tag){
+                        //
+                        [ws.homeCheckProgressView removeFromSuperview];
+                    }
+                };
+                [[UIApplication sharedApplication].keyWindow addSubview:_homeCheckProgressView];
                 
             }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
                 [AcountManager saveUserApplyState:@"1"];
@@ -612,20 +629,19 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             return;
         }
          // 如果没有报名,滑到科目2,跳转报名界面
-        if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
-            SignUpListViewController *signUpListVC = [[SignUpListViewController alloc] init];
-            [self.navigationController pushViewController:signUpListVC animated:YES];
-            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
-            return;
-        }
-        // 状态正在审核中时,弹出提示信息
-        if ([[[AcountManager manager] userApplystate] isEqualToString:@"1"]) {
-            [self obj_showTotasViewWithMes:@"报名正在审核中"];
-            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
-            return;
-        }
+//        if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
+//            SignUpController *signUpListVC = [[SignUpController alloc] init];
+//            [self.navigationController pushViewController:signUpListVC animated:YES];
+//            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
+//            return;
+//        }
+//                if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
+//                    [self obj_showTotasViewWithMes:@"您还没有报名!"];
+//                    _mainScrollView.contentOffset = CGPointMake(systemsW, 0);
+//                    return;
+//                }
 
-
+        
         [self carMore:scrollView.contentOffset.x];
         if (scrollView.contentOffset.x == systemsW * 2)
         {
@@ -675,7 +691,15 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         }
     
 }
- 
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    if (_mainScrollView.contentOffset.x == systemsW) {
+        if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
+            [self obj_showTotasViewWithMes:@"您还没有报名!"];
+            return;
+        }
+
+    }
+}
 #pragma  mark --- 实现协议方法
 - (void)horizontalMenuScrollPageIndex:(CGFloat)offSet
 {

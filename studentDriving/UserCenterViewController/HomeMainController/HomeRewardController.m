@@ -44,7 +44,7 @@ static NSString *advantage = @"liuchengt.html";
 - (void)viewDidLoad {
     [super viewDidLoad];
 self.title = @"一步流程";
-    [self addSignUp];
+//    [self addSignUp];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
