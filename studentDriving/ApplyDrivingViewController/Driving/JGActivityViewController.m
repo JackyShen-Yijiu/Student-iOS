@@ -44,6 +44,7 @@
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = RGBColor(255, 255, 255);
     }
     return _tableView;
 }
@@ -52,7 +53,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColor(251, 251, 251);;
     
     self.title = @"活动";
     

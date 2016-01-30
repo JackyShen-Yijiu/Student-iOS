@@ -27,7 +27,6 @@
 #import "JGDrivingDetailTopCell.h"
 #import "JGDrivingDetailTeachingNewsCell.h"
 #import "JGDrivingDetailPersonalNoteCell.h"
-#import "JGDrivingDetailEvalutionCell.h"
 
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 

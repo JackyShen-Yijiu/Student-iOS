@@ -83,7 +83,6 @@
 		B21818141C58AC5500F973A7 /* JGDrivingDetailTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */; };
 		B21818171C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */; };
 		B218181A1C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */; };
-		B218181D1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */; };
 		B21818231C58E76300F973A7 /* Applyclasstypeinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */; };
 		B21818301C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */; };
 		B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818321C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m */; };
@@ -907,8 +906,6 @@
 		B21818161C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailTeachingNewsCell.m; sourceTree = "<group>"; };
 		B21818181C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailPersonalNoteCell.h; sourceTree = "<group>"; };
 		B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailPersonalNoteCell.m; sourceTree = "<group>"; };
-		B218181B1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailEvalutionCell.h; sourceTree = "<group>"; };
-		B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGDrivingDetailEvalutionCell.m; sourceTree = "<group>"; };
 		B21818211C58E76300F973A7 /* Applyclasstypeinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Applyclasstypeinfo.h; sourceTree = "<group>"; };
 		B21818221C58E76300F973A7 /* Applyclasstypeinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Applyclasstypeinfo.m; sourceTree = "<group>"; };
 		B218182E1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGDrivingDetailKeChengFeiYongCell.h; sourceTree = "<group>"; };
@@ -3943,8 +3940,6 @@
 				B218182F1C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m */,
 				B21818181C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.h */,
 				B21818191C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m */,
-				B218181B1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.h */,
-				B218181C1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m */,
 				B20DBBBF1C5CA20B0023676E /* JGActivityViewController.h */,
 				B20DBBC01C5CA20B0023676E /* JGActivityViewController.m */,
 				B20DBBC21C5CA4B60023676E /* JGActivityCell.h */,
@@ -4553,7 +4548,6 @@
 				D5D50EE21BFA205000F54097 /* MagicMainTableViewController.m in Sources */,
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
-				B218181D1C58AF4C00F973A7 /* JGDrivingDetailEvalutionCell.m in Sources */,
 				B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */,
 				D92B2DA91C59D0030050EE84 /* DrivingDetailTrainingGroundCell.m in Sources */,
 				D5604B4D1BF656C50020F0D7 /* MWPhoto.m in Sources */,

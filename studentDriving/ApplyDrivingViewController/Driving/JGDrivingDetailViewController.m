@@ -27,7 +27,6 @@
 #import "JGDrivingDetailTopCell.h"
 #import "JGDrivingDetailTeachingNewsCell.h"
 #import "JGDrivingDetailPersonalNoteCell.h"
-#import "JGDrivingDetailEvalutionCell.h"
 #import "JGDrivingDetailKeChengFeiYongCell.h"
 
 #import "JGCoachDetailViewController.h"
@@ -453,8 +452,8 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    JGActivityViewController *vc = [[JGActivityViewController alloc] init];
-//    [self.navigationController pushViewController:vc animated:YES];
+    JGActivityViewController *vc = [[JGActivityViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)JGDrivingDetailKeChengFeiYongCellWithBaomingDidClick:(JGDrivingDetailKeChengFeiYongCell *)cell
