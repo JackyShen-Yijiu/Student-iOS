@@ -12,7 +12,7 @@
 @implementation CoachDetail
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"seniority":@"Seniority",@"address":@"address",@"carmodel":@"carmodel",@"coachid":@"coachid",@"commentcount":@"commentcount",@"createtime":@"createtime",@"displaycoachid":@"displaycoachid",@"driveschoolinfo":@"driveschoolinfo",@"email":@"email",@"headportrait":@"headportrait",@"introduction":@"introduction",@"invitationcode":@"invitationcode",@"is_lock":@"is_lock",@"is_shuttle":@"is_shuttle",@"is_validation":@"is_validation",@"logintime":@"logintime",@"mobile":@"mobile",@"name":@"name",@"passrate":@"passrate",@"platenumber":@"platenumber",@"shuttlemsg":@"shuttlemsg",@"starlevel":@"starlevel",@"studentcoount":@"studentcoount",@"subject":@"subject",@"trainFieldInfo":@"trainfieldlinfo",@"validationstate":@"validationstate",@"worktimedesc":@"worktimedesc",@"trainfield":@"trainfield",@"tagslist":@"tagslist",@"serverclasslist":@"serverclasslist"};
+    return @{@"seniority":@"Seniority",@"address":@"address",@"carmodel":@"carmodel",@"coachid":@"coachid",@"commentcount":@"commentcount",@"createtime":@"createtime",@"displaycoachid":@"displaycoachid",@"driveschoolinfo":@"driveschoolinfo",@"email":@"email",@"headportrait":@"headportrait",@"introduction":@"introduction",@"invitationcode":@"invitationcode",@"is_lock":@"is_lock",@"is_shuttle":@"is_shuttle",@"is_validation":@"is_validation",@"logintime":@"logintime",@"mobile":@"mobile",@"name":@"name",@"passrate":@"passrate",@"platenumber":@"platenumber",@"shuttlemsg":@"shuttlemsg",@"starlevel":@"starlevel",@"studentcoount":@"studentcoount",@"subject":@"subject",@"trainFieldInfo":@"trainfieldlinfo",@"validationstate":@"validationstate",@"worktimedesc":@"worktimedesc",@"trainfield":@"trainfield",@"tagslist":@"tagslist",@"serverclasslist":@"serverclasslist",@"is_favoritcoach":@"is_favoritcoach"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {
@@ -38,19 +38,19 @@
     
 }
 
-- (NSArray *)serverclasslist
-{
-    NSMutableArray *tempArray = [NSMutableArray array];
-    
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-    [tempArray addObjectsFromArray:_serverclasslist];
-
-    return [tempArray copy];
-}
+//- (NSArray *)serverclasslist
+//{
+//    NSMutableArray *tempArray = [NSMutableArray array];
+//    
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//    [tempArray addObjectsFromArray:_serverclasslist];
+//
+//    return [tempArray copy];
+//}
 
 //- (NSArray *)tagslist
 //{

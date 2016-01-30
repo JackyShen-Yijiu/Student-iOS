@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 lord. All rights reserved.
 //
 
-#import "JGDrivingDetailViewController.h"
+#import "JGCoachDetailViewController.h"
 #import "SignUpViewController.h"
 #import "DrivingDetailViewController.h"
 #import "CoachIntroductionCell.h"
@@ -28,9 +28,6 @@
 #import "JGDrivingDetailTeachingNewsCell.h"
 #import "JGDrivingDetailPersonalNoteCell.h"
 #import "JGDrivingDetailEvalutionCell.h"
-#import "JGDrivingDetailKeChengFeiYongCell.h"
-
-#import "JGCoachDetailViewController.h"
 
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
@@ -40,15 +37,13 @@ static NSString *const kCheckLoveCoach = @"userinfo/favoritecoach";
 static NSString *const kAddLoveCoach = @"userinfo/favoritecoach/%@";
 static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
-@interface JGDrivingDetailViewController ()<UITableViewDataSource,UITableViewDelegate,JGDrivingDetailKeChengFeiYongCellDelegate,JGDrivingDetailPersonalNoteCellDelegate>
+@interface JGCoachDetailViewController ()<UITableViewDataSource,UITableViewDelegate,JGDrivingDetailPersonalNoteCellDelegate>
 
 @property (strong, nonatomic)UIButton *phoneBtn;
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (strong, nonatomic)UIButton *signUpButton;
+//@property (strong, nonatomic)UIButton *signUpButton;
 @property (nonatomic, strong) UIImageView *heartImageView;
-
-
 
 /*
  * 教练详情信息
@@ -61,7 +56,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
 @end
 
-@implementation JGDrivingDetailViewController
+@implementation JGCoachDetailViewController
 
 - (NSMutableArray *)commentArray
 {
@@ -86,35 +81,39 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 - (UIButton *)phoneBtn{
     if (_phoneBtn == nil) {
         _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        _phoneBtn.frame = CGRectMake(0, 0, 20, 20);
-        [_phoneBtn setBackgroundImage:[UIImage imageNamed:@"dianhua"] forState:UIControlStateNormal];
+        _phoneBtn.frame = CGRectMake(0, 0, 50, 20);
+        [_phoneBtn setTitle:@"确认" forState:UIControlStateNormal];
+        [_phoneBtn setTitle:@"确认" forState:UIControlStateHighlighted];
+        [_phoneBtn setTitleColor:MAINCOLOR forState:UIControlStateNormal];
+        [_phoneBtn setTitleColor:MAINCOLOR forState:UIControlStateHighlighted];
+        _phoneBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
         [_phoneBtn addTarget:self action:@selector(clickPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneBtn;
 }
 
-- (UIButton *)signUpButton{
-    if (_signUpButton == nil) {
-        _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _signUpButton.backgroundColor = MAINCOLOR;
-        _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
-        [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
-        if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-            [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
-        }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-            [_signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
-            _signUpButton.userInteractionEnabled = NO;
-            
-        }else {
-            [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
-        }
-        [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        
-    }
-    return _signUpButton;
-}
+//- (UIButton *)signUpButton{
+//    if (_signUpButton == nil) {
+//        _signUpButton = [UIButton buttonWithType:UIButtonTypeCustom];
+//        _signUpButton.backgroundColor = MAINCOLOR;
+//        _signUpButton.titleLabel.font = [UIFont systemFontOfSize:16];
+//        [_signUpButton addTarget:self action:@selector(dealSignUp:) forControlEvents:UIControlEventTouchUpInside];
+//        if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+//            [_signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
+//            _signUpButton.userInteractionEnabled = NO;
+//            
+//        }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+//            [_signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
+//            _signUpButton.userInteractionEnabled = NO;
+//            
+//        }else {
+//            [_signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+//        }
+//        [_signUpButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        
+//    }
+//    return _signUpButton;
+//}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -142,21 +141,21 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     [self checkCollection];
     
 }
-- (void)loginSuccess {
-    
-    DYNSLog(@"login");
-    if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-        [self.signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
-        self.signUpButton.userInteractionEnabled = NO;
-        
-    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-        [self.signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
-        self.signUpButton.userInteractionEnabled = NO;
-        
-    }else {
-        [self.signUpButton setTitle:@"报名" forState:UIControlStateNormal];
-    }
-}
+//- (void)loginSuccess {
+//    
+//    DYNSLog(@"login");
+//    if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+//        [self.signUpButton setTitle:@"报名申请中" forState:UIControlStateNormal];
+//        self.signUpButton.userInteractionEnabled = NO;
+//        
+//    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+//        [self.signUpButton setTitle:@"报名成功" forState:UIControlStateNormal];
+//        self.signUpButton.userInteractionEnabled = NO;
+//        
+//    }else {
+//        [self.signUpButton setTitle:@"报名" forState:UIControlStateNormal];
+//    }
+//}
 
 #pragma mark ----- 加载评论列表
 - (void)startDownLoadComment {
@@ -174,7 +173,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         
         if (type.integerValue == 1) {
             
-//            self.commentArray = [[MTLJSONAdapter modelsOfClass:StudentCommentModel.class fromJSONArray:param[@"data"] error:&error] mutableCopy];
+            //            self.commentArray = [[MTLJSONAdapter modelsOfClass:StudentCommentModel.class fromJSONArray:param[@"data"] error:&error] mutableCopy];
             
             NSArray *array = data[@"data"];
             
@@ -197,7 +196,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     }];
     
     __weak typeof(self) ws = self;
-
+    
     // 加载
     MJRefreshBackNormalFooter *refreshFooter = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
         
@@ -219,7 +218,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         
         urlString = [NSString stringWithFormat:kGetCommentInfo,ws.coachUserId,[NSNumber numberWithInt:(int)index]];
         urlComment = [NSString stringWithFormat:BASEURL,urlString];
-
+        
         [JENetwoking startDownLoadWithUrl:urlComment postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
             
             NSDictionary *param = data;
@@ -231,8 +230,8 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
             if (type.integerValue == 1) {
                 
                 NSArray *array = data[@"data"];
-               
-//                NSArray *dataArray = [MTLJSONAdapter modelsOfClass:StudentCommentModel.class fromJSONArray:param[@"data"] error:&error];
+                
+                //                NSArray *dataArray = [MTLJSONAdapter modelsOfClass:StudentCommentModel.class fromJSONArray:param[@"data"] error:&error];
                 
                 if (array && array.count!=0) {
                     
@@ -252,7 +251,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
                 }else{
                     
                     [self showTotasViewWithMes:@"已经加载完成全部数据"];
-
+                    
                 }
                 
             }else {
@@ -260,9 +259,9 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
                 kShowFail(msg);
                 
             }
-           
+            
             [ws.tableView.mj_footer endRefreshing];
-
+            
         }];
         
     }];
@@ -277,7 +276,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     NSString *urlString = [NSString stringWithFormat:BASEURL,infoString];
     DYNSLog(@"urlString = %@",urlString);
     
-    __weak JGDrivingDetailViewController *weakSelf = self;
+    __weak JGCoachDetailViewController *weakSelf = self;
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
         NSDictionary *dataParam = data;
@@ -287,14 +286,14 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
             
             NSError *error = nil;
             
-           // CoachDetail *coachDetail = [MTLJSONAdapter modelOfClass:CoachDetail.class fromJSONDictionary:dataParam[@"data"] error:&error];
-           
+            // CoachDetail *coachDetail = [MTLJSONAdapter modelOfClass:CoachDetail.class fromJSONDictionary:dataParam[@"data"] error:&error];
+            
             CoachDetail *coachDetail = [CoachDetail yy_modelWithDictionary:dataParam[@"data"]];
             
             weakSelf.detailModel = coachDetail;
             
             [weakSelf.tableView reloadData];
-
+            
         }else{
             [self showTotasViewWithMes:@"网络错误"];
             return;
@@ -302,7 +301,6 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     }];
     
 }
-
 
 - (void)configBarItem {
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.phoneBtn];
@@ -313,45 +311,43 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)createUI {
     
     [self.view addSubview:self.tableView];
-        
-//    [self.signUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.view.mas_left).offset(0);
-//        make.right.mas_equalTo(self.view.mas_right).offset(0);
-//        make.bottom.mas_equalTo(self.view.mas_bottom).offset(0);
-//        make.height.mas_equalTo(@49);
-//    }];
+    
+    //    [self.signUpButton mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.left.mas_equalTo(self.view.mas_left).offset(0);
+    //        make.right.mas_equalTo(self.view.mas_right).offset(0);
+    //        make.bottom.mas_equalTo(self.view.mas_bottom).offset(0);
+    //        make.height.mas_equalTo(@49);
+    //    }];
     
 }
 
 
 #pragma mark --- 4组数据
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 4;
+    return 3;
 }
 #pragma mark --- 每一组有多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     if (section==0) {// 个人信息、授课信息
         return 2;
-    }else if (section==1){// 课程费用(需要根据服务器返回数组个数来判断)
-        return self.detailModel.serverclasslist.count;
-    }else if (section==2){// 个人说明
+    }else if (section==1){// 个人说明
         return 1;
-    }else if (section==3){// 学员评价
+    }else{// // 学员评价
         return self.commentArray.count;
     }
-    return 0;
+    
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
-    if (section==1 || section==3){// 课程费用、学员评价
+    if (section==2){// 学员评价
         return 30;
     }
     return 0;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     
-    if (section==1 || section==3) {
+    if (section==2) {
         
         UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 30)];
         headerView.backgroundColor = RGBColor(251, 251, 251);
@@ -362,10 +358,6 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         titleLabe.backgroundColor = [UIColor clearColor];
         titleLabe.frame = CGRectMake(0, 7, headerView.frame.size.width, 15);
         titleLabe.text = @"   学员评价";
-        if (section==1) {
-            titleLabe.text = @"   课程费用";
-            headerView.backgroundColor = [UIColor whiteColor];
-        }
         titleLabe.font = [UIFont boldSystemFontOfSize:13];
         [headerView addSubview:titleLabe];
         
@@ -382,29 +374,19 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         if (indexPath.row==0) {// 个人信息
             return 150;
         }else if (indexPath.row==1){// 授课信息
-            return [JGDrivingDetailTeachingNewsCell heightWithModel:self.detailModel];
+            // 减去顶部灰色view高度
+            return [JGDrivingDetailTeachingNewsCell heightWithModel:self.detailModel]-10;
         }
-
-    }else if (indexPath.section==1){// 课程费用
         
-        // 更新高度
-        serverclasslistModel *model = [serverclasslistModel yy_modelWithDictionary:self.detailModel.serverclasslist[indexPath.row]];
-        return [JGDrivingDetailKeChengFeiYongCell heightWithModel:model indexPath:indexPath];
+    }else if (indexPath.section==1){// 个人说明
         
-    }else if (indexPath.section==2){// 个人说明
-
         // 更新高度
         return [JGDrivingDetailPersonalNoteCell heightWithModel:self.detailModel indexPath:indexPath];
         
-    }else if (indexPath.section==3){// 学员评价
-        
-        // 更新高度
-        StudentCommentModel *model = self.commentArray[indexPath.row];
-        return [StudentCommentCell heightWithModel:model];
-        
     }
-    
-    return 0;
+    // 学员评价
+    StudentCommentModel *model = self.commentArray[indexPath.row];
+    return [StudentCommentCell heightWithModel:model];
     
 }
 
@@ -421,7 +403,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
                 cell.accessoryType = UITableViewCellAccessoryNone;
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
             }
-           
+            
             cell.detailModel = self.detailModel;
             
             return cell;
@@ -443,26 +425,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
             
         }
         
-    }else if (indexPath.section==1){// 课程费用
-       
-        static NSString *cellId = @"kechengfeiyong";
-        JGDrivingDetailKeChengFeiYongCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (!cell) {
-            cell = [[JGDrivingDetailKeChengFeiYongCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-        }
-        
-        cell.indexPath = indexPath;
-        cell.delegate = self;
-        
-        serverclasslistModel *model = [serverclasslistModel yy_modelWithDictionary:self.detailModel.serverclasslist[indexPath.row]];
-        
-        cell.detailModel = model;
-        
-        return cell;
-        
-    }else if (indexPath.section==2){// 个人说明
+    }else if (indexPath.section==1){// 个人说明
         
         static NSString *cellId = @"cellThree";
         JGDrivingDetailPersonalNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -478,7 +441,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         
         return cell;
         
-    }else if (indexPath.section==3){// 评论
+    }else if (indexPath.section==2){// 评论
         
         static NSString *cellId = @"cellFour";
         StudentCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
@@ -496,76 +459,10 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    JGCoachDetailViewController *vc = [[JGCoachDetailViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-
-}
-
-- (void)JGDrivingDetailKeChengFeiYongCellWithBaomingDidClick:(JGDrivingDetailKeChengFeiYongCell *)cell
-{
-    
-    if (![AcountManager isLogin]) {
-        //        [self showLoginView];
-        [DVVUserManager userNeedLogin];
-        return;
-    }
-    
-    if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
-    
-    if (![AcountManager manager].applyschool.infoId) {
-        if (self.detailModel || self.detailModel.name) {
-            NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
-            [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
-            
-        }
-        if (self.detailModel.driveschoolinfo.driveSchoolId && self.detailModel.driveschoolinfo.name) {
-            DYNSLog(@"schoolinfo");
-            NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
-            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-        }
-        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
-        [self.navigationController pushViewController:signUp animated:YES];
-        return;
-    }
-    
-    if ([[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo.driveSchoolId]) {
-        SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
-        [self.navigationController pushViewController:signUp animated:YES];
-        return;
-    }
-    
-    if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo.driveSchoolId]) {
-        [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-            DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-            
-            NSUInteger index = selectedOtherButtonIndex + 1;
-            
-            if (index == 0) {
-                return ;
-            }else {
-            
-                if (self.detailModel || self.detailModel.name) {
-                    NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
-                    [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
-                    
-                }
-                if (self.detailModel.driveschoolinfo.driveSchoolId && self.detailModel.driveschoolinfo.name) {
-                    DYNSLog(@"schoolinfo");
-                    NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
-                    [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-                }
-                
-                SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
-                [self.navigationController pushViewController:signUp animated:YES];
-                
-                return;
-                
-            }
-        }];
-        
+    if (indexPath.row == 0 && indexPath.section == 0) {//
+        DrivingDetailViewController *drivingDetail = [[DrivingDetailViewController alloc] init];
+        drivingDetail.schoolId = self.detailModel.driveschoolinfo.driveSchoolId;
+        [self.navigationController pushViewController:drivingDetail animated:YES];
     }
     
 }
@@ -579,28 +476,32 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
 #pragma  mark - btnAction
 - (void)clickPhoneBtn:(UIButton *)sender {
-    if (self.detailModel.mobile == nil ||[self.detailModel.mobile isEqualToString:@""]) {
-        [self showTotasViewWithMes:@"该教练未录入电话!"];
-        return;
-    }
     
-    [BLPFAlertView showAlertWithTitle:@"电话号码" message:self.detailModel.mobile cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-        DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
-        NSUInteger indexAlert = selectedOtherButtonIndex + 1;
-        if (indexAlert == 1) {
-            
-            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.detailModel.mobile];
-            UIWebView * callWebview = [[UIWebView alloc] init];
-            [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
-            [self.view addSubview:callWebview];
-            
-            //           NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.detailModel.mobile];
-            //           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
-        }else {
-            return ;
-        }
-        
-    }];
+    
+    [self.navigationController popViewControllerAnimated:YES];
+    
+//    if (self.detailModel.mobile == nil ||[self.detailModel.mobile isEqualToString:@""]) {
+//        [self showTotasViewWithMes:@"该教练未录入电话!"];
+//        return;
+//    }
+//    
+//    [BLPFAlertView showAlertWithTitle:@"电话号码" message:self.detailModel.mobile cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+//        DYNSLog(@"index = %lu",selectedOtherButtonIndex+1);
+//        NSUInteger indexAlert = selectedOtherButtonIndex + 1;
+//        if (indexAlert == 1) {
+//            
+//            NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",self.detailModel.mobile];
+//            UIWebView * callWebview = [[UIWebView alloc] init];
+//            [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+//            [self.view addSubview:callWebview];
+//            
+//            //           NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"telprompt://%@",self.detailModel.mobile];
+//            //           [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+//        }else {
+//            return ;
+//        }
+//        
+//    }];
 }
 
 - (void)dealSignUp:(UIButton *)sender{

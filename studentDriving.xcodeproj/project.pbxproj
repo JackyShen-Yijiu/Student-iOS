@@ -69,6 +69,7 @@
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
+		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */; };
 		B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818031C5606CD00F973A7 /* JGItemButton.m */; };
 		B21818111C58675C00F973A7 /* JGDrivingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */; };
@@ -854,6 +855,8 @@
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
 		B20DBBB71C5B4B130023676E /* serverclasslistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = serverclasslistModel.m; sourceTree = "<group>"; };
+		B20DBBB91C5C7F3C0023676E /* JGCoachDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGCoachDetailViewController.h; sourceTree = "<group>"; };
+		B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGCoachDetailViewController.m; sourceTree = "<group>"; };
 		B21817FF1C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHeadSearch.h; sourceTree = "<group>"; };
 		B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHeadSearch.m; sourceTree = "<group>"; };
 		B21818021C5606CD00F973A7 /* JGItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JGItemButton.h; path = CircularMotion/JGItemButton.h; sourceTree = "<group>"; };
@@ -3813,6 +3816,8 @@
 				B21818001C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m */,
 				B218180F1C58675C00F973A7 /* JGDrivingDetailViewController.h */,
 				B21818101C58675C00F973A7 /* JGDrivingDetailViewController.m */,
+				B20DBBB91C5C7F3C0023676E /* JGCoachDetailViewController.h */,
+				B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */,
 				B21818121C58AC5500F973A7 /* JGDrivingDetailTopCell.h */,
 				B21818131C58AC5500F973A7 /* JGDrivingDetailTopCell.m */,
 				B21818151C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.h */,
@@ -4288,6 +4293,7 @@
 				D92B2DE71C5A0FC10050EE84 /* DrivingDetailViewModel.m in Sources */,
 				D588B0D71BDDDC14000C5D6F /* DrivingInformationCell.m in Sources */,
 				D588B10E1BDDDC2F000C5D6F /* BLPFAlertView.m in Sources */,
+				B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */,
 				D96D1BE71C2B88A000F1C282 /* UIColor+Extension.m in Sources */,
 				B21818391C5B1C6F00F973A7 /* GBTagListView.m in Sources */,
 				D95E3DB41C3CEDC600F0B5A0 /* SearchCoachViewModel.m in Sources */,

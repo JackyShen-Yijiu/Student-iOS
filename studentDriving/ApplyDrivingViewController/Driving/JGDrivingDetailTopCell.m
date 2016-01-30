@@ -10,8 +10,11 @@
 #import "ToolHeader.h"
 #import "RatingBar.h"
 #import "CoachDetail.h"
+#import "UIViewController+Method.h"
 
 #define margin 10
+
+static NSString *const kAddLoveAndDeleteCoach = @"userinfo/favoritecoach/%@";
 
 @interface JGDrivingDetailTopCell ()<RatingBarDelegate>
 
@@ -115,8 +118,8 @@
 - (UIButton *)collectionBtn {
     if (_collectionBtn == nil) {
         _collectionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_nomal"] forState:UIControlStateNormal];
-        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_select"] forState:UIControlStateSelected];
+        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_select"] forState:UIControlStateNormal];
+        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_nomal"] forState:UIControlStateSelected];
     }
     return _collectionBtn;
 }
@@ -235,8 +238,11 @@
     
 }
 
-- (void)receiveDetailsModel:(CoachDetail *)_detailModel
+- (void)setDetailModel:(CoachDetail *)detailModel
 {
+    
+    _detailModel = detailModel;
+    
     // 头像
     [self.headImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_detailModel.headportrait.originalpic]] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
     
@@ -268,16 +274,43 @@
    // self.juliLabel.text = _detailModel.name;
     
     // 是否收藏
-    self.collectionBtn.selected = _detailModel.is_lock;
+    NSLog(@"_detailModel.is_favoritcoach:%d",_detailModel.is_favoritcoach);
+    self.collectionBtn.selected = _detailModel.is_favoritcoach;
     [self.collectionBtn addTarget:self action:@selector(collectionBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
     
 }
 
 - (void)collectionBtnDidClick
 {
-    self.collectionBtn.selected = !self.collectionBtn.selected;
     
-    NSLog(@"发送收藏、取消收藏请求");
+    NSString *kSaveUrl = [NSString stringWithFormat:kAddLoveAndDeleteCoach,self.detailModel.coachid];
+
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
+
+    JENetworkingRequestMethod method = JENetworkingRequestMethodDelete;
+    if (self.collectionBtn.selected) {
+        method = JENetworkingRequestMethodPut;
+    }
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:method withCompletion:^(id data) {
+        
+        NSDictionary *param = data;
+        
+        NSLog(@"data:%@",data);
+        
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        if ([type isEqualToString:@"1"]) {
+            
+            self.collectionBtn.selected = !self.collectionBtn.selected;
+            self.detailModel.is_favoritcoach = !self.detailModel.is_favoritcoach;
+            
+        }else{
+            
+            [self obj_showTotasViewWithMes:[param objectForKey:@"msg"]];
+            
+        }
+        
+    }];
     
 }
 
