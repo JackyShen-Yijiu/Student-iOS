@@ -27,7 +27,6 @@
 #import "JGDrivingDetailTopCell.h"
 #import "JGDrivingDetailTeachingNewsCell.h"
 #import "JGDrivingDetailPersonalNoteCell.h"
-#import "JGDrivingDetailEvalutionCell.h"
 
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
@@ -36,10 +35,8 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
 @interface JGCoachDetailViewController ()<UITableViewDataSource,UITableViewDelegate,JGDrivingDetailPersonalNoteCellDelegate>
 
 @property (strong, nonatomic)UIButton *phoneBtn;
-@property (strong, nonatomic) UITableView *tableView;
 
-//@property (strong, nonatomic)UIButton *signUpButton;
-@property (nonatomic, strong) UIImageView *heartImageView;
+@property (strong, nonatomic) UITableView *tableView;
 
 /*
  * 教练详情信息
