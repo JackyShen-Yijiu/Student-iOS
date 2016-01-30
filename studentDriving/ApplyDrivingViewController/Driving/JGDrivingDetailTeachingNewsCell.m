@@ -32,7 +32,7 @@
 // 底部分割线
 @property (strong, nonatomic) UIView *footView;
 
-@property (strong, nonatomic) UILabel *notCountLabel;
+@property (strong, nonatomic) UIImageView *notCountImg;
 @property (strong, nonatomic) UILabel *notBiaoqianLabel;
 
 @end
@@ -125,15 +125,13 @@
     return _footView;
 }
 
-- (UILabel *)notCountLabel {
+- (UIImageView *)notCountImg {
     
-    if (_notCountLabel == nil) {
-        _notCountLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
-        _notCountLabel.text = @"暂无练车场地图片";
-        _notCountLabel.textColor = [UIColor lightGrayColor];
-        _notCountLabel.numberOfLines = 1;
+    if (_notCountImg == nil) {
+        _notCountImg = [[UIImageView alloc] init];
+        _notCountImg.image = [UIImage imageNamed:@"默认"];
     }
-    return _notCountLabel;
+    return _notCountImg;
 }
 - (UILabel *)notBiaoqianLabel {
     
@@ -166,7 +164,7 @@
 
     // 场地图片
     [self.contentView addSubview:self.photosView];
-    [self.photosView addSubview:self.notCountLabel];
+    [self.photosView addSubview:self.notCountImg];
 
     // 分割线
     [self.contentView addSubview:self.midDelive];
@@ -181,6 +179,22 @@
     // 底部分割线
     [self.contentView addSubview:self.footView];
 
+    
+    // 场地图片
+    if (_detailModel.trainfield.pictures&&_detailModel.trainfield.pictures.count!=0) {
+        self.notCountImg.hidden = YES;
+        self.photosView.pictures = _detailModel.trainfield.pictures;
+    }else{
+        self.notCountImg.hidden = NO;
+    }
+    
+    // 个性标签内容
+    if (_detailModel.tagslist&&_detailModel.tagslist.count!=0) {
+        self.notBiaoqianLabel.hidden = YES;
+        [self.gexingbiaoqianView setTagWithTagArray:_detailModel.tagslist];
+    }else{
+        self.notBiaoqianLabel.hidden = NO;
+    }
     
     // 授课信息title
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -211,11 +225,11 @@
         make.width.equalTo(@(kSystemWide-JGMargin*2));
     }];
     // 占位图片
-    [self.notCountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.notCountImg mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(@0);
-        make.right.mas_equalTo(@0);
         make.top.mas_equalTo(@0);
-        make.height.equalTo(self.photosView);
+        make.height.equalTo(self.photosView.mas_height);
+        make.width.equalTo(@70);
     }];
     
     // 分割线
@@ -233,7 +247,6 @@
         make.height.equalTo(@20);
         make.width.equalTo(@(60));
     }];
-    
     // 个性标签内容
     [self.gexingbiaoqianView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.gexingbiaoqianTitleLabel.mas_top);
@@ -254,8 +267,10 @@
         make.left.mas_equalTo(self.contentView.mas_left);
         make.top.mas_equalTo(self.gexingbiaoqianView.mas_bottom).offset(JGMargin);//
         make.height.mas_equalTo(JGMargin);
-        make.width.mas_equalTo(self.contentView);
+        make.width.mas_equalTo(self.contentView.mas_width);
     }];
+    
+    
 }
 
 - (void)setDetailModel:(CoachDetail *)detailModel
@@ -274,19 +289,40 @@
 
     // 场地图片
     if (_detailModel.trainfield.pictures&&_detailModel.trainfield.pictures.count!=0) {
-        self.notCountLabel.hidden = YES;
+        self.self.photosView.hidden = YES;
         self.photosView.pictures = _detailModel.trainfield.pictures;
     }else{
-        self.notCountLabel.hidden = NO;
+        self.self.photosView.hidden = NO;
     }
     
     // 个性标签内容
     if (_detailModel.tagslist&&_detailModel.tagslist.count!=0) {
-        self.notCountLabel.hidden = YES;
+        self.notBiaoqianLabel.hidden = YES;
+        
         [self.gexingbiaoqianView setTagWithTagArray:_detailModel.tagslist];
+
+//        if (_detailModel.tagslist.count>2) {
+//            // 个性标签内容
+//            [self.gexingbiaoqianView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                make.top.equalTo(self.gexingbiaoqianTitleLabel.mas_top);
+//                make.left.equalTo(self.gexingbiaoqianTitleLabel.mas_right).offset(JGMargin/2);
+//                make.width.equalTo(@(kSystemWide-60-JGMargin*2.5));
+//                make.height.equalTo(@(self.gexingbiaoqianView.tagListViewH));
+//            }];
+//        }else{
+//            // 个性标签内容
+//            [self.gexingbiaoqianView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//                make.top.equalTo(self.gexingbiaoqianTitleLabel.mas_top);
+//                make.left.equalTo(self.gexingbiaoqianTitleLabel.mas_right).offset(JGMargin/2);
+//                make.width.equalTo(@(kSystemWide-60-JGMargin*2.5));
+//                make.height.equalTo(@60);
+//            }];
+//        }
+        
     }else{
-        self.notCountLabel.hidden = NO;
+        self.notBiaoqianLabel.hidden = NO;
     }
+    
     
 }
 

@@ -22,6 +22,7 @@
 #import "MJRefresh.h"
 #import "SearchCoachViewModel.h"
 #import "YYModel.h"
+#import "serverclasslistModel.h"
 
 #import "JGDrivingDetailTopCell.h"
 #import "JGDrivingDetailTeachingNewsCell.h"
@@ -37,7 +38,8 @@ static NSString *const kCheckLoveCoach = @"userinfo/favoritecoach";
 static NSString *const kAddLoveCoach = @"userinfo/favoritecoach/%@";
 static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 
-@interface JGDrivingDetailViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface JGDrivingDetailViewController ()<UITableViewDataSource,UITableViewDelegate,JGDrivingDetailKeChengFeiYongCellDelegate,JGDrivingDetailPersonalNoteCellDelegate>
+
 @property (strong, nonatomic)UIButton *phoneBtn;
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -116,7 +118,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    self.coachUserId = @"568cdd3c60535c54738a8756";
+    self.coachUserId = @"5666365ef14c20d07ffa6ae8";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loginSuccess) name:@"kLoginSuccess" object:nil];
     
@@ -330,7 +332,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     if (section==0) {// 个人信息、授课信息
         return 2;
     }else if (section==1){// 课程费用(需要根据服务器返回数组个数来判断)
-        return 2;
+        return self.detailModel.serverclasslist.count;
     }else if (section==2){// 个人说明
         return 1;
     }else if (section==3){// 学员评价
@@ -341,7 +343,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     
     if (section==1 || section==3){// 课程费用、学员评价
-        return 40;
+        return 30;
     }
     return 0;
 }
@@ -349,17 +351,18 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     
     if (section==1 || section==3) {
         
-        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 40)];
+        UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 30)];
         headerView.backgroundColor = RGBColor(251, 251, 251);
         
         UILabel *titleLabe = [[UILabel alloc] init];
         titleLabe.textColor = MAINCOLOR;
         titleLabe.textAlignment = NSTextAlignmentLeft;
         titleLabe.backgroundColor = [UIColor clearColor];
-        titleLabe.frame = headerView.bounds;
+        titleLabe.frame = CGRectMake(0, 7, headerView.frame.size.width, 15);
         titleLabe.text = @"   学员评价";
         if (section==1) {
             titleLabe.text = @"   课程费用";
+            headerView.backgroundColor = [UIColor whiteColor];
         }
         titleLabe.font = [UIFont boldSystemFontOfSize:13];
         [headerView addSubview:titleLabe];
@@ -381,9 +384,16 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         }
 
     }else if (indexPath.section==1){// 课程费用
-        return 130;
+        
+        // 更新高度
+        serverclasslistModel *model = [serverclasslistModel yy_modelWithDictionary:self.detailModel.serverclasslist[indexPath.row]];
+        return [JGDrivingDetailKeChengFeiYongCell heightWithModel:model indexPath:indexPath];
+        
     }else if (indexPath.section==2){// 个人说明
-        return 135;
+
+        // 更新高度
+        return [JGDrivingDetailPersonalNoteCell heightWithModel:self.detailModel indexPath:indexPath];
+        
     }else if (indexPath.section==3){// 学员评价
         
         // 更新高度
@@ -426,8 +436,6 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
                 cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
             }
-            cell.parentViewController = self;
-            
             cell.detailModel = self.detailModel;
             
             return cell;
@@ -443,19 +451,30 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
-//        cell.coachIntroductionDetail.text = self.detailModel.introduction;
+        
+        cell.indexPath = indexPath;
+        cell.delegate = self;
+        
+        serverclasslistModel *model = [serverclasslistModel yy_modelWithDictionary:self.detailModel.serverclasslist[indexPath.row]];
+        
+        cell.detailModel = model;
+        
         return cell;
         
     }else if (indexPath.section==2){// 个人说明
         
         static NSString *cellId = @"cellThree";
-        CoachIntroductionCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        JGDrivingDetailPersonalNoteCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
-            cell = [[CoachIntroductionCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell = [[JGDrivingDetailPersonalNoteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
-        cell.coachIntroductionDetail.text = self.detailModel.introduction;
+        
+        cell.delegate = self;
+        
+        cell.detailModel = self.detailModel;
+        
         return cell;
         
     }else if (indexPath.section==3){// 评论
@@ -482,6 +501,18 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         [self.navigationController pushViewController:drivingDetail animated:YES];
     }
     
+}
+
+- (void)JGDrivingDetailKeChengFeiYongCellWithBaomingDidClick:(id)cell
+{
+    NSLog(@"%s",__func__);
+}
+
+- (void)JGDrivingDetailPersonalNoteCellWithMoreBtnDidClick:(JGDrivingDetailPersonalNoteCell *)cell
+{
+    self.detailModel.isMore = !self.detailModel.isMore;
+    
+    [self.tableView reloadData];
 }
 
 #pragma  mark - btnAction

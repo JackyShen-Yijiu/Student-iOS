@@ -19,6 +19,10 @@ green:((float)((rgbValue & 0xFF00) >> 8))/255.0 \
 blue:((float)(rgbValue & 0xFF))/255.0 \
 alpha:1.0]
 
+
+@interface GBTagListView ()
+@end
+
 @implementation GBTagListView
 
 -(id)initWithFrame:(CGRect)frame{
@@ -26,9 +30,12 @@ alpha:1.0]
     self = [super initWithFrame:frame];
     if (self) {
         
-        totalHeight=0;
+        self.tagListViewH = 0;
+        self.totalHeight=0;
         self.frame=frame;
+        
         _tagArr=[[NSMutableArray alloc]init];
+        
     }
     return self;
     
@@ -37,9 +44,15 @@ alpha:1.0]
 -(void)setTagWithTagArray:(NSArray*)arr{
     
     previousFrame = CGRectZero;
+    self.tagListViewH = 0;
     
+    [_tagArr removeAllObjects];
     [_tagArr addObjectsFromArray:arr];
 
+    for (UIButton *btn in self.subviews) {
+        [btn removeFromSuperview];
+    }
+    
     /*
     {
         "_id" = 569e23d387d6565c3369dbc9;
@@ -97,7 +110,7 @@ alpha:1.0]
         if (previousFrame.origin.x + previousFrame.size.width + Size_str.width + LABEL_MARGIN > self.bounds.size.width) {
             
             newRect.origin = CGPointMake(10, previousFrame.origin.y + Size_str.height + BOTTOM_MARGIN);
-            totalHeight +=Size_str.height + BOTTOM_MARGIN;
+            self.totalHeight += Size_str.height + BOTTOM_MARGIN;
         }
         else {
             newRect.origin = CGPointMake(previousFrame.origin.x + previousFrame.size.width + LABEL_MARGIN, previousFrame.origin.y);
@@ -106,74 +119,19 @@ alpha:1.0]
         newRect.size = Size_str;
         [tagBtn setFrame:newRect];
         previousFrame=tagBtn.frame;
-        [self setHight:self andHight:totalHeight+Size_str.height + BOTTOM_MARGIN];
+        [self setHight:self andHight:self.totalHeight+Size_str.height + BOTTOM_MARGIN];
         [self addSubview:tagBtn];
         
+        self.tagListViewH = 0;
+        self.tagListViewH = CGRectGetMaxY(tagBtn.frame);
         
     }
     
-//    
-//    [arr enumerateObjectsUsingBlock:^(NSString*str, NSUInteger idx, BOOL *stop) {
-//        
-//        UIButton*tagBtn=[UIButton buttonWithType:UIButtonTypeCustom];
-//        tagBtn.frame=CGRectZero;
-//        
-//        if(_signalTagColor){
-//            //可以单一设置tag的颜色
-//            tagBtn.backgroundColor=_signalTagColor;
-//        }else{
-//            //tag颜色多样
-//            tagBtn.backgroundColor=[UIColor colorWithRed:random()%255/255.0 green:random()%255/255.0 blue:random()%255/255.0 alpha:1];
-//        }
-//        if(_canTouch){
-//            tagBtn.userInteractionEnabled=YES;
-//            
-//        }else{
-//            
-//            tagBtn.userInteractionEnabled=NO;
-//        }
-//        [tagBtn setTitleColor:R_G_B_16(0x818181) forState:UIControlStateNormal];
-//        [tagBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-//        tagBtn.titleLabel.font=[UIFont boldSystemFontOfSize:15];
-//        [tagBtn addTarget:self action:@selector(tagBtnClick:) forControlEvents:UIControlEventTouchUpInside];
-//        [tagBtn setTitle:str forState:UIControlStateNormal];
-//        tagBtn.tag=KBtnTag+idx;
-//        tagBtn.layer.cornerRadius=13;
-//        tagBtn.layer.borderColor=R_G_B_16(0x818181).CGColor;
-//        tagBtn.layer.borderWidth=0.3;
-//        tagBtn.clipsToBounds=YES;
-//        NSDictionary *attrs = @{NSFontAttributeName : [UIFont boldSystemFontOfSize:15]};
-//        CGSize Size_str=[str sizeWithAttributes:attrs];
-//        Size_str.width += HORIZONTAL_PADDING*3;
-//        Size_str.height += VERTICAL_PADDING*3;
-//        
-//        CGRect newRect = CGRectZero;
-//        
-//        if (previousFrame.origin.x + previousFrame.size.width + Size_str.width + LABEL_MARGIN > self.bounds.size.width) {
-//            
-//            newRect.origin = CGPointMake(10, previousFrame.origin.y + Size_str.height + BOTTOM_MARGIN);
-//            totalHeight +=Size_str.height + BOTTOM_MARGIN;
-//        }
-//        else {
-//            newRect.origin = CGPointMake(previousFrame.origin.x + previousFrame.size.width + LABEL_MARGIN, previousFrame.origin.y);
-//            
-//        }
-//        newRect.size = Size_str;
-//        [tagBtn setFrame:newRect];
-//        previousFrame=tagBtn.frame;
-//        [self setHight:self andHight:totalHeight+Size_str.height + BOTTOM_MARGIN];
-//        [self addSubview:tagBtn];
-//
-//        
-//    }
-//     ];
-    
     if(_GBbackgroundColor){
-        self.backgroundColor=_GBbackgroundColor;
+        self.backgroundColor = _GBbackgroundColor;
     }else{
-        self.backgroundColor=[UIColor whiteColor];
+        self.backgroundColor = [UIColor whiteColor];
     }
-    
     
 }
 #pragma mark-改变控件高度
