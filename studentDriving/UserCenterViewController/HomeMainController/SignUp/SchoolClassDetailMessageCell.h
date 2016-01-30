@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GBTagListView.h"
 
 @interface SchoolClassDetailMessageCell : UITableViewCell
 @property (nonatomic, strong) UIView *cellTopLineView;
@@ -18,6 +19,7 @@
 @property (strong, nonatomic) UILabel *timeLabel;
 @property (strong, nonatomic) UILabel *studyLabel;
 @property (strong, nonatomic) UILabel *featuredTutorials;
+@property (strong, nonatomic) GBTagListView *tagView;
 @property (strong, nonatomic) UILabel *carType;
 @property (strong, nonatomic) UILabel *price;
 @property (nonatomic, strong) UILabel *priceDetailLabel; // 价格详情

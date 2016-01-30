@@ -34,6 +34,7 @@
     [self.backGroundView addSubview:self.timeLabel];
     [self.backGroundView addSubview:self.studyLabel];
     [self.backGroundView addSubview:self.featuredTutorials];
+    [self.backGroundView addSubview:self.tagView];
     [self.backGroundView addSubview:self.carType];
     [self.backGroundView addSubview:self.price];
     [self.backGroundView addSubview:self.priceDetailLabel];
@@ -81,9 +82,13 @@
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
         make.top.mas_equalTo(self.studyLabel.mas_bottom).offset(12);
     }];
+    [self.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.studyLabel.mas_top).offset(12);
+        make.left.mas_equalTo(self.featuredTutorials.mas_right).offset(5);
+    }];
     [self.carType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
-        make.top.mas_equalTo(self.featuredTutorials.mas_bottom).offset(50);
+        make.top.mas_equalTo(self.tagView.mas_bottom).offset(50);
     }];
     [self.price mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
@@ -188,6 +193,12 @@
         _featuredTutorials.text = @"课程特色:";
     }
     return _featuredTutorials;
+}
+- (GBTagListView *)tagView{
+    if (_tagView == nil) {
+        _tagView = [[GBTagListView alloc] init];
+    }
+    return _tagView;
 }
 - (UILabel *)carType {
     if (_carType == nil) {
