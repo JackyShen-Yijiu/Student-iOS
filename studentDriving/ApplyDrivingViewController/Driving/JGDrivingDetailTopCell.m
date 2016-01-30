@@ -118,8 +118,8 @@ static NSString *const kAddLoveAndDeleteCoach = @"userinfo/favoritecoach/%@";
 - (UIButton *)collectionBtn {
     if (_collectionBtn == nil) {
         _collectionBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_select"] forState:UIControlStateNormal];
-        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_nomal"] forState:UIControlStateSelected];
+        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_nomal"] forState:UIControlStateNormal];
+        [_collectionBtn setBackgroundImage:[UIImage imageNamed:@"collectionBtnImg_select"] forState:UIControlStateSelected];
     }
     return _collectionBtn;
 }
@@ -287,9 +287,9 @@ static NSString *const kAddLoveAndDeleteCoach = @"userinfo/favoritecoach/%@";
 
     NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
 
-    JENetworkingRequestMethod method = JENetworkingRequestMethodDelete;
+    JENetworkingRequestMethod method = JENetworkingRequestMethodPut;
     if (self.collectionBtn.selected) {
-        method = JENetworkingRequestMethodPut;
+        method = JENetworkingRequestMethodDelete;
     }
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:method withCompletion:^(id data) {
