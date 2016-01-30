@@ -450,12 +450,6 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
     return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    JGActivityViewController *vc = [[JGActivityViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)JGDrivingDetailKeChengFeiYongCellWithBaomingDidClick:(JGDrivingDetailKeChengFeiYongCell *)cell
 {
     
