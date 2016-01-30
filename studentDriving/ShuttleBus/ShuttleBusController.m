@@ -8,7 +8,8 @@
 
 #import "ShuttleBusController.h"
 #import "ShuttleBusCell.h"
-#import "ShuttleBusViewModel.h"
+#import "DrivingDetailDMSchoolbusroute.h"
+#import "YYModel.h"
 
 #define kShuttleBusCellID @"kShuttleBusCell"
 
@@ -16,9 +17,10 @@
 
 @property (nonatomic, strong) UITableView *tableView;
 
-@property (nonatomic, strong) ShuttleBusViewModel *viewModel;
-
 @property (nonatomic, strong) ShuttleBusCell *dynamicHeightCell;
+
+@property (nonatomic, strong) NSMutableArray *heightArray;
+
 
 @end
 
@@ -33,41 +35,34 @@
     [self.view addSubview:self.tableView];
 }
 
-#pragma mark config view model
-- (void)configViewModel {
-    
-    _viewModel = [ShuttleBusViewModel new];
-    [_viewModel dvvSetRefreshSuccessBlock:^{
+- (void)setDataArray:(NSArray *)dataArray {
+    NSMutableArray *array = [NSMutableArray array];
+    _heightArray = [NSMutableArray array];
+    for (NSDictionary *dict in dataArray) {
         
-    }];
-    [_viewModel dvvSetRefreshErrorBlock:^{
+        DrivingDetailDMSchoolbusroute *dmBus = [DrivingDetailDMSchoolbusroute yy_modelWithDictionary:dict];
         
-    }];
-    [_viewModel dvvSetLoadMoreSuccessBlock:^{
-        
-    }];
-    [_viewModel dvvSetLoadMoreErrorBlock:^{
-        
-    }];
-    
-    [_viewModel dvvNetworkRequestRefresh];
+        CGFloat height = [ShuttleBusCell dynamicHeight:dmBus.routecontent];
+        [_heightArray addObject:@(height)];
+        [array addObject:dmBus];
+    }
+    _dataArray = array;
+    [self.tableView reloadData];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 20;
+    return _dataArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return [ShuttleBusCell dynamicHeight:@"fjkdljflksdjflkkjfkldsjfkdsljflkfkldslkdjsfklsjflksdjflsdkjflksdjflksdjlfsj"];
+    return [_heightArray[indexPath.row] floatValue];
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     ShuttleBusCell *cell = [tableView dequeueReusableCellWithIdentifier:kShuttleBusCellID];
     
-//    if (3 == indexPath.row) {
-        cell.contentLabel.text = @"fjkdljflksdjflkkjfkldsjfkdsljflkfkldslkdjsfklsjflksdjflsdkjflksdjflksdjlfsj";
-//    }
+    [cell refreshData:_dataArray[indexPath.row]];
     
     return cell;
 }

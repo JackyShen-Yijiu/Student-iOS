@@ -7,14 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "CourseView.h"
+#import "ClassTypeView.h"
+#import "CoachListView.h"
 
-@interface DrivingDetailSignUpCell : UITableViewCell
+@interface DrivingDetailSignUpCell : UITableViewCell<UIScrollViewDelegate>
 
-@property (nonatomic, strong) CourseView *courseView;
+@property (nonatomic, copy) NSString *schoolID;
+
+@property (nonatomic, strong) ClassTypeView *classTypeView;
+@property (nonatomic, strong) CoachListView *coachListView;
 
 @property (weak, nonatomic) IBOutlet UIButton *courseButton;
 @property (weak, nonatomic) IBOutlet UIButton *coachButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (nonatomic, strong) UITableView *tableView;
+
+- (CGFloat)dynamicHeight;
 
 @end

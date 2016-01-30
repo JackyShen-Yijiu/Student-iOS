@@ -35,16 +35,19 @@
     CGFloat selfWidth = self.bounds.size.width;
     CGFloat cycleShowImagesViewHeight = selfWidth * 0.5;
     _cycleShowImagesView.frame = CGRectMake(0, 0, selfWidth, cycleShowImagesViewHeight);
-    CGFloat collectionWidth = 40;
+    CGFloat collectionWidth = 50;
     _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 8, cycleShowImagesViewHeight - collectionWidth / 2.f, collectionWidth, collectionWidth);
     [_collectionImageView.layer setMasksToBounds:YES];
     [_collectionImageView.layer setCornerRadius:collectionWidth / 2.f];
     
-    _cycleShowImagesView.backgroundColor = [UIColor orangeColor];
-    _collectionImageView.backgroundColor = [UIColor redColor];
+//    _cycleShowImagesView.backgroundColor = [UIColor orangeColor];
+//    _collectionImageView.backgroundColor = [UIColor redColor];
 }
 
 - (void)refreshData:(DrivingDetailDMData *)dmData {
+    
+    // 轮播图数据
+    [_cycleShowImagesView reloadDataWithArray:dmData.pictures];
     
     _drivingNameLabel.text = dmData.name;
     _addressLabel.text = [NSString stringWithFormat:@"地址：%@", dmData.address];

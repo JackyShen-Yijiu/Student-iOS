@@ -7,8 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DVVHorizontalScrollImagesView.h"
+#import "DrivingDetailDMData.h"
 
 @interface DrivingDetailTrainingGroundCell : UITableViewCell
+
+@property (nonatomic, strong) DVVHorizontalScrollImagesView *scrollImagesView;
+
+- (void)refreshData:(DrivingDetailDMData *)dmData;
 
 + (CGFloat)defaultHeight;
 
