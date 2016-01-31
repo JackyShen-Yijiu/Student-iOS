@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoachDetail.h"
 
 @interface SignUpController : UIViewController
+@property (nonatomic, strong) CoachDetail *coachDetailModel;
 @property (nonatomic, strong) NSString *classNameStr; // 班级类型
 @property (nonatomic, strong) NSString *schoolNameStr; // 报考驾校
 @property (nonatomic, strong) NSString *coachNameStr; // 报考教练

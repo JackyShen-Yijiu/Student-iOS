@@ -80,9 +80,14 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
         [_phoneBtn setTitleColor:MAINCOLOR forState:UIControlStateNormal];
         [_phoneBtn setTitleColor:MAINCOLOR forState:UIControlStateHighlighted];
         _phoneBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
-        [_phoneBtn addTarget:self action:@selector(clickPhoneBtn:) forControlEvents:UIControlEventTouchUpInside];
+        [_phoneBtn addTarget:self action:@selector(clickPhoneBtn) forControlEvents:UIControlEventTouchUpInside];
     }
     return _phoneBtn;
+}
+
+- (void)clickPhoneBtn
+{
+    NSLog(@"%s",__func__);
 }
 
 - (void)viewDidLoad {
