@@ -26,16 +26,16 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    _nameLabel.frame = self.bounds;
+    CGRect rect = self.bounds;
+    _nameLabel.frame = CGRectMake(0, 0, rect.size.width - 16, rect.size.height);
 }
 
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [UILabel new];
         _nameLabel.font = [UIFont systemFontOfSize:14];
-        _nameLabel.textAlignment = 1;
+        _nameLabel.textAlignment = 2;
         _nameLabel.textColor = [UIColor whiteColor];
-        _nameLabel.backgroundColor = [UIColor orangeColor];
     }
     return _nameLabel;
 }

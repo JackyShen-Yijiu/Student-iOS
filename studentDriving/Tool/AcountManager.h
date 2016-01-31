@@ -56,6 +56,9 @@
 // 根据城市名获取用户所在的城市是以驾校为主还是以教练为主
 @property (nonatomic, assign) BOOL userLocationShowType;
 
+// 用户在首页选择的城市，如果用户设置过了，则下次不再定位，直接使用此城市
+@property (nonatomic, copy) NSString *userSelectedCity;
+
 // 设置
 @property (nonatomic, assign) BOOL reservationreminder;
 @property (nonatomic, assign) BOOL newmessagereminder;

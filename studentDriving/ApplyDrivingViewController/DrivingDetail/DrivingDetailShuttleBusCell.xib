@@ -31,7 +31,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="njx-NO-g18">
                         <rect key="frame" x="262" y="8" width="50" height="20"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="地点" translatesAutoresizingMaskIntoConstraints="NO" id="IwA-p4-s2X">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tableview_cell_detail_icon" translatesAutoresizingMaskIntoConstraints="NO" id="IwA-p4-s2X">
                                 <rect key="frame" x="30" y="0.0" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="20" id="Nj7-H7-BFI"/>
@@ -89,6 +89,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="地点" width="46" height="46"/>
+        <image name="tableview_cell_detail_icon" width="12" height="12"/>
     </resources>
 </document>

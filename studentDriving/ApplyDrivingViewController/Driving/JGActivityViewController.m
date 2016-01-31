@@ -63,9 +63,10 @@
     [self.view addSubview:self.tableView];
 
     __weak typeof(self) ws = self;
-    [DVVLocation getUserAddress:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
+    [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
         ws.cityName = city;
     } error:^{
+        ;
     }];
     
     // 获取活动列表

@@ -57,7 +57,8 @@ static  NSString    *kLocationAddress = @"kLocationAddress";
 static  NSString    *kUserLocationShowType = @"kUserLocationShowType";
 // 兑换券
 static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
-
+// 用户在首页选择的城市，如果用户设置过了，则下次不再定位，直接使用此城市
+static  NSString    *kUserSelectedCity = @"kUserSelectedCity";
 @interface AcountManager ()
 @property (readwrite,copy, nonatomic) NSString *userMobile;
 @property (readwrite,copy, nonatomic) NSString *userName;
@@ -511,6 +512,7 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
     
     [NSUserStoreTool removeObjectWithKey:kUserCoinCertificate];
     [NSUserStoreTool removeObjectWithKey:kLocationAddress];
+    [NSUserStoreTool removeObjectWithKey:kUserSelectedCity];
     
 }
 
@@ -593,6 +595,18 @@ static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
         return [[NSUserStoreTool getObjectWithKey:kUserCoinCertificate] integerValue];
     }else {
         return 0;
+    }
+}
+
+// 用户在首页选择的城市，如果用户设置过了，则下次不再定位，直接使用此城市
+- (void)setUserSelectedCity:(NSString *)userSelectedCity {
+    [NSUserStoreTool storeWithId:userSelectedCity WithKey:kUserSelectedCity];
+}
+- (NSString *)userSelectedCity {
+    if ([NSUserStoreTool getObjectWithKey:kUserSelectedCity]) {
+        return [NSUserStoreTool getObjectWithKey:kUserSelectedCity];
+    }else {
+        return nil;
     }
 }
 

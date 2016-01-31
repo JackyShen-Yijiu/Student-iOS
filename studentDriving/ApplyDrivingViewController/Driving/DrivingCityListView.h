@@ -10,15 +10,15 @@
 
 typedef void(^DrivingCityListViewSelectedItemBlock)(NSString *cityName);
 
-@interface DrivingCityListView : UIView
-
-<UITableViewDataSource, UITableViewDelegate>
+@interface DrivingCityListView : UIView<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) NSMutableArray *dataList;
 
 - (void)setSelectedItemBlock:(DrivingCityListViewSelectedItemBlock)handle;
+
+- (void)setRemovedBlock:(dispatch_block_t)handle;
 
 - (void)show;
 

@@ -42,6 +42,11 @@
     
     sender.selected = !sender.selected;
     _isShowMore = sender.selected;
+    if (_isShowMore) {
+        _showMoreImageView.image = [UIImage imageNamed:@"introduction_show_more_yes_icon"];
+    }else {
+        _showMoreImageView.image = [UIImage imageNamed:@"tableview_cell_detail_icon"];
+    }
     if (_showMoreButtonTouchDown) {
         _showMoreButtonTouchDown(_isShowMore);
     }
