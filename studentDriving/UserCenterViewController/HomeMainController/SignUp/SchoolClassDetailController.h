@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "ClassTypeDMData.h"
 @interface SchoolClassDetailController : UIViewController
-
+@property (nonatomic, strong) ClassTypeDMData *classTypeDMData;
 @end

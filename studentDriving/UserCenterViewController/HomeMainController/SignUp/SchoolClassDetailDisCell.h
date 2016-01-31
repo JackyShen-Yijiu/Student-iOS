@@ -7,11 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClassTypeDMData.h"
 
 @interface SchoolClassDetailDisCell : UITableViewCell
 @property (nonatomic, strong) UILabel *textDetailLabel;
 @property (strong, nonatomic) UILabel *schoolDetailIntroduction;
 @property (nonatomic, strong) UIView *bottomLineView;
-
-
+@property (nonatomic, strong) ClassTypeDMData *classTypeModel;
+- (CGFloat)heightWithcell:(ClassTypeDMData *)tableView;
 @end
