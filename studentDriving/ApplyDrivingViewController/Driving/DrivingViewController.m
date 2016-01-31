@@ -125,7 +125,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     
         // 定位
     __weak typeof(self) ws = self;
-    [DVVLocation getUserLocation:^(BMKUserLocation *userLocation, double latitude, double longitude) {
+    [DVVLocation getLocation:^(BMKUserLocation *userLocation, double latitude, double longitude) {
         
         ws.latitude = latitude;
         ws.longitude = longitude;
