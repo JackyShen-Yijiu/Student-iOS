@@ -11,6 +11,8 @@
 
 @interface DrivingDetailViewModel : DVVBaseViewModel
 
+@property (nonatomic, copy) NSString *schoolID;
+
 @property (nonatomic, strong) DrivingDetailDMData *dmData;
 
 @end

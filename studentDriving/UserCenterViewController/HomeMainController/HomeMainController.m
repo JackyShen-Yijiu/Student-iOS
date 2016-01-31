@@ -187,14 +187,15 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     [self addNaviRightButton];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
 //        ComplaintController *complainVC = [ComplaintController new];
 //        [self.navigationController pushViewController:complainVC animated:YES];
         
 //        ShuttleBusController *busVC = [ShuttleBusController new];
 //        [self.navigationController pushViewController:busVC animated:YES];
         
-        DrivingDetailController *detailVC = [DrivingDetailController new];
-        [self.navigationController pushViewController:detailVC animated:YES];
+//        DrivingDetailController *detailVC = [DrivingDetailController new];
+//        [self.navigationController pushViewController:detailVC animated:YES];
     });
     
 //    [self changeScrollViewContentSize];
@@ -1110,6 +1111,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             _locationLabel.text = cityName;
             [AcountManager manager].userSelectedCity = cityName;
             [AcountManager manager].userCity = cityName;
+            [AcountManager manager].locationAddress = cityName;
         } error:^{
             
             [self obj_showTotasViewWithMes:@"修改失败"];

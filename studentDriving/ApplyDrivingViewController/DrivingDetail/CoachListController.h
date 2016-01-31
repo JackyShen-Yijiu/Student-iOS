@@ -12,4 +12,8 @@
 
 @property (nonatomic, copy) NSString *schoolID;
 
+@property (nonatomic, assign) NSUInteger type;
+// 从投诉进入需要的属性
+@property (nonatomic, strong) UILabel *complaintCoachNameLabel;
+
 @end

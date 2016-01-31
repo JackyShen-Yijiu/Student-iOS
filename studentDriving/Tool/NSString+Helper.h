@@ -73,4 +73,8 @@
 + (CGFloat)autoWidthWithString:(NSString *)string
                          font:(UIFont *)font;
 
+//获得设备型号
++(NSString *)getCurrentDeviceModel;
+
+
 @end

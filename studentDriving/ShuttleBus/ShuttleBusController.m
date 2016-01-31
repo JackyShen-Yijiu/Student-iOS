@@ -10,6 +10,8 @@
 #import "ShuttleBusCell.h"
 #import "DrivingDetailDMSchoolbusroute.h"
 #import "YYModel.h"
+#import "DrivingDetailViewModel.h"
+#import "DVVToast.h"
 
 #define kShuttleBusCellID @"kShuttleBusCell"
 
@@ -22,6 +24,8 @@
 @property (nonatomic, strong) NSMutableArray *heightArray;
 
 
+@property (nonatomic, strong) DrivingDetailViewModel *viewModel;
+
 @end
 
 @implementation ShuttleBusController
@@ -33,6 +37,34 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.tableView];
+    if (!_dataArray) {
+        [self configViewModel];
+    }
+}
+
+#pragma mark - config view model
+- (void)configViewModel {
+    
+    _viewModel = [DrivingDetailViewModel new];
+    _viewModel.schoolID = [AcountManager manager].applyschool.infoId;
+    __weak typeof(self) ws = self;
+    [_viewModel dvvSetRefreshSuccessBlock:^{
+        ws.dataArray = ws.viewModel.dmData.schoolbusroute;
+    }];
+    [_viewModel dvvSetNilResponseObjectBlock:^{
+        [ws obj_showTotasViewWithMes:@"没有数据啦"];
+    }];
+    [_viewModel dvvSetRefreshErrorBlock:^{
+        [ws obj_showTotasViewWithMes:@"数据加载失败"];
+    }];
+    [_viewModel dvvSetNetworkErrorBlock:^{
+        [ws obj_showTotasViewWithMes:@"网络错误"];
+    }];
+    [_viewModel dvvSetNetworkCallBackBlock:^{
+        [DVVToast hideFromView:ws.view];
+    }];
+    [DVVToast showFromView:self.view];
+    [_viewModel dvvNetworkRequestRefresh];
 }
 
 - (void)setDataArray:(NSArray *)dataArray {
@@ -47,6 +79,9 @@
         [array addObject:dmBus];
     }
     _dataArray = array;
+    if (!_dataArray.count) {
+        [self obj_showTotasViewWithMes:@"暂无班车路线"];
+    }
     [self.tableView reloadData];
 }
 

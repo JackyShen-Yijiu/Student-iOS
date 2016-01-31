@@ -92,6 +92,14 @@
     
     return cell;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (1 == _type) {
+        CoachListDMData *dmData = _viewModel.dataArray[indexPath.row];
+        _complaintCoachNameLabel.text = dmData.name;
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+}
 
 - (UITableView *)tableView {
     if (!_tableView) {

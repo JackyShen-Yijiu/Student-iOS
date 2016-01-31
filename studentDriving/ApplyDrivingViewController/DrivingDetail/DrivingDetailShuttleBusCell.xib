@@ -89,6 +89,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="tableview_cell_detail_icon" width="12" height="12"/>
+        <image name="tableview_cell_detail_icon" width="10" height="10"/>
     </resources>
 </document>

@@ -15,10 +15,12 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     kOpenControllerTypeChatListViewController, //消息
     kOpenControllerTypeMyWalletViewController, //钱包
     kOpenControllerTypeHomeActivityController, //活动
+    kOpenControllerTypeComplaintController, //投诉
     kOpenControllerTypeSignInViewController, //签到
     kOpenControllerTypeUserCenterViewController, //我
     kOpenControllerTypeDiscountWalletController, //兑换劵
     kOpenControllerTypeMoneyShopController, //可取现金额
+    kOpenControllerTypeShuttleBusController //班车路线
 };
 
 @interface DVVOpenControllerFromSideMenu : NSObject

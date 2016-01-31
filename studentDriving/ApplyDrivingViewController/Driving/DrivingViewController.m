@@ -26,6 +26,7 @@
 #import "CoachTableViewCell.h"
 #import "SearchCoachViewModel.h"
 #import "CoachDMData.h"
+#import "DrivingDetailController.h"
 
 static NSString *const kDrivingUrl = @"searchschool";
 
@@ -375,10 +376,10 @@ static NSString *const kDrivingUrl = @"searchschool";
         return;
     }
     // 驾校详情
-    DrivingDetailViewController *SelectVC = [[DrivingDetailViewController alloc]init];
+    DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
     DrivingModel *model = self.dataArray[indexPath.row];
     self.detailModel = model;
-    SelectVC.schoolId = model.schoolid;
+    SelectVC.schoolID = model.schoolid;
     [self.navigationController pushViewController:SelectVC animated:YES];
 }
 
