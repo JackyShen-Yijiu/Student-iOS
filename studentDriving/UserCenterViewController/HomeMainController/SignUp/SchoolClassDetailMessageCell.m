@@ -92,7 +92,7 @@
     }];
     [self.carType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
-        make.top.mas_equalTo(self.tagView.mas_bottom).offset(50);
+        make.top.mas_equalTo(self.tagView.mas_bottom).offset(12);
     }];
     [self.price mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
@@ -275,7 +275,7 @@
         
         [ws.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
             
-            make.top.mas_equalTo(ws.studyLabel.mas_top).offset(12);
+            make.top.mas_equalTo(ws.studyLabel.mas_bottom).offset(12);
             make.left.mas_equalTo(ws.featuredTutorials.mas_right).offset(5);
             make.width.mas_equalTo(widht);
             make.height.mas_equalTo(listHeight);
@@ -296,7 +296,7 @@
         
     }];
 
-    return   300 + _with;
+    return   280 + _with;
     
 }
 
