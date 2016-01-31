@@ -39,7 +39,7 @@
     if (_textDetailLabel == nil) {
         _textDetailLabel = [[UILabel alloc] init];
         _textDetailLabel.text = @"课程描述";
-        _textDetailLabel.textColor = [UIColor redColor];
+        _textDetailLabel.textColor = MAINCOLOR;
         
     }
     return _textDetailLabel;
@@ -47,6 +47,7 @@
 - (UILabel *)schoolDetailIntroduction{
     if (_schoolDetailIntroduction == nil) {
         _schoolDetailIntroduction = [[UILabel alloc] init];
+        _schoolDetailIntroduction.numberOfLines = 0;
         _schoolDetailIntroduction.text = @"一步互联网驾校,本着对社会复,为学员服务,争创一流驾校和行业电放的经验理念,在转正教授设施,以德育人,做的廉政绿箭,精心培训,合理收费,个性化优质复";
         _schoolDetailIntroduction.font = [UIFont systemFontOfSize:14];
         
@@ -64,7 +65,7 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.textDetailLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.contentView.mas_top).with.offset(15);
+        make.top.mas_equalTo(self.contentView.mas_top).with.offset(0);
         make.left.mas_equalTo(self.contentView.mas_left).with.offset(15);
         make.width.mas_equalTo(@100);
         make.height.mas_equalTo(@16);
@@ -72,9 +73,9 @@
     [self.schoolDetailIntroduction mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.textDetailLabel.mas_bottom).with.offset(15);
         make.left.mas_equalTo(self.contentView.mas_left).with.offset(15);
-        NSNumber *widthX = [[NSNumber alloc] initWithFloat:self.contentView.frame.size.width];
+        NSNumber *widthX = [[NSNumber alloc] initWithFloat:self.contentView.frame.size.width - 30];
         make.width.mas_equalTo(widthX);
-        make.height.mas_equalTo(@16);
+//        make.height.mas_equalTo(@16);
     }];
     [self.bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.schoolDetailIntroduction.mas_bottom).with.offset(20);
@@ -85,6 +86,29 @@
     }];
 
     
+}
+- (CGFloat)heightWithcell:(ClassTypeDMData *)model
+{
+    NSString *str = model.classdesc;
+    return   [self getLabelWidthWithString:str];
+    
+}
+- (CGFloat)getLabelWidthWithString:(NSString *)string {
+    CGRect bounds = [string boundingRectWithSize:
+                     CGSizeMake([[UIScreen mainScreen] bounds].size.width - 30, 10000) options:
+                     NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.f]} context:nil];
+    [self.schoolDetailIntroduction mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.textDetailLabel.mas_bottom).with.offset(15);
+        make.left.mas_equalTo(self.contentView.mas_left).with.offset(15);
+        NSNumber *widthX = [[NSNumber alloc] initWithFloat:self.contentView.frame.size.width - 30];
+        make.width.mas_equalTo(widthX);
+        make.height.mas_equalTo(@(bounds.size.height));
+    }];
+
+    return bounds.size.height + 100;
+}
+- (void)setClassTypeModel:(ClassTypeDMData *)classTypeModel{
+    self.schoolDetailIntroduction.text = classTypeModel.classdesc;
 }
 @end
 

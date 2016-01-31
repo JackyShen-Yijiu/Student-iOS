@@ -46,6 +46,8 @@
 // 容错处理
 #import "LJException.h"
 #import "AppDelegate+UMSocial.h"
+#import "AlipaySDK/AlipaySDK.h"
+#import "AlixPayResult.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 {
@@ -220,6 +222,47 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
+    //跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给SDK
+    if ([url.host isEqualToString:@"safepay"]) {
+        
+        [[AlipaySDK defaultService]
+         processOrderWithPaymentResult:url
+         standbyCallback:^(NSDictionary *resultDic) {
+             
+             NSLog(@"application result = %@", resultDic);
+             
+             //结果处理
+             AlixPayResult* result = [AlixPayResult itemWithDictory:resultDic];
+             
+             if (result)
+             {
+                 //                              状态返回9000为成功
+                 if (result.statusCode == 9000)
+                 {
+                     /*
+                      *用公钥验证签名 严格验证请使用result.resultString与result.signString验签
+                      */
+                     NSLog(@"支付宝交易成功");
+                     
+                 }
+                 else
+                 {
+                     //交易失败
+                     NSLog(@"支付失败");
+                     
+                 }
+             }
+             else
+             {
+                 //失败
+                 NSLog(@"支付失败");
+             }
+             
+         }];
+        
+        return YES;
+    }
+    
     BOOL result = [UMSocialSnsService handleOpenURL:url];
     if (result == FALSE) {
         // 调用其他SDK，例如支付宝SDK等

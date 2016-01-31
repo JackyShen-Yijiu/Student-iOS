@@ -18,6 +18,8 @@
 #import "ShuttleBusController.h"
 #import "CoachListController.h"
 
+#import "SchoolClassDetailController.h"
+
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
@@ -89,7 +91,9 @@
 }
 #pragma mark 班型cell单击事件
 - (void)classTypeCellDidSelectAction:(ClassTypeDMData *)dmData {
-    
+    SchoolClassDetailController *schoolClassDetailVC = [[SchoolClassDetailController alloc] init];
+    schoolClassDetailVC.classTypeDMData = dmData;
+    [self.navigationController pushViewController:schoolClassDetailVC animated:YES];
 }
 #pragma mark班型cell中的报名按钮单击事件
 - (void)signInButtonAction:(ClassTypeDMData *)dmData {

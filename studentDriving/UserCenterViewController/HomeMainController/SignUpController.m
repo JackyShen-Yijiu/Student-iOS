@@ -67,6 +67,9 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 @property (nonatomic, strong) HomeCheckProgressView *YView;
 @property (nonatomic, strong) SignUpPayCell *payCell;
 @property (nonatomic,assign) NSInteger tag ; // tag = 200 线上支付,tag = 201 线下支付
+@property (nonatomic, strong) NSArray *cellPathStr;
+@property (nonatomic, strong) NSString *phoneStr; // 电话号码
+@property (nonatomic, strong) NSString *nameStr; // 姓名
 @end
 
 @implementation SignUpController
@@ -167,7 +170,10 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
 - (void)viewDidLoad{
     [super  viewDidLoad];
-
+    NSString *className =  self.coachDetailModel.carmodel.name;
+    NSString *schoolName = self.coachDetailModel.driveschoolinfo.name;
+    NSString *coachName = self.coachDetailModel.name;
+    self.cellPathStr = [NSArray arrayWithObjects:className,schoolName,coachName, nil];
     self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"报名";
@@ -224,13 +230,14 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 //}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.section == 0) {
         SignUpSchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_0"];
         if (!cell) {
             cell = [[SignUpSchoolInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_0"];
         }
         cell.rightLabel.text = self.strArray[indexPath.row];
-        cell.detailLabel.text = @"一步互联网驾校";
+        cell.detailLabel.text = self.cellPathStr[indexPath.row];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         return cell;
     }else if (indexPath.section == 1 ) {
@@ -263,6 +270,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                     [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
                     return;
                 }
+                
                 [SignUpInfoManager signUpInfoSaveRealTelephone:completionString];
                 DYNSLog(@"联系方式");
             }else if (indexPath.row == 2) {
@@ -347,10 +355,25 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     
     // 当_tag = 200 ,线上支付
     if (201 == _tag) {
+        /*
+         
+         "name": "（姓名）", "idcardnumber": "（身份证号）", "telephone": "（手机号）", "address": "（地址）", "userid": "（用户id）", "schoolid": "（报名的学习id）", "coachid": "（报名的教练id）", "classtypeid": "（报名课程id）", "carmodel": { "modelsid": 1（车型类型id）, "name": "小型汽车手动挡（车型名称）", "code": "C1（车型代码）" } } "paytype": 1, // 支付方式 1 线下支付 2 线上支付
+         */
+
         // 线下支付
-        NSDictionary *param = @{@"class":@"你好",
-                                @"scholl":@"da",
-                                @"coach":@"oo"};
+        NSDictionary *carmodelParm = @{@"modelsid":self.coachDetailModel.carmodel.modelsid,
+                                       @"name":self.coachDetailModel.carmodel.name,
+                                       @"code":self.coachDetailModel.carmodel.code};
+        NSDictionary *param = @{@"name":[SignUpInfoManager getSignUpRealName],
+                                @"idcardnumber":@"",
+                                @"telephone":[SignUpInfoManager getSignUpRealTelephone],
+                                @"address":[AcountManager manager].userAddress,
+                                @"userid":[AcountManager manager].userid,
+                                @"schoolid":self.coachDetailModel.driveschoolinfo.driveSchoolId,
+                                @"coachid":self.coachDetailModel.coachid,
+                                @"classtypeid":self.coachDetailModel.carmodel.modelsid,
+                                @"carmodel":carmodelParm,
+                                @"paytype":[[NSNumber alloc] initWithInt:1]};
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
         [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
             DYNSLog(@"param = %@",data[@"msg"]);
@@ -358,7 +381,44 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"0"]) {
                 kShowSuccess(@"报名成功");
+                [AcountManager saveUserApplyState:@"1"];
+                //使重新报名变为0
+                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
+                    [ud setObject:@"0" forKey:@"applyAgain"];
+                    [ud synchronize];
+                }
                 [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+            }else {
+                kShowFail(param[@"msg"]);
+            }
+        }];
+
+        
+    }else if (200 == _tag){
+        // 线上支付
+        
+        NSDictionary *carmodelParm = @{@"modelsid":self.coachDetailModel.carmodel.modelsid,
+                                       @"name":self.coachDetailModel.carmodel.name,
+                                       @"code":self.coachDetailModel.carmodel.code};
+        NSDictionary *param = @{@"name":[SignUpInfoManager getSignUpRealName],
+                                @"idcardnumber":@"",
+                                @"telephone":[SignUpInfoManager getSignUpRealTelephone],
+                                @"address":[AcountManager manager].userAddress,
+                                @"userid":[AcountManager manager].userid,
+                                @"schoolid":self.coachDetailModel.driveschoolinfo.driveSchoolId,
+                                @"coachid":self.coachDetailModel.coachid,
+                                @"classtypeid":self.coachDetailModel.carmodel.modelsid,
+                                @"carmodel":carmodelParm,
+                                @"paytype":[[NSNumber alloc] initWithInt:2]};
+        NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
+        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            DYNSLog(@"param = %@",data[@"msg"]);
+            NSDictionary *param = data;
+            NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+            if ([type isEqualToString:@"0"]) {
+                kShowSuccess(@"报名成功");
+                [self.navigationController pushViewController:[SignUpFirmOrderController new] animated:YES];
                 [AcountManager saveUserApplyState:@"1"];
                 //使重新报名变为0
                 NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -371,34 +431,11 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             }
         }];
 
-        
-    }else if (200 == _tag){
-        // 线上支付
+    }else {
+        [self obj_showTotasViewWithMes:@"请选择支付方式"];
     }
-    NSDictionary *param = @{@"class":@"你好",
-                            @"scholl":@"da",
-                            @"coach":@"oo"};
-    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
-    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        DYNSLog(@"param = %@",data[@"msg"]);
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"0"]) {
-            kShowSuccess(@"报名成功");
-            [self.navigationController pushViewController:[SignUpFirmOrderController new] animated:YES];
-            [AcountManager saveUserApplyState:@"1"];
-            //使重新报名变为0
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
-                [ud setObject:@"0" forKey:@"applyAgain"];
-                [ud synchronize];
-            }
-        }else {
-            kShowFail(param[@"msg"]);
-        }
-    }];
-
-    }
+    
+}
 
 
 

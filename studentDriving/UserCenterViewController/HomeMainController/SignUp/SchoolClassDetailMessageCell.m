@@ -10,8 +10,10 @@
 #import "ToolHeader.h"
 #import "VipserverModel.h"
 #import "UIColor+Hex.h"
+
 @interface SchoolClassDetailMessageCell ()
 @property (strong, nonatomic) UIView  *backGroundView;
+@property (assign, nonatomic) int with;
 //@property (strong, nonatomic) UIView  *classDetailBG;
 @end
 @implementation SchoolClassDetailMessageCell
@@ -83,12 +85,14 @@
         make.top.mas_equalTo(self.studyLabel.mas_bottom).offset(12);
     }];
     [self.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.studyLabel.mas_top).offset(12);
+        make.top.mas_equalTo(self.studyLabel.mas_bottom).offset(12);
         make.left.mas_equalTo(self.featuredTutorials.mas_right).offset(5);
+        make.width.mas_equalTo(@(kSystemWide - 30 - 100));
+//        make.height.mas_equalTo(@120);
     }];
     [self.carType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
-        make.top.mas_equalTo(self.tagView.mas_bottom).offset(50);
+        make.top.mas_equalTo(self.tagView.mas_bottom).offset(12);
     }];
     [self.price mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
@@ -161,7 +165,7 @@
 }
 - (UILabel *)schoolLabel {
     if (_schoolLabel == nil) {
-        _schoolLabel = [WMUITool initWithTextColor:[UIColor redColor] withFont:[UIFont boldSystemFontOfSize:14]];
+        _schoolLabel = [WMUITool initWithTextColor:MAINCOLOR withFont:[UIFont boldSystemFontOfSize:16]];
         _schoolLabel.text = @"课程信息";
     }
     return _schoolLabel;
@@ -197,6 +201,8 @@
 - (GBTagListView *)tagView{
     if (_tagView == nil) {
         _tagView = [[GBTagListView alloc] init];
+        _tagView.backgroundColor = [UIColor whiteColor];
+        
     }
     return _tagView;
 }
@@ -216,7 +222,7 @@
 }
 - (UILabel *)priceDetailLabel{
     if (_priceDetailLabel == nil) {
-        _priceDetailLabel = [WMUITool initWithTextColor:[UIColor redColor] withFont:[UIFont systemFontOfSize:14]];
+        _priceDetailLabel = [WMUITool initWithTextColor:MAINCOLOR withFont:[UIFont systemFontOfSize:14]];
         _priceDetailLabel.text = @"3800元";
     }
     return _priceDetailLabel;                        
@@ -242,30 +248,56 @@
     }
     return _backGroundView;
 }
+/*
 
+ */
+- (void)setClassTypeModel:(ClassTypeDMData *)classTypeModel{
+    
+    _classTypeModel = classTypeModel;
+    
+    NSString *schoolClass = [NSString stringWithFormat:@"适用驾照类型: %@",_classTypeModel.carmodel.code];
+    _schoolClassLabel.text = schoolClass;
+    NSString *str = classTypeModel.enddate;
+    _timeLabel.text = [NSString stringWithFormat:@"有效期: %@",[self componentsSeparatedStr:str]];
+    _studyLabel.text = [NSString stringWithFormat:@"授课日程: %@",_classTypeModel.classchedule];
+    _carType.text = [NSString stringWithFormat:@"训练车品牌: %@",_classTypeModel.cartype];
+    _priceDetailLabel.text = [NSString stringWithFormat:@"%lu元",_classTypeModel.price];
+    _personCount.text = [NSString stringWithFormat:@"已报名人数: %lu",_classTypeModel.applycount];
+    _classTextLabel.text = _classTypeModel.classname;
+    __weak typeof(self) ws = self;
+    
+    float widht = kSystemWide - 30 - 100;
+    NSLog(@"_classTypeModel.vipserverlist:%@",_classTypeModel.vipserverlist);
+    
+    [self.tagView setTagWithTagArray:_classTypeModel.vipserverlist listWidth:widht listHeight:^(int listHeight) {
+        
+        NSLog(@"listHeight:%d",listHeight);
+        
+        [ws.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(ws.studyLabel.mas_bottom).offset(12);
+            make.left.mas_equalTo(ws.featuredTutorials.mas_right).offset(5);
+            make.width.mas_equalTo(widht);
+            make.height.mas_equalTo(listHeight);
+            
+        }];
+    }];
+}
+- (NSString *)componentsSeparatedStr:(NSString *)str
+{
+    NSArray *array = [str componentsSeparatedByString:@"T"];
+    return array[0];
+}
+- (CGFloat)heightWithcell:(ClassTypeDMData *)model
+{
+    __weak typeof(self) ws = self;
+    [_tagView setTagWithTagArray:model.vipserverlist listWidth:kSystemWide - 30 - 100 listHeight:^(int listHeight) {
+        ws.with = listHeight;
+        
+    }];
 
-//- (UIView *)classDetailBG {
-//    if (!_classDetailBG) {
-//        _classDetailBG = [[UIView alloc] initWithFrame:CGRectMake(0, 300, kSystemWide, 120)];
-//        
-//        _classDetailBG.backgroundColor = [UIColor whiteColor];
-//        [_classDetailBG addSubview:self.schoolIntroduction];
-//        [_classDetailBG addSubview:self.schoolDetailIntroduction];
-//        
-//        [self.schoolIntroduction mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(_classDetailBG.mas_left).offset(15);
-//            make.top.mas_equalTo(_classDetailBG.mas_top).offset(15);
-//        }];
-//        
-//        [self.schoolDetailIntroduction mas_makeConstraints:^(MASConstraintMaker *make) {
-//            make.left.mas_equalTo(_classDetailBG.mas_left).offset(15);
-//            make.top.mas_equalTo(self.schoolIntroduction.mas_bottom).offset(15);
-//            NSNumber *wide = [NSNumber numberWithFloat:kSystemWide-30];
-//            make.width.mas_equalTo(wide);
-//        }];
-//        
-//    }
-//    return _classDetailBG;
-//}
+    return   280 + _with;
+    
+}
 
 @end

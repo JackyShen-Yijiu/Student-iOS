@@ -12,6 +12,7 @@
 #import "JGActivityCell.h"
 #import "DVVLocation.h"
 #import "JGActivityModel.h"
+#import "JGActivityDetailsViewController.h"
 
 @interface JGActivityViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -44,7 +45,7 @@
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = RGBColor(255, 255, 255);
+        _tableView.backgroundColor = RGBColor(244, 249, 250);
     }
     return _tableView;
 }
@@ -53,7 +54,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.view.backgroundColor = RGBColor(251, 251, 251);;
+    self.view.backgroundColor = RGBColor(244, 249, 250);
     
     self.title = @"活动";
     
@@ -101,21 +102,37 @@
             
             if (type.integerValue == 1) {
                 
-                NSArray *array = data[@"data"];
+                [ws.activityArray removeAllObjects];
                 
-                for (NSDictionary *dic in array) {
+                NSMutableArray *tempArray = [NSMutableArray array];
+                NSMutableArray *tempArray1 = [NSMutableArray array];
+                NSMutableArray *tempArray2 = [NSMutableArray array];
+
+                NSArray *array = data[@"data"];
+                for (NSDictionary *dataDict in array) {
+                    
                     NSError *error = nil;
-                    JGActivityModel *dModel = [MTLJSONAdapter modelOfClass:JGActivityModel.class fromJSONDictionary:dic error:&error];
-                    [ws.activityArray addObject:dModel];
+                    
+                    JGActivityModel *dModel = [MTLJSONAdapter modelOfClass:JGActivityModel.class fromJSONDictionary:dataDict error:&error];
+
+                    NSLog(@"dModel.activitystate:%ld",(long)dModel.activitystate);
+                    
+                    if (dModel.activitystate==activitystateRead) {//@"  准备中"
+                        [tempArray addObject:dModel];
+                    }else if (dModel.activitystate==activitystateIng){//@"  进行中"
+                        [tempArray1 addObject:dModel];
+                    }else if (dModel.activitystate==activitystateComplete){//@"  已结束"
+                        [tempArray2 addObject:dModel];
+                    }
+                    
+                    
                 }
                 
-//                for (NSDictionary *dict in array) {
-//                    
-//                    JGActivityModel *dmData = [JGActivityModel yy_modelWithDictionary:dict];
-//                    
-//                    [ws.activityArray addObject:dmData];
-//                    
-//                }
+                [self.activityArray addObject:tempArray1];
+                [self.activityArray addObject:tempArray];
+                [self.activityArray addObject:tempArray2];
+                
+                NSLog(@"self.activityArray:%@",self.activityArray);
                 
                 [ws.tableView reloadData];
                 
@@ -134,19 +151,57 @@
 }
 
 #pragma mark --- 4组数据
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-//    return 3;
-//}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 3;
+}
 #pragma mark --- 每一组有多少行
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return self.activityArray.count;
+    NSLog(@"self.activityArray:%@",self.activityArray);
+    
+    if (self.activityArray&&self.activityArray.count!=0) {
+        NSArray *tempArray = self.activityArray[section];
+        if (tempArray&&tempArray.count!=0) {
+            return tempArray.count;
+        }else{
+            return 0;
+        }
+    }
+    return 0;
+    
 }
-
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 30;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 30)];
+    headerView.backgroundColor = RGBColor(244, 249, 250);
+    
+    UILabel *titleLabe = [[UILabel alloc] init];
+    titleLabe.textColor = [UIColor lightGrayColor];
+    titleLabe.textAlignment = NSTextAlignmentCenter;
+    titleLabe.backgroundColor = [UIColor clearColor];
+    titleLabe.frame = CGRectMake(0, 7, headerView.frame.size.width, 15);
+    titleLabe.text = @"进行中";
+    if (section==1) {
+        titleLabe.text = @"敬请期待";
+        headerView.backgroundColor = [UIColor whiteColor];
+    }else if (section==2){
+        titleLabe.text = @"已结束";
+        headerView.backgroundColor = [UIColor whiteColor];
+    }
+    titleLabe.font = [UIFont boldSystemFontOfSize:13];
+    [headerView addSubview:titleLabe];
+    
+    return headerView;
+    
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     return 130;
-    
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -158,8 +213,15 @@
         cell.accessoryType = UITableViewCellAccessoryNone;
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-        
-    cell.activityModel = self.activityArray[indexPath.row];
+    
+    cell.backgroundColor = RGBColor(244, 249, 250);
+    cell.contentView.backgroundColor = RGBColor(244, 249, 250);
+    
+    cell.activityImgView.contentMode = UIViewContentModeScaleToFill;
+    
+    NSArray *tempArray = self.activityArray[indexPath.section];
+
+    cell.activityModel = tempArray[indexPath.row];
     
     return cell;
     
@@ -167,7 +229,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    
+    NSArray *tempArray = self.activityArray[indexPath.section];
+    
+    JGActivityModel *model = tempArray[indexPath.row];
+    
+    JGActivityDetailsViewController *vc = [[JGActivityDetailsViewController alloc] init];
+    
+    vc.activityModel = model;
+
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 

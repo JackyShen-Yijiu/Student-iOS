@@ -31,6 +31,8 @@
 
 #import "JGCoachDetailViewController.h"
 #import "JGActivityViewController.h"
+// 报名
+#import "SignUpController.h"
 
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
@@ -450,12 +452,6 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
     return nil;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    JGActivityViewController *vc = [[JGActivityViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)JGDrivingDetailKeChengFeiYongCellWithBaomingDidClick:(JGDrivingDetailKeChengFeiYongCell *)cell
 {
     
@@ -466,7 +462,16 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
     }
     
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-        [self.navigationController popViewControllerAnimated:YES];
+       /*
+        
+         "name": "（姓名）", "idcardnumber": "（身份证号）", "telephone": "（手机号）", "address": "（地址）", "userid": "（用户id）", "schoolid": "（报名的学习id）", "coachid": "（报名的教练id）", "classtypeid": "（报名课程id）", "carmodel": { "modelsid": 1（车型类型id）, "name": "小型汽车手动挡（车型名称）", "code": "C1（车型代码）" } } "paytype": 1, // 支付方式 1 线下支付 2 线上支付
+        */
+        // 跳转报名界面
+//        [self.navigationController popViewControllerAnimated:YES];
+        SignUpController *signUpVC = [[SignUpController alloc] init];
+        signUpVC.coachDetailModel = self.detailModel;
+        [self.navigationController pushViewController:signUpVC animated:YES];
+        
         return;
     }
     

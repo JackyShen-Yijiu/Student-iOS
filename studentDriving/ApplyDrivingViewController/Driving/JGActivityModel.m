@@ -11,7 +11,7 @@
 @implementation JGActivityModel
 
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"address":@"address",@"begindate":@"begindate",@"contenturl":@"contenturl",@"enddate":@"enddate",@"ID":@"id",@"name":@"name",@"titleimg":@"titleimg"};
+    return @{@"address":@"address",@"begindate":@"begindate",@"contenturl":@"contenturl",@"enddate":@"enddate",@"ID":@"id",@"name":@"name",@"titleimg":@"titleimg",@"activitystate":@"activitystate"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {

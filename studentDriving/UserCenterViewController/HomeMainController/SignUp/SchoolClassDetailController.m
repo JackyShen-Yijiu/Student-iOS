@@ -29,9 +29,13 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (0 == indexPath.row) {
-        return 350;
+            SchoolClassDetailMessageCell *cell = (SchoolClassDetailMessageCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+        return [cell heightWithcell:self.classTypeDMData];
+    }else if (1 == indexPath.row){
+        SchoolClassDetailDisCell *cell = (SchoolClassDetailDisCell *)[self tableView:tableView cellForRowAtIndexPath:indexPath];
+        return [cell heightWithcell:self.classTypeDMData];
     }
-    return 150;
+    return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
     return 250;
@@ -43,6 +47,7 @@
         if (!messageCell) {
             messageCell = [[SchoolClassDetailMessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
+        messageCell.classTypeModel = self.classTypeDMData;
         return messageCell;
     }else if(1 == indexPath.row){
         NSString *ID = @"ID";
@@ -50,6 +55,7 @@
         if (!disCell) {
             disCell = [[SchoolClassDetailDisCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         }
+        disCell.classTypeModel = self.classTypeDMData;
         return disCell;
     }
     return nil;
