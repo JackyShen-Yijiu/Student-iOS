@@ -21,6 +21,9 @@
 #import "SignUpInfoCell.h"
 #import "SignUpFirmOrderFooterView.h"
 #import "HomeCheckProgressView.h"
+#import "JGPayTool.h"
+#import "SignUpSucceedViewController.h"
+
 static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 static NSString *const kVerifyFcode = @"verifyfcodecorrect";
@@ -268,11 +271,63 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 }
 
 - (void)dealRefer:(UIButton *)sender{
+    
+    
+    payType type;
+    
     if (200 == _tag) {
         // 微信支付
+//        type = WeChatPay;
     }else if (201 == _tag){
         // 支付宝支付
+        type = AlixPay;
     }
+    
+    [JGPayTool payWithPaye:type tradeNO:@"11111111111" parentView:self price:@"0.1" title:@"标题亚飞没给" description:@"描述亚飞没给我" success:^(NSString *str) {
+        
+        NSLog(@"成功操作,跳转二维码界面");
+        [self obj_showTotasViewWithMes:@"支付成功"];
+        
+    } error:^(NSString *str) {
+        
+        NSLog(@"支付失败");
+        [self obj_showTotasViewWithMes:@"支付失败"];
+      
+    }];
+    
+//    
+//    [JENetwoking startDownLoadWithUrl:@"" postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+//        
+//        NSDictionary *dataDict = data[@"data"];
+//        
+//        [JGPayTool payWithPaye:type tradeNO:@"11111111111" parentView:self price:@"0.1" title:@"标题亚飞没给" description:@"描述亚飞没给我" success:^(NSString *str) {
+//            
+//            NSLog(@"成功操作,跳转二维码界面");
+//            [self obj_showTotasViewWithMes:@"支付成功"];
+//            
+//            SignUpSucceedViewController *vc = [[SignUpSucceedViewController alloc] init];
+//            [self.navigationController pushViewController:vc animated:YES];
+//            
+//            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+//            [user setObject:nil forKey:@"alipayError"];
+//            [user synchronize];
+//            
+//        } error:^(NSString *str) {
+//            
+//            NSLog(@"支付失败");
+//            [self obj_showTotasViewWithMes:@"支付失败"];
+//            
+//            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+//            [user setObject:dataDict forKey:@"alipayError"];
+//            [user synchronize];
+//            
+//        }];
+//        
+//    } withFailure:^(id data) {
+//        
+//        [self obj_showTotasViewWithMes:@"网络请求失败,请稍后再试"];
+//        
+//    }];
 }
 
 - (void)viewDidDisappear:(BOOL)animated{

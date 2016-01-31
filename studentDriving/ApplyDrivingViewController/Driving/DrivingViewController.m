@@ -27,6 +27,10 @@
 #import "SearchCoachViewModel.h"
 #import "CoachDMData.h"
 #import "DrivingDetailController.h"
+#import "DVVLocation.h"
+#import "HomeCheckProgressView.h"
+#import "JGPayTool.h"
+#import "SignUpSucceedViewController.h"
 
 static NSString *const kDrivingUrl = @"searchschool";
 
@@ -82,6 +86,8 @@ static NSString *const kDrivingUrl = @"searchschool";
 // 0:找驾校 1:找教练
 @property (nonatomic,assign) NSInteger selectType;
 
+@property (nonatomic,strong) HomeCheckProgressView *vc;
+
 @end
 
 @implementation DrivingViewController
@@ -119,11 +125,69 @@ static NSString *const kDrivingUrl = @"searchschool";
     self.navigationItem.rightBarButtonItem = rightItem;
     
         // 定位
-//    [self locationManager];
-//         在模拟器上定位不好用，测试是打开注释
-        self.latitude = 39.929985778080237;
-        self.longitude = 116.39564503787867;
-   
+    __weak typeof(self) ws = self;
+    [DVVLocation getLocation:^(BMKUserLocation *userLocation, double latitude, double longitude) {
+        
+        ws.latitude = latitude;
+        ws.longitude = longitude;
+        
+    } error:^{
+        
+        ws.latitude = 39.929985778080237;
+        ws.longitude = 116.39564503787867;
+        
+    }];
+    
+    // 判断上次是否有尚未支付的订单
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    BOOL isAlipayError = [user boolForKey:isPayErrorKey];
+    NSDictionary *payDict = [user objectForKey:payErrorWithDictKey];
+    payType type = [[user objectForKey:payErrorWithPayType] integerValue];
+
+    __weak DrivingViewController *weakSelf = self;
+    
+    if (isAlipayError) {
+        NSLog(@"上次还有尚未支付的订单");
+        
+        _vc = [[HomeCheckProgressView alloc] init];
+        _vc.topLabel.text = @"您有未完成的订单,是否需要立即支付";
+        [_vc.rightButtton setTitle:@"重新报名" forState:UIControlStateNormal];
+        [_vc.wrongButton setTitle:@"立即支付" forState:UIControlStateNormal];
+        _vc.didClickBlock = ^(NSInteger tag){
+            
+            if (tag==200) {// 立即支付
+                
+                [JGPayTool payWithPaye:type tradeNO:@"11111111111" parentView:weakSelf price:@"0.1" title:@"标题亚飞没给" description:@"描述亚飞没给我" success:^(NSString *str) {
+            
+                        NSLog(@"成功操作,跳转二维码界面");
+                        [weakSelf obj_showTotasViewWithMes:@"支付成功"];
+            
+                        SignUpSucceedViewController *vc = [[SignUpSucceedViewController alloc] init];
+                        [weakSelf.navigationController pushViewController:vc animated:YES];
+            
+                        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+                        [user setBool:NO forKey:isPayErrorKey];
+                        [user setObject:nil forKey:payErrorWithDictKey];
+                        [user synchronize];
+            
+                    } error:^(NSString *str) {
+            
+                        NSLog(@"支付失败");
+                        [weakSelf obj_showTotasViewWithMes:@"支付失败"];
+                        
+                    }];
+                
+            }else if (tag==201){// 重新报名
+                [weakSelf.vc removeFromSuperview];
+            }
+            
+        };
+        _vc.frame = [UIApplication sharedApplication].keyWindow.rootViewController.view.bounds;
+        [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:_vc];
+        
+    }
+    
+    
 }
 
 #pragma mark - 刷新和加载

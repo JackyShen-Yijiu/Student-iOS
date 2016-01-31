@@ -36,6 +36,11 @@ typedef NS_ENUM(NSUInteger,AppointmentState){
     AppointmentStateNoSignIn // 已漏课
 };
 
+// 驾校详情  教练详情 进入报名界面
+typedef NS_ENUM(NSUInteger,SignUpFormDetail){
+    SignUpFormSchoolDetail, // 驾校详情
+    SignUpFormCoachDetail // 教练详情
+};
 
 static NSString *const kQiniuUpdateUrl = @"info/qiniuuptoken";
 
