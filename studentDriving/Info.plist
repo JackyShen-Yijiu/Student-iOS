@@ -49,6 +49,9 @@
 		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
+		<string>alipayauth</string>
+		<string>alipay</string>
+		<string>safepay</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
@@ -103,6 +106,14 @@
 			<array>
 				<string>wb16181237</string>
 			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>safepay</string>
+			</array>
+			<key>CFBundleURLName</key>
+			<string></string>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
