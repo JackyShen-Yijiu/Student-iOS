@@ -472,6 +472,7 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
 //        [self.navigationController popViewControllerAnimated:YES];
         SignUpController *signUpVC = [[SignUpController alloc] init];
         signUpVC.coachDetailModel = self.detailModel;
+        signUpVC.signUpFormDetail = SignUpFormCoachDetail;
         [self.navigationController pushViewController:signUpVC animated:YES];
         
         return;

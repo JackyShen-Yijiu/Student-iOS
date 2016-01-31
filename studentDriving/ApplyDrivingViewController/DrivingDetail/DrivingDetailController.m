@@ -19,6 +19,7 @@
 #import "CoachListController.h"
 
 #import "SchoolClassDetailController.h"
+#import "SignUpController.h"
 
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -97,7 +98,10 @@
 }
 #pragma mark班型cell中的报名按钮单击事件
 - (void)signInButtonAction:(ClassTypeDMData *)dmData {
-    
+    SignUpController *signUpVC = [[SignUpController alloc] init];
+    signUpVC.signUpFormDetail = SignUpFormSchoolDetail;
+    signUpVC.classTypeDMDataModel = dmData;
+    [self.navigationController pushViewController:signUpVC animated:YES];
 }
 #pragma mark 教练cell的点击事件
 - (void)coachListViewCellDidSelectAction:(CoachListDMData *)dmData {
