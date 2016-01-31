@@ -381,7 +381,6 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"0"]) {
                 kShowSuccess(@"报名成功");
-                [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
                 [AcountManager saveUserApplyState:@"1"];
                 //使重新报名变为0
                 NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
@@ -389,6 +388,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                     [ud setObject:@"0" forKey:@"applyAgain"];
                     [ud synchronize];
                 }
+                [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
             }else {
                 kShowFail(param[@"msg"]);
             }
@@ -397,7 +397,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         
     }else if (200 == _tag){
         // 线上支付
-        // 线下支付
+        
         NSDictionary *carmodelParm = @{@"modelsid":self.coachDetailModel.carmodel.modelsid,
                                        @"name":self.coachDetailModel.carmodel.name,
                                        @"code":self.coachDetailModel.carmodel.code};

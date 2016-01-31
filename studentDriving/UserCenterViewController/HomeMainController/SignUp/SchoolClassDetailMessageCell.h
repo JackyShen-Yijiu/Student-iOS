@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "GBTagListView.h"
+#import "ClassTypeDMData.h"
 
 @interface SchoolClassDetailMessageCell : UITableViewCell
 @property (nonatomic, strong) UIView *cellTopLineView;
@@ -25,9 +26,11 @@
 @property (nonatomic, strong) UILabel *priceDetailLabel; // 价格详情
 @property (strong, nonatomic) UILabel *personCount;
 @property (nonatomic, strong) UIView *bottomLineView;
-
+@property (nonatomic, strong) ClassTypeDMData *classTypeModel; 
 
 - (void)receiveVipList:(NSArray *)list;
 
 - (void)setUp;
+
+- (CGFloat)heightWithcell:(ClassTypeDMData *)tableView;
 @end

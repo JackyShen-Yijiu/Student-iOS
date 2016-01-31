@@ -39,7 +39,7 @@
     if (_textDetailLabel == nil) {
         _textDetailLabel = [[UILabel alloc] init];
         _textDetailLabel.text = @"课程描述";
-        _textDetailLabel.textColor = [UIColor redColor];
+        _textDetailLabel.textColor = MAINCOLOR;
         
     }
     return _textDetailLabel;
@@ -85,6 +85,21 @@
     }];
 
     
+}
+- (CGFloat)heightWithcell:(ClassTypeDMData *)model
+{
+    NSString *str = model.classdesc;
+    return   [self getLabelWidthWithString:str];
+    
+}
+- (CGFloat)getLabelWidthWithString:(NSString *)string {
+    CGRect bounds = [string boundingRectWithSize:
+                     CGSizeMake([[UIScreen mainScreen] bounds].size.width - 30, 10000) options:
+                     NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:16.f]} context:nil];
+    return bounds.size.height + 50;
+}
+- (void)setClassTypeModel:(ClassTypeDMData *)classTypeModel{
+    self.schoolDetailIntroduction.text = classTypeModel.classdesc;
 }
 @end
 
