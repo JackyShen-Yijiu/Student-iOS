@@ -55,6 +55,7 @@
 #define payErrorWithDictKey @"payErrorWithDict"
 // 支付方式
 #define payErrorWithPayType @"payErrorWithPayType"
-
+// 手机号码
+#define payErrorWithPhone @"payErrorWithPhone"
 
 #endif

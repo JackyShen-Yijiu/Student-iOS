@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface SignUpFirmOrderController : UIViewController
-@property (nonatomic, strong) NSString *realMoneystr; // 报名界面传值过来
+
+// 订单返回到信息
+@property (nonatomic, strong) NSDictionary *extraDict;
+// 手机号
+@property (nonatomic, copy) NSString *mobile;
+
 @end

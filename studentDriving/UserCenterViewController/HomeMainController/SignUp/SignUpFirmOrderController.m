@@ -24,9 +24,11 @@
 #import "JGPayTool.h"
 #import "SignUpSucceedViewController.h"
 
-static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 static NSString *const kVerifyFcode = @"verifyfcodecorrect";
+
+
+static NSString *const applyUrl = @"/system/verifyactivitycoupon";
 
 #define h_width [UIScreen mainScreen].bounds.size.width/320
 
@@ -53,6 +55,10 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 @property (nonatomic, strong) SignUpPayCell *payCell;
 @property (nonatomic, strong) NSString *HMoneyStr; // 活动立减的金额
 @property (nonatomic, assign) NSInteger tag; // 支付方式
+
+
+@property (nonatomic,copy) NSString *YDiscountStr;
+
 @end
 
 @implementation SignUpFirmOrderController
@@ -195,7 +201,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                         kShowSuccess(@"报名成功");
                         [self.tableView reloadData];
                         
-                        
+                        self.YDiscountStr = YDiscountStr;
                         
                     }else {
                         kShowFail(param[@"msg"]);
@@ -295,30 +301,49 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 //      
 //    }];
     
-    [JENetwoking startDownLoadWithUrl:@"" postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+    /*
+     
+     报名时验证活动验证码 { "type": 1, "msg": "", "data": { "_id": "56ac5284ba6357fc4cc18b14", "couponmoney": 800, // 减少的金额 "couponcode": "123456",
+     "mobile": "15652305650",
+     "__v": 0, "state": 1, // 状态1未消费 2过期 3作废 4 已消费 "endtime": "2016-08-17T06:04:52.005Z", "createtime": "2016-01-30T06:07:58.385Z" } }
+     
+     */
+    
+    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,applyUrl];
+
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"mobile"] = _mobile;
+    dict[@"couponcode"] = self.YDiscountStr;
+
+    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
-        NSDictionary *dataDict = data[@"data"];
+        NSDictionary *newDataDict = data[@"data"];
         
-        [JGPayTool payWithPaye:type tradeNO:@"11111111111" parentView:self price:@"0.1" title:@"标题亚飞没给" description:@"描述亚飞没给我" success:^(NSString *str) {
+        // 价格
+        NSInteger couponmoney = [newDataDict[@"couponmoney"] integerValue];
+        NSInteger newPrice = [_extraDict[@"paymoney"] integerValue] - couponmoney;
+        NSString *price = [NSString stringWithFormat:@"%ld",(long)newPrice];
+        
+        // 描述
+        NSString *desStr = [NSString stringWithFormat:@"%@ %@",_extraDict[@"applyclasstypeinfo"][@"name"],_extraDict[@"applyschoolinfo"][@"name"]];
+
+        [JGPayTool payWithPaye:type tradeNO:_extraDict[@"id"] parentView:self price:price title:_extraDict[@"applyclasstypeinfo"][@"name"] description:desStr success:^(NSString *str) {
             
             NSLog(@"成功操作,跳转二维码界面");
             [self obj_showTotasViewWithMes:@"支付成功"];
             
             SignUpSucceedViewController *vc = [[SignUpSucceedViewController alloc] init];
             [self.navigationController pushViewController:vc animated:YES];
-            
+          
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            [user setObject:nil forKey:@"alipayError"];
+            [user setBool:NO forKey:isPayErrorKey];
+            [user setObject:nil forKey:payErrorWithDictKey];
             [user synchronize];
             
         } error:^(NSString *str) {
             
             NSLog(@"支付失败");
             [self obj_showTotasViewWithMes:@"支付失败"];
-            
-            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            [user setObject:dataDict forKey:@"alipayError"];
-            [user synchronize];
             
         }];
         

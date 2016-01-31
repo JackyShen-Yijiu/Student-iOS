@@ -463,6 +463,16 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
         return;
     }
     
+    NSLog(@"[AcountManager manager].userApplystat:%@",[AcountManager manager].userApplystate);
+    
+    SignUpController *signUpVC = [[SignUpController alloc] init];
+    signUpVC.coachDetailModel = self.detailModel;
+    signUpVC.serverclasslistModel = cell.detailModel;
+    signUpVC.signUpFormDetail = SignUpFormCoachDetail;
+    [self.navigationController pushViewController:signUpVC animated:YES];
+    
+    return;
+    
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
        /*
         
