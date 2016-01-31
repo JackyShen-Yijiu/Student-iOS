@@ -598,6 +598,7 @@
 		D93EC2F21C32BF97005D7141 /* HomeActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93EC2F11C32BF97005D7141 /* HomeActivityController.m */; };
 		D95CCCEE1C2E636200AF1402 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCED1C2E636200AF1402 /* NSString+Helper.m */; };
 		D95CCCF71C2E84C000AF1402 /* UserSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */; };
+		D95E048B1C5E26F400BD7617 /* DVVToast.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E048A1C5E26F400BD7617 /* DVVToast.m */; };
 		D95E3DA81C3CC0AB00F0B5A0 /* DVVSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DA71C3CC0AB00F0B5A0 /* DVVSearchView.m */; };
 		D95E3DAB1C3CC19800F0B5A0 /* SearchCoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DAA1C3CC19800F0B5A0 /* SearchCoachController.m */; };
 		D95E3DAE1C3CDBFE00F0B5A0 /* DVVFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DAD1C3CDBFE00F0B5A0 /* DVVFilterView.m */; };
@@ -1844,6 +1845,8 @@
 		D95CCCED1C2E636200AF1402 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		D95CCCF51C2E84C000AF1402 /* UserSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingModel.h; sourceTree = "<group>"; };
 		D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingModel.m; sourceTree = "<group>"; };
+		D95E04891C5E26F400BD7617 /* DVVToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVToast.h; sourceTree = "<group>"; };
+		D95E048A1C5E26F400BD7617 /* DVVToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVToast.m; sourceTree = "<group>"; };
 		D95E3DA61C3CC0AB00F0B5A0 /* DVVSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSearchView.h; sourceTree = "<group>"; };
 		D95E3DA71C3CC0AB00F0B5A0 /* DVVSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSearchView.m; sourceTree = "<group>"; };
 		D95E3DA91C3CC19800F0B5A0 /* SearchCoachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCoachController.h; sourceTree = "<group>"; };
@@ -4181,6 +4184,8 @@
 		D962482D1C5799C90028EE62 /* ShuttleBus */ = {
 			isa = PBXGroup;
 			children = (
+				D95E04891C5E26F400BD7617 /* DVVToast.h */,
+				D95E048A1C5E26F400BD7617 /* DVVToast.m */,
 				D98581AE1C58BE8A0044E029 /* ShuttleBusController.h */,
 				D98581AF1C58BE8A0044E029 /* ShuttleBusController.m */,
 				D98581B11C58BF000044E029 /* ShuttleBusCell.h */,
@@ -5134,6 +5139,7 @@
 				D588AFC61BDDDAAB000C5D6F /* CoachDetail.m in Sources */,
 				B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */,
 				D96712DC1C3F9A470099C3B9 /* SignInViewModel.m in Sources */,
+				D95E048B1C5E26F400BD7617 /* DVVToast.m in Sources */,
 				D588B11C1BDDDC2F000C5D6F /* NetMonitor.m in Sources */,
 				D970D3991C3CFFEB003FCED3 /* CoachDMHeadportrait.m in Sources */,
 				D51256CC1BE348DC002717DA /* CommentModel.m in Sources */,

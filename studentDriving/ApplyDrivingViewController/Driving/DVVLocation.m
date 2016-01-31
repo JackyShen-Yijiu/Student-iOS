@@ -43,8 +43,8 @@
     [_locationService startUserLocationService];
 }
 
-+ (void)getUserLocation:(DVVLocationSuccessBlock)success
-                  error:(DVVLocationErrorBlock)error {
++ (void)getLocation:(DVVLocationSuccessBlock)success
+              error:(DVVLocationErrorBlock)error {
     
     DVVLocation *location = [DVVLocation sharedLoaction];
     location.onlyGetLocation = YES;

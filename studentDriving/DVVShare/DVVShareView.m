@@ -13,6 +13,11 @@
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "DVVShareCell.h"
 
+#import "UMSocialWechatHandler.h"
+#import "UMSocialQQHandler.h"
+#import "UMSocialSinaSSOHandler.h"
+#import <WeiboSDK.h>
+
 #define kShareCell_Identifier @"kShareCellIdentifier"
 
 #define kShareCell_Width 55.f
@@ -155,10 +160,33 @@
     // 如果没有安装微信，则不显示微信分享信息
     if (![WXApi isWXAppInstalled]) {
         [_shareDict removeObjectsForKeys:@[ UMShareToWechatSession, UMShareToWechatTimeline ]];
+    }else {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            // 添加微信
+            [UMSocialWechatHandler setWXAppId:@"wxf1c209725d178604" appSecret:@"4a17fd7d8cc0d0e1eacd0ce1d2e23e0e" url:@"http://www.ybxch.com/"];
+        });
+        
     }
     // 如果没有安装QQ，则不显示QQ的分享信息
     if (![QQApiInterface isQQInstalled]) {
         [_shareDict removeObjectsForKeys:@[ UMShareToQQ, UMShareToQzone ]];
+    }else {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            // 添加QQ
+            [UMSocialQQHandler setQQWithAppId:@"1105047313" appKey:@"V2WpihDDnIaxxXwL" url:@"http://www.ybxch.com/"];
+        });
+    }
+    
+    if (![WeiboSDK isWeiboAppInstalled]) {
+        [_shareDict removeObjectsForKeys:@[ UMShareToSina ]];
+    }else {
+        static dispatch_once_t onceToken;
+        dispatch_once(&onceToken, ^{
+            // 添加新浪微博分享
+            [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"16181237" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+        });
     }
 }
 

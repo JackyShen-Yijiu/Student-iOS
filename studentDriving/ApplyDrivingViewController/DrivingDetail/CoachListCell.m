@@ -45,7 +45,7 @@
     [_iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dmData.headportrait.originalpic]]];
     NSLog(@"%@", dmData.headportrait.originalpic);
     _nameLabel.text = dmData.name;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%i元起", dmData.minprice];
+    _priceLabel.text = [NSString stringWithFormat:@"￥%ld元起", dmData.minprice];
     _seniorityLabel.text = [NSString stringWithFormat:@"教龄：%@年", dmData.seniority];
     NSMutableArray *array = [NSMutableArray array];
     for (NSDictionary *dict in dmData.serverclasslist) {

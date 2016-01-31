@@ -16,7 +16,8 @@ typedef NS_ENUM(NSUInteger,NetMonitorState){
 };
 
 @interface NetMonitor : NSObject
-@property (readonly,nonatomic,assign) NetMonitorState _netMonitorState;
+@property (readonly,atomic,assign) NetMonitorState _netMonitorState;
+@property (atomic, readonly, copy) NSString *netStateExplain;
 
 + (NetMonitor *)manager;
 

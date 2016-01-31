@@ -23,6 +23,8 @@
 #import "SignInListController.h"
 #import "MoneyShopController.h"
 #import "JGActivityViewController.h"
+#import "ComplaintController.h"
+#import "ShuttleBusController.h"
 
 @implementation DVVOpenControllerFromSideMenu
 
@@ -72,6 +74,24 @@
             [naviVC pushViewController:controller animated:YES];
         }
             break;
+        case kOpenControllerTypeShuttleBusController:// 消息
+        {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
+            if (![AcountManager manager].applyschool.infoId) {
+                [self showMsg:@"您还没有预约"];
+                return ;
+            }
+            
+            ShuttleBusController *controller = [ShuttleBusController new];
+            
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+        }
+            break;
         case kOpenControllerTypeMyWalletViewController:// 钱包
         {
             if (![AcountManager isLogin]) {
@@ -112,6 +132,22 @@
 //            } withFailure:^(id data) {
 //                [self showMsg:@"网络错误"];
 //            }];
+        }
+            break;
+        
+        case kOpenControllerTypeComplaintController:// 投诉
+        {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
+            
+            ComplaintController *controller = [ComplaintController new];
+            
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+            
         }
             break;
             

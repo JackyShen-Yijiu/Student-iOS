@@ -60,13 +60,13 @@
         [self reloadData];
     }];
     [_viewModel dvvSetNilResponseObjectBlock:^{
-        [self obj_showTotasViewWithMes:@"没有数据"];
+//        [self obj_showTotasViewWithMes:@"没有数据"];
     }];
     [_viewModel dvvSetRefreshErrorBlock:^{
-        [self obj_showTotasViewWithMes:@"加载失败"];
+//        [self obj_showTotasViewWithMes:@"加载失败"];
     }];
     [_viewModel dvvSetNetworkErrorBlock:^{
-        [self obj_showTotasViewWithMes:@"网络错误"];
+//        [self obj_showTotasViewWithMes:@"网络错误"];
     }];
 }
 - (void)beginNetworkRequest:(NSString *)schoolID {

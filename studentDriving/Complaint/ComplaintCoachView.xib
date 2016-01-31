@@ -66,7 +66,7 @@
                             <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YH2-Ec-n97">
+                        <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tableview_cell_detail_icon" translatesAutoresizingMaskIntoConstraints="NO" id="YH2-Ec-n97">
                             <rect key="frame" x="280" y="0.0" width="40" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="PoS-wQ-A9v"/>
@@ -136,7 +136,6 @@
                         <constraint firstAttribute="height" constant="80" id="Drg-aT-Wus"/>
                         <constraint firstAttribute="width" constant="80" id="dbE-Bp-yRe"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
                     <connections>
                         <action selector="photo_2_buttonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="idA-3u-CaM"/>
                     </connections>
@@ -148,7 +147,6 @@
                         <constraint firstAttribute="width" constant="80" id="3C4-Sr-QKY"/>
                         <constraint firstAttribute="height" constant="80" id="WVr-qP-enf"/>
                     </constraints>
-                    <state key="normal" title="Button"/>
                     <connections>
                         <action selector="photo_1_buttonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="oId-eO-fYI"/>
                     </connections>
@@ -163,11 +161,11 @@
                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
                     <connections>
-                        <action selector="okButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="xUh-rL-jZZ"/>
+                        <action selector="okButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="mnl-J0-sAv"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="aFa-7q-Baf" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="0BC-3p-qur"/>
                 <constraint firstAttribute="trailing" secondItem="tgG-RJ-DoK" secondAttribute="trailing" id="HMR-mw-QTH"/>
@@ -191,7 +189,7 @@
             <connections>
                 <outlet property="anonymousButton" destination="6LU-Rg-Df6" id="ASX-Py-JfQ"/>
                 <outlet property="coachNameLabel" destination="WK0-LY-9TX" id="0gf-uV-yb8"/>
-                <outlet property="okButton" destination="J4B-Xn-LTM" id="6yU-lm-an8"/>
+                <outlet property="okButton" destination="J4B-Xn-LTM" id="XzO-R3-0uM"/>
                 <outlet property="photo_1_button" destination="DMq-J4-yjl" id="izi-K9-yGm"/>
                 <outlet property="photo_2_button" destination="kRg-Aq-YmA" id="Pyc-L0-AfC"/>
                 <outlet property="placeholderLabel" destination="qBm-dv-w5I" id="I4C-Uw-0ep"/>
@@ -204,5 +202,6 @@
     </objects>
     <resources>
         <image name="cancelSelect" width="15" height="15"/>
+        <image name="tableview_cell_detail_icon" width="10" height="10"/>
     </resources>
 </document>

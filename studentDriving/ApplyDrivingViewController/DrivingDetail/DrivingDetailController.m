@@ -17,6 +17,7 @@
 
 #import "ShuttleBusController.h"
 #import "CoachListController.h"
+#import "DVVToast.h"
 
 #import "SchoolClassDetailController.h"
 #import "SignUpController.h"
@@ -45,7 +46,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     NSLog(@"%@", [AcountManager manager].applyschool.infoId);
-    _schoolID = @"562dcc3ccb90f25c3bde40da";
+
+    // 测试时打开
+//    _schoolID = @"562dcc3ccb90f25c3bde40da";
     
     [self.view addSubview:self.tableView];
     
@@ -56,21 +59,26 @@
 - (void)configViewModel {
     
     _viewModel = [DrivingDetailViewModel new];
+    _viewModel.schoolID = _schoolID;
+    __weak typeof(self) ws = self;
     [_viewModel dvvSetRefreshSuccessBlock:^{
-        
-        [_tableView reloadData];
+        [ws.tableView reloadData];
     }];
     [_viewModel dvvSetRefreshErrorBlock:^{
-        [self obj_showTotasViewWithMes:@"加载失败"];
+        [ws obj_showTotasViewWithMes:@"加载失败"];
     }];
     
     [_viewModel dvvSetNilResponseObjectBlock:^{
-        [self obj_showTotasViewWithMes:@"没有数据"];
+        [ws obj_showTotasViewWithMes:@"没有数据"];
     }];
     [_viewModel dvvSetNetworkErrorBlock:^{
-        [self obj_showTotasViewWithMes:@"网络错误"];
+        [ws obj_showTotasViewWithMes:@"网络错误"];
+    }];
+    [_viewModel dvvSetNetworkCallBackBlock:^{
+        [DVVToast hideFromView:ws.view];
     }];
     
+    [DVVToast showFromView:self.view];
     [_viewModel dvvNetworkRequestRefresh];
 }
 

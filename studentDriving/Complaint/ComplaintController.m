@@ -23,6 +23,8 @@
 
 @property (nonatomic, strong) ComplaintCoachListController *coachListVC;
 
+@property (nonatomic, assign) BOOL alreadyLayout;
+
 @end
 
 @implementation ComplaintController
@@ -32,9 +34,10 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = @"投诉";
-    
+
     [_contentView addSubview:self.coachView];
     [_contentView addSubview:self.drivingView];
+    _drivingView.alpha = 0;
     
     [_coachButton setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
     [_DrivingButton setTitleColor:[UIColor orangeColor] forState:UIControlStateSelected];
@@ -43,9 +46,17 @@
     _coachView.superController = self;
     _drivingView.superController = self;
     
-    CGSize size = _contentView.bounds.size;
-    _coachView.frame = CGRectMake(0, 0, size.width, size.height);
-    _drivingView.frame = CGRectMake(size.width, 0, size.width, size.height);
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (!_alreadyLayout) {
+        CGSize size = _contentView.bounds.size;
+        _coachView.frame = CGRectMake(0, 0, size.width, size.height);
+        _drivingView.frame = CGRectMake(size.width, 0, size.width, size.height);
+        _alreadyLayout = YES;
+    }
 }
 
 - (IBAction)coachButtonAction:(UIButton *)sender {
@@ -73,6 +84,7 @@
     }];
 }
 - (void)scrollToDriving {
+    _drivingView.alpha = 1;
     _coachButton.selected = NO;
     _DrivingButton.selected = YES;
     

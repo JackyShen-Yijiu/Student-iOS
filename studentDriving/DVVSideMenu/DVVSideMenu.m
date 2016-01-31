@@ -274,11 +274,17 @@
         case 2:
             type = kOpenControllerTypeSignInViewController;
             break;
-        case 5:
-            type = kOpenControllerTypeHomeActivityController;
+        case 3:
+            type = kOpenControllerTypeShuttleBusController;
             break;
         case 4:
             type = kOpenControllerTypeMyWalletViewController;
+            break;
+        case 5:
+            type = kOpenControllerTypeHomeActivityController;
+            break;
+        case 6:
+            type = kOpenControllerTypeComplaintController;
             break;
         case 7:
             type = kOpenControllerTypeUserCenterViewController;

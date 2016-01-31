@@ -15,7 +15,12 @@
 @end
 @implementation NetMonitor
 + (NetMonitor *)manager {
-    NetMonitor *manager = [[self alloc] init];
+    
+    static NetMonitor *manager = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        manager = [[self alloc] init];
+    });
     return manager;
 }
 - (id)init {
@@ -31,9 +36,11 @@
                     break;
                     case AFNetworkReachabilityStatusReachableViaWiFi:
                     __netMonitorState = NetMonitorStateWiFi;
+                    _netStateExplain = @"WiFi";
                     break;
                     case AFNetworkReachabilityStatusReachableViaWWAN:
                     __netMonitorState = NetMonitorStateWWAN;
+                    _netStateExplain = @"3G";
                     break;
                     case AFNetworkReachabilityStatusNotReachable:
                 {
