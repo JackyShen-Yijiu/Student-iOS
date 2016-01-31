@@ -20,9 +20,22 @@
 @property (nonatomic, copy) DVVLocationAddressSuccessBlock addressSuccess;
 @property (nonatomic, copy) DVVLocationAddressErrorBlock addressError;
 
+@property (nonatomic, assign) double latitude;
+@property (nonatomic, assign) double longitude;
+@property (nonatomic, assign) CLLocationCoordinate2D coordinate;
+
 @end
 
 @implementation DVVLocation
+
++ (instancetype)sharedLoaction {
+    static DVVLocation *location = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        location = [DVVLocation new];
+    });
+    return location;
+}
 
 - (void)startLocation {
     
@@ -33,12 +46,12 @@
 + (void)getUserLocation:(DVVLocationSuccessBlock)success
                   error:(DVVLocationErrorBlock)error {
     
-    static DVVLocation *location = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        location = [self new];
-    });
-//    DVVLocation *location = [self new];
+//    static DVVLocation *location = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        location = [self new];
+//    });
+    DVVLocation *location = [DVVLocation sharedLoaction];
     location.onlyGetLocation = YES;
     [location setLocationSuccessBlock:success];
     [location setLocationErrorBlock:error];
@@ -46,12 +59,12 @@
 + (void)getUserAddress:(DVVLocationAddressSuccessBlock)success
                  error:(DVVLocationAddressErrorBlock)error {
     
-    static DVVLocation *location = nil;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        location = [self new];
-    });
-//    DVVLocation *location = [self new];
+//    static DVVLocation *location = nil;
+//    static dispatch_once_t onceToken;
+//    dispatch_once(&onceToken, ^{
+//        location = [self new];
+//    });
+    DVVLocation *location = [DVVLocation sharedLoaction];
     [location setAddressSuccessBlock:success];
     [location setAddressErrorBlock:error];
     [location startLocation];
@@ -60,11 +73,14 @@
 #pragma mark - 位置坐标更新成功
 - (void)didUpdateBMKUserLocation:(BMKUserLocation *)userLocation
 {
-    NSLog(@"latitude === %lf   longitude === %lf", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+//    NSLog(@"latitude === %lf   longitude === %lf", userLocation.location.coordinate.latitude, userLocation.location.coordinate.longitude);
+    
+    _coordinate = userLocation.location.coordinate;
+    
     if (_locationSuccess) {
         _locationSuccess(userLocation,
-                         userLocation.location.coordinate.latitude,
-                         userLocation.location.coordinate.longitude);
+                         _coordinate.latitude,
+                         _coordinate.longitude);
     }
     if (_onlyGetLocation) {
         [self emptyLocationService];
@@ -72,8 +88,8 @@
     }
     self.geoCodeSearch.delegate = self;
     // 反地理编码，获取城市名
-    [self reverseGeoCodeWithLatitude:userLocation.location.coordinate.latitude
-                           longitude:userLocation.location.coordinate.longitude];
+    [self reverseGeoCodeWithLatitude:_coordinate.latitude
+                           longitude:_coordinate.longitude];
 }
 #pragma mark - 位置坐标更新失败
 - (void)didFailToLocateUserWithError:(NSError *)error {

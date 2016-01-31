@@ -49,6 +49,9 @@
 #import "ShuttleBusController.h"
 #import "DrivingDetailController.h"
 
+#import "DVVLocation.h"
+#import "DrivingCityListView.h"
+
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
@@ -95,6 +98,11 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 @property (nonatomic, strong) HomeActivityController *activityVC;
 @property (nonatomic, strong) HomeCheckProgressView *homeCheckProgressView;
+// 导航栏右侧的位置按钮
+@property (nonatomic, strong) UILabel *locationLabel;
+// 判断是否已经打开了城市列表
+@property (nonatomic, assign) BOOL cityListShowFlage;
+
 @end
 
 @implementation HomeMainController
@@ -174,6 +182,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     #pragma mark 当程序由后台进入前台后，调用检查活动的方法，检查今天是否有活动
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForegroundCheckActivity) name:@"kCheckActivity" object:nil];
+    
+    // 添加导航栏右侧的定位按钮
+    [self addNaviRightButton];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        ComplaintController *complainVC = [ComplaintController new];
@@ -976,6 +987,12 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     }
 }
 
+- (void)addNaviRightButton {
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.locationLabel];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
 #pragma mark - Lazy load
 #pragma mark 地理编码
 - (BMKGeoCodeSearch *)geoCodeSearch {
@@ -1049,6 +1066,52 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         [_mainScrollView addSubview:_subjectFourView];
     }
     return _subjectFourView;
+}
+- (UILabel *)locationLabel {
+    if (!_locationLabel) {
+        _locationLabel = [UILabel new];
+        _locationLabel.textAlignment = 2;
+        _locationLabel.textColor = [UIColor whiteColor];
+        _locationLabel.font = [UIFont systemFontOfSize:14];
+        _locationLabel.bounds = CGRectMake(0, 0, 100, 44);
+        if ([AcountManager manager].userSelectedCity) {
+            _locationLabel.text = [AcountManager manager].userSelectedCity;
+        }else {
+            _locationLabel.text = @"定位中";
+            [DVVLocation getUserAddress:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
+                
+                _locationLabel.text = city;
+            } error:^{
+                
+                _locationLabel.text = @"定位失败";
+            }];
+        }
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationLabelClickAction:)];
+        [_locationLabel addGestureRecognizer:gesture];
+        _locationLabel.userInteractionEnabled = YES;
+    }
+    return _locationLabel;
+}
+- (void)locationLabelClickAction:(UITapGestureRecognizer *)tapGesture {
+    
+    if (_cityListShowFlage) {
+        return ;
+    }
+    DrivingCityListView *view = [DrivingCityListView new];
+    CGRect rect = self.view.bounds;
+    view.frame = CGRectMake(rect.origin.x, 64, rect.size.width, rect.size.height);
+    [self.view addSubview:view];
+    [view setSelectedItemBlock:^(NSString *cityName) {
+        _locationLabel.text = cityName;
+        
+        [AcountManager manager].userSelectedCity = cityName;
+    }];
+    [view setRemovedBlock:^{
+        _cityListShowFlage = NO;
+    }];
+    _cityListShowFlage = YES;
+    [view show];
+    
 }
 
 - (void)showMsg:(NSString *)msg {

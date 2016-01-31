@@ -27,6 +27,7 @@
 @property (nonatomic, strong) DrivingDetailViewModel *viewModel;
 
 // 这个要动态调高度，放里面不好动态调  而且也没有复用性   所以放这里
+@property (nonatomic, strong) DrivingDetailAddressCell *addressCell;
 @property (nonatomic, strong) DrivingDetailSignUpCell *signUpCell;
 @property (nonatomic, strong) DrivingDetailBriefIntroductionCell *introductionCell;
 
@@ -200,6 +201,9 @@
             
             ws.isShowMore = isShowMore;
             [ws.tableView reloadData];
+            
+//            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:3 inSection:0];
+//            [ws.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
         }];
     }
     return _introductionCell;

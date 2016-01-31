@@ -32,7 +32,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IQB-l7-INe">
                         <rect key="frame" x="262" y="8" width="50" height="20"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="地点" translatesAutoresizingMaskIntoConstraints="NO" id="Nw8-rN-EPF">
+                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tableview_cell_detail_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Nw8-rN-EPF">
                                 <rect key="frame" x="30" y="0.0" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="ONl-9B-Kep"/>
@@ -84,11 +84,12 @@
             <connections>
                 <outlet property="briefIntroductionLabel" destination="2RQ-dG-GFp" id="i3f-mU-58T"/>
                 <outlet property="showMoreButton" destination="Wdd-UY-SEr" id="8qW-JJ-KWt"/>
+                <outlet property="showMoreImageView" destination="Nw8-rN-EPF" id="87L-Xt-joE"/>
             </connections>
             <point key="canvasLocation" x="165" y="406"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="地点" width="46" height="46"/>
+        <image name="tableview_cell_detail_icon" width="10" height="10"/>
     </resources>
 </document>

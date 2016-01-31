@@ -36,4 +36,6 @@ typedef void(^DVVLocationAddressErrorBlock)();
 + (void)getUserAddress:(DVVLocationAddressSuccessBlock)success
                  error:(DVVLocationAddressErrorBlock)error;
 
++ (instancetype)sharedLoaction;
+
 @end
