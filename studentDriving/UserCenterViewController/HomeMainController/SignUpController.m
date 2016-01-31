@@ -395,6 +395,9 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                                 @"paytype":number};
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
         [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            
+            NSLog(@"订单生成data:%@",data);
+            
             DYNSLog(@"param = %@",data[@"msg"]);
             NSDictionary *param = data;
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];

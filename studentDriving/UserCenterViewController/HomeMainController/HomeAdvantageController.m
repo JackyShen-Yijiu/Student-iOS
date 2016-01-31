@@ -53,7 +53,7 @@ static NSString *advantage = @"youshi.html";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"一步优势";
-    [self addSignUp];
+   // [self addSignUp];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
@@ -111,10 +111,10 @@ static NSString *advantage = @"youshi.html";
 //    CheckProgressController *checkVC = [[CheckProgressController alloc] init];
 //    [self.navigationController pushViewController:checkVC animated:YES];
     
-//    SignUpController *checkVC = [[SignUpController alloc] init];
-//        [self.navigationController pushViewController:checkVC animated:YES];
-    SignUpFirmOrderController *checkVC = [[SignUpFirmOrderController alloc] init];
+    SignUpController *checkVC = [[SignUpController alloc] init];
     [self.navigationController pushViewController:checkVC animated:YES];
+//    SignUpFirmOrderController *checkVC = [[SignUpFirmOrderController alloc] init];
+//    [self.navigationController pushViewController:checkVC animated:YES];
 //    SchoolClassDetailController *checkVC = [[SchoolClassDetailController alloc] init];
 //    [self.navigationController pushViewController:checkVC animated:YES];
     
