@@ -21,16 +21,14 @@
 @end
 
 @implementation JGPayTool
-+ (void)payWithPaye:(payType)payType tradeNO:(NSString *)tradeNO parentView:(UIViewController *)vc ID:(NSString *)ID price:(NSString *)price title:(NSString *)title description:(NSString *)description success:(paySuccess)success error:(payError)error
++ (void)payWithPaye:(payType)payType tradeNO:(NSString *)tradeNO parentView:(UIViewController *)vc price:(NSString *)price title:(NSString *)title description:(NSString *)description success:(paySuccess)success error:(payError)error
 {
-    if ([WXApi isWXAppInstalled]==NO) {
-        [self obj_showTotasViewWithMes:@"尚未安装微信客户端"];
-        return;
-    }
+    
     
     if (payType==AlixPay) {// 支付宝支付
+       
         
-        [self alipayWithtradeNO:tradeNO amount:price productName:title productDescription:description success:^(NSString *str) {
+        [self alipayWithtradeNO:[self generateTradeNO] amount:price productName:title productDescription:description success:^(NSString *str) {
             
             success(str);
             
@@ -40,7 +38,13 @@
             
         }];
         
+        
     }else if (payType==WeChatPay){// 微信支付
+        
+        if ([WXApi isWXAppInstalled]==NO) {
+            [self obj_showTotasViewWithMes:@"尚未安装微信客户端"];
+            return;
+        }
         
         [self wxPayWithtradeNO:tradeNO amount:price productName:title productDescription:description success:^(NSString *str) {
             
@@ -114,11 +118,11 @@
     order.showUrl = @"m.alipay.com";
     
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"kongfuziAlipay";
+    NSString *appScheme = @"safepay";
     
     //将商品信息拼接成字符串
     NSString *orderSpec = [order description];
-    NSLog(@"orderSpec = %@",orderSpec);
+    NSLog(@"将商品信息拼接成字符串orderSpec = %@",orderSpec);
     
     // 获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
     id<DataSigner> signer = CreateRSADataSigner(privateKey);

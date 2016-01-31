@@ -417,6 +417,8 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             NSDictionary *param = data;
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"0"]) {
+                
+                
                 kShowSuccess(@"报名成功");
                 [self.navigationController pushViewController:[SignUpFirmOrderController new] animated:YES];
                 [AcountManager saveUserApplyState:@"1"];
@@ -426,6 +428,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                     [ud setObject:@"0" forKey:@"applyAgain"];
                     [ud synchronize];
                 }
+                
             }else {
                 kShowFail(param[@"msg"]);
             }

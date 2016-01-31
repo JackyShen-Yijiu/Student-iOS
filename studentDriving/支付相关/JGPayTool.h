@@ -21,14 +21,14 @@ typedef void (^payError)(NSString *str);
 @interface JGPayTool : NSObject
 
 /*
- * payType:支付方式选择
- * tradeNO:订单号
- * vc:父控制器
- * ID:商品ID
- * price:商品价格
- * title:商品标题
- * description:商品描述
+ * payType:支付方式选择 必选
+ * tradeNO:订单号 必选
+ * vc:父控制器 必选
+ * ID:商品ID 必选
+ * price:商品价格 必选
+ * title:商品标题 必选
+ * description:商品描述 必选
  */
-+ (void)payWithPaye:(payType)payType tradeNO:(NSString *)tradeNO parentView:(UIViewController *)vc ID:(NSString *)ID price:(NSString *)price title:(NSString *)title description:(NSString *)description success:(paySuccess)success error:(payError)error;
++ (void)payWithPaye:(payType)payType tradeNO:(NSString *)tradeNO parentView:(UIViewController *)vc price:(NSString *)price title:(NSString *)title description:(NSString *)description success:(paySuccess)success error:(payError)error;
 
 @end

@@ -452,6 +452,8 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
     return nil;
 }
 
+
+#pragma mark ------ 报名(只有在尚未报名的情况下此方法才执行)
 - (void)JGDrivingDetailKeChengFeiYongCellWithBaomingDidClick:(JGDrivingDetailKeChengFeiYongCell *)cell
 {
     
