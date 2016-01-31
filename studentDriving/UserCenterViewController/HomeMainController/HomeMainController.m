@@ -1078,14 +1078,14 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             _locationLabel.text = [AcountManager manager].userSelectedCity;
         }else {
             _locationLabel.text = @"定位中";
-            [DVVLocation getUserAddress:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
+            [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
                 
                 _locationLabel.text = city;
             } error:^{
-                
                 _locationLabel.text = @"定位失败";
             }];
         }
+        
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationLabelClickAction:)];
         [_locationLabel addGestureRecognizer:gesture];
         _locationLabel.userInteractionEnabled = YES;
@@ -1102,9 +1102,18 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     view.frame = CGRectMake(rect.origin.x, 64, rect.size.width, rect.size.height);
     [self.view addSubview:view];
     [view setSelectedItemBlock:^(NSString *cityName) {
-        _locationLabel.text = cityName;
         
-        [AcountManager manager].userSelectedCity = cityName;
+        [DVVLocation geoCodeWithCity:cityName address:cityName success:^(BMKGeoCodeResult *result, CLLocationCoordinate2D coordinate, double latitude, double longitude) {
+            NSLog(@"latitude === %lf   longitude === %lf", latitude, longitude);
+            [AcountManager manager].latitude = [NSString stringWithFormat:@"%lf", latitude];
+            [AcountManager manager].longitude = [NSString stringWithFormat:@"%lf", longitude];
+            _locationLabel.text = cityName;
+            [AcountManager manager].userSelectedCity = cityName;
+            [AcountManager manager].userCity = cityName;
+        } error:^{
+            
+            [self obj_showTotasViewWithMes:@"修改失败"];
+        }];
     }];
     [view setRemovedBlock:^{
         _cityListShowFlage = NO;
