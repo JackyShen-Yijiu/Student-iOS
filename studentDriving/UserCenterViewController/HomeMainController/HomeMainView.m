@@ -57,7 +57,7 @@
                 CGFloat coachCardY = systemsH * 0.473;
                 _coachCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _coachCardButton.frame = CGRectMake(coachCardX, coachCardY - 64, coachCardButtonW, coachCardButtonW);
-                [_coachCardButton setBackgroundImage:[UIImage imageNamed:@"优势"] forState:UIControlStateNormal];
+                [_coachCardButton setBackgroundImage:[UIImage imageNamed:@"须知"] forState:UIControlStateNormal];
                 _coachCardButton.tag = 101;
                 [_coachCardButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
 
@@ -65,7 +65,7 @@
                 CGFloat schoolCardY = systemsH * 0.378;
                 _schoolCardButton = [UIButton buttonWithType:UIButtonTypeSystem];
                 _schoolCardButton.frame = CGRectMake(schoolCardX, schoolCardY - 64 , signButton, signButton);
-                [_schoolCardButton setBackgroundImage:[UIImage imageNamed:@"特色班"] forState:UIControlStateNormal];
+                [_schoolCardButton setBackgroundImage:[UIImage imageNamed:@"活动"] forState:UIControlStateNormal];
                 [_schoolCardButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 _schoolCardButton.tag = 102;
                 [_schoolCardButton addTarget:self action:@selector(dikClick:) forControlEvents:UIControlEventTouchUpInside];
