@@ -140,6 +140,15 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    UILabel *titleLabel = [UILabel new];
+//    titleLabel.backgroundColor = [UIColor redColor];
+//    titleLabel.textColor = [UIColor whiteColor];
+//    titleLabel.text = @"快乐学车美一步";
+//    titleLabel.textAlignment = 1;
+//    titleLabel.font = [UIFont systemFontOfSize:17];
+//    titleLabel.bounds = CGRectMake(0, 0, 119, 44);
+//    self.navigationItem.titleView = titleLabel;
+    
     self.title = @"快乐学车美一步";
     _offsetX = 0;
     self.view.backgroundColor = [UIColor clearColor];
@@ -1068,21 +1077,20 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 - (UILabel *)locationLabel {
     if (!_locationLabel) {
         _locationLabel = [UILabel new];
-        _locationLabel.textAlignment = 2;
+        _locationLabel.textAlignment = NSTextAlignmentRight;
         _locationLabel.textColor = [UIColor whiteColor];
-        _locationLabel.font = [UIFont systemFontOfSize:14];
-        _locationLabel.bounds = CGRectMake(0, 0, 100, 44);
-        if ([AcountManager manager].userSelectedCity) {
+        _locationLabel.font = [UIFont systemFontOfSize:13];
+        
+        [AcountManager manager].userSelectedCity = @"";
+        [AcountManager manager].userSelectedLatitude = @"";
+        [AcountManager manager].userSelectedLongitude = @"";
+
+        if ([AcountManager manager].userSelectedCity.length) {
             _locationLabel.text = [AcountManager manager].userSelectedCity;
         }else {
-            _locationLabel.text = @"定位中";
-            [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
-                
-                _locationLabel.text = city;
-            } error:^{
-                _locationLabel.text = @"定位失败";
-            }];
+            [self location];
         }
+        _locationLabel.bounds = CGRectMake(0, 0, 60, 44);
         
         UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationLabelClickAction:)];
         [_locationLabel addGestureRecognizer:gesture];
@@ -1090,9 +1098,23 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     }
     return _locationLabel;
 }
+- (void)location {
+    
+    _locationLabel.text = @"定位中";
+    [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
+        
+        _locationLabel.text = city;
+    } error:^{
+        _locationLabel.text = @"定位失败";
+    }];
+}
 - (void)locationLabelClickAction:(UITapGestureRecognizer *)tapGesture {
     
     if (_cityListShowFlage) {
+        return ;
+    }
+    if (_locationLabel.text&&[_locationLabel.text isEqualToString:@"定位失败"]) {
+        [self location];
         return ;
     }
     DrivingCityListView *view = [DrivingCityListView new];
@@ -1103,12 +1125,11 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         
         [DVVLocation geoCodeWithCity:cityName address:cityName success:^(BMKGeoCodeResult *result, CLLocationCoordinate2D coordinate, double latitude, double longitude) {
             NSLog(@"latitude === %lf   longitude === %lf", latitude, longitude);
-            [AcountManager manager].latitude = [NSString stringWithFormat:@"%lf", latitude];
-            [AcountManager manager].longitude = [NSString stringWithFormat:@"%lf", longitude];
-            _locationLabel.text = cityName;
+            [AcountManager manager].userSelectedLatitude = [NSString stringWithFormat:@"%lf", latitude];
+            [AcountManager manager].userSelectedLongitude = [NSString stringWithFormat:@"%lf", longitude];
             [AcountManager manager].userSelectedCity = cityName;
-            [AcountManager manager].userCity = cityName;
-            [AcountManager manager].locationAddress = cityName;
+            
+            _locationLabel.text = cityName;
         } error:^{
             
             [self obj_showTotasViewWithMes:@"修改失败"];

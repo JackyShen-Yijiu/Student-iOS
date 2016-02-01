@@ -29,7 +29,7 @@
     
     _index = index;
     NSString *interface = [NSString stringWithFormat:BASEURL, @"getschoolcoach/"];
-    NSString *url = [NSString stringWithFormat:@"%@%@/%i",interface, _schoolID, _index];
+    NSString *url = [NSString stringWithFormat:@"%@%@/%ld",interface, _schoolID, _index];
     
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
@@ -54,6 +54,7 @@
         for (NSDictionary *dict in dmRoot.data) {
             
             CoachListDMData *dmData = [CoachListDMData yy_modelWithDictionary:dict];
+            NSLog(@"%@", dmData.headportrait.originalpic);
             [_dataArray addObject:dmData];
         }
         

@@ -58,6 +58,8 @@
 
 // 用户在首页选择的城市，如果用户设置过了，则下次不再定位，直接使用此城市
 @property (nonatomic, copy) NSString *userSelectedCity;
+@property (nonatomic, copy) NSString *userSelectedLatitude;
+@property (nonatomic, copy) NSString *userSelectedLongitude;
 
 // 设置
 @property (nonatomic, assign) BOOL reservationreminder;

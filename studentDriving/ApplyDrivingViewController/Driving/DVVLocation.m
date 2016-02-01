@@ -39,7 +39,11 @@
 
 - (void)startLocation {
     
+    
     self.locationService.delegate = self;
+    // 再次定位的时候的时候不设置这个代理就不会走百度定位的代理方法（太坑了）
+    self.geoCodeSearch.delegate = self;
+    
     [_locationService startUserLocationService];
 }
 
@@ -54,7 +58,7 @@
 + (void)reverseGeoCode:(DVVLocationReverseGeoCodeSuccessBlock)success
                  error:(DVVLocationReverseGeoCodeErrorBlock)error {
     
-    DVVLocation *location = [DVVLocation sharedLoaction];
+    DVVLocation *location = [self sharedLoaction];
     [location setReverseGeoCodeSuccessBlock:success];
     [location setReverseGeoCodeErrorBlock:error];
     [location startLocation];
@@ -110,7 +114,7 @@
         return YES;
     }else {
 //        NSLog(@"反geo检索发送失败");
-        [self emptyAll];
+        [self emptyLocationService];
         if (_addressError) {
             _addressError();
         }
@@ -141,7 +145,7 @@
             _addressError();
         }
     }
-    [self emptyAll];
+    [self emptyLocationService];
 }
 
 + (void)geoCodeWithCity:(NSString *)city address:(NSString *)address success:(DVVLocationGeoCodeSuccessBlock)success error:(DVVLocationGeoCodeErrorBlock)error {
@@ -165,7 +169,7 @@
 //        NSLog(@"geo检索发送成功");
         return YES;
     }else {
-        [self emptyAll];
+        [self emptyLocationService];
         if (_geoCodeError) {
             _geoCodeError();
         }
@@ -193,22 +197,16 @@
             _geoCodeError();
         }
     }
-    [self emptyAll];
+    [self emptyLocationService];
 }
 
-#pragma mark - empty
-- (void)emptyAll {
-    
-    // 停止位置更新服务
-    [_locationService stopUserLocationService];
-    _locationService.delegate = nil;
-    _geoCodeSearch.delegate = nil;
-}
+#pragma mark - empty location service
 - (void)emptyLocationService {
     
     // 停止位置更新服务
     [_locationService stopUserLocationService];
     _locationService.delegate = nil;
+    _geoCodeSearch.delegate = nil;
 }
 
 #pragma mark - lazy load
