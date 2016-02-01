@@ -230,6 +230,8 @@ static NSString *const kuserType = @"usertype";
         _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
         
+        _phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
         leftView.image = [UIImage imageNamed:@"账号"];
         
@@ -255,7 +257,8 @@ static NSString *const kuserType = @"usertype";
          _passwordTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
         leftView.image = [UIImage imageNamed:@"密码"];
-        
+        _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+
         _passwordTextField.leftView = leftView;
         _passwordTextField.secureTextEntry = YES;
         

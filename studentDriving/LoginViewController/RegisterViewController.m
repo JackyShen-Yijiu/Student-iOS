@@ -115,7 +115,8 @@ static NSString *const kcodeGainUrl = @"code";
         _phoneTextField.leftViewMode = UITextFieldViewModeAlways;
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
         leftView.image = [UIImage imageNamed:@"账号"];
-        
+        _phoneTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+
         _phoneTextField.leftView = leftView;
         _phoneTextField.font  = [UIFont systemFontOfSize:15];
         _phoneTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
@@ -137,6 +138,8 @@ static NSString *const kcodeGainUrl = @"code";
         _passWordTextFild.font  = [UIFont systemFontOfSize:15];
         _passWordTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _passWordTextFild.secureTextEntry = YES;
+        _passWordTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
+
     }
     return _passWordTextFild;
 }
@@ -171,6 +174,7 @@ static NSString *const kcodeGainUrl = @"code";
         _affirmTextFild.leftView = leftView;
         _affirmTextFild.font  = [UIFont systemFontOfSize:15];
         _affirmTextFild.textColor = [UIColor colorWithHexString:@"d9d9d9"];
+        _affirmTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
         _affirmTextFild.secureTextEntry = YES;
     }
     return _affirmTextFild;
