@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface SignUpFirmOrderFooterView : UIView
+@property (nonatomic, strong) UILabel *discountLabel;
+@property (nonatomic, strong) UILabel *realPayLabel;
+@property (nonatomic, strong) UILabel *discountPayLabel;
 - (UIView *)initWithFrame:(CGRect)frame Discount:(NSString *)discountMoney realMoney:(NSString *)realMoney schoolName:(NSString *)schoolName;
 @end

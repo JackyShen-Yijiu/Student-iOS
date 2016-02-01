@@ -267,7 +267,6 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             cell = [[SignUpInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_4"];
         }
         cell.signUpTextField.placeholder = _infoArray[indexPath.row];
-        //        [cell receiveTextContent:];
         NSString *titleString = [self.secondArray[1] objectAtIndex:indexPath.row];
         [cell receiveTitile:titleString andSignUpBlock:^(NSString *completionString) {
             if (indexPath.row == 0) {
@@ -361,9 +360,9 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
-    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    view.backgroundColor = [UIColor colorWithHexString:@"f5f9f9"];
     UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 1)];
-    topLineView.backgroundColor = [UIColor redColor];
+    topLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:topLineView];
     UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
     bottomLineView.backgroundColor = [UIColor redColor];
@@ -372,16 +371,22 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
-    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    view.backgroundColor = [UIColor colorWithHexString:@"f5f9f9"];
     UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
-    bottomLineView.backgroundColor = [UIColor redColor];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:bottomLineView];
     return view;
 }
 
 - (void)dealRefer:(UIButton *)sender{
-    
-    
+    if (_baomingName == nil || _baomingName.length == 0) {
+        [self showTotasViewWithMes:@"请输入手机号"];
+        return;
+    }
+    if (_baomingTel == nil || _baomingTel.length == 0) {
+        [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+        return;
+    }
     NSLog(@"%lu",_tag);
     NSNumber *number = nil;
     if (201 == _tag) {
