@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 #import "BLBaseViewController.h"
 @interface DrivingViewController : BLBaseViewController
-
+@property (nonatomic, assign) BOOL isHideItem;
 @end
