@@ -405,13 +405,14 @@ static NSString *const applyUrl = @"system/verifyactivitycoupon";
             NSLog(@"成功操作,跳转二维码界面");
             [self obj_showTotasViewWithMes:@"支付成功"];
             
-            SignUpSucceedViewController *vc = [[SignUpSucceedViewController alloc] init];
-            [self.navigationController pushViewController:vc animated:YES];
-          
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
             [user setBool:NO forKey:isPayErrorKey];
             [user setObject:nil forKey:payErrorWithDictKey];
             [user synchronize];
+            
+            //SignUpSucceedViewController *vc = [[SignUpSucceedViewController alloc] init];
+            //[self.navigationController pushViewController:vc animated:YES];
+            [self.navigationController popToRootViewControllerAnimated:YES];
             
         } error:^(NSString *str) {
             
