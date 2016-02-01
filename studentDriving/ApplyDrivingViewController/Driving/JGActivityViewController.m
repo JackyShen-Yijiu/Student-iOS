@@ -62,15 +62,17 @@
     
     [self.view addSubview:self.tableView];
 
+    // 获取活动列表
+    [self startDownLoad];
+
     __weak typeof(self) ws = self;
     [DVVLocation getUserAddress:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
         ws.cityName = city;
+        [ws.tableView.mj_header beginRefreshing];
     } error:^{
+        [ws.tableView.mj_header beginRefreshing];
     }];
     
-    // 获取活动列表
-    [self startDownLoad];
-    [self.tableView.mj_header beginRefreshing];
     
 }
 
