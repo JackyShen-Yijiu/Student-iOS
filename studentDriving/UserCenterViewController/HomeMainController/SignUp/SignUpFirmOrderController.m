@@ -405,6 +405,8 @@ static NSString *const applyUrl = @"system/verifyactivitycoupon";
             NSLog(@"成功操作,跳转二维码界面");
             [self obj_showTotasViewWithMes:@"支付成功"];
             
+            [AcountManager saveUserApplyState:@"1"];
+
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
             [user setBool:NO forKey:isPayErrorKey];
             [user setObject:nil forKey:payErrorWithDictKey];

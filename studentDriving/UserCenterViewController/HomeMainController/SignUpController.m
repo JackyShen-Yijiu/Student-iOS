@@ -446,8 +446,6 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                 
                 kShowSuccess(@"报名成功");
                 
-                [AcountManager saveUserApplyState:@"1"];
-                
                 /*
                  
                  {

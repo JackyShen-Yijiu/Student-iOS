@@ -227,22 +227,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "studentDriving/UserCenterViewController/HomeMainController/SignUpController.m"
-            timestampString = "476009963.869359"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "449"
-            endingLineNumber = "449"
-            landmarkName = "-dealRefer:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "studentDriving/ApplyDrivingViewController/Driving/JGDrivingDetailViewController.m"
             timestampString = "476002640.230355"
             startingColumnNumber = "9223372036854775807"
