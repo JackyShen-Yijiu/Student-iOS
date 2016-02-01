@@ -25,6 +25,7 @@
 #import "JGActivityViewController.h"
 #import "ComplaintController.h"
 #import "ShuttleBusController.h"
+#import "HomeAdvantageController.h"
 
 @implementation DVVOpenControllerFromSideMenu
 
@@ -210,7 +211,21 @@
             
         }
             break;
+        case kOpenControllerTypeHomeAdvantageController:// 优势
+        {
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                break;
+            }
             
+            HomeAdvantageController *controller = [HomeAdvantageController new];
+            
+            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
+            [naviVC pushViewController:controller animated:YES];
+            
+        }
+            break;
             
         default:
             break;

@@ -193,6 +193,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     #pragma mark 当程序由后台进入前台后，调用检查活动的方法，检查今天是否有活动
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForegroundCheckActivity) name:@"kCheckActivity" object:nil];
     
+    
     // 添加导航栏右侧的定位按钮
     [self addNaviRightButton];
     
@@ -1083,7 +1084,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         _locationLabel = [UILabel new];
         _locationLabel.textAlignment = NSTextAlignmentRight;
         _locationLabel.textColor = [UIColor whiteColor];
-        _locationLabel.font = [UIFont systemFontOfSize:13];
+        _locationLabel.font = [UIFont systemFontOfSize:14];
         
         [AcountManager manager].userSelectedCity = @"";
         [AcountManager manager].userSelectedLatitude = @"";

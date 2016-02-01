@@ -126,14 +126,15 @@
     _moneyArray = @[ @"0", @"0", @"0" ];
     _markTitleArray = @[ @"Y币", @"张", @"元" ];
     
-    _blockTitleArray = @[ @"报名", @"消息", @"签到", @"班车", @"商城", @"活动", @"投诉", @"设置" ];
-    _blockImagesArray = @[ @"iconfont-shezhi",
-                           @"iconfont-xiaoxi",
+    _blockTitleArray = @[ @"报名", @"签到", @"投诉", @"消息", @"活动", @"商城", @"班车", @"优势", @"设置" ];
+    _blockImagesArray = @[ @"side_menu_baoming",
                            @"iconfont-xiaoyuanqiandao",
+                           @"side_menu_tousu",
                            @"iconfont-xiaoxi",
-                           @"iconfont-shangcheng1",
                            @"iconfont-huodong",
-                           @"iconfont-xiaoyuanqiandao",
+                           @"iconfont-shangcheng1",
+                           @"side_menu_banche",
+                           @"side_menu_youshi",
                            @"iconfont-shezhi" ];
     
     [self.view addSubview:self.backgroundView];
@@ -269,24 +270,27 @@
             type = kOpenControllerTypeDrivingViewController;
             break;
         case 1:
-            type = kOpenControllerTypeChatListViewController;
-            break;
-        case 2:
             type = kOpenControllerTypeSignInViewController;
             break;
-        case 3:
-            type = kOpenControllerTypeShuttleBusController;
-            break;
-        case 4:
-            type = kOpenControllerTypeMyWalletViewController;
-            break;
-        case 5:
-            type = kOpenControllerTypeHomeActivityController;
-            break;
-        case 6:
+        case 2:
             type = kOpenControllerTypeComplaintController;
             break;
+        case 3:
+            type = kOpenControllerTypeChatListViewController;
+            break;
+        case 4:
+            type = kOpenControllerTypeHomeActivityController;
+            break;
+        case 5:
+            type = kOpenControllerTypeMyWalletViewController;
+            break;
+        case 6:
+            type = kOpenControllerTypeShuttleBusController;
+            break;
         case 7:
+            type = kOpenControllerTypeHomeAdvantageController;
+            break;
+        case 8:
             type = kOpenControllerTypeUserCenterViewController;
             break;
         default:
