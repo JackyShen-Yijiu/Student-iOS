@@ -54,6 +54,7 @@ static NSString *const kchangePassword = @"kchangePassword";
         _phoneNumTextField.font = [UIFont systemFontOfSize:15];
         _phoneNumTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
         _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
+        _phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 
     }
     return _phoneNumTextField;

@@ -376,7 +376,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     
     if (indexPath.row == 0 && indexPath.section == 0) {
         DrivingDetailViewController *drivingDetail = [[DrivingDetailViewController alloc] init];
-        drivingDetail.schoolId = self.detailModel.driveschoolinfo.driveSchoolId;
+        drivingDetail.schoolId = self.detailModel.driveschoolinfo[@"id"];
         [self.navigationController pushViewController:drivingDetail animated:YES];
     }
     
@@ -427,9 +427,9 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
             [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
             
         }
-        if (self.detailModel.driveschoolinfo.driveSchoolId && self.detailModel.driveschoolinfo.name) {
+        if (self.detailModel.driveschoolinfo[@"id"] && self.detailModel.driveschoolinfo[@"name"]) {
             DYNSLog(@"schoolinfo");
-            NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
+            NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo[@"id"],@"name":self.detailModel.driveschoolinfo[@"name"]};
             [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
         }
         SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
@@ -439,13 +439,13 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
     
     
     
-    if ([[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo.driveSchoolId]) {
+    if ([[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo[@"id"]]) {
         SignUpListViewController *signUp = [[SignUpListViewController alloc] init];
         [self.navigationController pushViewController:signUp animated:YES];
         return;
     }
     
-    if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo.driveSchoolId]) {
+    if (![[AcountManager manager].applyschool.infoId isEqualToString:self.detailModel.driveschoolinfo[@"id"]]) {
         [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
             DYNSLog(@"index = %ld",selectedOtherButtonIndex);
             NSUInteger index = selectedOtherButtonIndex + 1;
@@ -457,9 +457,9 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
                     [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
                     
                 }
-                if (self.detailModel.driveschoolinfo.driveSchoolId && self.detailModel.driveschoolinfo.name) {
+                if (self.detailModel.driveschoolinfo[@"id"] && self.detailModel.driveschoolinfo[@"name"]) {
                     DYNSLog(@"schoolinfo");
-                    NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
+                    NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo[@"id"],@"name":self.detailModel.driveschoolinfo[@"name"]};
                     [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
                 }
                 SignUpListViewController *signUp = [[SignUpListViewController alloc] init];

@@ -259,7 +259,7 @@
     _detailModel = detailModel;
     
     // 所属驾校
-    self.suoshujiaxiaoLabel.text = [NSString stringWithFormat:@"所属驾校:%@",_detailModel.driveschoolinfo.name];
+    self.suoshujiaxiaoLabel.text = [NSString stringWithFormat:@"所属驾校:%@",_detailModel.driveschoolinfo[@"name"]];
 
     // 练车场地
     if (_detailModel.trainfield.fieldname) {

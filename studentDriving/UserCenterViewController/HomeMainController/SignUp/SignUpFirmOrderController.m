@@ -28,7 +28,7 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
 
-static NSString *const applyUrl = @"/system/verifyactivitycoupon";
+static NSString *const applyUrl = @"system/verifyactivitycoupon";
 
 #define h_width [UIScreen mainScreen].bounds.size.width/320
 
@@ -47,8 +47,8 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
 @property (strong, nonatomic) UIButton *rightBtn;
 @property (strong, nonatomic) UIView   *YcodeFootView;
 
-@property (nonatomic, strong) NSArray *strArray;
-@property (nonatomic, strong) NSArray *infoArray;
+@property (nonatomic, strong) NSMutableArray *strArray;
+@property (nonatomic, strong) NSMutableArray *infoArray;
 @property (nonatomic, strong) UILabel *realPayLabel;
 @property (nonatomic, strong) UILabel *moneyPayLabel;
 @property (nonatomic, strong) HomeCheckProgressView *YView;
@@ -65,6 +65,20 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
 
 @implementation SignUpFirmOrderController
 
+- (NSMutableArray *)strArray
+{
+    if (_strArray==nil) {
+        _strArray = [NSMutableArray array];
+    }
+    return _strArray;
+}
+- (NSMutableArray *)infoArray
+{
+    if (_infoArray==nil) {
+        _infoArray = [NSMutableArray array];
+    }
+    return _infoArray;
+}
 
 - (UILabel *)nameLabel {
     if (!_nameLabel) {
@@ -123,8 +137,8 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
         _tableView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        _footerView = [[SignUpFirmOrderFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide,300) Discount:_extraDict[@"price"] realMoney:_extraDict[@"price"] schoolName:_extraDict[@"name"]];
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _footerView = [[SignUpFirmOrderFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide,300) Discount:_extraDict[@"applyclasstypeinfo"][@"price"] realMoney:_extraDict[@"applyclasstypeinfo"][@"price"] schoolName:_extraDict[@"applyclasstypeinfo"][@"name"]];
         _footerView.backgroundColor = [UIColor whiteColor];
         _tableView.tableFooterView = _footerView;
     }
@@ -133,22 +147,36 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
 
 - (void)viewDidLoad{
     [super  viewDidLoad];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"确认订单";
     /*
      { "type": 1, "msg": "", "data": "success", "extra": { "__v": 0, "paymoney": 4700, // 支付金额 "payendtime": "2016-02-03T12:29:49.423Z", "creattime": "2016-01-31T12:29:49.423Z", "userid": "564e1242aa5c58b901e4961a", "_id": "56adfe3d323ed17278e71914", 订单id "discountmoney": 0, "applyclasstypeinfo": { "onsaleprice": 4700, "price": 4700, "name": "一步互联网驾校快班", "id": "562dd1fd1cdf5c60873625f3" }, "applyschoolinfo": { "name": "一步互联网驾校", "id": "562dcc3ccb90f25c3bde40da" }, "paychannel": 0, //支付方式 "userpaystate": 0 订单状态 // 0 订单生成 1 开始支付 2 支付成功 3 支付失败 4 订单取消 } }
      */
-    self.strArray = [NSArray arrayWithObjects:@"一步活动折扣券",@"商品名称",@"商品金额",@"折扣(当前账户可使用Y码一张)", nil];
-    NSDictionary *dic = _extraDict[@"applyclasstypeinfo"];
+//    self.strArray = [NSArray arrayWithObjects:@"一步活动折扣券",@"商品名称",@"商品金额",@"折扣(当前账户可使用Y码一张)", nil];
+    
+    [self.strArray addObject:@"一步活动折扣券"];
+    [self.strArray addObject:@"商品名称"];
+    [self.strArray addObject:@"商品金额"];
+    [self.strArray addObject:@"折扣金额"];
+
+    NSDictionary *applyclasstypeinfo = _extraDict[@"applyclasstypeinfo"];
+   
     NSString *dicMoney = nil;
     if (_couponmoney == 0) {
-        dicMoney = @"";
+        dicMoney = @"Y-0";
     }else{
-    dicMoney = [NSString stringWithFormat:@"Y-%lu",_couponmoney];
+         dicMoney = [NSString stringWithFormat:@"Y-%lu",_couponmoney];
     }
-    self.infoArray = [NSArray arrayWithObjects:dic[@"name"],dic[@"price"],dicMoney, nil];
+    
+    if (applyclasstypeinfo && [applyclasstypeinfo count]!=0) {
+        [self.infoArray addObject:@""];
+        [self.infoArray addObject:[NSString stringWithFormat:@"%@",applyclasstypeinfo[@"name"]]];
+        [self.infoArray addObject:[NSString stringWithFormat:@"%@元",applyclasstypeinfo[@"price"]]];
+        [self.infoArray addObject:[NSString stringWithFormat:@"%@元",dicMoney]];
+    }
+    
     [self.view addSubview:self.tableView];
     //    self.tableView.tableFooterView = [self tableFootView];
     [self.view addSubview:self.referButton];
@@ -159,6 +187,11 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
         make.right.mas_equalTo(0);
         make.height.mas_equalTo(49);
     }];
+    
+    _footerView.discountLabel.text = [NSString stringWithFormat:@"一步现金可折扣:%@元",@"0"];
+    _footerView.realPayLabel.text = [NSString stringWithFormat:@"应付: %lu元 (%@)",[_extraDict[@"paymoney"] integerValue],_extraDict[@"applyclasstypeinfo"][@"name"]];
+    _footerView.discountPayLabel.text = [NSString stringWithFormat:@"实付: %lu元",[_extraDict[@"paymoney"] integerValue]];
+    _discountPrice = [NSString stringWithFormat:@"%ld",[_extraDict[@"paymoney"] integerValue]];
     
 }
 
@@ -194,8 +227,11 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
     return 55;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (indexPath.section == 0) {
+        
         if (0 == indexPath.row) {
+            
             // 一步活动折扣验证
             NSString *infoCellID = @"infoCellID";
             SignUpInfoCell *infoCell = [tableView dequeueReusableCellWithIdentifier:infoCellID];
@@ -203,14 +239,16 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
                 infoCell = [[SignUpInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:infoCellID];
             }
             infoCell.signUpTextField.placeholder = @"一步活动折扣券";
+            
             infoCell.signUpCompletion = ^(NSString *YDiscountStr){
+                
                // 验证活动折扣券是否正确
                 NSString *applyUrlString = [NSString stringWithFormat:BASEURL,applyUrl];
                 NSMutableDictionary *dict = [NSMutableDictionary dictionary];
                 dict[@"mobile"] = _mobile;
                 dict[@"couponcode"] = self.YDiscountStr;
 
-                [JENetwoking startDownLoadWithUrl:applyUrlString postParam:dict WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+                [JENetwoking startDownLoadWithUrl:applyUrlString postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
                     DYNSLog(@"param = %@",data[@"msg"]);
                     NSDictionary *param = data;
                     NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
@@ -220,8 +258,8 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
                         NSInteger couponmoney = [param[@"couponmoney"] integerValue];
                         NSInteger newPrice = [_extraDict[@"paymoney"] integerValue] - couponmoney;
                         _discountPrice = [NSString stringWithFormat:@"%ld",(long)newPrice];
-                        _footerView.discountLabel.text = [NSString stringWithFormat:@"一步现金可折扣%lu",couponmoney];
-                        _footerView.realPayLabel.text = [NSString stringWithFormat:@"应付: %lu (%@)",[_extraDict[@"paymoney"] integerValue],_extraDict[@"name"]];
+                        _footerView.discountLabel.text = [NSString stringWithFormat:@"一步现金可折扣%lu元",couponmoney];
+                        _footerView.realPayLabel.text = [NSString stringWithFormat:@"应付: %lu (%@)",[_extraDict[@"paymoney"] integerValue],_extraDict[@"applyclasstypeinfo"][@"name"]];
                         _footerView.discountPayLabel.text = [NSString stringWithFormat:@"实付: %lu",newPrice];
                         [self.tableView reloadData];
                         
@@ -250,17 +288,28 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
             return infoCell;
             
         }else{
+            
             SignUpSchoolInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"yy_0"];
             if (!cell) {
                 cell = [[SignUpSchoolInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_0"];
             }
-            cell.rightLabel.text = self.strArray[indexPath.row];
-            cell.detailLabel.text = self.infoArray[indexPath.row];
+            if (3 == indexPath.row) {
+                cell.detailLabel.textColor = MAINCOLOR;
+            }
+            if(self.strArray && [self.strArray count]!=0){
+                cell.rightLabel.text = self.strArray[indexPath.row];
+            }
+            if (self.infoArray && [self.infoArray count]!=0) {
+                cell.detailLabel.text = self.infoArray[indexPath.row];
+            }
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             return cell;
 
         }
+        
     }else if (1 == indexPath.section){
+        
         NSString *cellID = @"payCell";
         _payCell  = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!_payCell) {
@@ -269,6 +318,7 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
         _payCell.selectionStyle = UITableViewCellSelectionStyleNone;
         //_payCell.payLineUPLabel.text = @"微信支付";
         _payCell.payLineUPButton.hidden = YES;
+        _payCell.payLineUPLabel.hidden = YES;
         _payCell.payLineDownLabel.text = @"支付宝支付";
         _payCell.clickPayWayBlock = ^(NSInteger tag){
             _tag = tag;
@@ -281,20 +331,20 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
-    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    view.backgroundColor = [UIColor colorWithHexString:@"F5F9F9"];
     UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 1)];
-    topLineView.backgroundColor = [UIColor redColor];
+    topLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:topLineView];
     UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
-    bottomLineView.backgroundColor = [UIColor redColor];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:bottomLineView];
     return view;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
-    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    view.backgroundColor = [UIColor colorWithHexString:@"F5F9F9"];
     UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
-    bottomLineView.backgroundColor = [UIColor redColor];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:bottomLineView];
     return view;
 }
@@ -350,7 +400,7 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
         // 描述
         NSString *desStr = [NSString stringWithFormat:@"%@ %@",_extraDict[@"applyclasstypeinfo"][@"name"],_extraDict[@"applyschoolinfo"][@"name"]];
 
-        [JGPayTool payWithPaye:type tradeNO:_extraDict[@"id"] parentView:self price:_discountPrice title:_extraDict[@"applyclasstypeinfo"][@"name"] description:desStr success:^(NSString *str) {
+        [JGPayTool payWithPaye:type tradeNO:_extraDict[@"_id"] parentView:self price:_discountPrice title:_extraDict[@"applyclasstypeinfo"][@"name"] description:desStr success:^(NSString *str) {
             
             NSLog(@"成功操作,跳转二维码界面");
             [self obj_showTotasViewWithMes:@"支付成功"];

@@ -222,50 +222,57 @@
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
-    //跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给SDK
-    if ([url.host isEqualToString:@"safepay"]) {
-        
-        [[AlipaySDK defaultService]
-         processOrderWithPaymentResult:url
-         standbyCallback:^(NSDictionary *resultDic) {
-             
-             NSLog(@"application result = %@", resultDic);
-             
-             //结果处理
-             AlixPayResult* result = [AlixPayResult itemWithDictory:resultDic];
-             
-             if (result)
-             {
-                 //                              状态返回9000为成功
-                 if (result.statusCode == 9000)
-                 {
-                     /*
-                      *用公钥验证签名 严格验证请使用result.resultString与result.signString验签
-                      */
-                     NSLog(@"支付宝交易成功");
-                     
-                 }
-                 else
-                 {
-                     //交易失败
-                     NSLog(@"支付失败");
-                     
-                 }
-             }
-             else
-             {
-                 //失败
-                 NSLog(@"支付失败");
-             }
-             
-         }];
-        
-        return YES;
-    }
+    
+    NSLog(@"openURL:%@",url);
+    NSLog(@"url.host:%@",url.host);
+
+    // yibuxuechePay://safepay/?%7B%22memo%22:%7B%22memo%22:%22%E7%94%A8%E6%88%B7%E4%B8%AD%E9%80%94%E5%8F%96%E6%B6%88%22,%22ResultStatus%22:%226001%22,%22result%22:%22%22%7D,%22requestType%22:%22safepay%22%7D
     
     BOOL result = [UMSocialSnsService handleOpenURL:url];
     if (result == FALSE) {
         // 调用其他SDK，例如支付宝SDK等
+        
+        //跳转支付宝钱包进行支付，需要将支付宝钱包的支付结果回传给SDK
+        if ([url.host isEqualToString:@"safepay"]) {
+            
+            [[AlipaySDK defaultService]
+             processOrderWithPaymentResult:url
+             standbyCallback:^(NSDictionary *resultDic) {
+                 
+                 NSLog(@"application result = %@", resultDic);
+                 
+                 //结果处理
+                 AlixPayResult* result = [AlixPayResult itemWithDictory:resultDic];
+                 
+                 if (result)
+                 {
+                     //                              状态返回9000为成功
+                     if (result.statusCode == 9000)
+                     {
+                         /*
+                          *用公钥验证签名 严格验证请使用result.resultString与result.signString验签
+                          */
+                         NSLog(@"支付宝交易成功");
+                         
+                     }
+                     else
+                     {
+                         //交易失败
+                         NSLog(@"支付失败");
+                         
+                     }
+                 }
+                 else
+                 {
+                     //失败
+                     NSLog(@"支付失败");
+                 }
+                 
+             }];
+            
+            return YES;
+        }
+        
     }
     return result;
 }

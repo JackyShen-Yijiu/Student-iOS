@@ -118,7 +118,7 @@
     order.showUrl = @"m.alipay.com";
     
     //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"safepay";
+    NSString *appScheme = @"yibuxuechePay";
     
     //将商品信息拼接成字符串
     NSString *orderSpec = [order description];
@@ -139,7 +139,16 @@
         [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
             
             NSLog(@"pay reslut = %@",resultDic);
-            
+            /*
+             
+             // 用户取消支付
+             {
+              memo = "\U7528\U6237\U4e2d\U9014\U53d6\U6d88";
+              result = "";
+              resultStatus = 6001;
+             }
+             
+             */
             if (resultDic)
             {
                 

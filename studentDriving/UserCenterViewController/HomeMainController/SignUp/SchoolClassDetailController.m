@@ -19,9 +19,10 @@
 @implementation SchoolClassDetailController
 - (void)viewDidLoad{
     self.title = @"班型详情";
-    [self.view addSubview:self.tabelView];
+    self.tabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tabelView.dataSource = self;
     self.tabelView.delegate = self;
+    [self.view addSubview:self.tabelView];
     
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

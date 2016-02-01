@@ -130,7 +130,10 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     // 初始化网络请求刷新控件
     [self configRefresh];
-    
+    self.latitude = 39.929985778080237;
+    self.longitude = 116.39564503787867;
+    [self.tableView.mj_header beginRefreshing];
+
     // 初始化筛选模式（找驾校、找教练）
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightselectjiaolian];
     self.navigationItem.rightBarButtonItem = rightItem;
@@ -166,6 +169,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     BOOL isAlipayError = [user boolForKey:isPayErrorKey];
     NSDictionary *payDict = [user objectForKey:payErrorWithDictKey];
     NSString *phone = [user objectForKey:payErrorWithPhone];
+    NSLog(@"payDict:%@",payDict);
     
     __weak DrivingViewController *weakSelf = self;
     
@@ -174,18 +178,21 @@ static NSString *const kDrivingUrl = @"searchschool";
         
         _vc = [[HomeCheckProgressView alloc] init];
         _vc.topLabel.text = @"您有未完成的订单,是否需要立即支付";
+        _vc.bottomLabel.text = nil;
         [_vc.rightButtton setTitle:@"重新报名" forState:UIControlStateNormal];
         [_vc.wrongButton setTitle:@"立即支付" forState:UIControlStateNormal];
         _vc.didClickBlock = ^(NSInteger tag){
             
-            if (tag==200) {// 立即支付
+            if (tag==201) {// 立即支付
                 
+                [weakSelf.vc removeFromSuperview];
+
                 SignUpFirmOrderController *vc = [[SignUpFirmOrderController alloc] init];
                 vc.extraDict = payDict;
                 vc.mobile = phone;
                 [weakSelf.navigationController pushViewController:vc animated:YES];
                 
-            }else if (tag==201){// 重新报名
+            }else if (tag==200){// 重新报名
                 [weakSelf.vc removeFromSuperview];
             }
             

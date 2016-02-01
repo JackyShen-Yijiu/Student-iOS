@@ -356,7 +356,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
             NSDictionary *coachParam = @{kRealCoachid:self.detailModel.coachid,@"name":self.detailModel.name};
             [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
         }
-        NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo.driveSchoolId,@"name":self.detailModel.driveschoolinfo.name};
+        NSDictionary *schoolParam = @{kRealSchoolid:self.detailModel.driveschoolinfo[@"id"],@"name":self.detailModel.driveschoolinfo[@"name"]};
         [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
     }
     

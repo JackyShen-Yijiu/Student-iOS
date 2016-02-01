@@ -38,7 +38,7 @@
     
     
     CGFloat schoolCardButtonH = systemsW * 0.47;
-    CGFloat schoolCardButtonW = systemsW * 0.37;
+    CGFloat schoolCardButtonW = systemsW * 0.376;
     CGFloat coachCardButtonW = systemsW * 0.28;
     CGFloat signButton = systemsW * 0.25;
     
