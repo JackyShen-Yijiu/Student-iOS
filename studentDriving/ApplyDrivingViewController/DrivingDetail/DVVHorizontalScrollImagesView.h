@@ -14,6 +14,8 @@ typedef void(^DVVHorizontalScrollImagesViewBlock)(NSInteger selectedIndex);
 
 @property (nonatomic, strong) NSArray *imagesUrlArray;
 
+@property (nonatomic, strong) UIImage *defaultImage;
+
 @property (nonatomic, assign) CGFloat imageWidth;
 @property (nonatomic, assign) CGFloat imageHeight;
 

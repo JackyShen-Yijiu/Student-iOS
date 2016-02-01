@@ -50,8 +50,12 @@
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     DVVHorizontalScrollImagesCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:kCellIdentifier forIndexPath:indexPath];
-    cell.imageView.backgroundColor = [UIColor orangeColor];
-    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:_imagesUrlArray[indexPath.row]]];
+    
+    if (_defaultImage) {
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:_imagesUrlArray[indexPath.row]] placeholderImage:_defaultImage];
+    }else {
+        [cell.imageView sd_setImageWithURL:[NSURL URLWithString:_imagesUrlArray[indexPath.row]]];
+    }
     return cell;
 }
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {

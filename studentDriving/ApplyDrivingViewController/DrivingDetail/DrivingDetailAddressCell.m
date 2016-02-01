@@ -35,7 +35,7 @@
     [super layoutSubviews];
     
     CGFloat selfWidth = self.bounds.size.width;
-    CGFloat cycleShowImagesViewHeight = selfWidth * 0.5;
+    CGFloat cycleShowImagesViewHeight = selfWidth * 0.7;
     _cycleShowImagesView.frame = CGRectMake(0, 0, selfWidth, cycleShowImagesViewHeight);
     CGFloat collectionWidth = 50;
     _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 8, cycleShowImagesViewHeight - collectionWidth / 2.f, collectionWidth, collectionWidth);
@@ -60,6 +60,7 @@
     if (!_cycleShowImagesView) {
         _cycleShowImagesView = [DVVCycleShowImagesView new];
         [_cycleShowImagesView setPageControlLocation:0 isCycle:YES];
+        _cycleShowImagesView.placeImage = [UIImage imageNamed:@"cycleshowimages_icon"];
     }
     return _cycleShowImagesView;
 }
@@ -77,7 +78,7 @@
 + (CGFloat)defaultHeight {
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    return screenWidth * 0.5 + 95.f;
+    return screenWidth * 0.7 + 95.f;
 }
 
 - (void)setSchoolID:(NSString *)schoolID {

@@ -12,7 +12,7 @@
 #import "DrivingCityListDMRootClass.h"
 #import "CityListCell.h"
 
-#define ROW_HEIGHT 30
+#define ROW_HEIGHT 40
 
 @interface DrivingCityListView()<JENetwokingDelegate>
 
@@ -50,14 +50,14 @@
 
 - (void)configLayout {
     
-    CGFloat width = 73;
-    CGFloat height = self.bounds.size.height;
+//    CGFloat width = 73;
+    CGFloat height = self.bounds.size.height - 64;
     if (self.dataList.count * ROW_HEIGHT < height) {
         height = self.dataList.count * ROW_HEIGHT;
     }
 
-//    _tableView.frame = CGRectMake(0, 0, self.bounds.size.width, height);
-    _tableView.frame = CGRectMake(self.bounds.size.width - width, 0, width, height);
+    _tableView.frame = CGRectMake(0, 0, self.bounds.size.width, height);
+//    _tableView.frame = CGRectMake(self.bounds.size.width - width, 0, width, height);
     CGRect rect = self.tableView.frame;
     CGRect tempRect = rect;
     tempRect.size.height = 0;
@@ -83,6 +83,12 @@
             [self.dataList addObject:item];
         }
     }
+//    for (int i = 0; i < 3; i++) {
+//        DrivingCityListDMData *dmData = [DrivingCityListDMData new];
+//        dmData.name = @"测试";
+//        dmData.idField = 123456;
+//        [self.dataList addObject:dmData];
+//    }
     [self.tableView reloadData];
     [self configLayout];
 }
@@ -100,6 +106,12 @@
     }
     DrivingCityListDMData *data = self.dataList[indexPath.row];
     cell.nameLabel.text = data.name;
+    
+    if (self.dataList.count - 1 == indexPath.row) {
+        cell.bottomLineImageView.hidden = YES;
+    }else {
+        cell.bottomLineImageView.hidden = NO;
+    }
     
     return cell;
 }
@@ -136,14 +148,15 @@
         _tableView.rowHeight = ROW_HEIGHT;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = [UIColor clearColor];
-        _tableView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
+        _tableView.backgroundColor = [UIColor colorWithHexString:@"393f4b" alpha:0.85];
 //        _tableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 //        _tableView.layer.borderWidth = 1;
-        _tableView.frame = CGRectMake(self.bounds.size.width - 73, 0, 73, ROW_HEIGHT);
-        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-        [activityView startAnimating];
-        activityView.frame = CGRectMake(0, 0, 73, ROW_HEIGHT);
-        _tableView.tableHeaderView = activityView;
+        
+//        _tableView.frame = CGRectMake(0, 0, , ROW_HEIGHT);
+//        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//        [activityView startAnimating];
+//        activityView.frame = CGRectMake(0, 0, 73, ROW_HEIGHT);
+//        _tableView.tableHeaderView = activityView;
     }
     return _tableView;
 }
