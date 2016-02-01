@@ -293,6 +293,9 @@ static NSString *const applyUrl = @"system/verifyactivitycoupon";
             if (!cell) {
                 cell = [[SignUpSchoolInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_0"];
             }
+            if (3 == indexPath.row) {
+                cell.detailLabel.textColor = MAINCOLOR;
+            }
             if(self.strArray && [self.strArray count]!=0){
                 cell.rightLabel.text = self.strArray[indexPath.row];
             }

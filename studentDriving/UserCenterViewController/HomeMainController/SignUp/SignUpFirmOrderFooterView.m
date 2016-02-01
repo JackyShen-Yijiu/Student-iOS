@@ -51,7 +51,7 @@
         make.top.mas_equalTo(self.remindLabel.mas_bottom).with.offset(15);
         make.left.mas_equalTo(self.mas_left).with.offset(15);
         make.width.mas_equalTo(350);
-        make.height.mas_equalTo(100);
+        make.height.mas_equalTo(95);
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.textView.mas_bottom).with.offset(10);
@@ -105,7 +105,7 @@
 - (UIView *)lineView{
     if (_lineView == nil) {
         _lineView = [[UIView alloc] init];
-        _lineView.backgroundColor = [UIColor colorWithHexString:@"999999"];
+        _lineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
         
     }
     return _lineView;
