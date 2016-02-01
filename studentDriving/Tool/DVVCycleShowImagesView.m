@@ -67,6 +67,15 @@
     _isCycle = 1;
 }
 
+- (void)setPlaceImage:(UIImage *)placeImage {
+    if (placeImage) {
+        _leftImageView.image = placeImage;
+        _centerImageView.image = placeImage;
+        _rightImageView.image = placeImage;
+        _centerImageView.backgroundColor = [UIColor orangeColor];
+    }
+}
+
 //设置数据
 - (void)setPageControlLocation:(NSUInteger)location
                        isCycle:(BOOL)cycle {
@@ -91,6 +100,7 @@
 }
 
 - (void)layoutSubviews {
+    [super layoutSubviews];
     
     _scrollView.frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
     _leftImageView.frame = CGRectMake(0, 0, VIEW_WIDTH, VIEW_HEIGHT);
@@ -269,9 +279,6 @@
     if (!_leftImageView){
         _leftImageView = [UIImageView new];
         _leftImageView.backgroundColor = [UIColor clearColor];
-        if (_placeImage) {
-            _leftImageView.image = _placeImage;
-        }
     }
     return _leftImageView;
 }
@@ -280,9 +287,6 @@
         _centerImageView = [UIImageView new];
         _centerImageView.backgroundColor = [UIColor clearColor];
         [self addTouchForImageView:_centerImageView];
-        if (_placeImage) {
-            _centerImageView.image = _placeImage;
-        }
     }
     return _centerImageView;
 }
@@ -300,9 +304,6 @@
     if (!_rightImageView){
         _rightImageView = [UIImageView new];
         _rightImageView.backgroundColor = [UIColor clearColor];
-        if (_placeImage) {
-            _rightImageView.image = _placeImage;
-        }
     }
     return _rightImageView;
 }

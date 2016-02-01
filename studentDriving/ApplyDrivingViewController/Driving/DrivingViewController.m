@@ -65,6 +65,8 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 @property (nonatomic, assign) BOOL isRefresh;
 
+@property (nonatomic, strong) UIButton *titleButton;
+
 // 搜索参数
 // 车型选择(服务器返回类型)
 @property (nonatomic, assign) NSInteger licensetype;
@@ -88,6 +90,8 @@ static NSString *const kDrivingUrl = @"searchschool";
 
 @property (nonatomic,strong) HomeCheckProgressView *vc;
 
+@property (nonatomic, assign) BOOL cityListShowFlage;
+
 @end
 
 @implementation DrivingViewController
@@ -105,7 +109,15 @@ static NSString *const kDrivingUrl = @"searchschool";
 
     _selectType = 0;
     
-    self.title = @"一步学车";
+    _titleButton = [UIButton new];
+    _titleButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+    [_titleButton setTitle:@"一步学车" forState:UIControlStateNormal];
+    _titleButton.titleLabel.font= [UIFont systemFontOfSize:16];
+    _titleButton.bounds = CGRectMake(0, 0, 16 * 4, 44);
+    [_titleButton addTarget:self action:@selector(titleButtonClickAction:) forControlEvents:UIControlEventTouchUpInside];
+    _cityListShowFlage = NO;
+    
+    self.navigationItem.titleView = _titleButton;
     
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -637,6 +649,40 @@ static NSString *const kDrivingUrl = @"searchschool";
     // 刷新数据
     [self.tableView.mj_header beginRefreshing];
     
+}
+
+- (void)titleButtonClickAction:(UIButton *)sender {
+    
+    if (_cityListShowFlage) {
+        return ;
+    }
+    DrivingCityListView *view = [DrivingCityListView new];
+    CGRect rect = self.view.bounds;
+    view.frame = CGRectMake(rect.origin.x, 64, rect.size.width, rect.size.height);
+    [self.view addSubview:view];
+    [view setSelectedItemBlock:^(NSString *cityName) {
+        
+        [DVVLocation geoCodeWithCity:cityName address:cityName success:^(BMKGeoCodeResult *result, CLLocationCoordinate2D coordinate, double latitude, double longitude) {
+            NSLog(@"latitude === %lf   longitude === %lf", latitude, longitude);
+            
+            self.latitude = latitude;
+            self.longitude = longitude;
+            self.cityname = cityName;
+            
+            [_titleButton setTitle:cityName forState:UIControlStateNormal];
+            
+            [self.tableView.mj_header beginRefreshing];
+            
+        } error:^{
+            
+            [self obj_showTotasViewWithMes:@"网络错误"];
+        }];
+    }];
+    [view setRemovedBlock:^{
+        _cityListShowFlage = NO;
+    }];
+    _cityListShowFlage = YES;
+    [view show];
 }
 
 @end

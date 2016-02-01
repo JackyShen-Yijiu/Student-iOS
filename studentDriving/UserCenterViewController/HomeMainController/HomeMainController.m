@@ -1118,7 +1118,8 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     if (_cityListShowFlage) {
         return ;
     }
-    if (_locationLabel.text&&[_locationLabel.text isEqualToString:@"定位失败"]) {
+    if ((_locationLabel.text&&[_locationLabel.text isEqualToString:@"定位失败"]) ||
+        (_locationLabel.text&&[_locationLabel.text isEqualToString:@"定位中"])) {
         [self location];
         return ;
     }

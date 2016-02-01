@@ -49,12 +49,17 @@
 //            [array addObject:string];
 //        }
     }
-    [_scrollImagesView refreshData:array];
+    if (array && array.count) {
+        [_scrollImagesView refreshData:array];
+    }else {
+        [_scrollImagesView refreshData:@[ @"", @"", @"" ]];
+    }
 }
 
 - (DVVHorizontalScrollImagesView *)scrollImagesView {
     if (!_scrollImagesView) {
         _scrollImagesView = [DVVHorizontalScrollImagesView new];
+        _scrollImagesView.defaultImage = [UIImage imageNamed:@"cycleshowimages_icon"];
         _scrollImagesView.imageHeight = IMAGE_HEIGHT;
         _scrollImagesView.imageWidth = IMAGE_WIDTH;
     }

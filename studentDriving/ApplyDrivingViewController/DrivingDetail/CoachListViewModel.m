@@ -33,6 +33,8 @@
     
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
+        NSLog(@"%@", data);
+        
         [self dvvNetworkCallBack];
         
         CoachListDMRootClass *dmRoot = [CoachListDMRootClass yy_modelWithJSON:data];
@@ -54,7 +56,6 @@
         for (NSDictionary *dict in dmRoot.data) {
             
             CoachListDMData *dmData = [CoachListDMData yy_modelWithDictionary:dict];
-            NSLog(@"%@", dmData.headportrait.originalpic);
             [_dataArray addObject:dmData];
         }
         
