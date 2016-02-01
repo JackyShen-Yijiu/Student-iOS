@@ -59,6 +59,9 @@ static  NSString    *kUserLocationShowType = @"kUserLocationShowType";
 static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
 // 用户在首页选择的城市，如果用户设置过了，则下次不再定位，直接使用此城市
 static  NSString    *kUserSelectedCity = @"kUserSelectedCity";
+static  NSString    *kUserSelectedLatitude = @"kUserSelectedLatitude";
+static  NSString    *kUserSelectedLongitude = @"kUserSelectedLongitude";
+
 @interface AcountManager ()
 @property (readwrite,copy, nonatomic) NSString *userMobile;
 @property (readwrite,copy, nonatomic) NSString *userName;
@@ -605,6 +608,26 @@ static  NSString    *kUserSelectedCity = @"kUserSelectedCity";
 - (NSString *)userSelectedCity {
     if ([NSUserStoreTool getObjectWithKey:kUserSelectedCity]) {
         return [NSUserStoreTool getObjectWithKey:kUserSelectedCity];
+    }else {
+        return nil;
+    }
+}
+- (void)setUserSelectedLatitude:(NSString *)userSelectedLatitude {
+    [NSUserStoreTool storeWithId:userSelectedLatitude WithKey:kUserSelectedLatitude];
+}
+- (NSString *)userSelectedLatitude {
+    if ([NSUserStoreTool getObjectWithKey:kUserSelectedLatitude]) {
+        return [NSUserStoreTool getObjectWithKey:kUserSelectedLatitude];
+    }else {
+        return nil;
+    }
+}
+- (void)setUserSelectedLongitude:(NSString *)userSelectedLongitude {
+    [NSUserStoreTool storeWithId:userSelectedLongitude WithKey:kUserSelectedLongitude];
+}
+- (NSString *)userSelectedLongitude {
+    if ([NSUserStoreTool getObjectWithKey:kUserSelectedLongitude]) {
+        return [NSUserStoreTool getObjectWithKey:kUserSelectedLongitude];
     }else {
         return nil;
     }
