@@ -148,22 +148,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "studentDriving/&#x652f;&#x4ed8;&#x76f8;&#x5173;/JGPayTool.m"
-            timestampString = "475917194.247096"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "+alipayWithtradeNO:amount:productName:productDescription:success:error:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/&#x652f;&#x4ed8;&#x76f8;&#x5173;/JGPayTool.m"
             timestampString = "476026565.256609"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -394,22 +378,6 @@
             startingLineNumber = "234"
             endingLineNumber = "234"
             landmarkName = "-application:openURL:sourceApplication:annotation:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/&#x652f;&#x4ed8;&#x76f8;&#x5173;/JGPayTool.m"
-            timestampString = "476026565.256609"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
-            landmarkName = "+alipayWithtradeNO:amount:productName:productDescription:success:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

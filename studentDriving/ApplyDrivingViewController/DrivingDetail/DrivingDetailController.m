@@ -110,14 +110,21 @@
 }
 #pragma mark班型cell中的报名按钮单击事件
 - (void)signInButtonAction:(ClassTypeDMData *)dmData {
-    SignUpController *signUpVC = [[SignUpController alloc] init];
-    serverclasslistModel *classlistModel = [[serverclasslistModel alloc] init];
-    classlistModel.price = dmData.price;
-    classlistModel._id = dmData.calssid;
-    signUpVC.signUpFormDetail = SignUpFormSchoolDetail;
-    signUpVC.classTypeDMDataModel = dmData;
-    signUpVC.serverclasslistModel = classlistModel;
-    [self.navigationController pushViewController:signUpVC animated:YES];
+    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+        SignUpController *signUpVC = [[SignUpController alloc] init];
+        serverclasslistModel *classlistModel = [[serverclasslistModel alloc] init];
+        classlistModel.price = dmData.price;
+        classlistModel._id = dmData.calssid;
+        signUpVC.signUpFormDetail = SignUpFormSchoolDetail;
+        signUpVC.classTypeDMDataModel = dmData;
+        signUpVC.serverclasslistModel = classlistModel;
+        [self.navigationController pushViewController:signUpVC animated:YES];
+    }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]){
+        [self obj_showTotasViewWithMes:@"报名正在申请中!"];
+    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]){
+        [self obj_showTotasViewWithMes:@"您已经报过名!"];
+    }
+    
 }
 #pragma mark 教练cell的点击事件
 - (void)coachListViewCellDidSelectAction:(CoachListDMData *)dmData {
