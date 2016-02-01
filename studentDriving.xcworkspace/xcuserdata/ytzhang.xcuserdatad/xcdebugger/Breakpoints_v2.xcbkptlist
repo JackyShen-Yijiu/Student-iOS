@@ -84,12 +84,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ytzhang/Desktop/StuentNew/Student-iOS/studentDriving/UserCenterViewController/HomeMainController/SignUp/SchoolClassDetailMessageCell.m"
-                  timestampString = "475917570.695561"
+                  timestampString = "475986999.785052"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "272"
                   endingLineNumber = "272"
-                  offsetFromSymbolStart = "1472">
+                  offsetFromSymbolStart = "1724">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -99,12 +99,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ytzhang/Desktop/StuentNew/Student-iOS/studentDriving/UserCenterViewController/HomeMainController/SignUp/SchoolClassDetailMessageCell.m"
-                  timestampString = "475917570.695781"
+                  timestampString = "475986999.785261"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "272"
                   endingLineNumber = "272"
-                  offsetFromSymbolStart = "20">
+                  offsetFromSymbolStart = "18">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -243,38 +243,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "studentDriving/UserCenterViewController/HomeMainController/SignUp/SignUpFirmOrderController.m"
-            timestampString = "475917282.581878"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "289"
-            endingLineNumber = "289"
-            landmarkName = "-dealRefer:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/UserCenterViewController/HomeMainController/SignUp/SignUpFirmOrderController.m"
-            timestampString = "475917283.572113"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "294"
-            endingLineNumber = "294"
-            landmarkName = "-dealRefer:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "studentDriving/&#x652f;&#x4ed8;&#x76f8;&#x5173;/JGPayTool.m"
             timestampString = "475917519.282658"
             startingColumnNumber = "9223372036854775807"
@@ -378,6 +346,38 @@
             startingLineNumber = "131"
             endingLineNumber = "131"
             landmarkName = "+alipayWithtradeNO:amount:productName:productDescription:success:error:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "studentDriving/ApplyDrivingViewController/CoachDetailViewController.m"
+            timestampString = "475931366.65015"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "-viewDidLoad"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "studentDriving/&#x652f;&#x4ed8;&#x76f8;&#x5173;/JGPayTool.m"
+            timestampString = "475934339.394627"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
+            landmarkName = "+payWithPaye:tradeNO:parentView:price:title:description:success:error:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -287,7 +287,7 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
         appointment.coachUserId = model.coachid;
         appointment.rememberModel = model;
         [self.navigationController pushViewController:appointment animated:YES];
-        return;
+//        return;
     }
     self.naviBarRightButton.hidden = NO;
  

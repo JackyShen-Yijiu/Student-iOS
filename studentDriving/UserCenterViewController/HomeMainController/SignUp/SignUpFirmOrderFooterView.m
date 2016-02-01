@@ -16,9 +16,9 @@
 @property (nonatomic, strong) UILabel *remindLabel;
 @property (nonatomic, strong) UITextView *textView;
 @property (nonatomic, strong) UIView *lineView;
-@property (nonatomic, strong) UILabel *discountLabel;
-@property (nonatomic, strong) UILabel *realPayLabel;
-@property (nonatomic, strong) UILabel *discountPayLabel;
+//@property (nonatomic, strong) UILabel *discountLabel;
+//@property (nonatomic, strong) UILabel *realPayLabel;
+//@property (nonatomic, strong) UILabel *discountPayLabel;
 @end
 
 @implementation SignUpFirmOrderFooterView

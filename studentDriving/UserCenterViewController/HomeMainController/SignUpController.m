@@ -72,6 +72,11 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 @property (nonatomic, strong) NSArray *cellPathStr;
 @property (nonatomic, strong) NSString *phoneStr; // 电话号码
 @property (nonatomic, strong) NSString *nameStr; // 姓名
+
+@property (nonatomic,copy) NSString *baomingName;
+@property (nonatomic,copy) NSString *baomingTel;
+
+
 @end
 
 @implementation SignUpController
@@ -194,6 +199,9 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     self.infoArray = [NSArray arrayWithObjects:@"真实姓名",@"联系电话",@"验证Y码", nil];
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.referButton];
+
+    // 价格
+    self.moneyPayLabel.text = [NSString stringWithFormat:@"%ld元",(long)self.serverclasslistModel.price];
     
     [self.referButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(0);
@@ -259,13 +267,16 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             cell = [[SignUpInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_4"];
         }
         cell.signUpTextField.placeholder = _infoArray[indexPath.row];
-        //        [cell receiveTextContent:];
         NSString *titleString = [self.secondArray[1] objectAtIndex:indexPath.row];
         [cell receiveTitile:titleString andSignUpBlock:^(NSString *completionString) {
             if (indexPath.row == 0) {
                 if (completionString == nil || completionString.length == 0) {
                     [self showTotasViewWithMes:@"请输入真实姓名"];
                     return ;
+                }else{
+                    
+                    self.baomingName = completionString;
+                    
                 }
                 if(completionString.length>6) {
                     cell.signUpTextField.text = @"";
@@ -278,6 +289,10 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                 if (completionString == nil || completionString.length == 0) {
                     [self showTotasViewWithMes:@"请输入手机号"];
                     return;
+                }else{
+                    
+                    self.baomingTel = completionString;
+                    
                 }
                 if (![AcountManager isValidateMobile:completionString]) {
                     [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
@@ -345,9 +360,9 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
-    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    view.backgroundColor = [UIColor colorWithHexString:@"f5f9f9"];
     UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 1)];
-    topLineView.backgroundColor = [UIColor redColor];
+    topLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:topLineView];
     UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
     bottomLineView.backgroundColor = [UIColor redColor];
@@ -356,14 +371,22 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
-    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    view.backgroundColor = [UIColor colorWithHexString:@"f5f9f9"];
     UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
-    bottomLineView.backgroundColor = [UIColor redColor];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:bottomLineView];
     return view;
 }
 
 - (void)dealRefer:(UIButton *)sender{
+    if (_baomingName == nil || _baomingName.length == 0) {
+        [self showTotasViewWithMes:@"请输入手机号"];
+        return;
+    }
+    if (_baomingTel == nil || _baomingTel.length == 0) {
+        [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+        return;
+    }
     NSLog(@"%lu",_tag);
     NSNumber *number = nil;
     if (201 == _tag) {
@@ -379,28 +402,75 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
          */
 
     if (_signUpFormDetail == SignUpFormCoachDetail) {
+        
         //从教练详情报名
         NSDictionary *carmodelParm = @{@"modelsid":self.coachDetailModel.carmodel.modelsid,
                                        @"name":self.coachDetailModel.carmodel.name,
                                        @"code":self.coachDetailModel.carmodel.code};
-        NSDictionary *param = @{@"name":[SignUpInfoManager getSignUpRealName],
-                                @"idcardnumber":@"",
-                                @"telephone":[SignUpInfoManager getSignUpRealTelephone],
-                                @"address":[AcountManager manager].userAddress,
-                                @"userid":[AcountManager manager].userid,
-                                @"schoolid":self.coachDetailModel.driveschoolinfo.driveSchoolId,
-                                @"coachid":self.coachDetailModel.coachid,
-                                @"classtypeid":self.coachDetailModel.carmodel.modelsid,
-                                @"carmodel":carmodelParm,
-                                @"paytype":number};
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"name"] = self.baomingName;
+        params[@"idcardnumber"] = @"";
+        params[@"telephone"] = self.baomingTel;
+        params[@"address"] = [AcountManager manager].userAddress;
+        params[@"userid"] = [AcountManager manager].userid;
+        if (self.coachDetailModel.driveschoolinfo.driveSchoolId && [self.coachDetailModel.driveschoolinfo.driveSchoolId length]!=0) {
+            params[@"schoolid"] = self.coachDetailModel.driveschoolinfo.driveSchoolId;
+        }else{
+            params[@"schoolid"] = @"";
+        }
+        params[@"coachid"] = self.coachDetailModel.coachid;
+        params[@"classtypeid"] = self.serverclasslistModel._id;
+        params[@"carmodel"] = carmodelParm;
+        params[@"paytype"] = number;
+
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
-        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-            DYNSLog(@"param = %@",data[@"msg"]);
+        
+        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:params WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            
             NSDictionary *param = data;
+            
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-            if ([type isEqualToString:@"0"]) {
+            
+            if ([type isEqualToString:@"1"]) {
+                
                 kShowSuccess(@"报名成功");
+                
                 [AcountManager saveUserApplyState:@"1"];
+                
+                /*
+                 
+                 {
+                 "type": 1,
+                 "msg": "",
+                 "data": "success",
+                 "extra": {
+                     "__v": 0,
+                     "paymoney": 4700,
+                     //支付金额"payendtime": "2016-02-03T12:29:49.423Z",
+                     "creattime": "2016-01-31T12:29:49.423Z",
+                     "userid": "564e1242aa5c58b901e4961a",
+                     "_id": "56adfe3d323ed17278e71914",
+                     订单id"discountmoney": 0,
+                     "applyclasstypeinfo": {
+                         "onsaleprice": 4700,
+                         "price": 4700,
+                         "name": "一步互联网驾校快班",
+                         "id": "562dd1fd1cdf5c60873625f3"
+                     },
+                     "applyschoolinfo": {
+                         "name": "一步互联网驾校",
+                         "id": "562dcc3ccb90f25c3bde40da"
+                     },
+                     "paychannel": 0,
+                     //支付方式"userpaystate": 0订单状态//0订单生成1开始支付2支付成功3支付失败4订单取消
+                             }
+                 }
+                 
+                 */
+                 
+                NSDictionary *extraDict = param[@"extra"];
+                
                 //使重新报名变为0
                 NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
                 if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
@@ -411,8 +481,13 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                     // 线下报名
                     [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
                 }else if (2 == [number integerValue]){
-                    // 线下报名
-                    [self.navigationController pushViewController:[SignUpFirmOrderController new] animated:YES];
+                    // 线上报名
+                    
+                    SignUpFirmOrderController *vc = [SignUpFirmOrderController new];
+                    vc.extraDict = extraDict;
+                    vc.mobile = self.baomingTel;
+                    [self.navigationController pushViewController:vc animated:YES];
+                    
                 }
 
             }else {
@@ -421,26 +496,54 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         }];
 
     }else if (_signUpFormDetail == SignUpFormSchoolDetail){
+        
         // 从驾校详情报名
         NSDictionary *carmodelParm = @{@"modelsid":[NSString stringWithFormat:@"%lu",self.classTypeDMDataModel.carmodel.modelsid],
                                        @"name":self.classTypeDMDataModel.carmodel.name,
                                        @"code":self.classTypeDMDataModel.carmodel.code};
-        NSDictionary *param = @{@"name":[SignUpInfoManager getSignUpRealName],
-                                @"idcardnumber":@"",
-                                @"telephone":[SignUpInfoManager getSignUpRealTelephone],
-                                @"address":[AcountManager manager].userAddress,
-                                @"userid":[AcountManager manager].userid,
-                                @"schoolid":self.classTypeDMDataModel.schoolinfo.schoolid,
-                                @"coachid":@"",
-                                @"classtypeid":self.classTypeDMDataModel.calssid,
-                                @"carmodel":carmodelParm,
-                                @"paytype":number};
+        
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"name"] = self.baomingName;
+        params[@"idcardnumber"] = @"";
+        params[@"telephone"] = self.baomingTel;
+        params[@"address"] = [AcountManager manager].userAddress;
+        params[@"userid"] = [AcountManager manager].userid;
+        if (self.classTypeDMDataModel.schoolinfo.schoolid && [self.classTypeDMDataModel.schoolinfo.schoolid length]!=0) {
+            params[@"schoolid"] = self.classTypeDMDataModel.schoolinfo.schoolid;
+        }else{
+            params[@"schoolid"] = self.classTypeDMDataModel.schoolinfo.schoolid;
+        }
+        params[@"coachid"] = @"";
+        params[@"classtypeid"] = self.serverclasslistModel._id;
+        params[@"carmodel"] = carmodelParm;
+        params[@"paytype"] = number;
+        
+//        
+//        NSDictionary *param = @{@"name":[SignUpInfoManager getSignUpRealName],
+//                                @"idcardnumber":@"",
+//                                @"telephone":[SignUpInfoManager getSignUpRealTelephone],
+//                                @"address":[AcountManager manager].userAddress,
+//                                @"userid":[AcountManager manager].userid,
+//                                @"schoolid":self.classTypeDMDataModel.schoolinfo.schoolid,
+//                                @"coachid":@"",
+//                                @"classtypeid":self.classTypeDMDataModel.calssid,
+//                                @"carmodel":carmodelParm,
+//                                @"paytype":number};
+        
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
-        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:params WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            
             DYNSLog(@"param = %@",data[@"msg"]);
+            
             NSDictionary *param = data;
+            
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+            
+            NSDictionary *extraDict = param[@"extra"];
+
             if ([type isEqualToString:@"0"]) {
+                
                 kShowSuccess(@"报名成功");
                 [AcountManager saveUserApplyState:@"1"];
                 //使重新报名变为0
@@ -453,8 +556,13 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                     // 线下报名
                     [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
                 }else if (2 == [number integerValue]){
-                    // 线下报名
-                    [self.navigationController pushViewController:[SignUpFirmOrderController new] animated:YES];
+                    // 线上报名
+                    
+                    SignUpFirmOrderController *vc = [SignUpFirmOrderController new];
+                    vc.extraDict = extraDict;
+                    vc.mobile = self.baomingTel;
+                    [self.navigationController pushViewController:vc animated:YES];
+
                 }
                 
             }else {

@@ -24,9 +24,11 @@
 #import "JGPayTool.h"
 #import "SignUpSucceedViewController.h"
 
-static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
 static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 static NSString *const kVerifyFcode = @"verifyfcodecorrect";
+
+
+static NSString *const applyUrl = @"/system/verifyactivitycoupon";
 
 #define h_width [UIScreen mainScreen].bounds.size.width/320
 
@@ -51,8 +53,14 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 @property (nonatomic, strong) UILabel *moneyPayLabel;
 @property (nonatomic, strong) HomeCheckProgressView *YView;
 @property (nonatomic, strong) SignUpPayCell *payCell;
-@property (nonatomic, strong) NSString *HMoneyStr; // 活动立减的金额
 @property (nonatomic, assign) NSInteger tag; // 支付方式
+@property (nonatomic, strong) NSString *discountPrice; // 实际支付金额
+@property (nonatomic, assign) NSInteger couponmoney; // 活动券优化金额
+@property (nonatomic, strong) SignUpFirmOrderFooterView *footerView;
+
+
+@property (nonatomic,copy) NSString *YDiscountStr;
+
 @end
 
 @implementation SignUpFirmOrderController
@@ -90,25 +98,25 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     }
     return _referButton;
 }
-- (UILabel *)realPayLabel{
-    if (_realPayLabel == nil) {
-        _realPayLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 100, 40)];
-        _realPayLabel.text = @"实际支付";
-        _realPayLabel.textColor = [UIColor colorWithHexString:@"333333"];
-        
-    }
-    return _realPayLabel;
-}
-- (UILabel *)moneyPayLabel{
-    if (_moneyPayLabel == nil) {
-        _moneyPayLabel = [[UILabel alloc] init];
-        _moneyPayLabel = [[UILabel alloc] initWithFrame:CGRectMake(kSystemWide - 115, 20, 100, 40)];
-        _moneyPayLabel.text = @"32288元";
-        _moneyPayLabel.textColor = [UIColor colorWithHexString:@"333333"];
-        _moneyPayLabel.textAlignment = NSTextAlignmentRight;
-    }
-    return _moneyPayLabel;
-}
+//- (UILabel *)realPayLabel{
+//    if (_realPayLabel == nil) {
+//        _realPayLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 20, 100, 40)];
+//        _realPayLabel.text = @"实际支付";
+//        _realPayLabel.textColor = [UIColor colorWithHexString:@"333333"];
+//        
+//    }
+//    return _realPayLabel;
+//}
+//- (UILabel *)moneyPayLabel{
+//    if (_moneyPayLabel == nil) {
+//        _moneyPayLabel = [[UILabel alloc] init];
+//        _moneyPayLabel = [[UILabel alloc] initWithFrame:CGRectMake(kSystemWide - 115, 20, 100, 40)];
+//        _moneyPayLabel.text = @"32288元";
+//        _moneyPayLabel.textColor = [UIColor colorWithHexString:@"333333"];
+//        _moneyPayLabel.textAlignment = NSTextAlignmentRight;
+//    }
+//    return _moneyPayLabel;
+//}
 - (UITableView *)tableView{
     if (_tableView == nil) {
         _tableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight -64-49)];
@@ -116,9 +124,9 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
-        SignUpFirmOrderFooterView *footerView = [[SignUpFirmOrderFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide,300) Discount:@"yib" realMoney:@"应付:" schoolName:@"一步驾校"];
-        footerView.backgroundColor = [UIColor whiteColor];
-        _tableView.tableFooterView = footerView;
+        _footerView = [[SignUpFirmOrderFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide,300) Discount:_extraDict[@"price"] realMoney:_extraDict[@"price"] schoolName:_extraDict[@"name"]];
+        _footerView.backgroundColor = [UIColor whiteColor];
+        _tableView.tableFooterView = _footerView;
     }
     return _tableView;
 }
@@ -129,8 +137,18 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"确认订单";
+    /*
+     { "type": 1, "msg": "", "data": "success", "extra": { "__v": 0, "paymoney": 4700, // 支付金额 "payendtime": "2016-02-03T12:29:49.423Z", "creattime": "2016-01-31T12:29:49.423Z", "userid": "564e1242aa5c58b901e4961a", "_id": "56adfe3d323ed17278e71914", 订单id "discountmoney": 0, "applyclasstypeinfo": { "onsaleprice": 4700, "price": 4700, "name": "一步互联网驾校快班", "id": "562dd1fd1cdf5c60873625f3" }, "applyschoolinfo": { "name": "一步互联网驾校", "id": "562dcc3ccb90f25c3bde40da" }, "paychannel": 0, //支付方式 "userpaystate": 0 订单状态 // 0 订单生成 1 开始支付 2 支付成功 3 支付失败 4 订单取消 } }
+     */
     self.strArray = [NSArray arrayWithObjects:@"一步活动折扣券",@"商品名称",@"商品金额",@"折扣(当前账户可使用Y码一张)", nil];
-    self.infoArray = [NSArray arrayWithObjects:@"真实姓名",@"联系电话",@"验证Y码", nil];
+    NSDictionary *dic = _extraDict[@"applyclasstypeinfo"];
+    NSString *dicMoney = nil;
+    if (_couponmoney == 0) {
+        dicMoney = @"";
+    }else{
+    dicMoney = [NSString stringWithFormat:@"Y-%lu",_couponmoney];
+    }
+    self.infoArray = [NSArray arrayWithObjects:dic[@"name"],dic[@"price"],dicMoney, nil];
     [self.view addSubview:self.tableView];
     //    self.tableView.tableFooterView = [self tableFootView];
     [self.view addSubview:self.referButton];
@@ -187,15 +205,25 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             infoCell.signUpTextField.placeholder = @"一步活动折扣券";
             infoCell.signUpCompletion = ^(NSString *YDiscountStr){
                // 验证活动折扣券是否正确
-                [JENetwoking startDownLoadWithUrl:nil postParam:nil WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+                NSString *applyUrlString = [NSString stringWithFormat:BASEURL,applyUrl];
+                NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+                dict[@"mobile"] = _mobile;
+                dict[@"couponcode"] = self.YDiscountStr;
+
+                [JENetwoking startDownLoadWithUrl:applyUrlString postParam:dict WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
                     DYNSLog(@"param = %@",data[@"msg"]);
                     NSDictionary *param = data;
                     NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-                    if ([type isEqualToString:@"0"]) {
-                        kShowSuccess(@"报名成功");
+                    if ([type isEqualToString:@"1"]) {
+                        kShowSuccess(@"验证成功");
+                        // 价格
+                        NSInteger couponmoney = [param[@"couponmoney"] integerValue];
+                        NSInteger newPrice = [_extraDict[@"paymoney"] integerValue] - couponmoney;
+                        _discountPrice = [NSString stringWithFormat:@"%ld",(long)newPrice];
+                        _footerView.discountLabel.text = [NSString stringWithFormat:@"一步现金可折扣%lu",couponmoney];
+                        _footerView.realPayLabel.text = [NSString stringWithFormat:@"应付: %lu (%@)",[_extraDict[@"paymoney"] integerValue],_extraDict[@"name"]];
+                        _footerView.discountPayLabel.text = [NSString stringWithFormat:@"实付: %lu",newPrice];
                         [self.tableView reloadData];
-                        
-                        
                         
                     }else {
                         kShowFail(param[@"msg"]);
@@ -227,7 +255,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                 cell = [[SignUpSchoolInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"yy_0"];
             }
             cell.rightLabel.text = self.strArray[indexPath.row];
-            cell.detailLabel.text = @"一步互联网驾校";
+            cell.detailLabel.text = self.infoArray[indexPath.row];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             return cell;
 
@@ -239,7 +267,8 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             _payCell = [[SignUpPayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
         _payCell.selectionStyle = UITableViewCellSelectionStyleNone;
-        _payCell.payLineUPLabel.text = @"微信支付";
+        //_payCell.payLineUPLabel.text = @"微信支付";
+        _payCell.payLineUPButton.hidden = YES;
         _payCell.payLineDownLabel.text = @"支付宝支付";
         _payCell.clickPayWayBlock = ^(NSInteger tag){
             _tag = tag;
@@ -282,46 +311,64 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         // 支付宝支付
         type = AlixPay;
     }
-    
-    [JGPayTool payWithPaye:type tradeNO:@"11111111111" parentView:self price:@"0.1" title:@"标题亚飞没给" description:@"描述亚飞没给我" success:^(NSString *str) {
-        
-        NSLog(@"成功操作,跳转二维码界面");
-        [self obj_showTotasViewWithMes:@"支付成功"];
-        
-    } error:^(NSString *str) {
-        
-        NSLog(@"支付失败");
-        [self obj_showTotasViewWithMes:@"支付失败"];
-      
-    }];
-    
 //    
-//    [JENetwoking startDownLoadWithUrl:@"" postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+//    [JGPayTool payWithPaye:AlixPay tradeNO:@"11111111111" parentView:self price:@"0.1" title:@"标题亚飞没给" description:@"描述亚飞没给我" success:^(NSString *str) {
 //        
-//        NSDictionary *dataDict = data[@"data"];
+//        NSLog(@"成功操作,跳转二维码界面");
+//        [self obj_showTotasViewWithMes:@"支付成功"];
 //        
-//        [JGPayTool payWithPaye:type tradeNO:@"11111111111" parentView:self price:@"0.1" title:@"标题亚飞没给" description:@"描述亚飞没给我" success:^(NSString *str) {
-//            
-//            NSLog(@"成功操作,跳转二维码界面");
-//            [self obj_showTotasViewWithMes:@"支付成功"];
-//            
-//            SignUpSucceedViewController *vc = [[SignUpSucceedViewController alloc] init];
-//            [self.navigationController pushViewController:vc animated:YES];
-//            
-//            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-//            [user setObject:nil forKey:@"alipayError"];
-//            [user synchronize];
-//            
-//        } error:^(NSString *str) {
-//            
-//            NSLog(@"支付失败");
-//            [self obj_showTotasViewWithMes:@"支付失败"];
-//            
-//            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-//            [user setObject:dataDict forKey:@"alipayError"];
-//            [user synchronize];
-//            
-//        }];
+//    } error:^(NSString *str) {
+//        
+//        NSLog(@"支付失败");
+//        [self obj_showTotasViewWithMes:@"支付失败"];
+//      
+//    }];
+    
+    /*
+     
+     报名时验证活动验证码 { "type": 1, "msg": "", "data": { "_id": "56ac5284ba6357fc4cc18b14", "couponmoney": 800, // 减少的金额 "couponcode": "123456",
+     "mobile": "15652305650",
+     "__v": 0, "state": 1, // 状态1未消费 2过期 3作废 4 已消费 "endtime": "2016-08-17T06:04:52.005Z", "createtime": "2016-01-30T06:07:58.385Z" } }
+     
+     */
+    
+//    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,applyUrl];
+//
+//    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+//    dict[@"mobile"] = _mobile;
+//    dict[@"couponcode"] = self.YDiscountStr;
+//
+//    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+//        
+//        NSDictionary *newDataDict = data[@"data"];
+//
+//        // 价格
+//        NSInteger couponmoney = [newDataDict[@"couponmoney"] integerValue];
+//        NSInteger newPrice = [_extraDict[@"paymoney"] integerValue] - couponmoney;
+//        NSString *price = [NSString stringWithFormat:@"%ld",(long)newPrice];
+        
+        // 描述
+        NSString *desStr = [NSString stringWithFormat:@"%@ %@",_extraDict[@"applyclasstypeinfo"][@"name"],_extraDict[@"applyschoolinfo"][@"name"]];
+
+        [JGPayTool payWithPaye:type tradeNO:_extraDict[@"id"] parentView:self price:_discountPrice title:_extraDict[@"applyclasstypeinfo"][@"name"] description:desStr success:^(NSString *str) {
+            
+            NSLog(@"成功操作,跳转二维码界面");
+            [self obj_showTotasViewWithMes:@"支付成功"];
+            
+            SignUpSucceedViewController *vc = [[SignUpSucceedViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+          
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            [user setBool:NO forKey:isPayErrorKey];
+            [user setObject:nil forKey:payErrorWithDictKey];
+            [user synchronize];
+            
+        } error:^(NSString *str) {
+            
+            NSLog(@"支付失败");
+            [self obj_showTotasViewWithMes:@"支付失败"];
+            
+        }];
 //        
 //    } withFailure:^(id data) {
 //        

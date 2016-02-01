@@ -277,7 +277,10 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                         [ws.navigationController pushViewController:verifyVC animated:YES];
                         
                     }else if(201 == tag){
-                        //
+                        // 设置报名信息验证不可进入;
+                        NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+                        [defauts setObject:@"答错了" forKey:@"checkProgress"];
+                        [defauts synchronize];
                         [ws.homeCheckProgressView removeFromSuperview];
                     }
                 };
@@ -649,19 +652,13 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }
-         // 如果没有报名,滑到科目2,跳转报名界面
-//        if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
-//            SignUpController *signUpListVC = [[SignUpController alloc] init];
-//            [self.navigationController pushViewController:signUpListVC animated:YES];
-//            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
-//            return;
-//        }
-//                if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
-//                    [self obj_showTotasViewWithMes:@"您还没有报名!"];
-//                    _mainScrollView.contentOffset = CGPointMake(systemsW, 0);
-//                    return;
-//                }
-
+//          如果没有报名,滑到科目2,跳转报名界面
+        if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
+            DrivingViewController *controller = [DrivingViewController new];
+            [self.navigationController pushViewController:controller animated:YES];
+            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
+            return;
+        }
         
         [self carMore:scrollView.contentOffset.x];
         if (scrollView.contentOffset.x == systemsW * 2)

@@ -21,6 +21,7 @@
 
 #import "SchoolClassDetailController.h"
 #import "SignUpController.h"
+#import "serverclasslistModel.h"
 
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -107,8 +108,12 @@
 #pragma mark班型cell中的报名按钮单击事件
 - (void)signInButtonAction:(ClassTypeDMData *)dmData {
     SignUpController *signUpVC = [[SignUpController alloc] init];
+    serverclasslistModel *classlistModel = [[serverclasslistModel alloc] init];
+    classlistModel.price = dmData.price;
+    classlistModel._id = dmData.calssid;
     signUpVC.signUpFormDetail = SignUpFormSchoolDetail;
     signUpVC.classTypeDMDataModel = dmData;
+    signUpVC.serverclasslistModel = classlistModel;
     [self.navigationController pushViewController:signUpVC animated:YES];
 }
 #pragma mark 教练cell的点击事件
