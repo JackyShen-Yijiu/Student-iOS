@@ -118,6 +118,8 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     // 初始化网络请求刷新控件
     [self configRefresh];
+    self.latitude = 39.929985778080237;
+    self.longitude = 116.39564503787867;
     [self.tableView.mj_header beginRefreshing];
 
     // 初始化筛选模式（找驾校、找教练）
