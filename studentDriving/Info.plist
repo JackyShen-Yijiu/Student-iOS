@@ -52,7 +52,6 @@
 		<string>alipayauth</string>
 		<string>alipay</string>
 		<string>safepay</string>
-		<string>alipayshare</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
