@@ -26,6 +26,11 @@
 #import "CoachTableViewCell.h"
 #import "SearchCoachViewModel.h"
 #import "CoachDMData.h"
+#import "DrivingDetailController.h"
+#import "DVVLocation.h"
+#import "HomeCheckProgressView.h"
+#import "JGPayTool.h"
+#import "SignUpFirmOrderController.h"
 
 static NSString *const kDrivingUrl = @"searchschool";
 
@@ -81,6 +86,8 @@ static NSString *const kDrivingUrl = @"searchschool";
 // 0:找驾校 1:找教练
 @property (nonatomic,assign) NSInteger selectType;
 
+@property (nonatomic,strong) HomeCheckProgressView *vc;
+
 @end
 
 @implementation DrivingViewController
@@ -118,11 +125,54 @@ static NSString *const kDrivingUrl = @"searchschool";
     self.navigationItem.rightBarButtonItem = rightItem;
     
         // 定位
-//    [self locationManager];
-//         在模拟器上定位不好用，测试是打开注释
-        self.latitude = 39.929985778080237;
-        self.longitude = 116.39564503787867;
-   
+    __weak typeof(self) ws = self;
+    [DVVLocation getLocation:^(BMKUserLocation *userLocation, double latitude, double longitude) {
+        
+        ws.latitude = latitude;
+        ws.longitude = longitude;
+        
+    } error:^{
+        
+        ws.latitude = 39.929985778080237;
+        ws.longitude = 116.39564503787867;
+        
+    }];
+    
+    // 判断上次是否有尚未支付的订单
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    BOOL isAlipayError = [user boolForKey:isPayErrorKey];
+    NSDictionary *payDict = [user objectForKey:payErrorWithDictKey];
+    NSString *phone = [user objectForKey:payErrorWithPhone];
+    
+    __weak DrivingViewController *weakSelf = self;
+    
+    if (isAlipayError) {
+        NSLog(@"上次还有尚未支付的订单");
+        
+        _vc = [[HomeCheckProgressView alloc] init];
+        _vc.topLabel.text = @"您有未完成的订单,是否需要立即支付";
+        [_vc.rightButtton setTitle:@"重新报名" forState:UIControlStateNormal];
+        [_vc.wrongButton setTitle:@"立即支付" forState:UIControlStateNormal];
+        _vc.didClickBlock = ^(NSInteger tag){
+            
+            if (tag==200) {// 立即支付
+                
+                SignUpFirmOrderController *vc = [[SignUpFirmOrderController alloc] init];
+                vc.extraDict = payDict;
+                vc.mobile = phone;
+                [weakSelf.navigationController pushViewController:vc animated:YES];
+                
+            }else if (tag==201){// 重新报名
+                [weakSelf.vc removeFromSuperview];
+            }
+            
+        };
+        _vc.frame = [UIApplication sharedApplication].keyWindow.rootViewController.view.bounds;
+        [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:_vc];
+        
+    }
+    
+    
 }
 
 #pragma mark - 刷新和加载
@@ -375,10 +425,10 @@ static NSString *const kDrivingUrl = @"searchschool";
         return;
     }
     // 驾校详情
-    DrivingDetailViewController *SelectVC = [[DrivingDetailViewController alloc]init];
+    DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
     DrivingModel *model = self.dataArray[indexPath.row];
     self.detailModel = model;
-    SelectVC.schoolId = model.schoolid;
+    SelectVC.schoolID = model.schoolid;
     [self.navigationController pushViewController:SelectVC animated:YES];
 }
 

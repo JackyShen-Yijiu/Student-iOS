@@ -40,7 +40,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    CGSize size = _scrollView.bounds.size;
+    CGSize size = self.bounds.size;
     _scrollView.contentSize = CGSizeMake(size.width * 2, 0);
     _classTypeView.frame = CGRectMake(0, 0, size.width, size.height);
     _coachListView.frame = CGRectMake(size.width, 0, size.width, size.height);

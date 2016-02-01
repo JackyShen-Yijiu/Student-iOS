@@ -452,6 +452,8 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
     return nil;
 }
 
+
+#pragma mark ------ 报名(只有在尚未报名的情况下此方法才执行)
 - (void)JGDrivingDetailKeChengFeiYongCellWithBaomingDidClick:(JGDrivingDetailKeChengFeiYongCell *)cell
 {
     
@@ -460,6 +462,16 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
         [DVVUserManager userNeedLogin];
         return;
     }
+    
+    NSLog(@"[AcountManager manager].userApplystat:%@",[AcountManager manager].userApplystate);
+    
+    SignUpController *signUpVC = [[SignUpController alloc] init];
+    signUpVC.coachDetailModel = self.detailModel;
+    signUpVC.serverclasslistModel = cell.detailModel;
+    signUpVC.signUpFormDetail = SignUpFormCoachDetail;
+    [self.navigationController pushViewController:signUpVC animated:YES];
+    
+    return;
     
     if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
        /*
@@ -470,6 +482,7 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
 //        [self.navigationController popViewControllerAnimated:YES];
         SignUpController *signUpVC = [[SignUpController alloc] init];
         signUpVC.coachDetailModel = self.detailModel;
+        signUpVC.signUpFormDetail = SignUpFormCoachDetail;
         [self.navigationController pushViewController:signUpVC animated:YES];
         
         return;

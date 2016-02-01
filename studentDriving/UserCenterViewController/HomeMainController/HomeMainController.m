@@ -49,6 +49,9 @@
 #import "ShuttleBusController.h"
 #import "DrivingDetailController.h"
 
+#import "DVVLocation.h"
+#import "DrivingCityListView.h"
+
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
@@ -95,6 +98,11 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 @property (nonatomic, strong) HomeActivityController *activityVC;
 @property (nonatomic, strong) HomeCheckProgressView *homeCheckProgressView;
+// 导航栏右侧的位置按钮
+@property (nonatomic, strong) UILabel *locationLabel;
+// 判断是否已经打开了城市列表
+@property (nonatomic, assign) BOOL cityListShowFlage;
+
 @end
 
 @implementation HomeMainController
@@ -132,6 +140,15 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+//    UILabel *titleLabel = [UILabel new];
+//    titleLabel.backgroundColor = [UIColor redColor];
+//    titleLabel.textColor = [UIColor whiteColor];
+//    titleLabel.text = @"快乐学车美一步";
+//    titleLabel.textAlignment = 1;
+//    titleLabel.font = [UIFont systemFontOfSize:17];
+//    titleLabel.bounds = CGRectMake(0, 0, 119, 44);
+//    self.navigationItem.titleView = titleLabel;
+    
     self.title = @"快乐学车美一步";
     _offsetX = 0;
     self.view.backgroundColor = [UIColor clearColor];
@@ -175,15 +192,19 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     #pragma mark 当程序由后台进入前台后，调用检查活动的方法，检查今天是否有活动
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillEnterForegroundCheckActivity) name:@"kCheckActivity" object:nil];
     
+    // 添加导航栏右侧的定位按钮
+    [self addNaviRightButton];
+    
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
 //        ComplaintController *complainVC = [ComplaintController new];
 //        [self.navigationController pushViewController:complainVC animated:YES];
         
 //        ShuttleBusController *busVC = [ShuttleBusController new];
 //        [self.navigationController pushViewController:busVC animated:YES];
         
-        DrivingDetailController *detailVC = [DrivingDetailController new];
-        [self.navigationController pushViewController:detailVC animated:YES];
+//        DrivingDetailController *detailVC = [DrivingDetailController new];
+//        [self.navigationController pushViewController:detailVC animated:YES];
     });
     
 //    [self changeScrollViewContentSize];
@@ -256,7 +277,10 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                         [ws.navigationController pushViewController:verifyVC animated:YES];
                         
                     }else if(201 == tag){
-                        //
+                        // 设置报名信息验证不可进入;
+                        NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+                        [defauts setObject:@"答错了" forKey:@"checkProgress"];
+                        [defauts synchronize];
                         [ws.homeCheckProgressView removeFromSuperview];
                     }
                 };
@@ -628,19 +652,13 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
             return;
         }
-         // 如果没有报名,滑到科目2,跳转报名界面
-//        if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
-//            SignUpController *signUpListVC = [[SignUpController alloc] init];
-//            [self.navigationController pushViewController:signUpListVC animated:YES];
-//            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
-//            return;
-//        }
-//                if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
-//                    [self obj_showTotasViewWithMes:@"您还没有报名!"];
-//                    _mainScrollView.contentOffset = CGPointMake(systemsW, 0);
-//                    return;
-//                }
-
+//          如果没有报名,滑到科目2,跳转报名界面
+        if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
+            DrivingViewController *controller = [DrivingViewController new];
+            [self.navigationController pushViewController:controller animated:YES];
+            self.mainScrollView.contentOffset = CGPointMake(systemsW, 0);
+            return;
+        }
         
         [self carMore:scrollView.contentOffset.x];
         if (scrollView.contentOffset.x == systemsW * 2)
@@ -976,6 +994,12 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     }
 }
 
+- (void)addNaviRightButton {
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:self.locationLabel];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
 #pragma mark - Lazy load
 #pragma mark 地理编码
 - (BMKGeoCodeSearch *)geoCodeSearch {
@@ -1049,6 +1073,74 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         [_mainScrollView addSubview:_subjectFourView];
     }
     return _subjectFourView;
+}
+- (UILabel *)locationLabel {
+    if (!_locationLabel) {
+        _locationLabel = [UILabel new];
+        _locationLabel.textAlignment = NSTextAlignmentRight;
+        _locationLabel.textColor = [UIColor whiteColor];
+        _locationLabel.font = [UIFont systemFontOfSize:13];
+        
+        [AcountManager manager].userSelectedCity = @"";
+        [AcountManager manager].userSelectedLatitude = @"";
+        [AcountManager manager].userSelectedLongitude = @"";
+
+        if ([AcountManager manager].userSelectedCity.length) {
+            _locationLabel.text = [AcountManager manager].userSelectedCity;
+        }else {
+            [self location];
+        }
+        _locationLabel.bounds = CGRectMake(0, 0, 60, 44);
+        
+        UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(locationLabelClickAction:)];
+        [_locationLabel addGestureRecognizer:gesture];
+        _locationLabel.userInteractionEnabled = YES;
+    }
+    return _locationLabel;
+}
+- (void)location {
+    
+    _locationLabel.text = @"定位中";
+    [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
+        
+        _locationLabel.text = city;
+    } error:^{
+        _locationLabel.text = @"定位失败";
+    }];
+}
+- (void)locationLabelClickAction:(UITapGestureRecognizer *)tapGesture {
+    
+    if (_cityListShowFlage) {
+        return ;
+    }
+    if (_locationLabel.text&&[_locationLabel.text isEqualToString:@"定位失败"]) {
+        [self location];
+        return ;
+    }
+    DrivingCityListView *view = [DrivingCityListView new];
+    CGRect rect = self.view.bounds;
+    view.frame = CGRectMake(rect.origin.x, 64, rect.size.width, rect.size.height);
+    [self.view addSubview:view];
+    [view setSelectedItemBlock:^(NSString *cityName) {
+        
+        [DVVLocation geoCodeWithCity:cityName address:cityName success:^(BMKGeoCodeResult *result, CLLocationCoordinate2D coordinate, double latitude, double longitude) {
+            NSLog(@"latitude === %lf   longitude === %lf", latitude, longitude);
+            [AcountManager manager].userSelectedLatitude = [NSString stringWithFormat:@"%lf", latitude];
+            [AcountManager manager].userSelectedLongitude = [NSString stringWithFormat:@"%lf", longitude];
+            [AcountManager manager].userSelectedCity = cityName;
+            
+            _locationLabel.text = cityName;
+        } error:^{
+            
+            [self obj_showTotasViewWithMes:@"修改失败"];
+        }];
+    }];
+    [view setRemovedBlock:^{
+        _cityListShowFlage = NO;
+    }];
+    _cityListShowFlage = YES;
+    [view show];
+    
 }
 
 - (void)showMsg:(NSString *)msg {

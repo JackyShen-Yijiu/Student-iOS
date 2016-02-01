@@ -72,15 +72,15 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.91053109217171713" green="0.91053109217171713" blue="0.91053109217171713" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="X2S-F9-AIM" secondAttribute="bottom" id="398-6O-F1o"/>
                 <constraint firstItem="W5E-f6-9Oa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="EdZ-Fq-qHW"/>
+                <constraint firstItem="X2S-F9-AIM" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="122" id="GgJ-ua-g4K"/>
                 <constraint firstItem="W5E-f6-9Oa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="64" id="KEk-jS-2Jg"/>
-                <constraint firstAttribute="trailing" secondItem="X2S-F9-AIM" secondAttribute="trailing" id="aDL-6O-Cix"/>
-                <constraint firstItem="X2S-F9-AIM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="iMh-vO-s0M"/>
-                <constraint firstItem="X2S-F9-AIM" firstAttribute="top" secondItem="W5E-f6-9Oa" secondAttribute="bottom" constant="14" id="l1E-dT-AVp"/>
+                <constraint firstItem="X2S-F9-AIM" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="S9v-tl-9Th"/>
+                <constraint firstAttribute="trailing" secondItem="X2S-F9-AIM" secondAttribute="trailing" id="Ss4-2S-uAZ"/>
                 <constraint firstAttribute="trailing" secondItem="W5E-f6-9Oa" secondAttribute="trailing" id="w2K-Kb-a8F"/>
+                <constraint firstAttribute="bottom" secondItem="X2S-F9-AIM" secondAttribute="bottom" id="xdA-P2-Amg"/>
             </constraints>
             <point key="canvasLocation" x="612" y="284"/>
         </view>

@@ -229,6 +229,12 @@
             }
            
         }else {
+           
+            NSString *str = [[NSUserDefaults standardUserDefaults] objectForKey:@"checkProgress"];
+            if (str) {
+                [self obj_showTotasViewWithMes:@"您还没有报名!"];
+                return;
+            }
             if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
                 [self.navigationController pushViewController:[VerifyPhoneController new] animated:YES];
             }else {

@@ -12,9 +12,12 @@
 #import "DrivingCityListDMRootClass.h"
 #import "CityListCell.h"
 
+#define ROW_HEIGHT 30
+
 @interface DrivingCityListView()<JENetwokingDelegate>
 
-@property (nonatomic, strong) DrivingCityListViewSelectedItemBlock selectedItemBlock;
+@property (nonatomic, copy) DrivingCityListViewSelectedItemBlock selectedItemBlock;
+@property (nonatomic, copy) dispatch_block_t removedBlock;
 
 @end
 
@@ -34,6 +37,9 @@
 - (void)setSelectedItemBlock:(DrivingCityListViewSelectedItemBlock)handle {
     _selectedItemBlock = handle;
 }
+- (void)setRemovedBlock:(dispatch_block_t)handle {
+    _removedBlock = handle;
+}
 
 #pragma mark - show method
 - (void)show {
@@ -44,15 +50,18 @@
 
 - (void)configLayout {
     
-    CGFloat width = 60;
-    CGFloat height = self.bounds.size.height / 2.f;
-    if (self.dataList.count * 44 < height) {
-        height = self.dataList.count * 44;
+    CGFloat width = 73;
+    CGFloat height = self.bounds.size.height;
+    if (self.dataList.count * ROW_HEIGHT < height) {
+        height = self.dataList.count * ROW_HEIGHT;
     }
-    self.tableView.frame = CGRectMake(self.bounds.size.width - width, 0, width, height);
+
+//    _tableView.frame = CGRectMake(0, 0, self.bounds.size.width, height);
+    _tableView.frame = CGRectMake(self.bounds.size.width - width, 0, width, height);
     CGRect rect = self.tableView.frame;
     CGRect tempRect = rect;
     tempRect.size.height = 0;
+    _tableView.tableHeaderView = nil;
     self.tableView.frame = tempRect;
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.frame = rect;
@@ -81,9 +90,6 @@
 #pragma mark - tableView
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.dataList.count;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 30;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -115,6 +121,9 @@
         self.tableView.frame = rect;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
+        if (_removedBlock) {
+            _removedBlock();
+        }
     }];
 }
 
@@ -124,11 +133,17 @@
         _tableView = [UITableView new];
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.backgroundColor = [UIColor colorWithRed:0.5 green:0.5 blue:0.5 alpha:1];
+        _tableView.rowHeight = ROW_HEIGHT;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.2];
 //        _tableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 //        _tableView.layer.borderWidth = 1;
+        _tableView.frame = CGRectMake(self.bounds.size.width - 73, 0, 73, ROW_HEIGHT);
+        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+        [activityView startAnimating];
+        activityView.frame = CGRectMake(0, 0, 73, ROW_HEIGHT);
+        _tableView.tableHeaderView = activityView;
     }
     return _tableView;
 }

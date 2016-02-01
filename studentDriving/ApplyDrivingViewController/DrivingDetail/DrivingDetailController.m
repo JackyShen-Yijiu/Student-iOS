@@ -17,8 +17,11 @@
 
 #import "ShuttleBusController.h"
 #import "CoachListController.h"
+#import "DVVToast.h"
 
 #import "SchoolClassDetailController.h"
+#import "SignUpController.h"
+#import "serverclasslistModel.h"
 
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -29,6 +32,7 @@
 @property (nonatomic, strong) DrivingDetailViewModel *viewModel;
 
 // 这个要动态调高度，放里面不好动态调  而且也没有复用性   所以放这里
+@property (nonatomic, strong) DrivingDetailAddressCell *addressCell;
 @property (nonatomic, strong) DrivingDetailSignUpCell *signUpCell;
 @property (nonatomic, strong) DrivingDetailBriefIntroductionCell *introductionCell;
 
@@ -43,7 +47,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     NSLog(@"%@", [AcountManager manager].applyschool.infoId);
-    _schoolID = @"562dcc3ccb90f25c3bde40da";
+
+    // 测试时打开
+//    _schoolID = @"562dcc3ccb90f25c3bde40da";
     
     [self.view addSubview:self.tableView];
     
@@ -54,21 +60,26 @@
 - (void)configViewModel {
     
     _viewModel = [DrivingDetailViewModel new];
+    _viewModel.schoolID = _schoolID;
+    __weak typeof(self) ws = self;
     [_viewModel dvvSetRefreshSuccessBlock:^{
-        
-        [_tableView reloadData];
+        [ws.tableView reloadData];
     }];
     [_viewModel dvvSetRefreshErrorBlock:^{
-        [self obj_showTotasViewWithMes:@"加载失败"];
+        [ws obj_showTotasViewWithMes:@"加载失败"];
     }];
     
     [_viewModel dvvSetNilResponseObjectBlock:^{
-        [self obj_showTotasViewWithMes:@"没有数据"];
+        [ws obj_showTotasViewWithMes:@"没有数据"];
     }];
     [_viewModel dvvSetNetworkErrorBlock:^{
-        [self obj_showTotasViewWithMes:@"网络错误"];
+        [ws obj_showTotasViewWithMes:@"网络错误"];
+    }];
+    [_viewModel dvvSetNetworkCallBackBlock:^{
+        [DVVToast hideFromView:ws.view];
     }];
     
+    [DVVToast showFromView:self.view];
     [_viewModel dvvNetworkRequestRefresh];
 }
 
@@ -96,7 +107,14 @@
 }
 #pragma mark班型cell中的报名按钮单击事件
 - (void)signInButtonAction:(ClassTypeDMData *)dmData {
-    
+    SignUpController *signUpVC = [[SignUpController alloc] init];
+    serverclasslistModel *classlistModel = [[serverclasslistModel alloc] init];
+    classlistModel.price = dmData.price;
+    classlistModel._id = dmData.calssid;
+    signUpVC.signUpFormDetail = SignUpFormSchoolDetail;
+    signUpVC.classTypeDMDataModel = dmData;
+    signUpVC.serverclasslistModel = classlistModel;
+    [self.navigationController pushViewController:signUpVC animated:YES];
 }
 #pragma mark 教练cell的点击事件
 - (void)coachListViewCellDidSelectAction:(CoachListDMData *)dmData {
@@ -204,6 +222,9 @@
             
             ws.isShowMore = isShowMore;
             [ws.tableView reloadData];
+            
+//            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:3 inSection:0];
+//            [ws.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
         }];
     }
     return _introductionCell;

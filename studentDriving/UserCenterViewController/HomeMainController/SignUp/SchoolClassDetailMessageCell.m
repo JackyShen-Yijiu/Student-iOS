@@ -85,12 +85,14 @@
         make.top.mas_equalTo(self.studyLabel.mas_bottom).offset(12);
     }];
     [self.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.studyLabel.mas_top).offset(12);
+        make.top.mas_equalTo(self.studyLabel.mas_bottom).offset(12);
         make.left.mas_equalTo(self.featuredTutorials.mas_right).offset(5);
+        make.width.mas_equalTo(@(kSystemWide - 30 - 100));
+//        make.height.mas_equalTo(@120);
     }];
     [self.carType mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
-        make.top.mas_equalTo(self.tagView.mas_bottom).offset(50);
+        make.top.mas_equalTo(self.tagView.mas_bottom).offset(12);
     }];
     [self.price mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
@@ -199,6 +201,7 @@
 - (GBTagListView *)tagView{
     if (_tagView == nil) {
         _tagView = [[GBTagListView alloc] init];
+        _tagView.backgroundColor = [UIColor whiteColor];
         
     }
     return _tagView;
@@ -249,21 +252,35 @@
 
  */
 - (void)setClassTypeModel:(ClassTypeDMData *)classTypeModel{
-    NSString *schoolClass = [NSString stringWithFormat:@"适用驾照类型: %@",classTypeModel.carmodel.code];
+    
+    _classTypeModel = classTypeModel;
+    
+    NSString *schoolClass = [NSString stringWithFormat:@"适用驾照类型: %@",_classTypeModel.carmodel.code];
     _schoolClassLabel.text = schoolClass;
     NSString *str = classTypeModel.enddate;
     _timeLabel.text = [NSString stringWithFormat:@"有效期: %@",[self componentsSeparatedStr:str]];
-    _studyLabel.text = [NSString stringWithFormat:@"授课日程: %@",classTypeModel.classchedule];
-    _carType.text = [NSString stringWithFormat:@"训练车品牌: %@",classTypeModel.cartype];
-    _priceDetailLabel.text = [NSString stringWithFormat:@"%lu元",classTypeModel.price];
-    _personCount.text = [NSString stringWithFormat:@"已报名人数: %lu",classTypeModel.applycount];
-    _classTextLabel.text = classTypeModel.classname;
+    _studyLabel.text = [NSString stringWithFormat:@"授课日程: %@",_classTypeModel.classchedule];
+    _carType.text = [NSString stringWithFormat:@"训练车品牌: %@",_classTypeModel.cartype];
+    _priceDetailLabel.text = [NSString stringWithFormat:@"%lu元",_classTypeModel.price];
+    _personCount.text = [NSString stringWithFormat:@"已报名人数: %lu",_classTypeModel.applycount];
+    _classTextLabel.text = _classTypeModel.classname;
     __weak typeof(self) ws = self;
-    [_tagView setTagWithTagArray:self.classTypeModel.vipserverlist listWidth:kSystemWide - 30 - 100 listHeight:^(int listHeight) {
-        [ws.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(@(listHeight));
-        }];
     
+    float widht = kSystemWide - 30 - 100;
+    NSLog(@"_classTypeModel.vipserverlist:%@",_classTypeModel.vipserverlist);
+    
+    [self.tagView setTagWithTagArray:_classTypeModel.vipserverlist listWidth:widht listHeight:^(int listHeight) {
+        
+        NSLog(@"listHeight:%d",listHeight);
+        
+        [ws.tagView mas_makeConstraints:^(MASConstraintMaker *make) {
+            
+            make.top.mas_equalTo(ws.studyLabel.mas_bottom).offset(12);
+            make.left.mas_equalTo(ws.featuredTutorials.mas_right).offset(5);
+            make.width.mas_equalTo(widht);
+            make.height.mas_equalTo(listHeight);
+            
+        }];
     }];
 }
 - (NSString *)componentsSeparatedStr:(NSString *)str
@@ -274,12 +291,12 @@
 - (CGFloat)heightWithcell:(ClassTypeDMData *)model
 {
     __weak typeof(self) ws = self;
-    [_tagView setTagWithTagArray:self.classTypeModel.vipserverlist listWidth:kSystemWide - 30 - 100 listHeight:^(int listHeight) {
+    [_tagView setTagWithTagArray:model.vipserverlist listWidth:kSystemWide - 30 - 100 listHeight:^(int listHeight) {
         ws.with = listHeight;
         
     }];
 
-    return   300 + _with;
+    return   280 + _with;
     
 }
 

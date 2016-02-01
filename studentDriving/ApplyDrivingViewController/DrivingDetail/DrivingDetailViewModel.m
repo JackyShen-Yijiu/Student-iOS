@@ -16,9 +16,11 @@
 - (void)dvvNetworkRequestRefresh {
     
     NSString *interface = [NSString stringWithFormat:BASEURL, @"driveschool/getschoolinfo/"];
-    NSString *url = [NSString stringWithFormat:@"%@%@", interface, [AcountManager manager].applyschool.infoId];
+    NSString *url = [NSString stringWithFormat:@"%@%@", interface, _schoolID];
     
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        [self dvvNetworkCallBack];
         
         NSLog(@"%@   %@", data, [AcountManager manager].applyschool.infoId);
 
@@ -36,6 +38,7 @@
         [self dvvRefreshSuccess];
         
     } withFailure:^(id data) {
+        [self dvvNetworkCallBack];
         [self dvvNetworkError];
     }];
 }

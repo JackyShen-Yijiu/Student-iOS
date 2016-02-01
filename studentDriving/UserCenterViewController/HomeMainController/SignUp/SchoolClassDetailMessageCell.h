@@ -26,11 +26,13 @@
 @property (nonatomic, strong) UILabel *priceDetailLabel; // 价格详情
 @property (strong, nonatomic) UILabel *personCount;
 @property (nonatomic, strong) UIView *bottomLineView;
+
 @property (nonatomic, strong) ClassTypeDMData *classTypeModel; 
 
 - (void)receiveVipList:(NSArray *)list;
 
 - (void)setUp;
 
-- (CGFloat)heightWithcell:(ClassTypeDMData *)tableView;
+- (CGFloat)heightWithcell:(ClassTypeDMData *)date;
+
 @end
