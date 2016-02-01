@@ -13,6 +13,7 @@
 #import "DVVLocation.h"
 #import "JGActivityModel.h"
 #import "JGActivityDetailsViewController.h"
+#import "DVVShare.h"
 
 @interface JGActivityViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -75,6 +76,21 @@
     }];
     
     
+    // 添加分享
+    UIButton *button = [UIButton new];
+    [button setTitle:@"分享" forState:UIControlStateNormal];
+    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    button.bounds = CGRectMake(0, 0, 14 * 2, 44);
+    [button addTarget:self action:@selector(share) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
+    self.navigationItem.rightBarButtonItem = item;
+}
+- (void)share {
+    
+    // 显示分享
+    [DVVShare shareWithTitle:DVV_Share_Default_Title content:DVV_Share_Default_Content image:DVV_Share_Default_Image location:nil urlResource:nil success:^(NSString *platformName) {
+        [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
+    }];
 }
 
 - (void)startDownLoad {
