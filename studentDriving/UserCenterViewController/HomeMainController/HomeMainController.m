@@ -25,6 +25,7 @@
 #import "HomeFavourableController.h"
 #import "HomeRewardController.h"
 #import "DrivingViewController.h"
+#import "JGActivityViewController.h"
 
 // 科目一
 #import "QuestionBankViewController.h"
@@ -369,15 +370,18 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         switch (tag) {
             case 101:
             {
-                HomeAdvantageController *homeAdvantageVC = [[HomeAdvantageController alloc] init];
-                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+//                HomeAdvantageController *homeAdvantageVC = [[HomeAdvantageController alloc] init];
+//                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+                [mainVC obj_showTotasViewWithMes:@"此功能尚未开放!"];
             }
                 break;
                 case 102:
 
             {
-                HomeFavourableController *homeAdvantageVC = [[HomeFavourableController alloc] init];
-                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+//                HomeFavourableController *homeAdvantageVC = [[HomeFavourableController alloc] init];
+//                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+                JGActivityViewController * activityVC = [[JGActivityViewController alloc] init];
+                [mainVC.navigationController pushViewController:activityVC animated:YES];
 
             }
                 break;

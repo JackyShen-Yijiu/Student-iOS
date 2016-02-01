@@ -27,6 +27,9 @@
 #import "JGDrivingDetailTopCell.h"
 #import "JGDrivingDetailTeachingNewsCell.h"
 #import "JGDrivingDetailPersonalNoteCell.h"
+#import "AppointmentCoachModel.h"
+#import "BLInformationManager.h"
+#import "AppointmentDrivingViewController.h"
 
 static NSString *const kCoachDetailInfo = @"userinfo/getuserinfo/2/userid/%@";
 
@@ -88,6 +91,20 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
 - (void)clickPhoneBtn
 {
     NSLog(@"%s",__func__);
+    AppointmentCoachModel *appointcoachModel = [[AppointmentCoachModel alloc] init];
+    appointcoachModel.coachid = self.rememberModel.coachid;
+    appointcoachModel.headportrait = self.rememberModel.headportrait;
+    appointcoachModel.driveschoolinfo = self.rememberModel.driveschoolinfo;
+    appointcoachModel.name = self.rememberModel.name;
+    [BLInformationManager sharedInstance].appointmentCoachModel = appointcoachModel;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kAddCoachModel" object:nil];
+    for (UIViewController *vc in self.navigationController.viewControllers) {
+        if ([vc isKindOfClass:[AppointmentDrivingViewController class]]) {
+            
+            [self.navigationController popToViewController:vc animated:YES];
+            
+        }
+    }
 }
 
 - (void)viewDidLoad {

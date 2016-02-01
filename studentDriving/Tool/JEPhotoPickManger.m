@@ -24,6 +24,7 @@
         
         if (selectedOtherButtonIndex == 0) {
             
+            
             // 如果用户没有打开相机，则提示用户去设置中打开
             AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
             if (authStatus == AVAuthorizationStatusAuthorized) {

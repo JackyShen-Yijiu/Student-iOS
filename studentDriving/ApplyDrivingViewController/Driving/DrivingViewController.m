@@ -122,6 +122,9 @@ static NSString *const kDrivingUrl = @"searchschool";
     // 初始化筛选模式（找驾校、找教练）
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightselectjiaolian];
     self.navigationItem.rightBarButtonItem = rightItem;
+    if (1 == _isHideItem) {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
     
     if ([AcountManager manager].userSelectedCity&&[AcountManager manager].userSelectedCity.length) {
         self.latitude = [[AcountManager manager].userSelectedLatitude doubleValue];
@@ -424,21 +427,33 @@ static NSString *const kDrivingUrl = @"searchschool";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    if (self.selectType==1) {// 教练详情
-        CoachDMData *model = _searchCoachViewModel.dataArray[indexPath.row];
-        JGDrivingDetailViewController *detailVC = [JGDrivingDetailViewController new];
-        detailVC.coachUserId = model.coachid;
-        [self.navigationController pushViewController:detailVC animated:YES];
-        return;
+    // 验证学车进度点击驾校列表直接返回,
+    if (1 == _isHideItem) {
+        DrivingModel *model = self.dataArray[indexPath.row];
+        if (model.name && model.schoolid) {
+            DYNSLog(@"schoolinfo");
+            NSDictionary *schoolParam = @{kRealSchoolid:model.schoolid,@"name":model.name};
+            [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
+        }
+
+        [self.navigationController popViewControllerAnimated:YES];
+    }else{
+        if (self.selectType==1) {// 教练详情
+            CoachDMData *model = _searchCoachViewModel.dataArray[indexPath.row];
+            JGDrivingDetailViewController *detailVC = [JGDrivingDetailViewController new];
+            detailVC.coachUserId = model.coachid;
+            [self.navigationController pushViewController:detailVC animated:YES];
+            return;
+        }
+        // 驾校详情
+        DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
+        DrivingModel *model = self.dataArray[indexPath.row];
+        self.detailModel = model;
+        SelectVC.schoolID = model.schoolid;
+        [self.navigationController pushViewController:SelectVC animated:YES];
+
     }
-    // 驾校详情
-    DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
-    DrivingModel *model = self.dataArray[indexPath.row];
-    self.detailModel = model;
-    SelectVC.schoolID = model.schoolid;
-    [self.navigationController pushViewController:SelectVC animated:YES];
-}
+    }
 
 #pragma mark - lazy load
 - (UITableView *)tableView{

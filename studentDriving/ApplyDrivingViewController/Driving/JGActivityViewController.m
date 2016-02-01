@@ -62,16 +62,18 @@
     
     [self.view addSubview:self.tableView];
 
-    __weak typeof(self) ws = self;
-    [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
-        ws.cityName = city;
-    } error:^{
-        ;
-    }];
-    
     // 获取活动列表
     [self startDownLoad];
     [self.tableView.mj_header beginRefreshing];
+
+    __weak typeof(self) ws = self;
+    [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
+        ws.cityName = city;
+        [ws.tableView.mj_header beginRefreshing];
+    } error:^{
+        [ws.tableView.mj_header beginRefreshing];
+    }];
+    
     
 }
 

@@ -50,7 +50,7 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
 
 - (NSArray *)secondArray {
     if (_secondArray == nil) {
-        _secondArray = @[@"驾照类型",@"报考驾校",@"报考班型",@"报考教练",@"科目进度"];
+        _secondArray = @[@"驾照类型",@"报考驾校",@"报考教练",@"科目进度"];
     }
     return _secondArray;
 }
@@ -124,7 +124,7 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 4;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -155,23 +155,28 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
         ExamCarViewController *carType = [[ExamCarViewController alloc] init];// 选择车型
         [self.navigationController pushViewController:carType animated:YES];
     }else if (indexPath.row == 1 ){
-        SignUpDrivingViewController *drivingVC = [[SignUpDrivingViewController alloc] init];   //选择驾校
-        drivingVC.isVerify = YES;
-        [self.navigationController pushViewController:drivingVC animated:YES];
+        DrivingViewController *controller = [DrivingViewController new];
+        controller.isHideItem = YES;
+        [self.navigationController pushViewController:controller animated:YES];
+
+//        SignUpDrivingViewController *drivingVC = [[SignUpDrivingViewController alloc] init];   //选择驾校
+//        drivingVC.isVerify = YES;
+//        [self.navigationController pushViewController:drivingVC animated:YES];
     }
+//    else if (indexPath.row == 2) {
+//        if ([SignUpInfoManager getSignUpSchoolid] == nil || [SignUpInfoManager getSignUpSchoolid].length == 0) {
+//            [self showTotasViewWithMes:@"请选择驾校"];
+//            return;
+//        }
+//        ExamClassViewController *classType = [[ExamClassViewController alloc] init];//报考班型
+//        [self.navigationController pushViewController:classType animated:YES];
+//    }
     else if (indexPath.row == 2) {
-        if ([SignUpInfoManager getSignUpSchoolid] == nil || [SignUpInfoManager getSignUpSchoolid].length == 0) {
-            [self showTotasViewWithMes:@"请选择驾校"];
-            return;
-        }
-        ExamClassViewController *classType = [[ExamClassViewController alloc] init];//报考班型
-        [self.navigationController pushViewController:classType animated:YES];
-    }else if (indexPath.row == 3) {
         SignUpCoachViewController *coachVc = [[SignUpCoachViewController alloc] init];
         coachVc.isVerify = YES;
         coachVc.markNum = 1;
         [self.navigationController pushViewController:coachVc animated:YES];
-    }else if (indexPath.row == 4) {
+    }else if (indexPath.row == 3) {
         [self.navigationController pushViewController:[WhichStateViewController new] animated:YES];
     }
 }
@@ -189,15 +194,15 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
         [self showTotasViewWithMes:@"驾校为空"];
         return;
     }
+//    if ([signUpArray[2] isEqualToString:@""]) {
+//        [self showTotasViewWithMes:@"班型为空"];
+//        return;
+//    }
     if ([signUpArray[2] isEqualToString:@""]) {
-        [self showTotasViewWithMes:@"班型为空"];
-        return;
-    }
-    if ([signUpArray[3] isEqualToString:@""]) {
         [self showTotasViewWithMes:@"教练为空"];
         return;
     }
-    if ([signUpArray[4] isEqualToString:@""]) {
+    if ([signUpArray[3] isEqualToString:@""]) {
         [self showTotasViewWithMes:@"科目进度为空"];
         return;
     }
@@ -222,7 +227,7 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    signUpArray = @[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpClasstypeName],[SignUpInfoManager getSignUpVerifyCoachName],[SignUpInfoManager getSignUpSubjectId]];
+    signUpArray = @[[SignUpInfoManager getSignUpCarmodelName],[SignUpInfoManager getSignUpSchoolName],[SignUpInfoManager getSignUpVerifyCoachName],[SignUpInfoManager getSignUpSubjectId]];
     [self.tableView reloadData];
 }
 

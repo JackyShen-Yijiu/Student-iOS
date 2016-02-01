@@ -20,6 +20,8 @@
 #import "BLPFAlertView.h"
 #import "AppointmentCoachModel.h"
 #import "UIColor+Hex.h"
+#import "JGCoachDetailViewController.h"
+
 #define StartOffset  kSystemWide/4-60/2
 
 //static NSString *const kCoachUrl = @"getschoolcoach/%@/1";
@@ -140,14 +142,11 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"预约教练";
     self.view.backgroundColor = [UIColor whiteColor];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
-    DYNSLog(@"right = %@",self.naviBarRightButton);
-    self.navigationItem.rightBarButtonItem = rightItem;
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
+//    DYNSLog(@"right = %@",self.naviBarRightButton);
+//    self.navigationItem.rightBarButtonItem = rightItem;
     [self.view addSubview:self.tableView];
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
-    
-    
     [self locationManager];
 
     
@@ -283,7 +282,7 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
         detailVC.coachUserId = model.coachid;
         [self.navigationController pushViewController:detailVC animated:YES];
     }else if (self.markNum == 2) {
-        CoachDetailAppointmentViewController *appointment = [[CoachDetailAppointmentViewController alloc] init];
+        JGCoachDetailViewController *appointment = [[JGCoachDetailViewController alloc] init];
         appointment.coachUserId = model.coachid;
         appointment.rememberModel = model;
         [self.navigationController pushViewController:appointment animated:YES];
