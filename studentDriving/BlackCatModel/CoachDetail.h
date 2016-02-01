@@ -25,7 +25,7 @@
 @property (strong, nonatomic) NSNumber *commentcount;
 @property (copy, nonatomic) NSString *createtime;
 @property (copy, nonatomic) NSString *displaycoachid;
-@property (strong, nonatomic) DriveSchoolinfo *driveschoolinfo;
+@property (strong, nonatomic) NSDictionary *driveschoolinfo;
 @property (copy, nonatomic) NSString *email;
 @property (strong, nonatomic) Logoimg *headportrait;
 @property (copy, nonatomic) NSString *introduction;

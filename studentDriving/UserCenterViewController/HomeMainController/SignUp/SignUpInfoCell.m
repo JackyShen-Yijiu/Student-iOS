@@ -35,7 +35,7 @@
 - (void)setUp {
     [self.contentView addSubview:self.signUpTextField];
     [self.signUpTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.contentView.mas_left).offset(0);
+        make.left.mas_equalTo(self.contentView.mas_left).offset(15);
         make.top.mas_equalTo(self.contentView.mas_top).offset(17);
         NSNumber *weigh = [[NSNumber alloc] initWithFloat:self.contentView.frame.size.width - 30];
         make.width.mas_equalTo(weigh);

@@ -265,7 +265,7 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
         }
         DYNSLog(@"name = %@",self.detailModel.name);
         cell.coachNameLabel.text = self.detailModel.name;
-        cell.locationLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.driveschoolinfo.name];
+        cell.locationLabel.text = [NSString stringWithFormat:@"%@",self.detailModel.driveschoolinfo[@"name"]];
         [cell.starBar displayRating:self.detailModel.starlevel.floatValue];
         if (self.detailModel.is_shuttle) {
             cell.coachStateSend.hidden = NO;

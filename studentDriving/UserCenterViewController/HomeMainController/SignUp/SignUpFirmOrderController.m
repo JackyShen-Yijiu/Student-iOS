@@ -133,7 +133,7 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
 
 - (void)viewDidLoad{
     [super  viewDidLoad];
-    
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.title = @"确认订单";
@@ -281,20 +281,20 @@ static NSString *const applyUrl = @"/system/verifyactivitycoupon";
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
-    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    view.backgroundColor = [UIColor colorWithHexString:@"F5F9F9"];
     UIView *topLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 1)];
-    topLineView.backgroundColor = [UIColor redColor];
+    topLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:topLineView];
     UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
-    bottomLineView.backgroundColor = [UIColor redColor];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:bottomLineView];
     return view;
 }
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 10)];
-    view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    view.backgroundColor = [UIColor colorWithHexString:@"F5F9F9"];
     UIView *bottomLineView = [[UIView alloc] initWithFrame:CGRectMake(0, 9, kSystemWide, 1)];
-    bottomLineView.backgroundColor = [UIColor redColor];
+    bottomLineView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     [view addSubview:bottomLineView];
     return view;
 }
