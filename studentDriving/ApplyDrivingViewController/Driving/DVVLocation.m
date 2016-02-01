@@ -54,6 +54,7 @@
     location.onlyGetLocation = YES;
     [location setLocationSuccessBlock:success];
     [location setLocationErrorBlock:error];
+    [location startLocation];
 }
 + (void)reverseGeoCode:(DVVLocationReverseGeoCodeSuccessBlock)success
                  error:(DVVLocationReverseGeoCodeErrorBlock)error {

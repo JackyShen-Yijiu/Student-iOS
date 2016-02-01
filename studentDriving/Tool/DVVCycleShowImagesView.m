@@ -151,8 +151,8 @@
 #pragma mark - 加载显示的图片，设置当前显示的是第几个图片
 - (void)reloadImage {
     
-    [self loadImages];
     [self setCurrentPage];
+    [self loadImages];
 }
 
 #pragma mark - 设置当前显示的图片 method

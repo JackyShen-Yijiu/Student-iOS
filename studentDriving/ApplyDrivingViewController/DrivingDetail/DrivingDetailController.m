@@ -93,8 +93,11 @@
     [self.navigationController pushViewController:busVC animated:YES];
 }
 #pragma mark 更多教练
-- (void)allCoachInSchoolAction {
+- (void)allCoachInSchoolAction:(UIButton *)sender {
     
+    if (sender.tag) {
+        return ;
+    }
     CoachListController *coachListVC = [CoachListController new];
     coachListVC.schoolID = _schoolID;
     [self.navigationController pushViewController:coachListVC animated:YES];
@@ -243,7 +246,7 @@
         [_signUpCell.coachListView setCoachListViewCellDidSelectBlock:^(CoachListDMData *dmData) {
             [ws coachListViewCellDidSelectAction:dmData];
         }];
-        [_signUpCell.coachListView.bottomButton addTarget:self action:@selector(allCoachInSchoolAction) forControlEvents:UIControlEventTouchUpInside];
+        [_signUpCell.coachListView.bottomButton addTarget:self action:@selector(allCoachInSchoolAction:) forControlEvents:UIControlEventTouchUpInside];
         _signUpCell.tableView = self.tableView;
         _signUpCell.schoolID = _schoolID;
     }

@@ -33,6 +33,38 @@
             endingLineNumber = "705"
             landmarkName = "-submitClick:"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[AppointmentDrivingViewController submitClick:]"
+                  moduleName = "studentDriving"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/SubjectSecondViewController/AppointmentDrivingViewController.m"
+                  timestampString = "476002980.878966"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "706"
+                  endingLineNumber = "706"
+                  offsetFromSymbolStart = "176">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[AppointmentDrivingViewController submitClick:]_block_invoke"
+                  moduleName = "studentDriving"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/SubjectSecondViewController/AppointmentDrivingViewController.m"
+                  timestampString = "476002980.879277"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "706"
+                  endingLineNumber = "706"
+                  offsetFromSymbolStart = "80">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -233,13 +265,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "studentDriving/ApplyDrivingViewController/DrivingDetail/CoachListViewModel.m"
-            timestampString = "475989865.915532"
+            filePath = "studentDriving/ApplyDrivingViewController/DrivingDetail/CoachListView.m"
+            timestampString = "475993680.184566"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
-            landmarkName = "-dvvNetworkRequestWithIndex:isRefresh:"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
+            landmarkName = "-configViewModel"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "studentDriving/ApplyDrivingViewController/DrivingDetail/CoachListView.m"
+            timestampString = "475993680.184566"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "-configViewModel"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

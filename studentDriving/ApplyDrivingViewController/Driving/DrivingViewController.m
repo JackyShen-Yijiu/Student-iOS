@@ -118,25 +118,33 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     // 初始化网络请求刷新控件
     [self configRefresh];
-    [self.tableView.mj_header beginRefreshing];
     
     // 初始化筛选模式（找驾校、找教练）
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightselectjiaolian];
     self.navigationItem.rightBarButtonItem = rightItem;
     
+    if ([AcountManager manager].userSelectedCity&&[AcountManager manager].userSelectedCity.length) {
+        self.latitude = [[AcountManager manager].userSelectedLatitude doubleValue];
+        self.longitude = [[AcountManager manager].userSelectedLongitude doubleValue];
+        [self.tableView.mj_header beginRefreshing];
+
+    }else {
         // 定位
-    __weak typeof(self) ws = self;
-    [DVVLocation getLocation:^(BMKUserLocation *userLocation, double latitude, double longitude) {
+        __weak typeof(self) ws = self;
+        [DVVLocation getLocation:^(BMKUserLocation *userLocation, double latitude, double longitude) {
+            
+            ws.latitude = latitude;
+            ws.longitude = longitude;
+            [ws.tableView.mj_header beginRefreshing];
+
+        } error:^{
+            ws.latitude = 39.929985778080237;
+            ws.longitude = 116.39564503787867;
+            [ws.tableView.mj_header beginRefreshing];
+
+        }];
         
-        ws.latitude = latitude;
-        ws.longitude = longitude;
-        
-    } error:^{
-        
-        ws.latitude = 39.929985778080237;
-        ws.longitude = 116.39564503787867;
-        
-    }];
+    }
     
     // 判断上次是否有尚未支付的订单
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];

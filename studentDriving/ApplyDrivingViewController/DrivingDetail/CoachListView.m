@@ -55,11 +55,15 @@
 - (void)configViewModel {
     
     _viewModel = [CoachListViewModel new];
-    
+    _viewModel.schoolID = _schoolID;
+    __weak typeof(self) ws = self;
     [_viewModel dvvSetRefreshSuccessBlock:^{
-        [self reloadData];
+        [ws reloadData];
     }];
     [_viewModel dvvSetNilResponseObjectBlock:^{
+        ws.bottomButton.tag = 1;
+        [ws.bottomButton setTitle:@"暂未填写教练信息" forState:UIControlStateNormal];
+        ws.bottomButton.bounds = CGRectMake(0, 0, self.bounds.size.width, 95 + 95 + 40);
 //        [self obj_showTotasViewWithMes:@"没有数据"];
     }];
     [_viewModel dvvSetRefreshErrorBlock:^{
