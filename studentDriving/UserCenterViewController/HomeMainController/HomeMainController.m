@@ -565,7 +565,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     {
         NSLog(@"我被回调了tag = %lu",tag);
         switch (tag) {
-            case 101:
+            case 102:
             {
                 QuestionBankViewController *questionBank = [[QuestionBankViewController alloc] init];
                 questionBank.questionlisturl = mainVC.questionFourlisturl;
@@ -579,7 +579,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
             }
                 break;
-                case 102:
+                case 101:
             {
                 QuestionTestViewController *questionTest = [[QuestionTestViewController alloc] init];
                 if ([AcountManager isLogin]) {
@@ -587,7 +587,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                     NSString *finalString = [mainVC.questionFourtesturl stringByAppendingString:appendString];
                     questionTest.questiontesturl = finalString;
                 }
-                questionTest.title = @"科四课件";
+                questionTest.title = @"科四模拟考试";
                 [mainVC.navigationController pushViewController:questionTest animated:YES];
 
             }
@@ -604,8 +604,9 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                     NSString *finalString = [mainVC.questionFourerrorurl stringByAppendingString:appendString];
                     wrongQuestion.questionerrorurl = finalString;
                 }
-                
+                wrongQuestion.title = @"错题";
                 [mainVC.navigationController pushViewController:wrongQuestion animated:YES];
+                
 
             }
                 break;
