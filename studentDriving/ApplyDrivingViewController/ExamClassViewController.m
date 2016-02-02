@@ -97,6 +97,10 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 //        [self showTotasViewWithMes:@"请选择班级类型"];
 //        return;
 //    }
+    if ([self.examclassmodel.classname isEqualToString:@""]||self.examclassmodel.classname == nil ) {
+        [self obj_showTotasViewWithMes:@"请选择报考班型!"];
+        return;
+    }
     
     NSDictionary *classtypeParam = @{kRealClasstypeid:self.examclassmodel.classid,@"name":self.examclassmodel.classname};
     [SignUpInfoManager signUpInfoSaveRealClasstype:classtypeParam];

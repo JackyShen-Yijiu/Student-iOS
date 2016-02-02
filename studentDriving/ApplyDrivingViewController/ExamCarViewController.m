@@ -100,6 +100,10 @@ static NSString *const kexamCar = @"info/carmodel";
 //            [self showTotasViewWithMes:@"请选择车型"];
 //            return;
 //        }
+    if ([self.carModel.name isEqualToString:@""]|| self.carModel.name == nil) {
+        [self obj_showTotasViewWithMes:@"请选择报考车型"];
+        return;
+    }
     NSDictionary *param = @{@"modelsid":self.carModel.modelsid,@"name":self.carModel.name,@"code":self.carModel.code};
     [SignUpInfoManager  signUpInfoSaveRealCarmodel:param];
     [self.navigationController popViewControllerAnimated:YES];
