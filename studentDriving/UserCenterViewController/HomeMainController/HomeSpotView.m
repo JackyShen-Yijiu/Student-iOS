@@ -139,13 +139,13 @@
     _lableitems = [NSMutableArray array];
 
     CGFloat labelY = backImageView.frame.origin.y + CGRectGetHeight(backImageView.frame) + 10;
-    NSArray *arrayStr =  @[@"欢迎您",@"科目一",@"科目二",@"科目三",@"科目四"];
+    NSArray *arrayStr =  @[@"报名",@"科目一",@"科目二",@"科目三",@"科目四"];
 
    
     for (int i = 0; i < 5; i++) {
         UILabel *label = [[UILabel alloc] init];
         if (i == 0) {
-            label.frame = CGRectMake(10, labelY, spotW, spotH);
+            label.frame = CGRectMake(20, labelY, spotW, spotH);
             label.text = arrayStr[i];
             label.tag = 201;
             label.font = [UIFont systemFontOfSize:14];
@@ -154,7 +154,7 @@
             [self addSubview:label];
         }else
         {
-            label.frame = CGRectMake(i * margin + i * spotW + 10, labelY, spotW, spotH);
+            label.frame = CGRectMake(i * margin + i * spotW + 20, labelY, spotW, spotH);
             label.text = arrayStr[i];
             label.font = [UIFont systemFontOfSize:12];
             label.textColor = [UIColor whiteColor];
