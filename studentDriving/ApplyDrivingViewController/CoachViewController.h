@@ -10,4 +10,19 @@
 #import "BLBaseViewController.h"
 @interface CoachViewController : BLBaseViewController
 @property (assign, nonatomic) NSUInteger markNum;
+
+
+/*
+ *  点击更换更多预约教练
+ */
+@property (nonatomic,assign) BOOL isModifyCoach;
+/*
+ *  时间ID
+ */
+@property (assign, nonatomic) NSNumber *timeid;
+/*
+ *  创建时间
+ */
+@property (copy, nonatomic) NSString *coursedate;
+
 @end
