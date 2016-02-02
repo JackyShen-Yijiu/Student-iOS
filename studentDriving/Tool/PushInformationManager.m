@@ -13,6 +13,20 @@
 #import "DVVOpenControllerFromSideMenu.h"
 @implementation PushInformationManager
 
+//        {
+//            "_j_msgid" = 3729781907;
+//            aps =     {
+//                alert = "\U60a8\U9884\U7ea6\U7684\U8bfe\U7a0b\U5df2\U88ab\U63a5\U53d7\Uff0c\U8bf7\U5230\U9884\U7ea6\U8be6\U60c5\U91cc\U67e5\U770b";
+//                badge = 1;
+//                sound = "sound.caf";
+//            };
+//            data =     {
+//                reservationid = 56b07580efe9248328d3428d;
+//                userid = 56937987e6b6a92c09a54d6b;
+//            };
+//            type = reservationsuccess;
+//        }
+
 + (void)receivePushInformation:(NSDictionary *)pushInformation {
     
     DYNSLog(@"推送统一处理消息");
@@ -28,7 +42,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"kuserapplysuccess" object:nil];
         
     }else if ([type isEqualToString:@"reservationsuccess"]) {
-        
         //reservationid
         DYNSLog(@"接受到教练确认订单信息");
         NSString *string = [NSString stringWithFormat:@"%@",pushInformation[@"data"][@"reservationid"]];
