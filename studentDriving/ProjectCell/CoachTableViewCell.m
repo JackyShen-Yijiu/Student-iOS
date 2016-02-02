@@ -316,9 +316,9 @@
     NSLog(@"驾龄coachModel.Seniority:%@",coachModel.seniority);
 
     if (coachModel.seniority) {
-        self.dringAgeLabel.text = [NSString stringWithFormat:@"%@年驾龄",coachModel.seniority] ;
+        self.dringAgeLabel.text = [NSString stringWithFormat:@"%@年教龄",coachModel.seniority] ;
     }else{
-        self.dringAgeLabel.text = [NSString stringWithFormat:@"无驾龄"] ;
+        self.dringAgeLabel.text = [NSString stringWithFormat:@"无教龄"] ;
     }
     
     //    self.starLabel.text = @"5";
