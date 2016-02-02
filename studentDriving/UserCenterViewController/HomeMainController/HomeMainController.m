@@ -53,6 +53,7 @@
 #import "DVVLocation.h"
 #import "DrivingCityListView.h"
 
+
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
@@ -199,6 +200,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
+//        [DVVCheckAppNewVersion checkAppNewVersion];
 //        ComplaintController *complainVC = [ComplaintController new];
 //        [self.navigationController pushViewController:complainVC animated:YES];
         

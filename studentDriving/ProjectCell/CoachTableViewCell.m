@@ -245,9 +245,9 @@
     NSLog(@"coachModel.Seniority:%@",coachModel.Seniority);
     
     if (coachModel.Seniority) {
-        self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",coachModel.Seniority] ;
+        self.dringAgeLabel.text = [NSString stringWithFormat:@"教龄：%@年",coachModel.Seniority] ;
     }else{
-        self.dringAgeLabel.text = [NSString stringWithFormat:@"%@驾龄",@"0"] ;
+        self.dringAgeLabel.text = [NSString stringWithFormat:@"暂无"];
     }
     
     if (coachModel.passrate) {

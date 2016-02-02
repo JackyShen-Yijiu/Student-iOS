@@ -50,20 +50,21 @@
         [DVVUserManager pushController:detail];
         
     }else if ([type isEqualToString:@"reservationcoachcomment"]) {
-        
-        NSLog(@"reservationcoachcomment");
+        // 获取到教练评价
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"有教练对您评价啦，赶快去查看吧！" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [alertView show];
         
     }else if ([type isEqualToString:@"walletupdate"]) {
-        
+        // 钱包更新
 
 //        MyWalletViewController *detail = [[MyWalletViewController alloc] init];
         [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeMyWalletViewController];
-
-        
+    }else if ([type isEqualToString:@"systemmsg"]) {
+        // 系统消息
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您有一条系统消息，赶快去查看吧！" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [alertView show];
+//        [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeChatListViewController];
     }
-    
-    
-    
 }
 
 @end

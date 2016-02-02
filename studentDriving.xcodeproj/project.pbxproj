@@ -611,6 +611,7 @@
 		D919F33E1C60885A00239B34 /* libSocialWechat.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D919F3151C60885A00239B34 /* libSocialWechat.a */; };
 		D919F33F1C60885A00239B34 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D919F3161C60885A00239B34 /* libWeChatSDK.a */; };
 		D919F3401C60885A00239B34 /* libSocialWhatsapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D919F31B1C60885A00239B34 /* libSocialWhatsapp.a */; };
+		D919F3431C6099C600239B34 /* DVVCheckAppNewVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = D919F3421C6099C600239B34 /* DVVCheckAppNewVersion.m */; };
 		D92B2D911C59BDE70050EE84 /* DrivingDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D92B2D901C59BDE70050EE84 /* DrivingDetailController.m */; };
 		D92B2D951C59BF780050EE84 /* DrivingDetailAddressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D92B2D931C59BF780050EE84 /* DrivingDetailAddressCell.m */; };
 		D92B2D961C59BF780050EE84 /* DrivingDetailAddressCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D92B2D941C59BF780050EE84 /* DrivingDetailAddressCell.xib */; };
@@ -1915,6 +1916,8 @@
 		D919F3191C60885A00239B34 /* WXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXApiObject.h; sourceTree = "<group>"; };
 		D919F31B1C60885A00239B34 /* libSocialWhatsapp.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialWhatsapp.a; sourceTree = "<group>"; };
 		D919F31C1C60885A00239B34 /* UMSocialWhatsappHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWhatsappHandler.h; sourceTree = "<group>"; };
+		D919F3411C6099C600239B34 /* DVVCheckAppNewVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVVCheckAppNewVersion.h; path = ../DVVCheckAppNewVersion.h; sourceTree = "<group>"; };
+		D919F3421C6099C600239B34 /* DVVCheckAppNewVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVVCheckAppNewVersion.m; path = ../DVVCheckAppNewVersion.m; sourceTree = "<group>"; };
 		D92B2D8F1C59BDE70050EE84 /* DrivingDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingDetailController.h; sourceTree = "<group>"; };
 		D92B2D901C59BDE70050EE84 /* DrivingDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingDetailController.m; sourceTree = "<group>"; };
 		D92B2D921C59BF780050EE84 /* DrivingDetailAddressCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingDetailAddressCell.h; sourceTree = "<group>"; };
@@ -4086,6 +4089,8 @@
 		D588B0E61BDDDC24000C5D6F /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D919F3411C6099C600239B34 /* DVVCheckAppNewVersion.h */,
+				D919F3421C6099C600239B34 /* DVVCheckAppNewVersion.m */,
 				D96248311C579A670028EE62 /* DVVBaseViewModel.h */,
 				D96248321C579A670028EE62 /* DVVBaseViewModel.m */,
 				D96712D71C3F8A150099C3B9 /* DVVCreateQRCode.h */,
@@ -5272,6 +5277,7 @@
 				D5604C8F1BF656F30020F0D7 /* EMChatViewCell.m in Sources */,
 				D970D39B1C3CFFEB003FCED3 /* CoachDMSubject.m in Sources */,
 				D588B1101BDDDC2F000C5D6F /* UIView+CalculateUIView.m in Sources */,
+				D919F3431C6099C600239B34 /* DVVCheckAppNewVersion.m in Sources */,
 				B20DBEDE1C5DB0FF0023676E /* WXUtil.mm in Sources */,
 				D96149311C5C532C00E3007F /* CoachListViewModel.m in Sources */,
 				D970D3981C3CFFEB003FCED3 /* CoachDMDriveschoolinfo.m in Sources */,
