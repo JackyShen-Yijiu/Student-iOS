@@ -67,7 +67,6 @@
 
 - (void)clearCellUIData {
     self.signUpLabel.text = nil;
-    //    self.signUpTextField.text = nil;
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -83,9 +82,6 @@
     }
     return YES;
 }
-
-
-
 
 @end
 

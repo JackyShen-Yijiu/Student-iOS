@@ -109,7 +109,7 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
                 return;
             }
             if (2 == [dataDic[@"paytype"] integerValue]) {
-                [self obj_showTotasViewWithMes:@"您有未完成的订单!"];
+                [self obj_showTotasViewWithMes:@"您已经支付,请等待我们的审核!"];
                 [self.navigationController popViewControllerAnimated:YES];
                 return;
             }

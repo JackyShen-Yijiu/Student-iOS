@@ -17,7 +17,8 @@
 
 //#define carOffsetX   (((systemsW - 10) * 0.2) - 10)
 
-#define carOffsetX   (((systemsW - 260.0) / 5 ) + 50)
+#define carOffsetX   (((systemsW - 260.0) / 5.0 ) + 50)
+
 @interface HomeSpotView ()
 
 @property (nonatomic,strong) NSMutableArray *lableitems; // 保存Label
@@ -84,7 +85,7 @@
             {
                 return;
             }
-        CGFloat carX = _carView.frame.origin.x + carOffsetX;
+        CGFloat carX = (_carView.frame.origin.x) + (carOffsetX);
             NSLog(@"%f",carOffsetX);
             //  调用代理方法
             if ([_delegate respondsToSelector:@selector(horizontalMenuScrollPageIndex:)]) {

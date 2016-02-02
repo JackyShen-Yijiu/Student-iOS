@@ -26,6 +26,7 @@
 #import "HomeRewardController.h"
 #import "DrivingViewController.h"
 #import "JGActivityViewController.h"
+#import "HomeShowKnowController.h"
 
 // 科目一
 #import "QuestionBankViewController.h"
@@ -74,7 +75,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
 //#define carOffsetX   (((systemsW - 10) * 0.2) - 10)
 #define systemsW   [[UIScreen mainScreen] bounds].size.width
 #define systemsH  [[UIScreen mainScreen] bounds].size.height
-#define CARFloat ((((systemsW - 260.0) / 5 ) + 50))
+#define CARFloat (((systemsW - 260.0) / 5.0 ) + 50)
 
 @interface HomeMainController () <UIScrollViewDelegate,HomeSpotViewDelegate,BMKLocationServiceDelegate,BMKGeoCodeSearchDelegate>
 
@@ -216,17 +217,6 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
     });
     
 //    [self changeScrollViewContentSize];
-}
-
-- (void)changeScrollViewContentSize {
-    
-    if (1 == [[AcountManager manager].userApplystate integerValue]) {
-        
-        _mainScrollView.contentSize = CGSizeMake(systemsW * 2, 0);
-    }else if (1 == [[AcountManager manager].userApplystate integerValue]) {
-        
-        _mainScrollView.contentSize = CGSizeMake(systemsW * 3, 0);
-    }
 }
 
 
@@ -482,9 +472,9 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
         switch (tag) {
             case 101:
             {
-//                HomeAdvantageController *homeAdvantageVC = [[HomeAdvantageController alloc] init];
-//                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
-                [mainVC obj_showTotasViewWithMes:@"此功能尚未开放!"];
+                HomeShowKnowController *homeAdvantageVC = [[HomeShowKnowController alloc] init];
+                [mainVC.navigationController pushViewController:homeAdvantageVC animated:YES];
+//                [mainVC obj_showTotasViewWithMes:@"此功能尚未开放!"];
             }
                 break;
                 case 102:
@@ -808,6 +798,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
     if (systemsW * 2  < scrollView.contentOffset.x && scrollView.contentOffset.x <= systemsW * 3)
     {
       [self carMore:scrollView.contentOffset.x];
+        
         if (scrollView.contentOffset.x == systemsW * 3)
         {
             
@@ -816,12 +807,6 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
         if (!_subjectThreeView)
         {
             
-            
-            if (scrollView.contentOffset.x == systemsW * 3) {
-                [self carMore:scrollView.contentOffset.x];
-                [_homeSpotView changLableColor:scrollView.contentOffset.x];
-            }
-
             [_mainScrollView addSubview:self.subjectThreeView];
             
         }
@@ -829,7 +814,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
     if (systemsW * 3  < scrollView.contentOffset.x  && scrollView.contentOffset.x<= systemsW * 4)
         {
             [self carMore:scrollView.contentOffset.x];
-            if (scrollView.contentOffset.x == systemsW *4) {
+            if (scrollView.contentOffset.x == systemsW * 4) {
                 
                 [_homeSpotView changLableColor:scrollView.contentOffset.x];
             }
@@ -856,6 +841,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
 {
 
     NSLog(@"______________(((((((()))))))))))+++++++++++++++++++%f",offSet);
+    NSLog(@"++++++++++++++++++++++++++++++++++++++++++++++++++++%f",(3.0 * (CARFloat) + 10));
 
     NSLog(@"%f",systemsW);
     CGFloat contentOffsetX ;
@@ -871,7 +857,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
         contentOffsetX = width * 2;
     }else if (offSet == 3.0 * (CARFloat) + 10){
         
-        contentOffsetX = width *3;
+        contentOffsetX = width * 3;
     }else if (offSet == 4.0 * (CARFloat) + 10){
         contentOffsetX = width * 4 ;
     }

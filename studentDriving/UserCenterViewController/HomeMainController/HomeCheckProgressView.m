@@ -103,7 +103,7 @@
 - (UILabel *)topLabel{
     if (_topLabel == nil) {
         _topLabel = [[UILabel alloc] init];
-        _topLabel.text = @"闲着也是闲着,小步与您玩个小游戏吧!";
+        _topLabel.text = @"您是否已经报名学车?";
         _topLabel.textAlignment = NSTextAlignmentCenter;
         _topLabel.font = [UIFont systemFontOfSize:12];
     }
@@ -112,7 +112,7 @@
 - (UILabel *)bottomLabel{
     if (_bottomLabel == nil) {
         _bottomLabel = [[UILabel alloc] init];
-        _bottomLabel.text = @"小步猜您已经在学车了,亲对吗?";
+        _bottomLabel.text = @"";
         _bottomLabel.textAlignment = NSTextAlignmentCenter;
         _bottomLabel.font = [UIFont systemFontOfSize:12];
     }
@@ -122,7 +122,7 @@
 - (UIButton *)rightButtton {
     if (_rightButtton == nil) {
         _rightButtton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_rightButtton setTitle:@"猜对了,你真聪明" forState:UIControlStateNormal];
+        [_rightButtton setTitle:@"是,我已学车" forState:UIControlStateNormal];
         [_rightButtton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
          _rightButtton.backgroundColor = MAINCOLOR;
         _rightButtton.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -138,7 +138,7 @@
 - (UIButton *)wrongButton {
     if (_wrongButton == nil) {
         _wrongButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        [_wrongButton setTitle:@"笨死了,答错了" forState:UIControlStateNormal];
+        [_wrongButton setTitle:@"否,我要报名" forState:UIControlStateNormal];
         [_wrongButton setTitleColor:MAINCOLOR forState:UIControlStateNormal];
         _wrongButton.backgroundColor = [UIColor whiteColor];
         _wrongButton.titleLabel.font = [UIFont systemFontOfSize:15];

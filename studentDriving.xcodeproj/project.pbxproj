@@ -36,6 +36,7 @@
 		066BFB191C23A2C3002A1DD8 /* HomeMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB151C23A2C3002A1DD8 /* HomeMainView.m */; };
 		066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */; };
 		066BFB701C2428D0002A1DD8 /* HomeAdvantageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */; };
+		0684361C1C611586004FEA62 /* HomeShowKnowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0684361B1C611586004FEA62 /* HomeShowKnowController.m */; };
 		068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 068716621C5607C50055D9DC /* AddlineButtomTextField.m */; };
 		06EC02C41C2643AD0067AD16 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */; };
 		06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C61C2643BE0067AD16 /* VirtualViewController.m */; };
@@ -803,6 +804,8 @@
 		066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSpotView.m; sourceTree = "<group>"; };
 		066BFB6E1C2428D0002A1DD8 /* HomeAdvantageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAdvantageController.h; sourceTree = "<group>"; };
 		066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAdvantageController.m; sourceTree = "<group>"; };
+		0684361A1C611586004FEA62 /* HomeShowKnowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeShowKnowController.h; sourceTree = "<group>"; };
+		0684361B1C611586004FEA62 /* HomeShowKnowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeShowKnowController.m; sourceTree = "<group>"; };
 		068716611C5607C50055D9DC /* AddlineButtomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddlineButtomTextField.h; sourceTree = "<group>"; };
 		068716621C5607C50055D9DC /* AddlineButtomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddlineButtomTextField.m; sourceTree = "<group>"; };
 		06EC02C21C2643AC0067AD16 /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MagicDetailViewController.h; path = ../MagicDetailViewController.h; sourceTree = "<group>"; };
@@ -2363,6 +2366,8 @@
 				06073D831C251BF60058B372 /* HomeFavourableController.m */,
 				06073D851C251C300058B372 /* HomeRewardController.h */,
 				06073D861C251C300058B372 /* HomeRewardController.m */,
+				0684361A1C611586004FEA62 /* HomeShowKnowController.h */,
+				0684361B1C611586004FEA62 /* HomeShowKnowController.m */,
 				D98E06121C3E4570009BFA81 /* DVVCheckActivity.h */,
 				D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */,
 				062734B21C59C8F70056B0BC /* SignUp */,
@@ -5486,6 +5491,7 @@
 				D96D1BCC1C2B858400F1C282 /* AppDelegate.mm in Sources */,
 				D5604B6D1BF656C50020F0D7 /* PSTGridLayoutItem.m in Sources */,
 				D5604B781BF656C50020F0D7 /* TTGlobalUICommon.m in Sources */,
+				0684361C1C611586004FEA62 /* HomeShowKnowController.m in Sources */,
 				4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */,
 				D965CAAC1C239D9F00DCD094 /* DrivingTableHeaderView.m in Sources */,
 				D5604B5B1BF656C50020F0D7 /* NSData+EMImageContentType.m in Sources */,

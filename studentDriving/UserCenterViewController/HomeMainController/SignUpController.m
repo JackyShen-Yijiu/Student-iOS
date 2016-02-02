@@ -35,7 +35,7 @@
 #import "SignUpFirmOrderController.h"
 
 
-static NSString *const kuserapplyUrl = @"/userinfo/userapplyschool";
+static NSString *const kuserapplyUrl = @"userinfo/userapplyschool";
 static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
 static NSString *const kVerifyFcode = @"verifyfcodecorrect";
 
@@ -165,7 +165,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         
         // pay view
         UIView *payView = [[UIView alloc] initWithFrame:CGRectMake(0, 200, kSystemWide, 80)];
-        payView.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+        payView.backgroundColor = [UIColor colorWithHexString:@"f5f9f9"];
         [payView addSubview:self.realPayLabel];
         [payView addSubview:self.moneyPayLabel];
         [view addSubview:payView];
@@ -180,6 +180,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
     NSString *className =  nil;
     NSString *schoolName = nil;
     NSString *coachName = nil;
+//    self.tableView.backgroundColor = [UIColor colorWithHexString:@"f5f9f9"];
     if (_signUpFormDetail == SignUpFormCoachDetail) {
         // 教练详情
          coachName = self.coachDetailModel.name;
