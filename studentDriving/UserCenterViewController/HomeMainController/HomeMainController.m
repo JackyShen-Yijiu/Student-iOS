@@ -53,6 +53,8 @@
 #import "DVVLocation.h"
 #import "DrivingCityListView.h"
 
+#import "APWaitEvaluationViewController.h"
+#import "MyAppointmentModel.h"
 
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
@@ -62,6 +64,8 @@ static NSString *kConversationChatter = @"ConversationChatter";
 static NSString *const kexamquestionUrl = @"info/examquestion";
 
 static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
+
+static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@&subjectid=%@";
 
 #define ksubject      @"subject"
 #define ksubjectTwo   @"subjecttwo"
@@ -315,15 +319,8 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 
                 [AcountManager saveUserApplyState:@"2"];
                 
-                
-                // 强制评论
-                NSString *pinglunString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
-                NSDictionary *pinglunparam = @{@"userid":[AcountManager manager].userid};
-                [JENetwoking startDownLoadWithUrl:pinglunString postParam:pinglunparam WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-                    
-                    NSLog(@"%@",data);
-                    
-                }];
+                // 判断是否有尚未评论的预约
+                [self loadCommentList];
                 
             }else {
                 
@@ -382,6 +379,74 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     }];
 
 }
+
+- (void)loadCommentList
+{
+    
+    NSString *appointmentUrl = [NSString stringWithFormat:kappointmentUrl,[AcountManager manager].userid,@"-1"];
+
+    NSString *downLoadUrl = [NSString stringWithFormat:BASEURL,appointmentUrl];
+    DYNSLog(@"url = %@ %@",[AcountManager manager].userid,[AcountManager manager].userToken);
+    
+    __weak typeof (self) ws = self;
+    [JENetwoking startDownLoadWithUrl:downLoadUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *param = data;
+        NSNumber *type = param[@"type"];
+        NSArray *array = param[@"data"];
+
+        if (type.integerValue == 1) {
+            
+            if (array && array.count==1) {// 跳转到预约详情
+                
+                APWaitEvaluationViewController *waitEvaluation = [[APWaitEvaluationViewController alloc] init];
+                NSError *error = nil;
+                waitEvaluation.model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:array error:&error].firstObject;
+                NSInteger num = 0;
+                if ([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
+                    num = 2;
+                }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目三"]){
+                    num = 3;
+                }
+                waitEvaluation.markNum =  @(num);
+                [self.navigationController pushViewController:waitEvaluation animated:YES];
+                
+            }else if (array && array.count>0){// 跳转到预约列表
+                
+                // 弹出验证学车进度窗体
+                _homeCheckProgressView = [[HomeCheckProgressView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
+                _homeCheckProgressView.topLabel.text = @"您有未评价订单";
+                _homeCheckProgressView.bottomLabel.text = @"给您的教练一个好评吧!";
+                [_homeCheckProgressView.rightButtton setTitle:@"去评价" forState:UIControlStateNormal];
+                [_homeCheckProgressView.wrongButton setTitle:@"去投诉" forState:UIControlStateNormal];
+                
+                _homeCheckProgressView.didClickBlock = ^(NSInteger tag){
+                    // tag = 200 答对了
+                    
+                    AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
+                    
+                    NSInteger num = 0;
+                    if ([[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
+                        appointment.title = @"科二预约列表";
+                        num = 2;
+                    }else if ([[AcountManager manager].userSubject.name isEqualToString:@"科目三"]){
+                        appointment.title = @"科三预约列表";
+                        num = 3;
+                    }
+                    
+                    appointment.markNum = [NSNumber numberWithInteger:num];
+                    [ws.navigationController pushViewController:appointment animated:YES];
+                    
+                    
+                };
+                [[UIApplication sharedApplication].keyWindow addSubview:_homeCheckProgressView];
+                
+            }
+            
+        }
+    }];
+    
+}
+
 - (void)startSubjectFourDownLoad
 {
     NSString *urlString = [NSString stringWithFormat:BASEURL,kexamquestionUrl];
