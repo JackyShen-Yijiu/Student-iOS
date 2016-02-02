@@ -252,6 +252,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         return;
     }
     
+    // 申请状态保存
     NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
     NSDictionary *param = @{@"userid":[AcountManager manager].userid};
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
@@ -262,17 +263,22 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
+            
             NSDictionary *dataDic = [param objectForKey:@"data"];
             if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
                 return;
             }
-            if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
+            
+            if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {// 尚未报名
+                
                 [AcountManager saveUserApplyState:@"0"];
                 NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
                 // 如果之前已经点击过答对了,就直接跳转到验证学车进度
                 if ([defauts objectForKey:@"CheckProgress"]) {
+                    
                     VerifyPhoneController *verifyVC = [[VerifyPhoneController alloc] init];
                     [ws.navigationController pushViewController:verifyVC animated:YES];
+                    
                 }else{
                     // 弹出验证学车进度窗体
                     _homeCheckProgressView = [[HomeCheckProgressView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
@@ -300,13 +306,30 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                     [[UIApplication sharedApplication].keyWindow addSubview:_homeCheckProgressView];
 
                 }
-            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
+                
+            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {// 已报名,尚未交钱
+                
                 [AcountManager saveUserApplyState:@"1"];
-            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 2) {
+                
+            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 2) {// 正常学习,
+                
                 [AcountManager saveUserApplyState:@"2"];
+                
+                
+                // 强制评论
+                NSString *pinglunString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
+                NSDictionary *pinglunparam = @{@"userid":[AcountManager manager].userid};
+                [JENetwoking startDownLoadWithUrl:pinglunString postParam:pinglunparam WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+                    
+                    NSLog(@"%@",data);
+                    
+                }];
+                
             }else {
+                
                 [AcountManager saveUserApplyState:@"3"];
             }
+            
             [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
             
         }else {
@@ -319,6 +342,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         [self showTotasViewWithMes:@"网络错误"];
     }];
     
+    // 获取首页状态
     NSString *getMyProgress = [NSString stringWithFormat:BASEURL,kgetMyProgress];
     [JENetwoking startDownLoadWithUrl:getMyProgress postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         if (!data) {
