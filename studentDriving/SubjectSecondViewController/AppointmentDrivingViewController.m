@@ -764,7 +764,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             if (type.integerValue == 1) {
                 
                 // 显示分享
-                [DVVShare shareWithTitle:DVV_Share_Default_Title content:DVV_Share_Default_Content image:DVV_Share_Default_Image location:nil urlResource:nil success:^(NSString *platformName) {
+                [DVVShare shareWithTitle:DVV_Share_Default_Title content:DVV_Share_Default_Content image:DVV_Share_Default_Image location:nil url:nil success:^(NSString *platformName) {
                     [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
                 }];
                 

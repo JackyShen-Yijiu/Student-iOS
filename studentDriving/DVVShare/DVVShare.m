@@ -8,6 +8,7 @@
 
 #import "DVVShare.h"
 #import "DVVShareView.h"
+#import <UMSocialSnsData.h>
 
 @implementation DVVShare
 
@@ -15,8 +16,15 @@
                content:(NSString *)content
                  image:(UIImage *)image
               location:(CLLocation *)location
-           urlResource:(UMSocialUrlResource *)urlResource
+                   url:(NSString *)url
                success:(DVVShareSuccessBlock)success {
+    
+    UMSocialUrlResource *urlResource = [UMSocialUrlResource new];
+    if (!url) {
+        urlResource.url = DVV_Share_Default_Url;
+    }else {
+        urlResource.url = url;
+    }
     
     DVVShareView *shareView = [DVVShareView new];
     shareView.frame = [UIScreen mainScreen].bounds;

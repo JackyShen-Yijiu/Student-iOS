@@ -18,7 +18,7 @@ typedef void(^DVVShareSuccessBlock)(NSString *platformName);
                content:(NSString *)content
                  image:(UIImage *)image
               location:(CLLocation *)location
-           urlResource:(UMSocialUrlResource *)urlResource
+                   url:(NSString *)url
                success:(DVVShareSuccessBlock)success;
 
 @end

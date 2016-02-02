@@ -10,13 +10,9 @@
 #import <UMSocial.h>
 #import <UMSocialDataService.h>
 #import <WXApi.h>
+#import <WeiboSDK.h>
 #import <TencentOpenAPI/QQApiInterface.h>
 #import "DVVShareCell.h"
-
-#import "UMSocialWechatHandler.h"
-#import "UMSocialQQHandler.h"
-#import "UMSocialSinaSSOHandler.h"
-#import <WeiboSDK.h>
 
 #define kShareCell_Identifier @"kShareCellIdentifier"
 
@@ -160,34 +156,15 @@
     // 如果没有安装微信，则不显示微信分享信息
     if (![WXApi isWXAppInstalled]) {
         [_shareDict removeObjectsForKeys:@[ UMShareToWechatSession, UMShareToWechatTimeline ]];
-    }else {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            // 添加微信
-            [UMSocialWechatHandler setWXAppId:@"wxf1c209725d178604" appSecret:@"4a17fd7d8cc0d0e1eacd0ce1d2e23e0e" url:@"http://www.ybxch.com/"];
-        });
-        
     }
     // 如果没有安装QQ，则不显示QQ的分享信息
     if (![QQApiInterface isQQInstalled]) {
         [_shareDict removeObjectsForKeys:@[ UMShareToQQ, UMShareToQzone ]];
-    }else {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            // 添加QQ
-            [UMSocialQQHandler setQQWithAppId:@"1105047313" appKey:@"V2WpihDDnIaxxXwL" url:@"http://www.ybxch.com/"];
-        });
     }
-    
-    if (![WeiboSDK isWeiboAppInstalled]) {
-        [_shareDict removeObjectsForKeys:@[ UMShareToSina ]];
-    }else {
-        static dispatch_once_t onceToken;
-        dispatch_once(&onceToken, ^{
-            // 添加新浪微博分享
-            [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"16181237" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
-        });
-    }
+//    // 如果没有安装微博，则不显示微博的分享信息
+//    if (![WeiboSDK isWeiboAppInstalled]) {
+//        [_shareDict removeObjectsForKeys:@[ UMShareToSina ]];
+//    }
 }
 
 #pragma mark - collectionView
@@ -248,8 +225,19 @@
 
 - (void)shareWithPlatform:(NSString *)platform {
     
-    NSLog(@"_presentedController:%p",_presentedController);
-
+//    NSLog(@"_presentedController:%p",_presentedController);
+//    NSLog(@"platform:%@",platform);
+//    NSLog(@"_shareContent:%@",_shareContent);
+//    NSLog(@"_shareImage:%@",_shareImage);
+//    NSLog(@"_shareLocation:%@",_shareLocation);
+//    NSLog(@"_shareLocation:%@",_shareLocation);
+//    NSLog(@"_shareUrlResource.url:%@",_shareUrlResource.url);
+    
+    // 如果没有安装微博，将会调到网页登录  在这时要把本视图移除，否则本视图会遮盖登录页
+    if (![WeiboSDK isWeiboAppInstalled]) {
+        [self hide];
+    }
+    
     [[UMSocialDataService defaultDataService] postSNSWithTypes:@[ platform ] content:_shareContent image:_shareImage location:_shareLocation urlResource:_shareUrlResource presentedController:_presentedController completion:^(UMSocialResponseEntity *response) {
         
         if (response.responseCode == UMSResponseCodeSuccess) {
@@ -258,6 +246,45 @@
             if (_successBlock) {
                 _successBlock([[response.data allKeys] objectAtIndex:0]);
             }
+        }else if (response.responseCode == UMSREsponseCodeTokenInvalid){
+            
+            // 授权用户错误
+            [self obj_showTotasViewWithMes:@"授权用户错误"];
+            
+        }else if (response.responseCode == UMSResponseCodeBaned) {
+            
+            // 用户被封禁
+            [self obj_showTotasViewWithMes:@"用户被封禁"];
+            
+        }else if (response.responseCode == UMSResponseCodeFaild) {
+            
+            // 发送失败(由于内容不符合要求或者其他原因)
+            [self obj_showTotasViewWithMes:@"发送失败(由于内容不符合要求或者其他原因)"];
+            
+        }else if (response.responseCode == UMSResponseCodeEmptyContent) {
+            
+            // 发送内容为空
+            [self obj_showTotasViewWithMes:@"发送内容为空"];
+            
+        }else if (response.responseCode == UMSResponseCodeShareRepeated) {
+            
+            // 分享内容重复
+            [self obj_showTotasViewWithMes:@"分享内容重复"];
+            
+        }else if (response.responseCode == UMSResponseCodeNetworkError) {
+            
+            // 网络错误,请检查网络链接
+            [self obj_showTotasViewWithMes:@"网络错误,请检查网络链接"];
+            
+        }else if (response.responseCode == UMSResponseCodeGetProfileFailed) {
+            
+            // 获取账户失败
+            [self obj_showTotasViewWithMes:@"获取账户失败"];
+            
+        }else if (response.responseCode == UMSResponseCodeCancel) {
+            
+            // 用户取消授权
+            [self obj_showTotasViewWithMes:@"用户取消授权"];
         }
         
     }];
