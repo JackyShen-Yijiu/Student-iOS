@@ -137,6 +137,7 @@
         
         if (_addressSuccess) {
             _addressSuccess(result,
+                            _coordinate,
                             addressComponent.city,
                             result.address);
         }

@@ -52,6 +52,7 @@
         _drivingAdress = [[UILabel alloc]init];
         _drivingAdress.text = @"北京市海淀区";
         _drivingAdress.font = [UIFont systemFontOfSize:14];
+        _drivingAdress.numberOfLines = 0;
         _drivingAdress.textColor = TEXTGRAYCOLOR;
     }
     return _drivingAdress;
@@ -82,17 +83,31 @@
         make.left.mas_equalTo(self.mas_left).offset(20);
         make.top.mas_equalTo(self.mas_top).offset(18);
         make.width.mas_equalTo(@250);
+        make.height.mas_equalTo(@16);
     }];
     
     [self.drivingAdress mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mas_left).offset(20);
-        make.top.mas_equalTo(self.drivingName.mas_bottom).offset(0);
+        make.top.mas_equalTo(self.drivingName.mas_bottom).offset(10);
         make.width.mas_equalTo(@250);
     }];
     
     [self.moneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.mas_centerY);
         make.right.mas_equalTo(self.mas_right).offset(-20);
+        make.top.mas_equalTo(self.mas_top).offset(18);
+        make.height.mas_equalTo(@16);
     }];
 }
+- (void)setModel:(ExamClassModel *)model{
+    self.drivingName.text = model.classname;
+    self.drivingAdress.text = model.classdesc;
+    self.moneyLabel.text = [NSString stringWithFormat:@"¥%@",model.price];
+}
+- (CGFloat)getLabelWidthWithString:(NSString *)string {
+    CGRect bounds = [string boundingRectWithSize:
+                     CGSizeMake([[UIScreen mainScreen] bounds].size.width - 30, 10000) options:
+                     NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.f]} context:nil];
+    return bounds.size.height + 26;
+}
+
 @end

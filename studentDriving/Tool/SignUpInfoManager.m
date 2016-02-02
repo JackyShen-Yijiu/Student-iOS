@@ -342,12 +342,12 @@ static NSString *const kRealUserid = @"userid";
         return nil;
         
     }
-//    NSString *krealClasstypeidString = [NSUserStoreTool getObjectWithKey:kRealClasstypeid];
-//    if (krealClasstypeidString == nil || krealClasstypeidString.length == 0) {
-//        [self obj_showTotasViewWithMes:@"班型为空"];
-//        return nil;
-//        
-//    }
+    NSString *krealClasstypeidString = [NSUserStoreTool getObjectWithKey:kRealClasstypeid];
+    if (krealClasstypeidString == nil || krealClasstypeidString.length == 0) {
+        [self obj_showTotasViewWithMes:@"班型为空"];
+        return nil;
+        
+    }
     NSDictionary *krealSubjectDic = [NSUserStoreTool getObjectWithKey:kRealSubjectID];
     NSString *krealSubjectId = @"";
     if ([[krealSubjectDic objectForKey:@"subject"] isEqualToString:krealSubjectId]&&[krealSubjectDic objectForKey:@"subject"] == nil) {
@@ -368,7 +368,7 @@ static NSString *const kRealUserid = @"userid";
              @"telephone":krealTelephoneString,
              @"schoolid":krealSchoolidString,
              @"coachid":krealCoachidString,
-//             @"classtypeid":krealClasstypeidString,
+             @"classtypeid":krealClasstypeidString,
              @"subjectid":krealSubjectId,
              @"code":krealCode,
              @"carmodel":[JsonTransformManager dictionaryTransformJsonWith:krealCarmodelDictionary]

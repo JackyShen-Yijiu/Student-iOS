@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-typedef void(^DrivingCityListViewSelectedItemBlock)(NSString *cityName);
+typedef void(^DrivingCityListViewSelectedItemBlock)(NSString *cityName,
+                                                    NSIndexPath *indexPath);
 
 @interface DrivingCityListView : UIView<UITableViewDataSource, UITableViewDelegate>
 
