@@ -84,6 +84,12 @@ static NSString *const kuserComplainAppointment = @"courseinfo/usercomplaint";
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             [self showTotasViewWithMes:@"投诉成功"];
+            
+            if (self.isForceComment) {
+                [self.navigationController popViewControllerAnimated:YES];
+                return;
+            }
+            
             for (UIViewController *vc in self.navigationController.viewControllers) {
                 if ([vc isKindOfClass:[AppointmentViewController class]]) {
                     [self.navigationController popToViewController:vc animated:YES];

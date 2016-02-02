@@ -424,7 +424,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
                     if (model) {
                         waitEvaluation.model = model;
                     }
-                    
+                    waitEvaluation.isForceComment = YES;
                     waitEvaluation.markNum =  @(number);
                     [ws.navigationController pushViewController:waitEvaluation animated:YES];
                     

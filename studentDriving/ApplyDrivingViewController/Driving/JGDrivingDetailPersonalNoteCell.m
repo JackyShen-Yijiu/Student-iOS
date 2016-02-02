@@ -43,8 +43,8 @@
     if (_moreBtn == nil) {
         _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg"] forState:UIControlStateNormal];
-        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg"] forState:UIControlStateHighlighted];
-        [_moreBtn addTarget:self action:@selector(moreBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg_Select"] forState:UIControlStateSelected];
+        [_moreBtn addTarget:self action:@selector(moreBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _moreBtn;
@@ -73,16 +73,16 @@
     }
     return _footView;
 }
-- (UILabel *)notcountLabel {
-    
-    if (_notcountLabel == nil) {
-        _notcountLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
-        _notcountLabel.text = @"该教练暂无个人说明";
-        _notcountLabel.textColor = [UIColor lightGrayColor];
-        _notcountLabel.numberOfLines = 1;
-    }
-    return _notcountLabel;
-}
+//- (UILabel *)notcountLabel {
+//    
+//    if (_notcountLabel == nil) {
+//        _notcountLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
+//        _notcountLabel.text = @"该教练暂无个人说明";
+//        _notcountLabel.textColor = [UIColor lightGrayColor];
+//        _notcountLabel.numberOfLines = 1;
+//    }
+//    return _notcountLabel;
+//}
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setUp];
@@ -160,6 +160,8 @@
 {
     _detailModel = detailModel;
     
+    self.notcountLabel.hidden = YES;
+
     if (_detailModel.introduction&&[_detailModel.introduction length]!=0) {
         self.notcountLabel.hidden = YES;
         self.countLabel.text = _detailModel.introduction;
@@ -189,8 +191,10 @@
     
 }
 
-- (void)moreBtnDidClick
+- (void)moreBtnDidClick:(UIButton *)btn
 {
+    self.moreBtn.selected = !self.moreBtn.selected;
+    
     if ([self.delegate respondsToSelector:@selector(JGDrivingDetailPersonalNoteCellWithMoreBtnDidClick:)]) {
         [self.delegate JGDrivingDetailPersonalNoteCellWithMoreBtnDidClick:self];
     }

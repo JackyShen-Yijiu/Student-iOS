@@ -210,6 +210,7 @@
 #pragma mark - Action
 - (void)clickComplaint:(UIButton *)sender {
     ComplainViewController *complain = [[ComplainViewController alloc] init];
+    complain.isForceComment = self.isForceComment;
     complain.model = self.model;
     [self.navigationController pushViewController:complain animated:YES];
     
@@ -217,6 +218,7 @@
 - (void)clickComment:(UIButton *)sender {
     APCommentViewController *comment = [[APCommentViewController alloc] init];
     comment.model = self.model;
+    comment.isForceComment = self.isForceComment;
     [self.navigationController pushViewController:comment animated:YES];
 }
 

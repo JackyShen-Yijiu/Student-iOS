@@ -289,6 +289,10 @@ static NSString *const kAddLoveAndDeleteCoach = @"userinfo/favoritecoach/%@";
 - (void)collectionBtnDidClick
 {
     
+    if (![AcountManager isLogin]) {
+        return;
+    }
+    
     NSString *kSaveUrl = [NSString stringWithFormat:kAddLoveAndDeleteCoach,self.detailModel.coachid];
 
     NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
