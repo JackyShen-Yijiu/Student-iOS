@@ -523,11 +523,36 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         }];
 
     }else if (_signUpFormDetail == SignUpFormSchoolDetail){
+        /*
+         //从教练详情报名
+         NSMutableDictionary *carmodelParm = [NSMutableDictionary dictionary];
+         carmodelParm[@"modelsid"] = self.coachDetailModel.carmodel.modelsid;
+         carmodelParm[@"name"] = self.coachDetailModel.carmodel.name;
+         carmodelParm[@"code"] = self.coachDetailModel.carmodel.code;
+         
+         NSMutableDictionary *params = [NSMutableDictionary dictionary];
+         params[@"name"] = self.baomingName;
+         params[@"idcardnumber"] = @"";
+         params[@"telephone"] = self.baomingTel;
+         params[@"address"] = [AcountManager manager].userAddress;
+         params[@"userid"] = [AcountManager manager].userid;
+         if (self.coachDetailModel.driveschoolinfo[@"id"] && [self.coachDetailModel.driveschoolinfo[@"id"] length]!=0) {
+         params[@"schoolid"] = self.coachDetailModel.driveschoolinfo[@"id"];
+         }else{
+         params[@"schoolid"] = @"";
+         }
+         params[@"coachid"] = self.coachDetailModel.coachid;
+         params[@"classtypeid"] = self.serverclasslistModel._id;
+         params[@"carmodel"] = [self dictionaryToJson:carmodelParm];
+         params[@"paytype"] = number;
+
+         */
         
         // 从驾校详情报名
-        NSDictionary *carmodelParm = @{@"modelsid":[NSString stringWithFormat:@"%lu",self.classTypeDMDataModel.carmodel.modelsid],
-                                       @"name":self.classTypeDMDataModel.carmodel.name,
-                                       @"code":self.classTypeDMDataModel.carmodel.code};
+        NSMutableDictionary *carmodelParm = [NSMutableDictionary dictionary];
+        carmodelParm[@"modelsid"] = [NSString stringWithFormat:@"%lu",self.classTypeDMDataModel.carmodel.modelsid];
+        carmodelParm[@"name"] = self.classTypeDMDataModel.carmodel.name;
+        carmodelParm[@"code"] = self.classTypeDMDataModel.carmodel.code;
         
         NSMutableDictionary *params = [NSMutableDictionary dictionary];
         params[@"name"] = self.baomingName;
@@ -538,47 +563,49 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
         if (self.classTypeDMDataModel.schoolinfo.schoolid && [self.classTypeDMDataModel.schoolinfo.schoolid length]!=0) {
             params[@"schoolid"] = self.classTypeDMDataModel.schoolinfo.schoolid;
         }else{
-            params[@"schoolid"] = self.classTypeDMDataModel.schoolinfo.schoolid;
+            params[@"schoolid"] = @"";
         }
         params[@"coachid"] = @"";
-        params[@"classtypeid"] = self.serverclasslistModel._id;
-        params[@"carmodel"] = carmodelParm;
+        params[@"classtypeid"] = self.classTypeDMDataModel.calssid;
+        params[@"carmodel"] = [self dictionaryToJson:carmodelParm];
         params[@"paytype"] = number;
-        
-//        
-//        NSDictionary *param = @{@"name":[SignUpInfoManager getSignUpRealName],
-//                                @"idcardnumber":@"",
-//                                @"telephone":[SignUpInfoManager getSignUpRealTelephone],
-//                                @"address":[AcountManager manager].userAddress,
-//                                @"userid":[AcountManager manager].userid,
-//                                @"schoolid":self.classTypeDMDataModel.schoolinfo.schoolid,
-//                                @"coachid":@"",
-//                                @"classtypeid":self.classTypeDMDataModel.calssid,
-//                                @"carmodel":carmodelParm,
-//                                @"paytype":number};
-        
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kuserapplyUrl];
         
         [JENetwoking startDownLoadWithUrl:applyUrlString postParam:params WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
             
-            DYNSLog(@"param = %@",data[@"msg"]);
+            NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
             
-            NSDictionary *param = data;
-            
-            NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-            
-            NSDictionary *extraDict = param[@"extra"];
-
-            if ([type isEqualToString:@"0"]) {
+            if ([type isEqualToString:@"1"]) {
                 
                 kShowSuccess(@"报名成功");
-                [AcountManager saveUserApplyState:@"1"];
-                //使重新报名变为0
+                        
+                NSDictionary *extraDict = data[@"extra"];;
+                
                 NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                
+                // 存储状态
+                //是否支付失败
+#define isPayErrorKey @"payError"
+                [ud setBool:YES forKey:isPayErrorKey];
+                
+                // 订单信息
+                //#define payErrorWithDictKey @"payErrorWithDict"
+                [ud setObject:extraDict forKey:payErrorWithDictKey];
+                
+                // 支付方式
+                //#define payErrorWithPayType @"payErrorWithPayType"
+                
+                // 手机号码
+                //#define payErrorWithPhone @"payErrorWithPhone"
+                [ud setObject:self.baomingTel forKey:payErrorWithPhone];
+                
+                
+                //使重新报名变为0
                 if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
                     [ud setObject:@"0" forKey:@"applyAgain"];
-                    [ud synchronize];
                 }
+                [ud synchronize];
+                
                 if (1 == [number integerValue]) {
                     // 线下报名
                     [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
@@ -589,11 +616,11 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                     vc.extraDict = extraDict;
                     vc.mobile = self.baomingTel;
                     [self.navigationController pushViewController:vc animated:YES];
-
+                    
                 }
                 
             }else {
-                kShowFail(param[@"msg"]);
+                kShowFail(data[@"msg"]);
             }
         }];
 
