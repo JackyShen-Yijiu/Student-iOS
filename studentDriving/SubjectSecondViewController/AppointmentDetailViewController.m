@@ -325,7 +325,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     }else if (self.state == AppointmentStateFinish) {
         [cell.cancelButton setTitle:@"课程已学完" forState:UIControlStateNormal];
         cell.cancelButton.userInteractionEnabled = NO;
-        cell.cancelButton.backgroundColor = RGBColor(17, 216, 136);
+        cell.cancelButton.backgroundColor = MAINCOLOR;
     }else if (self.state == AppointmentStateWait || self.state == AppointmentStateCoachConfirm) {
         
         [cell.cancelButton setTitle:@"取消预约" forState:UIControlStateNormal];

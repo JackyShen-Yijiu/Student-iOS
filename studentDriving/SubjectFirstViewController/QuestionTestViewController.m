@@ -37,8 +37,12 @@
     
     
     if (self.isModal==YES) {
+        CGFloat X = 5;
+        if ([UIScreen mainScreen].bounds.size.height>640) {
+            X = 15;
+        }
         UIButton *backBtn = [[UIButton alloc] init];
-        backBtn.frame = CGRectMake(15, 10, 44, 44);
+        backBtn.frame = CGRectMake(X, 10, 44, 44);
         backBtn.backgroundColor = [UIColor clearColor];
         [backBtn setImage:[UIImage imageNamed:@"navi_back.png"] forState:UIControlStateNormal];
         [backBtn setImage:[UIImage imageNamed:@"navi_back.png"] forState:UIControlStateHighlighted];

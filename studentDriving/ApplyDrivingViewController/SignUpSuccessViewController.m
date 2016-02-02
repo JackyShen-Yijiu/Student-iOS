@@ -82,8 +82,35 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
+            /*
+             { "type": 1, "msg": "", "data": 
+             
+             { "_id": "560539bea694336c25c3acb9", 用户id "applyinfo": 
+             
+             {
+             "handelmessage": [], 处理消息 
+             "handelstate": 0, //处理状态 0 未处理 1 处理中 2 处理成功 
+             "applytime": "2015-10-11T02:56:09.281Z" 
+             },
+             
+             "applystate": 2 申请状态 0 未报名 1 申请中 2 申请成功 "paytypestatus": 0, 0 未支付 20支付成功(等待验证) 30 支付失败
+             "paytype": 1, 1 线下支付， 2 线上支付
+             } 
+             
+             }
+             */
+            
+            
+            
+            
+            
             NSDictionary *dataDic = [param objectForKey:@"data"];
             if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
+                return;
+            }
+            if (2 == [dataDic[@"paytype"] integerValue]) {
+                [self obj_showTotasViewWithMes:@"您有未完成的订单!"];
+                [self.navigationController popViewControllerAnimated:YES];
                 return;
             }
             if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
