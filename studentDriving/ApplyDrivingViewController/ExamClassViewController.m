@@ -125,7 +125,6 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-
     CGSize cellSize = CGSizeMake(kSystemWide-20, 100);
     return cellSize;
 }
