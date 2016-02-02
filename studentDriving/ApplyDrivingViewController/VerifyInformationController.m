@@ -214,6 +214,9 @@ static NSString *const kuserapplyUrl = @"userinfo/enrollverificationv2";
             NSDictionary *param = data;
             NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
             if ([type isEqualToString:@"1"]) {
+                // 验证成功是
+                NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+                [defauts setObject:@" " forKey:@"CheckProgress"];
                [self.navigationController pushViewController:[SubmitVerificationController new] animated:YES];
                 [AcountManager saveUserApplyState:@"3"];
             }else {

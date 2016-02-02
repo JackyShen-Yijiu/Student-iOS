@@ -402,10 +402,14 @@ static NSString *const applyUrl = @"system/verifyactivitycoupon";
 
         [JGPayTool payWithPaye:type tradeNO:_extraDict[@"_id"] parentView:self price:_discountPrice title:_extraDict[@"applyclasstypeinfo"][@"name"] description:desStr success:^(NSString *str) {
             
-            NSLog(@"成功操作,跳转二维码界面");
-            [self obj_showTotasViewWithMes:@"支付成功"];
+            // 报名成功时清除
+            NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+            [defauts setObject:@" " forKey:@"SignUp"];
+           
             
-            [AcountManager saveUserApplyState:@"1"];
+            [self obj_showTotasViewWithMes:@"支付成功"];
+            [AcountManager saveUserApplyState:@"2"];
+            
 
             NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
             [user setBool:NO forKey:isPayErrorKey];

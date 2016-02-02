@@ -492,7 +492,7 @@ static NSString *const kcodeGainUrl = @"code";
             
             NSString *userid = [NSString stringWithFormat:@"%@",dataDic[@"data"][@"userid"]];
             NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
-            
+            [self obj_showTotasViewWithMes:@"注册成功!"];
             [self loginWithUserID:userid password:passwordString dataDic:dataDic];
             
         }

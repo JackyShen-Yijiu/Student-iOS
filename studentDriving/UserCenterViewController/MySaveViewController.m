@@ -13,8 +13,8 @@
 #import "DrivingCell.h"
 #import "CoachModel.h"
 #import "DrivingModel.h"
-#import "CoachDetailViewController.h"
-#import "DrivingDetailViewController.h"
+#import "DrivingDetailController.h"
+#import "JGDrivingDetailViewController.h"
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
 #define StartOffset  kSystemWide/4-60/2
@@ -374,17 +374,17 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         self.coachDetailModel = model;
         //        self.naviBarRightButton.hidden = NO;
         
-        CoachDetailViewController *detailVC = [[CoachDetailViewController alloc]init];
+        JGDrivingDetailViewController *detailVC = [[JGDrivingDetailViewController alloc]init];
         DYNSLog(@"coachid = %@",model.coachid);
         detailVC.coachUserId = model.coachid;
         [self.navigationController pushViewController:detailVC animated:YES];
         
     }else if (_myLoveState == MyLoveStateDriving) {
-        DrivingDetailViewController *SelectVC = [[DrivingDetailViewController alloc]init];
+        DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
         DrivingModel *model = self.dataArray[indexPath.row];
         self.drivingDetailModel = model;
         self.naviBarRightButton.hidden = YES;
-        SelectVC.schoolId = model.schoolid;
+        SelectVC.schoolID = model.schoolid;
         [self.navigationController pushViewController:SelectVC animated:YES];
         
     }

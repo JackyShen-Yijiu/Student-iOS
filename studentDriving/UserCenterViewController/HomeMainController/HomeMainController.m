@@ -256,6 +256,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         if (!data) {
             return ;
         }
+         __weak typeof(self) ws = self;
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
@@ -265,29 +266,41 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
             }
             if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
                 [AcountManager saveUserApplyState:@"0"];
-                
-                // 弹出验证学车进度窗体
-                _homeCheckProgressView = [[HomeCheckProgressView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
-                 __weak typeof(self) ws = self;
-                _homeCheckProgressView.didClickBlock = ^(NSInteger tag){
-                    // tag = 200 答对了
+                NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+                // 如果之前已经点击过答对了,就直接跳转到验证学车进度
+                if ([[defauts objectForKey:@"CheckProgress"] isEqualToString:@"答对了"]) {
+                    VerifyPhoneController *verifyVC = [[VerifyPhoneController alloc] init];
+                    [ws.navigationController pushViewController:verifyVC animated:YES];
+                }else if ([[defauts objectForKey:@"SingUp"] isEqualToString:@"答错了"]){
                     
-                    if (200 == tag) {
-                        // 验证学车进度
-                        [ws.homeCheckProgressView removeFromSuperview];
-                        VerifyPhoneController *verifyVC = [[VerifyPhoneController alloc] init];
-                        [ws.navigationController pushViewController:verifyVC animated:YES];
+                }
+                else{
+                    // 弹出验证学车进度窗体
+                    _homeCheckProgressView = [[HomeCheckProgressView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
+                    
+                    _homeCheckProgressView.didClickBlock = ^(NSInteger tag){
+                        // tag = 200 答对了
                         
-                    }else if(201 == tag){
-                        // 设置报名信息验证不可进入;
-                        NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
-                        [defauts setObject:@"答错了" forKey:@"checkProgress"];
-                        [defauts synchronize];
-                        [ws.homeCheckProgressView removeFromSuperview];
-                    }
-                };
-                [[UIApplication sharedApplication].keyWindow addSubview:_homeCheckProgressView];
-                
+                        if (200 == tag) {
+                            // 验证学车进度
+                            [ws.homeCheckProgressView removeFromSuperview];
+                            NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+                            [defauts setObject:@"答对了" forKey:@"CheckProgress"];
+                            [defauts synchronize];
+                            VerifyPhoneController *verifyVC = [[VerifyPhoneController alloc] init];
+                            [ws.navigationController pushViewController:verifyVC animated:YES];
+                            
+                        }else if(201 == tag){
+                            // 设置报名信息验证不可进入;
+                            NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+                            [defauts setObject:@"答错了" forKey:@"SingUp"];
+                            [defauts synchronize];
+                            [ws.homeCheckProgressView removeFromSuperview];
+                        }
+                    };
+                    [[UIApplication sharedApplication].keyWindow addSubview:_homeCheckProgressView];
+
+                }
             }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
                 [AcountManager saveUserApplyState:@"1"];
             }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 2) {
