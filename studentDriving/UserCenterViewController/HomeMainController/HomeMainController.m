@@ -268,10 +268,13 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 [AcountManager saveUserApplyState:@"0"];
                 NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
                 // 如果之前已经点击过答对了,就直接跳转到验证学车进度
-                if ([defauts objectForKey:@"CheckProgress"]) {
+                if ([[defauts objectForKey:@"CheckProgress"] isEqualToString:@"答对了"]) {
                     VerifyPhoneController *verifyVC = [[VerifyPhoneController alloc] init];
                     [ws.navigationController pushViewController:verifyVC animated:YES];
-                }else{
+                }else if ([[defauts objectForKey:@"SingUp"] isEqualToString:@"答错了"]){
+                    
+                }
+                else{
                     // 弹出验证学车进度窗体
                     _homeCheckProgressView = [[HomeCheckProgressView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
                     

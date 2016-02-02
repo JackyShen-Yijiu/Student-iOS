@@ -236,9 +236,11 @@
             
             if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"]) {
                 [self.navigationController pushViewController:[VerifyPhoneController new] animated:YES];
-            }else {
-                [self showTotasViewWithMes:@"您已经报过名!"];
+            }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"1"]){
+                [self showTotasViewWithMes:@"报名正在申请中!"];
 
+            }else{
+                [self showTotasViewWithMes:@"您已经报过名!"];
             }
             
         }
