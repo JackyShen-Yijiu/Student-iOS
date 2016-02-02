@@ -366,6 +366,9 @@ static NSString *const kuserType = @"usertype";
             
         }else if ([type isEqualToString:@"1"]) {
             
+            // 存储用户设置
+            [self saveUserSetWithData:dataDic];
+            
             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
             NSLog(@"self.phoneNumTextField.text:%@",self.phoneNumTextField.text);
             NSLog(@"self.passwordTextField.text:%@",self.passwordTextField.text);
@@ -374,6 +377,23 @@ static NSString *const kuserType = @"usertype";
             
         }
     }];
+}
+
+- (void)saveUserSetWithData:(NSDictionary *)data {
+//    usersetting =         {
+//        classremind = 0;
+//        newmessagereminder = 1;
+//        reservationreminder = 1;
+//    };
+    NSDictionary *setDict = [data objectForKey:@"usersetting"];
+    NSString *newMsg = [setDict objectForKey:@"newmessagereminder"];
+    NSString *reservation = [setDict objectForKey:@"reservationreminder"];
+    if (newMsg) {
+        [AcountManager manager].newmessagereminder = [newMsg boolValue];
+    }
+    if (reservation) {
+        [AcountManager manager].reservationreminder = [reservation boolValue];
+    }
 }
 
 #pragma mark 验证用户是否存在

@@ -46,7 +46,7 @@
 #pragma mark 显示、隐藏小红点
 - (void)showBadge {
     for (UIView *view in self.subviews) {
-        if (1 == view.tag) {
+        if (3 == view.tag) {
             CGFloat viewWidth = view.frame.size.width;
             self.badgeLabel.center = CGPointMake(viewWidth / 2 + 10, 15);
             [view addSubview:self.badgeLabel];
