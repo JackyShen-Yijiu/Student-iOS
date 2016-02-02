@@ -574,7 +574,8 @@ static NSString *const kDrivingUrl = @"searchschool";
     [typeView setSelectedItemBlock:^(NSInteger carTypeId, NSString *selectedTitle) {
         
         [self.tableHeaderView.motorcycleTypeButton setTitle:selectedTitle forState:UIControlStateNormal];
-
+        _tableHeaderView.motorcycleTypeButton.frame = CGRectMake(_tableHeaderView.motorcycleTypeButton.frame.origin.x, _tableHeaderView.motorcycleTypeButton.frame.origin.y, _tableHeaderView.motorcycleTypeButton.frame.size.width-10, _tableHeaderView.motorcycleTypeButton.frame.size.height);
+        
         self.licensetype = carTypeId;
        
         [self.tableView.mj_header beginRefreshing];

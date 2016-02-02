@@ -113,7 +113,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     if (_itemTime == nil) {
         _itemTime = [UIButton buttonWithType:UIButtonTypeCustom];
         [_itemTime setBackgroundImage:[UIImage imageNamed:@"日历.png"] forState:UIControlStateNormal];
-        _itemTime.frame = CGRectMake(0, 0, 50, 50);
+        _itemTime.frame = CGRectMake(0, 0, 18, 17);
         
     }
     return _itemTime;
@@ -122,7 +122,7 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     if (_itemMessege == nil) {
         _itemMessege = [UIButton buttonWithType:UIButtonTypeCustom];
         [_itemMessege setBackgroundImage:[UIImage imageNamed:@"聊天.png"] forState:UIControlStateNormal];
-        _itemMessege.frame = CGRectMake(0, 0, 50, 50);
+        _itemMessege.frame = CGRectMake(0, 0, 18, 17);
         //        _itemMessege.backgroundColor = [UIColor blackColor];
         [_itemMessege addTarget:self action:@selector(dealMessage:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -245,11 +245,11 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
 //
 //}
 - (void)conformNavItem {
-    UIBarButtonItem *navTimeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemTime];
+//    UIBarButtonItem *navTimeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemTime];
     UIBarButtonItem *navMessegeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemMessege];
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceItem.width = -15;
-    self.navigationItem.rightBarButtonItems = @[spaceItem,navMessegeItem];
+//    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    spaceItem.width = -15;
+    self.navigationItem.rightBarButtonItem = navMessegeItem;
 }
 - (UIView *)tableViewHeadView {
     UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 90)];

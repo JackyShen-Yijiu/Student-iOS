@@ -53,7 +53,7 @@ static NSString *advantage = @"youshi.html";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"一步优势";
-    [self addSignUp];
+//    [self addSignUp];
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
