@@ -51,7 +51,7 @@
     if (_itemMessege == nil) {
         _itemMessege = [UIButton buttonWithType:UIButtonTypeCustom];
         [_itemMessege setBackgroundImage:[UIImage imageNamed:@"聊天.png"] forState:UIControlStateNormal];
-        _itemMessege.frame = CGRectMake(0, 0, 50, 50);
+        _itemMessege.frame = CGRectMake(0, 0, 18, 17);
         //        _itemMessege.backgroundColor = [UIColor blackColor];
         [_itemMessege addTarget:self action:@selector(dealMessage:) forControlEvents:UIControlEventTouchUpInside];
 
