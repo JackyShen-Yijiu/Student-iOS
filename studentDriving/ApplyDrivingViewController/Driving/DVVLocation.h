@@ -16,6 +16,7 @@ typedef void(^DVVLocationErrorBlock)();
 
 // 反地理编码
 typedef void(^DVVLocationReverseGeoCodeSuccessBlock)(BMKReverseGeoCodeResult *result,
+                                                     CLLocationCoordinate2D coordinate,
                                                      NSString *city,
                                                      NSString *address);
 typedef void(^DVVLocationReverseGeoCodeErrorBlock)();

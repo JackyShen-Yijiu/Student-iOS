@@ -366,17 +366,18 @@
         }
     }
     if (!flage) {
-        DrivingCityListView *cityListView = [DrivingCityListView new];
-        [cityListView setSelectedItemBlock:^(NSString *cityName) {
-            
-            [self.naviBarRightButton setTitle:cityName forState:UIControlStateNormal];
-            _searchCoachViewModel.cityName = cityName;
-            [self geoCode];
-        }];
-        CGRect rect = self.view.bounds;
-        cityListView.frame = CGRectMake(0, 64, rect.size.width, rect.size.height - 64);
-        [self.view addSubview:cityListView];
-        [cityListView show];
+//        DrivingCityListView *cityListView = [DrivingCityListView new];
+//        [cityListView setSelectedItemBlock:^(NSString *cityName) {
+//            
+//            [self.naviBarRightButton setTitle:cityName forState:UIControlStateNormal];
+//            _searchCoachViewModel.cityName = cityName;
+//            [self geoCode];
+//        }];
+//        CGRect rect = self.view.bounds;
+//        cityListView.frame = CGRectMake(0, 64, rect.size.width, rect.size.height - 64);
+//        [self.view addSubview:cityListView];
+//        [cityListView show];
+        [self obj_showTotasViewWithMes:@"此功能待完善"];
     }
 }
 

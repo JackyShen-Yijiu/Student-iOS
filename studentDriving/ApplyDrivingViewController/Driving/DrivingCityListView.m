@@ -16,6 +16,8 @@
 
 @interface DrivingCityListView()<JENetwokingDelegate>
 
+@property (nonatomic, strong) UIActivityIndicatorView *activityView;
+
 @property (nonatomic, copy) DrivingCityListViewSelectedItemBlock selectedItemBlock;
 @property (nonatomic, copy) dispatch_block_t removedBlock;
 
@@ -61,7 +63,12 @@
     CGRect rect = self.tableView.frame;
     CGRect tempRect = rect;
     tempRect.size.height = 0;
-    _tableView.tableHeaderView = nil;
+//    [UIView animateWithDuration:0.2 animations:^{
+//        _activityView.alpha = 0;
+//    } completion:^(BOOL finished) {
+//        [_activityView removeFromSuperview];
+//    }];
+    [_activityView removeFromSuperview];
     self.tableView.frame = tempRect;
     [UIView animateWithDuration:0.3 animations:^{
         self.tableView.frame = rect;
@@ -70,27 +77,38 @@
 
 #pragma mark - network
 - (void)network {
-    [JENetwoking initWithUrl:[NSString stringWithFormat:BASEURL, @"getopencity"] WithMethod:JENetworkingRequestMethodGet WithDelegate:self];
-}
-
-- (void)jeNetworkingCallBackData:(id)data {
     
-    NSLog(@"%@",data);
-    DrivingCityListDMRootClass *rootClass = [[DrivingCityListDMRootClass alloc] initWithDictionary:data];
-    if (rootClass.type == 1) {
-        [self.dataList removeAllObjects];
-        for (DrivingCityListDMData *item in rootClass.data) {
-            [self.dataList addObject:item];
+    [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL, @"getopencity"] postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"%@",data);
+        DrivingCityListDMRootClass *rootClass = [[DrivingCityListDMRootClass alloc] initWithDictionary:data];
+        if (rootClass.type == 1) {
+            
+            [self.dataList removeAllObjects];
+            
+            DrivingCityListDMData *dmData = [DrivingCityListDMData new];
+            dmData.name = @"当前城市";
+            [self.dataList addObject:dmData];
+            
+            for (DrivingCityListDMData *item in rootClass.data) {
+                [self.dataList addObject:item];
+            }
         }
-    }
-//    for (int i = 0; i < 3; i++) {
-//        DrivingCityListDMData *dmData = [DrivingCityListDMData new];
-//        dmData.name = @"测试";
-//        dmData.idField = 123456;
-//        [self.dataList addObject:dmData];
-//    }
-    [self.tableView reloadData];
-    [self configLayout];
+        //    for (int i = 0; i < 3; i++) {
+        //        DrivingCityListDMData *dmData = [DrivingCityListDMData new];
+        //        dmData.name = @"测试";
+        //        dmData.idField = 123456;
+        //        [self.dataList addObject:dmData];
+        //    }
+        [self.tableView reloadData];
+        [self configLayout];
+        
+    } withFailure:^(id data) {
+        [self obj_showTotasViewWithMes:@"网络错误"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [self closeSelf];
+        });
+    }];
 }
 
 #pragma mark - tableView
@@ -104,6 +122,7 @@
     if (!cell) {
         cell = [[CityListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellId];
     }
+    cell.tag = indexPath.row;
     DrivingCityListDMData *data = self.dataList[indexPath.row];
     cell.nameLabel.text = data.name;
     
@@ -119,7 +138,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_selectedItemBlock) {
         DrivingCityListDMData *data = self.dataList[indexPath.row];
-        _selectedItemBlock(data.name);
+        _selectedItemBlock(data.name, indexPath);
     }
     [self closeSelf];
 }
@@ -152,11 +171,19 @@
 //        _tableView.layer.borderColor = [UIColor lightGrayColor].CGColor;
 //        _tableView.layer.borderWidth = 1;
         
-//        _tableView.frame = CGRectMake(0, 0, , ROW_HEIGHT);
-//        UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
-//        [activityView startAnimating];
-//        activityView.frame = CGRectMake(0, 0, 73, ROW_HEIGHT);
-//        _tableView.tableHeaderView = activityView;
+        _tableView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 0);
+//
+//        [UIView animateWithDuration:0.3 animations:^{
+//            _tableView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, ROW_HEIGHT);
+//        }];
+//        _activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
+//        [_activityView startAnimating];
+//        _activityView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, ROW_HEIGHT);
+//        _activityView.alpha = 0;
+//        [_tableView addSubview:_activityView];
+//        [UIView animateWithDuration:0.2 animations:^{
+//            _activityView.alpha = 1;
+//        }];
     }
     return _tableView;
 }

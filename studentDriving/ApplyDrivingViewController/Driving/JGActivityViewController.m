@@ -68,13 +68,13 @@
     [self.tableView.mj_header beginRefreshing];
 
     __weak typeof(self) ws = self;
-    [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
+    
+    [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, CLLocationCoordinate2D coordinate, NSString *city, NSString *address) {
         ws.cityName = city;
         [ws.tableView.mj_header beginRefreshing];
     } error:^{
         [ws.tableView.mj_header beginRefreshing];
     }];
-    
     
     // 添加分享
     UIButton *button = [UIButton new];
