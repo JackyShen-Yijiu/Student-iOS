@@ -7,9 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ExamClassModel.h"
 
 @interface ExamClassCollectionViewCell : UICollectionViewCell
+@property (nonatomic, strong) ExamClassModel *model;
 @property (strong, nonatomic) UILabel *drivingName;
 @property (strong, nonatomic) UILabel *drivingAdress;
 @property (strong, nonatomic) UILabel *moneyLabel;
+
+- (CGFloat)getLabelWidthWithString:(NSString *)string;
 @end
