@@ -19,6 +19,9 @@
 
 static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@&subjectid=%@";
 
+// 强制评论
+static NSString *const forceCommentURL = @"courseinfo/getmyuncommentreservation?userid=%@&subjectid=%@";
+
 #define tableViewHeadH 80
 
 @interface AppointmentViewController ()<UITableViewDataSource,UITableViewDelegate>
@@ -206,6 +209,10 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 - (void)startDownLoad {
     
     NSString *appointmentUrl = [NSString stringWithFormat:kappointmentUrl,[AcountManager manager].userid,self.markNum];
+    if (self.isForceComment) {
+        appointmentUrl = [NSString stringWithFormat:forceCommentURL,[AcountManager manager].userid,self.markNum];
+    }
+    
 //    NSLog("%",[self.markNum integerValue]);
     NSString *downLoadUrl = [NSString stringWithFormat:BASEURL,appointmentUrl];
     DYNSLog(@"url = %@ %@",[AcountManager manager].userid,[AcountManager manager].userToken);
