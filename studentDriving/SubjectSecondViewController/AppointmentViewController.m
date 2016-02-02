@@ -18,59 +18,48 @@
 #import <MJRefresh.h>
 
 static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@&subjectid=%@";
+
+#define tableViewHeadH 80
+
 @interface AppointmentViewController ()<UITableViewDataSource,UITableViewDelegate>
 //废弃
 @property (strong, nonatomic) UIButton *headViewTitleButton;
 @property (strong, nonatomic) UILabel *headViewTitleLabel;
-@property (strong, nonatomic) UIImageView *headViewImageView;
-@property (strong, nonatomic) UILabel *headViewCoachName;
-@property (strong, nonatomic) UILabel *headViewCoachAddress;
 
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIButton *signUpButton;
 @property (strong, nonatomic) NSMutableArray *dataArray;
 
 @property (strong, nonatomic) NSIndexPath *scrollIndexPath;
+
+
+@property (strong, nonatomic) UILabel *yiyuexueshiLabel;
+//@property (strong, nonatomic) UILabel *shijiliancheLabel;
+@property (strong, nonatomic) UILabel *loukeLabel;
+//@property (strong, nonatomic) UILabel *shengyuxueshiLabel;
+
 @end
 
 @implementation AppointmentViewController
 
-
-
-- (UILabel *)headViewCoachAddress {
-    if (_headViewCoachAddress == nil) {
-        _headViewCoachAddress = [WMUITool initWithTextColor:TEXTGRAYCOLOR withFont:[UIFont systemFontOfSize:14]];
-        _headViewCoachAddress.text = @"北京市海淀区中关村驾校";
-    }
-    return _headViewCoachAddress;
-}
-
-- (UILabel *)headViewCoachName {
-    if (_headViewCoachName == nil) {
-        _headViewCoachName = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:16]];
-        _headViewCoachName.text = @"李教练";
-    }
-    return _headViewCoachName;
-}
-
-- (UIImageView *)headViewImageView {
-    if (_headViewImageView == nil) {
-        _headViewImageView = [[UIImageView alloc] init];
-        _headViewImageView.backgroundColor = MAINCOLOR;
-    }
-    return _headViewImageView;
-}
 - (UILabel *)headViewTitleLabel {
     if (_headViewTitleLabel == nil) {
+        
         _headViewTitleLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        
         if ([AcountManager manager].subjecttwo.progress == nil || [AcountManager manager].subjecttwo.progress.length == 0) {
+            
             _headViewTitleLabel.text = @"您还没有学车记录";
+            
         }else {
+            
             if (self.markNum.integerValue == 2) {
-                _headViewTitleLabel.text = [AcountManager manager].subjecttwo.progress;
+                NSLog(@"[AcountManager manager].subjecttwo.progress:%@",[AcountManager manager].subjecttwo.progress);
+                _headViewTitleLabel.text = [NSString stringWithFormat:@"当前学车进度:%@",[AcountManager manager].subjecttwo.progress];
 
             }else if (self.markNum.integerValue == 3) {
-                _headViewTitleLabel.text =  [AcountManager manager].subjectthree.progress;
+                NSLog(@"[AcountManager manager].subjectthree.progress:%@",[AcountManager manager].subjectthree.progress);
+                _headViewTitleLabel.text =  [NSString stringWithFormat:@"当前学车进度:%@",[AcountManager manager].subjectthree.progress];
 
             }
 
@@ -78,6 +67,73 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     }
     return _headViewTitleLabel;
 }
+
+// 已约学时
+- (UILabel *)yiyuexueshiLabel {
+    if (_yiyuexueshiLabel == nil) {
+        _yiyuexueshiLabel = [WMUITool initWithTextColor:[UIColor lightGrayColor] withFont:[UIFont systemFontOfSize:12]];
+       
+        if (self.markNum.integerValue == 2) {
+            
+            if ([AcountManager manager].subjecttwo.reservation && [AcountManager manager].subjecttwo.finishcourse) {
+                
+                NSInteger yiyuexueshiCount = [[AcountManager manager].subjecttwo.reservation integerValue] + [[AcountManager manager].subjecttwo.finishcourse integerValue];
+
+                NSLog(@"yiyuexueshiCount:%lu",yiyuexueshiCount);
+                
+                _yiyuexueshiLabel.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
+            }
+            
+        }else if (self.markNum.integerValue == 3) {
+            
+
+            if ([AcountManager manager].subjectthree.reservation && [AcountManager manager].subjectthree.finishcourse) {
+                
+                NSInteger yiyuexueshiCount = [[AcountManager manager].subjectthree.reservation integerValue] + [[AcountManager manager].subjectthree.finishcourse integerValue];
+                NSLog(@"yiyuexueshiCount:%lu",yiyuexueshiCount);
+                
+                _yiyuexueshiLabel.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
+                
+            }
+            
+        }
+        
+    }
+    return _yiyuexueshiLabel;
+}
+
+// 漏课
+- (UILabel *)loukeLabel {
+    if (_loukeLabel == nil) {
+        _loukeLabel = [WMUITool initWithTextColor:[UIColor lightGrayColor] withFont:[UIFont systemFontOfSize:12]];
+        
+        if (self.markNum.integerValue == 2) {
+            
+            if ([AcountManager manager].subjecttwo.missingcourse) {
+              
+                NSInteger loukeCount = [[AcountManager manager].subjecttwo.missingcourse integerValue];;
+                NSLog(@"loukeCount:%ld",(long)loukeCount);
+                
+                _loukeLabel.text = [NSString stringWithFormat:@"漏课:%ld课时",(long)loukeCount];
+                
+            }
+            
+        }else if (self.markNum.integerValue == 3) {
+            
+            if ([AcountManager manager].subjectthree.missingcourse) {
+                
+                NSInteger loukeCount = [[AcountManager manager].subjectthree.missingcourse integerValue];
+                NSLog(@"loukeCount:%ld",(long)loukeCount);
+                
+                _loukeLabel.text = [NSString stringWithFormat:@"漏课:%ld课时",(long)loukeCount];
+                
+            }
+        }
+        
+    }
+    return _loukeLabel;
+}
+
 - (UIButton *)headViewTitleButton {
     if (_headViewTitleButton == nil) {
         _headViewTitleButton = [WMUITool initWithTitle:[NSString stringWithFormat:@"%@",self.markNum] withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:12]];
@@ -111,7 +167,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 }
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+44, kSystemWide, kSystemHeight-64-49-44) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+tableViewHeadH, kSystemWide, kSystemHeight-64-49-tableViewHeadH) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = BACKGROUNDCOLOR;
@@ -132,7 +188,9 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
     [self.view addSubview:self.tableView];
     
     [self.view addSubview:[self tableViewHead]];
+    
     self.tableView.tableFooterView = [[UIView alloc] init];
+    
     //self.tableView.mj_header = [MJRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector()];
     
     [self.view addSubview:self.signUpButton];
@@ -182,29 +240,45 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@
 
 #pragma mark - 废弃
 - (UIView *)tableViewHead {
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64,kSystemWide,44)];
+    
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 64,kSystemWide,tableViewHeadH)];
     view.backgroundColor = [UIColor whiteColor];
+    
+    
+    UIView *delive = [[UIView alloc] initWithFrame:CGRectMake(0, tableViewHeadH-0.5, kSystemWide, 0.5)];
+    delive.backgroundColor = [UIColor lightGrayColor];
+    delive.alpha = 0.3;
+    [view addSubview:delive];
     
     [view addSubview:self.headViewTitleButton];   //黄色的小圆圈
     
-    [view addSubview:self.headViewTitleLabel];
+    [view addSubview:self.headViewTitleLabel];// @"您还没有学车记录"
     
-    [view addSubview:self.headViewImageView];
-    
-    [view addSubview:self.headViewCoachName];
-    [view addSubview:self.headViewCoachAddress];
-    
+    [view addSubview:self.yiyuexueshiLabel];
+
+    [view addSubview:self.loukeLabel];
+
     [self.headViewTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(view.mas_top).offset(13);
         make.left.mas_equalTo(self.headViewTitleButton.mas_right).offset(5);
         make.right.mas_equalTo(view.mas_right).offset(-15);
     }];
+    [self.yiyuexueshiLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.headViewTitleLabel.mas_bottom).mas_offset(10);
+        make.left.mas_equalTo(self.headViewTitleButton.mas_right).offset(5);
+    }];
     
+    [self.loukeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.yiyuexueshiLabel.mas_bottom).mas_offset(5);
+        make.left.mas_equalTo(self.headViewTitleButton.mas_right).offset(5);
+    }];
+   
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scrollWithIndex:)];
     [view addGestureRecognizer:tap];
     
     return view;
 }
+
 - (void)scrollWithIndex:(UITapGestureRecognizer *)tap {
     DYNSLog(@"tap");
     [self.tableView scrollToRowAtIndexPath:self.scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
