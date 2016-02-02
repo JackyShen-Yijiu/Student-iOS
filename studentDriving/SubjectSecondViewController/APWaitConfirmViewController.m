@@ -131,10 +131,15 @@
     return backGroundView;
 }
 - (void)conformNavItem {
+    
+    
+    
+    
+    
     UIBarButtonItem *navMessegeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemMessege];
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceItem.width = -15;
-    self.navigationItem.rightBarButtonItems = @[spaceItem,navMessegeItem];
+//    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    spaceItem.width = -15;
+    self.navigationItem.rightBarButtonItem = navMessegeItem;
 }
 
 

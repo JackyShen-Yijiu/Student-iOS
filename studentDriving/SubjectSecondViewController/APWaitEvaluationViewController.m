@@ -40,8 +40,11 @@
 }
 - (UIButton *)commentBtn {
     if (_commentBtn == nil) {
-        _commentBtn = [WMUITool initWithTitle:@"评论" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
-        _commentBtn.backgroundColor = RGBColor(32, 230, 111);
+        _commentBtn = [WMUITool initWithTitle:@"评论" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _commentBtn.backgroundColor = [UIColor whiteColor];
+//        _commentBtn.backgroundColor = RGBColor(32, 230, 111);
+        _commentBtn.layer.borderColor = (MAINCOLOR).CGColor;
+        _commentBtn.layer.borderWidth = 1.0f;
         [_commentBtn addTarget:self action:@selector(clickComment:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _commentBtn;
@@ -129,9 +132,9 @@
 
 - (void)conformNavItem {
     UIBarButtonItem *navMessegeItem = [[UIBarButtonItem alloc] initWithCustomView:self.itemMessege];
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    spaceItem.width = -15;
-    self.navigationItem.rightBarButtonItems = @[spaceItem,navMessegeItem];
+//    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    spaceItem.width = -15;
+    self.navigationItem.rightBarButtonItem = navMessegeItem;
 }
 
 - (UIView *)tableViewHeadView {
