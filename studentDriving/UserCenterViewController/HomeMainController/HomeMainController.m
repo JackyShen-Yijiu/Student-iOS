@@ -404,7 +404,7 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
         NSNumber *type = param[@"type"];
         NSArray *array = param[@"data"];
 
-        if (type.integerValue == 1) {
+        if (type.integerValue == 1 && array && array.count>0) {
             
             // 弹出验证学车进度窗体
             _homeCheckProgressView = [[HomeCheckProgressView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
