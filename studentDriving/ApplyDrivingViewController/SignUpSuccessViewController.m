@@ -97,7 +97,7 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
             }
             [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
             if ([[AcountManager manager].userApplycount isEqualToString:@"0"]) {
-                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.registAgainButton];
+//                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.registAgainButton];
             }
         }else {
             
@@ -170,6 +170,10 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
         if ([type isEqualToString:@"1"]) {
+            // 报名成功时清除
+            NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+            [defauts setObject:@" " forKey:@"SignUp"];
+            
             NSDictionary * useData = [data objectForKey:@"data"];
             _kRealScanauditUrl   = [useData objectForKey:@"scanauditurl"];
             _kRealApplytime      = [useData objectForKey:@"applytime"];

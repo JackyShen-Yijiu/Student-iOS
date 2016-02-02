@@ -69,13 +69,13 @@
         make.bottom.mas_equalTo(self.bgView.mas_bottom).with.offset(-10);
         NSNumber *wide = [NSNumber numberWithFloat:((kSystemWide - 45) / 2)];
         make.width.equalTo(wide);
-        make.top.mas_equalTo(self.bottomLabel.mas_bottom).with.offset(15);
+        make.top.mas_equalTo(self.bottomLabel.mas_bottom).with.offset(5);
         
     }];
     [self.wrongButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.rightButtton.mas_right).with.offset(7);
         make.bottom.mas_equalTo(self.bgView.mas_bottom).with.offset(-10);
-        make.top.mas_equalTo(self.bottomLabel.mas_bottom).with.offset(15);
+        make.top.mas_equalTo(self.bottomLabel.mas_bottom).with.offset(5);
         make.right.mas_equalTo(self.bgView.mas_right).with.offset(-4);
         
     }];

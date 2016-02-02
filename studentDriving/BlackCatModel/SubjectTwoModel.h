@@ -14,4 +14,5 @@
 @property (copy, nonatomic, readonly) NSString *progress;
 @property (strong, nonatomic, readonly) NSNumber *reservation;
 @property (strong, nonatomic, readonly) NSNumber *totalcourse;
+@property (nonatomic,strong,readonly) NSNumber *missingcourse;
 @end
