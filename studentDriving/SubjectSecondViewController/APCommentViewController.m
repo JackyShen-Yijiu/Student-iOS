@@ -139,12 +139,16 @@ static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
             if (type.integerValue == 1) {
                 kShowSuccess(@"评论成功");
                 
+                if (self.isForceComment) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                }
+                
                 for (UIViewController *vc in self.navigationController.viewControllers) {
                     if ([vc isKindOfClass:[AppointmentViewController class]]) {
                         [self.navigationController popToViewController:vc animated:YES];
                     }
                 }
-                
                 
             }else {
                 kShowFail(msg);

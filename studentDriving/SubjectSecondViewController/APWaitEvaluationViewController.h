@@ -12,5 +12,9 @@
 @interface APWaitEvaluationViewController : BLBaseViewController
 @property (strong, nonatomic) MyAppointmentModel *model;
 @property (strong, nonatomic) NSNumber *markNum;
+/*
+ *  是否是强制评论
+ */
+@property (nonatomic,assign) BOOL isForceComment;
 
 @end

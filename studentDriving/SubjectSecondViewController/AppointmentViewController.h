@@ -10,4 +10,10 @@
 #import "BLBaseViewController.h"
 @interface AppointmentViewController : BLBaseViewController
 @property (strong, nonatomic) NSNumber *markNum;
+
+/*
+ *  是否是强制评论
+ */
+@property (nonatomic,assign) BOOL isForceComment;
+
 @end

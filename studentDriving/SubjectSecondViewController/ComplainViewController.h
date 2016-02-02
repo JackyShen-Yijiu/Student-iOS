@@ -14,6 +14,9 @@
 @property  (strong,nonatomic) NSArray *buttonArray;
 @property (strong,nonatomic) NSArray *labelArray;
 
-
+/*
+ *  是否是强制评论
+ */
+@property (nonatomic,assign) BOOL isForceComment;
 
 @end

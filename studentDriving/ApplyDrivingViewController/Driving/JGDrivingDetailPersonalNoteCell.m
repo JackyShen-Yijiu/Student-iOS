@@ -24,8 +24,6 @@
 @property (strong, nonatomic) UIView *topView;
 @property (strong, nonatomic) UIView *footView;
 
-@property (nonatomic,strong) UILabel *notcountLabel;
-
 @end
 
 @implementation JGDrivingDetailPersonalNoteCell
@@ -43,8 +41,8 @@
     if (_moreBtn == nil) {
         _moreBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg"] forState:UIControlStateNormal];
-        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg"] forState:UIControlStateHighlighted];
-        [_moreBtn addTarget:self action:@selector(moreBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+        [_moreBtn setBackgroundImage:[UIImage imageNamed:@"drivingDetailPersonalNoteBtnImg_Select"] forState:UIControlStateSelected];
+        [_moreBtn addTarget:self action:@selector(moreBtnDidClick:) forControlEvents:UIControlEventTouchUpInside];
 
     }
     return _moreBtn;
@@ -73,16 +71,7 @@
     }
     return _footView;
 }
-- (UILabel *)notcountLabel {
-    
-    if (_notcountLabel == nil) {
-        _notcountLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
-        _notcountLabel.text = @"该教练暂无个人说明";
-        _notcountLabel.textColor = [UIColor lightGrayColor];
-        _notcountLabel.numberOfLines = 1;
-    }
-    return _notcountLabel;
-}
+
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setUp];
@@ -102,7 +91,6 @@
 
     // 内容
     [self.contentView addSubview:self.countLabel];
-    [self.contentView addSubview:self.notcountLabel];
     
     // 底部灰色
     [self.contentView addSubview:self.footView];
@@ -111,7 +99,7 @@
     [self.topView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(@0);
         make.top.mas_equalTo(@0);
-        make.height.mas_equalTo(JGMargin);
+        make.height.mas_equalTo(JGMargin);//
         make.width.mas_equalTo(self.contentView);
     }];
     
@@ -138,13 +126,6 @@
         make.width.mas_equalTo(self.contentView.mas_width).offset(-JGMargin*2);
     }];
     
-    [self.notcountLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(@0);
-        make.right.mas_equalTo(@0);
-        make.top.mas_equalTo(self.countLabel.mas_bottom).offset(JGMargin);
-        make.height.equalTo(@20);
-    }];
-    
     // 底部灰色
     [self.footView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.contentView.mas_left);
@@ -161,10 +142,9 @@
     _detailModel = detailModel;
     
     if (_detailModel.introduction&&[_detailModel.introduction length]!=0) {
-        self.notcountLabel.hidden = YES;
         self.countLabel.text = _detailModel.introduction;
     }else{
-        self.notcountLabel.hidden = NO;
+        self.countLabel.text = @"该教练暂无个人说明";
     }
     
     // 内容 (展开、收起)
@@ -189,8 +169,10 @@
     
 }
 
-- (void)moreBtnDidClick
+- (void)moreBtnDidClick:(UIButton *)btn
 {
+    self.moreBtn.selected = !self.moreBtn.selected;
+    
     if ([self.delegate respondsToSelector:@selector(JGDrivingDetailPersonalNoteCellWithMoreBtnDidClick:)]) {
         [self.delegate JGDrivingDetailPersonalNoteCellWithMoreBtnDidClick:self];
     }
@@ -204,8 +186,12 @@
     cell.detailModel = model;
     
     [cell layoutIfNeeded];
-    
-    return cell.topView.frame.size.height+cell.titleLabel.frame.size.height+cell.countLabel.frame.size.height+cell.footView.frame.size.height+JGMargin*3;
+
+    CGFloat totleMargin = JGMargin * 3;
+    if ([UIScreen mainScreen].bounds.size.height>640) {
+        totleMargin = JGMargin * 1.5;
+    }
+    return cell.topView.frame.size.height+cell.titleLabel.frame.size.height+cell.countLabel.frame.size.height+cell.footView.frame.size.height+totleMargin;
     
 }
 

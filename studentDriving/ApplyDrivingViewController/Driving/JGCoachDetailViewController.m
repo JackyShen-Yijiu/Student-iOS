@@ -80,8 +80,8 @@ static NSString *const kGetCommentInfo = @"courseinfo/getusercomment/2/%@/%@";
         _phoneBtn.frame = CGRectMake(0, 0, 50, 20);
         [_phoneBtn setTitle:@"确认" forState:UIControlStateNormal];
         [_phoneBtn setTitle:@"确认" forState:UIControlStateHighlighted];
-        [_phoneBtn setTitleColor:MAINCOLOR forState:UIControlStateNormal];
-        [_phoneBtn setTitleColor:MAINCOLOR forState:UIControlStateHighlighted];
+        [_phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
         _phoneBtn.titleLabel.font = [UIFont boldSystemFontOfSize:15];
         [_phoneBtn addTarget:self action:@selector(clickPhoneBtn) forControlEvents:UIControlEventTouchUpInside];
     }
