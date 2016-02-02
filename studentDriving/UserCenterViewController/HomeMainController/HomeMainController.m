@@ -1106,8 +1106,10 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 - (void)location {
     
     _locationLabel.text = @"定位中";
-    [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, NSString *city, NSString *address) {
-        
+    [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result,
+                                  CLLocationCoordinate2D coordinate,
+                                  NSString *city,
+                                  NSString *address) {
         _locationLabel.text = city;
     } error:^{
         _locationLabel.text = @"定位失败";
@@ -1127,7 +1129,21 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     CGRect rect = self.view.bounds;
     view.frame = CGRectMake(rect.origin.x, 64, rect.size.width, rect.size.height);
     [self.view addSubview:view];
-    [view setSelectedItemBlock:^(NSString *cityName) {
+    [view setSelectedItemBlock:^(NSString *cityName, NSIndexPath *indexPath) {
+        
+        if (0 == indexPath.row) {
+            [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, CLLocationCoordinate2D coordinate, NSString *city, NSString *address) {
+                
+                [self saveUserLocationInfoWithCity:city
+                                           address:address
+                                        coordinate:coordinate];
+                _locationLabel.text = city;
+                
+            } error:^{
+                [self obj_showTotasViewWithMes:@"修改失败"];
+            }];
+            return ;
+        }
         
         [DVVLocation geoCodeWithCity:cityName address:cityName success:^(BMKGeoCodeResult *result, CLLocationCoordinate2D coordinate, double latitude, double longitude) {
             NSLog(@"latitude === %lf   longitude === %lf", latitude, longitude);
@@ -1147,6 +1163,17 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     _cityListShowFlage = YES;
     [view show];
     
+}
+
+#pragma mark 保存用户当前定位到的城市信息
+- (void)saveUserLocationInfoWithCity:(NSString *)city
+                             address:(NSString *)address
+                          coordinate:(CLLocationCoordinate2D)coordinate {
+    
+    [AcountManager manager].userCity = city;
+    [AcountManager manager].locationAddress = address;
+    [AcountManager manager].latitude = [NSString stringWithFormat:@"%lf", coordinate.latitude];
+    [AcountManager manager].longitude = [NSString stringWithFormat:@"%lf", coordinate.longitude];
 }
 
 - (void)showMsg:(NSString *)msg {

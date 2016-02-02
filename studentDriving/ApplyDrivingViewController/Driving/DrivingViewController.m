@@ -130,9 +130,9 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     // 初始化网络请求刷新控件
     [self configRefresh];
-    self.latitude = 39.929985778080237;
-    self.longitude = 116.39564503787867;
-    [self.tableView.mj_header beginRefreshing];
+//    self.latitude = 39.929985778080237;
+//    self.longitude = 116.39564503787867;
+//    [self.tableView.mj_header beginRefreshing];
 
     // 初始化筛选模式（找驾校、找教练）
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightselectjiaolian];
@@ -149,19 +149,17 @@ static NSString *const kDrivingUrl = @"searchschool";
     }else {
         // 定位
         __weak typeof(self) ws = self;
-        [DVVLocation getLocation:^(BMKUserLocation *userLocation, double latitude, double longitude) {
-            
-            ws.latitude = latitude;
-            ws.longitude = longitude;
+        [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, CLLocationCoordinate2D coordinate, NSString *city, NSString *address) {
+            ws.latitude = coordinate.latitude;
+            ws.longitude = coordinate.longitude;
+            [_titleButton setTitle:city forState:UIControlStateNormal];
             [ws.tableView.mj_header beginRefreshing];
-
         } error:^{
             ws.latitude = 39.929985778080237;
             ws.longitude = 116.39564503787867;
+            [_titleButton setTitle:@"北京市" forState:UIControlStateNormal];
             [ws.tableView.mj_header beginRefreshing];
-
         }];
-        
     }
     
     // 判断上次是否有尚未支付的订单
@@ -667,7 +665,23 @@ static NSString *const kDrivingUrl = @"searchschool";
     CGRect rect = self.view.bounds;
     view.frame = CGRectMake(rect.origin.x, 64, rect.size.width, rect.size.height);
     [self.view addSubview:view];
-    [view setSelectedItemBlock:^(NSString *cityName) {
+    [view setSelectedItemBlock:^(NSString *cityName, NSIndexPath *indexPath) {
+        
+        if (0 == indexPath.row) {
+            [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, CLLocationCoordinate2D coordinate, NSString *city, NSString *address) {
+                
+                self.latitude = coordinate.latitude;
+                self.longitude = coordinate.longitude;
+                self.cityname = city;
+                [_titleButton setTitle:city forState:UIControlStateNormal];
+                
+                [self.tableView.mj_header beginRefreshing];
+                
+            } error:^{
+                [self obj_showTotasViewWithMes:@"修改失败"];
+            }];
+            return ;
+        }
         
         [DVVLocation geoCodeWithCity:cityName address:cityName success:^(BMKGeoCodeResult *result, CLLocationCoordinate2D coordinate, double latitude, double longitude) {
             NSLog(@"latitude === %lf   longitude === %lf", latitude, longitude);
@@ -682,7 +696,7 @@ static NSString *const kDrivingUrl = @"searchschool";
             
         } error:^{
             
-            [self obj_showTotasViewWithMes:@"网络错误"];
+            [self obj_showTotasViewWithMes:@"修改失败"];
         }];
     }];
     [view setRemovedBlock:^{
