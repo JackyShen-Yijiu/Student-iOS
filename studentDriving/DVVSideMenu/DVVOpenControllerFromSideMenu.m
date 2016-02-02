@@ -75,7 +75,7 @@
             [naviVC pushViewController:controller animated:YES];
         }
             break;
-        case kOpenControllerTypeShuttleBusController:// 消息
+        case kOpenControllerTypeShuttleBusController:// 班车
         {
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
@@ -141,6 +141,11 @@
             if (![AcountManager isLogin]) {
                 [DVVUserManager userNeedLogin];
                 break;
+            }
+            
+            if (![AcountManager manager].applyschool || [AcountManager manager].applyschool.infoId) {
+                [self showMsg:@"您还没有报名"];
+                return ;
             }
             
             ComplaintController *controller = [ComplaintController new];

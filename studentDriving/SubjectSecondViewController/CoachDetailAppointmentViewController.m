@@ -373,6 +373,10 @@ static NSString *const kSaveMyLoveCoach = @"userinfo/favoritecoach/%@";
 - (void)dealLike:(UITapGestureRecognizer *)tap{
     DYNSLog(@"like");
     
+    if (![AcountManager isLogin]) {
+        return ;
+    }
+    
     NSString *kSaveUrl = [NSString stringWithFormat:kSaveMyLoveCoach,self.detailModel.coachid];
     NSString *urlString = [NSString stringWithFormat:BASEURL,kSaveUrl];
     DYNSLog(@"urlstring = %@",urlString);

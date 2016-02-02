@@ -104,7 +104,8 @@ static NSString *const kchangePassword = @"kchangePassword";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    self.view.backgroundColor = [UIColor whiteColor];
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.layer.contents = (id)[UIImage imageNamed:@"login_background"].CGImage;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealChangePassword) name:kchangePassword object:nil];
     
     [self.view addSubview:self.topLabel];

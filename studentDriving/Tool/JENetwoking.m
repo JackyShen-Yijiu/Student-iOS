@@ -186,9 +186,11 @@
     if (method == JENetworkingRequestMethodGet) {
         
         DYNSLog(@"token = %@",[AcountManager manager].userToken);
-        if ([AcountManager manager].userToken) {
+        if ([AcountManager manager].userToken && [AcountManager manager].userToken.length) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
         
+        }else {
+            [manager.requestSerializer setValue:@"" forHTTPHeaderField:@"authorization"];
         }
         [manager GET:urlString parameters:param success:^(AFHTTPRequestOperation * _Nonnull operation, id  _Nonnull responseObject) {
             
@@ -215,8 +217,11 @@
     }else if (method == JENetworkingRequestMethodPost) {
         
         NSAssert(param != nil, @"param 不能为空");
-        if ([AcountManager manager].userToken) {
+        if ([AcountManager manager].userToken && [AcountManager manager].userToken.length) {
             [manager.requestSerializer setValue:[AcountManager manager].userToken forHTTPHeaderField:@"authorization"];
+            
+        }else {
+            [manager.requestSerializer setValue:@"" forHTTPHeaderField:@"authorization"];
         }
         DYNSLog(@"token = %@",manager.requestSerializer.HTTPRequestHeaders);
         

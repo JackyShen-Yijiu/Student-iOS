@@ -200,8 +200,10 @@ static NSString *const kcodeGainUrl = @"code";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
-    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.layer.contents = (id)[UIImage imageNamed:@"login_background"].CGImage;
+//    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
+
     
     [self.view addSubview:self.topLabel];
     

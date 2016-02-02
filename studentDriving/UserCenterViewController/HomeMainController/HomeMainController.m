@@ -869,10 +869,10 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
     }else if (offSet == 2.0 * (CARFloat) + 10){
         
         contentOffsetX = width * 2;
-    }else if (offSet == (3.0 * (CARFloat)) + 10){
+    }else if (offSet == 3.0 * (CARFloat) + 10){
         
         contentOffsetX = width *3;
-    }else if (offSet == (4 * (CARFloat)) + 10){
+    }else if (offSet == 4.0 * (CARFloat) + 10){
         contentOffsetX = width * 4 ;
     }
     [UIView animateWithDuration:0.5 animations:^{

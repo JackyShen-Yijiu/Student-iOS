@@ -46,7 +46,7 @@
     self.title = @"驾校详情";
     self.view.backgroundColor = [UIColor whiteColor];
     
-    NSLog(@"%@", [AcountManager manager].applyschool.infoId);
+    NSLog(@"%@", _schoolID);
 
     // 测试时打开
 //    _schoolID = @"562dcc3ccb90f25c3bde40da";

@@ -479,6 +479,9 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
 #pragma mark 检测是否收藏
 - (void)checkCollection {
     
+    if (![AcountManager isLogin]) {
+        return ;
+    }
 //    if (![AcountManager isLogin]) {
 //        DYNSLog(@"islogin = %d",[AcountManager isLogin]);
 //        LoginViewController *login = [[LoginViewController alloc] init];
