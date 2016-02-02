@@ -10,4 +10,7 @@
 #import <UIKit/UIKit.h>
 @interface QuestionTestViewController : UIViewController
 @property (copy, nonatomic) NSString *questiontesturl;
+
+@property (nonatomic,assign) BOOL isModal;
+
 @end

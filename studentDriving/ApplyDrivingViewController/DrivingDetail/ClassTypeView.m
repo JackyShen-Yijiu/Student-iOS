@@ -102,6 +102,10 @@
 }
 - (void)signUpButtonAction:(UIButton *)sender {
     
+    if (![AcountManager isLogin]) {
+        [DVVUserManager userNeedLogin];
+        return ;
+    }
     if (_signUpButtonBlock) {
         ClassTypeDMData *dmData = _viewModel.dataArray[sender.tag];
         _signUpButtonBlock(dmData);

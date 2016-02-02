@@ -82,10 +82,12 @@ static NSString *const kavPlayUrl = @"getcourseware?subjectid=%@&seqindex=%@&cou
     return cell;
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     AVPlayModel *model = self.dataArray[indexPath.row];
     if ([model.videourl containsString:@"7xnjg0"]) {
         BLImageViewController *blimage = [[BLImageViewController alloc] init];
         blimage.videourl = model.videourl;
+        blimage.title = model.name;
         [self.navigationController pushViewController:blimage animated:YES];
         return;
     }

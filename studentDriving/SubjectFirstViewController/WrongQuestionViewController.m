@@ -21,8 +21,8 @@
 
 - (UIWebView *)webView {
     if (_webView == nil) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64)];
-        _webView.hidden = YES;
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
+//        _webView.backgroundColor = [UIColor blackColor];//RGBColor(251, 251, 251);
     }
     return _webView;
 }
@@ -31,12 +31,22 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];//RGBColor(251, 251, 251);;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     DYNSLog(@"request = %@",self.questionerrorurl);
-    
+   
     [self.view addSubview:self.webView];
+   
+    if (self.isModal==YES) {
+        UIButton *backBtn = [[UIButton alloc] init];
+        backBtn.frame = CGRectMake(15, 10, 44, 44);
+//        backBtn.backgroundColor = [UIColor clearColor];
+        [backBtn setImage:[UIImage imageNamed:@"navi_back.png"] forState:UIControlStateNormal];
+        [backBtn setImage:[UIImage imageNamed:@"navi_back.png"] forState:UIControlStateHighlighted];
+        [backBtn addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
+        [self.view addSubview:backBtn];
+    }
     
     _webviewProgress = [[NJKWebViewProgress alloc] init];
     self.webView.delegate = _webviewProgress;
@@ -54,10 +64,16 @@
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
-    
     [self.webView loadRequest:request];
     
+    
 }
+
+- (void)back
+{
+    [self dismissViewControllerAnimated:NO completion:nil];
+}
+
 -(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
 {
     [self.progressView setProgress:progress animated:YES];
@@ -69,7 +85,6 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
     [MBProgressHUD hideHUDForView:self.view animated:YES];
-    _webView.hidden = NO;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     [MBProgressHUD hideHUDForView:self.view animated:NO];

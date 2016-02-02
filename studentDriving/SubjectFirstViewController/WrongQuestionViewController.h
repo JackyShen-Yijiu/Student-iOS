@@ -10,4 +10,7 @@
 
 @interface WrongQuestionViewController : UIViewController
 @property (copy, nonatomic) NSString *questionerrorurl;
+
+@property (nonatomic,assign) BOOL isModal;
+
 @end

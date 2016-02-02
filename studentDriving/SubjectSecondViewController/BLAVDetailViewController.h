@@ -10,4 +10,5 @@
 
 @interface BLAVDetailViewController : UIViewController
 @property (copy, nonatomic) NSString *avPlayerString;
+
 @end

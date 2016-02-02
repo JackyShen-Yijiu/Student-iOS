@@ -10,4 +10,5 @@
 
 @interface BLAVPlayerViewController : BLBaseViewController
 @property (strong, nonatomic) NSNumber *markNum;
+
 @end
