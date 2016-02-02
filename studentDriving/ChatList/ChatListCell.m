@@ -115,6 +115,7 @@
     
     frame = _lineView.frame;
     frame.origin.y = self.contentView.frame.size.height - 1;
+    frame.size.width = self.contentView.frame.size.width;
     _lineView.frame = frame;
 }
 
