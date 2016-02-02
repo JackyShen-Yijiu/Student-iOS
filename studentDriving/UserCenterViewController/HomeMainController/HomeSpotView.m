@@ -177,9 +177,11 @@
         if(resultLabel.tag == i)
         {
             resultLabel.textColor = [UIColor colorWithHexString:@"ff6633"];
+            resultLabel.font = [UIFont systemFontOfSize:14];
         }else
         {
             resultLabel.textColor = [UIColor whiteColor];
+            resultLabel.font = [UIFont systemFontOfSize:12];
         }
     }
     // 设置划过的痕迹

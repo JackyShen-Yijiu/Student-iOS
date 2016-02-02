@@ -50,20 +50,20 @@
         }
         
         // 箭头
-        for (int j = 0; j<1; j++) {
-            
-            UIImageView *img = [[UIImageView alloc] init];
-            img.backgroundColor = [UIColor clearColor];
-            img.image = [UIImage imageNamed:j == 0 ? @"selectDringBtnSelectImg" : @"selectDringBtnImg"];
-            CGFloat imgw = 10;
-            CGFloat imgH = 5;
-            CGFloat imgx = VIEW_WIDTH/4 * (j+1)-imgw-3;
-            CGFloat imgy = filterViewHeight/2-imgH/2;
-            img.frame = CGRectMake(imgx, imgy, imgw, imgH);
-            img.tag = j+1000;
-            [self addSubview:img];
-            
-        }
+//        for (int j = 0; j<1; j++) {
+//            
+//            UIImageView *img = [[UIImageView alloc] init];
+//            img.backgroundColor = [UIColor clearColor];
+//            img.image = [UIImage imageNamed:j == 0 ? @"selectDringBtnSelectImg" : @"selectDringBtnImg"];
+//            CGFloat imgw = 10;
+//            CGFloat imgH = 5;
+//            CGFloat imgx = VIEW_WIDTH/4 * (j+1)-imgw-3;
+//            CGFloat imgy = filterViewHeight/2-imgH/2;
+//            img.frame = CGRectMake(imgx, imgy, imgw, imgH);
+//            img.tag = j+1000;
+//            [self addSubview:img];
+//            
+//        }
         
         //        [self.searchView addSubview:self.searchBackgroundImageView];
         //        [self.searchView addSubview:self.searchTextField];
@@ -117,12 +117,16 @@
 
 #pragma mark - lazy load
 
-- (UIButton *)motorcycleTypeButton {
+- (JGItemButton *)motorcycleTypeButton {
     if (!_motorcycleTypeButton) {
-        _motorcycleTypeButton = [UIButton new];
+        _motorcycleTypeButton = [[JGItemButton alloc] init];
         [_motorcycleTypeButton setTitle:@"车型选择" forState:UIControlStateNormal];
         [_motorcycleTypeButton setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        [_motorcycleTypeButton setImage:[UIImage imageNamed:@"selectDringBtnSelectImg.png"] forState:UIControlStateNormal];
+        [_motorcycleTypeButton setImage:[UIImage imageNamed:@"selectDringBtnSelectImg.png"] forState:UIControlStateSelected];
         _motorcycleTypeButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        _motorcycleTypeButton.titleLabel.contentMode = UIViewContentModeLeft;
+        _motorcycleTypeButton.contentEdgeInsets = UIEdgeInsetsMake(0, 5, 0, 15);
     }
     return _motorcycleTypeButton;
 }

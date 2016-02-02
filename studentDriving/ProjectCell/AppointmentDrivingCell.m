@@ -11,6 +11,7 @@
 #import "AppointmentCollectionViewCell.h"
 #import "AppointmentCoachTimeInfoModel.h"
 #import "BLInformationManager.h"
+#import "CoachViewController.h"
 
 @interface AppointmentDrivingCell ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 @property (strong, nonatomic) UIScrollView *menuScrollview;
@@ -102,22 +103,52 @@
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     return UIEdgeInsetsMake(0, 0, 0, 0);
 }
+
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
+    
+    AppointmentCollectionViewCell *cell = (AppointmentCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
+
     DYNSLog(@"clickModel = %d",model.is_selected);
     
     DYNSLog(@"self.upDateArray.count:%lu",self.upDateArray.count);
     
+    DYNSLog(@"cell.isModify:%d",cell.isModifyCoach);
     
     if (model.is_selected == NO) {
+        
+        // 判断是否是更换同时段教练
+        if (cell.isModifyCoach) {
+            NSLog(@"跳转到更多教练列表");
+            
+            NSString *dateString = [NSString getYearLocalDateFormateUTCDate:cell.coachTimeInfo.coursedate];
+            
+            NSLog(@"cell.coachTimeInfo.coursetime.timeid:%@",cell.coachTimeInfo.coursetime.timeid);
+            NSLog(@"cell.coachTimeInfo.coursedate:%@ dateString:%@",cell.coachTimeInfo.coursedate,dateString);
+            
+            CoachViewController *coach = [[CoachViewController alloc] init];
+            coach.markNum = 2;
+            coach.isModifyCoach = YES;
+            coach.timeid = cell.coachTimeInfo.coursetime.timeid;
+            coach.coursedate = dateString;
+            [self.parentViewController.navigationController pushViewController:coach animated:YES];
+            
+            return;
+        }
+        
         DYNSLog(@"Selected");
         if (self.upDateArray.count>=4) {
             
             ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"您最多可预约4个课时"];
             [alertView show];
+            
             return;
+            
         }
+        
         if (self.upDateArray.count == 0) {
+            
             AppointmentCollectionViewCell *cell = (AppointmentCollectionViewCell *)[collectionView cellForItemAtIndexPath:indexPath];
             cell.startTimeLabel.textColor = MAINCOLOR;
             cell.finalTimeLabel.textColor = MAINCOLOR;
@@ -130,7 +161,9 @@
 
             return;
         }
+        
         for (AppointmentCoachTimeInfoModel *UpDatemodel in self.upDateArray) {
+            
             DYNSLog(@"upDateModel = %ld",UpDatemodel.indexPath);
             if ((model.indexPath + 1 == UpDatemodel.indexPath )|| (model.indexPath-1 == UpDatemodel.indexPath)) {
                 //            [SVProgressHUD showInfoWithStatus:@"请选择相邻的时间段"];
@@ -153,7 +186,9 @@
         [alertView show];
 
     }else if (model.is_selected == YES) {
+        
         if (self.upDateArray.count == 4) {
+            
             NSArray *array = [BLInformationManager sharedInstance].appointmentData;
             
             NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {

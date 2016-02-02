@@ -337,7 +337,7 @@ static NSString *const kDeleteLoveCoach = @"userinfo/favoritecoach/%@";
         cell.sendMeetDetail.text = self.detailModel.shuttlemsg;
         
         cell.workTimeDetail.text = self.detailModel.worktimedesc;
-        cell.dringAgeLabel.text = [NSString stringWithFormat:@"驾       龄:   %@",self.detailModel.seniority];
+        cell.dringAgeLabel.text = [NSString stringWithFormat:@"教       龄:   %ld",(long)self.detailModel.Seniority];
         if (self.detailModel.subject.count >= 2) {
             cell.teachSubjcetDetail.text = @"全科";
         }else {

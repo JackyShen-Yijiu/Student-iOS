@@ -18,4 +18,6 @@
 @property (weak, nonatomic) id <AppointmentDrivingCellDelegate>delegate;
 @property (strong, nonatomic) NSMutableArray *upDateArray;
 
+@property (nonatomic,weak) UIViewController *parentViewController;
+
 @end

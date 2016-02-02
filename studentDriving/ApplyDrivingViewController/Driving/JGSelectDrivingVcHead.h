@@ -8,12 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "DVVToolBarView.h"
+#import "JGItemButton.h"
 
 @interface JGSelectDrivingVcHead : UIView<UITextFieldDelegate>
 
 @property (nonatomic, assign) CGFloat defaultHeight;
 
-@property (nonatomic, strong) UIButton *motorcycleTypeButton;
+@property (nonatomic, strong) JGItemButton *motorcycleTypeButton;
 @property (nonatomic, strong) DVVToolBarView *filterView;
 
 
