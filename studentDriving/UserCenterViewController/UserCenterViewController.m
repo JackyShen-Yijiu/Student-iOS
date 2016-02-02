@@ -26,6 +26,7 @@
 #import "VerifyPhoneController.h"
 #import <JPush/APService.h>
 #import "SignUpInfoManager.h"
+#import "SignUpController.h"
 
 @interface UserCenterViewController ()<UITableViewDataSource,UITableViewDelegate,UserCenterHeadViewDelegte>
 @property (strong, nonatomic) UITableView *tableView;
@@ -219,7 +220,7 @@
                 [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
             }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"])
             {
-                SignUpListViewController *signUPVC = [SignUpListViewController new];
+                SignUpController *signUPVC = [SignUpController new];
                 [self.navigationController pushViewController:signUPVC animated:YES];
             }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"3"]) {
                 [self showTotasViewWithMes:@"验证报名中"];
