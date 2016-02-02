@@ -18,7 +18,7 @@
 
 @interface CoachDetail : MTLModel<MTLJSONSerializing>
 //资质
-@property (copy, nonatomic) NSString *seniority;
+@property (assign, nonatomic) NSInteger Seniority;
 @property (copy, nonatomic) NSString *address;
 @property (strong, nonatomic) CarModel *carmodel;
 @property (copy, nonatomic) NSString *coachid;

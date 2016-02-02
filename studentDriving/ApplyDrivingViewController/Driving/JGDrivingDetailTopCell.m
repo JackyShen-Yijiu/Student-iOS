@@ -250,12 +250,18 @@ static NSString *const kAddLoveAndDeleteCoach = @"userinfo/favoritecoach/%@";
     self.coachNameLabel.text = _detailModel.name;
     
     // 驾龄
-    if (_detailModel.seniority) {
-        self.jialingLabel.text = [NSString stringWithFormat:@"驾龄:%@",_detailModel.seniority];
-    }else{
-        self.jialingLabel.text = @"无驾龄";
-    }
+    NSLog(@"_detailModel.seniority:%ld",(long)_detailModel.Seniority);
     
+    if (_detailModel.Seniority&&_detailModel.Seniority>0) {
+        self.jialingLabel.text = [NSString stringWithFormat:@"教龄:%ld年",(long)_detailModel.Seniority];
+    }else{
+        self.jialingLabel.text = @"无教龄";
+    }
+//    if (coachModel.seniority) {
+//        self.dringAgeLabel.text = [NSString stringWithFormat:@"%@年驾龄",coachModel.seniority] ;
+//    }else{
+//        self.dringAgeLabel.text = [NSString stringWithFormat:@"无驾龄"] ;
+//    }
     // 星级
     [_starBar displayRating:[_detailModel.starlevel floatValue]];
     
