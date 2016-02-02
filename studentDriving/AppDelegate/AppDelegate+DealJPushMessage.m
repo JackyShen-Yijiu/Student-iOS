@@ -81,7 +81,8 @@
         [BLPFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
             DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
             if (selectedOtherButtonIndex == 0) {
-                NSLog(@"跳转到appstore更新版本....待处理");
+                // 去更新版本
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/yi-bu-xue-che/id1060105429"]];
             }
         }];
     }
@@ -92,6 +93,5 @@
 #endif
     [APService handleRemoteNotification:userInfo];
 }
-
 
 @end

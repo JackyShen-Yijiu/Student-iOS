@@ -186,7 +186,7 @@ static NSString *const kMyWalletUrl = @"userinfo/getmywallet?userid=%@&usertype=
                      content:DVV_Share_Default_Content
                        image:DVV_Share_Default_Image
                     location:nil
-                 urlResource:nil
+                         url:nil
                      success:^(NSString *platformName) {
         [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
     }];

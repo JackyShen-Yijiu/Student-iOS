@@ -16,10 +16,10 @@ typedef void(^DVVShareViewSuccessBlock)(NSString *platformName);
 
 @property (nonatomic, strong) UICollectionView *collectionView;
 
-@property (nonatomic, strong) NSString *shareTitle;
-@property (nonatomic, strong) NSString *shareContent;
+@property (nonatomic, copy) NSString *shareTitle;
+@property (nonatomic, copy) NSString *shareContent;
 @property (nonatomic, strong) UIImage *shareImage;
-@property (nonatomic, strong) UIViewController *presentedController;
+@property (nonatomic, weak) UIViewController *presentedController;
 @property (nonatomic, strong) CLLocation *shareLocation;
 @property (nonatomic, strong) UMSocialUrlResource *shareUrlResource;
 

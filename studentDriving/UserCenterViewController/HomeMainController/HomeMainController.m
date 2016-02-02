@@ -53,6 +53,7 @@
 #import "DVVLocation.h"
 #import "DrivingCityListView.h"
 
+
 // 科目三
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
@@ -199,6 +200,7 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
+//        [DVVCheckAppNewVersion checkAppNewVersion];
 //        ComplaintController *complainVC = [ComplaintController new];
 //        [self.navigationController pushViewController:complainVC animated:YES];
         
@@ -268,13 +270,10 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
                 [AcountManager saveUserApplyState:@"0"];
                 NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
                 // 如果之前已经点击过答对了,就直接跳转到验证学车进度
-                if ([[defauts objectForKey:@"CheckProgress"] isEqualToString:@"答对了"]) {
+                if ([defauts objectForKey:@"CheckProgress"]) {
                     VerifyPhoneController *verifyVC = [[VerifyPhoneController alloc] init];
                     [ws.navigationController pushViewController:verifyVC animated:YES];
-                }else if ([[defauts objectForKey:@"SingUp"] isEqualToString:@"答错了"]){
-                    
-                }
-                else{
+                }else{
                     // 弹出验证学车进度窗体
                     _homeCheckProgressView = [[HomeCheckProgressView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
                     
