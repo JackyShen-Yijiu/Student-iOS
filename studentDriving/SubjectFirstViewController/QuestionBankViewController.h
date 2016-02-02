@@ -10,4 +10,5 @@
 
 @interface QuestionBankViewController : UIViewController
 @property (copy, nonatomic) NSString *questionlisturl;
+@property (nonatomic,assign) BOOL isModal;
 @end

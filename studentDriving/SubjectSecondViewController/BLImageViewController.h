@@ -10,4 +10,5 @@
 
 @interface BLImageViewController : BLBaseViewController
 @property (copy, nonatomic) NSString *videourl;
+
 @end

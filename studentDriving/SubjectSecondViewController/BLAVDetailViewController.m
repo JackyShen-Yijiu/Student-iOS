@@ -20,7 +20,7 @@
 @implementation BLAVDetailViewController
 - (UIWebView *)webView {
     if (_webView == nil) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
         _webView.delegate = self;
     }
     return _webView;
@@ -32,7 +32,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
         
     [self.view addSubview:self.webView];
-    
+   
     _webviewProgress = [[NJKWebViewProgress alloc] init];
     self.webView.delegate = _webviewProgress;
     self.webviewProgress.webViewProxyDelegate = self;
@@ -53,6 +53,7 @@
 
     
 }
+
 -(void)webViewProgress:(NJKWebViewProgress *)webViewProgress updateProgress:(float)progress
 {
     [self.progressView setProgress:progress animated:YES];

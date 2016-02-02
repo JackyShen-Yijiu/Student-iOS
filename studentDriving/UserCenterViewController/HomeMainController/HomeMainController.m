@@ -521,22 +521,30 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
             {
                 QuestionTestViewController *questionVC = [[QuestionTestViewController alloc] init];
                 questionVC.questiontesturl = mainVC.questiontesturl;
-                [mainVC.navigationController pushViewController:questionVC animated:YES];
+                questionVC.isModal = YES;
+//                [mainVC.navigationController pushViewController:questionVC animated:YES];
+                [mainVC presentViewController:questionVC animated:NO completion:nil];
+
             }
                 break;
             case 102:
             {
                 WrongQuestionViewController *wrongQuestVC = [[WrongQuestionViewController alloc] init];
                 wrongQuestVC.questionerrorurl = mainVC.questionerrorurl;
+                wrongQuestVC.isModal = YES;
                 NSLog(@"%@",wrongQuestVC.questionerrorurl);
-                [mainVC.navigationController pushViewController:wrongQuestVC animated:YES];
+//                [mainVC.navigationController pushViewController:wrongQuestVC animated:YES];
+                [mainVC presentViewController:wrongQuestVC animated:NO completion:nil];
             }
                 break;
                 case 103:
             {
                 QuestionBankViewController *questBankVC = [[QuestionBankViewController alloc] init];
                 questBankVC.questionlisturl = mainVC.questionlisturl;
-                [mainVC.navigationController pushViewController:questBankVC animated:YES];
+                questBankVC.isModal = YES;
+//                [mainVC.navigationController pushViewController:questBankVC animated:YES];
+                [mainVC presentViewController:questBankVC animated:NO completion:nil];
+
             }
                 break;
                 
@@ -554,6 +562,8 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
                 bLAVPlayweVC.title = @"科二课件";
                 bLAVPlayweVC.markNum = [NSNumber numberWithInteger:2];
                 [mainVC.navigationController pushViewController:bLAVPlayweVC animated:YES];
+//                [mainVC presentViewController:bLAVPlayweVC animated:NO completion:nil];
+
             }
                 break;
                 case 102:
@@ -686,7 +696,9 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
                     questionBank.questionlisturl = finalString;
                 }
                 questionBank.title = @"科四题库";
-                [mainVC.navigationController pushViewController:questionBank animated:YES];
+                questionBank.isModal = YES;
+//                [mainVC.navigationController pushViewController:questionBank animated:YES];
+                [mainVC presentViewController:questionBank animated:NO completion:nil];
 
             }
                 break;
@@ -699,7 +711,9 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
                     questionTest.questiontesturl = finalString;
                 }
                 questionTest.title = @"科四模拟考试";
-                [mainVC.navigationController pushViewController:questionTest animated:YES];
+//                [mainVC.navigationController pushViewController:questionTest animated:YES];
+                questionTest.isModal = YES;
+                [mainVC presentViewController:questionTest animated:NO completion:nil];
 
             }
                 break;
@@ -716,7 +730,9 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
                     wrongQuestion.questionerrorurl = finalString;
                 }
                 wrongQuestion.title = @"错题";
-                [mainVC.navigationController pushViewController:wrongQuestion animated:YES];
+                wrongQuestion.isModal = YES;
+//                [mainVC.navigationController pushViewController:wrongQuestion animated:YES];
+                [mainVC presentViewController:wrongQuestion animated:NO completion:nil];
                 
 
             }
