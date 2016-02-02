@@ -307,12 +307,13 @@ static NSString *const kGetSchoolUrl = @"getschoolcoach/%@/1";
     CoachModel *model = self.dataArray[indexPath.row];
     self.detailModel = model;
     self.naviBarRightButton.hidden = NO;
-    if (self.markNum == 1) {
-        SignUpCoachDetailViewController *detailVC = [[SignUpCoachDetailViewController alloc]init];
-        detailVC.isVerify = self.isVerify;
-        detailVC.coachUserId = model.coachid;
-        [self.navigationController pushViewController:detailVC animated:YES];
-    }else if (self.markNum == 2) {
+//    if (self.markNum == 1) {
+//        SignUpCoachDetailViewController *detailVC = [[SignUpCoachDetailViewController alloc]init];
+//        detailVC.isVerify = self.isVerify;
+//        detailVC.coachUserId = model.coachid;
+//        [self.navigationController pushViewController:detailVC animated:YES];
+//    }else
+    if (self.markNum == 2) {
         CoachDetailAppointmentViewController *appointment = [[CoachDetailAppointmentViewController alloc] init];
         appointment.coachUserId = model.coachid;
         

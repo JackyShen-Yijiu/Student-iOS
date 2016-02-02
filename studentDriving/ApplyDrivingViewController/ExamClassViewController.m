@@ -121,15 +121,12 @@ static NSString *const kExamClassType = @"driveschool/schoolclasstype/%@";
     if (!cell) {
         DYNSLog(@"创建错误");
     }
-    
-    ExamClassModel *model = self.dataArray[indexPath.row];
-    cell.drivingName.text = model.classname;
-    cell.drivingAdress.text = model.classdesc;
-    
+    cell.model = self.dataArray[indexPath.row];
     return cell;
 }
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
-    CGSize cellSize = CGSizeMake(kSystemWide-20, 70);
+
+    CGSize cellSize = CGSizeMake(kSystemWide-20, 100);
     return cellSize;
 }
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
