@@ -578,7 +578,7 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
             if ([type isEqualToString:@"1"]) {
                 
                 kShowSuccess(@"报名成功");
-                        
+                
                 NSDictionary *extraDict = data[@"extra"];;
                 
                 NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
