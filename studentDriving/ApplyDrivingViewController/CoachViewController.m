@@ -170,7 +170,14 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
 
     NSString *url = [NSString stringWithFormat:BASEURL,kappointmentCoachUrl];
 
-    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+    // 更换某时段可预约教练
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    if (self.isModifyCoach) {
+        dict[@"timeid"] = self.timeid;
+        dict[@"coursedate"] = self.coursedate;
+    }
+    
+    [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if (data) {

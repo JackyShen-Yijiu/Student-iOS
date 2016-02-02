@@ -466,18 +466,23 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     return 1;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (collectionView == self.coachHeadCollectionView) {
+        
         static NSString *cellId = @"collectionCell";
         CoachHeadCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
         AppointmentCoachModel *coachModel = self.dataArray[indexPath.row];
         
         [cell recevieCoachData:coachModel];
+        
         if (indexPath.row == 0) {
+            
             //        cell.selected = YES;
             self.coachModel = coachModel;
             NSString *dateString = [NSString getDayWithAddCountWithData:0];
             NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl,coachModel.coachid,dateString];
             NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+            
             [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
                 DYNSLog(@"appointment = %@",data);
                 
@@ -498,15 +503,20 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             }];
         }
          return cell;
+        
     }else {
+        
         static NSString *cellId = @"cell";
         AppointmentCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
         if (!cell) {
             DYNSLog(@"创建错误");
         }
+       
         StudentModel *model = self.stuDataArray[indexPath.row];
         DYNSLog(@"headImage = %@",model.userid.headportrait.originalpic);
+       
         [cell.headImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+        
         return cell;
 
     }
@@ -532,6 +542,7 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     DYNSLog(@"click");
 
     if (collectionView == self.coachHeadCollectionView) {
+        
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
         self.coachModel = self.dataArray[indexPath.row];
         NSString *dateString = [NSString getDayWithAddCountWithData:0];
@@ -560,7 +571,9 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
         if (_coachIdStr&&_startTimeStr&&_endTimeStr) {
             [self startDownLoad];
         }
+        
     }else {
+        
         StudentModel *model = self.stuDataArray[indexPath.row];
         StudentDetailViewController *studentDetail = [[StudentDetailViewController alloc] init];
         UserIdModel *userIdModel = model.userid;
@@ -602,7 +615,9 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
     return nil;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.row == 0 && indexPath.section == 0  ) {
+    
+    if (indexPath.row == 0 && indexPath.section == 0  ) {// 中间方格
+        
         static NSString *cellId = @"cell";
         AppointmentDrivingCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
@@ -610,9 +625,15 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
             cell.delegate = self;
         }
         DYNSLog(@"self.coachTimeArray = %ld",self.coachTimeArray.count);
+        
+        cell.parentViewController = self;
+        
         [cell receiveCoachTimeData:self.coachTimeArray];
+        
         return cell;
+        
     }else {
+        
         static NSString *cellId = @"cell";
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
@@ -629,7 +650,9 @@ static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?
         rightView.image = [UIImage imageNamed:@"地点.png"];
         cell.accessoryView = rightView;
         return cell;
+        
     }
+    
     return nil;
 }
 #pragma mark -- 日历button
