@@ -90,17 +90,15 @@
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
 //    [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeHomeMainController];
+   
+    WMCommon *common = [WMCommon getInstance];
+    common.screenW = [[UIScreen mainScreen] bounds].size.width;
+    common.screenH = [[UIScreen mainScreen] bounds].size.height;
     
     // 引导页
     if ([YBWelcomeController isShowWelcome]) {
         
         [YBWelcomeController show];
-        
-    }else{
-        
-        WMCommon *common = [WMCommon getInstance];
-        common.screenW = [[UIScreen mainScreen] bounds].size.width;
-        common.screenH = [[UIScreen mainScreen] bounds].size.height;
         
     }
     

@@ -9,6 +9,7 @@
 #import "DVVUserManager.h"
 #import "DVVOpenControllerFromSideMenu.h"
 #import "LoginViewController.h"
+#import "AppDelegate.h"
 
 @implementation DVVUserManager
 
@@ -30,13 +31,14 @@
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
+    
 }
 
 // 用户登录成功后调用此方法打开主页
 + (void)userLoginSucces {
     
-    [[self loginController].navigationController popToRootViewControllerAnimated:YES];
-    [self showNaviBar];
+    [[self loginController].navigationController popToRootViewControllerAnimated:NO];
+    //[self showNaviBar];
 }
 
 // 用户退出登录后调用此方法
