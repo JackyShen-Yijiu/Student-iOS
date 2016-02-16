@@ -114,8 +114,22 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.shequVC = [[YBCommunityViewController alloc] init];
     [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor"];
     
+    // 检测是否打开登录页
+    if (![AcountManager isLogin]) {
+        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+        [self showHome];
+        [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+    }
+    
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+ 
+    
+}
 
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
@@ -134,7 +148,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 
     self.mainNav = [[WMNavigationController alloc] initWithRootViewController:vc];
     
-    self.mainNav.navigationBar.barTintColor = [UIColor colorWithRed:0 green:122.0 / 255 blue:1.0 alpha:1.0];
+    self.mainNav.navigationBar.barTintColor = YBNavigationBarBgColor;
     self.mainNav.navigationBar.tintColor = [UIColor whiteColor];
     [self.mainNav.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
     self.mainNav.tabBarItem.title = title;

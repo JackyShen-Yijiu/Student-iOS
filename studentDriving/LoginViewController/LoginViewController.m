@@ -467,15 +467,8 @@ static NSString *const kuserType = @"usertype";
              
              DYNSLog(@"登录成功");
              
-             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
-             
-             [AcountManager configUserInformationWith:dataDic[@"data"]];
-             
              [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
              
-             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-             
-//             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
              NSSet *set = [NSSet setWithObjects:@"", nil];
              [APService setTags:set alias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
              
@@ -501,6 +494,11 @@ static NSString *const kuserType = @"usertype";
              
              // 用户登录成功，打开相应的窗体
              [DVVUserManager userLoginSucces];
+             
+             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
+             
+             [AcountManager configUserInformationWith:dataDic[@"data"]];
+
              
          }
          else
