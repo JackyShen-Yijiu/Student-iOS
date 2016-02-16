@@ -114,6 +114,16 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.shequVC = [[YBCommunityViewController alloc] init];
     [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor"];
     
+    
+    // 检测是否打开登录页
+    if (![AcountManager isLogin]) {
+        
+        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+        [self showHome];
+        [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:YES];
+        
+    }
+    
 }
 
 

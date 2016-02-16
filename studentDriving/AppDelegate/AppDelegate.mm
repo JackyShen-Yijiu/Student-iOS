@@ -49,6 +49,7 @@
 #import "AlipaySDK/AlipaySDK.h"
 #import "AlixPayResult.h"
 #import "WMCommon.h"
+#import "ViewController.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 {
@@ -57,7 +58,6 @@
 @end
 
 @implementation AppDelegate
-
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -89,21 +89,19 @@
     //注册环信聊天
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
-    // 打开主页
-    WMCommon *common = [WMCommon getInstance];
-    common.screenW = [[UIScreen mainScreen] bounds].size.width;
-    common.screenH = [[UIScreen mainScreen] bounds].size.height;
-    
 //    [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeHomeMainController];
-    
-    // 检测是否打开登录页
-    if (![AcountManager isLogin]) {
-        [(UINavigationController *)(self.window.rootViewController) pushViewController:[DVVUserManager loginController] animated:NO];
-    }
     
     // 引导页
     if ([YBWelcomeController isShowWelcome]) {
+        
         [YBWelcomeController show];
+        
+    }else{
+        
+        WMCommon *common = [WMCommon getInstance];
+        common.screenW = [[UIScreen mainScreen] bounds].size.width;
+        common.screenH = [[UIScreen mainScreen] bounds].size.height;
+        
     }
     
     // 设置StatusBarStyle为白色（需要在在infor.plist中加入key:UIViewControllerBasedStatusBarAppearance 并设置其值为NO）
