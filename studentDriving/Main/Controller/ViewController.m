@@ -134,7 +134,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 
     self.mainNav = [[WMNavigationController alloc] initWithRootViewController:vc];
     
-    self.mainNav.navigationBar.barTintColor = [UIColor colorWithRed:0 green:122.0 / 255 blue:1.0 alpha:1.0];
+    self.mainNav.navigationBar.barTintColor = YBNavigationBarBgColor;
     self.mainNav.navigationBar.tintColor = [UIColor whiteColor];
     [self.mainNav.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
     self.mainNav.tabBarItem.title = title;
