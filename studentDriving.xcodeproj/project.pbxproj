@@ -118,6 +118,28 @@
 		B21818391C5B1C6F00F973A7 /* GBTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818381C5B1C6F00F973A7 /* GBTagListView.m */; };
 		B218183C1C5B201D00F973A7 /* tagslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B218183B1C5B201D00F973A7 /* tagslistModel.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
+		B2E8E1801C72BA4F000190C2 /* WMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1641C72BA4F000190C2 /* WMNavigationController.m */; };
+		B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1661C72BA4F000190C2 /* ViewController.m */; };
+		B2E8E1851C72BA4F000190C2 /* WMMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E16D1C72BA4F000190C2 /* WMMenuViewController.m */; };
+		B2E8E1861C72BA4F000190C2 /* WMMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E8E16E1C72BA4F000190C2 /* WMMenuViewController.xib */; };
+		B2E8E1871C72BA4F000190C2 /* WMOtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1701C72BA4F000190C2 /* WMOtherViewController.m */; };
+		B2E8E1881C72BA4F000190C2 /* WMOtherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E8E1711C72BA4F000190C2 /* WMOtherViewController.xib */; };
+		B2E8E1891C72BA4F000190C2 /* WMCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1741C72BA4F000190C2 /* WMCommon.m */; };
+		B2E8E18A1C72BA4F000190C2 /* WMNavigationInteractiveTransition.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1781C72BA4F000190C2 /* WMNavigationInteractiveTransition.m */; };
+		B2E8E18B1C72BA4F000190C2 /* WMPopAnimation.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E17A1C72BA4F000190C2 /* WMPopAnimation.m */; };
+		B2E8E18C1C72BA4F000190C2 /* UIImage+WM.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E17D1C72BA4F000190C2 /* UIImage+WM.m */; };
+		B2E8E18D1C72BA4F000190C2 /* WMMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E17F1C72BA4F000190C2 /* WMMenuTableViewCell.m */; };
+		B2E8E1AA1C72C744000190C2 /* YBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1A91C72C744000190C2 /* YBBaseViewController.m */; };
+		B2E8E1AD1C72C78B000190C2 /* YBAppointMentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1AC1C72C78B000190C2 /* YBAppointMentController.m */; };
+		B2E8E1B01C72C8BE000190C2 /* YBCommunityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1AF1C72C8BE000190C2 /* YBCommunityViewController.m */; };
+		B2E8E1B31C72C8CB000190C2 /* YBMallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1B21C72C8CB000190C2 /* YBMallViewController.m */; };
+		B2E8E1B61C72C8D7000190C2 /* YBSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1B51C72C8D7000190C2 /* YBSignUpViewController.m */; };
+		B2E8E1B91C72C8E6000190C2 /* YBStudyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1B81C72C8E6000190C2 /* YBStudyViewController.m */; };
+		B2E8E1BC1C72CA83000190C2 /* YBHomeBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1BB1C72CA83000190C2 /* YBHomeBaseController.m */; };
+		B2E8E1C61C72CEFD000190C2 /* IWBadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1BF1C72CEFD000190C2 /* IWBadgeButton.m */; };
+		B2E8E1C71C72CEFD000190C2 /* IWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1C11C72CEFD000190C2 /* IWTabBar.m */; };
+		B2E8E1C81C72CEFD000190C2 /* IWTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1C31C72CEFD000190C2 /* IWTabBarButton.m */; };
+		B2E8E1C91C72CEFD000190C2 /* IWTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1C51C72CEFD000190C2 /* IWTabBarViewController.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1117,6 +1139,48 @@
 		B218183B1C5B201D00F973A7 /* tagslistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagslistModel.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
+		B2E8E1631C72BA4F000190C2 /* WMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationController.h; sourceTree = "<group>"; };
+		B2E8E1641C72BA4F000190C2 /* WMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNavigationController.m; sourceTree = "<group>"; };
+		B2E8E1651C72BA4F000190C2 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B2E8E1661C72BA4F000190C2 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B2E8E16C1C72BA4F000190C2 /* WMMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMenuViewController.h; sourceTree = "<group>"; };
+		B2E8E16D1C72BA4F000190C2 /* WMMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMenuViewController.m; sourceTree = "<group>"; };
+		B2E8E16E1C72BA4F000190C2 /* WMMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMenuViewController.xib; sourceTree = "<group>"; };
+		B2E8E16F1C72BA4F000190C2 /* WMOtherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOtherViewController.h; sourceTree = "<group>"; };
+		B2E8E1701C72BA4F000190C2 /* WMOtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOtherViewController.m; sourceTree = "<group>"; };
+		B2E8E1711C72BA4F000190C2 /* WMOtherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMOtherViewController.xib; sourceTree = "<group>"; };
+		B2E8E1731C72BA4F000190C2 /* WMCommon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMCommon.h; sourceTree = "<group>"; };
+		B2E8E1741C72BA4F000190C2 /* WMCommon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMCommon.m; sourceTree = "<group>"; };
+		B2E8E1771C72BA4F000190C2 /* WMNavigationInteractiveTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationInteractiveTransition.h; sourceTree = "<group>"; };
+		B2E8E1781C72BA4F000190C2 /* WMNavigationInteractiveTransition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNavigationInteractiveTransition.m; sourceTree = "<group>"; };
+		B2E8E1791C72BA4F000190C2 /* WMPopAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMPopAnimation.h; sourceTree = "<group>"; };
+		B2E8E17A1C72BA4F000190C2 /* WMPopAnimation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMPopAnimation.m; sourceTree = "<group>"; };
+		B2E8E17C1C72BA4F000190C2 /* UIImage+WM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+WM.h"; sourceTree = "<group>"; };
+		B2E8E17D1C72BA4F000190C2 /* UIImage+WM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+WM.m"; sourceTree = "<group>"; };
+		B2E8E17E1C72BA4F000190C2 /* WMMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMenuTableViewCell.h; sourceTree = "<group>"; };
+		B2E8E17F1C72BA4F000190C2 /* WMMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMenuTableViewCell.m; sourceTree = "<group>"; };
+		B2E8E1A81C72C744000190C2 /* YBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseViewController.h; sourceTree = "<group>"; };
+		B2E8E1A91C72C744000190C2 /* YBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseViewController.m; sourceTree = "<group>"; };
+		B2E8E1AB1C72C78B000190C2 /* YBAppointMentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentController.h; sourceTree = "<group>"; };
+		B2E8E1AC1C72C78B000190C2 /* YBAppointMentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentController.m; sourceTree = "<group>"; };
+		B2E8E1AE1C72C8BE000190C2 /* YBCommunityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCommunityViewController.h; sourceTree = "<group>"; };
+		B2E8E1AF1C72C8BE000190C2 /* YBCommunityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCommunityViewController.m; sourceTree = "<group>"; };
+		B2E8E1B11C72C8CB000190C2 /* YBMallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMallViewController.h; sourceTree = "<group>"; };
+		B2E8E1B21C72C8CB000190C2 /* YBMallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMallViewController.m; sourceTree = "<group>"; };
+		B2E8E1B41C72C8D7000190C2 /* YBSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSignUpViewController.h; sourceTree = "<group>"; };
+		B2E8E1B51C72C8D7000190C2 /* YBSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSignUpViewController.m; sourceTree = "<group>"; };
+		B2E8E1B71C72C8E6000190C2 /* YBStudyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudyViewController.h; sourceTree = "<group>"; };
+		B2E8E1B81C72C8E6000190C2 /* YBStudyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyViewController.m; sourceTree = "<group>"; };
+		B2E8E1BA1C72CA83000190C2 /* YBHomeBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBHomeBaseController.h; sourceTree = "<group>"; };
+		B2E8E1BB1C72CA83000190C2 /* YBHomeBaseController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBHomeBaseController.m; sourceTree = "<group>"; };
+		B2E8E1BE1C72CEFD000190C2 /* IWBadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWBadgeButton.h; sourceTree = "<group>"; };
+		B2E8E1BF1C72CEFD000190C2 /* IWBadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWBadgeButton.m; sourceTree = "<group>"; };
+		B2E8E1C01C72CEFD000190C2 /* IWTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTabBar.h; sourceTree = "<group>"; };
+		B2E8E1C11C72CEFD000190C2 /* IWTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTabBar.m; sourceTree = "<group>"; };
+		B2E8E1C21C72CEFD000190C2 /* IWTabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTabBarButton.h; sourceTree = "<group>"; };
+		B2E8E1C31C72CEFD000190C2 /* IWTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTabBarButton.m; sourceTree = "<group>"; };
+		B2E8E1C41C72CEFD000190C2 /* IWTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTabBarViewController.h; sourceTree = "<group>"; };
+		B2E8E1C51C72CEFD000190C2 /* IWTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTabBarViewController.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -2821,6 +2885,318 @@
 			path = WeChatPay;
 			sourceTree = "<group>";
 		};
+		B2E8E1601C72BA4F000190C2 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1611C72BA4F000190C2 /* Controller */,
+				B2E8E1721C72BA4F000190C2 /* Model */,
+				B2E8E1751C72BA4F000190C2 /* Other */,
+				B2E8E17B1C72BA4F000190C2 /* View */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		B2E8E1611C72BA4F000190C2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1BD1C72CEFD000190C2 /* TabbarController */,
+				B2E8E1621C72BA4F000190C2 /* NavigationController */,
+				B2E8E1651C72BA4F000190C2 /* ViewController.h */,
+				B2E8E1661C72BA4F000190C2 /* ViewController.m */,
+				B2E8E1A81C72C744000190C2 /* YBBaseViewController.h */,
+				B2E8E1A91C72C744000190C2 /* YBBaseViewController.m */,
+				B2E8E1BA1C72CA83000190C2 /* YBHomeBaseController.h */,
+				B2E8E1BB1C72CA83000190C2 /* YBHomeBaseController.m */,
+				B2E8E16C1C72BA4F000190C2 /* WMMenuViewController.h */,
+				B2E8E16D1C72BA4F000190C2 /* WMMenuViewController.m */,
+				B2E8E16E1C72BA4F000190C2 /* WMMenuViewController.xib */,
+				B2E8E16F1C72BA4F000190C2 /* WMOtherViewController.h */,
+				B2E8E1701C72BA4F000190C2 /* WMOtherViewController.m */,
+				B2E8E1711C72BA4F000190C2 /* WMOtherViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B2E8E1621C72BA4F000190C2 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1631C72BA4F000190C2 /* WMNavigationController.h */,
+				B2E8E1641C72BA4F000190C2 /* WMNavigationController.m */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		B2E8E1721C72BA4F000190C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1731C72BA4F000190C2 /* WMCommon.h */,
+				B2E8E1741C72BA4F000190C2 /* WMCommon.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2E8E1751C72BA4F000190C2 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1761C72BA4F000190C2 /* NavigationAnimation */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B2E8E1761C72BA4F000190C2 /* NavigationAnimation */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1771C72BA4F000190C2 /* WMNavigationInteractiveTransition.h */,
+				B2E8E1781C72BA4F000190C2 /* WMNavigationInteractiveTransition.m */,
+				B2E8E1791C72BA4F000190C2 /* WMPopAnimation.h */,
+				B2E8E17A1C72BA4F000190C2 /* WMPopAnimation.m */,
+			);
+			path = NavigationAnimation;
+			sourceTree = "<group>";
+		};
+		B2E8E17B1C72BA4F000190C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E17C1C72BA4F000190C2 /* UIImage+WM.h */,
+				B2E8E17D1C72BA4F000190C2 /* UIImage+WM.m */,
+				B2E8E17E1C72BA4F000190C2 /* WMMenuTableViewCell.h */,
+				B2E8E17F1C72BA4F000190C2 /* WMMenuTableViewCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B2E8E18E1C72C6F2000190C2 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E18F1C72C6F2000190C2 /* AppointMent(预约) */,
+				B2E8E1941C72C6F2000190C2 /* Community(社区) */,
+				B2E8E1991C72C6F2000190C2 /* Mall(商城) */,
+				B2E8E19E1C72C6F2000190C2 /* SignUp(报名) */,
+				B2E8E1A31C72C6F2000190C2 /* Study(学习) */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		B2E8E18F1C72C6F2000190C2 /* AppointMent(预约) */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1901C72C6F2000190C2 /* Controller */,
+				B2E8E1911C72C6F2000190C2 /* Model */,
+				B2E8E1921C72C6F2000190C2 /* Other */,
+				B2E8E1931C72C6F2000190C2 /* View */,
+			);
+			path = "AppointMent(预约)";
+			sourceTree = "<group>";
+		};
+		B2E8E1901C72C6F2000190C2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1AB1C72C78B000190C2 /* YBAppointMentController.h */,
+				B2E8E1AC1C72C78B000190C2 /* YBAppointMentController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B2E8E1911C72C6F2000190C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2E8E1921C72C6F2000190C2 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B2E8E1931C72C6F2000190C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B2E8E1941C72C6F2000190C2 /* Community(社区) */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1951C72C6F2000190C2 /* Controller */,
+				B2E8E1961C72C6F2000190C2 /* Model */,
+				B2E8E1971C72C6F2000190C2 /* Other */,
+				B2E8E1981C72C6F2000190C2 /* View */,
+			);
+			path = "Community(社区)";
+			sourceTree = "<group>";
+		};
+		B2E8E1951C72C6F2000190C2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1AE1C72C8BE000190C2 /* YBCommunityViewController.h */,
+				B2E8E1AF1C72C8BE000190C2 /* YBCommunityViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B2E8E1961C72C6F2000190C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2E8E1971C72C6F2000190C2 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B2E8E1981C72C6F2000190C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B2E8E1991C72C6F2000190C2 /* Mall(商城) */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E19A1C72C6F2000190C2 /* Controller */,
+				B2E8E19B1C72C6F2000190C2 /* Model */,
+				B2E8E19C1C72C6F2000190C2 /* Other */,
+				B2E8E19D1C72C6F2000190C2 /* View */,
+			);
+			path = "Mall(商城)";
+			sourceTree = "<group>";
+		};
+		B2E8E19A1C72C6F2000190C2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1B11C72C8CB000190C2 /* YBMallViewController.h */,
+				B2E8E1B21C72C8CB000190C2 /* YBMallViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B2E8E19B1C72C6F2000190C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2E8E19C1C72C6F2000190C2 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B2E8E19D1C72C6F2000190C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B2E8E19E1C72C6F2000190C2 /* SignUp(报名) */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E19F1C72C6F2000190C2 /* Controller */,
+				B2E8E1A01C72C6F2000190C2 /* Model */,
+				B2E8E1A11C72C6F2000190C2 /* Other */,
+				B2E8E1A21C72C6F2000190C2 /* View */,
+			);
+			path = "SignUp(报名)";
+			sourceTree = "<group>";
+		};
+		B2E8E19F1C72C6F2000190C2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1B41C72C8D7000190C2 /* YBSignUpViewController.h */,
+				B2E8E1B51C72C8D7000190C2 /* YBSignUpViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B2E8E1A01C72C6F2000190C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2E8E1A11C72C6F2000190C2 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B2E8E1A21C72C6F2000190C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B2E8E1A31C72C6F2000190C2 /* Study(学习) */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1A41C72C6F2000190C2 /* Controller */,
+				B2E8E1A51C72C6F2000190C2 /* Model */,
+				B2E8E1A61C72C6F2000190C2 /* Other */,
+				B2E8E1A71C72C6F2000190C2 /* View */,
+			);
+			path = "Study(学习)";
+			sourceTree = "<group>";
+		};
+		B2E8E1A41C72C6F2000190C2 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1B71C72C8E6000190C2 /* YBStudyViewController.h */,
+				B2E8E1B81C72C8E6000190C2 /* YBStudyViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B2E8E1A51C72C6F2000190C2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2E8E1A61C72C6F2000190C2 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B2E8E1A71C72C6F2000190C2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B2E8E1BD1C72CEFD000190C2 /* TabbarController */ = {
+			isa = PBXGroup;
+			children = (
+				B2E8E1BE1C72CEFD000190C2 /* IWBadgeButton.h */,
+				B2E8E1BF1C72CEFD000190C2 /* IWBadgeButton.m */,
+				B2E8E1C01C72CEFD000190C2 /* IWTabBar.h */,
+				B2E8E1C11C72CEFD000190C2 /* IWTabBar.m */,
+				B2E8E1C21C72CEFD000190C2 /* IWTabBarButton.h */,
+				B2E8E1C31C72CEFD000190C2 /* IWTabBarButton.m */,
+				B2E8E1C41C72CEFD000190C2 /* IWTabBarViewController.h */,
+				B2E8E1C51C72CEFD000190C2 /* IWTabBarViewController.m */,
+			);
+			path = TabbarController;
+			sourceTree = "<group>";
+		};
 		B84D9D1E1C2E807200A8BDC2 /* TotasView */ = {
 			isa = PBXGroup;
 			children = (
@@ -3731,6 +4107,8 @@
 		D588AF881BDDB62C000C5D6F /* studentDriving */ = {
 			isa = PBXGroup;
 			children = (
+				B2E8E18E1C72C6F2000190C2 /* Home */,
+				B2E8E1601C72BA4F000190C2 /* Main */,
 				B20DBE441C5DB0FF0023676E /* 支付相关 */,
 				D96248341C57A1520028EE62 /* Complaint */,
 				D962482D1C5799C90028EE62 /* ShuttleBus */,
@@ -5002,6 +5380,7 @@
 				D5604C161BF656C50020F0D7 /* chat_receiver_bg.png in Resources */,
 				D5604C221BF656C50020F0D7 /* chat_sender_bg.png in Resources */,
 				D5604BA31BF656C50020F0D7 /* VoiceSearchFeedback007.png in Resources */,
+				B2E8E1861C72BA4F000190C2 /* WMMenuViewController.xib in Resources */,
 				D961492B1C5C4CE000E3007F /* CoachListCell.xib in Resources */,
 				D5604BA11BF656C50020F0D7 /* VoiceSearchFeedback006.png in Resources */,
 				D5604BC41BF656C50020F0D7 /* call_silence@2x.png in Resources */,
@@ -5019,6 +5398,7 @@
 				D5604BEC1BF656C50020F0D7 /* chatBar_record@2x.png in Resources */,
 				D5604BD91BF656C50020F0D7 /* chat_location_preview.png in Resources */,
 				D5604BC31BF656C50020F0D7 /* call_silence.png in Resources */,
+				B2E8E1881C72BA4F000190C2 /* WMOtherViewController.xib in Resources */,
 				D5604C141BF656C50020F0D7 /* chat_receiver_audio_playing_full.png in Resources */,
 				D5604BAD1BF656C50020F0D7 /* VoiceSearchFeedback012.png in Resources */,
 				D5604C0A1BF656C50020F0D7 /* chatBar_more_photoSelected@2x.png in Resources */,
@@ -5138,11 +5518,13 @@
 				D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */,
 				068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */,
 				D588B1201BDDDC2F000C5D6F /* BLInformationManager.m in Sources */,
+				B2E8E1851C72BA4F000190C2 /* WMMenuViewController.m in Sources */,
 				D588B0911BDDDBDB000C5D6F /* CoachDetailViewController.m in Sources */,
 				D5604B501BF656C50020F0D7 /* MWTapDetectingView.m in Sources */,
 				D96D1BC91C2B858400F1C282 /* AppDelegate+DealJPushMessage.m in Sources */,
 				D5604C891BF656F30020F0D7 /* EMChatImageBubbleView.m in Sources */,
 				D96D1BD41C2B859C00F1C282 /* ThirdViewController.m in Sources */,
+				B2E8E1B01C72C8BE000190C2 /* YBCommunityViewController.m in Sources */,
 				D5604B4C1BF656C50020F0D7 /* MWGridViewController.m in Sources */,
 				D588B0CF1BDDDC14000C5D6F /* SignUpCell.m in Sources */,
 				D96D1BEE1C2B88A000F1C282 /* DVVSideMenuHeaderView.m in Sources */,
@@ -5199,6 +5581,7 @@
 				D5604C851BF656F30020F0D7 /* DXChatBarMoreView.m in Sources */,
 				D588AFCA1BDDDAAB000C5D6F /* ExamClassModel.m in Sources */,
 				550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */,
+				B2E8E1B91C72C8E6000190C2 /* YBStudyViewController.m in Sources */,
 				D5604B861BF656C50020F0D7 /* BaseTableViewCell.m in Sources */,
 				55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */,
 				D588B1141BDDDC2F000C5D6F /* UIColor+RGBColor.m in Sources */,
@@ -5235,11 +5618,14 @@
 				D588AFC71BDDDAAB000C5D6F /* CarModel.m in Sources */,
 				D588AFC91BDDDAAB000C5D6F /* TrainFieldInfoModel.m in Sources */,
 				D5C23FF21BE8ED1300832CF3 /* SchoolInfo.m in Sources */,
+				B2E8E18A1C72BA4F000190C2 /* WMNavigationInteractiveTransition.m in Sources */,
 				D51256A81BDFB56F002717DA /* SignUpCoachDetailViewController.m in Sources */,
+				B2E8E1C71C72CEFD000190C2 /* IWTabBar.m in Sources */,
 				D5604C861BF656F30020F0D7 /* DXRecordView.m in Sources */,
 				B20DBED71C5DB0FF0023676E /* NSDataEx.m in Sources */,
 				B20DBED51C5DB0FF0023676E /* DataVerifier.m in Sources */,
 				D588B0DD1BDDDC14000C5D6F /* AppointmentCell.m in Sources */,
+				B2E8E1B31C72C8CB000190C2 /* YBMallViewController.m in Sources */,
 				D51256D21BE36826002717DA /* MySaveViewController.m in Sources */,
 				066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */,
 				D5604C831BF656F30020F0D7 /* DXFaceView.m in Sources */,
@@ -5274,6 +5660,7 @@
 				D5604B3F1BF656C50020F0D7 /* EMAudioRecorderUtil.m in Sources */,
 				D970D3971C3CFFEB003FCED3 /* CoachDMData.m in Sources */,
 				D96149421C5C587200E3007F /* CoachListDMHeadportrait.m in Sources */,
+				B2E8E1891C72BA4F000190C2 /* WMCommon.m in Sources */,
 				D51256CF1BE36239002717DA /* MyExamCarViewController.m in Sources */,
 				554641CB1C250A2200A55326 /* SignUpSuccessViewController.m in Sources */,
 				D588AFCF1BDDDAAB000C5D6F /* MyAppointmentModel.m in Sources */,
@@ -5319,6 +5706,7 @@
 				D5604B7F1BF656C50020F0D7 /* NSDate+Category.m in Sources */,
 				D98581B41C58BF000044E029 /* ShuttleBusCell.m in Sources */,
 				D588B0CE1BDDDC14000C5D6F /* CoachTableViewCell.m in Sources */,
+				B2E8E1C81C72CEFD000190C2 /* IWTabBarButton.m in Sources */,
 				D588B0E21BDDDC14000C5D6F /* AppointmentDrivingCell.m in Sources */,
 				D5C240141BECFCE600832CF3 /* BLAVDetailViewController.m in Sources */,
 				D588B1131BDDDC2F000C5D6F /* UIDevice+JEsystemVersion.m in Sources */,
@@ -5367,14 +5755,17 @@
 				D588B1491BDE126C000C5D6F /* QuestionBankViewController.m in Sources */,
 				D5604B541BF656C50020F0D7 /* EMSDWebImageCompat.m in Sources */,
 				D588B0CC1BDDDC14000C5D6F /* ExamCarCollectionViewCell.m in Sources */,
+				B2E8E1C61C72CEFD000190C2 /* IWBadgeButton.m in Sources */,
 				D588B0D31BDDDC14000C5D6F /* CoachIntroductionCell.m in Sources */,
 				D5604B671BF656C50020F0D7 /* PSTCollectionViewData.m in Sources */,
 				D978ACD11C47957F00D633B4 /* DVVLocationStatus.m in Sources */,
 				D5D50EE41BFA205000F54097 /* PrivateMessageCell.m in Sources */,
 				D588B14F1BDE166A000C5D6F /* WrongQuestionViewController.m in Sources */,
 				D588B04C1BDDDB71000C5D6F /* MyWalletViewController.m in Sources */,
+				B2E8E18C1C72BA4F000190C2 /* UIImage+WM.m in Sources */,
 				D9D4BA1D1C3B918600F62BE9 /* NSArray+adapter.m in Sources */,
 				D5604C9A1BF657AA0020F0D7 /* UserProfileManager.m in Sources */,
+				B2E8E1801C72BA4F000190C2 /* WMNavigationController.m in Sources */,
 				D5604C991BF657AA0020F0D7 /* InvitationManager.m in Sources */,
 				D965CAA51C239D9F00DCD094 /* DrivingCityListView.m in Sources */,
 				D965CAAA1C239D9F00DCD094 /* DrivingDetailViewController.m in Sources */,
@@ -5410,6 +5801,7 @@
 				D5604B481BF656C50020F0D7 /* MBProgressHUD+Add.m in Sources */,
 				062734B81C59C9A90056B0BC /* SignUpController.m in Sources */,
 				B218183C1C5B201D00F973A7 /* tagslistModel.m in Sources */,
+				B2E8E1AA1C72C744000190C2 /* YBBaseViewController.m in Sources */,
 				B20DBEC81C5DB0FF0023676E /* AlixPayResult.m in Sources */,
 				D5604C911BF656F30020F0D7 /* MessageModelManager.m in Sources */,
 				D5604C8D1BF656F30020F0D7 /* EMChatTimeCell.m in Sources */,
@@ -5421,6 +5813,7 @@
 				B20DBECC1C5DB0FF0023676E /* SBJSON.m in Sources */,
 				D96D1BEA1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.m in Sources */,
 				D51256B71BE1F084002717DA /* SubjectTwoModel.m in Sources */,
+				B2E8E1C91C72CEFD000190C2 /* IWTabBarViewController.m in Sources */,
 				D588B0531BDDDB71000C5D6F /* UserCenterHeadView.m in Sources */,
 				D966E7771C5B4363007848B4 /* ClassTypeDMData.m in Sources */,
 				D5604B5C1BF656C50020F0D7 /* UIButton+EMWebCache.m in Sources */,
@@ -5435,7 +5828,10 @@
 				D5604B6C1BF656C50020F0D7 /* PSTGridLayoutInfo.m in Sources */,
 				D5604B771BF656C50020F0D7 /* THProgressView.m in Sources */,
 				B20DBED91C5DB0FF0023676E /* RSADataSigner.m in Sources */,
+				B2E8E18D1C72BA4F000190C2 /* WMMenuTableViewCell.m in Sources */,
+				B2E8E1B61C72C8D7000190C2 /* YBSignUpViewController.m in Sources */,
 				066BFB191C23A2C3002A1DD8 /* HomeMainView.m in Sources */,
+				B2E8E1BC1C72CA83000190C2 /* YBHomeBaseController.m in Sources */,
 				D96D1BD31C2B859C00F1C282 /* FourViewController.m in Sources */,
 				D588B0D21BDDDC14000C5D6F /* UserCenterCell.m in Sources */,
 				D966E74B1C5B4120007848B4 /* ClassTypeCell.m in Sources */,
@@ -5471,6 +5867,7 @@
 				D5604B5D1BF656C50020F0D7 /* UIImage+EMGIF.m in Sources */,
 				D5604B5A1BF656C50020F0D7 /* MKAnnotationView+EMWebCache.m in Sources */,
 				D5BCFEDC1BF317350019402C /* PushInformationManager.m in Sources */,
+				B2E8E18B1C72BA4F000190C2 /* WMPopAnimation.m in Sources */,
 				D92B2DF21C5A17BE0050EE84 /* DrivingDetailDMLogoimg.m in Sources */,
 				D588AFC81BDDDAAB000C5D6F /* SubjectModel.m in Sources */,
 				063BB1F11C5C524400A5F3D5 /* SchoolClassDetailDisCell.m in Sources */,
@@ -5480,6 +5877,7 @@
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
 				06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */,
 				D92B2DB01C59F65C0050EE84 /* ClassTypeView.m in Sources */,
+				B2E8E1AD1C72C78B000190C2 /* YBAppointMentController.m in Sources */,
 				B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */,
 				D96D1BE81C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.m in Sources */,
 				D5604B401BF656C50020F0D7 /* EMCDDeviceManager+Media.m in Sources */,
@@ -5526,6 +5924,7 @@
 				D51256AB1BE1C6C7002717DA /* BCTextView.m in Sources */,
 				D5604B3E1BF656C50020F0D7 /* EMAudioPlayerUtil.m in Sources */,
 				D5C23FE91BE859E000832CF3 /* ExamClassDetailViewController.m in Sources */,
+				B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */,
 				D588AFCB1BDDDAAB000C5D6F /* ExamCarModel.m in Sources */,
 				D96D1BFA1C2BF61700F1C282 /* DVVSideMenuBlockView.m in Sources */,
 				D588AF8B1BDDB62C000C5D6F /* main.m in Sources */,
@@ -5571,6 +5970,7 @@
 				554641BC1C25098C00A55326 /* ChooseBtnView.m in Sources */,
 				0647A5BF1C3509F700DBB8A3 /* DiscountWalletModel.m in Sources */,
 				D5604C7E1BF656F30020F0D7 /* ChatViewController+Category.m in Sources */,
+				B2E8E1871C72BA4F000190C2 /* WMOtherViewController.m in Sources */,
 				D5604B7C1BF656C50020F0D7 /* EMVoiceConverter.mm in Sources */,
 				554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */,
 				D5D50EE71BFA205000F54097 /* ShopMainModel.m in Sources */,

@@ -48,6 +48,7 @@
 #import "AppDelegate+UMSocial.h"
 #import "AlipaySDK/AlipaySDK.h"
 #import "AlixPayResult.h"
+#import "WMCommon.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 {
@@ -75,7 +76,7 @@
     // 配置友盟分享
     [self configUMSocial];
     
-    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
 #pragma mark - 处理工具及样式
     [self dealTool];
@@ -89,7 +90,11 @@
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
     // 打开主页
-    [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeHomeMainController];
+    WMCommon *common = [WMCommon getInstance];
+    common.screenW = [[UIScreen mainScreen] bounds].size.width;
+    common.screenH = [[UIScreen mainScreen] bounds].size.height;
+    
+//    [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeHomeMainController];
     
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
@@ -97,7 +102,6 @@
     }
     
     // 引导页
-//    [YBWelcomeController removeSavedVersion];
     if ([YBWelcomeController isShowWelcome]) {
         [YBWelcomeController show];
     }
