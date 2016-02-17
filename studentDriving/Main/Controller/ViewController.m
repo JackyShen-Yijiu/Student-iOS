@@ -67,6 +67,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 @end
 
 @implementation ViewController
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -123,14 +124,6 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
- 
-    
-}
-
 - (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
 {
     NSUInteger index = tabBarController.selectedIndex;
@@ -148,9 +141,6 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 
     self.mainNav = [[WMNavigationController alloc] initWithRootViewController:vc];
     
-    self.mainNav.navigationBar.barTintColor = YBNavigationBarBgColor;
-    self.mainNav.navigationBar.tintColor = [UIColor whiteColor];
-    [self.mainNav.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
     self.mainNav.tabBarItem.title = title;
     self.mainNav.tabBarItem.image = [UIImage imageNamed:img];
     [self.tabBarController addChildViewController:self.mainNav];

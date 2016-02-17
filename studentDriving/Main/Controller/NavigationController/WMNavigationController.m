@@ -20,6 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.navigationBar.barTintColor = YBNavigationBarBgColor;
+    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
+    
+    // 去掉透明效果
+    [self.navigationBar setTranslucent:NO];
+
     UIGestureRecognizer *gesture = self.interactivePopGestureRecognizer;
     gesture.enabled = NO;
     UIView *gestureView = gesture.view;
@@ -31,6 +37,7 @@
     
     _navT = [[WMNavigationInteractiveTransition alloc] initWithViewController:self];
     [popRecognizer addTarget:_navT action:@selector(handleControllerPop:)];
+    
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {

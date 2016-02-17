@@ -11,7 +11,9 @@
 #import "DVVSendMessageToStudentView.h"
 
 @interface YBStudyViewController ()<UIScrollViewDelegate>
-
+{
+    UIImageView*navBarHairlineImageView;
+}
 @property (nonatomic, strong) YBToolBarView *dvvToolBarView;
 
 @property (nonatomic, strong) UIView *toolBarBottomLineView;
@@ -32,6 +34,36 @@
 
 @implementation YBStudyViewController
 
+-(void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // 隐藏导航条底部分割线
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+    navBarHairlineImageView.hidden=YES;
+    
+}
+
+-(void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+    navBarHairlineImageView.hidden=NO;
+    
+}
+
+- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
+    
+    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
+        return(UIImageView*)view;
+    }
+    for(UIView*subview in view.subviews) {
+        UIImageView*imageView = [self findHairlineImageViewUnder:subview];
+        if(imageView) {
+            return imageView;
+        }
+    }
+    return nil;
+}
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -41,7 +73,9 @@
     self.title = @"学习";
     
     [self.view addSubview:self.dvvToolBarView];
+    
     [self.view addSubview:self.toolBarBottomLineView];
+    
     [self.view addSubview:self.scrollView];
     
     [_scrollView addSubview:self.theoreticalView];
@@ -98,8 +132,9 @@
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     CGFloat toolBarHeight = 40;
     
-    _dvvToolBarView.frame = CGRectMake(0, 64, screenSize.width, toolBarHeight);
-    _toolBarBottomLineView.frame = CGRectMake(0, 64 + toolBarHeight, screenSize.width, 1);
+    _dvvToolBarView.frame = CGRectMake(0, 0, screenSize.width, toolBarHeight);
+    
+    _toolBarBottomLineView.frame = CGRectMake(0, CGRectGetMaxY(_dvvToolBarView.frame), screenSize.width, 1);
     
     _scrollView.frame = CGRectMake(0, 64 + toolBarHeight + 1, screenSize.width, screenSize.height - 64 - toolBarHeight);
     _scrollView.contentSize = CGSizeMake(screenSize.width * 4, 0);
@@ -107,6 +142,8 @@
     _theoreticalView.frame = CGRectMake(0, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
     _drivingView.frame = CGRectMake(screenSize.width, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
     _licensingView.frame = CGRectMake(screenSize.width * 2, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
+    _kemusiView.frame = CGRectMake(screenSize.width * 3, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
+    
 }
 
 #pragma mark - lazy load
@@ -116,6 +153,8 @@
         _dvvToolBarView.titleArray = @[ @"科目一", @"科目二", @"科目三" ,@"科目四"];
         _dvvToolBarView.titleNormalColor = [UIColor lightGrayColor];
         _dvvToolBarView.titleSelectedColor = [UIColor whiteColor];
+        _dvvToolBarView.buttonNormalColor = YBNavigationBarBgColor;
+        _dvvToolBarView.buttonSelectedColor = YBNavigationBarBgColor;
         __weak typeof(self) ws = self;
         [_dvvToolBarView dvvSetItemSelectedBlock:^(UIButton *button) {
             [ws toolBarItemSelectedAction:button];
