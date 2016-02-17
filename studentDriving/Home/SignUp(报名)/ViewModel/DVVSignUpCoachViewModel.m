@@ -1,0 +1,13 @@
+//
+//  DVVSignUpCoachViewModel.m
+//  studentDriving
+//
+//  Created by 大威 on 16/2/16.
+//  Copyright © 2016年 jatd. All rights reserved.
+//
+
+#import "DVVSignUpCoachViewModel.h"
+
+@implementation DVVSignUpCoachViewModel
+
+@end
