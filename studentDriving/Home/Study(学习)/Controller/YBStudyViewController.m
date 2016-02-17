@@ -8,31 +8,65 @@
 
 #import "YBStudyViewController.h"
 #import "YBToolBarView.h"
-#import "DVVSendMessageToStudentView.h"
+#import "YBStudyTableView.h"
+#import "YBStudeyProgressView.h"
+#import "YBStudyTool.h"
 
 @interface YBStudyViewController ()<UIScrollViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
+    YBStudyProgress studyProgress;
 }
 @property (nonatomic, strong) YBToolBarView *dvvToolBarView;
+
+@property (nonatomic,strong) YBStudeyProgressView *progressView;
 
 @property (nonatomic, strong) UIView *toolBarBottomLineView;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
 
-@property (nonatomic, strong) DVVSendMessageToStudentView *theoreticalView;
-@property (nonatomic, strong) DVVSendMessageToStudentView *drivingView;
-@property (nonatomic, strong) DVVSendMessageToStudentView *licensingView;
-@property (nonatomic, strong) DVVSendMessageToStudentView *kemusiView;
+@property (nonatomic, strong) YBStudyTableView *kemuyiView;
+@property (nonatomic, strong) YBStudyTableView *kemuerView;
+@property (nonatomic, strong) YBStudyTableView *kemusanView;
+@property (nonatomic, strong) YBStudyTableView *kemusiView;
 
-@property (nonatomic, strong) NSArray *theoreticalArray;
-@property (nonatomic, strong) NSArray *drivingArray;
-@property (nonatomic, strong) NSArray *licensingArray;
-@property (nonatomic, strong) NSArray *kemusiArray;
+@property (nonatomic, strong) NSMutableArray *kemuyiArray;
+@property (nonatomic, strong) NSMutableArray *kemuerArray;
+@property (nonatomic, strong) NSMutableArray *kemusanArray;
+@property (nonatomic, strong) NSMutableArray *kemusiArray;
 
 @end
 
 @implementation YBStudyViewController
+
+- (NSMutableArray *)kemuyiArray
+{
+    if (_kemuyiArray==nil) {
+        _kemuyiArray = [NSMutableArray array];
+    }
+    return _kemuyiArray;
+}
+- (NSMutableArray *)kemuerArray
+{
+    if (_kemuerArray==nil) {
+        _kemuerArray = [NSMutableArray array];
+    }
+    return _kemuerArray;
+}
+- (NSMutableArray *)kemusanArray
+{
+    if (_kemusanArray==nil) {
+        _kemusanArray = [NSMutableArray array];
+    }
+    return _kemusanArray;
+}
+- (NSMutableArray *)kemusiArray
+{
+    if (_kemusiArray==nil) {
+        _kemusiArray = [NSMutableArray array];
+    }
+    return _kemusiArray;
+}
 
 -(void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -41,6 +75,10 @@
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
     
+    // 更新进度
+    [self reloadProgress];
+    [self reloadData];
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -72,44 +110,61 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"学习";
     
+    // 顶部segment
     [self.view addSubview:self.dvvToolBarView];
     
+    // 分割线
     [self.view addSubview:self.toolBarBottomLineView];
     
+    // 进度条
+    [self.view addSubview:self.progressView];
+    
+    // 滚动视图
     [self.view addSubview:self.scrollView];
     
-    [_scrollView addSubview:self.theoreticalView];
-    [_scrollView addSubview:self.drivingView];
-    [_scrollView addSubview:self.licensingView];
+    [_scrollView addSubview:self.kemuyiView];
+    [_scrollView addSubview:self.kemuerView];
+    [_scrollView addSubview:self.kemusanView];
     [_scrollView addSubview:self.kemusiView];
 
     [self configUI];
     
     // 请求数据
-    [_theoreticalView beginNetworkRequest];
-    [_drivingView beginNetworkRequest];
-    [_licensingView beginNetworkRequest];
-    [_kemusiView beginNetworkRequest];
-
+    [self setUpData];
 }
 
-#pragma mark - action
-- (void)theoreticalSelectButtonAction:(UIButton *)sender mobileArray:(NSArray *)array {
-    NSLog(@"1===%@", array);
-    self.theoreticalArray = array;
+- (void)setUpData
+{
+    // JSON文件的路径
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"YBStudyData.json" ofType:nil];
+    
+    // 加载JSON文件
+    NSData *data = [NSData dataWithContentsOfFile:path];
+    
+    // 将JSON数据转为NSArray或者NSDictionary
+    NSDictionary *dictArray = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+    
+    NSLog(@"dictArray:%@",dictArray);
+    
+    NSArray *dataArray = [dictArray objectForKey:@"data"];
+    
+    NSLog(@"dataArray:%@",dataArray);
+    
+    for (NSDictionary *dict in dataArray[0]) {
+        [self.kemuyiArray addObject:dict];
+    }
+    for (NSDictionary *dict in dataArray[1]) {
+        [self.kemuerArray addObject:dict];
+    }
+    for (NSDictionary *dict in dataArray[2]) {
+        [self.kemusanArray addObject:dict];
+    }
+    for (NSDictionary *dict in dataArray[3]) {
+        [self.kemusiArray addObject:dict];
+    }
+   
 }
-- (void)drivingSelectButtonAction:(UIButton *)sender mobileArray:(NSArray *)array {
-    NSLog(@"2===%@", array);
-    self.drivingArray = array;
-}
-- (void)licensingSelectButtonAction:(UIButton *)sender mobileArray:(NSArray *)array {
-    NSLog(@"3===%@", array);
-    self.licensingArray = array;
-}
-- (void)kemusiSelectButtonAction:(UIButton *)sender mobileArray:(NSArray *)array {
-    NSLog(@"4===%@", array);
-    self.kemusiArray = array;
-}
+
 - (void)toolBarItemSelectedAction:(UIButton *)sender {
     [self changeScrollViewOffSetX:sender.tag];
 }
@@ -122,10 +177,76 @@
 
 #pragma mark - public
 - (void)changeScrollViewOffSetX:(NSUInteger)tag {
+    
     [UIView animateWithDuration:0.3 animations:^{
         _scrollView.contentOffset = CGPointMake(CGRectGetWidth(_scrollView.frame) * tag, 0);
     }];
+    
+    NSLog(@"tag:%lu",(unsigned long)tag);
+    
+    studyProgress = tag;
+    
+    // 更新进度
+    [self reloadProgress];
+    
+    // 更新数据
+    [self reloadData];
 }
+
+- (void)reloadData
+{
+    if (studyProgress==0) {
+        
+        self.kemuyiView.studyProgress = studyProgress;
+        self.kemuyiView.dataArray = [self.kemuyiArray mutableCopy];
+        [self.kemuyiView reloadData];
+        
+    }else if (studyProgress == 1){
+        
+        self.kemuerView.studyProgress = studyProgress;
+        self.kemuerView.dataArray = [self.kemuerArray mutableCopy];
+        [self.kemuerView reloadData];
+        
+    }else if (studyProgress == 2){
+
+        self.kemusanView.studyProgress = studyProgress;
+        self.kemusanView.dataArray = [self.kemusanArray mutableCopy];
+        [self.kemusanView reloadData];
+        
+    }else if (studyProgress == 3){
+       
+        self.kemusiView.studyProgress = studyProgress;
+        self.kemusiView.dataArray = [self.kemusiArray mutableCopy];
+        [self.kemusiView reloadData];
+        
+    }
+}
+
+- (void)reloadProgress
+{
+    if (studyProgress==0) {
+        
+        NSString *topStr = [NSString stringWithFormat:@"科一：模拟考试2次   官方学时0"];
+        [_progressView setUpProgressDataWithTop:topStr progress:0.2];
+        
+    }else if (studyProgress == 1){
+        
+        NSString *topStr = [NSString stringWithFormat:@"科二：模拟考试2次   官方学时0"];
+        [_progressView setUpProgressDataWithTop:topStr progress:0.5];
+        
+    }else if (studyProgress == 2){
+        
+        NSString *topStr = [NSString stringWithFormat:@"科三：模拟考试2次   官方学时0"];
+        [_progressView setUpProgressDataWithTop:topStr progress:0.7];
+        
+    }else if (studyProgress == 3){
+        
+        NSString *topStr = [NSString stringWithFormat:@"科四：模拟考试2次   官方学时0"];
+        [_progressView setUpProgressDataWithTop:topStr progress:1.0];
+        
+    }
+}
+
 
 #pragma mark - configUI
 - (void)configUI {
@@ -136,12 +257,14 @@
     
     _toolBarBottomLineView.frame = CGRectMake(0, CGRectGetMaxY(_dvvToolBarView.frame), screenSize.width, 1);
     
-    _scrollView.frame = CGRectMake(0, 64 + toolBarHeight + 1, screenSize.width, screenSize.height - 64 - toolBarHeight);
+    _progressView.frame = CGRectMake(0, CGRectGetMaxY(self.dvvToolBarView.frame), screenSize.width, 47);
+    
+    _scrollView.frame = CGRectMake(0, CGRectGetMaxY(_progressView.frame), screenSize.width, screenSize.height - CGRectGetMaxY(_progressView.frame));
     _scrollView.contentSize = CGSizeMake(screenSize.width * 4, 0);
     
-    _theoreticalView.frame = CGRectMake(0, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
-    _drivingView.frame = CGRectMake(screenSize.width, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
-    _licensingView.frame = CGRectMake(screenSize.width * 2, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
+    _kemuyiView.frame = CGRectMake(0, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
+    _kemuerView.frame = CGRectMake(screenSize.width, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
+    _kemusanView.frame = CGRectMake(screenSize.width * 2, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
     _kemusiView.frame = CGRectMake(screenSize.width * 3, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
     
 }
@@ -170,6 +293,14 @@
     }
     return _toolBarBottomLineView;
 }
+- (YBStudeyProgressView *)progressView
+{
+    if (_progressView==nil) {
+        _progressView = [[YBStudeyProgressView alloc]  init];
+    }
+    return _progressView;
+}
+
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [UIScrollView new];
@@ -180,47 +311,32 @@
     }
     return _scrollView;
 }
-- (DVVSendMessageToStudentView *)theoreticalView {
-    if (!_theoreticalView) {
-        _theoreticalView = [DVVSendMessageToStudentView new];
-        _theoreticalView.studentType = 1;
-        __weak typeof(self) ws = self;
-        [_theoreticalView setSelectButtonTouchUpInsideBlock:^(UIButton *button, NSArray *mobileArray) {
-            [ws theoreticalSelectButtonAction:button mobileArray:mobileArray];
-        }];
+- (YBStudyTableView *)kemuyiView {
+    if (!_kemuyiView) {
+        _kemuyiView = [YBStudyTableView new];
+        _kemuyiView.parentViewController = self;
     }
-    return _theoreticalView;
+    return _kemuyiView;
 }
-- (DVVSendMessageToStudentView *)drivingView {
-    if (!_drivingView) {
-        _drivingView = [DVVSendMessageToStudentView new];
-        _drivingView.studentType = 2;
-        __weak typeof(self) ws = self;
-        [_drivingView setSelectButtonTouchUpInsideBlock:^(UIButton *button, NSArray *mobileArray) {
-            [ws drivingSelectButtonAction:button mobileArray:mobileArray];
-        }];
+- (YBStudyTableView *)kemuerView {
+    if (!_kemuerView) {
+        _kemuerView = [YBStudyTableView new];
+        _kemuerView.parentViewController = self;
     }
-    return _drivingView;
+    return _kemuerView;
 }
-- (DVVSendMessageToStudentView *)licensingView {
-    if (!_licensingView) {
-        _licensingView = [DVVSendMessageToStudentView new];
-        _licensingView.studentType = 3;
-        __weak typeof(self) ws = self;
-        [_licensingView setSelectButtonTouchUpInsideBlock:^(UIButton *button, NSArray *mobileArray) {
-            [ws licensingSelectButtonAction:button mobileArray:mobileArray];
-        }];
+- (YBStudyTableView *)kemusanView {
+    if (!_kemusanView) {
+        _kemusanView = [YBStudyTableView new];
+        _kemusanView.parentViewController = self;
+
     }
-    return _licensingView;
+    return _kemusanView;
 }
-- (DVVSendMessageToStudentView *)kemusiView {
+- (YBStudyTableView *)kemusiView {
     if (!_kemusiView) {
-        _kemusiView = [DVVSendMessageToStudentView new];
-        _kemusiView.studentType = 4;
-        __weak typeof(self) ws = self;
-        [_kemusiView setSelectButtonTouchUpInsideBlock:^(UIButton *button, NSArray *mobileArray) {
-            [ws kemusiSelectButtonAction:button mobileArray:mobileArray];
-        }];
+        _kemusiView = [YBStudyTableView new];
+        _kemusiView.parentViewController = self;
     }
     return _kemusiView;
 }

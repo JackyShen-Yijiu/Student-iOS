@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "BLBaseViewController.h"
 @interface ForgetViewController : BLBaseViewController
-
+@property (copy, nonatomic) NSString *confirmString;
+@property (copy, nonatomic) NSString *mobile;
 @end

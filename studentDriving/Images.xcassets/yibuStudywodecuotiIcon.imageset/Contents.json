@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "头像120x121.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "yibuStudywodecuotiIcon.png",
       "scale" : "2x"
     },
     {

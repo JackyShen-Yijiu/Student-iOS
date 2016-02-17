@@ -143,7 +143,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         [self showTotasViewWithMes:@"请输入相同的密码"];
         return;
     }
-    
+      
     NSString *urlString = [NSString stringWithFormat:BASEURL,kchangePasswordUrl];
     
     NSDictionary *param = @{@"smscode":self.confirmString,@"password":[self.passWordTextFild.text DY_MD5],@"mobile":self.mobile};

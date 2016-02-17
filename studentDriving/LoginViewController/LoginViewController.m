@@ -23,6 +23,7 @@
 #import "DVVUserManager.h"
 #import "VerifyPhoneController.h"
 #import "UIColor+Extension.h"
+#import "ShowWarningMessageView.h"
 
 static NSString *const kloginUrl = @"userinfo/userlogin";
 
@@ -52,41 +53,45 @@ static NSString *const kuserType = @"usertype";
 @property (strong, nonatomic) UILabel *bottomLabel;
 
 @property (nonatomic, strong) UIButton *checkButton;
+
+@property (nonatomic, strong) UILabel *phoneNumLabel;
+@property (nonatomic, strong) UILabel *passwordLabel;
+@property (nonatomic, strong) ShowWarningMessageView *showWarningMessageView;
 @end
 
 @implementation LoginViewController
 
-- (UIView *)bottomLeftLineView {
-    if (_bottomLeftLineView == nil) {
-        _bottomLeftLineView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
-        _bottomLeftLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
-    }
-    return _bottomLeftLineView;
-}
+//- (UIView *)bottomLeftLineView {
+//    if (_bottomLeftLineView == nil) {
+//        _bottomLeftLineView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
+//        _bottomLeftLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+//    }
+//    return _bottomLeftLineView;
+//}
+//
+//- (UIView *)bottomRightLineView {
+//    if (_bottomRightLineView == nil) {
+//        _bottomRightLineView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2+15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
+//        _bottomRightLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
+//    }
+//    return _bottomRightLineView;
+//}
 
-- (UIView *)bottomRightLineView {
-    if (_bottomRightLineView == nil) {
-        _bottomRightLineView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2+15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
-        _bottomRightLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
-    }
-    return _bottomRightLineView;
-}
-
-- (UILabel *)bottomLabel {
-    if (_bottomLabel == nil) {
-        _bottomLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, 30, 30)];
-        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-43);
-        _bottomLabel.text = @"or";
-        _bottomLabel.layer.cornerRadius = 10;
-        _bottomLabel.clipsToBounds = YES;
-        _bottomLabel.textColor = [UIColor colorWithWhite:1 alpha:0.6];
-        _bottomLabel.textAlignment = NSTextAlignmentCenter;
-        _bottomLabel.backgroundColor = [UIColor clearColor];
-        _bottomLabel.font = [UIFont systemFontOfSize:14];
-        
-    }
-    return _bottomLabel;
-}
+//- (UILabel *)bottomLabel {
+//    if (_bottomLabel == nil) {
+//        _bottomLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, 30, 30)];
+//        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-43);
+//        _bottomLabel.text = @"or";
+//        _bottomLabel.layer.cornerRadius = 10;
+//        _bottomLabel.clipsToBounds = YES;
+//        _bottomLabel.textColor = [UIColor colorWithWhite:1 alpha:0.6];
+//        _bottomLabel.textAlignment = NSTextAlignmentCenter;
+//        _bottomLabel.backgroundColor = [UIColor clearColor];
+//        _bottomLabel.font = [UIFont systemFontOfSize:14];
+//        
+//    }
+//    return _bottomLabel;
+//}
 - (UIButton *)checkButton {
     if (!_checkButton) {
         _checkButton = [UIButton new];
@@ -107,20 +112,20 @@ static NSString *const kuserType = @"usertype";
     }
     return _userParam;
 }
-- (UIImageView *)rightImageView {
-    if (_rightImageView == nil) {
-        _rightImageView = [[UIImageView alloc] init];
-        _rightImageView.image = [UIImage imageNamed:@"随便看看"];
-        _rightImageView.alpha = 0.6;
-    }
-    return _rightImageView;
-}
+//- (UIImageView *)rightImageView {
+//    if (_rightImageView == nil) {
+//        _rightImageView = [[UIImageView alloc] init];
+//        _rightImageView.image = [UIImage imageNamed:@"随便看看"];
+//        _rightImageView.alpha = 0.6;
+//    }
+//    return _rightImageView;
+//}
 
 - (UIButton *)bottomButton {
     if (_bottomButton == nil) {
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_bottomButton setTitle:@"随便看看" forState:UIControlStateNormal];
-        [_bottomButton setTitleColor:[UIColor colorWithWhite:1 alpha:0.6] forState:UIControlStateNormal];
+        [_bottomButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateNormal];
         _bottomButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_bottomButton addTarget:self action:@selector(dealBottom:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];
@@ -133,6 +138,8 @@ static NSString *const kuserType = @"usertype";
     if (_backGroundView == nil) {
         _backGroundView = [[UIView alloc] init];
         _backGroundView.userInteractionEnabled = YES;
+        
+//        _backGroundView.backgroundColor = [UIColor cyanColor];
     }
     return _backGroundView;
 }
@@ -140,7 +147,7 @@ static NSString *const kuserType = @"usertype";
     if (_lineView == nil) {
         _lineView = [[UIView alloc] init];
         _lineView.layer.borderWidth = 0.5;
-        _lineView.layer.borderColor = [UIColor colorWithHexString:@"999999" alpha:1].CGColor;
+        _lineView.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
         
     }
     return _lineView;
@@ -149,7 +156,7 @@ static NSString *const kuserType = @"usertype";
     if (_lineViewBottom == nil) {
         _lineViewBottom = [[UIView alloc] init];
         _lineViewBottom.layer.borderWidth = 0.5;
-        _lineViewBottom.layer.borderColor = [UIColor colorWithHexString:@"999999" alpha:1].CGColor;
+        _lineViewBottom.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
     }
     return _lineViewBottom;
 }
@@ -160,7 +167,7 @@ static NSString *const kuserType = @"usertype";
         _logoImageView.image = [UIImage imageNamed:@"loginLogo"];
         _logoImageView.backgroundColor = [UIColor clearColor];
         [_logoImageView.layer setMasksToBounds:YES];
-        [_logoImageView.layer setCornerRadius:16];
+        [_logoImageView.layer setCornerRadius:30];
     }
     return _logoImageView;
 }
@@ -170,10 +177,10 @@ static NSString *const kuserType = @"usertype";
         _registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _registerButton.backgroundColor = [UIColor clearColor];
         [_registerButton addTarget:self action:@selector(dealRegister:) forControlEvents:UIControlEventTouchUpInside];
-        [_registerButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [_registerButton setTitle:@"注册账号" forState:UIControlStateNormal];
-        _registerButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_registerButton setTitleColor:RGBColor(255, 102, 51)  forState:UIControlStateNormal];
+        [_registerButton setTitle:@"注册新用户" forState:UIControlStateNormal];
+        _registerButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+        _registerButton.titleLabel.font = [UIFont systemFontOfSize:10];
+        [_registerButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"]  forState:UIControlStateNormal];
         
     }
     return _registerButton;
@@ -185,9 +192,10 @@ static NSString *const kuserType = @"usertype";
         _forgetButton.backgroundColor = [UIColor clearColor];
         [_forgetButton addTarget:self action:@selector(dealForget:) forControlEvents:UIControlEventTouchUpInside];
         [_forgetButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-        [_forgetButton setTitle:@"忘记密码" forState:UIControlStateNormal];
-        _forgetButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_forgetButton setTitleColor:[UIColor colorWithWhite:1 alpha:0.6] forState:UIControlStateNormal];
+        [_forgetButton setTitle:@"忘记密码?" forState:UIControlStateNormal];
+        _forgetButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
+        _forgetButton.titleLabel.font = [UIFont systemFontOfSize:10];
+        [_forgetButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"]  forState:UIControlStateNormal];
     }
     return _forgetButton;
 }
@@ -195,7 +203,7 @@ static NSString *const kuserType = @"usertype";
 - (UIButton *)loginButton {
     if (_loginButton == nil) {
         _loginButton                 = [UIButton buttonWithType:UIButtonTypeCustom];
-        _loginButton.backgroundColor = RGBColor(255, 102, 51);
+        _loginButton.backgroundColor = [UIColor colorWithHexString:@"db4437"];
         
         [_loginButton addTarget:self action:@selector(dealLogin:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -219,16 +227,16 @@ static NSString *const kuserType = @"usertype";
         _phoneNumTextField.delegate           = self;
         
         _phoneNumTextField.font = [UIFont systemFontOfSize:15];
-          _phoneNumTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
+          _phoneNumTextField.textColor = [UIColor colorWithHexString:@"212121"];
     
         
         _phoneNumTextField.tag = 100;
         
-        _phoneNumTextField.placeholder        = @" 手机号";
+//        _phoneNumTextField.placeholder        = @" 手机号";
         [_phoneNumTextField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
         [_phoneNumTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
         _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
-        _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
+//        _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
         
         _phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         
@@ -248,13 +256,13 @@ static NSString *const kuserType = @"usertype";
     if (_passwordTextField == nil) {
         _passwordTextField = [[UITextField alloc] init];
         _passwordTextField.delegate = self;
-        _passwordTextField.placeholder = @" 密码";
+//        _passwordTextField.placeholder = @" 密码";
         [_passwordTextField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
         [_passwordTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
         _passwordTextField.tag = 101;
-        _passwordTextField.leftViewMode = UITextFieldViewModeAlways;
+//        _passwordTextField.leftViewMode = UITextFieldViewModeAlways;
         _passwordTextField.font = [UIFont systemFontOfSize:15];
-         _passwordTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
+         _passwordTextField.textColor = [UIColor colorWithHexString:@"212121"];
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
         leftView.image = [UIImage imageNamed:@"密码"];
         _passwordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -266,12 +274,30 @@ static NSString *const kuserType = @"usertype";
     }
     return _passwordTextField;
 }
+- (UILabel *)phoneNumLabel{
+    if (_phoneNumLabel == nil) {
+        _phoneNumLabel = [[UILabel alloc] init];
+        _phoneNumLabel.text = @"手机号";
+        _phoneNumLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _phoneNumLabel.font = [UIFont systemFontOfSize:10];
+    }
+    return _phoneNumLabel;
+}
+- (UILabel *)passwordLabel{
+    if (_passwordLabel == nil) {
+        _passwordLabel = [[UILabel alloc] init];
+        _passwordLabel.text = @"密码";
+        _passwordLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _passwordLabel.font = [UIFont systemFontOfSize:10];
+    }
+    return _passwordLabel;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    self.view.layer.contents = (id)[UIImage imageNamed:@"login_background"].CGImage;
+//    self.view.layer.contents = (id)[UIImage imageNamed:@"login_background"].CGImage;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(DYdealRegister) name:kregisterUser object:nil];
     
@@ -282,18 +308,24 @@ static NSString *const kuserType = @"usertype";
     [self.backGroundView addSubview:self.phoneNumTextField];
     [self.backGroundView addSubview:self.passwordTextField];
     [self.backGroundView addSubview:self.lineViewBottom];
+    [self.backGroundView addSubview:self.phoneNumLabel];
+    [self.backGroundView addSubview:self.passwordLabel];
     [self.view addSubview:self.forgetButton];
     [self.view addSubview:self.registerButton];
     [self.view addSubview:self.bottomButton];
     
-    [self.bottomButton addSubview:self.rightImageView];
+//    [self.bottomButton addSubview:self.rightImageView];
     
-    [self.view addSubview:self.bottomLeftLineView];
-    [self.view addSubview:self.bottomRightLineView];
-    [self.view addSubview:self.bottomLabel];
+//    [self.view addSubview:self.bottomLeftLineView];
+//    [self.view addSubview:self.bottomRightLineView];
+//    [self.view addSubview:self.bottomLabel];
     [self.view addSubview:self.checkButton];
 }
-
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (!self.showWarningMessageView.isShowWarningMessage) {
+        self.showWarningMessageView.hidden = YES;
+    }
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -323,16 +355,25 @@ static NSString *const kuserType = @"usertype";
     
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length  == 0) {
         [self obj_showTotasViewWithMes:@"请输入手机号"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:self.showWarningMessageView];
         return;
     }
     
     if (self.passwordTextField.text == nil || self.passwordTextField.text.length  == 0) {
         [self obj_showTotasViewWithMes:@"请输入密码"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y + 70, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:self.showWarningMessageView];
         return;
     }
     
     if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
         [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:self.showWarningMessageView];
         return;
     }
     
@@ -363,6 +404,9 @@ static NSString *const kuserType = @"usertype";
         if ([type isEqualToString:@"0"]) {
             
             [self obj_showTotasViewWithMes:@"密码错误"];
+            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y + 70, 120, 18)];
+            _showWarningMessageView.isShowWarningMessage  = NO;
+            [self.view addSubview:_showWarningMessageView];
             
         }else if ([type isEqualToString:@"1"]) {
             
@@ -569,12 +613,14 @@ static NSString *const kuserType = @"usertype";
 
 - (void)dealForget:(UIButton *)sender{
     ForgetViewController *forgetVc = [[ForgetViewController alloc]init];
-    [self presentViewController:forgetVc animated:YES completion:nil];
+    UINavigationController *NC = [[UINavigationController alloc] initWithRootViewController:forgetVc];
+    [self presentViewController:NC animated:YES completion:nil];
 }
 
 - (void)dealRegister:(UIButton *)sender{
     RegisterViewController *registerVc = [[RegisterViewController alloc]init];
-    [self presentViewController:registerVc animated:YES completion:nil];
+     UINavigationController *NC = [[UINavigationController alloc] initWithRootViewController:registerVc];
+    [self presentViewController:NC animated:YES completion:nil];
 
 }
 
@@ -586,17 +632,22 @@ static NSString *const kuserType = @"usertype";
     [self.logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.top.mas_equalTo(self.view.mas_top).with.offset(50);
-        make.height.mas_equalTo(@90);
-        make.width.mas_equalTo(@90);
+        make.height.mas_equalTo(@60);
+        make.width.mas_equalTo(@60);
     }];
     
     [self.backGroundView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(20);
-        make.right.mas_equalTo(self.view.mas_right).with.offset(-20);
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
         make.top.mas_equalTo(self.logoImageView.mas_bottom).with.offset(42);
-        make.height.mas_equalTo(@80);
+        make.height.mas_equalTo(@130);
     }];
-    
+    [self.phoneNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.backGroundView.mas_top).offset(0);
+        make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
+        make.height.mas_equalTo(@10);
+        make.width.mas_equalTo(@40);
+    }];
     
     [self.phoneNumTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         
@@ -604,13 +655,19 @@ static NSString *const kuserType = @"usertype";
         
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
         
-        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(0);
+        make.top.mas_equalTo(self.phoneNumLabel.mas_bottom).with.offset(5);
         
-        make.height.mas_equalTo(@40);
+        make.height.mas_equalTo(@25);
         
     }];
     
-    
+    [self.passwordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.lineView.mas_top).offset(18);
+        make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
+        make.height.mas_equalTo(@10);
+        make.width.mas_equalTo(@20);
+    }];
+
     
     
     [self.passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -618,20 +675,20 @@ static NSString *const kuserType = @"usertype";
         
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
         
-        make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(0);
+        make.top.mas_equalTo(self.passwordLabel.mas_bottom).with.offset(5);
         
-        make.height.mas_equalTo(@40);
+        make.height.mas_equalTo(@25);
         
     }];
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(35.5);
+        make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(10);
         make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
         make.height.mas_equalTo(@1);
     }];
     [self.lineViewBottom mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.backGroundView.mas_top).with.offset(75.5);
+        make.top.mas_equalTo(self.passwordTextField.mas_bottom).with.offset(10);
         make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
         make.height.mas_equalTo(@1);
@@ -640,25 +697,26 @@ static NSString *const kuserType = @"usertype";
     
     [self.loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.left.mas_equalTo(self.view.mas_left).with.offset(20);
+        make.left.mas_equalTo(self.view.mas_left).with.offset(0);
         
-        make.right.mas_equalTo(self.view.mas_right).with.offset(-20);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
         
-        make.top.mas_equalTo(self.lineViewBottom.mas_bottom).with.offset(20);
+        make.top.mas_equalTo(self.lineViewBottom.mas_bottom).with.offset(100);
         
-        make.height.mas_equalTo(@44);
+        make.height.mas_equalTo(@49);
         
     }];
     
     [self.forgetButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(20);
-        make.top.mas_equalTo(self.loginButton.mas_bottom).with.offset(6);
-        make.width.mas_equalTo(@60);
-        make.height.mas_equalTo(@25);
+        make.top.mas_equalTo(self.lineViewBottom.mas_bottom).offset(13);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-13);
+        make.width.mas_equalTo(@100);
+        make.height.mas_equalTo(@10);
+
     }];
     
     [self.bottomButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.bottomLabel.mas_bottom).with.offset(-8);
+        make.top.mas_equalTo(self.loginButton.mas_bottom).with.offset(18);
         make.centerX.mas_equalTo(self.view.mas_centerX);
         make.width.mas_equalTo(@122);
         make.height.mas_equalTo(@25);
@@ -672,18 +730,18 @@ static NSString *const kuserType = @"usertype";
     }];
     
     [self.registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.mas_equalTo(self.view.mas_centerX);
-        make.bottom.mas_equalTo(self.bottomLabel.mas_top).offset(10);
-        make.width.mas_equalTo(@200);
-        make.height.mas_equalTo(@25);
+        make.top.mas_equalTo(self.lineViewBottom.mas_bottom).offset(13);
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.width.mas_equalTo(@100);
+        make.height.mas_equalTo(@10);
     }];
     
-    [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerY.mas_equalTo(self.bottomButton.mas_centerY);
-        make.right.mas_equalTo(self.bottomButton.mas_right).with.offset(-22);
-        make.height.mas_equalTo(@15);
-        make.width.mas_equalTo(@15);
-    }];
+//    [self.rightImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerY.mas_equalTo(self.bottomButton.mas_centerY);
+//        make.right.mas_equalTo(self.bottomButton.mas_right).with.offset(-22);
+//        make.height.mas_equalTo(@15);
+//        make.width.mas_equalTo(@15);
+//    }];
     
     
     
