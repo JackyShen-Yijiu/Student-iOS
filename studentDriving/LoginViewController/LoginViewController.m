@@ -23,6 +23,7 @@
 #import "DVVUserManager.h"
 #import "VerifyPhoneController.h"
 #import "UIColor+Extension.h"
+#import "ShowWarningMessageView.h"
 
 static NSString *const kloginUrl = @"userinfo/userlogin";
 
@@ -55,6 +56,7 @@ static NSString *const kuserType = @"usertype";
 
 @property (nonatomic, strong) UILabel *phoneNumLabel;
 @property (nonatomic, strong) UILabel *passwordLabel;
+@property (nonatomic, strong) ShowWarningMessageView *showWarningMessageView;
 @end
 
 @implementation LoginViewController
@@ -319,7 +321,11 @@ static NSString *const kuserType = @"usertype";
 //    [self.view addSubview:self.bottomLabel];
     [self.view addSubview:self.checkButton];
 }
-
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (!self.showWarningMessageView.isShowWarningMessage) {
+        self.showWarningMessageView.hidden = YES;
+    }
+}
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
@@ -349,16 +355,25 @@ static NSString *const kuserType = @"usertype";
     
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length  == 0) {
         [self obj_showTotasViewWithMes:@"请输入手机号"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:self.showWarningMessageView];
         return;
     }
     
     if (self.passwordTextField.text == nil || self.passwordTextField.text.length  == 0) {
         [self obj_showTotasViewWithMes:@"请输入密码"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y + 70, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:self.showWarningMessageView];
         return;
     }
     
     if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
         [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:self.showWarningMessageView];
         return;
     }
     
@@ -389,6 +404,9 @@ static NSString *const kuserType = @"usertype";
         if ([type isEqualToString:@"0"]) {
             
             [self obj_showTotasViewWithMes:@"密码错误"];
+            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y + 70, 120, 18)];
+            _showWarningMessageView.isShowWarningMessage  = NO;
+            [self.view addSubview:_showWarningMessageView];
             
         }else if ([type isEqualToString:@"1"]) {
             
@@ -637,9 +655,9 @@ static NSString *const kuserType = @"usertype";
         
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
         
-        make.top.mas_equalTo(self.phoneNumLabel.mas_bottom).with.offset(16);
+        make.top.mas_equalTo(self.phoneNumLabel.mas_bottom).with.offset(5);
         
-        make.height.mas_equalTo(@14);
+        make.height.mas_equalTo(@25);
         
     }];
     
@@ -657,9 +675,9 @@ static NSString *const kuserType = @"usertype";
         
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
         
-        make.top.mas_equalTo(self.passwordLabel.mas_bottom).with.offset(15);
+        make.top.mas_equalTo(self.passwordLabel.mas_bottom).with.offset(5);
         
-        make.height.mas_equalTo(@14);
+        make.height.mas_equalTo(@25);
         
     }];
     

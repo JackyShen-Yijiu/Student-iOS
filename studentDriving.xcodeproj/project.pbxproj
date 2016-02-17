@@ -46,6 +46,7 @@
 		4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB821C3538D7001CF897 /* SignInViewController.m */; };
 		4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB8B1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m */; };
 		4761DB8F1C354AA0001CF897 /* SignInHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */; };
+		550635531C74722800840B91 /* ShowWarningMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 550635521C74722800840B91 /* ShowWarningMessageView.m */; };
 		550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 550C07331C33FF700051433B /* MyWalletViewCell.m */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -871,6 +872,8 @@
 		4761DB8D1C354AA0001CF897 /* SignInHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInHelpViewController.h; sourceTree = "<group>"; };
 		4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInHelpViewController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		550635511C74722800840B91 /* ShowWarningMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWarningMessageView.h; sourceTree = "<group>"; };
+		550635521C74722800840B91 /* ShowWarningMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWarningMessageView.m; sourceTree = "<group>"; };
 		550C07321C33FF700051433B /* MyWalletViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewCell.h; sourceTree = "<group>"; };
 		550C07331C33FF700051433B /* MyWalletViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewCell.m; sourceTree = "<group>"; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -1220,7 +1223,6 @@
 		B2E8E1CE1C73162D000190C2 /* YBStudyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyTableView.m; sourceTree = "<group>"; };
 		B2E8E1E71C731B7E000190C2 /* YBToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBToolBarView.h; sourceTree = "<group>"; };
 		B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBToolBarView.m; sourceTree = "<group>"; };
-		B2E8E1EA1C731E28000190C2 /* YBObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBObject.h; sourceTree = "<group>"; };
 		B2E8E1EB1C741D37000190C2 /* YBStudeyProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudeyProgressView.h; sourceTree = "<group>"; };
 		B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudeyProgressView.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
@@ -4641,6 +4643,8 @@
 				060FC6A51C27CB030039DDBB /* RegistNoteController.m */,
 				068716611C5607C50055D9DC /* AddlineButtomTextField.h */,
 				068716621C5607C50055D9DC /* AddlineButtomTextField.m */,
+				550635511C74722800840B91 /* ShowWarningMessageView.h */,
+				550635521C74722800840B91 /* ShowWarningMessageView.m */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -6018,6 +6022,7 @@
 				D5604B801BF656C50020F0D7 /* NSDateFormatter+Category.m in Sources */,
 				D965CAA91C239D9F00DCD094 /* DrivingCycleShowViewModel.m in Sources */,
 				D5604B5D1BF656C50020F0D7 /* UIImage+EMGIF.m in Sources */,
+				550635531C74722800840B91 /* ShowWarningMessageView.m in Sources */,
 				D5604B5A1BF656C50020F0D7 /* MKAnnotationView+EMWebCache.m in Sources */,
 				D5BCFEDC1BF317350019402C /* PushInformationManager.m in Sources */,
 				B2E8E18B1C72BA4F000190C2 /* WMPopAnimation.m in Sources */,

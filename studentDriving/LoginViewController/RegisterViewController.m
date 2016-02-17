@@ -13,6 +13,7 @@
 #import <JPush/APService.h>
 #import "RegistNoteController.h"
 #import "AddlineButtomTextField.h"
+#import "ShowWarningMessageView.h"
 
 static NSString *const kregisterUser = @"kregisterUser";
 
@@ -45,6 +46,9 @@ static NSString *const kcodeGainUrl = @"code";
 
 @property (strong, nonatomic) UIButton *selectButton;
 @property (strong, nonatomic) UIView *lineNoteView;
+
+@property (nonatomic, strong) ShowWarningMessageView *showWarningMessageView;
+
 @end
 
 @implementation RegisterViewController
@@ -489,6 +493,9 @@ static NSString *const kcodeGainUrl = @"code";
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
         
         [self obj_showTotasViewWithMes:@"请输入手机号"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
         
         return;
         
@@ -496,6 +503,9 @@ static NSString *const kcodeGainUrl = @"code";
         
         if (![AcountManager isValidateMobile:self.phoneTextField.text]) {
             [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+            _showWarningMessageView.isShowWarningMessage  = NO;
+            [self.view addSubview:_showWarningMessageView];
             return;
         }
         
@@ -545,6 +555,9 @@ static NSString *const kcodeGainUrl = @"code";
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
         
         [self obj_showTotasViewWithMes:@"请输入手机号"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
         
         return;
         
@@ -552,6 +565,9 @@ static NSString *const kcodeGainUrl = @"code";
         
         if (![AcountManager isValidateMobile:self.phoneTextField.text]) {
             [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+            _showWarningMessageView.isShowWarningMessage  = NO;
+            [self.view addSubview:_showWarningMessageView];
             return;
         }
         
@@ -560,21 +576,34 @@ static NSString *const kcodeGainUrl = @"code";
     [self.paramsPost setObject:self.phoneTextField.text forKey:@"mobile"];
     if (self.authCodeTextFild.text.length <= 0 || self.authCodeTextFild.text == nil) {
         [self obj_showTotasViewWithMes:@"请输入验证码"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8 - 56, _gainNumLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
         return;
     }
     [self.paramsPost setObject:self.authCodeTextFild.text forKey:@"smscode"];
     if (self.passWordTextFild.text == nil || self.passWordTextFild.text.length <= 0) {
         [self obj_showTotasViewWithMes:@"请输入密码"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _passwordLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
         return;
         
     }
     
     if (self.affirmTextFild.text == nil || self.affirmTextFild.text.length <= 0) {
         [self obj_showTotasViewWithMes:@"请输入确认密码"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
         return;
     }
     if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
         [self obj_showTotasViewWithMes:@"两次密码不一样"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
+
         return;
     }
     if (!self.selectButton) {
@@ -606,6 +635,11 @@ static NSString *const kcodeGainUrl = @"code";
             [ws obj_showTotasViewWithMes:@"网络错误"];
         }
     }];
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (!self.showWarningMessageView.isShowWarningMessage) {
+        self.showWarningMessageView.hidden = YES;
+    }
 }
 
 // 向服务器注册用户

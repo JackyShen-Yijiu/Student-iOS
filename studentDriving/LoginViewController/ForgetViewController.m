@@ -4,7 +4,7 @@
 #import "GainPasswordViewController.h"
 #import "AddlineButtomTextField.h"
 #import "NSString+DY_MD5.h"
-
+#import "ShowWarningMessageView.h"
 static NSString *const kchangePassword = @"kchangePassword";
 
 static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
@@ -25,6 +25,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 @property (strong, nonatomic) UILabel *gainNumLabel;
 @property (strong, nonatomic) UILabel *passwordLabel;
 @property (strong, nonatomic) UILabel *affirmLabel;
+@property (nonatomic, strong) ShowWarningMessageView *showWarningMessageView;
 
 
 @end
@@ -298,17 +299,30 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         make.height.mas_equalTo(@49);
     }];
 }
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (!self.showWarningMessageView.isShowWarningMessage) {
+        self.showWarningMessageView.hidden = YES;
+    }
+}
+
 #define TIME 60
 - (void)dealSend:(UIButton *)sender {
     NSLog(@"发送验证码");
     
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length <= 0) {
         [self obj_showTotasViewWithMes:@"请输入手机号"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
         return;
     }else {
         
         if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
             [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+            _showWarningMessageView.isShowWarningMessage  = NO;
+            [self.view addSubview:_showWarningMessageView];
+
             return;
         }
         
@@ -380,6 +394,9 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     else if (textField.tag == 203){
         if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
             [self showTotasViewWithMes:@"请输入相同的密码"];
+            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
+            _showWarningMessageView.isShowWarningMessage  = NO;
+            [self.view addSubview:_showWarningMessageView];
             return;
         }
 
