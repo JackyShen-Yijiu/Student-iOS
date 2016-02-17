@@ -50,8 +50,8 @@
     //标题
     _titleArray=[NSArray new];
     _titleArray = @[ @"标题1", @"标题2", @"..." ];
-    _titleFont = [UIFont systemFontOfSize:18];
-    _titleNormalColor = [UIColor lightGrayColor];
+    _titleFont = [UIFont systemFontOfSize:14];
+    _titleNormalColor = [UIColor colorWithWhite:1 alpha:0.75];
     _titleSelectColor = TITLE_COLOR;
     
     //跟随条

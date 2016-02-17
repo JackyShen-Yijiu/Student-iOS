@@ -547,7 +547,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         
         // 搜索按钮点击事件
         __weak typeof(self) ws = self;
-        [_searchView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
+        [_searchView.searchView dvv_setTextFieldDidEndEditingBlock:^(UITextField *textField) {
             [ws searchButtonAction:textField];
         }];
         

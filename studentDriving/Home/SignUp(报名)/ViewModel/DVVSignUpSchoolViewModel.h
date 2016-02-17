@@ -11,6 +11,8 @@
 
 @interface DVVSignUpSchoolViewModel : NSObject
 
+@property (nonatomic, assign) BOOL isSearch;
+
 @property (nonatomic, strong) NSMutableArray *dataArray;
 
 // 搜索参数
