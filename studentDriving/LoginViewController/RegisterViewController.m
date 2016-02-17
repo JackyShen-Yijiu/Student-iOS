@@ -20,6 +20,8 @@ static NSString *const kregisterUrl = @"userinfo/signup";
 
 static NSString *const kcodeGainUrl = @"code";
 
+
+
 @interface RegisterViewController ()<UITextFieldDelegate>
 
 @property (strong, nonatomic)UIButton *goBackButton;
