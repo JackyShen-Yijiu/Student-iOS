@@ -2,27 +2,27 @@
     "data" : [
               [
               {
-              "icon" : "collection_yes_icon",
+              "icon" : "yibuStudytikuIcon",
               "title" : "科一题库",
               "description" : "800多道海量题库，任君挑选"
               },
               {
-              "icon" : "collection_yes_icon",
+              "icon" : "yibuStudymonikaoshiIcon",
               "title" : "模拟考试",
               "description" : "真实模拟考试,让君顺利过关"
               },
               {
-              "icon" : "collection_yes_icon",
+              "icon" : "yibuStudywodecuotiIcon",
               "title" : "我的错题",
               "description" : "错题集中复习，任君快速掌握"
               },
               {
-              "icon" : "collection_yes_icon",
+              "icon" : "yibuStudyYuekaoIcon",
               "title" : "我要约考",
               "description" : "提交约考信息，足不出户轻松报考"
               },
               {
-              "icon" : "collection_yes_icon",
+              "icon" : "yibuStudyJiaoliuIcon",
               "title" : "交流",
               "description" : "专项科目交流平台"
               },
@@ -30,22 +30,22 @@
               
               [
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudyKejianIcon",
                "title" : "科二课件",
                "description" : "真人实操视频教学，让君掌握"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudymijiIcon",
                "title" : "学车秘籍",
                "description" : "独家学车秘籍，使君快人一步"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudyYuekaoIcon",
                "title" : "我要约考",
                "description" : "提交约考信息，足不出户轻松报考"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudyJiaoliuIcon",
                "title" : "交流",
                "description" : "专项科目交流平台"
                },
@@ -53,22 +53,22 @@
               
               [
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudyKejianIcon",
                "title" : "科三课件",
                "description" : "真人实操视频教学，让君掌握"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudymijiIcon",
                "title" : "学车秘籍",
                "description" : "独家学车秘籍，使君快人一步"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudyYuekaoIcon",
                "title" : "我要约考",
                "description" : "提交约考信息，足不出户轻松报考"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudyJiaoliuIcon",
                "title" : "交流",
                "description" : "专项科目交流平台"
                },
@@ -76,27 +76,27 @@
               
               [
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudytikuIcon",
                "title" : "科四题库",
                "description" : "800多道海量题库，任君挑选"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudymonikaoshiIcon",
                "title" : "模拟考试",
                "description" : "真实模拟考试,让君顺利过关"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudywodecuotiIcon",
                "title" : "我的错题",
                "description" : "错题集中复习，任君快速掌握"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudyYuekaoIcon",
                "title" : "我要约考",
                "description" : "提交约考信息，足不出户轻松报考"
                },
                {
-               "icon" : "collection_yes_icon",
+               "icon" : "yibuStudyJiaoliuIcon",
                "title" : "交流",
                "description" : "专项科目交流平台"
                },
