@@ -595,7 +595,8 @@ static NSString *const kuserType = @"usertype";
 
 - (void)dealForget:(UIButton *)sender{
     ForgetViewController *forgetVc = [[ForgetViewController alloc]init];
-    [self presentViewController:forgetVc animated:YES completion:nil];
+    UINavigationController *NC = [[UINavigationController alloc] initWithRootViewController:forgetVc];
+    [self presentViewController:NC animated:YES completion:nil];
 }
 
 - (void)dealRegister:(UIButton *)sender{
