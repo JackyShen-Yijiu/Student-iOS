@@ -1225,7 +1225,6 @@
 		B2E8E1E51C73199A000190C2 /* DVVStudentListDMSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVStudentListDMSubject.m; sourceTree = "<group>"; };
 		B2E8E1E71C731B7E000190C2 /* YBToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBToolBarView.h; sourceTree = "<group>"; };
 		B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBToolBarView.m; sourceTree = "<group>"; };
-		B2E8E1EA1C731E28000190C2 /* YBObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBObject.h; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -2115,6 +2114,7 @@
 		D96248371C57A16D0028EE62 /* ComplaintController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplaintController.xib; sourceTree = "<group>"; };
 		D963FACB1C740B09006955D8 /* UIImageView+DVVWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DVVWebImage.h"; sourceTree = "<group>"; };
 		D963FACC1C740B09006955D8 /* UIImageView+DVVWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DVVWebImage.m"; sourceTree = "<group>"; };
+		D963FACF1C741CAE006955D8 /* YBAPPMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAPPMacro.h; sourceTree = "<group>"; };
 		D965325B1C7320DA0097AFA2 /* DVVSelectCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSelectCityController.h; sourceTree = "<group>"; };
 		D965325C1C7320DA0097AFA2 /* DVVSelectCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSelectCityController.m; sourceTree = "<group>"; };
 		D965325E1C7323F80097AFA2 /* DVVSignUpToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpToolBarView.h; sourceTree = "<group>"; };
@@ -3017,8 +3017,8 @@
 		B2E8E1751C72BA4F000190C2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D963FACE1C741C80006955D8 /* Macro */,
 				B2E8E1761C72BA4F000190C2 /* NavigationAnimation */,
-				B2E8E1EA1C731E28000190C2 /* YBObject.h */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -5029,6 +5029,14 @@
 				D98581AC1C58B1C80044E029 /* DVVImagePickerControllerManager.m */,
 			);
 			path = Complaint;
+			sourceTree = "<group>";
+		};
+		D963FACE1C741C80006955D8 /* Macro */ = {
+			isa = PBXGroup;
+			children = (
+				D963FACF1C741CAE006955D8 /* YBAPPMacro.h */,
+			);
+			path = Macro;
 			sourceTree = "<group>";
 		};
 		D96532581C730C350097AFA2 /* DataModel */ = {
