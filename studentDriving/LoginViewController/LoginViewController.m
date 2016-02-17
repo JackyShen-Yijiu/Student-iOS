@@ -601,7 +601,8 @@ static NSString *const kuserType = @"usertype";
 
 - (void)dealRegister:(UIButton *)sender{
     RegisterViewController *registerVc = [[RegisterViewController alloc]init];
-    [self presentViewController:registerVc animated:YES completion:nil];
+     UINavigationController *NC = [[UINavigationController alloc] initWithRootViewController:registerVc];
+    [self presentViewController:NC animated:YES completion:nil];
 
 }
 
