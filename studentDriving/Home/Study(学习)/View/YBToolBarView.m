@@ -29,7 +29,6 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor clearColor];
         //调用初始化属性
         [self chuShiHuaShuXing];
     }
@@ -146,19 +145,7 @@
         [self addSubview:itemButton];
         
     }
-//    for (int i = 1; i < _titleArray.count; i++) {
-//        UIImageView *lineImageView = [UIImageView new];
-//        
-//        lineImageView.backgroundColor = [UIColor colorWithRed:207/255.0 green:207/255.0 blue:207/255.0 alpha:1];
-//        lineImageView.backgroundColor = [UIColor grayColor];
-//        lineImageView.frame = CGRectMake(buttonSize.width * i, (HEIGHT-20)/2.0, 2, 20);
-//        [self addSubview:lineImageView];
-//    }
-//    UIView *bottomLineView = [UIView new];
-//    bottomLineView.backgroundColor = [UIColor grayColor];
-//    bottomLineView.frame = CGRectMake(0, HEIGHT - 1, WIDTH, 1);
-//    [self addSubview:bottomLineView];
-    
+
     _followBarLabel = [UILabel new];
     //添加跟随的按钮
     CGFloat locationFloat = _selectButtonIndex * buttonSize.width;
