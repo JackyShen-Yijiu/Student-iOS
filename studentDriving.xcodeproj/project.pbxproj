@@ -117,6 +117,11 @@
 		B21818361C5A42F600F973A7 /* trainfieldModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818351C5A42F600F973A7 /* trainfieldModel.m */; };
 		B21818391C5B1C6F00F973A7 /* GBTagListView.m in Sources */ = {isa = PBXBuildFile; fileRef = B21818381C5B1C6F00F973A7 /* GBTagListView.m */; };
 		B218183C1C5B201D00F973A7 /* tagslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B218183B1C5B201D00F973A7 /* tagslistModel.m */; };
+		B226AE7B1C7428420028DF1A /* koaGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = B226AE781C7428420028DF1A /* koaGradient.m */; };
+		B226AE7C1C7428420028DF1A /* KOAProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B226AE7A1C7428420028DF1A /* KOAProgressBar.m */; };
+		B226AE851C7449240028DF1A /* YBStudyData.json in Resources */ = {isa = PBXBuildFile; fileRef = B226AE841C7449240028DF1A /* YBStudyData.json */; };
+		B226AE931C7452550028DF1A /* YBStudyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B226AE911C7452550028DF1A /* YBStudyViewCell.m */; };
+		B226AE941C7452550028DF1A /* YBStudyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B226AE921C7452550028DF1A /* YBStudyViewCell.xib */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B2E8E1801C72BA4F000190C2 /* WMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1641C72BA4F000190C2 /* WMNavigationController.m */; };
 		B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1661C72BA4F000190C2 /* ViewController.m */; };
@@ -140,15 +145,9 @@
 		B2E8E1C71C72CEFD000190C2 /* IWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1C11C72CEFD000190C2 /* IWTabBar.m */; };
 		B2E8E1C81C72CEFD000190C2 /* IWTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1C31C72CEFD000190C2 /* IWTabBarButton.m */; };
 		B2E8E1C91C72CEFD000190C2 /* IWTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1C51C72CEFD000190C2 /* IWTabBarViewController.m */; };
-		B2E8E1D31C73162D000190C2 /* DVVSendMessageToStudentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1CB1C73162D000190C2 /* DVVSendMessageToStudentCell.m */; };
-		B2E8E1D41C73162D000190C2 /* DVVSendMessageToStudentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2E8E1CC1C73162D000190C2 /* DVVSendMessageToStudentCell.xib */; };
-		B2E8E1D51C73162D000190C2 /* DVVSendMessageToStudentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1CE1C73162D000190C2 /* DVVSendMessageToStudentView.m */; };
-		B2E8E1DA1C7318B3000190C2 /* DVVStudentListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1D91C7318B3000190C2 /* DVVStudentListViewModel.m */; };
-		B2E8E1DD1C7318EC000190C2 /* DVVStudentListDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1DC1C7318EC000190C2 /* DVVStudentListDMRootClass.m */; };
-		B2E8E1E01C73194B000190C2 /* DVVStudentListDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1DF1C73194B000190C2 /* DVVStudentListDMData.m */; };
-		B2E8E1E31C73197A000190C2 /* DVVStudentListDMHeadPortrait.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1E21C73197A000190C2 /* DVVStudentListDMHeadPortrait.m */; };
-		B2E8E1E61C73199A000190C2 /* DVVStudentListDMSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1E51C73199A000190C2 /* DVVStudentListDMSubject.m */; };
+		B2E8E1D51C73162D000190C2 /* YBStudyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1CE1C73162D000190C2 /* YBStudyTableView.m */; };
 		B2E8E1E91C731B7E000190C2 /* YBToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */; };
+		B2E8E1ED1C741D37000190C2 /* YBStudeyProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1155,6 +1154,15 @@
 		B21818381C5B1C6F00F973A7 /* GBTagListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GBTagListView.m; sourceTree = "<group>"; };
 		B218183A1C5B201D00F973A7 /* tagslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tagslistModel.h; sourceTree = "<group>"; };
 		B218183B1C5B201D00F973A7 /* tagslistModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tagslistModel.m; sourceTree = "<group>"; };
+		B226AE771C7428420028DF1A /* koaGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = koaGradient.h; sourceTree = "<group>"; };
+		B226AE781C7428420028DF1A /* koaGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = koaGradient.m; sourceTree = "<group>"; };
+		B226AE791C7428420028DF1A /* KOAProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOAProgressBar.h; sourceTree = "<group>"; };
+		B226AE7A1C7428420028DF1A /* KOAProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOAProgressBar.m; sourceTree = "<group>"; };
+		B226AE7D1C7440820028DF1A /* YBStudyTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBStudyTool.h; sourceTree = "<group>"; };
+		B226AE841C7449240028DF1A /* YBStudyData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YBStudyData.json; sourceTree = "<group>"; };
+		B226AE901C7452550028DF1A /* YBStudyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudyViewCell.h; sourceTree = "<group>"; };
+		B226AE911C7452550028DF1A /* YBStudyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyViewCell.m; sourceTree = "<group>"; };
+		B226AE921C7452550028DF1A /* YBStudyViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBStudyViewCell.xib; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B2E8E1631C72BA4F000190C2 /* WMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationController.h; sourceTree = "<group>"; };
@@ -1199,24 +1207,13 @@
 		B2E8E1C31C72CEFD000190C2 /* IWTabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTabBarButton.m; sourceTree = "<group>"; };
 		B2E8E1C41C72CEFD000190C2 /* IWTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTabBarViewController.h; sourceTree = "<group>"; };
 		B2E8E1C51C72CEFD000190C2 /* IWTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTabBarViewController.m; sourceTree = "<group>"; };
-		B2E8E1CA1C73162D000190C2 /* DVVSendMessageToStudentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSendMessageToStudentCell.h; sourceTree = "<group>"; };
-		B2E8E1CB1C73162D000190C2 /* DVVSendMessageToStudentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSendMessageToStudentCell.m; sourceTree = "<group>"; };
-		B2E8E1CC1C73162D000190C2 /* DVVSendMessageToStudentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVVSendMessageToStudentCell.xib; sourceTree = "<group>"; };
-		B2E8E1CD1C73162D000190C2 /* DVVSendMessageToStudentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSendMessageToStudentView.h; sourceTree = "<group>"; };
-		B2E8E1CE1C73162D000190C2 /* DVVSendMessageToStudentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSendMessageToStudentView.m; sourceTree = "<group>"; };
-		B2E8E1D81C7318B3000190C2 /* DVVStudentListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVStudentListViewModel.h; sourceTree = "<group>"; };
-		B2E8E1D91C7318B3000190C2 /* DVVStudentListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVStudentListViewModel.m; sourceTree = "<group>"; };
-		B2E8E1DB1C7318EC000190C2 /* DVVStudentListDMRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVStudentListDMRootClass.h; sourceTree = "<group>"; };
-		B2E8E1DC1C7318EC000190C2 /* DVVStudentListDMRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVStudentListDMRootClass.m; sourceTree = "<group>"; };
-		B2E8E1DE1C73194B000190C2 /* DVVStudentListDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVStudentListDMData.h; sourceTree = "<group>"; };
-		B2E8E1DF1C73194B000190C2 /* DVVStudentListDMData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVStudentListDMData.m; sourceTree = "<group>"; };
-		B2E8E1E11C73197A000190C2 /* DVVStudentListDMHeadPortrait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVStudentListDMHeadPortrait.h; sourceTree = "<group>"; };
-		B2E8E1E21C73197A000190C2 /* DVVStudentListDMHeadPortrait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVStudentListDMHeadPortrait.m; sourceTree = "<group>"; };
-		B2E8E1E41C73199A000190C2 /* DVVStudentListDMSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVStudentListDMSubject.h; sourceTree = "<group>"; };
-		B2E8E1E51C73199A000190C2 /* DVVStudentListDMSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVStudentListDMSubject.m; sourceTree = "<group>"; };
+		B2E8E1CD1C73162D000190C2 /* YBStudyTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudyTableView.h; sourceTree = "<group>"; };
+		B2E8E1CE1C73162D000190C2 /* YBStudyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyTableView.m; sourceTree = "<group>"; };
 		B2E8E1E71C731B7E000190C2 /* YBToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBToolBarView.h; sourceTree = "<group>"; };
 		B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBToolBarView.m; sourceTree = "<group>"; };
 		B2E8E1EA1C731E28000190C2 /* YBObject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBObject.h; sourceTree = "<group>"; };
+		B2E8E1EB1C741D37000190C2 /* YBStudeyProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudeyProgressView.h; sourceTree = "<group>"; };
+		B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudeyProgressView.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3204,16 +3201,6 @@
 		B2E8E1A51C72C6F2000190C2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				B2E8E1E41C73199A000190C2 /* DVVStudentListDMSubject.h */,
-				B2E8E1E51C73199A000190C2 /* DVVStudentListDMSubject.m */,
-				B2E8E1E11C73197A000190C2 /* DVVStudentListDMHeadPortrait.h */,
-				B2E8E1E21C73197A000190C2 /* DVVStudentListDMHeadPortrait.m */,
-				B2E8E1DE1C73194B000190C2 /* DVVStudentListDMData.h */,
-				B2E8E1DF1C73194B000190C2 /* DVVStudentListDMData.m */,
-				B2E8E1DB1C7318EC000190C2 /* DVVStudentListDMRootClass.h */,
-				B2E8E1DC1C7318EC000190C2 /* DVVStudentListDMRootClass.m */,
-				B2E8E1D81C7318B3000190C2 /* DVVStudentListViewModel.h */,
-				B2E8E1D91C7318B3000190C2 /* DVVStudentListViewModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3221,6 +3208,8 @@
 		B2E8E1A61C72C6F2000190C2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				B226AE841C7449240028DF1A /* YBStudyData.json */,
+				B226AE7D1C7440820028DF1A /* YBStudyTool.h */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -3230,11 +3219,17 @@
 			children = (
 				B2E8E1E71C731B7E000190C2 /* YBToolBarView.h */,
 				B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */,
-				B2E8E1CA1C73162D000190C2 /* DVVSendMessageToStudentCell.h */,
-				B2E8E1CB1C73162D000190C2 /* DVVSendMessageToStudentCell.m */,
-				B2E8E1CC1C73162D000190C2 /* DVVSendMessageToStudentCell.xib */,
-				B2E8E1CD1C73162D000190C2 /* DVVSendMessageToStudentView.h */,
-				B2E8E1CE1C73162D000190C2 /* DVVSendMessageToStudentView.m */,
+				B2E8E1CD1C73162D000190C2 /* YBStudyTableView.h */,
+				B2E8E1CE1C73162D000190C2 /* YBStudyTableView.m */,
+				B226AE901C7452550028DF1A /* YBStudyViewCell.h */,
+				B226AE911C7452550028DF1A /* YBStudyViewCell.m */,
+				B226AE921C7452550028DF1A /* YBStudyViewCell.xib */,
+				B2E8E1EB1C741D37000190C2 /* YBStudeyProgressView.h */,
+				B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */,
+				B226AE771C7428420028DF1A /* koaGradient.h */,
+				B226AE781C7428420028DF1A /* koaGradient.m */,
+				B226AE791C7428420028DF1A /* KOAProgressBar.h */,
+				B226AE7A1C7428420028DF1A /* KOAProgressBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5355,6 +5350,7 @@
 				D5604C1C1BF656C50020F0D7 /* chat_sender_audio_playing_002.png in Resources */,
 				D5604C3B1BF656C50020F0D7 /* tabbar_chatsHL@2x.png in Resources */,
 				D5604BE71BF656C50020F0D7 /* chatBar_more.png in Resources */,
+				B226AE851C7449240028DF1A /* YBStudyData.json in Resources */,
 				D5604BD21BF656C50020F0D7 /* chatBar_textBg@2x.png in Resources */,
 				D5604BFB1BF656C50020F0D7 /* chatBar_colorMore_video@2x.png in Resources */,
 				D5604C441BF656C50020F0D7 /* tabbarBackground.png in Resources */,
@@ -5488,6 +5484,7 @@
 				B2E8E1881C72BA4F000190C2 /* WMOtherViewController.xib in Resources */,
 				D5604C141BF656C50020F0D7 /* chat_receiver_audio_playing_full.png in Resources */,
 				D5604BAD1BF656C50020F0D7 /* VoiceSearchFeedback012.png in Resources */,
+				B226AE941C7452550028DF1A /* YBStudyViewCell.xib in Resources */,
 				D5604C0A1BF656C50020F0D7 /* chatBar_more_photoSelected@2x.png in Resources */,
 				D5604BB11BF656C50020F0D7 /* VoiceSearchFeedback014.png in Resources */,
 				D5604BD41BF656C50020F0D7 /* chat_location_annotation_someone@2x.png in Resources */,
@@ -5521,7 +5518,6 @@
 				D5604C271BF656C50020F0D7 /* password@2x.png in Resources */,
 				D5604BF11BF656C50020F0D7 /* chatBar_recordSelectedBg.png in Resources */,
 				D5604C131BF656C50020F0D7 /* chat_receiver_audio_playing003@2x.png in Resources */,
-				B2E8E1D41C73162D000190C2 /* DVVSendMessageToStudentCell.xib in Resources */,
 				D5604C351BF656C50020F0D7 /* groupPublicHeader@2x.png in Resources */,
 				D5604C261BF656C50020F0D7 /* password.png in Resources */,
 				D5604B701BF656C50020F0D7 /* MWPhotoBrowser.bundle in Resources */,
@@ -5600,7 +5596,6 @@
 				B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */,
 				D96D1BE71C2B88A000F1C282 /* UIColor+Extension.m in Sources */,
 				B21818391C5B1C6F00F973A7 /* GBTagListView.m in Sources */,
-				B2E8E1DD1C7318EC000190C2 /* DVVStudentListDMRootClass.m in Sources */,
 				B20DBED81C5DB0FF0023676E /* openssl_wrapper.m in Sources */,
 				D95E3DB41C3CEDC600F0B5A0 /* SearchCoachViewModel.m in Sources */,
 				D588B0D61BDDDC14000C5D6F /* DrivingDetailCell.m in Sources */,
@@ -5614,7 +5609,6 @@
 				D5604B501BF656C50020F0D7 /* MWTapDetectingView.m in Sources */,
 				D96D1BC91C2B858400F1C282 /* AppDelegate+DealJPushMessage.m in Sources */,
 				D96532691C73303F0097AFA2 /* DVVSignUpCoachCell.m in Sources */,
-				B2E8E1DA1C7318B3000190C2 /* DVVStudentListViewModel.m in Sources */,
 				D5604C891BF656F30020F0D7 /* EMChatImageBubbleView.m in Sources */,
 				D96D1BD41C2B859C00F1C282 /* ThirdViewController.m in Sources */,
 				B2E8E1B01C72C8BE000190C2 /* YBCommunityViewController.m in Sources */,
@@ -5658,7 +5652,6 @@
 				D52638561BDF1FA400ADC2C7 /* ApplyclasstypeinfoModel.m in Sources */,
 				D9D4BA0F1C3B916D00F62BE9 /* LJSwizzleMethod.m in Sources */,
 				D966E7781C5B4363007848B4 /* ClassTypeDMRootClass.m in Sources */,
-				B2E8E1D31C73162D000190C2 /* DVVSendMessageToStudentCell.m in Sources */,
 				D96D1BEC1C2B88A000F1C282 /* DVVSideMenuCell.m in Sources */,
 				D588B0701BDDDB90000C5D6F /* CancelAppointmentViewController.m in Sources */,
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
@@ -5714,6 +5707,7 @@
 				D588AFC91BDDDAAB000C5D6F /* TrainFieldInfoModel.m in Sources */,
 				D5C23FF21BE8ED1300832CF3 /* SchoolInfo.m in Sources */,
 				B2E8E18A1C72BA4F000190C2 /* WMNavigationInteractiveTransition.m in Sources */,
+				B2E8E1ED1C741D37000190C2 /* YBStudeyProgressView.m in Sources */,
 				D51256A81BDFB56F002717DA /* SignUpCoachDetailViewController.m in Sources */,
 				B2E8E1C71C72CEFD000190C2 /* IWTabBar.m in Sources */,
 				D5604C861BF656F30020F0D7 /* DXRecordView.m in Sources */,
@@ -5727,7 +5721,6 @@
 				D5604C821BF656F30020F0D7 /* DXMessageToolBar.m in Sources */,
 				D588B1191BDDDC2F000C5D6F /* UIImageView+WMClippingImage.m in Sources */,
 				D5D50EE01BFA205000F54097 /* MagicMainTableViewCell.m in Sources */,
-				B2E8E1E01C73194B000190C2 /* DVVStudentListDMData.m in Sources */,
 				D98581B01C58BE8A0044E029 /* ShuttleBusController.m in Sources */,
 				D588B0961BDDDBDB000C5D6F /* ApplyDrivingViewController.m in Sources */,
 				D51256A21BDFAA53002717DA /* SignUpDrivingDetailViewController.m in Sources */,
@@ -5775,6 +5768,7 @@
 				B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */,
 				D961494D1C5C888600E3007F /* CoachListController.m in Sources */,
 				064183FB1C57A8AC00A33D88 /* CheckProgressController.m in Sources */,
+				B226AE7C1C7428420028DF1A /* KOAProgressBar.m in Sources */,
 				061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */,
 				B20DBED41C5DB0FF0023676E /* DataSigner.m in Sources */,
 				D52638591BDF205C00ADC2C7 /* ApplycoachinfoModel.m in Sources */,
@@ -5787,7 +5781,6 @@
 				D588B04B1BDDDB71000C5D6F /* UserCenterViewController.m in Sources */,
 				D5604B4A1BF656C50020F0D7 /* MWCaptionView.m in Sources */,
 				D588B13C1BDDDC65000C5D6F /* GainPasswordView.m in Sources */,
-				B2E8E1E31C73197A000190C2 /* DVVStudentListDMHeadPortrait.m in Sources */,
 				D5604B881BF656C50020F0D7 /* EMTextView.m in Sources */,
 				D5604B561BF656C50020F0D7 /* EMSDWebImageDownloader.m in Sources */,
 				D9A34F3B1C5318FA0044CC25 /* DVVShareView.m in Sources */,
@@ -5988,10 +5981,11 @@
 				D51256BA1BE21EFF002717DA /* ComplainViewController.m in Sources */,
 				B21818141C58AC5500F973A7 /* JGDrivingDetailTopCell.m in Sources */,
 				B20DBEDD1C5DB0FF0023676E /* payRequsestHandler.mm in Sources */,
-				B2E8E1D51C73162D000190C2 /* DVVSendMessageToStudentView.m in Sources */,
+				B2E8E1D51C73162D000190C2 /* YBStudyTableView.m in Sources */,
 				D96D1BCC1C2B858400F1C282 /* AppDelegate.mm in Sources */,
 				D5604B6D1BF656C50020F0D7 /* PSTGridLayoutItem.m in Sources */,
 				D5604B781BF656C50020F0D7 /* TTGlobalUICommon.m in Sources */,
+				B226AE7B1C7428420028DF1A /* koaGradient.m in Sources */,
 				0684361C1C611586004FEA62 /* HomeShowKnowController.m in Sources */,
 				4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */,
 				D965CAAC1C239D9F00DCD094 /* DrivingTableHeaderView.m in Sources */,
@@ -6040,7 +6034,6 @@
 				D5604B551BF656C50020F0D7 /* EMSDWebImageDecoder.m in Sources */,
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
-				B2E8E1E61C73199A000190C2 /* DVVStudentListDMSubject.m in Sources */,
 				D96712DF1C3FA4B80099C3B9 /* SignInDataModel.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
 				06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */,
@@ -6066,6 +6059,7 @@
 				D966E7791C5B4363007848B4 /* ClassTypeDMSchoolinfo.m in Sources */,
 				D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */,
 				D961493F1C5C587200E3007F /* CoachListDMCarmodel.m in Sources */,
+				B226AE931C7452550028DF1A /* YBStudyViewCell.m in Sources */,
 				B21818171C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */,
 				D588AFD01BDDDAAB000C5D6F /* MyAppointmentCoachModel.m in Sources */,
