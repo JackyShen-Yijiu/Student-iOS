@@ -298,7 +298,7 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/ApplyDrivingViewController/DrivingDetail/DrivingDetailViewModel.m"
-                  timestampString = "477310356.437478"
+                  timestampString = "477371870.063269"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -313,7 +313,7 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/ApplyDrivingViewController/DrivingDetail/DrivingDetailViewModel.m"
-                  timestampString = "477310356.437764"
+                  timestampString = "477371870.063667"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "21"
@@ -377,29 +377,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "studentDriving/Tool/JENetwoking.m"
-            timestampString = "476108907.461589"
+            filePath = "studentDriving/Home/SignUp(&#x62a5;&#x540d;)/ViewModel/DVVSignUpSchoolViewModel.m"
+            timestampString = "477370841.710233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "190"
-            endingLineNumber = "190"
-            landmarkName = "+startDownLoadWithUrl:postParam:WithMethod:withCompletion:withFailure:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/Tool/JENetwoking.m"
-            timestampString = "476108913.655953"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "+startDownLoadWithUrl:postParam:WithMethod:withCompletion:withFailure:"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "-dvv_networkRequestWithIndex:isRefresh:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

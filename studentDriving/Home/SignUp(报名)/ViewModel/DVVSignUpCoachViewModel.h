@@ -10,4 +10,6 @@
 
 @interface DVVSignUpCoachViewModel : NSObject
 
+@property (nonatomic, strong) NSMutableArray *dataArray;
+
 @end
