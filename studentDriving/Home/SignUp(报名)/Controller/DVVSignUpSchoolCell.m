@@ -21,13 +21,31 @@
     if (self) {
         NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"DVVSignUpSchoolCell" owner:self options:nil];
         DVVSignUpSchoolCell *cell = xibArray.firstObject;
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
-        [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        [self setRestorationIdentifier:reuseIdentifier];
+        
+        [self.contentView addSubview:self.starView];
+        [self.contentView addSubview:self.lineImageView];
+        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        [_iconImageView.layer setMasksToBounds:YES];
+        [_iconImageView.layer setCornerRadius:20];
+        
+        _nameLabel.textColor = [UIColor colorWithHexString:@"#212121"];
+        _addressLabel.textColor = [UIColor colorWithHexString:@"757575"];
+        _distanceLabel.textColor = [UIColor colorWithHexString:@"757575"];
+        _priceLabel.textColor = [UIColor colorWithHexString:@"DB4437"];
+        _coachCountLabel.textColor = [UIColor colorWithHexString:@"DB4437"];
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGSize size = self.bounds.size;
+    _starView.frame = CGRectMake(size.width - 94 - 16, 16, 94, 14);
+    CGFloat minX = CGRectGetMinX(_nameLabel.frame);
+    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
 }
 
 - (void)refreshData:(DVVSignUpSchoolDMData *)dmData {
@@ -35,28 +53,50 @@
                      placeholderImage:[UIImage imageNamed:@"120"]];
     if (dmData.name) {
         _nameLabel.text = dmData.name;
+    }else {
+        _nameLabel.text = @"未填写驾校名";
     }
     if (dmData.address) {
         _addressLabel.text = dmData.address;
+    }else {
+        _addressLabel.text = @"未填写地址";
     }
-    if (dmData.minprice && dmData.maxprice) {
+    if (dmData.maxprice) {
         _priceLabel.text = [NSString stringWithFormat:@"¥%i-¥%i",dmData.minprice,dmData.maxprice];
+    }else {
+        _priceLabel.text = @"未填写价格";
     }
     if (dmData.distance) {
-        _distanceLabel.text = [NSString stringWithFormat:@"距离%.2fkm",dmData.distance / 1000.f];
+        _distanceLabel.text = [NSString stringWithFormat:@"距您%.2fkm",dmData.distance / 1000.f];
+    }else {
+        _distanceLabel.text = @"暂无距离信息";
+    }
+    if (dmData.coachcount) {
+        _coachCountLabel.text = [NSString stringWithFormat:@"%i位认证教练", dmData.coachcount];
+    }else {
+        _coachCountLabel.text = @"暂无认证教练";
     }
     if (dmData.schoollevel) {
-        [_starBar displayRating:[dmData.schoollevel integerValue]];
+        [_starView dvv_setStar:[dmData.schoollevel integerValue]];
+    }else {
+        [_starView dvv_setStar:0];
     }
 }
 
-- (RatingBar *)starBar {
-    if (!_starBar) {
-        _starBar = [RatingBar new];
-        [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:nil];
-        [_starBar displayRating:3];
+- (DVVStarView *)starView {
+    if (!_starView) {
+        _starView = [DVVStarView new];
+        [_starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
     }
-    return _starBar;
+    return _starView;
+}
+
+- (UIImageView *)lineImageView {
+    if (!_lineImageView) {
+        _lineImageView = [UIImageView new];
+        _lineImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
+    }
+    return _lineImageView;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

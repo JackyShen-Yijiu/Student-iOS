@@ -22,13 +22,13 @@ typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
  *
  *  @param handle DVVSearchViewUITextFieldDelegateBlock
  */
-- (void)setDVVTextFieldDidBeginEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
+- (void)dvv_setTextFieldDidBeginEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
 /**
  *  textField结束编辑
  *
  *  @param handle DVVSearchViewUITextFieldDelegateBlock
  */
-- (void)setDVVTextFieldDidEndEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
+- (void)dvv_setTextFieldDidEndEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
 
 @property (nonatomic,copy) NSString *pleaceHodel;
 

@@ -46,6 +46,7 @@
 		4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB821C3538D7001CF897 /* SignInViewController.m */; };
 		4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB8B1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m */; };
 		4761DB8F1C354AA0001CF897 /* SignInHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */; };
+		550635531C74722800840B91 /* ShowWarningMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 550635521C74722800840B91 /* ShowWarningMessageView.m */; };
 		550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 550C07331C33FF700051433B /* MyWalletViewCell.m */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -689,7 +690,6 @@
 		D93EC2F21C32BF97005D7141 /* HomeActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93EC2F11C32BF97005D7141 /* HomeActivityController.m */; };
 		D95CCCEE1C2E636200AF1402 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCED1C2E636200AF1402 /* NSString+Helper.m */; };
 		D95CCCF71C2E84C000AF1402 /* UserSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */; };
-		D95E048B1C5E26F400BD7617 /* DVVToast.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E048A1C5E26F400BD7617 /* DVVToast.m */; };
 		D95E3DA81C3CC0AB00F0B5A0 /* DVVSearchView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DA71C3CC0AB00F0B5A0 /* DVVSearchView.m */; };
 		D95E3DAB1C3CC19800F0B5A0 /* SearchCoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DAA1C3CC19800F0B5A0 /* SearchCoachController.m */; };
 		D95E3DAE1C3CDBFE00F0B5A0 /* DVVFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DAD1C3CDBFE00F0B5A0 /* DVVFilterView.m */; };
@@ -712,6 +712,8 @@
 		D96248381C57A16D0028EE62 /* ComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96248361C57A16D0028EE62 /* ComplaintController.m */; };
 		D96248391C57A16D0028EE62 /* ComplaintController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96248371C57A16D0028EE62 /* ComplaintController.xib */; };
 		D963FACD1C740B09006955D8 /* UIImageView+DVVWebImage.m in Sources */ = {isa = PBXBuildFile; fileRef = D963FACC1C740B09006955D8 /* UIImageView+DVVWebImage.m */; };
+		D963FAD81C743460006955D8 /* DVVToast.m in Sources */ = {isa = PBXBuildFile; fileRef = D963FAD71C743460006955D8 /* DVVToast.m */; };
+		D963FADB1C7470EE006955D8 /* DVVStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D963FADA1C7470EE006955D8 /* DVVStarView.m */; };
 		D965325D1C7320DA0097AFA2 /* DVVSelectCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = D965325C1C7320DA0097AFA2 /* DVVSelectCityController.m */; };
 		D96532601C7323F80097AFA2 /* DVVSignUpToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D965325F1C7323F80097AFA2 /* DVVSignUpToolBarView.m */; };
 		D96532641C7330280097AFA2 /* DVVSignUpSchoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D96532621C7330280097AFA2 /* DVVSignUpSchoolCell.m */; };
@@ -894,6 +896,8 @@
 		4761DB8D1C354AA0001CF897 /* SignInHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInHelpViewController.h; sourceTree = "<group>"; };
 		4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInHelpViewController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		550635511C74722800840B91 /* ShowWarningMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWarningMessageView.h; sourceTree = "<group>"; };
+		550635521C74722800840B91 /* ShowWarningMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWarningMessageView.m; sourceTree = "<group>"; };
 		550C07321C33FF700051433B /* MyWalletViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWalletViewCell.h; sourceTree = "<group>"; };
 		550C07331C33FF700051433B /* MyWalletViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewCell.m; sourceTree = "<group>"; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
@@ -2136,8 +2140,6 @@
 		D95CCCED1C2E636200AF1402 /* NSString+Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Helper.m"; sourceTree = "<group>"; };
 		D95CCCF51C2E84C000AF1402 /* UserSettingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserSettingModel.h; sourceTree = "<group>"; };
 		D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingModel.m; sourceTree = "<group>"; };
-		D95E04891C5E26F400BD7617 /* DVVToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVToast.h; sourceTree = "<group>"; };
-		D95E048A1C5E26F400BD7617 /* DVVToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVToast.m; sourceTree = "<group>"; };
 		D95E3DA61C3CC0AB00F0B5A0 /* DVVSearchView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSearchView.h; sourceTree = "<group>"; };
 		D95E3DA71C3CC0AB00F0B5A0 /* DVVSearchView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSearchView.m; sourceTree = "<group>"; };
 		D95E3DA91C3CC19800F0B5A0 /* SearchCoachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCoachController.h; sourceTree = "<group>"; };
@@ -2182,6 +2184,10 @@
 		D963FACB1C740B09006955D8 /* UIImageView+DVVWebImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+DVVWebImage.h"; sourceTree = "<group>"; };
 		D963FACC1C740B09006955D8 /* UIImageView+DVVWebImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+DVVWebImage.m"; sourceTree = "<group>"; };
 		D963FACF1C741CAE006955D8 /* YBAPPMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAPPMacro.h; sourceTree = "<group>"; };
+		D963FAD61C743460006955D8 /* DVVToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVToast.h; sourceTree = "<group>"; };
+		D963FAD71C743460006955D8 /* DVVToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVToast.m; sourceTree = "<group>"; };
+		D963FAD91C7470EE006955D8 /* DVVStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVStarView.h; sourceTree = "<group>"; };
+		D963FADA1C7470EE006955D8 /* DVVStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVStarView.m; sourceTree = "<group>"; };
 		D965325B1C7320DA0097AFA2 /* DVVSelectCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSelectCityController.h; sourceTree = "<group>"; };
 		D965325C1C7320DA0097AFA2 /* DVVSelectCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSelectCityController.m; sourceTree = "<group>"; };
 		D965325E1C7323F80097AFA2 /* DVVSignUpToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpToolBarView.h; sourceTree = "<group>"; };
@@ -3332,6 +3338,10 @@
 		B2E8E19F1C72C6F2000190C2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				D963FAD91C7470EE006955D8 /* DVVStarView.h */,
+				D963FADA1C7470EE006955D8 /* DVVStarView.m */,
+				D963FAD61C743460006955D8 /* DVVToast.h */,
+				D963FAD71C743460006955D8 /* DVVToast.m */,
 				D963FACB1C740B09006955D8 /* UIImageView+DVVWebImage.h */,
 				D963FACC1C740B09006955D8 /* UIImageView+DVVWebImage.m */,
 				B2E8E1B41C72C8D7000190C2 /* YBSignUpViewController.h */,
@@ -4781,6 +4791,8 @@
 				060FC6A51C27CB030039DDBB /* RegistNoteController.m */,
 				068716611C5607C50055D9DC /* AddlineButtomTextField.h */,
 				068716621C5607C50055D9DC /* AddlineButtomTextField.m */,
+				550635511C74722800840B91 /* ShowWarningMessageView.h */,
+				550635521C74722800840B91 /* ShowWarningMessageView.m */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -5136,8 +5148,6 @@
 		D962482D1C5799C90028EE62 /* ShuttleBus */ = {
 			isa = PBXGroup;
 			children = (
-				D95E04891C5E26F400BD7617 /* DVVToast.h */,
-				D95E048A1C5E26F400BD7617 /* DVVToast.m */,
 				D98581AE1C58BE8A0044E029 /* ShuttleBusController.h */,
 				D98581AF1C58BE8A0044E029 /* ShuttleBusController.m */,
 				D98581B11C58BF000044E029 /* ShuttleBusCell.h */,
@@ -5932,6 +5942,7 @@
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				B20DBBCC1C5CDF930023676E /* JGActivityDetailsViewController.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
+				D963FADB1C7470EE006955D8 /* DVVStarView.m in Sources */,
 				B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */,
 				D92B2DA91C59D0030050EE84 /* DrivingDetailTrainingGroundCell.m in Sources */,
 				D5604B4D1BF656C50020F0D7 /* MWPhoto.m in Sources */,
@@ -6172,6 +6183,7 @@
 				D5604B801BF656C50020F0D7 /* NSDateFormatter+Category.m in Sources */,
 				D965CAA91C239D9F00DCD094 /* DrivingCycleShowViewModel.m in Sources */,
 				D5604B5D1BF656C50020F0D7 /* UIImage+EMGIF.m in Sources */,
+				550635531C74722800840B91 /* ShowWarningMessageView.m in Sources */,
 				D5604B5A1BF656C50020F0D7 /* MKAnnotationView+EMWebCache.m in Sources */,
 				D5BCFEDC1BF317350019402C /* PushInformationManager.m in Sources */,
 				B2E8E18B1C72BA4F000190C2 /* WMPopAnimation.m in Sources */,
@@ -6185,6 +6197,7 @@
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
 				06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */,
 				D92B2DB01C59F65C0050EE84 /* ClassTypeView.m in Sources */,
+				D963FAD81C743460006955D8 /* DVVToast.m in Sources */,
 				B2E8E1AD1C72C78B000190C2 /* YBAppointMentController.m in Sources */,
 				B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */,
 				D96D1BE81C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.m in Sources */,
@@ -6218,7 +6231,6 @@
 				B226AEA41C747E050028DF1A /* NSString+CurrentTimeDay.m in Sources */,
 				B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */,
 				D96712DC1C3F9A470099C3B9 /* SignInViewModel.m in Sources */,
-				D95E048B1C5E26F400BD7617 /* DVVToast.m in Sources */,
 				D588B11C1BDDDC2F000C5D6F /* NetMonitor.m in Sources */,
 				D970D3991C3CFFEB003FCED3 /* CoachDMHeadportrait.m in Sources */,
 				D51256CC1BE348DC002717DA /* CommentModel.m in Sources */,

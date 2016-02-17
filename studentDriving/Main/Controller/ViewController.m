@@ -70,7 +70,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+
     self.common = [WMCommon getInstance];
     self.sta = kStateHome;
     self.distance = 0;
@@ -164,6 +164,13 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
  *  @param recognizer
  */
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer {
+    
+    NSLog(@"self.mainNav.viewControllers.count:%lu",(unsigned long)self.mainNav.viewControllers.count);
+    
+    if (self.tabBarController.tabBar.hidden) return;
+    
+    NSLog(@"self.tabBarController.tabBar.hidden:%d",self.tabBarController.tabBar.hidden);
+    
     // 当滑动水平X大于75时禁止滑动
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.panStartX = [recognizer locationInView:self.view].x;

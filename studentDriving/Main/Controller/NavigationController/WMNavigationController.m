@@ -26,18 +26,20 @@
     // 去掉透明效果
     [self.navigationBar setTranslucent:NO];
 
-    UIGestureRecognizer *gesture = self.interactivePopGestureRecognizer;
-    gesture.enabled = NO;
-    UIView *gestureView = gesture.view;
+    self.interactivePopGestureRecognizer.delegate = self;
     
-    UIPanGestureRecognizer *popRecognizer = [[UIPanGestureRecognizer alloc] init];
-    popRecognizer.delegate = self;
-    popRecognizer.maximumNumberOfTouches = 1;
-    [gestureView addGestureRecognizer:popRecognizer];
-    
-    _navT = [[WMNavigationInteractiveTransition alloc] initWithViewController:self];
-    [popRecognizer addTarget:_navT action:@selector(handleControllerPop:)];
-    
+//    UIGestureRecognizer *gesture = self.interactivePopGestureRecognizer;
+//    gesture.enabled = NO;
+//    UIView *gestureView = gesture.view;
+//    
+//    UIPanGestureRecognizer *popRecognizer = [[UIPanGestureRecognizer alloc] init];
+//    popRecognizer.delegate = self;
+//    popRecognizer.maximumNumberOfTouches = 1;
+//    [gestureView addGestureRecognizer:popRecognizer];
+//    
+//    _navT = [[WMNavigationInteractiveTransition alloc] initWithViewController:self];
+//    [popRecognizer addTarget:_navT action:@selector(handleControllerPop:)];
+//    
 }
 
 - (BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer {

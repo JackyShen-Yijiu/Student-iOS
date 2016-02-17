@@ -8,6 +8,8 @@
 
 #import "DVVSearchView.h"
 
+typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
+
 @interface DVVSearchView ()
 
 @property (nonatomic, strong) UIButton *cancelButton;
@@ -48,12 +50,10 @@
     _cancelButton.titleLabel.font = [UIFont systemFontOfSize:13];
     _textField.font = [UIFont systemFontOfSize:13];
     
-    _backgroundImageView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
-    
     _textField.tintColor = [UIColor grayColor];
     // 设置背景视图为圆角
     [_backgroundImageView.layer setMasksToBounds:YES];
-    [_backgroundImageView.layer setCornerRadius:5];
+    [_backgroundImageView.layer setCornerRadius:[self defaultHeight] / 2.f];
     
 //    _textField.backgroundColor = [UIColor redColor];
 //    _searchButton.backgroundColor = [UIColor orangeColor];
@@ -127,10 +127,10 @@
 }
 
 #pragma mark set block
-- (void)setDVVTextFieldDidBeginEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle {
+- (void)dvv_setTextFieldDidBeginEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle {
     _didBeginEditingBlock = handle;
 }
-- (void)setDVVTextFieldDidEndEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle {
+- (void)dvv_setTextFieldDidEndEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle {
     _didEndEditingBlock = handle;
 }
 
@@ -138,6 +138,7 @@
 - (UIImageView *)backgroundImageView {
     if (!_backgroundImageView) {
         _backgroundImageView = [UIImageView new];
+        _backgroundImageView.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
     }
     return _backgroundImageView;
 }
@@ -159,7 +160,7 @@
     return _cancelButton;
 }
 - (CGFloat)defaultHeight {
-    return 24;
+    return 26;
 }
 
 /*
