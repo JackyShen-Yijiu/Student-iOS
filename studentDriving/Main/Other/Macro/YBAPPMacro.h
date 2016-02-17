@@ -1,5 +1,5 @@
 //
-//  YBObject.h
+//  YBAPPMacro.h
 //  studentDriving
 //
 //  Created by JiangangYang on 16/2/16.

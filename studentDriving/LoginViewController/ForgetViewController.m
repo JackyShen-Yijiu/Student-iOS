@@ -3,17 +3,29 @@
 #import "ToolHeader.h"
 #import "GainPasswordViewController.h"
 #import "AddlineButtomTextField.h"
+#import "NSString+DY_MD5.h"
 
 static NSString *const kchangePassword = @"kchangePassword";
+
+static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 
 
 @interface ForgetViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic) UITextField *phoneNumTextField;
 @property (strong, nonatomic) UITextField *confirmTextField;
+@property (strong, nonatomic) UITextField *passWordTextFild;
+@property (strong, nonatomic) UITextField *affirmTextFild;
+
 @property (strong, nonatomic) UIButton *gainNum;
 @property (strong, nonatomic) UIButton *runNextButton;
 @property (strong, nonatomic) UIButton *goBackButton;
+
 @property (strong, nonatomic) UILabel *topLabel;
+@property (strong, nonatomic) UILabel *phoneNumLabel;
+@property (strong, nonatomic) UILabel *gainNumLabel;
+@property (strong, nonatomic) UILabel *passwordLabel;
+@property (strong, nonatomic) UILabel *affirmLabel;
+
 
 @end
 
@@ -45,14 +57,14 @@ static NSString *const kchangePassword = @"kchangePassword";
     if (_phoneNumTextField == nil) {
         _phoneNumTextField = [[AddlineButtomTextField alloc]init];
         _phoneNumTextField.delegate = self;
-        _phoneNumTextField.tag = 102;
-        _phoneNumTextField.placeholder = @"  手机号";
-        _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
+        _phoneNumTextField.tag = 200;
+//        _phoneNumTextField.placeholder = @"  手机号";
+//        _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
         leftView.image = [UIImage imageNamed:@"账号"];
         _phoneNumTextField.leftView = leftView;
         _phoneNumTextField.font = [UIFont systemFontOfSize:15];
-        _phoneNumTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
+        _phoneNumTextField.textColor = [UIColor colorWithHexString:@"212121"];
         _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
 
@@ -62,26 +74,95 @@ static NSString *const kchangePassword = @"kchangePassword";
 - (UITextField *)confirmTextField {
     if (_confirmTextField == nil) {
         _confirmTextField = [[AddlineButtomTextField alloc]init];
-        _confirmTextField.tag = 103;
-        _confirmTextField.placeholder = @"  验证码";
-        _confirmTextField.leftViewMode = UITextFieldViewModeAlways;
+        _confirmTextField.tag = 201;
+        _confirmTextField.delegate = self;
+//        _confirmTextField.placeholder = @"验证码";
+//        _confirmTextField.leftViewMode = UITextFieldViewModeAlways;
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
         leftView.image = [UIImage imageNamed:@"yanzhengma"];
         _confirmTextField.leftView = leftView;
         _confirmTextField.font = [UIFont systemFontOfSize:15];
-        _confirmTextField.textColor = [UIColor colorWithHexString:@"d9d9d9"];
+        _confirmTextField.textColor = [UIColor colorWithHexString:@"212121"];
         _confirmTextField.keyboardType = UIKeyboardTypeNumberPad;
 
     }
     return _confirmTextField;
 }
+- (UITextField *)passWordTextFild{
+    if (_passWordTextFild == nil) {
+        _passWordTextFild = [[AddlineButtomTextField alloc]init];
+        _passWordTextFild.tag = 202;
+//        _passWordTextFild.placeholder = @"密码";
+        _passWordTextFild.font  = [UIFont systemFontOfSize:15];
+        _passWordTextFild.textColor = [UIColor colorWithHexString:@"212121"];
+        _passWordTextFild.secureTextEntry = YES;
+        _passWordTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
+    }
+    return _passWordTextFild;
+}
+
+- (UITextField *)affirmTextFild{
+    if (_affirmTextFild == nil) {
+        _affirmTextFild = [[AddlineButtomTextField alloc]init];
+        _affirmTextFild.tag = 203;
+//        _affirmTextFild.placeholder = @"确认密码";
+        _affirmTextFild.font  = [UIFont systemFontOfSize:15];
+        _affirmTextFild.textColor = [UIColor colorWithHexString:@"212121"];
+        _affirmTextFild.secureTextEntry = YES;
+//        _affirmTextFild.backgroundColor = [UIColor cyanColor];
+        _affirmTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
+
+        
+    }
+    return _affirmTextFild;
+}
+- (UILabel *)phoneNumLabel{
+    if (_phoneNumLabel == nil) {
+        _phoneNumLabel = [[UILabel alloc] init];
+        _phoneNumLabel.text = @"手机号";
+        _phoneNumLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _phoneNumLabel.font = [UIFont systemFontOfSize:10];
+    }
+    return _phoneNumLabel;
+}
+- (UILabel *)gainNumLabel{
+    if (_gainNumLabel == nil) {
+        _gainNumLabel = [[UILabel alloc] init];
+        _gainNumLabel.text = @"验证码";
+        _gainNumLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _gainNumLabel.font = [UIFont systemFontOfSize:10];
+    }
+    return _gainNumLabel;
+}
+
+- (UILabel *)passwordLabel{
+    if (_passwordLabel == nil) {
+        _passwordLabel = [[UILabel alloc] init];
+        _passwordLabel.text = @"密码";
+        _passwordLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _passwordLabel.font = [UIFont systemFontOfSize:10];
+    }
+    return _passwordLabel;
+}
+
+- (UILabel *)affirmLabel{
+    if (_affirmLabel == nil) {
+        _affirmLabel = [[UILabel alloc] init];
+        _affirmLabel.text = @"确认密码";
+        _affirmLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _affirmLabel.font = [UIFont systemFontOfSize:10];
+    }
+    return _affirmLabel;
+}
+
+
 - (UIButton *)gainNum {
     if (_gainNum == nil) {
         _gainNum = [UIButton buttonWithType:UIButtonTypeCustom];
-        _gainNum.backgroundColor = [UIColor clearColor];
         [_gainNum addTarget:self action:@selector(dealSend:) forControlEvents:UIControlEventTouchUpInside];
         _gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
-        [_gainNum setTitleColor:[UIColor colorWithHexString:@"ff6633"] forState:UIControlStateNormal];
+        _gainNum.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        [_gainNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
     }
     return _gainNum;
@@ -90,27 +171,45 @@ static NSString *const kchangePassword = @"kchangePassword";
 - (UIButton *)runNextButton {
     if (_runNextButton == nil) {
         _runNextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _runNextButton.backgroundColor = RGBColor(255, 102, 51);
+        _runNextButton.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
         [_runNextButton addTarget:self action:@selector(dealNext:) forControlEvents:UIControlEventTouchUpInside];
         [_runNextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _runNextButton.titleLabel.font = [UIFont systemFontOfSize:16];
         
-        [_runNextButton setTitle:@"下一步" forState:UIControlStateNormal];
+        [_runNextButton setTitle:@"提交" forState:UIControlStateNormal];
     }
     return _runNextButton;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-//    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"找回密码";
+    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:@"bd4437"]];
+    
+    CGRect backframe= CGRectMake(0, 0, 20, 20);
+    UIButton* backButton= [UIButton buttonWithType:UIButtonTypeSystem];
+    backButton.frame = backframe;
+    [backButton setBackgroundImage:[UIImage imageNamed:@"Back-Icon"] forState:UIControlStateNormal];
+    [backButton addTarget:self action:@selector(dealGoBack:) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+
+//    [self.navigationController.navigationBar setBackgroundImage:[UIImage ] forBarMetrics:UIBarMetricsDefault];
     self.view.backgroundColor = [UIColor whiteColor];
-    self.view.layer.contents = (id)[UIImage imageNamed:@"login_background"].CGImage;
+//    self.view.layer.contents = (id)[UIImage imageNamed:@"login_background"].CGImage;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(dealChangePassword) name:kchangePassword object:nil];
     
     [self.view addSubview:self.topLabel];
+    
     [self.view addSubview:self.phoneNumTextField];
     [self.view addSubview:self.confirmTextField];
+    [self.view addSubview:self.passWordTextFild];
+    [self.view addSubview:self.affirmTextFild];
+    
+    [self.view addSubview:self.phoneNumLabel];
+    [self.view addSubview:self.gainNumLabel];
+    [self.view addSubview:self.passwordLabel];
+    [self.view addSubview:self.affirmLabel];
+    
     [self.view addSubview:self.runNextButton];
     [self.view addSubview:self.gainNum];
     [self.view addSubview:self.goBackButton];
@@ -128,11 +227,18 @@ static NSString *const kchangePassword = @"kchangePassword";
         make.height.mas_equalTo(@20);
     }];
     
-    [self.phoneNumTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(15);
-        make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
+    [self.phoneNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
         make.top.mas_equalTo(self.view.mas_top).with.offset(20+55 + 40);
-        make.height.mas_equalTo(@44);
+        make.height.mas_equalTo(@10);
+        make.width.mas_equalTo(@40);
+    }];
+
+    [self.phoneNumTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+        make.top.mas_equalTo(self.phoneNumLabel.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(@40);
     }];
     
     [self.gainNum mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -142,20 +248,54 @@ static NSString *const kchangePassword = @"kchangePassword";
         make.width.mas_equalTo(@117);
     }];
     
-    [self.confirmTextField mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(15);
-        make.right.mas_equalTo(self.gainNum.mas_left).with.offset(-10);
-        make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(10);
-        make.height.mas_equalTo(@44);
+    [self.gainNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(16);
+        make.height.mas_equalTo(@10);
+        make.width.mas_equalTo(@40);
     }];
+    [self.confirmTextField mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+        make.top.mas_equalTo(self.gainNumLabel.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(@40);
+    }];
+    
+    [self.passwordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.top.mas_equalTo(self.confirmTextField.mas_bottom).with.offset(16);
+        make.height.mas_equalTo(@10);
+        make.width.mas_equalTo(@40);
+    }];
+    [self.passWordTextFild mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+        make.top.mas_equalTo(self.passwordLabel.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(@40);
+    }];
+
+    [self.affirmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.top.mas_equalTo(self.passWordTextFild.mas_bottom).with.offset(16);
+        make.height.mas_equalTo(@10);
+        make.width.mas_equalTo(@40);
+    }];
+    [self.affirmTextFild mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+        make.top.mas_equalTo(self.affirmLabel.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(@40);
+    }];
+
+    
     
     
     
     [self.runNextButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.confirmTextField.mas_bottom).with.offset(20);
-        make.right.mas_equalTo(self.view.mas_right).with.offset(-20);
-        make.left.mas_equalTo(self.view.mas_left).with.offset(20);
-        make.height.mas_equalTo(@44);
+        make.top.mas_equalTo(self.confirmTextField.mas_bottom).with.offset(180);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+        make.left.mas_equalTo(self.view.mas_left).with.offset(0);
+        make.height.mas_equalTo(@49);
     }];
 }
 #define TIME 60
@@ -163,7 +303,7 @@ static NSString *const kchangePassword = @"kchangePassword";
     NSLog(@"发送验证码");
     
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length <= 0) {
-        [self showMsg:@"请输入手机号"];
+        [self obj_showTotasViewWithMes:@"请输入手机号"];
         return;
     }else {
         
@@ -185,7 +325,7 @@ static NSString *const kchangePassword = @"kchangePassword";
     NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
     
     [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        [self showMsg:@"发送成功"];
+        [self obj_showTotasViewWithMes:@"发送成功"];
         // 验证码输入框获取焦点
         [self.confirmTextField becomeFirstResponder];
         
@@ -201,7 +341,8 @@ static NSString *const kchangePassword = @"kchangePassword";
                     
                     self.gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
                     [self.gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
-                    [_gainNum setTitleColor:[UIColor colorWithHexString:@"ff6633"] forState:UIControlStateNormal];
+                    _gainNum.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+                    [_gainNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                     self.gainNum.userInteractionEnabled = YES;
                     
                 });
@@ -219,22 +360,66 @@ static NSString *const kchangePassword = @"kchangePassword";
         dispatch_resume(timer);
     }];
 }
+// 判断验证码是否正确
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    // 验证码输入完后的回调方法
+    if (textField.tag ==  201) {
+        if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
+            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            return;
+        }
+        
+        if (self.confirmTextField.text.length <= 0 || self.confirmTextField.text == nil) {
+            [self obj_showTotasViewWithMes:@"请输入验证码"];
+            return;
+        }
+        
+        // 验证验证码
+        [self verificationSMSCode];
+    } // 确认密码输入完后的回调方法
+    else if (textField.tag == 203){
+        if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
+            [self showTotasViewWithMes:@"请输入相同的密码"];
+            return;
+        }
 
-- (void)dealNext:(UIButton *)sender {
-    
-    if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
-        [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
-        return;
     }
     
-    if (self.confirmTextField.text.length <= 0 || self.confirmTextField.text == nil) {
-        [self showMsg:@"请输入验证码"];
-        return;
-    }
-    
-    // 验证验证码
-    [self verificationSMSCode];
+ 
 }
+- (void)dealNext:(UIButton *)sender {
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kchangePasswordUrl];
+    
+    NSDictionary *param = @{@"smscode":self.confirmString,@"password":[self.passWordTextFild.text DY_MD5],@"mobile":self.mobile};
+    
+    NSLog(@"param:%@",param);
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        NSDictionary *resultData = data;
+        
+        DYNSLog(@"resultData.message = %@",resultData[@"msg"]);
+        NSLog(@"data:%@",data);
+        
+        NSString *type = [NSString stringWithFormat:@"%@",resultData[@"type"]];
+        NSLog(@"type:%@",type);
+        
+        if ([type isEqualToString:@"1"]) {
+            
+            [self obj_showTotasViewWithMes:@"修改成功"];
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+//            [self dismissViewControllerAnimated:YES completion:^{
+////                [[NSNotificationCenter defaultCenter] postNotificationName:kchangePassword object:nil];
+//            }];
+            
+        }else {
+            
+            [self obj_showTotasViewWithMes:param[@"msg"]];
+            
+        }
+    }];
+
+    }
 
 #pragma mark - 验证用户是否存在
 - (void)userExist {
@@ -254,10 +439,10 @@ static NSString *const kchangePassword = @"kchangePassword";
                 [self sendSMS];
             }else {
                 ws.confirmTextField.text = @"";
-                [ws showMsg:@"此用户未注册"];
+                [ws obj_showTotasViewWithMes:@"此用户未注册"];
             }
         }else {
-            [ws showMsg:@"网络错误"];
+            [ws obj_showTotasViewWithMes:@"网络错误"];
         }
     }];
 }
@@ -275,13 +460,11 @@ static NSString *const kchangePassword = @"kchangePassword";
         NSDictionary *params = data;
         BOOL type = [[params objectForKey:@"type"] boolValue];
         if (type) {
-            GainPasswordViewController *gain = [[GainPasswordViewController alloc] init];
-            gain.confirmString = ws.confirmTextField.text;
-            gain.mobile = ws.phoneNumTextField.text;
-            [ws presentViewController:gain animated:YES completion:nil];
+            _confirmString = ws.confirmTextField.text;
+            _mobile = ws.phoneNumTextField.text;
         }else {
             ws.confirmTextField.text = @"";
-            [ws showMsg:@"验证码错误"];
+            [ws obj_showTotasViewWithMes:@"验证码错误"];
         }
     }];
 }
