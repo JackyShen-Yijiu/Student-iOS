@@ -93,6 +93,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     if (_passWordTextFild == nil) {
         _passWordTextFild = [[AddlineButtomTextField alloc]init];
         _passWordTextFild.tag = 202;
+        _passWordTextFild.delegate = self;
 //        _passWordTextFild.placeholder = @"密码";
         _passWordTextFild.font  = [UIFont systemFontOfSize:15];
         _passWordTextFild.textColor = [UIColor colorWithHexString:@"212121"];
@@ -108,6 +109,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         _affirmTextFild.tag = 203;
 //        _affirmTextFild.placeholder = @"确认密码";
         _affirmTextFild.font  = [UIFont systemFontOfSize:15];
+        _affirmTextFild.delegate = self;
         _affirmTextFild.textColor = [UIColor colorWithHexString:@"212121"];
         _affirmTextFild.secureTextEntry = YES;
 //        _affirmTextFild.backgroundColor = [UIColor cyanColor];
@@ -374,40 +376,51 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         dispatch_resume(timer);
     }];
 }
-// 判断验证码是否正确
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    // 验证码输入完后的回调方法
-    if (textField.tag ==  201) {
+- (void)dealNext:(UIButton *)sender {
+    // 手机号的判断
+    if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length <= 0) {
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
+        return;
+    }else {
+        
         if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
-            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
-            return;
-        }
-        
-        if (self.confirmTextField.text.length <= 0 || self.confirmTextField.text == nil) {
-            [self obj_showTotasViewWithMes:@"请输入验证码"];
-            return;
-        }
-        
-        // 验证验证码
-        [self verificationSMSCode];
-    } // 确认密码输入完后的回调方法
-    else if (textField.tag == 203){
-        if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
-            [self showTotasViewWithMes:@"请输入相同的密码"];
-            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
+            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
             _showWarningMessageView.isShowWarningMessage  = NO;
             [self.view addSubview:_showWarningMessageView];
+            
             return;
         }
-
     }
+    // 验证码的判断
+    if (self.confirmTextField.text == nil || self.confirmTextField.text.length <= 0) {
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8 - 115, _gainNumLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
+        return;
+    }
+    // 密码的判断
+    if (self.passWordTextFild.text == nil || self.passWordTextFild.text.length <= 0) {
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _passwordLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
+        return;
+    }
+
     
- 
-}
-- (void)dealNext:(UIButton *)sender {
+    if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
+        [self obj_showTotasViewWithMes:@"请输入相同的密码"];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView.isShowWarningMessage  = NO;
+        [self.view addSubview:_showWarningMessageView];
+        return;
+    }
     NSString *urlString = [NSString stringWithFormat:BASEURL,kchangePasswordUrl];
     
-    NSDictionary *param = @{@"smscode":self.confirmString,@"password":[self.passWordTextFild.text DY_MD5],@"mobile":self.mobile};
+    NSDictionary *param = @{@"smscode":self.confirmTextField.text,
+                            @"password":[self.passWordTextFild.text DY_MD5],
+                            @"mobile":self.phoneNumTextField.text};
     
     NSLog(@"param:%@",param);
     

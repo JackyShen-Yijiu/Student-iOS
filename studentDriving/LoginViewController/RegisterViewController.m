@@ -576,7 +576,7 @@ static NSString *const kcodeGainUrl = @"code";
     [self.paramsPost setObject:self.phoneTextField.text forKey:@"mobile"];
     if (self.authCodeTextFild.text.length <= 0 || self.authCodeTextFild.text == nil) {
         [self obj_showTotasViewWithMes:@"请输入验证码"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8 - 56, _gainNumLabel.frame.origin.y, 120, 18)];
+        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8 - 115, _gainNumLabel.frame.origin.y, 120, 18)];
         _showWarningMessageView.isShowWarningMessage  = NO;
         [self.view addSubview:_showWarningMessageView];
         return;
