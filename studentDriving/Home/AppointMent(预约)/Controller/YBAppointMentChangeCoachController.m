@@ -1,22 +1,26 @@
 //
-//  YBBaseViewController.m
+//  YBAppointMentChangeCoachController.m
 //  studentDriving
 //
-//  Created by JiangangYang on 16/2/16.
+//  Created by JiangangYang on 16/2/17.
 //  Copyright © 2016年 jatd. All rights reserved.
-//  
+//
 
-#import "YBBaseViewController.h"
+#import "YBAppointMentChangeCoachController.h"
 
-@interface YBBaseViewController ()
+@interface YBAppointMentChangeCoachController ()
 
 @end
 
-@implementation YBBaseViewController
+@implementation YBAppointMentChangeCoachController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-        
+    // Do any additional setup after loading the view.
+    self.view.backgroundColor = [UIColor whiteColor];
+
+    self.title = @"更换教练";
+    
 }
 
 - (void)didReceiveMemoryWarning {
