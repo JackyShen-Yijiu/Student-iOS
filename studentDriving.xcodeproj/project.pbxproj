@@ -38,9 +38,6 @@
 		066BFB701C2428D0002A1DD8 /* HomeAdvantageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */; };
 		0684361C1C611586004FEA62 /* HomeShowKnowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0684361B1C611586004FEA62 /* HomeShowKnowController.m */; };
 		068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 068716621C5607C50055D9DC /* AddlineButtomTextField.m */; };
-		06EC02C41C2643AD0067AD16 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */; };
-		06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C61C2643BE0067AD16 /* VirtualViewController.m */; };
-		06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */; };
 		06F805A31C585AC400396445 /* CheckProgressTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F805A21C585AC400396445 /* CheckProgressTextField.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB821C3538D7001CF897 /* SignInViewController.m */; };
@@ -74,6 +71,21 @@
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
 		568DF1C61C7556AA00008829 /* YBIntegralMallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1C51C7556AA00008829 /* YBIntegralMallCell.m */; };
+		568DF20C1C75756900008829 /* finishMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1F31C75756900008829 /* finishMessageView.m */; };
+		568DF20D1C75756900008829 /* finishMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF1F41C75756900008829 /* finishMessageView.xib */; };
+		568DF20E1C75756900008829 /* InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1F61C75756900008829 /* InfoModel.m */; };
+		568DF20F1C75756900008829 /* LTBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1F81C75756900008829 /* LTBottomView.m */; };
+		568DF2101C75756900008829 /* LTBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF1F91C75756900008829 /* LTBottomView.xib */; };
+		568DF2111C75756900008829 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1FB1C75756900008829 /* MagicDetailViewController.m */; };
+		568DF2121C75756900008829 /* MagicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1FD1C75756900008829 /* MagicMainTableViewCell.m */; };
+		568DF2131C75756900008829 /* MagicMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF1FE1C75756900008829 /* MagicMainTableViewCell.xib */; };
+		568DF2141C75756900008829 /* MagicMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2001C75756900008829 /* MagicMainTableViewController.m */; };
+		568DF2151C75756900008829 /* MyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2021C75756900008829 /* MyWallet.m */; };
+		568DF2161C75756900008829 /* PrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2041C75756900008829 /* PrivateMessageCell.m */; };
+		568DF2171C75756900008829 /* PrivateMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF2051C75756900008829 /* PrivateMessageCell.xib */; };
+		568DF2181C75756900008829 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2071C75756900008829 /* PrivateMessageController.m */; };
+		568DF2191C75756900008829 /* ShopMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2091C75756900008829 /* ShopMainModel.m */; };
+		568DF21A1C75756900008829 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF20B1C75756900008829 /* VirtualViewController.m */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
 		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B20DBBC11C5CA20B0023676E /* JGActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBC01C5CA20B0023676E /* JGActivityViewController.m */; };
@@ -618,18 +630,6 @@
 		D5C240271BED078300832CF3 /* SubjectThreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C240261BED078300832CF3 /* SubjectThreeModel.m */; };
 		D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C240391BEF6C6200832CF3 /* UIColor+Hex.m */; };
 		D5C2403D1BEF6E0400832CF3 /* VipserverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C2403C1BEF6E0400832CF3 /* VipserverModel.m */; };
-		D5D50ED81BFA205000F54097 /* finishMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50EB71BFA205000F54097 /* finishMessageView.m */; };
-		D5D50ED91BFA205000F54097 /* finishMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D50EB81BFA205000F54097 /* finishMessageView.xib */; };
-		D5D50EDA1BFA205000F54097 /* InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50EBA1BFA205000F54097 /* InfoModel.m */; };
-		D5D50EDB1BFA205000F54097 /* LTBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50EBC1BFA205000F54097 /* LTBottomView.m */; };
-		D5D50EDC1BFA205000F54097 /* LTBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D50EBD1BFA205000F54097 /* LTBottomView.xib */; };
-		D5D50EE01BFA205000F54097 /* MagicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50EC51BFA205000F54097 /* MagicMainTableViewCell.m */; };
-		D5D50EE11BFA205000F54097 /* MagicMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D50EC61BFA205000F54097 /* MagicMainTableViewCell.xib */; };
-		D5D50EE21BFA205000F54097 /* MagicMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50EC81BFA205000F54097 /* MagicMainTableViewController.m */; };
-		D5D50EE31BFA205000F54097 /* MyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ECA1BFA205000F54097 /* MyWallet.m */; };
-		D5D50EE41BFA205000F54097 /* PrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ECC1BFA205000F54097 /* PrivateMessageCell.m */; };
-		D5D50EE51BFA205000F54097 /* PrivateMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5D50ECD1BFA205000F54097 /* PrivateMessageCell.xib */; };
-		D5D50EE71BFA205000F54097 /* ShopMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D50ED11BFA205000F54097 /* ShopMainModel.m */; };
 		D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D5101F1BFD908900F54097 /* AboutUsViewController.m */; };
 		D919F31D1C60885A00239B34 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D919F2C31C60885A00239B34 /* UMSocialLocalizable.strings */; };
 		D919F31E1C60885A00239B34 /* libUMSocial_Sdk_4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D919F2D11C60885A00239B34 /* libUMSocial_Sdk_4.4.a */; };
@@ -882,12 +882,6 @@
 		0684361B1C611586004FEA62 /* HomeShowKnowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeShowKnowController.m; sourceTree = "<group>"; };
 		068716611C5607C50055D9DC /* AddlineButtomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddlineButtomTextField.h; sourceTree = "<group>"; };
 		068716621C5607C50055D9DC /* AddlineButtomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddlineButtomTextField.m; sourceTree = "<group>"; };
-		06EC02C21C2643AC0067AD16 /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MagicDetailViewController.h; path = ../MagicDetailViewController.h; sourceTree = "<group>"; };
-		06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MagicDetailViewController.m; path = ../MagicDetailViewController.m; sourceTree = "<group>"; };
-		06EC02C51C2643BE0067AD16 /* VirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VirtualViewController.h; path = ../VirtualViewController.h; sourceTree = "<group>"; };
-		06EC02C61C2643BE0067AD16 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VirtualViewController.m; path = ../VirtualViewController.m; sourceTree = "<group>"; };
-		06EC02C81C264DAB0067AD16 /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessageController.h; path = ../PrivateMessageController.h; sourceTree = "<group>"; };
-		06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessageController.m; path = ../PrivateMessageController.m; sourceTree = "<group>"; };
 		06F805A11C585AC400396445 /* CheckProgressTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressTextField.h; sourceTree = "<group>"; };
 		06F805A21C585AC400396445 /* CheckProgressTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProgressTextField.m; sourceTree = "<group>"; };
 		4761DB811C3538D7001CF897 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
@@ -1027,6 +1021,32 @@
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
 		568DF1C41C7556AA00008829 /* YBIntegralMallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBIntegralMallCell.h; path = studentDriving/LoginViewController/YBIntegralMallCell.h; sourceTree = SOURCE_ROOT; };
 		568DF1C51C7556AA00008829 /* YBIntegralMallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBIntegralMallCell.m; path = studentDriving/LoginViewController/YBIntegralMallCell.m; sourceTree = SOURCE_ROOT; };
+		568DF1F21C75756900008829 /* finishMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishMessageView.h; sourceTree = "<group>"; };
+		568DF1F31C75756900008829 /* finishMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishMessageView.m; sourceTree = "<group>"; };
+		568DF1F41C75756900008829 /* finishMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = finishMessageView.xib; sourceTree = "<group>"; };
+		568DF1F51C75756900008829 /* InfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoModel.h; sourceTree = "<group>"; };
+		568DF1F61C75756900008829 /* InfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoModel.m; sourceTree = "<group>"; };
+		568DF1F71C75756900008829 /* LTBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBottomView.h; sourceTree = "<group>"; };
+		568DF1F81C75756900008829 /* LTBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBottomView.m; sourceTree = "<group>"; };
+		568DF1F91C75756900008829 /* LTBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTBottomView.xib; sourceTree = "<group>"; };
+		568DF1FA1C75756900008829 /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDetailViewController.h; sourceTree = "<group>"; };
+		568DF1FB1C75756900008829 /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicDetailViewController.m; sourceTree = "<group>"; };
+		568DF1FC1C75756900008829 /* MagicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicMainTableViewCell.h; sourceTree = "<group>"; };
+		568DF1FD1C75756900008829 /* MagicMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicMainTableViewCell.m; sourceTree = "<group>"; };
+		568DF1FE1C75756900008829 /* MagicMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MagicMainTableViewCell.xib; sourceTree = "<group>"; };
+		568DF1FF1C75756900008829 /* MagicMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicMainTableViewController.h; sourceTree = "<group>"; };
+		568DF2001C75756900008829 /* MagicMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicMainTableViewController.m; sourceTree = "<group>"; };
+		568DF2011C75756900008829 /* MyWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWallet.h; sourceTree = "<group>"; };
+		568DF2021C75756900008829 /* MyWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWallet.m; sourceTree = "<group>"; };
+		568DF2031C75756900008829 /* PrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageCell.h; sourceTree = "<group>"; };
+		568DF2041C75756900008829 /* PrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageCell.m; sourceTree = "<group>"; };
+		568DF2051C75756900008829 /* PrivateMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateMessageCell.xib; sourceTree = "<group>"; };
+		568DF2061C75756900008829 /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageController.h; sourceTree = "<group>"; };
+		568DF2071C75756900008829 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
+		568DF2081C75756900008829 /* ShopMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopMainModel.h; sourceTree = "<group>"; };
+		568DF2091C75756900008829 /* ShopMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopMainModel.m; sourceTree = "<group>"; };
+		568DF20A1C75756900008829 /* VirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualViewController.h; sourceTree = "<group>"; };
+		568DF20B1C75756900008829 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualViewController.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
@@ -2005,26 +2025,6 @@
 		D5C240391BEF6C6200832CF3 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		D5C2403B1BEF6E0400832CF3 /* VipserverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VipserverModel.h; sourceTree = "<group>"; };
 		D5C2403C1BEF6E0400832CF3 /* VipserverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VipserverModel.m; sourceTree = "<group>"; };
-		D5D50EB61BFA205000F54097 /* finishMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = finishMessageView.h; path = ../finishMessageView.h; sourceTree = "<group>"; };
-		D5D50EB71BFA205000F54097 /* finishMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = finishMessageView.m; path = ../finishMessageView.m; sourceTree = "<group>"; };
-		D5D50EB81BFA205000F54097 /* finishMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = finishMessageView.xib; path = ../finishMessageView.xib; sourceTree = "<group>"; };
-		D5D50EB91BFA205000F54097 /* InfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfoModel.h; path = ../InfoModel.h; sourceTree = "<group>"; };
-		D5D50EBA1BFA205000F54097 /* InfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfoModel.m; path = ../InfoModel.m; sourceTree = "<group>"; };
-		D5D50EBB1BFA205000F54097 /* LTBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LTBottomView.h; path = ../LTBottomView.h; sourceTree = "<group>"; };
-		D5D50EBC1BFA205000F54097 /* LTBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LTBottomView.m; path = ../LTBottomView.m; sourceTree = "<group>"; };
-		D5D50EBD1BFA205000F54097 /* LTBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LTBottomView.xib; path = ../LTBottomView.xib; sourceTree = "<group>"; };
-		D5D50EC41BFA205000F54097 /* MagicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MagicMainTableViewCell.h; path = ../MagicMainTableViewCell.h; sourceTree = "<group>"; };
-		D5D50EC51BFA205000F54097 /* MagicMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MagicMainTableViewCell.m; path = ../MagicMainTableViewCell.m; sourceTree = "<group>"; };
-		D5D50EC61BFA205000F54097 /* MagicMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = MagicMainTableViewCell.xib; path = ../MagicMainTableViewCell.xib; sourceTree = "<group>"; };
-		D5D50EC71BFA205000F54097 /* MagicMainTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MagicMainTableViewController.h; path = ../MagicMainTableViewController.h; sourceTree = "<group>"; };
-		D5D50EC81BFA205000F54097 /* MagicMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MagicMainTableViewController.m; path = ../MagicMainTableViewController.m; sourceTree = "<group>"; };
-		D5D50EC91BFA205000F54097 /* MyWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyWallet.h; path = ../MyWallet.h; sourceTree = "<group>"; };
-		D5D50ECA1BFA205000F54097 /* MyWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyWallet.m; path = ../MyWallet.m; sourceTree = "<group>"; };
-		D5D50ECB1BFA205000F54097 /* PrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PrivateMessageCell.h; path = ../PrivateMessageCell.h; sourceTree = "<group>"; };
-		D5D50ECC1BFA205000F54097 /* PrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PrivateMessageCell.m; path = ../PrivateMessageCell.m; sourceTree = "<group>"; };
-		D5D50ECD1BFA205000F54097 /* PrivateMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PrivateMessageCell.xib; path = ../PrivateMessageCell.xib; sourceTree = "<group>"; };
-		D5D50ED01BFA205000F54097 /* ShopMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopMainModel.h; path = ../ShopMainModel.h; sourceTree = "<group>"; };
-		D5D50ED11BFA205000F54097 /* ShopMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopMainModel.m; path = ../ShopMainModel.m; sourceTree = "<group>"; };
 		D5D5101E1BFD908900F54097 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		D5D5101F1BFD908900F54097 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		D919F2C41C60885A00239B34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
@@ -2465,40 +2465,6 @@
 			path = Goods;
 			sourceTree = "<group>";
 		};
-		061E7AE01C391180008C51C3 /* RealShop */ = {
-			isa = PBXGroup;
-			children = (
-				D5D50EB61BFA205000F54097 /* finishMessageView.h */,
-				D5D50EB71BFA205000F54097 /* finishMessageView.m */,
-				D5D50EB81BFA205000F54097 /* finishMessageView.xib */,
-				D5D50EB91BFA205000F54097 /* InfoModel.h */,
-				D5D50EBA1BFA205000F54097 /* InfoModel.m */,
-				D5D50EBB1BFA205000F54097 /* LTBottomView.h */,
-				D5D50EBC1BFA205000F54097 /* LTBottomView.m */,
-				D5D50EBD1BFA205000F54097 /* LTBottomView.xib */,
-				D5D50EC41BFA205000F54097 /* MagicMainTableViewCell.h */,
-				D5D50EC51BFA205000F54097 /* MagicMainTableViewCell.m */,
-				D5D50EC61BFA205000F54097 /* MagicMainTableViewCell.xib */,
-				D5D50EC71BFA205000F54097 /* MagicMainTableViewController.h */,
-				D5D50EC81BFA205000F54097 /* MagicMainTableViewController.m */,
-				06EC02C21C2643AC0067AD16 /* MagicDetailViewController.h */,
-				06EC02C31C2643AC0067AD16 /* MagicDetailViewController.m */,
-				06EC02C51C2643BE0067AD16 /* VirtualViewController.h */,
-				06EC02C61C2643BE0067AD16 /* VirtualViewController.m */,
-				06EC02C81C264DAB0067AD16 /* PrivateMessageController.h */,
-				06EC02C91C264DAB0067AD16 /* PrivateMessageController.m */,
-				D5D50EC91BFA205000F54097 /* MyWallet.h */,
-				D5D50ECA1BFA205000F54097 /* MyWallet.m */,
-				D5D50ECB1BFA205000F54097 /* PrivateMessageCell.h */,
-				D5D50ECC1BFA205000F54097 /* PrivateMessageCell.m */,
-				D5D50ECD1BFA205000F54097 /* PrivateMessageCell.xib */,
-				D5D50ED01BFA205000F54097 /* ShopMainModel.h */,
-				D5D50ED11BFA205000F54097 /* ShopMainModel.m */,
-			);
-			name = RealShop;
-			path = Goods/RealShop;
-			sourceTree = "<group>";
-		};
 		062734B21C59C8F70056B0BC /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -2872,6 +2838,40 @@
 				554E8E851C3A89CC00233F2B /* EaseMob.bundle */,
 			);
 			path = resources;
+			sourceTree = "<group>";
+		};
+		568DF1F11C75756900008829 /* RealShop */ = {
+			isa = PBXGroup;
+			children = (
+				568DF1F21C75756900008829 /* finishMessageView.h */,
+				568DF1F31C75756900008829 /* finishMessageView.m */,
+				568DF1F41C75756900008829 /* finishMessageView.xib */,
+				568DF1F51C75756900008829 /* InfoModel.h */,
+				568DF1F61C75756900008829 /* InfoModel.m */,
+				568DF1F71C75756900008829 /* LTBottomView.h */,
+				568DF1F81C75756900008829 /* LTBottomView.m */,
+				568DF1F91C75756900008829 /* LTBottomView.xib */,
+				568DF1FA1C75756900008829 /* MagicDetailViewController.h */,
+				568DF1FB1C75756900008829 /* MagicDetailViewController.m */,
+				568DF1FC1C75756900008829 /* MagicMainTableViewCell.h */,
+				568DF1FD1C75756900008829 /* MagicMainTableViewCell.m */,
+				568DF1FE1C75756900008829 /* MagicMainTableViewCell.xib */,
+				568DF1FF1C75756900008829 /* MagicMainTableViewController.h */,
+				568DF2001C75756900008829 /* MagicMainTableViewController.m */,
+				568DF2011C75756900008829 /* MyWallet.h */,
+				568DF2021C75756900008829 /* MyWallet.m */,
+				568DF2031C75756900008829 /* PrivateMessageCell.h */,
+				568DF2041C75756900008829 /* PrivateMessageCell.m */,
+				568DF2051C75756900008829 /* PrivateMessageCell.xib */,
+				568DF2061C75756900008829 /* PrivateMessageController.h */,
+				568DF2071C75756900008829 /* PrivateMessageController.m */,
+				568DF2081C75756900008829 /* ShopMainModel.h */,
+				568DF2091C75756900008829 /* ShopMainModel.m */,
+				568DF20A1C75756900008829 /* VirtualViewController.h */,
+				568DF20B1C75756900008829 /* VirtualViewController.m */,
+			);
+			name = RealShop;
+			path = Goods/RealShop;
 			sourceTree = "<group>";
 		};
 		B20DBE441C5DB0FF0023676E /* 支付相关 */ = {
@@ -4805,9 +4805,9 @@
 		D5D50EAE1BFA204A00F54097 /* Goods */ = {
 			isa = PBXGroup;
 			children = (
+				568DF1F11C75756900008829 /* RealShop */,
 				0647A5B31C34BB5500DBB8A3 /* DiscountShop */,
 				061E7ADC1C38FFE5008C51C3 /* MoneyShop */,
-				061E7AE01C391180008C51C3 /* RealShop */,
 			);
 			path = Goods;
 			sourceTree = "<group>";
@@ -5622,6 +5622,7 @@
 				D5604BDB1BF656C50020F0D7 /* faceDelete.png in Resources */,
 				D5604BC21BF656C50020F0D7 /* call_out_h@2x.png in Resources */,
 				D92B2DA51C59CD9D0050EE84 /* DrivingDetailBriefIntroductionCell.xib in Resources */,
+				568DF2171C75756900008829 /* PrivateMessageCell.xib in Resources */,
 				D5604BF61BF656C50020F0D7 /* chatBar_colorMore_cameraSelected@2x.png in Resources */,
 				D98581B51C58BF000044E029 /* ShuttleBusCell.xib in Resources */,
 				D5604BAC1BF656C50020F0D7 /* VoiceSearchFeedback011@2x.png in Resources */,
@@ -5635,6 +5636,8 @@
 				D5604BCB1BF656C50020F0D7 /* chatBar_more_cardSelected.png in Resources */,
 				D5604BA91BF656C50020F0D7 /* VoiceSearchFeedback010.png in Resources */,
 				D5604BBE1BF656C50020F0D7 /* VoiceSearchFeedback020@2x.png in Resources */,
+				568DF20D1C75756900008829 /* finishMessageView.xib in Resources */,
+				568DF2131C75756900008829 /* MagicMainTableViewCell.xib in Resources */,
 				D5604C121BF656C50020F0D7 /* chat_receiver_audio_playing003.png in Resources */,
 				556994AA1C3F885B00CD8BAF /* mapapi.bundle in Resources */,
 				D5604BCE1BF656C50020F0D7 /* chatBar_more_face@2x.png in Resources */,
@@ -5643,7 +5646,6 @@
 				D5604B991BF656C50020F0D7 /* VoiceSearchFeedback002.png in Resources */,
 				D5604CC01BF6E0150020F0D7 /* Localizable.strings in Resources */,
 				D5604C1F1BF656C50020F0D7 /* chat_sender_audio_playing_003@2x.png in Resources */,
-				D5D50EE11BFA205000F54097 /* MagicMainTableViewCell.xib in Resources */,
 				D5604BD01BF656C50020F0D7 /* chatBar_more_faceSelected@2x.png in Resources */,
 				D9A5DF5F1C35288A009DF18A /* CoinCertificateController.xib in Resources */,
 				D5604BF91BF656C50020F0D7 /* chatBar_colorMore_photo@2x.png in Resources */,
@@ -5660,7 +5662,6 @@
 				D5604C171BF656C50020F0D7 /* chat_receiver_bg@2x.png in Resources */,
 				D919F3381C60885A00239B34 /* TencentOpenApi_IOS_Bundle.bundle in Resources */,
 				D5604C421BF656C50020F0D7 /* tabbar_settingHL.png in Resources */,
-				D5D50EDC1BFA205000F54097 /* LTBottomView.xib in Resources */,
 				D5604C191BF656C50020F0D7 /* chat_sender_audio_playing_000@2x.png in Resources */,
 				D965326A1C73303F0097AFA2 /* DVVSignUpCoachCell.xib in Resources */,
 				D5604C0C1BF656C50020F0D7 /* chat_receiver_audio_playing000.png in Resources */,
@@ -5708,12 +5709,11 @@
 				D919F3261C60885A00239B34 /* UMSnsAccountViewController.xib in Resources */,
 				D5604BF21BF656C50020F0D7 /* chatBar_recordSelectedBg@2x.png in Resources */,
 				D5604BE51BF656C50020F0D7 /* chatBar_keyboardSelected.png in Resources */,
-				D5D50ED91BFA205000F54097 /* finishMessageView.xib in Resources */,
+				568DF2101C75756900008829 /* LTBottomView.xib in Resources */,
 				D5604C371BF656C50020F0D7 /* newFriends@2x.png in Resources */,
 				D5604B951BF656C50020F0D7 /* chatListCellHead.png in Resources */,
 				D5604C3A1BF656C50020F0D7 /* tabbar_chatsHL.png in Resources */,
 				D5604BE01BF656C50020F0D7 /* chatBar_face@2x.png in Resources */,
-				D5D50EE51BFA205000F54097 /* PrivateMessageCell.xib in Resources */,
 				D5604BCA1BF656C50020F0D7 /* chatBar_more_card@2x.png in Resources */,
 				D5604B971BF656C50020F0D7 /* VoiceSearchFeedback001.png in Resources */,
 				D5604BC51BF656C50020F0D7 /* call_silence_h.png in Resources */,
@@ -5844,7 +5844,6 @@
 				D966E7281C5B1001007848B4 /* DVVHorizontalScrollImagesView.m in Sources */,
 				D51256C61BE257DA002717DA /* ConfirmSubjectTwoCell.m in Sources */,
 				066BFB701C2428D0002A1DD8 /* HomeAdvantageController.m in Sources */,
-				D5D50ED81BFA205000F54097 /* finishMessageView.m in Sources */,
 				D588AFCE1BDDDAAB000C5D6F /* CourseTimeModel.m in Sources */,
 				D588B08D1BDDDBDB000C5D6F /* SignUpSucceedViewController.m in Sources */,
 				D588B1181BDDDC2F000C5D6F /* WMUITool.m in Sources */,
@@ -5866,6 +5865,8 @@
 				D966E7781C5B4363007848B4 /* ClassTypeDMRootClass.m in Sources */,
 				D96D1BEC1C2B88A000F1C282 /* DVVSideMenuCell.m in Sources */,
 				D588B0701BDDDB90000C5D6F /* CancelAppointmentViewController.m in Sources */,
+				568DF2151C75756900008829 /* MyWallet.m in Sources */,
+				568DF2121C75756900008829 /* MagicMainTableViewCell.m in Sources */,
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
 				060DB4021C5B1E390039C30F /* SignUpFirmOrderController.m in Sources */,
 				D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */,
@@ -5893,6 +5894,7 @@
 				060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
 				B20DBED31C5DB0FF0023676E /* base64.m in Sources */,
+				568DF2161C75756900008829 /* PrivateMessageCell.m in Sources */,
 				D966E77A1C5B4363007848B4 /* ClassTypeDMVipserverlist.m in Sources */,
 				D5C240111BECFAD800832CF3 /* AVPlayModel.m in Sources */,
 				D5604B511BF656C50020F0D7 /* MWZoomingScrollView.m in Sources */,
@@ -5936,7 +5938,6 @@
 				D5604C831BF656F30020F0D7 /* DXFaceView.m in Sources */,
 				D5604C821BF656F30020F0D7 /* DXMessageToolBar.m in Sources */,
 				D588B1191BDDDC2F000C5D6F /* UIImageView+WMClippingImage.m in Sources */,
-				D5D50EE01BFA205000F54097 /* MagicMainTableViewCell.m in Sources */,
 				D98581B01C58BE8A0044E029 /* ShuttleBusController.m in Sources */,
 				D588B0961BDDDBDB000C5D6F /* ApplyDrivingViewController.m in Sources */,
 				D51256A21BDFAA53002717DA /* SignUpDrivingDetailViewController.m in Sources */,
@@ -5944,7 +5945,6 @@
 				D96149471C5C5E5200E3007F /* CoachListDMServerClassList.m in Sources */,
 				D588B04E1BDDDB71000C5D6F /* SetupViewController.m in Sources */,
 				D588B0921BDDDBDB000C5D6F /* MapViewController.m in Sources */,
-				D5D50EE21BFA205000F54097 /* MagicMainTableViewController.m in Sources */,
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				B20DBBCC1C5CDF930023676E /* JGActivityDetailsViewController.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
@@ -5953,6 +5953,7 @@
 				D92B2DA91C59D0030050EE84 /* DrivingDetailTrainingGroundCell.m in Sources */,
 				D5604B4D1BF656C50020F0D7 /* MWPhoto.m in Sources */,
 				B20DBECA1C5DB0FF0023676E /* NSObject+SBJSON.m in Sources */,
+				568DF2191C75756900008829 /* ShopMainModel.m in Sources */,
 				061E7ADB1C38C20D008C51C3 /* DiscountOrderController.m in Sources */,
 				060FC6A61C27CB030039DDBB /* RegistNoteController.m in Sources */,
 				D5604B691BF656C50020F0D7 /* PSTCollectionViewItemKey.m in Sources */,
@@ -5979,7 +5980,6 @@
 				B20DBEDE1C5DB0FF0023676E /* WXUtil.mm in Sources */,
 				D96149311C5C532C00E3007F /* CoachListViewModel.m in Sources */,
 				D970D3981C3CFFEB003FCED3 /* CoachDMDriveschoolinfo.m in Sources */,
-				D5D50EDB1BFA205000F54097 /* LTBottomView.m in Sources */,
 				0647A5C51C35135F00DBB8A3 /* DiscountWalletCell.m in Sources */,
 				D970D3A31C3D0468003FCED3 /* YYClassInfo.m in Sources */,
 				B21818041C5606CD00F973A7 /* JGItemButton.m in Sources */,
@@ -6046,7 +6046,6 @@
 				D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */,
 				D588B11A1BDDDC2F000C5D6F /* AcountManager.m in Sources */,
 				D588AFC31BDDDAAB000C5D6F /* DrvingDetailModel.m in Sources */,
-				06EC02C41C2643AD0067AD16 /* MagicDetailViewController.m in Sources */,
 				062734CD1C5A2C860056B0BC /* SignUpInfoCell.m in Sources */,
 				554641C81C250A1B00A55326 /* SignUpViewController.m in Sources */,
 				D5604C8C1BF656F30020F0D7 /* EMChatVideoBubbleView.m in Sources */,
@@ -6070,10 +6069,11 @@
 				D588B0CC1BDDDC14000C5D6F /* ExamCarCollectionViewCell.m in Sources */,
 				B2E8E1C61C72CEFD000190C2 /* IWBadgeButton.m in Sources */,
 				D588B0D31BDDDC14000C5D6F /* CoachIntroductionCell.m in Sources */,
+				568DF21A1C75756900008829 /* VirtualViewController.m in Sources */,
 				D5604B671BF656C50020F0D7 /* PSTCollectionViewData.m in Sources */,
+				568DF2111C75756900008829 /* MagicDetailViewController.m in Sources */,
 				D978ACD11C47957F00D633B4 /* DVVLocationStatus.m in Sources */,
 				B2E8E1E91C731B7E000190C2 /* YBToolBarView.m in Sources */,
-				D5D50EE41BFA205000F54097 /* PrivateMessageCell.m in Sources */,
 				D588B14F1BDE166A000C5D6F /* WrongQuestionViewController.m in Sources */,
 				D588B04C1BDDDB71000C5D6F /* MyWalletViewController.m in Sources */,
 				B2E8E18C1C72BA4F000190C2 /* UIImage+WM.m in Sources */,
@@ -6136,6 +6136,7 @@
 				D966E7771C5B4363007848B4 /* ClassTypeDMData.m in Sources */,
 				D5604B5C1BF656C50020F0D7 /* UIButton+EMWebCache.m in Sources */,
 				D96D1BED1C2B88A000F1C282 /* DVVSideMenuFooterView.m in Sources */,
+				568DF2181C75756900008829 /* PrivateMessageController.m in Sources */,
 				D51256A51BDFB521002717DA /* SignUpCoachViewController.m in Sources */,
 				D5604B841BF656C50020F0D7 /* UIViewController+DismissKeyboard.m in Sources */,
 				D96532881C733E0B0097AFA2 /* DVVSignUpCoachDMSubject.m in Sources */,
@@ -6144,6 +6145,7 @@
 				D98E06141C3E4570009BFA81 /* DVVCheckActivity.m in Sources */,
 				D5604B8E1BF656C50020F0D7 /* XHMessageTextView.m in Sources */,
 				D965328A1C733E0B0097AFA2 /* DVVSignUpSchoolDMLogoimg.m in Sources */,
+				568DF2141C75756900008829 /* MagicMainTableViewController.m in Sources */,
 				D5604B681BF656C50020F0D7 /* PSTCollectionViewFlowLayout.m in Sources */,
 				D92B2DA41C59CD9D0050EE84 /* DrivingDetailBriefIntroductionCell.m in Sources */,
 				D5604B6C1BF656C50020F0D7 /* PSTGridLayoutInfo.m in Sources */,
@@ -6174,13 +6176,13 @@
 				D5604B641BF656C50020F0D7 /* PSTCollectionView.m in Sources */,
 				D588B1171BDDDC2F000C5D6F /* BLBaseViewController.m in Sources */,
 				D96712E51C3FCF790099C3B9 /* SignInListCell.m in Sources */,
+				568DF20C1C75756900008829 /* finishMessageView.m in Sources */,
 				D588B0E11BDDDC14000C5D6F /* StudentInformationCell.m in Sources */,
 				D965CAA71C239D9F00DCD094 /* DrivingCycleShowDMHeadportrait.m in Sources */,
 				D588B0CD1BDDDC14000C5D6F /* ExamClassCollectionViewCell.m in Sources */,
 				D5604B6F1BF656C50020F0D7 /* PSTGridLayoutSection.m in Sources */,
 				D92B2D9F1C59C5130050EE84 /* DrivingDetailShuttleBusCell.m in Sources */,
 				D5604B6B1BF656C50020F0D7 /* PSTCollectionViewUpdateItem.m in Sources */,
-				D5D50EDA1BFA205000F54097 /* InfoModel.m in Sources */,
 				D51256C31BE2542C002717DA /* ConfirmSubjectOneCell.m in Sources */,
 				D96149411C5C587200E3007F /* CoachListDMDriveschoolinfo.m in Sources */,
 				D51256BD1BE22181002717DA /* ComplainTableViewCell.m in Sources */,
@@ -6201,7 +6203,6 @@
 				D5604B4F1BF656C50020F0D7 /* MWTapDetectingImageView.m in Sources */,
 				B226AEB41C747F2B0028DF1A /* UIView+Sizes.m in Sources */,
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
-				06EC02C71C2643BE0067AD16 /* VirtualViewController.m in Sources */,
 				D92B2DB01C59F65C0050EE84 /* ClassTypeView.m in Sources */,
 				D963FAD81C743460006955D8 /* DVVToast.m in Sources */,
 				B2E8E1AD1C72C78B000190C2 /* YBAppointMentController.m in Sources */,
@@ -6237,6 +6238,7 @@
 				B226AEA41C747E050028DF1A /* NSString+CurrentTimeDay.m in Sources */,
 				B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */,
 				D96712DC1C3F9A470099C3B9 /* SignInViewModel.m in Sources */,
+				568DF20F1C75756900008829 /* LTBottomView.m in Sources */,
 				D588B11C1BDDDC2F000C5D6F /* NetMonitor.m in Sources */,
 				D970D3991C3CFFEB003FCED3 /* CoachDMHeadportrait.m in Sources */,
 				D51256CC1BE348DC002717DA /* CommentModel.m in Sources */,
@@ -6273,7 +6275,6 @@
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
 				D96712DF1C3FA4B80099C3B9 /* SignInDataModel.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
-				06EC02CA1C264DAB0067AD16 /* PrivateMessageController.m in Sources */,
 				D963FACD1C740B09006955D8 /* UIImageView+DVVWebImage.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
 				D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */,
@@ -6285,7 +6286,6 @@
 				D96D1C001C2BF94F00F1C282 /* DVVSideMenuBlockViewItemButton.m in Sources */,
 				D96D1C031C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m in Sources */,
 				062734CA1C5A0C550056B0BC /* SignUpPayCell.m in Sources */,
-				D5D50EE31BFA205000F54097 /* MyWallet.m in Sources */,
 				D5C240061BE9FB8A00832CF3 /* BLAVplayerCell.m in Sources */,
 				D588B0D01BDDDC14000C5D6F /* CoachDetailCell.m in Sources */,
 				D96149441C5C587200E3007F /* CoachListDMSubject.m in Sources */,
@@ -6307,6 +6307,7 @@
 				D9D4BA1E1C3B918600F62BE9 /* NSDictionary+adapter.m in Sources */,
 				D51256B11BE1D005002717DA /* UserIdModel.m in Sources */,
 				554641BC1C25098C00A55326 /* ChooseBtnView.m in Sources */,
+				568DF20E1C75756900008829 /* InfoModel.m in Sources */,
 				B226AEE11C748ED70028DF1A /* HMClassInfoModel.m in Sources */,
 				0647A5BF1C3509F700DBB8A3 /* DiscountWalletModel.m in Sources */,
 				D5604C7E1BF656F30020F0D7 /* ChatViewController+Category.m in Sources */,
@@ -6314,7 +6315,6 @@
 				D5604B7C1BF656C50020F0D7 /* EMVoiceConverter.mm in Sources */,
 				554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */,
 				B226AE9A1C7478240028DF1A /* YBAppointMentChangeCoachController.m in Sources */,
-				D5D50EE71BFA205000F54097 /* ShopMainModel.m in Sources */,
 				B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */,
 				4761DB8F1C354AA0001CF897 /* SignInHelpViewController.m in Sources */,
 				D588B04D1BDDDB71000C5D6F /* MyLoveCoachViewController.m in Sources */,
