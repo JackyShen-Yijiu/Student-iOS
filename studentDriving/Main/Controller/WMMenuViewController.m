@@ -10,7 +10,7 @@
 #import "WMMenuTableViewCell.h"
 #import "WMCommon.h"
 #import "UIImage+WM.h"
-
+#import "WMOtherViewController.h"
 @interface WMMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) WMCommon *common;
 @property (strong ,nonatomic) NSArray  *listArray;
@@ -75,6 +75,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    WMOtherViewController *other = [[WMOtherViewController alloc] init];
+//    other.navTitle = title;
+    other.hidesBottomBarWhenPushed = YES;
+//    [self showHome];
+    [self.navigationController pushViewController:other animated:YES];
+    
     if ([self.delegate respondsToSelector:@selector(didSelectItem:)]) {
         [self.delegate didSelectItem:self.listArray[indexPath.row]];
     }

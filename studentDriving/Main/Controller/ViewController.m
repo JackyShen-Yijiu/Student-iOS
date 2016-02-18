@@ -19,6 +19,7 @@
 #import "YBCommunityViewController.h"
 #import "IWTabBarViewController.h"
 
+#import "YBComplaintController.h"
 typedef enum state {
     kStateHome,
     kStateMenu
@@ -31,6 +32,8 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     kYBAppointMentController,
     kYBMallViewController,
     kYBCommunityViewController,
+    // 侧边栏推出界面
+    kYBComplainViewController,
     
 };
 
@@ -63,6 +66,8 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 @property (strong, nonatomic) YBAppointMentController   *yuyueVC;
 @property (strong, nonatomic) YBMallViewController   *shangchengVC;
 @property (strong, nonatomic) YBCommunityViewController   *shequVC;
+// 侧边栏推出
+@property (strong, nonatomic) YBComplaintController *complaintVC;
 
 @end
 
@@ -289,6 +294,9 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 #pragma mark - WMMenuViewController代理方法
 - (void)didSelectItem:(NSString *)title {
     
+    YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
+    complaintVC.hidesBottomBarWhenPushed = YES;
+    
     WMOtherViewController *other = [[WMOtherViewController alloc] init];
     other.navTitle = title;
     other.hidesBottomBarWhenPushed = YES;
@@ -296,7 +304,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     
     switch (self.vcType) {
         case kYBSignUpViewController:
-            [self.baomingVC.navigationController pushViewController:other animated:NO];
+            [self.baomingVC.navigationController pushViewController:complaintVC animated:NO];
             break;
         case kYBStudyViewController:
             [self.xuexiVC.navigationController pushViewController:other animated:NO];
@@ -309,6 +317,9 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
             break;
         case kYBCommunityViewController:
             [self.shequVC.navigationController pushViewController:other animated:NO];
+            break;
+        case kYBComplainViewController:
+            [self.complaintVC.navigationController pushViewController:other animated:NO];
             break;
         default:
             break;
