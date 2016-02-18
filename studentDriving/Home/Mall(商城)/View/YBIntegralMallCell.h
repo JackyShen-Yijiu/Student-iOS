@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YBIntegralMallModel.h"
 
 @interface YBIntegralMallCell : UITableViewCell
-
+@property (nonatomic, strong) YBIntegralMallModel *integralMallModel;
 @end

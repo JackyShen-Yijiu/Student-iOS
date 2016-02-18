@@ -126,10 +126,18 @@
 
 - (void)didClick:(UIButton *)btn
 {
+    if (btn.tag == 301) {
+        // 实体商品
+        PrivateMessageController *privateMessageVC = [[PrivateMessageController alloc] init];
+        privateMessageVC.shopId = _mainModel.productid;
+        [self.navigationController pushViewController:privateMessageVC animated:YES];
+    }else if (btn.tag == 302){
+        // 虚拟商品
+        VirtualViewController *birtualViewVC = [[VirtualViewController alloc] init];
+        birtualViewVC.shopId = _mainModel.productid;
+        [self.navigationController pushViewController:birtualViewVC animated:YES];
+    }
     
-    PrivateMessageController *privateMessageVC = [[PrivateMessageController alloc] init];
-    privateMessageVC.shopId = _mainModel.productid;
-    [self.navigationController pushViewController:privateMessageVC animated:YES];
     
 
     
