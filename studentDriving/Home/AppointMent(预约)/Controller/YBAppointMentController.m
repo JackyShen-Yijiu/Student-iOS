@@ -224,8 +224,8 @@
 - (void)loadFootListData:(NSString *)dataStr
 {
     
-    /*
-    NSString *  userId = [[UserInfoModel defaultUserInfo] userID];
+    
+    NSString *  userId = [AcountManager manager].applycoach.infoId;
     if (userId==nil) {
         return;
     }
@@ -248,14 +248,14 @@
             
         }else{
             
-            [ws dealErrorResponseWithTableView:nil info:responseObject];
+            [ws obj_showTotasViewWithMes:responseObject];
+
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [ws netErrorWithTableView:nil];
         
     }];
-     */
+    
 }
 
 #pragma mark - DataSource

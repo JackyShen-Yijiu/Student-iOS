@@ -348,7 +348,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
         cell.selectView.backgroundColor = YBNavigationBarBgColor;
     }else{
         selVc.backgroundColor = YBNavigationBarBgColor;
-        cell.selectView.backgroundColor = YBNavigationBarBgColor;
+        cell.selectView.backgroundColor = [UIColor blackColor];
     }
     [selectedBGView addSubview:selVc];
     cell.selectedBackgroundView = selectedBGView;
@@ -417,7 +417,8 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
             }else{
 
                 NSLog(@"+++++++++++++%ld",(long)day);
-  
+                cell.selectView.hidden = NO;
+                cell.dayLabel.textColor = [UIColor whiteColor];
             }
             
         }else{// 当前日期和选中的日期不一致
@@ -563,6 +564,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     [components setDay:indexPath.row - firstWeekday + 1];
     
     NSDate *selectedDate = [[NSCalendar currentCalendar] dateFromComponents:components];
+    self.date = selectedDate;
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(calendarItem:didSelectedDate:)]) {
         [self.delegate calendarItem:self didSelectedDate:selectedDate];
