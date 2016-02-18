@@ -292,8 +292,11 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     
     NSDateComponents *components = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:date];
     [components setDay:day];
+    
     NSDate *dateOfDay = [calendar dateFromComponents:components];
+    
     return dateOfDay;
+    
 }
 
 // 获取date当天的农历
@@ -325,7 +328,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     FDCalendarCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
     
     cell.backgroundColor = [UIColor clearColor];
-    cell.dayLabel.textColor = [UIColor blackColor];
+    cell.dayLabel.textColor = [UIColor lightGrayColor];
     cell.selectView.hidden = YES;
     
     NSInteger firstWeekday = [self weekdayOfFirstDayInDate];
@@ -335,18 +338,24 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     // cell点击变色
     UIView* selectedBGView = [[UIView alloc] initWithFrame:cell.bounds];
     selectedBGView.backgroundColor = [UIColor clearColor];
-    
     // 点击选中的圆圈
     UIView *selVc = [[UIView alloc] initWithFrame:CGRectMake(cell.width/2-25/2,0,25,25)];
     selVc.layer.masksToBounds = YES;
     selVc.layer.cornerRadius = selVc.height / 2;
-    selVc.backgroundColor = YBNavigationBarBgColor;
+    BOOL isBook = [self isBook:self.bookArray day:[cell.dayLabel.text integerValue]];
+    if (isBook) {
+        selVc.backgroundColor = YBNavigationBarBgColor;
+        cell.selectView.backgroundColor = YBNavigationBarBgColor;
+    }else{
+        selVc.backgroundColor = YBNavigationBarBgColor;
+        cell.selectView.backgroundColor = YBNavigationBarBgColor;
+    }
     [selectedBGView addSubview:selVc];
     cell.selectedBackgroundView = selectedBGView;
     
     if (indexPath.row < firstWeekday) {// 小于这个月的第一天
         
-        cell.dayLabel.textColor = [UIColor blackColor];
+        cell.dayLabel.textColor = [UIColor lightGrayColor];
         cell.dayLabel.text = nil;
         cell.pointView.hidden = YES;
         cell.chineseDayLabel.hidden = YES;
@@ -365,35 +374,56 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
 //        cell.dayLabel.textColor = [UIColor grayColor];
 //        cell.chineseDayLabel.text = [self chineseCalendarOfDate:[self dateOfMonth:FDCalendarMonthNext WithDay:day]];
 //
-        cell.dayLabel.textColor = [UIColor blackColor];
+        cell.dayLabel.textColor = [UIColor whiteColor];
         cell.dayLabel.text = nil;
         cell.pointView.hidden = YES;
         cell.chineseDayLabel.hidden = YES;
         cell.restLabel.hidden = YES;
         cell.selectedBackgroundView = nil;
 
-    } else {// 属于这个月
+    } else {// 属于当前选择的这个月
         
         NSInteger day = indexPath.row - firstWeekday + 1;
         cell.dayLabel.text= [NSString stringWithFormat:@"%ld", day];
         cell.chineseDayLabel.hidden = NO;
-
+        
+        int compareDataNum = [self compareDateWithSelectDate:[self getCurrentData:indexPath]];
+        if (compareDataNum==0) {// 当前
+            
+            cell.dayLabel.textColor = YBNavigationBarBgColor;
+            
+        }else if (compareDataNum==1){// 大于当前日期
+            
+            cell.dayLabel.textColor = [UIColor blackColor];
+            
+        }else if (compareDataNum==-1){// 小于当前日期
+            
+            cell.dayLabel.textColor = [UIColor lightGrayColor];
+            
+        }
+        
         // 判断当天是否和选中的日期一致
-        if (day == [[NSCalendar currentCalendar] component:NSCalendarUnitDay fromDate:self.date]) {
-            
-            if (day == [[NSCalendar currentCalendar] component:NSCalendarUnitDay fromDate:[NSDate date]]) {
-                
-                // 默认选中的当前日期
-                cell.selectView.hidden = NO;
-                cell.dayLabel.textColor = [UIColor whiteColor];//RGB_Color(31, 124, 235);
+        if (day == [[NSCalendar currentCalendar] component:NSCalendarUnitDay fromDate:self.date]) {// 当前日期和选中的日期一致
+         
+            NSLog(@"****************%ld",(long)day);
 
-            }else{
-            
-                // 点击的是当前item
+            if (day == [[NSCalendar currentCalendar] component:NSCalendarUnitDay fromDate:[NSDate date]]) {// 选中的日期和当前日期一致
+              
+                // 当前日期和选中的日期一致
+                NSLog(@"当前日期和选中的日期一致------------%ld",(long)day);
                 cell.selectView.hidden = NO;
                 cell.dayLabel.textColor = [UIColor whiteColor];
+                
+            }else{
 
+                NSLog(@"+++++++++++++%ld",(long)day);
+  
             }
+            
+        }else{// 当前日期和选中的日期不一致
+            
+            NSLog(@"=================%ld",(long)day);
+            
         }
 
         // 如果日期和当期日期同年同月不同天, 注：第一个判断中的方法是iOS8的新API, 会比较传入单元以及比传入单元大得单元上数据是否相等，亲测同时传入Year和Month结果错误
@@ -402,19 +432,21 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
             // 将当前日期的那天高亮显示
             if (day == [[NSCalendar currentCalendar] component:NSCalendarUnitDay fromDate:[NSDate date]]) {
                 
-                // 当前日期
-                cell.selectView.hidden = YES;
-                cell.dayLabel.textColor = YBNavigationBarBgColor;
-
+            }else{
+                
             }
             
+            // 红点
             NSDate *curDate = [self dateOfMonth:FDCalendarMonthCurrent WithDay:day];
             BOOL isSelectedData = [self isEnqual:curDate :self.seletedDate];
             [cell setIsSeletedDay:isSelectedData curDay:[self isEnqual:curDate :[NSDate date]]];
             
+        }else{
+            
         }
         
         cell.chineseDayLabel.text = [self chineseCalendarOfDate:[self dateOfMonth:FDCalendarMonthCurrent WithDay:day]];
+        cell.chineseDayLabel.hidden = YES;// 隐藏农历
         
         // 根据服务器返回数据判断是否休假
         cell.restLabel.hidden = ![self isRest:self.restArray day:[cell.dayLabel.text integerValue]];
@@ -465,6 +497,52 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     
 }
 
+
+// 根据item获取日期
+- (NSDate *)getCurrentData:(NSIndexPath *)indexPath
+{
+    NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self.date];
+    
+    NSInteger firstWeekday = [self weekdayOfFirstDayInDate];
+    
+    [components setDay:indexPath.row - firstWeekday + 1];
+    
+    NSDate *selectedDate = [[NSCalendar currentCalendar] dateFromComponents:components];
+    
+    return selectedDate;
+    
+}
+
+/**
+*  判断两个时间的大小
+*  @parma selectDate:选择的日期 yyyy-mm-dd hh:mm:ss
+*  @return 1:大于当前日期 -1:小于当前时间 0:等于当前时间
+*/
+-(int)compareDateWithSelectDate:(NSDate *)selectDate
+{
+    NSDateFormatter *fomatter = [[NSDateFormatter alloc] init];
+    
+    [fomatter setDateFormat:@"yyyy-MM-dd"];
+    NSDate *currentDate = [NSDate date];
+    NSString *curentDateStr = [fomatter stringFromDate:currentDate];
+    currentDate = [fomatter dateFromString:curentDateStr];
+    
+    NSString *selectDateStr = [fomatter stringFromDate:selectDate];
+    selectDate = [fomatter dateFromString:selectDateStr];
+
+    int result = [selectDate compare:currentDate];
+    NSLog(@"result:%d",result);
+    if(result == NSOrderedDescending)
+    {
+        return 1;
+    }
+    else if(result == NSOrderedAscending)
+    {
+        return -1;
+    }
+    return 0;
+}
+
 - (BOOL)isEnqual:(NSDate *)date1 :(NSDate *)date2
 {
     if(!date1 || !date2) return NO;
@@ -477,7 +555,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+   
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self.date];
     
     NSInteger firstWeekday = [self weekdayOfFirstDayInDate];
@@ -489,7 +567,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     if (self.delegate && [self.delegate respondsToSelector:@selector(calendarItem:didSelectedDate:)]) {
         [self.delegate calendarItem:self didSelectedDate:selectedDate];
     }
-    
+
 }
 
 

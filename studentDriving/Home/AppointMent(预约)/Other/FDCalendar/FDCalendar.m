@@ -224,7 +224,8 @@ static NSDateFormatter *dateFormattor;
         
     }];
      */
-    
+    [self.centerCalendarItem reloadData];
+
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{    //拖动前的起始坐标
