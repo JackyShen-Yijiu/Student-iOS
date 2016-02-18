@@ -2,8 +2,8 @@
 
 @interface DVVSignUpCoachDMHeadportrait : NSObject
 
-@property (nonatomic, strong) NSString * height;
-@property (nonatomic, strong) NSString * originalpic;
-@property (nonatomic, strong) NSString * thumbnailpic;
-@property (nonatomic, strong) NSString * width;
+@property (nonatomic, copy) NSString * height;
+@property (nonatomic, copy) NSString * originalpic;
+@property (nonatomic, copy) NSString * thumbnailpic;
+@property (nonatomic, copy) NSString * width;
 @end

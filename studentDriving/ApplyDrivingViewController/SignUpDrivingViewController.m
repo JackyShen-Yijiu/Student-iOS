@@ -436,7 +436,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         // 搜索按钮点击事件
 //        [_tableHeaderView.searchButton addTarget:self action:@selector(searchButtonAction) forControlEvents:UIControlEventTouchUpInside];
         __weak typeof(self) ws = self;
-        [_tableHeaderView.searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
+        [_tableHeaderView.searchView dvv_setTextFieldDidEndEditingBlock:^(UITextField *textField) {
             [ws searchButtonAction:textField];
         }];
     }

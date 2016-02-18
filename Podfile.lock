@@ -29,8 +29,9 @@ PODS:
     - ChameleonFramework/Default (= 2.1.0)
   - ChameleonFramework/Default (2.1.0)
   - HappyDNS (0.2.3)
-  - IQKeyboardManager (3.3.6)
+  - IQKeyboardManager (4.0.0)
   - JPush (1.8.8)
+  - JSONKit (1.4)
   - Mantle (2.0.6):
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - ChameleonFramework
   - IQKeyboardManager
   - JPush (~> 1.8.7)
+  - JSONKit
   - Mantle (~> 2.0.5)
   - Masonry
   - MJRefresh
@@ -79,8 +81,9 @@ SPEC CHECKSUMS:
   BaiduMapAPI: 2d03e12a51d5c6c49ece555c6bdda8562635cc02
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   HappyDNS: 6d85942e64c28b4fa61f8c76580398f52d6d1d11
-  IQKeyboardManager: 037cf3aec1d0a045108859a47818714eb1bfc149
+  IQKeyboardManager: b91928f7927ba55a5829b4dcf4b7a6736ac9fc22
   JPush: d1a4a90294389d2c6bd2ca987df8140dd4ffcbd2
+  JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4

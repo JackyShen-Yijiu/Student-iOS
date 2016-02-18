@@ -17,7 +17,7 @@
     self = [super init];
     if (self) {
         _dataArray = [NSMutableArray array];
-        _orderType = 0;
+        _orderType = 2;
         _latitude = 40.096263;
         _longitude = 116.1270;
         
@@ -69,6 +69,11 @@
             return ;
         }
         if (!dmRoot.data.count) {
+            if (_isSearch) {
+                [_dataArray removeAllObjects];
+                [self dvv_refreshSuccess];
+                return ;
+            }
             [self dvv_nilResponseObject];
             return ;
         }

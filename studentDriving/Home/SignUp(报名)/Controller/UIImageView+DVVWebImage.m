@@ -21,9 +21,8 @@
 - (void)dvv_downloadImage:(NSString *)urlString
          placeholderImage:(UIImage *)placeholder {
     
-    if (urlString && urlString.length) {
-        [self sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeholder];
-    }
+    // 因为这个有替换图片，所以就不判断urlString是否正确
+    [self sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeholder];
 }
 
 @end

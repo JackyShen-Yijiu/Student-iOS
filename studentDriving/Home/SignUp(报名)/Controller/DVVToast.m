@@ -32,6 +32,10 @@
 
 + (void)showFromView:(UIView *)superView {
     
+    [self showFromView:superView OffSetY:0];
+}
++ (void)showFromView:(UIView *)superView OffSetY:(CGFloat)offSetY {
+    
     // 如果已经存在则不再添加
     for (UIView *itemView in superView.subviews) {
         if ([itemView isKindOfClass:[DVVToast class]] &&
@@ -39,24 +43,24 @@
             return ;
         }
     }
-    DVVToast *view = [DVVToast new];
-    view.toastType = DVV_TOAST_TYPE_LOADING;
-    view.frame = CGRectMake(0, 0, DVV_LOADING_SIDE_WIDTH, DVV_LOADING_SIDE_WIDTH);
-    [view.layer setMasksToBounds:YES];
-    [view.layer setCornerRadius:DVV_LOADING_CORNER_RADIUS];
-    view.center = CGPointMake(superView.bounds.size.width / 2.f, superView.bounds.size.height / 2.f);
-    view.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
+    DVVToast *toastView = [DVVToast new];
+    toastView.toastType = DVV_TOAST_TYPE_LOADING;
+    toastView.frame = CGRectMake(0, 0, DVV_LOADING_SIDE_WIDTH, DVV_LOADING_SIDE_WIDTH);
+    [toastView.layer setMasksToBounds:YES];
+    [toastView.layer setCornerRadius:DVV_LOADING_CORNER_RADIUS];
+    toastView.center = CGPointMake(superView.bounds.size.width / 2.f, superView.bounds.size.height / 2.f + offSetY);
+    toastView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
     
     UIActivityIndicatorView *activityView = [UIActivityIndicatorView new];
     activityView.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
     activityView.center = CGPointMake(DVV_LOADING_SIDE_WIDTH / 2.f, DVV_LOADING_SIDE_WIDTH / 2.f);
     
-    [view addSubview:activityView];
+    [toastView addSubview:activityView];
     [activityView startAnimating];
-    view.alpha = 0;
-    [superView addSubview:view];
+    toastView.alpha = 0;
+    [superView addSubview:toastView];
     [UIView animateWithDuration:DVV_ANIMATE_DURATION animations:^{
-        view.alpha = 1;
+        toastView.alpha = 1;
     }];
 }
 + (void)hideFromView:(UIView *)superView {

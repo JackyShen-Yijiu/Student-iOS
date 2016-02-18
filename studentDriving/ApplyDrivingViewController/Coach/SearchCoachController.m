@@ -330,7 +330,7 @@
     if (!_searchView) {
         _searchView = [DVVSearchView new];
         __weak typeof(self) ws = self;
-        [_searchView setDVVTextFieldDidEndEditingBlock:^(UITextField *textField) {
+        [_searchView dvv_setTextFieldDidEndEditingBlock:^(UITextField *textField) {
             [ws dvvTextFieldDidEndEditingBlock:textField];
         }];
     }

@@ -16,6 +16,7 @@
 + (void)hide;
 
 + (void)showFromView:(UIView *)superView;
++ (void)showFromView:(UIView *)superView OffSetY:(CGFloat)offSetY;
 + (void)hideFromView:(UIView *)superView;
 
 + (void)showMessage:(NSString *)message;

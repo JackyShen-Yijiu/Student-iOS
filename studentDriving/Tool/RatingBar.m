@@ -75,7 +75,6 @@
     if (width < [unSelectedImage size].width) {
         width = [unSelectedImage size].width;
     }
-    
     starRating = 0.0;
     lastRating = 0.0;
     
@@ -104,7 +103,7 @@
     [self addSubview:_s5];
     
     CGRect frame = [self frame];
-    frame.size.width = width * 5;
+    frame.size.width = width * 5.0f;
     frame.size.height = height;
     [self setFrame:frame];
     
