@@ -73,6 +73,7 @@
 		55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B671C26798500AC64FF /* SubmitVerificationController.m */; };
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
+		568DF1C61C7556AA00008829 /* YBIntegralMallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1C51C7556AA00008829 /* YBIntegralMallCell.m */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
 		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B20DBBC11C5CA20B0023676E /* JGActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBC01C5CA20B0023676E /* JGActivityViewController.m */; };
@@ -1002,6 +1003,8 @@
 		55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
 		55901B6C1C26811900AC64FF /* AppointmentDrivingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDrivingViewController.h; sourceTree = "<group>"; };
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
+		568DF1C41C7556AA00008829 /* YBIntegralMallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBIntegralMallCell.h; path = studentDriving/LoginViewController/YBIntegralMallCell.h; sourceTree = SOURCE_ROOT; };
+		568DF1C51C7556AA00008829 /* YBIntegralMallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBIntegralMallCell.m; path = studentDriving/LoginViewController/YBIntegralMallCell.m; sourceTree = SOURCE_ROOT; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
@@ -3186,6 +3189,8 @@
 		B2E8E19D1C72C6F2000190C2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				568DF1C41C7556AA00008829 /* YBIntegralMallCell.h */,
+				568DF1C51C7556AA00008829 /* YBIntegralMallCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5768,6 +5773,7 @@
 				D96D1BF71C2BD47900F1C282 /* DVVUserManager.m in Sources */,
 				B20DBEE11C5DB9120023676E /* JGPayTool.m in Sources */,
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
+				568DF1C61C7556AA00008829 /* YBIntegralMallCell.m in Sources */,
 				B20DBECF1C5DB0FF0023676E /* SBJsonWriter.m in Sources */,
 				06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */,
 				D5604C921BF656F30020F0D7 /* MessageReadManager.m in Sources */,
