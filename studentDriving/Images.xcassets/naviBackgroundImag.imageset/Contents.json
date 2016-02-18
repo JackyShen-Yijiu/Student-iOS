@@ -2,11 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "naviBackgroundImag.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "collection_no_icon.png",
       "scale" : "2x"
     },
     {

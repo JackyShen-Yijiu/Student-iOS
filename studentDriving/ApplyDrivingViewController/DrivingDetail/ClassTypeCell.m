@@ -8,6 +8,7 @@
 
 #import "ClassTypeCell.h"
 #import "NSString+Helper.h"
+#import "YBAPPMacro.h"
 
 @implementation ClassTypeCell
 
@@ -25,10 +26,22 @@
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
         
-        _priceLabel.textColor = MAINCOLOR;
-        _signUpButton.backgroundColor = MAINCOLOR;
+        [self addSubview:self.lineImageView];
+        _nameLabel.font = [UIFont boldSystemFontOfSize:14];
+        _introductionLabel.textColor = [UIColor colorWithHexString:@"757575"];
+        _nameLabel.textColor = [UIColor blackColor];
+        _priceLabel.textColor = [UIColor blackColor];
+        _signUpButton.backgroundColor = YBNavigationBarBgColor;
     }
     return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    CGSize size = self.bounds.size;
+    CGFloat minX = CGRectGetMinX(_nameLabel.frame);
+    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
 }
 
 - (void)refreshData:(ClassTypeDMData *)dmData {
@@ -36,12 +49,21 @@
     _nameLabel.text = dmData.classname;
     _introductionLabel.text = dmData.classdesc;
     _priceLabel.text = [NSString stringWithFormat:@"￥%zi", dmData.price];
+    _markLabel.text = [NSString stringWithFormat:@"%@ %@ ￥%zi", dmData.schoolinfo.name, dmData.classname, dmData.price];
 }
 
 + (CGFloat)dynamicHeight:(NSString *)string {
     
-    CGFloat newFloat = 8 + 21 + 8 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 8 * 2 font:[UIFont systemFontOfSize:14]] + 8 + 21 + 8 + 40 + 8;
+    CGFloat newFloat = 45 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 16 * 2 font:[UIFont systemFontOfSize:12]] + 60;
     return newFloat;
+}
+
+- (UIImageView *)lineImageView {
+    if (!_lineImageView) {
+        _lineImageView = [UIImageView new];
+        _lineImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
+    }
+    return _lineImageView;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

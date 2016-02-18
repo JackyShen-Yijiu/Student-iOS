@@ -10,13 +10,14 @@
 #import "ClassTypeDMData.h"
 
 @interface ClassTypeCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *markLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *introductionLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIButton *signUpButton;
 
-@property (weak, nonatomic) IBOutlet UIView *bottomLineView;
+@property (nonatomic, strong) UIImageView *lineImageView;
 
 - (void)refreshData:(ClassTypeDMData *)dmData;
 

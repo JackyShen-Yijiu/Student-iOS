@@ -9,7 +9,6 @@
 #import "DrivingDetailController.h"
 #import "DrivingDetailAddressCell.h"
 #import "DrivingDetailInfoCell.h"
-#import "DrivingDetailShuttleBusCell.h"
 #import "DrivingDetailBriefIntroductionCell.h"
 #import "DrivingDetailTrainingGroundCell.h"
 #import "DrivingDetailSignUpCell.h"
@@ -23,9 +22,12 @@
 #import "SignUpController.h"
 #import "serverclasslistModel.h"
 #import "YBAPPMacro.h"
+#import "DrivingDetailTableHeaderView.h"
+#import "DrivingDetailLocationCell.h"
 
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate>
 
+@property (nonatomic, strong) DrivingDetailTableHeaderView *tableHeaderView;
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, assign) __block BOOL isShowMore;
@@ -60,10 +62,10 @@
 }
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    self.navigationController.navigationBar.backgroundColor = YBNavigationBarBgColor;
 }
 
 #pragma mark - config view model
@@ -86,22 +88,15 @@
         [ws obj_showTotasViewWithMes:@"网络错误"];
     }];
     [_viewModel dvvSetNetworkCallBackBlock:^{
-        [DVVToast hideFromView:ws.view];
+        [DVVToast hideFromView:ws.tableView];
     }];
     
-    [DVVToast showFromView:self.view];
+    [DVVToast showFromView:self.tableView];
     [_viewModel dvvNetworkRequestRefresh];
 }
 
 #pragma mark - action
 
-#pragma mark 班车路线
-- (void)shuttleBusMoreButtonAction {
-    
-    ShuttleBusController *busVC = [ShuttleBusController new];
-    busVC.dataArray = _viewModel.dmData.schoolbusroute;
-    [self.navigationController pushViewController:busVC animated:YES];
-}
 #pragma mark 更多教练
 - (void)allCoachInSchoolAction:(UIButton *)sender {
     
@@ -118,7 +113,7 @@
     schoolClassDetailVC.classTypeDMData = dmData;
     [self.navigationController pushViewController:schoolClassDetailVC animated:YES];
 }
-#pragma mark班型cell中的报名按钮单击事件
+#pragma mark 班型cell中的报名按钮单击事件
 - (void)signInButtonAction:(ClassTypeDMData *)dmData {
     if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
         SignUpController *signUpVC = [[SignUpController alloc] init];
@@ -144,42 +139,34 @@
 #pragma mark - table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (_viewModel.dmData) {
-        return 6;
+        return 5;
     }
     return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+
     if (0 == indexPath.row) {
-        // 地址和名称
-        return [DrivingDetailAddressCell defaultHeight];
+        return [DrivingDetailLocationCell defaultHeight];
     }else if (1 == indexPath.row){
         // 驾校信息
         return [DrivingDetailInfoCell defaultHeight];
     }else if (2 == indexPath.row) {
-        // 班车路线
-        return [DrivingDetailShuttleBusCell dynamicHeight:_viewModel.dmData];
-    }else if (3 == indexPath.row) {
         // 驾校简介
         return [DrivingDetailBriefIntroductionCell dynamicHeight:_viewModel.dmData.introduction isShowMore:_isShowMore];
-    }else if (4 == indexPath.row) {
+    }else if (3 == indexPath.row) {
         // 训练场
-        return [DrivingDetailTrainingGroundCell defaultHeight];
-    }else if (5 == indexPath.row) {
+        return [DrivingDetailTrainingGroundCell dynamicHeight:_viewModel.dmData];
+    }else {
         // 报名（班型和教练信息）
         return [self.signUpCell dynamicHeight];
     }
-    return 0;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // 地址和名称
     if (0 == indexPath.row) {
-        
-        DrivingDetailAddressCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kAddressCell"];
+        DrivingDetailLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kLocationCell"];
         if (!cell) {
-            cell = [[DrivingDetailAddressCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kAddressCell"];
-            cell.schoolID = _schoolID;
+            cell = [[DrivingDetailLocationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kLocationCell"];
         }
         [cell refreshData:_viewModel.dmData];
         return cell;
@@ -193,24 +180,14 @@
         [cell refreshData:_viewModel.dmData];
         return cell;
     }
-    // 班车路线
-    if (2 == indexPath.row) {
-        DrivingDetailShuttleBusCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kShuttleBusCell"];
-        if (!cell) {
-            cell = [[DrivingDetailShuttleBusCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kShuttleBusCell"];
-            [cell.moreButton addTarget:self action:@selector(shuttleBusMoreButtonAction) forControlEvents:UIControlEventTouchDown];
-        }
-        [cell refreshData:_viewModel.dmData];
-        return cell;
-    }
     // 驾校简介
-    if (3 == indexPath.row) {
+    if (2 == indexPath.row) {
         
         [self.introductionCell refreshData:_viewModel.dmData];
         return _introductionCell;
     }
     // 训练场
-    if (4 == indexPath.row) {
+    if (3 == indexPath.row) {
         DrivingDetailTrainingGroundCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kTrainingCell"];
         if (!cell) {
             cell = [[DrivingDetailTrainingGroundCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kTrainingCell"];
@@ -225,13 +202,24 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [UITableView new];
-        _tableView.frame = CGRectMake(0, -44, self.view.bounds.size.width, self.view.bounds.size.height - 49 - 20);
+        _tableView.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height - 49 - 64);
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.tableFooterView = [UITableView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        
+        _tableView.tableHeaderView = self.tableHeaderView;
     }
     return _tableView;
+}
+
+- (DrivingDetailTableHeaderView *)tableHeaderView {
+    if (!_tableHeaderView) {
+        _tableHeaderView = [DrivingDetailTableHeaderView new];
+        _tableHeaderView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, [DrivingDetailTableHeaderView defaultHeight]);
+        _tableHeaderView.schoolID = _schoolID;
+    }
+    return _tableHeaderView;
 }
 
 - (DrivingDetailBriefIntroductionCell *)introductionCell {

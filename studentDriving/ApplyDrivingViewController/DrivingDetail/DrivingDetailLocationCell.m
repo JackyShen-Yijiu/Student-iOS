@@ -1,14 +1,14 @@
 //
-//  DrivingInfoCell.m
+//  DrivingDetailLocationCell.m
 //  studentDriving
 //
-//  Created by 大威 on 16/1/28.
+//  Created by 大威 on 16/2/18.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "DrivingDetailInfoCell.h"
+#import "DrivingDetailLocationCell.h"
 
-@implementation DrivingDetailInfoCell
+@implementation DrivingDetailLocationCell
 
 - (void)awakeFromNib {
     // Initialization code
@@ -18,10 +18,11 @@
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"DrivingDetailInfoCell" owner:self options:nil];
-        DrivingDetailInfoCell *cell = xibArray.firstObject;
+        NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"DrivingDetailLocationCell" owner:self options:nil];
+        DrivingDetailLocationCell *cell = xibArray.firstObject;
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:self.lineImageView];
     }
     return self;
@@ -31,21 +32,21 @@
     [super layoutSubviews];
     
     CGSize size = self.bounds.size;
-    CGFloat minX = CGRectGetMinX(_learnTimeLabel.frame);
+    CGFloat minX = CGRectGetMinX(_priceLabel.frame);
     _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
 }
 
 - (void)refreshData:(DrivingDetailDMData *)dmData {
     
-    if (dmData.passingrate) {
-        _passRateLabel.text = [NSString stringWithFormat:@"%zi%%", dmData.passingrate];
+    if (dmData.minprice || dmData.maxprice) {
+        _priceLabel.text = [NSString stringWithFormat:@"%zi-%zi", dmData.minprice, dmData.maxprice];
     }else {
-        _passRateLabel.text = @"暂无";
+        _priceLabel.text = @"未填写价格";
     }
-    if (dmData.hours && dmData.hours.length) {
-        _learnTimeLabel.text = [NSString stringWithFormat:@"营业时间：%@", dmData.hours];
+    if (dmData.address && dmData.address.length) {
+        _locationLabel.text = [NSString stringWithFormat:@"%@", dmData.address];
     }else {
-        _learnTimeLabel.text = [NSString stringWithFormat:@"营业时间：未填写"];
+        _locationLabel.text = @"未填写地址信息";
     }
 }
 

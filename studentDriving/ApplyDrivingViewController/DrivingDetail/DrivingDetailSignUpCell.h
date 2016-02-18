@@ -17,9 +17,12 @@
 @property (nonatomic, strong) ClassTypeView *classTypeView;
 @property (nonatomic, strong) CoachListView *coachListView;
 
+@property (weak, nonatomic) IBOutlet UIView *toolBarView;
 @property (weak, nonatomic) IBOutlet UIButton *courseButton;
 @property (weak, nonatomic) IBOutlet UIButton *coachButton;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+@property (nonatomic, strong) UIImageView *followLineImageView;
 
 @property (nonatomic, strong) UITableView *tableView;
 

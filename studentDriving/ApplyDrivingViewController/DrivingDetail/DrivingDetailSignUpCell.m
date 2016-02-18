@@ -7,6 +7,7 @@
 //
 
 #import "DrivingDetailSignUpCell.h"
+#import "YBAPPMacro.h"
 
 @implementation DrivingDetailSignUpCell
 
@@ -23,11 +24,23 @@
         
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        [_toolBarView addSubview:self.followLineImageView];
         
+        _toolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
+        _toolBarView.layer.shadowOffset = CGSizeMake(0, 2);
+        _toolBarView.layer.shadowOpacity = 0.3;
+        _toolBarView.layer.shadowRadius = 2;
+        
+        _toolBarView.backgroundColor = YBNavigationBarBgColor;
+        _courseButton.backgroundColor = YBNavigationBarBgColor;
+        _coachButton.backgroundColor = YBNavigationBarBgColor;
         [_courseButton setTitle:@"课程费用" forState:UIControlStateSelected];
         [_coachButton setTitle:@"教练信息" forState:UIControlStateSelected];
-        [_courseButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
-        [_coachButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
+        [_courseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        [_coachButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
+        
+        [_courseButton setTitleColor:[UIColor colorWithWhite:1 alpha:0.75] forState:UIControlStateNormal];
+        [_coachButton setTitleColor:[UIColor colorWithWhite:1 alpha:0.75] forState:UIControlStateNormal];
         _courseButton.selected = YES;
         
         [_scrollView addSubview:self.classTypeView];
@@ -44,6 +57,15 @@
     _scrollView.contentSize = CGSizeMake(size.width * 2, 0);
     _classTypeView.frame = CGRectMake(0, 0, size.width, size.height);
     _coachListView.frame = CGRectMake(size.width, 0, size.width, size.height);
+    _followLineImageView.frame = CGRectMake(0, 42, size.width / 2.f, 2);
+}
+
+- (UIImageView *)followLineImageView {
+    if (!_followLineImageView) {
+        _followLineImageView = [UIImageView new];
+        _followLineImageView.backgroundColor = [UIColor yellowColor];
+    }
+    return _followLineImageView;
 }
 
 - (IBAction)courseButtonAction:(UIButton *)sender {
@@ -52,29 +74,20 @@
     [self.tableView reloadData];
     [UIView animateWithDuration:0.3 animations:^{
         _scrollView.contentOffset = CGPointMake(0, 0);
+        _followLineImageView.frame = CGRectMake(0, 42, [UIScreen mainScreen].bounds.size.width/2.f, 2);
     }];
 }
 - (IBAction)coachButtonAction:(UIButton *)sender {
     _courseButton.selected = NO;
     sender.selected = YES;
 //    [self.tableView reloadData];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:5 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
     [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
     [UIView animateWithDuration:0.3 animations:^{
         _scrollView.contentOffset = CGPointMake(_scrollView.bounds.size.width, 0);
+        _followLineImageView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2.f, 42, [UIScreen mainScreen].bounds.size.width/2.f, 2);
     }];
 }
-
-//- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView {
-//    
-//    if (0 == scrollView.contentOffset.x) {
-//        _coachButton.selected = NO;
-//        _courseButton.selected = YES;
-//    }else {
-//        _courseButton.selected = NO;
-//        _coachButton.selected = YES;
-//    }
-//}
 
 // 重新此方法，在设置此值的时候再开始网络请求
 - (void)setSchoolID:(NSString *)schoolID {

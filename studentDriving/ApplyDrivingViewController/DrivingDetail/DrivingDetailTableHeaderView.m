@@ -1,32 +1,23 @@
 //
-//  DrivingDetailAddressCell.m
+//  DrivingDetailTableHeaderView.m
 //  studentDriving
 //
-//  Created by 大威 on 16/1/28.
+//  Created by 大威 on 16/2/18.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "DrivingDetailAddressCell.h"
+#import "DrivingDetailTableHeaderView.h"
 
-@implementation DrivingDetailAddressCell
+@implementation DrivingDetailTableHeaderView
 
-- (void)awakeFromNib {
-    // Initialization code
-}
-
-- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+- (instancetype)init
 {
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    self = [super init];
     if (self) {
-        NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"DrivingDetailAddressCell" owner:self options:nil];
-        DrivingDetailAddressCell *cell = xibArray.firstObject;
-        
-        [cell setRestorationIdentifier:reuseIdentifier];
-        self = cell;
-        
-//        _priceLabel.textColor = MAINCOLOR;
         [self addSubview:self.cycleShowImagesView];
         [self addSubview:self.collectionImageView];
+        self.backgroundColor = [UIColor redColor];
+        _collectionImageView.backgroundColor = [UIColor orangeColor];
     }
     return self;
 }
@@ -37,23 +28,26 @@
     CGFloat selfWidth = self.bounds.size.width;
     CGFloat cycleShowImagesViewHeight = selfWidth * 0.7;
     _cycleShowImagesView.frame = CGRectMake(0, 0, selfWidth, cycleShowImagesViewHeight);
-    CGFloat collectionWidth = 50;
-    _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 8, cycleShowImagesViewHeight - collectionWidth / 2.f, collectionWidth, collectionWidth);
-    [_collectionImageView.layer setMasksToBounds:YES];
-    [_collectionImageView.layer setCornerRadius:collectionWidth / 2.f];
+    CGFloat collectionWidth = 88;
+    CGFloat collectionHeight = 106;
+    _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth, cycleShowImagesViewHeight - collectionHeight/2.f, collectionWidth, collectionHeight);
+//    [_collectionImageView.layer setMasksToBounds:YES];
+//    [_collectionImageView.layer setCornerRadius:collectionWidth/2.f];
     
-//    _cycleShowImagesView.backgroundColor = [UIColor orangeColor];
-//    _collectionImageView.backgroundColor = [UIColor redColor];
+    //    _cycleShowImagesView.backgroundColor = [UIColor orangeColor];
+    //    _collectionImageView.backgroundColor = [UIColor redColor];
+}
+
++ (CGFloat)defaultHeight {
+    
+    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+    return screenWidth * 0.7 + 106/2.f;
 }
 
 - (void)refreshData:(DrivingDetailDMData *)dmData {
     
     // 轮播图数据
     [_cycleShowImagesView reloadDataWithArray:dmData.pictures];
-    
-    _drivingNameLabel.text = dmData.name;
-    _addressLabel.text = [NSString stringWithFormat:@"地址：%@", dmData.address];
-    _priceLabel.text = [NSString stringWithFormat:@"￥%zi - ￥%zi", dmData.minprice, dmData.maxprice];
 }
 
 - (DVVCycleShowImagesView *)cycleShowImagesView {
@@ -75,12 +69,6 @@
     return _collectionImageView;
 }
 
-+ (CGFloat)defaultHeight {
-    
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    return screenWidth * 0.7 + 95.f;
-}
-
 - (void)setSchoolID:(NSString *)schoolID {
     
     _schoolID = schoolID;
@@ -89,7 +77,7 @@
 #pragma mark - 收藏相关
 #pragma mark 检测是否收藏
 - (void)checkCollection {
-
+    
     NSString *urlString = [NSString stringWithFormat:BASEURL,@"userinfo/favoriteschool"];
     DYNSLog(@"urlstring = %@",urlString);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
@@ -168,10 +156,13 @@
     }];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+/*
+// Only override drawRect: if you perform custom drawing.
+// An empty implementation adversely affects performance during animation.
+- (void)drawRect:(CGRect)rect {
+    // Drawing code
 }
+*/
 
 @end

@@ -8,7 +8,7 @@
 
 #import "DrivingDetailTrainingGroundCell.h"
 
-#define IMAGE_WIDTH (([UIScreen mainScreen].bounds.size.width - 8 * 2 - 10 * 2) / 3.f)
+#define IMAGE_WIDTH (([UIScreen mainScreen].bounds.size.width - 56 - 16 - 10 * 2) / 3.f)
 #define IMAGE_HEIGHT IMAGE_WIDTH * 0.7
 
 @implementation DrivingDetailTrainingGroundCell
@@ -34,7 +34,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    _scrollImagesView.frame = CGRectMake(8, 8 + 21 + 8, self.bounds.size.width - 8 * 2, IMAGE_HEIGHT);
+    _scrollImagesView.frame = CGRectMake(56, 8, self.bounds.size.width - 56 - 16, IMAGE_HEIGHT);
 }
 
 - (void)refreshData:(DrivingDetailDMData *)dmData {
@@ -50,9 +50,13 @@
 //        }
     }
     if (array && array.count) {
+        _markLabel.hidden = YES;
+        _scrollImagesView.hidden = NO;
         [_scrollImagesView refreshData:array];
     }else {
-        [_scrollImagesView refreshData:@[ @"", @"", @"" ]];
+//        [_scrollImagesView refreshData:@[ @"", @"", @"" ]];
+        _markLabel.hidden = NO;
+        _scrollImagesView.hidden = YES;
     }
 }
 
@@ -66,9 +70,13 @@
     return _scrollImagesView;
 }
 
-+ (CGFloat)defaultHeight {
++ (CGFloat)dynamicHeight:(DrivingDetailDMData *)dmData {
     
-    return 8 + 21 + 8 + IMAGE_HEIGHT + 8;
+    if (dmData.pictures.count) {
+        return 16 + IMAGE_HEIGHT + 16;
+    }else {
+        return 56;
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
