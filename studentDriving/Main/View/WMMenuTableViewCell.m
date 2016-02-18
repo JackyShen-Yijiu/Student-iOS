@@ -22,6 +22,7 @@
 
 - (void)setCellText:(NSString *)str {
     self.textLabel.text = str;
+    self.textLabel.textColor = [UIColor blackColor];
 }
 
 + (instancetype)cellWithTableView:(UITableView *)tableView {

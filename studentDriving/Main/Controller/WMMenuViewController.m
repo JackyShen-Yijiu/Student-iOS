@@ -14,6 +14,7 @@
 @interface WMMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) WMCommon *common;
 @property (strong ,nonatomic) NSArray  *listArray;
+@property (strong, nonatomic) NSArray *imgArray;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton    *nightModeBtn;
@@ -30,7 +31,8 @@
     
     self.common = [WMCommon getInstance];
     
-    self.listArray = @[@"开通会员", @"QQ钱包", @"网上营业厅", @"个性装扮", @"我的收藏", @"我的相册", @"我的文件"];
+    self.listArray = @[@"消息", @"活动", @"签到", @"班车", @"钱包", @"邀请", @"投诉"];
+//    self.imgArray = @[@"消息", @"活动", @"签到", @"班车", @"钱包", @"邀请", @"投诉"];
     
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;
@@ -66,6 +68,7 @@
     // 没有用系统自带的类而用了自己重新定义的cell，仅仅为了之后扩展方便，无他
     WMMenuTableViewCell *cell = [WMMenuTableViewCell cellWithTableView:tableView];
     [cell setCellText:self.listArray[indexPath.row]];
+    
     
     return cell;
 }
