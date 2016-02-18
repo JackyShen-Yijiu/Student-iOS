@@ -56,8 +56,6 @@ static NSDateFormatter *dateFormattor;
         // 初始化日期
         [self setCurrentDate:self.date];
         
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modifyVacation) name:@"modifyVacation" object:nil];
-
     }
     return self;
 }
@@ -125,7 +123,7 @@ static NSDateFormatter *dateFormattor;
     self.scrollView = [[UIScrollView alloc] init];
     
     self.leftCalendarItem = [[FDCalendarItem alloc] init];
-    self.leftCalendarItem.backgroundColor = [UIColor whiteColor];
+    self.leftCalendarItem.backgroundColor = RGBColor(238, 238, 238);
     [self.scrollView addSubview:self.leftCalendarItem];
     
     self.centerCalendarItem = [[FDCalendarItem alloc] init];
@@ -133,13 +131,13 @@ static NSDateFormatter *dateFormattor;
     itemFrame.origin.x = DeviceWidth;
     self.centerCalendarItem.frame = itemFrame;
     self.centerCalendarItem.delegate = self;
-    self.centerCalendarItem.backgroundColor = [UIColor whiteColor];
+    self.centerCalendarItem.backgroundColor = RGBColor(238, 238, 238);
     [self.scrollView addSubview:self.centerCalendarItem];
     
     self.rightCalendarItem = [[FDCalendarItem alloc] init];
     itemFrame.origin.x = DeviceWidth * 2;
     self.rightCalendarItem.frame = itemFrame;
-    self.rightCalendarItem.backgroundColor = [UIColor whiteColor];
+    self.rightCalendarItem.backgroundColor = RGBColor(238, 238, 238);
     [self.scrollView addSubview:self.rightCalendarItem];
     
 }
@@ -185,8 +183,8 @@ static NSDateFormatter *dateFormattor;
     [self.dateFormattor setDateFormat:@"M"];
     NSString * monthStr = [self.dateFormattor stringFromDate:date];
 
-    /*
-    NSString *  userId = [[UserInfoModel defaultUserInfo] userID];
+    
+    NSString *  userId = [AcountManager manager].applycoach.infoId;
     
     WS(ws);
     [NetWorkEntiry getAllCourseInfoWithUserId:userId yearTime:yearStr monthTime:monthStr success:^(AFHTTPRequestOperation *operation, id responseObject) {
@@ -221,10 +219,10 @@ static NSDateFormatter *dateFormattor;
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        
+        [ws.centerCalendarItem reloadData];
+
     }];
-     */
-    [self.centerCalendarItem reloadData];
+    
 
 }
 

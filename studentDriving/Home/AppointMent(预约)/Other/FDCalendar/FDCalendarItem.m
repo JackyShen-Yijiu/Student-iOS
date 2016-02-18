@@ -8,15 +8,13 @@
 
 #import "FDCalendarItem.h"
 
-#define cellWidth_Height 35
-
 @interface FDCalendarCell : UICollectionViewCell
 
 @property(nonatomic,assign) KCellStation station;
 
 - (UIView *)selectView;
 - (UILabel *)dayLabel;
-- (UILabel *)chineseDayLabel;
+//- (UILabel *)chineseDayLabel;
 - (UILabel *)pointView;
 - (UILabel *)restLabel;
 - (UIView *)lineView;
@@ -28,7 +26,7 @@
 {
     UIView *_selectView;
     UILabel *_dayLabel;
-    UILabel *_chineseDayLabel;
+//    UILabel *_chineseDayLabel;
     UIView *_pointView;
     UIView * _lineView;
     UILabel *_restLabel;
@@ -44,24 +42,24 @@
     }
     return _dayLabel;
 }
-// 农历
-- (UILabel *)chineseDayLabel {
-    if (!_chineseDayLabel) {
-        _chineseDayLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2-10, calendarItemH-10*2.5, 20, 10)];
-        _chineseDayLabel.textAlignment = NSTextAlignmentCenter;
-        _chineseDayLabel.font = [UIFont boldSystemFontOfSize:9];
-        _chineseDayLabel.textColor = [UIColor lightGrayColor];
-        [self addSubview:_chineseDayLabel];
-    }
-    return _chineseDayLabel;
-}
+//// 农历
+//- (UILabel *)chineseDayLabel {
+//    if (!_chineseDayLabel) {
+//        _chineseDayLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2-10, calendarItemH-10*2.5, 20, 10)];
+//        _chineseDayLabel.textAlignment = NSTextAlignmentCenter;
+//        _chineseDayLabel.font = [UIFont boldSystemFontOfSize:9];
+//        _chineseDayLabel.textColor = [UIColor lightGrayColor];
+//        [self addSubview:_chineseDayLabel];
+//    }
+//    return _chineseDayLabel;
+//}
 // 预约蓝色点
 - (UIView *)pointView
 {
     if (!_pointView) {
         _pointView = [[UIView alloc] init];
         _pointView.backgroundColor =  YBNavigationBarBgColor;
-        _pointView.frame = CGRectMake(_chineseDayLabel.center.x-2,calendarItemH/2-2, 4, 4);
+        _pointView.frame = CGRectMake(_dayLabel.center.x-2,calendarItemH-17-4, 4, 4);
         _pointView.layer.masksToBounds = YES;
         [_pointView setHidden:YES];
         _pointView.layer.cornerRadius = _pointView.size.width/2.f;
@@ -73,7 +71,7 @@
 - (UILabel *)restLabel {
     
     if (!_restLabel) {
-        _restLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2-15/2, calendarItemH/2-15/2, 15, 15)];
+        _restLabel = [[UILabel alloc] initWithFrame:CGRectMake(self.width/2-15/2, calendarItemH-25-15, 15, 15)];
         _restLabel.textAlignment = NSTextAlignmentCenter;
         _restLabel.font = [UIFont systemFontOfSize:8];
         _restLabel.backgroundColor = [UIColor clearColor];
@@ -124,7 +122,7 @@
             break;
     }
    // self.maskView.center = CGPointMake(self.width/2.f, self.height/2.f);
-    [self pointView].center = CGPointMake(self.width/2.f, self.height/2-2);
+    [self pointView].center = CGPointMake(self.width/2.f, self.height-17-2);
 }
 
 - (void)setIsSeletedDay:(BOOL)isSeletedDay curDay:(BOOL)isCurDay
@@ -358,7 +356,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
         cell.dayLabel.textColor = [UIColor lightGrayColor];
         cell.dayLabel.text = nil;
         cell.pointView.hidden = YES;
-        cell.chineseDayLabel.hidden = YES;
+//        cell.chineseDayLabel.hidden = YES;
         cell.restLabel.hidden = YES;
         cell.selectedBackgroundView = nil;
 
@@ -377,7 +375,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
         cell.dayLabel.textColor = [UIColor whiteColor];
         cell.dayLabel.text = nil;
         cell.pointView.hidden = YES;
-        cell.chineseDayLabel.hidden = YES;
+//        cell.chineseDayLabel.hidden = YES;
         cell.restLabel.hidden = YES;
         cell.selectedBackgroundView = nil;
 
@@ -385,7 +383,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
         
         NSInteger day = indexPath.row - firstWeekday + 1;
         cell.dayLabel.text= [NSString stringWithFormat:@"%ld", day];
-        cell.chineseDayLabel.hidden = NO;
+//        cell.chineseDayLabel.hidden = NO;
         
         int compareDataNum = [self compareDateWithSelectDate:[self getCurrentData:indexPath]];
         if (compareDataNum==0) {// 当前
@@ -446,8 +444,8 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
             
         }
         
-        cell.chineseDayLabel.text = [self chineseCalendarOfDate:[self dateOfMonth:FDCalendarMonthCurrent WithDay:day]];
-        cell.chineseDayLabel.hidden = YES;// 隐藏农历
+//        cell.chineseDayLabel.text = [self chineseCalendarOfDate:[self dateOfMonth:FDCalendarMonthCurrent WithDay:day]];
+//        cell.chineseDayLabel.hidden = YES;// 隐藏农历
         
         // 根据服务器返回数据判断是否休假
         cell.restLabel.hidden = ![self isRest:self.restArray day:[cell.dayLabel.text integerValue]];

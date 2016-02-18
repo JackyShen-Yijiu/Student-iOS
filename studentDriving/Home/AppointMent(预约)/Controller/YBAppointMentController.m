@@ -14,6 +14,7 @@
 #import "CourseSummaryDayCell.h"
 #import "AppointmentCoachTimeInfoModel.h"
 #import "BaseModelMethod.h"
+#import "YBAppotinMentHeadView.h"
 
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate,FDCalendarDelegate>
 {
@@ -31,9 +32,21 @@
 
 @property(nonatomic,strong)NSDateFormatter *dateFormattor;
 
+@property (nonatomic,strong) YBAppotinMentHeadView *appointMentHeadView;
+
 @end
 
 @implementation YBAppointMentController
+
+- (YBAppotinMentHeadView *)appointMentHeadView
+{
+    if (_appointMentHeadView==nil) {
+        
+        _appointMentHeadView = [[YBAppotinMentHeadView alloc] init];
+        
+    }
+    return _appointMentHeadView;
+}
 
 - (YBAppointMentNoCountentView *)noCountmentView
 {
@@ -92,8 +105,6 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(modifyVacation) name:@"modifyVacation" object:nil];
-    
     self.title = @"预约";
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"换教练" style:UIBarButtonItemStyleDone target:self action:@selector(changeCoach)];
@@ -110,34 +121,9 @@
     
 }
 
-#pragma mark - LoingNotification
-- (void)didLoginSucess:(NSNotification *)notification
-{
-    [self fdCalendar:nil didSelectedDate:[NSDate date]];
-}
-
-- (void)didLoginoutSucess:(NSNotification *)notifcation
-{
-    [self.courseDayTableData removeAllObjects];
-    [[self courseDayTableData] removeAllObjects];
-    [self.courseDayTableView reloadData];
-}
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
-- (void)modifyVacation
-{
-    NSLog(@"%s",__func__);
-    
-    // 设置当前日期
-    [self.calendarHeadView setCurrentDate:[NSDate date]];
-    
-    [self fdCalendar:self.calendarHeadView didSelectedDate:[NSDate date]];
-    
-    
 }
 
 -(void)initUI
@@ -146,7 +132,7 @@
     // 顶部日历
     self.calendarHeadView = [[FDCalendar alloc] initWithCurrentDate:[NSDate date]];
     self.calendarHeadView.delegate = self;
-    self.calendarHeadView.frame = CGRectMake(0, 0, self.view.width, 30+65);
+    self.calendarHeadView.frame = CGRectMake(0, 0, self.view.width, 30+67);
     [self.view addSubview:self.calendarHeadView];
     
     // 底部预约列表
@@ -154,6 +140,9 @@
     self.courseDayTableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.courseDayTableView.delegate = self;
     self.courseDayTableView.dataSource = self;
+    self.courseDayTableView.backgroundColor = RGBColor(238, 238, 238);
+    self.courseDayTableView.tableHeaderView = self.appointMentHeadView;
+    self.courseDayTableView.contentInset = UIEdgeInsetsMake(0, 0, self.calendarHeadView.height+15, 0);
     [self.view addSubview:self.courseDayTableView];
   
 }
@@ -174,50 +163,6 @@
     
     // 设置顶部标题
     self.navigationItem.title = [NSString stringWithFormat:@"%@",[self.dateFormattor stringFromDate:date]];
-    
-}
-
-#pragma mark --- 中间日程点击事件
-- (void)JGYuYueHeadViewWithCollectionViewDidSelectItemAtIndexPath:(NSIndexPath *)indexPath timeInfo:(AppointmentCoachTimeInfoModel *)model
-{
-    NSLog(@"加载日程模块底部预约列表数据");
-    [self loadFootListDataWithinfoId:model.infoId];
-    
-}
-
-- (void)loadFootListDataWithinfoId:(NSString *)infoId
-{
-    
-    NSString *  userId = [AcountManager manager].applycoach.infoId;
-    if (userId==nil && infoId==nil) {
-        return;
-    }
-    
-    WS(ws);
-    // 加载底部预约列表数据
-    [NetWorkEntiry getcoursereservationlistWithUserId:userId courseid:infoId  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSLog(@"切换日历获取最新数据:responseObject:%@",responseObject);
-        
-        NSInteger type = [[responseObject objectForKey:@"type"] integerValue];
-        
-        if (type == 1) {
-            
-            ws.courseDayTableData = [[BaseModelMethod getCourseListArrayFormDicInfo:[responseObject objectArrayForKey:@"data"]] mutableCopy];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [ws.courseDayTableView reloadData];
-            });
-            
-        }else{
-            
-            [ws obj_showTotasViewWithMes:responseObject];
-
-        }
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
-    }];
     
 }
 
@@ -253,14 +198,36 @@
         }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+        [ws.courseDayTableView reloadData];
     }];
     
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section==0) {
+        return 0;
+    }
+    return 30;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 3;
 }
 
 #pragma mark - DataSource
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (section==0) {
+        return 4;
+    }else if (section==1){
+        return 5;
+    }else{
+        return 7;
+    }
+    
     NSInteger count = 0;
     count =  self.courseDayTableData.count;
         [self.noCountmentView setHidden:count];
@@ -280,8 +247,8 @@
     if (!dayCell) {
         dayCell = [[CourseSummaryDayCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"dayCell"];
     }
-    if (indexPath.row < self.courseDayTableData.count)
-        [dayCell setModel:self.courseDayTableData[indexPath.row]];
+//    if (indexPath.row < self.courseDayTableData.count)
+//        [dayCell setModel:self.courseDayTableData[indexPath.row]];
     
     return dayCell;
     
