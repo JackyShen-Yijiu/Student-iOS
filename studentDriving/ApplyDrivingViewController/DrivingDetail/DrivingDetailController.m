@@ -22,6 +22,7 @@
 #import "SchoolClassDetailController.h"
 #import "SignUpController.h"
 #import "serverclasslistModel.h"
+#import "YBAPPMacro.h"
 
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -40,9 +41,11 @@
 
 @implementation DrivingDetailController
 
+#pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.edgesForExtendedLayout = NO;
     self.title = @"驾校详情";
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -54,6 +57,13 @@
     [self.view addSubview:self.tableView];
     
     [self configViewModel];
+}
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    self.navigationController.navigationBar.backgroundColor = YBNavigationBarBgColor;
 }
 
 #pragma mark - config view model
@@ -215,7 +225,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [UITableView new];
-        _tableView.frame = self.view.bounds;
+        _tableView.frame = CGRectMake(0, -44, self.view.bounds.size.width, self.view.bounds.size.height - 49 - 20);
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.tableFooterView = [UITableView new];

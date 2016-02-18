@@ -45,6 +45,7 @@
     
     UIImage *image = [self resizeImage:_foregroundImage newSize:_size];
     CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
+//    NSLog(@"%f",_foregroundImage.size.width);
     rect.size.width *= biLi;
     
     CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
