@@ -57,7 +57,7 @@
     self.titleLabel.textColor = RGBColor(0x33, 0x33, 0x33);
     self.titleLabel.backgroundColor = [UIColor clearColor];
     self.titleLabel.numberOfLines = 1;
-    self.titleLabel.text = @"当前学车进度:科目二第4课时 侧方停车";
+    self.titleLabel.text = @"暂无数据";
     [self addSubview:self.titleLabel];
     
     // 已约   官方学时
@@ -67,7 +67,7 @@
     self.subTitle.textColor = [UIColor grayColor];
     self.subTitle.backgroundColor = [UIColor clearColor];
     self.subTitle.numberOfLines = 1;
-    self.subTitle.text = @"已约25课时   官方学时23课时";
+    self.subTitle.text = @"暂无数据";
     [self addSubview:self.subTitle];
     
     // 漏课  剩余学时
@@ -77,13 +77,16 @@
     self.detailLabel.textColor = [UIColor grayColor];
     self.detailLabel.backgroundColor = [UIColor clearColor];
     self.detailLabel.numberOfLines = 1;
-    self.detailLabel.text = @"漏课10课时  剩余学时4课时";
+    self.detailLabel.text = @"暂无数据";
     [self addSubview:self.detailLabel];
    
     // 分割线
     self.bottomLine = [self getOnelineView];
     [self addSubview:self.bottomLine];
     
+    // 添加数据
+    [self setUpData];
+
     [self updateConstraints];
     
 }
@@ -123,29 +126,87 @@
         make.right.equalTo(@0);
     }];
     
-    
 }
 
 #pragma mark - Data
-- (void)setModel:(HMCourseModel *)model
+- (void)setUpData
 {
-    if (_model == model) {
-        return;
+    
+    NSString * imageStr = @"littleImage.png";
+    self.potraitView.imageView.image = [UIImage imageNamed:imageStr];
+    
+    if ([AcountManager manager].subjecttwo.progress) {
+        self.titleLabel.text = [NSString stringWithFormat:@"当前学车进度:%@",[AcountManager manager].subjecttwo.progress];
+    }
+    if ([AcountManager manager].subjectthree.progress) {
+        self.titleLabel.text = [NSString stringWithFormat:@"当前学车进度:%@",[AcountManager manager].subjectthree.progress];
+    }
+
+    if ([AcountManager manager].subjecttwo.reservation && [AcountManager manager].subjecttwo.finishcourse) {
+        
+        NSInteger yiyuexueshiCount = [[AcountManager manager].subjecttwo.reservation integerValue] + [[AcountManager manager].subjecttwo.finishcourse integerValue];
+        
+        NSLog(@"yiyuexueshiCount:%lu",yiyuexueshiCount);
+        self.subTitle.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
+
+//        _yiyuexueshiLabel.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
+    }
+    if ([AcountManager manager].subjectthree.reservation && [AcountManager manager].subjectthree.finishcourse) {
+        
+        NSInteger yiyuexueshiCount = [[AcountManager manager].subjectthree.reservation integerValue] + [[AcountManager manager].subjectthree.finishcourse integerValue];
+        NSLog(@"yiyuexueshiCount:%lu",yiyuexueshiCount);
+        
+//        _yiyuexueshiLabel.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
+        self.subTitle.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
+
     }
     
-    _model = model;
+    NSMutableString *detailStr = [NSMutableString string];
+    if ([AcountManager manager].subjecttwo.missingcourse) {
+        
+        NSInteger loukeCount = [[AcountManager manager].subjecttwo.missingcourse integerValue];;
+        NSLog(@"loukeCount:%ld",(long)loukeCount);
+        
+        [detailStr appendString:[NSString stringWithFormat:@"漏课:%ld课时",(long)loukeCount]];
+
+    }
+    if ([AcountManager manager].subjectthree.missingcourse) {
+        
+        NSInteger loukeCount = [[AcountManager manager].subjectthree.missingcourse integerValue];
+        NSLog(@"loukeCount:%ld",(long)loukeCount);
+        
+        [detailStr appendString:[NSString stringWithFormat:@"漏课:%ld课时",(long)loukeCount]];
+
+    }
     
-    UIImage * defaultImage = [UIImage imageNamed:@"defoult_por"];
-    self.potraitView.imageView.image = defaultImage;
-    NSString * imageStr = _model.studentInfo.porInfo.originalpic;
-    if(imageStr)
-        [self.potraitView.imageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:defaultImage];
     
-    self.titleLabel.text = @"nameTitle";
+    if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
+        
+        NSInteger doneCourse = [AcountManager manager].subjecttwo.finishcourse.integerValue;
+        NSInteger appointCourse = [AcountManager manager].subjecttwo.reservation.integerValue;
+        NSInteger totalCourse = [AcountManager manager].subjecttwo.totalcourse.integerValue;
+        NSInteger restCourse = totalCourse - doneCourse - appointCourse;
+        
+//        _appointDetailLabel.text = [NSString stringWithFormat:@"您已完成%zd课时，总共预约了%zd课时,科目二的可预约课时剩余%zd课时。",doneCourse,appointCourse,restCourse];
+        
+        [detailStr appendString:[NSString stringWithFormat:@"          剩余学时:%ld课时",(long)restCourse]];
+
+    }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
+        
+        NSInteger doneCourse = [AcountManager manager].subjectthree.finishcourse.integerValue;
+        NSInteger appointCourse = [AcountManager manager].subjectthree.reservation.integerValue;
+        NSInteger totalCourse = [AcountManager manager].subjectthree.totalcourse.integerValue;
+        NSInteger restCourse = totalCourse - doneCourse - appointCourse;
+//        _appointDetailLabel.text = [NSString stringWithFormat:@"您已完成%zd课时，总共预约了%zd课时,科目三的可预约课时剩余%zd课时。",doneCourse,appointCourse,restCourse];
+        
+        [detailStr appendString:[NSString stringWithFormat:@"          剩余学时:%ld课时",(long)restCourse]];
+
+    }
     
-    self.subTitle.text = @"subTitle";
-    
-    self.detailLabel.text = @"detailLabel";
+    if (detailStr&&[detailStr length]!=0) {
+        self.detailLabel.text = detailStr;
+    }
+
 
 }
 
