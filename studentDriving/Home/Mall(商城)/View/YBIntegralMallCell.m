@@ -184,5 +184,29 @@
     }
     return _surplusLabel;
 }
+- (void)setIntegralMallModel:(YBIntegralMallModel *)integralMallModel{
+    /*
+     
+     @property (nonatomic,strong) NSString *productid;
+     @property (nonatomic,strong) NSString *productname;
+     @property (nonatomic,assign) int  productprice;
+     @property (nonatomic,strong) NSString *productimg;
+     @property (nonatomic,strong) NSString *productdesc;
+     @property (nonatomic,assign) int  viewcount;
+     @property (nonatomic,assign) int  buycount;
+     @property (nonatomic,strong) NSString *detailsimg;
+     @property (nonatomic,assign) BOOL is_scanconsumption;
+     
+     @property (nonatomic,strong) NSString *detailurl;
 
+     */
+    [self.mallImageView sd_setImageWithURL:[NSURL URLWithString:integralMallModel.productimg] placeholderImage:nil];
+    self.nameLabel.text = integralMallModel.productname;
+    self.integralLabel.text = [NSString stringWithFormat:@"兑换积分:%d",integralMallModel.productprice];
+//    self.addressLabel.text = [NSString stringWithFormat:@"地址：%@",]
+    self.peopleNumberLabel.text = [NSString stringWithFormat:@"已有%d人兑换",integralMallModel.buycount];
+//    self.surplusLabel.text = [NSString stringWithFormat:@"剩余%d份",integralMallMode]
+    
+    
+}
 @end

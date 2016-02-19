@@ -70,22 +70,26 @@
 		55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B671C26798500AC64FF /* SubmitVerificationController.m */; };
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
-		568DF1C61C7556AA00008829 /* YBIntegralMallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1C51C7556AA00008829 /* YBIntegralMallCell.m */; };
-		568DF20C1C75756900008829 /* finishMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1F31C75756900008829 /* finishMessageView.m */; };
-		568DF20D1C75756900008829 /* finishMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF1F41C75756900008829 /* finishMessageView.xib */; };
 		568DF20E1C75756900008829 /* InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1F61C75756900008829 /* InfoModel.m */; };
-		568DF20F1C75756900008829 /* LTBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1F81C75756900008829 /* LTBottomView.m */; };
-		568DF2101C75756900008829 /* LTBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF1F91C75756900008829 /* LTBottomView.xib */; };
-		568DF2111C75756900008829 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1FB1C75756900008829 /* MagicDetailViewController.m */; };
 		568DF2121C75756900008829 /* MagicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1FD1C75756900008829 /* MagicMainTableViewCell.m */; };
 		568DF2131C75756900008829 /* MagicMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF1FE1C75756900008829 /* MagicMainTableViewCell.xib */; };
 		568DF2141C75756900008829 /* MagicMainTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2001C75756900008829 /* MagicMainTableViewController.m */; };
 		568DF2151C75756900008829 /* MyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2021C75756900008829 /* MyWallet.m */; };
-		568DF2161C75756900008829 /* PrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2041C75756900008829 /* PrivateMessageCell.m */; };
-		568DF2171C75756900008829 /* PrivateMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF2051C75756900008829 /* PrivateMessageCell.xib */; };
-		568DF2181C75756900008829 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2071C75756900008829 /* PrivateMessageController.m */; };
 		568DF2191C75756900008829 /* ShopMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2091C75756900008829 /* ShopMainModel.m */; };
-		568DF21A1C75756900008829 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF20B1C75756900008829 /* VirtualViewController.m */; };
+		568DF21D1C75792B00008829 /* YBIntegralMallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF21C1C75792B00008829 /* YBIntegralMallModel.m */; };
+		568DF2211C75911C00008829 /* YBIntegralMallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2201C75911C00008829 /* YBIntegralMallCell.m */; };
+		568DF22B1C7591EF00008829 /* finishMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2241C7591EF00008829 /* finishMessageView.m */; };
+		568DF22C1C7591EF00008829 /* finishMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF2251C7591EF00008829 /* finishMessageView.xib */; };
+		568DF22D1C7591EF00008829 /* LTBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2271C7591EF00008829 /* LTBottomView.m */; };
+		568DF22E1C7591EF00008829 /* LTBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF2281C7591EF00008829 /* LTBottomView.xib */; };
+		568DF22F1C7591EF00008829 /* PrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2291C7591EF00008829 /* PrivateMessageCell.m */; };
+		568DF2301C7591EF00008829 /* PrivateMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF22A1C7591EF00008829 /* PrivateMessageCell.xib */; };
+		568DF2371C7592C400008829 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2321C7592C400008829 /* MagicDetailViewController.m */; };
+		568DF2381C7592C400008829 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2341C7592C400008829 /* PrivateMessageController.m */; };
+		568DF2391C7592C400008829 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2361C7592C400008829 /* VirtualViewController.m */; };
+		568DF2421C75A82400008829 /* YBComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2411C75A82400008829 /* YBComplaintController.m */; };
+		568DF2481C75A88400008829 /* ComplaintSchoolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2471C75A88400008829 /* ComplaintSchoolView.m */; };
+		568DF24B1C75B4DA00008829 /* YBComplaintCoachView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF24A1C75B4DA00008829 /* YBComplaintCoachView.m */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
 		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B20DBBC11C5CA20B0023676E /* JGActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBC01C5CA20B0023676E /* JGActivityViewController.m */; };
@@ -1023,18 +1027,8 @@
 		55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
 		55901B6C1C26811900AC64FF /* AppointmentDrivingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDrivingViewController.h; sourceTree = "<group>"; };
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
-		568DF1C41C7556AA00008829 /* YBIntegralMallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBIntegralMallCell.h; path = studentDriving/LoginViewController/YBIntegralMallCell.h; sourceTree = SOURCE_ROOT; };
-		568DF1C51C7556AA00008829 /* YBIntegralMallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBIntegralMallCell.m; path = studentDriving/LoginViewController/YBIntegralMallCell.m; sourceTree = SOURCE_ROOT; };
-		568DF1F21C75756900008829 /* finishMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishMessageView.h; sourceTree = "<group>"; };
-		568DF1F31C75756900008829 /* finishMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishMessageView.m; sourceTree = "<group>"; };
-		568DF1F41C75756900008829 /* finishMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = finishMessageView.xib; sourceTree = "<group>"; };
 		568DF1F51C75756900008829 /* InfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoModel.h; sourceTree = "<group>"; };
 		568DF1F61C75756900008829 /* InfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoModel.m; sourceTree = "<group>"; };
-		568DF1F71C75756900008829 /* LTBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBottomView.h; sourceTree = "<group>"; };
-		568DF1F81C75756900008829 /* LTBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBottomView.m; sourceTree = "<group>"; };
-		568DF1F91C75756900008829 /* LTBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTBottomView.xib; sourceTree = "<group>"; };
-		568DF1FA1C75756900008829 /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDetailViewController.h; sourceTree = "<group>"; };
-		568DF1FB1C75756900008829 /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicDetailViewController.m; sourceTree = "<group>"; };
 		568DF1FC1C75756900008829 /* MagicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicMainTableViewCell.h; sourceTree = "<group>"; };
 		568DF1FD1C75756900008829 /* MagicMainTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicMainTableViewCell.m; sourceTree = "<group>"; };
 		568DF1FE1C75756900008829 /* MagicMainTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MagicMainTableViewCell.xib; sourceTree = "<group>"; };
@@ -1042,15 +1036,33 @@
 		568DF2001C75756900008829 /* MagicMainTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicMainTableViewController.m; sourceTree = "<group>"; };
 		568DF2011C75756900008829 /* MyWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWallet.h; sourceTree = "<group>"; };
 		568DF2021C75756900008829 /* MyWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWallet.m; sourceTree = "<group>"; };
-		568DF2031C75756900008829 /* PrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageCell.h; sourceTree = "<group>"; };
-		568DF2041C75756900008829 /* PrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageCell.m; sourceTree = "<group>"; };
-		568DF2051C75756900008829 /* PrivateMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateMessageCell.xib; sourceTree = "<group>"; };
-		568DF2061C75756900008829 /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageController.h; sourceTree = "<group>"; };
-		568DF2071C75756900008829 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
 		568DF2081C75756900008829 /* ShopMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopMainModel.h; sourceTree = "<group>"; };
 		568DF2091C75756900008829 /* ShopMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopMainModel.m; sourceTree = "<group>"; };
-		568DF20A1C75756900008829 /* VirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualViewController.h; sourceTree = "<group>"; };
-		568DF20B1C75756900008829 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualViewController.m; sourceTree = "<group>"; };
+		568DF21B1C75792B00008829 /* YBIntegralMallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBIntegralMallModel.h; path = studentDriving/LoginViewController/YBIntegralMallModel.h; sourceTree = SOURCE_ROOT; };
+		568DF21C1C75792B00008829 /* YBIntegralMallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBIntegralMallModel.m; path = studentDriving/LoginViewController/YBIntegralMallModel.m; sourceTree = SOURCE_ROOT; };
+		568DF21F1C75911C00008829 /* YBIntegralMallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegralMallCell.h; sourceTree = "<group>"; };
+		568DF2201C75911C00008829 /* YBIntegralMallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegralMallCell.m; sourceTree = "<group>"; };
+		568DF2221C7591DC00008829 /* PrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageCell.h; sourceTree = "<group>"; };
+		568DF2231C7591EF00008829 /* finishMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishMessageView.h; sourceTree = "<group>"; };
+		568DF2241C7591EF00008829 /* finishMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishMessageView.m; sourceTree = "<group>"; };
+		568DF2251C7591EF00008829 /* finishMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = finishMessageView.xib; sourceTree = "<group>"; };
+		568DF2261C7591EF00008829 /* LTBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBottomView.h; sourceTree = "<group>"; };
+		568DF2271C7591EF00008829 /* LTBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBottomView.m; sourceTree = "<group>"; };
+		568DF2281C7591EF00008829 /* LTBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTBottomView.xib; sourceTree = "<group>"; };
+		568DF2291C7591EF00008829 /* PrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageCell.m; sourceTree = "<group>"; };
+		568DF22A1C7591EF00008829 /* PrivateMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateMessageCell.xib; sourceTree = "<group>"; };
+		568DF2311C7592C400008829 /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDetailViewController.h; sourceTree = "<group>"; };
+		568DF2321C7592C400008829 /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicDetailViewController.m; sourceTree = "<group>"; };
+		568DF2331C7592C400008829 /* PrivateMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageController.h; sourceTree = "<group>"; };
+		568DF2341C7592C400008829 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
+		568DF2351C7592C400008829 /* VirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualViewController.h; sourceTree = "<group>"; };
+		568DF2361C7592C400008829 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualViewController.m; sourceTree = "<group>"; };
+		568DF2401C75A82400008829 /* YBComplaintController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBComplaintController.h; sourceTree = "<group>"; };
+		568DF2411C75A82400008829 /* YBComplaintController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBComplaintController.m; sourceTree = "<group>"; };
+		568DF2461C75A88400008829 /* ComplaintSchoolView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintSchoolView.h; sourceTree = "<group>"; };
+		568DF2471C75A88400008829 /* ComplaintSchoolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintSchoolView.m; sourceTree = "<group>"; };
+		568DF2491C75B4DA00008829 /* YBComplaintCoachView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBComplaintCoachView.h; sourceTree = "<group>"; };
+		568DF24A1C75B4DA00008829 /* YBComplaintCoachView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBComplaintCoachView.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
@@ -2855,16 +2867,8 @@
 		568DF1F11C75756900008829 /* RealShop */ = {
 			isa = PBXGroup;
 			children = (
-				568DF1F21C75756900008829 /* finishMessageView.h */,
-				568DF1F31C75756900008829 /* finishMessageView.m */,
-				568DF1F41C75756900008829 /* finishMessageView.xib */,
 				568DF1F51C75756900008829 /* InfoModel.h */,
 				568DF1F61C75756900008829 /* InfoModel.m */,
-				568DF1F71C75756900008829 /* LTBottomView.h */,
-				568DF1F81C75756900008829 /* LTBottomView.m */,
-				568DF1F91C75756900008829 /* LTBottomView.xib */,
-				568DF1FA1C75756900008829 /* MagicDetailViewController.h */,
-				568DF1FB1C75756900008829 /* MagicDetailViewController.m */,
 				568DF1FC1C75756900008829 /* MagicMainTableViewCell.h */,
 				568DF1FD1C75756900008829 /* MagicMainTableViewCell.m */,
 				568DF1FE1C75756900008829 /* MagicMainTableViewCell.xib */,
@@ -2872,18 +2876,58 @@
 				568DF2001C75756900008829 /* MagicMainTableViewController.m */,
 				568DF2011C75756900008829 /* MyWallet.h */,
 				568DF2021C75756900008829 /* MyWallet.m */,
-				568DF2031C75756900008829 /* PrivateMessageCell.h */,
-				568DF2041C75756900008829 /* PrivateMessageCell.m */,
-				568DF2051C75756900008829 /* PrivateMessageCell.xib */,
-				568DF2061C75756900008829 /* PrivateMessageController.h */,
-				568DF2071C75756900008829 /* PrivateMessageController.m */,
 				568DF2081C75756900008829 /* ShopMainModel.h */,
 				568DF2091C75756900008829 /* ShopMainModel.m */,
-				568DF20A1C75756900008829 /* VirtualViewController.h */,
-				568DF20B1C75756900008829 /* VirtualViewController.m */,
 			);
 			name = RealShop;
 			path = Goods/RealShop;
+			sourceTree = "<group>";
+		};
+		568DF21E1C75911C00008829 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				568DF21F1C75911C00008829 /* YBIntegralMallCell.h */,
+				568DF2201C75911C00008829 /* YBIntegralMallCell.m */,
+				568DF2221C7591DC00008829 /* PrivateMessageCell.h */,
+				568DF2291C7591EF00008829 /* PrivateMessageCell.m */,
+				568DF22A1C7591EF00008829 /* PrivateMessageCell.xib */,
+				568DF2231C7591EF00008829 /* finishMessageView.h */,
+				568DF2241C7591EF00008829 /* finishMessageView.m */,
+				568DF2251C7591EF00008829 /* finishMessageView.xib */,
+				568DF2261C7591EF00008829 /* LTBottomView.h */,
+				568DF2271C7591EF00008829 /* LTBottomView.m */,
+				568DF2281C7591EF00008829 /* LTBottomView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		568DF23A1C759F6E00008829 /* SideMenu(侧边栏) */ = {
+			isa = PBXGroup;
+			children = (
+				568DF23F1C75A80D00008829 /* View */,
+				568DF23E1C75A7DC00008829 /* Controller */,
+			);
+			path = "SideMenu(侧边栏)";
+			sourceTree = "<group>";
+		};
+		568DF23E1C75A7DC00008829 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				568DF2401C75A82400008829 /* YBComplaintController.h */,
+				568DF2411C75A82400008829 /* YBComplaintController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		568DF23F1C75A80D00008829 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				568DF2491C75B4DA00008829 /* YBComplaintCoachView.h */,
+				568DF24A1C75B4DA00008829 /* YBComplaintCoachView.m */,
+				568DF2461C75A88400008829 /* ComplaintSchoolView.h */,
+				568DF2471C75A88400008829 /* ComplaintSchoolView.m */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B20DBE441C5DB0FF0023676E /* 支付相关 */ = {
@@ -3167,6 +3211,7 @@
 		B2E8E18E1C72C6F2000190C2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				568DF23A1C759F6E00008829 /* SideMenu(侧边栏) */,
 				B2E8E18F1C72C6F2000190C2 /* AppointMent(预约) */,
 				B2E8E1941C72C6F2000190C2 /* Community(社区) */,
 				B2E8E1991C72C6F2000190C2 /* Mall(商城) */,
@@ -3312,7 +3357,7 @@
 				B2E8E19A1C72C6F2000190C2 /* Controller */,
 				B2E8E19B1C72C6F2000190C2 /* Model */,
 				B2E8E19C1C72C6F2000190C2 /* Other */,
-				B2E8E19D1C72C6F2000190C2 /* View */,
+				568DF21E1C75911C00008829 /* View */,
 			);
 			path = "Mall(商城)";
 			sourceTree = "<group>";
@@ -3322,6 +3367,12 @@
 			children = (
 				B2E8E1B11C72C8CB000190C2 /* YBMallViewController.h */,
 				B2E8E1B21C72C8CB000190C2 /* YBMallViewController.m */,
+				568DF2311C7592C400008829 /* MagicDetailViewController.h */,
+				568DF2321C7592C400008829 /* MagicDetailViewController.m */,
+				568DF2331C7592C400008829 /* PrivateMessageController.h */,
+				568DF2341C7592C400008829 /* PrivateMessageController.m */,
+				568DF2351C7592C400008829 /* VirtualViewController.h */,
+				568DF2361C7592C400008829 /* VirtualViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3329,6 +3380,8 @@
 		B2E8E19B1C72C6F2000190C2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				568DF21B1C75792B00008829 /* YBIntegralMallModel.h */,
+				568DF21C1C75792B00008829 /* YBIntegralMallModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3338,15 +3391,6 @@
 			children = (
 			);
 			path = Other;
-			sourceTree = "<group>";
-		};
-		B2E8E19D1C72C6F2000190C2 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				568DF1C41C7556AA00008829 /* YBIntegralMallCell.h */,
-				568DF1C51C7556AA00008829 /* YBIntegralMallCell.m */,
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		B2E8E19E1C72C6F2000190C2 /* SignUp(报名) */ = {
@@ -5642,7 +5686,7 @@
 				D5604BDB1BF656C50020F0D7 /* faceDelete.png in Resources */,
 				D5604BC21BF656C50020F0D7 /* call_out_h@2x.png in Resources */,
 				D92B2DA51C59CD9D0050EE84 /* DrivingDetailBriefIntroductionCell.xib in Resources */,
-				568DF2171C75756900008829 /* PrivateMessageCell.xib in Resources */,
+				568DF2301C7591EF00008829 /* PrivateMessageCell.xib in Resources */,
 				D5604BF61BF656C50020F0D7 /* chatBar_colorMore_cameraSelected@2x.png in Resources */,
 				D98581B51C58BF000044E029 /* ShuttleBusCell.xib in Resources */,
 				D5604BAC1BF656C50020F0D7 /* VoiceSearchFeedback011@2x.png in Resources */,
@@ -5656,13 +5700,13 @@
 				D5604BCB1BF656C50020F0D7 /* chatBar_more_cardSelected.png in Resources */,
 				D5604BA91BF656C50020F0D7 /* VoiceSearchFeedback010.png in Resources */,
 				D5604BBE1BF656C50020F0D7 /* VoiceSearchFeedback020@2x.png in Resources */,
-				568DF20D1C75756900008829 /* finishMessageView.xib in Resources */,
 				568DF2131C75756900008829 /* MagicMainTableViewCell.xib in Resources */,
 				D5604C121BF656C50020F0D7 /* chat_receiver_audio_playing003.png in Resources */,
 				556994AA1C3F885B00CD8BAF /* mapapi.bundle in Resources */,
 				D5604BCE1BF656C50020F0D7 /* chatBar_more_face@2x.png in Resources */,
 				D5604BB31BF656C50020F0D7 /* VoiceSearchFeedback015.png in Resources */,
 				D5604C201BF656C50020F0D7 /* chat_sender_audio_playing_full.png in Resources */,
+				568DF22E1C7591EF00008829 /* LTBottomView.xib in Resources */,
 				D5604B991BF656C50020F0D7 /* VoiceSearchFeedback002.png in Resources */,
 				D5604CC01BF6E0150020F0D7 /* Localizable.strings in Resources */,
 				D5604C1F1BF656C50020F0D7 /* chat_sender_audio_playing_003@2x.png in Resources */,
@@ -5677,6 +5721,7 @@
 				D919F3271C60885A00239B34 /* UMSShareListController.xib in Resources */,
 				D5604B931BF656C50020F0D7 /* 58.png in Resources */,
 				D5604B941BF656C50020F0D7 /* 80.png in Resources */,
+				568DF22C1C7591EF00008829 /* finishMessageView.xib in Resources */,
 				D92B2DBD1C5A02AF0050EE84 /* DrivingDetailSignUpCell.xib in Resources */,
 				D5604BF71BF656C50020F0D7 /* chatBar_colorMore_location@2x.png in Resources */,
 				D5604C171BF656C50020F0D7 /* chat_receiver_bg@2x.png in Resources */,
@@ -5729,7 +5774,6 @@
 				D919F3261C60885A00239B34 /* UMSnsAccountViewController.xib in Resources */,
 				D5604BF21BF656C50020F0D7 /* chatBar_recordSelectedBg@2x.png in Resources */,
 				D5604BE51BF656C50020F0D7 /* chatBar_keyboardSelected.png in Resources */,
-				568DF2101C75756900008829 /* LTBottomView.xib in Resources */,
 				D5604C371BF656C50020F0D7 /* newFriends@2x.png in Resources */,
 				D5604B951BF656C50020F0D7 /* chatListCellHead.png in Resources */,
 				D5604C3A1BF656C50020F0D7 /* tabbar_chatsHL.png in Resources */,
@@ -5880,6 +5924,7 @@
 				D5604B6E1BF656C50020F0D7 /* PSTGridLayoutRow.m in Sources */,
 				556F425B1C310E980052DE73 /* ApplyClassCell.m in Sources */,
 				D5604B491BF656C50020F0D7 /* MBProgressHUD.m in Sources */,
+				568DF2421C75A82400008829 /* YBComplaintController.m in Sources */,
 				066BFB181C23A2C3002A1DD8 /* HomeMainController.m in Sources */,
 				D52638561BDF1FA400ADC2C7 /* ApplyclasstypeinfoModel.m in Sources */,
 				D9D4BA0F1C3B916D00F62BE9 /* LJSwizzleMethod.m in Sources */,
@@ -5908,6 +5953,7 @@
 				D5604B861BF656C50020F0D7 /* BaseTableViewCell.m in Sources */,
 				55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */,
 				D588B1141BDDDC2F000C5D6F /* UIColor+RGBColor.m in Sources */,
+				568DF2481C75A88400008829 /* ComplaintSchoolView.m in Sources */,
 				55901B5F1C26795800AC64FF /* VerifyPhoneController.m in Sources */,
 				D588B0D81BDDDC14000C5D6F /* DrivingIntroductionCell.m in Sources */,
 				B21818361C5A42F600F973A7 /* trainfieldModel.m in Sources */,
@@ -5916,7 +5962,6 @@
 				060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
 				B20DBED31C5DB0FF0023676E /* base64.m in Sources */,
-				568DF2161C75756900008829 /* PrivateMessageCell.m in Sources */,
 				D966E77A1C5B4363007848B4 /* ClassTypeDMVipserverlist.m in Sources */,
 				D5C240111BECFAD800832CF3 /* AVPlayModel.m in Sources */,
 				D5604B511BF656C50020F0D7 /* MWZoomingScrollView.m in Sources */,
@@ -5926,6 +5971,7 @@
 				B20DBBC11C5CA20B0023676E /* JGActivityViewController.m in Sources */,
 				D588AFCD1BDDDAAB000C5D6F /* AppointmentCoachTimeInfoModel.m in Sources */,
 				D96532891C733E0B0097AFA2 /* DVVSignUpSchoolDMData.m in Sources */,
+				568DF24B1C75B4DA00008829 /* YBComplaintCoachView.m in Sources */,
 				55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */,
 				D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */,
 				D98581AD1C58B1C80044E029 /* DVVImagePickerControllerManager.m in Sources */,
@@ -5933,11 +5979,11 @@
 				D96712D91C3F8A150099C3B9 /* DVVCreateQRCode.m in Sources */,
 				D96248381C57A16D0028EE62 /* ComplaintController.m in Sources */,
 				0647A5B91C34C1DE00DBB8A3 /* DiscountShopCell.m in Sources */,
+				568DF2371C7592C400008829 /* MagicDetailViewController.m in Sources */,
 				D5604B411BF656C50020F0D7 /* EMCDDeviceManager+Microphone.m in Sources */,
 				D96D1BF71C2BD47900F1C282 /* DVVUserManager.m in Sources */,
 				B20DBEE11C5DB9120023676E /* JGPayTool.m in Sources */,
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
-				568DF1C61C7556AA00008829 /* YBIntegralMallCell.m in Sources */,
 				B20DBECF1C5DB0FF0023676E /* SBJsonWriter.m in Sources */,
 				06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */,
 				D5604C921BF656F30020F0D7 /* MessageReadManager.m in Sources */,
@@ -5989,6 +6035,7 @@
 				D5604B3F1BF656C50020F0D7 /* EMAudioRecorderUtil.m in Sources */,
 				D970D3971C3CFFEB003FCED3 /* CoachDMData.m in Sources */,
 				D96149421C5C587200E3007F /* CoachListDMHeadportrait.m in Sources */,
+				568DF21D1C75792B00008829 /* YBIntegralMallModel.m in Sources */,
 				B2E8E1891C72BA4F000190C2 /* WMCommon.m in Sources */,
 				D51256CF1BE36239002717DA /* MyExamCarViewController.m in Sources */,
 				554641CB1C250A2200A55326 /* SignUpSuccessViewController.m in Sources */,
@@ -6069,6 +6116,7 @@
 				D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */,
 				D588B11A1BDDDC2F000C5D6F /* AcountManager.m in Sources */,
 				D588AFC31BDDDAAB000C5D6F /* DrvingDetailModel.m in Sources */,
+				568DF2391C7592C400008829 /* VirtualViewController.m in Sources */,
 				062734CD1C5A2C860056B0BC /* SignUpInfoCell.m in Sources */,
 				554641C81C250A1B00A55326 /* SignUpViewController.m in Sources */,
 				D5604C8C1BF656F30020F0D7 /* EMChatVideoBubbleView.m in Sources */,
@@ -6092,10 +6140,10 @@
 				D588B0CC1BDDDC14000C5D6F /* ExamCarCollectionViewCell.m in Sources */,
 				B2E8E1C61C72CEFD000190C2 /* IWBadgeButton.m in Sources */,
 				D588B0D31BDDDC14000C5D6F /* CoachIntroductionCell.m in Sources */,
-				568DF21A1C75756900008829 /* VirtualViewController.m in Sources */,
 				D5604B671BF656C50020F0D7 /* PSTCollectionViewData.m in Sources */,
-				568DF2111C75756900008829 /* MagicDetailViewController.m in Sources */,
+				568DF22F1C7591EF00008829 /* PrivateMessageCell.m in Sources */,
 				D978ACD11C47957F00D633B4 /* DVVLocationStatus.m in Sources */,
+				568DF22B1C7591EF00008829 /* finishMessageView.m in Sources */,
 				B2E8E1E91C731B7E000190C2 /* YBToolBarView.m in Sources */,
 				D588B14F1BDE166A000C5D6F /* WrongQuestionViewController.m in Sources */,
 				D588B04C1BDDDB71000C5D6F /* MyWalletViewController.m in Sources */,
@@ -6159,7 +6207,6 @@
 				D966E7771C5B4363007848B4 /* ClassTypeDMData.m in Sources */,
 				D5604B5C1BF656C50020F0D7 /* UIButton+EMWebCache.m in Sources */,
 				D96D1BED1C2B88A000F1C282 /* DVVSideMenuFooterView.m in Sources */,
-				568DF2181C75756900008829 /* PrivateMessageController.m in Sources */,
 				D51256A51BDFB521002717DA /* SignUpCoachViewController.m in Sources */,
 				D5604B841BF656C50020F0D7 /* UIViewController+DismissKeyboard.m in Sources */,
 				D96532881C733E0B0097AFA2 /* DVVSignUpCoachDMSubject.m in Sources */,
@@ -6197,9 +6244,9 @@
 				D51256B41BE1DB9A002717DA /* StudentDetailModel.m in Sources */,
 				D965CAA21C239D9F00DCD094 /* DrivingCarTypeDMRootClass.m in Sources */,
 				D5604B641BF656C50020F0D7 /* PSTCollectionView.m in Sources */,
+				568DF22D1C7591EF00008829 /* LTBottomView.m in Sources */,
 				D588B1171BDDDC2F000C5D6F /* BLBaseViewController.m in Sources */,
 				D96712E51C3FCF790099C3B9 /* SignInListCell.m in Sources */,
-				568DF20C1C75756900008829 /* finishMessageView.m in Sources */,
 				D588B0E11BDDDC14000C5D6F /* StudentInformationCell.m in Sources */,
 				D965CAA71C239D9F00DCD094 /* DrivingCycleShowDMHeadportrait.m in Sources */,
 				D588B0CD1BDDDC14000C5D6F /* ExamClassCollectionViewCell.m in Sources */,
@@ -6250,6 +6297,7 @@
 				D5C2403D1BEF6E0400832CF3 /* VipserverModel.m in Sources */,
 				D5604B431BF656C50020F0D7 /* EMCDDeviceManager+Remind.m in Sources */,
 				D96532851C733E0B0097AFA2 /* DVVSignUpCoachDMDriveschoolinfo.m in Sources */,
+				568DF2381C7592C400008829 /* PrivateMessageController.m in Sources */,
 				062734C71C5A00060056B0BC /* SignUpSchoolInfoCell.m in Sources */,
 				D5604B8B1BF656C50020F0D7 /* EMChooseViewController.m in Sources */,
 				D588B06A1BDDDB90000C5D6F /* SubjectSecondViewController.m in Sources */,
@@ -6261,7 +6309,6 @@
 				B226AEA41C747E050028DF1A /* NSString+CurrentTimeDay.m in Sources */,
 				B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */,
 				D96712DC1C3F9A470099C3B9 /* SignInViewModel.m in Sources */,
-				568DF20F1C75756900008829 /* LTBottomView.m in Sources */,
 				D588B11C1BDDDC2F000C5D6F /* NetMonitor.m in Sources */,
 				D970D3991C3CFFEB003FCED3 /* CoachDMHeadportrait.m in Sources */,
 				D51256CC1BE348DC002717DA /* CommentModel.m in Sources */,
@@ -6281,6 +6328,7 @@
 				D588B1111BDDDC2F000C5D6F /* PFActionSheetView.m in Sources */,
 				D51256AB1BE1C6C7002717DA /* BCTextView.m in Sources */,
 				D5604B3E1BF656C50020F0D7 /* EMAudioPlayerUtil.m in Sources */,
+				568DF2211C75911C00008829 /* YBIntegralMallCell.m in Sources */,
 				D5C23FE91BE859E000832CF3 /* ExamClassDetailViewController.m in Sources */,
 				B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */,
 				D588AFCB1BDDDAAB000C5D6F /* ExamCarModel.m in Sources */,
