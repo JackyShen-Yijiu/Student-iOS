@@ -328,6 +328,8 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     cell.backgroundColor = [UIColor clearColor];
     cell.dayLabel.textColor = [UIColor lightGrayColor];
     cell.selectView.hidden = YES;
+    cell.pointView.hidden = YES;
+    cell.restLabel.hidden = YES;
     
     NSInteger firstWeekday = [self weekdayOfFirstDayInDate];
     NSInteger totalDaysOfMonth = [self totalDaysInMonthOfDate:self.date];
@@ -389,6 +391,15 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
         if (compareDataNum==0) {// 当前
             
             cell.dayLabel.textColor = YBNavigationBarBgColor;
+            cell.pointView.hidden = NO;
+
+            BOOL isRest = [self isRest:self.restArray day:[cell.dayLabel.text integerValue]];
+            if (isRest) {// 有休假
+                cell.restLabel.hidden = NO;
+                cell.pointView.hidden = YES;
+            }else{// 未休假
+                cell.restLabel.hidden = YES;
+            }
             
         }else if (compareDataNum==1){// 大于当前日期
             
@@ -435,11 +446,6 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
                 
             }
             
-            // 红点
-            NSDate *curDate = [self dateOfMonth:FDCalendarMonthCurrent WithDay:day];
-            BOOL isSelectedData = [self isEnqual:curDate :self.seletedDate];
-            [cell setIsSeletedDay:isSelectedData curDay:[self isEnqual:curDate :[NSDate date]]];
-            
         }else{
             
         }
@@ -447,11 +453,24 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
 //        cell.chineseDayLabel.text = [self chineseCalendarOfDate:[self dateOfMonth:FDCalendarMonthCurrent WithDay:day]];
 //        cell.chineseDayLabel.hidden = YES;// 隐藏农历
         
-        // 根据服务器返回数据判断是否休假
-        cell.restLabel.hidden = ![self isRest:self.restArray day:[cell.dayLabel.text integerValue]];
+        if (compareDataNum!=0) {// 不是当前
+            
+            // 根据服务器返回数据判断是否休假
+            if (self.restArray && [self.restArray count]!=0) {
+                cell.restLabel.hidden = ![self isRest:self.restArray day:[cell.dayLabel.text integerValue]];
+            }
+            
+        }
         
+        // 红点
+//        NSDate *curDate = [self dateOfMonth:FDCalendarMonthCurrent WithDay:day];
+//        BOOL isSelectedData = [self isEnqual:curDate :self.seletedDate];
+//        [cell setIsSeletedDay:isSelectedData curDay:[self isEnqual:curDate :[NSDate date]]];
+//        
         // 根据服务器返回数据判断是否预约
-        cell.pointView.hidden = ![self isBook:self.bookArray day:[cell.dayLabel.text integerValue]];
+//        if (self.bookArray && [self.bookArray count]!=0) {
+//            cell.pointView.hidden = ![self isBook:self.bookArray day:[cell.dayLabel.text integerValue]];
+//        }
         
     }
     
@@ -554,7 +573,8 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-   
+    
+    
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self.date];
     
     NSInteger firstWeekday = [self weekdayOfFirstDayInDate];

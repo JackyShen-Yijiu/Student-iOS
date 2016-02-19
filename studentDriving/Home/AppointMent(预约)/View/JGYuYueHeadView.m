@@ -8,10 +8,9 @@
 
 #import "JGYuYueHeadView.h"
 #import "ToolHeader.h"
-#import "AppointmentCollectionViewCell.h"
+#import "JGAppointMentCell.h"
 #import "AppointmentCoachTimeInfoModel.h"
-//#import "BLInformationManager.h"
-//#import "CoachViewController.h"
+#import "YBAppointMentUserFooter.h"
 
 @interface JGYuYueHeadView ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
@@ -19,9 +18,9 @@
 
 @property (strong, nonatomic) NSMutableArray *dataArray;
 
-@property (strong, nonatomic) NSIndexPath *indexPath;
+@property (nonatomic,strong) UIView *footView;
 
-@property (strong, nonatomic) NSIndexPath *firstPath;
+@property (nonatomic,strong) YBAppointMentUserFooter *userFooter;
 
 @end
 
@@ -39,25 +38,61 @@
     }
     return _dataArray;
 }
+- (YBAppointMentUserFooter *)userFooter
+{
+    if (_userFooter==nil) {
+        _userFooter = [[YBAppointMentUserFooter alloc] init];
+        _userFooter.userCount = _userCount;
+    }
+    return _userFooter;
+}
 
 - (UICollectionView *)collectionView {
     
     if (_collectionView == nil) {
         
+        CGFloat height = kSystemHeight-30-35-50;
+        
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.minimumLineSpacing = 0;
-        flowLayout.itemSize = CGSizeMake(kSystemWide/4-0.5, 60);
-//        flowLayout.sectionInset=UIEdgeInsetsMake(0, 0, 0, 0);
+        flowLayout.itemSize = CGSizeMake(kSystemWide/3-0.5, 70);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, 180) collectionViewLayout:flowLayout];
+        
+        flowLayout.footerReferenceSize = CGSizeMake(kSystemWide-rightFooter, 200);
+        
+        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,height) collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = RGBColor(236, 236, 236);
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
-        [_collectionView registerClass:[AppointmentCollectionViewCell class] forCellWithReuseIdentifier:@"AppointmentCollectionViewCell"];
-        
+        [_collectionView registerClass:[JGAppointMentCell class] forCellWithReuseIdentifier:@"JGAppointMentCell"];
+       
+        _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
+        [_collectionView registerClass:[self.userFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footView"];
+       
     }
+    
     return _collectionView;
+    
+}
+
+-(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
+          viewForSupplementaryElementOfKind:(NSString *)kind
+                                atIndexPath:(NSIndexPath *)indexPath{
+    
+    NSString *reuseIdentifier = @"footView";
+    
+    YBAppointMentUserFooter *view =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:reuseIdentifier   forIndexPath:indexPath];
+    
+    view.userCount = self.userCount;
+    
+//    KFZGoodExamItem *item=[self.mainArray objectAtIndex:indexPath.section];
+    
+//    NSString *name=[NSString stringWithFormat:@"%@年【%@】优秀试卷",item.year,item.ename];
+    
+//    view.titleLabel.text=name;
+    
+    return view;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -65,12 +100,32 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = RGBColor(236, 236, 236);
+        self.backgroundColor = RGBColor(238, 238, 238);
         
         [self addSubview:self.collectionView];
         
     }
     return self;
+}
+
+- (void)receiveCoachTimeData
+{
+    
+    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
+    // 行数
+    NSInteger hangshu = self.userCount / 4;
+    NSLog(@"hangshu::%ld",(long)hangshu);
+    CGFloat footHeight = hangshu * 60 + 45;
+    NSLog(@"receiveCoachTimeData footHeight:%f",footHeight);
+    flowLayout.footerReferenceSize = CGSizeMake(kSystemWide-rightFooter, footHeight);
+    self.collectionView.collectionViewLayout = flowLayout;
+    
+    NSLog(@"receiveCoachTimeData self.userCount:%ld",(long)self.userCount);
+    
+    [self.collectionView reloadData];
+    
+    self.userFooter.userCount = self.userCount;
+    
 }
 
 - (void)receiveCoachTimeData:(NSArray *)coachTimeData {
@@ -81,42 +136,48 @@
     [self.dataArray addObjectsFromArray:coachTimeData];
    
     [self.collectionView reloadData];
-    
+        
     NSLog(@"self.dataArray.count:%lu",(unsigned long)self.dataArray.count);
     
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    self.indexPath = nil;
+
+    return 30;
+    
     return self.dataArray.count;
+    
 }
+
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellId = @"AppointmentCollectionViewCell";
-    AppointmentCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    
+    static NSString *cellId = @"JGAppointMentCell";
+    JGAppointMentCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
     if (!cell) {
         DYNSLog(@"创建错误");
     }
-    cell.backgroundColor = [UIColor whiteColor];
-        
-    AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
+    cell.backgroundColor = RGBColor(250, 250, 250);
     
-    cell.coachTimeInfo = model;
+    //    AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
+    
+    //    cell.coachTimeInfo = model;
     
     return cell;
+    
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
+//    AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
 
-    if ([self.delegate respondsToSelector:@selector(JGYuYueHeadViewWithCollectionViewDidSelectItemAtIndexPath:timeInfo:)]) {
-        [self.delegate JGYuYueHeadViewWithCollectionViewDidSelectItemAtIndexPath:indexPath timeInfo:model];
-    }
+    
+    
     
 }
+
 
 @end

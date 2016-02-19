@@ -27,12 +27,13 @@
 // 日历
 @property(nonatomic,strong) FDCalendar *calendarHeadView;
 
+@property(nonatomic,strong) NSMutableArray * courseDayTableData;
 
-@property(nonatomic,strong)NSMutableArray * courseDayTableData;
-
-@property(nonatomic,strong)NSDateFormatter *dateFormattor;
+@property(nonatomic,strong) NSDateFormatter *dateFormattor;
 
 @property (nonatomic,strong) YBAppotinMentHeadView *appointMentHeadView;
+
+@property (strong, nonatomic) NSDate *seletedDate;
 
 @end
 
@@ -74,7 +75,7 @@
 {
     [super viewDidAppear:animated];
     
-    [self fdCalendar:nil didSelectedDate:[NSDate date]];
+    [self fdCalendarDidClick:nil didSelectedDate:self.seletedDate];
     
 }
 
@@ -103,6 +104,8 @@
     
     [super viewDidLoad];
     
+    self.seletedDate = [NSDate date];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.title = @"预约";
@@ -117,6 +120,8 @@
 {
     YBAppointMentChangeCoachController *vc = [[YBAppointMentChangeCoachController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
+    vc.seletedDate = self.seletedDate;
+    vc.title = self.title;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -132,6 +137,7 @@
     // 顶部日历
     self.calendarHeadView = [[FDCalendar alloc] initWithCurrentDate:[NSDate date]];
     self.calendarHeadView.delegate = self;
+    self.calendarHeadView.parentViewController = self;
     self.calendarHeadView.frame = CGRectMake(0, 0, self.view.width, 30+67);
     [self.view addSubview:self.calendarHeadView];
     
@@ -150,8 +156,19 @@
 #pragma mark LoadDayData
 - (void)fdCalendar:(FDCalendar *)calendar didSelectedDate:(NSDate *)date
 {
+    [self fdCalendarDidClick:calendar didSelectedDate:date];
+    
+    // 跳转界面
+    [self changeCoach];
+    
+}
+
+- (void)fdCalendarDidClick:(FDCalendar *)calendar didSelectedDate:(NSDate *)date
+{
     NSLog(@"切换日历代理方法 %s",__func__);
     
+    self.seletedDate = date;
+
     if (!self.dateFormattor) {
         self.dateFormattor = [[NSDateFormatter alloc] init];
         [self.dateFormattor setDateFormat:@"yyyy-M-d"];
@@ -166,9 +183,9 @@
     
 }
 
+
 - (void)loadFootListData:(NSString *)dataStr
 {
-    
     
     NSString *  userId = [AcountManager manager].applycoach.infoId;
     if (userId==nil) {

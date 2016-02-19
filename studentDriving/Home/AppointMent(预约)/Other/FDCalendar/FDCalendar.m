@@ -123,10 +123,12 @@ static NSDateFormatter *dateFormattor;
     self.scrollView = [[UIScrollView alloc] init];
     
     self.leftCalendarItem = [[FDCalendarItem alloc] init];
+    self.leftCalendarItem.parentViewController = self.parentViewController;
     self.leftCalendarItem.backgroundColor = RGBColor(238, 238, 238);
     [self.scrollView addSubview:self.leftCalendarItem];
     
     self.centerCalendarItem = [[FDCalendarItem alloc] init];
+    self.centerCalendarItem.parentViewController = self.parentViewController;
     CGRect itemFrame = self.leftCalendarItem.frame;
     itemFrame.origin.x = DeviceWidth;
     self.centerCalendarItem.frame = itemFrame;
@@ -135,6 +137,7 @@ static NSDateFormatter *dateFormattor;
     [self.scrollView addSubview:self.centerCalendarItem];
     
     self.rightCalendarItem = [[FDCalendarItem alloc] init];
+    self.rightCalendarItem.parentViewController = self.parentViewController;
     itemFrame.origin.x = DeviceWidth * 2;
     self.rightCalendarItem.frame = itemFrame;
     self.rightCalendarItem.backgroundColor = RGBColor(238, 238, 238);

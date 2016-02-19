@@ -46,6 +46,8 @@ typedef NS_ENUM(NSInteger,KCellStation){
  */
 - (void)reloadData;
 
+@property (nonatomic,weak) UIViewController *parentViewController;
+
 @end
 
 @protocol FDCalendarItemDelegate <NSObject>
