@@ -18,7 +18,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me" translatesAutoresizingMaskIntoConstraints="NO" id="YkR-PW-D1O">
-                    <rect key="frame" x="15" y="40" width="56" height="56"/>
+                    <rect key="frame" x="15" y="34" width="56" height="56"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="56" id="GqI-6u-qzl"/>
@@ -26,12 +26,12 @@
                     </constraints>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eGt-Fe-0zL">
-                    <rect key="frame" x="8" y="157" width="542" height="443"/>
+                    <rect key="frame" x="8" y="151" width="542" height="449"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的Y码 USW66AW999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAY-vZ-sly">
-                    <rect key="frame" x="15" y="135" width="585" height="14"/>
+                    <rect key="frame" x="15" y="125" width="585" height="14"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="AML-Mt-6Ne"/>
@@ -41,7 +41,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="151****6588" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aD-kz-4A4">
-                    <rect key="frame" x="15" y="111" width="585" height="14"/>
+                    <rect key="frame" x="15" y="102" width="585" height="14"/>
                     <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="gzg-Ns-yD5"/>
@@ -55,17 +55,17 @@
             <constraints>
                 <constraint firstItem="5aD-kz-4A4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="00w-jR-BoC"/>
                 <constraint firstAttribute="trailing" secondItem="eGt-Fe-0zL" secondAttribute="trailing" constant="50" id="6df-r0-aeT"/>
-                <constraint firstItem="YkR-PW-D1O" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="40" id="DT2-eN-UtJ"/>
-                <constraint firstItem="eGt-Fe-0zL" firstAttribute="top" secondItem="MAY-vZ-sly" secondAttribute="bottom" constant="8" id="EcC-Q5-XbE"/>
+                <constraint firstItem="YkR-PW-D1O" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="34" id="DT2-eN-UtJ"/>
+                <constraint firstItem="eGt-Fe-0zL" firstAttribute="top" secondItem="MAY-vZ-sly" secondAttribute="bottom" constant="12" id="EcC-Q5-XbE"/>
                 <constraint firstItem="eGt-Fe-0zL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="If5-Ce-x0H"/>
                 <constraint firstItem="YkR-PW-D1O" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="MdG-OQ-Xdo"/>
                 <constraint firstAttribute="trailing" secondItem="MAY-vZ-sly" secondAttribute="trailing" id="V7o-LR-kVi"/>
                 <constraint firstAttribute="bottom" secondItem="eGt-Fe-0zL" secondAttribute="bottom" id="XBo-db-flJ"/>
-                <constraint firstItem="MAY-vZ-sly" firstAttribute="top" secondItem="5aD-kz-4A4" secondAttribute="bottom" constant="10" id="XEB-wZ-MVE"/>
+                <constraint firstItem="MAY-vZ-sly" firstAttribute="top" secondItem="5aD-kz-4A4" secondAttribute="bottom" constant="9" id="XEB-wZ-MVE"/>
                 <constraint firstItem="MAY-vZ-sly" firstAttribute="top" secondItem="5aD-kz-4A4" secondAttribute="bottom" constant="15" id="aXx-xq-K7o"/>
                 <constraint firstItem="MAY-vZ-sly" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="dPb-T6-bAi"/>
                 <constraint firstAttribute="trailing" secondItem="5aD-kz-4A4" secondAttribute="trailing" id="oSW-9d-kSy"/>
-                <constraint firstItem="5aD-kz-4A4" firstAttribute="top" secondItem="YkR-PW-D1O" secondAttribute="bottom" constant="15" id="tSD-wy-WM6"/>
+                <constraint firstItem="5aD-kz-4A4" firstAttribute="top" secondItem="YkR-PW-D1O" secondAttribute="bottom" constant="12" id="tSD-wy-WM6"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">

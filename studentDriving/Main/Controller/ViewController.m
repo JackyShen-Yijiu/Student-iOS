@@ -19,7 +19,11 @@
 #import "YBCommunityViewController.h"
 #import "IWTabBarViewController.h"
 
-#import "YBComplaintController.h"
+//  侧边栏控制器
+
+#import "YBComplaintController.h" // 投诉
+#import "ChatListViewController.h" // 聊天列表
+
 typedef enum state {
     kStateHome,
     kStateMenu
@@ -84,11 +88,13 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.leftDistance = self.common.screenW * viewSlideHorizonRatio;
     
     // 设置背景
-    UIView *topView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
-    topView.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
-    UIView *mightView = [[UIView alloc] initWithFrame:CGRectMake(0, 20, self.view.frame.size.width, 135)];
-    mightView.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
-    [self.view addSubview:topView];
+    UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 155)];
+    mightView.backgroundColor = [UIColor clearColor];
+    mightView.image = [UIImage imageNamed:@"Side_Menu_Bg"];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
+    view.backgroundColor = [UIColor blackColor];
+    view.alpha = 0.3;
+    [mightView addSubview:view];
     [self.view addSubview:mightView];
     
 //    UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"back"]];
@@ -293,10 +299,12 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 
 #pragma mark - WMMenuViewController代理方法
 - (void)didSelectItem:(NSString *)title {
-    
+    // 投诉
     YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
     complaintVC.hidesBottomBarWhenPushed = YES;
-    
+    // 消息列表
+    ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
+    chatListVC.hidesBottomBarWhenPushed = YES;
     WMOtherViewController *other = [[WMOtherViewController alloc] init];
     other.navTitle = title;
     other.hidesBottomBarWhenPushed = YES;
@@ -305,6 +313,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     switch (self.vcType) {
         case kYBSignUpViewController:
             [self.baomingVC.navigationController pushViewController:complaintVC animated:NO];
+            [self.baomingVC.navigationController pushViewController:chatListVC animated:YES];
             break;
         case kYBStudyViewController:
             [self.xuexiVC.navigationController pushViewController:other animated:NO];
