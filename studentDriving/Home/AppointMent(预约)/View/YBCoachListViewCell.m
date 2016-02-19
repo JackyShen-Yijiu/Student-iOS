@@ -52,9 +52,15 @@
 
     self.coachNameLabel.text = coachModel.name;
 
-    self.kemuLabel.text = @"科目";
+    NSMutableString *kemuStr = [NSMutableString string];
+    for (NSDictionary *subject in coachModel.subject) {
+        NSLog(@"subject:%@",subject);
+        NSString *name = [NSString stringWithFormat:@"%@ ",subject[@"name"]];
+        [kemuStr appendString:name];
+    }
+    self.kemuLabel.text = kemuStr;
     
-    self.pinglunCountLabel.text = @"评论数";
+    self.pinglunCountLabel.text = [NSString stringWithFormat:@"%@条评论",coachModel.commentcount];
     
     [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:nil];
     CGFloat starLevel = 0;
@@ -71,7 +77,7 @@
     }
 
     if (coachModel.Seniority) {
-        self.jialingLabel.text = [NSString stringWithFormat:@"教龄：%@年",coachModel.Seniority] ;
+        self.jialingLabel.text = [NSString stringWithFormat:@"%@年教龄",coachModel.Seniority] ;
     }else{
         self.jialingLabel.text = [NSString stringWithFormat:@"暂无"];
     }

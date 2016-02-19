@@ -20,7 +20,9 @@
              @"latitude":@"latitude",
              @"longitude":@"longitude",
              @"passrate":@"passrate",
-             @"starlevel":@"starlevel"};
+             @"starlevel":@"starlevel",
+             @"commentcount":@"commentcount",
+             @"subject":@"subject"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {

@@ -8,31 +8,25 @@
 
 #import "YBCoachListViewController.h"
 #import "YBCoachListViewCell.h"
-#import "ToolHeader.h"
-#import <Masonry.h>
-#import "UIView+CalculateUIView.h"
 #import "CoachModel.h"
-#import "UIColor+Hex.h"
 #import "YBCoachListSearchController.h"
 #import "YBCoachListSearchController.h"
-
-static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1";
 
 @interface YBCoachListViewController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (strong, nonatomic) NSMutableArray *dataArray;
+@property (strong, nonatomic) NSMutableArray *coachListDataArray;
 
 @end
 
 @implementation YBCoachListViewController
 
-- (NSMutableArray *)dataArray {
-    if (_dataArray == nil) {
-        _dataArray = [[NSMutableArray alloc] init];
+- (NSMutableArray *)coachListDataArray {
+    if (_coachListDataArray == nil) {
+        _coachListDataArray = [[NSMutableArray alloc] init];
     }
-    return _dataArray;
+    return _coachListDataArray;
 }
 
 - (UITableView *)tableView {
@@ -76,34 +70,35 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
     
     // 更换某时段可预约教练
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    if (self.isModifyCoach) {
-        dict[@"timeid"] = self.timeid;
-        dict[@"coursedate"] = self.coursedate;
-    }
     
+    WS(ws);
     [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
        
+        NSLog(@"教练列表data:%@",data);
+        
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
         if (data) {
+            
             NSDictionary *param = data;
             NSNumber *type = param[@"type"];
             NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+            
             if (type.integerValue == 1) {
+                
                 NSArray *array = param[@"data"];
                 NSLog(@"%@", array);
-                if (!self.dataArray.count && !array.count) {
+                if (!self.coachListDataArray.count && !array.count) {
                     [self showTotasViewWithMes:@"没有查询到教练"];
                 }
                 NSError *error = nil;
-                [self.dataArray addObjectsFromArray: [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:array error:&error]];
-    
-                [self.tableView reloadData];
+                
+                [ws.coachListDataArray addObjectsFromArray: [MTLJSONAdapter modelsOfClass:CoachModel.class fromJSONArray:array error:&error]];
+            
+                [ws.tableView reloadData];
                 
             }else {
-                
                 kShowFail(msg);
-                
             }
         }
         
@@ -117,7 +112,7 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.dataArray.count;
+    return self.coachListDataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -128,7 +123,7 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
         cell = [[YBCoachListViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YBCoachListViewCell"];
     }
     
-    CoachModel *model = self.dataArray[indexPath.row];
+    CoachModel *model = self.coachListDataArray[indexPath.row];
     
     [cell receivedCellModelWith:model];
     

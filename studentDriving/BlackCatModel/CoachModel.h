@@ -11,7 +11,9 @@
 #import "Logoimg.h"
 #import "DriveSchoolinfo.h"
 #import "CoachDetail.h"
+
 @interface CoachModel : MTLModel<MTLJSONSerializing>
+
 @property (copy, readonly, nonatomic) NSString *Seniority;
 @property (copy, readonly, nonatomic) NSString *coachid;
 @property (strong, readonly, nonatomic) NSNumber *distance;
@@ -24,4 +26,9 @@
 @property (strong, readonly, nonatomic) NSNumber *longitude;
 @property (strong, readonly, nonatomic) NSNumber *passrate;
 @property (strong, readonly, nonatomic) NSNumber *starlevel;
+
+@property (strong, readonly, nonatomic) NSNumber *commentcount;
+
+@property (strong, readonly, nonatomic) NSArray *subject;
+
 @end

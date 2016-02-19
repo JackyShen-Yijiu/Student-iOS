@@ -15,8 +15,6 @@
 #import "UIColor+Hex.h"
 #import "YBCoachListSearchController.h"
 
-static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1";
-
 @interface YBCoachListSearchController ()<UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate>
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -105,9 +103,9 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1"
     
     // 更换某时段可预约教练
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    if (self.isModifyCoach) {
-        dict[@"timeid"] = self.timeid;
-        dict[@"coursedate"] = self.coursedate;
+   
+    if (self.searchBar.text) {
+        dict[@"searchname"] = self.searchBar.text;
     }
     
     [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
