@@ -14,5 +14,9 @@
 @property (nonatomic, strong) UILabel *beginTimeLabel;
 @property (nonatomic, strong) UILabel *markLabel;
 @property (nonatomic, strong) UILabel *signInStatusLabel;
+//
+@property (nonatomic, strong) UIImageView *iconImage; // 头像
+@property (nonatomic, strong) UILabel *areaLabel; // 场地
+
 
 @end
