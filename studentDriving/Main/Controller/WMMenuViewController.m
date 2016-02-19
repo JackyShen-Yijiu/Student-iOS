@@ -31,7 +31,7 @@
     
     self.common = [WMCommon getInstance];
     
-    self.listArray = @[@"消息", @"活动", @"签到", @"班车", @"钱包", @"邀请", @"投诉"];
+    self.listArray = @[@"我的消息", @"活动", @"预约签到", @"我的驾校班车", @"我的钱包", @"邀请好友", @"我要投诉",@"一步优势",@"设置与帮助"];
 //    self.imgArray = @[@"消息", @"活动", @"签到", @"班车", @"钱包", @"邀请", @"投诉"];
     
     self.tableView.delegate        = self;
@@ -61,7 +61,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    return 9;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
