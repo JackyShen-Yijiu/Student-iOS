@@ -11,8 +11,6 @@
 
 @interface YBAppotinMentHeadView : UIView
 
-@property(nonatomic,strong)HMCourseModel * model;
-
 + (CGFloat)height;
 
 @end
