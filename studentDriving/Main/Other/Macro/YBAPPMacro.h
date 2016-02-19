@@ -12,4 +12,9 @@
 // 红色导航条颜色
 #define YBNavigationBarBgColor RGBColor(209,65,53)
 
+typedef enum state {
+    kStateHome,
+    kStateMenu
+}state;
+
 #endif /* YBObject_h */

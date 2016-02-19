@@ -11,7 +11,6 @@
 @protocol YBHomeBaseControllerDelegate <NSObject>
 @optional
 - (void)leftBtnClicked;
-
 @end
 
 @interface YBHomeBaseController : YBBaseViewController
@@ -19,5 +18,7 @@
 @property (weak, nonatomic) id<YBHomeBaseControllerDelegate> delegate;
 
 @property (weak, nonatomic) UIButton *leftBtn;
+
+- (void)clicked;
 
 @end

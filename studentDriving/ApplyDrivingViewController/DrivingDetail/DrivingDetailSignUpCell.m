@@ -24,24 +24,6 @@
         
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
-        [_toolBarView addSubview:self.followLineImageView];
-        
-        _toolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
-        _toolBarView.layer.shadowOffset = CGSizeMake(0, 2);
-        _toolBarView.layer.shadowOpacity = 0.3;
-        _toolBarView.layer.shadowRadius = 2;
-        
-        _toolBarView.backgroundColor = YBNavigationBarBgColor;
-        _courseButton.backgroundColor = YBNavigationBarBgColor;
-        _coachButton.backgroundColor = YBNavigationBarBgColor;
-        [_courseButton setTitle:@"课程费用" forState:UIControlStateSelected];
-        [_coachButton setTitle:@"教练信息" forState:UIControlStateSelected];
-        [_courseButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-        [_coachButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
-        
-        [_courseButton setTitleColor:[UIColor colorWithWhite:1 alpha:0.75] forState:UIControlStateNormal];
-        [_coachButton setTitleColor:[UIColor colorWithWhite:1 alpha:0.75] forState:UIControlStateNormal];
-        _courseButton.selected = YES;
         
         [_scrollView addSubview:self.classTypeView];
         [_scrollView addSubview:self.coachListView];
@@ -68,20 +50,18 @@
     return _followLineImageView;
 }
 
-- (IBAction)courseButtonAction:(UIButton *)sender {
-    _coachButton.selected = NO;
-    sender.selected = YES;
+- (void)courseButtonAction {
+    _showType = 0;
     [self.tableView reloadData];
     [UIView animateWithDuration:0.3 animations:^{
         _scrollView.contentOffset = CGPointMake(0, 0);
         _followLineImageView.frame = CGRectMake(0, 42, [UIScreen mainScreen].bounds.size.width/2.f, 2);
     }];
 }
-- (IBAction)coachButtonAction:(UIButton *)sender {
-    _courseButton.selected = NO;
-    sender.selected = YES;
+- (void)coachButtonAction {
+    _showType = 1;
 //    [self.tableView reloadData];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:3 inSection:0];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
     [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
     [UIView animateWithDuration:0.3 animations:^{
         _scrollView.contentOffset = CGPointMake(_scrollView.bounds.size.width, 0);
@@ -116,10 +96,10 @@
 }
 
 - (CGFloat)dynamicHeight {
-    if (_courseButton.selected) {
+    if (0 == _showType) {
         return _classTypeView.totalHeight;
     }
-    return 8 + 44 + 95 + 95 + 40;
+    return 95 + 95 + 40;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

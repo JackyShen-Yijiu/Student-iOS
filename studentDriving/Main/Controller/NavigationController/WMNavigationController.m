@@ -19,12 +19,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.navigationBar.barTintColor = YBNavigationBarBgColor;
-    [self.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor],NSForegroundColorAttributeName, nil]];
-    
-    // 去掉透明效果
-    [self.navigationBar setTranslucent:NO];
 
     self.interactivePopGestureRecognizer.delegate = self;
     

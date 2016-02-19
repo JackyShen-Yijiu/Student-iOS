@@ -748,6 +748,7 @@
 		D965CAB01C239DE900DCD094 /* YBBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CAAF1C239DE900DCD094 /* YBBaseViewModel.m */; };
 		D965CAB51C239E2E00DCD094 /* DVVCycleShowImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CAB21C239E2E00DCD094 /* DVVCycleShowImagesView.m */; };
 		D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CAB41C239E2E00DCD094 /* DVVToolBarView.m */; };
+		D966855F1C7701100047CDE2 /* THLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = D966855E1C7701100047CDE2 /* THLabel.m */; };
 		D966E7271C5B1001007848B4 /* DVVHorizontalScrollImagesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D966E7241C5B1001007848B4 /* DVVHorizontalScrollImagesCell.m */; };
 		D966E7281C5B1001007848B4 /* DVVHorizontalScrollImagesView.m in Sources */ = {isa = PBXBuildFile; fileRef = D966E7261C5B1001007848B4 /* DVVHorizontalScrollImagesView.m */; };
 		D966E74B1C5B4120007848B4 /* ClassTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D966E7491C5B4120007848B4 /* ClassTypeCell.m */; };
@@ -2258,6 +2259,8 @@
 		D965CAB21C239E2E00DCD094 /* DVVCycleShowImagesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCycleShowImagesView.m; sourceTree = "<group>"; };
 		D965CAB31C239E2E00DCD094 /* DVVToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVToolBarView.h; sourceTree = "<group>"; };
 		D965CAB41C239E2E00DCD094 /* DVVToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVToolBarView.m; sourceTree = "<group>"; };
+		D966855D1C77010C0047CDE2 /* THLabel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THLabel.h; sourceTree = "<group>"; };
+		D966855E1C7701100047CDE2 /* THLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = THLabel.m; sourceTree = "<group>"; };
 		D966E7231C5B1001007848B4 /* DVVHorizontalScrollImagesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVHorizontalScrollImagesCell.h; sourceTree = "<group>"; };
 		D966E7241C5B1001007848B4 /* DVVHorizontalScrollImagesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVHorizontalScrollImagesCell.m; sourceTree = "<group>"; };
 		D966E7251C5B1001007848B4 /* DVVHorizontalScrollImagesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVHorizontalScrollImagesView.h; sourceTree = "<group>"; };
@@ -4717,6 +4720,8 @@
 		D588B0E61BDDDC24000C5D6F /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D966855D1C77010C0047CDE2 /* THLabel.h */,
+				D966855E1C7701100047CDE2 /* THLabel.m */,
 				D919F3411C6099C600239B34 /* DVVCheckAppNewVersion.h */,
 				D919F3421C6099C600239B34 /* DVVCheckAppNewVersion.m */,
 				D96248311C579A670028EE62 /* DVVBaseViewModel.h */,
@@ -5883,6 +5888,7 @@
 				D588B0DF1BDDDC14000C5D6F /* CancelAppointmentCell.m in Sources */,
 				55901B621C26796700AC64FF /* VerifyInformationController.m in Sources */,
 				D96149401C5C587200E3007F /* CoachListDMData.m in Sources */,
+				D966855F1C7701100047CDE2 /* THLabel.m in Sources */,
 				D5604B8D1BF656C50020F0D7 /* EMSearchDisplayController.m in Sources */,
 				D5604C841BF656F30020F0D7 /* FacialView.m in Sources */,
 				D588B1161BDDDC2F000C5D6F /* NSString+DY_MD5.m in Sources */,

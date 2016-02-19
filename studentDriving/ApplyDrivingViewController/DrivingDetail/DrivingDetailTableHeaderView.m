@@ -15,46 +15,51 @@
     self = [super init];
     if (self) {
         [self addSubview:self.cycleShowImagesView];
+        
+        [self addSubview:self.nameLabel];
+        
+        [self addSubview:self.alphaView];
+        
         [self addSubview:self.collectionImageView];
-        self.backgroundColor = [UIColor redColor];
-        _collectionImageView.backgroundColor = [UIColor orangeColor];
+        
+        CGFloat selfWidth = [UIScreen mainScreen].bounds.size.width;
+        CGFloat cycleShowImagesViewHeight = selfWidth * 0.7;
+        _cycleShowImagesView.frame = CGRectMake(0, 0, selfWidth, cycleShowImagesViewHeight);
+        _alphaView.frame = _cycleShowImagesView.frame;
+        CGFloat collectionWidth = 63;
+        CGFloat collectionHeight = 63;
+        _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, cycleShowImagesViewHeight - collectionHeight/2.f, collectionWidth, collectionHeight);
+        _nameLabel.frame = CGRectMake(47, selfWidth*0.7 - 28 - 30, selfWidth - 56 - 16, 35);
+        
+//        _nameLabel.backgroundColor = [UIColor redColor];
+//        self.backgroundColor = [UIColor redColor];
+//        _collectionImageView.backgroundColor = [UIColor orangeColor];
     }
     return self;
-}
-
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    
-    CGFloat selfWidth = self.bounds.size.width;
-    CGFloat cycleShowImagesViewHeight = selfWidth * 0.7;
-    _cycleShowImagesView.frame = CGRectMake(0, 0, selfWidth, cycleShowImagesViewHeight);
-    CGFloat collectionWidth = 88;
-    CGFloat collectionHeight = 106;
-    _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth, cycleShowImagesViewHeight - collectionHeight/2.f, collectionWidth, collectionHeight);
-//    [_collectionImageView.layer setMasksToBounds:YES];
-//    [_collectionImageView.layer setCornerRadius:collectionWidth/2.f];
-    
-    //    _cycleShowImagesView.backgroundColor = [UIColor orangeColor];
-    //    _collectionImageView.backgroundColor = [UIColor redColor];
 }
 
 + (CGFloat)defaultHeight {
     
     CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    return screenWidth * 0.7 + 106/2.f;
+    return screenWidth * 0.7;
 }
 
 - (void)refreshData:(DrivingDetailDMData *)dmData {
     
     // 轮播图数据
     [_cycleShowImagesView reloadDataWithArray:dmData.pictures];
+    if (dmData.name && dmData.name.length) {
+        _nameLabel.text = dmData.name;
+    }else {
+        _nameLabel.text = @"未填写驾校名";
+    }
 }
 
 - (DVVCycleShowImagesView *)cycleShowImagesView {
     if (!_cycleShowImagesView) {
         _cycleShowImagesView = [DVVCycleShowImagesView new];
         [_cycleShowImagesView setPageControlLocation:0 isCycle:YES];
-        _cycleShowImagesView.placeImage = [UIImage imageNamed:@"cycleshowimages_icon"];
+        _cycleShowImagesView.placeImage = [UIImage imageNamed:@"cycleshowimages_icon.jpg"];
     }
     return _cycleShowImagesView;
 }
@@ -67,6 +72,24 @@
         _collectionImageView.image = [UIImage imageNamed:@"collection_no_icon"];
     }
     return _collectionImageView;
+}
+- (THLabel *)nameLabel {
+    if (!_nameLabel) {
+        _nameLabel = [THLabel new];
+        _nameLabel.userInteractionEnabled = NO;
+        _nameLabel.font = [UIFont boldSystemFontOfSize:28];
+        _nameLabel.textColor = [UIColor whiteColor];
+        _nameLabel.shadowBlur = 5;
+        _nameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.7];
+        _nameLabel.shadowOffset = CGSizeMake(1, 1);
+    }
+    return _nameLabel;
+}
+- (UIView *)alphaView {
+    if (!_alphaView) {
+        _alphaView = [UIView new];
+    }
+    return _alphaView;
 }
 
 - (void)setSchoolID:(NSString *)schoolID {
@@ -128,10 +151,10 @@
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             _collectionImageView.image = [UIImage imageNamed:@"collection_yes_icon"];
-            [self obj_showTotasViewWithMes:@"收藏成功"];
+//            [self obj_showTotasViewWithMes:@"收藏成功"];
             _collectionImageView.tag = 1;
         }else {
-            [self obj_showTotasViewWithMes:@"收藏失败"];
+//            [self obj_showTotasViewWithMes:@"收藏失败"];
         }
     }];
     
@@ -148,10 +171,10 @@
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
             _collectionImageView.image = [UIImage imageNamed:@"collection_no_icon"];
-            [self obj_showTotasViewWithMes:@"已取消收藏"];
+//            [self obj_showTotasViewWithMes:@"已取消收藏"];
             _collectionImageView.tag = 0;
         }else {
-            [self obj_showTotasViewWithMes:@"取消收藏失败"];
+//            [self obj_showTotasViewWithMes:@"取消收藏失败"];
         }
     }];
 }

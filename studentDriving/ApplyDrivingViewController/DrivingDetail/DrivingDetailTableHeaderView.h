@@ -10,10 +10,15 @@
 // 轮播图
 #import "DVVCycleShowImagesView.h"
 #import "DrivingDetailDMData.h"
+#import "THLabel.h"
 
 @interface DrivingDetailTableHeaderView : UIView
 
+@property (nonatomic, strong) UIView *alphaView;
+
 @property (nonatomic, copy) NSString *schoolID;
+
+@property (nonatomic, strong) THLabel *nameLabel;
 
 @property (nonatomic, strong) DVVCycleShowImagesView *cycleShowImagesView;
 
