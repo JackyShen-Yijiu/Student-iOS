@@ -97,6 +97,7 @@
     if (1 == _type) {
         CoachListDMData *dmData = _viewModel.dataArray[indexPath.row];
         _complaintCoachNameLabel.text = dmData.name;
+        _complaintCoachNameLabelBottom.text = [NSString stringWithFormat:@"投诉 %@教练",dmData.name];
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

@@ -10,8 +10,9 @@
 #import "AddlineButtomTextField.h"
 #import "YBComplaintCoachView.h"
 #import "ComplaintSchoolView.h"
+#import "CoachListController.h"
 
-@interface YBComplaintController ()<UIScrollViewDelegate>
+@interface YBComplaintController ()<UIScrollViewDelegate,complaintPushCoachDetail>
 
 @property (nonatomic, strong) UIView *bgView;
 
@@ -28,6 +29,8 @@
 
 
 
+
+
 @end
 
 @implementation YBComplaintController
@@ -39,6 +42,9 @@
     
 }
 - (void)initUI{
+    self.title = @"投诉";
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
     self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     [self.view addSubview:self.bgView];
     [self.view addSubview:self.coachButton];
@@ -49,6 +55,8 @@
     [self.scrollView addSubview:self.coachView];
     [self.scrollView addSubview:self.drivingView];
     self.scrollView.delegate = self;
+    self.coachView.complaintPushCoachDetailDelegate = self;
+    self.coachView.superController = self;
 }
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -59,34 +67,35 @@
 }
 #pragma mark --- ActionButton
 - (void)didClickCoach:(UIButton *)btn{
-    btn.selected = YES;
-    self.shchoolButton.selected = NO;
-    
-    //获取frame
-    CGRect rect = CGRectMake(0, self.lineFollowView.frame.origin.y, self.view.frame.size.width / 2, 2);
-    
-    //动画
-    [UIButton animateWithDuration:0.3 animations:^{
-        self.lineFollowView.frame = rect;
-        self.scrollView.contentOffset = CGPointMake(0, 0);
-    }];
-    
-
-
+    if (!btn.selected) {
+        btn.selected = YES;
+        _shchoolButton.selected = NO;
+        //获取frame
+        CGRect rect = CGRectMake(0, self.lineFollowView.frame.origin.y, self.view.frame.size.width / 2, 2);
+        
+        //动画
+        [UIButton animateWithDuration:0.3 animations:^{
+            self.lineFollowView.frame = rect;
+            self.scrollView.contentOffset = CGPointMake(0, 0);
+        }];
+  
+    }
 
 }
 - (void)didClickSchool:(UIButton *)btn{
-    btn.selected = YES;
-    self.coachButton.selected = NO;
-    //获取frame
-    CGRect rect = CGRectMake(btn.frame.origin.x, self.lineFollowView.frame.origin.y, self.view.frame.size.width / 2, 2);
-    
-    //动画
-    [UIButton animateWithDuration:0.3 animations:^{
-        self.lineFollowView.frame = rect;
-        self.scrollView.contentOffset = CGPointMake(self.view.frame.size.width, 0);
-    }];
+    if (!btn.selected) {
+        btn.selected = YES;
+        _coachButton.selected = NO;
+        //获取frame
+        CGRect rect = CGRectMake(btn.frame.origin.x, self.lineFollowView.frame.origin.y, self.view.frame.size.width / 2, 2);
+        
+        //动画
+        [UIButton animateWithDuration:0.3 animations:^{
+            self.lineFollowView.frame = rect;
+            self.scrollView.contentOffset = CGPointMake(self.view.frame.size.width, 0);
+        }];
 
+    }
 }
 #pragma mark -- UIScrollerView的代理方法
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
@@ -99,6 +108,16 @@
         // 选中相关按钮
         [self didClickSchool:self.shchoolButton];
     }
+}
+#pragma mark -- 教练详情的代理方法
+- (void)initWithComplaintPushCoachDetail{
+    // 教练详情
+    CoachListController *listVC = [CoachListController new];
+    listVC.schoolID = [AcountManager manager].applyschool.infoId;
+    listVC.type = 1;
+    listVC.complaintCoachNameLabel = self.coachView.nameCoachLabel;
+    listVC.complaintCoachNameLabelBottom = self.coachView.bottomCoachName;
+    [self.navigationController pushViewController:listVC animated:YES];
 }
 #pragma mark --- Lazy加载
 - (UIView *)bgView{
@@ -146,23 +165,24 @@
 - (YBComplaintCoachView *)coachView {
     if (!_coachView) {
         CGSize size = self.view.bounds.size;
-         _coachView = [[YBComplaintCoachView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+         _coachView = [[YBComplaintCoachView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height - 50 - 64)];
     }
     return _coachView;
 }
 - (ComplaintSchoolView *)drivingView {
     if (!_drivingView) {
         CGSize size = self.view.bounds.size;
-        _drivingView = [[ComplaintSchoolView alloc] initWithFrame:CGRectMake(size.width, 0, size.width, size.height)];
-        _drivingView.backgroundColor = [UIColor cyanColor];
+        _drivingView = [[ComplaintSchoolView alloc] initWithFrame:CGRectMake(size.width, 0, size.width, size.height - 50 - 64)];
+//        _drivingView.backgroundColor = [UIColor cyanColor];
     }
     return _drivingView;
 }
 - (UIScrollView *)scrollView{
     if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height - 50)];
+        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height - 50 - 64)];
         _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.contentSize = CGSizeMake(self.view.frame.size.width * 2, 0);
+        
     }
 
     return _scrollView;

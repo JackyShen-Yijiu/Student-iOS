@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ComplaintSchoolView : UIView
+@property (nonatomic, strong) UILabel *nameCoachLabel;
 
+@property (nonatomic, strong) UILabel *bottomCoachName;
+
+
+@property (nonatomic, strong) UIViewController *superController;
 @end
