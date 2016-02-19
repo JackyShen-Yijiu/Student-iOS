@@ -22,7 +22,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Abh-Uk-6yY">
-                        <rect key="frame" x="88" y="10" width="150" height="19.5"/>
+                        <rect key="frame" x="83" y="10" width="150" height="19.5"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="QAW-b4-N0N"/>
                         </constraints>
@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gC6-Gk-gw0">
-                        <rect key="frame" x="88" y="34" width="150" height="16"/>
+                        <rect key="frame" x="83" y="34" width="150" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="tds-bC-HET"/>
                         </constraints>
@@ -39,7 +39,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h9b-TC-yRP">
-                        <rect key="frame" x="88" y="55" width="100" height="16"/>
+                        <rect key="frame" x="83" y="55" width="100" height="16"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="rZT-PG-JdJ"/>
                         </constraints>
@@ -83,8 +83,8 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="ak1-pc-djR" firstAttribute="leading" secondItem="Dx4-vP-SyW" secondAttribute="leadingMargin" constant="7" id="76A-mo-H4x"/>
-                    <constraint firstItem="h9b-TC-yRP" firstAttribute="leading" secondItem="ak1-pc-djR" secondAttribute="trailing" constant="23" id="8PM-RU-3M1"/>
-                    <constraint firstItem="gC6-Gk-gw0" firstAttribute="leading" secondItem="ak1-pc-djR" secondAttribute="trailing" constant="23" id="8XG-EB-g37"/>
+                    <constraint firstItem="h9b-TC-yRP" firstAttribute="leading" secondItem="ak1-pc-djR" secondAttribute="trailing" constant="18" id="8PM-RU-3M1"/>
+                    <constraint firstItem="gC6-Gk-gw0" firstAttribute="leading" secondItem="ak1-pc-djR" secondAttribute="trailing" constant="18" id="8XG-EB-g37"/>
                     <constraint firstItem="h9b-TC-yRP" firstAttribute="top" secondItem="gC6-Gk-gw0" secondAttribute="bottom" constant="5" id="9D3-gD-diR"/>
                     <constraint firstItem="1mK-cO-fCb" firstAttribute="top" secondItem="Dx4-vP-SyW" secondAttribute="topMargin" constant="6" id="9Wr-3K-YzX"/>
                     <constraint firstAttribute="trailingMargin" secondItem="NTK-De-Wib" secondAttribute="trailing" constant="-8" id="9av-LQ-tPN"/>
@@ -95,7 +95,7 @@
                     <constraint firstItem="ak1-pc-djR" firstAttribute="top" secondItem="Dx4-vP-SyW" secondAttribute="topMargin" constant="9" id="Uag-XW-lru"/>
                     <constraint firstItem="NTK-De-Wib" firstAttribute="leading" secondItem="Dx4-vP-SyW" secondAttribute="leadingMargin" constant="80" id="VKX-cI-R6y"/>
                     <constraint firstItem="gC6-Gk-gw0" firstAttribute="top" secondItem="Abh-Uk-6yY" secondAttribute="bottom" constant="5" id="ZqD-Cr-0sw"/>
-                    <constraint firstItem="Abh-Uk-6yY" firstAttribute="leading" secondItem="ak1-pc-djR" secondAttribute="trailing" constant="23" id="bkt-Gi-ezM"/>
+                    <constraint firstItem="Abh-Uk-6yY" firstAttribute="leading" secondItem="ak1-pc-djR" secondAttribute="trailing" constant="18" id="bkt-Gi-ezM"/>
                     <constraint firstAttribute="trailingMargin" secondItem="1mK-cO-fCb" secondAttribute="trailing" constant="10" id="d4c-As-WGU"/>
                     <constraint firstItem="g83-A5-DoO" firstAttribute="top" secondItem="Abh-Uk-6yY" secondAttribute="bottom" constant="5" id="fPm-cs-hyS"/>
                     <constraint firstAttribute="bottomMargin" secondItem="ak1-pc-djR" secondAttribute="bottom" constant="12.5" id="iRu-hX-COd"/>
