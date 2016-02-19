@@ -85,6 +85,7 @@
     YBAppointMentUserFooter *view =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:reuseIdentifier   forIndexPath:indexPath];
     
     view.userCount = self.userCount;
+    view.parentViewController = self.parentViewController;
     
 //    KFZGoodExamItem *item=[self.mainArray objectAtIndex:indexPath.section];
     
