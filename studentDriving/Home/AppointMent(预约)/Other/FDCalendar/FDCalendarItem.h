@@ -13,7 +13,7 @@
 // 顶部标题高度
 #define ITEMHEIGTH 30.F
 // 日期高度
-#define calendarItemH 65
+#define calendarItemH 67
 
 typedef NS_ENUM(NSInteger,KCellStation){
     KCellStationLeft,
@@ -45,6 +45,8 @@ typedef NS_ENUM(NSInteger,KCellStation){
  *  刷新界面
  */
 - (void)reloadData;
+
+@property (nonatomic,weak) UIViewController *parentViewController;
 
 @end
 

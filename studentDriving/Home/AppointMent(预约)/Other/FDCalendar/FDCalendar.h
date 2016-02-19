@@ -20,4 +20,6 @@
 
 - (void)setCurrentDate:(NSDate *)date;
 
+@property (nonatomic,weak) UIViewController *parentViewController;
+
 @end
