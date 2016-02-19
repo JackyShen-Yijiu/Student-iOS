@@ -15,6 +15,7 @@
 #import "AppointmentCoachTimeInfoModel.h"
 #import "BaseModelMethod.h"
 #import "YBAppotinMentHeadView.h"
+#import "YBCoachListViewController.h"
 
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate,FDCalendarDelegate>
 {
@@ -110,14 +111,22 @@
     
     self.title = @"预约";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"换教练" style:UIBarButtonItemStyleDone target:self action:@selector(changeCoach)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"换教练" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarDidClick)];
     
     [self initUI];
     
 }
 
+- (void)rightBarDidClick
+{
+    YBCoachListViewController *vc = [[YBCoachListViewController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)changeCoach
 {
+    
     YBAppointMentChangeCoachController *vc = [[YBAppointMentChangeCoachController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     vc.seletedDate = self.seletedDate;

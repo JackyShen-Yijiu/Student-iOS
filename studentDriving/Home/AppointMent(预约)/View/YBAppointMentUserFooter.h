@@ -11,4 +11,7 @@
 
 @interface YBAppointMentUserFooter : UICollectionReusableView
 @property (nonatomic,assign) NSInteger userCount;
+
+@property (nonatomic,weak) UIViewController *parentViewController;
+
 @end
