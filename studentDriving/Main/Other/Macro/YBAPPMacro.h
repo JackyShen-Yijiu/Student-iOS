@@ -17,4 +17,7 @@ typedef enum state {
     kStateMenu
 }state;
 
+// 教练列表
+static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/-1";
+
 #endif /* YBObject_h */

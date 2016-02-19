@@ -23,6 +23,9 @@
         [self.contentView addSubview:self.beginTimeLabel];
         [self.contentView addSubview:self.markLabel];
         [self.contentView addSubview:self.signInStatusLabel];
+        
+        [self.contentView addSubview:self.iconImage];
+        [self.contentView addSubview:self.areaLabel];
     }
     return self;
 }

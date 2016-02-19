@@ -10,7 +10,7 @@
 #import "WMMenuTableViewCell.h"
 #import "WMCommon.h"
 #import "UIImage+WM.h"
-
+#import "WMOtherViewController.h"
 @interface WMMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) WMCommon *common;
 @property (strong ,nonatomic) NSArray  *listArray;
@@ -31,8 +31,9 @@
     
     self.common = [WMCommon getInstance];
     
-    self.listArray = @[@"消息", @"活动", @"签到", @"班车", @"钱包", @"邀请", @"投诉"];
-//    self.imgArray = @[@"消息", @"活动", @"签到", @"班车", @"钱包", @"邀请", @"投诉"];
+    self.listArray = @[@"我的消息", @"活动", @"预约签到", @"我的驾校班车", @"我的钱包", @"邀请好友", @"我要投诉",@"一步优势",@"设置与帮助"];
+    
+    self.imgArray = @[@"Slide_Menu_Message_Normal", @"Slide_Menu_Activity_Normal", @"Slide_Menu_SignUp_Normal", @"Slide_Menu_School_Normal", @"Slide_Menu_Money_Normal", @"Slide_Menu_Friend_Normal", @"Slide_Menu_Complaint_Normal",@"Slide_Menu_Advantage_Normal",@"Slide_Menu_Help_Normal"];
     
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;
@@ -61,13 +62,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 7;
+    return 9;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // 没有用系统自带的类而用了自己重新定义的cell，仅仅为了之后扩展方便，无他
     WMMenuTableViewCell *cell = [WMMenuTableViewCell cellWithTableView:tableView];
-    [cell setCellText:self.listArray[indexPath.row]];
+    [cell setCellText:self.listArray[indexPath.row] imageStr:self.imgArray[indexPath.row]];
     
     
     return cell;
@@ -75,6 +76,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    WMOtherViewController *other = [[WMOtherViewController alloc] init];
+//    other.navTitle = title;
+    other.hidesBottomBarWhenPushed = YES;
+//    [self showHome];
+    [self.navigationController pushViewController:other animated:YES];
+    
     if ([self.delegate respondsToSelector:@selector(didSelectItem:)]) {
         [self.delegate didSelectItem:self.listArray[indexPath.row]];
     }

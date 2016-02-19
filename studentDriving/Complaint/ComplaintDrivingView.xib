@@ -14,13 +14,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xVY-Xs-vkg">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="投诉方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ra-8b-bBG">
-                            <rect key="frame" x="8" y="7" width="70" height="30"/>
-                            <animations/>
-                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                            <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8HZ-Pn-iWj">
                             <rect key="frame" x="212" y="7" width="100" height="30"/>
                             <animations/>
@@ -50,6 +43,13 @@
                                 <action selector="anonymousButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="gyL-ed-tqX"/>
                             </connections>
                         </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="投诉方式" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ra-8b-bBG">
+                            <rect key="frame" x="8" y="7" width="70" height="30"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <color key="textColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -134,18 +134,6 @@
                         <action selector="photo_2_buttonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="VZT-eG-KD4"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXm-ve-ZpO">
-                    <rect key="frame" x="0.0" y="261" width="80" height="80"/>
-                    <animations/>
-                    <color key="backgroundColor" red="0.61594460230000003" green="0.61594460230000003" blue="0.61594460230000003" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="80" id="fQh-ty-hBq"/>
-                        <constraint firstAttribute="height" constant="80" id="w2b-ss-ySp"/>
-                    </constraints>
-                    <connections>
-                        <action selector="photo_1_buttonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="5ik-4o-jxx"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wMN-F2-XUR">
                     <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                     <animations/>
@@ -158,6 +146,18 @@
                     </state>
                     <connections>
                         <action selector="okButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ugu-Ct-jwO"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bXm-ve-ZpO">
+                    <rect key="frame" x="0.0" y="261" width="80" height="80"/>
+                    <animations/>
+                    <color key="backgroundColor" red="0.61594460230000003" green="0.61594460230000003" blue="0.61594460230000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="80" id="fQh-ty-hBq"/>
+                        <constraint firstAttribute="height" constant="80" id="w2b-ss-ySp"/>
+                    </constraints>
+                    <connections>
+                        <action selector="photo_1_buttonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="5ik-4o-jxx"/>
                     </connections>
                 </button>
             </subviews>

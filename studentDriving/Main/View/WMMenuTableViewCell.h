@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface WMMenuTableViewCell : UITableViewCell
-- (void)setCellText:(NSString *)str;
+- (void)setCellText:(NSString *)str imageStr:(NSString *)imageStr;
 
 + (instancetype)cellWithTableView:(UITableView *)tableView;
 

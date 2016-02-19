@@ -24,9 +24,6 @@
 
 #define StartOffset  kSystemWide/4-60/2
 
-//static NSString *const kCoachUrl = @"getschoolcoach/%@/1";
-static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1";
-
 @interface CoachViewController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UIView *menuIndicator;

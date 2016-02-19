@@ -15,5 +15,6 @@
 @property (nonatomic, assign) NSUInteger type;
 // 从投诉进入需要的属性
 @property (nonatomic, strong) UILabel *complaintCoachNameLabel;
+@property (nonatomic, strong) UILabel *complaintCoachNameLabelBottom;
 
 @end

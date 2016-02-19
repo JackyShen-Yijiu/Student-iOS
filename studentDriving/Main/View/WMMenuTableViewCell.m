@@ -19,11 +19,16 @@
 
     // Configure the view for the selected state
 }
-
-- (void)setCellText:(NSString *)str {
+- (void)setCellText:(NSString *)str imageStr:(NSString *)imageStr{
     self.textLabel.text = str;
+    self.textLabel.font = [UIFont systemFontOfSize:12];
     self.textLabel.textColor = [UIColor blackColor];
+//    CGRectMake(0, 0, 24, 24);
+    self.imageView.image = [UIImage imageNamed:imageStr];
+    
+ 
 }
+
 
 + (instancetype)cellWithTableView:(UITableView *)tableView {
     static NSString *ID = @"menu";
@@ -33,8 +38,9 @@
         cell = [[WMMenuTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
         cell.backgroundColor = [UIColor clearColor];
 //        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+//        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         cell.textLabel.textColor = [UIColor whiteColor];
+        
     }
     
     return cell;

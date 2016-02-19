@@ -26,7 +26,7 @@
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
 static NSString *const kStudentTimeStudy = @"courseinfo/sametimestudents/reservationid/%@/index/%@";
-static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/1";
+
 static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 //http://101.200.204.240:3000/api/v1/courseinfo/getcoursebycoach?coachid=5616352721ec29041a9af889&date=2015-10-10
 //http://101.200.204.240:3000/api/v1/courseinfo/userreservationcourse

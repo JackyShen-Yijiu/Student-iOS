@@ -57,6 +57,7 @@ static NSString *const kuserType = @"usertype";
 @property (nonatomic, strong) UILabel *phoneNumLabel;
 @property (nonatomic, strong) UILabel *passwordLabel;
 @property (nonatomic, strong) ShowWarningMessageView *showWarningMessageView;
+
 @end
 
 @implementation LoginViewController
