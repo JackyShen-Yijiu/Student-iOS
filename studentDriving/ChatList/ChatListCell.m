@@ -91,7 +91,7 @@
    
     self.imageView.frame = CGRectMake(10, 7, 45, 45);
     self.imageView.layer.masksToBounds = YES;
-    self.imageView.layer.cornerRadius = 5;
+    self.imageView.layer.cornerRadius = self.imageView.frame.size.height / 2;
     self.textLabel.text = _name;
 //    [self.textLabel setTextWithUsername:_name];
     self.textLabel.frame = CGRectMake(65, 7, 175, 20);
