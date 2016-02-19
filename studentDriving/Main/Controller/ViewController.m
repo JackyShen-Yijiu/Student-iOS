@@ -313,8 +313,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     switch (self.vcType) {
         case kYBSignUpViewController:
             [self.baomingVC.navigationController pushViewController:complaintVC animated:NO];
-            [self.baomingVC.navigationController pushViewController:chatListVC animated:YES];
-            break;
+        break;
         case kYBStudyViewController:
             [self.xuexiVC.navigationController pushViewController:other animated:NO];
             break;
