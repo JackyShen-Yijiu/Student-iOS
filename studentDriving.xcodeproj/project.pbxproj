@@ -70,6 +70,7 @@
 		55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B671C26798500AC64FF /* SubmitVerificationController.m */; };
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
+		56855C1A1C76DF21005D4517 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C191C76DF21005D4517 /* PlaceholderTextView.m */; };
 		568DF20E1C75756900008829 /* InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1F61C75756900008829 /* InfoModel.m */; };
 		568DF2121C75756900008829 /* MagicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1FD1C75756900008829 /* MagicMainTableViewCell.m */; };
 		568DF2131C75756900008829 /* MagicMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF1FE1C75756900008829 /* MagicMainTableViewCell.xib */; };
@@ -1023,6 +1024,8 @@
 		55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
 		55901B6C1C26811900AC64FF /* AppointmentDrivingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDrivingViewController.h; sourceTree = "<group>"; };
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
+		56855C191C76DF21005D4517 /* PlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceholderTextView.m; sourceTree = "<group>"; };
+		56855C1B1C76DF26005D4517 /* PlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlaceholderTextView.h; sourceTree = "<group>"; };
 		568DF1F51C75756900008829 /* InfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoModel.h; sourceTree = "<group>"; };
 		568DF1F61C75756900008829 /* InfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoModel.m; sourceTree = "<group>"; };
 		568DF1FC1C75756900008829 /* MagicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicMainTableViewCell.h; sourceTree = "<group>"; };
@@ -2914,6 +2917,8 @@
 				568DF24A1C75B4DA00008829 /* YBComplaintCoachView.m */,
 				568DF2461C75A88400008829 /* ComplaintSchoolView.h */,
 				568DF2471C75A88400008829 /* ComplaintSchoolView.m */,
+				56855C1B1C76DF26005D4517 /* PlaceholderTextView.h */,
+				56855C191C76DF21005D4517 /* PlaceholderTextView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6082,6 +6087,7 @@
 				064183F71C57552E00A33D88 /* HomeCheckProgressView.m in Sources */,
 				D588AFCC1BDDDAAB000C5D6F /* AppointmentCoachModel.m in Sources */,
 				D98581A21C58669B0044E029 /* ComplaintDrivingView.m in Sources */,
+				56855C1A1C76DF21005D4517 /* PlaceholderTextView.m in Sources */,
 				D965CAA41C239D9F00DCD094 /* DrivingCityListDMRootClass.m in Sources */,
 				D965CAA81C239D9F00DCD094 /* DrivingCycleShowDMRootClass.m in Sources */,
 				D92B2DBC1C5A02AF0050EE84 /* DrivingDetailSignUpCell.m in Sources */,
