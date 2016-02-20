@@ -20,9 +20,9 @@
 #import "IWTabBarViewController.h"
 
 //  侧边栏控制器
-
-#import "YBComplaintController.h" // 投诉
-#import "ChatListViewController.h" // 聊天列表
+#import "YBComplaintController.h" // 我要投诉
+#import "ChatListViewController.h" // 我的消息
+#import "HomeAdvantageController.h" // 一步优势
 
 typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
@@ -304,41 +304,69 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 }
 
 #pragma mark - WMMenuViewController代理方法
-- (void)didSelectItem:(NSString *)title {
-    // 投诉
-    YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
-    complaintVC.hidesBottomBarWhenPushed = YES;
-    // 消息列表
-    ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
-    chatListVC.hidesBottomBarWhenPushed = YES;
-    WMOtherViewController *other = [[WMOtherViewController alloc] init];
-    other.navTitle = title;
-    other.hidesBottomBarWhenPushed = YES;
-    [self showHome];
+- (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        // 我的消息
+        ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
+        chatListVC.hidesBottomBarWhenPushed = YES;
+        [self controller:chatListVC];
+    }
+    if (indexPath.row == 1) {
+        // 活动
+    }
+    if (indexPath.row == 2) {
+        // 预约签到
+    }
+    if (indexPath.row == 3) {
+        // 我的驾校班车
+    }
+    if (indexPath.row == 4) {
+        // 我的钱包
+    }
+    if (indexPath.row == 5) {
+        // 邀请好友
+    }
+    if (indexPath.row == 6) {
+        // 我要投诉
+        YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
+        complaintVC.hidesBottomBarWhenPushed = YES;
+        [self controller:complaintVC];
+    }
+    if (indexPath.row == 7) {
+        // 一步优势
+        HomeAdvantageController *advantageVC = [[HomeAdvantageController alloc] init];
+        advantageVC.hidesBottomBarWhenPushed = YES;
+        [self controller:advantageVC];
+    }
+    if (indexPath.row == 8) {
+        // 设置与帮助
+    }
     
+}
+- (void)controller:(UIViewController *)itemVC{
+    [self showHome];
     switch (self.vcType) {
         case kYBSignUpViewController:
-            [self.baomingVC.navigationController pushViewController:complaintVC animated:NO];
-        break;
+            [self.baomingVC.navigationController pushViewController:itemVC animated:NO];
+            break;
         case kYBStudyViewController:
-            [self.xuexiVC.navigationController pushViewController:other animated:NO];
+            [self.xuexiVC.navigationController pushViewController:itemVC animated:NO];
             break;
         case kYBAppointMentController:
-            [self.yuyueVC.navigationController pushViewController:other animated:NO];
+            [self.yuyueVC.navigationController pushViewController:itemVC animated:NO];
             break;
         case kYBMallViewController:
-            [self.shangchengVC.navigationController pushViewController:other animated:NO];
+            [self.shangchengVC.navigationController pushViewController:itemVC animated:NO];
             break;
         case kYBCommunityViewController:
-            [self.shequVC.navigationController pushViewController:other animated:NO];
+            [self.shequVC.navigationController pushViewController:itemVC animated:NO];
             break;
         case kYBComplainViewController:
-            [self.complaintVC.navigationController pushViewController:other animated:NO];
+            [self.complaintVC.navigationController pushViewController:itemVC animated:NO];
             break;
         default:
             break;
     }
-    
-}
 
+}
 @end

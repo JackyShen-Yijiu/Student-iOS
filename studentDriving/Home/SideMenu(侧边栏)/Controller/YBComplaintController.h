@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YBComplaintController : UIViewController
-
+@property (copy, nonatomic) NSString *navTitle;
 @end
