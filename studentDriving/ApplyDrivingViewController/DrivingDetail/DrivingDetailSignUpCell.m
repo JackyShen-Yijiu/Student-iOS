@@ -99,7 +99,7 @@
     if (0 == _showType) {
         return _classTypeView.totalHeight;
     }
-    return 95 + 95 + 40;
+    return 64 + 44;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
