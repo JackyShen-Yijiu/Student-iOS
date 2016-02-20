@@ -94,10 +94,6 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     [mightView addSubview:view];
     [self.view addSubview:mightView];
     
-//    UIImageView *bg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"back"]];
-//    bg.frame        = [[UIScreen mainScreen] bounds];
-//    [self.view addSubview:bg];
-    
     // 设置menu的view
     self.menuVC = [[WMMenuViewController alloc] init];
     self.menuVC.delegate = self;
