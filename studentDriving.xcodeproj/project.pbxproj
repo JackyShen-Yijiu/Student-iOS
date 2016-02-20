@@ -889,8 +889,8 @@
 		066BFB151C23A2C3002A1DD8 /* HomeMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeMainView.m; sourceTree = "<group>"; };
 		066BFB161C23A2C3002A1DD8 /* HomeSpotView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeSpotView.h; sourceTree = "<group>"; };
 		066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeSpotView.m; sourceTree = "<group>"; };
-		066BFB6E1C2428D0002A1DD8 /* HomeAdvantageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAdvantageController.h; sourceTree = "<group>"; };
-		066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAdvantageController.m; sourceTree = "<group>"; };
+		066BFB6E1C2428D0002A1DD8 /* HomeAdvantageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HomeAdvantageController.h; path = ../../../UserCenterViewController/HomeMainController/HomeAdvantageController.h; sourceTree = "<group>"; };
+		066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HomeAdvantageController.m; path = ../../../UserCenterViewController/HomeMainController/HomeAdvantageController.m; sourceTree = "<group>"; };
 		0684361A1C611586004FEA62 /* HomeShowKnowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeShowKnowController.h; sourceTree = "<group>"; };
 		0684361B1C611586004FEA62 /* HomeShowKnowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeShowKnowController.m; sourceTree = "<group>"; };
 		068716611C5607C50055D9DC /* AddlineButtomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddlineButtomTextField.h; sourceTree = "<group>"; };
@@ -2583,8 +2583,6 @@
 				066BFB151C23A2C3002A1DD8 /* HomeMainView.m */,
 				066BFB161C23A2C3002A1DD8 /* HomeSpotView.h */,
 				066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */,
-				066BFB6E1C2428D0002A1DD8 /* HomeAdvantageController.h */,
-				066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */,
 				06073D821C251BF60058B372 /* HomeFavourableController.h */,
 				06073D831C251BF60058B372 /* HomeFavourableController.m */,
 				06073D851C251C300058B372 /* HomeRewardController.h */,
@@ -2929,6 +2927,8 @@
 			children = (
 				568DF2401C75A82400008829 /* YBComplaintController.h */,
 				568DF2411C75A82400008829 /* YBComplaintController.m */,
+				066BFB6E1C2428D0002A1DD8 /* HomeAdvantageController.h */,
+				066BFB6F1C2428D0002A1DD8 /* HomeAdvantageController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";

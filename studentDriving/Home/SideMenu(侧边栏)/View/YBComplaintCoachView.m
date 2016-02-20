@@ -371,8 +371,10 @@
         [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateSelected];
         [_realNameButton setBackgroundImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
         [_realNameButton setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
+        [_realNameButton setImageEdgeInsets:UIEdgeInsetsMake(0,0,0,_anonymousButton.bounds.size.width - 24)];
         _realNameButton.imageEdgeInsets = UIEdgeInsetsMake(0,0,0,_anonymousButton.bounds.size.width - 24);
         _realNameButton.titleEdgeInsets = UIEdgeInsetsMake(5, 29, 5, 0);
+        
         [_realNameButton addTarget:self action:@selector(didclickReal:) forControlEvents:UIControlEventTouchUpInside];
         _realNameButton.titleLabel.font = [UIFont systemFontOfSize:14];
          _realNameButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;

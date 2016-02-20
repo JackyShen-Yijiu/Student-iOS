@@ -15,13 +15,13 @@
 @property (strong, nonatomic) WMCommon *common;
 @property (strong ,nonatomic) NSArray  *listArray;
 @property (strong, nonatomic) NSArray *imgArray;
+@property (strong, nonatomic) NSArray *imgSelectArray;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIButton    *nightModeBtn;
 @property (weak, nonatomic) IBOutlet UIButton    *settingBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 
-- (IBAction)btnClick:(id)sender;
 
 @end
 
@@ -33,7 +33,11 @@
     
     self.listArray = @[@"我的消息", @"活动", @"预约签到", @"我的驾校班车", @"我的钱包", @"邀请好友", @"我要投诉",@"一步优势",@"设置与帮助"];
     
+    // 正常状态图片
     self.imgArray = @[@"Slide_Menu_Message_Normal", @"Slide_Menu_Activity_Normal", @"Slide_Menu_SignUp_Normal", @"Slide_Menu_School_Normal", @"Slide_Menu_Money_Normal", @"Slide_Menu_Friend_Normal", @"Slide_Menu_Complaint_Normal",@"Slide_Menu_Advantage_Normal",@"Slide_Menu_Help_Normal"];
+    // 选中图片
+    self.imgSelectArray = @[@"Slide_Menu_Message_Select", @"Slide_Menu_Activity_Select", @"Slide_Menu_SignUp_Select", @"Slide_Menu_School_Select", @"Slide_Menu_Money_Select", @"Slide_Menu_Friend_Select", @"Slide_Menu_Complaint_Select",@"Slide_Menu_Advantage_Select",@"Slide_Menu_Help_Select"];
+
     
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;
@@ -43,17 +47,6 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
     
     self.headerImageView.image = [[UIImage imageNamed:@"me"] getRoundImage];
-}
-
-- (void)btnClick:(id)sender {
-    if (sender == self.nightModeBtn) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"使用提示" message:@"要使用夜间模式需下载主题包，立即下载？" delegate:nil cancelButtonTitle:@"取消" otherButtonTitles:@"立即下载", nil];
-        [alertView show];
-    } else {
-        if ([self.delegate respondsToSelector:@selector(didSelectItem:)]) {
-            [self.delegate didSelectItem:self.settingBtn.titleLabel.text];
-        }
-    }
 }
 
 #pragma mark - tableView代理方法及数据源方法
@@ -83,8 +76,8 @@
 //    [self showHome];
     [self.navigationController pushViewController:other animated:YES];
     
-    if ([self.delegate respondsToSelector:@selector(didSelectItem:)]) {
-        [self.delegate didSelectItem:self.listArray[indexPath.row]];
+    if ([self.delegate respondsToSelector:@selector(didSelectItem: indexPath:)]) {
+        [self.delegate didSelectItem:self.listArray[indexPath.row] indexPath:(NSIndexPath *)indexPath];
     }
 }
 

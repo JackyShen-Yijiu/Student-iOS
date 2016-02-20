@@ -44,7 +44,7 @@ static NSString *advantage = @"youshi.html";
 - (UIWebView *)webView
 {
     if (_webView == nil) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 64)];
         _webView.hidden = YES;
     }
     return _webView;

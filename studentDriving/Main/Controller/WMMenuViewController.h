@@ -11,7 +11,7 @@
 
 @protocol WMMenuViewControllerDelegate <NSObject>
 @optional
-- (void)didSelectItem:(NSString *)title;
+- (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath;
 
 @end
 
