@@ -607,7 +607,6 @@ static NSString *const kuserType = @"usertype";
 
 #pragma mark 随便看看
 - (void)dealBottom:(UIButton *)sender {
-    
     // 用户需要随便看看，打开相应的窗体
     [DVVUserManager userNeedBrowsing];
 }

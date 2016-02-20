@@ -347,7 +347,7 @@ static NSString *const kcodeGainUrl = @"code";
     // 手机号
     [self.phoneNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(18);
-        make.top.mas_equalTo(self.view.mas_top).with.offset(84);
+        make.top.mas_equalTo(self.view.mas_top).with.offset(24);
         make.height.mas_equalTo(@10);
         make.width.mas_equalTo(@40);
 

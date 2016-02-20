@@ -334,10 +334,14 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     if (indexPath.row == 3) {
         // 我的驾校班车
         
+        // 检测是否打开登录页
         if (![AcountManager isLogin]) {
-            [DVVUserManager userNeedLogin];
+            [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+            [self showHome];
+            [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
             return;
         }
+        
         if (![AcountManager manager].applyschool.infoId) {
             [self obj_showTotasViewWithMes:@"您还没有预约"];
             return ;
