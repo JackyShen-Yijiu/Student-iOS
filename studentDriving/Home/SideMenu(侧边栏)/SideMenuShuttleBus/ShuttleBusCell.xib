@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A4310" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -19,6 +19,7 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="班车线路名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NPW-Oc-lOB">
                                 <rect key="frame" x="8" y="8" width="312" height="21"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="0zG-zc-xrw"/>
                                 </constraints>
@@ -28,6 +29,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w31-E6-b9s">
                                 <rect key="frame" x="8" y="37" width="304" height="89"/>
+                                <animations/>
                                 <string key="text">半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费半侧-----登记费</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -35,6 +37,7 @@
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OzX-Ri-8T0">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="0.5"/>
+                                <animations/>
                                 <color key="backgroundColor" red="0.91053109219999995" green="0.91053109219999995" blue="0.91053109219999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="FVv-tn-9qV"/>
@@ -42,12 +45,14 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Aw-fH-zWy">
                                 <rect key="frame" x="0.0" y="133.5" width="320" height="0.5"/>
-                                <color key="backgroundColor" red="0.91053109219999995" green="0.91053109219999995" blue="0.91053109219999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="0.5" id="Gy5-Rn-ypJ"/>
                                 </constraints>
                             </view>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="0Aw-fH-zWy" secondAttribute="bottom" id="2yj-VW-klM"/>
@@ -66,6 +71,7 @@
                         </constraints>
                     </view>
                 </subviews>
+                <animations/>
                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="RLl-yZ-Gle" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="Ivg-08-cEW"/>
@@ -74,6 +80,7 @@
                     <constraint firstAttribute="bottom" secondItem="RLl-yZ-Gle" secondAttribute="bottom" id="cnN-FW-L8h"/>
                 </constraints>
             </tableViewCellContentView>
+            <animations/>
             <connections>
                 <outlet property="contentLabel" destination="w31-E6-b9s" id="HGa-mo-XXr"/>
                 <outlet property="titleLabel" destination="NPW-Oc-lOB" id="S3B-8t-s0p"/>

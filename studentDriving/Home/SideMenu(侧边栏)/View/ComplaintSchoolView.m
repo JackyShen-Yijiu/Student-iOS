@@ -401,7 +401,7 @@
 - (UILabel *)titlieNameCoachLabel{
     if (_titlieNameCoachLabel == nil) {
         _titlieNameCoachLabel = [[UILabel alloc] init];
-        _titlieNameCoachLabel.text = @"投诉教练姓名";
+        _titlieNameCoachLabel.text = @"投诉驾校名称";
         _titlieNameCoachLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
         _titlieNameCoachLabel.font = [UIFont systemFontOfSize:10];
         
@@ -413,7 +413,7 @@
 - (UILabel *)nameCoachLabel{
     if (_nameCoachLabel == nil) {
         _nameCoachLabel = [[UILabel alloc] init];
-        _nameCoachLabel.text = [[AcountManager manager] applycoach].name;
+        _nameCoachLabel.text = [[AcountManager manager] applyschool].name;
         _nameCoachLabel.textColor = [UIColor blackColor];
         _nameCoachLabel.font = [UIFont systemFontOfSize:14];
         
@@ -425,7 +425,7 @@
     if (_imgView == nil) {
         _imgView = [[UIImageView alloc] init];
         _imgView.backgroundColor  = [UIColor clearColor];
-        _imgView.image = [UIImage imageNamed:@"箭头"];
+//        _imgView.image = [UIImage imageNamed:@"箭头"];
     }
     return _imgView;
     
@@ -499,7 +499,7 @@
 - (UILabel *)bottomCoachName{
     if (_bottomCoachName == nil) {
         _bottomCoachName = [[UILabel alloc] init];
-        _bottomCoachName.text = [NSString stringWithFormat:@"投诉 %@教练",[[AcountManager manager] applycoach].name];
+        _bottomCoachName.text = [NSString stringWithFormat:@"投诉 %@",[[AcountManager manager]applyschool].name];
         _bottomCoachName.textColor = [UIColor blackColor];
         _bottomCoachName.font = [UIFont systemFontOfSize:14];
         

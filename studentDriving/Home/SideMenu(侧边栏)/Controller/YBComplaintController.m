@@ -45,6 +45,7 @@
     self.title = @"投诉";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
+//    self.view.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     [self.view addSubview:self.bgView];
     [self.view addSubview:self.coachButton];
