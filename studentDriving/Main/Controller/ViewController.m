@@ -25,6 +25,7 @@
 #import "HomeAdvantageController.h" // 一步优势
 #import "ShuttleBusController.h" // 我的驾校班车
 #import "JGActivityViewController.h" // 活动
+#import "SideMenuSignUpController.h"
 
 typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
@@ -322,6 +323,13 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     }
     if (indexPath.row == 2) {
         // 预约签到
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
+        
+        SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
+        [self controller:signUpVC];
     }
     if (indexPath.row == 3) {
         // 我的驾校班车

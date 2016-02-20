@@ -40,9 +40,7 @@
 		068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 068716621C5607C50055D9DC /* AddlineButtomTextField.m */; };
 		06F805A31C585AC400396445 /* CheckProgressTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F805A21C585AC400396445 /* CheckProgressTextField.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
-		4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB821C3538D7001CF897 /* SignInViewController.m */; };
 		4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB8B1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m */; };
-		4761DB8F1C354AA0001CF897 /* SignInHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */; };
 		550635531C74722800840B91 /* ShowWarningMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 550635521C74722800840B91 /* ShowWarningMessageView.m */; };
 		550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 550C07331C33FF700051433B /* MyWalletViewCell.m */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; };
@@ -79,6 +77,13 @@
 		56855C3A1C785485005D4517 /* JGActivityDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C331C785485005D4517 /* JGActivityDetailsViewController.m */; };
 		56855C3B1C785485005D4517 /* JGActivityModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C351C785485005D4517 /* JGActivityModel.m */; };
 		56855C3C1C785485005D4517 /* JGActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C371C785485005D4517 /* JGActivityViewController.m */; };
+		56855C401C785C8E005D4517 /* SideMenuSignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C3F1C785C8E005D4517 /* SideMenuSignUpController.m */; };
+		56855C431C785FFE005D4517 /* SideMenuSignUpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C421C785FFE005D4517 /* SideMenuSignUpCell.m */; };
+		56855C4E1C787736005D4517 /* SignInCoachDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C451C787736005D4517 /* SignInCoachDataModel.m */; };
+		56855C4F1C787736005D4517 /* SignInDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C471C787736005D4517 /* SignInDataModel.m */; };
+		56855C501C787736005D4517 /* SignInHelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C491C787736005D4517 /* SignInHelpViewController.m */; };
+		56855C511C787736005D4517 /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C4B1C787736005D4517 /* SignInViewController.m */; };
+		56855C521C787736005D4517 /* SignInViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C4D1C787736005D4517 /* SignInViewModel.m */; };
 		568DF20E1C75756900008829 /* InfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1F61C75756900008829 /* InfoModel.m */; };
 		568DF2121C75756900008829 /* MagicMainTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF1FD1C75756900008829 /* MagicMainTableViewCell.m */; };
 		568DF2131C75756900008829 /* MagicMainTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 568DF1FE1C75756900008829 /* MagicMainTableViewCell.xib */; };
@@ -774,11 +779,8 @@
 		D966E7791C5B4363007848B4 /* ClassTypeDMSchoolinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D966E7731C5B4363007848B4 /* ClassTypeDMSchoolinfo.m */; };
 		D966E77A1C5B4363007848B4 /* ClassTypeDMVipserverlist.m in Sources */ = {isa = PBXBuildFile; fileRef = D966E7751C5B4363007848B4 /* ClassTypeDMVipserverlist.m */; };
 		D96712D91C3F8A150099C3B9 /* DVVCreateQRCode.m in Sources */ = {isa = PBXBuildFile; fileRef = D96712D81C3F8A150099C3B9 /* DVVCreateQRCode.m */; };
-		D96712DC1C3F9A470099C3B9 /* SignInViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D96712DB1C3F9A470099C3B9 /* SignInViewModel.m */; };
-		D96712DF1C3FA4B80099C3B9 /* SignInDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D96712DE1C3FA4B80099C3B9 /* SignInDataModel.m */; };
 		D96712E21C3FC2590099C3B9 /* SignInListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96712E11C3FC2590099C3B9 /* SignInListController.m */; };
 		D96712E51C3FCF790099C3B9 /* SignInListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D96712E41C3FCF790099C3B9 /* SignInListCell.m */; };
-		D96712E81C3FD1830099C3B9 /* SignInCoachDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D96712E71C3FD1830099C3B9 /* SignInCoachDataModel.m */; };
 		D96D1BC91C2B858400F1C282 /* AppDelegate+DealJPushMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BC21C2B858400F1C282 /* AppDelegate+DealJPushMessage.m */; };
 		D96D1BCA1C2B858400F1C282 /* AppDelegate+DealTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BC41C2B858400F1C282 /* AppDelegate+DealTool.m */; };
 		D96D1BCB1C2B858400F1C282 /* AppDelegate+EaseMob.m in Sources */ = {isa = PBXBuildFile; fileRef = D96D1BC61C2B858400F1C282 /* AppDelegate+EaseMob.m */; };
@@ -899,12 +901,8 @@
 		068716621C5607C50055D9DC /* AddlineButtomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddlineButtomTextField.m; sourceTree = "<group>"; };
 		06F805A11C585AC400396445 /* CheckProgressTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressTextField.h; sourceTree = "<group>"; };
 		06F805A21C585AC400396445 /* CheckProgressTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CheckProgressTextField.m; sourceTree = "<group>"; };
-		4761DB811C3538D7001CF897 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
-		4761DB821C3538D7001CF897 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
 		4761DB8A1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+JGBarButtonItem.h"; sourceTree = "<group>"; };
 		4761DB8B1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+JGBarButtonItem.m"; sourceTree = "<group>"; };
-		4761DB8D1C354AA0001CF897 /* SignInHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInHelpViewController.h; sourceTree = "<group>"; };
-		4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInHelpViewController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		550635511C74722800840B91 /* ShowWarningMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWarningMessageView.h; sourceTree = "<group>"; };
 		550635521C74722800840B91 /* ShowWarningMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWarningMessageView.m; sourceTree = "<group>"; };
@@ -1050,6 +1048,20 @@
 		56855C351C785485005D4517 /* JGActivityModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGActivityModel.m; sourceTree = "<group>"; };
 		56855C361C785485005D4517 /* JGActivityViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGActivityViewController.h; sourceTree = "<group>"; };
 		56855C371C785485005D4517 /* JGActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGActivityViewController.m; sourceTree = "<group>"; };
+		56855C3E1C785C8E005D4517 /* SideMenuSignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuSignUpController.h; sourceTree = "<group>"; };
+		56855C3F1C785C8E005D4517 /* SideMenuSignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuSignUpController.m; sourceTree = "<group>"; };
+		56855C411C785FFE005D4517 /* SideMenuSignUpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SideMenuSignUpCell.h; sourceTree = "<group>"; };
+		56855C421C785FFE005D4517 /* SideMenuSignUpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SideMenuSignUpCell.m; sourceTree = "<group>"; };
+		56855C441C787736005D4517 /* SignInCoachDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInCoachDataModel.h; sourceTree = "<group>"; };
+		56855C451C787736005D4517 /* SignInCoachDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInCoachDataModel.m; sourceTree = "<group>"; };
+		56855C461C787736005D4517 /* SignInDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInDataModel.h; sourceTree = "<group>"; };
+		56855C471C787736005D4517 /* SignInDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInDataModel.m; sourceTree = "<group>"; };
+		56855C481C787736005D4517 /* SignInHelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInHelpViewController.h; sourceTree = "<group>"; };
+		56855C491C787736005D4517 /* SignInHelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInHelpViewController.m; sourceTree = "<group>"; };
+		56855C4A1C787736005D4517 /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		56855C4B1C787736005D4517 /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		56855C4C1C787736005D4517 /* SignInViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewModel.h; sourceTree = "<group>"; };
+		56855C4D1C787736005D4517 /* SignInViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewModel.m; sourceTree = "<group>"; };
 		568DF1F51C75756900008829 /* InfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InfoModel.h; sourceTree = "<group>"; };
 		568DF1F61C75756900008829 /* InfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InfoModel.m; sourceTree = "<group>"; };
 		568DF1FC1C75756900008829 /* MagicMainTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicMainTableViewCell.h; sourceTree = "<group>"; };
@@ -2320,16 +2332,10 @@
 		D966E7751C5B4363007848B4 /* ClassTypeDMVipserverlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassTypeDMVipserverlist.m; sourceTree = "<group>"; };
 		D96712D71C3F8A150099C3B9 /* DVVCreateQRCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCreateQRCode.h; sourceTree = "<group>"; };
 		D96712D81C3F8A150099C3B9 /* DVVCreateQRCode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCreateQRCode.m; sourceTree = "<group>"; };
-		D96712DA1C3F9A470099C3B9 /* SignInViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewModel.h; sourceTree = "<group>"; };
-		D96712DB1C3F9A470099C3B9 /* SignInViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewModel.m; sourceTree = "<group>"; };
-		D96712DD1C3FA4B80099C3B9 /* SignInDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInDataModel.h; sourceTree = "<group>"; };
-		D96712DE1C3FA4B80099C3B9 /* SignInDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInDataModel.m; sourceTree = "<group>"; };
 		D96712E01C3FC2590099C3B9 /* SignInListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInListController.h; sourceTree = "<group>"; };
 		D96712E11C3FC2590099C3B9 /* SignInListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInListController.m; sourceTree = "<group>"; };
 		D96712E31C3FCF790099C3B9 /* SignInListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInListCell.h; sourceTree = "<group>"; };
 		D96712E41C3FCF790099C3B9 /* SignInListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInListCell.m; sourceTree = "<group>"; };
-		D96712E61C3FD1830099C3B9 /* SignInCoachDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInCoachDataModel.h; sourceTree = "<group>"; };
-		D96712E71C3FD1830099C3B9 /* SignInCoachDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInCoachDataModel.m; sourceTree = "<group>"; };
 		D96D1BC11C2B858400F1C282 /* AppDelegate+DealJPushMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+DealJPushMessage.h"; sourceTree = "<group>"; };
 		D96D1BC21C2B858400F1C282 /* AppDelegate+DealJPushMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+DealJPushMessage.m"; sourceTree = "<group>"; };
 		D96D1BC31C2B858400F1C282 /* AppDelegate+DealTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+DealTool.h"; sourceTree = "<group>"; };
@@ -2910,6 +2916,27 @@
 			path = SideMenuActiviy;
 			sourceTree = "<group>";
 		};
+		56855C3D1C785C27005D4517 /* SideMenuSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				56855C3E1C785C8E005D4517 /* SideMenuSignUpController.h */,
+				56855C3F1C785C8E005D4517 /* SideMenuSignUpController.m */,
+				56855C411C785FFE005D4517 /* SideMenuSignUpCell.h */,
+				56855C421C785FFE005D4517 /* SideMenuSignUpCell.m */,
+				56855C441C787736005D4517 /* SignInCoachDataModel.h */,
+				56855C451C787736005D4517 /* SignInCoachDataModel.m */,
+				56855C461C787736005D4517 /* SignInDataModel.h */,
+				56855C471C787736005D4517 /* SignInDataModel.m */,
+				56855C481C787736005D4517 /* SignInHelpViewController.h */,
+				56855C491C787736005D4517 /* SignInHelpViewController.m */,
+				56855C4A1C787736005D4517 /* SignInViewController.h */,
+				56855C4B1C787736005D4517 /* SignInViewController.m */,
+				56855C4C1C787736005D4517 /* SignInViewModel.h */,
+				56855C4D1C787736005D4517 /* SignInViewModel.m */,
+			);
+			path = SideMenuSignUp;
+			sourceTree = "<group>";
+		};
 		568DF1F11C75756900008829 /* RealShop */ = {
 			isa = PBXGroup;
 			children = (
@@ -2950,6 +2977,7 @@
 		568DF23A1C759F6E00008829 /* SideMenu(侧边栏) */ = {
 			isa = PBXGroup;
 			children = (
+				56855C3D1C785C27005D4517 /* SideMenuSignUp */,
 				56855C2E1C785485005D4517 /* SideMenuActiviy */,
 				56855C251C784E0C005D4517 /* SideMenuShuttleBus */,
 				568DF23F1C75A80D00008829 /* View */,
@@ -4636,16 +4664,6 @@
 				D96712E11C3FC2590099C3B9 /* SignInListController.m */,
 				D96712E31C3FCF790099C3B9 /* SignInListCell.h */,
 				D96712E41C3FCF790099C3B9 /* SignInListCell.m */,
-				4761DB811C3538D7001CF897 /* SignInViewController.h */,
-				4761DB821C3538D7001CF897 /* SignInViewController.m */,
-				D96712DA1C3F9A470099C3B9 /* SignInViewModel.h */,
-				D96712DB1C3F9A470099C3B9 /* SignInViewModel.m */,
-				D96712DD1C3FA4B80099C3B9 /* SignInDataModel.h */,
-				D96712DE1C3FA4B80099C3B9 /* SignInDataModel.m */,
-				D96712E61C3FD1830099C3B9 /* SignInCoachDataModel.h */,
-				D96712E71C3FD1830099C3B9 /* SignInCoachDataModel.m */,
-				4761DB8D1C354AA0001CF897 /* SignInHelpViewController.h */,
-				4761DB8E1C354AA0001CF897 /* SignInHelpViewController.m */,
 			);
 			path = UserCenterViewController;
 			sourceTree = "<group>";
@@ -5999,6 +6017,7 @@
 				D92B2DF41C5A17BE0050EE84 /* DrivingDetailDMSchoolbusroute.m in Sources */,
 				D5604C851BF656F30020F0D7 /* DXChatBarMoreView.m in Sources */,
 				D588AFCA1BDDDAAB000C5D6F /* ExamClassModel.m in Sources */,
+				56855C511C787736005D4517 /* SignInViewController.m in Sources */,
 				550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */,
 				B2E8E1B91C72C8E6000190C2 /* YBStudyViewController.m in Sources */,
 				D5604B861BF656C50020F0D7 /* BaseTableViewCell.m in Sources */,
@@ -6036,6 +6055,7 @@
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
 				B20DBECF1C5DB0FF0023676E /* SBJsonWriter.m in Sources */,
 				06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */,
+				56855C401C785C8E005D4517 /* SideMenuSignUpController.m in Sources */,
 				D5604C921BF656F30020F0D7 /* MessageReadManager.m in Sources */,
 				062734D01C5A46410056B0BC /* SignUpTextField.m in Sources */,
 				D588AFC71BDDDAAB000C5D6F /* CarModel.m in Sources */,
@@ -6077,6 +6097,7 @@
 				B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */,
 				D588B0521BDDDB71000C5D6F /* ModifyPhoneNumViewController.m in Sources */,
 				D588B08E1BDDDBDB000C5D6F /* ExamClassViewController.m in Sources */,
+				56855C431C785FFE005D4517 /* SideMenuSignUpCell.m in Sources */,
 				D51256C01BE24442002717DA /* ConfirmStudyFinishViewController.m in Sources */,
 				D588B0931BDDDBDB000C5D6F /* CoachViewController.m in Sources */,
 				D92B2DF31C5A17BE0050EE84 /* DrivingDetailDMRootClass.m in Sources */,
@@ -6121,7 +6142,6 @@
 				D5604B561BF656C50020F0D7 /* EMSDWebImageDownloader.m in Sources */,
 				D9A34F3B1C5318FA0044CC25 /* DVVShareView.m in Sources */,
 				D5604C8E1BF656F30020F0D7 /* EMChatViewBaseCell.m in Sources */,
-				D96712E81C3FD1830099C3B9 /* SignInCoachDataModel.m in Sources */,
 				D5604C811BF656F30020F0D7 /* LocationViewController.m in Sources */,
 				D96712E21C3FC2590099C3B9 /* SignInListController.m in Sources */,
 				D512569F1BDFAA31002717DA /* SignUpDrivingViewController.m in Sources */,
@@ -6240,6 +6260,8 @@
 				B2E8E1AA1C72C744000190C2 /* YBBaseViewController.m in Sources */,
 				B20DBEC81C5DB0FF0023676E /* AlixPayResult.m in Sources */,
 				B226AF1B1C76EAAA0028DF1A /* YBCoachListSearchController.m in Sources */,
+				56855C501C787736005D4517 /* SignInHelpViewController.m in Sources */,
+				56855C4F1C787736005D4517 /* SignInDataModel.m in Sources */,
 				D5604C911BF656F30020F0D7 /* MessageModelManager.m in Sources */,
 				B226AEC51C7480530028DF1A /* HMTrainaddressModel.m in Sources */,
 				D5604C8D1BF656F30020F0D7 /* EMChatTimeCell.m in Sources */,
@@ -6275,6 +6297,7 @@
 				B2E8E1B61C72C8D7000190C2 /* YBSignUpViewController.m in Sources */,
 				066BFB191C23A2C3002A1DD8 /* HomeMainView.m in Sources */,
 				B226AEC31C7480530028DF1A /* HMCourseModel.m in Sources */,
+				56855C4E1C787736005D4517 /* SignInCoachDataModel.m in Sources */,
 				D96532841C733E0B0097AFA2 /* DVVSignUpCoachDMData.m in Sources */,
 				B2E8E1BC1C72CA83000190C2 /* YBHomeBaseController.m in Sources */,
 				D96D1BD31C2B859C00F1C282 /* FourViewController.m in Sources */,
@@ -6341,7 +6364,6 @@
 				D5604B781BF656C50020F0D7 /* TTGlobalUICommon.m in Sources */,
 				B226AE7B1C7428420028DF1A /* koaGradient.m in Sources */,
 				0684361C1C611586004FEA62 /* HomeShowKnowController.m in Sources */,
-				4761DB841C3538D7001CF897 /* SignInViewController.m in Sources */,
 				D9AFF8831C75A69300194129 /* DrivingDetailTableHeaderView.m in Sources */,
 				D965CAAC1C239D9F00DCD094 /* DrivingTableHeaderView.m in Sources */,
 				D5604B5B1BF656C50020F0D7 /* NSData+EMImageContentType.m in Sources */,
@@ -6361,7 +6383,6 @@
 				B226AEA41C747E050028DF1A /* NSString+CurrentTimeDay.m in Sources */,
 				B21818331C5A3E3900F973A7 /* JGTeachingNewsChangDiView.m in Sources */,
 				56855C2B1C784EEA005D4517 /* ShuttleBusCell.m in Sources */,
-				D96712DC1C3F9A470099C3B9 /* SignInViewModel.m in Sources */,
 				D588B11C1BDDDC2F000C5D6F /* NetMonitor.m in Sources */,
 				D970D3991C3CFFEB003FCED3 /* CoachDMHeadportrait.m in Sources */,
 				D51256CC1BE348DC002717DA /* CommentModel.m in Sources */,
@@ -6399,7 +6420,6 @@
 				B226AEF41C748FFE0028DF1A /* PortraitView.m in Sources */,
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
-				D96712DF1C3FA4B80099C3B9 /* SignInDataModel.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
 				D963FACD1C740B09006955D8 /* UIImageView+DVVWebImage.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
@@ -6417,6 +6437,7 @@
 				D96149441C5C587200E3007F /* CoachListDMSubject.m in Sources */,
 				D5604B521BF656C50020F0D7 /* DACircularProgressView.m in Sources */,
 				D5604C871BF656F30020F0D7 /* EMChatAudioBubbleView.m in Sources */,
+				56855C521C787736005D4517 /* SignInViewModel.m in Sources */,
 				B226AEAA1C747EBE0028DF1A /* JGYuYueHeadView.m in Sources */,
 				D5604B571BF656C50020F0D7 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				D588AFC41BDDDAAB000C5D6F /* CoachModel.m in Sources */,
@@ -6444,7 +6465,6 @@
 				B226AE9A1C7478240028DF1A /* YBAppointMentChangeCoachController.m in Sources */,
 				B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */,
 				56855C381C785485005D4517 /* JGActivityCell.m in Sources */,
-				4761DB8F1C354AA0001CF897 /* SignInHelpViewController.m in Sources */,
 				D588B04D1BDDDB71000C5D6F /* MyLoveCoachViewController.m in Sources */,
 				D5604C7F1BF656F30020F0D7 /* ChatViewController.m in Sources */,
 				D5604B441BF656C50020F0D7 /* EMCDDeviceManagerBase.m in Sources */,
