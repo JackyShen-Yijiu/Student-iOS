@@ -24,11 +24,6 @@
 #import "ChatListViewController.h" // 我的消息
 #import "HomeAdvantageController.h" // 一步优势
 
-typedef enum state {
-    kStateHome,
-    kStateMenu
-}state;
-
 typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
     kYBSignUpViewController,
@@ -80,8 +75,10 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.view.backgroundColor = YBNavigationBarBgColor;
+    
     self.common = [WMCommon getInstance];
-    self.sta = kStateHome;
+    self.common.homeState = kStateHome;
     self.distance = 0;
     self.menuCenterXStart = self.common.screenW * menuStartNarrowRatio / 2.0;
     self.menuCenterXEnd = self.view.center.x;
@@ -110,9 +107,9 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     [self.view addSubview:self.menuVC.view];
     
     // 设置遮盖
-    self.cover = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.cover.backgroundColor = [UIColor blackColor];
-    [self.view addSubview:self.cover];
+//    self.cover = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//    self.cover.backgroundColor = YBNavigationBarBgColor;
+//    [self.view addSubview:self.cover];
     
     // 添加tabBarController
     self.tabBarController = [[IWTabBarViewController alloc] init];
@@ -193,13 +190,13 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     if (recognizer.state == UIGestureRecognizerStateBegan) {
         self.panStartX = [recognizer locationInView:self.view].x;
     }
-    if (self.sta == kStateHome && self.panStartX >= 75) {
+    if (self.common.homeState == kStateHome && self.panStartX >= 75) {
         return;
     }
     
     CGFloat x = [recognizer translationInView:self.view].x;
     // 禁止在主界面的时候向左滑动
-    if (self.sta == kStateHome && x < 0) {
+    if (self.common.homeState == kStateHome && x < 0) {
         return;
     }
     
@@ -227,6 +224,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     CGFloat menuCenterMove = dis * (self.menuCenterXEnd - self.menuCenterXStart) / self.leftDistance;
     self.menuVC.view.center = CGPointMake(self.menuCenterXStart + menuCenterMove, self.view.center.y);
     self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
+    
 }
 
 /**
@@ -234,7 +232,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
  */
 - (void)showMenu {
     self.distance = self.leftDistance;
-    self.sta = kStateMenu;
+    self.common.homeState = kStateMenu;
     [self doSlide:viewHeightNarrowRatio];
 }
 
@@ -243,7 +241,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
  */
 - (void)showHome {
     self.distance = 0;
-    self.sta = kStateHome;
+    self.common.homeState = kStateHome;
     [self doSlide:1];
 }
 
@@ -276,9 +274,17 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 }
 
 #pragma mark - WMHomeViewController代理方法
+- (void)leftBtnClicked:(state)state
+{
+    if (state==kStateMenu) {
+        [self showHome];
+    }
+    
+}
+
 - (void)leftBtnClicked {
     
-    switch (self.sta) {
+    switch (self.common.homeState) {
         case kStateHome:
             
             [self showMenu];

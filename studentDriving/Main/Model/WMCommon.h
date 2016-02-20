@@ -19,4 +19,6 @@
 
 + (instancetype)getInstance;
 
+@property (nonatomic,assign) state homeState;
+
 @end

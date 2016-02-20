@@ -87,9 +87,9 @@
     [cell refreshData:_viewModel.dataArray[indexPath.row]];
     
     if (_viewModel.dataArray.count == indexPath.row + 1) {
-        cell.bottomLineView.hidden = YES;
+        cell.lineImageView.hidden = YES;
     }else {
-        cell.bottomLineView.hidden = NO;
+        cell.lineImageView.hidden = NO;
     }
     return cell;
 }

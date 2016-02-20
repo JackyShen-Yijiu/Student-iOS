@@ -13,7 +13,6 @@ typedef void(^ShowMoreButtonTouchDownBlock)(BOOL isShowMore);
 
 @interface DrivingDetailBriefIntroductionCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *showMoreImageView;
 @property (weak, nonatomic) IBOutlet UILabel *briefIntroductionLabel;
 
 @property (nonatomic, assign) BOOL isShowMore;

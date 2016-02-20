@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *passRateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *learnTimeLabel;
 
+@property (nonatomic, strong) UIImageView *lineImageView;
+
 - (void)refreshData:(DrivingDetailDMData *)dmData;
 
 + (CGFloat)defaultHeight;

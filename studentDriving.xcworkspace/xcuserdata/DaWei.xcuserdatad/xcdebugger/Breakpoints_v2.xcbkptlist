@@ -129,6 +129,38 @@
             endingLineNumber = "422"
             landmarkName = "-userExist"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[RegisterViewController viewWillLayoutSubviews]"
+                  moduleName = "studentDriving"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
+                  timestampString = "477565909.085981"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "423"
+                  endingLineNumber = "423"
+                  offsetFromSymbolStart = "2004">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[RegisterViewController viewWillLayoutSubviews]_block_invoke261"
+                  moduleName = "studentDriving"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
+                  timestampString = "477565909.086975"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "423"
+                  endingLineNumber = "423"
+                  offsetFromSymbolStart = "52">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -282,92 +314,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "studentDriving/ApplyDrivingViewController/DrivingDetail/DrivingDetailViewModel.m"
-            timestampString = "476108318.789622"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "21"
-            endingLineNumber = "21"
-            landmarkName = "-dvvNetworkRequestRefresh"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[DrivingDetailViewModel dvvNetworkRequestRefresh]"
-                  moduleName = "studentDriving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/ApplyDrivingViewController/DrivingDetail/DrivingDetailViewModel.m"
-                  timestampString = "477404972.826028"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "186">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__50-[DrivingDetailViewModel dvvNetworkRequestRefresh]_block_invoke"
-                  moduleName = "studentDriving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/ApplyDrivingViewController/DrivingDetail/DrivingDetailViewModel.m"
-                  timestampString = "477404972.826232"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "21"
-                  endingLineNumber = "21"
-                  offsetFromSymbolStart = "52">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/ApplyDrivingViewController/DrivingDetail/DrivingDetailViewModel.m"
-            timestampString = "476108370.465155"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "-dvvNetworkRequestRefresh"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/ApplyDrivingViewController/DrivingDetail/DrivingDetailViewModel.m"
             timestampString = "476108374.245568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "42"
             endingLineNumber = "42"
             landmarkName = "-dvvNetworkRequestRefresh"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/ApplyDrivingViewController/DrivingDetail/DrivingDetailController.m"
-            timestampString = "476108485.403146"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

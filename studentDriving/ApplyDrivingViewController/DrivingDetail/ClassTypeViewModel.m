@@ -48,7 +48,6 @@
             
             [_heightArray addObject:[NSString stringWithFormat:@"%f",height]];
         }
-        _totalHeight += 8 + 44 + 1;
         
         [self dvvRefreshSuccess];
         

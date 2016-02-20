@@ -8,101 +8,26 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="233" id="KGk-i7-Jjw" customClass="DrivingDetailSignUpCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="230"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="178"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="229.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="177.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TKN-gj-ckP">
-                        <rect key="frame" x="0.0" y="8" width="320" height="44"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h3i-PU-Ft0">
-                                <rect key="frame" x="0.0" y="0.0" width="160" height="44"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="课程费用">
-                                    <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="courseButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Pt3-Zi-3qx"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EHS-oY-bTf">
-                                <rect key="frame" x="160" y="0.0" width="160" height="44"/>
-                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="教练信息">
-                                    <color key="titleColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="coachButtonAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="FWw-bx-hEV"/>
-                                </connections>
-                            </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5qk-rD-TJj" userLabel="topLineView">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="1"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="exK-SI-bbE"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qST-xE-SBG" userLabel="splitLIneView">
-                                <rect key="frame" x="159" y="11" width="1" height="22"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="1" id="CBa-wL-qFw"/>
-                                    <constraint firstAttribute="height" constant="22" id="zJh-kx-pxQ"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Euq-iv-iHE" userLabel="bottomLineView">
-                                <rect key="frame" x="0.0" y="43" width="320" height="1"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="hDh-Zz-zKt"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="h3i-PU-Ft0" firstAttribute="top" secondItem="TKN-gj-ckP" secondAttribute="top" id="ENz-0t-dOg"/>
-                            <constraint firstItem="Euq-iv-iHE" firstAttribute="leading" secondItem="TKN-gj-ckP" secondAttribute="leading" id="NQm-xG-xGC"/>
-                            <constraint firstAttribute="trailing" secondItem="EHS-oY-bTf" secondAttribute="trailing" id="OsY-Du-Ajb"/>
-                            <constraint firstAttribute="trailing" secondItem="Euq-iv-iHE" secondAttribute="trailing" id="Rg5-jk-yK3"/>
-                            <constraint firstAttribute="bottom" secondItem="h3i-PU-Ft0" secondAttribute="bottom" id="Tjn-yT-CJ4"/>
-                            <constraint firstAttribute="trailing" secondItem="5qk-rD-TJj" secondAttribute="trailing" id="aeu-2W-4AV"/>
-                            <constraint firstItem="EHS-oY-bTf" firstAttribute="width" secondItem="h3i-PU-Ft0" secondAttribute="width" id="afE-Jf-OrK"/>
-                            <constraint firstItem="h3i-PU-Ft0" firstAttribute="leading" secondItem="TKN-gj-ckP" secondAttribute="leading" id="auF-pN-xHg"/>
-                            <constraint firstItem="EHS-oY-bTf" firstAttribute="height" secondItem="h3i-PU-Ft0" secondAttribute="height" id="cGB-4m-KEx"/>
-                            <constraint firstAttribute="height" constant="44" id="cvA-Tu-6jW"/>
-                            <constraint firstItem="EHS-oY-bTf" firstAttribute="leading" secondItem="h3i-PU-Ft0" secondAttribute="trailing" id="eTj-ef-sra"/>
-                            <constraint firstItem="5qk-rD-TJj" firstAttribute="top" secondItem="TKN-gj-ckP" secondAttribute="top" id="elw-9m-iL5"/>
-                            <constraint firstItem="qST-xE-SBG" firstAttribute="centerX" secondItem="TKN-gj-ckP" secondAttribute="centerX" id="hBe-yy-xD2"/>
-                            <constraint firstAttribute="bottom" secondItem="Euq-iv-iHE" secondAttribute="bottom" id="kVu-pk-G5o"/>
-                            <constraint firstAttribute="bottom" secondItem="EHS-oY-bTf" secondAttribute="bottom" id="pl6-8n-jVx"/>
-                            <constraint firstItem="5qk-rD-TJj" firstAttribute="leading" secondItem="TKN-gj-ckP" secondAttribute="leading" id="sF5-Db-0U4"/>
-                            <constraint firstItem="qST-xE-SBG" firstAttribute="centerY" secondItem="TKN-gj-ckP" secondAttribute="centerY" id="vQr-kk-oLd"/>
-                            <constraint firstItem="EHS-oY-bTf" firstAttribute="top" secondItem="TKN-gj-ckP" secondAttribute="top" id="vva-40-Jgi"/>
-                        </constraints>
-                    </view>
                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" pagingEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GpU-U5-ZMS">
-                        <rect key="frame" x="0.0" y="52" width="320" height="177.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="177.5"/>
                     </scrollView>
                 </subviews>
                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="GpU-U5-ZMS" secondAttribute="bottom" id="CwE-Lm-jE7"/>
-                    <constraint firstItem="GpU-U5-ZMS" firstAttribute="top" secondItem="TKN-gj-ckP" secondAttribute="bottom" id="DP8-TP-qJ1"/>
-                    <constraint firstItem="TKN-gj-ckP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Fj7-WM-0Fu"/>
-                    <constraint firstAttribute="trailing" secondItem="GpU-U5-ZMS" secondAttribute="trailing" id="MK3-R6-MTN"/>
-                    <constraint firstItem="GpU-U5-ZMS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="VnW-5I-UTy"/>
-                    <constraint firstAttribute="trailing" secondItem="TKN-gj-ckP" secondAttribute="trailing" id="kQC-XE-gjD"/>
-                    <constraint firstItem="TKN-gj-ckP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="uGQ-0e-BJe"/>
+                    <constraint firstItem="GpU-U5-ZMS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="JKD-5H-oAS"/>
+                    <constraint firstItem="GpU-U5-ZMS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="UiC-QY-WxW"/>
+                    <constraint firstAttribute="trailing" secondItem="GpU-U5-ZMS" secondAttribute="trailing" id="ilU-ge-MhM"/>
+                    <constraint firstAttribute="bottom" secondItem="GpU-U5-ZMS" secondAttribute="bottom" id="kFp-yW-87b"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="coachButton" destination="EHS-oY-bTf" id="osJ-7w-Fjr"/>
-                <outlet property="courseButton" destination="h3i-PU-Ft0" id="RLi-HL-AMk"/>
                 <outlet property="scrollView" destination="GpU-U5-ZMS" id="Pu6-I0-20k"/>
             </connections>
             <point key="canvasLocation" x="68" y="425"/>

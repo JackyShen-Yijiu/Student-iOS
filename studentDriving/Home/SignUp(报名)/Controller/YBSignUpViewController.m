@@ -18,6 +18,8 @@
 #import "YBAPPMacro.h"
 #import "DVVToast.h"
 #import "DVVSearchView.h"
+#import "DrivingDetailController.h"
+#import "WMCommon.h"
 
 static NSString *schoolCellID = @"schoolCellID";
 static NSString *coachCellID = @"coachCellID";
@@ -69,6 +71,16 @@ static NSString *coachCellID = @"coachCellID";
     [self configSchoolViewModel];
     [self configCoachViewModel];
     [self configRefresh];
+    
+    UIView *topView = [UIView new];
+    topView.backgroundColor = YBNavigationBarBgColor;
+    topView.frame = CGRectMake(0, -64, kSystemWide, 64);
+    [self.view addSubview:topView];
+    
+    UIView *bottomView = [UIView new];
+    bottomView.backgroundColor = [UIColor whiteColor];
+    bottomView.frame = CGRectMake(0, kSystemHeight - 64 - 49, kSystemWide, 49);
+    [self.view addSubview:bottomView];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -104,6 +116,12 @@ static NSString *coachCellID = @"coachCellID";
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     navBarHairlineImageView.hidden=NO;
+    
+    // 退出侧边栏
+    if ([WMCommon getInstance].homeState==kStateMenu) {
+        [self clicked];
+    }
+    
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -232,7 +250,12 @@ static NSString *coachCellID = @"coachCellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (0 == _showType) {
+        
         // 跳转到驾校详情
+        DVVSignUpSchoolDMData *dmData = _schoolViewModel.dataArray[indexPath.row];
+        DrivingDetailController *vc = [DrivingDetailController new];
+        vc.schoolID = dmData.schoolid;
+        [self.navigationController pushViewController:vc animated:YES];
     }else {
         // 跳转到教练详情
     }
@@ -451,6 +474,7 @@ static NSString *coachCellID = @"coachCellID";
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView= [UITableView new];
+        _tableView.clipsToBounds = NO;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

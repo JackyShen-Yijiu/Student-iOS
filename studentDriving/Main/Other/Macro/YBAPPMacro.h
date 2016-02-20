@@ -12,8 +12,12 @@
 // 红色导航条颜色
 #define YBNavigationBarBgColor RGBColor(209,65,53)
 
+typedef enum state {
+    kStateHome,
+    kStateMenu
+}state;
+
 // 教练列表
 static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/-1";
-
 
 #endif /* YBObject_h */

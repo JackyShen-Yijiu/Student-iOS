@@ -11,11 +11,12 @@
 #import "DrivingDetailDMData.h"
 
 @interface DrivingDetailTrainingGroundCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *markLabel;
 
 @property (nonatomic, strong) DVVHorizontalScrollImagesView *scrollImagesView;
 
 - (void)refreshData:(DrivingDetailDMData *)dmData;
 
-+ (CGFloat)defaultHeight;
++ (CGFloat)dynamicHeight:(DrivingDetailDMData *)dmData;
 
 @end

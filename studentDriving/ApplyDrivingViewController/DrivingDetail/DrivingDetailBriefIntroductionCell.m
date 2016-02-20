@@ -42,11 +42,7 @@
     
     sender.selected = !sender.selected;
     _isShowMore = sender.selected;
-    if (_isShowMore) {
-        _showMoreImageView.image = [UIImage imageNamed:@"introduction_show_more_yes_icon"];
-    }else {
-        _showMoreImageView.image = [UIImage imageNamed:@"tableview_cell_detail_icon"];
-    }
+    
     if (_showMoreButtonTouchDown) {
         _showMoreButtonTouchDown(_isShowMore);
     }
@@ -55,14 +51,15 @@
 - (void)refreshData:(DrivingDetailDMData *)dmData {
     
     _briefIntroductionLabel.text = dmData.introduction;
+//    _briefIntroductionLabel.backgroundColor = [UIColor redColor];
 }
 
 + (CGFloat)dynamicHeight:(NSString *)string isShowMore:(BOOL)isShowMore {
     
     if (isShowMore) {
-        return 8 + 21 + 8 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 8 * 2 font:[UIFont systemFontOfSize:14]] + 8;
+        return 16 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 56 - 16 font:[UIFont systemFontOfSize:14]] + 8 + 1;
     }else {
-        return 95.f - 14;
+        return 16 + 14*2 + 8 + 8;
     }
 }
 
