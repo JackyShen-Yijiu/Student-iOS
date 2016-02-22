@@ -110,6 +110,7 @@
 		56DAB1121C7B070B00D7B942 /* ShowWarningBG.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB1111C7B070B00D7B942 /* ShowWarningBG.m */; };
 		56DAB1181C7B22BC00D7B942 /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB1171C7B22BC00D7B942 /* HelpController.m */; };
 		56DAB11B1C7B241C00D7B942 /* HelpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB11A1C7B241C00D7B942 /* HelpCell.m */; };
+		56DAB11F1C7B374900D7B942 /* YBHelpData.json in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB11E1C7B374900D7B942 /* YBHelpData.json */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
 		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B20DBEC61C5DB0FF0023676E /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B20DBE451C5DB0FF0023676E /* AlipaySDK.bundle */; };
@@ -1116,7 +1117,7 @@
 		56DAB1171C7B22BC00D7B942 /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
 		56DAB1191C7B241C00D7B942 /* HelpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCell.h; sourceTree = "<group>"; };
 		56DAB11A1C7B241C00D7B942 /* HelpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCell.m; sourceTree = "<group>"; };
-		56DAB11D1C7B27A400D7B942 /* HelpData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HelpData.json; sourceTree = "<group>"; };
+		56DAB11E1C7B374900D7B942 /* YBHelpData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YBHelpData.json; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
@@ -3011,6 +3012,7 @@
 		56DAB0F51C7ABB8500D7B942 /* SideMenuSetInfo */ = {
 			isa = PBXGroup;
 			children = (
+				56DAB11E1C7B374900D7B942 /* YBHelpData.json */,
 				56DAB0F61C7ABB8500D7B942 /* AboutUsViewController.h */,
 				56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */,
 				56DAB0F81C7ABB8500D7B942 /* FeedBackViewController.h */,
@@ -3021,7 +3023,6 @@
 				56DAB1171C7B22BC00D7B942 /* HelpController.m */,
 				56DAB1191C7B241C00D7B942 /* HelpCell.h */,
 				56DAB11A1C7B241C00D7B942 /* HelpCell.m */,
-				56DAB11D1C7B27A400D7B942 /* HelpData.json */,
 			);
 			path = SideMenuSetInfo;
 			sourceTree = "<group>";
@@ -5906,6 +5907,7 @@
 				D5604BF81BF656C50020F0D7 /* chatBar_colorMore_locationSelected@2x.png in Resources */,
 				D5604C021BF656C50020F0D7 /* chatBar_more_cameraSelected@2x.png in Resources */,
 				D919F3231C60885A00239B34 /* UMShareEditViewController.xib in Resources */,
+				56DAB11F1C7B374900D7B942 /* YBHelpData.json in Resources */,
 				D5604C321BF656C50020F0D7 /* group_participant_add@2x.png in Resources */,
 				D5604C251BF656C50020F0D7 /* account@2x.png in Resources */,
 				D5604BB41BF656C50020F0D7 /* VoiceSearchFeedback015@2x.png in Resources */,
@@ -6034,7 +6036,6 @@
 				D5604B491BF656C50020F0D7 /* MBProgressHUD.m in Sources */,
 				B22E1E9F1C7B0F35000E8AEE /* YBObjectTool.m in Sources */,
 				B22E1EA21C7B24B7000E8AEE /* HMCourseUserModel.m in Sources */,
-				568DF2421C75A82400008829 /* YBComplaintController.m in Sources */,
 				066BFB181C23A2C3002A1DD8 /* HomeMainController.m in Sources */,
 				D52638561BDF1FA400ADC2C7 /* ApplyclasstypeinfoModel.m in Sources */,
 				D9D4BA0F1C3B916D00F62BE9 /* LJSwizzleMethod.m in Sources */,

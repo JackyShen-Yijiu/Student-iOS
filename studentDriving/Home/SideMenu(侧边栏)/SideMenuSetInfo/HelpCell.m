@@ -41,8 +41,8 @@
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).offset(20);
         make.left.mas_equalTo(self.mas_left).offset(20);
-        make.height.mas_equalTo(@50);
-        make.width.mas_equalTo(@50);
+        make.height.mas_equalTo(@48);
+        make.width.mas_equalTo(@48);
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).offset(20);
@@ -57,7 +57,7 @@
         make.right.mas_equalTo(self.mas_right).offset(0);
     }];
     [self.lineBottom mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.groundLabel.mas_bottom).offset(23);
+        make.top.mas_equalTo(self.groundLabel.mas_bottom).offset(20);
         make.left.mas_equalTo(self.iconImageView.mas_right).offset(20);
         make.height.mas_equalTo(@1);
         make.right.mas_equalTo(self.mas_right).offset(0);
@@ -68,9 +68,9 @@
 - (UIImageView *)iconImageView{
     if (_iconImageView == nil) {
         _iconImageView = [[UIImageView alloc] init];
-        [_iconImageView.layer setMasksToBounds:YES];
-        [_iconImageView.layer setCornerRadius:25];
-        _iconImageView.backgroundColor = [UIColor cyanColor];
+//        [_iconImageView.layer setMasksToBounds:YES];
+//        [_iconImageView.layer setCornerRadius:25];
+//        _iconImageView.backgroundColor = [UIColor cyanColor];
     }
     return _iconImageView;
 }
