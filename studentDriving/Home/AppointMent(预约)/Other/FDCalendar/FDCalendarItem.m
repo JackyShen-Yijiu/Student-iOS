@@ -204,6 +204,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     self.collectionView.contentOffset = CGPointMake(0, 0);
     
     [self.collectionView reloadData];
+    
 }
 
 #pragma mark - Public

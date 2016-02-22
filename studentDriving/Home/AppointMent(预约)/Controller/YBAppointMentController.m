@@ -16,10 +16,22 @@
 #import "BaseModelMethod.h"
 #import "YBAppotinMentHeadView.h"
 #import "YBCoachListViewController.h"
+#import "YBForceEvaluateViewController.h"
+#import "AppDelegate.h"
+#import "RatingBar.h"
+#import "APWaitEvaluationViewController.h"
+#import "MyAppointmentModel.h"
+#import "AppointmentViewController.h"
+#import "APCommentViewController.h"
+
+static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?userid=%@&subjectid=%ld";
+
+static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate,FDCalendarDelegate>
 {
     UIImageView*navBarHairlineImageView;
+    
 }
 @property (nonatomic,strong) YBAppointMentNoCountentView *noCountmentView;
 
@@ -36,9 +48,109 @@
 
 @property (strong, nonatomic) NSDate *seletedDate;
 
+@property (nonatomic,copy) NSString *coachID;
+
+@property (nonatomic,strong) YBForceEvaluateViewController *feVc;
+
+@property (nonatomic,strong) NSArray *commentListArray;
+
+@property (nonatomic,assign) NSInteger number;// 科目几
 @end
 
 @implementation YBAppointMentController
+
+- (YBForceEvaluateViewController *)feVc
+{
+    if (_feVc==nil) {
+        
+        WS(ws);
+        _feVc = [[YBForceEvaluateViewController alloc] init];
+        _feVc.view.frame = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.bounds;
+        _feVc.moteblock = ^{
+            
+            NSLog(@"更多");
+            NSLog(@"_feVc.starBar.rating:%f",ws.feVc.starBar.rating);
+            NSLog(@"feVc.reasonTextView.text:%@",ws.feVc.reasonTextView.text);
+           
+            if (self.commentListArray && self.commentListArray.count==1) {// 跳转到评论界面
+                
+                NSError *error = nil;
+
+                MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
+
+                APCommentViewController *comment = [[APCommentViewController alloc] init];
+                comment.model = model;
+                comment.hidesBottomBarWhenPushed = YES;
+                comment.isForceComment = YES;
+                [ws.navigationController pushViewController:comment animated:YES];
+
+            }else if (self.commentListArray && self.commentListArray.count>1){// 跳转到预约列表
+                
+                AppointmentViewController *appointment = [[AppointmentViewController alloc] init];
+                appointment.hidesBottomBarWhenPushed = YES;
+                appointment.isForceComment = YES;
+                
+                if ([AcountManager manager].userSubject.name && [[AcountManager manager].userSubject.name isEqualToString:@"科目二"]){
+                    appointment.title = @"科二预约列表";
+                    
+                }else if ([AcountManager manager].userSubject.name && [[AcountManager manager].userSubject.name isEqualToString:@"科目三"]){
+                    appointment.title = @"科三预约列表";
+                    
+                }
+                
+                appointment.markNum = [NSNumber numberWithInteger:ws.number];
+                [ws.navigationController pushViewController:appointment animated:YES];
+                
+            }
+            
+        };
+        _feVc.commitBlock = ^{
+            
+            NSLog(@"提交");
+            NSLog(@"_feVc.starBar.rating:%f",ws.feVc.starBar.rating);
+            NSLog(@"feVc.reasonTextView.text:%@",ws.feVc.reasonTextView.text);
+            
+            NSError *error = nil;
+            
+            MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
+
+            [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar.rating model:model];
+            
+        };
+        
+    }
+    return _feVc;
+}
+
+- (void)commitComment:(NSString *)comment star:(CGFloat)star model:(MyAppointmentModel *)model{
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
+    
+    NSDictionary *param = @{@"userid":[AcountManager manager].userid,
+                            @"reservationid":model.infoId,
+                            @"starlevel":[NSString stringWithFormat:@"%f",star],// 总体评论星级
+                            @"abilitylevel":@"0",// 能力
+                            @"timelevel":@"0",// 时间
+                            @"attitudelevel":@"0",// 态度
+                            @"hygienelevel":@"0",// 卫生
+                            @"commentcontent":comment};
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        DYNSLog(@"%s data = %@",__func__,data);
+        
+        NSDictionary *param = data;
+        NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+        
+        if (type.integerValue == 1) {
+            kShowSuccess(@"评论成功");
+        }else {
+            kShowFail(msg);
+        }
+    }];
+    
+}
 
 - (YBAppotinMentHeadView *)appointMentHeadView
 {
@@ -69,14 +181,17 @@
     
     // 没有内容，占位图
     //    [self.view addSubview:self.noCountmentView];
-    
+
 }
 
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-    [self fdCalendarDidClick:nil didSelectedDate:self.seletedDate];
+    [self setUpCalendar:nil didSelectedDate:self.seletedDate];
+
+    // 获取尚未评价的订单
+    [self loadCommentList];
     
 }
 
@@ -85,7 +200,47 @@
     [super viewDidDisappear:animated];
     
     navBarHairlineImageView.hidden=NO;
+    
+    [self.feVc.view removeFromSuperview];
+    
 }
+
+- (void)loadCommentList
+{
+    
+    self.number = 0;
+    if ([AcountManager manager].userSubject.name && [[AcountManager manager].userSubject.name isEqualToString:@"科目二"]) {
+        self.number=2;
+    }else if ([AcountManager manager].userSubject.name  && [[AcountManager manager].userSubject.name isEqualToString:@"科目三"]){
+        self.number=3;
+    }else{
+        return;
+    }
+    
+    NSString *appointmentUrl = [NSString stringWithFormat:kappointmentUrl,[AcountManager manager].userid,(long)self.number];
+    
+    NSString *downLoadUrl = [NSString stringWithFormat:BASEURL,appointmentUrl];
+    DYNSLog(@"url = %@ %@",[AcountManager manager].userid,[AcountManager manager].userToken);
+    
+    __weak typeof (self) ws = self;
+    [JENetwoking startDownLoadWithUrl:downLoadUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSDictionary *param = data;
+        NSNumber *type = param[@"type"];
+        NSArray *commentListArray = param[@"data"];
+
+        if (type.integerValue == 1 && commentListArray && commentListArray.count>0) {
+            
+            self.commentListArray = commentListArray;
+            
+            // 强制评价
+            [self.tabBarController.view insertSubview:self.feVc.view aboveSubview:((AppDelegate *)[UIApplication sharedApplication].delegate).window];
+            
+        }
+    }];
+    
+}
+
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
     
@@ -130,7 +285,8 @@
     YBAppointMentChangeCoachController *vc = [[YBAppointMentChangeCoachController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     vc.seletedDate = self.seletedDate;
-    vc.title = self.title;
+    vc.navigationItem.title = self.navigationItem.title;
+    vc.coachID = self.coachID;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
@@ -165,14 +321,23 @@
 #pragma mark LoadDayData
 - (void)fdCalendar:(FDCalendar *)calendar didSelectedDate:(NSDate *)date
 {
-    [self fdCalendarDidClick:calendar didSelectedDate:date];
+    self.seletedDate = date;
     
-    // 跳转界面
-    [self changeCoach];
+    if (!self.dateFormattor) {
+        self.dateFormattor = [[NSDateFormatter alloc] init];
+        [self.dateFormattor setDateFormat:@"yyyy-M-d"];
+    }
+    NSString * dataStr = [self.dateFormattor stringFromDate:date];
+    
+    // 设置顶部标题
+    self.navigationItem.title = [NSString stringWithFormat:@"%@",[self.dateFormattor stringFromDate:date]];
+    
+    // 加载底部预约列表数据
+    [self loadFootListData:dataStr];
     
 }
 
-- (void)fdCalendarDidClick:(FDCalendar *)calendar didSelectedDate:(NSDate *)date
+- (void)setUpCalendar:(FDCalendar *)calendar didSelectedDate:(NSDate *)date
 {
     NSLog(@"切换日历代理方法 %s",__func__);
     
@@ -183,7 +348,12 @@
         [self.dateFormattor setDateFormat:@"yyyy-M-d"];
     }
     NSString * dataStr = [self.dateFormattor stringFromDate:date];
-    
+
+    // 初始化日历预约、休假等信息
+    if (self.coachID&&[self.coachID length]!=0) {
+        [self.calendarHeadView setCurrentDate:self.seletedDate coachID:self.coachID];
+    }
+
     // 加载底部预约列表数据
     [self loadFootListData:dataStr];
     
@@ -195,6 +365,8 @@
 
 - (void)loadFootListData:(NSString *)dataStr
 {
+    
+    // GET /courseinfo/getmyreservation
     
     NSString *  userId = [AcountManager manager].applycoach.infoId;
     if (userId==nil) {

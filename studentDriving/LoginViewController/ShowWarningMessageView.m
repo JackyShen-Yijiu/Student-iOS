@@ -27,6 +27,7 @@
         _textMessageLael.text = @"您填入的信息有误";
         _textMessageLael.textColor = [UIColor colorWithHexString:@"bd4437"];
         _textMessageLael.font = [UIFont systemFontOfSize:10];
+        _textMessageLael.textAlignment = NSTextAlignmentRight;
         
      }
     return _textMessageLael;
@@ -52,6 +53,10 @@
         make.height.mas_equalTo(@16);
         make.width.mas_equalTo (@18);
     }];
+    
+    if (self.message&&[self.message length]!=0) {
+        _textMessageLael.text = _message;
+    }
 
 }
 @end
