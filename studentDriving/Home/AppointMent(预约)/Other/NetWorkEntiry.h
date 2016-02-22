@@ -34,10 +34,18 @@
                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+/**
+ *  获取学员的所有预约列表
+ *
+ *  @param userId （req）教练ID
+ *  @param dayTime (req）如 2014-5-10格式 NSString 类型
+ */
++ (void)getAllAppointMentListWithSubjectid:(NSString *)subjectid
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 
-
-#pragma mark -----------------------------------------------------------------------------------------------------
+#pragma mark --------------------------------------mark---------------------------------------------------------------
 
 /**
  *  登陆模块
@@ -133,15 +141,6 @@
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-/**
- *  获取教练每天的预约数据
- *
- *  @param userId （req）教练ID
- *  @param dayTime (req）如 2014-5-10格式 NSString 类型
- */
-+ (void)getAllCourseInfoWithUserId:(NSString *)userId  DayTime:(NSString *)dayTime
-                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 /**
  *  获取教练每个月的日程安排
  *

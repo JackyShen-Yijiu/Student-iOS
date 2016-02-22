@@ -181,6 +181,8 @@
 		B226AF1B1C76EAAA0028DF1A /* YBCoachListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = B226AF1A1C76EAAA0028DF1A /* YBCoachListSearchController.m */; };
 		B226AF1D1C76F2E90028DF1A /* YBCoachListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B226AF1C1C76F2E90028DF1A /* YBCoachListViewCell.xib */; };
 		B22E1E9C1C78923F000E8AEE /* YBForceEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */; };
+		B22E1E9F1C7B0F35000E8AEE /* YBObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1E9E1C7B0F35000E8AEE /* YBObjectTool.m */; };
+		B22E1EA21C7B24B7000E8AEE /* HMCourseUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1EA11C7B24B7000E8AEE /* HMCourseUserModel.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B2E8E1801C72BA4F000190C2 /* WMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1641C72BA4F000190C2 /* WMNavigationController.m */; };
 		B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1661C72BA4F000190C2 /* ViewController.m */; };
@@ -1329,6 +1331,10 @@
 		B226AF1C1C76F2E90028DF1A /* YBCoachListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBCoachListViewCell.xib; sourceTree = "<group>"; };
 		B22E1E9A1C78923F000E8AEE /* YBForceEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBForceEvaluateViewController.h; sourceTree = "<group>"; };
 		B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBForceEvaluateViewController.m; sourceTree = "<group>"; };
+		B22E1E9D1C7B0F35000E8AEE /* YBObjectTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBObjectTool.h; sourceTree = "<group>"; };
+		B22E1E9E1C7B0F35000E8AEE /* YBObjectTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBObjectTool.m; sourceTree = "<group>"; };
+		B22E1EA01C7B24B7000E8AEE /* HMCourseUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMCourseUserModel.h; sourceTree = "<group>"; };
+		B22E1EA11C7B24B7000E8AEE /* HMCourseUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMCourseUserModel.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B2E8E1631C72BA4F000190C2 /* WMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationController.h; sourceTree = "<group>"; };
@@ -3335,28 +3341,30 @@
 		B2E8E1911C72C6F2000190C2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B226AEB91C7480530028DF1A /* HMCourseModel.h */,
+				B226AEBA1C7480530028DF1A /* HMCourseModel.m */,
+				B22E1EA01C7B24B7000E8AEE /* HMCourseUserModel.h */,
+				B22E1EA11C7B24B7000E8AEE /* HMCourseUserModel.m */,
+				B226AEE31C748F1C0028DF1A /* HMPortraitInfoModel.h */,
+				B226AEE41C748F1C0028DF1A /* HMPortraitInfoModel.m */,
+				B226AEF51C74937C0028DF1A /* HMSchoolInfoModel.h */,
+				B226AEF61C74937C0028DF1A /* HMSchoolInfoModel.m */,
+				B226AEE91C748F530028DF1A /* HMSubjectModel.h */,
+				B226AEEA1C748F530028DF1A /* HMSubjectModel.m */,
+				B226AEBD1C7480530028DF1A /* HMTrainaddressModel.h */,
+				B226AEBE1C7480530028DF1A /* HMTrainaddressModel.m */,
 				B226AF011C74A21C0028DF1A /* HMRecomendModel.h */,
 				B226AF021C74A21C0028DF1A /* HMRecomendModel.m */,
 				B226AEFE1C74A0CA0028DF1A /* BaseModelMethod.h */,
 				B226AEFF1C74A0CA0028DF1A /* BaseModelMethod.m */,
-				B226AEF51C74937C0028DF1A /* HMSchoolInfoModel.h */,
-				B226AEF61C74937C0028DF1A /* HMSchoolInfoModel.m */,
 				B226AEEC1C748F890028DF1A /* JGSubjectthreeModel.h */,
 				B226AEED1C748F890028DF1A /* JGSubjectthreeModel.m */,
-				B226AEE91C748F530028DF1A /* HMSubjectModel.h */,
-				B226AEEA1C748F530028DF1A /* HMSubjectModel.m */,
 				B226AEE61C748F380028DF1A /* HMCarLicenseModel.h */,
 				B226AEE71C748F380028DF1A /* HMCarLicenseModel.m */,
-				B226AEE31C748F1C0028DF1A /* HMPortraitInfoModel.h */,
-				B226AEE41C748F1C0028DF1A /* HMPortraitInfoModel.m */,
 				B226AEE21C748EF90028DF1A /* HMClassInfoModel.h */,
 				B226AEDF1C748ED70028DF1A /* HMClassInfoModel.m */,
 				B226AEDC1C748EAD0028DF1A /* HMStudentModel.h */,
 				B226AEDD1C748EAD0028DF1A /* HMStudentModel.m */,
-				B226AEB91C7480530028DF1A /* HMCourseModel.h */,
-				B226AEBA1C7480530028DF1A /* HMCourseModel.m */,
-				B226AEBD1C7480530028DF1A /* HMTrainaddressModel.h */,
-				B226AEBE1C7480530028DF1A /* HMTrainaddressModel.m */,
 				B226AEC11C7480530028DF1A /* ModelDefine.h */,
 			);
 			path = Model;
@@ -3372,6 +3380,8 @@
 				B226AED81C7481FB0028DF1A /* SafeDic */,
 				B226AEAB1C747F2B0028DF1A /* UIView+Sizes */,
 				B226AE9B1C747E050028DF1A /* FDCalendar */,
+				B22E1E9D1C7B0F35000E8AEE /* YBObjectTool.h */,
+				B22E1E9E1C7B0F35000E8AEE /* YBObjectTool.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -5997,6 +6007,8 @@
 				D5604B6E1BF656C50020F0D7 /* PSTGridLayoutRow.m in Sources */,
 				556F425B1C310E980052DE73 /* ApplyClassCell.m in Sources */,
 				D5604B491BF656C50020F0D7 /* MBProgressHUD.m in Sources */,
+				B22E1E9F1C7B0F35000E8AEE /* YBObjectTool.m in Sources */,
+				B22E1EA21C7B24B7000E8AEE /* HMCourseUserModel.m in Sources */,
 				568DF2421C75A82400008829 /* YBComplaintController.m in Sources */,
 				066BFB181C23A2C3002A1DD8 /* HomeMainController.m in Sources */,
 				D52638561BDF1FA400ADC2C7 /* ApplyclasstypeinfoModel.m in Sources */,
@@ -6082,7 +6094,6 @@
 				D5604C821BF656F30020F0D7 /* DXMessageToolBar.m in Sources */,
 				D588B1191BDDDC2F000C5D6F /* UIImageView+WMClippingImage.m in Sources */,
 				B22E1E9C1C78923F000E8AEE /* YBForceEvaluateViewController.m in Sources */,
-				D98581B01C58BE8A0044E029 /* ShuttleBusController.m in Sources */,
 				D588B0961BDDDBDB000C5D6F /* ApplyDrivingViewController.m in Sources */,
 				D51256A21BDFAA53002717DA /* SignUpDrivingDetailViewController.m in Sources */,
 				D95E3DAE1C3CDBFE00F0B5A0 /* DVVFilterView.m in Sources */,

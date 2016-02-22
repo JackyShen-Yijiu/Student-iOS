@@ -17,4 +17,5 @@
 + (NSString *)getYearLocalDateFormateUTCDate:(NSString *)utcDate;
 + (NSString *)getHourLocalDateFormateUTCDate:(NSString *)utcDate ;
 + (NSString *)getLitteLocalDateFormateUTCDate:(NSString *)utcDate;
+
 @end

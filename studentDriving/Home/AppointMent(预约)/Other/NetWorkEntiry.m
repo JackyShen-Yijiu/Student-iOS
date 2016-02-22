@@ -25,7 +25,7 @@
                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    NSString *  currentUserId = [AcountManager manager].applycoach.infoId;
+    NSString *  currentUserId = [AcountManager manager].userid;
 
     if (!userId || !yearTime || !monthTime || !currentUserId) {
         return [self missParagramercallBackFailure:failure];
@@ -55,7 +55,7 @@
                            success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                            failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    NSString *  currentUserId = [AcountManager manager].applycoach.infoId;
+    NSString *  currentUserId = [AcountManager manager].userid;
 
     if (!yearTime || !monthTime || !currentUserId) {
         return [self missParagramercallBackFailure:failure];
@@ -71,6 +71,27 @@
     [self GET:urlStr parameters:dic success:success failure:failure];
     
 }
+
++ (void)getAllAppointMentListWithSubjectid:(NSString *)subjectid success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    if (!subjectid) {
+        return [self missParagramercallBackFailure:failure];
+    }
+    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getmyreservation",[self domain]];
+
+    NSString *  userid = [AcountManager manager].userid;
+
+    NSDictionary * dic = @{
+                           @"subjectid":subjectid,
+                           @"userid":userid
+                           };
+    [self GET:urlStr parameters:dic success:success failure:failure];
+
+}
+
+
+#pragma mark --------------------------------------mark---------------------------------------------------------------
+
 
 
 /**
@@ -266,21 +287,6 @@
 //    [self GET:urlStr parameters:dic success:success failure:failure];
 }
 
-+ (void)getAllCourseInfoWithUserId:(NSString *)userId  DayTime:(NSString *)dayTime
-                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
-//    if (!userId || !dayTime) {
-//        return [self missParagramercallBackFailure:failure];
-//    }
-//    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/daysreservationlist",[self domain]];
-//    NSDictionary * dic = @{
-//                           @"coachid":userId,
-//                           @"date":dayTime,
-//                           };
-//    [self GET:urlStr parameters:dic success:success failure:failure];
-    
-}
 + (void)getcoursereservationlistWithUserId:(NSString *)userId  courseid:(NSString *)courseid
                                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
