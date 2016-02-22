@@ -240,7 +240,7 @@
     }];
     [self.realNameButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).offset(20);
-        make.left.mas_equalTo(self.anonymousButton.mas_right).offset(80);
+        make.left.mas_equalTo(self.anonymousButton.mas_right).offset(70);
         make.width.mas_equalTo(@100);
         make.height.mas_equalTo(24);
     }];
@@ -343,12 +343,12 @@
         [_anonymousButton setTitle:@"匿名投诉" forState:UIControlStateNormal];
         [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
         [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateSelected];
-        [_anonymousButton setBackgroundImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
-        [_anonymousButton setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
-        _anonymousButton.imageEdgeInsets = UIEdgeInsetsMake(0,0,0,_anonymousButton.frame.size.width - 24);
-        _anonymousButton.titleEdgeInsets = UIEdgeInsetsMake(5, 29, 5, 0);
-        _anonymousButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
+        [_anonymousButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+        [_anonymousButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
+        [_anonymousButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
+        _anonymousButton.titleEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 0);
         _anonymousButton.selected = YES;
+        //        _anonymousButton.backgroundColor = [UIColor orangeColor];
         [_anonymousButton addTarget:self action:@selector(didclickAnonymous:) forControlEvents:UIControlEventTouchUpInside];
         _anonymousButton.titleLabel.font = [UIFont systemFontOfSize:14];
         //        _anonymousButton.backgroundColor = [UIColor cyanColor]
@@ -366,10 +366,11 @@
         [_realNameButton setTitle:@"实名投诉" forState:UIControlStateNormal];
         [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
         [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateSelected];
-        [_realNameButton setBackgroundImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
-        [_realNameButton setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
-        _realNameButton.imageEdgeInsets = UIEdgeInsetsMake(0,0,0,_anonymousButton.bounds.size.width - 24);
-        _realNameButton.titleEdgeInsets = UIEdgeInsetsMake(5, 29, 5, 0);
+        [_realNameButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+        [_realNameButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
+        [_realNameButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
+        _realNameButton.titleEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 0);
+        
         [_realNameButton addTarget:self action:@selector(didclickReal:) forControlEvents:UIControlEventTouchUpInside];
         _realNameButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _realNameButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
@@ -400,7 +401,7 @@
 - (UILabel *)titlieNameCoachLabel{
     if (_titlieNameCoachLabel == nil) {
         _titlieNameCoachLabel = [[UILabel alloc] init];
-        _titlieNameCoachLabel.text = @"投诉教练姓名";
+        _titlieNameCoachLabel.text = @"投诉驾校名称";
         _titlieNameCoachLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
         _titlieNameCoachLabel.font = [UIFont systemFontOfSize:10];
         
@@ -412,7 +413,7 @@
 - (UILabel *)nameCoachLabel{
     if (_nameCoachLabel == nil) {
         _nameCoachLabel = [[UILabel alloc] init];
-        _nameCoachLabel.text = [[AcountManager manager] applycoach].name;
+        _nameCoachLabel.text = [[AcountManager manager] applyschool].name;
         _nameCoachLabel.textColor = [UIColor blackColor];
         _nameCoachLabel.font = [UIFont systemFontOfSize:14];
         
@@ -424,7 +425,7 @@
     if (_imgView == nil) {
         _imgView = [[UIImageView alloc] init];
         _imgView.backgroundColor  = [UIColor clearColor];
-        _imgView.image = [UIImage imageNamed:@"箭头"];
+//        _imgView.image = [UIImage imageNamed:@"箭头"];
     }
     return _imgView;
     
@@ -498,7 +499,7 @@
 - (UILabel *)bottomCoachName{
     if (_bottomCoachName == nil) {
         _bottomCoachName = [[UILabel alloc] init];
-        _bottomCoachName.text = [NSString stringWithFormat:@"投诉 %@教练",[[AcountManager manager] applycoach].name];
+        _bottomCoachName.text = [NSString stringWithFormat:@"投诉 %@",[[AcountManager manager]applyschool].name];
         _bottomCoachName.textColor = [UIColor blackColor];
         _bottomCoachName.font = [UIFont systemFontOfSize:14];
         

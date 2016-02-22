@@ -23,6 +23,9 @@
 #import "YBComplaintController.h" // 我要投诉
 #import "ChatListViewController.h" // 我的消息
 #import "HomeAdvantageController.h" // 一步优势
+#import "ShuttleBusController.h" // 我的驾校班车
+#import "JGActivityViewController.h" // 活动
+#import "SideMenuSignUpController.h"
 
 typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
@@ -71,11 +74,13 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 @end
 
 @implementation ViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = YBNavigationBarBgColor;
+    //self.view.backgroundColor = YBNavigationBarBgColor;
     
     self.common = [WMCommon getInstance];
     self.common.homeState = kStateHome;
@@ -85,7 +90,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.leftDistance = self.common.screenW * viewSlideHorizonRatio;
     
     // 设置背景
-    UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 155)];
+    UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
     mightView.backgroundColor = [UIColor clearColor];
     mightView.image = [UIImage imageNamed:@"Side_Menu_Bg"];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
@@ -304,17 +309,46 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     if (indexPath.row == 0) {
         // 我的消息
         ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
-        chatListVC.hidesBottomBarWhenPushed = YES;
         [self controller:chatListVC];
     }
     if (indexPath.row == 1) {
         // 活动
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
+        
+        JGActivityViewController *activityVC = [JGActivityViewController new];
+        [self controller:activityVC];
     }
     if (indexPath.row == 2) {
         // 预约签到
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
+        
+        SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
+        [self controller:signUpVC];
     }
     if (indexPath.row == 3) {
         // 我的驾校班车
+        
+        // 检测是否打开登录页
+        if (![AcountManager isLogin]) {
+            [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+            [self showHome];
+            [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+            return;
+        }
+        
+        if (![AcountManager manager].applyschool.infoId) {
+            [self obj_showTotasViewWithMes:@"您还没有预约"];
+            return ;
+        }
+        
+        ShuttleBusController *shuttleBusVC = [ShuttleBusController new];
+        [self controller:shuttleBusVC];
     }
     if (indexPath.row == 4) {
         // 我的钱包
@@ -325,13 +359,11 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     if (indexPath.row == 6) {
         // 我要投诉
         YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
-        complaintVC.hidesBottomBarWhenPushed = YES;
         [self controller:complaintVC];
     }
     if (indexPath.row == 7) {
         // 一步优势
         HomeAdvantageController *advantageVC = [[HomeAdvantageController alloc] init];
-        advantageVC.hidesBottomBarWhenPushed = YES;
         [self controller:advantageVC];
     }
     if (indexPath.row == 8) {
@@ -340,6 +372,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     
 }
 - (void)controller:(UIViewController *)itemVC{
+    itemVC.hidesBottomBarWhenPushed = YES;
     [self showHome];
     switch (self.vcType) {
         case kYBSignUpViewController:

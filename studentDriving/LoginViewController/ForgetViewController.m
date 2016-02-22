@@ -232,7 +232,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     
     [self.phoneNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(18);
-        make.top.mas_equalTo(self.view.mas_top).with.offset(20+55 + 40);
+        make.top.mas_equalTo(self.view.mas_top).with.offset(50);
         make.height.mas_equalTo(@10);
         make.width.mas_equalTo(@40);
     }];
