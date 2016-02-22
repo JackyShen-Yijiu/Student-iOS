@@ -8,6 +8,8 @@
 
 #import "CourseSummaryDayCell.h"
 #import "PortraitView.h"
+#import "HMTrainaddressModel.h"
+#import "YBObjectTool.h"
 
 @interface CourseSummaryDayCell ()
 
@@ -50,7 +52,7 @@
     
     // 状态
     self.stateLabel = [self getOnePropertyLabel];
-    self.stateLabel.textColor = RGBColor(30, 31, 34);
+    self.stateLabel.textColor = RGBColor(219, 68, 55);
     self.stateLabel.text = @"订单状态";
     [self.contentView addSubview:self.stateLabel];
     
@@ -173,19 +175,27 @@
     
     UIImage * defaultImage = [UIImage imageNamed:@"defoult_por"];
     self.potraitView.imageView.image = defaultImage;
-    NSString * imageStr = _model.studentInfo.porInfo.originalpic;
+    NSString * imageStr = _model.userModel.headportrait.originalpic;
     if(imageStr)
         [self.potraitView.imageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:defaultImage];
     
-    self.stateLabel.text = @"stateLabel";
+    self.stateLabel.text = [_model getStatueString];
     
-    self.nameTitle.text = @"nameTitle";
+    self.nameTitle.text = _model.userModel.name;
     
-    self.subTitle.text = @"subTitle";
+    self.subTitle.text = _model.courseprocessdesc;
     
-    self.placeLabel.text = @"placeLabel";
+    self.placeLabel.text = _model.courseTrainInfo.address;
     
-    self.timeLabel.text = @"timeLabel";
+    self.timeLabel.text = _model.courseTime;
+    
+    int compareDataNum = [YBObjectTool compareDateWithSelectDateStr:[NSString getYearLocalDateFormateUTCDate:_model.courseBeginTime]];
+    
+    if (compareDataNum==0) {// 当前
+        self.timeLabel.textColor = RGBColor(219, 68, 55);
+    }else{
+        self.timeLabel.textColor = [UIColor grayColor];
+    }
     
 }
 

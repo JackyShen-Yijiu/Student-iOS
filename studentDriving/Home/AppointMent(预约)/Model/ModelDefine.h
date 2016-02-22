@@ -20,18 +20,16 @@
 
 typedef NS_ENUM(NSInteger,KCourseStatue){
     
-    KCourseStatueInvalid = 0,
-    KCourseStatueapplying = 1,   // 预约中(新订单)-------"预约中"（待接受）
-    KCourseStatueapplycancel = 2,// 学生取消（已取消)-------"学生取消"
-    KCourseStatueapplyconfirm,  // 已确定(新订单)-------"新订单"（已接受）
-    KCourseStatueapplyrefuse,      // 教练拒绝或者取消（已取消）-------"已取消"
-    KCourseStatueunconfirmfinish, //  待确认完成(无此状态)-------"待确认完成"
-    KCourseStatueucomments,    // 待评论(待评论)-------"待评论"
-//    KCourseStatueOnCommended, // 评论成功（已完成）-------"评论成功"
-    KCourseStatuefinish, // 订单完成（已完成）-------"订单完成"
-    KCourseStatuesystemcancel, // 系统取消（已取消）-------"系统取消"
-    KCourseStatuesignin, // 已签到(新订单)-------"已签到"
-    KCourseStatuenosignin, // 未签到(已完成)-------"已漏课"
+    KCourseStatueapplying = 1,   // 预约中->请求中
+    KCourseStatueapplycancel = 2,// 学生取消->删除此订单
+    KCourseStatueapplyconfirm,  // 已确定->新接收
+    KCourseStatueapplyrefuse,      // 教练拒绝或者取消->教练取消
+    KCourseStatueunconfirmfinish, //  无此状态
+    KCourseStatueucomments,    // 待评论->待评论
+    KCourseStatuefinish, // 订单完成->已完成
+    KCourseStatuesystemcancel, // 系统取消->已完成
+    KCourseStatuesignin, // 已签到->已签到
+    KCourseStatuenosignin, // 未签到->已漏课
     
 };
 
