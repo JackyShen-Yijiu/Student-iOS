@@ -254,7 +254,10 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     //    [self.navigationController popToRootViewControllerAnimated:NO];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kQuitSuccess" object:nil];
     [AcountManager removeAllData];
-    [DVVUserManager userLogout];
+
+    // 检测是否打开登录页
+    [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+    
     [SignUpInfoManager removeSignData];
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     [ud setInteger:1 forKey:@"isCarReset"];

@@ -8,12 +8,19 @@
 
 #import "YBHomeBaseController.h"
 #import "UIImage+WM.h"
+#import "WMCommon.h"
 
 @interface YBHomeBaseController ()
 
 @end
 
 @implementation YBHomeBaseController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
