@@ -104,6 +104,9 @@
 		568DF2421C75A82400008829 /* YBComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2411C75A82400008829 /* YBComplaintController.m */; };
 		568DF2481C75A88400008829 /* ComplaintSchoolView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2471C75A88400008829 /* ComplaintSchoolView.m */; };
 		568DF24B1C75B4DA00008829 /* YBComplaintCoachView.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF24A1C75B4DA00008829 /* YBComplaintCoachView.m */; };
+		56DAB0FC1C7ABB8500D7B942 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */; };
+		56DAB0FD1C7ABB8500D7B942 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0F91C7ABB8500D7B942 /* FeedBackViewController.m */; };
+		56DAB0FE1C7ABB8500D7B942 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0FB1C7ABB8500D7B942 /* SetupViewController.m */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
 		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B20DBEC61C5DB0FF0023676E /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B20DBE451C5DB0FF0023676E /* AlipaySDK.bundle */; };
@@ -562,13 +565,11 @@
 		D588B04B1BDDDB71000C5D6F /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0381BDDDB71000C5D6F /* UserCenterViewController.m */; };
 		D588B04C1BDDDB71000C5D6F /* MyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B03A1BDDDB71000C5D6F /* MyWalletViewController.m */; };
 		D588B04D1BDDDB71000C5D6F /* MyLoveCoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B03C1BDDDB71000C5D6F /* MyLoveCoachViewController.m */; };
-		D588B04E1BDDDB71000C5D6F /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B03E1BDDDB71000C5D6F /* SetupViewController.m */; };
 		D588B04F1BDDDB71000C5D6F /* EditorUserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0401BDDDB71000C5D6F /* EditorUserViewController.m */; };
 		D588B0501BDDDB71000C5D6F /* SignatureViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0421BDDDB71000C5D6F /* SignatureViewController.m */; };
 		D588B0511BDDDB71000C5D6F /* GenderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0441BDDDB71000C5D6F /* GenderViewController.m */; };
 		D588B0521BDDDB71000C5D6F /* ModifyPhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0461BDDDB71000C5D6F /* ModifyPhoneNumViewController.m */; };
 		D588B0531BDDDB71000C5D6F /* UserCenterHeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0481BDDDB71000C5D6F /* UserCenterHeadView.m */; };
-		D588B0541BDDDB71000C5D6F /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B04A1BDDDB71000C5D6F /* FeedBackViewController.m */; };
 		D588B06A1BDDDB90000C5D6F /* SubjectSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0571BDDDB90000C5D6F /* SubjectSecondViewController.m */; };
 		D588B06B1BDDDB90000C5D6F /* AppointmentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B0591BDDDB90000C5D6F /* AppointmentViewController.m */; };
 		D588B06D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D588B05D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m */; };
@@ -651,7 +652,6 @@
 		D5C240271BED078300832CF3 /* SubjectThreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C240261BED078300832CF3 /* SubjectThreeModel.m */; };
 		D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C240391BEF6C6200832CF3 /* UIColor+Hex.m */; };
 		D5C2403D1BEF6E0400832CF3 /* VipserverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D5C2403C1BEF6E0400832CF3 /* VipserverModel.m */; };
-		D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D5D5101F1BFD908900F54097 /* AboutUsViewController.m */; };
 		D919F31D1C60885A00239B34 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D919F2C31C60885A00239B34 /* UMSocialLocalizable.strings */; };
 		D919F31E1C60885A00239B34 /* libUMSocial_Sdk_4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D919F2D11C60885A00239B34 /* libUMSocial_Sdk_4.4.a */; };
 		D919F31F1C60885A00239B34 /* libUMSocial_Sdk_Comment_4.4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D919F2D21C60885A00239B34 /* libUMSocial_Sdk_Comment_4.4.a */; };
@@ -1098,6 +1098,12 @@
 		568DF2471C75A88400008829 /* ComplaintSchoolView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintSchoolView.m; sourceTree = "<group>"; };
 		568DF2491C75B4DA00008829 /* YBComplaintCoachView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBComplaintCoachView.h; sourceTree = "<group>"; };
 		568DF24A1C75B4DA00008829 /* YBComplaintCoachView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBComplaintCoachView.m; sourceTree = "<group>"; };
+		56DAB0F61C7ABB8500D7B942 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
+		56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
+		56DAB0F81C7ABB8500D7B942 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
+		56DAB0F91C7ABB8500D7B942 /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
+		56DAB0FA1C7ABB8500D7B942 /* SetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
+		56DAB0FB1C7ABB8500D7B942 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
@@ -1905,8 +1911,6 @@
 		D588B03A1BDDDB71000C5D6F /* MyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWalletViewController.m; sourceTree = "<group>"; };
 		D588B03B1BDDDB71000C5D6F /* MyLoveCoachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoveCoachViewController.h; sourceTree = "<group>"; };
 		D588B03C1BDDDB71000C5D6F /* MyLoveCoachViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyLoveCoachViewController.m; sourceTree = "<group>"; };
-		D588B03D1BDDDB71000C5D6F /* SetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
-		D588B03E1BDDDB71000C5D6F /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		D588B03F1BDDDB71000C5D6F /* EditorUserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorUserViewController.h; sourceTree = "<group>"; };
 		D588B0401BDDDB71000C5D6F /* EditorUserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorUserViewController.m; sourceTree = "<group>"; };
 		D588B0411BDDDB71000C5D6F /* SignatureViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureViewController.h; sourceTree = "<group>"; };
@@ -1917,8 +1921,6 @@
 		D588B0461BDDDB71000C5D6F /* ModifyPhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPhoneNumViewController.m; sourceTree = "<group>"; };
 		D588B0471BDDDB71000C5D6F /* UserCenterHeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserCenterHeadView.h; sourceTree = "<group>"; };
 		D588B0481BDDDB71000C5D6F /* UserCenterHeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserCenterHeadView.m; sourceTree = "<group>"; };
-		D588B0491BDDDB71000C5D6F /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
-		D588B04A1BDDDB71000C5D6F /* FeedBackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedBackViewController.m; sourceTree = "<group>"; };
 		D588B0561BDDDB90000C5D6F /* SubjectSecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectSecondViewController.h; sourceTree = "<group>"; };
 		D588B0571BDDDB90000C5D6F /* SubjectSecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectSecondViewController.m; sourceTree = "<group>"; };
 		D588B0581BDDDB90000C5D6F /* AppointmentViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentViewController.h; sourceTree = "<group>"; };
@@ -2082,8 +2084,6 @@
 		D5C240391BEF6C6200832CF3 /* UIColor+Hex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Hex.m"; sourceTree = "<group>"; };
 		D5C2403B1BEF6E0400832CF3 /* VipserverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VipserverModel.h; sourceTree = "<group>"; };
 		D5C2403C1BEF6E0400832CF3 /* VipserverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VipserverModel.m; sourceTree = "<group>"; };
-		D5D5101E1BFD908900F54097 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
-		D5D5101F1BFD908900F54097 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		D919F2C41C60885A00239B34 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		D919F2C61C60885A00239B34 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		D919F2C71C60885A00239B34 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -2977,6 +2977,7 @@
 		568DF23A1C759F6E00008829 /* SideMenu(侧边栏) */ = {
 			isa = PBXGroup;
 			children = (
+				56DAB0F51C7ABB8500D7B942 /* SideMenuSetInfo */,
 				56855C3D1C785C27005D4517 /* SideMenuSignUp */,
 				56855C2E1C785485005D4517 /* SideMenuActiviy */,
 				56855C251C784E0C005D4517 /* SideMenuShuttleBus */,
@@ -3008,6 +3009,19 @@
 				56855C191C76DF21005D4517 /* PlaceholderTextView.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		56DAB0F51C7ABB8500D7B942 /* SideMenuSetInfo */ = {
+			isa = PBXGroup;
+			children = (
+				56DAB0F61C7ABB8500D7B942 /* AboutUsViewController.h */,
+				56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */,
+				56DAB0F81C7ABB8500D7B942 /* FeedBackViewController.h */,
+				56DAB0F91C7ABB8500D7B942 /* FeedBackViewController.m */,
+				56DAB0FA1C7ABB8500D7B942 /* SetupViewController.h */,
+				56DAB0FB1C7ABB8500D7B942 /* SetupViewController.m */,
+			);
+			path = SideMenuSetInfo;
 			sourceTree = "<group>";
 		};
 		B20DBE441C5DB0FF0023676E /* 支付相关 */ = {
@@ -4634,10 +4648,6 @@
 				D588B03A1BDDDB71000C5D6F /* MyWalletViewController.m */,
 				D588B03B1BDDDB71000C5D6F /* MyLoveCoachViewController.h */,
 				D588B03C1BDDDB71000C5D6F /* MyLoveCoachViewController.m */,
-				D588B03D1BDDDB71000C5D6F /* SetupViewController.h */,
-				D588B03E1BDDDB71000C5D6F /* SetupViewController.m */,
-				D5D5101E1BFD908900F54097 /* AboutUsViewController.h */,
-				D5D5101F1BFD908900F54097 /* AboutUsViewController.m */,
 				D588B03F1BDDDB71000C5D6F /* EditorUserViewController.h */,
 				D588B0401BDDDB71000C5D6F /* EditorUserViewController.m */,
 				D526385D1BDF4C4D00ADC2C7 /* ModifyNameViewController.h */,
@@ -4652,8 +4662,6 @@
 				D588B0461BDDDB71000C5D6F /* ModifyPhoneNumViewController.m */,
 				D588B0471BDDDB71000C5D6F /* UserCenterHeadView.h */,
 				D588B0481BDDDB71000C5D6F /* UserCenterHeadView.m */,
-				D588B0491BDDDB71000C5D6F /* FeedBackViewController.h */,
-				D588B04A1BDDDB71000C5D6F /* FeedBackViewController.m */,
 				D52638511BDF1AED00ADC2C7 /* DrivingCandidatesViewController.h */,
 				D52638521BDF1AED00ADC2C7 /* DrivingCandidatesViewController.m */,
 				D512569A1BDF602B002717DA /* CommonAddressViewController.h */,
@@ -6027,6 +6035,7 @@
 				55901B5F1C26795800AC64FF /* VerifyPhoneController.m in Sources */,
 				D588B0D81BDDDC14000C5D6F /* DrivingIntroductionCell.m in Sources */,
 				B21818361C5A42F600F973A7 /* trainfieldModel.m in Sources */,
+				56DAB0FD1C7ABB8500D7B942 /* FeedBackViewController.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
 				060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
@@ -6080,7 +6089,6 @@
 				D51256A21BDFAA53002717DA /* SignUpDrivingDetailViewController.m in Sources */,
 				D95E3DAE1C3CDBFE00F0B5A0 /* DVVFilterView.m in Sources */,
 				D96149471C5C5E5200E3007F /* CoachListDMServerClassList.m in Sources */,
-				D588B04E1BDDDB71000C5D6F /* SetupViewController.m in Sources */,
 				D588B0921BDDDBDB000C5D6F /* MapViewController.m in Sources */,
 				D5604B581BF656C50020F0D7 /* EMSDWebImageManager.m in Sources */,
 				D5604B661BF656C50020F0D7 /* PSTCollectionViewController.m in Sources */,
@@ -6252,7 +6260,6 @@
 				D96532731C7339940097AFA2 /* NSObject+DVVBaseViewModel.m in Sources */,
 				B20DBED21C5DB0FF0023676E /* Order.m in Sources */,
 				D92B2D9A1C59C2F40050EE84 /* DrivingDetailInfoCell.m in Sources */,
-				D588B0541BDDDB71000C5D6F /* FeedBackViewController.m in Sources */,
 				D5604B481BF656C50020F0D7 /* MBProgressHUD+Add.m in Sources */,
 				062734B81C59C9A90056B0BC /* SignUpController.m in Sources */,
 				B226AEF71C74937C0028DF1A /* HMSchoolInfoModel.m in Sources */,
@@ -6347,6 +6354,7 @@
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
 				D92B2DB01C59F65C0050EE84 /* ClassTypeView.m in Sources */,
 				D963FAD81C743460006955D8 /* DVVToast.m in Sources */,
+				56DAB0FC1C7ABB8500D7B942 /* AboutUsViewController.m in Sources */,
 				B2E8E1AD1C72C78B000190C2 /* YBAppointMentController.m in Sources */,
 				B21818011C55F14B00F973A7 /* JGSelectDrivingVcHeadSearch.m in Sources */,
 				D96D1BE81C2B88A000F1C282 /* UINavigationBar+DVVNavigationBar.m in Sources */,
@@ -6377,6 +6385,7 @@
 				D5604B651BF656C50020F0D7 /* PSTCollectionViewCell.m in Sources */,
 				D52638621BDF4D8600ADC2C7 /* ModifyNickNameViewController.m in Sources */,
 				0647A5CB1C354A7100DBB8A3 /* DiscountShopDatailController.m in Sources */,
+				56DAB0FE1C7ABB8500D7B942 /* SetupViewController.m in Sources */,
 				D95E3DA81C3CC0AB00F0B5A0 /* DVVSearchView.m in Sources */,
 				D588AFC61BDDDAAB000C5D6F /* CoachDetail.m in Sources */,
 				56855C3A1C785485005D4517 /* JGActivityDetailsViewController.m in Sources */,
@@ -6443,7 +6452,6 @@
 				D588AFC41BDDDAAB000C5D6F /* CoachModel.m in Sources */,
 				D588B13A1BDDDC65000C5D6F /* RegisterViewController.m in Sources */,
 				D966E7791C5B4363007848B4 /* ClassTypeDMSchoolinfo.m in Sources */,
-				D5D510201BFD908900F54097 /* AboutUsViewController.m in Sources */,
 				56855C3C1C785485005D4517 /* JGActivityViewController.m in Sources */,
 				D961493F1C5C587200E3007F /* CoachListDMCarmodel.m in Sources */,
 				B226AF001C74A0CA0028DF1A /* BaseModelMethod.m in Sources */,

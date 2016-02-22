@@ -113,7 +113,6 @@
 - (void)networkRequest {
     CGRect rect = [UIScreen mainScreen].bounds;
     if (self.phontTextField.text == nil || self.phontTextField.text.length  == 0) {
-//        [self obj_showTotasViewWithMes:@"请输入手机号"];
         _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(rect.size.width - 120 - 8, _phontView.frame.origin.y, 120, 18)];
         _showWarningMessageView.isShowWarningMessage  = NO;
         [self addSubview:self.showWarningMessageView];
@@ -223,6 +222,7 @@
     }
     self.complaintContentLabel.text = [NSString stringWithFormat:@"投诉内容%lu/200",[textView.text length]];
 }
+// 提示框消失操作
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     if (!self.showWarningMessageView.isShowWarningMessage) {
         self.showWarningMessageView.hidden = YES;
