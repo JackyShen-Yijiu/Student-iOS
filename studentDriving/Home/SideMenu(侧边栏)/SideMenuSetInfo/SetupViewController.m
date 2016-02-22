@@ -14,6 +14,7 @@
 #import "AcountManager.h"
 #import <JPush/APService.h>
 #import "SignUpInfoManager.h"
+#import "HelpController.h"
 
 
 static NSString *const kSettingUrl = @"userinfo/personalsetting";
@@ -183,6 +184,8 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 1 && indexPath.row == 0) {
         // 使用帮助
+        HelpController *helpVC  = [[HelpController alloc] init];
+        [self.navigationController pushViewController:helpVC animated:YES];
     }else if (indexPath.section == 1 && indexPath.row == 1) {
         // 关于我们
         AboutUsViewController *about = [[AboutUsViewController alloc] init];

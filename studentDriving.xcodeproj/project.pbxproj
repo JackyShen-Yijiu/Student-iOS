@@ -107,6 +107,9 @@
 		56DAB10A1C7AFA2C00D7B942 /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB1061C7AFA2C00D7B942 /* PlaceholderTextView.m */; };
 		56DAB10B1C7AFA2C00D7B942 /* YBComplaintCoachView.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB1081C7AFA2C00D7B942 /* YBComplaintCoachView.m */; };
 		56DAB10F1C7AFADF00D7B942 /* HomeAdvantageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB10E1C7AFADF00D7B942 /* HomeAdvantageController.m */; };
+		56DAB1121C7B070B00D7B942 /* ShowWarningBG.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB1111C7B070B00D7B942 /* ShowWarningBG.m */; };
+		56DAB1181C7B22BC00D7B942 /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB1171C7B22BC00D7B942 /* HelpController.m */; };
+		56DAB11B1C7B241C00D7B942 /* HelpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB11A1C7B241C00D7B942 /* HelpCell.m */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
 		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B20DBEC61C5DB0FF0023676E /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B20DBE451C5DB0FF0023676E /* AlipaySDK.bundle */; };
@@ -1105,6 +1108,13 @@
 		56DAB1081C7AFA2C00D7B942 /* YBComplaintCoachView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBComplaintCoachView.m; sourceTree = "<group>"; };
 		56DAB10D1C7AFADF00D7B942 /* HomeAdvantageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeAdvantageController.h; sourceTree = "<group>"; };
 		56DAB10E1C7AFADF00D7B942 /* HomeAdvantageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeAdvantageController.m; sourceTree = "<group>"; };
+		56DAB1101C7B070B00D7B942 /* ShowWarningBG.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWarningBG.h; sourceTree = "<group>"; };
+		56DAB1111C7B070B00D7B942 /* ShowWarningBG.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWarningBG.m; sourceTree = "<group>"; };
+		56DAB1161C7B22BC00D7B942 /* HelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpController.h; sourceTree = "<group>"; };
+		56DAB1171C7B22BC00D7B942 /* HelpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpController.m; sourceTree = "<group>"; };
+		56DAB1191C7B241C00D7B942 /* HelpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCell.h; sourceTree = "<group>"; };
+		56DAB11A1C7B241C00D7B942 /* HelpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCell.m; sourceTree = "<group>"; };
+		56DAB11D1C7B27A400D7B942 /* HelpData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = HelpData.json; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
@@ -2936,6 +2946,8 @@
 				56855C4B1C787736005D4517 /* SignInViewController.m */,
 				56855C4C1C787736005D4517 /* SignInViewModel.h */,
 				56855C4D1C787736005D4517 /* SignInViewModel.m */,
+				56DAB1101C7B070B00D7B942 /* ShowWarningBG.h */,
+				56DAB1111C7B070B00D7B942 /* ShowWarningBG.m */,
 			);
 			path = SideMenuSignUp;
 			sourceTree = "<group>";
@@ -2999,6 +3011,11 @@
 				56DAB0F91C7ABB8500D7B942 /* FeedBackViewController.m */,
 				56DAB0FA1C7ABB8500D7B942 /* SetupViewController.h */,
 				56DAB0FB1C7ABB8500D7B942 /* SetupViewController.m */,
+				56DAB1161C7B22BC00D7B942 /* HelpController.h */,
+				56DAB1171C7B22BC00D7B942 /* HelpController.m */,
+				56DAB1191C7B241C00D7B942 /* HelpCell.h */,
+				56DAB11A1C7B241C00D7B942 /* HelpCell.m */,
+				56DAB11D1C7B27A400D7B942 /* HelpData.json */,
 			);
 			path = SideMenuSetInfo;
 			sourceTree = "<group>";
@@ -5946,6 +5963,7 @@
 				D92B2D951C59BF780050EE84 /* DrivingDetailAddressCell.m in Sources */,
 				B226AEDB1C7481FB0028DF1A /* NSDictionary+StrDic.m in Sources */,
 				D92B2DE71C5A0FC10050EE84 /* DrivingDetailViewModel.m in Sources */,
+				56DAB1121C7B070B00D7B942 /* ShowWarningBG.m in Sources */,
 				D588B0D71BDDDC14000C5D6F /* DrivingInformationCell.m in Sources */,
 				D588B10E1BDDDC2F000C5D6F /* BLPFAlertView.m in Sources */,
 				B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */,
@@ -6146,6 +6164,7 @@
 				B21818111C58675C00F973A7 /* JGDrivingDetailViewController.m in Sources */,
 				D96532601C7323F80097AFA2 /* DVVSignUpToolBarView.m in Sources */,
 				D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */,
+				56DAB1181C7B22BC00D7B942 /* HelpController.m in Sources */,
 				D96D1BEB1C2B88A000F1C282 /* DVVSideMenu.m in Sources */,
 				B20DBED61C5DB0FF0023676E /* MD5DataSigner.m in Sources */,
 				D588B04B1BDDDB71000C5D6F /* UserCenterViewController.m in Sources */,
@@ -6370,6 +6389,7 @@
 				B226AF181C76E6830028DF1A /* YBCoachListViewCell.m in Sources */,
 				D96532861C733E0B0097AFA2 /* DVVSignUpCoachDMHeadportrait.m in Sources */,
 				B21818141C58AC5500F973A7 /* JGDrivingDetailTopCell.m in Sources */,
+				56DAB11B1C7B241C00D7B942 /* HelpCell.m in Sources */,
 				B20DBEDD1C5DB0FF0023676E /* payRequsestHandler.mm in Sources */,
 				B2E8E1D51C73162D000190C2 /* YBStudyTableView.m in Sources */,
 				D96D1BCC1C2B858400F1C282 /* AppDelegate.mm in Sources */,

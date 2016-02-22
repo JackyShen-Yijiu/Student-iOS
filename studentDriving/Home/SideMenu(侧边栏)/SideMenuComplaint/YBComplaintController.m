@@ -58,6 +58,8 @@
     self.scrollView.delegate = self;
     self.coachView.complaintPushCoachDetailDelegate = self;
     self.coachView.superController = self;
+    self.drivingView.superController = self;
+    
 }
 - (void)viewWillAppear:(BOOL)animated{
     

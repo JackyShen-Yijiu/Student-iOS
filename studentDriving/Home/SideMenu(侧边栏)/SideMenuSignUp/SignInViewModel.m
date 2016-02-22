@@ -13,17 +13,18 @@
 #import "SignInDataModel.h"
 #import "YYModel.h"
 #import "NSString+CurrentTimeDay.h"
+#import "ShowWarningBG.h"
 
 @implementation SignInViewModel
 
-- (void)dvvNetworkRequestRefresh {
+- (void)dvv_networkRequestRefresh {
     
     NSString *interface = @"courseinfo/getmyreservation";
     NSString *url = [NSString stringWithFormat:BASEURL, interface];
     
     NSString *userId = [AcountManager manager].userid;
     // 详细地址
-//    NSString *locationAddress = [AcountManager manager].locationAddress;
+    //    NSString *locationAddress = [AcountManager manager].locationAddress;
     // 学员现在的科目ID
     NSInteger subjectId = [[AcountManager manager].userSubject.subjectId integerValue];
     
@@ -33,9 +34,10 @@
     
     [JENetwoking startDownLoadWithUrl:url postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
+        [self dvv_networkCallBack];
+        
         if ([self checkErrorWithData:data]) {
-            [self dvvRefreshSuccess];
-            [self showMsg:@"今天没有预约"];
+            [self dvv_nilResponseObject];
             return ;
         }
         
@@ -47,7 +49,7 @@
             
             SignInDataModel *dataModel = [SignInDataModel yy_modelWithDictionary:dict];
             [self.dataArray addObject:dataModel];
-//            [self.todayArray addObject:dataModel];
+            //            [self.todayArray addObject:dataModel];
         }
         
         NSString *formatString = @"yyyy-MM-dd";
@@ -89,15 +91,15 @@
                 NSLog(@"%@---%@---%@", currentHH, beginHH, endHH);
                 // 学车过程中
                 if ([currentHH integerValue] <= [endHH integerValue] && [currentHH integerValue] >= [beginHH integerValue]) {
-                        item.signInStatus = YES;
+                    item.signInStatus = YES;
                 }
-//                    else { // 结束后15分钟
-//                    if (1 == [currentHH integerValue] - [endHH integerValue]) {
-//                        if ([currentMM integerValue] <= 15) {
-//                            item.signInStatus = YES;
-//                        }
-//                    }
-//                }
+                //                    else { // 结束后15分钟
+                //                    if (1 == [currentHH integerValue] - [endHH integerValue]) {
+                //                        if ([currentMM integerValue] <= 15) {
+                //                            item.signInStatus = YES;
+                //                        }
+                //                    }
+                //                }
                 
                 [self.todayArray addObject:item];
                 
@@ -105,19 +107,20 @@
         }
         
         if (!self.todayArray.count) {
-            [self dvvRefreshSuccess];
-            [self showMsg:@"您今天没有预约"];
+            [self dvv_nilResponseObject];
             return ;
         }
         
-        [self dvvRefreshSuccess];
+        [self dvv_refreshSuccess];
         
     } withFailure:^(id data) {
         
-        [self dvvRefreshError];
-        NSLog(@"%@", data);
+        [self dvv_networkCallBack];
+        [self dvv_networkError];
     }];
+
 }
+
 
 #pragma mark 检测是否有数据
 - (BOOL)checkErrorWithData:(id)data {
