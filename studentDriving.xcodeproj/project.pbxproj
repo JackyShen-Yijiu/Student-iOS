@@ -183,6 +183,7 @@
 		B226AF181C76E6830028DF1A /* YBCoachListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B226AF171C76E6830028DF1A /* YBCoachListViewCell.m */; };
 		B226AF1B1C76EAAA0028DF1A /* YBCoachListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = B226AF1A1C76EAAA0028DF1A /* YBCoachListSearchController.m */; };
 		B226AF1D1C76F2E90028DF1A /* YBCoachListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B226AF1C1C76F2E90028DF1A /* YBCoachListViewCell.xib */; };
+		B22E1E9C1C78923F000E8AEE /* YBForceEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B2E8E1801C72BA4F000190C2 /* WMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1641C72BA4F000190C2 /* WMNavigationController.m */; };
 		B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1661C72BA4F000190C2 /* ViewController.m */; };
@@ -1332,6 +1333,8 @@
 		B226AF191C76EAAA0028DF1A /* YBCoachListSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCoachListSearchController.h; sourceTree = "<group>"; };
 		B226AF1A1C76EAAA0028DF1A /* YBCoachListSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCoachListSearchController.m; sourceTree = "<group>"; };
 		B226AF1C1C76F2E90028DF1A /* YBCoachListViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBCoachListViewCell.xib; sourceTree = "<group>"; };
+		B22E1E9A1C78923F000E8AEE /* YBForceEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBForceEvaluateViewController.h; sourceTree = "<group>"; };
+		B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBForceEvaluateViewController.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B2E8E1631C72BA4F000190C2 /* WMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationController.h; sourceTree = "<group>"; };
@@ -3337,6 +3340,8 @@
 				B226AF141C76E5490028DF1A /* YBCoachListViewController.m */,
 				B226AF191C76EAAA0028DF1A /* YBCoachListSearchController.h */,
 				B226AF1A1C76EAAA0028DF1A /* YBCoachListSearchController.m */,
+				B22E1E9A1C78923F000E8AEE /* YBForceEvaluateViewController.h */,
+				B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6085,6 +6090,8 @@
 				D5604C831BF656F30020F0D7 /* DXFaceView.m in Sources */,
 				D5604C821BF656F30020F0D7 /* DXMessageToolBar.m in Sources */,
 				D588B1191BDDDC2F000C5D6F /* UIImageView+WMClippingImage.m in Sources */,
+				B22E1E9C1C78923F000E8AEE /* YBForceEvaluateViewController.m in Sources */,
+				D98581B01C58BE8A0044E029 /* ShuttleBusController.m in Sources */,
 				D588B0961BDDDBDB000C5D6F /* ApplyDrivingViewController.m in Sources */,
 				D51256A21BDFAA53002717DA /* SignUpDrivingDetailViewController.m in Sources */,
 				D95E3DAE1C3CDBFE00F0B5A0 /* DVVFilterView.m in Sources */,

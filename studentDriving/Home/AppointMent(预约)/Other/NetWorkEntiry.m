@@ -15,6 +15,65 @@
 @implementation NetWorkEntiry
 
 /**
+ *  获取教练每个月的休假安排
+ *
+ *  @param userId （req）教练ID
+ *  @param yearTime 年
+ *  @param monthTime 月
+ */
++ (void)getCoachInfoWithUserId:(NSString *)userId  yearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString *  currentUserId = [AcountManager manager].applycoach.infoId;
+
+    if (!userId || !yearTime || !monthTime || !currentUserId) {
+        return [self missParagramercallBackFailure:failure];
+    }
+    
+    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getmonthapplydata",[self domain]];
+    
+#warning YJG待修改(用户ID和后台对接口)
+    NSDictionary * dic = @{
+                           @"coachid":userId,
+                           @"year":yearTime,
+                           @"month":monthTime,
+                           @"userid":currentUserId
+                           };
+    [self GET:urlStr parameters:dic success:success failure:failure];
+    
+}
+
+/**
+ *  获取预约数据
+ *
+ *  @param userId （req）教练ID
+ *  @param yearTime 年
+ *  @param monthTime 月
+ */
++ (void)getAppointMentWithyearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString *  currentUserId = [AcountManager manager].applycoach.infoId;
+
+    if (!yearTime || !monthTime || !currentUserId) {
+        return [self missParagramercallBackFailure:failure];
+    }
+    
+    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getmonthapplydata",[self domain]];
+    #warning YJG待修改(用户ID和后台对接口)
+    NSDictionary * dic = @{
+                           @"userid":currentUserId,
+                           @"year":yearTime,
+                           @"month":monthTime,
+                           };
+    [self GET:urlStr parameters:dic success:success failure:failure];
+    
+}
+
+
+/**
  *  登陆模块
  *  ====================================================================================================================================
  */
@@ -205,30 +264,6 @@
 //                           @"searchname":searchname,
 //                           };
 //    [self GET:urlStr parameters:dic success:success failure:failure];
-}
-
-/**
- *  获取教练每个月的日程安排
- *
- *  @param userId （req）教练ID
- *  @param yearTime 年
- *  @param monthTime 月
- */
-+ (void)getAllCourseInfoWithUserId:(NSString *)userId  yearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
-                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
-//    if (!userId || !yearTime || !monthTime) {
-//        return [self missParagramercallBackFailure:failure];
-//    }
-//    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getmonthapplydata",[self domain]];
-//    NSDictionary * dic = @{
-//                           @"coachid":userId,
-//                           @"year":yearTime,
-//                           @"month":monthTime,
-//                           };
-//    [self GET:urlStr parameters:dic success:success failure:failure];
-    
 }
 
 + (void)getAllCourseInfoWithUserId:(NSString *)userId  DayTime:(NSString *)dayTime

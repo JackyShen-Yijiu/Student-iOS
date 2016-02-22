@@ -13,4 +13,6 @@
 
 @property (strong, nonatomic) NSDate *seletedDate;
 
+@property (nonatomic,copy) NSString *coachID;
+
 @end

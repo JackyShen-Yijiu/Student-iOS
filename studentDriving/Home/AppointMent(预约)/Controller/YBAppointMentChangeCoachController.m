@@ -127,6 +127,11 @@
     }
     NSString * dataStr = [self.dateFormattor stringFromDate:date];
     
+    // 初始化日历预约、休假等信息
+    if (self.coachID&&[self.coachID length]!=0) {
+        [self.calendarHeadView setCurrentDate:self.seletedDate coachID:self.coachID];
+    }
+
     // 加载中间预约时间
     [self loadMidYuyueTimeData:dataStr];
     

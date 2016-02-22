@@ -47,7 +47,7 @@
     self.potraitView = [[PortraitView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     self.potraitView.layer.cornerRadius = 20.f;
     self.potraitView.layer.shouldRasterize = YES;
-    self.potraitView.backgroundColor = [UIColor redColor];
+    self.potraitView.backgroundColor = YBNavigationBarBgColor;
     [self addSubview:self.potraitView];
     
     // 当前学车进度
@@ -132,16 +132,21 @@
 - (void)setUpData
 {
     
-    NSString * imageStr = @"littleImage.png";
-    self.potraitView.imageView.image = [UIImage imageNamed:imageStr];
+    NSString * imageStr = nil;
     
     if ([AcountManager manager].subjecttwo.progress) {
+        imageStr = [NSString stringWithFormat:@"YBStudyPregressTwo"];
         self.titleLabel.text = [NSString stringWithFormat:@"当前学车进度:%@",[AcountManager manager].subjecttwo.progress];
     }
     if ([AcountManager manager].subjectthree.progress) {
+        imageStr = [NSString stringWithFormat:@"YBStudyPregressThree"];
         self.titleLabel.text = [NSString stringWithFormat:@"当前学车进度:%@",[AcountManager manager].subjectthree.progress];
     }
-
+    
+    if (imageStr) {
+        self.potraitView.imageView.image = [UIImage imageNamed:imageStr];
+    }
+    
     if ([AcountManager manager].subjecttwo.reservation && [AcountManager manager].subjecttwo.finishcourse) {
         
         NSInteger yiyuexueshiCount = [[AcountManager manager].subjecttwo.reservation integerValue] + [[AcountManager manager].subjecttwo.finishcourse integerValue];

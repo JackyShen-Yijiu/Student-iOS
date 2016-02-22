@@ -18,7 +18,7 @@
 
 @property(nonatomic,weak)id<FDCalendarDelegate>delegate;
 
-- (void)setCurrentDate:(NSDate *)date;
+- (void)setCurrentDate:(NSDate *)date coachID:(NSString *)coachID;
 
 @property (nonatomic,weak) UIViewController *parentViewController;
 

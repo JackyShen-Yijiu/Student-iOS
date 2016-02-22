@@ -11,8 +11,33 @@
 
 @interface NetWorkEntiry : NSObject
 
-
 + (NSString *)domain;
+
+/**
+ *  获取教练每个月的日程安排
+ *
+ *  @param userId （req）教练ID
+ *  @param yearTime 年
+ *  @param monthTime 月
+ */
++ (void)getCoachInfoWithUserId:(NSString *)userId  yearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+/**
+ *  获取用户预约数据
+ *
+ *  @param userId （req）教练ID
+ *  @param yearTime 年
+ *  @param monthTime 月
+ */
++ (void)getAppointMentWithyearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+
+
+
+#pragma mark -----------------------------------------------------------------------------------------------------
 
 /**
  *  登陆模块
