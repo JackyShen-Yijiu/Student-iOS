@@ -84,5 +84,18 @@
     return _strArray;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (0 == indexPath.row) {
+        // 使用指南
+    }else if (1 == indexPath.row){
+        // 理论考试
+    }
+    else if (2 == indexPath.row){
+        // 新手上路
+    }
+    else if (3 == indexPath.row){
+        // 常见问题
+    }
+    
+}
 @end
