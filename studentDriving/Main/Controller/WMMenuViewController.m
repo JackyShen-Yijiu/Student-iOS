@@ -102,7 +102,9 @@
 }
 // 点击头像手势
 - (void)priateMessage:(UITapGestureRecognizer *)tapGesture{
-    
+    if ([self.iconDelegage respondsToSelector:@selector(didSelectIconImage:)]) {
+        [self.delegate didSelectIconImage:tapGesture];
+    }
 }
 #pragma mark - tableView代理方法及数据源方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

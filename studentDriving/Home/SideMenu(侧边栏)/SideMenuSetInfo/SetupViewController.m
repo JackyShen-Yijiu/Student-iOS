@@ -12,6 +12,8 @@
 #import "FeedBackViewController.h"
 #import "AboutUsViewController.h"
 #import "AcountManager.h"
+#import <JPush/APService.h>
+#import "SignUpInfoManager.h"
 
 
 static NSString *const kSettingUrl = @"userinfo/personalsetting";
@@ -22,6 +24,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 
 @property (nonatomic, strong) UISwitch *reservationreminderSwitch;
 @property (nonatomic, strong) UISwitch *newmessagereminder;
+@property (nonatomic, strong) UIButton *quitButton;
 
 @end
 
@@ -30,7 +33,8 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     if (!_reservationreminderSwitch) {
         _reservationreminderSwitch = [UISwitch new];
         _reservationreminderSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
-        _reservationreminderSwitch.onTintColor = MAIN_BACKGROUND_COLOR;
+        _reservationreminderSwitch.onTintColor = [UIColor colorWithHexString:@"bd4437"];
+//        _reservationreminderSwitch.tintColor=[UIColor cyanColor];
     }
     return _reservationreminderSwitch;
 }
@@ -38,13 +42,13 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     if (!_newmessagereminder) {
         _newmessagereminder = [UISwitch new];
         _newmessagereminder = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
-        _newmessagereminder.onTintColor = MAIN_BACKGROUND_COLOR;
+        _newmessagereminder.onTintColor = [UIColor colorWithHexString:@"bd4437"];
     }
     return _newmessagereminder;
 }
 - (NSArray *)dataArray {
     if (_dataArray == nil) {
-        _dataArray = @[@[@"预约提醒",@"新消息通知"],@[@"关于我们",@"去评分",@"反馈"]];
+        _dataArray = @[@[@"预约提醒",@"新消息通知"],@[@"使用帮助",@"关于我们",@"去评分",@"反馈"]];
     }
     return _dataArray;
 }
@@ -67,6 +71,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.quitButton];
     
     [self checkSet];
 }
@@ -99,7 +104,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     if (section == 0) {
         return 2;
     }else if (section == 1) {
-        return 3;
+        return 4;
     }
     return 0;
 }
@@ -176,15 +181,21 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (indexPath.section == 1 && indexPath.row == 2) {
-        FeedBackViewController *feedBack = [[FeedBackViewController alloc] init];
-        [self.navigationController pushViewController:feedBack animated:YES];
-    }else if (indexPath.section == 1 && indexPath.row == 0) {
+    if (indexPath.section == 1 && indexPath.row == 0) {
+        // 使用帮助
+    }else if (indexPath.section == 1 && indexPath.row == 1) {
+        // 关于我们
         AboutUsViewController *about = [[AboutUsViewController alloc] init];
         [self.navigationController pushViewController:about animated:YES];
-    }else if (indexPath.section == 1 && indexPath.row == 1) {
+    }else if (indexPath.section == 1 && indexPath.row == 2) {
+        // 去评分
         [self gotoAppStorePageRaisal:@"1060105429"];
+    }else if (indexPath.section == 1 && indexPath.row == 3) {
+        // 反馈
+        FeedBackViewController *feedBack = [[FeedBackViewController alloc] init];
+        [self.navigationController pushViewController:feedBack animated:YES];
     }
+    
 }
 
 - (void)gotoAppStorePageRaisal:(NSString *)AppId {
@@ -204,6 +215,63 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
     
+}
+// 退出App
+- (UIButton *)quitButton{
+    if (_quitButton == nil) {
+        _quitButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _quitButton.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        [_quitButton setTitle:@"退出" forState:UIControlStateNormal];
+        _quitButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_quitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _quitButton.frame = CGRectMake(0,kSystemHeight - 108, kSystemWide, 44);
+        [_quitButton addTarget:self action:@selector(clickQuit:) forControlEvents:UIControlEventTouchUpInside];
+        return _quitButton;
+    }
+    return _quitButton;
+}
+- (void)clickQuit:(UIButton *)sender {
+    
+    [AcountManager removeAllData];
+    [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:nil];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+        DYNSLog(@"asyncLogoffWithUnbindDeviceToken%@",error);
+    } onQueue:nil];
+    
+    [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+        DYNSLog(@"退出成功 = %@ %@",info,error);
+        if (!error && info) {
+        }
+    } onQueue:nil];
+    
+    //    [self dismissViewControllerAnimated:NO completion:nil];
+    //    [APService setAlias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+    NSSet *set = [NSSet setWithObjects:@"", nil];
+    [APService setTags:set alias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+    //    [self.navigationController popToRootViewControllerAnimated:NO];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kQuitSuccess" object:nil];
+    [AcountManager removeAllData];
+
+    // 检测是否打开登录页
+    [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+    
+    [SignUpInfoManager removeSignData];
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:1 forKey:@"isCarReset"];
+    [ud synchronize];
+}
+//取消别名标示
+- (void)tagsAliasCallback:(int)iResCode
+                     tags:(NSSet *)tags
+                    alias:(NSString *)alias {
+    NSString *callbackString =
+    [NSString stringWithFormat:@"%d, \ntags: %@, \nalias: %@\n", iResCode,
+     tags, alias];
+    
+    DYNSLog(@"TagsAlias回调:%@", callbackString);
 }
 
 @end

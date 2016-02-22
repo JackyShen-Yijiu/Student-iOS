@@ -25,7 +25,10 @@
 #import "HomeAdvantageController.h" // 一步优势
 #import "ShuttleBusController.h" // 我的驾校班车
 #import "JGActivityViewController.h" // 活动
-#import "SideMenuSignUpController.h"
+#import "SideMenuSignUpController.h" // 签到
+#import "EditorUserViewController.h" // 点击头像
+#import "SetupViewController.h"
+
 
 typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
@@ -76,6 +79,15 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 @implementation ViewController
 - (void)viewWillAppear:(BOOL)animated{
     
+    [super viewWillAppear:animated];
+    
+    // 检测是否打开登录页
+    if (![AcountManager isLogin]) {
+        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+        [self showHome];
+        [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+    }
+    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -102,6 +114,8 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     // 设置menu的view
     self.menuVC = [[WMMenuViewController alloc] init];
     self.menuVC.delegate = self;
+    self.menuVC.iconDelegage = self;
+    
     self.menuVC.view.frame = [[UIScreen mainScreen] bounds];
     self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuStartNarrowRatio, menuStartNarrowRatio);
     self.menuVC.view.center = CGPointMake(self.menuCenterXStart, self.menuVC.view.center.y);
@@ -131,12 +145,6 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.shequVC = [[YBCommunityViewController alloc] init];
     [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor"];
     
-    // 检测是否打开登录页
-    if (![AcountManager isLogin]) {
-        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
-        [self showHome];
-        [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
-    }
     
 }
 
@@ -368,8 +376,32 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     }
     if (indexPath.row == 8) {
         // 设置与帮助
+        // 检测是否打开登录页
+        if (![AcountManager isLogin]) {
+            [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+            [self showHome];
+            [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+            return;
+        }
+        SetupViewController *setUpVC = [SetupViewController new];
+        [self controller:setUpVC];
+
     }
     
+}
+// 点击头像编辑详情页
+- (void)didSelectIconImage:(UITapGestureRecognizer *)gestureRecognizer{
+    // 检测是否打开登录页
+    if (![AcountManager isLogin]) {
+        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+        [self showHome];
+        [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+        return;
+    }
+    
+     EditorUserViewController *editorUserVC = [EditorUserViewController new];
+    [self controller:editorUserVC];
+
 }
 - (void)controller:(UIViewController *)itemVC{
     itemVC.hidesBottomBarWhenPushed = YES;

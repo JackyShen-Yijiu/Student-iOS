@@ -33,7 +33,6 @@
     [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
 //    UIWindow *window = [UIApplication sharedApplication].keyWindow;
 //    [(UINavigationController *)(window.rootViewController) dismissViewControllerAnimated:YES completion:nil];
-//    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
     
 }
 

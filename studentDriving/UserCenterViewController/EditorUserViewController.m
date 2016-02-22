@@ -58,11 +58,15 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     
     
     [self.view addSubview:self.tableView];
-    
+    // 性别
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(genderChange) name:kGenderChange object:nil];
+    // 个性标签
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(signatureChange) name:kSignatureChange object:nil];
+    // 姓名
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nameChange) name:kmodifyNameChange object:nil];
+    // 昵称
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(nickNameChange) name:kmodifyNickNameChange object:nil];
+    // 地址
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addAddressChange) name:kaddAddressChange object:nil];
 
 }

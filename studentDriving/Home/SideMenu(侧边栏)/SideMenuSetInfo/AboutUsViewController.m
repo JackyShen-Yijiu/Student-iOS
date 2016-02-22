@@ -47,7 +47,7 @@
         _topLabelTwo = [[UILabel alloc] init];
         _topLabelTwo.textAlignment = NSTextAlignmentCenter;
         _topLabelTwo.font = [UIFont boldSystemFontOfSize:14];
-        _topLabelTwo.text = @"V 1.3.0";
+        _topLabelTwo.text = @"V 2.0.0";
     }
     return _topLabelTwo;
 }
