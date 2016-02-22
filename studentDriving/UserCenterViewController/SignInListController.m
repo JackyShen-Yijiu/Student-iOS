@@ -31,40 +31,40 @@
     [self.view addSubview:self.tableView];
     _tableView.backgroundColor = [UIColor whiteColor];
     
-    [self configViewModel];
-    [self configRefresh];
+//    [self configViewModel];
+//    [self configRefresh];
 }
 
 #pragma mark - config ViewModel
-- (void)configViewModel {
-    
-    _viewModel = [SignInViewModel new];
-    __weak typeof(self) ws = self;
-    [_viewModel dvvSetRefreshSuccessBlock:^{
-        
-        [MBProgressHUD hideHUDForView:ws.view animated:YES];
-        [ws.tableView.mj_header endRefreshing];
-        [ws.tableView reloadData];
-    }];
-    [_viewModel dvvSetRefreshErrorBlock:^{
-        [MBProgressHUD hideHUDForView:ws.view animated:YES];
-        [ws showTotasViewWithMes:@"加载失败"];
-    }];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    // 请求网络数据
-    [_viewModel dvvNetworkRequestRefresh];
-}
-
-#pragma mark - config refresh
-- (void)configRefresh {
-    
-    // 刷新
-    MJRefreshNormalHeader *refreshHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [_viewModel dvvNetworkRequestRefresh];
-    }];
-    
-    self.tableView.mj_header = refreshHeader;
-}
+//- (void)configViewModel {
+//    
+//    _viewModel = [SignInViewModel new];
+//    __weak typeof(self) ws = self;
+//    [_viewModel dvvSetRefreshSuccessBlock:^{
+//        
+//        [MBProgressHUD hideHUDForView:ws.view animated:YES];
+//        [ws.tableView.mj_header endRefreshing];
+//        [ws.tableView reloadData];
+//    }];
+//    [_viewModel dvvSetRefreshErrorBlock:^{
+//        [MBProgressHUD hideHUDForView:ws.view animated:YES];
+//        [ws showTotasViewWithMes:@"加载失败"];
+//    }];
+//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+//    // 请求网络数据
+//    [_viewModel dvvNetworkRequestRefresh];
+//}
+//
+//#pragma mark - config refresh
+//- (void)configRefresh {
+//    
+//    // 刷新
+//    MJRefreshNormalHeader *refreshHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+//        [_viewModel dvvNetworkRequestRefresh];
+//    }];
+//    
+//    self.tableView.mj_header = refreshHeader;
+//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     

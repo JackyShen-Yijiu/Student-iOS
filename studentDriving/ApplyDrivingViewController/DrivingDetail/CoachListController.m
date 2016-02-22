@@ -105,7 +105,7 @@
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [UITableView new];
-        _tableView.frame = self.view.bounds;
+        _tableView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64);
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.rowHeight = 95;

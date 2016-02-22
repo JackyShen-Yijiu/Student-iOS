@@ -6,9 +6,10 @@
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "DVVBaseViewModel.h"
+#import <UIKit/UIKit.h>
+#import "NSObject+DVVBaseViewModel.h"
 
-@interface SignInViewModel : DVVBaseViewModel
+@interface SignInViewModel : NSObject
 
 // 所有的课程
 @property (nonatomic, strong) NSMutableArray *dataArray;

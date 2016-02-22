@@ -38,27 +38,39 @@
     
     _viewModel = [SignInViewModel new];
     __weak typeof(self) ws = self;
-    [_viewModel dvvSetRefreshSuccessBlock:^{
-        
-        [MBProgressHUD hideHUDForView:ws.view animated:YES];
-        [ws.tableView.mj_header endRefreshing];
+    // 请求到数据的回调
+    [_viewModel dvv_setRefreshSuccessBlock:^{
         [ws.tableView reloadData];
     }];
-    [_viewModel dvvSetRefreshErrorBlock:^{
-        [MBProgressHUD hideHUDForView:ws.view animated:YES];
-        [ws showTotasViewWithMes:@"加载失败"];
+    // 服务器返回的数据为空时的回调
+    [_viewModel dvv_setNilResponseObjectBlock:^{
+        
+        
+        
     }];
+    // 网络成功或错误都调用的回调 (一般在这里隐藏HUD)
+    [_viewModel dvv_setNetworkCallBackBlock:^{
+        [MBProgressHUD hideHUDForView:ws.view animated:YES];
+        [ws.tableView.mj_header endRefreshing];
+        [ws.tableView.mj_footer endRefreshing];
+    }];
+    // 网络错误回调
+    [_viewModel dvv_setNetworkErrorBlock:^{
+        [ws showTotasViewWithMes:@"网络错误"];
+    }];
+    
+    // 开始请求网络数据
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    // 请求网络数据
-    [_viewModel dvvNetworkRequestRefresh];
+    [_viewModel dvv_networkRequestRefresh];
 }
 
 #pragma mark - config refresh
 - (void)configRefresh {
     
+    __weak typeof(self) ws = self;
     // 刷新
     MJRefreshNormalHeader *refreshHeader = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [_viewModel dvvNetworkRequestRefresh];
+        [ws.viewModel dvv_networkRequestRefresh];
     }];
     
     self.tableView.mj_header = refreshHeader;
