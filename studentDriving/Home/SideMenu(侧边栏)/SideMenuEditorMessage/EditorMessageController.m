@@ -10,16 +10,15 @@
 #import "EditorMessageCell.h"
 #import "EditorBottomCell.h"
 #import "EditorTopCell.h"
-#import "JEPhotoPickManger.h"
-#import <QiniuSDK.h>
+#import "EditorDetailController.h"
 
-static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
+
 
 @interface EditorMessageController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *descriArray;
-@property (strong, nonatomic) NSString *qiniuToken;
+
 @end
 
 @implementation EditorMessageController
@@ -112,7 +111,9 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (0 == indexPath.row) {
         // 头像编辑
-//        [JEPhotoPickManger pickPhotofromController:self];
+        EditorDetailController *editorVC = [[EditorDetailController alloc] init];
+        [self.navigationController pushViewController:editorVC animated:YES];
+                                            //        [JEPhotoPickManger pickPhotofromController:self];
     }
     if (4 == indexPath.row) {
         // 我的喜欢
@@ -121,49 +122,5 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         // 报名详情
     }
 }
-//#pragma mark - delegate
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    DYNSLog(@"imageData = %@",[AcountManager manager].userid);
-//    
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//    UIImage *photoImage = [info valueForKey:UIImagePickerControllerEditedImage];
-//    NSData *photeoData = UIImageJPEGRepresentation(photoImage, 0.5);
-////    self.userHeadImage.image = photoImage;
-//    
-//    __weak EditorMessageController *weakself = self;
-//    __block NSData *gcdPhotoData = photeoData;
-//    NSString *qiniuUrl = [NSString stringWithFormat:BASEURL,kQiniuUpdateUrl];
-//    [JENetwoking startDownLoadWithUrl:qiniuUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-//        
-//        NSDictionary *dataDic = data;
-//        weakself.qiniuToken = dataDic[@"data"];
-//        QNUploadManager *upLoadManager = [[QNUploadManager alloc] init];
-//        NSString *keyUrl = [NSString stringWithFormat:@"%@-%@.png",[NSString currentTimeDay],[AcountManager manager].userid];
-//        [upLoadManager putData:gcdPhotoData key:keyUrl token:weakself.qiniuToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-//            if (info) {
-//                
-//                NSString *upImageUrl = [NSString stringWithFormat:kQiniuImageUrl,key];
-//                NSString *updateUserInfoUrl = [NSString stringWithFormat:BASEURL,kupdateUserInfo];
-//                NSDictionary *headPortrait  = @{@"originalpic":upImageUrl,@"thumbnailpic":@"",@"width":@"",@"height":@""};
-//                
-//                NSDictionary *dicParam = @{@"headportrait":[JsonTransformManager dictionaryTransformJsonWith:headPortrait],@"userid":[AcountManager manager].userid};
-//                [JENetwoking startDownLoadWithUrl:updateUserInfoUrl postParam:dicParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-//                    NSDictionary *dataParam = data;
-//                    NSNumber *messege = dataParam[@"type"];
-//                    if (messege.intValue == 1) {
-//                        [self showTotasViewWithMes:@"修改成功"];
-//                        [AcountManager saveUserHeadImageUrl:upImageUrl];
-////                        [weakself.userHeadImage sd_setImageWithURL:[NSURL URLWithString:[AcountManager manager].userHeadImageUrl] placeholderImage:[UIImage imageWithData:gcdPhotoData]];
-//                        
-//                    }else {
-//                        [self showTotasViewWithMes:@"修改失败"];
-//                        
-//                        return;
-//                    }
-//                }];
-//            }
-//        } option:nil];
-//    }];
-//}
 
 @end
