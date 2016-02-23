@@ -34,9 +34,23 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     UITapGestureRecognizer *tapGestureRe = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickImage:)];
     [self.iconImgView addGestureRecognizer:tapGestureRe];
     self.iconImgView.userInteractionEnabled = YES;
+    [self addSignUp];
     [self initData];
+   
     
 }
+
+- (void)addSignUp
+{
+    CGRect backframe= CGRectMake(0, 0, 44, 44);
+    UIButton* backButton= [UIButton buttonWithType:UIButtonTypeSystem];
+    backButton.frame = backframe;
+    [backButton setTitle:@"保存" forState:UIControlStateNormal];
+    backButton.titleLabel.font = [UIFont systemFontOfSize:14];
+    [backButton addTarget:self action:@selector(sideMenuButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
+}
+
 - (void)initData{
     self.strArray = @[@"姓名",@"",@"昵称",@"绑定手机号",@"我的地址"];
     NSString *nameStr = nil;
@@ -71,6 +85,10 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     self.descrArray = @[nameStr,@"",nickStr,phoneStr,addressSre];
 
 }
+#pragma mark ---- Action
+- (void)sideMenuButtonAction{
+    // 保存修改的个人信息
+}
 #pragma mark ---- 选择图片
 - (void)pickImage:(UITapGestureRecognizer *)tapRecognizer{
         [JEPhotoPickManger pickPhotofromController:self];
@@ -82,6 +100,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     
     return 80;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (1 == indexPath.row) {
         NSString *cellID = @"sexID";
@@ -140,6 +159,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
                         [self showTotasViewWithMes:@"修改成功"];
                         [AcountManager saveUserHeadImageUrl:upImageUrl];
                         [weakself.iconImgView sd_setImageWithURL:[NSURL URLWithString:[AcountManager manager].userHeadImageUrl] placeholderImage:[UIImage imageWithData:gcdPhotoData]];
+                        [[NSNotificationCenter defaultCenter] postNotificationName:kiconImage object:nil];
 
                     }else {
                         [self showTotasViewWithMes:@"修改失败"];

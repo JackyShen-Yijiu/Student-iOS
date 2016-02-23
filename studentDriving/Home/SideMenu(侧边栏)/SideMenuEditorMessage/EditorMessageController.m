@@ -29,6 +29,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"个人中心";
     [self initData];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
     
 }
 - (void)initData{
@@ -47,6 +48,12 @@
      @property (readonly,strong, nonatomic) ExamCarModel *userCarmodels;
      */
 
+}
+#pragma mark --- 头像改变的通知
+- (void)iconImage{
+        NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+ 
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 6;

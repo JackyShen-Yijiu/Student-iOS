@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+static NSString *const kiconImage = @"kiconImage";
 @interface EditorDetailController : UIViewController
 
 @end
