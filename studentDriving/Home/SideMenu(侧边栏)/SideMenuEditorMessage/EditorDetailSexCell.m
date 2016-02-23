@@ -13,7 +13,6 @@
 
 @property (nonatomic, strong) UIButton *realNameButton;
 
-@property (nonatomic, assign) BOOL complaintWay;
 
 @property (nonatomic, strong) UIView *lineBottom;
 
@@ -43,21 +42,27 @@
     // Configure the view for the selected state
 }
 #pragma mark --- ActionTagart
-// 匿名投诉
+// 男
 - (void)didclickAnonymous:(UIButton *)btn{
     if (!btn.selected) {
         btn.selected = YES;
         _realNameButton.selected = NO;
         _complaintWay = 0;
+        if (!_sexWayBlock) {
+            _sexWayBlock(self.complaintWay);
+        }
         
     }
 }
-// 实名投诉
+// 女
 - (void)didclickReal:(UIButton *)btn{
     if (!btn.selected) {
         btn.selected = YES;
         _anonymousButton.selected = NO;
         _complaintWay = 1;
+        if (_sexWayBlock) {
+            _sexWayBlock(self.complaintWay);
+        }
     }
     
 }
@@ -95,7 +100,11 @@
         [_anonymousButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
         [_anonymousButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
         _anonymousButton.titleEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 0);
-        _anonymousButton.selected = YES;
+        if ([[AcountManager manager].userGender isEqualToString:@"男"]) {
+             _anonymousButton.selected = YES;
+            _complaintWay = 0;
+        }
+       
         //        _anonymousButton.backgroundColor = [UIColor orangeColor];
         [_anonymousButton addTarget:self action:@selector(didclickAnonymous:) forControlEvents:UIControlEventTouchUpInside];
         _anonymousButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -109,7 +118,6 @@
 }
 - (UIButton *)realNameButton{
     if (_realNameButton == nil) {
-        
         _realNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_realNameButton setTitle:@"女" forState:UIControlStateNormal];
         [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
@@ -118,7 +126,10 @@
         [_realNameButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
         [_realNameButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
         _realNameButton.titleEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 0);
-        
+        if ([[AcountManager manager].userGender isEqualToString:@"女"]) {
+            _realNameButton.selected = YES;
+            _complaintWay = 1;
+        }
         [_realNameButton addTarget:self action:@selector(didclickReal:) forControlEvents:UIControlEventTouchUpInside];
         _realNameButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _realNameButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;

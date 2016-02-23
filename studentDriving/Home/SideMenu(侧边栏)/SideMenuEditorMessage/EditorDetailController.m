@@ -11,15 +11,23 @@
 #import "EditorDetailSexCell.h"
 #import "JEPhotoPickManger.h"
 #import <QiniuSDK.h>
+#import "ModifyPhoneNumViewController.h"
 static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 
-@interface EditorDetailController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate>
+@interface EditorDetailController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *strArray;
 @property (nonatomic, strong) NSArray *descrArray;
+@property (nonatomic, strong) NSArray *tagArray;
 @property (nonatomic, strong) UIView *bgheaderView;
 @property (nonatomic, strong) UIImageView *iconImgView;
 @property (strong, nonatomic) NSString *qiniuToken;
+
+@property (nonatomic, strong) NSString *nameStr;
+@property (nonatomic, strong) NSString *nickStr;
+@property (nonatomic, strong) NSString *addressSre;
+@property (nonatomic, strong) NSString *phoneStr;
+@property (nonatomic, assign) BOOL sexWay;
 @end
 
 @implementation EditorDetailController
@@ -34,6 +42,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     UITapGestureRecognizer *tapGestureRe = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickImage:)];
     [self.iconImgView addGestureRecognizer:tapGestureRe];
     self.iconImgView.userInteractionEnabled = YES;
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(phone) name:kphone object:nil];
     [self addSignUp];
     [self initData];
    
@@ -52,42 +61,153 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 }
 
 - (void)initData{
+    self.tagArray = @[@"300",@"",@"301",@"302",@"303",@"304"];
     self.strArray = @[@"姓名",@"",@"昵称",@"绑定手机号",@"我的地址"];
-    NSString *nameStr = nil;
-    NSString *nickStr = nil;
-    NSString *phoneStr = nil;
-    NSString *addressSre = nil;
+    if ([[[AcountManager manager] userGender] isEqualToString:@"男"]) {
+        _sexWay = 0;
+    }else if ([[[AcountManager manager] userGender] isEqualToString:@"女"]){
+        _sexWay = 1;
+    }
+//    NSString *nameStr = nil;
+//    NSString *nickStr = nil;
+//    NSString *phoneStr = nil;
+//    NSString *addressSre = nil;
     
     // 姓名
     if ([[AcountManager manager].userName isEqualToString:@""]) {
-        nameStr = @"暂无姓名";
+        self.nameStr = @"暂无姓名";
     }else{
-        nameStr = [AcountManager manager].userName;
+        self.nameStr = [AcountManager manager].userName;
     }
     // 昵称
     if ([[AcountManager manager].userNickName isEqualToString:@""]) {
-        nickStr = @"暂无昵称";
+        self.nickStr = @"暂无昵称";
     }else{
-        nickStr = [AcountManager manager].userNickName;
+        self.nickStr = [AcountManager manager].userNickName;
     }
     // 绑定手机号
     if ([[AcountManager manager].userMobile isEqualToString:@""]) {
-        phoneStr = @"暂无手机号";
+        self.phoneStr = @"暂无手机号";
     }else{
-        phoneStr = [AcountManager manager].userMobile;
+        self.phoneStr = [AcountManager manager].userMobile;
     }
     // 我的地址
     if ([[AcountManager manager].userAddress isEqualToString:@""]) {
-        addressSre = @"暂无地址";
+        self.addressSre = @"暂无地址";
     }else{
-        addressSre = [AcountManager manager].userAddress;
+        self.addressSre = [AcountManager manager].userAddress;
     }
-    self.descrArray = @[nameStr,@"",nickStr,phoneStr,addressSre];
+    self.descrArray = @[self.nameStr,@"",self.nickStr,self.phoneStr,self.addressSre];
 
+}
+// 绑定手机号成功后的通知方法
+- (void)phone{
+    NSIndexPath *path = [NSIndexPath indexPathForRow:3 inSection:0];
+    [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
 }
 #pragma mark ---- Action
 - (void)sideMenuButtonAction{
     // 保存修改的个人信息
+    
+    NSString *realNameStr = nil;
+    NSString *realNickStr = nil;
+    NSString *realAddressStr = nil;
+    NSString *realSex = nil;
+    // 保存姓名
+    if (self.nameStr == nil || self.nameStr.length == 0) {
+        kShowFail(@"您还未填写信息");
+    }
+    if (self.nameStr && [self.nameStr length]!=0) {
+        
+        if ([self.nameStr length] > 6) {
+            
+            [self obj_showTotasViewWithMes:@"最多不超过6个字"];
+            return;
+        }
+        
+//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[\\u4e00-\\u9fa5\\w\\-_]+"];
+//        if(![predicate evaluateWithObject:self.nameStr])
+//        {
+//            [self obj_showTotasViewWithMes:@"你输入的姓名中含有非法字符"];
+//            return;
+//        }
+       realNameStr = self.nameStr;
+    }
+    
+    
+    // 保存昵称
+   if (self.nibName == nil || self.nibName.length == 0) {
+        realNickStr = @"";
+    }
+    if (self.nibName && [self.nibName length]!=0){
+        if ([self.nameStr length] > 10) {
+            
+            [self obj_showTotasViewWithMes:@"最多不超过10个字"];
+            return;
+        }
+        realNickStr = self.nibName;
+        
+    }
+    
+    // 保存地址
+    if (self.addressSre == nil || self.addressSre.length == 0) {
+        realNickStr = @"";
+    }
+    if (self.addressSre && [self.addressSre length]!=0){
+        if ([self.nameStr length] > 20) {
+            
+            [self obj_showTotasViewWithMes:@"最多不超过20个字"];
+            return;
+        }
+        realAddressStr = self.addressSre;
+        
+    }
+    // 保存性别
+    if (self.sexWay) {
+        realSex = @"女";
+    }else{
+        realSex = @"男";
+    }
+    
+    NSString *updateUserInfoUrl = [NSString stringWithFormat:BASEURL,kupdateUserInfo];
+    /*
+     "userid": "560539bea694336c25c3acb9",
+     "name": "李亚飞",
+     "nickname": "",
+     "email": "",
+     "headportrait": "",
+     "address": "北京市",
+     "gender": "男",
+     "signature": "好好学习天天向上"
+     }
+     */
+    NSLog(@"realNickStr= %@,realNameStr = %@,realAddressStr = %@,realSex = %@",realNickStr,realNameStr,realAddressStr,realSex);
+    
+    NSDictionary *dicParam = @{@"nickname":realNickStr,
+                               @"userid":[AcountManager manager].userid,
+                               @"name":realNameStr,
+                               @"address":realAddressStr,
+                               @"gender":realSex};
+    
+    
+    [JENetwoking startDownLoadWithUrl:updateUserInfoUrl postParam:dicParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        NSDictionary *dataParam = data;
+        NSNumber *messege = dataParam[@"type"];
+        if (messege.intValue == 1) {
+            [self obj_showTotasViewWithMes:@"修改成功"];
+            [AcountManager saveUserName:realNameStr];
+            [AcountManager saveUserAddress:realAddressStr];
+            [AcountManager saveUserGender:realSex];
+            [AcountManager saveUserNickName:realNickStr];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else {
+            [self obj_showTotasViewWithMes:@"修改失败"];
+            return;
+        }
+        
+    }];
+
+
 }
 #pragma mark ---- 选择图片
 - (void)pickImage:(UITapGestureRecognizer *)tapRecognizer{
@@ -106,19 +226,27 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         NSString *cellID = @"sexID";
         EditorDetailSexCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
+           
             cell = [[EditorDetailSexCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        __weak typeof(self) ws = self;
+        cell.sexWayBlock = ^(BOOL sexWay){
+            ws.sexWay = sexWay;
+        };
+
         return cell;
     }else{
         NSString *cellID = @"TopID";
         EditorDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
         if (!cell) {
-            cell = [[EditorDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+             NSInteger tag = [self.tagArray[indexPath.row] integerValue];
+            cell = [[EditorDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID tag:tag];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.toplabel.text = self.strArray[indexPath.row];
         cell.descriTextField.text = self.descrArray[indexPath.row];
+        cell.descriTextField.delegate = self;
         return cell;
     }
     
@@ -171,6 +299,38 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         } option:nil];
     }];
 }
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"%lu",textField.tag);
+    if (textField.tag == 300) {
+        // 姓名编辑
+        self.nameStr = textField.text;
+    }else if (textField.tag == 301){
+        // 昵称编辑
+        self.nickStr = textField.text;
+        if (textField.text && [textField.text length]!=0) {
+            
+            if ([textField.text length] > 10) {
+                
+                [self obj_showTotasViewWithMes:@"最多不超10个字"];
+                return;
+            }
+            
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[\\u4e00-\\u9fa5\\w\\-_]+"];
+            if(![predicate evaluateWithObject:textField.text])
+            {
+                [self obj_showTotasViewWithMes:@"你输入的昵称中含有非法字符"];
+                return;
+            }
+            
+        }
+
+    }else if (textField.tag == 302){
+        // 绑定手机号编辑
+    }else if (textField.tag == 303){
+        // 我的地址编辑
+        self.addressSre = textField.text;
+    }
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -201,5 +361,12 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         [_iconImgView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:nil completed:nil];
     }
     return _iconImgView;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (3 == indexPath.row) {
+        // 绑定手机号
+        ModifyPhoneNumViewController *ModifyPhoneVC = [[ModifyPhoneNumViewController alloc] init];
+        [self.navigationController pushViewController:ModifyPhoneVC animated:YES];
+    }
 }
 @end

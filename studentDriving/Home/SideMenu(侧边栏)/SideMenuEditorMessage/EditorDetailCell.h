@@ -8,7 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+
+
 @interface EditorDetailCell : UITableViewCell
 @property (nonatomic, strong) UILabel *toplabel;
 @property (nonatomic, strong) UITextField *descriTextField;
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier tag:(NSInteger)tag;
 @end

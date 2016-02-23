@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "BLBaseViewController.h"
+
+static NSString *const kphone = @"kphone";
 @interface ModifyPhoneNumViewController : BLBaseViewController
 
 @end

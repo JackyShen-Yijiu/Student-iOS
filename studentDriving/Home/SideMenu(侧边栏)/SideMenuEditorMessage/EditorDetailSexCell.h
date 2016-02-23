@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EditorDetailSexCell : UITableViewCell
+typedef void(^YBSexBlock)(BOOL sexWay);
 
+@interface EditorDetailSexCell : UITableViewCell
+@property (nonatomic, assign) BOOL complaintWay;
+@property (nonatomic, assign) YBSexBlock sexWayBlock;
 @end

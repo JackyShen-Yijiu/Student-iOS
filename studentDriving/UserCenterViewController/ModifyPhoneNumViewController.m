@@ -8,6 +8,7 @@
 
 #import "ModifyPhoneNumViewController.h"
 #import "UIDevice+JEsystemVersion.h"
+#import "AddlineButtomTextField.h"
 
 static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 @interface ModifyPhoneNumViewController () <UITextFieldDelegate>
@@ -17,6 +18,9 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 @property (strong, nonatomic) UILabel *nowPhoneNumLabel;
 
 @property (strong, nonatomic) UIButton *completionButton;
+
+@property (strong, nonatomic) UILabel *phoneNumLabel;
+@property (strong, nonatomic) UILabel *gainNumLabel;
 @end
 
 @implementation ModifyPhoneNumViewController
@@ -24,7 +28,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 - (UIButton *)completionButton {
     if (_completionButton == nil) {
         _completionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _completionButton.backgroundColor = MAINCOLOR;
+        _completionButton.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
         [_completionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_completionButton setTitle:@"完成" forState:UIControlStateNormal];
         [_completionButton addTarget:self action:@selector(clickCompletion:) forControlEvents:UIControlEventTouchUpInside];
@@ -37,45 +41,15 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         _nowPhoneNumLabel.text = @"";
         _nowPhoneNumLabel.numberOfLines = 0;
         _nowPhoneNumLabel.textColor = TEXTGRAYCOLOR;
-        _nowPhoneNumLabel.font = [UIFont systemFontOfSize:14];
+        _nowPhoneNumLabel.font = [UIFont systemFontOfSize:10];
 //        _nowPhoneNumLabel.backgroundColor = [UIColor yellowColor];
     }
     return _nowPhoneNumLabel;
 }
-- (UITextField *)phoneNumTextField {
-    if (_phoneNumTextField == nil) {
-        _phoneNumTextField = [[UITextField alloc]init];
-        _phoneNumTextField.delegate = self;
-        _phoneNumTextField.font = [UIFont systemFontOfSize:14];
-        _phoneNumTextField.tag = 102;
-        _phoneNumTextField.placeholder = @"手机号";
-        _phoneNumTextField.backgroundColor = [UIColor whiteColor];
-        _phoneNumTextField.layer.borderColor = TEXTGRAYCOLOR.CGColor;
-        _phoneNumTextField.layer.borderWidth = 0.5;
-        _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
-        
-    }
-    return _phoneNumTextField;
-}
-- (UITextField *)confirmTextField {
-    if (_confirmTextField == nil) {
-        _confirmTextField = [[UITextField alloc]init];
-        //        _confirmTextField.delegate = self;
-        _confirmTextField.tag = 103;
-        _confirmTextField.font = [UIFont systemFontOfSize:14];
-        _confirmTextField.placeholder = @"验证码";
-        _confirmTextField.backgroundColor = [UIColor whiteColor];
-        _confirmTextField.layer.borderColor = TEXTGRAYCOLOR.CGColor;
-        _confirmTextField.layer.borderWidth = 0.5;
-        _confirmTextField.keyboardType = UIKeyboardTypeNumberPad;
-
-    }
-    return _confirmTextField;
-}
 - (UIButton *)gainNum {
     if (_gainNum == nil) {
         _gainNum = [UIButton buttonWithType:UIButtonTypeCustom];
-        _gainNum.backgroundColor = RGBColor(255, 151, 40);
+        _gainNum.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
         [_gainNum addTarget:self action:@selector(dealSend:) forControlEvents:UIControlEventTouchUpInside];
         [_gainNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -96,44 +70,61 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     self.view.backgroundColor = RGBColor(245, 247, 250);
     
     [self.view addSubview:self.nowPhoneNumLabel];
+    [self.view addSubview:self.phoneNumLabel];
     [self.view addSubview:self.phoneNumTextField];
+    [self.view addSubview:self.gainNumLabel];
     [self.view addSubview:self.confirmTextField];
     [self.view addSubview:self.gainNum];
     [self.view addSubview:self.completionButton];
+    
     [self.nowPhoneNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).offset(15);
         make.top.mas_equalTo(self.view.mas_top).offset(25);
     }];
-    
-    
-    [self.phoneNumTextField mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(15);
-        make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
-        make.top.mas_equalTo(self.nowPhoneNumLabel.mas_bottom).offset(25);
-        make.height.mas_equalTo(@44);
-    }];
-    
-    [self.confirmTextField mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(15);
-        make.right.mas_equalTo(self.gainNum.mas_left).with.offset(-10);
-        make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(10);
-        make.height.mas_equalTo(@44);
-    }];
-    
-    [self.gainNum mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.confirmTextField.mas_right).with.offset(10);
-        make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
-        make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(10);
-        make.height.mas_equalTo(@44);
-        make.width.mas_equalTo(@100);
+    // 手机号
+    [self.phoneNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.top.mas_equalTo(self.nowPhoneNumLabel.mas_bottom).with.offset(24);
+        make.height.mas_equalTo(@10);
+        make.width.mas_equalTo(@40);
         
     }];
     
-    [self.completionButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(15);
-        make.right.mas_equalTo(self.view.mas_right).offset(-15);
+    [self.phoneNumTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+        make.top.mas_equalTo(self.phoneNumLabel.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(@40);
+    }];
+    
+    [self.gainNum mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
+        make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(10);
         make.height.mas_equalTo(@44);
-        make.top.mas_equalTo(self.gainNum.mas_bottom).offset(25);
+        make.width.mas_equalTo(@117);
+    }];
+    
+    // 验证码
+    [self.gainNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(16);
+        make.height.mas_equalTo(@10);
+        make.width.mas_equalTo(@40);
+        
+    }];
+    
+    [self.confirmTextField mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+        make.top.mas_equalTo(self.gainNumLabel.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(@40);
+    }];
+    
+    [self.completionButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).offset(0);
+        make.right.mas_equalTo(self.view.mas_right).offset(0);
+        make.height.mas_equalTo(@44);
+        make.top.mas_equalTo(self.gainNum.mas_bottom).offset(60);
     }];
     DYNSLog(@"phone = %@",[AcountManager manager].userMobile);
     if ([AcountManager manager].userMobile) {
@@ -171,9 +162,9 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         if (messege.intValue == 1) {
             
             [self obj_showTotasViewWithMes:@"绑定成功"];
-            
             weakSelf.nowPhoneNumLabel.text = [NSString stringWithFormat:@"您当前手机号为%@",weakSelf.phoneNumTextField.text];
             [AcountManager saveUserPhoneNum:weakSelf.phoneNumTextField.text];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kphone object:nil];
             [self.navigationController popViewControllerAnimated:YES];
             
         }else {
@@ -215,7 +206,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
             dispatch_source_cancel(timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
-                self.gainNum.backgroundColor  = MAINCOLOR;
+                self.gainNum.backgroundColor  = [UIColor colorWithHexString:@"bd4437"];;
                 [self.gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
                 self.gainNum.userInteractionEnabled = YES;
             });
@@ -244,5 +235,58 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     return YES;
 }
 
+- (UITextField *)phoneNumTextField {
+    if (_phoneNumTextField == nil) {
+        _phoneNumTextField = [[AddlineButtomTextField alloc]init];
+        _phoneNumTextField.delegate = self;
+        _phoneNumTextField.tag = 200;
+        //        _phoneNumTextField.placeholder = @"  手机号";
+        //        _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+        leftView.image = [UIImage imageNamed:@"账号"];
+        _phoneNumTextField.leftView = leftView;
+        _phoneNumTextField.font = [UIFont systemFontOfSize:15];
+        _phoneNumTextField.textColor = [UIColor colorWithHexString:@"212121"];
+        _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
+        _phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        
+    }
+    return _phoneNumTextField;
+}
+- (UITextField *)confirmTextField {
+    if (_confirmTextField == nil) {
+        _confirmTextField = [[AddlineButtomTextField alloc]init];
+        _confirmTextField.tag = 201;
+        _confirmTextField.delegate = self;
+        //        _confirmTextField.placeholder = @"验证码";
+        //        _confirmTextField.leftViewMode = UITextFieldViewModeAlways;
+        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+        leftView.image = [UIImage imageNamed:@"yanzhengma"];
+        _confirmTextField.leftView = leftView;
+        _confirmTextField.font = [UIFont systemFontOfSize:15];
+        _confirmTextField.textColor = [UIColor colorWithHexString:@"212121"];
+        _confirmTextField.keyboardType = UIKeyboardTypeNumberPad;
+        
+    }
+    return _confirmTextField;
+}
+- (UILabel *)phoneNumLabel{
+    if (_phoneNumLabel == nil) {
+        _phoneNumLabel = [[UILabel alloc] init];
+        _phoneNumLabel.text = @"手机号";
+        _phoneNumLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _phoneNumLabel.font = [UIFont systemFontOfSize:10];
+    }
+    return _phoneNumLabel;
+}
+- (UILabel *)gainNumLabel{
+    if (_gainNumLabel == nil) {
+        _gainNumLabel = [[UILabel alloc] init];
+        _gainNumLabel.text = @"验证码";
+        _gainNumLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _gainNumLabel.font = [UIFont systemFontOfSize:10];
+    }
+    return _gainNumLabel;
+}
 
 @end
