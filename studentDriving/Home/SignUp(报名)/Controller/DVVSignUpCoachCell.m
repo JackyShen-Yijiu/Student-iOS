@@ -49,7 +49,18 @@
 
 - (void)refreshData:(DVVSignUpCoachDMData *)dmData {
     
-    [_iconImageView dvv_downloadImage:dmData.headportrait.originalpic placeholderImage:[UIImage imageNamed:@"120"]];
+    if (dmData.headportrait.originalpic && dmData.headportrait.originalpic.length) {
+        [_iconImageView dvv_downloadImage:dmData.headportrait.originalpic];
+    }else {
+        NSString *imageName = @"coach_man_default_icon";
+        if (dmData.gender && dmData.gender.length) {
+            if ([dmData.gender isEqualToString:@"女"]) {
+                imageName = @"coach_woman_default_icon";
+            }
+        }
+        _iconImageView.image = [UIImage imageNamed:imageName];
+    }
+    
     if (dmData.name) {
         _nameLabel.text = dmData.name;
     }else {
@@ -61,7 +72,7 @@
         _schoolNameLabel.text = @"未填写所属驾校";
     }
     if (dmData.minprice) {
-        _priceLabel.text = [NSString stringWithFormat:@"%i元起",dmData.minprice];
+        _priceLabel.text = [NSString stringWithFormat:@"%li元起",dmData.minprice];
     }else {
         _priceLabel.text = @"未填写价格";
     }

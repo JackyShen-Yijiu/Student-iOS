@@ -2,8 +2,9 @@
 #import "ClassTypeDMCarmodel.h"
 #import "ClassTypeDMSchoolinfo.h"
 #import "ClassTypeDMVipserverlist.h"
+#import "YYModel.h"
 
-@interface ClassTypeDMData : NSObject
+@interface ClassTypeDMData : NSObject<YYModel>
 
 @property (nonatomic, assign) NSInteger applycount;
 @property (nonatomic, strong) NSString * begindate;
@@ -18,4 +19,5 @@
 @property (nonatomic, assign) NSInteger price;
 @property (nonatomic, strong) ClassTypeDMSchoolinfo * schoolinfo;
 @property (nonatomic, strong) NSArray * vipserverlist;
+
 @end

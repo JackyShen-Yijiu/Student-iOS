@@ -26,7 +26,8 @@
         
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
-        [self addSubview:self.scrollImagesView];
+        
+        [self.contentView addSubview:self.scrollImagesView];
     }
     return self;
 }

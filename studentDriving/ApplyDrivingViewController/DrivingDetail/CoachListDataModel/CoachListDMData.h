@@ -23,4 +23,6 @@
 @property (nonatomic, assign) NSInteger starlevel;
 @property (nonatomic, strong) NSArray * subject;
 @property (nonatomic, strong) NSArray * serverclasslist;
+@property (nonatomic, assign) NSInteger commentcount;
+@property (nonatomic, strong) NSString *gender;
 @end

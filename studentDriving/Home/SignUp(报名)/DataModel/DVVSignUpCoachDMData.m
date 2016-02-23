@@ -10,5 +10,11 @@
 @end
 @implementation DVVSignUpCoachDMData
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    
+    return @{ @"seniority": @"Seniority",
+              @"isShuttle": @"is_shuttle",
+              @"gender": @"Gender" };
+}
 
 @end

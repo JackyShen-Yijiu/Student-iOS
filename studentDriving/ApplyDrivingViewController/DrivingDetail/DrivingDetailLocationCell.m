@@ -22,6 +22,7 @@
         DrivingDetailLocationCell *cell = xibArray.firstObject;
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:self.lineImageView];
     }

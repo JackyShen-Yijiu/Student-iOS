@@ -20,58 +20,90 @@
     if (self) {
         NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"CoachListCell" owner:self options:nil];
         CoachListCell *cell = xibArray.firstObject;
-        
-        [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        [cell setRestorationIdentifier:reuseIdentifier];
         
-        _priceLabel.textColor = MAINCOLOR;
+        [self.contentView addSubview:self.starView];
+        [self.contentView addSubview:self.lineImageView];
         
-        [self.contentView addSubview:self.starBar];
-        __weak typeof(self) ws = self;
-        [_starBar mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.mas_equalTo(@75);
-            make.height.mas_equalTo(@15);
-            make.right.mas_equalTo(-8);
-            make.centerY.mas_equalTo(ws.nameLabel.mas_centerY);
-        }];
+        [_iconImageView.layer setMasksToBounds:YES];
+        [_iconImageView.layer setCornerRadius:20];
     }
     return self;
 }
 
-- (void)refreshData:(CoachListDMData *)dmData {
-    
-    [_starBar displayRating:dmData.starlevel];
-    
-    [_iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dmData.headportrait.originalpic]]];
-    NSLog(@"%@", dmData.headportrait.originalpic);
-    _nameLabel.text = dmData.name;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%ld元起", dmData.minprice];
-    _seniorityLabel.text = [NSString stringWithFormat:@"教龄：%@年", dmData.seniority];
-    NSMutableArray *array = [NSMutableArray array];
-    for (NSDictionary *dict in dmData.serverclasslist) {
-        
-        CoachListDMServerClassList *dmList = [CoachListDMServerClassList yy_modelWithDictionary:dict];
-        [array addObject:dmList.cartype];
-    }
-    
-    _classTypeLabel.text = [array componentsJoinedByString:@" "];
-    if (!array.count) {
-        _classTypeLabel.text = @"暂无";
-    }
-}
-
 - (void)layoutSubviews {
     [super layoutSubviews];
+    
+    CGSize size = self.bounds.size;
+    _starView.frame = CGRectMake(size.width - 94 - 16, 16, 94, 14);
+    CGFloat minX = CGRectGetMinX(_nameLabel.frame);
+    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
 }
 
-- (RatingBar *)starBar {
-    if (_starBar == nil) {
-        _starBar = [[RatingBar alloc] init];
-        [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:nil];
-        _starBar.isIndicator = YES;
-        [_starBar displayRating:3];
+- (void)refreshData:(CoachListDMData *)dmData {
+    
+    [_starView dvv_setStar:dmData.starlevel];
+    
+    if (dmData.headportrait.originalpic && dmData.headportrait.originalpic.length) {
+        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dmData.headportrait.originalpic]]];
+    }else {
+        NSString *imageName = @"coach_man_default_icon";
+        if (dmData.gender && dmData.gender.length) {
+            if ([dmData.gender isEqualToString:@"女"]) {
+                imageName = @"coach_woman_default_icon";
+            }
+        }
+        _iconImageView.image = [UIImage imageNamed:imageName];
     }
-    return _starBar;
+    
+    _nameLabel.text = dmData.name;
+    
+    if (dmData.seniority) {
+        _seniorityLabel.text = [NSString stringWithFormat:@"%@年教龄", dmData.seniority];
+    }else {
+        _seniorityLabel.text = @"暂无教龄";
+    }
+    NSMutableArray *array = [NSMutableArray array];
+    for (NSDictionary *dict in dmData.subject) {
+        
+        CoachListDMSubject *dmSubject = [CoachListDMSubject yy_modelWithDictionary:dict];
+        [array addObject:dmSubject.name];
+    }
+    
+    if (dmData.passrate) {
+        _passRateLabel.text = [NSString stringWithFormat:@"通过率%li%%", dmData.passrate];
+    }else {
+        _passRateLabel.text = @"暂无通过率";
+    }
+    
+    if (!array.count) {
+        _subjectLabel.text = @"未填写科目信息";
+    }else {
+        _subjectLabel.text = [array componentsJoinedByString:@" "];
+    }
+    
+    if (dmData.commentcount) {
+        _commentsLabel.text = [NSString stringWithFormat:@"%li条评论", dmData.commentcount];
+    }else {
+        _commentsLabel.text = @"暂无评论";
+    }
+}
+
+- (DVVStarView *)starView {
+    if (!_starView) {
+        _starView = [DVVStarView new];
+        [_starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+    }
+    return _starView;
+}
+
+- (UIImageView *)lineImageView {
+    if (!_lineImageView) {
+        _lineImageView = [UIImageView new];
+        _lineImageView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
+    }
+    return _lineImageView;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

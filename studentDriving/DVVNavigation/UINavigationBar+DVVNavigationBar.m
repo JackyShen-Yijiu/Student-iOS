@@ -28,8 +28,8 @@
     [bar setBarTintColor:YBNavigationBarBgColor];
     [bar setBackgroundColor:YBNavigationBarBgColor];
     
-    // 背景图片
-    [bar setBackgroundImage:[UIImage imageNamed:@"naviBackgroundImag"] forBarMetrics:UIBarMetricsDefault];
+//    // 背景图片
+//    [bar setBackgroundImage:[UIImage imageNamed:@"naviBackgroundImag"] forBarMetrics:UIBarMetricsDefault];
 
     // 返回按钮颜色
     [bar setTintColor:[UIColor whiteColor]];

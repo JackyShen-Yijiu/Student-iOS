@@ -97,9 +97,12 @@
 
 - (CGFloat)dynamicHeight {
     if (0 == _showType) {
+        if (_classTypeView.totalHeight < [UIScreen mainScreen].bounds.size.height - (64 + 44)) {
+            return [UIScreen mainScreen].bounds.size.height - (64 + 44);
+        }
         return _classTypeView.totalHeight;
     }
-    return 64 + 44;
+    return [UIScreen mainScreen].bounds.size.height - (64 + 44);
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

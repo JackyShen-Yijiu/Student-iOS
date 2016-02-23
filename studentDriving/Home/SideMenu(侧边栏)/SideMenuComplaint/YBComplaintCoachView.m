@@ -424,6 +424,7 @@
     }
     return _nameCoachLabel;
 }
+
 - (UIImageView *)imgView{
     if (_imgView == nil) {
         _imgView = [[UIImageView alloc] init];

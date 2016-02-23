@@ -10,5 +10,8 @@
 @end
 @implementation ClassTypeDMData
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{ @"classid": @"_id" };
+}
 
 @end

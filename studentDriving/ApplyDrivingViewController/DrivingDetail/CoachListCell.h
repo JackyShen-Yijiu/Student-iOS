@@ -8,18 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "CoachListDMData.h"
-#import "RatingBar.h"
+#import "DVVStarView.h"
 
 @interface CoachListCell : UITableViewCell
 
-@property (nonatomic, strong) RatingBar *starBar;
-
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *classTypeLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
+@property (weak, nonatomic) IBOutlet UILabel *passRateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *seniorityLabel;
+@property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomLineView;
+
+@property (nonatomic, strong) DVVStarView *starView;
+
+@property (nonatomic, strong) UIImageView *lineImageView;
 
 - (void)refreshData:(CoachListDMData *)dmData;
 

@@ -20,6 +20,7 @@
 #import "DVVSearchView.h"
 #import "DrivingDetailController.h"
 #import "WMCommon.h"
+#import "DVVCoachDetailController.h"
 
 static NSString *schoolCellID = @"schoolCellID";
 static NSString *coachCellID = @"coachCellID";
@@ -249,15 +250,22 @@ static NSString *coachCellID = @"coachCellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
     if (0 == _showType) {
         
         // 跳转到驾校详情
         DVVSignUpSchoolDMData *dmData = _schoolViewModel.dataArray[indexPath.row];
         DrivingDetailController *vc = [DrivingDetailController new];
+        vc.hidesBottomBarWhenPushed = YES;
         vc.schoolID = dmData.schoolid;
         [self.navigationController pushViewController:vc animated:YES];
     }else {
+        DVVSignUpCoachDMData *dmData = _coachViewModel.dataArray[indexPath.row];
         // 跳转到教练详情
+        DVVCoachDetailController *vc = [DVVCoachDetailController new];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.coachID = dmData.coachid;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 
