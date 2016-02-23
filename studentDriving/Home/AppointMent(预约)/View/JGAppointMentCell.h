@@ -14,9 +14,11 @@
 @property (strong, nonatomic) UILabel *finalTimeLabel;
 @property (strong, nonatomic) UILabel *remainingPersonLabel;
 
-// 日程模块
-@property (nonatomic,strong) AppointmentCoachTimeInfoModel *coachTimeInfo;
 // 预约模块
 @property (nonatomic,strong) AppointmentCoachTimeInfoModel *appointInfoModel;
+
+@property (nonatomic,assign) BOOL isModifyCoach;
+
+@property (strong, nonatomic) NSDate *selectDate;
 
 @end

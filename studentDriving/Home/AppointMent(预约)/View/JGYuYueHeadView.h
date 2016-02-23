@@ -10,20 +10,20 @@
 
 #define rightFooter 80
 
-@class AppointmentCoachTimeInfoModel;
+@class AppointmentCoachTimeInfoModel,CoachModel;
 
 @interface JGYuYueHeadView : UIView
 
 // 刷新数据源
-- (void)receiveCoachTimeData:(NSArray *)coachTimeData;
+- (void)receiveCoachTimeData:(NSArray *)coachTimeData selectData:(NSDate *)selectDate coachModel:(CoachModel *)coachModel;
 
-- (void)receiveCoachTimeData;
+- (void)receiveCoachTimeDataWithStudentData:(NSMutableArray *)stuDataArray coachModel:(CoachModel *)coachModel;
 
 // 点击选中的数据
 @property (strong, nonatomic) NSMutableArray *upDateArray;
 
 @property (nonatomic,weak) UIViewController *parentViewController;
 
-@property (nonatomic,assign) NSInteger userCount;
+@property (strong, nonatomic) NSDate *selectDate;
 
 @end

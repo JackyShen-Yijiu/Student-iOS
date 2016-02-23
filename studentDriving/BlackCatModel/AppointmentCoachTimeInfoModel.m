@@ -10,7 +10,7 @@
 
 @implementation AppointmentCoachTimeInfoModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"infoId":@"_id",@"coachid":@"coachid",@"coursedate":@"coursedate",@"coursestudentcount":@"coursestudentcount",@"coursetime":@"coursetime",@"courseuser":@"courseuser",@"createtime":@"createtime",@"selectedstudentcount":@"selectedstudentcount"};
+    return @{@"infoId":@"_id",@"coachid":@"coachid",@"coursedate":@"coursedate",@"coursestudentcount":@"coursestudentcount",@"coursetime":@"coursetime",@"courseuser":@"courseuser",@"createtime":@"createtime",@"selectedstudentcount":@"selectedstudentcount",@"coursebegintime":@"coursebegintime"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {

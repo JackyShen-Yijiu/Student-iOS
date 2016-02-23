@@ -134,7 +134,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    NSLog(@"%s",__func__);
+    CoachModel *model = self.coachListDataArray[indexPath.row];
+
+    if ([self.delegate respondsToSelector:@selector(YBCoachListViewControllerWithCoach:)]) {
+        [self.delegate YBCoachListViewControllerWithCoach:model];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 - (void)viewWillAppear:(BOOL)animated{

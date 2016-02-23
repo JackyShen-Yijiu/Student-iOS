@@ -90,6 +90,35 @@
 }
 
 
++ (void)getAllCourseTimeWithUserId:(NSString *)userId  DayTime:(NSString *)dayTime
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+        if (!userId || !dayTime) {
+            return [self missParagramercallBackFailure:failure];
+        }
+        NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getcoursebycoach?coachid=%@&date=%@",[self domain],userId,dayTime];
+    
+        [self GET:urlStr parameters:nil success:success failure:failure];
+    
+}
+
+
+// 预约
++ (void)postcourseinfoUserreservationcourseWithParams:(NSDictionary *)params
+                                              success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                                              failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    if (!params) {
+        return [self missParagramercallBackFailure:failure];
+    }
+    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/userreservationcourse",[self domain]];
+    
+    [self POST:urlStr parameters:params success:success failure:failure];
+    
+}
+
+
 #pragma mark --------------------------------------mark---------------------------------------------------------------
 
 
@@ -301,18 +330,7 @@
 //    [self GET:urlStr parameters:nil success:success failure:failure];
     
 }
-+ (void)getAllCourseTimeWithUserId:(NSString *)userId  DayTime:(NSString *)dayTime
-                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
-//    if (!userId || !dayTime) {
-//        return [self missParagramercallBackFailure:failure];
-//    }
-//    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getcoursebycoach?coachid=%@&date=%@",[self domain],userId,dayTime];
-//
-//    [self GET:urlStr parameters:nil success:success failure:failure];
-    
-}
+
 + (void)getCoureDetailInfoWithCouresId:(NSString *)couresId
                                success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
@@ -493,20 +511,6 @@
 //    [dic setValue:address forKey:@"address"];
 //    
 //    [self POST:urlStr parameters:dic success:success failure:failure];
-    
-}
-
-// 预约
-+ (void)postcourseinfoUserreservationcourseWithParams:(NSDictionary *)params
-                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
-//    if (!params) {
-//        return [self missParagramercallBackFailure:failure];
-//    }
-//    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/userreservationcourse",[self domain]];
-//    
-//    [self POST:urlStr parameters:params success:success failure:failure];
     
 }
 /**
