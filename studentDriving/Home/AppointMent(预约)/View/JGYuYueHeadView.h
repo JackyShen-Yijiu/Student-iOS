@@ -10,7 +10,13 @@
 
 #define rightFooter 80
 
-@class AppointmentCoachTimeInfoModel,CoachModel;
+@class AppointmentCoachTimeInfoModel,CoachModel,JGYuYueHeadView;
+
+@protocol JGYuYueHeadViewDelegate <NSObject>
+
+- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView dateString:(NSString *)dateString isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid;
+
+@end
 
 @interface JGYuYueHeadView : UIView
 
@@ -25,5 +31,7 @@
 @property (nonatomic,weak) UIViewController *parentViewController;
 
 @property (strong, nonatomic) NSDate *selectDate;
+
+@property (nonatomic,weak) id<JGYuYueHeadViewDelegate>delegate;
 
 @end

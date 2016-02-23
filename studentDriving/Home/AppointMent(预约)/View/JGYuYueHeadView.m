@@ -224,6 +224,10 @@
             
             NSString *dateString = [NSString getYearLocalDateFormateUTCDate:cell.appointInfoModel.coursedate];
             
+            if ([self.delegate respondsToSelector:@selector(JGYuYueHeadViewWithModifyCoach:dateString:isModifyCoach:timeid:)]) {
+                [self.delegate JGYuYueHeadViewWithModifyCoach:self dateString:dateString isModifyCoach:YES timeid:cell.appointInfoModel.coursetime.timeid];
+            }
+            
 //            CoachViewController *coach = [[CoachViewController alloc] init];
 //            coach.markNum = 2;
 //            coach.isModifyCoach = YES;
@@ -231,12 +235,11 @@
 //            coach.coursedate = dateString;
 //            [self.parentViewController.navigationController pushViewController:coach animated:YES];
             
-            YBCoachListViewController *coachList = [[YBCoachListViewController alloc] init];
-            coachList.markNum = 2;
-            coachList.isModifyCoach = YES;
-            coachList.timeid = cell.appointInfoModel.coursetime.timeid;
-            coachList.coursedate = dateString;
-            [self.parentViewController.navigationController pushViewController:coachList animated:YES];
+//            YBCoachListViewController *coachList = [[YBCoachListViewController alloc] init];
+//            coachList.isModifyCoach = YES;
+//            coachList.timeid = cell.appointInfoModel.coursetime.timeid;
+//            coachList.coursedate = dateString;
+//            [self.parentViewController.navigationController pushViewController:coachList animated:YES];
             
             return;
         }

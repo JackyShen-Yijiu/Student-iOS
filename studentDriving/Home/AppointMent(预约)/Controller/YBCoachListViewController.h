@@ -21,8 +21,6 @@
 
 @property(nonatomic,weak)id<YBCoachListViewControllerDelegate>delegate;
 
-@property (assign, nonatomic) NSUInteger markNum;
-
 /*
  *  点击更换更多预约教练
  */

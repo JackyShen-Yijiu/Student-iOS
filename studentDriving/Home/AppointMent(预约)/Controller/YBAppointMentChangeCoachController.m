@@ -26,7 +26,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
-@interface YBAppointMentChangeCoachController ()<FDCalendarDelegate,YBCoachListViewControllerDelegate>
+@interface YBAppointMentChangeCoachController ()<FDCalendarDelegate,YBCoachListViewControllerDelegate,JGYuYueHeadViewDelegate>
 
 // 日历
 @property(nonatomic,strong) FDCalendar *TopCalendarHeadView;
@@ -130,8 +130,17 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     self.noCountmentView.hidden = YES;
     self.appointCoach = coachModel;
     
+}
+
+- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView dateString:(NSString *)dateString isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid
+{
     
-    
+    YBCoachListViewController *coachList = [[YBCoachListViewController alloc] init];
+    coachList.delegate = self;
+    coachList.isModifyCoach = isModifyCoach;
+    coachList.timeid = timeid;
+    coachList.coursedate = dateString;
+    [self.parentViewController.navigationController pushViewController:coachList animated:YES];
 }
 
 - (void)dealloc
@@ -151,6 +160,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     // 中间方格
     self.midYuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TopCalendarHeadView.frame), self.view.width, kSystemHeight-self.TopCalendarHeadView.height-50)];
     self.midYuYueheadView.parentViewController = self;
+    self.midYuYueheadView.delegate = self;
     [self.view addSubview:self.midYuYueheadView];
     
     // 底部提交

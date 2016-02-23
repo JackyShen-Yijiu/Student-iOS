@@ -71,6 +71,11 @@
     // 更换某时段可预约教练
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
+    if (self.isModifyCoach) {
+        dict[@"timeid"] = self.timeid;
+        dict[@"coursedate"] = self.coursedate;
+    }
+    
     WS(ws);
     [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
        
