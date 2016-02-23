@@ -7,6 +7,7 @@
 //
 
 #import "FDCalendarItem.h"
+#import "YBObjectTool.h"
 
 @interface FDCalendarCell : UICollectionViewCell
 
@@ -201,9 +202,17 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     NSLog(@"reloadData.restArray:%@",self.restArray);
     NSLog(@"reloadData.bookArray:%@",self.bookArray);
     
+#warning 跳转到当天的item上
+    
     self.collectionView.contentOffset = CGPointMake(0, 0);
     
     [self.collectionView reloadData];
+    
+}
+
+- (void)getCurrentDataOffsetWithData:(NSDate *)date
+{
+    
 }
 
 #pragma mark - Public
@@ -276,11 +285,9 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
         case FDCalendarMonthPrevious:
             date = [self previousMonthDate];
             break;
-            
         case FDCalendarMonthCurrent:
             date = self.date;
             break;
-            
         case FDCalendarMonthNext:
             date = [self nextMonthDate];
             break;
@@ -387,7 +394,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
         cell.dayLabel.text= [NSString stringWithFormat:@"%ld", day];
 //        cell.chineseDayLabel.hidden = NO;
         
-        int compareDataNum = [self compareDateWithSelectDate:[self getCurrentData:indexPath]];
+        int compareDataNum = [YBObjectTool compareDateWithSelectDate:[self getCurrentData:indexPath]];
         if (compareDataNum==0) {// 当前
             
             cell.dayLabel.textColor = YBNavigationBarBgColor;
@@ -529,36 +536,6 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     
     return selectedDate;
     
-}
-
-/**
-*  判断两个时间的大小
-*  @parma selectDate:选择的日期 yyyy-mm-dd hh:mm:ss
-*  @return 1:大于当前日期 -1:小于当前时间 0:等于当前时间
-*/
--(int)compareDateWithSelectDate:(NSDate *)selectDate
-{
-    NSDateFormatter *fomatter = [[NSDateFormatter alloc] init];
-    
-    [fomatter setDateFormat:@"yyyy-MM-dd"];
-    NSDate *currentDate = [NSDate date];
-    NSString *curentDateStr = [fomatter stringFromDate:currentDate];
-    currentDate = [fomatter dateFromString:curentDateStr];
-    
-    NSString *selectDateStr = [fomatter stringFromDate:selectDate];
-    selectDate = [fomatter dateFromString:selectDateStr];
-
-    int result = [selectDate compare:currentDate];
-    NSLog(@"result:%d",result);
-    if(result == NSOrderedDescending)
-    {
-        return 1;
-    }
-    else if(result == NSOrderedAscending)
-    {
-        return -1;
-    }
-    return 0;
 }
 
 - (BOOL)isEnqual:(NSDate *)date1 :(NSDate *)date2

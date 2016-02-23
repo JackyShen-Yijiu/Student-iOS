@@ -10,4 +10,7 @@
 
 @interface ShowWarningMessageView : UIView
 @property (nonatomic, assign) BOOL isShowWarningMessage;
+
+@property (nonatomic,copy) NSString *message;
+
 @end

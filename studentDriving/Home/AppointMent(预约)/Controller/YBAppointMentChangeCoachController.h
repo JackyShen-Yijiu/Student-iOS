@@ -11,6 +11,4 @@
 
 @interface YBAppointMentChangeCoachController : YBBaseViewController
 
-@property (strong, nonatomic) NSDate *seletedDate;
-
 @end

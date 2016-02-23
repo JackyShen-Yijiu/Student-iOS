@@ -15,6 +15,86 @@
 @implementation NetWorkEntiry
 
 /**
+ *  获取教练每个月的休假安排
+ *
+ *  @param userId （req）教练ID
+ *  @param yearTime 年
+ *  @param monthTime 月
+ */
++ (void)getCoachInfoWithUserId:(NSString *)userId  yearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString *  currentUserId = [AcountManager manager].userid;
+
+    if (!userId || !yearTime || !monthTime || !currentUserId) {
+        return [self missParagramercallBackFailure:failure];
+    }
+    
+    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getmonthapplydata",[self domain]];
+    
+#warning YJG待修改(用户ID和后台对接口)
+    NSDictionary * dic = @{
+                           @"coachid":userId,
+                           @"year":yearTime,
+                           @"month":monthTime,
+                           @"userid":currentUserId
+                           };
+    [self GET:urlStr parameters:dic success:success failure:failure];
+    
+}
+
+/**
+ *  获取预约数据
+ *
+ *  @param userId （req）教练ID
+ *  @param yearTime 年
+ *  @param monthTime 月
+ */
++ (void)getAppointMentWithyearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+    NSString *  currentUserId = [AcountManager manager].userid;
+
+    if (!yearTime || !monthTime || !currentUserId) {
+        return [self missParagramercallBackFailure:failure];
+    }
+    
+    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getmonthapplydata",[self domain]];
+    #warning YJG待修改(用户ID和后台对接口)
+    NSDictionary * dic = @{
+                           @"userid":currentUserId,
+                           @"year":yearTime,
+                           @"month":monthTime,
+                           };
+    [self GET:urlStr parameters:dic success:success failure:failure];
+    
+}
+
++ (void)getAllAppointMentListWithSubjectid:(NSString *)subjectid success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure
+{
+    if (!subjectid) {
+        return [self missParagramercallBackFailure:failure];
+    }
+    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getmyreservation",[self domain]];
+
+    NSString *  userid = [AcountManager manager].userid;
+
+    NSDictionary * dic = @{
+                           @"subjectid":subjectid,
+                           @"userid":userid
+                           };
+    [self GET:urlStr parameters:dic success:success failure:failure];
+
+}
+
+
+#pragma mark --------------------------------------mark---------------------------------------------------------------
+
+
+
+/**
  *  登陆模块
  *  ====================================================================================================================================
  */
@@ -207,45 +287,6 @@
 //    [self GET:urlStr parameters:dic success:success failure:failure];
 }
 
-/**
- *  获取教练每个月的日程安排
- *
- *  @param userId （req）教练ID
- *  @param yearTime 年
- *  @param monthTime 月
- */
-+ (void)getAllCourseInfoWithUserId:(NSString *)userId  yearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
-                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
-//    if (!userId || !yearTime || !monthTime) {
-//        return [self missParagramercallBackFailure:failure];
-//    }
-//    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/getmonthapplydata",[self domain]];
-//    NSDictionary * dic = @{
-//                           @"coachid":userId,
-//                           @"year":yearTime,
-//                           @"month":monthTime,
-//                           };
-//    [self GET:urlStr parameters:dic success:success failure:failure];
-    
-}
-
-+ (void)getAllCourseInfoWithUserId:(NSString *)userId  DayTime:(NSString *)dayTime
-                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{
-//    if (!userId || !dayTime) {
-//        return [self missParagramercallBackFailure:failure];
-//    }
-//    NSString * urlStr = [NSString stringWithFormat:@"%@/courseinfo/daysreservationlist",[self domain]];
-//    NSDictionary * dic = @{
-//                           @"coachid":userId,
-//                           @"date":dayTime,
-//                           };
-//    [self GET:urlStr parameters:dic success:success failure:failure];
-    
-}
 + (void)getcoursereservationlistWithUserId:(NSString *)userId  courseid:(NSString *)courseid
                                    success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                    failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure

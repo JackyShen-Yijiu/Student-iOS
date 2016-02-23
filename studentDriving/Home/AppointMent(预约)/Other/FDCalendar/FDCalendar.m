@@ -20,27 +20,28 @@ static NSDateFormatter *dateFormattor;
     CGFloat willEndContentOffsetX;
     CGFloat endContentOffsetX;
 }
-@property (strong, nonatomic) NSDate *date;
 
-@property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UIScrollView *scrollView;
 @property (strong, nonatomic) FDCalendarItem *leftCalendarItem;
 @property (strong, nonatomic) FDCalendarItem *centerCalendarItem;
 @property (strong, nonatomic) FDCalendarItem *rightCalendarItem;
-@property (strong, nonatomic) UIDatePicker *datePicker;
 
 @property(nonatomic,strong)NSDateFormatter *dateFormattor;
+
+@property (nonatomic,copy) NSString *coachID;
+
+@property (strong, nonatomic) NSDate *seletedDate;
 
 @end
 
 @implementation FDCalendar
 
-- (instancetype)initWithCurrentDate:(NSDate *)date {
+- (instancetype)initWithData:(NSDate *)date{
     if (self = [super init]) {
         
         self.backgroundColor = [UIColor whiteColor];
         
-        self.date = date;
+        self.seletedDate = date;
         
         // 星期
         [self setupWeekHeader];
@@ -53,9 +54,8 @@ static NSDateFormatter *dateFormattor;
         
         [self setFrame:CGRectMake(0, 0, DeviceWidth, CGRectGetMaxY(self.scrollView.frame))];
         
-        // 初始化日期
-        [self setCurrentDate:self.date];
-        
+        [self setCurrentDate:self.seletedDate coachID:self.coachID];
+
     }
     return self;
 }
@@ -145,13 +145,32 @@ static NSDateFormatter *dateFormattor;
     
 }
 
-- (void)modifyVacation
+// 设置当前日期，初始化
+- (void)setCurrentDate:(NSDate *)date coachID:(NSString *)coachID
 {
-    [self setCurrentDate:[NSDate date]];
+    NSLog(@"设置当前日期，初始化");
+    
+    self.coachID = coachID;
+    self.seletedDate = date;
+    
+    self.centerCalendarItem.date = date;
+    
+    self.leftCalendarItem.date = [self.centerCalendarItem previousMonthDate];
+    
+    self.rightCalendarItem.date = [self.centerCalendarItem nextMonthDate];
+ 
+    // 设置当前月份的预约
+    [self loadCurrentCalendarData:date];
+    
+    // 设置选中的月份的教练休假信息
+    if (coachID&&[coachID length]!=0) {
+        [self loadCurrentMonthStateWithData:date coachID:coachID];
+    }
+    
 }
 
 // 设置当前日期，初始化
-- (void)setCurrentDate:(NSDate *)date
+- (void)loadCurrentDate:(NSDate *)date coachID:(NSString *)coachID
 {
     NSLog(@"设置当前日期，初始化");
     
@@ -162,19 +181,23 @@ static NSDateFormatter *dateFormattor;
     self.rightCalendarItem.date = [self.centerCalendarItem nextMonthDate];
     
     // 设置顶部标题
-    [self.titleLabel setText:[self stringFromDate:self.centerCalendarItem.date]];
+//    [self.titleLabel setText:[self stringFromDate:self.centerCalendarItem.date]];
     if ([_delegate respondsToSelector:@selector(fdCalendar:didSelectedDate:)]) {
         [_delegate fdCalendar:self didSelectedDate:self.centerCalendarItem.date];
     }
     
-    // 设置当前月份的预约、休假
+    // 设置当前月份的预约
     [self loadCurrentCalendarData:date];
     
+    // 设置选中的月份的教练休假信息
+    [self loadCurrentMonthStateWithData:date coachID:coachID];
+
 }
 
-- (void)loadCurrentCalendarData:(NSDate *)date
+// 获取教练每个月的休假安排
+- (void)loadCurrentMonthStateWithData:(NSDate *)date coachID:(NSString *)coachID
 {
-    NSLog(@"设置当前月份的预约、休假 网络请求 date.description:%@",date.description);
+    NSLog(@"设置当前月份的休假 网络请求 date.description:%@",date.description);
     
     if (!self.dateFormattor) {
         self.dateFormattor = [[NSDateFormatter alloc] init];
@@ -185,12 +208,9 @@ static NSDateFormatter *dateFormattor;
     // 月
     [self.dateFormattor setDateFormat:@"M"];
     NSString * monthStr = [self.dateFormattor stringFromDate:date];
-
-    
-    NSString *  userId = [AcountManager manager].applycoach.infoId;
     
     WS(ws);
-    [NetWorkEntiry getAllCourseInfoWithUserId:userId yearTime:yearStr monthTime:monthStr success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [NetWorkEntiry getCoachInfoWithUserId:coachID yearTime:yearStr monthTime:monthStr success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSLog(@"刷新日历：responseObject:%@",responseObject);
         
@@ -202,19 +222,68 @@ static NSDateFormatter *dateFormattor;
             
             // 休假
             NSArray *leaveoff = [array objectForKey:@"leaveoff"];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                ws.centerCalendarItem.restArray = leaveoff;
+                
+                [ws.centerCalendarItem reloadData];
+                
+            });
+            
+        }else{
+            
+            NSLog(@"%@",responseObject[@"msg"]);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [ws.centerCalendarItem reloadData];
+        
+    }];
+    
+}
+
+// 获取用户预约数据
+- (void)loadCurrentCalendarData:(NSDate *)date
+{
+    NSLog(@"设置当前月份的预约、休假 网络请求 date.description:%@",date.description);
+    
+    /*
+     
+    if (!self.dateFormattor) {
+        self.dateFormattor = [[NSDateFormatter alloc] init];
+    }
+    // 年
+    [self.dateFormattor setDateFormat:@"yyyy"];
+    NSString * yearStr = [self.dateFormattor stringFromDate:date];
+    // 月
+    [self.dateFormattor setDateFormat:@"M"];
+    NSString * monthStr = [self.dateFormattor stringFromDate:date];
+    
+    WS(ws);
+    
+    [NetWorkEntiry getAppointMentWithyearTime:yearStr monthTime:monthStr success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSLog(@"刷新日历：responseObject:%@",responseObject);
+        
+        NSInteger type = [[responseObject objectForKey:@"type"] integerValue];
+        
+        if (type == 1) {
+            
+            NSDictionary *array = responseObject[@"data"];
+
             // 预约
             NSArray *reservationapply = [array objectForKey:@"reservationapply"];
-
+            
             dispatch_async(dispatch_get_main_queue(), ^{
-
-                ws.centerCalendarItem.restArray = leaveoff;
                 
                 ws.centerCalendarItem.bookArray = reservationapply;
                 
                 [ws.centerCalendarItem reloadData];
                 
             });
-           
+            
         }else{
             
             NSLog(@"%@",responseObject[@"msg"]);
@@ -225,11 +294,12 @@ static NSDateFormatter *dateFormattor;
         [ws.centerCalendarItem reloadData];
 
     }];
-    
+     
+     */
 
 }
 
-- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{    //拖动前的起始坐标
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{//拖动前的起始坐标
     
     startContentOffsetX = scrollView.contentOffset.x;
     
@@ -264,11 +334,11 @@ static NSDateFormatter *dateFormattor;
 // 跳到上一个月
 - (void)setPreviousMonthDate
 {
-    [self setCurrentDate:[self.centerCalendarItem previousMonthDate]];
+    [self loadCurrentDate:[self.centerCalendarItem previousMonthDate] coachID:self.coachID];
 }
 // 跳到下一个月
 - (void)setNextMonthDate {
-    [self setCurrentDate:[self.centerCalendarItem nextMonthDate]];
+    [self loadCurrentDate:[self.centerCalendarItem nextMonthDate] coachID:self.coachID];
 }
 
 #pragma mark - FDCalendarItemDelegate
@@ -277,17 +347,14 @@ static NSDateFormatter *dateFormattor;
     
     NSLog(@"%s",__func__);
     
-    self.date = date;
-    self.centerCalendarItem.seletedDate = date;
-    self.leftCalendarItem.seletedDate = date;
-    self.rightCalendarItem.seletedDate = date;
-    
-    // 设置当前日期，初始化
-   // [self setCurrentDate:self.date];
+    self.seletedDate = date;
+    self.centerCalendarItem.date = date;
+    self.leftCalendarItem.date = date;
+    self.rightCalendarItem.date = date;
     
     // 刷新控制器底部数据
     if ([_delegate respondsToSelector:@selector(fdCalendar:didSelectedDate:)]) {
-        [_delegate fdCalendar:self didSelectedDate:self.date];
+        [_delegate fdCalendar:self didSelectedDate:self.seletedDate];
     }
     
 }

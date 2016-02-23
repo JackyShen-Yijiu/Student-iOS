@@ -8,6 +8,11 @@
 
 #import "WMMenuTableViewCell.h"
 
+@interface WMMenuTableViewCell ()
+@property (nonatomic,strong) NSString *selcetImageStr;
+@property (nonatomic,strong) NSString *normalImageStr;
+@end
+
 @implementation WMMenuTableViewCell
 
 - (void)awakeFromNib {
@@ -17,16 +22,21 @@
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+    if (selected) {
+        self.textLabel.textColor = [UIColor colorWithHexString:@"bd4437"];
+        self.imageView.image = [UIImage imageNamed:self.selcetImageStr];
+        
+    }else{
+         self.textLabel.textColor = [UIColor blackColor];
+        self.imageView.image = [UIImage imageNamed:self.normalImageStr];
+    }
 }
-- (void)setCellText:(NSString *)str imageStr:(NSString *)imageStr{
+- (void)setCellText:(NSString *)str withNormolImageStr:(NSString *)imageStr withSelectImageStr:(NSString *)selectImageStr{
+    self.selcetImageStr = selectImageStr;
+    self.normalImageStr = imageStr;
     self.textLabel.text = str;
     self.textLabel.font = [UIFont systemFontOfSize:12];
-    self.textLabel.textColor = [UIColor blackColor];
-//    CGRectMake(0, 0, 24, 24);
     self.imageView.image = [UIImage imageNamed:imageStr];
-    
- 
 }
 
 
@@ -45,5 +55,22 @@
     
     return cell;
 }
+- (void)layoutSubviews{
+    self.imageView.frame = CGRectMake(20, 10, 24, 24);
+    self.textLabel.frame = CGRectMake(self.imageView.frame.origin.x + 24 + 30, self.imageView.frame.origin.y + 5, 100, 12);
 
+}
+
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//    
+//    if (selected) {
+//        self.textLabel.textColor = LightRedColor;
+//    }else
+//    {
+//        self.textLabel.textColor = App_BackgroundColor;
+//    }
+//    
+//    // Configure the view for the selected state
+//}
 @end

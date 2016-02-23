@@ -11,8 +11,41 @@
 
 @interface NetWorkEntiry : NSObject
 
-
 + (NSString *)domain;
+
+/**
+ *  获取教练每个月的日程安排
+ *
+ *  @param userId （req）教练ID
+ *  @param yearTime 年
+ *  @param monthTime 月
+ */
++ (void)getCoachInfoWithUserId:(NSString *)userId  yearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+/**
+ *  获取用户预约数据
+ *
+ *  @param userId （req）教练ID
+ *  @param yearTime 年
+ *  @param monthTime 月
+ */
++ (void)getAppointMentWithyearTime:(NSString *)yearTime monthTime:(NSString *)monthTime
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+/**
+ *  获取学员的所有预约列表
+ *
+ *  @param userId （req）教练ID
+ *  @param dayTime (req）如 2014-5-10格式 NSString 类型
+ */
++ (void)getAllAppointMentListWithSubjectid:(NSString *)subjectid
+                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+
+#pragma mark --------------------------------------mark---------------------------------------------------------------
 
 /**
  *  登陆模块
@@ -108,15 +141,6 @@
                         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
-/**
- *  获取教练每天的预约数据
- *
- *  @param userId （req）教练ID
- *  @param dayTime (req）如 2014-5-10格式 NSString 类型
- */
-+ (void)getAllCourseInfoWithUserId:(NSString *)userId  DayTime:(NSString *)dayTime
-                           success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
-                           failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 /**
  *  获取教练每个月的日程安排
  *

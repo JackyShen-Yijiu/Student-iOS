@@ -27,7 +27,6 @@
     return model;
 }
 
-
 + (NSString *)dateFromISO8601String:(NSString *)string {
     if (!string) return nil;
     

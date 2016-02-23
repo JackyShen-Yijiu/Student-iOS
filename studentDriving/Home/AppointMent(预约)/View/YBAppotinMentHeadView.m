@@ -47,7 +47,7 @@
     self.potraitView = [[PortraitView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     self.potraitView.layer.cornerRadius = 20.f;
     self.potraitView.layer.shouldRasterize = YES;
-    self.potraitView.backgroundColor = [UIColor redColor];
+    self.potraitView.backgroundColor = YBNavigationBarBgColor;
     [self addSubview:self.potraitView];
     
     // 当前学车进度
@@ -132,16 +132,21 @@
 - (void)setUpData
 {
     
-    NSString * imageStr = @"littleImage.png";
-    self.potraitView.imageView.image = [UIImage imageNamed:imageStr];
+    NSString * imageStr = nil;
     
     if ([AcountManager manager].subjecttwo.progress) {
+        imageStr = [NSString stringWithFormat:@"YBStudyPregressTwo"];
         self.titleLabel.text = [NSString stringWithFormat:@"当前学车进度:%@",[AcountManager manager].subjecttwo.progress];
     }
     if ([AcountManager manager].subjectthree.progress) {
+        imageStr = [NSString stringWithFormat:@"YBStudyPregressThree"];
         self.titleLabel.text = [NSString stringWithFormat:@"当前学车进度:%@",[AcountManager manager].subjectthree.progress];
     }
-
+    
+    if (imageStr) {
+        self.potraitView.imageView.image = [UIImage imageNamed:imageStr];
+    }
+    
     if ([AcountManager manager].subjecttwo.reservation && [AcountManager manager].subjecttwo.finishcourse) {
         
         NSInteger yiyuexueshiCount = [[AcountManager manager].subjecttwo.reservation integerValue] + [[AcountManager manager].subjecttwo.finishcourse integerValue];
@@ -166,15 +171,12 @@
         
         NSInteger loukeCount = [[AcountManager manager].subjecttwo.missingcourse integerValue];;
         NSLog(@"loukeCount:%ld",(long)loukeCount);
-        
         [detailStr appendString:[NSString stringWithFormat:@"漏课:%ld课时",(long)loukeCount]];
 
-    }
-    if ([AcountManager manager].subjectthree.missingcourse) {
+    }else if ([AcountManager manager].subjectthree.missingcourse) {
         
         NSInteger loukeCount = [[AcountManager manager].subjectthree.missingcourse integerValue];
         NSLog(@"loukeCount:%ld",(long)loukeCount);
-        
         [detailStr appendString:[NSString stringWithFormat:@"漏课:%ld课时",(long)loukeCount]];
 
     }
@@ -189,7 +191,7 @@
         
 //        _appointDetailLabel.text = [NSString stringWithFormat:@"您已完成%zd课时，总共预约了%zd课时,科目二的可预约课时剩余%zd课时。",doneCourse,appointCourse,restCourse];
         
-        [detailStr appendString:[NSString stringWithFormat:@"          剩余学时:%ld课时",(long)restCourse]];
+        [detailStr appendString:[NSString stringWithFormat:@"       剩余学时:%ld课时",(long)restCourse]];
 
     }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
         
@@ -199,7 +201,7 @@
         NSInteger restCourse = totalCourse - doneCourse - appointCourse;
 //        _appointDetailLabel.text = [NSString stringWithFormat:@"您已完成%zd课时，总共预约了%zd课时,科目三的可预约课时剩余%zd课时。",doneCourse,appointCourse,restCourse];
         
-        [detailStr appendString:[NSString stringWithFormat:@"          剩余学时:%ld课时",(long)restCourse]];
+        [detailStr appendString:[NSString stringWithFormat:@"       剩余学时:%ld课时",(long)restCourse]];
 
     }
     

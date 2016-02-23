@@ -31,6 +31,8 @@
     
     UIWindow *window = [UIApplication sharedApplication].keyWindow;
     [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    [(UINavigationController *)(window.rootViewController) dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -51,7 +53,7 @@
 + (void)userNeedBrowsing {
     
     [[self loginController].navigationController popToRootViewControllerAnimated:YES];
-    [self showNaviBar];
+//    [self showNaviBar];
 }
 
 // 显示naviBar

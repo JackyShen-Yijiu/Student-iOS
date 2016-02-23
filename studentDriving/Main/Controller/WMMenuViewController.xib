@@ -7,8 +7,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WMMenuViewController">
             <connections>
+                <outlet property="YLabel" destination="MAY-vZ-sly" id="h60-5I-sQo"/>
                 <outlet property="headerImageView" destination="YkR-PW-D1O" id="EeX-di-ino"/>
                 <outlet property="tableView" destination="eGt-Fe-0zL" id="CCg-sn-6S6"/>
+                <outlet property="userMobileLabel" destination="5aD-kz-4A4" id="OBZ-GQ-SAa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -26,7 +28,7 @@
                     </constraints>
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eGt-Fe-0zL">
-                    <rect key="frame" x="8" y="151" width="542" height="449"/>
+                    <rect key="frame" x="0.0" y="151" width="550" height="449"/>
                     <animations/>
                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
@@ -57,7 +59,7 @@
                 <constraint firstAttribute="trailing" secondItem="eGt-Fe-0zL" secondAttribute="trailing" constant="50" id="6df-r0-aeT"/>
                 <constraint firstItem="YkR-PW-D1O" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="34" id="DT2-eN-UtJ"/>
                 <constraint firstItem="eGt-Fe-0zL" firstAttribute="top" secondItem="MAY-vZ-sly" secondAttribute="bottom" constant="12" id="EcC-Q5-XbE"/>
-                <constraint firstItem="eGt-Fe-0zL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="If5-Ce-x0H"/>
+                <constraint firstItem="eGt-Fe-0zL" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="If5-Ce-x0H"/>
                 <constraint firstItem="YkR-PW-D1O" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="MdG-OQ-Xdo"/>
                 <constraint firstAttribute="trailing" secondItem="MAY-vZ-sly" secondAttribute="trailing" id="V7o-LR-kVi"/>
                 <constraint firstAttribute="bottom" secondItem="eGt-Fe-0zL" secondAttribute="bottom" id="XBo-db-flJ"/>
@@ -72,7 +74,7 @@
                     <exclude reference="aXx-xq-K7o"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="-33" y="257"/>
+            <point key="canvasLocation" x="260" y="241"/>
         </view>
     </objects>
     <resources>

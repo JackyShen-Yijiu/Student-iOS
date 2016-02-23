@@ -26,7 +26,6 @@ typedef NS_ENUM(NSInteger,KCellStation){
 @interface FDCalendarItem : UIView
 
 @property (strong, nonatomic) NSDate *date;
-@property (strong, nonatomic) NSDate *seletedDate;
 @property (strong, nonatomic) UICollectionView *collectionView;
 @property (weak, nonatomic) id<FDCalendarItemDelegate> delegate;
 
