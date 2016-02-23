@@ -21,8 +21,22 @@
 - (void)dvv_downloadImage:(NSString *)urlString
          placeholderImage:(UIImage *)placeholder {
     
-    // 因为这个有替换图片，所以就不判断urlString是否正确
-    [self sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeholder];
+    if (urlString && urlString.length) {
+        [self sd_setImageWithURL:[NSURL URLWithString:urlString] placeholderImage:placeholder];
+    }else {
+        self.image = placeholder;
+    }
+}
+
+- (void)dvv_downloadImage:(NSString *)urlString
+                completed:(DVVWebImageCompletedBlock)completedBlock {
+    if (urlString && urlString.length) {
+        [self sd_setImageWithURL:[NSURL URLWithString:urlString] completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, NSURL *imageURL) {
+            completedBlock(image, error);
+        }];
+    }else {
+        completedBlock(nil, nil);
+    }
 }
 
 @end
