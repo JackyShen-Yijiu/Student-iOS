@@ -93,29 +93,30 @@
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
     
-    self.tabBarController.tabBar.hidden = YES;
-    
     UINavigationBar *bar = self.navigationController.navigationBar;
-    // 打开透明效果
-    [bar setTranslucent:YES];
     // 背景色
     [bar setBackgroundColor:[UIColor clearColor]];
-    
+    // 背景图片
     [bar setBackgroundImage:[UIImage imageNamed:@"naviBackgroundImag"] forBarMetrics:UIBarMetricsDefault];
+    // 打开透明效果
+    [bar setTranslucent:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
+    
     navBarHairlineImageView.hidden=NO;
     
-    self.tabBarController.tabBar.hidden = NO;
-    
     UINavigationBar *bar = self.navigationController.navigationBar;
-    // 去掉透明效果
+    // 背景色
     [bar setBackgroundColor:YBNavigationBarBgColor];
+    // 背景图片
+    [bar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
+    // 去掉透明效果
     [bar setTranslucent:NO];
     
     [DVVToast hide];
 }
+
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
     
     if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
@@ -176,6 +177,10 @@
 #pragma mark 班车路线
 - (void)shuttleBusMoreButtonAction {
     
+    if (!_viewModel.dmData.schoolbusroute || !_viewModel.dmData.schoolbusroute.count) {
+        [self obj_showTotasViewWithMes:@"暂无班车路线"];
+        return ;
+    }
     ShuttleBusController *busVC = [ShuttleBusController new];
     busVC.dataArray = _viewModel.dmData.schoolbusroute;
     [self.navigationController pushViewController:busVC animated:YES];

@@ -2,8 +2,9 @@
 #import "DVVSignUpCoachDMDriveschoolinfo.h"
 #import "DVVSignUpCoachDMHeadportrait.h"
 #import "DVVSignUpCoachDMSubject.h"
+#import "YYModel.h"
 
-@interface DVVSignUpCoachDMData : NSObject
+@interface DVVSignUpCoachDMData : NSObject<YYModel>
 
 @property (nonatomic, strong) NSString * seniority;
 @property (nonatomic, strong) NSString * coachid;
@@ -19,4 +20,7 @@
 @property (nonatomic, assign) NSInteger passrate;
 @property (nonatomic, assign) NSInteger starlevel;
 @property (nonatomic, strong) NSArray * subject;
+@property (nonatomic, assign) NSInteger commentcount;
+@property (nonatomic, strong) NSString *gender;
+
 @end

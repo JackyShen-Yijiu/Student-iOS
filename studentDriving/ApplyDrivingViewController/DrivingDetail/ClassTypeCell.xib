@@ -33,12 +33,12 @@
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Fi-h1-mfg">
                         <rect key="frame" x="216" y="64.5" width="88" height="36"/>
-                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="hAi-yL-afC"/>
                             <constraint firstAttribute="width" constant="88" id="zCA-Ml-M6b"/>
                         </constraints>
-                        <state key="normal" title="报名">
+                        <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <state key="normal" title="报名" backgroundImage="signUpButton_icon">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         </state>
                     </button>
@@ -96,4 +96,7 @@
             <point key="canvasLocation" x="41" y="396"/>
         </imageView>
     </objects>
+    <resources>
+        <image name="signUpButton_icon" width="100" height="45"/>
+    </resources>
 </document>

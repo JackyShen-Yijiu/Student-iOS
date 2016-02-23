@@ -22,16 +22,15 @@
     if (self) {
         NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"ClassTypeCell" owner:self options:nil];
         ClassTypeCell *cell = xibArray.firstObject;
-        
-        [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        [cell setRestorationIdentifier:reuseIdentifier];
         
         [self addSubview:self.lineImageView];
         _nameLabel.font = [UIFont boldSystemFontOfSize:14];
         _introductionLabel.textColor = [UIColor colorWithHexString:@"757575"];
         _nameLabel.textColor = [UIColor blackColor];
         _priceLabel.textColor = [UIColor blackColor];
-        _signUpButton.backgroundColor = YBNavigationBarBgColor;
+//        _signUpButton.backgroundColor = YBNavigationBarBgColor;
     }
     return self;
 }

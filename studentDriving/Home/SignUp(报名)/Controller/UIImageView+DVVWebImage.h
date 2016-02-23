@@ -8,11 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^DVVWebImageCompletedBlock)(UIImage *image, NSError *error);
+
 @interface UIImageView (DVVWebImage)
 
 - (void)dvv_downloadImage:(NSString *)urlString;
 
 - (void)dvv_downloadImage:(NSString *)urlString
          placeholderImage:(UIImage *)placeholder;
+
+- (void)dvv_downloadImage:(NSString *)urlString
+                completed:(DVVWebImageCompletedBlock)completedBlock;
 
 @end

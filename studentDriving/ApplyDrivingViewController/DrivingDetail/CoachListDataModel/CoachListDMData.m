@@ -13,7 +13,8 @@
 + (NSDictionary *)modelCustomPropertyMapper {
     
     return @{ @"seniority": @"Seniority",
-              @"isShuttle": @"is_shuttle" };
+              @"isShuttle": @"is_shuttle",
+              @"gender": @"Gender" };
 }
 
 @end

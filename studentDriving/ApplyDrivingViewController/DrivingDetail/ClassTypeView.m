@@ -20,6 +20,8 @@
 @property (nonatomic, copy) ClassTypeViewCellBlock signUpButtonBlock;
 @property (nonatomic, copy) ClassTypeViewCellBlock cellDidSelectBlock;
 
+@property (nonatomic, strong) UIButton *markButton;
+
 @end
 
 @implementation ClassTypeView
@@ -44,7 +46,7 @@
     
     _viewModel = [ClassTypeViewModel new];
     _viewModel.schoolID = _schoolID;
-    
+//    __weak typeof(self) ws = self;
     [_viewModel dvvSetRefreshSuccessBlock:^{
         _totalHeight = _viewModel.totalHeight;
         [self reloadData];
@@ -53,13 +55,13 @@
         }
     }];
     [_viewModel dvvSetNilResponseObjectBlock:^{
-        [self obj_showTotasViewWithMes:@"没有数据"];
+//        [self obj_showTotasViewWithMes:@"没有数据"];
     }];
     [_viewModel dvvSetRefreshErrorBlock:^{
-        [self obj_showTotasViewWithMes:@"加载失败"];
+//        [self obj_showTotasViewWithMes:@"加载失败"];
     }];
     [_viewModel dvvSetNetworkErrorBlock:^{
-        [self obj_showTotasViewWithMes:@"网络错误"];
+//        [self obj_showTotasViewWithMes:@"网络错误"];
     }];
 }
 

@@ -33,7 +33,7 @@
         self.dataSource = self;
         self.delegate = self;
         // 如果是固定高度的话在这里设置比较好
-        self.rowHeight = 95.f;
+        self.rowHeight = 88.f;
         self.tableFooterView = self.bottomButton;
         
         [self registerClass:[CoachListCell class] forCellReuseIdentifier:kCellIdentifier];
@@ -62,8 +62,9 @@
     }];
     [_viewModel dvvSetNilResponseObjectBlock:^{
         ws.bottomButton.tag = 1;
+        ws.bottomButton.userInteractionEnabled = NO;
         [ws.bottomButton setTitle:@"暂未填写教练信息" forState:UIControlStateNormal];
-        ws.bottomButton.bounds = CGRectMake(0, 0, self.bounds.size.width, 95 + 95 + 40);
+        ws.bottomButton.bounds = CGRectMake(0, 0, self.bounds.size.width, [UIScreen mainScreen].bounds.size.height - (64 + 44));
 //        [self obj_showTotasViewWithMes:@"没有数据"];
     }];
     [_viewModel dvvSetRefreshErrorBlock:^{
