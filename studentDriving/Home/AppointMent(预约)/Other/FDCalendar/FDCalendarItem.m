@@ -202,9 +202,16 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     NSLog(@"reloadData.restArray:%@",self.restArray);
     NSLog(@"reloadData.bookArray:%@",self.bookArray);
     
+#warning 跳转到当天的item上
+    
     self.collectionView.contentOffset = CGPointMake(0, 0);
     
     [self.collectionView reloadData];
+    
+}
+
+- (void)getCurrentDataOffsetWithData:(NSDate *)date
+{
     
 }
 
@@ -278,11 +285,9 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
         case FDCalendarMonthPrevious:
             date = [self previousMonthDate];
             break;
-            
         case FDCalendarMonthCurrent:
             date = self.date;
             break;
-            
         case FDCalendarMonthNext:
             date = [self nextMonthDate];
             break;
@@ -532,7 +537,6 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     return selectedDate;
     
 }
-
 
 - (BOOL)isEnqual:(NSDate *)date1 :(NSDate *)date2
 {

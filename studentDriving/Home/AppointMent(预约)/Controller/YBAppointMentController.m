@@ -14,7 +14,6 @@
 #import "AppointmentCoachTimeInfoModel.h"
 #import "BaseModelMethod.h"
 #import "YBAppotinMentHeadView.h"
-#import "YBCoachListViewController.h"
 #import "YBForceEvaluateViewController.h"
 #import "AppDelegate.h"
 #import "RatingBar.h"
@@ -241,13 +240,6 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 }
 
-- (void)rightBarDidClick
-{
-    YBCoachListViewController *vc = [[YBCoachListViewController alloc] init];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
-}
-
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -269,7 +261,6 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 - (void)addAppointMent
 {
-    
     YBAppointMentChangeCoachController *vc = [[YBAppointMentChangeCoachController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

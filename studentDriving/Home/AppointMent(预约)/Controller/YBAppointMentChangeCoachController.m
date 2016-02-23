@@ -12,17 +12,22 @@
 #import "FDCalendar.h"
 #import "JGYuYueHeadView.h"
 #import "AppointmentCoachTimeInfoModel.h"
+#import "YBCoachListViewController.h"
 
 @interface YBAppointMentChangeCoachController ()<FDCalendarDelegate>
 
 // 日历
-@property(nonatomic,strong) FDCalendar *calendarHeadView;
+@property(nonatomic,strong) FDCalendar *TopCalendarHeadView;
 // 中间预约时间
-@property (nonatomic,strong) JGYuYueHeadView *yuYueheadView;
+@property (nonatomic,strong) JGYuYueHeadView *midYuYueheadView;
 
 @property(nonatomic,strong)NSDateFormatter *dateFormattor;
 
 @property (nonatomic,weak) UICollectionView *collectionView;
+
+@property (strong, nonatomic) NSDate *seletedDate;
+
+@property (nonatomic,copy) NSString *coachID;
 
 @end
 
@@ -56,6 +61,8 @@
     
     [super viewDidLoad];
     
+    self.seletedDate = [NSDate date];
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"换教练" style:UIBarButtonItemStyleDone target:self action:@selector(changeCoach)];
@@ -66,7 +73,8 @@
 
 - (void)changeCoach
 {
-    NSLog(@"换教练");
+    YBCoachListViewController *vc = [[YBCoachListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)dealloc
@@ -78,14 +86,14 @@
 {
     
     // 顶部日历
-    self.calendarHeadView = [[FDCalendar alloc] initWithCurrentDate:[NSDate date]];
-    self.calendarHeadView.delegate = self;
-    self.calendarHeadView.frame = CGRectMake(0, 0, self.view.width, 30+35);
-    [self.view addSubview:self.calendarHeadView];
+    self.TopCalendarHeadView = [[FDCalendar alloc] initWithData:[NSDate date]];
+    self.TopCalendarHeadView.delegate = self;
+    self.TopCalendarHeadView.frame = CGRectMake(0, 0, self.view.width, 30+35);
+    [self.view addSubview:self.TopCalendarHeadView];
     
     // 中间方格
-    self.yuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.calendarHeadView.frame), self.view.width, kSystemHeight-self.calendarHeadView.height-50)];
-    [self.view addSubview:self.yuYueheadView];
+    self.midYuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TopCalendarHeadView.frame), self.view.width, kSystemHeight-self.TopCalendarHeadView.height-50)];
+    [self.view addSubview:self.midYuYueheadView];
     
     // 底部提交
     UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame)-50-64, self.view.width, 50)];
@@ -127,10 +135,8 @@
     }
     NSString * dataStr = [self.dateFormattor stringFromDate:date];
     
-    // 初始化日历预约、休假等信息
-    if (self.coachID&&[self.coachID length]!=0) {
-        [self.calendarHeadView setCurrentDate:self.seletedDate coachID:self.coachID];
-    }
+    // 初始化日历
+    [self.TopCalendarHeadView setCurrentDate:self.seletedDate coachID:self.coachID];
 
     // 加载中间预约时间
     [self loadMidYuyueTimeData:dataStr];
@@ -144,8 +150,9 @@
 {
     
     NSLog(@"loadMidYuyueTimeData dataStr:%@",dataStr);
-    self.yuYueheadView.userCount = 20;
-    [self.yuYueheadView receiveCoachTimeData];
+    
+    self.midYuYueheadView.userCount = 20;
+    [self.midYuYueheadView receiveCoachTimeData];
     
     NSString *  userId = [AcountManager manager].applycoach.infoId;
      if (userId==nil) {
@@ -167,7 +174,7 @@
              
              dispatch_async(dispatch_get_main_queue(), ^{
              
-               [ws.yuYueheadView receiveCoachTimeData:dataArray];
+               [ws.midYuYueheadView receiveCoachTimeData:dataArray];
              
              });
      
