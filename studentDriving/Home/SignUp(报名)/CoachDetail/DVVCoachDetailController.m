@@ -147,9 +147,9 @@ static NSString *courseCellID = @"kCourseCellID";
 #pragma mark 课程选择、评价信息切换
 - (void)dvvToolBarViewItemSelectedAction:(NSInteger)index {
     if (0 == index) {
-//        [_signUpCell courseButtonAction];
+        [_courseCell courseButtonAction];
     }else {
-//        [_signUpCell coachButtonAction];
+        [_courseCell commentButtonAction];
     }
 }
 
@@ -226,7 +226,7 @@ static NSString *courseCellID = @"kCourseCellID";
         }
     }else {
         // 课程费用、教练信息
-        return [self.courseCell dynamicHeight:[NSArray new]];
+        return [self.courseCell dynamicHeight:_viewModel.dmData.serverclasslist];
     }
 }
 
@@ -252,6 +252,7 @@ static NSString *courseCellID = @"kCourseCellID";
             return cell;
         }
     }else {
+        
         return _courseCell;
     }
 }

@@ -14,6 +14,43 @@
     // Initialization code
 }
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        [self.contentView addSubview:self.scrollView];
+        [_scrollView addSubview:self.classTypeView];
+    }
+    return self;
+}
+- (void)courseButtonAction {
+    _showType = 0;
+    [self.tableView reloadData];
+    [UIView animateWithDuration:0.3 animations:^{
+        _scrollView.contentOffset = CGPointMake(0, 0);
+    }];
+}
+
+- (void)commentButtonAction {
+    _showType = 1;
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:1];
+    [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
+    [UIView animateWithDuration:0.3 animations:^{
+        _scrollView.contentOffset = CGPointMake(_scrollView.bounds.size.width, 0);
+    }];
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+    CGSize size = self.bounds.size;
+    _scrollView.frame = self.bounds;
+    _scrollView.contentSize = CGSizeMake(size.width * 2, 0);
+    _classTypeView.frame = CGRectMake(0, 0, size.width, size.height);
+}
+
 - (CGFloat)dynamicHeight:(NSArray *)dataArray {
     CGFloat height = [UIScreen mainScreen].bounds.size.height - (64 + 44);
     CGFloat tempHeight = 0;
@@ -28,6 +65,20 @@
     }else {
         return tempHeight;
     }
+}
+
+- (DVVCoachClassTypeView *)classTypeView {
+    if (!_classTypeView) {
+        _classTypeView = [DVVCoachClassTypeView new];
+    }
+    return _classTypeView;
+}
+
+- (UIScrollView *)scrollView {
+    if (!_scrollView) {
+        _scrollView = [UIScrollView new];
+    }
+    return _scrollView;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

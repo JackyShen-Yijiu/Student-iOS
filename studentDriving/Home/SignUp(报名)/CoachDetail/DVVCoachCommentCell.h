@@ -1,5 +1,5 @@
 //
-//  DVVCoachDetailCommentView.h
+//  DVVCoachCommentCell.h
 //  studentDriving
 //
 //  Created by 大威 on 16/2/23.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DVVCoachDetailCommentView : UITableView
+@interface DVVCoachCommentCell : UITableViewCell
 
 @end

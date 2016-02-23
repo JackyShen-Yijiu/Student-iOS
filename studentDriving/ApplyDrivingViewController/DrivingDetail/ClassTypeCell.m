@@ -48,7 +48,8 @@
     _nameLabel.text = dmData.classname;
     _introductionLabel.text = dmData.classdesc;
     _priceLabel.text = [NSString stringWithFormat:@"￥%zi", dmData.price];
-    _markLabel.text = [NSString stringWithFormat:@"%@ %@ ￥%zi", dmData.schoolinfo.name, dmData.classname, dmData.price];
+//    _markLabel.text = [NSString stringWithFormat:@"%@ %@ ￥%zi", dmData.schoolinfo.name, dmData.classname, dmData.price];
+    _markLabel.text = [NSString stringWithFormat:@"%@ ￥%zi",dmData.classname, dmData.price];
 }
 
 + (CGFloat)dynamicHeight:(NSString *)string {

@@ -729,7 +729,7 @@
 		D964ABEB1C7AA65000A4D1D5 /* DVVCoachDetailDMTagslist.m in Sources */ = {isa = PBXBuildFile; fileRef = D964ABEA1C7AA65000A4D1D5 /* DVVCoachDetailDMTagslist.m */; };
 		D964ABED1C7AB8CF00A4D1D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */; };
 		D964ABF91C7AEEEF00A4D1D5 /* UIImage+DVVEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = D964ABF81C7AEEEF00A4D1D5 /* UIImage+DVVEffects.m */; };
-		D964ABFC1C7B14CE00A4D1D5 /* DVVCoachDetailClassTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D964ABFB1C7B14CE00A4D1D5 /* DVVCoachDetailClassTypeView.m */; };
+		D964ABFC1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */; };
 		D965325D1C7320DA0097AFA2 /* DVVSelectCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = D965325C1C7320DA0097AFA2 /* DVVSelectCityController.m */; };
 		D96532601C7323F80097AFA2 /* DVVSignUpToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = D965325F1C7323F80097AFA2 /* DVVSignUpToolBarView.m */; };
 		D96532641C7330280097AFA2 /* DVVSignUpSchoolCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D96532621C7330280097AFA2 /* DVVSignUpSchoolCell.m */; };
@@ -805,7 +805,9 @@
 		D970D39B1C3CFFEB003FCED3 /* CoachDMSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D970D3961C3CFFEB003FCED3 /* CoachDMSubject.m */; };
 		D970D3A21C3D0468003FCED3 /* NSObject+YYModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D970D39E1C3D0468003FCED3 /* NSObject+YYModel.m */; };
 		D970D3A31C3D0468003FCED3 /* YYClassInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D970D3A01C3D0468003FCED3 /* YYClassInfo.m */; };
-		D977B80C1C7BEEBC00ABE205 /* DVVCoachDetailCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B80B1C7BEEBC00ABE205 /* DVVCoachDetailCommentView.m */; };
+		D977B80C1C7BEEBC00ABE205 /* DVVCoachCommentView.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B80B1C7BEEBC00ABE205 /* DVVCoachCommentView.m */; };
+		D977B8101C7BF56100ABE205 /* DVVCoachCommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B80E1C7BF56100ABE205 /* DVVCoachCommentCell.m */; };
+		D977B8111C7BF56100ABE205 /* DVVCoachCommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D977B80F1C7BF56100ABE205 /* DVVCoachCommentCell.xib */; };
 		D978ACD11C47957F00D633B4 /* DVVLocationStatus.m in Sources */ = {isa = PBXBuildFile; fileRef = D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */; };
 		D980218A1C51D21C00596C86 /* DVVAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = D98021891C51D21C00596C86 /* DVVAlert.m */; };
 		D985819B1C5861FE0044E029 /* ComplaintCoachView.m in Sources */ = {isa = PBXBuildFile; fileRef = D985819A1C5861FE0044E029 /* ComplaintCoachView.m */; };
@@ -2257,8 +2259,8 @@
 		D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D964ABF71C7AEEEF00A4D1D5 /* UIImage+DVVEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DVVEffects.h"; sourceTree = "<group>"; };
 		D964ABF81C7AEEEF00A4D1D5 /* UIImage+DVVEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DVVEffects.m"; sourceTree = "<group>"; };
-		D964ABFA1C7B14CE00A4D1D5 /* DVVCoachDetailClassTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachDetailClassTypeView.h; sourceTree = "<group>"; };
-		D964ABFB1C7B14CE00A4D1D5 /* DVVCoachDetailClassTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachDetailClassTypeView.m; sourceTree = "<group>"; };
+		D964ABFA1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachClassTypeView.h; sourceTree = "<group>"; };
+		D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachClassTypeView.m; sourceTree = "<group>"; };
 		D965325B1C7320DA0097AFA2 /* DVVSelectCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSelectCityController.h; sourceTree = "<group>"; };
 		D965325C1C7320DA0097AFA2 /* DVVSelectCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSelectCityController.m; sourceTree = "<group>"; };
 		D965325E1C7323F80097AFA2 /* DVVSignUpToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpToolBarView.h; sourceTree = "<group>"; };
@@ -2407,8 +2409,11 @@
 		D970D39F1C3D0468003FCED3 /* YYClassInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYClassInfo.h; sourceTree = "<group>"; };
 		D970D3A01C3D0468003FCED3 /* YYClassInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYClassInfo.m; sourceTree = "<group>"; };
 		D970D3A11C3D0468003FCED3 /* YYModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYModel.h; sourceTree = "<group>"; };
-		D977B80A1C7BEEBC00ABE205 /* DVVCoachDetailCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachDetailCommentView.h; sourceTree = "<group>"; };
-		D977B80B1C7BEEBC00ABE205 /* DVVCoachDetailCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachDetailCommentView.m; sourceTree = "<group>"; };
+		D977B80A1C7BEEBC00ABE205 /* DVVCoachCommentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachCommentView.h; sourceTree = "<group>"; };
+		D977B80B1C7BEEBC00ABE205 /* DVVCoachCommentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachCommentView.m; sourceTree = "<group>"; };
+		D977B80D1C7BF56100ABE205 /* DVVCoachCommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachCommentCell.h; sourceTree = "<group>"; };
+		D977B80E1C7BF56100ABE205 /* DVVCoachCommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachCommentCell.m; sourceTree = "<group>"; };
+		D977B80F1C7BF56100ABE205 /* DVVCoachCommentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVVCoachCommentCell.xib; sourceTree = "<group>"; };
 		D978ACCF1C47957F00D633B4 /* DVVLocationStatus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVLocationStatus.h; sourceTree = "<group>"; };
 		D978ACD01C47957F00D633B4 /* DVVLocationStatus.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVLocationStatus.m; sourceTree = "<group>"; };
 		D98021881C51D21C00596C86 /* DVVAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVAlert.h; sourceTree = "<group>"; };
@@ -5614,10 +5619,13 @@
 				D9B268C31C788D7C00F62804 /* DVVCoachDetailTagCell.xib */,
 				D9B268BE1C7852C400F62804 /* DVVCoachDetailCourseCell.h */,
 				D9B268BF1C7852C400F62804 /* DVVCoachDetailCourseCell.m */,
-				D964ABFA1C7B14CE00A4D1D5 /* DVVCoachDetailClassTypeView.h */,
-				D964ABFB1C7B14CE00A4D1D5 /* DVVCoachDetailClassTypeView.m */,
-				D977B80A1C7BEEBC00ABE205 /* DVVCoachDetailCommentView.h */,
-				D977B80B1C7BEEBC00ABE205 /* DVVCoachDetailCommentView.m */,
+				D964ABFA1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.h */,
+				D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */,
+				D977B80A1C7BEEBC00ABE205 /* DVVCoachCommentView.h */,
+				D977B80B1C7BEEBC00ABE205 /* DVVCoachCommentView.m */,
+				D977B80D1C7BF56100ABE205 /* DVVCoachCommentCell.h */,
+				D977B80E1C7BF56100ABE205 /* DVVCoachCommentCell.m */,
+				D977B80F1C7BF56100ABE205 /* DVVCoachCommentCell.xib */,
 			);
 			path = CoachDetail;
 			sourceTree = "<group>";
@@ -5978,6 +5986,7 @@
 				D5BCFED31BF201410019402C /* PushConfig.plist in Resources */,
 				D5604B8F1BF656C50020F0D7 /* 114.png in Resources */,
 				D5604C011BF656C50020F0D7 /* chatBar_more_cameraSelected.png in Resources */,
+				D977B8111C7BF56100ABE205 /* DVVCoachCommentCell.xib in Resources */,
 				D5604B9A1BF656C50020F0D7 /* VoiceSearchFeedback002@2x.png in Resources */,
 				D919F3211C60885A00239B34 /* UMSCommentInputController.xib in Resources */,
 				D5604C1A1BF656C50020F0D7 /* chat_sender_audio_playing_001.png in Resources */,
@@ -6034,6 +6043,7 @@
 				D92B2DE71C5A0FC10050EE84 /* DrivingDetailViewModel.m in Sources */,
 				D588B0D71BDDDC14000C5D6F /* DrivingInformationCell.m in Sources */,
 				D588B10E1BDDDC2F000C5D6F /* BLPFAlertView.m in Sources */,
+				D977B8101C7BF56100ABE205 /* DVVCoachCommentCell.m in Sources */,
 				B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */,
 				B226AF0C1C75CEB10028DF1A /* JGAppointMentCell.m in Sources */,
 				D96D1BE71C2B88A000F1C282 /* UIColor+Extension.m in Sources */,
@@ -6299,7 +6309,7 @@
 				D5604C8C1BF656F30020F0D7 /* EMChatVideoBubbleView.m in Sources */,
 				D588B1391BDDDC65000C5D6F /* ForgetViewController.m in Sources */,
 				55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */,
-				D977B80C1C7BEEBC00ABE205 /* DVVCoachDetailCommentView.m in Sources */,
+				D977B80C1C7BEEBC00ABE205 /* DVVCoachCommentView.m in Sources */,
 				B226AEFD1C7494B90028DF1A /* NSString+MD5.m in Sources */,
 				D965CAA61C239D9F00DCD094 /* DrivingCycleShowDMData.m in Sources */,
 				063BB1EE1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m in Sources */,
@@ -6347,7 +6357,7 @@
 				D5604B451BF656C50020F0D7 /* EMAlertView.m in Sources */,
 				D9B268B71C78420900F62804 /* DVVCoachDetailDMDriveschoolinfo.m in Sources */,
 				D5604C801BF656F30020F0D7 /* ConvertToCommonEmoticonsHelper.m in Sources */,
-				D964ABFC1C7B14CE00A4D1D5 /* DVVCoachDetailClassTypeView.m in Sources */,
+				D964ABFC1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m in Sources */,
 				D93EC2F21C32BF97005D7141 /* HomeActivityController.m in Sources */,
 				D588B0DB1BDDDC14000C5D6F /* MyReservationCell.m in Sources */,
 				D588B08F1BDDDBDB000C5D6F /* ExamCarViewController.m in Sources */,
