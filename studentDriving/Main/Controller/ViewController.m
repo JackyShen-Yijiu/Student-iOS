@@ -26,7 +26,7 @@
 #import "ShuttleBusController.h" // 我的驾校班车
 #import "JGActivityViewController.h" // 活动
 #import "SideMenuSignUpController.h" // 签到
-#import "EditorUserViewController.h" // 点击头像
+#import "EditorMessageController.h" // 点击头像
 #import "SetupViewController.h"
 
 
@@ -399,7 +399,8 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         return;
     }
     
-     EditorUserViewController *editorUserVC = [EditorUserViewController new];
+//     EditorUserViewController *editorUserVC = [EditorUserViewController new];
+    EditorMessageController *editorUserVC = [EditorMessageController new];
     [self controller:editorUserVC];
 
 }

@@ -111,6 +111,10 @@
 		56DAB1181C7B22BC00D7B942 /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB1171C7B22BC00D7B942 /* HelpController.m */; };
 		56DAB11B1C7B241C00D7B942 /* HelpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB11A1C7B241C00D7B942 /* HelpCell.m */; };
 		56DAB11F1C7B374900D7B942 /* YBHelpData.json in Resources */ = {isa = PBXBuildFile; fileRef = 56DAB11E1C7B374900D7B942 /* YBHelpData.json */; };
+		56DD9C111C7BF3CD00552A56 /* EditorMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C101C7BF3CD00552A56 /* EditorMessageController.m */; };
+		56DD9C141C7BF4CC00552A56 /* EditorMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C131C7BF4CC00552A56 /* EditorMessageCell.m */; };
+		56DD9C171C7BFBD300552A56 /* EditorBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C161C7BFBD300552A56 /* EditorBottomCell.m */; };
+		56DD9C1A1C7C037D00552A56 /* EditorTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C191C7C037D00552A56 /* EditorTopCell.m */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
 		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B20DBEC61C5DB0FF0023676E /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B20DBE451C5DB0FF0023676E /* AlipaySDK.bundle */; };
@@ -1118,6 +1122,14 @@
 		56DAB1191C7B241C00D7B942 /* HelpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCell.h; sourceTree = "<group>"; };
 		56DAB11A1C7B241C00D7B942 /* HelpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCell.m; sourceTree = "<group>"; };
 		56DAB11E1C7B374900D7B942 /* YBHelpData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YBHelpData.json; sourceTree = "<group>"; };
+		56DD9C0F1C7BF3CD00552A56 /* EditorMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorMessageController.h; sourceTree = "<group>"; };
+		56DD9C101C7BF3CD00552A56 /* EditorMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorMessageController.m; sourceTree = "<group>"; };
+		56DD9C121C7BF4CC00552A56 /* EditorMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorMessageCell.h; sourceTree = "<group>"; };
+		56DD9C131C7BF4CC00552A56 /* EditorMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorMessageCell.m; sourceTree = "<group>"; };
+		56DD9C151C7BFBD300552A56 /* EditorBottomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorBottomCell.h; sourceTree = "<group>"; };
+		56DD9C161C7BFBD300552A56 /* EditorBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorBottomCell.m; sourceTree = "<group>"; };
+		56DD9C181C7C037D00552A56 /* EditorTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorTopCell.h; sourceTree = "<group>"; };
+		56DD9C191C7C037D00552A56 /* EditorTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorTopCell.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
@@ -2999,6 +3011,7 @@
 		568DF23A1C759F6E00008829 /* SideMenu(侧边栏) */ = {
 			isa = PBXGroup;
 			children = (
+				56DD9C0E1C7BF37C00552A56 /* SideMenuEditorMessage */,
 				56DAB10C1C7AFADF00D7B942 /* SideMenuAdvantage */,
 				56DAB0FF1C7AF9CF00D7B942 /* SideMenuComplaint */,
 				56DAB0F51C7ABB8500D7B942 /* SideMenuSetInfo */,
@@ -3049,6 +3062,21 @@
 				56DAB10E1C7AFADF00D7B942 /* HomeAdvantageController.m */,
 			);
 			path = SideMenuAdvantage;
+			sourceTree = "<group>";
+		};
+		56DD9C0E1C7BF37C00552A56 /* SideMenuEditorMessage */ = {
+			isa = PBXGroup;
+			children = (
+				56DD9C0F1C7BF3CD00552A56 /* EditorMessageController.h */,
+				56DD9C101C7BF3CD00552A56 /* EditorMessageController.m */,
+				56DD9C121C7BF4CC00552A56 /* EditorMessageCell.h */,
+				56DD9C131C7BF4CC00552A56 /* EditorMessageCell.m */,
+				56DD9C151C7BFBD300552A56 /* EditorBottomCell.h */,
+				56DD9C161C7BFBD300552A56 /* EditorBottomCell.m */,
+				56DD9C181C7C037D00552A56 /* EditorTopCell.h */,
+				56DD9C191C7C037D00552A56 /* EditorTopCell.m */,
+			);
+			path = SideMenuEditorMessage;
 			sourceTree = "<group>";
 		};
 		B20DBE441C5DB0FF0023676E /* 支付相关 */ = {
@@ -6045,6 +6073,7 @@
 				568DF2151C75756900008829 /* MyWallet.m in Sources */,
 				568DF2121C75756900008829 /* MagicMainTableViewCell.m in Sources */,
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
+				56DD9C1A1C7C037D00552A56 /* EditorTopCell.m in Sources */,
 				56DAB10F1C7AFADF00D7B942 /* HomeAdvantageController.m in Sources */,
 				060DB4021C5B1E390039C30F /* SignUpFirmOrderController.m in Sources */,
 				D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */,
@@ -6073,6 +6102,7 @@
 				56DAB0FD1C7ABB8500D7B942 /* FeedBackViewController.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
 				060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */,
+				56DD9C171C7BFBD300552A56 /* EditorBottomCell.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
 				B20DBED31C5DB0FF0023676E /* base64.m in Sources */,
 				D966E77A1C5B4363007848B4 /* ClassTypeDMVipserverlist.m in Sources */,
@@ -6147,6 +6177,7 @@
 				56DAB10B1C7AFA2C00D7B942 /* YBComplaintCoachView.m in Sources */,
 				D92B2DF31C5A17BE0050EE84 /* DrivingDetailDMRootClass.m in Sources */,
 				D5604B3F1BF656C50020F0D7 /* EMAudioRecorderUtil.m in Sources */,
+				56DD9C111C7BF3CD00552A56 /* EditorMessageController.m in Sources */,
 				D970D3971C3CFFEB003FCED3 /* CoachDMData.m in Sources */,
 				D96149421C5C587200E3007F /* CoachListDMHeadportrait.m in Sources */,
 				568DF21D1C75792B00008829 /* YBIntegralMallModel.m in Sources */,
@@ -6452,6 +6483,7 @@
 				D5604B3E1BF656C50020F0D7 /* EMAudioPlayerUtil.m in Sources */,
 				568DF2211C75911C00008829 /* YBIntegralMallCell.m in Sources */,
 				D5C23FE91BE859E000832CF3 /* ExamClassDetailViewController.m in Sources */,
+				56DD9C141C7BF4CC00552A56 /* EditorMessageCell.m in Sources */,
 				B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */,
 				D588AFCB1BDDDAAB000C5D6F /* ExamCarModel.m in Sources */,
 				D96D1BFA1C2BF61700F1C282 /* DVVSideMenuBlockView.m in Sources */,
