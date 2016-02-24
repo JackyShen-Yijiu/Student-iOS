@@ -9,7 +9,7 @@
 #import "Logoimg.h"
 
 @implementation Logoimg
-
+MJCodingImplementation
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{@"height":@"height",@"originalpic":@"originalpic",@"thumbnailpic":@"thumbnailpic",@"width":@"width"};
 }

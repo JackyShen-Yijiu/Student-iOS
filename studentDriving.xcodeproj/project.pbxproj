@@ -226,6 +226,7 @@
 		B2E8E1E91C731B7E000190C2 /* YBToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */; };
 		B2E8E1ED1C741D37000190C2 /* YBStudeyProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */; };
 		B2F1AE4F1C7D7885006D56FF /* YBAppointMentDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */; };
+		B2F1AE521C7D9C34006D56FF /* YBAppointMentCoachModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE511C7D9C34006D56FF /* YBAppointMentCoachModel.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1458,6 +1459,8 @@
 		B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudeyProgressView.m; sourceTree = "<group>"; };
 		B2F1AE4D1C7D7885006D56FF /* YBAppointMentDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsController.h; sourceTree = "<group>"; };
 		B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsController.m; sourceTree = "<group>"; };
+		B2F1AE501C7D9C34006D56FF /* YBAppointMentCoachModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentCoachModel.h; sourceTree = "<group>"; };
+		B2F1AE511C7D9C34006D56FF /* YBAppointMentCoachModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentCoachModel.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3529,6 +3532,8 @@
 				B226AEDC1C748EAD0028DF1A /* HMStudentModel.h */,
 				B226AEDD1C748EAD0028DF1A /* HMStudentModel.m */,
 				B226AEC11C7480530028DF1A /* ModelDefine.h */,
+				B2F1AE501C7D9C34006D56FF /* YBAppointMentCoachModel.h */,
+				B2F1AE511C7D9C34006D56FF /* YBAppointMentCoachModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6268,6 +6273,7 @@
 				D588B0E51BDDDC14000C5D6F /* CoachHeadCell.m in Sources */,
 				D92B2DF41C5A17BE0050EE84 /* DrivingDetailDMSchoolbusroute.m in Sources */,
 				D5604C851BF656F30020F0D7 /* DXChatBarMoreView.m in Sources */,
+				B2F1AE521C7D9C34006D56FF /* YBAppointMentCoachModel.m in Sources */,
 				D588AFCA1BDDDAAB000C5D6F /* ExamClassModel.m in Sources */,
 				56855C511C787736005D4517 /* SignInViewController.m in Sources */,
 				550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */,

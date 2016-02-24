@@ -9,6 +9,7 @@
 #import "DriveSchoolinfo.h"
 
 @implementation DriveSchoolinfo
+MJCodingImplementation
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{@"driveSchoolId":@"id",@"name":@"name"};
 }

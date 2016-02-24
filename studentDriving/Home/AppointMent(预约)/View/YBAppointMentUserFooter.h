@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class CoachModel;
+@class YBAppointMentCoachModel;
 
 @interface YBAppointMentUserFooter : UICollectionReusableView
 
@@ -18,6 +18,6 @@
 
 @property (nonatomic,weak) UIViewController *parentViewController;
 
-@property (nonatomic,strong) CoachModel *appointCoach;
+@property (nonatomic,strong) YBAppointMentCoachModel *appointCoach;
 
 @end
