@@ -12,6 +12,8 @@
 #import "EditorTopCell.h"
 #import "EditorDetailController.h"
 #import "SignUpSuccessViewController.h"
+#import "FavouriteViewController.h"
+#import "MySaveViewController.h"
 
 
 
@@ -128,6 +130,8 @@
     }
     if (4 == indexPath.row) {
         // 我的喜欢
+        MySaveViewController *favouriteVC = [[MySaveViewController alloc] init];
+        [self.navigationController pushViewController:favouriteVC animated:YES];
     }
     if (5 == indexPath.row) {
         // 报名详情

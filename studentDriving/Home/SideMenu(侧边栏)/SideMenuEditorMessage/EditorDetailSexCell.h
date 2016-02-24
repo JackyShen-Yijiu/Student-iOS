@@ -12,5 +12,5 @@ typedef void(^YBSexBlock)(BOOL sexWay);
 
 @interface EditorDetailSexCell : UITableViewCell
 @property (nonatomic, assign) BOOL complaintWay;
-@property (nonatomic, assign) YBSexBlock sexWayBlock;
+@property (nonatomic, strong) YBSexBlock sexWayBlock;
 @end

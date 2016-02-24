@@ -99,6 +99,8 @@
 		568DF2371C7592C400008829 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2321C7592C400008829 /* MagicDetailViewController.m */; };
 		568DF2381C7592C400008829 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2341C7592C400008829 /* PrivateMessageController.m */; };
 		568DF2391C7592C400008829 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2361C7592C400008829 /* VirtualViewController.m */; };
+		56C407401C7D4EF4002E0692 /* SignUpDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */; };
+		56C407431C7D4F56002E0692 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C407421C7D4F56002E0692 /* FavouriteViewController.m */; };
 		56DAB0FC1C7ABB8500D7B942 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */; };
 		56DAB0FD1C7ABB8500D7B942 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0F91C7ABB8500D7B942 /* FeedBackViewController.m */; };
 		56DAB0FE1C7ABB8500D7B942 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0FB1C7ABB8500D7B942 /* SetupViewController.m */; };
@@ -1128,6 +1130,10 @@
 		568DF2341C7592C400008829 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
 		568DF2351C7592C400008829 /* VirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualViewController.h; sourceTree = "<group>"; };
 		568DF2361C7592C400008829 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualViewController.m; sourceTree = "<group>"; };
+		56C4073E1C7D4EF4002E0692 /* SignUpDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpDetailController.h; sourceTree = "<group>"; };
+		56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpDetailController.m; sourceTree = "<group>"; };
+		56C407411C7D4F56002E0692 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
+		56C407421C7D4F56002E0692 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
 		56DAB0F61C7ABB8500D7B942 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		56DAB0F81C7ABB8500D7B942 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
@@ -3154,6 +3160,10 @@
 				56DD9C101C7BF3CD00552A56 /* EditorMessageController.m */,
 				56DD9C1B1C7C171E00552A56 /* EditorDetailController.h */,
 				56DD9C1C1C7C171E00552A56 /* EditorDetailController.m */,
+				56C4073E1C7D4EF4002E0692 /* SignUpDetailController.h */,
+				56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */,
+				56C407411C7D4F56002E0692 /* FavouriteViewController.h */,
+				56C407421C7D4F56002E0692 /* FavouriteViewController.m */,
 				56DD9C1E1C7C187600552A56 /* EditorDetailCell.h */,
 				56DD9C1F1C7C187600552A56 /* EditorDetailCell.m */,
 				56DD9C211C7C222D00552A56 /* EditorDetailSexCell.h */,
@@ -6438,6 +6448,7 @@
 				D965CAA61C239D9F00DCD094 /* DrivingCycleShowDMData.m in Sources */,
 				063BB1EE1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m in Sources */,
 				D5604C881BF656F30020F0D7 /* EMChatBaseBubbleView.m in Sources */,
+				56C407401C7D4EF4002E0692 /* SignUpDetailController.m in Sources */,
 				06073D871C251C300058B372 /* HomeRewardController.m in Sources */,
 				D588B0501BDDDB71000C5D6F /* SignatureViewController.m in Sources */,
 				D96149431C5C587200E3007F /* CoachListDMRootClass.m in Sources */,
@@ -6515,6 +6526,7 @@
 				D5604B591BF656C50020F0D7 /* EMSDWebImagePrefetcher.m in Sources */,
 				D5604C7D1BF656F30020F0D7 /* ChatSendHelper.m in Sources */,
 				D5604B471BF656C50020F0D7 /* EmojiEmoticons.m in Sources */,
+				56C407431C7D4F56002E0692 /* FavouriteViewController.m in Sources */,
 				D588B0DA1BDDDC14000C5D6F /* DrivingSelectedCoachCollectionCell.m in Sources */,
 				B20DBECC1C5DB0FF0023676E /* SBJSON.m in Sources */,
 				D96D1BEA1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.m in Sources */,
@@ -6678,7 +6690,6 @@
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
 				D9B268B51C78420900F62804 /* DVVCoachDetailDMCarmodel.m in Sources */,
-				D96712DF1C3FA4B80099C3B9 /* SignInDataModel.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
 				D963FACD1C740B09006955D8 /* UIImageView+DVVWebImage.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
