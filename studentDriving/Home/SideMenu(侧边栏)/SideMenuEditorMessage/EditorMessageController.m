@@ -11,6 +11,7 @@
 #import "EditorBottomCell.h"
 #import "EditorTopCell.h"
 #import "EditorDetailController.h"
+#import "SignUpSuccessViewController.h"
 
 
 
@@ -59,6 +60,9 @@
     return 6;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (4 == indexPath.row || 5 == indexPath.row) {
+        return 60;
+    }
     
     return 70;
 }
@@ -88,13 +92,13 @@
 
     }
     if (4 == indexPath.row || 5 == indexPath.row) {
-        NSString *cellID = @"EditorID";
-        EditorBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!cell) {
-            cell = [[EditorBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        NSString *EditorcellID = @"EditorID";
+        EditorBottomCell *editorCell = [tableView dequeueReusableCellWithIdentifier:EditorcellID];
+        if (!editorCell) {
+            editorCell = [[EditorBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:EditorcellID];
         }
-        cell.titleLabel.text = self.titleArray[indexPath.row];
-        return cell;
+        editorCell.titleLabel.text = self.titleArray[indexPath.row];
+        return editorCell;
         
     }
     return nil;
@@ -127,6 +131,21 @@
     }
     if (5 == indexPath.row) {
         // 报名详情
+        if ([[[AcountManager manager] userApplystate] isEqualToString:@"1"]) {
+            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+        }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"])
+        {
+//            DrivingViewController *signUPVC = [DrivingViewController new];
+//            [self.navigationController pushViewController:signUPVC animated:YES];
+            [self obj_showTotasViewWithMes:@"您还未报名!"];
+        }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"3"]) {
+            [self showTotasViewWithMes:@"验证报名中"];
+        }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"2"]) {
+            [self obj_showTotasViewWithMes:@"您已经报过名!"];
+        }else{
+            [self showTotasViewWithMes:@"您去支付完成的订单!"];
+        }
+
     }
 }
 

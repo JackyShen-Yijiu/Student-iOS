@@ -145,7 +145,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
             [self obj_showTotasViewWithMes:@"最多不超过10个字"];
             return;
         }
-        realNickStr = self.nibName;
+        realNickStr = self.nickStr;
         
     }
     
@@ -218,7 +218,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 80;
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
