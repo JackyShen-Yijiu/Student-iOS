@@ -79,9 +79,11 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     }else{
         self.nameStr = [AcountManager manager].userName;
     }
+    NSLog(@"self.nickStr = %@",[AcountManager manager].userNickName);
     // 昵称
     if ([[AcountManager manager].userNickName isEqualToString:@""]) {
         self.nickStr = @"暂无昵称";
+        
     }else{
         self.nickStr = [AcountManager manager].userNickName;
     }
@@ -136,16 +138,16 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     
     
     // 保存昵称
-   if (self.nibName == nil || self.nibName.length == 0) {
+   if (self.nickStr == nil || self.nickStr.length == 0) {
         realNickStr = @"";
     }
-    if (self.nibName && [self.nibName length]!=0){
-        if ([self.nameStr length] > 10) {
+    if (self.nickStr && [self.nickStr length]!=0){
+        if ([self.nickStr length] > 10) {
             
             [self obj_showTotasViewWithMes:@"最多不超过10个字"];
             return;
         }
-        realNickStr = self.nibName;
+        realNickStr = self.nickStr;
         
     }
     
@@ -154,7 +156,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         realNickStr = @"";
     }
     if (self.addressSre && [self.addressSre length]!=0){
-        if ([self.nameStr length] > 20) {
+        if ([self.addressSre length] > 20) {
             
             [self obj_showTotasViewWithMes:@"最多不超过20个字"];
             return;
@@ -218,7 +220,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return 80;
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -315,12 +317,12 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
                 return;
             }
             
-            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[\\u4e00-\\u9fa5\\w\\-_]+"];
-            if(![predicate evaluateWithObject:textField.text])
-            {
-                [self obj_showTotasViewWithMes:@"你输入的昵称中含有非法字符"];
-                return;
-            }
+//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[\\u4e00-\\u9fa5\\w\\-_]+"];
+//            if(![predicate evaluateWithObject:textField.text])
+//            {
+//                [self obj_showTotasViewWithMes:@"你输入的昵称中含有非法字符"];
+//                return;
+//            }
             
         }
 

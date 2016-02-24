@@ -63,7 +63,7 @@
     }];
 
     [self.lineBottom mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.descriTextField.mas_bottom).offset(20);
+        make.top.mas_equalTo(self.descriTextField.mas_bottom).offset(10);
         make.left.mas_equalTo(self.mas_left).offset(20);
         make.right.mas_equalTo(self.mas_right).offset(0);
         make.height.mas_equalTo(@1);

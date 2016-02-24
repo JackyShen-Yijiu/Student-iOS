@@ -34,6 +34,10 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 };
 
 @interface MySaveViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    UIImageView*navBarHairlineImageView;
+}
+
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *buttonArray;
 @property (strong, nonatomic) UIView *menuIndicator;
@@ -58,8 +62,8 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 
 - (UIView *)menuIndicator {
     if (_menuIndicator == nil) {
-        _menuIndicator = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/4-60/2,40-2, 60, 2)];
-        _menuIndicator.backgroundColor = MAINCOLOR;
+        _menuIndicator = [[UIView alloc] initWithFrame:CGRectMake(0,40-2, kSystemWide / 2, 2)];
+        _menuIndicator.backgroundColor = [UIColor yellowColor];
     }
     return _menuIndicator;
 }
@@ -71,9 +75,11 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 }
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 64+40, kSystemWide, kSystemHeight-64-40) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0,40, kSystemWide, kSystemHeight- 64 - 40) style:UITableViewStylePlain];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
@@ -82,7 +88,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     // Do any additional setup after loading the view.
     
     self.title = @"我的喜欢";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
     DYNSLog(@"right = %@",self.naviBarRightButton);
@@ -97,15 +103,42 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
     [self.view addSubview:[self tableViewHeadView]];
     
-    self.tableView.tableFooterView = [[UIView alloc] init];
+    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 1)];
+    view.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+    self.tableView.tableFooterView = view;
     
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    // 隐藏导航条底部分割线
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+    navBarHairlineImageView.hidden=YES;
+
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self startDownLoad];
+}
+-(void)viewDidDisappear:(BOOL)animated {
+    
+    [super viewDidDisappear:animated];
+    
+    navBarHairlineImageView.hidden=NO;
+    
+    
+}
+- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
+    
+    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
+        return(UIImageView*)view;
+    }
+    for(UIView*subview in view.subviews) {
+        UIImageView*imageView = [self findHairlineImageViewUnder:subview];
+        if(imageView) {
+            return imageView;
+        }
+    }
+    return nil;
 }
 
 - (UIButton *)naviBarRightButton {
@@ -249,24 +282,21 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     }];
 }
 - (UIView *)tableViewHeadView {
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, 40)];
-    backGroundView.backgroundColor = [UIColor whiteColor];
-    
+    // 背景
+    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 40)];
+    backGroundView.backgroundColor = YBNavigationBarBgColor;
     backGroundView.layer.shadowColor = RGBColor(204, 204, 204).CGColor;
     backGroundView.layer.shadowOffset = CGSizeMake(0, 1);
     backGroundView.layer.shadowOpacity = 0.5;
     backGroundView.userInteractionEnabled = YES;
-    UIView *centerView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2-1/2, 40/2-18/2, 1, 18)];
-    centerView.backgroundColor = RGBColor(230, 230, 230);
-    [backGroundView addSubview:centerView];
-    
+    // 选择教练
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setTitle:@"教练" forState:UIControlStateNormal];
-    [leftButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
     leftButton.selected = YES;
     [leftButton addTarget:self action:@selector(clickLeftBtn:) forControlEvents:UIControlEventTouchUpInside];
     leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [leftButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
+    [leftButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [backGroundView addSubview:leftButton];
     [leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(backGroundView.mas_left).offset(0);
@@ -276,13 +306,14 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         make.height.mas_equalTo(@40);
     }];
     [self.buttonArray addObject:leftButton];
+    // 选择驾校
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setTitle:@"驾校" forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(clickRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     
-    [rightButton setTitleColor:MAINCOLOR forState:UIControlStateSelected];
+    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateSelected];
     [backGroundView addSubview:rightButton];
     [rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(backGroundView.mas_right).offset(0);
@@ -303,7 +334,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         b.selected = NO;
     }
     [UIView animateWithDuration:0.5 animations:^{
-        self.menuIndicator.frame = CGRectMake(StartOffset, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
+        self.menuIndicator.frame = CGRectMake(0, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
     sender.selected = YES;
     _myLoveState = MyLoveStateCoach;
@@ -314,7 +345,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         b.selected = NO;
     }
     [UIView animateWithDuration:0.5 animations:^{
-        self.menuIndicator.frame = CGRectMake(StartOffset+kSystemWide/2, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
+        self.menuIndicator.frame = CGRectMake(kSystemWide/2, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
     sender.selected = YES;
     _myLoveState = MyLoveStateDriving;

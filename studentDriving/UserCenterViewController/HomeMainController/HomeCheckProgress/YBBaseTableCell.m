@@ -25,9 +25,9 @@
     
     [self addSubview:self.lineImageView];
     CGRect rect = self.bounds;
-    CGFloat margin = 15;
+    CGFloat margin = 80;
     CGFloat height = 1;
-    self.lineImageView.frame = CGRectMake(margin, rect.size.height - height, rect.size.width - margin * 2, height);
+    self.lineImageView.frame = CGRectMake(margin, rect.size.height - height, rect.size.width - margin, height);
 }
 
 - (UIImageView *)lineImageView {

@@ -48,7 +48,7 @@
         btn.selected = YES;
         _realNameButton.selected = NO;
         _complaintWay = 0;
-        if (!_sexWayBlock) {
+        if (_sexWayBlock) {
             _sexWayBlock(self.complaintWay);
         }
         

@@ -1,54 +1,37 @@
 //
-//  YBComplaintController.m
+//  FavouriteViewController.m
 //  studentDriving
 //
-//  Created by zyt on 16/2/18.
+//  Created by zyt on 16/2/24.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "YBComplaintController.h"
-#import "AddlineButtomTextField.h"
-#import "YBComplaintCoachView.h"
-#import "ComplaintSchoolView.h"
-#import "CoachListController.h"
+#import "FavouriteViewController.h"
 
-@interface YBComplaintController ()<UIScrollViewDelegate,complaintPushCoachDetail>
-{
-    UIImageView*navBarHairlineImageView;
-}
-
+@interface FavouriteViewController ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIView *bgView;
 
-@property (nonatomic, strong) UIButton *coachButton; // 投诉方式
+@property (nonatomic, strong) UIButton *coachButton; // 我喜欢的教练，驾校
 
 @property (nonatomic, strong) UIButton *shchoolButton;
 
 @property (nonatomic, strong) UIView *lineFollowView;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-
-@property (nonatomic, strong) YBComplaintCoachView *coachView;
-@property (nonatomic, strong) ComplaintSchoolView *drivingView;
-
-
-
-
-
 @end
 
-@implementation YBComplaintController
+@implementation FavouriteViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
     [self initUI];
-    
-    
 }
 - (void)initUI{
-    self.title = @"投诉";
+    self.title = @"我的喜欢";
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
-//    self.view.backgroundColor = [UIColor clearColor];
+    //    self.view.backgroundColor = [UIColor clearColor];
     self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
     [self.view addSubview:self.bgView];
     [self.view addSubview:self.coachButton];
@@ -56,40 +39,14 @@
     [self.view addSubview:self.lineFollowView];
     
     [self.view addSubview:self.scrollView];
-    [self.scrollView addSubview:self.coachView];
-    [self.scrollView addSubview:self.drivingView];
     self.scrollView.delegate = self;
-    self.coachView.complaintPushCoachDetailDelegate = self;
-    self.coachView.superController = self;
-    self.drivingView.superController = self;
+//    [self.scrollView addSubview:self.coachView];
+//    [self.scrollView addSubview:self.drivingView];
+//    
+//    self.coachView.complaintPushCoachDetailDelegate = self;
+//    self.coachView.superController = self;
+//    self.drivingView.superController = self;
     
-}
-- (void)viewWillAppear:(BOOL)animated{
-    // 隐藏导航条底部分割线
-    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
-    navBarHairlineImageView.hidden=YES;
-
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    navBarHairlineImageView.hidden=NO;
-}
-- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
-    
-    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
-        return(UIImageView*)view;
-    }
-    for(UIView*subview in view.subviews) {
-        UIImageView*imageView = [self findHairlineImageViewUnder:subview];
-        if(imageView) {
-            return imageView;
-        }
-    }
-    return nil;
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-   
 }
 #pragma mark --- ActionButton
 - (void)didClickCoach:(UIButton *)btn{
@@ -104,9 +61,9 @@
             self.lineFollowView.frame = rect;
             self.scrollView.contentOffset = CGPointMake(0, 0);
         }];
-  
+        
     }
-
+    
 }
 - (void)didClickSchool:(UIButton *)btn{
     if (!btn.selected) {
@@ -120,7 +77,7 @@
             self.lineFollowView.frame = rect;
             self.scrollView.contentOffset = CGPointMake(self.view.frame.size.width, 0);
         }];
-
+        
     }
 }
 #pragma mark -- UIScrollerView的代理方法
@@ -135,21 +92,16 @@
         [self didClickSchool:self.shchoolButton];
     }
 }
-#pragma mark -- 教练详情的代理方法
-- (void)initWithComplaintPushCoachDetail{
-    // 教练详情
-    CoachListController *listVC = [CoachListController new];
-    listVC.schoolID = [AcountManager manager].applyschool.infoId;
-    listVC.type = 1;
-    listVC.complaintCoachNameLabel = self.coachView.nameCoachLabel;
-    listVC.complaintCoachNameLabelBottom = self.coachView.bottomCoachName;
-    [self.navigationController pushViewController:listVC animated:YES];
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+
 }
 #pragma mark --- Lazy加载
 - (UIView *)bgView{
     if (_bgView == nil) {
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-        _bgView.backgroundColor = YBNavigationBarBgColor;
+        _bgView.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
         
     }
     return _bgView;
@@ -161,7 +113,7 @@
         _coachButton.backgroundColor = [UIColor clearColor];
         [_coachButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_coachButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateSelected];
-        [_coachButton setTitle:@"投诉教练" forState:UIControlStateNormal];
+        [_coachButton setTitle:@"教练" forState:UIControlStateNormal];
         _coachButton.selected = YES;
         [_coachButton addTarget:self action:@selector(didClickCoach:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -175,7 +127,7 @@
         _shchoolButton.backgroundColor = [UIColor clearColor];
         [_shchoolButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_shchoolButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateSelected];
-        [_shchoolButton setTitle:@"投诉驾校" forState:UIControlStateNormal];
+        [_shchoolButton setTitle:@"驾校" forState:UIControlStateNormal];
         [_shchoolButton addTarget:self action:@selector(didClickSchool:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -188,21 +140,6 @@
     }
     return _lineFollowView;
 }
-- (YBComplaintCoachView *)coachView {
-    if (!_coachView) {
-        CGSize size = self.view.bounds.size;
-         _coachView = [[YBComplaintCoachView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height - 50 - 64)];
-    }
-    return _coachView;
-}
-- (ComplaintSchoolView *)drivingView {
-    if (!_drivingView) {
-        CGSize size = self.view.bounds.size;
-        _drivingView = [[ComplaintSchoolView alloc] initWithFrame:CGRectMake(size.width, 0, size.width, size.height - 50 - 64)];
-//        _drivingView.backgroundColor = [UIColor cyanColor];
-    }
-    return _drivingView;
-}
 - (UIScrollView *)scrollView{
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height - 50 - 64)];
@@ -210,7 +147,8 @@
         _scrollView.contentSize = CGSizeMake(self.view.frame.size.width * 2, 0);
         
     }
-
+    
     return _scrollView;
 }
+
 @end
