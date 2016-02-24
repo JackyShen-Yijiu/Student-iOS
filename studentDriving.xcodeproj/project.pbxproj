@@ -223,6 +223,7 @@
 		B2E8E1D51C73162D000190C2 /* YBStudyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1CE1C73162D000190C2 /* YBStudyTableView.m */; };
 		B2E8E1E91C731B7E000190C2 /* YBToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */; };
 		B2E8E1ED1C741D37000190C2 /* YBStudeyProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */; };
+		B2F1AE4F1C7D7885006D56FF /* YBAppointMentDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1449,6 +1450,8 @@
 		B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBToolBarView.m; sourceTree = "<group>"; };
 		B2E8E1EB1C741D37000190C2 /* YBStudeyProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudeyProgressView.h; sourceTree = "<group>"; };
 		B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudeyProgressView.m; sourceTree = "<group>"; };
+		B2F1AE4D1C7D7885006D56FF /* YBAppointMentDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsController.h; sourceTree = "<group>"; };
+		B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsController.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3482,6 +3485,8 @@
 				B226AF1A1C76EAAA0028DF1A /* YBCoachListSearchController.m */,
 				B22E1E9A1C78923F000E8AEE /* YBForceEvaluateViewController.h */,
 				B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */,
+				B2F1AE4D1C7D7885006D56FF /* YBAppointMentDetailsController.h */,
+				B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6177,6 +6182,7 @@
 				B20DBEDA1C5DB0FF0023676E /* RSADataVerifier.m in Sources */,
 				B226AEE81C748F380028DF1A /* HMCarLicenseModel.m in Sources */,
 				D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */,
+				B2F1AE4F1C7D7885006D56FF /* YBAppointMentDetailsController.m in Sources */,
 				068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */,
 				D588B1201BDDDC2F000C5D6F /* BLInformationManager.m in Sources */,
 				B2E8E1851C72BA4F000190C2 /* WMMenuViewController.m in Sources */,
@@ -6678,7 +6684,6 @@
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
 				D9B268B51C78420900F62804 /* DVVCoachDetailDMCarmodel.m in Sources */,
-				D96712DF1C3FA4B80099C3B9 /* SignInDataModel.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
 				D963FACD1C740B09006955D8 /* UIImageView+DVVWebImage.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
