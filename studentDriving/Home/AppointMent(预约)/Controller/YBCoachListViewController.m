@@ -71,6 +71,11 @@
     // 更换某时段可预约教练
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     
+    if (self.isModifyCoach) {
+        dict[@"timeid"] = self.timeid;
+        dict[@"coursedate"] = self.coursedate;
+    }
+    
     WS(ws);
     [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
        
@@ -134,7 +139,12 @@
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    NSLog(@"%s",__func__);
+    CoachModel *model = self.coachListDataArray[indexPath.row];
+
+    if ([self.delegate respondsToSelector:@selector(YBCoachListViewControllerWithCoach:)]) {
+        [self.delegate YBCoachListViewControllerWithCoach:model];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 - (void)viewWillAppear:(BOOL)animated{

@@ -13,6 +13,7 @@
 @property (copy, nonatomic, readonly) NSString *infoId;
 @property (copy, nonatomic, readonly) NSString *coachid;
 @property (copy, nonatomic, readonly) NSString *coursedate;
+@property (copy, nonatomic, readonly) NSString *coursebegintime;
 @property (strong, nonatomic, readonly) NSNumber *coursestudentcount;
 @property (strong, nonatomic, readonly) CourseTimeModel *coursetime;
 @property (strong, nonatomic, readonly) NSArray *courseuser;

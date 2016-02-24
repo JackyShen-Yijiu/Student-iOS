@@ -13,8 +13,20 @@
 #import "JGYuYueHeadView.h"
 #import "AppointmentCoachTimeInfoModel.h"
 #import "YBCoachListViewController.h"
+#import "BLInformationManager.h"
+#import "EMMessage.h"
+#import "ChatSendHelper.h"
+#import "YBAppointMentNoCountentView.h"
+#import "StudentModel.h"
+#import "CoachModel.h"
 
-@interface YBAppointMentChangeCoachController ()<FDCalendarDelegate>
+static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?coachid=%@&date=%@";
+
+static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
+
+#define kSameTimeStudent @"courseinfo/sametimestudentsv2"
+
+@interface YBAppointMentChangeCoachController ()<FDCalendarDelegate,YBCoachListViewControllerDelegate,JGYuYueHeadViewDelegate>
 
 // 日历
 @property(nonatomic,strong) FDCalendar *TopCalendarHeadView;
@@ -26,12 +38,34 @@
 @property (nonatomic,weak) UICollectionView *collectionView;
 
 @property (strong, nonatomic) NSDate *seletedDate;
+@property (nonatomic,copy) NSString *selectDateStr;
 
-@property (nonatomic,copy) NSString *coachID;
+@property (nonatomic,strong) CoachModel *appointCoach;
+
+@property (nonatomic ,strong) NSString *startTimeStr;
+@property (nonatomic ,strong) NSString *endTimeStr;
+@property (strong, nonatomic) NSString *updateTimeString;
+
+@property (nonatomic,strong) YBAppointMentNoCountentView *noCountmentView;
+
+@property ( nonatomic,weak) UILabel *countLabel;
+
+@property (strong, nonatomic) NSMutableArray *stuDataArray;
+@property (strong, nonatomic) NSMutableArray *appointDataArray;
 
 @end
 
 @implementation YBAppointMentChangeCoachController
+
+- (YBAppointMentNoCountentView *)noCountmentView
+{
+    if (_noCountmentView==nil) {
+        _noCountmentView = [[YBAppointMentNoCountentView alloc] init];
+        _noCountmentView.frame = self.view.bounds;
+        _noCountmentView.hidden = YES;
+    }
+    return _noCountmentView;
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
@@ -69,12 +103,44 @@
     
     [self initUI];
     
+    // 没有内容，占位图
+    [self.view addSubview:self.noCountmentView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kCellChange) name:@"kCellChange" object:nil];
+
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    CoachModel *appointCoach = [user objectForKey:KAppointMentCoach];
+    if (appointCoach&&appointCoach.coachid) {
+        self.appointCoach = appointCoach;
+    }else{
+        self.noCountmentView.hidden = NO;
+    }
+    
 }
 
 - (void)changeCoach
 {
     YBCoachListViewController *vc = [[YBCoachListViewController alloc] init];
+    vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
+}
+
+- (void)YBCoachListViewControllerWithCoach:(CoachModel *)coachModel
+{
+    self.noCountmentView.hidden = YES;
+    self.appointCoach = coachModel;
+    
+}
+
+- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView dateString:(NSString *)dateString isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid
+{
+    
+    YBCoachListViewController *coachList = [[YBCoachListViewController alloc] init];
+    coachList.delegate = self;
+    coachList.isModifyCoach = isModifyCoach;
+    coachList.timeid = timeid;
+    coachList.coursedate = dateString;
+    [self.parentViewController.navigationController pushViewController:coachList animated:YES];
 }
 
 - (void)dealloc
@@ -93,6 +159,8 @@
     
     // 中间方格
     self.midYuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TopCalendarHeadView.frame), self.view.width, kSystemHeight-self.TopCalendarHeadView.height-50)];
+    self.midYuYueheadView.parentViewController = self;
+    self.midYuYueheadView.delegate = self;
     [self.view addSubview:self.midYuYueheadView];
     
     // 底部提交
@@ -114,18 +182,46 @@
     countLabel.font = [UIFont systemFontOfSize:12];
     countLabel.textColor = [UIColor blackColor];
     [footView addSubview:countLabel];
+    self.countLabel = countLabel;
 
+    [self setupcountLabelData];
+    
 }
 
-- (void)commitBtnDidClick
+- (void)setupcountLabelData
 {
-    NSLog(@"%s",__func__);
+    
+    NSMutableString *detailStr = [NSMutableString string];
+
+    if ([AcountManager manager].subjecttwo.progress) {
+        [detailStr appendString:[NSString stringWithFormat:@" %@",[AcountManager manager].subjecttwo.progress]];
+    }else if ([AcountManager manager].subjectthree.progress) {
+        [detailStr appendString:[NSString stringWithFormat:@" %@",[AcountManager manager].subjectthree.progress]];
+    }
+ 
+    if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
+        
+        NSInteger doneCourse = [AcountManager manager].subjecttwo.finishcourse.integerValue;
+       
+        [detailStr appendString:[NSString stringWithFormat:@" 完成:%ld课时",(long)doneCourse]];
+        
+    }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
+        
+        NSInteger doneCourse = [AcountManager manager].subjectthree.finishcourse.integerValue;
+        [detailStr appendString:[NSString stringWithFormat:@" 完成:%ld课时",(long)doneCourse]];
+        
+    }
+    
+    if (detailStr&&[detailStr length]!=0) {
+        self.countLabel.text = detailStr;
+    }
+    
 }
 
 #pragma mark LoadDayData
 - (void)fdCalendar:(FDCalendar *)calendar didSelectedDate:(NSDate *)date
 {
-    NSLog(@"切换日历代理方法 %s",__func__);
+    NSLog(@"切换日历代理方法 %s date:%@",__func__,date);
     
     self.seletedDate = date;
     
@@ -134,13 +230,15 @@
         [self.dateFormattor setDateFormat:@"yyyy-M-d"];
     }
     NSString * dataStr = [self.dateFormattor stringFromDate:date];
-    
+    NSLog(@"切换日历代理方法 dataStr:%@",dataStr);
+    self.selectDateStr = dataStr;
+ 
     // 初始化日历
-    [self.TopCalendarHeadView setCurrentDate:self.seletedDate coachID:self.coachID];
+    [self.TopCalendarHeadView setCurrentDate:self.seletedDate coachID:self.appointCoach.coachid];
 
     // 加载中间预约时间
     [self loadMidYuyueTimeData:dataStr];
-    
+   
     // 设置顶部标题
     self.navigationItem.title = [NSString stringWithFormat:@"%@",[self.dateFormattor stringFromDate:date]];
     
@@ -150,78 +248,303 @@
 {
     
     NSLog(@"loadMidYuyueTimeData dataStr:%@",dataStr);
-    
-    self.midYuYueheadView.userCount = 20;
-    [self.midYuYueheadView receiveCoachTimeData];
-    
-    NSString *  userId = [AcountManager manager].applycoach.infoId;
-     if (userId==nil) {
-     return;
+ 
+     if (self.appointCoach.coachid==nil) {
+         return;
      }
-     
-     WS(ws);
-     [NetWorkEntiry getAllCourseTimeWithUserId:userId DayTime:dataStr success:^(AFHTTPRequestOperation *operation, id responseObject) {
-     
-         NSLog(@"loadMidYuyueTimeData responseObject:%@",responseObject);
-         
-         NSInteger type = [[responseObject objectForKey:@"type"] integerValue];
-         
-         if (type == 1) {
-         
-             NSError *error=nil;
-             
-             NSArray *dataArray = [MTLJSONAdapter modelsOfClass:AppointmentCoachTimeInfoModel.class fromJSONArray:responseObject[@"data"] error:&error];
-             
-             dispatch_async(dispatch_get_main_queue(), ^{
-             
-               [ws.midYuYueheadView receiveCoachTimeData:dataArray];
-             
-             });
-     
-         }else{
-         
-         }
-     
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-     
-         
-     }];
-     
+    
+    WS(ws);
+    NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl,self.appointCoach.coachid,dataStr];
+    
+    NSString *url = [NSString stringWithFormat:BASEURL,urlString];
+    
+    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"loadMidYuyueTimeData data:%@",data);
+        
+        NSDictionary *param = data;
+        DYNSLog(@"msg = %@",param[@"msg"]);
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        
+        if ([type isEqualToString:@"1"]) {
+            
+            NSArray *array = param[@"data"];
+            NSError *error = nil;
+            
+            if (array&&array.count!=0) {
+               
+                self.appointDataArray = [[MTLJSONAdapter modelsOfClass:AppointmentCoachTimeInfoModel.class fromJSONArray:array error:&error] mutableCopy];
+                
+                DYNSLog(@"error = %@",error);
+                
+                [ws.midYuYueheadView receiveCoachTimeData:self.appointDataArray selectData:self.seletedDate coachModel:self.appointCoach];
+                
+            }
+            
+        }else{
+            
+            [self obj_showTotasViewWithMes:param[@"msg"]];
+
+            [ws.midYuYueheadView receiveCoachTimeData:self.appointDataArray selectData:self.seletedDate coachModel:self.appointCoach];
+
+        }
+        
+    }];
+    
 }
 
-- (void)loadFootListDataWithinfoId:(NSString *)infoId
+- (void)kCellChange
 {
     
+    NSArray *array = [BLInformationManager sharedInstance].appointmentData;
+    if (array&&array.count==0) {
+        [self showTotasViewWithMes:@"请选择预约时间"];
+        return;
+    }
     
-    NSString *  userId = [AcountManager manager].applycoach.infoId;
-     if (userId==nil && infoId==nil) {
-     return;
-     }
-     
-     WS(ws);
-     // 加载底部预约列表数据
-     [NetWorkEntiry getcoursereservationlistWithUserId:userId courseid:infoId  success:^(AFHTTPRequestOperation *operation, id responseObject) {
-     
-     NSLog(@"切换日历获取最新数据:responseObject:%@",responseObject);
-     
-     NSInteger type = [[responseObject objectForKey:@"type"] integerValue];
-     
-     if (type == 1) {
-//     
-//     ws.courseDayTableData = [[BaseModelMethod getCourseListArrayFormDicInfo:[responseObject objectArrayForKey:@"data"]] mutableCopy];
-//     
-//     dispatch_async(dispatch_get_main_queue(), ^{
-//     [ws.courseDayTableView reloadData];
-//     });
-     
-     }else{
-     
-     }
-     
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-     
-     }];
+    //    NSArray *userArray = [BLInformationManager sharedInstance].appointmentUserData;
+    //    if (userArray&&userArray.count==0) {
+    //        [self showTotasViewWithMes:@"请选择预约学员"];
+    //        return;
+    //    }
+    
+    
+    // 数组排序
+    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
+        //obj1.coursetime.numMark < obj2.coursetime.numMark
+        return obj1.coursetime.numMark > obj2.coursetime.numMark ;
+        
+    }];
+    NSLog(@"appointmentData resultArray:%@",resultArray);
+    
+    AppointmentCoachTimeInfoModel *firstModel = resultArray.firstObject;
+    AppointmentCoachTimeInfoModel *lastModel = resultArray.lastObject;
+    
+    NSArray *beginArray = [firstModel.coursetime.begintime componentsSeparatedByString:@":"];
+    NSString *beginString = beginArray.firstObject;
+    _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:_updateTimeString]];
+    
+    NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
+    NSString *endString = endArray.firstObject;
+    _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:_updateTimeString]];
+    
+    NSLog(@"self.selectDateStr:%@",self.selectDateStr);
+    NSLog(@"firstModel.coursetime.begintime:%@",firstModel.coursetime.begintime);
+    NSLog(@"lastModel.coursetime.endtime:%@",lastModel.coursetime.endtime);
+    
+    NSMutableString *courselistStr = [NSMutableString string];
+    for (int i = 0; i<resultArray.count; i++) {
+        
+        AppointmentCoachTimeInfoModel *model = resultArray[i];
+        
+        NSString *courseID = model.infoId;
+        NSLog(@"courseID:%@",courseID);
+        
+        if (i==resultArray.count-1) {
+            NSString *lastID = ((AppointmentCoachTimeInfoModel *)[resultArray lastObject]).infoId;
+            [courselistStr appendString:[NSString stringWithFormat:@"%@",lastID]];
+        }else{
+            [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
+        }
+        
+    }
+    
+    WS(ws);
+
+    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kSameTimeStudent];
+    
+    NSLog(@"%@",applyUrlString);
+    NSDictionary *upData = @{@"coachid"   :self.appointCoach.coachid,
+                             @"begintime" :_startTimeStr,
+                             @"endtime"   :_endTimeStr,
+                             @"index"     :@"1"
+                             };
+    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:upData WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        DYNSLog(@"同时段学员 %@",data);
+        
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        
+        if ([type isEqualToString:@"1"]) {
+            
+            NSError *error = nil;
+            ws.stuDataArray = [[MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error] mutableCopy];
+            for (StudentModel *studentModel in self.stuDataArray) {
+                if ([studentModel.userid.userId isEqualToString:[AcountManager manager].userid]) {
+                    [ws.stuDataArray removeObject:studentModel];
+                }
+            }
+            [ws.midYuYueheadView receiveCoachTimeDataWithStudentData:self.stuDataArray coachModel:self.appointCoach];
+            
+        }else {
+            kShowFail(param[@"msg"]);
+        }
+    } withFailure:^(id data) {
+        kShowFail(@"网络连接失败，请检查网络连接");
+    }];
+
+    
 }
+
+- (void)commitBtnDidClick
+{
+    
+    NSArray *array = [BLInformationManager sharedInstance].appointmentData;
+    if (array&&array.count==0) {
+        [self showTotasViewWithMes:@"请选择预约时间"];
+        return;
+    }
+    
+    //    NSArray *userArray = [BLInformationManager sharedInstance].appointmentUserData;
+    //    if (userArray&&userArray.count==0) {
+    //        [self showTotasViewWithMes:@"请选择预约学员"];
+    //        return;
+    //    }
+    
+    
+    // 数组排序
+    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
+        //obj1.coursetime.numMark < obj2.coursetime.numMark
+        return obj1.coursetime.numMark > obj2.coursetime.numMark ;
+        
+    }];
+    NSLog(@"appointmentData resultArray:%@",resultArray);
+    
+    AppointmentCoachTimeInfoModel *firstModel = resultArray.firstObject;
+    AppointmentCoachTimeInfoModel *lastModel = resultArray.lastObject;
+    
+    NSArray *beginArray = [firstModel.coursetime.begintime componentsSeparatedByString:@":"];
+    NSString *beginString = beginArray.firstObject;
+    _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:_updateTimeString]];
+    
+    NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
+    NSString *endString = endArray.firstObject;
+    _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:_updateTimeString]];
+    
+    NSLog(@"self.selectDateStr:%@",self.selectDateStr);
+    NSLog(@"firstModel.coursetime.begintime:%@",firstModel.coursetime.begintime);
+    NSLog(@"lastModel.coursetime.endtime:%@",lastModel.coursetime.endtime);
+    
+    NSMutableString *courselistStr = [NSMutableString string];
+    for (int i = 0; i<resultArray.count; i++) {
+        
+        AppointmentCoachTimeInfoModel *model = resultArray[i];
+        
+        NSString *courseID = model.infoId;
+        NSLog(@"courseID:%@",courseID);
+        
+        if (i==resultArray.count-1) {
+            NSString *lastID = ((AppointmentCoachTimeInfoModel *)[resultArray lastObject]).infoId;
+            [courselistStr appendString:[NSString stringWithFormat:@"%@",lastID]];
+        }else{
+            [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
+        }
+        
+    }
+    
+    /*
+     
+     "userid": "560539bea694336c25c3acb9",（用户id）
+     
+     "coachid": "5616352721ec29041a9af889",（教练id）
+     
+     "courselist": "5616352721ec29041a9af889, 5616352721ec29041a9af889",（课程id列表）
+     
+     "is_shuttle": 1,（是否接送1接送0不接送）
+     
+     "address": "sdfsdfsdfdsfdssf",（接送地址）
+     
+     "begintime": "2015-09-10 10:00:00",（课程的开始时间
+     
+     "endtime": "2015-09-10 14:00:00"（课程结束时间）
+     
+     */
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"userid"] = [AcountManager manager].userid;
+    params[@"coachid"] = self.appointCoach.coachid;
+    params[@"courselist"] = courselistStr;
+    params[@"is_shuttle"] = @"1";
+    params[@"address"] = @"";
+    params[@"begintime"] = [NSString stringWithFormat:@"%@ %@",self.selectDateStr,firstModel.coursetime.begintime];
+    params[@"endtime"] = [NSString stringWithFormat:@"%@ %@",self.selectDateStr,lastModel.coursetime.endtime];
+    
+    NSLog(@"预约params:%@",params);
+    /*
+     
+     预约params:{
+     address = "";
+     begintime = "2016-2-24 11:00:00";
+     coachid = 568d01c3ee34ba2e74f1e233;
+     courselist = "56cbcfc88305b8fd727688fa,56cbcfc88305b8fd727688fb,56cbcfc88305b8fd727688fc,56cbcfc88305b8fd727688fd";
+     endtime = "2016-2-24 15:00:00";
+     "is_shuttle" = 1;
+     userid = 568b21993b4fb24b6b5614a6;
+     }
+     
+     */
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kuserUpdateParam];
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:params WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        NSDictionary *param = data;
+        DYNSLog(@"param = %@",param[@"msg"]);
+        NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
+        
+        if (type.integerValue == 1) {
+            
+            [[BLInformationManager sharedInstance].appointmentData removeAllObjects];
+            
+            [self obj_showTotasViewWithMes:@"预约成功"];
+            
+            NSString *userName = [AcountManager manager].userName;
+            
+            NSString *content = [NSString stringWithFormat:@"%@学员,预约了您%@日的课程,请查看!", userName,self.selectDateStr];
+            
+            // 预约成功后，通过环信给教练发送一条提示消息
+            EMMessage *message = [ChatSendHelper sendTextMessageWithString:content toUsername:self.appointCoach.coachid isChatGroup:NO requireEncryption:NO ext:nil];
+            
+            [[EaseMob sharedInstance].chatManager asyncSendMessage:message progress:nil prepare:^(EMMessage *message, EMError *error) {
+                
+                
+            } onQueue:nil completion:^(EMMessage *message, EMError *error) {
+                
+                if(!error){
+                    
+                }
+                
+            } onQueue:nil];
+            
+            //存储预约的教练
+            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+            [ud setObject:self.appointCoach forKey:KAppointMentCoach];
+            [ud synchronize];
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            
+        }else {
+            [self obj_showTotasViewWithMes:msg];
+        }
+        
+    }];
+    
+}
+
+- (int)chagetime:(NSString *)timeStr data:(NSString *)dataStr {
+    NSLog(@"%@%@",timeStr,dataStr);
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    //设置格式
+    df.dateFormat = @"yyyy-MM-dd HH:mm:ss.0";
+    //将符合格式的字符串转成NSDate对象
+    NSDate *date = [df dateFromString:[NSString stringWithFormat:@"%@ %@:00:00",dataStr,timeStr]];
+    //计算一个时间和系统当前时间的时间差
+    int second = [date timeIntervalSince1970];
+    return second;
+}
+
 
 
 /*

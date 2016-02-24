@@ -164,7 +164,7 @@ static NSDateFormatter *dateFormattor;
     
     // 设置选中的月份的教练休假信息
     if (coachID&&[coachID length]!=0) {
-        [self loadCurrentMonthStateWithData:date coachID:coachID];
+    //    [self loadCurrentMonthStateWithData:date coachID:coachID];
     }
     
 }
@@ -174,23 +174,21 @@ static NSDateFormatter *dateFormattor;
 {
     NSLog(@"设置当前日期，初始化");
     
-    self.centerCalendarItem.date = date;
+   // self.centerCalendarItem.date = date;
     
-    self.leftCalendarItem.date = [self.centerCalendarItem previousMonthDate];
+   // self.leftCalendarItem.date = [self.centerCalendarItem previousMonthDate];
     
-    self.rightCalendarItem.date = [self.centerCalendarItem nextMonthDate];
+   // self.rightCalendarItem.date = [self.centerCalendarItem nextMonthDate];
     
-    // 设置顶部标题
-//    [self.titleLabel setText:[self stringFromDate:self.centerCalendarItem.date]];
     if ([_delegate respondsToSelector:@selector(fdCalendar:didSelectedDate:)]) {
-        [_delegate fdCalendar:self didSelectedDate:self.centerCalendarItem.date];
+        [_delegate fdCalendar:self didSelectedDate:date];
     }
     
     // 设置当前月份的预约
-    [self loadCurrentCalendarData:date];
+   // [self loadCurrentCalendarData:self.centerCalendarItem.date];
     
     // 设置选中的月份的教练休假信息
-    [self loadCurrentMonthStateWithData:date coachID:coachID];
+   // [self loadCurrentMonthStateWithData:self.centerCalendarItem.date coachID:coachID];
 
 }
 
@@ -249,6 +247,8 @@ static NSDateFormatter *dateFormattor;
 {
     NSLog(@"设置当前月份的预约、休假 网络请求 date.description:%@",date.description);
     
+    [self.centerCalendarItem reloadData];
+
     /*
      
     if (!self.dateFormattor) {

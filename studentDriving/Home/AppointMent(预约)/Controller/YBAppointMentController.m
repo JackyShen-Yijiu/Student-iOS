@@ -354,7 +354,8 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     NSDictionary * dic = @{
                            @"subjectid":[NSString stringWithFormat:@"%ld",(long)self.number],
-                           @"userid":userid
+                           @"userid":userid,
+                           @"reservationstate":@"0"
                            };
    
     [JENetwoking startDownLoadWithUrl:urlString postParam:dic WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {

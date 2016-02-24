@@ -15,6 +15,15 @@
  *  @return 1:大于当前日期 -1:小于当前时间 0:等于当前时间
  */
 +(int)compareDateWithSelectDate:(NSDate *)selectDate;
+
+/**
+ *  判断传入的日期和当前日期比较
+ *  @parma selectDate:选择的日期 yyyy-mm
+ *  @return 1:大于当前日期 -1:小于当前时间 0:等于当前时间
+ */
++(int)compareMonthDateWithSelectDate:(NSDate *)selectDate;
+
+
 /**
  *  判断传入的日期和当前日期比较
  *  @parma selectDate:选择的日期 yyyy-mm-dd hh:mm:ss

@@ -189,31 +189,57 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
 
 #pragma mark - Custom Accessors
 
-- (void)setDate:(NSDate *)date
-{
-    _date = date;
-    
-    [self.collectionView reloadData];
-    
-}
+//- (void)setDate:(NSDate *)date
+//{
+//    _date = date;
+//    
+//    [self.collectionView reloadData];
+//    
+//}
 
 - (void)reloadData
 {
     NSLog(@"reloadData.restArray:%@",self.restArray);
     NSLog(@"reloadData.bookArray:%@",self.bookArray);
     
-#warning 跳转到当天的item上
-    
-    self.collectionView.contentOffset = CGPointMake(0, 0);
+    self.collectionView.contentOffset = CGPointMake([self getCurrentDataOffsetWithData:self.date], 0);
     
     [self.collectionView reloadData];
     
 }
 
-- (void)getCurrentDataOffsetWithData:(NSDate *)date
+- (CGFloat)getCurrentDataOffsetWithData:(NSDate *)date
 {
+    NSDateFormatter *fomatter = [[NSDateFormatter alloc] init];
+    [fomatter setDateFormat:@"dd"];
+   
+    NSString *dateStr = [fomatter stringFromDate:date];
     
+    if ([YBObjectTool compareMonthDateWithSelectDate:date]!=1) {
+        return [dateStr integerValue] / 7 * self.collectionView.width;
+    }else{
+        return 0;
+    }
+
 }
+
+//- (BOOL)isBelongCurrentMonthToData:(NSDate *)date
+//{
+//    NSDateFormatter *fomatter = [[NSDateFormatter alloc] init];
+//    [fomatter setDateFormat:@"yyyy-mm"];
+//    
+//    NSString *dataStr = [fomatter stringFromDate:date];
+//    
+//    NSDate *currentDate = [NSDate date];
+//    NSString *currentDataStr = [fomatter stringFromDate:currentDate];
+//    
+//    if ([dataStr isEqualToString:currentDataStr]) {
+//        return YES;
+//    }else{
+//        return NO;
+//    }
+//    
+//}
 
 #pragma mark - Public
 
@@ -550,8 +576,6 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    
-    
     NSDateComponents *components = [[NSCalendar currentCalendar] components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay fromDate:self.date];
     
     NSInteger firstWeekday = [self weekdayOfFirstDayInDate];
@@ -559,7 +583,7 @@ typedef NS_ENUM(NSUInteger, FDCalendarMonth) {
     [components setDay:indexPath.row - firstWeekday + 1];
     
     NSDate *selectedDate = [[NSCalendar currentCalendar] dateFromComponents:components];
-    self.date = selectedDate;
+//    self.date = selectedDate;
     
     if (self.delegate && [self.delegate respondsToSelector:@selector(calendarItem:didSelectedDate:)]) {
         [self.delegate calendarItem:self didSelectedDate:selectedDate];

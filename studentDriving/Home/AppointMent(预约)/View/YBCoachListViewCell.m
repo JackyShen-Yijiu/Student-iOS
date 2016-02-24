@@ -44,7 +44,6 @@
 
 - (void)receivedCellModelWith:(CoachModel *)coachModel {
     
- 
     self.headImageView.layer.masksToBounds = YES;
     self.headImageView.layer.cornerRadius = self.headImageView.width/2;
     
