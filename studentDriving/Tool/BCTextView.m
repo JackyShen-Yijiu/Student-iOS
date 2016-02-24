@@ -24,7 +24,6 @@
     if (self = [super initWithFrame:frame]) {
         
         self.placeholder.text = placeholder;
-        
         [self addSubview:self.placeholder];
         [self.placeholder mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.mas_top).offset(10);
@@ -34,6 +33,5 @@
     }
     return self;
 }
-
 
 @end
