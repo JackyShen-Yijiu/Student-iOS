@@ -13,6 +13,9 @@
 #import "CoachListController.h"
 
 @interface YBComplaintController ()<UIScrollViewDelegate,complaintPushCoachDetail>
+{
+    UIImageView*navBarHairlineImageView;
+}
 
 @property (nonatomic, strong) UIView *bgView;
 
@@ -62,8 +65,28 @@
     
 }
 - (void)viewWillAppear:(BOOL)animated{
-    
+    // 隐藏导航条底部分割线
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+    navBarHairlineImageView.hidden=YES;
+
 }
+- (void)viewDidDisappear:(BOOL)animated{
+    navBarHairlineImageView.hidden=NO;
+}
+- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
+    
+    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
+        return(UIImageView*)view;
+    }
+    for(UIView*subview in view.subviews) {
+        UIImageView*imageView = [self findHairlineImageViewUnder:subview];
+        if(imageView) {
+            return imageView;
+        }
+    }
+    return nil;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    
@@ -126,7 +149,7 @@
 - (UIView *)bgView{
     if (_bgView == nil) {
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-        _bgView.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        _bgView.backgroundColor = YBNavigationBarBgColor;
         
     }
     return _bgView;

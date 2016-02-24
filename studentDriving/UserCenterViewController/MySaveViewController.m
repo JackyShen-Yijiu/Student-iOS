@@ -34,6 +34,10 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 };
 
 @interface MySaveViewController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    UIImageView*navBarHairlineImageView;
+}
+
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *buttonArray;
 @property (strong, nonatomic) UIView *menuIndicator;
@@ -107,9 +111,34 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    // 隐藏导航条底部分割线
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+    navBarHairlineImageView.hidden=YES;
+
     
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self startDownLoad];
+}
+-(void)viewDidDisappear:(BOOL)animated {
+    
+    [super viewDidDisappear:animated];
+    
+    navBarHairlineImageView.hidden=NO;
+    
+    
+}
+- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
+    
+    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
+        return(UIImageView*)view;
+    }
+    for(UIView*subview in view.subviews) {
+        UIImageView*imageView = [self findHairlineImageViewUnder:subview];
+        if(imageView) {
+            return imageView;
+        }
+    }
+    return nil;
 }
 
 - (UIButton *)naviBarRightButton {
@@ -255,7 +284,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 - (UIView *)tableViewHeadView {
     // 背景
     UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 40)];
-    backGroundView.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+    backGroundView.backgroundColor = YBNavigationBarBgColor;
     backGroundView.layer.shadowColor = RGBColor(204, 204, 204).CGColor;
     backGroundView.layer.shadowOffset = CGSizeMake(0, 1);
     backGroundView.layer.shadowOpacity = 0.5;
