@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YBWebBaseViewController.h"
 
-@interface QuestionBankViewController : UIViewController
+@interface QuestionBankViewController : YBWebBaseViewController
 @property (copy, nonatomic) NSString *questionlisturl;
 @property (nonatomic,assign) BOOL isModal;
 @end

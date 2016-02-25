@@ -26,20 +26,6 @@
 #import "YBObjectTool.h"
 #import "YBAppointMentDetailsController.h"
 
-static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?userid=%@&subjectid=%ld";
-
-static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
-
-static NSString *const KAppointgetmyreservation = @"courseinfo/getmyreservation";
-
-static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
-
-static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
-
-#define ksubject      @"subject"
-#define ksubjectTwo   @"subjecttwo"
-#define ksubjectThree @"subjectthree"
-
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
@@ -457,7 +443,6 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
     }];
     
-    
 }
 
 - (void)addLoadSubjectProress
@@ -466,174 +451,8 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
         return;
     }
     
-    // 申请状态保存
-    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
-    NSDictionary *param = @{@"userid":[AcountManager manager].userid};
-    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        
-        NSLog(@"申请状态保存 data:%@",data);
-        /*
-         
-         申请状态保存 data:{
-             data =     {
-                 "_id" = 568b21993b4fb24b6b5614a6;
-                 applycount = 0;
-                 applyinfo =         {
-                 applytime = "2016-01-05T02:42:12.298Z";
-                 handelmessage =             (
-                 "\U4e00\U6b65\U4e92\U8054\U7f51\U9a7e\U6821\U626b\U63cf\U9a8c\U8bc1"
-                 );
-                 handelstate = 2;
-                 handeltime = "2016-01-05T02:43:46.901Z";
-             };
-             applystate = 2;
-             paytype = 1;
-             paytypestatus = 0;
-             };
-             msg = "";
-             type = 1;
-         }
-         
-         */
-        if (!data) {
-            return ;
-        }
-        __weak typeof(self) ws = self;
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        
-        if ([type isEqualToString:@"1"]) {
-            
-            NSDictionary *dataDic = [param objectForKey:@"data"];
-            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
-                return;
-            }
-            
-            if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {// 尚未报名
-                
-                [AcountManager saveUserApplyState:@"0"];
-                
-            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {// 已报名,尚未交钱
-                
-                [AcountManager saveUserApplyState:@"1"];
-                
-            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 2) {// 正常学习,
-                
-                [AcountManager saveUserApplyState:@"2"];
-               
-            }else {
-                
-                [AcountManager saveUserApplyState:@"3"];
-            }
-            
-            [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
-            
-        }else {
-            
-            NSLog(@"1:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
-            
-            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
-        }
-    } withFailure:^(id data) {
-        [self showTotasViewWithMes:@"网络错误"];
-    }];
-    
-    // 获取首页状态
-    NSString *getMyProgress = [NSString stringWithFormat:BASEURL,kgetMyProgress];
-    [JENetwoking startDownLoadWithUrl:getMyProgress postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        
-        NSLog(@"获取首页状态 data:%@",data);
-        /*
-         
-         获取首页状态 data:{
-         data =     {
-             "_id" = 568b21993b4fb24b6b5614a6;
-             subject =         {
-             name = "\U79d1\U76ee\U4e09";
-             subjectid = 3;
-             };
-             subjectfour =         {
-             finishcourse = 0;
-             missingcourse = 0;
-             officialhours = 0;
-             progress = "\U672a\U5f00\U59cb";
-             reservation = 0;
-             totalcourse = 3;
-             };
-             subjectone =         {
-                 finishcourse = 0;
-                 missingcourse = 0;
-                 officialhours = 0;
-                 progress = "\U672a\U5f00\U59cb";
-                 reservation = 0;
-                 totalcourse = 24;
-             };
-             subjectthree =         {
-                 finishcourse = 11;
-                 missingcourse = 0;
-                 officialhours = 0;
-                 progress = "\U79d1\U76ee\U4e09\U7b2c1--4\U8bfe\U65f6  \U6389\U5934";
-                 reservation = 5;
-                 reservationid = 568fbc27ac7097c67a4e9eae;
-                 totalcourse = 16;
-             };
-             subjecttwo =         {
-                 finishcourse = 15;
-                 missingcourse = 0;
-                 officialhours = 0;
-                 progress = "\U79d1\U76ee\U4e8c\U7b2c6\U8bfe\U65f6  \U8d77\U6b65";
-                 reservation = 7;
-                 reservationid = 568b77287c77b9036fc1a404;
-                 totalcourse = 30;
-             };
-         };
-         msg = "";
-         type = 1;
-         }
-         
-         */
-        
-        if (!data) {
-            return ;
-        }
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
-            NSDictionary *dataDic = [param objectForKey:@"data"];
-            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
-                return;
-            }
-           
-            if ([dataDic objectForKey:@"subject"]) {
-                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subject"] WithKey:ksubject];
-                self.number = 1;
-            }
-            
-            if ([dataDic objectForKey:@"subjecttwo"]) {
-                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjecttwo"] WithKey:ksubjectTwo];
-                self.number = 2;
-            }
-            
-            if ([dataDic objectForKey:@"subjectthree"]) {
-                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjectthree"] WithKey:ksubjectThree];
-                self.number = 3;
-            }
-            
-            [self.courseDayTableView.mj_header beginRefreshing];
-            
-            NSLog(@"__%@",[AcountManager manager].userSubject.name);
-            NSLog(@"——%@",[AcountManager manager].subjecttwo.progress);
-            NSLog(@"__%@",[AcountManager manager].subjectthree.progress);
-            
-        }else {
-            
-            NSLog(@"2:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
-            
-            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
-        }
-    } withFailure:^(id data) {
-        [self showTotasViewWithMes:@"网络错误"];
-    }];
+    self.number = [[AcountManager manager].userSubject.subjectId integerValue];
+    [self.courseDayTableView.mj_header beginRefreshing];
     
 }
 

@@ -21,7 +21,7 @@
 #import <SDCycleScrollView.h>
 //      /info/examquestion
 #import "ChatListViewController.h"
-static NSString *const kexamquestionUrl = @"/info/examquestion";
+//static NSString *const kexamquestionUrl = @"/info/examquestion";
 
 @interface SubjectFirstViewController ()
 

@@ -230,6 +230,9 @@
 		B2F1AE581C7DB5FF006D56FF /* YBAppointMentDetailsCancleView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE571C7DB5FF006D56FF /* YBAppointMentDetailsCancleView.m */; };
 		B2F1AE5B1C7DBAED006D56FF /* YBCancleAppointMentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE5A1C7DBAED006D56FF /* YBCancleAppointMentController.m */; };
 		B2F1AE5E1C7DD14A006D56FF /* YBTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE5D1C7DD14A006D56FF /* YBTextView.m */; };
+		B2F1AE641C7E9CE4006D56FF /* SubjectOneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE631C7E9CE4006D56FF /* SubjectOneModel.m */; };
+		B2F1AE671C7E9CF2006D56FF /* SubjectFourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE661C7E9CF2006D56FF /* SubjectFourModel.m */; };
+		B2F1AE6A1C7EABDF006D56FF /* YBWebBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE691C7EABDF006D56FF /* YBWebBaseViewController.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -804,7 +807,6 @@
 		D977B8D91C7C69DD00ABE205 /* DVVSignUpCoachDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8B81C7C69DD00ABE205 /* DVVSignUpCoachDMRootClass.m */; };
 		D977B8DA1C7C69DD00ABE205 /* DVVSignUpCoachDMSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8BA1C7C69DD00ABE205 /* DVVSignUpCoachDMSubject.m */; };
 		D977B8DB1C7C69DD00ABE205 /* DVVSignUpSchoolDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8BC1C7C69DD00ABE205 /* DVVSignUpSchoolDMData.m */; };
-		D977B8DC1C7C69DD00ABE205 /* DVVSignUpSchoolDMLogoimg.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8BE1C7C69DD00ABE205 /* DVVSignUpSchoolDMLogoimg.m */; };
 		D977B8DD1C7C69DD00ABE205 /* DVVSignUpSchoolDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8C01C7C69DD00ABE205 /* DVVSignUpSchoolDMRootClass.m */; };
 		D977B8DE1C7C69DD00ABE205 /* DVVSignUpCoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8C21C7C69DD00ABE205 /* DVVSignUpCoachCell.m */; };
 		D977B8DF1C7C69DD00ABE205 /* DVVSignUpCoachCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D977B8C31C7C69DD00ABE205 /* DVVSignUpCoachCell.xib */; };
@@ -1485,6 +1487,12 @@
 		B2F1AE5A1C7DBAED006D56FF /* YBCancleAppointMentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCancleAppointMentController.m; sourceTree = "<group>"; };
 		B2F1AE5C1C7DD14A006D56FF /* YBTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBTextView.h; sourceTree = "<group>"; };
 		B2F1AE5D1C7DD14A006D56FF /* YBTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBTextView.m; sourceTree = "<group>"; };
+		B2F1AE621C7E9CE4006D56FF /* SubjectOneModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectOneModel.h; sourceTree = "<group>"; };
+		B2F1AE631C7E9CE4006D56FF /* SubjectOneModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectOneModel.m; sourceTree = "<group>"; };
+		B2F1AE651C7E9CF2006D56FF /* SubjectFourModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SubjectFourModel.h; sourceTree = "<group>"; };
+		B2F1AE661C7E9CF2006D56FF /* SubjectFourModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectFourModel.m; sourceTree = "<group>"; };
+		B2F1AE681C7EABDF006D56FF /* YBWebBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBWebBaseViewController.h; sourceTree = "<group>"; };
+		B2F1AE691C7EABDF006D56FF /* YBWebBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBWebBaseViewController.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3462,6 +3470,8 @@
 				B2E8E16F1C72BA4F000190C2 /* WMOtherViewController.h */,
 				B2E8E1701C72BA4F000190C2 /* WMOtherViewController.m */,
 				B2E8E1711C72BA4F000190C2 /* WMOtherViewController.xib */,
+				B2F1AE681C7EABDF006D56FF /* YBWebBaseViewController.h */,
+				B2F1AE691C7EABDF006D56FF /* YBWebBaseViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -4825,10 +4835,6 @@
 				D51256B01BE1D005002717DA /* UserIdModel.m */,
 				D51256B21BE1DB9A002717DA /* StudentDetailModel.h */,
 				D51256B31BE1DB9A002717DA /* StudentDetailModel.m */,
-				D51256B51BE1F084002717DA /* SubjectTwoModel.h */,
-				D51256B61BE1F084002717DA /* SubjectTwoModel.m */,
-				D5C240251BED078300832CF3 /* SubjectThreeModel.h */,
-				D5C240261BED078300832CF3 /* SubjectThreeModel.m */,
 				D51256C71BE348BA002717DA /* StudentCommentModel.h */,
 				D51256C81BE348BA002717DA /* StudentCommentModel.m */,
 				D51256CA1BE348DC002717DA /* CommentModel.h */,
@@ -4851,6 +4857,14 @@
 				B218183B1C5B201D00F973A7 /* tagslistModel.m */,
 				B20DBBB61C5B4B130023676E /* serverclasslistModel.h */,
 				B20DBBB71C5B4B130023676E /* serverclasslistModel.m */,
+				B2F1AE621C7E9CE4006D56FF /* SubjectOneModel.h */,
+				B2F1AE631C7E9CE4006D56FF /* SubjectOneModel.m */,
+				D51256B51BE1F084002717DA /* SubjectTwoModel.h */,
+				D51256B61BE1F084002717DA /* SubjectTwoModel.m */,
+				D5C240251BED078300832CF3 /* SubjectThreeModel.h */,
+				D5C240261BED078300832CF3 /* SubjectThreeModel.m */,
+				B2F1AE651C7E9CF2006D56FF /* SubjectFourModel.h */,
+				B2F1AE661C7E9CF2006D56FF /* SubjectFourModel.m */,
 			);
 			path = BlackCatModel;
 			sourceTree = "<group>";
@@ -6359,6 +6373,7 @@
 				568DF2121C75756900008829 /* MagicMainTableViewCell.m in Sources */,
 				D5604B751BF656C50020F0D7 /* SRRefreshView.m in Sources */,
 				56DD9C1A1C7C037D00552A56 /* EditorTopCell.m in Sources */,
+				B2F1AE671C7E9CF2006D56FF /* SubjectFourModel.m in Sources */,
 				56DAB10F1C7AFADF00D7B942 /* HomeAdvantageController.m in Sources */,
 				060DB4021C5B1E390039C30F /* SignUpFirmOrderController.m in Sources */,
 				D9A46DCC1C25049900271747 /* SweepCodeSignInController.m in Sources */,
@@ -6616,6 +6631,7 @@
 				D588AFC11BDDDAAB000C5D6F /* DrivingModel.m in Sources */,
 				D588B0511BDDDB71000C5D6F /* GenderViewController.m in Sources */,
 				56DAB1021C7AF9CF00D7B942 /* YBComplaintController.m in Sources */,
+				B2F1AE641C7E9CE4006D56FF /* SubjectOneModel.m in Sources */,
 				D588B10F1BDDDC2F000C5D6F /* NSUserStoreTool.m in Sources */,
 				D977B8DB1C7C69DD00ABE205 /* DVVSignUpSchoolDMData.m in Sources */,
 				D5604B451BF656C50020F0D7 /* EMAlertView.m in Sources */,
@@ -6690,7 +6706,6 @@
 				B2E8E1BC1C72CA83000190C2 /* YBHomeBaseController.m in Sources */,
 				B2F1AE5B1C7DBAED006D56FF /* YBCancleAppointMentController.m in Sources */,
 				56DD9C1D1C7C171E00552A56 /* EditorDetailController.m in Sources */,
-				D9B268BC1C78420900F62804 /* DVVCoachDetailDMTrainfieldlinfo.m in Sources */,
 				D96D1BD31C2B859C00F1C282 /* FourViewController.m in Sources */,
 				D588B0D21BDDDC14000C5D6F /* UserCenterCell.m in Sources */,
 				D5604B851BF656C50020F0D7 /* UIViewController+HUD.m in Sources */,
@@ -6823,7 +6838,6 @@
 				B226AEF41C748FFE0028DF1A /* PortraitView.m in Sources */,
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
-				D9B268B51C78420900F62804 /* DVVCoachDetailDMCarmodel.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
 				D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */,
@@ -6840,6 +6854,7 @@
 				D9B268C41C788D7C00F62804 /* DVVCoachDetailTagCell.m in Sources */,
 				D99674861C7D54610000CC65 /* DVVHorizontalScrollImagesCell.m in Sources */,
 				D5C240061BE9FB8A00832CF3 /* BLAVplayerCell.m in Sources */,
+				B2F1AE6A1C7EABDF006D56FF /* YBWebBaseViewController.m in Sources */,
 				D588B0D01BDDDC14000C5D6F /* CoachDetailCell.m in Sources */,
 				D5604B521BF656C50020F0D7 /* DACircularProgressView.m in Sources */,
 				D5604C871BF656F30020F0D7 /* EMChatAudioBubbleView.m in Sources */,

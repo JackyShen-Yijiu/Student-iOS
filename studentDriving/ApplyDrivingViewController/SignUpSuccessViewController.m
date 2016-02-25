@@ -17,7 +17,7 @@
 
 static NSString *const kUserInfo = @"/userinfo/getapplyschoolinfo";
 static NSString *const kCreatQrcode = @"/create_qrcode";
-static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
+//static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
 @interface SignUpSuccessViewController ()
 
