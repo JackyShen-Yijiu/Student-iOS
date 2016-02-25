@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YBWebBaseViewController.h"
 
-@interface WrongQuestionViewController : UIViewController
+@interface WrongQuestionViewController : YBWebBaseViewController
+
 @property (copy, nonatomic) NSString *questionerrorurl;
 
 @property (nonatomic,assign) BOOL isModal;

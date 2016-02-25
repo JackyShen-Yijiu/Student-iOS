@@ -49,8 +49,12 @@
 }
 
 - (void)refreshData:(DVVSignUpSchoolDMData *)dmData {
+    
+//    DVVSignUpSchoolDMLogoimg *
+    
     [_iconImageView dvv_downloadImage:dmData.logoimg.originalpic
                      placeholderImage:[UIImage imageNamed:@"120"]];
+    NSLog(@"dmData.logoimg.originalpic: %@", dmData.logoimg.originalpic);
     if (dmData.name) {
         _nameLabel.text = dmData.name;
     }else {

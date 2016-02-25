@@ -204,6 +204,8 @@ static NSString *coachCellID = @"coachCellID";
 
 - (void)beginRefresh {
     [DVVToast showFromView:self.view OffSetY:-10];
+    // 当刷新时，刷新下数据，避免驾校和教练切换时，由于网络延迟，点击cell崩溃
+    [self.tableView reloadData];
     if (0 == _showType) {
         [_schoolViewModel dvv_networkRequestRefresh];
     }else {

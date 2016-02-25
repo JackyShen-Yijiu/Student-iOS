@@ -13,8 +13,10 @@
 #import "ExamCarModel.h"
 #import "Logoimg.h"
 #import "SubjectModel.h"
+#import "SubjectOneModel.h"
 #import "SubjectTwoModel.h"
 #import "SubjectThreeModel.h"
+#import "SubjectFourModel.h"
 #import "BannerModel.h"
 
 @interface AcountManager : NSObject
@@ -42,8 +44,10 @@
 @property (readonly,copy, nonatomic) NSString *userSignature;
 @property (readonly,copy, nonatomic) NSString *userHeadImageUrl;
 @property (readonly,strong, nonatomic) SubjectModel *userSubject;
+@property (readonly,strong, nonatomic) SubjectOneModel *subjectone;
 @property (readonly, strong, nonatomic) SubjectTwoModel *subjecttwo;
 @property (readonly,strong, nonatomic) SubjectThreeModel *subjectthree;
+@property (readonly,strong, nonatomic) SubjectFourModel *subjectfour;
 
 // 定位到的经纬度
 @property (nonatomic, copy) NSString *latitude;

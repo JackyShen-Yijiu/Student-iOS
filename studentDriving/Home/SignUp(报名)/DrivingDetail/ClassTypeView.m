@@ -111,18 +111,18 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return ;
     }
     
-//    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
     
         if (_signUpButtonBlock) {
             ClassTypeDMData *dmData = _viewModel.dataArray[sender.tag];
             _signUpButtonBlock(dmData);
         }
         
-//    }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]){
-//        [self obj_showTotasViewWithMes:@"报名正在申请中"];
-//    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]){
-//        [self obj_showTotasViewWithMes:@"您已经报过名"];
-//    }
+    }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]){
+        [self obj_showTotasViewWithMes:@"报名正在申请中"];
+    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]){
+        [self obj_showTotasViewWithMes:@"您已经报过名"];
+    }
 }
 
 - (void)setClassTypeNetworkSuccessBlock:(ClassTypeViewBlock)handle {

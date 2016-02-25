@@ -8,9 +8,9 @@
 
 
 #import <UIKit/UIKit.h>
-@interface QuestionTestViewController : UIViewController
+#import "YBWebBaseViewController.h"
+
+@interface QuestionTestViewController : YBWebBaseViewController
 @property (copy, nonatomic) NSString *questiontesturl;
-
 @property (nonatomic,assign) BOOL isModal;
-
 @end

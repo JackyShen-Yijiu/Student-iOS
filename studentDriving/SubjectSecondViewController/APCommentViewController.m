@@ -13,7 +13,7 @@
 #import "BCTextView.h"
 #import "AppointmentViewController.h"
 
-static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
+//static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 
 @interface APCommentViewController ()<UITableViewDataSource,UITableViewDelegate,CommentCellDelegate,UITextViewDelegate>{
     BCTextView *bctextView;

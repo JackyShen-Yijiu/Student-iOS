@@ -58,19 +58,19 @@
 #import "MyAppointmentModel.h"
 
 // 科目三
-static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
+//static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
 static NSString *kConversationChatter = @"ConversationChatter";
 
-static NSString *const kexamquestionUrl = @"info/examquestion";
+//static NSString *const kexamquestionUrl = @"info/examquestion";
 
-static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
+//static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
-static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?userid=%@&subjectid=%ld";
+//static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?userid=%@&subjectid=%ld";
 
-#define ksubject      @"subject"
-#define ksubjectTwo   @"subjecttwo"
-#define ksubjectThree @"subjectthree"
+//#define ksubject      @"subject"
+//#define ksubjectTwo   @"subjecttwo"
+//#define ksubjectThree @"subjectthree"
 
 //#define carOffsetX   (((systemsW - 10) * 0.2) - 10)
 #define systemsW   [[UIScreen mainScreen] bounds].size.width

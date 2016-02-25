@@ -22,7 +22,7 @@ typedef void(^DVVBaseDoubleRowCell_TextFieldBlock)(UITextField *textField, DVVBa
 
 - (void)showPrompt;
 
-- (void)hiddenPrompt;
+- (void)hidePrompt;
 
 - (void)dvvBaseDoubleRowCell_setTextFieldDidBeginEditingBlock:(DVVBaseDoubleRowCell_TextFieldBlock)didBeginEditingBlock;
 

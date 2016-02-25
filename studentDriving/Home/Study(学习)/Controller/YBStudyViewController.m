@@ -35,6 +35,14 @@
 @property (nonatomic, strong) NSMutableArray *kemusanArray;
 @property (nonatomic, strong) NSMutableArray *kemusiArray;
 
+@property (copy, nonatomic) NSString *questionlisturl;
+@property (copy, nonatomic) NSString *questiontesturl;
+@property (copy, nonatomic) NSString *questionerrorurl;
+
+@property (copy, nonatomic) NSString *questionFourlisturl;
+@property (copy, nonatomic) NSString *questionFourtesturl;
+@property (copy, nonatomic) NSString *questionFourerrorurl;
+
 @end
 
 @implementation YBStudyViewController
@@ -74,6 +82,9 @@
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
+    
+    [self startSubjectFirstDownLoad];
+    [self startSubjectFourDownLoad];
     
     // 更新进度
     [self reloadProgress];
@@ -129,6 +140,8 @@
 
     [self configUI];
     
+    [self startSubjectFirstDownLoad];
+    [self startSubjectFourDownLoad];
     // 请求数据
     [self setUpData];
 }
@@ -195,14 +208,15 @@
 
 - (void)reloadData
 {
+    
     if (studyProgress==0) {
-        
+    
         self.kemuyiView.studyProgress = studyProgress;
         self.kemuyiView.dataArray = [self.kemuyiArray mutableCopy];
         [self.kemuyiView reloadData];
         
     }else if (studyProgress == 1){
-        
+       
         self.kemuerView.studyProgress = studyProgress;
         self.kemuerView.dataArray = [self.kemuerArray mutableCopy];
         [self.kemuerView reloadData];
@@ -215,6 +229,10 @@
         
     }else if (studyProgress == 3){
        
+        self.kemusiView.questionFourlisturl = self.questionFourlisturl;
+        self.kemusiView.questionFourtesturl = self.questionFourtesturl;
+        self.kemusiView.questionFourerrorurl = self.questionFourerrorurl;
+
         self.kemusiView.studyProgress = studyProgress;
         self.kemusiView.dataArray = [self.kemusiArray mutableCopy];
         [self.kemusiView reloadData];
@@ -224,25 +242,36 @@
 
 - (void)reloadProgress
 {
+    
+    NSLog(@"[AcountManager manager].userSubject.name:%@",[AcountManager manager].userSubject.name);
+    NSLog(@"[AcountManager manager].subjectone.progress:%@",[AcountManager manager].subjectone.progress);
+    NSLog(@"[AcountManager manager].subjecttwo.progress:%@",[AcountManager manager].subjecttwo.progress);
+    NSLog(@"[AcountManager manager].subjectthree.progress:%@",[AcountManager manager].subjectthree.progress);
+    NSLog(@"[AcountManager manager].subjectfour.progress:%@",[AcountManager manager].subjectfour.progress);
+    
     if (studyProgress==0) {
         
-        NSString *topStr = [NSString stringWithFormat:@"科一：模拟考试2次   官方学时0"];
-        [_progressView setUpProgressDataWithTop:topStr progress:0.2];
+        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectone.progress];
+        float progress = [[AcountManager manager].subjectone.finishcourse floatValue]/[[AcountManager manager].subjectone.totalcourse floatValue];
+        [_progressView setUpProgressDataWithTop:topStr progress:progress];
         
     }else if (studyProgress == 1){
         
-        NSString *topStr = [NSString stringWithFormat:@"科二：模拟考试2次   官方学时0"];
-        [_progressView setUpProgressDataWithTop:topStr progress:0.5];
+        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjecttwo.progress];
+        float progress = [[AcountManager manager].subjecttwo.finishcourse floatValue]/[[AcountManager manager].subjecttwo.totalcourse floatValue];
+        [_progressView setUpProgressDataWithTop:topStr progress:progress];
         
     }else if (studyProgress == 2){
         
-        NSString *topStr = [NSString stringWithFormat:@"科三：模拟考试2次   官方学时0"];
-        [_progressView setUpProgressDataWithTop:topStr progress:0.7];
+        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectthree.progress];
+        float progress = [[AcountManager manager].subjectthree.finishcourse floatValue]/[[AcountManager manager].subjectthree.totalcourse floatValue];
+        [_progressView setUpProgressDataWithTop:topStr progress:progress];
         
     }else if (studyProgress == 3){
         
-        NSString *topStr = [NSString stringWithFormat:@"科四：模拟考试2次   官方学时0"];
-        [_progressView setUpProgressDataWithTop:topStr progress:1.0];
+        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectfour.progress];
+        float progress = [[AcountManager manager].subjectfour.finishcourse floatValue]/[[AcountManager manager].subjectfour.totalcourse floatValue];
+        [_progressView setUpProgressDataWithTop:topStr progress:progress];
         
     }
 }
@@ -344,6 +373,51 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark ---- 科目一
+- (void)startSubjectFirstDownLoad {
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kexamquestionUrl];
+    
+    __weak YBStudyViewController *weakSelf = self;
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *param = data[@"data"];
+        NSDictionary *subjectOne = param[@"subjectone"];
+        if (subjectOne) {
+            
+            weakSelf.questiontesturl = subjectOne[@"questiontesturl"];
+            weakSelf.questionlisturl = subjectOne[@"questionlisturl"];
+            weakSelf.questionerrorurl = subjectOne[@"questionerrorurl"];
+
+            self.kemuyiView.questionlisturl = weakSelf.questiontesturl;
+            self.kemuyiView.questiontesturl = weakSelf.questionlisturl;
+            self.kemuyiView.questionerrorurl = weakSelf.questionerrorurl;
+            
+        }
+    }];
+   
+}
+
+#pragma mark ---- 科目四
+- (void)startSubjectFourDownLoad
+{
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kexamquestionUrl];
+    
+    __weak YBStudyViewController *weakSelf = self;
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *param = data[@"data"];
+        NSDictionary *subjectOne = param[@"subjectfour"];
+        weakSelf.questionFourtesturl = subjectOne[@"questiontesturl"];
+        weakSelf.questionFourlisturl = subjectOne[@"questionlisturl"];
+        weakSelf.questionFourerrorurl = subjectOne[@"questionerrorurl"];
+        
+        self.kemusiView.questionFourlisturl = weakSelf.questionFourlisturl;
+        self.kemusiView.questionFourtesturl = weakSelf.questionFourtesturl;
+        self.kemusiView.questionFourerrorurl = weakSelf.questionFourerrorurl;
+        
+    }];
+    
 }
 
 /*
