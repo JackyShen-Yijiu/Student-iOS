@@ -11,7 +11,7 @@
 #import "DVVSignUpDetailFooterView.h"
 #import "DVVSignUpDetailPayView.h"
 #import "SignUpSuccessViewController.h"
-#import "SignUpFirmOrderController.h"
+#import "DVVConfirmOrderController.h"
 #import "DVVToast.h"
 
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -64,6 +64,12 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     _detailArray = @[ @"", @"", @"", @"", @"", @"" ].mutableCopy;
     
     [self loadData];
+    
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+////        DVVConfirmOrderController *vc = [DVVConfirmOrderController new];
+////        [self.navigationController pushViewController:vc animated:YES];
+//        [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+//    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -79,7 +85,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }
     
     // 班型
-    NSString *classType = [NSString stringWithFormat:@"%@ ￥%i", _dmData.classname, _dmData.price];
+    NSString *classType = [NSString stringWithFormat:@"%@ ￥%lu", _dmData.classname, _dmData.price];
     [_detailArray replaceObjectAtIndex:0 withObject:classType];
     
     // 驾校名
@@ -106,7 +112,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [_detailArray replaceObjectAtIndex:4 withObject:mobile];
     
     
-    _payView.label.text = [NSString stringWithFormat:@"需支付：%i元", _dmData.price];
+    _payView.label.text = [NSString stringWithFormat:@"需支付：%lu元", _dmData.price];
 }
 
 #pragma mark - action
@@ -120,7 +126,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }
     
     NSMutableDictionary *carmodelParams = [NSMutableDictionary dictionary];
-    carmodelParams[@"modelsid"] = [NSString stringWithFormat:@"%i",_dmData.carmodel.modelsid];
+    carmodelParams[@"modelsid"] = [NSString stringWithFormat:@"%lu",_dmData.carmodel.modelsid];
     carmodelParams[@"name"] = _dmData.carmodel.name;
     carmodelParams[@"code"] = _dmData.carmodel.code;
     
@@ -231,15 +237,14 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         [ud synchronize];
         
         if (_isOnLine) {
+            // 线上报名
+            DVVConfirmOrderController *vc = [DVVConfirmOrderController new];
+            vc.extraDict = extraDict;
+            vc.mobileString = _mobileString;
+            [self.navigationController pushViewController:vc animated:YES];
+        }else {
             // 线下报名
             [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
-        }else {
-            // 线上报名
-            
-            SignUpFirmOrderController *vc = [SignUpFirmOrderController new];
-            vc.extraDict = extraDict;
-            vc.mobile = _mobileString;
-            [self.navigationController pushViewController:vc animated:YES];
         }
         
     } withFailure:^(id data) {

@@ -718,10 +718,14 @@
 		D95E3DAE1C3CDBFE00F0B5A0 /* DVVFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DAD1C3CDBFE00F0B5A0 /* DVVFilterView.m */; };
 		D95E3DB41C3CEDC600F0B5A0 /* SearchCoachViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DB31C3CEDC600F0B5A0 /* SearchCoachViewModel.m */; };
 		D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D961BC791C28004200940577 /* YBWelcomeController.m */; };
+		D96200011C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m in Sources */ = {isa = PBXBuildFile; fileRef = D96200001C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m */; };
 		D96248291C5779160028EE62 /* CityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D96248281C5779160028EE62 /* CityListCell.m */; };
 		D96248331C579A670028EE62 /* DVVBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D96248321C579A670028EE62 /* DVVBaseViewModel.m */; };
 		D96248381C57A16D0028EE62 /* ComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96248361C57A16D0028EE62 /* ComplaintController.m */; };
 		D96248391C57A16D0028EE62 /* ComplaintController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96248371C57A16D0028EE62 /* ComplaintController.xib */; };
+		D962FFF71C7EA79B0000E1E6 /* DVVConfirmOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D962FFF61C7EA79B0000E1E6 /* DVVConfirmOrderController.m */; };
+		D962FFFA1C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D962FFF91C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m */; };
+		D962FFFC1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D962FFFB1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib */; };
 		D964ABED1C7AB8CF00A4D1D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */; };
 		D964ABFC1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */; };
 		D965325D1C7320DA0097AFA2 /* DVVSelectCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = D965325C1C7320DA0097AFA2 /* DVVSelectCityController.m */; };
@@ -804,7 +808,6 @@
 		D977B8D91C7C69DD00ABE205 /* DVVSignUpCoachDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8B81C7C69DD00ABE205 /* DVVSignUpCoachDMRootClass.m */; };
 		D977B8DA1C7C69DD00ABE205 /* DVVSignUpCoachDMSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8BA1C7C69DD00ABE205 /* DVVSignUpCoachDMSubject.m */; };
 		D977B8DB1C7C69DD00ABE205 /* DVVSignUpSchoolDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8BC1C7C69DD00ABE205 /* DVVSignUpSchoolDMData.m */; };
-		D977B8DC1C7C69DD00ABE205 /* DVVSignUpSchoolDMLogoimg.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8BE1C7C69DD00ABE205 /* DVVSignUpSchoolDMLogoimg.m */; };
 		D977B8DD1C7C69DD00ABE205 /* DVVSignUpSchoolDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8C01C7C69DD00ABE205 /* DVVSignUpSchoolDMRootClass.m */; };
 		D977B8DE1C7C69DD00ABE205 /* DVVSignUpCoachCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D977B8C21C7C69DD00ABE205 /* DVVSignUpCoachCell.m */; };
 		D977B8DF1C7C69DD00ABE205 /* DVVSignUpCoachCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D977B8C31C7C69DD00ABE205 /* DVVSignUpCoachCell.xib */; };
@@ -2279,6 +2282,7 @@
 		D95E3DB31C3CEDC600F0B5A0 /* SearchCoachViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCoachViewModel.m; sourceTree = "<group>"; };
 		D961BC781C28004200940577 /* YBWelcomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBWelcomeController.h; sourceTree = "<group>"; };
 		D961BC791C28004200940577 /* YBWelcomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBWelcomeController.m; sourceTree = "<group>"; };
+		D96200001C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSignUpSchoolDMLogoimg.m; sourceTree = "<group>"; };
 		D96248231C57583B0028EE62 /* DVVShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVShareHeader.h; sourceTree = "<group>"; };
 		D96248271C5779160028EE62 /* CityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityListCell.h; sourceTree = "<group>"; };
 		D96248281C5779160028EE62 /* CityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityListCell.m; sourceTree = "<group>"; };
@@ -2287,6 +2291,12 @@
 		D96248351C57A16D0028EE62 /* ComplaintController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintController.h; sourceTree = "<group>"; };
 		D96248361C57A16D0028EE62 /* ComplaintController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintController.m; sourceTree = "<group>"; };
 		D96248371C57A16D0028EE62 /* ComplaintController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplaintController.xib; sourceTree = "<group>"; };
+		D962FFF51C7EA79B0000E1E6 /* DVVConfirmOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVConfirmOrderController.h; sourceTree = "<group>"; };
+		D962FFF61C7EA79B0000E1E6 /* DVVConfirmOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVConfirmOrderController.m; sourceTree = "<group>"; };
+		D962FFF81C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVConfirmOrderFooterView.h; sourceTree = "<group>"; };
+		D962FFF91C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVConfirmOrderFooterView.m; sourceTree = "<group>"; };
+		D962FFFB1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVVConfirmOrderFooterView.xib; sourceTree = "<group>"; };
+		D962FFFF1C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpSchoolDMLogoimg.h; sourceTree = "<group>"; };
 		D963FACF1C741CAE006955D8 /* YBAPPMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAPPMacro.h; sourceTree = "<group>"; };
 		D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D964ABFA1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachClassTypeView.h; sourceTree = "<group>"; };
@@ -2451,8 +2461,6 @@
 		D977B8BA1C7C69DD00ABE205 /* DVVSignUpCoachDMSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSignUpCoachDMSubject.m; sourceTree = "<group>"; };
 		D977B8BB1C7C69DD00ABE205 /* DVVSignUpSchoolDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpSchoolDMData.h; sourceTree = "<group>"; };
 		D977B8BC1C7C69DD00ABE205 /* DVVSignUpSchoolDMData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSignUpSchoolDMData.m; sourceTree = "<group>"; };
-		D977B8BD1C7C69DD00ABE205 /* DVVSignUpSchoolDMLogoimg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpSchoolDMLogoimg.h; sourceTree = "<group>"; };
-		D977B8BE1C7C69DD00ABE205 /* DVVSignUpSchoolDMLogoimg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSignUpSchoolDMLogoimg.m; sourceTree = "<group>"; };
 		D977B8BF1C7C69DD00ABE205 /* DVVSignUpSchoolDMRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpSchoolDMRootClass.h; sourceTree = "<group>"; };
 		D977B8C01C7C69DD00ABE205 /* DVVSignUpSchoolDMRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSignUpSchoolDMRootClass.m; sourceTree = "<group>"; };
 		D977B8C11C7C69DD00ABE205 /* DVVSignUpCoachCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpCoachCell.h; sourceTree = "<group>"; };
@@ -3738,6 +3746,11 @@
 				D996740C1C7D4B400000CC65 /* DVVBaseDoubleRowCell.m */,
 				D996748B1C7D55E80000CC65 /* DVVSignUpDetailController.h */,
 				D996748C1C7D55E80000CC65 /* DVVSignUpDetailController.m */,
+				D962FFF51C7EA79B0000E1E6 /* DVVConfirmOrderController.h */,
+				D962FFF61C7EA79B0000E1E6 /* DVVConfirmOrderController.m */,
+				D962FFF81C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.h */,
+				D962FFF91C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m */,
+				D962FFFB1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib */,
 				D99674951C7D8DA30000CC65 /* DVVSignUpDetailPayView.h */,
 				D99674961C7D8DA30000CC65 /* DVVSignUpDetailPayView.m */,
 				D996748E1C7D72880000CC65 /* DVVSignUpDetailFooterView.h */,
@@ -5711,6 +5724,8 @@
 		D977B8B01C7C69DD00ABE205 /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				D962FFFF1C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.h */,
+				D96200001C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m */,
 				D977B8B11C7C69DD00ABE205 /* DVVSignUpCoachDMData.h */,
 				D977B8B21C7C69DD00ABE205 /* DVVSignUpCoachDMData.m */,
 				D977B8B31C7C69DD00ABE205 /* DVVSignUpCoachDMDriveschoolinfo.h */,
@@ -5723,8 +5738,6 @@
 				D977B8BA1C7C69DD00ABE205 /* DVVSignUpCoachDMSubject.m */,
 				D977B8BB1C7C69DD00ABE205 /* DVVSignUpSchoolDMData.h */,
 				D977B8BC1C7C69DD00ABE205 /* DVVSignUpSchoolDMData.m */,
-				D977B8BD1C7C69DD00ABE205 /* DVVSignUpSchoolDMLogoimg.h */,
-				D977B8BE1C7C69DD00ABE205 /* DVVSignUpSchoolDMLogoimg.m */,
 				D977B8BF1C7C69DD00ABE205 /* DVVSignUpSchoolDMRootClass.h */,
 				D977B8C01C7C69DD00ABE205 /* DVVSignUpSchoolDMRootClass.m */,
 			);
@@ -6034,6 +6047,7 @@
 				D5604BE91BF656C50020F0D7 /* chatBar_moreSelected.png in Resources */,
 				D5604C241BF656C50020F0D7 /* account.png in Resources */,
 				D5BCFED51BF222070019402C /* Images.xcassets in Resources */,
+				D962FFFC1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib in Resources */,
 				D5604C1C1BF656C50020F0D7 /* chat_sender_audio_playing_002.png in Resources */,
 				D5604C3B1BF656C50020F0D7 /* tabbar_chatsHL@2x.png in Resources */,
 				D5604BE71BF656C50020F0D7 /* chatBar_more.png in Resources */,
@@ -6287,6 +6301,7 @@
 				B226AEDB1C7481FB0028DF1A /* NSDictionary+StrDic.m in Sources */,
 				D977B8981C7C540F00ABE205 /* DVVCoachCommentDMApplyclasstypeinfo.m in Sources */,
 				56DAB1121C7B070B00D7B942 /* ShowWarningBG.m in Sources */,
+				D962FFFA1C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m in Sources */,
 				D99674801C7D54610000CC65 /* DrivingDetailSignUpCell.m in Sources */,
 				D588B0D71BDDDC14000C5D6F /* DrivingInformationCell.m in Sources */,
 				D588B10E1BDDDC2F000C5D6F /* BLPFAlertView.m in Sources */,
@@ -6690,7 +6705,6 @@
 				B2E8E1BC1C72CA83000190C2 /* YBHomeBaseController.m in Sources */,
 				B2F1AE5B1C7DBAED006D56FF /* YBCancleAppointMentController.m in Sources */,
 				56DD9C1D1C7C171E00552A56 /* EditorDetailController.m in Sources */,
-				D9B268BC1C78420900F62804 /* DVVCoachDetailDMTrainfieldlinfo.m in Sources */,
 				D96D1BD31C2B859C00F1C282 /* FourViewController.m in Sources */,
 				D588B0D21BDDDC14000C5D6F /* UserCenterCell.m in Sources */,
 				D5604B851BF656C50020F0D7 /* UIViewController+HUD.m in Sources */,
@@ -6768,6 +6782,7 @@
 				568DF2381C7592C400008829 /* PrivateMessageController.m in Sources */,
 				062734C71C5A00060056B0BC /* SignUpSchoolInfoCell.m in Sources */,
 				D5604B8B1BF656C50020F0D7 /* EMChooseViewController.m in Sources */,
+				D962FFF71C7EA79B0000E1E6 /* DVVConfirmOrderController.m in Sources */,
 				D588B06A1BDDDB90000C5D6F /* SubjectSecondViewController.m in Sources */,
 				D5604B651BF656C50020F0D7 /* PSTCollectionViewCell.m in Sources */,
 				D52638621BDF4D8600ADC2C7 /* ModifyNickNameViewController.m in Sources */,
@@ -6815,6 +6830,7 @@
 				D96D1BCB1C2B858400F1C282 /* AppDelegate+EaseMob.m in Sources */,
 				D9873B621C55D4EF000A3F6F /* DVVShare.m in Sources */,
 				D9D4BA1B1C3B918600F62BE9 /* JRSwizzle.m in Sources */,
+				D96200011C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m in Sources */,
 				56855C2D1C784EEA005D4517 /* ShuttleBusController.m in Sources */,
 				D5604B7B1BF656C50020F0D7 /* wav.mm in Sources */,
 				D588B13D1BDDDC65000C5D6F /* ModificationView.m in Sources */,
@@ -6823,7 +6839,6 @@
 				B226AEF41C748FFE0028DF1A /* PortraitView.m in Sources */,
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
-				D9B268B51C78420900F62804 /* DVVCoachDetailDMCarmodel.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
 				D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */,

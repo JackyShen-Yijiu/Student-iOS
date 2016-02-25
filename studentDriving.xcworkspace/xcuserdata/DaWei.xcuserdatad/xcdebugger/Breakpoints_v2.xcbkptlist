@@ -138,12 +138,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478060135.465716"
+                  timestampString = "478083355.963359"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "423"
                   endingLineNumber = "423"
-                  offsetFromSymbolStart = "2459">
+                  offsetFromSymbolStart = "2400">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -153,12 +153,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478060135.466112"
+                  timestampString = "478083355.963922"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "423"
                   endingLineNumber = "423"
-                  offsetFromSymbolStart = "55">
+                  offsetFromSymbolStart = "39">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -314,6 +314,22 @@
             startingLineNumber = "26"
             endingLineNumber = "26"
             landmarkName = "-dvv_networkRequestRefresh"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "studentDriving/Home/SignUp(&#x62a5;&#x540d;)/SchoolAndCoachList/YBSignUpViewController.m"
+            timestampString = "478082719.938562"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "-tableView:willDisplayCell:forRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

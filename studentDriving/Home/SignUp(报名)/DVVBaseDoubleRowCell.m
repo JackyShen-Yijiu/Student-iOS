@@ -44,19 +44,21 @@
     CGSize size = self.bounds.size;
     // 标题的高度
     CGFloat titleHeight = size.height / 2.0f;
-    // 左右边距
+    // 边距
     CGFloat leftMargin = 16;
     CGFloat rightMargin = 16;
+    CGFloat topMargin = 5;
+    CGFloat bottomMargin = 5;
     
-    _titleLabel.frame = CGRectMake(leftMargin, 0, size.width/2.f - leftMargin, titleHeight);
-    _detailTextField.frame = CGRectMake(leftMargin, titleHeight, size.width - leftMargin - rightMargin, size.height - titleHeight);
+    _titleLabel.frame = CGRectMake(leftMargin, topMargin, size.width/2.f - leftMargin, titleHeight);
+    _detailTextField.frame = CGRectMake(leftMargin, topMargin + titleHeight, size.width - leftMargin - rightMargin, size.height - topMargin - titleHeight - bottomMargin);
     
     _separatorImageView.frame = CGRectMake(leftMargin, size.height - 0.5, size.width - leftMargin - rightMargin, 0.5);
     
     // 提示图片的宽度
     CGFloat promptImageWidth = 24;
-    _promptLabel.frame = CGRectMake(size.width/2.f, 0, size.width/2.f - rightMargin - promptImageWidth, titleHeight);
-    _promptImageView.frame = CGRectMake(CGRectGetMaxX(_promptLabel.frame), 0, promptImageWidth, titleHeight);
+    _promptLabel.frame = CGRectMake(size.width/2.f, topMargin, size.width/2.f - rightMargin - promptImageWidth, titleHeight);
+    _promptImageView.frame = CGRectMake(CGRectGetMaxX(_promptLabel.frame), topMargin, promptImageWidth, titleHeight);
     
     [self hidePrompt];
 }

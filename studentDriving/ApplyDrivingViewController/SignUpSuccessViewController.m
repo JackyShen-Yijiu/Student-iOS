@@ -101,15 +101,12 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
              */
             
             
-            
-            
-            
             NSDictionary *dataDic = [param objectForKey:@"data"];
             if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
                 return;
             }
             if (2 == [dataDic[@"paytype"] integerValue]) {
-                [self obj_showTotasViewWithMes:@"您已经支付,请等待我们的审核!"];
+                [self obj_showTotasViewWithMes:@"您已经支付,请等待我们的审核"];
                 [self.navigationController popViewControllerAnimated:YES];
                 return;
             }
@@ -167,7 +164,7 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 }
 
 - (void)initUI {
-    UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, kSystemHeight, kSystemHeight - 64-49)];
+    UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kSystemHeight, kSystemHeight - 64-49)];
     scrollview.contentSize = CGSizeMake(kSystemWide, 500);
     [self.view addSubview:scrollview];
     
@@ -177,9 +174,11 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
     
 
     SignSuccessView *ssv = [[SignSuccessView alloc] initWithFrame:CGRectMake(0, 10, kSystemWide, kSystemHeight-64-49-87) imageStr:_imageStr orderNumStr:_kRealOrderNumber timeStr:[NSString stringWithFormat:@"%@到%@",_kRealApplytime,_kRealEndtime] CarrydataExplainContentLb:_explainStr];
-    ssv.backgroundColor = [UIColor whiteColor];
     [scrollview addSubview:ssv];
     [self.view addSubview:self.referButton];
+    
+    scrollview.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    ssv.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     
     [self.referButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.view.mas_bottom).with.offset(0);
