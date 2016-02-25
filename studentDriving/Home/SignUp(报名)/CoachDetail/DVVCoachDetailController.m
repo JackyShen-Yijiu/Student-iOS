@@ -17,8 +17,9 @@
 #import "DVVCoachDetailCourseCell.h"
 #import "DVVCoachDetailHeaderView.h"
 #import "ShuttleBusController.h"
-
 #import "DrivingDetailViewModel.h"
+#import "SchoolClassDetailController.h"
+#import "DVVSignUpDetailController.h"
 
 static NSString *infoCellID = @"kInfoCellID";
 static NSString *introductionCellID = @"kIntroductionCellID";
@@ -130,7 +131,7 @@ static NSString *courseCellID = @"kCourseCellID";
 - (void)shuttleBusButtonAction {
     
     if (!_viewModel.dmData.isShuttle) {
-        [self obj_showTotasViewWithMes:@"暂无班车路线"];
+        [self obj_showTotasViewWithMes:@"暂无班车信息"];
         return ;
     }
     ShuttleBusController *busVC = [ShuttleBusController new];
@@ -153,6 +154,21 @@ static NSString *courseCellID = @"kCourseCellID";
     }
 }
 
+#pragma mark 班型cell单击事件
+- (void)classTypeCellDidSelectAction:(ClassTypeDMData *)dmData {
+    SchoolClassDetailController *schoolClassDetailVC = [[SchoolClassDetailController alloc] init];
+    schoolClassDetailVC.classTypeDMData = dmData;
+    [self.navigationController pushViewController:schoolClassDetailVC animated:YES];
+}
+#pragma mark 班型cell中的报名按钮单击事件
+- (void)signUpButtonAction:(ClassTypeDMData *)dmData {
+    
+    DVVSignUpDetailController *vc = [DVVSignUpDetailController new];
+    vc.dmData = dmData;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 #pragma mark - config view model
 - (void)configViewModel {
     
@@ -161,6 +177,10 @@ static NSString *courseCellID = @"kCourseCellID";
     _viewModel.coachID = _coachID;
     
     [_viewModel dvv_setRefreshSuccessBlock:^{
+        
+        ws.courseCell.classTypeView.coachID = ws.viewModel.dmData.coachid;
+        ws.courseCell.classTypeView.coachName = ws.viewModel.dmData.name;
+        
         [ws.tableView reloadData];
         [ws.headerView refreshData:ws.viewModel.dmData];
     }];
@@ -359,7 +379,21 @@ static NSString *courseCellID = @"kCourseCellID";
 - (DVVCoachDetailCourseCell *)courseCell {
     if (!_courseCell) {
         _courseCell = [[DVVCoachDetailCourseCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:courseCellID];
+        _courseCell.tableView = self.tableView;
         _courseCell.coachID = _coachID;
+        
+        _courseCell.classTypeView.coachID = _viewModel.dmData.coachid;
+        _courseCell.classTypeView.coachName = _viewModel.dmData.name;
+        _courseCell.classTypeView.schoolID = _viewModel.dmData.driveschoolinfo.ID;
+        _courseCell.classTypeView.schoolName = _viewModel.dmData.driveschoolinfo.name;
+        
+        __weak typeof(self) ws = self;
+        [_courseCell.classTypeView dvvCoachClassTypeView_setSignUpButtonActionBlock:^(ClassTypeDMData *dmData) {
+            [ws signUpButtonAction:dmData];
+        }];
+        [_courseCell.classTypeView dvvCoachClassTypeView_setCellDidSelectBlock:^(ClassTypeDMData *dmData) {
+            [ws classTypeCellDidSelectAction:dmData];
+        }];
     }
     return _courseCell;
 }

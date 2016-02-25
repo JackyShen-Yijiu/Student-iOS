@@ -19,6 +19,7 @@
 #import "YBAppointMentNoCountentView.h"
 #import "StudentModel.h"
 #import "CoachModel.h"
+#import "YBAppointMentCoachModel.h"
 
 static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?coachid=%@&date=%@";
 
@@ -40,7 +41,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 @property (strong, nonatomic) NSDate *seletedDate;
 @property (nonatomic,copy) NSString *selectDateStr;
 
-@property (nonatomic,strong) CoachModel *appointCoach;
+@property (nonatomic,strong) YBAppointMentCoachModel *appointCoach;
 
 @property (nonatomic ,strong) NSString *startTimeStr;
 @property (nonatomic ,strong) NSString *endTimeStr;
@@ -52,6 +53,8 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 
 @property (strong, nonatomic) NSMutableArray *stuDataArray;
 @property (strong, nonatomic) NSMutableArray *appointDataArray;
+
+@property (nonatomic,strong) NSMutableArray *coachArray;
 
 @end
 
@@ -65,6 +68,14 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
         _noCountmentView.hidden = YES;
     }
     return _noCountmentView;
+}
+
+- (NSMutableArray *)coachArray
+{
+    if (_coachArray==nil) {
+        _coachArray = [NSMutableArray array];
+    }
+    return _coachArray;
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -108,8 +119,8 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kCellChange) name:@"kCellChange" object:nil];
 
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    CoachModel *appointCoach = [user objectForKey:KAppointMentCoach];
+    YBAppointMentCoachModel *appointCoach = [self getPersonArrayData];
+    NSLog(@"appointCoach.coachid：%@",appointCoach.coachid);
     if (appointCoach&&appointCoach.coachid) {
         self.appointCoach = appointCoach;
     }else{
@@ -127,9 +138,31 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 
 - (void)YBCoachListViewControllerWithCoach:(CoachModel *)coachModel
 {
-    self.noCountmentView.hidden = YES;
-    self.appointCoach = coachModel;
     
+    YBAppointMentCoachModel *model = [[YBAppointMentCoachModel alloc] init];
+    model.coachid = coachModel.coachid;
+    model.headportrait = coachModel.headportrait.originalpic;
+    model.name = coachModel.name;
+    
+    // 保存教练信息
+    [self savePersonArrayData:model];
+    
+    self.noCountmentView.hidden = YES;
+    self.appointCoach = model;
+
+    
+}
+
+- (YBAppointMentCoachModel *)getPersonArrayData{
+    
+    YBAppointMentCoachModel *coach = [NSKeyedUnarchiver unarchiveObjectWithFile:[YBPath stringByAppendingPathComponent:@"saveAppointMentData"]];
+    
+    return coach;
+}
+
+- (void)savePersonArrayData:(YBAppointMentCoachModel *)coachModel {
+    
+    [NSKeyedArchiver archiveRootObject:coachModel toFile:[YBPath stringByAppendingPathComponent:@"saveAppointMentData"]];
 }
 
 - (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView dateString:(NSString *)dateString isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid
@@ -285,7 +318,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
             
             [self obj_showTotasViewWithMes:param[@"msg"]];
 
-            [ws.midYuYueheadView receiveCoachTimeData:self.appointDataArray selectData:self.seletedDate coachModel:self.appointCoach];
+            [ws.midYuYueheadView receiveCoachTimeData:nil selectData:self.seletedDate coachModel:self.appointCoach];
 
         }
         
@@ -517,11 +550,6 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
                 }
                 
             } onQueue:nil];
-            
-            //存储预约的教练
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            [ud setObject:self.appointCoach forKey:KAppointMentCoach];
-            [ud synchronize];
             
             [self.navigationController popViewControllerAnimated:YES];
             

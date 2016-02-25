@@ -36,6 +36,7 @@ PODS:
     - Mantle/extobjc (= 2.0.6)
   - Mantle/extobjc (2.0.6)
   - Masonry (0.6.4)
+  - MJExtension (3.0.10)
   - MJRefresh (3.1.0)
   - NJKWebViewProgress (0.2.3):
     - NJKWebViewProgress/Core (= 0.2.3)
@@ -66,6 +67,7 @@ DEPENDENCIES:
   - JSONKit
   - Mantle (~> 2.0.5)
   - Masonry
+  - MJExtension
   - MJRefresh
   - NJKWebViewProgress
   - Qiniu (~> 7.0)
@@ -86,6 +88,7 @@ SPEC CHECKSUMS:
   JSONKit: 5b69e804ea54d99293eed0fd2ce596c5703fefb0
   Mantle: 299966b00759634931699f69cb6a30b9239b944d
   Masonry: 281802d04d787ea2973179ee8bcb50500579ede2
+  MJExtension: d86aacb740c87519d20e3cca55b6fa4be6cc7548
   MJRefresh: 743e6404967d1c2c688472ea3ecfde247d872db4
   NJKWebViewProgress: f481fd424cb5ecc27eacae11b5397db92fba9a4d
   Qiniu: 51a8702cddc02b50867e10cef99291b9a8a006b1

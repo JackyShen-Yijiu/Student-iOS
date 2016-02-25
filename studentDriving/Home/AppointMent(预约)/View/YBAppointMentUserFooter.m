@@ -9,7 +9,7 @@
 #import "YBAppointMentUserFooter.h"
 #import "YBAppointMentUserCell.h"
 #import "StudentModel.h"
-#import "CoachModel.h"
+#import "YBAppointMentCoachModel.h"
 
 #define rightFooter 80
 
@@ -100,13 +100,13 @@
     return self;
 }
 
-- (void)setAppointCoach:(CoachModel *)appointCoach
+- (void)setAppointCoach:(YBAppointMentCoachModel *)appointCoach
 {
     _appointCoach = appointCoach;
     
     self.titleLabel.text = [NSString stringWithFormat:@"教练:%@",self.appointCoach.name];
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.appointCoach.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.appointCoach.headportrait] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
 
 }
 

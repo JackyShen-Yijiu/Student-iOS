@@ -49,6 +49,9 @@ static NSString *coachCellID = @"coachCellID";
 
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) DVVSearchView *searchView;
+@property (nonatomic, strong) UIView *searchContentView;
+
+@property (nonatomic, assign) CGFloat lastOffsetY;
 
 @end
 
@@ -261,6 +264,7 @@ static NSString *coachCellID = @"coachCellID";
         [self.navigationController pushViewController:vc animated:YES];
     }else {
         DVVSignUpCoachDMData *dmData = _coachViewModel.dataArray[indexPath.row];
+        NSLog(@"%@", dmData.coachid);
         // 跳转到教练详情
         DVVCoachDetailController *vc = [DVVCoachDetailController new];
         vc.hidesBottomBarWhenPushed = YES;
@@ -271,16 +275,32 @@ static NSString *coachCellID = @"coachCellID";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    if (scrollView.contentOffset.y <= 20) {
-        
-        [UIView animateWithDuration:0.3 animations:^{
-            self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        }];
-    }else {
-        [UIView animateWithDuration:0.3 animations:^{
-            self.tableView.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0);
-        }];
+    CGFloat offsetY = scrollView.contentOffset.y;
+    
+    if (offsetY >= 0 && offsetY <= 40) {
+        self.tableView.contentInset = UIEdgeInsetsMake(-offsetY, 0, 0, 0);
     }
+    
+    
+//    __weak typeof(self) ws = self;
+//    if (offsetY > 0 && offsetY <= 20 && offsetY < _lastOffsetY) {
+//        
+//        [UIView animateWithDuration:0.3 animations:^{
+//            ws.tableView.contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
+//        }];
+//        NSLog(@"开始显示：%f", scrollView.contentOffset.y);
+//        
+//    }else if (offsetY < 40 && offsetY > 20 && offsetY > _lastOffsetY) {
+//        
+//        [UIView animateWithDuration:0.3 animations:^{
+//            ws.tableView.contentInset = UIEdgeInsetsMake(40, 0, 0, 0);
+//        }];
+//        NSLog(@"开始隐藏：%f", scrollView.contentOffset.y);
+//        
+//    }
+    
+//    // 记录下本次的Y偏移位置
+//    _lastOffsetY = scrollView.contentOffset.y;
 }
 
 #pragma mark - config view model
@@ -467,10 +487,12 @@ static NSString *coachCellID = @"coachCellID";
 - (DVVSignUpToolBarView *)toolBarView {
     if (!_toolBarView) {
         _toolBarView = [DVVSignUpToolBarView new];
+        
         _toolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
         _toolBarView.layer.shadowOffset = CGSizeMake(0, 2);
         _toolBarView.layer.shadowOpacity = 0.3;
         _toolBarView.layer.shadowRadius = 2;
+        
         _toolBarView.titleArray = @[ @"评分", @"价格", @"综合" ];
         __weak typeof(self) ws = self;
         [_toolBarView dvvToolBarViewItemSelected:^(UIButton *button) {
@@ -489,11 +511,11 @@ static NSString *coachCellID = @"coachCellID";
         [_tableView registerClass:[DVVSignUpSchoolCell class] forCellReuseIdentifier:schoolCellID];
         [_tableView registerClass:[DVVSignUpCoachCell class] forCellReuseIdentifier:coachCellID];
         
-        UIView *view = [UIView new];
-        view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
-        view.frame = CGRectMake(0, 0, self.view.bounds.size.width, 40);
-        [view addSubview:self.searchView];
-        _tableView.tableHeaderView = view;
+        _searchContentView = [UIView new];
+        _searchContentView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+        _searchContentView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 40);
+        [_searchContentView addSubview:self.searchView];
+        _tableView.tableHeaderView = _searchContentView;
     }
     return _tableView;
 }

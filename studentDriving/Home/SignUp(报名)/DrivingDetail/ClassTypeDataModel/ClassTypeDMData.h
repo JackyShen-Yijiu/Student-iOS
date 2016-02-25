@@ -20,4 +20,8 @@
 @property (nonatomic, strong) ClassTypeDMSchoolinfo * schoolinfo;
 @property (nonatomic, strong) NSArray * vipserverlist;
 
+// 报名时需要的参数（从教练详情进入会用到）
+@property (nonatomic, copy) NSString *coachID;
+@property (nonatomic, copy) NSString *coachName;
+
 @end

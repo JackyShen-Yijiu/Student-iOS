@@ -13,7 +13,6 @@
 #import "RatingBar.h"
 
 @interface YBCoachListViewCell ()
-@property (strong, nonatomic) IBOutlet UIImageView *headImageView;
 
 @property (strong, nonatomic) IBOutlet UILabel *coachNameLabel;
 

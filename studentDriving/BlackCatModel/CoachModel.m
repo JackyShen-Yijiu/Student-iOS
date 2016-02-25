@@ -9,6 +9,7 @@
 #import "CoachModel.h"
 
 @implementation CoachModel
+MJCodingImplementation
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
     return @{@"Seniority":@"Seniority",
              @"coachid":@"coachid",

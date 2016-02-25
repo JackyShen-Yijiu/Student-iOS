@@ -13,6 +13,8 @@
 
 @interface YBCoachListViewCell : UITableViewCell
 
+@property (strong, nonatomic) IBOutlet UIImageView *headImageView;
+
 - (void)receivedCellModelWith:(CoachModel *)coachModel;
 
 @end

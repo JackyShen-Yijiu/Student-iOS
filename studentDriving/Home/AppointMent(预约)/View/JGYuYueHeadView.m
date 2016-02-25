@@ -13,7 +13,7 @@
 #import "YBAppointMentUserFooter.h"
 #import "YBCoachListViewController.h"
 #import "BLInformationManager.h"
-#import "CoachModel.h"
+#import "YBAppointMentCoachModel.h"
 
 @interface JGYuYueHeadView ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
@@ -27,7 +27,7 @@
 
 @property (nonatomic,assign) NSArray *studentArray;
 
-@property (nonatomic,strong) CoachModel *appointCoach;
+@property (nonatomic,strong) YBAppointMentCoachModel *appointCoach;
 
 @end
 
@@ -129,7 +129,7 @@
 //    
 //}
 
-- (void)receiveCoachTimeDataWithStudentData:(NSMutableArray *)stuDataArray coachModel:(CoachModel *)coachModel
+- (void)receiveCoachTimeDataWithStudentData:(NSMutableArray *)stuDataArray coachModel:(YBAppointMentCoachModel *)coachModel
 {
     self.studentArray = stuDataArray;
     self.appointCoach = coachModel;
@@ -152,7 +152,7 @@
     
 }
 
-- (void)receiveCoachTimeData:(NSArray *)coachTimeData selectData:(NSDate *)selectDate coachModel:(CoachModel *)coachModel{
+- (void)receiveCoachTimeData:(NSArray *)coachTimeData selectData:(NSDate *)selectDate coachModel:(YBAppointMentCoachModel *)coachModel{
     
     self.appointCoach = coachModel;
     

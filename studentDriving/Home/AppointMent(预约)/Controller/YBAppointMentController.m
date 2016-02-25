@@ -24,6 +24,7 @@
 #import "MJRefresh.h"
 #import "NSUserStoreTool.h"
 #import "YBObjectTool.h"
+#import "YBAppointMentDetailsController.h"
 
 static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?userid=%@&subjectid=%ld";
 
@@ -87,7 +88,6 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     }
     return _courseYesDayTableData;
 }
-
 
 - (YBForceEvaluateViewController *)feVc
 {
@@ -179,6 +179,13 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
+   
+    // 检测是否打开登录页
+    if (![AcountManager isLogin]) {
+        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+        return;
+    }
     
 }
 
@@ -189,13 +196,15 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     // 获取尚未评价的订单
     [self loadCommentList];
     
+    [self addLoadSubjectProress];
+
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
     
     [super viewDidDisappear:animated];
     
-    navBarHairlineImageView.hidden=NO;
+//    navBarHairlineImageView.hidden=NO;
     
     [self.feVc.view removeFromSuperview];
     
@@ -235,8 +244,6 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     // 没有内容，占位图
      [self.view addSubview:self.noCountmentView];
-
-    [self addLoadSubjectProress];
 
 }
 
@@ -741,6 +748,13 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     if (courseModel) {
        
+        NSLog(@"courseModel.courseId:%@",courseModel.userModel.coachid);
+        
+        YBAppointMentDetailsController *vc = [[YBAppointMentDetailsController alloc] init];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.coachID = courseModel.userModel.coachid;
+        vc.courseModel = courseModel;
+        [self.navigationController pushViewController:vc animated:YES];
         
     }
 }

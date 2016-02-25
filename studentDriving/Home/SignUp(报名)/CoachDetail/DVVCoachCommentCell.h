@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoachCommentDataModel/DVVCoachCommentDMData.h"
+#import "DVVStarView.h"
 
 @interface DVVCoachCommentCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
+@property (weak, nonatomic) IBOutlet UILabel *classTypeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *timeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+
+@property (nonatomic, strong) DVVStarView *starView;
+
+@property (nonatomic, strong) UIImageView *lineImageView;
+
+- (void)refreshData:(DVVCoachCommentDMData *)dmData;
+
++ (CGFloat)dynamicHeight:(DVVCoachCommentDMData *)dmData;
 
 @end

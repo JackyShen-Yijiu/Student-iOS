@@ -12,8 +12,8 @@
 
 @interface DVVCoachClassTypeView ()<UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, copy) DVVCoachClassTypeViewCellBlock signUpButtonBlock;
-@property (nonatomic, copy) DVVCoachClassTypeViewCellBlock cellDidSelectBlock;
+@property (nonatomic, copy) DVVCoachClassTypeViewBlock signUpButtonBlock;
+@property (nonatomic, copy) DVVCoachClassTypeViewBlock cellDidSelectBlock;
 
 @property (nonatomic, strong) UIButton *markButton;
 
@@ -42,8 +42,13 @@
     [_heightArray removeAllObjects];
     _totalHeight = 0;
     for (NSDictionary *dict in dataArray) {
-        
+        NSLog(@"%@", dict);
         ClassTypeDMData *dmData = [ClassTypeDMData yy_modelWithDictionary:dict];
+        dmData.coachID = _coachID;
+        dmData.coachName = _coachName;
+        dmData.schoolinfo = [ClassTypeDMSchoolinfo new];
+        dmData.schoolinfo.schoolid = _schoolID;
+        dmData.schoolinfo.name = _schoolName;
         [_dataArray addObject:dmData];
     }
     for (ClassTypeDMData *dmData in _dataArray) {
@@ -53,7 +58,12 @@
         
         [_heightArray addObject:[NSString stringWithFormat:@"%f",height]];
     }
-    [self reloadData];
+    if (_dataArray.count) {
+        [self.promptNilDataView removeFromSuperview];
+        [self reloadData];
+    }else {
+        [self addSubview:self.promptNilDataView];
+    }
     return _totalHeight;
 }
 
@@ -94,17 +104,39 @@
         [DVVUserManager userNeedLogin];
         return ;
     }
-    if (_signUpButtonBlock) {
-        ClassTypeDMData *dmData = _dataArray[sender.tag];
-        _signUpButtonBlock(dmData);
-    }
+    
+//    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+    
+        if (_signUpButtonBlock) {
+            ClassTypeDMData *dmData = _dataArray[sender.tag];
+            _signUpButtonBlock(dmData);
+        }
+        
+//    }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]){
+//        [self obj_showTotasViewWithMes:@"报名正在申请中"];
+//    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]){
+//        [self obj_showTotasViewWithMes:@"您已经报过名"];
+//    }
 }
 
-- (UIImageView *)noDataMarkImageView {
-    if (!_noDataMarkImageView) {
-        _noDataMarkImageView = [UIImageView new];
+- (DVVPromptNilDataView *)promptNilDataView {
+    if (!_promptNilDataView) {
+        _promptNilDataView = [DVVPromptNilDataView new];
+        _promptNilDataView.promptLabel.text = @"暂无班型信息";
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        _promptNilDataView.center = CGPointMake(size.width / 2.f, (size.height - 64 - 44) / 2.f);
     }
-    return _noDataMarkImageView;
+    return _promptNilDataView;
+}
+
+#pragma mark - set block
+
+- (void)dvvCoachClassTypeView_setSignUpButtonActionBlock:(DVVCoachClassTypeViewBlock)handle {
+    _signUpButtonBlock = handle;
+}
+
+- (void)dvvCoachClassTypeView_setCellDidSelectBlock:(DVVCoachClassTypeViewBlock)handle {
+    _cellDidSelectBlock = handle;
 }
 
 /*

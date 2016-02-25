@@ -11,6 +11,7 @@
 #import "CoachModel.h"
 #import "YBCoachListSearchController.h"
 #import "YBCoachListSearchController.h"
+#import "DVVCoachDetailController.h"
 
 @interface YBCoachListViewController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
 
@@ -44,7 +45,7 @@
     
     self.title = @"教练列表";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-chazhao_coach"] style:UIBarButtonItemStyleDone target:self action:@selector(clickRight)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-chazhao_coach"] style:UIBarButtonItemStyleDone target:self action:@selector(clickRight)];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -128,11 +129,27 @@
         cell = [[YBCoachListViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YBCoachListViewCell"];
     }
     
+    cell.headImageView.tag = indexPath.row;
+    cell.headImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconDidClick:)];
+    [cell.headImageView addGestureRecognizer:tap];
+    
     CoachModel *model = self.coachListDataArray[indexPath.row];
     
     [cell receivedCellModelWith:model];
     
     return cell;
+}
+
+- (void)iconDidClick:(UITapGestureRecognizer *)tap
+{
+    CoachModel *model = self.coachListDataArray[tap.view.tag];
+
+    // 跳转到详情界面
+    DVVCoachDetailController *vc = [[DVVCoachDetailController alloc] init];
+    vc.coachID = model.coachid;
+    [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
