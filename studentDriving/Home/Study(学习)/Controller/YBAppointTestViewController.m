@@ -37,7 +37,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     self.view.backgroundColor = RGBColor(236, 236, 236);
     
     [self.mainScrollView addSubview:self.reasonMsg];

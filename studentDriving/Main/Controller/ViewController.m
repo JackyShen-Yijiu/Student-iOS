@@ -137,10 +137,10 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 
     self.shangchengVC = [[YBMallViewController alloc] init];
     [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"tab_buddy_nor" selectedImage:@"tab_buddy_nor"];
-
-    self.shequVC = [[YBCommunityViewController alloc] init];
-    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
-    
+//
+//    self.shequVC = [[YBCommunityViewController alloc] init];
+//    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
+//    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSlide) name:KhiddenSlide object:nil];
 }
 
