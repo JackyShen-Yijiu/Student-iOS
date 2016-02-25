@@ -50,8 +50,6 @@
 }
 - (void)setUp{
     
-    
-    
     [self.contentView addSubview:self.backGroundView];
     self.backGroundView.userInteractionEnabled = YES;
     [self.backGroundView addSubview:self.cancelTitle];
