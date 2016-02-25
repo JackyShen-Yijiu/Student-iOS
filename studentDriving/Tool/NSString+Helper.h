@@ -73,6 +73,9 @@
 + (CGFloat)autoWidthWithString:(NSString *)string
                          font:(UIFont *)font;
 
++ (NSString *)getLocalDateFormateUTCDate:(NSString *)utcDate
+                                  format:(NSString *)formatString;
+
 //获得设备型号
 +(NSString *)getCurrentDeviceModel;
 

@@ -28,6 +28,8 @@
 #import "DVVSignUpToolBarView.h"
 #import "AppDelegate.h"
 
+#import "DVVSignUpDetailController.h"
+
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
@@ -178,7 +180,7 @@
 - (void)shuttleBusMoreButtonAction {
     
     if (!_viewModel.dmData.schoolbusroute || !_viewModel.dmData.schoolbusroute.count) {
-        [self obj_showTotasViewWithMes:@"暂无班车路线"];
+        [self obj_showTotasViewWithMes:@"暂无班车信息"];
         return ;
     }
     ShuttleBusController *busVC = [ShuttleBusController new];
@@ -213,21 +215,11 @@
     [self.navigationController pushViewController:schoolClassDetailVC animated:YES];
 }
 #pragma mark 班型cell中的报名按钮单击事件
-- (void)signInButtonAction:(ClassTypeDMData *)dmData {
-    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-        SignUpController *signUpVC = [[SignUpController alloc] init];
-        serverclasslistModel *classlistModel = [[serverclasslistModel alloc] init];
-        classlistModel.price = dmData.price;
-        classlistModel._id = dmData.calssid;
-        signUpVC.signUpFormDetail = SignUpFormSchoolDetail;
-        signUpVC.classTypeDMDataModel = dmData;
-        signUpVC.serverclasslistModel = classlistModel;
-        [self.navigationController pushViewController:signUpVC animated:YES];
-    }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]){
-        [self obj_showTotasViewWithMes:@"报名正在申请中!"];
-    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]){
-        [self obj_showTotasViewWithMes:@"您已经报过名!"];
-    }
+- (void)signUpButtonAction:(ClassTypeDMData *)dmData {
+    
+    DVVSignUpDetailController *vc = [DVVSignUpDetailController new];
+    vc.dmData = dmData;
+    [self.navigationController pushViewController:vc animated:YES];
     
 }
 #pragma mark 教练cell的点击事件
@@ -433,7 +425,7 @@
         _signUpCell = [[DrivingDetailSignUpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kSignUpCell"];
         __weak typeof(self) ws = self;
         [_signUpCell.classTypeView setClassTypeSignUpButtonActionBlock:^(ClassTypeDMData *dmData) {
-            [ws signInButtonAction:dmData];
+            [ws signUpButtonAction:dmData];
         }];
         [_signUpCell.classTypeView setClassTypeViewCellDidSelectBlock:^(ClassTypeDMData *dmData) {
             [ws classTypeCellDidSelectAction:dmData];

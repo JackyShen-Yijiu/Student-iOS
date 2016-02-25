@@ -10,7 +10,7 @@
 #import "ClassTypeViewModel.h"
 #import "ClassTypeCell.h"
 
-#define kCellIdentifier @"kCellIdentifier"
+static NSString *kCellIdentifier = @"kCellIdentifier";
 
 @interface ClassTypeView ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -46,16 +46,18 @@
     
     _viewModel = [ClassTypeViewModel new];
     _viewModel.schoolID = _schoolID;
-//    __weak typeof(self) ws = self;
+    __weak typeof(self) ws = self;
     [_viewModel dvvSetRefreshSuccessBlock:^{
         _totalHeight = _viewModel.totalHeight;
-        [self reloadData];
+        [ws.promptNilDataView removeFromSuperview];
+        [ws reloadData];
         if (_networkSuccessBlock) {
             _networkSuccessBlock(_viewModel);
         }
     }];
     [_viewModel dvvSetNilResponseObjectBlock:^{
 //        [self obj_showTotasViewWithMes:@"没有数据"];
+        [ws addSubview:ws.promptNilDataView];
     }];
     [_viewModel dvvSetRefreshErrorBlock:^{
 //        [self obj_showTotasViewWithMes:@"加载失败"];
@@ -108,10 +110,19 @@
         [DVVUserManager userNeedLogin];
         return ;
     }
-    if (_signUpButtonBlock) {
-        ClassTypeDMData *dmData = _viewModel.dataArray[sender.tag];
-        _signUpButtonBlock(dmData);
-    }
+    
+//    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+    
+        if (_signUpButtonBlock) {
+            ClassTypeDMData *dmData = _viewModel.dataArray[sender.tag];
+            _signUpButtonBlock(dmData);
+        }
+        
+//    }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]){
+//        [self obj_showTotasViewWithMes:@"报名正在申请中"];
+//    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]){
+//        [self obj_showTotasViewWithMes:@"您已经报过名"];
+//    }
 }
 
 - (void)setClassTypeNetworkSuccessBlock:(ClassTypeViewBlock)handle {
@@ -123,6 +134,16 @@
 }
 - (void)setClassTypeViewCellDidSelectBlock:(ClassTypeViewCellBlock)handel {
     _cellDidSelectBlock = handel;
+}
+
+- (DVVPromptNilDataView *)promptNilDataView {
+    if (!_promptNilDataView) {
+        _promptNilDataView = [DVVPromptNilDataView new];
+        _promptNilDataView.promptLabel.text = @"暂无班型信息";
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        _promptNilDataView.center = CGPointMake(size.width / 2.f, (size.height - 64 - 44) / 2.f);
+    }
+    return _promptNilDataView;
 }
 
 /*

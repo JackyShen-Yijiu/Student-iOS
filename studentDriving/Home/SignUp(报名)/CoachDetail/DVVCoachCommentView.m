@@ -7,6 +7,9 @@
 //
 
 #import "DVVCoachCommentView.h"
+#import "DVVCoachCommentCell.h"
+
+static NSString *kCellIdentifier = @"kCellIdentifier";
 
 @implementation DVVCoachCommentView
 
@@ -19,15 +22,90 @@
         self.bounces = NO;
         self.dataSource = self;
         self.delegate = self;
-        // 如果是固定高度的话在这里设置比较好
-        self.rowHeight = 88.f;
         self.tableFooterView = self.bottomButton;
         
-//        [self registerClass:[CoachListCell class] forCellReuseIdentifier:kCellIdentifier];
+        [self registerClass:[DVVCoachCommentCell class] forCellReuseIdentifier:kCellIdentifier];
         
-//        [self configViewModel];
+        [self configViewModel];
     }
     return self;
+}
+
+- (void)setCoachID:(NSString *)coachID {
+    _coachID = coachID;
+    _viewModel.coachID = _coachID;
+    [_viewModel dvv_networkRequestRefresh];
+}
+
+- (void)configViewModel {
+    
+    _viewModel = [DVVCoachCommentViewModel new];
+    
+    __weak typeof(self) ws = self;
+    [_viewModel dvv_setRefreshSuccessBlock:^{
+        ws.bottomButton.hidden = NO;
+        [ws.promptNilDataView removeFromSuperview];
+        [ws reloadData];
+    }];
+    [_viewModel dvv_setNilResponseObjectBlock:^{
+        ws.bottomButton.hidden = YES;
+        [ws addSubview:ws.promptNilDataView];
+    }];
+    [_viewModel dvv_setNetworkErrorBlock:^{
+        ws.bottomButton.hidden = YES;
+        [ws addSubview:ws.promptNilDataView];
+    }];
+}
+
+#pragma mark - table view
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (_viewModel.dataArray.count > 2) {
+        return 2;
+    }
+    return _viewModel.dataArray.count;
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return [_viewModel.heightArray[indexPath.row] floatValue];
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    DVVCoachCommentCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    [cell refreshData:_viewModel.dataArray[indexPath.row]];
+    
+    //    if (indexPath.row == 1) {
+    //        cell.bottomLineView.hidden = YES;
+    //    }else {
+    //        cell.bottomLineView.hidden = NO;
+    //    }
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+//    CoachListDMData *dmData = _viewModel.dataArray[indexPath.row];
+//    if (_cellDidSelectBlock) {
+//        _cellDidSelectBlock(dmData);
+//    }
+}
+
+- (UIButton *)bottomButton {
+    if (!_bottomButton) {
+        _bottomButton = [UIButton new];
+        _bottomButton.frame = CGRectMake(0, 0, 0, 40);
+        _bottomButton.backgroundColor = [UIColor whiteColor];
+        [_bottomButton setTitle:@"查看全部学员评价" forState:UIControlStateNormal];
+        [_bottomButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    }
+    return _bottomButton;
+}
+
+- (DVVPromptNilDataView *)promptNilDataView {
+    if (!_promptNilDataView) {
+        _promptNilDataView = [DVVPromptNilDataView new];
+        _promptNilDataView.promptLabel.text = @"暂无评论信息";
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        _promptNilDataView.center = CGPointMake(size.width / 2.f, (size.height - 64 - 44) / 2.f);
+    }
+    return _promptNilDataView;
 }
 
 /*
