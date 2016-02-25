@@ -22,8 +22,12 @@
 
 #define StartOffset  kSystemWide/4-60/2
 
+//<<<<<<< HEAD
 static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 报名详情
 
+//=======
+//static NSString *const kinfomationCheck = @"userinfo/getapplyschoolinfo"; // 报名详情
+//>>>>>>> 385c61e92eb512a36de16af24c6947a2404c9c3a
 static NSString *const kGetMySaveCoach = @"userinfo/favoritecoach";
 
 static NSString *const kGetMySaveSchool = @"userinfo/favoriteschool";

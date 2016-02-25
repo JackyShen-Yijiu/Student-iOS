@@ -16,7 +16,11 @@
 #import "MySaveViewController.h"
 #import "SignUpDetailController.h"
 
+
 static NSString *kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo";
+
+//static NSString *kinfomationCheck = @"userinfo/getapplyschoolinfo";
+
 
 @interface EditorMessageController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
@@ -137,7 +141,11 @@ static NSString *kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo";
     if (5 == indexPath.row) {
         // 报名详情
         
+//<<<<<<< HEAD
         NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kgetapplyschoolinfo];
+//=======
+//        NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
+//>>>>>>> 385c61e92eb512a36de16af24c6947a2404c9c3a
         NSDictionary *param = @{@"userid":[AcountManager manager].userid};
         [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
             if (!data) {
