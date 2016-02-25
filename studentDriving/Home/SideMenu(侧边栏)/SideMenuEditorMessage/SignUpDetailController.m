@@ -13,7 +13,7 @@
 #import "DrivingCell.h"
 #import "CoachModel.h"
 #import "DrivingModel.h"
-#import "DrivingDetailController.h"
+//#import "DrivingDetailController.h"
 #import "JGDrivingDetailViewController.h"
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
@@ -455,9 +455,9 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_myLoveState == MyLoveStateCoach) {
-        return 100.0f;
+        return 150.0f;
     }else if (_myLoveState == MyLoveStateDriving) {
-        return 100.0f;
+        return 150.0f;
     }
     return 0;
 }
@@ -483,6 +483,15 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             
         }
         cell.dict = self.dict;
+        cell.didclickBlock = ^(NSInteger tag){
+            if (400 == tag) {
+                // 线下重新的报名
+            }else if(401 == tag){
+                // 线上重新报名
+            }else if(401 == tag){
+                // 立即支付
+            }
+        };
         return cell;
     }else if (_myLoveState == MyLoveStateCoach) {
         static NSString *cellId = @"Driving";
@@ -502,22 +511,22 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_myLoveState == MyLoveStateCoach) {
-        CoachModel *model = self.dataArray[indexPath.row];
-        self.coachDetailModel = model;
-        //        self.naviBarRightButton.hidden = NO;
-        
-        JGDrivingDetailViewController *detailVC = [[JGDrivingDetailViewController alloc]init];
-        DYNSLog(@"coachid = %@",model.coachid);
-        detailVC.coachUserId = model.coachid;
-        [self.navigationController pushViewController:detailVC animated:YES];
+//        CoachModel *model = self.dataArray[indexPath.row];
+//        self.coachDetailModel = model;
+//        //        self.naviBarRightButton.hidden = NO;
+//        
+//        JGDrivingDetailViewController *detailVC = [[JGDrivingDetailViewController alloc]init];
+//        DYNSLog(@"coachid = %@",model.coachid);
+//        detailVC.coachUserId = model.coachid;
+//        [self.navigationController pushViewController:detailVC animated:YES];
         
     }else if (_myLoveState == MyLoveStateDriving) {
-        DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
-        DrivingModel *model = self.dataArray[indexPath.row];
-        self.drivingDetailModel = model;
-        self.naviBarRightButton.hidden = YES;
-        SelectVC.schoolID = model.schoolid;
-        [self.navigationController pushViewController:SelectVC animated:YES];
+//        DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
+//        DrivingModel *model = self.dataArray[indexPath.row];
+//        self.drivingDetailModel = model;
+//        self.naviBarRightButton.hidden = YES;
+//        SelectVC.schoolID = model.schoolid;
+//        [self.navigationController pushViewController:SelectVC animated:YES];
         
     }
 }

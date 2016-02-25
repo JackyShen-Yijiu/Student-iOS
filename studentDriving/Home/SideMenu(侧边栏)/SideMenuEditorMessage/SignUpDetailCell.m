@@ -24,7 +24,9 @@
 @property (nonatomic, strong) UILabel *payStaus; // 支付状态
 @property (strong, nonatomic) UIView *lineBottomView;
 
-
+@property (nonatomic, strong) UIButton *offlineButton; // 线下重新报名
+@property (nonatomic, strong) UIButton *onlineButton; // 线上重新报名
+@property (nonatomic, strong) UIButton *payButton; // 支付
 
 
 
@@ -118,6 +120,78 @@
     }
     return _lineBottomView;
 }
+// 线下
+- (UIButton *)offlineButton{
+    if (_offlineButton == nil) {
+        _offlineButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _offlineButton.backgroundColor = [UIColor clearColor];
+        [_offlineButton setTitle:@"重新报名" forState:UIControlStateNormal];
+        [_offlineButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
+        [_offlineButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+        _offlineButton.selected = YES;
+        if (_offlineButton.selected) {
+            _offlineButton.layer.borderWidth = 1;
+            _offlineButton.layer.borderColor = YBNavigationBarBgColor.CGColor;
+        }
+        if (!_offlineButton.selected) {
+            _offlineButton.layer.borderWidth = 1;
+            _offlineButton.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
+        }
+    [_offlineButton addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
+        _offlineButton.hidden = YES;
+        _offlineButton.tag = 400;
+        
+    }
+    return _offlineButton;
+}
+// 线上
+- (UIButton *)onlineButton{
+    if (_onlineButton == nil) {
+        _onlineButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _onlineButton.backgroundColor = [UIColor clearColor];
+        [_onlineButton setTitle:@"重新报名" forState:UIControlStateNormal];
+        [_onlineButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
+        [_onlineButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+        _onlineButton.selected = YES;
+        if (_onlineButton.selected) {
+            _onlineButton.layer.borderWidth = 1;
+            _onlineButton.layer.borderColor = YBNavigationBarBgColor.CGColor;
+        }
+        if (!_onlineButton.selected) {
+            _onlineButton.layer.borderWidth = 1;
+            _onlineButton.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
+        }
+        [_onlineButton addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
+        _onlineButton.hidden = YES;
+        _onlineButton.tag = 401;
+        
+    }
+    return _onlineButton;
+}
+- (UIButton *)payButton{
+    if (_payButton == nil) {
+        _payButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _payButton.backgroundColor = [UIColor clearColor];
+        [_payButton setTitle:@"立即支付" forState:UIControlStateNormal];
+        [_payButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
+        [_payButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+        _payButton.selected = NO;
+        if (_payButton.selected) {
+            _payButton.layer.borderWidth = 1;
+            _payButton.layer.borderColor = YBNavigationBarBgColor.CGColor;
+        }
+        if (!_payButton.selected) {
+            _payButton.layer.borderWidth = 1;
+            _payButton.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
+        }
+        [_payButton addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
+        _payButton.hidden = YES;
+        _payButton.tag = 402;
+        
+    }
+    return _payButton;
+}
+
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self createCellUI];
@@ -134,7 +208,15 @@
     [self addSubview:self.numberMoney];
     [self addSubview:self.payStaus];
     [self addSubview:self.lineBottomView];
-    
+    [self addSubview:self.offlineButton];
+    [self addSubview:self.onlineButton];
+    [self addSubview:self.payButton];
+}
+#pragma mark -----ActionTarget
+- (void)didClick:(UIButton *)btn{
+    if (_didclickBlock) {
+        _didclickBlock(btn.tag);
+    }
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
@@ -190,6 +272,27 @@
         make.height.mas_equalTo(@1);
         
     }];
+    [self.offlineButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.mas_right).offset(-15);
+        make.top.mas_equalTo(self.lineBottomView.mas_bottom).offset(10);
+        make.height.mas_equalTo(@30);
+        make.width.mas_equalTo(@100);
+        
+    }];
+    [self.payButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.mas_right).offset(-15);
+        make.top.mas_equalTo(self.lineBottomView.mas_bottom).offset(10);
+        make.height.mas_equalTo(@30);
+        make.width.mas_equalTo(@100);
+        
+    }];
+    [self.onlineButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.payButton.mas_left).offset(-15);
+        make.top.mas_equalTo(self.lineBottomView.mas_bottom).offset(10);
+        make.height.mas_equalTo(@30);
+        make.width.mas_equalTo(@100);
+        
+    }];
 
     
 }
@@ -215,10 +318,24 @@
     
     // 线上支付状态
     self.payStaus.text = [dict objectForKey:@"payStausStr"];
+    if ([[dict objectForKey:@"payWaystr"] isEqualToString:@"线上支付"]) {
+        if ([[dict objectForKey:@"payStausStr"] isEqualToString:@"未支付"]) {
+            _onlineButton.hidden = NO;
+            _payButton.hidden = NO;
+        }
+        if ([[dict objectForKey:@"payStausStr"] isEqualToString:@"支付失败"]) {
+            _onlineButton.hidden = NO;
+            _payButton.hidden = NO;
+
+        }
+    }
+
+    
     // 线下支付状态
         if ([[dict objectForKey:@"payWaystr"] isEqualToString:@"线下支付"]) {
         if ([[dict objectForKey:@"applySatus"] isEqualToString:@"申请中"]) {
             self.payStaus.text = @"未验证";
+            _offlineButton.hidden = NO;
         }
         if ([[dict objectForKey:@"applySatus"] isEqualToString:@"申请成功"]) {
             self.payStaus.text = @"报名成功";

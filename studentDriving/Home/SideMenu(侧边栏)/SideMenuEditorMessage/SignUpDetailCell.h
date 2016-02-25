@@ -10,6 +10,7 @@
 
 @class CoachDMData;
 @class CoachModel;
+typedef void (^DidClickBlock)(NSInteger tag);
 @interface SignUpDetailCell : UITableViewCell
 
 - (void)refreshData:(CoachDMData *)coachModel;
@@ -17,5 +18,6 @@
 
 @property (nonatomic,assign) BOOL isSelectCoachVc;
 @property (nonatomic, strong) NSDictionary *dict;
+@property (nonatomic, strong) DidClickBlock didclickBlock;
 @end
 
