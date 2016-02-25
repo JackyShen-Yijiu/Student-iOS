@@ -22,7 +22,7 @@
 #import "ChatListViewController.h"
 //      /info/examquestion
 
-static NSString *const kexamquestionUrl = @"/info/examquestion";
+//static NSString *const kexamquestionUrl = @"/info/examquestion";
 
 @interface FourViewController ()
 

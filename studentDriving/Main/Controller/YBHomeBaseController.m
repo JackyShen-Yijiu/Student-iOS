@@ -9,6 +9,7 @@
 #import "YBHomeBaseController.h"
 #import "UIImage+WM.h"
 #import "WMCommon.h"
+#import "NSUserStoreTool.h"
 
 @interface YBHomeBaseController ()
 
@@ -19,6 +20,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    // 获取进度
+    [self addLoadSubjectProress];
     
 }
 
@@ -42,6 +46,119 @@
     if ([self.delegate respondsToSelector:@selector(leftBtnClicked)]) {
         [self.delegate leftBtnClicked];
     }
+}
+
+- (void)addLoadSubjectProress
+{
+    if (![AcountManager isLogin]) {
+        return;
+    }
+    
+    // 申请状态保存
+    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
+    NSDictionary *param = @{@"userid":[AcountManager manager].userid};
+    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"申请状态保存 data:%@",data);
+       
+        if (!data) {
+            return ;
+        }
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        
+        if ([type isEqualToString:@"1"]) {
+            
+            NSDictionary *dataDic = [param objectForKey:@"data"];
+            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
+                return;
+            }
+            
+            if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {// 尚未报名
+                
+                [AcountManager saveUserApplyState:@"0"];
+                
+            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {// 已报名,尚未交钱
+                
+                [AcountManager saveUserApplyState:@"1"];
+                
+            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 2) {// 正常学习,
+                
+                [AcountManager saveUserApplyState:@"2"];
+                
+            }else {
+                
+                [AcountManager saveUserApplyState:@"3"];
+            }
+            
+            [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
+            
+        }else {
+            
+            NSLog(@"1:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
+            
+            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
+            
+        }
+        
+    } withFailure:^(id data) {
+        [self showTotasViewWithMes:@"网络错误"];
+    }];
+    
+    // 获取首页状态
+    NSString *getMyProgress = [NSString stringWithFormat:BASEURL,kgetMyProgress];
+    [JENetwoking startDownLoadWithUrl:getMyProgress postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"获取首页状态 data:%@",data);
+       
+        if (!data) {
+            return ;
+        }
+        NSDictionary *param = data;
+        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        
+        if ([type isEqualToString:@"1"]) {
+            
+            NSDictionary *dataDic = [param objectForKey:@"data"];
+            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
+                return;
+            }
+            
+            // 当前为科目几
+            NSDictionary *subject = [dataDic objectForKey:@"subject"];
+            if (subject) {
+                [NSUserStoreTool storeWithId:subject WithKey:ksubject];
+            }
+            
+            if ([dataDic objectForKey:@"subjectone"]) {
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjectone"] WithKey:ksubjectOne];
+            }
+            if ([dataDic objectForKey:@"subjecttwo"]) {
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjecttwo"] WithKey:ksubjectTwo];
+            }
+            if ([dataDic objectForKey:@"subjectthree"]) {
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjectthree"] WithKey:ksubjectThree];
+            }
+            if ([dataDic objectForKey:@"subjectfour"]) {
+                [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjectfour"] WithKey:ksubjectFour];
+            }
+            
+            NSLog(@"[AcountManager manager].userSubject.name:%@",[AcountManager manager].userSubject.name);
+            NSLog(@"[AcountManager manager].subjectone.progress:%@",[AcountManager manager].subjectone.progress);
+            NSLog(@"[AcountManager manager].subjecttwo.progress:%@",[AcountManager manager].subjecttwo.progress);
+            NSLog(@"[AcountManager manager].subjectthree.progress:%@",[AcountManager manager].subjectthree.progress);
+            NSLog(@"[AcountManager manager].subjectfour.progress:%@",[AcountManager manager].subjectfour.progress);
+            
+        }else {
+            
+            NSLog(@"2:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
+            
+            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
+        }
+    } withFailure:^(id data) {
+        [self showTotasViewWithMes:@"网络错误"];
+    }];
+    
 }
 
 - (void)didReceiveMemoryWarning {

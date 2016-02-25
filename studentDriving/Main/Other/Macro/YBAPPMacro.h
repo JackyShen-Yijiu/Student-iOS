@@ -23,7 +23,32 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/-1
 // 保存预约的教练
 #define KAppointMentCoach @"appointMentCoach"
 
+// 退出侧边栏通知
+#define KhiddenSlide @"hiddenSlide"
+
 // 数据存储路径
 #define YBPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+
+/*************** 网络请求接口 ***************/
+
+static NSString *const kexamquestionUrl = @"info/examquestion";
+
+static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?userid=%@&subjectid=%ld";
+
+static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
+
+static NSString *const KAppointgetmyreservation = @"courseinfo/getmyreservation";
+
+static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
+
+static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
+
+/*************** 网络请求接口 ***************/
+
+#define ksubject      @"subject"
+#define ksubjectOne   @"subjectone"
+#define ksubjectTwo   @"subjecttwo"
+#define ksubjectThree @"subjectThree"
+#define ksubjectFour   @"subjectFour"
 
 #endif /* YBObject_h */

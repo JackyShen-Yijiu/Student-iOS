@@ -19,4 +19,12 @@
 
 @property (nonatomic,weak) UIViewController *parentViewController;
 
+@property (copy, nonatomic) NSString *questionlisturl;
+@property (copy, nonatomic) NSString *questiontesturl;
+@property (copy, nonatomic) NSString *questionerrorurl;
+
+@property (copy, nonatomic) NSString *questionFourlisturl;
+@property (copy, nonatomic) NSString *questionFourtesturl;
+@property (copy, nonatomic) NSString *questionFourerrorurl;
+
 @end

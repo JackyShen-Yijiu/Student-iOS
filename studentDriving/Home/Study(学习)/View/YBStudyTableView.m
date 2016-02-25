@@ -10,6 +10,11 @@
 #import "YBStudyViewCell.h"
 #import "DVVToast.h"
 #import "WMOtherViewController.h"
+#import "QuestionTestViewController.h"
+#import "QuestionBankViewController.h"
+#import "WrongQuestionViewController.h"
+#import "BLAVPlayerViewController.h"
+#import "WMCommon.h"
 
 #define kCellIdentifier @"YBStudyViewCell"
 
@@ -73,28 +78,64 @@
     return _dataTabelView;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"self.studyProgress:%ld",(long)self.studyProgress);
     
+    if ([WMCommon getInstance].homeState==kStateMenu) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:KhiddenSlide object:self];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     NSDictionary *dict = _dataArray[indexPath.row];
-
-    WMOtherViewController *other = [[WMOtherViewController alloc] init];
-    other.navTitle = [NSString stringWithFormat:@"%@",dict[@"title"]];
-    other.hidesBottomBarWhenPushed = YES;
-    [self.parentViewController.navigationController pushViewController:other animated:YES];
-    
+//
+//    WMOtherViewController *other = [[WMOtherViewController alloc] init];
+//    other.navTitle = [NSString stringWithFormat:@"%@",dict[@"title"]];
+//    other.hidesBottomBarWhenPushed = YES;
+//    [self.parentViewController.navigationController pushViewController:other animated:YES];
+//    
     switch (self.studyProgress) {
         case YBStudyProgress1:
             
             if (indexPath.row==0) {
     
+                NSLog(@"self.questiontesturl:%@",self.questiontesturl);
+                
+                QuestionTestViewController *questionVC = [[QuestionTestViewController alloc] init];
+                questionVC.hidesBottomBarWhenPushed = YES;
+                questionVC.questiontesturl = self.questiontesturl;
+//                questionVC.isModal = YES;
+                //                [mainVC.navigationController pushViewController:questionVC animated:YES];
+//                [self.parentViewController.navigationController presentViewController:questionVC animated:NO completion:nil];
+                [self.parentViewController.navigationController pushViewController:questionVC animated:YES];
+
             }else if (indexPath.row==1){
                 
+                QuestionBankViewController *questBankVC = [[QuestionBankViewController alloc] init];
+                questBankVC.hidesBottomBarWhenPushed = YES;
+                questBankVC.questionlisturl = self.questionlisturl;
+//                questBankVC.isModal = YES;
+                //                [mainVC.navigationController pushViewController:questBankVC animated:YES];
+//                [self.parentViewController.navigationController presentViewController:questBankVC animated:NO completion:nil];
+                [self.parentViewController.navigationController pushViewController:questBankVC animated:YES];
+
             }else if (indexPath.row==2){
                 
+                WrongQuestionViewController *wrongQuestVC = [[WrongQuestionViewController alloc] init];
+                wrongQuestVC.hidesBottomBarWhenPushed = YES;
+                wrongQuestVC.questionerrorurl = self.questionerrorurl;
+//                wrongQuestVC.isModal = YES;
+                NSLog(@"%@",wrongQuestVC.questionerrorurl);
+                //                [mainVC.navigationController pushViewController:wrongQuestVC animated:YES];
+//                [self.parentViewController.navigationController presentViewController:wrongQuestVC animated:NO completion:nil];
+                [self.parentViewController.navigationController pushViewController:wrongQuestVC animated:YES];
+
             }else if (indexPath.row==3){
                 
             }else if (indexPath.row==4){
@@ -106,6 +147,13 @@
         case YBStudyProgress2:
             
             if (indexPath.row==0) {
+                
+                BLAVPlayerViewController *bLAVPlayweVC = [[BLAVPlayerViewController alloc] init];
+                bLAVPlayweVC.hidesBottomBarWhenPushed = YES;
+                bLAVPlayweVC.title = @"科二课件";
+                bLAVPlayweVC.markNum = [NSNumber numberWithInteger:2];
+                [self.parentViewController.navigationController pushViewController:bLAVPlayweVC animated:YES];
+                //                [mainVC presentViewController:bLAVPlayweVC animated:NO completion:nil];
                 
             }else if (indexPath.row==1){
                 
@@ -121,6 +169,12 @@
             
             if (indexPath.row==0) {
                 
+                BLAVPlayerViewController *bLAVPlayweVC = [[BLAVPlayerViewController alloc] init];
+                bLAVPlayweVC.hidesBottomBarWhenPushed = YES;
+                bLAVPlayweVC.title = @"科三课件";
+                bLAVPlayweVC.markNum = [NSNumber numberWithInteger:3];
+                [self.parentViewController.navigationController pushViewController:bLAVPlayweVC animated:YES];
+                
             }else if (indexPath.row==1){
                 
             }else if (indexPath.row==2){
@@ -135,9 +189,54 @@
             
             if (indexPath.row==0) {
                 
+                QuestionBankViewController *questionBank = [[QuestionBankViewController alloc] init];
+                questionBank.hidesBottomBarWhenPushed = YES;
+                questionBank.questionlisturl = self.questionFourlisturl;
+                if ([AcountManager isLogin]) {
+                    NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
+                    NSString *finalString = [self.questionFourlisturl stringByAppendingString:appendString];
+                    questionBank.questionlisturl = finalString;
+                }
+//                questionBank.title = @"科四题库";
+//                questionBank.isModal = YES;
+                //                [mainVC.navigationController pushViewController:questionBank animated:YES];
+//                [self.parentViewController.navigationController presentViewController:questionBank animated:NO completion:nil];
+                [self.parentViewController.navigationController pushViewController:questionBank animated:YES];
+
             }else if (indexPath.row==1){
                 
+                QuestionTestViewController *questionTest = [[QuestionTestViewController alloc] init];
+                questionTest.hidesBottomBarWhenPushed = YES;
+                if ([AcountManager isLogin]) {
+                    NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
+                    NSString *finalString = [self.questionFourtesturl stringByAppendingString:appendString];
+                    questionTest.questiontesturl = finalString;
+                }
+//                questionTest.title = @"科四模拟考试";
+                //                [mainVC.navigationController pushViewController:questionTest animated:YES];
+//                questionTest.isModal = YES;
+//                [self.parentViewController.navigationController presentViewController:questionTest animated:NO completion:nil];
+                [self.parentViewController.navigationController pushViewController:questionTest animated:YES];
+
             }else if (indexPath.row==2){
+                
+                WrongQuestionViewController *wrongQuestion = [[WrongQuestionViewController alloc] init];
+                wrongQuestion.hidesBottomBarWhenPushed = YES;
+                if (![AcountManager isLogin]) {
+                    DYNSLog(@"islogin = %d",[AcountManager isLogin]);
+                    [DVVUserManager userNeedLogin];
+                    return;
+                }else {
+                    NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
+                    NSString *finalString = [self.questionFourerrorurl stringByAppendingString:appendString];
+                    wrongQuestion.questionerrorurl = finalString;
+                }
+//                wrongQuestion.title = @"错题";
+//                wrongQuestion.isModal = YES;
+                //                [mainVC.navigationController pushViewController:wrongQuestion animated:YES];
+//                [self.parentViewController.navigationController presentViewController:wrongQuestion animated:NO completion:nil];
+                [self.parentViewController.navigationController pushViewController:wrongQuestion animated:YES];
+
                 
             }else if (indexPath.row==3){
                 

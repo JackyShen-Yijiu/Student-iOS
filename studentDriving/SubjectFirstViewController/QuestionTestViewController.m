@@ -10,7 +10,9 @@
 #import "ToolHeader.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
+
 @interface QuestionTestViewController ()<UIWebViewDelegate,NJKWebViewProgressDelegate>
+
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) NJKWebViewProgress *webviewProgress;
 @property (strong, nonatomic) NJKWebViewProgressView *progressView;
@@ -18,10 +20,25 @@
 
 @implementation QuestionTestViewController
 
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.navigationBar addSubview:_progressView];
+
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
+    [_progressView removeFromSuperview];
+  
+}
+
 - (UIWebView *)webView {
     if (_webView == nil) {
         _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
-        _webView.backgroundColor = [UIColor lightGrayColor];//RGBColor(251, 251, 251);
+        _webView.backgroundColor = YBNavigationBarBgColor;//RGBColor(251, 251, 251);
     }
     return _webView;
 }
@@ -34,7 +51,6 @@
     DYNSLog(@"request = %@",self.questiontesturl);
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [self.view addSubview:self.webView];
-    
     
     if (self.isModal==YES) {
         CGFloat X = 5;
@@ -59,7 +75,7 @@
     CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
     CGRect barFrame = CGRectMake(0, navigationBarBounds.size.height, navigationBarBounds.size.width, progressBarHeight);
     self.progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
-    self.progressView.progressBarView.backgroundColor = MAINCOLOR;
+    self.progressView.progressBarView.backgroundColor = YBNavigationBarBgColor;
     self.progressView.hidden = YES;
     
     NSString *urlString = self.questiontesturl;
@@ -90,23 +106,5 @@
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     [MBProgressHUD hideHUDForView:self.view animated:NO];
     [self showTotasViewWithMes:@"加载失败"];
-}
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    
-    NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
-    [_progressView removeFromSuperview];
-    
-}
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [self.navigationController.navigationBar addSubview:_progressView];
-    
-    
 }
 @end

@@ -10,6 +10,9 @@
 #import "WMNavigationInteractiveTransition.h"
 
 @interface WMNavigationController () <UIGestureRecognizerDelegate>
+{
+    UIImageView*navBarHairlineImageView;
+}
 @property (nonatomic, weak) UIPanGestureRecognizer *popRecognizer;
 @property (nonatomic, strong) WMNavigationInteractiveTransition *navT;
 

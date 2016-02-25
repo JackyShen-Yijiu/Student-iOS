@@ -17,7 +17,7 @@
 #import "MyAppointmentModel.h"
 #import <MJRefresh.h>
 
-static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@&subjectid=%@";
+//static NSString *const kappointmentUrl = @"courseinfo/getmyreservation?userid=%@&subjectid=%@";
 
 // 强制评论
 static NSString *const forceCommentURL = @"courseinfo/getmyuncommentreservation?userid=%@&subjectid=%@";

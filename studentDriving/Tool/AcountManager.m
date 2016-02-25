@@ -38,9 +38,9 @@ static  NSString    *kApplyschoolinfo = @"applyschoolinfo";
 static  NSString    *kheadportrait = @"headportrait";
 static  NSString    *kaddress = @"address";
 static  NSString    *kidcardnumber = @"idcardnumber";
-static  NSString    *ksubject = @"subject";
-static  NSString    *ksubjectTwo = @"subjecttwo";
-static  NSString    *ksubjectThree = @"subjectthree";
+//static  NSString    *ksubject = @"subject";
+//static  NSString    *ksubjectTwo = @"subjecttwo";
+//static  NSString    *ksubjectThree = @"subjectthree";
 static  NSString    *kBannerUrl = @"bannerUrl";
 // 设置
 static  NSString    *kUserSetting = @"usersetting";
@@ -293,6 +293,22 @@ static  NSString    *kUserSelectedLongitude = @"kUserSelectedLongitude";
     return model;
 }
 
+
+- (SubjectModel *)userSubject {
+    NSDictionary *userSubject = [NSUserStoreTool getObjectWithKey:ksubject];
+    NSLog(@"*****%@",userSubject);
+    NSError *error = nil;
+    SubjectModel *model = [MTLJSONAdapter modelOfClass:SubjectModel.class fromJSONDictionary:userSubject error:&error];
+    DYNSLog(@"error = %@",error);
+    return model;
+}
+- (SubjectOneModel *)subjectone {
+    NSDictionary *param = [NSUserStoreTool getObjectWithKey:ksubjectOne];
+    NSError *error = nil;
+    SubjectOneModel *model = [MTLJSONAdapter modelOfClass:SubjectOneModel.class fromJSONDictionary:param error:&error];
+    DYNSLog(@"model = %@",param);
+    return model;
+}
 - (SubjectTwoModel *)subjecttwo {
     NSDictionary *param = [NSUserStoreTool getObjectWithKey:ksubjectTwo];
     NSError *error = nil;
@@ -307,6 +323,14 @@ static  NSString    *kUserSelectedLongitude = @"kUserSelectedLongitude";
     DYNSLog(@"model = %@",param);
     return model;
 }
+- (SubjectFourModel *)subjectfour {
+    NSDictionary *param = [NSUserStoreTool getObjectWithKey:ksubjectFour];
+    NSError *error = nil;
+    SubjectFourModel *model = [MTLJSONAdapter modelOfClass:SubjectFourModel.class fromJSONDictionary:param error:&error];
+    DYNSLog(@"model = %@",param);
+    return model;
+}
+
 // 设置
 - (BOOL)reservationreminder {
     id object = [NSUserStoreTool getObjectWithKey:kReservationReminder];
@@ -396,15 +420,6 @@ static  NSString    *kUserSelectedLongitude = @"kUserSelectedLongitude";
     NSError *error = nil;
     ExamCarModel *model = [MTLJSONAdapter modelOfClass:ExamCarModel.class fromJSONDictionary:userCarmodels error:&error];
     DYNSLog(@"error Carmodels = %@ ",error);
-    return model;
-}
-
-- (SubjectModel *)userSubject {
-    NSDictionary *userSubject = [NSUserStoreTool getObjectWithKey:ksubject];
-    NSLog(@"*****%@",userSubject);
-    NSError *error = nil;
-    SubjectModel *model = [MTLJSONAdapter modelOfClass:SubjectModel.class fromJSONDictionary:userSubject error:&error];
-    DYNSLog(@"error = %@",error);
     return model;
 }
 
