@@ -101,6 +101,7 @@
 		568DF2391C7592C400008829 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2361C7592C400008829 /* VirtualViewController.m */; };
 		56C407401C7D4EF4002E0692 /* SignUpDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */; };
 		56C407431C7D4F56002E0692 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C407421C7D4F56002E0692 /* FavouriteViewController.m */; };
+		56C407461C7DB5B0002E0692 /* SignUpDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C407451C7DB5B0002E0692 /* SignUpDetailCell.m */; };
 		56DAB0FC1C7ABB8500D7B942 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */; };
 		56DAB0FD1C7ABB8500D7B942 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0F91C7ABB8500D7B942 /* FeedBackViewController.m */; };
 		56DAB0FE1C7ABB8500D7B942 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0FB1C7ABB8500D7B942 /* SetupViewController.m */; };
@@ -1134,6 +1135,8 @@
 		56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpDetailController.m; sourceTree = "<group>"; };
 		56C407411C7D4F56002E0692 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
 		56C407421C7D4F56002E0692 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
+		56C407441C7DB5B0002E0692 /* SignUpDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpDetailCell.h; sourceTree = "<group>"; };
+		56C407451C7DB5B0002E0692 /* SignUpDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpDetailCell.m; sourceTree = "<group>"; };
 		56DAB0F61C7ABB8500D7B942 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		56DAB0F81C7ABB8500D7B942 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
@@ -3162,6 +3165,8 @@
 				56DD9C1C1C7C171E00552A56 /* EditorDetailController.m */,
 				56C4073E1C7D4EF4002E0692 /* SignUpDetailController.h */,
 				56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */,
+				56C407441C7DB5B0002E0692 /* SignUpDetailCell.h */,
+				56C407451C7DB5B0002E0692 /* SignUpDetailCell.m */,
 				56C407411C7D4F56002E0692 /* FavouriteViewController.h */,
 				56C407421C7D4F56002E0692 /* FavouriteViewController.m */,
 				56DD9C1E1C7C187600552A56 /* EditorDetailCell.h */,
@@ -6205,6 +6210,7 @@
 				D96532641C7330280097AFA2 /* DVVSignUpSchoolCell.m in Sources */,
 				D965CAB01C239DE900DCD094 /* YBBaseViewModel.m in Sources */,
 				D5C240271BED078300832CF3 /* SubjectThreeModel.m in Sources */,
+				56C407461C7DB5B0002E0692 /* SignUpDetailCell.m in Sources */,
 				D5604C901BF656F30020F0D7 /* MessageModel.m in Sources */,
 				D9B268941C78396D00F62804 /* DVVCoachDetailHeaderView.m in Sources */,
 				D588AFC21BDDDAAB000C5D6F /* Logoimg.m in Sources */,

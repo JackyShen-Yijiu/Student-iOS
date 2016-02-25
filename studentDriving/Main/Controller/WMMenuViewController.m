@@ -127,7 +127,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-//    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     WMOtherViewController *other = [[WMOtherViewController alloc] init];
 //    other.navTitle = title;
