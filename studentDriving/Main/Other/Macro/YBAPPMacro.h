@@ -43,6 +43,10 @@ static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
 static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
+static NSString *const kuserCancelAppointment = @"/courseinfo/cancelreservation";
+
+static NSString *const kapplyexamination = @"/userinfo/applyexamination";
+
 /*************** 网络请求接口 ***************/
 
 #define ksubject      @"subject"

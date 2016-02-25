@@ -14,7 +14,7 @@
 #import "HMCourseModel.h"
 #import "YBAppointMentController.h"
 
-static NSString *const kuserCancelAppointment = @"/courseinfo/cancelreservation";
+//static NSString *const kuserCancelAppointment = @"/courseinfo/cancelreservation";
 
 
 @interface YBCancleAppointMentController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,CancelAppointmentCellDelegate> {

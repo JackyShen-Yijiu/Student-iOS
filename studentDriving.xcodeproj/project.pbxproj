@@ -234,6 +234,8 @@
 		B2F1AE641C7E9CE4006D56FF /* SubjectOneModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE631C7E9CE4006D56FF /* SubjectOneModel.m */; };
 		B2F1AE671C7E9CF2006D56FF /* SubjectFourModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE661C7E9CF2006D56FF /* SubjectFourModel.m */; };
 		B2F1AE6A1C7EABDF006D56FF /* YBWebBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE691C7EABDF006D56FF /* YBWebBaseViewController.m */; };
+		B2F1AE701C7EDBD9006D56FF /* YBAppointTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE6F1C7EDBD9006D56FF /* YBAppointTestViewController.m */; };
+		B2F1AE741C7EED97006D56FF /* YBAppointTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AE731C7EED97006D56FF /* YBAppointTestViewController.xib */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1496,6 +1498,9 @@
 		B2F1AE661C7E9CF2006D56FF /* SubjectFourModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SubjectFourModel.m; sourceTree = "<group>"; };
 		B2F1AE681C7EABDF006D56FF /* YBWebBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBWebBaseViewController.h; sourceTree = "<group>"; };
 		B2F1AE691C7EABDF006D56FF /* YBWebBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBWebBaseViewController.m; sourceTree = "<group>"; };
+		B2F1AE6E1C7EDBD9006D56FF /* YBAppointTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointTestViewController.h; sourceTree = "<group>"; };
+		B2F1AE6F1C7EDBD9006D56FF /* YBAppointTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointTestViewController.m; sourceTree = "<group>"; };
+		B2F1AE731C7EED97006D56FF /* YBAppointTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBAppointTestViewController.xib; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3778,6 +3783,9 @@
 			children = (
 				B2E8E1B71C72C8E6000190C2 /* YBStudyViewController.h */,
 				B2E8E1B81C72C8E6000190C2 /* YBStudyViewController.m */,
+				B2F1AE6E1C7EDBD9006D56FF /* YBAppointTestViewController.h */,
+				B2F1AE6F1C7EDBD9006D56FF /* YBAppointTestViewController.m */,
+				B2F1AE731C7EED97006D56FF /* YBAppointTestViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6142,6 +6150,7 @@
 				D5604BD01BF656C50020F0D7 /* chatBar_more_faceSelected@2x.png in Resources */,
 				D9A5DF5F1C35288A009DF18A /* CoinCertificateController.xib in Resources */,
 				D5604BF91BF656C50020F0D7 /* chatBar_colorMore_photo@2x.png in Resources */,
+				B2F1AE741C7EED97006D56FF /* YBAppointTestViewController.xib in Resources */,
 				D5604BDA1BF656C50020F0D7 /* chat_location_preview@2x.png in Resources */,
 				D5604BEB1BF656C50020F0D7 /* chatBar_record.png in Resources */,
 				D5604BEF1BF656C50020F0D7 /* chatBar_recordSelected.png in Resources */,
@@ -6363,6 +6372,7 @@
 				D588B14C1BDE157A000C5D6F /* QuestionTestViewController.m in Sources */,
 				B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */,
 				D9873B651C56456F000A3F6F /* DVVLocation.m in Sources */,
+				B2F1AE701C7EDBD9006D56FF /* YBAppointTestViewController.m in Sources */,
 				B226AEE51C748F1C0028DF1A /* HMPortraitInfoModel.m in Sources */,
 				D5604B4B1BF656C50020F0D7 /* MWGridCell.m in Sources */,
 				D5604B6E1BF656C50020F0D7 /* PSTGridLayoutRow.m in Sources */,
