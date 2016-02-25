@@ -1,14 +1,13 @@
 //
-//  YBIntegralMallCell.m
+//  YBDiscountCell.m
 //  studentDriving
 //
-//  Created by zyt on 16/2/18.
+//  Created by zyt on 16/2/25.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "YBIntegralMallCell.h"
-
-@interface YBIntegralMallCell ()
+#import "YBDiscountCell.h"
+@interface YBDiscountCell ()
 
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIImageView *mallImageView;
@@ -21,20 +20,12 @@
 
 @end
 
-@implementation YBIntegralMallCell
-
-- (void)awakeFromNib {
-   
-}
+@implementation YBDiscountCell
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initUI];
     }
     return self;
-}
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
 }
 - (void)initUI{
     
@@ -106,9 +97,9 @@
         make.height.mas_equalTo(14);
         
     }];
-
-
-
+    
+    
+    
 }
 // Lazy ---- 加载
 - (UIView *)backView{
@@ -184,7 +175,7 @@
     }
     return _surplusLabel;
 }
-- (void)setIntegralMallModel:(YBIntegralMallModel *)integralMallModel{
+- (void)setDiscountModel:(YBDiscountModel *)discountModel{
     /*
      
      @property (nonatomic,strong) NSString *productid;
@@ -198,15 +189,25 @@
      @property (nonatomic,assign) BOOL is_scanconsumption;
      
      @property (nonatomic,strong) NSString *detailurl;
-
+     
      */
-    [self.mallImageView sd_setImageWithURL:[NSURL URLWithString:integralMallModel.productimg] placeholderImage:nil];
-    self.nameLabel.text = integralMallModel.productname;
-    self.integralLabel.text = [NSString stringWithFormat:@"兑换积分:%d",integralMallModel.productprice];
-    self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",integralMallModel.addressStr];
-    self.peopleNumberLabel.text = [NSString stringWithFormat:@"已有%d人兑换",integralMallModel.buycount];
-    self.surplusLabel.text = [NSString stringWithFormat:@"剩余%d份",integralMallModel.productcount];
-    
-    
+    [self.mallImageView sd_setImageWithURL:[NSURL URLWithString:discountModel.productimg] placeholderImage:nil];
+    self.nameLabel.text = discountModel.productname;
+    self.integralLabel.text = @"兑换券:1张";
+    self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",discountModel.addressStr];
+    self.peopleNumberLabel.text = [NSString stringWithFormat:@"已有%d人兑换",discountModel.buycount];
+    self.surplusLabel.text = [NSString stringWithFormat:@"剩余%d份",discountModel.productcount];
+
 }
+
+- (void)awakeFromNib {
+    // Initialization code
+}
+
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+    // Configure the view for the selected state
+}
+
 @end

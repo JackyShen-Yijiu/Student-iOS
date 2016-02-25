@@ -84,6 +84,7 @@
         
         for (NSDictionary *dict in dmRoot.data) {
             DVVSignUpSchoolDMData *dmData = [DVVSignUpSchoolDMData yy_modelWithDictionary:dict];
+            
             [_dataArray addObject:dmData];
         }
         

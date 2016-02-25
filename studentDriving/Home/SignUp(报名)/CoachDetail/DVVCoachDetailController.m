@@ -20,6 +20,7 @@
 #import "DrivingDetailViewModel.h"
 #import "SchoolClassDetailController.h"
 #import "DVVSignUpDetailController.h"
+#import "DVVCoachDetailCommentListController.h"
 
 static NSString *infoCellID = @"kInfoCellID";
 static NSString *introductionCellID = @"kIntroductionCellID";
@@ -167,6 +168,14 @@ static NSString *courseCellID = @"kCourseCellID";
     vc.dmData = dmData;
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+#pragma mark 更多评论按钮的点击事件
+- (void)moreCommentAction {
+    
+//    [self obj_showTotasViewWithMes:@"暂无更多评论"];
+    DVVCoachDetailCommentListController *vc = [DVVCoachDetailCommentListController new];
+    vc.coachID = _viewModel.coachID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - config view model
@@ -394,6 +403,9 @@ static NSString *courseCellID = @"kCourseCellID";
         [_courseCell.classTypeView dvvCoachClassTypeView_setCellDidSelectBlock:^(ClassTypeDMData *dmData) {
             [ws classTypeCellDidSelectAction:dmData];
         }];
+        
+        // 评论的点击事件
+        [_courseCell.commentView.bottomButton addTarget:self action:@selector(moreCommentAction) forControlEvents:UIControlEventTouchUpInside];
     }
     return _courseCell;
 }
