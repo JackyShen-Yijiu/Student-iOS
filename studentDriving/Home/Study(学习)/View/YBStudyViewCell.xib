@@ -23,7 +23,7 @@
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GpG-6L-4YW">
-                        <rect key="frame" x="18" y="10" width="55" height="55"/>
+                        <rect key="frame" x="10" y="10" width="55" height="55"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="55" id="WGC-76-iyz"/>
                         </constraints>
@@ -34,7 +34,7 @@
                             <constraint firstAttribute="height" constant="21" id="h1P-fU-tH5"/>
                         </constraints>
                         <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRW-ne-Aqo">
@@ -43,19 +43,19 @@
                             <constraint firstAttribute="height" constant="21" id="XbV-gw-2dy"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailingMargin" secondItem="W37-GJ-hIW" secondAttribute="trailing" constant="10" id="3Eb-Gp-Ixd"/>
                     <constraint firstItem="GpG-6L-4YW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="92y-M6-bzf"/>
-                    <constraint firstItem="W37-GJ-hIW" firstAttribute="leading" secondItem="GpG-6L-4YW" secondAttribute="trailing" constant="5" id="F5t-hC-F8z"/>
+                    <constraint firstItem="W37-GJ-hIW" firstAttribute="leading" secondItem="GpG-6L-4YW" secondAttribute="trailing" constant="13" id="F5t-hC-F8z"/>
                     <constraint firstAttribute="bottomMargin" secondItem="GpG-6L-4YW" secondAttribute="bottom" constant="1.5" id="FPN-Tv-HvO"/>
-                    <constraint firstItem="GpG-6L-4YW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="10" id="G76-TH-1Ay"/>
+                    <constraint firstItem="GpG-6L-4YW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="2" id="G76-TH-1Ay"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Oa6-8R-t7A" secondAttribute="bottom" constant="-7.5" id="I43-bM-jSC"/>
                     <constraint firstAttribute="trailingMargin" secondItem="Oa6-8R-t7A" secondAttribute="trailing" constant="-8" id="Wb7-ff-aEO"/>
-                    <constraint firstItem="fRW-ne-Aqo" firstAttribute="leading" secondItem="GpG-6L-4YW" secondAttribute="trailing" constant="5" id="ccP-Qy-Rhb"/>
+                    <constraint firstItem="fRW-ne-Aqo" firstAttribute="leading" secondItem="GpG-6L-4YW" secondAttribute="trailing" constant="13" id="ccP-Qy-Rhb"/>
                     <constraint firstItem="fRW-ne-Aqo" firstAttribute="top" secondItem="W37-GJ-hIW" secondAttribute="bottom" constant="2" id="ht9-t0-VIz"/>
                     <constraint firstItem="W37-GJ-hIW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="njQ-3J-VjK"/>
                     <constraint firstItem="Oa6-8R-t7A" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="72" id="xpD-Bv-eQg"/>

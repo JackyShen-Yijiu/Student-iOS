@@ -13,7 +13,6 @@
 #import "MyAppointmentModel.h"
 #import "AppointmentViewController.h"
 
-static NSString *const kuserCancelAppointment = @"/courseinfo/cancelreservation";
 
 
 @interface CancelAppointmentViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,CancelAppointmentCellDelegate> {
