@@ -16,7 +16,7 @@
 #import "MySaveViewController.h"
 #import "SignUpDetailController.h"
 
-static NSString *kinfomationCheck = @"/userinfo/getapplyschoolinfo";
+static NSString *kinfomationCheck = @"userinfo/getapplyschoolinfo";
 
 @interface EditorMessageController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;

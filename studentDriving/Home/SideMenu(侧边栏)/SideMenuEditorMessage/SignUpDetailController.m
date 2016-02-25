@@ -22,7 +22,7 @@
 
 #define StartOffset  kSystemWide/4-60/2
 
-static NSString *kinfomationCheck = @"/userinfo/getapplyschoolinfo"; // 报名详情
+static NSString *const kinfomationCheck = @"userinfo/getapplyschoolinfo"; // 报名详情
 static NSString *const kGetMySaveCoach = @"userinfo/favoritecoach";
 
 static NSString *const kGetMySaveSchool = @"userinfo/favoriteschool";
@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 @property (assign, nonatomic) MyLoveState myLoveState;
 @property (strong, nonatomic) NSMutableArray *dataArray;
 
-@property (strong, nonatomic) UIButton *naviBarRightButton;
+
 @property (strong, nonatomic) CoachModel *coachDetailModel;
 @property (strong, nonatomic) DrivingModel *drivingDetailModel;
 
@@ -99,19 +99,10 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     // Do any additional setup after loading the view.
     
     self.title = @"我的订单";
-    self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];
-    DYNSLog(@"right = %@",self.naviBarRightButton);
-    self.navigationItem.rightBarButtonItem = rightItem;
-    //    if ([UIDevice jeSystemVersion] >= 7.0f) {
-    //        self.edgesForExtendedLayout = UIRectEdgeNone;
-    //      }
-    
     _myLoveState = MyLoveStateCoach;
-    
     [self.view addSubview:self.tableView];
-    
     [self.view addSubview:[self tableViewHeadView]];
     
 }
@@ -148,116 +139,9 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     return nil;
 }
 
-- (UIButton *)naviBarRightButton {
-    if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:MAINCOLOR withTitleFont:[UIFont systemFontOfSize:16]];
-        _naviBarRightButton.hidden = YES;
-        _naviBarRightButton.frame = CGRectMake(0, 0, 44, 44);
-        [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _naviBarRightButton;
-}
-- (void)clickRight:(UIButton *)sender {
-    
-    if (![[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
-    
-    DYNSLog(@"countId = %@",[AcountManager manager].applycoach.infoId);
-    
-    
-    
-    
-    if (_myLoveState == MyLoveStateCoach) {
-        if (![AcountManager manager].applyschool.infoId) {
-            if (self.coachDetailModel || self.coachDetailModel.name) {
-                NSDictionary *coachParam = @{kRealCoachid:self.coachDetailModel.coachid,@"name":self.coachDetailModel.name};
-                [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
-                
-            }
-            if (self.coachDetailModel.driveschoolinfo.driveSchoolId && self.coachDetailModel.driveschoolinfo.name) {
-                DYNSLog(@"schoolinfo");
-                NSDictionary *schoolParam = @{kRealSchoolid:self.coachDetailModel.driveschoolinfo.driveSchoolId,@"name":self.coachDetailModel.driveschoolinfo.name};
-                [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-            }
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
-        
-        
-        if ([[AcountManager manager].applyschool.infoId isEqualToString:self.coachDetailModel.driveschoolinfo.driveSchoolId]) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
-        
-        if (![[AcountManager manager].applyschool.infoId isEqualToString:self.coachDetailModel.driveschoolinfo.driveSchoolId]) {
-            [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-                DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-                NSUInteger index = selectedOtherButtonIndex + 1;
-                if (index == 0) {
-                    return ;
-                }else {
-                    if (self.coachDetailModel || self.coachDetailModel.name) {
-                        NSDictionary *coachParam = @{kRealCoachid:self.coachDetailModel.coachid,@"name":self.coachDetailModel.name};
-                        [SignUpInfoManager signUpInfoSaveRealCoach:coachParam];
-                        
-                    }
-                    if (self.coachDetailModel.driveschoolinfo.driveSchoolId && self.coachDetailModel.driveschoolinfo.name) {
-                        DYNSLog(@"schoolinfo");
-                        NSDictionary *schoolParam = @{kRealSchoolid:self.coachDetailModel.driveschoolinfo.driveSchoolId,@"name":self.coachDetailModel.driveschoolinfo.name};
-                        [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-                    }
-                    [self.navigationController popViewControllerAnimated:YES];
-                    return;
-                    
-                }
-            }];
-        }
-    }else if (_myLoveState == MyLoveStateDriving) {
-        
-        if (![AcountManager manager].applyschool.infoId) {
-            if (self.drivingDetailModel.schoolid || self.drivingDetailModel.name) {
-                NSDictionary *schoolParam = @{kRealSchoolid:self.drivingDetailModel.schoolid,@"name":self.drivingDetailModel.name};
-                [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-                
-            }
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
-        
-        if ([[AcountManager manager].applyschool.infoId isEqualToString:self.drivingDetailModel.schoolid] ) {
-            [self.navigationController popViewControllerAnimated:YES];
-            return;
-        }
-        
-        
-        if (![[AcountManager manager].applyschool.infoId isEqualToString:self.drivingDetailModel.schoolid]) {
-            [BLPFAlertView showAlertWithTitle:@"提示" message:@"您已经选择了教练和班型更换驾校后您可能重新做出选择" cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-                DYNSLog(@"index = %ld",selectedOtherButtonIndex);
-                NSUInteger index = selectedOtherButtonIndex + 1;
-                if (index == 0) {
-                    return ;
-                }else  {
-                    
-                    [SignUpInfoManager removeSignData];
-                    
-                    if (self.drivingDetailModel.schoolid || self.drivingDetailModel.name) {
-                        NSDictionary *schoolParam = @{kRealSchoolid:self.drivingDetailModel.schoolid,@"name":self.drivingDetailModel.name};
-                        [SignUpInfoManager signUpInfoSaveRealSchool:schoolParam];
-                        
-                    }
-                    [self.navigationController popViewControllerAnimated:YES];
-                    
-                }
-            }];
-        }
-        
-    }
-}
 - (void)startDownLoad {
     
-    [self.dataArray removeAllObjects];
+//    [self.dataArray removeAllObjects];
     
     NSString *urlString = nil;
     
@@ -371,7 +255,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                                     @"applySatus":self.applySatus};
                 
             }else if (_myLoveState == MyLoveStateDriving) {
-                [self.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:DrivingModel.class fromJSONArray:param[@"data"] error:&error]];
+//                [self.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:DrivingModel.class fromJSONArray:param[@"data"] error:&error]];
             }
            [self.tableView reloadData];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -393,7 +277,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     // 报名订单
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setTitle:@"报名订单" forState:UIControlStateNormal];
-    [leftButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor colorWithHexString:@"f4c7c3"] forState:UIControlStateNormal];
     leftButton.selected = YES;
     [leftButton addTarget:self action:@selector(clickLeftBtn:) forControlEvents:UIControlEventTouchUpInside];
     leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -410,7 +294,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     // 兑换商品订单
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setTitle:@"兑换商品订单" forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor colorWithHexString:@"f4c7c3"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(clickRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     
@@ -463,18 +347,18 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.dataArray.count == 0) {
-        tableView.hidden = YES;
-    }else {
-        tableView.hidden = NO;
+    if (_myLoveState == MyLoveStateCoach) {
+        return 1;
+    }else if (_myLoveState == MyLoveStateDriving) {
+        return 2;
     }
-    return self.dataArray.count;
+    return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
-    if (_myLoveState == MyLoveStateDriving) {
+    if (_myLoveState == MyLoveStateCoach) {
         static NSString *cellId = @"Coach";
         SignUpDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
@@ -493,15 +377,15 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             }
         };
         return cell;
-    }else if (_myLoveState == MyLoveStateCoach) {
+    }else if (_myLoveState == MyLoveStateDriving) {
         static NSString *cellId = @"Driving";
         DrivingCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
             cell = [[DrivingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
             //            cell.selectionStyle = UITableViewCellSelectionStyleNone;
         }
-        DrivingModel *model = self.dataArray[indexPath.row];
-        [cell updateAllContentWith:model];
+//        DrivingModel *model = self.dataArray[indexPath.row];
+//        [cell updateAllContentWith:model];
         
         return cell;
         
@@ -530,59 +414,59 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         
     }
 }
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        DYNSLog(@"delete");
-        
-        if (_myLoveState == MyLoveStateCoach) {
-            CoachModel *model = self.dataArray[indexPath.row];
-            self.coachDetailModel = model;
-            
-            NSString *deleteUrl = [NSString stringWithFormat:@"%@/%@",kDeleteMySaveCoach,model.coachid];
-            NSString *urlString = [NSString stringWithFormat:BASEURL,deleteUrl];
-            [self.dataArray removeObject:model];
-            [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
-                DYNSLog(@"data = %@",data);
-                NSDictionary *param = data;
-                NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-                if ([type isEqualToString:@"0"]) {
-                    [self showTotasViewWithMes:@"删除失败"];
-                }else if ([type isEqualToString:@"1"]) {
-                    [self showTotasViewWithMes:@"成功删除"];
-                    
-                }
-                
-            }];
-            
-            
-        }else if (_myLoveState == MyLoveStateDriving) {
-            
-            DrivingModel *model = self.dataArray[indexPath.row];
-            self.drivingDetailModel = model;
-            [self.dataArray removeObject:model];
-            
-            NSString *deleteUrl = [NSString stringWithFormat:@"%@/%@",kDeleteMySaveSchool,model.schoolid];
-            NSString *urlString = [NSString stringWithFormat:BASEURL,deleteUrl];
-            [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
-                DYNSLog(@"data = %@",data);
-                NSDictionary *param = data;
-                NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-                if ([type isEqualToString:@"0"]) {
-                    [self showTotasViewWithMes:@"删除失败"];
-                }else if ([type isEqualToString:@"1"]) {
-                    [self showTotasViewWithMes:@"成功删除"];
-                    
-                }
-            }];
-            
-        }
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-        
-        
-    }
-    
-}
-- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return @"删除";
-}
+//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (editingStyle == UITableViewCellEditingStyleDelete) {
+//        DYNSLog(@"delete");
+//        
+//        if (_myLoveState == MyLoveStateCoach) {
+//            CoachModel *model = self.dataArray[indexPath.row];
+//            self.coachDetailModel = model;
+//            
+//            NSString *deleteUrl = [NSString stringWithFormat:@"%@/%@",kDeleteMySaveCoach,model.coachid];
+//            NSString *urlString = [NSString stringWithFormat:BASEURL,deleteUrl];
+//            [self.dataArray removeObject:model];
+//            [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
+//                DYNSLog(@"data = %@",data);
+//                NSDictionary *param = data;
+//                NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+//                if ([type isEqualToString:@"0"]) {
+//                    [self showTotasViewWithMes:@"删除失败"];
+//                }else if ([type isEqualToString:@"1"]) {
+//                    [self showTotasViewWithMes:@"成功删除"];
+//                    
+//                }
+//                
+//            }];
+//            
+//            
+//        }else if (_myLoveState == MyLoveStateDriving) {
+//            
+//            DrivingModel *model = self.dataArray[indexPath.row];
+//            self.drivingDetailModel = model;
+//            [self.dataArray removeObject:model];
+//            
+//            NSString *deleteUrl = [NSString stringWithFormat:@"%@/%@",kDeleteMySaveSchool,model.schoolid];
+//            NSString *urlString = [NSString stringWithFormat:BASEURL,deleteUrl];
+//            [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
+//                DYNSLog(@"data = %@",data);
+//                NSDictionary *param = data;
+//                NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+//                if ([type isEqualToString:@"0"]) {
+//                    [self showTotasViewWithMes:@"删除失败"];
+//                }else if ([type isEqualToString:@"1"]) {
+//                    [self showTotasViewWithMes:@"成功删除"];
+//                    
+//                }
+//            }];
+//            
+//        }
+//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
+//        
+//        
+//    }
+//    
+//}
+//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return @"删除";
+//}
 @end

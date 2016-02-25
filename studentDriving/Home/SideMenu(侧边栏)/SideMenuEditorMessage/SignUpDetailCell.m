@@ -250,13 +250,13 @@
     }];
     [self.numberMoney mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.mas_right).offset(-20);
-        make.top.mas_equalTo(self.mas_top).offset(34);
+        make.top.mas_equalTo(self.mas_top).offset(40);
         make.height.mas_equalTo(@14);
     }];
 
     [self.numberMoneyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.numberMoney.mas_left).offset(5);
-        make.top.mas_equalTo(self.mas_top).offset(34);
+        make.right.mas_equalTo(self.numberMoney.mas_left).offset(-3);
+        make.top.mas_equalTo(self.mas_top).offset(42);
         make.height.mas_equalTo(@10);
     }];
     [self.payStaus mas_makeConstraints:^(MASConstraintMaker *make) {
