@@ -318,7 +318,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
             
             [self obj_showTotasViewWithMes:param[@"msg"]];
 
-            [ws.midYuYueheadView receiveCoachTimeData:self.appointDataArray selectData:self.seletedDate coachModel:self.appointCoach];
+            [ws.midYuYueheadView receiveCoachTimeData:nil selectData:self.seletedDate coachModel:self.appointCoach];
 
         }
         

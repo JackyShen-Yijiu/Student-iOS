@@ -56,7 +56,7 @@ static NSString *courseCellID = @"kCourseCellID";
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = NO;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.title = @"教练详情";
+    //self.title = @"教练详情";
     
     // 测试时打开此注释
     //    _coachID = @"569d98e11a4e7c693a023499";
