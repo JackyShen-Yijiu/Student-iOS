@@ -13,6 +13,7 @@
 #import "YBDiscountCell.h"
 #import "MagicDetailViewController.h"
 #import "UIView+CalculateUIView.h"
+#import "WMCommon.h"
 
 static NSString *const kGetMySaveCoach = @"userinfo/favoritecoach";
 
@@ -208,6 +209,11 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
 
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([WMCommon getInstance].homeState==kStateMenu) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:KhiddenSlide object:self];
+    }
+    
     [self.tabelView deselectRowAtIndexPath:indexPath animated:YES];
     if (_mallType == kIntegralMall) {
         // 积分商城详情
