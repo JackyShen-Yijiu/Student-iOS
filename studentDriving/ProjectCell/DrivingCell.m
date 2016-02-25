@@ -54,6 +54,8 @@
     if (_drivingImage == nil) {
         _drivingImage = [WMUITool initWithImage:nil];
         _drivingImage.backgroundColor = MAINCOLOR;
+        [_drivingImage.layer setMasksToBounds:YES];
+        [_drivingImage.layer setCornerRadius:35];
     }
     return _drivingImage;
 }

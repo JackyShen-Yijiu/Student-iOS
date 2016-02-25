@@ -514,7 +514,7 @@
 - (UIButton *)commintButton{
     if (_commintButton == nil) {
         _commintButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _commintButton.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        _commintButton.backgroundColor = YBNavigationBarBgColor;
         [_commintButton setTitle:@"提交" forState:UIControlStateNormal];
         [_commintButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_commintButton addTarget:self action:@selector(commitComplaint:) forControlEvents:UIControlEventTouchUpInside];

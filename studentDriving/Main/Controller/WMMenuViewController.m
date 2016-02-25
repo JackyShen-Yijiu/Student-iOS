@@ -99,6 +99,7 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
     
     self.headerImageView.image = [[UIImage imageNamed:@"me"] getRoundImage];
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:k object:nil];
 }
 // 点击头像手势
 - (void)priateMessage:(UITapGestureRecognizer *)tapGesture{
@@ -106,6 +107,7 @@
         [self.delegate didSelectIconImage:tapGesture];
     }
 }
+
 #pragma mark - tableView代理方法及数据源方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;

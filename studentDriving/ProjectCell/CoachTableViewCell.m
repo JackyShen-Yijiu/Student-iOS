@@ -24,6 +24,8 @@
 @property (strong, nonatomic) RatingBar *starBar;
 @property (strong, nonatomic) UIView *WMSelectedbackGroundView;
 
+@property (strong, nonatomic) UIView *lineBottomView;
+
 
 @property (strong, nonatomic) UILabel *distanceLabel;
 @property (strong, nonatomic) UIButton *coachStateSend;
@@ -123,6 +125,8 @@
     if (_headImageView == nil) {
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 70, 70)];
         _headImageView.backgroundColor = MAINCOLOR;
+        [_headImageView.layer setMasksToBounds:YES];
+        [_headImageView.layer setCornerRadius:35];
     }
     return _headImageView;
 }
@@ -165,6 +169,15 @@
     }
     return _successRateLabel;
 }
+- (UIView *)lineBottomView{
+    
+    if (_lineBottomView == nil) {
+        _lineBottomView = [[UIView alloc] init];
+        _lineBottomView.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+        
+    }
+    return _lineBottomView;
+}
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self createCellUI];
@@ -185,6 +198,7 @@
     [self.backGroundView addSubview:self.dringAgeLabel];
     [self.backGroundView addSubview:self.distanceLabel];
     [self.backGroundView addSubview:self.starBar];
+    [self.backGroundView addSubview:self.lineBottomView];
     
     [self.coachNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.headImageView.mas_right).offset(10);
@@ -219,6 +233,14 @@
         make.width.mas_equalTo(@75);
         make.height.mas_equalTo(@15);
     }];
+    [self.lineBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.headImageView.mas_right).offset(10);
+        make.right.mas_equalTo(self.backGroundView.mas_right).offset(0);
+        make.top.mas_equalTo(self.successRateLabel.mas_bottom).offset(19);
+        make.height.mas_equalTo(@1);
+
+    }];
+
     
 }
 

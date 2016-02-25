@@ -13,5 +13,4 @@
 @property (copy, nonatomic) NSMutableArray *appointmentData;
 @property (strong, nonatomic) AppointmentCoachModel *appointmentCoachModel;
 + (BLInformationManager *)sharedInstance;
-
 @end

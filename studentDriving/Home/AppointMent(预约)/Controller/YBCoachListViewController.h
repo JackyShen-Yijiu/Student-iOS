@@ -9,6 +9,29 @@
 #import <UIKit/UIKit.h>
 #import "BLBaseViewController.h"
 
+@class CoachModel;
+
+@protocol YBCoachListViewControllerDelegate <NSObject>
+
+- (void)YBCoachListViewControllerWithCoach:(CoachModel *)coachModel;
+
+@end
+
 @interface YBCoachListViewController : BLBaseViewController
+
+@property(nonatomic,weak)id<YBCoachListViewControllerDelegate>delegate;
+
+/*
+ *  点击更换更多预约教练
+ */
+@property (nonatomic,assign) BOOL isModifyCoach;
+/*
+ *  时间ID
+ */
+@property (assign, nonatomic) NSNumber *timeid;
+/*
+ *  创建时间
+ */
+@property (copy, nonatomic) NSString *coursedate;
 
 @end

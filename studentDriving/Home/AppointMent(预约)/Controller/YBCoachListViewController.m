@@ -11,6 +11,7 @@
 #import "CoachModel.h"
 #import "YBCoachListSearchController.h"
 #import "YBCoachListSearchController.h"
+#import "DVVCoachDetailController.h"
 
 @interface YBCoachListViewController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
 
@@ -44,7 +45,7 @@
     
     self.title = @"教练列表";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-chazhao_coach"] style:UIBarButtonItemStyleDone target:self action:@selector(clickRight)];
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-chazhao_coach"] style:UIBarButtonItemStyleDone target:self action:@selector(clickRight)];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -70,6 +71,11 @@
     
     // 更换某时段可预约教练
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    
+    if (self.isModifyCoach) {
+        dict[@"timeid"] = self.timeid;
+        dict[@"coursedate"] = self.coursedate;
+    }
     
     WS(ws);
     [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
@@ -123,6 +129,11 @@
         cell = [[YBCoachListViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YBCoachListViewCell"];
     }
     
+    cell.headImageView.tag = indexPath.row;
+    cell.headImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconDidClick:)];
+    [cell.headImageView addGestureRecognizer:tap];
+    
     CoachModel *model = self.coachListDataArray[indexPath.row];
     
     [cell receivedCellModelWith:model];
@@ -130,11 +141,27 @@
     return cell;
 }
 
+- (void)iconDidClick:(UITapGestureRecognizer *)tap
+{
+    CoachModel *model = self.coachListDataArray[tap.view.tag];
+
+    // 跳转到详情界面
+    DVVCoachDetailController *vc = [[DVVCoachDetailController alloc] init];
+    vc.coachID = model.coachid;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    NSLog(@"%s",__func__);
+    CoachModel *model = self.coachListDataArray[indexPath.row];
+
+    if ([self.delegate respondsToSelector:@selector(YBCoachListViewControllerWithCoach:)]) {
+        [self.delegate YBCoachListViewControllerWithCoach:model];
+    }
+    [self.navigationController popViewControllerAnimated:YES];
     
 }
 - (void)viewWillAppear:(BOOL)animated{

@@ -179,6 +179,13 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
+   
+    // 检测是否打开登录页
+    if (![AcountManager isLogin]) {
+        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+        return;
+    }
     
 }
 
@@ -354,7 +361,8 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
     
     NSDictionary * dic = @{
                            @"subjectid":[NSString stringWithFormat:@"%ld",(long)self.number],
-                           @"userid":userid
+                           @"userid":userid,
+                           @"reservationstate":@"0"
                            };
    
     [JENetwoking startDownLoadWithUrl:urlString postParam:dic WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {

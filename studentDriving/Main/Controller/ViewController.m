@@ -105,10 +105,6 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
     mightView.backgroundColor = [UIColor clearColor];
     mightView.image = [UIImage imageNamed:@"Side_Menu_Bg"];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 20)];
-    view.backgroundColor = [UIColor blackColor];
-    view.alpha = 0.3;
-    [mightView addSubview:view];
     [self.view addSubview:mightView];
     
     // 设置menu的view

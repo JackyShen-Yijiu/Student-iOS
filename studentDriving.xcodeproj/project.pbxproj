@@ -99,6 +99,8 @@
 		568DF2371C7592C400008829 /* MagicDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2321C7592C400008829 /* MagicDetailViewController.m */; };
 		568DF2381C7592C400008829 /* PrivateMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2341C7592C400008829 /* PrivateMessageController.m */; };
 		568DF2391C7592C400008829 /* VirtualViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 568DF2361C7592C400008829 /* VirtualViewController.m */; };
+		56C407401C7D4EF4002E0692 /* SignUpDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */; };
+		56C407431C7D4F56002E0692 /* FavouriteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56C407421C7D4F56002E0692 /* FavouriteViewController.m */; };
 		56DAB0FC1C7ABB8500D7B942 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */; };
 		56DAB0FD1C7ABB8500D7B942 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0F91C7ABB8500D7B942 /* FeedBackViewController.m */; };
 		56DAB0FE1C7ABB8500D7B942 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DAB0FB1C7ABB8500D7B942 /* SetupViewController.m */; };
@@ -115,6 +117,9 @@
 		56DD9C141C7BF4CC00552A56 /* EditorMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C131C7BF4CC00552A56 /* EditorMessageCell.m */; };
 		56DD9C171C7BFBD300552A56 /* EditorBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C161C7BFBD300552A56 /* EditorBottomCell.m */; };
 		56DD9C1A1C7C037D00552A56 /* EditorTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C191C7C037D00552A56 /* EditorTopCell.m */; };
+		56DD9C1D1C7C171E00552A56 /* EditorDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C1C1C7C171E00552A56 /* EditorDetailController.m */; };
+		56DD9C201C7C187600552A56 /* EditorDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C1F1C7C187600552A56 /* EditorDetailCell.m */; };
+		56DD9C231C7C222D00552A56 /* EditorDetailSexCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56DD9C221C7C222D00552A56 /* EditorDetailSexCell.m */; };
 		B20DBBB81C5B4B130023676E /* serverclasslistModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBB71C5B4B130023676E /* serverclasslistModel.m */; };
 		B20DBBBB1C5C7F3C0023676E /* JGCoachDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20DBBBA1C5C7F3C0023676E /* JGCoachDetailViewController.m */; };
 		B20DBEC61C5DB0FF0023676E /* AlipaySDK.bundle in Resources */ = {isa = PBXBuildFile; fileRef = B20DBE451C5DB0FF0023676E /* AlipaySDK.bundle */; };
@@ -219,6 +224,8 @@
 		B2E8E1D51C73162D000190C2 /* YBStudyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1CE1C73162D000190C2 /* YBStudyTableView.m */; };
 		B2E8E1E91C731B7E000190C2 /* YBToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */; };
 		B2E8E1ED1C741D37000190C2 /* YBStudeyProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */; };
+		B2F1AE4F1C7D7885006D56FF /* YBAppointMentDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */; };
+		B2F1AE521C7D9C34006D56FF /* YBAppointMentCoachModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE511C7D9C34006D56FF /* YBAppointMentCoachModel.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1139,6 +1146,10 @@
 		568DF2341C7592C400008829 /* PrivateMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageController.m; sourceTree = "<group>"; };
 		568DF2351C7592C400008829 /* VirtualViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VirtualViewController.h; sourceTree = "<group>"; };
 		568DF2361C7592C400008829 /* VirtualViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VirtualViewController.m; sourceTree = "<group>"; };
+		56C4073E1C7D4EF4002E0692 /* SignUpDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpDetailController.h; sourceTree = "<group>"; };
+		56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpDetailController.m; sourceTree = "<group>"; };
+		56C407411C7D4F56002E0692 /* FavouriteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavouriteViewController.h; sourceTree = "<group>"; };
+		56C407421C7D4F56002E0692 /* FavouriteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavouriteViewController.m; sourceTree = "<group>"; };
 		56DAB0F61C7ABB8500D7B942 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		56DAB0F71C7ABB8500D7B942 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		56DAB0F81C7ABB8500D7B942 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
@@ -1170,6 +1181,12 @@
 		56DD9C161C7BFBD300552A56 /* EditorBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorBottomCell.m; sourceTree = "<group>"; };
 		56DD9C181C7C037D00552A56 /* EditorTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorTopCell.h; sourceTree = "<group>"; };
 		56DD9C191C7C037D00552A56 /* EditorTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorTopCell.m; sourceTree = "<group>"; };
+		56DD9C1B1C7C171E00552A56 /* EditorDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorDetailController.h; sourceTree = "<group>"; };
+		56DD9C1C1C7C171E00552A56 /* EditorDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorDetailController.m; sourceTree = "<group>"; };
+		56DD9C1E1C7C187600552A56 /* EditorDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorDetailCell.h; sourceTree = "<group>"; };
+		56DD9C1F1C7C187600552A56 /* EditorDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorDetailCell.m; sourceTree = "<group>"; };
+		56DD9C211C7C222D00552A56 /* EditorDetailSexCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorDetailSexCell.h; sourceTree = "<group>"; };
+		56DD9C221C7C222D00552A56 /* EditorDetailSexCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorDetailSexCell.m; sourceTree = "<group>"; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		B20DBBB61C5B4B130023676E /* serverclasslistModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serverclasslistModel.h; sourceTree = "<group>"; };
@@ -1452,6 +1469,10 @@
 		B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBToolBarView.m; sourceTree = "<group>"; };
 		B2E8E1EB1C741D37000190C2 /* YBStudeyProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudeyProgressView.h; sourceTree = "<group>"; };
 		B2E8E1EC1C741D37000190C2 /* YBStudeyProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudeyProgressView.m; sourceTree = "<group>"; };
+		B2F1AE4D1C7D7885006D56FF /* YBAppointMentDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsController.h; sourceTree = "<group>"; };
+		B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsController.m; sourceTree = "<group>"; };
+		B2F1AE501C7D9C34006D56FF /* YBAppointMentCoachModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentCoachModel.h; sourceTree = "<group>"; };
+		B2F1AE511C7D9C34006D56FF /* YBAppointMentCoachModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentCoachModel.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3184,6 +3205,16 @@
 			children = (
 				56DD9C0F1C7BF3CD00552A56 /* EditorMessageController.h */,
 				56DD9C101C7BF3CD00552A56 /* EditorMessageController.m */,
+				56DD9C1B1C7C171E00552A56 /* EditorDetailController.h */,
+				56DD9C1C1C7C171E00552A56 /* EditorDetailController.m */,
+				56C4073E1C7D4EF4002E0692 /* SignUpDetailController.h */,
+				56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */,
+				56C407411C7D4F56002E0692 /* FavouriteViewController.h */,
+				56C407421C7D4F56002E0692 /* FavouriteViewController.m */,
+				56DD9C1E1C7C187600552A56 /* EditorDetailCell.h */,
+				56DD9C1F1C7C187600552A56 /* EditorDetailCell.m */,
+				56DD9C211C7C222D00552A56 /* EditorDetailSexCell.h */,
+				56DD9C221C7C222D00552A56 /* EditorDetailSexCell.m */,
 				56DD9C121C7BF4CC00552A56 /* EditorMessageCell.h */,
 				56DD9C131C7BF4CC00552A56 /* EditorMessageCell.m */,
 				56DD9C151C7BFBD300552A56 /* EditorBottomCell.h */,
@@ -3508,6 +3539,8 @@
 				B226AF1A1C76EAAA0028DF1A /* YBCoachListSearchController.m */,
 				B22E1E9A1C78923F000E8AEE /* YBForceEvaluateViewController.h */,
 				B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */,
+				B2F1AE4D1C7D7885006D56FF /* YBAppointMentDetailsController.h */,
+				B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3540,6 +3573,8 @@
 				B226AEDC1C748EAD0028DF1A /* HMStudentModel.h */,
 				B226AEDD1C748EAD0028DF1A /* HMStudentModel.m */,
 				B226AEC11C7480530028DF1A /* ModelDefine.h */,
+				B2F1AE501C7D9C34006D56FF /* YBAppointMentCoachModel.h */,
+				B2F1AE511C7D9C34006D56FF /* YBAppointMentCoachModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6249,6 +6284,7 @@
 				B226AEE81C748F380028DF1A /* HMCarLicenseModel.m in Sources */,
 				D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */,
 				D996747E1C7D54610000CC65 /* DrivingDetailLocationCell.m in Sources */,
+				B2F1AE4F1C7D7885006D56FF /* YBAppointMentDetailsController.m in Sources */,
 				068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */,
 				D588B1201BDDDC2F000C5D6F /* BLInformationManager.m in Sources */,
 				B2E8E1851C72BA4F000190C2 /* WMMenuViewController.m in Sources */,
@@ -6316,6 +6352,7 @@
 				D588B0E41BDDDC14000C5D6F /* CommentCell.m in Sources */,
 				D588B0E51BDDDC14000C5D6F /* CoachHeadCell.m in Sources */,
 				D5604C851BF656F30020F0D7 /* DXChatBarMoreView.m in Sources */,
+				B2F1AE521C7D9C34006D56FF /* YBAppointMentCoachModel.m in Sources */,
 				D588AFCA1BDDDAAB000C5D6F /* ExamClassModel.m in Sources */,
 				56855C511C787736005D4517 /* SignInViewController.m in Sources */,
 				550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */,
@@ -6358,6 +6395,7 @@
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
 				B20DBECF1C5DB0FF0023676E /* SBJsonWriter.m in Sources */,
 				D977B82F1C7C21DF00ABE205 /* DVVCoachDetailDMTrainfieldlinfo.m in Sources */,
+				56DD9C231C7C222D00552A56 /* EditorDetailSexCell.m in Sources */,
 				06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */,
 				56855C401C785C8E005D4517 /* SideMenuSignUpController.m in Sources */,
 				D99674641C7D54610000CC65 /* ClassTypeDMVipserverlist.m in Sources */,
@@ -6516,6 +6554,7 @@
 				D965CAA61C239D9F00DCD094 /* DrivingCycleShowDMData.m in Sources */,
 				063BB1EE1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m in Sources */,
 				D5604C881BF656F30020F0D7 /* EMChatBaseBubbleView.m in Sources */,
+				56C407401C7D4EF4002E0692 /* SignUpDetailController.m in Sources */,
 				06073D871C251C300058B372 /* HomeRewardController.m in Sources */,
 				D588B0501BDDDB71000C5D6F /* SignatureViewController.m in Sources */,
 				B20DBEDB1C5DB0FF0023676E /* ApiXml.mm in Sources */,
@@ -6597,6 +6636,7 @@
 				D5604B591BF656C50020F0D7 /* EMSDWebImagePrefetcher.m in Sources */,
 				D5604C7D1BF656F30020F0D7 /* ChatSendHelper.m in Sources */,
 				D5604B471BF656C50020F0D7 /* EmojiEmoticons.m in Sources */,
+				56C407431C7D4F56002E0692 /* FavouriteViewController.m in Sources */,
 				D588B0DA1BDDDC14000C5D6F /* DrivingSelectedCoachCollectionCell.m in Sources */,
 				B20DBECC1C5DB0FF0023676E /* SBJSON.m in Sources */,
 				D96D1BEA1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.m in Sources */,
@@ -6626,6 +6666,8 @@
 				56855C4E1C787736005D4517 /* SignInCoachDataModel.m in Sources */,
 				D99674821C7D54610000CC65 /* DrivingDetailTableHeaderView.m in Sources */,
 				B2E8E1BC1C72CA83000190C2 /* YBHomeBaseController.m in Sources */,
+				56DD9C1D1C7C171E00552A56 /* EditorDetailController.m in Sources */,
+				D9B268BC1C78420900F62804 /* DVVCoachDetailDMTrainfieldlinfo.m in Sources */,
 				D96D1BD31C2B859C00F1C282 /* FourViewController.m in Sources */,
 				D588B0D21BDDDC14000C5D6F /* UserCenterCell.m in Sources */,
 				D5604B851BF656C50020F0D7 /* UIViewController+HUD.m in Sources */,
@@ -6741,6 +6783,7 @@
 				D5C23FE91BE859E000832CF3 /* ExamClassDetailViewController.m in Sources */,
 				56DD9C141C7BF4CC00552A56 /* EditorMessageCell.m in Sources */,
 				B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */,
+				56DD9C201C7C187600552A56 /* EditorDetailCell.m in Sources */,
 				D588AFCB1BDDDAAB000C5D6F /* ExamCarModel.m in Sources */,
 				D96D1BFA1C2BF61700F1C282 /* DVVSideMenuBlockView.m in Sources */,
 				D588AF8B1BDDB62C000C5D6F /* main.m in Sources */,
@@ -6757,6 +6800,7 @@
 				B226AEF41C748FFE0028DF1A /* PortraitView.m in Sources */,
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
+				D9B268B51C78420900F62804 /* DVVCoachDetailDMCarmodel.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
 				D588B0D41BDDDC14000C5D6F /* StudentCommentCell.m in Sources */,
 				D9B7F12D1C255F3400D1A143 /* CircularMotion.m in Sources */,

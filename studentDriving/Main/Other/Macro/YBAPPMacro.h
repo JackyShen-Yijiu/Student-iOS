@@ -20,4 +20,10 @@ typedef enum state {
 // 教练列表
 static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/-1";
 
+// 保存预约的教练
+#define KAppointMentCoach @"appointMentCoach"
+
+// 数据存储路径
+#define YBPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+
 #endif /* YBObject_h */

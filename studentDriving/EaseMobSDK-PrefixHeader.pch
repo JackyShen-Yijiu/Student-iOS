@@ -35,6 +35,7 @@
 #import "ModelDefine.h"
 #import "NSDictionary+StrDic.h"
 #import "NetWorkEntiry.h"
+#import "MJExtension.h"
 
 /**
  *  根据城市名获取用户所在的城市是以驾校为主还是以教练为主

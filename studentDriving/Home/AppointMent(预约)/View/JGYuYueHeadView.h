@@ -10,20 +10,28 @@
 
 #define rightFooter 80
 
-@class AppointmentCoachTimeInfoModel;
+@class AppointmentCoachTimeInfoModel,YBAppointMentCoachModel,JGYuYueHeadView;
+
+@protocol JGYuYueHeadViewDelegate <NSObject>
+
+- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView dateString:(NSString *)dateString isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid;
+
+@end
 
 @interface JGYuYueHeadView : UIView
 
 // 刷新数据源
-- (void)receiveCoachTimeData:(NSArray *)coachTimeData;
+- (void)receiveCoachTimeData:(NSArray *)coachTimeData selectData:(NSDate *)selectDate coachModel:(YBAppointMentCoachModel *)coachModel;
 
-- (void)receiveCoachTimeData;
+- (void)receiveCoachTimeDataWithStudentData:(NSMutableArray *)stuDataArray coachModel:(YBAppointMentCoachModel *)coachModel;
 
 // 点击选中的数据
 @property (strong, nonatomic) NSMutableArray *upDateArray;
 
 @property (nonatomic,weak) UIViewController *parentViewController;
 
-@property (nonatomic,assign) NSInteger userCount;
+@property (strong, nonatomic) NSDate *selectDate;
+
+@property (nonatomic,weak) id<JGYuYueHeadViewDelegate>delegate;
 
 @end

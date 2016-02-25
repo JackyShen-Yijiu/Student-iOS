@@ -8,10 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+@class YBAppointMentCoachModel;
 
 @interface YBAppointMentUserFooter : UICollectionReusableView
-@property (nonatomic,assign) NSInteger userCount;
+
+@property (strong, nonatomic) UICollectionView *userCollectionView;
+
+@property (nonatomic,assign) NSArray *studentArray;
 
 @property (nonatomic,weak) UIViewController *parentViewController;
+
+@property (nonatomic,strong) YBAppointMentCoachModel *appointCoach;
 
 @end

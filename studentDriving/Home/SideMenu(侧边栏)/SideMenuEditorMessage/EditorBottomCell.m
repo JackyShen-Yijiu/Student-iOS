@@ -39,7 +39,7 @@
 {
     [super layoutSubviews];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).offset(20);
+        make.top.mas_equalTo(self.mas_top).offset(28);
         make.left.mas_equalTo(self.mas_left).offset(15);
         make.right.mas_equalTo(self.mas_right).offset(0);
         make.height.mas_equalTo(@10);
@@ -51,7 +51,7 @@
         make.height.mas_equalTo(24);
     }];
     [self.lineBottom mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(15);
+        make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(28);
         make.left.mas_equalTo(self.mas_left).offset(15);
         make.right.mas_equalTo(self.mas_right).offset(0);
         make.height.mas_equalTo(@1);

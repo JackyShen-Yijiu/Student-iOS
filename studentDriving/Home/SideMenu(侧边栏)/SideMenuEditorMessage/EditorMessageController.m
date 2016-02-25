@@ -10,16 +10,18 @@
 #import "EditorMessageCell.h"
 #import "EditorBottomCell.h"
 #import "EditorTopCell.h"
-#import "JEPhotoPickManger.h"
-#import <QiniuSDK.h>
+#import "EditorDetailController.h"
+#import "SignUpSuccessViewController.h"
+#import "FavouriteViewController.h"
+#import "MySaveViewController.h"
 
-static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
+
 
 @interface EditorMessageController ()<UITableViewDelegate,UITableViewDataSource,UIImagePickerControllerDelegate>
 @property (nonatomic, strong) UITableView *tableView;
 @property (nonatomic, strong) NSArray *titleArray;
 @property (nonatomic, strong) NSArray *descriArray;
-@property (strong, nonatomic) NSString *qiniuToken;
+
 @end
 
 @implementation EditorMessageController
@@ -30,6 +32,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"个人中心";
     [self initData];
+     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
     
 }
 - (void)initData{
@@ -49,10 +52,19 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
      */
 
 }
+#pragma mark --- 头像改变的通知
+- (void)iconImage{
+        NSIndexPath *path = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[path] withRowAnimation:UITableViewRowAnimationNone];
+ 
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return 6;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (4 == indexPath.row || 5 == indexPath.row) {
+        return 60;
+    }
     
     return 70;
 }
@@ -82,13 +94,13 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 
     }
     if (4 == indexPath.row || 5 == indexPath.row) {
-        NSString *cellID = @"EditorID";
-        EditorBottomCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!cell) {
-            cell = [[EditorBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+        NSString *EditorcellID = @"EditorID";
+        EditorBottomCell *editorCell = [tableView dequeueReusableCellWithIdentifier:EditorcellID];
+        if (!editorCell) {
+            editorCell = [[EditorBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:EditorcellID];
         }
-        cell.titleLabel.text = self.titleArray[indexPath.row];
-        return cell;
+        editorCell.titleLabel.text = self.titleArray[indexPath.row];
+        return editorCell;
         
     }
     return nil;
@@ -112,58 +124,33 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (0 == indexPath.row) {
         // 头像编辑
-//        [JEPhotoPickManger pickPhotofromController:self];
+        EditorDetailController *editorVC = [[EditorDetailController alloc] init];
+        [self.navigationController pushViewController:editorVC animated:YES];
+                                            //        [JEPhotoPickManger pickPhotofromController:self];
     }
     if (4 == indexPath.row) {
         // 我的喜欢
+        MySaveViewController *favouriteVC = [[MySaveViewController alloc] init];
+        [self.navigationController pushViewController:favouriteVC animated:YES];
     }
     if (5 == indexPath.row) {
         // 报名详情
+        if ([[[AcountManager manager] userApplystate] isEqualToString:@"1"]) {
+            [self.navigationController pushViewController:[SignUpSuccessViewController new] animated:YES];
+        }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"0"])
+        {
+//            DrivingViewController *signUPVC = [DrivingViewController new];
+//            [self.navigationController pushViewController:signUPVC animated:YES];
+            [self obj_showTotasViewWithMes:@"您还未报名!"];
+        }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"3"]) {
+            [self showTotasViewWithMes:@"验证报名中"];
+        }else if ([[[AcountManager manager] userApplystate] isEqualToString:@"2"]) {
+            [self obj_showTotasViewWithMes:@"您已经报过名!"];
+        }else{
+            [self showTotasViewWithMes:@"您去支付完成的订单!"];
+        }
+
     }
 }
-//#pragma mark - delegate
-//- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
-//    DYNSLog(@"imageData = %@",[AcountManager manager].userid);
-//    
-//    [picker dismissViewControllerAnimated:YES completion:nil];
-//    UIImage *photoImage = [info valueForKey:UIImagePickerControllerEditedImage];
-//    NSData *photeoData = UIImageJPEGRepresentation(photoImage, 0.5);
-////    self.userHeadImage.image = photoImage;
-//    
-//    __weak EditorMessageController *weakself = self;
-//    __block NSData *gcdPhotoData = photeoData;
-//    NSString *qiniuUrl = [NSString stringWithFormat:BASEURL,kQiniuUpdateUrl];
-//    [JENetwoking startDownLoadWithUrl:qiniuUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-//        
-//        NSDictionary *dataDic = data;
-//        weakself.qiniuToken = dataDic[@"data"];
-//        QNUploadManager *upLoadManager = [[QNUploadManager alloc] init];
-//        NSString *keyUrl = [NSString stringWithFormat:@"%@-%@.png",[NSString currentTimeDay],[AcountManager manager].userid];
-//        [upLoadManager putData:gcdPhotoData key:keyUrl token:weakself.qiniuToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-//            if (info) {
-//                
-//                NSString *upImageUrl = [NSString stringWithFormat:kQiniuImageUrl,key];
-//                NSString *updateUserInfoUrl = [NSString stringWithFormat:BASEURL,kupdateUserInfo];
-//                NSDictionary *headPortrait  = @{@"originalpic":upImageUrl,@"thumbnailpic":@"",@"width":@"",@"height":@""};
-//                
-//                NSDictionary *dicParam = @{@"headportrait":[JsonTransformManager dictionaryTransformJsonWith:headPortrait],@"userid":[AcountManager manager].userid};
-//                [JENetwoking startDownLoadWithUrl:updateUserInfoUrl postParam:dicParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-//                    NSDictionary *dataParam = data;
-//                    NSNumber *messege = dataParam[@"type"];
-//                    if (messege.intValue == 1) {
-//                        [self showTotasViewWithMes:@"修改成功"];
-//                        [AcountManager saveUserHeadImageUrl:upImageUrl];
-////                        [weakself.userHeadImage sd_setImageWithURL:[NSURL URLWithString:[AcountManager manager].userHeadImageUrl] placeholderImage:[UIImage imageWithData:gcdPhotoData]];
-//                        
-//                    }else {
-//                        [self showTotasViewWithMes:@"修改失败"];
-//                        
-//                        return;
-//                    }
-//                }];
-//            }
-//        } option:nil];
-//    }];
-//}
 
 @end

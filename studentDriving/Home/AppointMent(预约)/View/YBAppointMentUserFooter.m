@@ -8,12 +8,12 @@
 
 #import "YBAppointMentUserFooter.h"
 #import "YBAppointMentUserCell.h"
+#import "StudentModel.h"
+#import "YBAppointMentCoachModel.h"
 
 #define rightFooter 80
 
 @interface YBAppointMentUserFooter ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
-
-@property (strong, nonatomic) UICollectionView *userCollectionView;
 
 @property (strong, nonatomic) UIImageView *iconImageView;
 @property (strong, nonatomic) UILabel *titleLabel;
@@ -57,7 +57,7 @@
         flowLayout.itemSize = CGSizeMake(50, 50);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
-        _userCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,45, [UIScreen mainScreen].bounds.size.width-rightFooter,200) collectionViewLayout:flowLayout];
+        _userCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,45, [UIScreen mainScreen].bounds.size.width-rightFooter,100) collectionViewLayout:flowLayout];
         _userCollectionView.backgroundColor = RGBColor(238, 238, 238);
         _userCollectionView.delegate = self;
         _userCollectionView.dataSource = self;
@@ -100,12 +100,22 @@
     return self;
 }
 
-- (void)setUserCount:(NSInteger)userCount
+- (void)setAppointCoach:(YBAppointMentCoachModel *)appointCoach
 {
-    _userCount = userCount;
+    _appointCoach = appointCoach;
     
-    NSInteger hangshu = _userCount / 4;
-    CGFloat footHeight = hangshu * 60;
+    self.titleLabel.text = [NSString stringWithFormat:@"教练:%@",self.appointCoach.name];
+    
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.appointCoach.headportrait] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+
+}
+
+- (void)setStudentArray:(NSArray *)studentArray
+{
+    _studentArray = studentArray;
+    
+    NSInteger hangshu = _studentArray.count / 4;
+    CGFloat footHeight = hangshu * 60 + 60;
     
     NSLog(@"setUserCount footHeight:%f",footHeight);
     
@@ -117,9 +127,9 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    NSLog(@"numberOfItemsInSection self.userCount:%ld",(long)self.userCount);
+    NSLog(@"numberOfItemsInSection self.userCount:%ld",(long)self.studentArray.count);
     
-    return self.userCount;
+    return self.studentArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -129,15 +139,13 @@
     if (!cell) {
         DYNSLog(@"创建错误");
     }
-    
-    cell.iconImageView.image = [UIImage imageNamed:@"loginLogo"];
 
     cell.backgroundColor = [UIColor clearColor];
     
-    //    AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
-    
-    //    cell.coachTimeInfo = model;
-    
+    StudentModel *model = self.studentArray[indexPath.row];
+
+    [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+
     return cell;
     
 }
@@ -145,6 +153,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%s",__func__);
+    StudentModel *model = self.studentArray[indexPath.row];
+    
+    
 }
 
 /*

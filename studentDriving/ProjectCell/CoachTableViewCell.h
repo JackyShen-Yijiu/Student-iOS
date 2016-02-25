@@ -10,7 +10,7 @@
 #import "YBBaseTableCell.h"
 @class CoachDMData;
 @class CoachModel;
-@interface CoachTableViewCell : YBBaseTableCell
+@interface CoachTableViewCell : UITableViewCell
 
 - (void)refreshData:(CoachDMData *)coachModel;
 - (void)receivedCellModelWith:(CoachModel *)coachModel;
