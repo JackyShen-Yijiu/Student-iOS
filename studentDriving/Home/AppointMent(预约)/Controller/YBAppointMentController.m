@@ -25,6 +25,7 @@
 #import "NSUserStoreTool.h"
 #import "YBObjectTool.h"
 #import "YBAppointMentDetailsController.h"
+#import "WMCommon.h"
 
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -544,6 +545,11 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
+    if ([WMCommon getInstance].homeState==kStateMenu) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:KhiddenSlide object:self];
+    }
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     HMCourseModel  * courseModel = nil;

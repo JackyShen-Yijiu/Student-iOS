@@ -14,6 +14,7 @@
 #import "QuestionBankViewController.h"
 #import "WrongQuestionViewController.h"
 #import "BLAVPlayerViewController.h"
+#import "WMCommon.h"
 
 #define kCellIdentifier @"YBStudyViewCell"
 
@@ -77,9 +78,18 @@
     return _dataTabelView;
 }
 
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"self.studyProgress:%ld",(long)self.studyProgress);
+    
+    if ([WMCommon getInstance].homeState==kStateMenu) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:KhiddenSlide object:self];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     

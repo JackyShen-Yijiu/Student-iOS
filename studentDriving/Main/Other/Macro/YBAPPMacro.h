@@ -23,6 +23,9 @@ static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/-1
 // 保存预约的教练
 #define KAppointMentCoach @"appointMentCoach"
 
+// 退出侧边栏通知
+#define KhiddenSlide @"hiddenSlide"
+
 // 数据存储路径
 #define YBPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
 
