@@ -58,13 +58,19 @@
     _viewModel.schoolID = _schoolID;
     __weak typeof(self) ws = self;
     [_viewModel dvvSetRefreshSuccessBlock:^{
+        ws.bottomButton.hidden = NO;
+        [ws.promptNilDataView removeFromSuperview];
         [ws reloadData];
     }];
     [_viewModel dvvSetNilResponseObjectBlock:^{
-        ws.bottomButton.tag = 1;
-        ws.bottomButton.userInteractionEnabled = NO;
-        [ws.bottomButton setTitle:@"暂未填写教练信息" forState:UIControlStateNormal];
-        ws.bottomButton.bounds = CGRectMake(0, 0, self.bounds.size.width, [UIScreen mainScreen].bounds.size.height - (64 + 44));
+        
+        ws.bottomButton.hidden = YES;
+        [ws addSubview:ws.promptNilDataView];
+
+//        ws.bottomButton.tag = 1;
+//        ws.bottomButton.userInteractionEnabled = NO;
+//        [ws.bottomButton setTitle:@"暂未填写教练信息" forState:UIControlStateNormal];
+//        ws.bottomButton.bounds = CGRectMake(0, 0, self.bounds.size.width, [UIScreen mainScreen].bounds.size.height - (64 + 44));
 //        [self obj_showTotasViewWithMes:@"没有数据"];
     }];
     [_viewModel dvvSetRefreshErrorBlock:^{
@@ -120,6 +126,16 @@
 
 - (void)setCoachListViewCellDidSelectBlock:(CoachListViewCellBlock)handel {
     _cellDidSelectBlock = handel;
+}
+
+- (DVVPromptNilDataView *)promptNilDataView {
+    if (!_promptNilDataView) {
+        _promptNilDataView = [DVVPromptNilDataView new];
+        _promptNilDataView.promptLabel.text = @"暂无教练信息";
+        CGSize size = [UIScreen mainScreen].bounds.size;
+        _promptNilDataView.center = CGPointMake(size.width / 2.f, (size.height - 64 - 44) / 2.f);
+    }
+    return _promptNilDataView;
 }
 
 /*

@@ -10,20 +10,26 @@
 #import "ClassTypeDMData.h"
 #import "YYModel.h"
 #import "ClassTypeCell.h"
+#import "DVVPromptNilDataView.h"
 
-typedef void(^DVVCoachClassTypeViewCellBlock)(ClassTypeDMData *dmData);
+typedef void(^DVVCoachClassTypeViewBlock)(ClassTypeDMData *dmData);
 
 @interface DVVCoachClassTypeView : UITableView
+
+@property (nonatomic, copy) NSString *coachID;
+@property (nonatomic, copy) NSString *coachName;
+@property (nonatomic, copy) NSString *schoolID;
+@property (nonatomic, copy) NSString *schoolName;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *heightArray;
 @property (nonatomic, assign) CGFloat totalHeight;
 
-@property (nonatomic, strong) UIImageView *noDataMarkImageView;
+@property (nonatomic, strong) DVVPromptNilDataView *promptNilDataView;
 
 - (CGFloat)dynamicHeight:(NSArray *)dataArray;
 
-- (void)setDVVCoachClassTypeViewSignUpButtonActionBlock:(DVVCoachClassTypeViewCellBlock)handle;
-- (void)setDVVCoachClassTypeViewCellDidSelectBlock:(DVVCoachClassTypeViewCellBlock)handel;
+- (void)dvvCoachClassTypeView_setSignUpButtonActionBlock:(DVVCoachClassTypeViewBlock)handle;
+- (void)dvvCoachClassTypeView_setCellDidSelectBlock:(DVVCoachClassTypeViewBlock)handle;
 
 @end

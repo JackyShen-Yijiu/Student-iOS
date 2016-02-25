@@ -22,9 +22,16 @@
         
         [self.contentView addSubview:self.scrollView];
         [_scrollView addSubview:self.classTypeView];
+        [_scrollView addSubview:self.commentView];
     }
     return self;
 }
+
+- (void)setCoachID:(NSString *)coachID {
+    _coachID = coachID;
+    _commentView.coachID = coachID;
+}
+
 - (void)courseButtonAction {
     _showType = 0;
     [self.tableView reloadData];
@@ -49,6 +56,7 @@
     _scrollView.frame = self.bounds;
     _scrollView.contentSize = CGSizeMake(size.width * 2, 0);
     _classTypeView.frame = CGRectMake(0, 0, size.width, size.height);
+    _commentView.frame = CGRectMake(size.width, 0, size.width, size.height);
 }
 
 - (CGFloat)dynamicHeight:(NSArray *)dataArray {
@@ -73,10 +81,19 @@
     }
     return _classTypeView;
 }
+- (DVVCoachCommentView *)commentView {
+    if (!_commentView) {
+        _commentView = [DVVCoachCommentView new];
+    }
+    return _commentView;
+}
 
 - (UIScrollView *)scrollView {
     if (!_scrollView) {
         _scrollView = [UIScrollView new];
+        _scrollView.scrollEnabled = NO;
+        _scrollView.showsHorizontalScrollIndicator = NO;
+        _scrollView.showsVerticalScrollIndicator = NO;
     }
     return _scrollView;
 }
