@@ -46,6 +46,7 @@
         
         if (isRefresh) {
             [_dataArray removeAllObjects];
+            [_heightArray removeAllObjects];
         }
         
         for (NSDictionary *dict in dmRoot.data) {

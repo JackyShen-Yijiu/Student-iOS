@@ -20,6 +20,7 @@
 #import "DrivingDetailViewModel.h"
 #import "SchoolClassDetailController.h"
 #import "DVVSignUpDetailController.h"
+#import "DVVCoachDetailCommentListController.h"
 
 static NSString *infoCellID = @"kInfoCellID";
 static NSString *introductionCellID = @"kIntroductionCellID";
@@ -171,7 +172,10 @@ static NSString *courseCellID = @"kCourseCellID";
 #pragma mark 更多评论按钮的点击事件
 - (void)moreCommentAction {
     
-    [self obj_showTotasViewWithMes:@"暂无更多评论"];
+//    [self obj_showTotasViewWithMes:@"暂无更多评论"];
+    DVVCoachDetailCommentListController *vc = [DVVCoachDetailCommentListController new];
+    vc.coachID = _viewModel.coachID;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - config view model

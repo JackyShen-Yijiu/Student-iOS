@@ -723,6 +723,7 @@
 		D95E3DB41C3CEDC600F0B5A0 /* SearchCoachViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DB31C3CEDC600F0B5A0 /* SearchCoachViewModel.m */; };
 		D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D961BC791C28004200940577 /* YBWelcomeController.m */; };
 		D96200011C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m in Sources */ = {isa = PBXBuildFile; fileRef = D96200001C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m */; };
+		D96200041C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96200031C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.m */; };
 		D96248291C5779160028EE62 /* CityListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D96248281C5779160028EE62 /* CityListCell.m */; };
 		D96248331C579A670028EE62 /* DVVBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D96248321C579A670028EE62 /* DVVBaseViewModel.m */; };
 		D96248381C57A16D0028EE62 /* ComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96248361C57A16D0028EE62 /* ComplaintController.m */; };
@@ -2295,6 +2296,8 @@
 		D961BC781C28004200940577 /* YBWelcomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBWelcomeController.h; sourceTree = "<group>"; };
 		D961BC791C28004200940577 /* YBWelcomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBWelcomeController.m; sourceTree = "<group>"; };
 		D96200001C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSignUpSchoolDMLogoimg.m; sourceTree = "<group>"; };
+		D96200021C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachDetailCommentListController.h; sourceTree = "<group>"; };
+		D96200031C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachDetailCommentListController.m; sourceTree = "<group>"; };
 		D96248231C57583B0028EE62 /* DVVShareHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVShareHeader.h; sourceTree = "<group>"; };
 		D96248271C5779160028EE62 /* CityListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityListCell.h; sourceTree = "<group>"; };
 		D96248281C5779160028EE62 /* CityListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityListCell.m; sourceTree = "<group>"; };
@@ -5923,6 +5926,8 @@
 				D977B8311C7C21EE00ABE205 /* CoachCommentDataModel */,
 				D977B80A1C7BEEBC00ABE205 /* DVVCoachCommentView.h */,
 				D977B80B1C7BEEBC00ABE205 /* DVVCoachCommentView.m */,
+				D96200021C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.h */,
+				D96200031C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.m */,
 				D977B8411C7C3A4200ABE205 /* DVVCoachCommentViewModel.h */,
 				D977B8421C7C3A4200ABE205 /* DVVCoachCommentViewModel.m */,
 				D977B80D1C7BF56100ABE205 /* DVVCoachCommentCell.h */,
@@ -6411,6 +6416,7 @@
 				D5604C851BF656F30020F0D7 /* DXChatBarMoreView.m in Sources */,
 				B2F1AE521C7D9C34006D56FF /* YBAppointMentCoachModel.m in Sources */,
 				D588AFCA1BDDDAAB000C5D6F /* ExamClassModel.m in Sources */,
+				D96200041C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.m in Sources */,
 				56855C511C787736005D4517 /* SignInViewController.m in Sources */,
 				550C07341C33FF700051433B /* MyWalletViewCell.m in Sources */,
 				B2E8E1B91C72C8E6000190C2 /* YBStudyViewController.m in Sources */,
