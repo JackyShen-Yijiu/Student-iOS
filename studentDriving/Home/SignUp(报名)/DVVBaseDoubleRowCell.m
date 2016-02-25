@@ -58,7 +58,7 @@
     _promptLabel.frame = CGRectMake(size.width/2.f, 0, size.width/2.f - rightMargin - promptImageWidth, titleHeight);
     _promptImageView.frame = CGRectMake(CGRectGetMaxX(_promptLabel.frame), 0, promptImageWidth, titleHeight);
     
-    [self hiddenPrompt];
+    [self hidePrompt];
 }
 
 #pragma mark - public
@@ -68,7 +68,7 @@
     _promptImageView.hidden = NO;
 }
 
-- (void)hiddenPrompt {
+- (void)hidePrompt {
     _promptLabel.hidden = YES;
     _promptImageView.hidden = YES;
 }

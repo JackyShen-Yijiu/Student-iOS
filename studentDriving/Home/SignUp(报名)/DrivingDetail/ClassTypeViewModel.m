@@ -21,7 +21,7 @@
     
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
-//        NSLog(@"%@", data);
+        NSLog(@"%@", data);
         
         ClassTypeDMRootClass *dmRoot = [ClassTypeDMRootClass yy_modelWithJSON:data];
         if (0 == dmRoot.type) {

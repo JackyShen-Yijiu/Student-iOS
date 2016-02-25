@@ -48,6 +48,8 @@
         
         // 初始选中线上支付
         [self onLineButtonAction:nil];
+        
+        self.backgroundColor = [UIColor colorWithHexString:@"EEEEEE"];
     }
     return self;
 }

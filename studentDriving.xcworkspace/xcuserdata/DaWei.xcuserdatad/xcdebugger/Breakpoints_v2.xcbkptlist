@@ -138,7 +138,7 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478017276.167883"
+                  timestampString = "478060135.465716"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "423"
@@ -153,7 +153,7 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478017276.168067"
+                  timestampString = "478060135.466112"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "423"
@@ -307,29 +307,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "studentDriving/Home/SignUp(&#x62a5;&#x540d;)/DVVSignUpDetailController.m"
-            timestampString = "478010619.73188"
+            filePath = "studentDriving/Home/SignUp(&#x62a5;&#x540d;)/CoachDetail/DVVCoachDetailViewModel.m"
+            timestampString = "478059738.560792"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "-nextStep:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/Home/SignUp(&#x62a5;&#x540d;)/DVVSignUpDetailController.m"
-            timestampString = "478010620.899265"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
-            landmarkName = "-nextStep:"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "-dvv_networkRequestRefresh"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -11,7 +11,7 @@
 @implementation ClassTypeDMData
 
 + (NSDictionary *)modelCustomPropertyMapper {
-    return @{ @"classid": @"_id" };
+    return @{ @"calssid": @"_id" };
 }
 
 @end
