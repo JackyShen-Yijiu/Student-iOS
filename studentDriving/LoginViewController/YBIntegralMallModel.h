@@ -20,4 +20,6 @@
 @property (nonatomic,assign) BOOL is_scanconsumption;
 
 @property (nonatomic,strong) NSString *detailurl;
+@property (nonatomic,assign) int  productcount;
+@property (nonatomic, copy) NSString *addressStr;
 @end
