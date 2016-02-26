@@ -47,7 +47,7 @@ typedef NS_ENUM(NSUInteger,MallType){
 
 @end
 
-static NSString *kMagicShop = @"getmailproduct?index=1&count=10&producttype=1";
+static NSString *kMagicShop = @"getmailproduct?index=1&count=10&producttype=0";
 static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1";
 @implementation YBMallViewController
 
@@ -190,6 +190,7 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
             mallCell.backgroundColor = [UIColor clearColor];
         }
         mallCell.integralMallModel = self.shopMainListArray[indexPath.row];
+        mallCell.selectionStyle  = UITableViewCellSelectionStyleNone;
         return mallCell;
     }else if (_mallType == kDiscountMall){
         // 加载兑换券商城
@@ -199,6 +200,7 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
             mallCell = [[YBDiscountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
             mallCell.backgroundColor = [UIColor clearColor];
         }
+        mallCell.selectionStyle  = UITableViewCellSelectionStyleNone;
         mallCell.discountModel = self.discountArray[indexPath.row];
         return mallCell;
     }
@@ -238,6 +240,7 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
         _tabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 35, self.view.frame.size.width, self.view.frame.size.height - 100) style:UITableViewStylePlain];
         _tabelView.backgroundColor = [UIColor clearColor];
         _tabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
     }
     return _tabelView;
 

@@ -133,13 +133,16 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
                     self.discountNumber = [parm[@"state"] integerValue];
                     if (0 == [parm[@"state"] integerValue] || 2 == [parm[@"state"] integerValue] || 3 ==[parm[@"state"] integerValue] || 4 == [parm[@"state"] integerValue]) {
                         _exchangeButton.selected = NO;
+                         _exchangeButton.userInteractionEnabled = NO;
                         _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
                     }else if (1 == [parm[@"state"] integerValue]){
                         _exchangeButton.selected = YES;
+                         _exchangeButton.userInteractionEnabled = YES;
                         _exchangeButton.backgroundColor = YBNavigationBarBgColor;
                     }
                 }else if (array.count == 0){
                     _exchangeButton.selected = NO;
+                    _exchangeButton.userInteractionEnabled = NO;
                     _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
                     
                 }
@@ -197,8 +200,20 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     
 }
 - (void)didExchange:(UIButton *)btn{
-    YBIntegrationMessageController *integrationMessageVC = [[YBIntegrationMessageController alloc] init];
-    [self.navigationController pushViewController:integrationMessageVC animated:YES];
+    if (0 == _mallWay) {
+        // 积分商城
+        YBIntegrationMessageController *integrationMessageVC = [[YBIntegrationMessageController alloc] init];
+        integrationMessageVC.mallWay = 0;
+        integrationMessageVC.integraMallModel = self.integralModel;
+        [self.navigationController pushViewController:integrationMessageVC animated:YES];
+    }else if (1 == _mallWay){
+        // 兑换劵商城
+        YBIntegrationMessageController *integrationMessageVC = [[YBIntegrationMessageController alloc] init];
+        integrationMessageVC.mallWay = 1;
+        integrationMessageVC.discountMallModel = self.discountModel;
+        [self.navigationController pushViewController:integrationMessageVC animated:YES];
+    }
+    
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
@@ -211,7 +226,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 }
 - (UIView *)bgView{
     if (_bgView == nil) {
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight - 114, kSystemWide - 30, 50)];
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, kSystemHeight - 114, kSystemWide, 50)];
         _bgView.backgroundColor = [UIColor whiteColor];
     }
     return _bgView;
@@ -234,7 +249,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 - (UIButton *)exchangeButton{
     if (_exchangeButton == nil) {
         _exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _exchangeButton.frame = CGRectMake(self.bgView.frame.size.width - 100, 7.5, 100, 35);
+        _exchangeButton.frame = CGRectMake(self.bgView.frame.size.width - 100 - 25, 7.5, 100, 35);
         _exchangeButton.backgroundColor = YBNavigationBarBgColor;
         [_exchangeButton setTitle:@"立即兑换" forState:UIControlStateNormal];
         [_exchangeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
