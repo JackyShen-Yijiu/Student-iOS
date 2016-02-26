@@ -162,8 +162,8 @@
 
      */
     if (dataModel.signInStatus) {
-        self.timeSignLabel.textColor = [UIColor colorWithHexString:@"bd4437"];
-        self.signLabel.textColor = [UIColor colorWithHexString:@"bd4437"];
+        self.timeSignLabel.textColor = YBNavigationBarBgColor;
+        self.signLabel.textColor = YBNavigationBarBgColor;
         self.signLabel.text = @"可签到";
     }else{
         self.signLabel.text = @"不可签到";

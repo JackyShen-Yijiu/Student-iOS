@@ -11,10 +11,12 @@
 #import "MJRefresh.h"
 #import "SignInViewModel.h"
 #import "SignInDataModel.h"
+#import "ShowWarningBG.h"
 
 @interface SideMenuSignUpController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) SignInViewModel *viewModel;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) ShowWarningBG *warningBG;
 @end
 
 @implementation SideMenuSignUpController
@@ -22,7 +24,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"今天的预约";
-    self.view.backgroundColor = RGBColor(234, 234, 234);
+    self.view.backgroundColor = RGBColor(249, 249, 249);
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
@@ -32,7 +34,9 @@
     [self configViewModel];
     [self configRefresh];
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [_warningBG hidden];
+}
 #pragma mark - config ViewModel
 - (void)configViewModel {
     
@@ -44,8 +48,8 @@
     }];
     // 服务器返回的数据为空时的回调
     [_viewModel dvv_setNilResponseObjectBlock:^{
-        
-        
+     _warningBG =  [[ShowWarningBG alloc] initWithTietleName:@"小步没有找到您的预约信息"];
+        [_warningBG show];
         
     }];
     // 网络成功或错误都调用的回调 (一般在这里隐藏HUD)
@@ -62,6 +66,7 @@
     // 开始请求网络数据
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [_viewModel dvv_networkRequestRefresh];
+    
 }
 
 #pragma mark - config refresh

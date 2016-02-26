@@ -34,7 +34,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     if (!_reservationreminderSwitch) {
         _reservationreminderSwitch = [UISwitch new];
         _reservationreminderSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
-        _reservationreminderSwitch.onTintColor = [UIColor colorWithHexString:@"bd4437"];
+        _reservationreminderSwitch.onTintColor = YBNavigationBarBgColor;
 //        _reservationreminderSwitch.tintColor=[UIColor cyanColor];
     }
     return _reservationreminderSwitch;
@@ -43,7 +43,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     if (!_newmessagereminder) {
         _newmessagereminder = [UISwitch new];
         _newmessagereminder = [[UISwitch alloc] initWithFrame:CGRectMake(0, 0, 45, 20)];
-        _newmessagereminder.onTintColor = [UIColor colorWithHexString:@"bd4437"];
+        _newmessagereminder.onTintColor = YBNavigationBarBgColor;
     }
     return _newmessagereminder;
 }
@@ -58,7 +58,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = RGBColor(245, 247, 250);
+        _tableView.backgroundColor = RGBColor(249, 249, 249);
     }
     return _tableView;
 }
@@ -92,7 +92,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] init];
-    view.backgroundColor = RGBColor(245, 247, 250);
+    view.backgroundColor = RGBColor(249, 249, 249);
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
@@ -223,7 +223,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 - (UIButton *)quitButton{
     if (_quitButton == nil) {
         _quitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _quitButton.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        _quitButton.backgroundColor = YBNavigationBarBgColor;
         [_quitButton setTitle:@"退出" forState:UIControlStateNormal];
         _quitButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_quitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];

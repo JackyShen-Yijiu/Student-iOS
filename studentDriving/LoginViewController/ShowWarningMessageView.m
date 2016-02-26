@@ -25,7 +25,7 @@
     if (_textMessageLael == nil) {
         _textMessageLael = [[UILabel alloc] init];
         _textMessageLael.text = @"您填入的信息有误";
-        _textMessageLael.textColor = [UIColor colorWithHexString:@"bd4437"];
+        _textMessageLael.textColor = YBNavigationBarBgColor;
         _textMessageLael.font = [UIFont systemFontOfSize:10];
         _textMessageLael.textAlignment = NSTextAlignmentRight;
         

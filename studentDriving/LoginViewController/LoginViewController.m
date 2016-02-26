@@ -126,7 +126,7 @@ static NSString *const kuserType = @"usertype";
     if (_bottomButton == nil) {
         _bottomButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_bottomButton setTitle:@"随便看看" forState:UIControlStateNormal];
-        [_bottomButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateNormal];
+        [_bottomButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
         _bottomButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_bottomButton addTarget:self action:@selector(dealBottom:) forControlEvents:UIControlEventTouchUpInside];
         [_bottomButton setTitleEdgeInsets:UIEdgeInsetsMake(0, -10, 0, 0)];

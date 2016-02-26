@@ -11,6 +11,7 @@
 #import "WMCommon.h"
 #import "UIImage+WM.h"
 #import "WMOtherViewController.h"
+#import "EditorDetailController.h"
 @interface WMMenuViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (strong, nonatomic) WMCommon *common;
 @property (strong ,nonatomic) NSArray  *listArray;
@@ -42,8 +43,8 @@
     [self.headerImageView addGestureRecognizer:tapGesture];
     [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:nil completed:nil];
     // 用户名
-    
-        if ([AcountManager manager].userMobile) {
+    if ([AcountManager manager].userMobile) {
+        
             self.userMobileLabel.text = [AcountManager manager].userMobile;
         }
     
@@ -95,8 +96,13 @@
     self.tableView.tableFooterView = [[UIView alloc] init];
 
     self.headerImageView.image = [[UIImage imageNamed:@"me"] getRoundImage];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:k object:nil];
     
+}
+// 当头像改变时通知方法
+- (void)iconImage{
+    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:nil completed:nil];
 }
 // 点击头像手势
 - (void)priateMessage:(UITapGestureRecognizer *)tapGesture{

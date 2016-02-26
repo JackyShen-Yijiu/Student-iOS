@@ -164,7 +164,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         _gainNum = [UIButton buttonWithType:UIButtonTypeCustom];
         [_gainNum addTarget:self action:@selector(dealSend:) forControlEvents:UIControlEventTouchUpInside];
         _gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
-        _gainNum.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        _gainNum.backgroundColor = YBNavigationBarBgColor;
         [_gainNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
     }
@@ -174,7 +174,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 - (UIButton *)runNextButton {
     if (_runNextButton == nil) {
         _runNextButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _runNextButton.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        _runNextButton.backgroundColor = YBNavigationBarBgColor;
         [_runNextButton addTarget:self action:@selector(dealNext:) forControlEvents:UIControlEventTouchUpInside];
         [_runNextButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _runNextButton.titleLabel.font = [UIFont systemFontOfSize:16];
@@ -187,7 +187,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"找回密码";
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:@"bd4437"]];
+    [self.navigationController.navigationBar setBarTintColor:YBNavigationBarBgColor];
     
     CGRect backframe= CGRectMake(0, 0, 20, 20);
     UIButton* backButton= [UIButton buttonWithType:UIButtonTypeSystem];
@@ -357,7 +357,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
                     
                     self.gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
                     [self.gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
-                    _gainNum.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+                    _gainNum.backgroundColor = YBNavigationBarBgColor;
                     [_gainNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                     self.gainNum.userInteractionEnabled = YES;
                     

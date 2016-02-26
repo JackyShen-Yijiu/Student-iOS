@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"使用帮助";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColor(249, 249, 249);
     [self.view addSubview:self.tableView];
     [self setUpData];
     
@@ -58,6 +58,7 @@
         cell = [[HelpCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
     }
     cell.strDic = self.strArray[indexPath.row];
+    cell.backgroundColor = [UIColor clearColor];
     return cell;
 }
 
