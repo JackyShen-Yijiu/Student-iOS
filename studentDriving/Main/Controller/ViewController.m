@@ -142,6 +142,23 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 //    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
 //    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSlide) name:KhiddenSlide object:nil];
+    
+    
+    // 判断进度
+    if ([AcountManager isLogin]) {
+        
+        if ([[AcountManager manager].userSubject.subjectId isEqual:@(1)]){
+            self.mainNav.tabBarController.selectedIndex = 1;
+        }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(2)]){
+            self.mainNav.tabBarController.selectedIndex = 2;
+        }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(3)]){
+            self.mainNav.tabBarController.selectedIndex = 2;
+        }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(4)]){
+            self.mainNav.tabBarController.selectedIndex = 1;
+        }
+        
+    }
+
 }
 
 - (void)hiddenSlide
