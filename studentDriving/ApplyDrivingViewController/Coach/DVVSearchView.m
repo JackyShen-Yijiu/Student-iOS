@@ -16,6 +16,7 @@ typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
 
 @property (nonatomic, copy) DVVSearchViewUITextFieldDelegateBlock didBeginEditingBlock;
 @property (nonatomic, strong) DVVSearchViewUITextFieldDelegateBlock didEndEditingBlock;
+@property (nonatomic, strong) DVVSearchViewUITextFieldDelegateBlock textChangeBlock;
 
 @end
 @implementation DVVSearchView
@@ -28,6 +29,8 @@ typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
         [self addSubview:self.backgroundImageView];
         [self addSubview:self.textField];
         [self addSubview:self.cancelButton];
+        
+        [_textField addTarget:self action:@selector(textChange:) forControlEvents:UIControlEventEditingChanged];
     }
     return self;
 }
@@ -89,7 +92,11 @@ typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
         _cancelButton.frame = CGRectMake(viewWidth - searchButtonWidth, 0, searchButtonWidth, viewHeight);
         [_cancelButton setTitle:@"取消" forState:UIControlStateNormal];
     } completion:^(BOOL finished) {
-        _textField.placeholder = @"请输入搜索内容";
+        if (_placeholder) {
+            _textField.placeholder = _placeholder;
+        }else {
+            _textField.placeholder = @"请输入搜索内容";
+        }
         _cancelButton.userInteractionEnabled = YES;
     }];
 }
@@ -104,10 +111,19 @@ typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
     }
     [self statusNormal];
 }
+
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
 }
+
+- (void)textChange:(UITextField *)textField {
+    if (_textChangeBlock) {
+        _textChangeBlock(textField);
+    }
+}
+
+
 #pragma mark 搜索框无文本输入，并且取消搜索状态时
 - (void)statusNormal {
     
@@ -132,6 +148,9 @@ typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
 }
 - (void)dvv_setTextFieldDidEndEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle {
     _didEndEditingBlock = handle;
+}
+- (void)dvv_setTextFieldTextChangeBlock:(DVVSearchViewUITextFieldDelegateBlock)handle {
+    _textChangeBlock = handle;
 }
 
 #pragma mark - lazy load

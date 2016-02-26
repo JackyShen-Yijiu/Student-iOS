@@ -29,6 +29,9 @@
 #import "EditorMessageController.h" // 点击头像
 #import "SetupViewController.h"
 
+#import "BLPFAlertView.h"
+#import "PushInformationManager.h"
+#import "AppointmentDetailViewController.h"
 
 typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
@@ -141,6 +144,10 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 //    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
 //    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSlide) name:KhiddenSlide object:nil];
+    
+    
+    // 注册接收到推送消息，跳转到对应的窗体的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivePushInfo:) name:YBNotif_HandleNotification object:nil];
 }
 
 - (void)hiddenSlide
@@ -393,7 +400,6 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         }
         SetupViewController *setUpVC = [SetupViewController new];
         [self controller:setUpVC];
-
     }
     
 }
@@ -439,4 +445,125 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     }
 
 }
+
+#pragma mark - 推送
+
+#pragma mark 接收到推送消息
+- (void)receivePushInfo:(NSNotification *)notification {
+    
+//        {
+//            "_j_msgid" = 3729781907;
+//            aps =     {
+//                alert = "\U60a8\U9884\U7ea6\U7684\U8bfe\U7a0b\U5df2\U88ab\U63a5\U53d7\Uff0c\U8bf7\U5230\U9884\U7ea6\U8be6\U60c5\U91cc\U67e5\U770b";
+//                badge = 1;
+//                sound = "sound.caf";
+//            };
+//            data =     {
+//                reservationid = 56b07580efe9248328d3428d;
+//                userid = 56937987e6b6a92c09a54d6b;
+//            };
+//            type = reservationsuccess;
+//        }
+    
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
+
+    NSDictionary *userInfo = [notification userInfo];
+    
+    NSLog(@"receivePushInfo userInfo: %@", userInfo);
+    
+    // 判断数据是否有误
+    if (!userInfo || ![userInfo isKindOfClass:[NSDictionary class]]) {
+        return ;
+    }
+    NSString *type = [NSString stringWithFormat:@"%@", userInfo[@"type"]];
+    if (!type || !type.length) {
+        return ;
+    }
+    
+    // 处理数据
+    UIApplication *application = [UIApplication sharedApplication];
+    NSLog(@"applicationState: %ld",(long)application.applicationState);
+    
+    if (application.applicationState == UIApplicationStateActive) {
+        
+        [BLPFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+            
+            DYNSLog(@"selected = %ld",(long)selectedOtherButtonIndex);
+            // 当用户选择确定的时候才跳转对应的窗体
+            if (selectedOtherButtonIndex == 0) {
+                [self handlePushInfo:userInfo];
+            }
+        }];
+        
+    }else {
+        [self handlePushInfo:userInfo];
+    }
+    
+    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+#endif
+}
+
+#pragma mark 处理推送消息
+- (void)handlePushInfo:(NSDictionary *)userInfo {
+    
+    NSString *type = [NSString stringWithFormat:@"%@", userInfo[@"type"]];
+    
+    if ([type isEqualToString:@"newversion"]) {
+        
+        [BLPFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
+            
+            DYNSLog(@"selected = %ld",(long)selectedOtherButtonIndex);
+            if (selectedOtherButtonIndex == 0) {
+                // 去更新版本
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/yi-bu-xue-che/id1060105429"]];
+            }
+        }];
+        
+    } else if ([type isEqualToString:@"userapplysuccess"]) {
+        
+        DYNSLog(@"kuserapplysuccess 报名成功");
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"kuserapplysuccess" object:nil];
+        
+    }else if ([type isEqualToString:@"reservationsuccess"]) {
+        
+        DYNSLog(@"接受到教练确认订单信息");
+        NSString *string = [NSString stringWithFormat:@"%@",userInfo[@"data"][@"reservationid"]];
+        AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
+        detail.isPushInformation = YES;
+        detail.infoId = string;
+        detail.state = AppointmentStateCoachConfirm;
+        
+        [DVVUserManager pushController:detail];
+        
+        
+    }else if ([type isEqualToString:@"reservationcancel"]) {
+        
+        DYNSLog(@"接受到教练取消订单信息");
+        NSString *string = [NSString stringWithFormat:@"%@",userInfo[@"data"][@"reservationid"]];
+        AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
+        detail.isPushInformation = YES;
+        detail.infoId = string;
+        detail.state = AppointmentStateCoachCancel;
+        
+        [DVVUserManager pushController:detail];
+        
+    }else if ([type isEqualToString:@"reservationcoachcomment"]) {
+        // 获取到教练评价
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"有教练对您评价啦，赶快去查看吧！" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [alertView show];
+        
+    }else if ([type isEqualToString:@"walletupdate"]) {
+        // 钱包更新
+        
+//        MyWalletViewController *detail = [[MyWalletViewController alloc] init];
+        
+    }else if ([type isEqualToString:@"systemmsg"]) {
+        // 系统消息
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您有一条系统消息，赶快去查看吧！" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
+        [alertView show];
+    }
+}
+
 @end

@@ -61,7 +61,6 @@
 #pragma mark - 统一处理消息
 - (void)JPushfetchCompletionHandlerApplication:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo{
     
-    
     NSLog(@"JPushfetchCompletionHandlerApplication userInfo:%@",userInfo);
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
