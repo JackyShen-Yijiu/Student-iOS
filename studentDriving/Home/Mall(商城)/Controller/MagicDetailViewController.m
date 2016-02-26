@@ -14,6 +14,7 @@
 #import "VirtualViewController.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
+#import "YBIntegrationMessageController.h"
 
 static NSString *const kIntegralMall = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=0&count=10";
 
@@ -23,8 +24,6 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 @property(nonatomic,strong) UIWebView *webView;
 @property (strong, nonatomic) NJKWebViewProgress *webviewProgress;
 @property (strong, nonatomic) NJKWebViewProgressView *progressView;
-
-@property (nonatomic,strong) NSString *walletstr;
 
 @property (nonatomic, strong) UIView *bgView;
 @property (nonatomic, strong) UILabel *moneyLabel;
@@ -105,10 +104,10 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
             if (1 == [data[@"type"] integerValue]) {
                 NSDictionary *parm = data[@"data"];
                 self.integralNumber = [parm[@"wallet"] integerValue];
-                if ([parm[@"wallet"] integerValue] >= _integralModel.productprice) {
+                if ([parm[@"wallet"] integerValue] < _integralModel.productprice) {
                     _exchangeButton.selected = YES;
                     _exchangeButton.backgroundColor = YBNavigationBarBgColor;
-                }else if ([parm[@"wallet"] integerValue] < _integralModel.productprice){
+                }else if ([parm[@"wallet"] integerValue] >= _integralModel.productprice){
                     NSLog(@"%lu%d",[parm[@"wallet"] integerValue],_integralModel.productprice);
                     _exchangeButton.selected = NO;
                     _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
@@ -198,7 +197,8 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     
 }
 - (void)didExchange:(UIButton *)btn{
-    
+    YBIntegrationMessageController *integrationMessageVC = [[YBIntegrationMessageController alloc] init];
+    [self.navigationController pushViewController:integrationMessageVC animated:YES];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
