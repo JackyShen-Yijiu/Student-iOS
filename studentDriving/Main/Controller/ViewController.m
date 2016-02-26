@@ -42,8 +42,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
 };
 
-
-static const CGFloat viewSlideHorizonRatio = 0.75;
+static const CGFloat viewSlideHorizonRatio = 0.8;
 static const CGFloat viewHeightNarrowRatio = 0.80;
 static const CGFloat menuStartNarrowRatio  = 0.70;
 
@@ -113,7 +112,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.menuVC.iconDelegage = self;
     
     self.menuVC.view.frame = [[UIScreen mainScreen] bounds];
-    self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuStartNarrowRatio, menuStartNarrowRatio);
+    //self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuStartNarrowRatio, menuStartNarrowRatio);
     self.menuVC.view.center = CGPointMake(self.menuCenterXStart, self.menuVC.view.center.y);
     [self.view addSubview:self.menuVC.view];
     
@@ -137,10 +136,10 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 
     self.shangchengVC = [[YBMallViewController alloc] init];
     [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"tab_buddy_nor" selectedImage:@"tab_buddy_nor"];
-
-    self.shequVC = [[YBCommunityViewController alloc] init];
-    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
-    
+//
+//    self.shequVC = [[YBCommunityViewController alloc] init];
+//    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
+//    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSlide) name:KhiddenSlide object:nil];
 }
 
@@ -234,14 +233,14 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         return;
     }
     self.tabBarController.view.center = CGPointMake(self.view.center.x + dis, self.view.center.y);
-    self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
+   // self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
     
     self.baomingVC.leftBtn.alpha = self.cover.alpha = 1 - dis / self.leftDistance;
     
     CGFloat menuProportion = dis * (1 - menuStartNarrowRatio) / self.leftDistance + menuStartNarrowRatio;
     CGFloat menuCenterMove = dis * (self.menuCenterXEnd - self.menuCenterXStart) / self.leftDistance;
     self.menuVC.view.center = CGPointMake(self.menuCenterXStart + menuCenterMove, self.view.center.y);
-    self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
+  //  self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
     
 }
 
@@ -271,7 +270,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 - (void)doSlide:(CGFloat)proportion {
     [UIView animateWithDuration:0.3 animations:^{
         self.tabBarController.view.center = CGPointMake(self.view.center.x + self.distance, self.view.center.y);
-        self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
+        //self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
         
         self.baomingVC.leftBtn.alpha = self.cover.alpha = proportion == 1 ? 1 : 0;
         
@@ -285,7 +284,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
             menuProportion = 1;
         }
         self.menuVC.view.center = CGPointMake(menuCenterX, self.view.center.y);
-        self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
+        //self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
     } completion:^(BOOL finished) {
 
     }];

@@ -15,6 +15,7 @@
 #import "WrongQuestionViewController.h"
 #import "BLAVPlayerViewController.h"
 #import "WMCommon.h"
+#import "YBAppointTestViewController.h"
 
 #define kCellIdentifier @"YBStudyViewCell"
 
@@ -94,12 +95,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     NSDictionary *dict = _dataArray[indexPath.row];
-//
-//    WMOtherViewController *other = [[WMOtherViewController alloc] init];
-//    other.navTitle = [NSString stringWithFormat:@"%@",dict[@"title"]];
-//    other.hidesBottomBarWhenPushed = YES;
-//    [self.parentViewController.navigationController pushViewController:other animated:YES];
-//    
+
     switch (self.studyProgress) {
         case YBStudyProgress1:
             
@@ -110,9 +106,6 @@
                 QuestionTestViewController *questionVC = [[QuestionTestViewController alloc] init];
                 questionVC.hidesBottomBarWhenPushed = YES;
                 questionVC.questiontesturl = self.questiontesturl;
-//                questionVC.isModal = YES;
-                //                [mainVC.navigationController pushViewController:questionVC animated:YES];
-//                [self.parentViewController.navigationController presentViewController:questionVC animated:NO completion:nil];
                 [self.parentViewController.navigationController pushViewController:questionVC animated:YES];
 
             }else if (indexPath.row==1){
@@ -120,9 +113,6 @@
                 QuestionBankViewController *questBankVC = [[QuestionBankViewController alloc] init];
                 questBankVC.hidesBottomBarWhenPushed = YES;
                 questBankVC.questionlisturl = self.questionlisturl;
-//                questBankVC.isModal = YES;
-                //                [mainVC.navigationController pushViewController:questBankVC animated:YES];
-//                [self.parentViewController.navigationController presentViewController:questBankVC animated:NO completion:nil];
                 [self.parentViewController.navigationController pushViewController:questBankVC animated:YES];
 
             }else if (indexPath.row==2){
@@ -130,13 +120,14 @@
                 WrongQuestionViewController *wrongQuestVC = [[WrongQuestionViewController alloc] init];
                 wrongQuestVC.hidesBottomBarWhenPushed = YES;
                 wrongQuestVC.questionerrorurl = self.questionerrorurl;
-//                wrongQuestVC.isModal = YES;
-                NSLog(@"%@",wrongQuestVC.questionerrorurl);
-                //                [mainVC.navigationController pushViewController:wrongQuestVC animated:YES];
-//                [self.parentViewController.navigationController presentViewController:wrongQuestVC animated:NO completion:nil];
                 [self.parentViewController.navigationController pushViewController:wrongQuestVC animated:YES];
 
             }else if (indexPath.row==3){
+                
+                YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
+                appointVc.title = dict[@"title"];
+                appointVc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
                 
             }else if (indexPath.row==4){
                 
@@ -159,6 +150,11 @@
                 
             }else if (indexPath.row==2){
                 
+                YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
+                appointVc.title = dict[@"title"];
+                appointVc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
+                
             }else if (indexPath.row==3){
                 
             }
@@ -178,6 +174,11 @@
             }else if (indexPath.row==1){
                 
             }else if (indexPath.row==2){
+                
+                YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
+                appointVc.title = dict[@"title"];
+                appointVc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
                 
             }else if (indexPath.row==3){
                 
@@ -239,6 +240,11 @@
 
                 
             }else if (indexPath.row==3){
+                
+                YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
+                appointVc.title = dict[@"title"];
+                appointVc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
                 
             }else if (indexPath.row==4){
                 

@@ -14,21 +14,30 @@
 #import "VirtualViewController.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
+#import "YBIntegrationMessageController.h"
 
+static NSString *const kIntegralMall = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=0&count=10";
+
+static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 
 @interface MagicDetailViewController ()<NJKWebViewProgressDelegate,UIWebViewDelegate>
 @property(nonatomic,strong) UIWebView *webView;
 @property (strong, nonatomic) NJKWebViewProgress *webviewProgress;
 @property (strong, nonatomic) NJKWebViewProgressView *progressView;
 
-@property (nonatomic,strong) NSString *walletstr;
+@property (nonatomic, strong) UIView *bgView;
+@property (nonatomic, strong) UILabel *moneyLabel;
+@property (nonatomic, strong) UIButton *exchangeButton;
+@property (nonatomic, assign) NSInteger integralNumber;
+@property (nonatomic, assign) NSInteger discountNumber;
+
 @end
 
 @implementation MagicDetailViewController
 - (UIWebView *)webView
 {
     if (_webView == nil) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide - 40, kSystemHeight - 104)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 64 - 50 - 5)];
         _webView.hidden = YES;
     }
     return _webView;
@@ -36,23 +45,29 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+//    for (UIViewController *viewCon in self.navigationController.viewControllers) {
+//        if ([viewCon isKindOfClass:[MyWalletViewController class]]) {
+//            MyWalletViewController *myWalletVC = (MyWalletViewController *)viewCon;
+//            [myWalletVC refreshWalletData];
+//        }
+//        
+//    }
+//    [self.navigationController.navigationBar addSubview:_progressView];
+//     [self addBottomView];
+    [self initData];
     
-    for (UIViewController *viewCon in self.navigationController.viewControllers) {
-        if ([viewCon isKindOfClass:[MyWalletViewController class]]) {
-            MyWalletViewController *myWalletVC = (MyWalletViewController *)viewCon;
-            [myWalletVC refreshWalletData];
-        }
-        
-    }
-    [self.navigationController.navigationBar addSubview:_progressView];
-     [self addBottomView];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"商品详情";
+    self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
+    [self.bgView addSubview:self.moneyLabel];
+    [self.bgView addSubview:self.exchangeButton];
+    [self.view addSubview:self.bgView];
+    
     _webviewProgress = [[NJKWebViewProgress alloc] init];
     self.webView.delegate = _webviewProgress;
     self.webviewProgress.webViewProxyDelegate = self;
@@ -64,9 +79,14 @@
     self.progressView = [[NJKWebViewProgressView alloc] initWithFrame:barFrame];
     self.progressView.progressBarView.backgroundColor = [UIColor orangeColor];
     self.progressView.hidden = YES;
-    
-    NSString *urlString = self.mainModel.detailurl;
-    
+    NSString *urlString = nil;
+    if (0 == _mallWay) {
+        // 积分商城
+        urlString = _integralModel.detailurl;
+    }else if (1 == _mallWay){
+        // 兑换劵商城
+        urlString = _discountModel.detailurl;
+    }
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
     
@@ -75,54 +95,65 @@
     
    
 }
-#pragma mark -----加载底部View
-- (void)addBottomView
-{
-    // 加载底部View
-    _bottomView = [LTBottomView instanceBottomView];
-    // 取出积分的Label
-    UILabel *numberLabel = [_bottomView viewWithTag:103];
-    NSUserDefaults *defaules = [NSUserDefaults standardUserDefaults];
-    _walletstr = [defaules objectForKey:@"walletStr"];
-//
-    numberLabel.text = _walletstr;
-    // 取出立即购买按钮,添加点击事件
-    _didClickBtn = [_bottomView viewWithTag:102];
-//    NSLog(@"_main = %@",_mainModel.is_scanconsumption);
-    if ((_mainModel.is_scanconsumption == 1)) {
-        [_didClickBtn setTitle:@"立即兑换" forState:UIControlStateNormal];
-        //// 判断按钮是否能点击
-        _didClickBtn.selected = [_walletstr intValue]  >=  _mainModel.productprice ? 1 : 0;
-        if (_didClickBtn.selected) {
-            _didClickBtn.tag = 301;
-            [_didClickBtn setBackgroundColor:[UIColor colorWithHexString:@"ff5d35"]];
-            [_didClickBtn addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
-        }
+- (void)initData{
+    if (0 == _mallWay) {
+        // 积分商城
+        NSString *appendString = [NSString stringWithFormat:kIntegralMall,[AcountManager manager].userid];
+        NSString *finalString = [NSString stringWithFormat:BASEURL,appendString];
+        [JENetwoking startDownLoadWithUrl:finalString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            if (1 == [data[@"type"] integerValue]) {
+                NSDictionary *parm = data[@"data"];
+                self.integralNumber = [parm[@"wallet"] integerValue];
+                if ([parm[@"wallet"] integerValue] < _integralModel.productprice) {
+                    _exchangeButton.selected = YES;
+                    _exchangeButton.backgroundColor = YBNavigationBarBgColor;
+                }else if ([parm[@"wallet"] integerValue] >= _integralModel.productprice){
+                    NSLog(@"%lu%d",[parm[@"wallet"] integerValue],_integralModel.productprice);
+                    _exchangeButton.selected = NO;
+                    _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+                }
+            }
+        } withFailure:^(id data) {
+            NSString *str = data[@"msg"];
+            [self obj_showTotasViewWithMes:str];
+        }];
 
-    }else
-    {
-       [_didClickBtn setTitle:@"立即购买" forState:UIControlStateNormal];
-        //// 判断按钮是否能点击
-        _didClickBtn.selected = [_walletstr intValue]  >=  _mainModel.productprice ? 1 : 0;
-        if (_didClickBtn.selected) {
-            _didClickBtn.tag = 302;
-            [_didClickBtn setBackgroundColor:[UIColor colorWithHexString:@"ff5d35"]];
-            [_didClickBtn addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
-        }
+    }else if (1 == _mallWay){
+        // 兑换劵商城
+        NSString *appendString = [NSString stringWithFormat:kDiscountMall,[AcountManager manager].userid];
+        NSString *finalString = [NSString stringWithFormat:BASEURL,appendString];
+        [JENetwoking startDownLoadWithUrl:finalString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            if (1 == [data[@"type"] integerValue]) {
+                /*
+                 { "type": 1, "msg": "", "data": [ { "_id": "56812f877b340f4e48423164", 优惠卷编码 "userid": "562cb02e93d4ca260b40e544", userid "state": 0, 优惠卷状态// 0未领取 1领取 2过期 3作废 4 已消费 "is_forcash": true, 是否可以兑换现金 "couponcomefrom": 1,// 优惠券来源 1 报名奖励 2 活动奖励 "createtime": "2015-12-28T12:48:07.805Z" } ] }
+                 */
+                NSArray  *array = data[@"data"];
+                if (array.count) {
+                    NSDictionary *parm = array[0];
+                    self.discountNumber = [parm[@"state"] integerValue];
+                    if (0 == [parm[@"state"] integerValue] || 2 == [parm[@"state"] integerValue] || 3 ==[parm[@"state"] integerValue] || 4 == [parm[@"state"] integerValue]) {
+                        _exchangeButton.selected = NO;
+                        _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+                    }else if (1 == [parm[@"state"] integerValue]){
+                        _exchangeButton.selected = YES;
+                        _exchangeButton.backgroundColor = YBNavigationBarBgColor;
+                    }
+                }else if (array.count == 0){
+                    _exchangeButton.selected = NO;
+                    _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+                    
+                }
+                
+            }
+        } withFailure:^(id data) {
+            NSString *str = data[@"msg"];
+            [self obj_showTotasViewWithMes:str];
+        }];
 
+        
     }
     
-    
-    
-    CGFloat kWight = [UIScreen mainScreen].bounds.size.width;
-    CGFloat kHight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat kbottonViewh = 50;
-    _bottomView.frame = CGRectMake(0,kHight - 50 , kWight, kbottonViewh);
-    [self.view addSubview:_bottomView];
-    
-    
 }
-#pragma mark ----- 立即购买按钮的点击事件
 
 - (void)didClick:(UIButton *)btn
 {
@@ -165,6 +196,10 @@
     [_progressView removeFromSuperview];
     
 }
+- (void)didExchange:(UIButton *)btn{
+    YBIntegrationMessageController *integrationMessageVC = [[YBIntegrationMessageController alloc] init];
+    [self.navigationController pushViewController:integrationMessageVC animated:YES];
+}
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     
@@ -174,6 +209,37 @@
     [super didReceiveMemoryWarning];
    
 }
-
-
+- (UIView *)bgView{
+    if (_bgView == nil) {
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight - 114, kSystemWide - 30, 50)];
+        _bgView.backgroundColor = [UIColor whiteColor];
+    }
+    return _bgView;
+}
+- (UILabel *)moneyLabel{
+    if (_moneyLabel == nil) {
+        _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 18, 150, 14)];
+        if (0 == _mallWay) {
+            // 积分商城
+            _moneyLabel.text = [NSString stringWithFormat:@"需要消费积分:%d",_integralModel.productprice];
+        }else if (1 == _mallWay){
+            // 兑换劵商城
+            _moneyLabel.text = @"需要消费一张兑换劵";
+        }
+        _moneyLabel.font = [UIFont systemFontOfSize:14];
+        _moneyLabel.textColor = YBNavigationBarBgColor;
+    }
+    return _moneyLabel;
+}
+- (UIButton *)exchangeButton{
+    if (_exchangeButton == nil) {
+        _exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _exchangeButton.frame = CGRectMake(self.bgView.frame.size.width - 100, 7.5, 100, 35);
+        _exchangeButton.backgroundColor = YBNavigationBarBgColor;
+        [_exchangeButton setTitle:@"立即兑换" forState:UIControlStateNormal];
+        [_exchangeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_exchangeButton addTarget:self action:@selector(didExchange:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _exchangeButton;
+}
 @end

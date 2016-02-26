@@ -21,11 +21,6 @@
               "title" : "我要约考",
               "description" : "提交约考信息，足不出户轻松报考"
               },
-              {
-              "icon" : "yibuStudyJiaoliuIcon",
-              "title" : "交流",
-              "description" : "专项科目交流平台"
-              },
                ],
               
               [
@@ -44,11 +39,6 @@
                "title" : "我要约考",
                "description" : "提交约考信息，足不出户轻松报考"
                },
-               {
-               "icon" : "yibuStudyJiaoliuIcon",
-               "title" : "交流",
-               "description" : "专项科目交流平台"
-               },
                ],
               
               [
@@ -66,11 +56,6 @@
                "icon" : "yibuStudyYuekaoIcon",
                "title" : "我要约考",
                "description" : "提交约考信息，足不出户轻松报考"
-               },
-               {
-               "icon" : "yibuStudyJiaoliuIcon",
-               "title" : "交流",
-               "description" : "专项科目交流平台"
                },
                ],
               
@@ -94,11 +79,6 @@
                "icon" : "yibuStudyYuekaoIcon",
                "title" : "我要约考",
                "description" : "提交约考信息，足不出户轻松报考"
-               },
-               {
-               "icon" : "yibuStudyJiaoliuIcon",
-               "title" : "交流",
-               "description" : "专项科目交流平台"
                },
                ]
               
