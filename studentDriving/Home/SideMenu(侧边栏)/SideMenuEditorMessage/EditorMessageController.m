@@ -34,7 +34,7 @@ static NSString *kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view addSubview:self.tableView];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColor(249, 249, 249);
     self.title = @"个人中心";
     [self initData];
      [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
@@ -83,6 +83,7 @@ static NSString *kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo";
             cell = [[EditorTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
         }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.backgroundColor = [UIColor clearColor];
         return cell;
     }
     
@@ -95,6 +96,7 @@ static NSString *kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.titleLabel.text = self.titleArray[indexPath.row];
         cell.describeLabel.text = self.descriArray[indexPath.row];
+        cell.backgroundColor = [UIColor clearColor];
         return cell;
 
     }
@@ -105,6 +107,7 @@ static NSString *kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo";
             editorCell = [[EditorBottomCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:EditorcellID];
         }
         editorCell.titleLabel.text = self.titleArray[indexPath.row];
+        editorCell.backgroundColor = [UIColor clearColor];
         return editorCell;
         
     }

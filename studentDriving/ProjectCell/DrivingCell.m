@@ -19,6 +19,7 @@
 @property (strong, nonatomic) UILabel *drivingNameLabel;
 @property (strong, nonatomic) UILabel *drivingAddressLabel;
 @property (strong, nonatomic) UILabel *moenyLabel;
+@property (strong, nonatomic) UIView *lineBottomView;
 //@property (strong, nonatomic) UILabel *successRateLabel;
 @property (strong, nonatomic) UIView *WMSelectedbackGroundView;
 @end
@@ -46,7 +47,7 @@
 
 - (UIView *)backGroundView {
     if (_backGroundView == nil) {
-        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 100)];
+        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 90)];
     }
     return _backGroundView;
 }
@@ -55,7 +56,7 @@
         _drivingImage = [WMUITool initWithImage:nil];
         _drivingImage.backgroundColor = MAINCOLOR;
         [_drivingImage.layer setMasksToBounds:YES];
-        [_drivingImage.layer setCornerRadius:35];
+        [_drivingImage.layer setCornerRadius:20];
     }
     return _drivingImage;
 }
@@ -63,7 +64,7 @@
     if (_drivingNameLabel == nil) {
         _drivingNameLabel = [[UILabel alloc]init];
         _drivingNameLabel.text = @"海淀中关村驾校";
-        _drivingNameLabel.font = [UIFont systemFontOfSize:16];
+        _drivingNameLabel.font = [UIFont systemFontOfSize:14];
         _drivingNameLabel.textColor = [UIColor blackColor];
     }
     return _drivingNameLabel;
@@ -82,8 +83,8 @@
     if (_moenyLabel == nil) {
         _moenyLabel = [[UILabel alloc]init];
         _moenyLabel.text = @"¥2000-¥5000";
-        _moenyLabel.textColor = MAINCOLOR;
-        _moenyLabel.font = [UIFont systemFontOfSize:15];
+        _moenyLabel.textColor = YBNavigationBarBgColor;
+        _moenyLabel.font = [UIFont systemFontOfSize:14];
     }
     return _moenyLabel;
 }
@@ -103,6 +104,7 @@
         _distanceLabel.textAlignment = NSTextAlignmentRight;
         _distanceLabel.textColor = RGBColor(153, 153, 153);
         _distanceLabel.text = @"12789353478m";
+        _distanceLabel.hidden = YES;
     }
     return _distanceLabel;
 }
@@ -111,7 +113,7 @@
     if (!_commentLabel) {
         _commentLabel = [UILabel new];
         _commentLabel.text = @"认证教练";
-        _commentLabel.textColor = MAINCOLOR;
+        _commentLabel.textColor = YBNavigationBarBgColor;
         _commentLabel.font = [UIFont systemFontOfSize:12];
     }
     return _commentLabel;
@@ -133,6 +135,15 @@
         _starImageView.contentMode = UIViewContentModeLeft;
     }
     return _starImageView;
+}
+- (UIView *)lineBottomView{
+    
+    if (_lineBottomView == nil) {
+        _lineBottomView = [[UIView alloc] init];
+        _lineBottomView.backgroundColor = HM_LINE_COLOR;
+        
+    }
+    return _lineBottomView;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -160,6 +171,7 @@
     [self.backGroundView addSubview:self.commentLabel];
     [self.backGroundView addSubview:self.starBackgroundImageView];
     [self.backGroundView addSubview:self.starImageView];
+    [self.backGroundView addSubview:self.lineBottomView];
     
 
     [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -183,8 +195,8 @@
     [self.drivingImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
         make.top.mas_equalTo(self.backGroundView.mas_top).offset(15);
-        make.width.mas_equalTo(@70);
-        make.height.mas_equalTo(@70);
+        make.width.mas_equalTo(@40);
+        make.height.mas_equalTo(@40);
     }];
     
     [self.drivingNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -243,6 +255,13 @@
     
     [self.drivingNameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.starBackgroundImageView.mas_left);
+    }];
+    [self.lineBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.drivingNameLabel.mas_left).offset(0);
+        make.right.mas_equalTo(self.backGroundView.mas_right).offset(0);
+        make.bottom.mas_equalTo(self.mas_bottom).offset(0);
+        make.height.mas_equalTo(@0.5);
+        
     }];
     
 }

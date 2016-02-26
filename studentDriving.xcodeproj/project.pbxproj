@@ -240,6 +240,14 @@
 		B2F1AE6A1C7EABDF006D56FF /* YBWebBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE691C7EABDF006D56FF /* YBWebBaseViewController.m */; };
 		B2F1AE701C7EDBD9006D56FF /* YBAppointTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE6F1C7EDBD9006D56FF /* YBAppointTestViewController.m */; };
 		B2F1AE741C7EED97006D56FF /* YBAppointTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AE731C7EED97006D56FF /* YBAppointTestViewController.xib */; };
+		B2F1AE7C1C8001B7006D56FF /* YBStudyWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE7B1C8001B7006D56FF /* YBStudyWebViewController.m */; };
+		B2F1AE841C8031BC006D56FF /* YBMyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE831C8031BC006D56FF /* YBMyWalletViewController.m */; };
+		B2F1AE881C803E52006D56FF /* YBJiangliJifenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE861C803E52006D56FF /* YBJiangliJifenCell.m */; };
+		B2F1AE891C803E52006D56FF /* YBJiangliJifenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AE871C803E52006D56FF /* YBJiangliJifenCell.xib */; };
+		B2F1AE8C1C804171006D56FF /* YBJianglijifenTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE8B1C804171006D56FF /* YBJianglijifenTableView.m */; };
+		B2F1AE8F1C8042F9006D56FF /* YBBaoMingDuiHuanQuanTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE8E1C8042F9006D56FF /* YBBaoMingDuiHuanQuanTableView.m */; };
+		B2F1AE931C804320006D56FF /* YBBaoMingDuiHuanQuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE911C804320006D56FF /* YBBaoMingDuiHuanQuanCell.m */; };
+		B2F1AE941C804320006D56FF /* YBBaoMingDuiHuanQuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AE921C804320006D56FF /* YBBaoMingDuiHuanQuanCell.xib */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1531,6 +1539,20 @@
 		B2F1AE6E1C7EDBD9006D56FF /* YBAppointTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointTestViewController.h; sourceTree = "<group>"; };
 		B2F1AE6F1C7EDBD9006D56FF /* YBAppointTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointTestViewController.m; sourceTree = "<group>"; };
 		B2F1AE731C7EED97006D56FF /* YBAppointTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBAppointTestViewController.xib; sourceTree = "<group>"; };
+		B2F1AE7A1C8001B7006D56FF /* YBStudyWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudyWebViewController.h; sourceTree = "<group>"; };
+		B2F1AE7B1C8001B7006D56FF /* YBStudyWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyWebViewController.m; sourceTree = "<group>"; };
+		B2F1AE821C8031BC006D56FF /* YBMyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMyWalletViewController.h; sourceTree = "<group>"; };
+		B2F1AE831C8031BC006D56FF /* YBMyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMyWalletViewController.m; sourceTree = "<group>"; };
+		B2F1AE851C803E52006D56FF /* YBJiangliJifenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBJiangliJifenCell.h; sourceTree = "<group>"; };
+		B2F1AE861C803E52006D56FF /* YBJiangliJifenCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBJiangliJifenCell.m; sourceTree = "<group>"; };
+		B2F1AE871C803E52006D56FF /* YBJiangliJifenCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBJiangliJifenCell.xib; sourceTree = "<group>"; };
+		B2F1AE8A1C804171006D56FF /* YBJianglijifenTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBJianglijifenTableView.h; sourceTree = "<group>"; };
+		B2F1AE8B1C804171006D56FF /* YBJianglijifenTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBJianglijifenTableView.m; sourceTree = "<group>"; };
+		B2F1AE8D1C8042F9006D56FF /* YBBaoMingDuiHuanQuanTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaoMingDuiHuanQuanTableView.h; sourceTree = "<group>"; };
+		B2F1AE8E1C8042F9006D56FF /* YBBaoMingDuiHuanQuanTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaoMingDuiHuanQuanTableView.m; sourceTree = "<group>"; };
+		B2F1AE901C804320006D56FF /* YBBaoMingDuiHuanQuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaoMingDuiHuanQuanCell.h; sourceTree = "<group>"; };
+		B2F1AE911C804320006D56FF /* YBBaoMingDuiHuanQuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaoMingDuiHuanQuanCell.m; sourceTree = "<group>"; };
+		B2F1AE921C804320006D56FF /* YBBaoMingDuiHuanQuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBBaoMingDuiHuanQuanCell.xib; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3239,6 +3261,7 @@
 		568DF23A1C759F6E00008829 /* SideMenu(侧边栏) */ = {
 			isa = PBXGroup;
 			children = (
+				B2F1AE7D1C8031A4006D56FF /* MyWallet */,
 				56DD9C0E1C7BF37C00552A56 /* SideMenuEditorMessage */,
 				56DAB10C1C7AFADF00D7B942 /* SideMenuAdvantage */,
 				56DAB0FF1C7AF9CF00D7B942 /* SideMenuComplaint */,
@@ -3861,6 +3884,8 @@
 				B2F1AE6E1C7EDBD9006D56FF /* YBAppointTestViewController.h */,
 				B2F1AE6F1C7EDBD9006D56FF /* YBAppointTestViewController.m */,
 				B2F1AE731C7EED97006D56FF /* YBAppointTestViewController.xib */,
+				B2F1AE7A1C8001B7006D56FF /* YBStudyWebViewController.h */,
+				B2F1AE7B1C8001B7006D56FF /* YBStudyWebViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3914,6 +3939,57 @@
 				B2E8E1C51C72CEFD000190C2 /* IWTabBarViewController.m */,
 			);
 			path = TabbarController;
+			sourceTree = "<group>";
+		};
+		B2F1AE7D1C8031A4006D56FF /* MyWallet */ = {
+			isa = PBXGroup;
+			children = (
+				B2F1AE7E1C8031A4006D56FF /* Controller */,
+				B2F1AE7F1C8031A4006D56FF /* Model */,
+				B2F1AE801C8031A4006D56FF /* Tool */,
+				B2F1AE811C8031A4006D56FF /* View */,
+			);
+			path = MyWallet;
+			sourceTree = "<group>";
+		};
+		B2F1AE7E1C8031A4006D56FF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B2F1AE821C8031BC006D56FF /* YBMyWalletViewController.h */,
+				B2F1AE831C8031BC006D56FF /* YBMyWalletViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B2F1AE7F1C8031A4006D56FF /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B2F1AE801C8031A4006D56FF /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		B2F1AE811C8031A4006D56FF /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B2F1AE851C803E52006D56FF /* YBJiangliJifenCell.h */,
+				B2F1AE861C803E52006D56FF /* YBJiangliJifenCell.m */,
+				B2F1AE871C803E52006D56FF /* YBJiangliJifenCell.xib */,
+				B2F1AE8A1C804171006D56FF /* YBJianglijifenTableView.h */,
+				B2F1AE8B1C804171006D56FF /* YBJianglijifenTableView.m */,
+				B2F1AE8D1C8042F9006D56FF /* YBBaoMingDuiHuanQuanTableView.h */,
+				B2F1AE8E1C8042F9006D56FF /* YBBaoMingDuiHuanQuanTableView.m */,
+				B2F1AE901C804320006D56FF /* YBBaoMingDuiHuanQuanCell.h */,
+				B2F1AE911C804320006D56FF /* YBBaoMingDuiHuanQuanCell.m */,
+				B2F1AE921C804320006D56FF /* YBBaoMingDuiHuanQuanCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B84D9D1E1C2E807200A8BDC2 /* TotasView */ = {
@@ -6354,6 +6430,7 @@
 				D5604BF31BF656C50020F0D7 /* chatBar_colorMore_audioCall@2x.png in Resources */,
 				D5604BB81BF656C50020F0D7 /* VoiceSearchFeedback017@2x.png in Resources */,
 				D5604C271BF656C50020F0D7 /* password@2x.png in Resources */,
+				B2F1AE891C803E52006D56FF /* YBJiangliJifenCell.xib in Resources */,
 				D99674811C7D54610000CC65 /* DrivingDetailSignUpCell.xib in Resources */,
 				D5604BF11BF656C50020F0D7 /* chatBar_recordSelectedBg.png in Resources */,
 				D5604C131BF656C50020F0D7 /* chat_receiver_audio_playing003@2x.png in Resources */,
@@ -6379,6 +6456,7 @@
 				D5BCFED31BF201410019402C /* PushConfig.plist in Resources */,
 				D5604B8F1BF656C50020F0D7 /* 114.png in Resources */,
 				D5604C011BF656C50020F0D7 /* chatBar_more_cameraSelected.png in Resources */,
+				B2F1AE941C804320006D56FF /* YBBaoMingDuiHuanQuanCell.xib in Resources */,
 				D977B8111C7BF56100ABE205 /* DVVCoachCommentCell.xib in Resources */,
 				D5604B9A1BF656C50020F0D7 /* VoiceSearchFeedback002@2x.png in Resources */,
 				D919F3211C60885A00239B34 /* UMSCommentInputController.xib in Resources */,
@@ -6557,6 +6635,7 @@
 				55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */,
 				D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */,
 				D98581AD1C58B1C80044E029 /* DVVImagePickerControllerManager.m in Sources */,
+				B2F1AE931C804320006D56FF /* YBBaoMingDuiHuanQuanCell.m in Sources */,
 				B21818301C5A1AC200F973A7 /* JGDrivingDetailKeChengFeiYongCell.m in Sources */,
 				D96712D91C3F8A150099C3B9 /* DVVCreateQRCode.m in Sources */,
 				D977B8D61C7C69DD00ABE205 /* DVVSignUpCoachDMData.m in Sources */,
@@ -6575,6 +6654,7 @@
 				56DD9C231C7C222D00552A56 /* EditorDetailSexCell.m in Sources */,
 				06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */,
 				56855C401C785C8E005D4517 /* SideMenuSignUpController.m in Sources */,
+				B2F1AE8F1C8042F9006D56FF /* YBBaoMingDuiHuanQuanTableView.m in Sources */,
 				D99674641C7D54610000CC65 /* ClassTypeDMVipserverlist.m in Sources */,
 				D5604C921BF656F30020F0D7 /* MessageReadManager.m in Sources */,
 				062734D01C5A46410056B0BC /* SignUpTextField.m in Sources */,
@@ -6623,6 +6703,7 @@
 				D996746F1C7D54610000CC65 /* CoachListDMServerClassList.m in Sources */,
 				D977B8D81C7C69DD00ABE205 /* DVVSignUpCoachDMHeadportrait.m in Sources */,
 				D99674701C7D54610000CC65 /* CoachListDMSubject.m in Sources */,
+				B2F1AE8C1C804171006D56FF /* YBJianglijifenTableView.m in Sources */,
 				D588B06B1BDDDB90000C5D6F /* AppointmentViewController.m in Sources */,
 				B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */,
 				D588B0521BDDDB71000C5D6F /* ModifyPhoneNumViewController.m in Sources */,
@@ -6729,6 +6810,7 @@
 				D5604C8C1BF656F30020F0D7 /* EMChatVideoBubbleView.m in Sources */,
 				D977B8281C7C21DF00ABE205 /* DVVCoachDetailDMData.m in Sources */,
 				D588B1391BDDDC65000C5D6F /* ForgetViewController.m in Sources */,
+				B2F1AE7C1C8001B7006D56FF /* YBStudyWebViewController.m in Sources */,
 				D977B89E1C7C540F00ABE205 /* DVVCoachCommentDMUserid.m in Sources */,
 				55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */,
 				D977B80C1C7BEEBC00ABE205 /* DVVCoachCommentView.m in Sources */,
@@ -6862,6 +6944,7 @@
 				D5604B851BF656C50020F0D7 /* UIViewController+HUD.m in Sources */,
 				D5604B891BF656C50020F0D7 /* EMRemarkImageView.m in Sources */,
 				0647A5BC1C34FE5F00DBB8A3 /* DiscountWalletController.m in Sources */,
+				B2F1AE841C8031BC006D56FF /* YBMyWalletViewController.m in Sources */,
 				D5604CCD1BF840C20020F0D7 /* RealtimeSearchUtil.m in Sources */,
 				D588B1121BDDDC2F000C5D6F /* JEPhotoPickManger.m in Sources */,
 				D588B0E31BDDDC14000C5D6F /* AppointmentCollectionViewCell.m in Sources */,
@@ -6991,6 +7074,7 @@
 				D588B13D1BDDDC65000C5D6F /* ModificationView.m in Sources */,
 				D5604B551BF656C50020F0D7 /* EMSDWebImageDecoder.m in Sources */,
 				56DAB10A1C7AFA2C00D7B942 /* PlaceholderTextView.m in Sources */,
+				B2F1AE881C803E52006D56FF /* YBJiangliJifenCell.m in Sources */,
 				B226AEF41C748FFE0028DF1A /* PortraitView.m in Sources */,
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,

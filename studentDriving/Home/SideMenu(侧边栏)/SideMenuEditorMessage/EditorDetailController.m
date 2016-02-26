@@ -28,13 +28,17 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 @property (nonatomic, strong) NSString *addressSre;
 @property (nonatomic, strong) NSString *phoneStr;
 @property (nonatomic, assign) BOOL sexWay;
+
+@property (nonatomic, strong) EditorDetailCell *nameCell;
+@property (nonatomic, strong) EditorDetailCell *nickCell;
+@property (nonatomic, strong) EditorDetailCell *addressCell;
 @end
 
 @implementation EditorDetailController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColor(249, 249, 249);
     self.title = @"编辑信息";
     [self.view addSubview:self.tableView];
     [self.bgheaderView addSubview:self.iconImgView];
@@ -110,61 +114,44 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 #pragma mark ---- Action
 - (void)sideMenuButtonAction{
     // 保存修改的个人信息
+    if (!self.nameCell.showWarningMessageView.hidden) {
+        [self obj_showTotasViewWithMes:@"请填写姓名"];
+        return;
+    }
+    if (!self.nickCell.showWarningMessageView.hidden) {
+        [self obj_showTotasViewWithMes:@"请核实信息!"];
+        return;
+    }
+    if (!self.addressCell.showWarningMessageView.hidden) {
+        [self obj_showTotasViewWithMes:@"请核实信息!"];
+        return;
+    }
+    
     
     NSString *realNameStr = nil;
     NSString *realNickStr = nil;
     NSString *realAddressStr = nil;
     NSString *realSex = nil;
-    // 保存姓名
-    if (self.nameStr == nil || self.nameStr.length == 0) {
-        kShowFail(@"您还未填写信息");
-    }
-    if (self.nameStr && [self.nameStr length]!=0) {
-        
-        if ([self.nameStr length] > 6) {
-            
-            [self obj_showTotasViewWithMes:@"最多不超过6个字"];
-            return;
-        }
-        
-//        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[\\u4e00-\\u9fa5\\w\\-_]+"];
-//        if(![predicate evaluateWithObject:self.nameStr])
-//        {
-//            [self obj_showTotasViewWithMes:@"你输入的姓名中含有非法字符"];
-//            return;
-//        }
-       realNameStr = self.nameStr;
-    }
     
+    // 保存姓名
+    realNameStr = self.nameCell.descriTextField.text;
+
     
     // 保存昵称
-   if (self.nickStr == nil || self.nickStr.length == 0) {
+   if (self.nickCell.descriTextField.text == nil || self.nickCell.descriTextField.text.length == 0) {
         realNickStr = @"";
-    }
-    if (self.nickStr && [self.nickStr length]!=0){
-        if ([self.nickStr length] > 10) {
-            
-            [self obj_showTotasViewWithMes:@"最多不超过10个字"];
-            return;
-        }
-        realNickStr = self.nickStr;
-        
-    }
+   }else {
+       realNickStr = self.nickCell.descriTextField.text;
+   }
     
     // 保存地址
-    if (self.addressSre == nil || self.addressSre.length == 0) {
+    if (self.addressCell.descriTextField.text == nil || self.addressCell.descriTextField.text.length == 0) {
         realNickStr = @"";
+    }else if (self.addressCell.descriTextField.text && self.addressCell.descriTextField.text.length !=  0){
+        realAddressStr = self.addressCell.descriTextField.text;
+
     }
-    if (self.addressSre && [self.addressSre length]!=0){
-        if ([self.addressSre length] > 20) {
-            
-            [self obj_showTotasViewWithMes:@"最多不超过20个字"];
-            return;
-        }
-        realAddressStr = self.addressSre;
-        
-    }
-    // 保存性别
+        // 保存性别
     if (self.sexWay) {
         realSex = @"女";
     }else{
@@ -236,7 +223,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         cell.sexWayBlock = ^(BOOL sexWay){
             ws.sexWay = sexWay;
         };
-
+        cell.backgroundColor = [UIColor clearColor];
         return cell;
     }else{
         NSString *cellID = @"TopID";
@@ -245,10 +232,20 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
              NSInteger tag = [self.tagArray[indexPath.row] integerValue];
             cell = [[EditorDetailCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID tag:tag];
         }
+        if (3 == indexPath.row) {
+            cell.descriTextField.userInteractionEnabled = NO;
+        }
+        if (0 == indexPath.row) {
+            self.nameCell = cell;
+        }if (2 == indexPath.row) {
+            self.nickCell = cell;
+        }if (4 == indexPath.row) {
+            self.addressCell = cell;
+        }
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         cell.toplabel.text = self.strArray[indexPath.row];
         cell.descriTextField.text = self.descrArray[indexPath.row];
-        cell.descriTextField.delegate = self;
+        cell.backgroundColor = [UIColor clearColor];
         return cell;
     }
     
@@ -301,38 +298,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         } option:nil];
     }];
 }
-- (void)textFieldDidEndEditing:(UITextField *)textField{
-    NSLog(@"%lu",textField.tag);
-    if (textField.tag == 300) {
-        // 姓名编辑
-        self.nameStr = textField.text;
-    }else if (textField.tag == 301){
-        // 昵称编辑
-        self.nickStr = textField.text;
-        if (textField.text && [textField.text length]!=0) {
-            
-            if ([textField.text length] > 10) {
-                
-                [self obj_showTotasViewWithMes:@"最多不超10个字"];
-                return;
-            }
-            
-//            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", @"[\\u4e00-\\u9fa5\\w\\-_]+"];
-//            if(![predicate evaluateWithObject:textField.text])
-//            {
-//                [self obj_showTotasViewWithMes:@"你输入的昵称中含有非法字符"];
-//                return;
-//            }
-            
-        }
 
-    }else if (textField.tag == 302){
-        // 绑定手机号编辑
-    }else if (textField.tag == 303){
-        // 我的地址编辑
-        self.addressSre = textField.text;
-    }
-}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

@@ -23,7 +23,7 @@
 - (UIImageView *)lineImageView {
     if (!_lineImageView) {
         _lineImageView = [UIImageView new];
-        _lineImageView.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineImageView.backgroundColor = HM_LINE_COLOR;
         _lineImageView.layer.shadowColor = [UIColor whiteColor].CGColor;
         _lineImageView.layer.shadowOffset = CGSizeMake(0, 1);
         _lineImageView.layer.shadowOpacity = 0.3;
@@ -37,7 +37,7 @@
     [self setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
     [self addSubview:self.lineImageView];
     CGRect rect = self.bounds;
-    CGFloat height = 1;
+    CGFloat height = 0.5;
     self.lineImageView.frame = CGRectMake(0, rect.size.height - 1, rect.size.width, height);
 }
 

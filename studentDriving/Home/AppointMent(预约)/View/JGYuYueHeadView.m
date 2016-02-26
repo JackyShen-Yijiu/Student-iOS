@@ -250,6 +250,8 @@
             ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"您最多可预约4个课时"];
             [alertView show];
             
+            [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+            
             return;
             
         }
@@ -291,7 +293,8 @@
         
         ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"请选择连续的时间"];
         [alertView show];
-        
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+
     }else if (model.is_selected == YES) {
         
         if (self.upDateArray.count == 4) {

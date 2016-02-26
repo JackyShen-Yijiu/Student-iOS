@@ -110,8 +110,6 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"换教练" style:UIBarButtonItemStyleDone target:self action:@selector(changeCoach)];
-    
     [self initUI];
     
     // 没有内容，占位图
@@ -123,8 +121,10 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     NSLog(@"appointCoach.coachid：%@",appointCoach.coachid);
     if (appointCoach&&appointCoach.coachid) {
         self.appointCoach = appointCoach;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"换教练" style:UIBarButtonItemStyleDone target:self action:@selector(changeCoach)];
     }else{
         self.noCountmentView.hidden = NO;
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加教练" style:UIBarButtonItemStyleDone target:self action:@selector(changeCoach)];
     }
     
 }
@@ -173,7 +173,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     coachList.isModifyCoach = isModifyCoach;
     coachList.timeid = timeid;
     coachList.coursedate = dateString;
-    [self.parentViewController.navigationController pushViewController:coachList animated:YES];
+    [self.navigationController pushViewController:coachList animated:YES];
 }
 
 - (void)dealloc

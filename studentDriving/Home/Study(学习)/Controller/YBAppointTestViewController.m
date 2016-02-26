@@ -8,6 +8,7 @@
 
 #import "YBAppointTestViewController.h"
 #import "ShowWarningMessageView.h"
+#import "YBStudyWebViewController.h"
 
 @interface YBAppointTestViewController ()
 
@@ -30,6 +31,8 @@
 
 @property (nonatomic,copy) NSString *startTime;
 @property (nonatomic,copy) NSString *endTime;
+
+@property (nonatomic,copy) NSString *webURL;
 
 @end
 
@@ -61,14 +64,70 @@
     self.endDatePicker.datePickerMode = UIDatePickerModeDateAndTime; // 设置样式
     [self.endDatePicker addTarget:self action:@selector(twoDatePickerValueChanged) forControlEvents:UIControlEventValueChanged]; // 添加监听器
     
+    NSDate *select = [self.statDatePicker date]; // 获取被选中的时间
+    NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
+    selectDateFormatter.dateFormat = @"yyyy-MM-dd"; // 设置时间和日期的格式
+    NSString *startDate = [selectDateFormatter stringFromDate:select]; // 把date类型转为设置好格式的string类型
+    NSLog(@"startDate:%@",startDate);
+    self.startTime = startDate;
     
+    NSDate *endselect = [self.endDatePicker date]; // 获取被选中的时间
+    NSDateFormatter *endselectDateFormatter = [[NSDateFormatter alloc] init];
+    endselectDateFormatter.dateFormat = @"yyyy-MM-dd"; // 设置时间和日期的格式
+    NSString *endDate = [endselectDateFormatter stringFromDate:endselect]; // 把date类型转为设置好格式的string类型
+    NSLog(@"endDate:%@",endDate);
+    self.endTime = endDate;
+    
+    self.messageLabel.text = [NSString stringWithFormat:@"%@至%@",self.startTime,self.endTime];
+
+    // 获取自主预约URL
+    [self getDriveschoolschoolexamurl];
+    
+}
+
+- (void)getDriveschoolschoolexamurl{
+    
+    NSLog(@"[AcountManager manager].applyschool.infoId:%@",[AcountManager manager].applyschool.infoId);
+    
+    if ([AcountManager manager].applyschool.infoId) {
+        
+        NSString *subjecturl = [NSString stringWithFormat:kdriveschoolSchoolexamurl,[AcountManager manager].applyschool.infoId];
+        
+        NSString *urlString = [NSString stringWithFormat:BASEURL,subjecturl];
+        
+        __weak YBAppointTestViewController *weakSelf = self;
+        [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            
+            NSLog(@"data:%@",data);
+            
+            NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
+            NSString *webURL = [NSString stringWithFormat:@"%@",data[@"data"]];
+            
+            if (type && [type isEqualToString:@"1"] && webURL && [webURL length]!=0) {
+                
+                weakSelf.webURL = webURL;
+                
+                weakSelf.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"自主预约" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarDidClick)];
+            }
+
+        }];
+        
+    }
+    
+}
+
+- (void)rightBarDidClick
+{
+    YBStudyWebViewController *vc = [[YBStudyWebViewController alloc] init];
+    vc.weburl = self.webURL;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)oneDatePickerValueChanged
 {
     NSDate *select = [self.statDatePicker date]; // 获取被选中的时间
     NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
-    selectDateFormatter.dateFormat = @"yyyy年MM月dd日"; // 设置时间和日期的格式
+    selectDateFormatter.dateFormat = @"yyyy-MM-dd"; // 设置时间和日期的格式
     NSString *startDate = [selectDateFormatter stringFromDate:select]; // 把date类型转为设置好格式的string类型
     NSLog(@"startDate:%@",startDate);
     self.startTime = startDate;
@@ -86,7 +145,7 @@
 {
     NSDate *select = [self.endDatePicker date]; // 获取被选中的时间
     NSDateFormatter *selectDateFormatter = [[NSDateFormatter alloc] init];
-    selectDateFormatter.dateFormat = @"yyyy年MM月dd日"; // 设置时间和日期的格式
+    selectDateFormatter.dateFormat = @"yyyy-MM-dd"; // 设置时间和日期的格式
     NSString *endDate = [selectDateFormatter stringFromDate:select]; // 把date类型转为设置好格式的string类型
     NSLog(@"endDate:%@",endDate);
     self.endTime = endDate;
@@ -190,13 +249,26 @@
         return;
     }
     
+    NSLog(@"[AcountManager manager].userSubject.subjectId:%@",[AcountManager manager].userSubject.subjectId);
+    
+//    NSString *appointURL = [NSString stringWithFormat:kapplyexamination,self.startTime,self.endTime,self.phoneTextField.text,self.nameTextField.text,[NSString stringWithFormat:@"%d",self.isYESorNo],[NSString stringWithFormat:@"%@",[AcountManager manager].userSubject.subjectId]];
+//    NSLog(@"appointURL:%@",appointURL);
+    
     NSString *urlString  = [NSString stringWithFormat:BASEURL,kapplyexamination];
+    NSLog(@"urlString:%@",urlString);
     
-    NSDictionary *param = @{@"exambegintime":self.startTime,@"examendtime":self.endTime,@"exammobile":self.phoneTextField.text,@"examname":self.nameTextField.text,@"exampractice":[NSString stringWithFormat:@"%d",self.isYESorNo],@"subjectid":[AcountManager manager].userSubject.subjectId};
-    
-    [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+    // static NSString *const kapplyexamination = @"userinfo/applyexamination?exambegintime=%@&examendtime=%@&exammobile=%@&examname=%@&exampractice=%@&subjectid=%@";
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"exambegintime"] = self.startTime;
+    dict[@"examendtime"] = self.endTime;
+    dict[@"exammobile"] = self.phoneTextField.text;
+    dict[@"examname"] = self.nameTextField.text;
+    dict[@"exampractice"] = [NSString stringWithFormat:@"%d",self.isYESorNo];
+    dict[@"subjectid"] = [NSString stringWithFormat:@"%@",[AcountManager manager].userSubject.subjectId];
+
+    [JENetwoking startDownLoadWithUrl:urlString postParam:dict WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         
-        DYNSLog(@"申请param:%@ data:%@",param,data);
+        DYNSLog(@"申请urlString:%@ param:%@ data:%@",urlString,dict,data);
         
         NSDictionary *param = data;
         NSNumber *type = param[@"type"];
