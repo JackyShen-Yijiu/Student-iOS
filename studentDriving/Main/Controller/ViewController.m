@@ -18,6 +18,7 @@
 #import "YBMallViewController.h"
 #import "YBCommunityViewController.h"
 #import "IWTabBarViewController.h"
+#import "YBMyWalletViewController.h"
 
 //  侧边栏控制器
 #import "YBComplaintController.h" // 我要投诉
@@ -368,6 +369,8 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     }
     if (indexPath.row == 4) {
         // 我的钱包
+        YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
+        [self controller:vc];
     }
     if (indexPath.row == 5) {
         // 我要投诉
