@@ -240,6 +240,7 @@
 		B2F1AE6A1C7EABDF006D56FF /* YBWebBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE691C7EABDF006D56FF /* YBWebBaseViewController.m */; };
 		B2F1AE701C7EDBD9006D56FF /* YBAppointTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE6F1C7EDBD9006D56FF /* YBAppointTestViewController.m */; };
 		B2F1AE741C7EED97006D56FF /* YBAppointTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AE731C7EED97006D56FF /* YBAppointTestViewController.xib */; };
+		B2F1AE7C1C8001B7006D56FF /* YBStudyWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE7B1C8001B7006D56FF /* YBStudyWebViewController.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1518,6 +1519,8 @@
 		B2F1AE6E1C7EDBD9006D56FF /* YBAppointTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointTestViewController.h; sourceTree = "<group>"; };
 		B2F1AE6F1C7EDBD9006D56FF /* YBAppointTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointTestViewController.m; sourceTree = "<group>"; };
 		B2F1AE731C7EED97006D56FF /* YBAppointTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBAppointTestViewController.xib; sourceTree = "<group>"; };
+		B2F1AE7A1C8001B7006D56FF /* YBStudyWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudyWebViewController.h; sourceTree = "<group>"; };
+		B2F1AE7B1C8001B7006D56FF /* YBStudyWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyWebViewController.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3823,6 +3826,8 @@
 				B2F1AE6E1C7EDBD9006D56FF /* YBAppointTestViewController.h */,
 				B2F1AE6F1C7EDBD9006D56FF /* YBAppointTestViewController.m */,
 				B2F1AE731C7EED97006D56FF /* YBAppointTestViewController.xib */,
+				B2F1AE7A1C8001B7006D56FF /* YBStudyWebViewController.h */,
+				B2F1AE7B1C8001B7006D56FF /* YBStudyWebViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6643,6 +6648,7 @@
 				D5604C8C1BF656F30020F0D7 /* EMChatVideoBubbleView.m in Sources */,
 				D977B8281C7C21DF00ABE205 /* DVVCoachDetailDMData.m in Sources */,
 				D588B1391BDDDC65000C5D6F /* ForgetViewController.m in Sources */,
+				B2F1AE7C1C8001B7006D56FF /* YBStudyWebViewController.m in Sources */,
 				D977B89E1C7C540F00ABE205 /* DVVCoachCommentDMUserid.m in Sources */,
 				55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */,
 				D977B80C1C7BEEBC00ABE205 /* DVVCoachCommentView.m in Sources */,

@@ -38,6 +38,9 @@
 
 @property(nonatomic,strong)NSString * courseEndtime;
 
+// 取消原因 cancelreason:{reason:String,cancelcontent:String},
+@property(nonatomic,strong)NSDictionary * cancelreason;
+
 
 //@property(nonatomic,strong)NSString * courseProgress;
 ////@property(nonatomic,strong)NSString * courseAddress;     //训练场地

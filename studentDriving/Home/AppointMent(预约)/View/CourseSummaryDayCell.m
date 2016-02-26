@@ -68,7 +68,7 @@
     
     // 科目二 第5课时
     self.subTitle = [[UILabel alloc] init];
-    self.subTitle.textAlignment = NSTextAlignmentLeft;
+    self.subTitle.textAlignment = NSTextAlignmentRight;
     self.subTitle.font = [UIFont systemFontOfSize:13.f];
     self.subTitle.textColor = [UIColor blackColor];
     self.subTitle.backgroundColor = [UIColor clearColor];
@@ -125,10 +125,12 @@
         make.left.mas_equalTo(self.potraitView.mas_right).offset(10);
         make.top.mas_equalTo(@17);
         make.height.mas_equalTo(@20);
+        make.width.mas_equalTo(@45);
     }];
 
     [self.subTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.nameTitle.mas_top);
+        make.left.equalTo(self.nameTitle.mas_right).offset(10);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-10);
         make.height.mas_equalTo(self.nameTitle.mas_height);
     }];
@@ -196,7 +198,7 @@
     }else{
         self.timeLabel.textColor = [UIColor grayColor];
     }
-    
+
 }
 
 #pragma mark - Common
