@@ -15,7 +15,6 @@
 @property (strong, nonatomic) WMCommon *common;
 @property (strong ,nonatomic) NSArray  *listArray;
 @property (strong, nonatomic) NSArray *imgArray;
-@property (strong, nonatomic) NSArray *imgSelectArray;
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
@@ -85,10 +84,7 @@
     self.listArray = @[@"我的消息", @"活动", @"预约签到", @"我的驾校班车", @"我的钱包", @"邀请好友", @"我要投诉",@"一步优势",@"设置与帮助"];
     
     // 正常状态图片
-    self.imgArray = @[@"Slide_Menu_Message_Normal", @"Slide_Menu_Activity_Normal", @"Slide_Menu_SignUp_Normal", @"Slide_Menu_School_Normal", @"Slide_Menu_Money_Normal", @"Slide_Menu_Friend_Normal", @"Slide_Menu_Complaint_Normal",@"Slide_Menu_Advantage_Normal",@"Slide_Menu_Help_Normal"];
-    // 选中图片
-    self.imgSelectArray = @[@"Slide_Menu_Message_Select", @"Slide_Menu_Activity_Select", @"Slide_Menu_SignUp_Select", @"Slide_Menu_School_Select", @"Slide_Menu_Money_Select", @"Slide_Menu_Friend_Select", @"Slide_Menu_Complaint_Select",@"Slide_Menu_Advantage_Select",@"Slide_Menu_Help_Select"];
-
+    self.imgArray = @[@"Slide_Menu_Message_Normal", @"Slide_Menu_Activity_Normal", @"Slide_Menu_SignUp_Normal", @"Slide_Menu_School_Normal", @"Slide_Menu_Money_Normal", @"Slide_Menu_Complaint_Normal",@"Slide_Menu_Advantage_Normal",@"Slide_Menu_Help_Normal"];
     
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;
@@ -97,9 +93,10 @@
     self.tableView.scrollEnabled = NO;
     // 设置tableFooterView为一个空的View，这样就不会显示多余的空白格子了
     self.tableView.tableFooterView = [[UIView alloc] init];
-    
+
     self.headerImageView.image = [[UIImage imageNamed:@"me"] getRoundImage];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:k object:nil];
+    
 }
 // 点击头像手势
 - (void)priateMessage:(UITapGestureRecognizer *)tapGesture{
@@ -114,13 +111,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 9;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // 没有用系统自带的类而用了自己重新定义的cell，仅仅为了之后扩展方便，无他
     WMMenuTableViewCell *cell = [WMMenuTableViewCell cellWithTableView:tableView];
-    [cell setCellText:self.listArray[indexPath.row] withNormolImageStr:self.imgArray[indexPath.row] withSelectImageStr:self.imgSelectArray[indexPath.row]];
+    [cell setCellText:self.listArray[indexPath.row] withNormolImageStr:self.imgArray[indexPath.row]];
     
     
     return cell;
