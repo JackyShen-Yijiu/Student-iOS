@@ -35,10 +35,10 @@
 
 - (UIImageView *)headImageView {
     if (_headImageView == nil) {
-        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 70, 70)];
+        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
         _headImageView.backgroundColor = MAINCOLOR;
         [_headImageView.layer setMasksToBounds:YES];
-        [_headImageView.layer setCornerRadius:35];
+        [_headImageView.layer setCornerRadius:20];
     }
     return _headImageView;
 }
@@ -115,7 +115,7 @@
     
     if (_lineBottomView == nil) {
         _lineBottomView = [[UIView alloc] init];
-        _lineBottomView.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineBottomView.backgroundColor = HM_LINE_COLOR;
         
     }
     return _lineBottomView;
@@ -223,8 +223,8 @@
     [self.headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).offset(15);
         make.left.mas_equalTo(self.mas_left).offset(20);
-        make.height.mas_equalTo(@64);
-        make.width.mas_equalTo(@64);
+        make.height.mas_equalTo(@40);
+        make.width.mas_equalTo(@40);
         
     }];
     [self.schoolName mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -261,15 +261,15 @@
     }];
     [self.payStaus mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.mas_right).offset(-20);
-        make.top.mas_equalTo(self.numberMoney.mas_bottom).offset(20);
+        make.top.mas_equalTo(self.signUptime.mas_top).offset(0);
         make.height.mas_equalTo(@10);
         make.width.mas_equalTo(@50);
     }];
     [self.lineBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.mas_left).offset(99);
+        make.left.mas_equalTo(self.schoolName.mas_left).offset(0);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.top.mas_equalTo(self.signUptime.mas_bottom).offset(21);
-        make.height.mas_equalTo(@1);
+        make.top.mas_equalTo(self.signUptime.mas_bottom).offset(15);
+        make.height.mas_equalTo(@0.5);
         
     }];
     [self.offlineButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -313,7 +313,7 @@
     [self.headImageView sd_setImageWithURL:[NSURL URLWithString:[dict objectForKey:@"headerUrl"]] placeholderImage:nil];
     self.carNameLabel.text = [dict objectForKey:@"carModelStr"];
     self.signUptime.text = [dict objectForKey:@"signUpStr"];
-    self.numberMoney.text = [dict objectForKey:@"realMoneyStr"];
+    self.numberMoney.text = [NSString stringWithFormat:@"¥%@",[dict objectForKey:@"realMoneyStr"]];
     self.payWay.text = [NSString stringWithFormat:@"(%@)",[dict objectForKey:@"payWaystr"]];
     
     // 线上支付状态

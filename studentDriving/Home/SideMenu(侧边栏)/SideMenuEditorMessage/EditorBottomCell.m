@@ -54,7 +54,7 @@
         make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(28);
         make.left.mas_equalTo(self.mas_left).offset(15);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
     }];
 }
 - (UILabel *)titleLabel{
@@ -62,7 +62,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.font = [UIFont systemFontOfSize:14];
         _titleLabel.text = @"我的喜欢";        
-        _titleLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _titleLabel.textColor = [UIColor colorWithHexString:@"757575"];
         
     }
     return _titleLabel;
@@ -80,7 +80,7 @@
 - (UIView *)lineBottom{
     if (_lineBottom == nil) {
         _lineBottom = [[UIView alloc] init];
-        _lineBottom.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineBottom.backgroundColor = HM_LINE_COLOR;
     }
     return _lineBottom;
 }

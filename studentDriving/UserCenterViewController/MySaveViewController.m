@@ -103,9 +103,9 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
     [self.view addSubview:[self tableViewHeadView]];
     
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 1)];
-    view.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
-    self.tableView.tableFooterView = view;
+//    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 0.5)];
+//    view.backgroundColor = HM_LINE_COLOR;
+//    self.tableView.tableFooterView = view;
     
 }
 
@@ -354,9 +354,9 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (_myLoveState == MyLoveStateCoach) {
-        return 100.0f;
+        return 90.0f;
     }else if (_myLoveState == MyLoveStateDriving) {
-        return 100.0f;
+        return 90.0f;
     }
     return 0;
 }

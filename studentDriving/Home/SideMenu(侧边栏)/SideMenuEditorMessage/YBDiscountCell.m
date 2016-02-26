@@ -80,7 +80,7 @@
         make.top.mas_equalTo(self.addressLabel.mas_bottom).offset(15);
         make.left.mas_equalTo(self.mallImageView.mas_right).offset(0);
         make.right.mas_equalTo (self.backView.mas_right).offset(0);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(0.7);
         
     }];
     [self.peopleNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -152,6 +152,7 @@
     if (_lineView == nil) {
         _lineView = [[UIView alloc] init];
         _lineView.backgroundColor = [UIColor colorWithHexString:@"bdbddb"];
+        _lineView.alpha = 0.7;
         
     }
     return _lineView;

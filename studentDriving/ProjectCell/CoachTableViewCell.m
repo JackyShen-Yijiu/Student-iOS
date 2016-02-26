@@ -21,7 +21,6 @@
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *successRateLabel;
 @property (strong, nonatomic) UILabel *dringAgeLabel;
-@property (strong, nonatomic) RatingBar *starBar;
 @property (strong, nonatomic) UIView *WMSelectedbackGroundView;
 
 @property (strong, nonatomic) UIView *lineBottomView;
@@ -54,12 +53,12 @@
     return _WMSelectedbackGroundView;
 }
 
-- (RatingBar *)starBar {
-    if (_starBar == nil) {
-        _starBar = [[RatingBar alloc] init];
-        [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:nil];
+- (DVVStarView *)starView {
+    if (!_starView) {
+        _starView = [DVVStarView new];
+        [_starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
     }
-    return _starBar;
+    return _starView;
 }
 
 - (UIButton *)coachStateSend {
@@ -115,7 +114,7 @@
 
 - (UIView *)backGroundView {
     if (_backGroundView == nil) {
-        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 100)];
+        _backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 90)];
         _backGroundView.backgroundColor = [UIColor whiteColor];
     }
     return _backGroundView;
@@ -123,10 +122,10 @@
 
 - (UIImageView *)headImageView {
     if (_headImageView == nil) {
-        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 70, 70)];
+        _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
         _headImageView.backgroundColor = MAINCOLOR;
         [_headImageView.layer setMasksToBounds:YES];
-        [_headImageView.layer setCornerRadius:35];
+        [_headImageView.layer setCornerRadius:20];
     }
     return _headImageView;
 }
@@ -135,7 +134,7 @@
     if (_coachNameLabel == nil) {
         _coachNameLabel = [[UILabel alloc]init];
         _coachNameLabel.text = @"李文正";
-        _coachNameLabel.font = [UIFont systemFontOfSize:16];
+        _coachNameLabel.font = [UIFont systemFontOfSize:14];
         _coachNameLabel.textColor = [UIColor blackColor];
     }
     return _coachNameLabel;
@@ -146,7 +145,7 @@
         _carDriveNameLabel = [[UILabel alloc]init];
         _carDriveNameLabel.text = @"北京海淀区明城驾校";
         _carDriveNameLabel.textColor = RGBColor(153, 153, 153);
-        _carDriveNameLabel.font = [UIFont systemFontOfSize:14];
+        _carDriveNameLabel.font = [UIFont systemFontOfSize:12];
     }
     return _carDriveNameLabel;
 }
@@ -169,11 +168,12 @@
     }
     return _successRateLabel;
 }
+
 - (UIView *)lineBottomView{
     
     if (_lineBottomView == nil) {
         _lineBottomView = [[UIView alloc] init];
-        _lineBottomView.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineBottomView.backgroundColor = HM_LINE_COLOR;
         
     }
     return _lineBottomView;
@@ -184,6 +184,13 @@
     }
     return self;
 }
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    CGSize size = self.bounds.size;
+    _starView.frame = CGRectMake(size.width - 94 - 16, 16, 94, 14);
+}
+
 - (void)createCellUI {
     
     self.selectedBackgroundView = self.WMSelectedbackGroundView;
@@ -197,12 +204,12 @@
     [self.backGroundView addSubview:self.successRateLabel];
     [self.backGroundView addSubview:self.dringAgeLabel];
     [self.backGroundView addSubview:self.distanceLabel];
-    [self.backGroundView addSubview:self.starBar];
+    [self.backGroundView addSubview:self.starView];
     [self.backGroundView addSubview:self.lineBottomView];
     
     [self.coachNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.headImageView.mas_right).offset(10);
-        make.top.mas_equalTo(self.backGroundView.mas_top).offset(20);
+        make.left.mas_equalTo(self.headImageView.mas_right).offset(15);
+        make.top.mas_equalTo(self.backGroundView.mas_top).offset(15);
     }];
     [self.carDriveNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.coachNameLabel.mas_left).offset(0);
@@ -216,7 +223,7 @@
     
     [self.dringAgeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
+        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-16);
         make.centerY.equalTo(self.carDriveNameLabel);
         make.width.mas_greaterThanOrEqualTo(80);
         make.height.mas_equalTo(self.carDriveNameLabel.mas_height);
@@ -227,17 +234,17 @@
         make.right.mas_equalTo(self.backGroundView.mas_right).offset(-10);
         make.bottom.mas_equalTo(self.backGroundView.mas_bottom).offset(-20);
     }];
-    [self.starBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-10);
-        make.top.mas_equalTo(self.coachNameLabel.mas_top).offset(2);
-        make.width.mas_equalTo(@75);
-        make.height.mas_equalTo(@15);
-    }];
+//    [self.starBar mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-10);
+//        make.top.mas_equalTo(self.coachNameLabel.mas_top).offset(2);
+//        make.width.mas_equalTo(@75);
+//        make.height.mas_equalTo(@15);
+//    }];
     [self.lineBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.headImageView.mas_right).offset(10);
         make.right.mas_equalTo(self.backGroundView.mas_right).offset(0);
-        make.top.mas_equalTo(self.successRateLabel.mas_bottom).offset(19);
-        make.height.mas_equalTo(@1);
+        make.bottom.mas_equalTo(self.mas_bottom).offset(0);
+        make.height.mas_equalTo(@0.5);
 
     }];
 
@@ -282,7 +289,7 @@
     if (coachModel.starlevel) {
         starLevel = [coachModel.starlevel floatValue];
     }
-    [self.starBar displayRating:starLevel];
+    [self.starView dvv_setStar:starLevel];
     if (coachModel.is_shuttle) {
         [self.backGroundView addSubview:self.coachStateSend];
         [self.coachStateSend mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -348,7 +355,7 @@
     if (coachModel.starlevel) {
         starLevel = coachModel.starlevel;
     }
-    [self.starBar displayRating:starLevel];
+    [self.starView dvv_setStar:starLevel];
     
     if (coachModel.isShuttle) {
         [self.backGroundView addSubview:self.coachStateSend];
@@ -371,6 +378,6 @@
     self.successRateLabel.text = nil;
     self.dringAgeLabel.text = nil;
     self.distanceLabel.text = nil;
-    [self.starBar displayRating:0];
+    [self.starView dvv_setStar:0];
 }
 @end

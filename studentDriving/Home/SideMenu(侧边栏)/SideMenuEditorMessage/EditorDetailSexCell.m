@@ -85,7 +85,7 @@
         make.top.mas_equalTo(self.anonymousButton.mas_bottom).offset(20);
         make.left.mas_equalTo(self.mas_left).offset(20);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
     }];
 
 }
@@ -141,7 +141,7 @@
 - (UIView *)lineBottom{
     if (_lineBottom == nil) {
         _lineBottom = [[UIView alloc] init];
-        _lineBottom.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineBottom.backgroundColor = HM_LINE_COLOR;
     }
     return _lineBottom;
 }

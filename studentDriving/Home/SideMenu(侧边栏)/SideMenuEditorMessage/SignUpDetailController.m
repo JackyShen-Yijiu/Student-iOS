@@ -104,7 +104,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     // Do any additional setup after loading the view.
     
     self.title = @"我的订单";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColor(249, 249, 249);
     self.automaticallyAdjustsScrollViewInsets = NO;
     _myLoveState = MyLoveStateCoach;
     [self.view addSubview:self.tableView];
@@ -381,6 +381,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                 // 立即支付
             }
         };
+        cell.backgroundColor = [UIColor clearColor];
         return cell;
     }else if (_myLoveState == MyLoveStateDriving) {
         static NSString *cellId = @"Driving";
