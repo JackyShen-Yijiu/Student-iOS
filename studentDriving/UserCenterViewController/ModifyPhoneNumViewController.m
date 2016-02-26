@@ -28,7 +28,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 - (UIButton *)completionButton {
     if (_completionButton == nil) {
         _completionButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _completionButton.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        _completionButton.backgroundColor = YBNavigationBarBgColor;
         [_completionButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_completionButton setTitle:@"完成" forState:UIControlStateNormal];
         [_completionButton addTarget:self action:@selector(clickCompletion:) forControlEvents:UIControlEventTouchUpInside];
@@ -49,7 +49,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
 - (UIButton *)gainNum {
     if (_gainNum == nil) {
         _gainNum = [UIButton buttonWithType:UIButtonTypeCustom];
-        _gainNum.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        _gainNum.backgroundColor = YBNavigationBarBgColor;
         [_gainNum addTarget:self action:@selector(dealSend:) forControlEvents:UIControlEventTouchUpInside];
         [_gainNum setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
@@ -206,7 +206,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
             dispatch_source_cancel(timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
-                self.gainNum.backgroundColor  = [UIColor colorWithHexString:@"bd4437"];;
+                self.gainNum.backgroundColor  = YBNavigationBarBgColor;
                 [self.gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
                 self.gainNum.userInteractionEnabled = YES;
             });

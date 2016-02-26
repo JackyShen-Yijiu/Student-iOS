@@ -8,12 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "YBBaseTableCell.h"
+#import "DVVStarView.h"
 @class CoachDMData;
 @class CoachModel;
+
 @interface CoachTableViewCell : UITableViewCell
+
+@property (nonatomic, strong) DVVStarView *starView;
 
 - (void)refreshData:(CoachDMData *)coachModel;
 - (void)receivedCellModelWith:(CoachModel *)coachModel;
+
 
 @property (nonatomic,assign) BOOL isSelectCoachVc;
 

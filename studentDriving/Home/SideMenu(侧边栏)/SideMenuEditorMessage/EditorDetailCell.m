@@ -27,8 +27,9 @@
     [self addSubview:self.toplabel];
     [self addSubview:self.descriTextField];
     [self addSubview:self.arrowImageView];
+    [self addSubview:self.showWarningMessageView];
     [self addSubview:self.lineBottom];
-    self.descriTextField.delegate = self;
+//    self.descriTextField.delegate = self;
 }
 
 - (void)awakeFromNib {
@@ -40,6 +41,56 @@
 
     // Configure the view for the selected state
 }
+// 开始编辑
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    if (300 == self.showWarningMessageView.tag) {
+        self.showWarningMessageView.hidden = YES;
+    }
+    if (301 == self.showWarningMessageView.tag) {
+        self.showWarningMessageView.hidden = YES;
+    }
+    if (303 == self.showWarningMessageView.tag) {
+        self.showWarningMessageView.hidden = YES;
+    }
+    
+}
+// 编辑结束
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"%lu",textField.tag);
+    if (textField.tag == 300) {
+        // 姓名编辑
+        if (textField.text.length > 6 || textField.text.length <= 0) {
+            if (300 == self.showWarningMessageView.tag ) {
+                self.showWarningMessageView.hidden = NO;
+                return;
+            }
+        }
+    }else if (textField.tag == 301){
+        // 昵称编辑
+            if ([textField.text length] > 20) {
+                if (301 == self.showWarningMessageView.tag) {
+                    self.showWarningMessageView.hidden = NO;
+                }
+                return;
+            }
+            
+        
+        
+    }else if (textField.tag == 302){
+        // 绑定手机号编辑
+    }else if (textField.tag == 303){
+        // 我的地址编辑
+        if ([textField.text length] > 20) {
+            if (303 == self.showWarningMessageView.tag) {
+                self.showWarningMessageView.hidden = NO;
+            }
+            return;
+        }
+
+    }
+
+}
+
 - (void)layoutSubviews
 {
     [super layoutSubviews];
@@ -61,12 +112,18 @@
         make.width.mas_equalTo(@24);
         make.height.mas_equalTo(24);
     }];
+    [self.showWarningMessageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top).offset(20);
+        make.right.mas_equalTo(self.mas_right).offset(-20);
+        make.width.mas_equalTo(@105);
+        make.height.mas_equalTo(@20);
+    }];
 
     [self.lineBottom mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.descriTextField.mas_bottom).offset(10);
         make.left.mas_equalTo(self.mas_left).offset(20);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
     }];
 
 }
@@ -86,6 +143,7 @@
         _descriTextField.font = [UIFont systemFontOfSize:14];
         _descriTextField.textColor = [UIColor colorWithHexString:@"212121"];
         _descriTextField.tag = self.indexTag;
+        _descriTextField.delegate = self;
         
     }
     return _descriTextField;
@@ -94,7 +152,7 @@
 - (UIView *)lineBottom{
     if (_lineBottom == nil) {
         _lineBottom = [[UIView alloc] init];
-        _lineBottom.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineBottom.backgroundColor = HM_LINE_COLOR;
     }
     return _lineBottom;
 }
@@ -111,6 +169,16 @@
     }
     return _arrowImageView;
     
+}
+- (ShowWarningMessageView *)showWarningMessageView{
+    if (_showWarningMessageView == nil) {
+        _showWarningMessageView = [[ShowWarningMessageView alloc] init];
+        //        _showWarningMessageView.backgroundColor = [UIColor cyanColor];
+        _showWarningMessageView.hidden = YES;
+        _showWarningMessageView.tag = self.indexTag;
+        
+    }
+    return _showWarningMessageView;
 }
 
 @end

@@ -3,7 +3,7 @@
 @interface DrivingCityListDMData : NSObject
 
 @property (nonatomic, assign) NSInteger idField;
-@property (nonatomic, strong) NSString * name;
+@property (nonatomic, copy) NSString * name;
 
 -(instancetype)initWithDictionary:(NSDictionary *)dictionary;
 @end

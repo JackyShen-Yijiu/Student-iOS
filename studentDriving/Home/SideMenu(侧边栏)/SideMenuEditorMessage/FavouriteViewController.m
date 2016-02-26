@@ -101,7 +101,7 @@
 - (UIView *)bgView{
     if (_bgView == nil) {
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-        _bgView.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        _bgView.backgroundColor = YBNavigationBarBgColor;
         
     }
     return _bgView;

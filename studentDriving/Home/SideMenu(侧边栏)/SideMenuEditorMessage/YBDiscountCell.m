@@ -80,7 +80,7 @@
         make.top.mas_equalTo(self.addressLabel.mas_bottom).offset(15);
         make.left.mas_equalTo(self.mallImageView.mas_right).offset(0);
         make.right.mas_equalTo (self.backView.mas_right).offset(0);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(0.7);
         
     }];
     [self.peopleNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -134,7 +134,7 @@
     if (_integralLabel == nil) {
         _integralLabel = [[UILabel alloc] init];
         _integralLabel.text = @"兑换积分：800";
-        _integralLabel.textColor = [UIColor colorWithHexString:@"bd4437"];
+        _integralLabel.textColor = YBNavigationBarBgColor;
         _integralLabel.font = [UIFont systemFontOfSize:14];
     }
     return _integralLabel;
@@ -152,6 +152,7 @@
     if (_lineView == nil) {
         _lineView = [[UIView alloc] init];
         _lineView.backgroundColor = [UIColor colorWithHexString:@"bdbddb"];
+        _lineView.alpha = 0.7;
         
     }
     return _lineView;
@@ -160,7 +161,7 @@
     if (_peopleNumberLabel == nil) {
         _peopleNumberLabel = [[UILabel alloc] init];
         _peopleNumberLabel.text = @"已有18人兑换";
-        _peopleNumberLabel.textColor = [UIColor colorWithHexString:@"bd4437"];
+        _peopleNumberLabel.textColor = YBNavigationBarBgColor;
         _peopleNumberLabel.font = [UIFont systemFontOfSize:14];
     }
     return _peopleNumberLabel;
@@ -170,7 +171,7 @@
         _surplusLabel = [[UILabel alloc] init];
         _surplusLabel.text = @"剩余3份";
         _surplusLabel.textAlignment  = NSTextAlignmentRight;
-        _surplusLabel.textColor = [UIColor colorWithHexString:@"bd4437"];
+        _surplusLabel.textColor = YBNavigationBarBgColor;
         _surplusLabel.font = [UIFont systemFontOfSize:14];
     }
     return _surplusLabel;

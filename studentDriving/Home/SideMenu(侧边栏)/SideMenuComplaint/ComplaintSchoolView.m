@@ -248,12 +248,12 @@
         make.top.mas_equalTo(self.anonymousButton.mas_bottom).offset(20);
         make.left.mas_equalTo(self.mas_left).offset(20);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(0.5);
     }];
     [self.BgoachNameView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.lintComlaintView.mas_bottom).offset(0);
         make.left.mas_equalTo(self.mas_left).offset(0);
-        make.height.mas_equalTo(73);
+        make.height.mas_equalTo(69);
         make.right.mas_equalTo(self.mas_right).offset(0);
     }];
     [self.titlieNameCoachLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -276,10 +276,10 @@
     }];
     
     [self.lineNameView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.nameCoachLabel.mas_bottom).offset(16);
+        make.bottom.mas_equalTo(self.BgoachNameView.mas_bottom).offset(0);
         make.left.mas_equalTo(self.BgoachNameView.mas_left).offset(20);
         make.right.mas_equalTo(self.BgoachNameView.mas_right).offset(0);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(0.5);
     }];
     [self.phontView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.lineNameView.mas_bottom).offset(16);
@@ -309,7 +309,7 @@
         make.bottom.mas_equalTo(self.complaintTextField.mas_bottom).offset(-1);
         make.left.mas_equalTo(self.mas_left).offset(20);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
     }];
     
     [self.bottomBG mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -342,7 +342,7 @@
         _anonymousButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_anonymousButton setTitle:@"匿名投诉" forState:UIControlStateNormal];
         [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateSelected];
+        [_anonymousButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_anonymousButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
         [_anonymousButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
         [_anonymousButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
@@ -365,7 +365,7 @@
         _realNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_realNameButton setTitle:@"实名投诉" forState:UIControlStateNormal];
         [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateSelected];
+        [_realNameButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_realNameButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
         [_realNameButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
         [_realNameButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
@@ -382,7 +382,7 @@
 - (UIView *)lintComlaintView{
     if (_lintComlaintView == nil) {
         _lintComlaintView = [[UIView alloc] init];
-        _lintComlaintView.backgroundColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _lintComlaintView.backgroundColor  = HM_LINE_COLOR;
         
     }
     return _lintComlaintView;
@@ -391,9 +391,9 @@
     if (_BgoachNameView == nil) {
         _BgoachNameView = [[UIView alloc] init];
         _BgoachNameView.backgroundColor = [UIColor clearColor];
-        UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SingleTap:)];
-        //给self.view添加一个手势监测；
-        [_BgoachNameView addGestureRecognizer:singleRecognizer];
+//        UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SingleTap:)];
+//        //给self.view添加一个手势监测；
+//        [_BgoachNameView addGestureRecognizer:singleRecognizer];
         
     }
     return _BgoachNameView;
@@ -433,7 +433,7 @@
 - (UIView *)lineNameView{
     if (_lineNameView == nil) {
         _lineNameView = [[UIView alloc] init];
-        _lineNameView.backgroundColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineNameView.backgroundColor  = HM_LINE_COLOR;
         
     }
     return _lineNameView;
@@ -484,14 +484,14 @@
 - (UIView *)lineCView{
     if (_lineCView == nil) {
         _lineCView = [[UIView alloc] init];
-        _lineCView.backgroundColor  = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineCView.backgroundColor  = HM_LINE_COLOR;
     }
     return _lineCView;
 }
 - (UIView *)bottomBG{
     if (_bottomBG == nil) {
         _bottomBG = [[UIView alloc] init];
-        //        _bottomBG.backgroundColor = [UIColor cyanColor];
+        _bottomBG.backgroundColor = [UIColor whiteColor];
         
     }
     return _bottomBG;

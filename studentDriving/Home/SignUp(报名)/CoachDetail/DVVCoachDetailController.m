@@ -131,16 +131,17 @@ static NSString *courseCellID = @"kCourseCellID";
 #pragma mark 班车路线
 - (void)shuttleBusButtonAction {
     
-    if (!_viewModel.dmData.isShuttle) {
-        [self obj_showTotasViewWithMes:@"暂无班车信息"];
-        return ;
-    }
     ShuttleBusController *busVC = [ShuttleBusController new];
     DrivingDetailViewModel *viewModel = [DrivingDetailViewModel new];
     viewModel.schoolID = _viewModel.dmData.driveschoolinfo.ID;
     [viewModel dvvSetRefreshSuccessBlock:^{
-        busVC.dataArray = viewModel.dmData.schoolbusroute;
-        [self.navigationController pushViewController:busVC animated:YES];
+        
+        if (!viewModel.dmData.schoolbusroute) {
+            [self obj_showTotasViewWithMes:@"暂无班车信息"];
+        }else {
+            busVC.dataArray = viewModel.dmData.schoolbusroute;
+            [self.navigationController pushViewController:busVC animated:YES];
+        }
     }];
     [viewModel dvvNetworkRequestRefresh];
 }

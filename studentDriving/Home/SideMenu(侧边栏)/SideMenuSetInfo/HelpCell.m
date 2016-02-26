@@ -57,9 +57,9 @@
         make.right.mas_equalTo(self.mas_right).offset(0);
     }];
     [self.lineBottom mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.groundLabel.mas_bottom).offset(20);
+        make.top.mas_equalTo(self.groundLabel.mas_bottom).offset(15);
         make.left.mas_equalTo(self.iconImageView.mas_right).offset(20);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
         make.right.mas_equalTo(self.mas_right).offset(0);
     }];
 
@@ -98,7 +98,7 @@
     
     if (_lineBottom == nil) {
         _lineBottom = [[UIView alloc] init];
-        _lineBottom.backgroundColor= [UIColor colorWithHexString:@"bdbdbd"];
+        _lineBottom.backgroundColor= HM_LINE_COLOR;
     }
     return _lineBottom;
 }

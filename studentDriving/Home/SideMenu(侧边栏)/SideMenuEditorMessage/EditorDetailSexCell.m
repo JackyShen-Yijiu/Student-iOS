@@ -85,7 +85,7 @@
         make.top.mas_equalTo(self.anonymousButton.mas_bottom).offset(20);
         make.left.mas_equalTo(self.mas_left).offset(20);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
     }];
 
 }
@@ -95,7 +95,7 @@
         _anonymousButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_anonymousButton setTitle:@"男" forState:UIControlStateNormal];
         [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateSelected];
+        [_anonymousButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_anonymousButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
         [_anonymousButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
         [_anonymousButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
@@ -121,7 +121,7 @@
         _realNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_realNameButton setTitle:@"女" forState:UIControlStateNormal];
         [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateSelected];
+        [_realNameButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_realNameButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
         [_realNameButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
         [_realNameButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
@@ -141,7 +141,7 @@
 - (UIView *)lineBottom{
     if (_lineBottom == nil) {
         _lineBottom = [[UIView alloc] init];
-        _lineBottom.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineBottom.backgroundColor = HM_LINE_COLOR;
     }
     return _lineBottom;
 }

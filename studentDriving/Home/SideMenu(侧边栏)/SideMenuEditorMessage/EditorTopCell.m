@@ -46,7 +46,7 @@
         make.top.mas_equalTo(self.IconImageView.mas_bottom).offset(15);
         make.left.mas_equalTo(self.mas_left).offset(15);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
     }];
 }
 
@@ -83,7 +83,7 @@
 - (UIView *)lineBottom{
     if (_lineBottom == nil) {
         _lineBottom = [[UIView alloc] init];
-        _lineBottom.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _lineBottom.backgroundColor = HM_LINE_COLOR;
     }
     return _lineBottom;
 }

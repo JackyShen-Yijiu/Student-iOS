@@ -49,7 +49,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.edgesForExtendedLayout = UIRectEdgeNone;
 //    self.view.backgroundColor = [UIColor clearColor];
-    self.view.backgroundColor = [UIColor colorWithHexString:@"fafafa"];
+    self.view.backgroundColor = RGBColor(249, 249, 249);
     [self.view addSubview:self.bgView];
     [self.view addSubview:self.coachButton];
     [self.view addSubview:self.shchoolButton];
@@ -67,11 +67,11 @@
 - (void)viewWillAppear:(BOOL)animated{
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
-    navBarHairlineImageView.hidden=YES;
+//    navBarHairlineImageView.hidden = NO;
 
 }
 - (void)viewDidDisappear:(BOOL)animated{
-    navBarHairlineImageView.hidden=NO;
+//    navBarHairlineImageView.hidden=NO;
 }
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
     
@@ -162,6 +162,7 @@
         [_coachButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_coachButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateSelected];
         [_coachButton setTitle:@"投诉教练" forState:UIControlStateNormal];
+        _coachButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _coachButton.selected = YES;
         [_coachButton addTarget:self action:@selector(didClickCoach:) forControlEvents:UIControlEventTouchUpInside];
         
@@ -176,6 +177,7 @@
         [_shchoolButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_shchoolButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateSelected];
         [_shchoolButton setTitle:@"投诉驾校" forState:UIControlStateNormal];
+         _shchoolButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_shchoolButton addTarget:self action:@selector(didClickSchool:) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -207,6 +209,8 @@
     if (_scrollView == nil) {
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 50, self.view.frame.size.width, self.view.frame.size.height - 50 - 64)];
         _scrollView.backgroundColor = [UIColor clearColor];
+        _scrollView.pagingEnabled = YES;
+        _scrollView.bounces = NO;
         _scrollView.contentSize = CGSizeMake(self.view.frame.size.width * 2, 0);
         
     }
