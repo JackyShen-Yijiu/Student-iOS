@@ -45,7 +45,12 @@ static NSString *const kgetMyProgress = @"userinfo/getmyprogress";
 
 static NSString *const kuserCancelAppointment = @"/courseinfo/cancelreservation";
 
-static NSString *const kapplyexamination = @"/userinfo/applyexamination";
+static NSString *const kapplyexamination = @"userinfo/applyexamination";
+
+static NSString *const kdriveschoolSchoolexamurl = @"driveschool/schoolexamurl?schoolid=%@";
+
+//static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@";
+//[NSString stringWithFormat:@"%@%@?exambegintime=%@&examendtime=%@&exammobile=%@&examname=%@&exampractice=%@&subjectid=%@",BASEURL,kapplyexamination,self.startTime,self.endTime,self.phoneTextField.text,self.nameTextField.text,[NSString stringWithFormat:@"%d",self.isYESorNo],[AcountManager manager].userSubject.subjectId];
 
 /*************** 网络请求接口 ***************/
 
