@@ -9,7 +9,6 @@
 #import "WMMenuTableViewCell.h"
 
 @interface WMMenuTableViewCell ()
-@property (nonatomic,strong) NSString *selcetImageStr;
 @property (nonatomic,strong) NSString *normalImageStr;
 @end
 
@@ -23,16 +22,14 @@
     [super setSelected:selected animated:animated];
 
     if (selected) {
-        self.textLabel.textColor = [UIColor colorWithHexString:@"bd4437"];
-        self.imageView.image = [UIImage imageNamed:self.selcetImageStr];
+        self.textLabel.textColor = [UIColor whiteColor];
         
     }else{
-         self.textLabel.textColor = [UIColor blackColor];
+         self.textLabel.textColor = [UIColor whiteColor];
         self.imageView.image = [UIImage imageNamed:self.normalImageStr];
     }
 }
-- (void)setCellText:(NSString *)str withNormolImageStr:(NSString *)imageStr withSelectImageStr:(NSString *)selectImageStr{
-    self.selcetImageStr = selectImageStr;
+- (void)setCellText:(NSString *)str withNormolImageStr:(NSString *)imageStr{
     self.normalImageStr = imageStr;
     self.textLabel.text = str;
     self.textLabel.font = [UIFont systemFontOfSize:12];

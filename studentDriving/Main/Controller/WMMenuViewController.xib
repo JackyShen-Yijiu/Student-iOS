@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A4310" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WMMenuViewController">
@@ -21,7 +21,6 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="me" translatesAutoresizingMaskIntoConstraints="NO" id="YkR-PW-D1O">
                     <rect key="frame" x="15" y="34" width="56" height="56"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="56" id="GqI-6u-qzl"/>
                         <constraint firstAttribute="height" constant="56" id="wPJ-lw-vzF"/>
@@ -29,12 +28,10 @@
                 </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="40" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eGt-Fe-0zL">
                     <rect key="frame" x="0.0" y="151" width="550" height="449"/>
-                    <animations/>
-                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的Y码 USW66AW999" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAY-vZ-sly">
                     <rect key="frame" x="15" y="125" width="585" height="14"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="AML-Mt-6Ne"/>
                     </constraints>
@@ -44,7 +41,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="151****6588" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5aD-kz-4A4">
                     <rect key="frame" x="15" y="102" width="585" height="14"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="gzg-Ns-yD5"/>
                     </constraints>
@@ -53,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <animations/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="5aD-kz-4A4" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="15" id="00w-jR-BoC"/>
                 <constraint firstAttribute="trailing" secondItem="eGt-Fe-0zL" secondAttribute="trailing" constant="50" id="6df-r0-aeT"/>

@@ -173,7 +173,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     coachList.isModifyCoach = isModifyCoach;
     coachList.timeid = timeid;
     coachList.coursedate = dateString;
-    [self.parentViewController.navigationController pushViewController:coachList animated:YES];
+    [self.navigationController pushViewController:coachList animated:YES];
 }
 
 - (void)dealloc

@@ -18,6 +18,7 @@
 #import "YBMallViewController.h"
 #import "YBCommunityViewController.h"
 #import "IWTabBarViewController.h"
+#import "YBMyWalletViewController.h"
 
 //  侧边栏控制器
 #import "YBComplaintController.h" // 我要投诉
@@ -101,9 +102,9 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.leftDistance = self.common.screenW * viewSlideHorizonRatio;
     
     // 设置背景
-    UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 150)];
-    mightView.backgroundColor = [UIColor clearColor];
-    mightView.image = [UIImage imageNamed:@"Side_Menu_Bg"];
+    UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.height)];
+//    mightView.backgroundColor = [UIColor clearColor];
+    mightView.image = [UIImage imageNamed:@"YBSliderBarImg.jpg"];
     [self.view addSubview:mightView];
     
     // 设置menu的view
@@ -118,7 +119,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     
     // 设置遮盖
 //    self.cover = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.cover.backgroundColor = YBNavigationBarBgColor;
+//    self.cover.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"YBSliderBarImg"]];
 //    [self.view addSubview:self.cover];
     
     // 添加tabBarController
@@ -141,6 +142,23 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 //    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
 //    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSlide) name:KhiddenSlide object:nil];
+    
+    
+    // 判断进度
+    if ([AcountManager isLogin]) {
+        
+        if ([[AcountManager manager].userSubject.subjectId isEqual:@(1)]){
+            self.mainNav.tabBarController.selectedIndex = 1;
+        }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(2)]){
+            self.mainNav.tabBarController.selectedIndex = 2;
+        }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(3)]){
+            self.mainNav.tabBarController.selectedIndex = 2;
+        }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(4)]){
+            self.mainNav.tabBarController.selectedIndex = 1;
+        }
+        
+    }
+
 }
 
 - (void)hiddenSlide
@@ -368,21 +386,20 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     }
     if (indexPath.row == 4) {
         // 我的钱包
+        YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
+        [self controller:vc];
     }
     if (indexPath.row == 5) {
-        // 邀请好友
-    }
-    if (indexPath.row == 6) {
         // 我要投诉
         YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
         [self controller:complaintVC];
     }
-    if (indexPath.row == 7) {
+    if (indexPath.row == 6) {
         // 一步优势
         HomeAdvantageController *advantageVC = [[HomeAdvantageController alloc] init];
         [self controller:advantageVC];
     }
-    if (indexPath.row == 8) {
+    if (indexPath.row == 7) {
         // 设置与帮助
         // 检测是否打开登录页
         if (![AcountManager isLogin]) {

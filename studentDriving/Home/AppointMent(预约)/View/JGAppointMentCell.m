@@ -21,7 +21,7 @@
 - (UIView *)selectedAppView {
     if (_selectedAppView == nil) {
         _selectedAppView = [[UIView alloc] init];
-        _selectedAppView.backgroundColor = YBNavigationBarBgColor;
+//        _selectedAppView.backgroundColor = YBNavigationBarBgColor;
         _selectedAppView.layer.borderWidth = 1;
         _selectedAppView.layer.borderColor = [UIColor whiteColor].CGColor;
     }
@@ -103,7 +103,7 @@
     self.startTimeLabel.text = nil;
     self.finalTimeLabel.text = nil;
     self.remainingPersonLabel.text = nil;
-   
+    
     // 时间
     self.startTimeLabel.text = [self dealStringWithTime:_appointInfoModel.coursetime.begintime];
     
@@ -114,13 +114,31 @@
     NSInteger keyueCount = [_appointInfoModel.coursestudentcount integerValue] - [_appointInfoModel.selectedstudentcount integerValue];
     self.remainingPersonLabel.text = [NSString stringWithFormat:@"剩余%ld个名额",(long)keyueCount];
 
-
-    
     // 判断_appointInfoModel.coursedate上课日期是否大于等于当前时间，如果大于等于当前时间并且有预约名额，就显示黑色
-  
-    
     [self isRiChengCellCanClick:_appointInfoModel.coursebegintime startTimeStr:_appointInfoModel.coursetime.begintime];
 
+    // 判断是否已约过
+    BOOL isYue=NO;
+    for (NSString *string in _appointInfoModel.courseuser) {
+        if ([string isEqualToString:[AcountManager manager].userid]) {
+            isYue = YES;
+        }
+    }
+    if (isYue) {
+        self.userInteractionEnabled = NO;
+        self.startTimeLabel.textColor = YBNavigationBarBgColor;
+        self.finalTimeLabel.textColor = YBNavigationBarBgColor;
+        self.remainingPersonLabel.textColor = YBNavigationBarBgColor;
+        self.remainingPersonLabel.text = @"您已经预约";
+    }
+    
+    // 选中的
+    if (_appointInfoModel.is_selected) {
+        self.startTimeLabel.textColor = MAINCOLOR;
+        self.finalTimeLabel.textColor = MAINCOLOR;
+        self.remainingPersonLabel.textColor = MAINCOLOR;
+    }
+    
 }
 
 - (void)isRiChengCellCanClick:(NSString *)coursedate startTimeStr:(NSString *)startTimeStr
@@ -219,6 +237,7 @@
                     self.isModifyCoach = YES;
 
                 }
+                
             }
             
         }
