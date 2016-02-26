@@ -28,9 +28,7 @@
     model.userModel = [HMCourseUserModel converJsonDicToModel:[dic objectInfoForKey:@"coachid"]];
     model.subject = [HMSubjectModel converJsonDicToModel:[dic objectInfoForKey:@"subject"]];
     model.courseTrainInfo = [HMTrainaddressModel converJsonDicToModel:[dic objectInfoForKey:@"trainfieldlinfo"]];
-    
-    
-    
+    model.cancelreason = [dic objectInfoForKey:@"cancelreason"];
     
 //    
 //    model.courseProgress = [dic objectStringForKey:@"courseprocessdesc"];

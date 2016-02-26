@@ -123,9 +123,9 @@
     
     self.stateLabel.text = [_courseModel getStatueString];
     
-    self.nameTitle.text = _courseModel.userModel.name;
+    self.nameTitle.text = [NSString stringWithFormat:@"取消原因:%@",_courseModel.cancelreason[@"reason"]];
     
-    self.detailLabel.text = _courseModel.courseTime;
+    self.detailLabel.text = [NSString stringWithFormat:@"%@",_courseModel.cancelreason[@"cancelcontent"]];
 
 }
 
