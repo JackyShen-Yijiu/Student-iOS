@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface YBJiangliJifenCell : UITableViewCell
-@property (nonatomic,strong) NSDictionary *dictModel;
+@property (nonatomic,strong) NSDictionary *jianglijifenModel;
+@property (nonatomic,strong) NSDictionary *kequxianjineduModel;
 @end

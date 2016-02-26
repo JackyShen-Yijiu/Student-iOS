@@ -14,8 +14,6 @@
 
 @interface YBJianglijifenTableView () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UITableView *dataTabelView;
-
 @end
 
 @implementation YBJianglijifenTableView
@@ -36,15 +34,15 @@
 
 - (void)reloadData
 {
-    
-    NSLog(@"reloadData dataArray:%@",_dataArray);
-    
     [self.dataTabelView reloadData];
 }
 
 #pragma mark - table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _dataArray.count;
+    if (self.isJianglijifen) {
+        return self.jianglijifenArrray.count;
+    }
+    return self.kequxianjineduArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -53,7 +51,11 @@
         cell = [[YBJiangliJifenCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
     }
     
-    cell.dictModel = _dataArray[indexPath.row];
+    if (self.isJianglijifen) {
+        cell.jianglijifenModel = _jianglijifenArrray[indexPath.row];
+    }else{
+        cell.kequxianjineduModel = _kequxianjineduArray[indexPath.row];
+    }
     
     return cell;
 }
