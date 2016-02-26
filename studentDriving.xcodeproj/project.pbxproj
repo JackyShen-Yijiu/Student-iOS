@@ -747,7 +747,6 @@
 		D962FFFC1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D962FFFB1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib */; };
 		D964ABED1C7AB8CF00A4D1D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */; };
 		D964ABFC1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */; };
-		D965325D1C7320DA0097AFA2 /* DVVSelectCityController.m in Sources */ = {isa = PBXBuildFile; fileRef = D965325C1C7320DA0097AFA2 /* DVVSelectCityController.m */; };
 		D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA841C239D3B00DCD094 /* DrivingCell.m */; };
 		D965CAA11C239D9F00DCD094 /* DrivingCarTypeDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA881C239D9F00DCD094 /* DrivingCarTypeDMData.m */; };
 		D965CAA21C239D9F00DCD094 /* DrivingCarTypeDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA8A1C239D9F00DCD094 /* DrivingCarTypeDMRootClass.m */; };
@@ -846,6 +845,20 @@
 		D98581AD1C58B1C80044E029 /* DVVImagePickerControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D98581AC1C58B1C80044E029 /* DVVImagePickerControllerManager.m */; };
 		D9873B621C55D4EF000A3F6F /* DVVShare.m in Sources */ = {isa = PBXBuildFile; fileRef = D9873B611C55D4EF000A3F6F /* DVVShare.m */; };
 		D9873B651C56456F000A3F6F /* DVVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D9873B641C56456F000A3F6F /* DVVLocation.m */; };
+		D98C6F711C8033830090C349 /* ButtonGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F571C8033830090C349 /* ButtonGroupView.m */; };
+		D98C6F721C8033830090C349 /* CityButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F591C8033830090C349 /* CityButton.m */; };
+		D98C6F731C8033830090C349 /* citydict.plist in Resources */ = {isa = PBXBuildFile; fileRef = D98C6F5A1C8033830090C349 /* citydict.plist */; };
+		D98C6F741C8033830090C349 /* CityItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F5C1C8033830090C349 /* CityItem.m */; };
+		D98C6F761C8033830090C349 /* ChineseInclude.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F611C8033830090C349 /* ChineseInclude.m */; };
+		D98C6F771C8033830090C349 /* ChineseToPinyinResource.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F631C8033830090C349 /* ChineseToPinyinResource.m */; };
+		D98C6F781C8033830090C349 /* HanyuPinyinOutputFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F651C8033830090C349 /* HanyuPinyinOutputFormat.m */; };
+		D98C6F791C8033830090C349 /* NSString+PinYin4Cocoa.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F671C8033830090C349 /* NSString+PinYin4Cocoa.m */; };
+		D98C6F7A1C8033830090C349 /* PinyinFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F691C8033830090C349 /* PinyinFormatter.m */; };
+		D98C6F7B1C8033830090C349 /* PinYinForObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F6B1C8033830090C349 /* PinYinForObjc.m */; };
+		D98C6F7C1C8033830090C349 /* PinyinHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F6D1C8033830090C349 /* PinyinHelper.m */; };
+		D98C6F7D1C8033830090C349 /* unicode_to_hanyu_pinyin.txt in Resources */ = {isa = PBXBuildFile; fileRef = D98C6F6E1C8033830090C349 /* unicode_to_hanyu_pinyin.txt */; };
+		D98C6F7E1C8033830090C349 /* ZYPinYinSearch.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F701C8033830090C349 /* ZYPinYinSearch.m */; };
+		D98C6F841C8038B60090C349 /* CityListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F831C8038B60090C349 /* CityListViewController.m */; };
 		D98E06141C3E4570009BFA81 /* DVVCheckActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */; };
 		D996740D1C7D4B400000CC65 /* DVVBaseDoubleRowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D996740C1C7D4B400000CC65 /* DVVBaseDoubleRowCell.m */; };
 		D996745E1C7D54610000CC65 /* ClassTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D99674101C7D54610000CC65 /* ClassTypeCell.m */; };
@@ -2355,8 +2368,6 @@
 		D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D964ABFA1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachClassTypeView.h; sourceTree = "<group>"; };
 		D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachClassTypeView.m; sourceTree = "<group>"; };
-		D965325B1C7320DA0097AFA2 /* DVVSelectCityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSelectCityController.h; sourceTree = "<group>"; };
-		D965325C1C7320DA0097AFA2 /* DVVSelectCityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSelectCityController.m; sourceTree = "<group>"; };
 		D965CA831C239D3B00DCD094 /* DrivingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingCell.h; sourceTree = "<group>"; };
 		D965CA841C239D3B00DCD094 /* DrivingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingCell.m; sourceTree = "<group>"; };
 		D965CA871C239D9F00DCD094 /* DrivingCarTypeDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingCarTypeDMData.h; sourceTree = "<group>"; };
@@ -2549,6 +2560,33 @@
 		D9873B611C55D4EF000A3F6F /* DVVShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVShare.m; sourceTree = "<group>"; };
 		D9873B631C56456F000A3F6F /* DVVLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVLocation.h; sourceTree = "<group>"; };
 		D9873B641C56456F000A3F6F /* DVVLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVLocation.m; sourceTree = "<group>"; };
+		D98C6F541C7FF4CB0090C349 /* YBNotificationMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBNotificationMacro.h; sourceTree = "<group>"; };
+		D98C6F561C8033830090C349 /* ButtonGroupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ButtonGroupView.h; sourceTree = "<group>"; };
+		D98C6F571C8033830090C349 /* ButtonGroupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ButtonGroupView.m; sourceTree = "<group>"; };
+		D98C6F581C8033830090C349 /* CityButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityButton.h; sourceTree = "<group>"; };
+		D98C6F591C8033830090C349 /* CityButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityButton.m; sourceTree = "<group>"; };
+		D98C6F5A1C8033830090C349 /* citydict.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = citydict.plist; sourceTree = "<group>"; };
+		D98C6F5B1C8033830090C349 /* CityItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityItem.h; sourceTree = "<group>"; };
+		D98C6F5C1C8033830090C349 /* CityItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityItem.m; sourceTree = "<group>"; };
+		D98C6F601C8033830090C349 /* ChineseInclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseInclude.h; sourceTree = "<group>"; };
+		D98C6F611C8033830090C349 /* ChineseInclude.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseInclude.m; sourceTree = "<group>"; };
+		D98C6F621C8033830090C349 /* ChineseToPinyinResource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChineseToPinyinResource.h; sourceTree = "<group>"; };
+		D98C6F631C8033830090C349 /* ChineseToPinyinResource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChineseToPinyinResource.m; sourceTree = "<group>"; };
+		D98C6F641C8033830090C349 /* HanyuPinyinOutputFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HanyuPinyinOutputFormat.h; sourceTree = "<group>"; };
+		D98C6F651C8033830090C349 /* HanyuPinyinOutputFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HanyuPinyinOutputFormat.m; sourceTree = "<group>"; };
+		D98C6F661C8033830090C349 /* NSString+PinYin4Cocoa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYin4Cocoa.h"; sourceTree = "<group>"; };
+		D98C6F671C8033830090C349 /* NSString+PinYin4Cocoa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYin4Cocoa.m"; sourceTree = "<group>"; };
+		D98C6F681C8033830090C349 /* PinyinFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinFormatter.h; sourceTree = "<group>"; };
+		D98C6F691C8033830090C349 /* PinyinFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinFormatter.m; sourceTree = "<group>"; };
+		D98C6F6A1C8033830090C349 /* PinYinForObjc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinYinForObjc.h; sourceTree = "<group>"; };
+		D98C6F6B1C8033830090C349 /* PinYinForObjc.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinYinForObjc.m; sourceTree = "<group>"; };
+		D98C6F6C1C8033830090C349 /* PinyinHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinyinHelper.h; sourceTree = "<group>"; };
+		D98C6F6D1C8033830090C349 /* PinyinHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinyinHelper.m; sourceTree = "<group>"; };
+		D98C6F6E1C8033830090C349 /* unicode_to_hanyu_pinyin.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unicode_to_hanyu_pinyin.txt; sourceTree = "<group>"; };
+		D98C6F6F1C8033830090C349 /* ZYPinYinSearch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYPinYinSearch.h; sourceTree = "<group>"; };
+		D98C6F701C8033830090C349 /* ZYPinYinSearch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYPinYinSearch.m; sourceTree = "<group>"; };
+		D98C6F821C8038B60090C349 /* CityListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CityListViewController.h; sourceTree = "<group>"; };
+		D98C6F831C8038B60090C349 /* CityListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CityListViewController.m; sourceTree = "<group>"; };
 		D98E06121C3E4570009BFA81 /* DVVCheckActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCheckActivity.h; sourceTree = "<group>"; };
 		D98E06131C3E4570009BFA81 /* DVVCheckActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCheckActivity.m; sourceTree = "<group>"; };
 		D996740B1C7D4B400000CC65 /* DVVBaseDoubleRowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVBaseDoubleRowCell.h; sourceTree = "<group>"; };
@@ -5603,6 +5641,7 @@
 			isa = PBXGroup;
 			children = (
 				D963FACF1C741CAE006955D8 /* YBAPPMacro.h */,
+				D98C6F541C7FF4CB0090C349 /* YBNotificationMacro.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -5610,8 +5649,7 @@
 		D965325A1C7320AC0097AFA2 /* SelectCity */ = {
 			isa = PBXGroup;
 			children = (
-				D965325B1C7320DA0097AFA2 /* DVVSelectCityController.h */,
-				D965325C1C7320DA0097AFA2 /* DVVSelectCityController.m */,
+				D98C6F551C8033830090C349 /* ChinaCityList */,
 			);
 			path = SelectCity;
 			sourceTree = "<group>";
@@ -5880,6 +5918,47 @@
 				D977B8CD1C7C69DD00ABE205 /* DVVSignUpSchoolViewModel.m */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D98C6F551C8033830090C349 /* ChinaCityList */ = {
+			isa = PBXGroup;
+			children = (
+				D98C6F821C8038B60090C349 /* CityListViewController.h */,
+				D98C6F831C8038B60090C349 /* CityListViewController.m */,
+				D98C6F561C8033830090C349 /* ButtonGroupView.h */,
+				D98C6F571C8033830090C349 /* ButtonGroupView.m */,
+				D98C6F581C8033830090C349 /* CityButton.h */,
+				D98C6F591C8033830090C349 /* CityButton.m */,
+				D98C6F5A1C8033830090C349 /* citydict.plist */,
+				D98C6F5B1C8033830090C349 /* CityItem.h */,
+				D98C6F5C1C8033830090C349 /* CityItem.m */,
+				D98C6F5F1C8033830090C349 /* ZYPinYinSearchLib */,
+			);
+			path = ChinaCityList;
+			sourceTree = "<group>";
+		};
+		D98C6F5F1C8033830090C349 /* ZYPinYinSearchLib */ = {
+			isa = PBXGroup;
+			children = (
+				D98C6F601C8033830090C349 /* ChineseInclude.h */,
+				D98C6F611C8033830090C349 /* ChineseInclude.m */,
+				D98C6F621C8033830090C349 /* ChineseToPinyinResource.h */,
+				D98C6F631C8033830090C349 /* ChineseToPinyinResource.m */,
+				D98C6F641C8033830090C349 /* HanyuPinyinOutputFormat.h */,
+				D98C6F651C8033830090C349 /* HanyuPinyinOutputFormat.m */,
+				D98C6F661C8033830090C349 /* NSString+PinYin4Cocoa.h */,
+				D98C6F671C8033830090C349 /* NSString+PinYin4Cocoa.m */,
+				D98C6F681C8033830090C349 /* PinyinFormatter.h */,
+				D98C6F691C8033830090C349 /* PinyinFormatter.m */,
+				D98C6F6A1C8033830090C349 /* PinYinForObjc.h */,
+				D98C6F6B1C8033830090C349 /* PinYinForObjc.m */,
+				D98C6F6C1C8033830090C349 /* PinyinHelper.h */,
+				D98C6F6D1C8033830090C349 /* PinyinHelper.m */,
+				D98C6F6E1C8033830090C349 /* unicode_to_hanyu_pinyin.txt */,
+				D98C6F6F1C8033830090C349 /* ZYPinYinSearch.h */,
+				D98C6F701C8033830090C349 /* ZYPinYinSearch.m */,
+			);
+			path = ZYPinYinSearchLib;
 			sourceTree = "<group>";
 		};
 		D996740E1C7D54610000CC65 /* DrivingDetail */ = {
@@ -6300,12 +6379,14 @@
 				D5604BC41BF656C50020F0D7 /* call_silence@2x.png in Resources */,
 				D919F3251C60885A00239B34 /* UMSLoginViewController.xib in Resources */,
 				D5604BE31BF656C50020F0D7 /* chatBar_keyboard.png in Resources */,
+				D98C6F731C8033830090C349 /* citydict.plist in Resources */,
 				D5604BD61BF656C50020F0D7 /* chat_location_detail_disclosure@2x.png in Resources */,
 				D5604BA41BF656C50020F0D7 /* VoiceSearchFeedback007@2x.png in Resources */,
 				D5604C431BF656C50020F0D7 /* tabbar_settingHL@2x.png in Resources */,
 				D919F3351C60885A00239B34 /* WeiboSDK.bundle in Resources */,
 				D5604C281BF656C50020F0D7 /* add@2x.png in Resources */,
 				D99674681C7D54610000CC65 /* CoachListCell.xib in Resources */,
+				D98C6F7D1C8033830090C349 /* unicode_to_hanyu_pinyin.txt in Resources */,
 				D5604C3F1BF656C50020F0D7 /* tabbar_contactsHL@2x.png in Resources */,
 				D5604C381BF656C50020F0D7 /* tabbar_chats.png in Resources */,
 				D5604BA21BF656C50020F0D7 /* VoiceSearchFeedback006@2x.png in Resources */,
@@ -6481,6 +6562,7 @@
 				D5604B8C1BF656C50020F0D7 /* EMNavigationController.m in Sources */,
 				D99674971C7D8DA30000CC65 /* DVVSignUpDetailPayView.m in Sources */,
 				D588B04F1BDDDB71000C5D6F /* EditorUserViewController.m in Sources */,
+				D98C6F721C8033830090C349 /* CityButton.m in Sources */,
 				D95CCCF71C2E84C000AF1402 /* UserSettingModel.m in Sources */,
 				D51256C61BE257DA002717DA /* ConfirmSubjectTwoCell.m in Sources */,
 				D588AFCE1BDDDAAB000C5D6F /* CourseTimeModel.m in Sources */,
@@ -6579,6 +6661,8 @@
 				D588AFC71BDDDAAB000C5D6F /* CarModel.m in Sources */,
 				D588AFC91BDDDAAB000C5D6F /* TrainFieldInfoModel.m in Sources */,
 				D5C23FF21BE8ED1300832CF3 /* SchoolInfo.m in Sources */,
+				D98C6F7A1C8033830090C349 /* PinyinFormatter.m in Sources */,
+				D98C6F741C8033830090C349 /* CityItem.m in Sources */,
 				B2E8E18A1C72BA4F000190C2 /* WMNavigationInteractiveTransition.m in Sources */,
 				D99674831C7D54610000CC65 /* DrivingDetailTrainingGroundCell.m in Sources */,
 				B2E8E1ED1C741D37000190C2 /* YBStudeyProgressView.m in Sources */,
@@ -6656,6 +6740,7 @@
 				061E7ADF1C39001C008C51C3 /* MoneyShopController.m in Sources */,
 				D996747B1C7D54610000CC65 /* DrivingDetailDMSchoolbusroute.m in Sources */,
 				B20DBED41C5DB0FF0023676E /* DataSigner.m in Sources */,
+				D98C6F7E1C8033830090C349 /* ZYPinYinSearch.m in Sources */,
 				D52638591BDF205C00ADC2C7 /* ApplycoachinfoModel.m in Sources */,
 				D5604B4E1BF656C50020F0D7 /* MWPhotoBrowser.m in Sources */,
 				B226AEF11C748FCF0028DF1A /* CourseSummaryDayCell.m in Sources */,
@@ -6691,6 +6776,7 @@
 				B226AEEE1C748F890028DF1A /* JGSubjectthreeModel.m in Sources */,
 				D588B1131BDDDC2F000C5D6F /* UIDevice+JEsystemVersion.m in Sources */,
 				D5604B821BF656C50020F0D7 /* UIImageView+HeadImage.m in Sources */,
+				D98C6F841C8038B60090C349 /* CityListViewController.m in Sources */,
 				D99674611C7D54610000CC65 /* ClassTypeDMData.m in Sources */,
 				D588AFC51BDDDAAB000C5D6F /* DriveSchoolinfo.m in Sources */,
 				D95CCCEE1C2E636200AF1402 /* NSString+Helper.m in Sources */,
@@ -6769,9 +6855,11 @@
 				D588B0721BDDDB90000C5D6F /* StudentDetailViewController.m in Sources */,
 				D5604C8A1BF656F30020F0D7 /* EMChatLocationBubbleView.m in Sources */,
 				D5C2400B1BEA2EA200832CF3 /* BannerModel.m in Sources */,
+				D98C6F7C1C8033830090C349 /* PinyinHelper.m in Sources */,
 				B226AE971C74724F0028DF1A /* YBAppointMentNoCountentView.m in Sources */,
 				D588AFC11BDDDAAB000C5D6F /* DrivingModel.m in Sources */,
 				D588B0511BDDDB71000C5D6F /* GenderViewController.m in Sources */,
+				D98C6F7B1C8033830090C349 /* PinYinForObjc.m in Sources */,
 				56DAB1021C7AF9CF00D7B942 /* YBComplaintController.m in Sources */,
 				B2F1AE641C7E9CE4006D56FF /* SubjectOneModel.m in Sources */,
 				D588B10F1BDDDC2F000C5D6F /* NSUserStoreTool.m in Sources */,
@@ -6792,6 +6880,7 @@
 				D5BCFEE51BF4924C0019402C /* BLImageViewController.m in Sources */,
 				D96D1BE91C2B88A000F1C282 /* UINavigationItem+DVVBackItem.m in Sources */,
 				D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */,
+				D98C6F771C8033830090C349 /* ChineseToPinyinResource.m in Sources */,
 				554641BF1C25099700A55326 /* KindlyReminderView.m in Sources */,
 				B2F1AE551C7DA5EF006D56FF /* YBAppointMentDetailsFootView.m in Sources */,
 				D526385F1BDF4C4D00ADC2C7 /* ModifyNameViewController.m in Sources */,
@@ -6867,6 +6956,7 @@
 				D51256B41BE1DB9A002717DA /* StudentDetailModel.m in Sources */,
 				D965CAA21C239D9F00DCD094 /* DrivingCarTypeDMRootClass.m in Sources */,
 				D5604B641BF656C50020F0D7 /* PSTCollectionView.m in Sources */,
+				D98C6F761C8033830090C349 /* ChineseInclude.m in Sources */,
 				D977B8301C7C21DF00ABE205 /* DVVCoachDetailDMWorktimespace.m in Sources */,
 				568DF22D1C7591EF00008829 /* LTBottomView.m in Sources */,
 				D977B8DD1C7C69DD00ABE205 /* DVVSignUpSchoolDMRootClass.m in Sources */,
@@ -6879,10 +6969,10 @@
 				D5604B6B1BF656C50020F0D7 /* PSTCollectionViewUpdateItem.m in Sources */,
 				D51256C31BE2542C002717DA /* ConfirmSubjectOneCell.m in Sources */,
 				D51256BD1BE22181002717DA /* ComplainTableViewCell.m in Sources */,
-				D965325D1C7320DA0097AFA2 /* DVVSelectCityController.m in Sources */,
 				D9A5DF5E1C35288A009DF18A /* CoinCertificateController.m in Sources */,
 				D5604B801BF656C50020F0D7 /* NSDateFormatter+Category.m in Sources */,
 				D965CAA91C239D9F00DCD094 /* DrivingCycleShowViewModel.m in Sources */,
+				D98C6F781C8033830090C349 /* HanyuPinyinOutputFormat.m in Sources */,
 				D5604B5D1BF656C50020F0D7 /* UIImage+EMGIF.m in Sources */,
 				550635531C74722800840B91 /* ShowWarningMessageView.m in Sources */,
 				D5604B5A1BF656C50020F0D7 /* MKAnnotationView+EMWebCache.m in Sources */,
@@ -6896,6 +6986,7 @@
 				D5604B631BF656C50020F0D7 /* NSIndexPath+PSTCollectionViewAdditions.m in Sources */,
 				D5604B4F1BF656C50020F0D7 /* MWTapDetectingImageView.m in Sources */,
 				B226AEB41C747F2B0028DF1A /* UIView+Sizes.m in Sources */,
+				D98C6F711C8033830090C349 /* ButtonGroupView.m in Sources */,
 				D965CAAD1C239D9F00DCD094 /* DrivingViewController.m in Sources */,
 				56DAB0FC1C7ABB8500D7B942 /* AboutUsViewController.m in Sources */,
 				B2E8E1AD1C72C78B000190C2 /* YBAppointMentController.m in Sources */,
@@ -6911,6 +7002,7 @@
 				B21818141C58AC5500F973A7 /* JGDrivingDetailTopCell.m in Sources */,
 				56DAB11B1C7B241C00D7B942 /* HelpCell.m in Sources */,
 				B20DBEDD1C5DB0FF0023676E /* payRequsestHandler.mm in Sources */,
+				D98C6F791C8033830090C349 /* NSString+PinYin4Cocoa.m in Sources */,
 				B2E8E1D51C73162D000190C2 /* YBStudyTableView.m in Sources */,
 				D96D1BCC1C2B858400F1C282 /* AppDelegate.mm in Sources */,
 				D5604B6D1BF656C50020F0D7 /* PSTGridLayoutItem.m in Sources */,

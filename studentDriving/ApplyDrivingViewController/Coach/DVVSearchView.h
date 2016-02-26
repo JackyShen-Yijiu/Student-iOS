@@ -30,6 +30,13 @@ typedef void(^DVVSearchViewUITextFieldDelegateBlock)(UITextField *textField);
  */
 - (void)dvv_setTextFieldDidEndEditingBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
 
-@property (nonatomic,copy) NSString *pleaceHodel;
+/**
+ *  文本改变
+ *
+ *  @param handle DVVSearchViewUITextFieldDelegateBlock
+ */
+- (void)dvv_setTextFieldTextChangeBlock:(DVVSearchViewUITextFieldDelegateBlock)handle;
+
+@property (nonatomic,copy) NSString *placeholder;
 
 @end

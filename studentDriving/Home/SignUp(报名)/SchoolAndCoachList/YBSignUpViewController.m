@@ -8,7 +8,7 @@
 
 #import "YBSignUpViewController.h"
 #import "DVVLocation.h"
-#import "DVVSelectCityController.h"
+#import "CityListViewController.h"
 #import "DVVSignUpToolBarView.h"
 #import "DVVSignUpSchoolCell.h"
 #import "DVVSignUpCoachCell.h"
@@ -25,7 +25,7 @@
 static NSString *schoolCellID = @"schoolCellID";
 static NSString *coachCellID = @"coachCellID";
 
-@interface YBSignUpViewController ()<UITableViewDataSource, UITableViewDelegate,UIScrollViewDelegate>
+@interface YBSignUpViewController ()<UITableViewDataSource, UITableViewDelegate,UIScrollViewDelegate, CityListViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
 }
@@ -195,9 +195,14 @@ static NSString *coachCellID = @"coachCellID";
 #pragma mark 右上角定位按钮
 - (void)locationLabelAction {
     
-    DVVSelectCityController *vc = [DVVSelectCityController new];
-    vc.hidesBottomBarWhenPushed = YES;
-    [self.navigationController pushViewController:vc animated:YES];
+    CityListViewController *vc = [CityListViewController new];
+    vc.delegate = self;
+    [self presentViewController:vc animated:YES completion:nil];
+}
+
+#pragma mark 选择城市的代理事件
+- (void)didClickedWithCityName:(NSString *)cityName {
+    
 }
 
 #pragma mark - public
@@ -444,7 +449,7 @@ static NSString *coachCellID = @"coachCellID";
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
-        _titleLabel.font = [UIFont boldSystemFontOfSize:17];
+        _titleLabel.font = [UIFont systemFontOfSize:17];
         _titleLabel.textColor = [UIColor whiteColor];
         _titleLabel.textAlignment = NSTextAlignmentCenter;
         _titleLabel.text = @"驾校";
