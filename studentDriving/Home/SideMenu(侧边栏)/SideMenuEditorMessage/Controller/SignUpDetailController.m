@@ -22,7 +22,7 @@
 #import "ShowWarningBG.h"
 #import "MallOrderListModel.h"
 #import "YYModel.h"
-#import "YBMallViewController.h"
+#import "YBMyWalletMallViewController.h"
 
 
 
@@ -65,7 +65,9 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 @property (nonatomic, strong) NSDictionary *dict;
 
 @property (nonatomic, strong) ShowWarningBG *warningBG; //提示背景图片
+@property (nonatomic, strong) ShowWarningBG *mallBG;
 @property (nonatomic, strong) NSMutableArray *dataListArray;
+
 
 
 @end
@@ -136,6 +138,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
 }
 - (void)viewWillDisappear:(BOOL)animated{
+    [_warningBG hidden];
     [_warningBG hidden];
 }
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -278,12 +281,20 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                 
             }else if (_myLoveState == MyLoveStateDriving) {
                 NSArray *array = data[@"ordrelist"];
+                if (!array.count) {
+                    _mallBG = [[ShowWarningBG alloc] initWithTietleName:@"小步没有找到您的订单信息，请前往商城购买"];
+                    [_mallBG show];
+                    return ;
+                    
+                }
+
                 
                 [_dataListArray removeAllObjects];
                 for (NSDictionary *dic in array) {
                 MallOrderListModel *listModel = [MallOrderListModel yy_modelWithDictionary:dic];
                     [_dataListArray addObject:listModel];
                 }
+                
                 NSLog(@"-----------------------------========================================%@",_dataListArray);
             }
            [self.tableView reloadData];
@@ -364,6 +375,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         self.menuIndicator.frame = CGRectMake(kSystemWide/2, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
     sender.selected = YES;
+    [_mallBG hidden];
     _myLoveState = MyLoveStateDriving;
     [self startDownLoad];
 }
@@ -372,7 +384,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     if (_myLoveState == MyLoveStateCoach) {
         return 150.0f;
     }else if (_myLoveState == MyLoveStateDriving) {
-        return 140.0f;
+        return 125.0f;
     }
     return 0;
 }
@@ -420,7 +432,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         }
         cell.listModel = _dataListArray[indexPath.row];
         cell.didclickBlock = ^(NSInteger tag){
-            YBMallViewController *mallVC = [[YBMallViewController alloc] init];
+            YBMyWalletMallViewController *mallVC = [[YBMyWalletMallViewController alloc] init];
             [ws.navigationController pushViewController:mallVC animated:YES];
         };
         return cell;
