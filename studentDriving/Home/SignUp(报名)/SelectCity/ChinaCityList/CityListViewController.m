@@ -151,6 +151,7 @@
             
             for (DrivingCityListDMData *item in rootClass.data) {
                 [self.arrayHotCity addObject:item.name];
+                _openCityArray = rootClass.data;
             }
         }
         //    for (int i = 0; i < 3; i++) {
@@ -521,15 +522,49 @@
 #pragma mark 按钮的点击事件
 -(void)ButtonGroupView:(ButtonGroupView *)buttonGroupView didClickedItem:(CityButton *)item
 {
-    // 检查此城市是否可以选择区域
-    
-//    JENetwoking startDownLoadWithUrl:<#(NSString *)#> postParam:<#(id)#> WithMethod:<#(JENetworkingRequestMethod)#> withCompletion:<#^(id data)completion#>
-    
-    if ([_delegate respondsToSelector:@selector(didClickedWithCityName:)]) {
-       
-        [_delegate didClickedWithCityName:item.cityItem.titleName];
+    BOOL foundFlage = NO;
+    NSInteger cityID = 0;
+    // 获取点击城市的ID
+    for (DrivingCityListDMData *dmData in _openCityArray) {
+        if ([dmData.name isEqualToString:item.cityItem.titleName]) {
+            foundFlage = YES;
+            cityID = dmData.ID;
+        }
     }
-     [self dismissViewControllerAnimated:YES completion:nil];
+    
+    if (foundFlage) {
+        // 检查此城市是否可以选择区域
+        NSString *url = [NSString stringWithFormat:BASEURL, @"getchildopencity"];
+        NSDictionary *dict = @{ @"cityid": [NSString stringWithFormat:@"%lu", (long)cityID] };
+        
+        [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            
+            NSLog(@"%@", data);
+            
+            NSInteger type = [data[@"type"] integerValue];
+            if (0 == type) {
+                // 出错
+            }else {
+                NSArray *cityList = data[@"data"];
+                if (!cityList.count) {
+                    // 没有子城市
+                }else {
+                    // 有子城市
+                    
+                }
+            }
+            
+        } withFailure:^(id data) {
+            ;
+        }];
+        
+        if ([_delegate respondsToSelector:@selector(didClickedWithCityName:)]) {
+            
+            [_delegate didClickedWithCityName:item.cityItem.titleName];
+        }
+    }
+    
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

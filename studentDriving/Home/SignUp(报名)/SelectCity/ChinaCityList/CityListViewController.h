@@ -25,6 +25,7 @@
 @property (strong, nonatomic) NSMutableArray *arrayHotCity;//热门城市数据
 //@property (strong, nonatomic) NSMutableArray *arrayHistoricalCity;//常用城市数据
 
-@property(nonatomic,strong)UITableView *tableView;
+@property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) NSArray *openCityArray; // 开放城市的数据
 
 @end

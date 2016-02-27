@@ -28,9 +28,8 @@
     if (self) {
         NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"DrivingDetailBriefIntroductionCell" owner:self options:nil];
         DrivingDetailBriefIntroductionCell *cell = xibArray.firstObject;
-        
-        [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
+        [cell setRestorationIdentifier:reuseIdentifier];
         
         [_showMoreButton addTarget:self action:@selector(showMoreButtonAction:) forControlEvents:UIControlEventTouchDown];
     }

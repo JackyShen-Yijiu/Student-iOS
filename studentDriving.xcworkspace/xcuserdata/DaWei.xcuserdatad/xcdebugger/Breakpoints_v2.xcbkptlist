@@ -138,12 +138,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478183351.637468"
+                  timestampString = "478232389.259574"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "423"
                   endingLineNumber = "423"
-                  offsetFromSymbolStart = "2459">
+                  offsetFromSymbolStart = "2004">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -153,12 +153,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478183351.637697"
+                  timestampString = "478232389.259807"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "423"
                   endingLineNumber = "423"
-                  offsetFromSymbolStart = "55">
+                  offsetFromSymbolStart = "52">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -299,22 +299,6 @@
             continueAfterRunningActions = "No"
             scope = "0"
             stopOnStyle = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/Home/SignUp(&#x62a5;&#x540d;)/CoachDetail/DVVCoachDetailViewModel.m"
-            timestampString = "478059738.560792"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
-            landmarkName = "-dvv_networkRequestRefresh"
-            landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

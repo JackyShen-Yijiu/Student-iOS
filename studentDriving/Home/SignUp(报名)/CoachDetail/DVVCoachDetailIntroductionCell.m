@@ -36,7 +36,7 @@
         _introductionLabel.text = dmData.introduction;
 //        NSLog(@"%@", dmData.introduction);
     }else {
-        _introductionLabel.text = @"暂无驾校简介";
+        _introductionLabel.text = @"暂无教练简介";
     }
 }
 
@@ -49,7 +49,7 @@
         return 40;
     }else {
         if (isShowMore) {
-            return 16 + height;
+            return 16 + height + 1;
         }else {
             return 52;
         }
