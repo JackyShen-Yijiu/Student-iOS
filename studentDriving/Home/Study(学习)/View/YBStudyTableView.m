@@ -16,6 +16,7 @@
 #import "BLAVPlayerViewController.h"
 #import "WMCommon.h"
 #import "YBAppointTestViewController.h"
+#import "YBCheatslistViewController.h"
 
 #define kCellIdentifier @"YBStudyViewCell"
 
@@ -148,6 +149,11 @@
                 
             }else if (indexPath.row==1){
                 
+                YBCheatslistViewController *vc = [[YBCheatslistViewController alloc] init];
+                vc.isSubjectTwo = YES;
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:vc animated:YES];
+                
             }else if (indexPath.row==2){
                 
                 YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
@@ -172,6 +178,11 @@
                 [self.parentViewController.navigationController pushViewController:bLAVPlayweVC animated:YES];
                 
             }else if (indexPath.row==1){
+                
+                YBCheatslistViewController *vc = [[YBCheatslistViewController alloc] init];
+                vc.isSubjectTwo = NO;
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:vc animated:YES];
                 
             }else if (indexPath.row==2){
                 
