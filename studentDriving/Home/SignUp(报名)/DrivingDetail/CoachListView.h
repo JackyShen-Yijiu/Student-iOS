@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CoachListDataModel/CoachListDMData.h"
-#import "DVVPromptNilDataView.h"
+#import "DVVNoDataPromptView.h"
 
 typedef void(^CoachListViewCellBlock)(CoachListDMData *dmData);
 
@@ -17,7 +17,7 @@ typedef void(^CoachListViewCellBlock)(CoachListDMData *dmData);
 @property (nonatomic,readonly, copy) NSString *schoolID;
 @property (nonatomic, strong) UIButton *bottomButton;
 
-@property (nonatomic, strong) DVVPromptNilDataView *promptNilDataView;
+@property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
 
 - (void)beginNetworkRequest:(NSString *)schoolID;
 

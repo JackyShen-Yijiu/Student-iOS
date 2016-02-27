@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ClassTypeViewModel.h"
 #import "ClassTypeDMData.h"
-#import "DVVPromptNilDataView.h"
+#import "DVVNoDataPromptView.h"
 
 typedef void(^ClassTypeViewBlock)(ClassTypeViewModel *viewModel);
 typedef void(^ClassTypeViewCellBlock)(ClassTypeDMData *dmData);
@@ -20,7 +20,7 @@ typedef void(^ClassTypeViewCellBlock)(ClassTypeDMData *dmData);
 
 @property (nonatomic, readonly, assign) CGFloat totalHeight;
 
-@property (nonatomic, strong) DVVPromptNilDataView *promptNilDataView;
+@property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
 
 - (void)setClassTypeNetworkSuccessBlock:(ClassTypeViewBlock)handle;
 

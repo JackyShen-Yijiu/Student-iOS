@@ -22,7 +22,9 @@
 {
     self = [super init];
     if (self) {
+        self.backgroundColor = [UIColor whiteColor];
         [self addSubview:self.bgImageView];
+        [self addSubview:self.maskView];
         
         [self addSubview:self.centerView];
         
@@ -33,6 +35,7 @@
         CGFloat selfWidth = [UIScreen mainScreen].bounds.size.width;
         CGFloat bgImagesViewHeight = selfWidth * 0.7;
         _bgImageView.frame = CGRectMake(0, 0, selfWidth, bgImagesViewHeight);
+        _maskView.frame = _bgImageView.frame;
         _alphaView.frame = _bgImageView.frame;
         CGFloat collectionWidth = 63;
         CGFloat collectionHeight = 63;
@@ -86,6 +89,14 @@
         _alphaView = [UIView new];
     }
     return _alphaView;
+}
+
+- (UIImageView *)maskView {
+    if (!_maskView) {
+        _maskView= [UIImageView new];
+        _maskView.image = [UIImage imageNamed:@"coach_header_bg"];
+    }
+    return _maskView;
 }
 
 - (UIImageView *)bgImageView {
@@ -238,7 +249,6 @@
         }
     }];
 }
-
 
 /*
 // Only override drawRect: if you perform custom drawing.

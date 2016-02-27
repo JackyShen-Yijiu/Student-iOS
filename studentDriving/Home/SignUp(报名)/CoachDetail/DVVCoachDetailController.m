@@ -21,6 +21,7 @@
 #import "SchoolClassDetailController.h"
 #import "DVVSignUpDetailController.h"
 #import "DVVCoachDetailCommentListController.h"
+#import "DVVNoDataPromptView.h"
 
 static NSString *infoCellID = @"kInfoCellID";
 static NSString *introductionCellID = @"kIntroductionCellID";
@@ -46,6 +47,8 @@ static NSString *courseCellID = @"kCourseCellID";
 
 @property (nonatomic, assign) BOOL isShowIntroduction;
 
+@property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
+
 @end
 
 @implementation DVVCoachDetailController
@@ -55,7 +58,7 @@ static NSString *courseCellID = @"kCourseCellID";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = NO;
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     self.title = @"教练详情";
     
     // 测试时打开此注释
@@ -75,18 +78,30 @@ static NSString *courseCellID = @"kCourseCellID";
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
-        
-    UINavigationBar *bar = self.navigationController.navigationBar;
-    // 背景色
-    [bar setBackgroundColor:[UIColor clearColor]];
-    // 背景图片
-    [bar setBackgroundImage:[UIImage imageNamed:@"naviBackgroundImag"] forBarMetrics:UIBarMetricsDefault];
-    // 打开透明效果
-    [bar setTranslucent:YES];
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     navBarHairlineImageView.hidden=NO;
+    
+    // 取消导航栏的透明效果
+    [self naviCancelTransparent];
+    
+    [DVVToast hide];
+}
+
+#pragma mark 使导航栏透明
+- (void)naviTransparent {
+    
+    UINavigationBar *bar = self.navigationController.navigationBar;
+    // 背景色
+    [bar setBackgroundColor:[UIColor clearColor]];
+    // 背景图片
+    [bar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
+    // 打开透明效果
+    [bar setTranslucent:YES];
+}
+#pragma mark 取消导航栏透明
+- (void)naviCancelTransparent {
     
     UINavigationBar *bar = self.navigationController.navigationBar;
     // 背景色
@@ -95,8 +110,6 @@ static NSString *courseCellID = @"kCourseCellID";
     [bar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     // 去掉透明效果
     [bar setTranslucent:NO];
-    
-    [DVVToast hide];
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -135,7 +148,7 @@ static NSString *courseCellID = @"kCourseCellID";
     DrivingDetailViewModel *viewModel = [DrivingDetailViewModel new];
     viewModel.schoolID = _viewModel.dmData.driveschoolinfo.ID;
     [viewModel dvvSetRefreshSuccessBlock:^{
-        NSLog(@"%li", viewModel.dmData.schoolbusroute.count);
+        NSLog(@"%lu", viewModel.dmData.schoolbusroute.count);
         if (!viewModel.dmData.schoolbusroute || !viewModel.dmData.schoolbusroute.count) {
             [self obj_showTotasViewWithMes:@"暂无班车信息"];
         }else {
@@ -188,21 +201,31 @@ static NSString *courseCellID = @"kCourseCellID";
     
     [_viewModel dvv_setRefreshSuccessBlock:^{
         
+        ws.tableView.backgroundColor = [UIColor whiteColor];
+        // 使导航栏透明
+        [self naviTransparent];
+        
         ws.courseCell.classTypeView.coachID = ws.viewModel.dmData.coachid;
         ws.courseCell.classTypeView.coachName = ws.viewModel.dmData.name;
         
         [ws.tableView reloadData];
         [ws.headerView refreshData:ws.viewModel.dmData];
+        [UIView animateWithDuration:0.3 animations:^{
+            ws.headerView.alpha = 1;
+        }];
     }];
     [_viewModel dvv_setNilResponseObjectBlock:^{
-        [ws obj_showTotasViewWithMes:@"暂无数据"];
+        [ws.view addSubview:ws.noDataPromptView];
+//        [ws obj_showTotasViewWithMes:@"暂无数据"];
     }];
     [_viewModel dvv_setNetworkCallBackBlock:^{
         [DVVToast hide];
     }];
     [_viewModel dvv_setNetworkErrorBlock:^{
-        [ws obj_showTotasViewWithMes:@"网络错误"];
+//        [ws obj_showTotasViewWithMes:@"网络错误"];
+        [ws.view addSubview:ws.noDataPromptView];
     }];
+    [DVVToast show];
     [_viewModel dvv_networkRequestRefresh];
 }
 
@@ -364,10 +387,10 @@ static NSString *courseCellID = @"kCourseCellID";
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [UITableView new];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.frame = CGRectMake(0, [DrivingDetailTableHeaderView defaultHeight] - 64, self.view.bounds.size.width, [UIScreen mainScreen].bounds.size.height - 64);
         _tableView.dataSource = self;
         _tableView.delegate = self;
-        _tableView.tableFooterView = [UITableView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         
         [_tableView registerClass:[DVVCoachDetailInfoCell class] forCellReuseIdentifier:infoCellID];
@@ -382,6 +405,7 @@ static NSString *courseCellID = @"kCourseCellID";
         _headerView = [DVVCoachDetailHeaderView new];
         _headerView.frame = CGRectMake(0, -64, [UIScreen mainScreen].bounds.size.width, [DVVCoachDetailHeaderView defaultHeight]);
         _headerView.coachID = _coachID;
+        _headerView.alpha = 0;
     }
     return _headerView;
 }
@@ -426,6 +450,13 @@ static NSString *courseCellID = @"kCourseCellID";
         }];
     }
     return _toolBarView;
+}
+
+- (DVVNoDataPromptView *)noDataPromptView {
+    if (!_noDataPromptView) {
+        _noDataPromptView = [[DVVNoDataPromptView alloc] initWithTitle:@"加载失败" image:[UIImage imageNamed:@"app_error_robot"]];
+    }
+    return _noDataPromptView;
 }
 
 - (void)addNaviRightButton {

@@ -14,6 +14,9 @@
 #import "DVVLocation.h"
 #import "DrivingCityListDMRootClass.h"
 #import "DVVToast.h"
+#import "DVVSubCityView.h"
+#import "DVVCityListDMRootClass.h"
+#import "YYModel.h"
 
 #define KSectionIndexBackgroundColor  [UIColor clearColor] //索引试图未选中时的背景颜色
 #define kSectionIndexTrackingBackgroundColor [UIColor lightGrayColor]//索引试图选中时的背景
@@ -21,7 +24,7 @@
 #define HotBtnColumns 3 //每行显示的热门城市数
 //#define BGCOLOR [UIColor colorWithRed:240/255.0 green:240/255.0 blue:240/255.0 alpha:1]
 #define BGCOLOR [UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:1]
-@interface CityListViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate,UITextFieldDelegate,ButtonGroupViewDelegate>
+@interface CityListViewController ()<UIGestureRecognizerDelegate,UISearchBarDelegate,UITextFieldDelegate,ButtonGroupViewDelegate, DVVSubCityViewDelegate>
 {
     UIImageView   *_bgImageView;
     UIView        *_tipsView;
@@ -79,9 +82,13 @@
 {
     [super viewDidLoad];
     
-    self.view.backgroundColor = BGCOLOR;
+    self.edgesForExtendedLayout = NO;
     
-    [self setNavigationWithTitle:@"选择城市"];
+//    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.title = @"选择城市";
+//    [self setNavigationWithTitle:@"选择城市"];
     
     _searchView = [DVVSearchView new];
     _searchView.placeholder = @"请输入您想要搜索的城市";
@@ -97,7 +104,7 @@
 
     _searchContentView = [UIView new];
     _searchContentView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
-    _searchContentView.frame = CGRectMake(0, 64, self.view.bounds.size.width, 40);
+    _searchContentView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 40);
     [_searchContentView addSubview:_searchView];
     
     _searchContentView.layer.shadowColor = [UIColor blackColor].CGColor;
@@ -107,7 +114,7 @@
     
 	// Do any additional setup after loading the view.
     _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    _tableView.frame           = CGRectMake(0,_searchContentView.frame.origin.y+_searchContentView.frame.size.height, self.view.frame.size.width, self.view.frame.size.height-64);
+    _tableView.frame           = CGRectMake(0,_searchContentView.frame.origin.y+_searchContentView.frame.size.height, self.view.frame.size.width, [UIScreen mainScreen].bounds.size.height - 64 - 40);
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.delegate        = self;
     _tableView.dataSource      = self;
@@ -214,7 +221,7 @@
     
     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [backBtn setImage:[UIImage imageNamed:@"navi_back"] forState:UIControlStateNormal];
-    backBtn.frame = CGRectMake(16, 27, 24, 30);
+    backBtn.frame = CGRectMake(16, 27, 30, 30);
     [backBtn addTarget:self action:@selector(back:) forControlEvents:UIControlEventTouchUpInside];
     [customNavView addSubview:backBtn];
     UILabel *titleLab = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, customNavView.frame.size.width, customNavView.frame.size.height-20)];
@@ -242,7 +249,7 @@
     
     
     //定位城市
-    UILabel *title1 = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 160, 21)];
+    UILabel *title1 = [[UILabel alloc]initWithFrame:CGRectMake(16, 10, 160, 21)];
     title1.text = @"定位城市";
     title1.font = [UIFont systemFontOfSize:12];
     title1.textColor = [UIColor lightGrayColor];
@@ -276,7 +283,7 @@
 //    [_tableHeaderView addSubview:_historicalCityGroupView];
     
     //热门城市
-    UILabel *title3 = [[UILabel alloc]initWithFrame:CGRectMake(10, _locatingCityGroupView.frame.origin.y+_locatingCityGroupView.frame.size.height+10, 160, 21)];
+    UILabel *title3 = [[UILabel alloc]initWithFrame:CGRectMake(16, _locatingCityGroupView.frame.origin.y+_locatingCityGroupView.frame.size.height+10, 160, 21)];
     title3.text = @"热门城市";
     title3.font = [UIFont systemFontOfSize:12];
     title3.textColor = [UIColor lightGrayColor];
@@ -510,23 +517,31 @@
     
     NSString *key = [_keys objectAtIndex:indexPath.section];
     NSString *cityName = [[_cities objectForKey:key] objectAtIndex:indexPath.row];
-    if ([_delegate respondsToSelector:@selector(didClickedWithCityName:)]) {
-        [_delegate didClickedWithCityName:cityName];
-        
-    }
+//    if ([_delegate respondsToSelector:@selector(didClickedWithCityName:)]) {
+//        [_delegate didClickedWithCityName:cityName];
+//        
+//    }
+//    
+//    [self dismissViewControllerAnimated:YES completion:nil];
     
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self checkCityWithName:cityName];
     
 }
 
 #pragma mark 按钮的点击事件
 -(void)ButtonGroupView:(ButtonGroupView *)buttonGroupView didClickedItem:(CityButton *)item
 {
+    [self checkCityWithName:item.cityItem.titleName];
+}
+
+#pragma mark 检查选择的城市是否有子城市
+- (void)checkCityWithName:(NSString *)cityName {
+    
     BOOL foundFlage = NO;
     NSInteger cityID = 0;
-    // 获取点击城市的ID
+    // 获取点击城市的ID（在开通的城市列表中搜索）
     for (DrivingCityListDMData *dmData in _openCityArray) {
-        if ([dmData.name isEqualToString:item.cityItem.titleName]) {
+        if ([dmData.name isEqualToString:cityName]) {
             foundFlage = YES;
             cityID = dmData.ID;
         }
@@ -537,37 +552,71 @@
         NSString *url = [NSString stringWithFormat:BASEURL, @"getchildopencity"];
         NSDictionary *dict = @{ @"cityid": [NSString stringWithFormat:@"%lu", (long)cityID] };
         
+        [DVVToast showFromView:self.view];
         [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
             
-            NSLog(@"%@", data);
+            [DVVToast hideFromView:self.view];
+//            NSLog(@"%@", data);
             
-            NSInteger type = [data[@"type"] integerValue];
-            if (0 == type) {
+            DVVCityListDMRootClass *dmRoot = [DVVCityListDMRootClass yy_modelWithJSON:data];
+            
+            if (0 == dmRoot.type) {
                 // 出错
+                [self obj_showTotasViewWithMes:@"查询详细信息出错"];
             }else {
-                NSArray *cityList = data[@"data"];
-                if (!cityList.count) {
-                    // 没有子城市
+                NSMutableArray *array = [NSMutableArray array];
+                
+                for (NSDictionary *dict in dmRoot.data) {
+                    DVVCityListDMData *dmData = [DVVCityListDMData yy_modelWithDictionary:dict];
+                    [array addObject:dmData];
+                }
+                
+                //                for (int i = 0; i < 10; i++) {
+                //                    DVVCityListDMData *dmData = [DVVCityListDMData new];
+                //                    dmData.ID = 235 + i;
+                //                    dmData.name = [NSString stringWithFormat:@"测试名%i", i];
+                //                    [array addObject:dmData];
+                //                }
+                
+                if (!array.count) {
+                    // 没有子城市（直接返回城市名）
+                    [self successWithCityName:cityName];
                 }else {
-                    // 有子城市
-                    
+                    // 有子城市（返回选择的区名）
+                    DVVSubCityView *subView = [DVVSubCityView new];
+                    subView.delegate = self;
+                    subView.dataArray = array;
+                    [subView show];
                 }
             }
             
         } withFailure:^(id data) {
-            ;
+            [DVVToast hideFromView:self.view];
+            [self obj_showTotasViewWithMes:@"网络错误"];
         }];
-        
-        if ([_delegate respondsToSelector:@selector(didClickedWithCityName:)]) {
-            
-            [_delegate didClickedWithCityName:item.cityItem.titleName];
+    }else {
+        if (![cityName isEqualToString:@"定位失败"]) {
+            [self obj_showTotasViewWithMes:@"此城市暂未开通业务"];
         }
     }
-    
-    [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
+- (void)dvvSubCityView:(DVVSubCityView *)dvvSubCityView didSelectItemWithCityName:(NSString *)cityName {
+    
+//    NSLog(@"cityName: %@", cityName);
+    
+    [self successWithCityName:cityName];
+}
 
+- (void)successWithCityName:(NSString *)cityName {
+    
+    if ([_delegate respondsToSelector:@selector(didClickedWithCityName:)]) {
+        
+        [_delegate didClickedWithCityName:cityName];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 NSInteger cityNameSort(id str1, id str2, void *context)

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "DVVCoachCommentViewModel.h"
-#import "DVVPromptNilDataView.h"
+#import "DVVNoDataPromptView.h"
 
 @interface DVVCoachCommentView : UITableView<UITableViewDataSource, UITableViewDelegate>
 
@@ -17,7 +17,7 @@
 @property (nonatomic, copy) NSString *coachID;
 @property (nonatomic, strong) UIButton *bottomButton;
 
-@property (nonatomic, strong) DVVPromptNilDataView *promptNilDataView;
+@property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
 
 - (CGFloat)dynamicHeight:(NSArray *)dataArray;
 - (void)refreshData:(NSArray *)dataArray;
