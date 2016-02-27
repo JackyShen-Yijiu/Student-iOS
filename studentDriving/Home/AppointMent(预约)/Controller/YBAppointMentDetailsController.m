@@ -7,7 +7,7 @@
 //
 
 #import "YBAppointMentDetailsController.h"
-#import "DVVCoachDetailViewModel.h"
+#import "YBAppointMentDetailsDataModel.h"
 #import "DrivingDetailTableHeaderView.h"
 #import "DVVToast.h"
 #import "DVVCoachDetailInfoCell.h"
@@ -21,6 +21,7 @@
 #import "YBAppointMentDetailsFootView.h"
 #import "YBAppointMentDetailsCancleView.h"
 #import "YBCancleAppointMentController.h"
+#import "ChatViewController.h"
 
 static NSString *infoCellID = @"kInfoCellID";
 static NSString *introductionCellID = @"kIntroductionCellID";
@@ -34,12 +35,11 @@ static NSString *courseCellID = @"kCourseCellID";
 
 @property (nonatomic, strong) DVVCoachDetailHeaderView *headerView;
 
-@property (nonatomic, strong) DVVCoachDetailViewModel *viewModel;
+@property (nonatomic, strong) YBAppointMentDetailsDataModel *viewModel;
 
 @property (nonatomic, strong) UITableView *tableView;
 
 @property (nonatomic, strong) UIButton *shuttleBusButton;
-@property (nonatomic, strong) UIButton *phoneButton;
 
 @property (nonatomic, assign) BOOL isShowIntroduction;
 
@@ -61,7 +61,7 @@ static NSString *courseCellID = @"kCourseCellID";
     // 测试时打开此注释
     //    _coachID = @"569d98e11a4e7c693a023499";
     
-    // 添加有上角的班车和拨打电话
+    // 聊天
     [self addNaviRightButton];
     
     [self.view addSubview:self.tableView];
@@ -120,48 +120,27 @@ static NSString *courseCellID = @"kCourseCellID";
     return nil;
 }
 
-#pragma mark - action
-
-#pragma mark - 拨打电话
-- (void)callPhone {
-    if (_viewModel.dmData.mobile && _viewModel.dmData.mobile.length) {
-        
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@", _viewModel.dmData.mobile];
-        UIWebView * callWebview = [[UIWebView alloc] init];
-        [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
-        [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:callWebview];
-    }else {
-        [self obj_showTotasViewWithMes:@"暂无电话信息"];
-    }
-}
-
-#pragma mark 班车路线
+#pragma mark 聊天
 - (void)shuttleBusButtonAction {
     
-    if (!_viewModel.dmData.isShuttle) {
-        [self obj_showTotasViewWithMes:@"暂无班车路线"];
-        return ;
-    }
-    ShuttleBusController *busVC = [ShuttleBusController new];
-    DrivingDetailViewModel *viewModel = [DrivingDetailViewModel new];
-    viewModel.schoolID = _viewModel.dmData.driveschoolinfo.ID;
-    [viewModel dvvSetRefreshSuccessBlock:^{
-        busVC.dataArray = viewModel.dmData.schoolbusroute;
-        [self.navigationController pushViewController:busVC animated:YES];
-    }];
-    [viewModel dvvNetworkRequestRefresh];
+    ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:_courseModel.userModel.coachid
+                                                                    conversationType:eConversationTypeChat];
+    chatController.title = _courseModel.userModel.name;
+    [self.navigationController pushViewController:chatController animated:YES];
 }
+
+
 
 #pragma mark - config view model
 - (void)configViewModel {
     
     __weak typeof(self) ws = self;
-    _viewModel = [DVVCoachDetailViewModel new];
-    _viewModel.coachID = _coachID;
+    _viewModel = [YBAppointMentDetailsDataModel new];
+    _viewModel.appointMentID = _appointMentID;
     
     [_viewModel dvv_setRefreshSuccessBlock:^{
         [ws.tableView reloadData];
-        [ws.headerView refreshData:ws.viewModel.dmData];
+        [ws.headerView refreshAppointMentData:ws.viewModel.dmData];
     }];
     [_viewModel dvv_setNilResponseObjectBlock:^{
         [ws obj_showTotasViewWithMes:@"暂无数据"];
@@ -184,61 +163,46 @@ static NSString *courseCellID = @"kCourseCellID";
     return 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 6;
 }
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 1;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 1;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    return [UIView new];
-}
-
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.row || 1 == indexPath.row) {
-        if (0 == indexPath.row) {
-            return [DVVCoachDetailInfoCell dynamicHeight:_viewModel.dmData type:0];
-        }else {
-            return [DVVCoachDetailInfoCell dynamicHeight:_viewModel.dmData type:1];
-        }
-    }else if (2 == indexPath.row) {
-        return [DVVCoachDetailIntroductionCell dynamicHeight:_viewModel.dmData isShowMore:_isShowIntroduction];
-    }else {
-        return [DVVCoachDetailTagCell dynamicHeight:_viewModel.dmData];
-    }
+    return 44;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.row || 1 == indexPath.row) {
-        DVVCoachDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:infoCellID];
-        if (1 == indexPath.row) {
-            cell.tag = 1;
-        }
-        [cell refreshData:_viewModel.dmData];
-        return cell;
+    
+    static NSString *MyIdentifier = @"MyIdentifier";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:MyIdentifier];
+    
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:MyIdentifier];
     }
-    if (2 == indexPath.row) {
-        DVVCoachDetailIntroductionCell *cell = [tableView dequeueReusableCellWithIdentifier:introductionCellID];
-        
-        [cell refreshData:_viewModel.dmData];
-        return cell;
-    }else {
-        DVVCoachDetailTagCell *cell = [tableView dequeueReusableCellWithIdentifier:tagCellID];
-        [cell refreshData:_viewModel.dmData];
-        return cell;
+    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    if (indexPath.row==0) {
+        cell.imageView.image = [UIImage imageNamed:@"ic_age"];
+        cell.textLabel.text = _viewModel.dmData.courseprocessdesc;
+    }else if (indexPath.row==1){
+        cell.imageView.image = [UIImage imageNamed:@"ic_teaching_subjects"];
+        cell.textLabel.text = _viewModel.dmData.learningcontent;
+    }else if (indexPath.row==2){
+        cell.imageView.image = [UIImage imageNamed:@"ic_car_type"];
+        cell.textLabel.text = _viewModel.dmData.classdatetimedesc;
+    }else if (indexPath.row==3){
+        cell.imageView.image = [UIImage imageNamed:@"ic_school"];
+        cell.textLabel.text = _viewModel.dmData.coachid.driveschoolinfo.name;
+    }else if (indexPath.row==4){
+        cell.imageView.image = [UIImage imageNamed:@"ic_training_grounds"];
+        cell.textLabel.text = _viewModel.dmData.trainfieldlinfo.name;
+    }else if (indexPath.row==5){
+        cell.imageView.image = [UIImage imageNamed:@"schoolDetail_trainingGround_icon"];
+        cell.textLabel.text = _viewModel.dmData.shuttleaddress;
     }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section) {
-        if (2 == indexPath.row) {
-            _isShowIntroduction = !_isShowIntroduction;
-            [_tableView reloadData];
-        }
-    }
+    
+    return cell;
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -326,7 +290,7 @@ static NSString *courseCellID = @"kCourseCellID";
     if (!_headerView) {
         _headerView = [DVVCoachDetailHeaderView new];
         _headerView.frame = CGRectMake(0, -64, [UIScreen mainScreen].bounds.size.width, [DVVCoachDetailHeaderView defaultHeight]);
-        _headerView.coachID = _coachID;
+        _headerView.coachID = _appointMentID;
     }
     return _headerView;
 }
@@ -361,18 +325,13 @@ static NSString *courseCellID = @"kCourseCellID";
 
 - (void)addNaviRightButton {
     
-    // 添加有上角的班车和拨打电话
     _shuttleBusButton = [UIButton new];
-    [_shuttleBusButton setImage:[UIImage imageNamed:@"bus_white_icon"] forState:UIControlStateNormal];
+    [_shuttleBusButton setImage:[UIImage imageNamed:@"Slide_Menu_Message_Normal"] forState:UIControlStateNormal];
     _shuttleBusButton.bounds = CGRectMake(0, 0, 24, 44);
     [_shuttleBusButton addTarget:self action:@selector(shuttleBusButtonAction) forControlEvents:UIControlEventTouchUpInside];
-    _phoneButton = [UIButton new];
-    [_phoneButton setImage:[UIImage imageNamed:@"phone_white_icon"] forState:UIControlStateNormal];
-    _phoneButton.bounds = CGRectMake(0, 0, 24, 44);
-    [_phoneButton addTarget:self action:@selector(callPhone) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *bbiBus = [[UIBarButtonItem alloc] initWithCustomView:_shuttleBusButton];
-    UIBarButtonItem *bbiPhone = [[UIBarButtonItem alloc] initWithCustomView:_phoneButton];
-    self.navigationItem.rightBarButtonItems = @[ bbiPhone, bbiBus ];
+    self.navigationItem.rightBarButtonItems = @[bbiBus];
+    
 }
 
 - (void)didReceiveMemoryWarning {
