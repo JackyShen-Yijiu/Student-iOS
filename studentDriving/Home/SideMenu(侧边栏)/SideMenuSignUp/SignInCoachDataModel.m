@@ -10,4 +10,10 @@
 
 @implementation SignInCoachDataModel
 
++ (NSDictionary *)modelCustomPropertyMapper {
+    return @{ @"gender": @"Gender",
+              @"coachIconModel":@"headportrait"
+               };
+}
+
 @end

@@ -12,6 +12,7 @@
 #import "SignInViewModel.h"
 #import "SignInDataModel.h"
 #import "ShowWarningBG.h"
+#import "SignInViewController.h"
 
 @interface SideMenuSignUpController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) SignInViewModel *viewModel;
@@ -28,8 +29,8 @@
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    UIView *lineFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
-    lineFooterView.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+    UIView *lineFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0.3)];
+    lineFooterView.backgroundColor = HM_LINE_COLOR ;
     self.tableView.tableFooterView = lineFooterView;
     [self configViewModel];
     [self configRefresh];
@@ -85,7 +86,7 @@
     return _viewModel.todayArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 105;
+    return 92;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *cellID = @"signUpID";
@@ -109,4 +110,17 @@
     }
     return _tableView;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    SignInDataModel *dataModel = _viewModel.todayArray[indexPath.row];
+    
+    if (!dataModel.signInStatus) {
+        [self showTotasViewWithMes:@"请在规定的时间内签到"];
+        return ;
+    }
+    SignInViewController *vc = [SignInViewController new];
+    vc.dataModel = dataModel;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end

@@ -62,37 +62,6 @@ static NSString *const kuserType = @"usertype";
 
 @implementation LoginViewController
 
-//- (UIView *)bottomLeftLineView {
-//    if (_bottomLeftLineView == nil) {
-//        _bottomLeftLineView = [[UIView alloc] initWithFrame:CGRectMake(15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
-//        _bottomLeftLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
-//    }
-//    return _bottomLeftLineView;
-//}
-//
-//- (UIView *)bottomRightLineView {
-//    if (_bottomRightLineView == nil) {
-//        _bottomRightLineView = [[UIView alloc] initWithFrame:CGRectMake(kSystemWide/2+15, kSystemHeight-43, (kSystemWide-60)/2, 1)];
-//        _bottomRightLineView.backgroundColor = [UIColor colorWithWhite:1 alpha:0.3];
-//    }
-//    return _bottomRightLineView;
-//}
-
-//- (UILabel *)bottomLabel {
-//    if (_bottomLabel == nil) {
-//        _bottomLabel = [[UILabel alloc ] initWithFrame:CGRectMake(0, 0, 30, 30)];
-//        _bottomLabel.center = CGPointMake(kSystemWide/2, kSystemHeight-43);
-//        _bottomLabel.text = @"or";
-//        _bottomLabel.layer.cornerRadius = 10;
-//        _bottomLabel.clipsToBounds = YES;
-//        _bottomLabel.textColor = [UIColor colorWithWhite:1 alpha:0.6];
-//        _bottomLabel.textAlignment = NSTextAlignmentCenter;
-//        _bottomLabel.backgroundColor = [UIColor clearColor];
-//        _bottomLabel.font = [UIFont systemFontOfSize:14];
-//        
-//    }
-//    return _bottomLabel;
-//}
 - (UIButton *)checkButton {
     if (!_checkButton) {
         _checkButton = [UIButton new];
@@ -113,14 +82,6 @@ static NSString *const kuserType = @"usertype";
     }
     return _userParam;
 }
-//- (UIImageView *)rightImageView {
-//    if (_rightImageView == nil) {
-//        _rightImageView = [[UIImageView alloc] init];
-//        _rightImageView.image = [UIImage imageNamed:@"随便看看"];
-//        _rightImageView.alpha = 0.6;
-//    }
-//    return _rightImageView;
-//}
 
 - (UIButton *)bottomButton {
     if (_bottomButton == nil) {
@@ -147,8 +108,9 @@ static NSString *const kuserType = @"usertype";
 - (UIView *)lineView {
     if (_lineView == nil) {
         _lineView = [[UIView alloc] init];
-        _lineView.layer.borderWidth = 0.5;
-        _lineView.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
+        _lineView.backgroundColor = HM_LINE_COLOR;
+//        _lineView.layer.borderWidth = 0.5;
+//        _lineView.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
         
     }
     return _lineView;
@@ -156,8 +118,9 @@ static NSString *const kuserType = @"usertype";
 - (UIView *)lineViewBottom {
     if (_lineViewBottom == nil) {
         _lineViewBottom = [[UIView alloc] init];
-        _lineViewBottom.layer.borderWidth = 0.5;
-        _lineViewBottom.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
+        _lineViewBottom.backgroundColor = HM_LINE_COLOR;
+//        _lineViewBottom.layer.borderWidth = 0.5;
+//        _lineViewBottom.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
     }
     return _lineViewBottom;
 }
@@ -231,7 +194,7 @@ static NSString *const kuserType = @"usertype";
           _phoneNumTextField.textColor = [UIColor colorWithHexString:@"212121"];
     
         
-        _phoneNumTextField.tag = 100;
+        _phoneNumTextField.tag = 1000;
         
 //        _phoneNumTextField.placeholder        = @" 手机号";
         [_phoneNumTextField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
@@ -260,7 +223,7 @@ static NSString *const kuserType = @"usertype";
 //        _passwordTextField.placeholder = @" 密码";
         [_passwordTextField setValue:[UIColor colorWithHexString:@"#999999"] forKeyPath:@"_placeholderLabel.textColor"];
         [_passwordTextField setValue:[UIFont systemFontOfSize:15] forKeyPath:@"_placeholderLabel.font"];
-        _passwordTextField.tag = 101;
+        _passwordTextField.tag = 1001;
 //        _passwordTextField.leftViewMode = UITextFieldViewModeAlways;
         _passwordTextField.font = [UIFont systemFontOfSize:15];
          _passwordTextField.textColor = [UIColor colorWithHexString:@"212121"];
@@ -322,9 +285,34 @@ static NSString *const kuserType = @"usertype";
 //    [self.view addSubview:self.bottomLabel];
     [self.view addSubview:self.checkButton];
 }
+#pragma mark ----- textFieldDelegate方法
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     if (!self.showWarningMessageView.isShowWarningMessage) {
         self.showWarningMessageView.hidden = YES;
+    }
+}
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    if (1000 == textField.tag) {
+        // 手机号输入完成
+        if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length  == 0) {
+            [self obj_showTotasViewWithMes:@"请输入手机号"];
+            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y, 120, 18)];
+            _showWarningMessageView.isShowWarningMessage  = NO;
+            [self.view addSubview:self.showWarningMessageView];
+            return;
+        }
+        if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
+            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y, 120, 18)];
+            _showWarningMessageView.isShowWarningMessage  = NO;
+            [self.view addSubview:self.showWarningMessageView];
+            return;
+        }
+
+
+        
+    }else if(1001 == textField.tag){
+        // 密码输入完成
     }
 }
 - (void)viewWillAppear:(BOOL)animated {
@@ -354,13 +342,6 @@ static NSString *const kuserType = @"usertype";
 
 - (void)dealLogin:(UIButton *)sender {
     
-    if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length  == 0) {
-        [self obj_showTotasViewWithMes:@"请输入手机号"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:self.showWarningMessageView];
-        return;
-    }
     
     if (self.passwordTextField.text == nil || self.passwordTextField.text.length  == 0) {
         [self obj_showTotasViewWithMes:@"请输入密码"];
@@ -370,13 +351,6 @@ static NSString *const kuserType = @"usertype";
         return;
     }
     
-    if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
-        [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _backGroundView.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:self.showWarningMessageView];
-        return;
-    }
     
     [self userExist];
 }
@@ -686,13 +660,13 @@ static NSString *const kuserType = @"usertype";
         make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(10);
         make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
     }];
     [self.lineViewBottom mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.passwordTextField.mas_bottom).with.offset(10);
         make.left.mas_equalTo(self.backGroundView.mas_left).with.offset(0);
         make.right.mas_equalTo(self.backGroundView.mas_right).with.offset(0);
-        make.height.mas_equalTo(@1);
+        make.height.mas_equalTo(@0.5);
     }];
 
     

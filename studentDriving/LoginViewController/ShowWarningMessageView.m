@@ -11,10 +11,19 @@
 @interface ShowWarningMessageView ()
 @property (nonatomic, strong) UILabel *textMessageLael;
 @property (nonatomic, strong) UIImageView *warningImageView;
+@property (nonatomic, strong) NSString *titleStr;
 @end
 
 @implementation ShowWarningMessageView
 - (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self addSubview:self.textMessageLael];
+        [self addSubview:self.warningImageView];
+    }
+    return self;
+}
+- (UIView *)initWithFrame:(CGRect)frame titile:(NSString *)titile{
+    self.titleStr = titile;
     if (self = [super initWithFrame:frame]) {
         [self addSubview:self.textMessageLael];
         [self addSubview:self.warningImageView];
