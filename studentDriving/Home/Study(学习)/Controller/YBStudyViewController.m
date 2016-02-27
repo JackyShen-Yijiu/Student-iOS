@@ -94,7 +94,7 @@
     [super viewDidAppear:animated];
     
     // 更新进度
-    [self changeScrollViewOffSetX:0];
+    [self changeScrollViewOffSetX:studyProgress];
     
 }
 
