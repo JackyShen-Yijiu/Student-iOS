@@ -95,7 +95,7 @@
         _anonymousButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_anonymousButton setTitle:@"男" forState:UIControlStateNormal];
         [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateSelected];
+        [_anonymousButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_anonymousButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
         [_anonymousButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
         [_anonymousButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
@@ -121,7 +121,7 @@
         _realNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_realNameButton setTitle:@"女" forState:UIControlStateNormal];
         [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bd4437"] forState:UIControlStateSelected];
+        [_realNameButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_realNameButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
         [_realNameButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
         [_realNameButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];

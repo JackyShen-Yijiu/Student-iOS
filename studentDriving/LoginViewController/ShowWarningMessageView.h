@@ -13,4 +13,6 @@
 
 @property (nonatomic,copy) NSString *message;
 
+- (UIView *)initWithFrame:(CGRect)frame titile:(NSString *)titile;
+
 @end

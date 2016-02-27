@@ -11,6 +11,7 @@
 @interface ShowWarningMessageView ()
 @property (nonatomic, strong) UILabel *textMessageLael;
 @property (nonatomic, strong) UIImageView *warningImageView;
+@property (nonatomic, strong) NSString *titleStr;
 @end
 
 @implementation ShowWarningMessageView
@@ -21,11 +22,19 @@
     }
     return self;
 }
+- (UIView *)initWithFrame:(CGRect)frame titile:(NSString *)titile{
+    self.titleStr = titile;
+    if (self = [super initWithFrame:frame]) {
+        [self addSubview:self.textMessageLael];
+        [self addSubview:self.warningImageView];
+    }
+    return self;
+}
 - (UILabel *)textMessageLael{
     if (_textMessageLael == nil) {
         _textMessageLael = [[UILabel alloc] init];
         _textMessageLael.text = @"您填入的信息有误";
-        _textMessageLael.textColor = [UIColor colorWithHexString:@"bd4437"];
+        _textMessageLael.textColor = YBNavigationBarBgColor;
         _textMessageLael.font = [UIFont systemFontOfSize:10];
         _textMessageLael.textAlignment = NSTextAlignmentRight;
         

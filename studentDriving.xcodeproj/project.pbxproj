@@ -67,6 +67,7 @@
 		55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B671C26798500AC64FF /* SubmitVerificationController.m */; };
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
+		560D21DC1C813A7F001B8B83 /* SignInCoachIconModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D21DB1C813A7F001B8B83 /* SignInCoachIconModel.m */; };
 		5611A59C1C7EEE0500DC083D /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A59B1C7EEE0500DC083D /* YBDiscountCell.m */; };
 		5611A59F1C7EEEC800DC083D /* YBDiscountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A59E1C7EEEC800DC083D /* YBDiscountModel.m */; };
 		5611A5A51C7F2D7700DC083D /* YBIntegrationMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */; };
@@ -1127,6 +1128,8 @@
 		55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
 		55901B6C1C26811900AC64FF /* AppointmentDrivingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDrivingViewController.h; sourceTree = "<group>"; };
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
+		560D21DA1C813A7F001B8B83 /* SignInCoachIconModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInCoachIconModel.h; sourceTree = "<group>"; };
+		560D21DB1C813A7F001B8B83 /* SignInCoachIconModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInCoachIconModel.m; sourceTree = "<group>"; };
 		5611A59A1C7EEE0500DC083D /* YBDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBDiscountCell.h; path = "studentDriving/Home/SideMenu(侧边栏)/SideMenuEditorMessage/YBDiscountCell.h"; sourceTree = SOURCE_ROOT; };
 		5611A59B1C7EEE0500DC083D /* YBDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBDiscountCell.m; path = "studentDriving/Home/SideMenu(侧边栏)/SideMenuEditorMessage/YBDiscountCell.m"; sourceTree = SOURCE_ROOT; };
 		5611A59D1C7EEEC800DC083D /* YBDiscountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBDiscountModel.h; path = "studentDriving/Home/SideMenu(侧边栏)/SideMenuEditorMessage/YBDiscountModel.h"; sourceTree = SOURCE_ROOT; };
@@ -3207,6 +3210,8 @@
 				56855C451C787736005D4517 /* SignInCoachDataModel.m */,
 				56855C461C787736005D4517 /* SignInDataModel.h */,
 				56855C471C787736005D4517 /* SignInDataModel.m */,
+				560D21DA1C813A7F001B8B83 /* SignInCoachIconModel.h */,
+				560D21DB1C813A7F001B8B83 /* SignInCoachIconModel.m */,
 				56855C481C787736005D4517 /* SignInHelpViewController.h */,
 				56855C491C787736005D4517 /* SignInHelpViewController.m */,
 				56855C4A1C787736005D4517 /* SignInViewController.h */,
@@ -6555,6 +6560,7 @@
 				D9B268941C78396D00F62804 /* DVVCoachDetailHeaderView.m in Sources */,
 				D588AFC21BDDDAAB000C5D6F /* Logoimg.m in Sources */,
 				D5C240031BE9F79B00832CF3 /* BLAVPlayerViewController.m in Sources */,
+				560D21DC1C813A7F001B8B83 /* SignInCoachIconModel.m in Sources */,
 				0647A5B61C34BB8700DBB8A3 /* DiscountShopController.m in Sources */,
 				D965CAB51C239E2E00DCD094 /* DVVCycleShowImagesView.m in Sources */,
 				D970D3A21C3D0468003FCED3 /* NSObject+YYModel.m in Sources */,

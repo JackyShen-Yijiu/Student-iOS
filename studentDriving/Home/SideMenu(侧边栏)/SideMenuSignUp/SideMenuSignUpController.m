@@ -11,10 +11,13 @@
 #import "MJRefresh.h"
 #import "SignInViewModel.h"
 #import "SignInDataModel.h"
+#import "ShowWarningBG.h"
+#import "SignInViewController.h"
 
 @interface SideMenuSignUpController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) SignInViewModel *viewModel;
 @property (nonatomic, strong) UITableView *tableView;
+@property (nonatomic, strong) ShowWarningBG *warningBG;
 @end
 
 @implementation SideMenuSignUpController
@@ -22,17 +25,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"今天的预约";
-    self.view.backgroundColor = RGBColor(234, 234, 234);
+    self.view.backgroundColor = RGBColor(249, 249, 249);
     [self.view addSubview:self.tableView];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    UIView *lineFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 1)];
-    lineFooterView.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
+    UIView *lineFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0.3)];
+    lineFooterView.backgroundColor = HM_LINE_COLOR ;
     self.tableView.tableFooterView = lineFooterView;
     [self configViewModel];
     [self configRefresh];
 }
-
+- (void)viewWillDisappear:(BOOL)animated{
+    [_warningBG hidden];
+}
 #pragma mark - config ViewModel
 - (void)configViewModel {
     
@@ -44,8 +49,8 @@
     }];
     // 服务器返回的数据为空时的回调
     [_viewModel dvv_setNilResponseObjectBlock:^{
-        
-        
+     _warningBG =  [[ShowWarningBG alloc] initWithTietleName:@"小步没有找到您的预约信息"];
+        [_warningBG show];
         
     }];
     // 网络成功或错误都调用的回调 (一般在这里隐藏HUD)
@@ -62,6 +67,7 @@
     // 开始请求网络数据
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [_viewModel dvv_networkRequestRefresh];
+    
 }
 
 #pragma mark - config refresh
@@ -80,7 +86,7 @@
     return _viewModel.todayArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 105;
+    return 92;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NSString *cellID = @"signUpID";
@@ -104,4 +110,17 @@
     }
     return _tableView;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    SignInDataModel *dataModel = _viewModel.todayArray[indexPath.row];
+    
+    if (!dataModel.signInStatus) {
+        [self showTotasViewWithMes:@"请在规定的时间内签到"];
+        return ;
+    }
+    SignInViewController *vc = [SignInViewController new];
+    vc.dataModel = dataModel;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 @end

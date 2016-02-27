@@ -154,12 +154,16 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         
         if ([[AcountManager manager].userSubject.subjectId isEqual:@(1)]){
             self.mainNav.tabBarController.selectedIndex = 1;
+            self.vcType = 1;
         }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(2)]){
             self.mainNav.tabBarController.selectedIndex = 2;
+            self.vcType = 2;
         }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(3)]){
             self.mainNav.tabBarController.selectedIndex = 2;
+            self.vcType = 2;
         }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(4)]){
             self.mainNav.tabBarController.selectedIndex = 1;
+            self.vcType = 1;
         }
         
     }

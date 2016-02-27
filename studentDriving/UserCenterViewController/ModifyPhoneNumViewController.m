@@ -206,7 +206,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
             dispatch_source_cancel(timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.gainNum.titleLabel.font = [UIFont systemFontOfSize:15];
-                self.gainNum.backgroundColor  = [UIColor colorWithHexString:@"bd4437"];;
+                self.gainNum.backgroundColor  = YBNavigationBarBgColor;
                 [self.gainNum setTitle:@"获取验证码" forState:UIControlStateNormal];
                 self.gainNum.userInteractionEnabled = YES;
             });

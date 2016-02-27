@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIImageView *warnImageView;
 @property (nonatomic, strong) UILabel *titleNameLabel;
 @property (nonatomic, strong) NSString *titleName;
+@property (nonatomic, assign) CGFloat titleH;
 
 @end
 
@@ -20,6 +21,7 @@
 
 - (instancetype)initWithTietleName:(NSString *)titleName{
     if (self = [super init]) {
+        self.titleH  = [self getLabelWidthWithString:titleName];
         self.titleName = titleName;
         [self initUI];
     }
@@ -59,6 +61,12 @@
         [win addSubview:self];
     }
 }
+- (void)hidden
+{
+[self removeFromSuperview];
+
+}
+
 - (UIView *)bgView{
     if (_bgView == nil) {
         _bgView = [[UIView alloc] init];
@@ -79,11 +87,16 @@
 }
 - (UILabel *)titleNameLabel{
     if (_titleNameLabel == nil) {
-        _titleNameLabel = [[UILabel alloc] initWithFrame:CGRectMake((kSystemWide - 200) / 2, 75 + 10, 200, 14)];
+        _titleNameLabel = [[UILabel alloc] initWithFrame:CGRectMake((kSystemWide -  self.titleH) / 2, 75 + 10, 200, 14)];
         _titleNameLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
         _titleNameLabel.font = [UIFont systemFontOfSize:14];
     }
     return _titleNameLabel;
 }
-
+- (CGFloat)getLabelWidthWithString:(NSString *)string {
+    CGRect bounds = [string boundingRectWithSize:
+                     CGSizeMake([[UIScreen mainScreen] bounds].size.width - 30, 10000) options:
+                     NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.f]} context:nil];
+    return bounds.size.width;
+}
 @end

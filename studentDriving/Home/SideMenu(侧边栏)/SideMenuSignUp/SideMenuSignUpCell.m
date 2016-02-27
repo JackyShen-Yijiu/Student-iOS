@@ -46,10 +46,10 @@
 - (void)layoutSubviews{
     [super layoutSubviews];
     [self.iconImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).offset(20);
-        make.left.mas_equalTo(self.mas_left).offset(20);
-        make.height.mas_equalTo(@50);
-        make.width.mas_equalTo(@50);
+        make.top.mas_equalTo(self.mas_top).offset(15);
+        make.left.mas_equalTo(self.mas_left).offset(15);
+        make.height.mas_equalTo(@40);
+        make.width.mas_equalTo(@40);
     }];
     [self.signLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.iconImageView.mas_bottom).offset(10);
@@ -58,27 +58,27 @@
         make.width.mas_equalTo(@50);
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).offset(20);
-        make.left.mas_equalTo(self.iconImageView.mas_right).offset(20);
+        make.top.mas_equalTo(self.mas_top).offset(15);
+        make.left.mas_equalTo(self.iconImageView.mas_right).offset(15);
         make.height.mas_equalTo(@14);
         make.right.mas_equalTo(self.mas_right).offset(0);
     }];
     [self.groundLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(10);
-        make.left.mas_equalTo(self.iconImageView.mas_right).offset(20);
+        make.left.mas_equalTo(self.iconImageView.mas_right).offset(15);
         make.height.mas_equalTo(@14);
         make.right.mas_equalTo(self.mas_right).offset(0);
     }];
     [self.timeSignLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.groundLabel.mas_bottom).offset(10);
-        make.left.mas_equalTo(self.iconImageView.mas_right).offset(20);
+        make.left.mas_equalTo(self.iconImageView.mas_right).offset(15);
         make.height.mas_equalTo(@14);
         make.right.mas_equalTo(self.mas_right).offset(0);
     }];
     [self.lineBottom mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.timeSignLabel.mas_bottom).offset(23);
-        make.left.mas_equalTo(self.iconImageView.mas_right).offset(20);
-        make.height.mas_equalTo(@1);
+        make.top.mas_equalTo(self.timeSignLabel.mas_bottom).offset(15);
+        make.left.mas_equalTo(self.iconImageView.mas_right).offset(15);
+        make.height.mas_equalTo(@0.5);
         make.right.mas_equalTo(self.mas_right).offset(0);
     }];
 
@@ -94,7 +94,7 @@
     if (_iconImageView == nil) {
         _iconImageView = [[UIImageView alloc] init];
         [_iconImageView.layer setMasksToBounds:YES];
-        [_iconImageView.layer setCornerRadius:25];
+        [_iconImageView.layer setCornerRadius:20];
         _iconImageView.backgroundColor = [UIColor cyanColor];
     }
     return _iconImageView;
@@ -144,7 +144,7 @@
     
     if (_lineBottom == nil) {
         _lineBottom = [[UIView alloc] init];
-        _lineBottom.backgroundColor= [UIColor colorWithHexString:@"bdbdbd"];
+        _lineBottom.backgroundColor= HM_LINE_COLOR;
     }
     return _lineBottom;
 }
@@ -162,8 +162,8 @@
 
      */
     if (dataModel.signInStatus) {
-        self.timeSignLabel.textColor = [UIColor colorWithHexString:@"bd4437"];
-        self.signLabel.textColor = [UIColor colorWithHexString:@"bd4437"];
+        self.timeSignLabel.textColor = YBNavigationBarBgColor;
+        self.signLabel.textColor = YBNavigationBarBgColor;
         self.signLabel.text = @"可签到";
     }else{
         self.signLabel.text = @"不可签到";
@@ -171,6 +171,15 @@
     
     self.nameLabel.text = dataModel.coachDataModel.name;
     self.timeSignLabel.text = [NSString stringWithFormat:@"今天 %@-%@", dataModel.beginTime, dataModel.endTime];
+    NSLog(@"%@,%@",dataModel.coachDataModel.gender,dataModel.coachDataModel.coachIconModel.originalpic);
+    if ([dataModel.coachDataModel.gender isEqualToString:@"男"]) {
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:dataModel.coachDataModel.coachIconModel.originalpic] placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
+    }else if([dataModel.coachDataModel.gender isEqualToString:@"女"]){
+        [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:dataModel.coachDataModel.coachIconModel.originalpic] placeholderImage:[UIImage imageNamed:@"coach_woman_default_icon"]];
+    }else{
+        [self.iconImageView sd_setImageWithURL:nil placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
+    }
+    
     
 }
 @end

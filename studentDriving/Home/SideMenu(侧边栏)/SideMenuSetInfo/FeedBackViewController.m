@@ -100,7 +100,7 @@
         [_submitButton setTitle:@"提交" forState:UIControlStateNormal];
         _submitButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_submitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        _submitButton.backgroundColor = MAIN_BACKGROUND_COLOR;
+        _submitButton.backgroundColor = YBNavigationBarBgColor;
         [_submitButton addTarget:self action:@selector(clickSubmit:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submitButton;
@@ -127,9 +127,9 @@
     [self.view addSubview:self.submitButton];
     
     [self.submitButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).offset(15);
-        make.top.mas_equalTo(self.textView.mas_bottom).offset(15);
-        make.right.mas_equalTo(self.view.mas_right).offset(-15);
+        make.left.mas_equalTo(self.view.mas_left).offset(0);
+        make.top.mas_equalTo(self.textView.mas_bottom).offset(30);
+        make.right.mas_equalTo(self.view.mas_right).offset(0);
         make.height.mas_equalTo(@44);
     }];
 }

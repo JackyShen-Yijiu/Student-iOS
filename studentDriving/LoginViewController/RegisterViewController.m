@@ -101,7 +101,7 @@ static NSString *const kcodeGainUrl = @"code";
         [_sendButton addTarget:self action:@selector(dealSend:) forControlEvents:UIControlEventTouchUpInside];
 //        [_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         _sendButton.titleLabel.font = [UIFont systemFontOfSize:15];
-        _sendButton.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+        _sendButton.backgroundColor = YBNavigationBarBgColor;
         [_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_sendButton setTitle:@"发送验证码" forState:UIControlStateNormal];
         
@@ -112,7 +112,7 @@ static NSString *const kcodeGainUrl = @"code";
 - (UIButton *)registerButton{
     if (_registerButton == nil) {
         _registerButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _registerButton.backgroundColor = [UIColor colorWithHexString:@"db4437"];
+        _registerButton.backgroundColor = YBNavigationBarBgColor;
         _registerButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_registerButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_registerButton addTarget:self action:@selector(dealRegister:) forControlEvents:UIControlEventTouchUpInside];
@@ -282,7 +282,7 @@ static NSString *const kcodeGainUrl = @"code";
 //    self.view.layer.contents = (id)[UIImage imageNamed:@"login_background"].CGImage;
 //    self.view.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"bg"]];
     self.title = @"注册";
-    [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithHexString:@"bd4437"]];
+    [self.navigationController.navigationBar setBarTintColor:YBNavigationBarBgColor];
     
     CGRect backframe= CGRectMake(0, 0, 20, 20);
     UIButton* backButton= [UIButton buttonWithType:UIButtonTypeSystem];
@@ -528,7 +528,7 @@ static NSString *const kcodeGainUrl = @"code";
             dispatch_source_cancel(timer);
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.sendButton.titleLabel.font = [UIFont systemFontOfSize:15];
-                _sendButton.backgroundColor = [UIColor colorWithHexString:@"bd4437"];
+                _sendButton.backgroundColor = YBNavigationBarBgColor;
                 [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
                 self.sendButton.userInteractionEnabled = YES;
             });

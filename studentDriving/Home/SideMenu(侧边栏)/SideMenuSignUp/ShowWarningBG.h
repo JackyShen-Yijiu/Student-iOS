@@ -15,4 +15,5 @@
 
 - (instancetype)initWithTietleName:(NSString *)titleName;
 - (void)show;
+- (void)hidden;
 @end

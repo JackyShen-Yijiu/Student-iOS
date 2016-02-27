@@ -132,7 +132,7 @@
         make.top.mas_equalTo(self.describleTextField.mas_bottom).offset(15);
         make.left.mas_equalTo(self.mas_left).offset(20);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.height.mas_equalTo(@0.7);
+        make.height.mas_equalTo(@0.5);
     }];
     [self.showWarningMessageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).offset(10);
@@ -165,8 +165,8 @@
 - (UIView *)lineView{
     if (_lineView == nil) {
         _lineView = [[UIView alloc] init];
-        _lineView.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
-        _lineView.alpha = 0.7;
+        _lineView.backgroundColor = HM_LINE_COLOR;
+        
     }
     return _lineView;
 }

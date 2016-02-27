@@ -10,7 +10,7 @@
 
 @interface YBBaoMingDuiHuanQuanTableView : UIView
 @property(nonatomic,weak) UIViewController *parentViewController;
-
+@property (nonatomic, strong) UITableView *dataTabelView;
 @property (nonatomic,strong) NSArray *dataArray;
 - (void)reloadData;
 @end

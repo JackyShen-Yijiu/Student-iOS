@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SignInCoachIconModel.h"
 
 @interface SignInCoachDataModel : NSObject
 
 @property (nonatomic, strong) NSString *name;
 
+@property (nonatomic, strong) NSString *gender;
+
+@property (nonatomic, strong) SignInCoachIconModel *coachIconModel;
 @end

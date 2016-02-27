@@ -97,7 +97,7 @@
         _numberMoney = [[UILabel alloc] init];
         _numberMoney.text = @"#3980";
         _numberMoney.font = [UIFont systemFontOfSize:10];
-        _numberMoney.textColor = [UIColor colorWithHexString:@"bd4437"];
+        _numberMoney.textColor = YBNavigationBarBgColor;
     }
     return _numberMoney;
 }
