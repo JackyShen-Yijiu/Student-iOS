@@ -17,6 +17,19 @@
 
 @implementation YBBaoMingDuiHuanQuanCell
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"YBBaoMingDuiHuanQuanCell" owner:self options:nil];
+        YBBaoMingDuiHuanQuanCell *cell = xibArray.firstObject;
+        
+        [cell setRestorationIdentifier:reuseIdentifier];
+        self = cell;
+    }
+    return self;
+}
+
 - (void)setDictModel:(NSDictionary *)dictModel
 {
     _dictModel = dictModel;
@@ -26,9 +39,11 @@
     
     self.detailLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_dictModel[@"createtime"]]];
 
-    self.rightTopLabel.text = @"优惠券单号";
-
+    self.rightTopLabel.text = @"兑换券单号";
+    self.rightTopLabel.textColor = MAINCOLOR;
+    
     self.rightFootLabel.text = [NSString stringWithFormat:@"%@",_dictModel[@"userid"]];
+    self.rightFootLabel.textColor = MAINCOLOR;
     
 //    {
 //        "_id": "56812f877b340f4e48423164",

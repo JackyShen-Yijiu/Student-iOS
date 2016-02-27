@@ -100,7 +100,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    navBarHairlineImageView.hidden=NO;
+//    navBarHairlineImageView.hidden=NO;
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -151,6 +151,10 @@
 
 - (void)setUpData
 {
+    
+    [self startSubjectFirstDownLoad];
+    [self startSubjectFourDownLoad];
+    
     // JSON文件的路径
     NSString *path = [[NSBundle mainBundle] pathForResource:@"YBStudyData.json" ofType:nil];
     
@@ -226,7 +230,9 @@
         float progress = [[AcountManager manager].subjectone.finishcourse floatValue]/[[AcountManager manager].subjectone.totalcourse floatValue];
         NSLog(@"-------progress:%f",progress);
         
-        [self.progressView.progressSliderView setProgress:progress];
+        self.progressView.progressSliderView.realProgress = progress;
+
+//        [self.progressView.progressSliderView setProgress:0.2];
         self.progressView.topLabel.text = topStr;
         
     }else if (studyProgress == 1){
@@ -238,7 +244,8 @@
         NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjecttwo.progress];
         float progress = [[AcountManager manager].subjecttwo.finishcourse floatValue]/[[AcountManager manager].subjecttwo.totalcourse floatValue];
         
-        [self.progressView.progressSliderView setProgress:progress];
+//        [self.progressView.progressSliderView setProgress:0.5];
+        self.progressView.progressSliderView.realProgress = progress;
         self.progressView.topLabel.text = topStr;
         
     }else if (studyProgress == 2){
@@ -250,7 +257,9 @@
         NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectthree.progress];
         float progress = [[AcountManager manager].subjectthree.finishcourse floatValue]/[[AcountManager manager].subjectthree.totalcourse floatValue];
         
-        [self.progressView.progressSliderView setProgress:progress];
+        self.progressView.progressSliderView.realProgress = progress;
+
+//        [self.progressView.progressSliderView setProgress:0.7];
         self.progressView.topLabel.text = topStr;
         
     }else if (studyProgress == 3){
@@ -266,10 +275,14 @@
         NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectfour.progress];
         float progress = [[AcountManager manager].subjectfour.finishcourse floatValue]/[[AcountManager manager].subjectfour.totalcourse floatValue];
         
-        [self.progressView.progressSliderView setProgress:progress];
+        self.progressView.progressSliderView.realProgress = progress;
+
+//        [self.progressView.progressSliderView setProgress:1.0];
         self.progressView.topLabel.text = topStr;
         
     }
+    
+    NSLog(@"self.progressView.progressSliderView.progress:%f",self.progressView.progressSliderView.progress);
     
 }
 
@@ -326,6 +339,7 @@
 {
     if (_progressView==nil) {
         _progressView = [[YBStudeyProgressView alloc]  init];
+        _progressView.progressSliderView.progress = 0.0;
     }
     return _progressView;
 }

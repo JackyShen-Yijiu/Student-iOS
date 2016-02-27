@@ -135,8 +135,8 @@ static NSString *courseCellID = @"kCourseCellID";
     DrivingDetailViewModel *viewModel = [DrivingDetailViewModel new];
     viewModel.schoolID = _viewModel.dmData.driveschoolinfo.ID;
     [viewModel dvvSetRefreshSuccessBlock:^{
-        
-        if (!viewModel.dmData.schoolbusroute) {
+        NSLog(@"%li", viewModel.dmData.schoolbusroute.count);
+        if (!viewModel.dmData.schoolbusroute || !viewModel.dmData.schoolbusroute.count) {
             [self obj_showTotasViewWithMes:@"暂无班车信息"];
         }else {
             busVC.dataArray = viewModel.dmData.schoolbusroute;

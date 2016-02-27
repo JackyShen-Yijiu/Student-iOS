@@ -21,7 +21,7 @@
 {
 	self = [super init];
 	if(![dictionary[@"id"] isKindOfClass:[NSNull class]]){
-		self.idField = [dictionary[@"id"] integerValue];
+		self.ID = [dictionary[@"id"] integerValue];
 	}
 
 	if(![dictionary[@"name"] isKindOfClass:[NSNull class]]){

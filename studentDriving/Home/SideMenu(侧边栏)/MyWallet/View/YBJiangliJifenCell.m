@@ -16,6 +16,18 @@
 
 @implementation YBJiangliJifenCell
 
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
+{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"YBJiangliJifenCell" owner:self options:nil];
+        YBJiangliJifenCell *cell = xibArray.firstObject;
+        [cell setRestorationIdentifier:reuseIdentifier];
+        self = cell;
+    }
+    return self;
+}
+
 // 奖励积分
 - (void)setJianglijifenModel:(NSDictionary *)jianglijifenModel
 {
@@ -28,6 +40,7 @@
     self.timeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_jianglijifenModel[@"createtime"]]];
     
     self.detailLabel.text = [NSString stringWithFormat:@"+%@积分",_jianglijifenModel[@"amount"]];
+    self.detailLabel.textColor = MAINCOLOR;
     
 //    "createtime": "2015-11-09T12:39:36.624Z",
 //    "amount": -5000,
@@ -57,11 +70,12 @@
     NSLog(@"_kequxianjineduModel:%@",_kequxianjineduModel);
     
     // // 0 支出 1 报名奖励 2 邀请奖励 3 下线分红
-    self.titleLabel.text = [self getKequxianjinedTitle:[_jianglijifenModel[@"type"] integerValue]];
+    self.titleLabel.text = [self getKequxianjinedTitle:[_kequxianjineduModel[@"type"] integerValue]];
     
-    self.timeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_jianglijifenModel[@"createtime"]]];
+    self.timeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_kequxianjineduModel[@"createtime"]]];
     
-    self.detailLabel.text = [NSString stringWithFormat:@"%@元",_jianglijifenModel[@"income"]];
+    self.detailLabel.text = [NSString stringWithFormat:@"%@元",_kequxianjineduModel[@"income"]];
+    self.detailLabel.textColor = MAINCOLOR;
     
 //    "createtime": "",
 //    " type": "0",
