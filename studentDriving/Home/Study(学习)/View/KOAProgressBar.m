@@ -85,7 +85,7 @@
     
 	self.displayedWhenStopped = YES;
 	self.timerInterval = 0.1;
-	self.progressValue = 0.01;
+	self.progressValue = 0.00;
 
 	initialized = YES;
     
