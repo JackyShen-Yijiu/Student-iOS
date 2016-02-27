@@ -13,6 +13,6 @@
 
 @property (nonatomic,strong) HMCourseModel  * courseModel;
 
-@property (nonatomic, copy) NSString *coachID;
+@property (nonatomic, copy) NSString *appointMentID;
 
 @end

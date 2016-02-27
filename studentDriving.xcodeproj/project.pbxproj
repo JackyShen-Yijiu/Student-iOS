@@ -258,6 +258,14 @@
 		B2F1AEA31C816FF0006D56FF /* YBCheatsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEA11C816FF0006D56FF /* YBCheatsCell.m */; };
 		B2F1AEA41C816FF0006D56FF /* YBCheatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AEA21C816FF0006D56FF /* YBCheatsCell.xib */; };
 		B2F1AEA61C817AB2006D56FF /* YBCheatsData.json in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AEA51C817AB2006D56FF /* YBCheatsData.json */; };
+		B2F1AEA91C819D3A006D56FF /* YBAppointMentDetailsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEA81C819D3A006D56FF /* YBAppointMentDetailsDataModel.m */; };
+		B2F1AEE81C81AC3B006D56FF /* YBAppointMentDetailsDataCoachid.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEDB1C81AC3B006D56FF /* YBAppointMentDetailsDataCoachid.m */; };
+		B2F1AEE91C81AC3B006D56FF /* YBAppointMentDetailsDataData.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEDD1C81AC3B006D56FF /* YBAppointMentDetailsDataData.m */; };
+		B2F1AEEA1C81AC3B006D56FF /* YBAppointMentDetailsDataDriveschoolinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEDF1C81AC3B006D56FF /* YBAppointMentDetailsDataDriveschoolinfo.m */; };
+		B2F1AEEB1C81AC3B006D56FF /* YBAppointMentDetailsDataHeadportrait.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEE11C81AC3B006D56FF /* YBAppointMentDetailsDataHeadportrait.m */; };
+		B2F1AEEC1C81AC3B006D56FF /* YBAppointMentDetailsDataRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEE31C81AC3B006D56FF /* YBAppointMentDetailsDataRootClass.m */; };
+		B2F1AEED1C81AC3B006D56FF /* YBAppointMentDetailsDataSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEE51C81AC3B006D56FF /* YBAppointMentDetailsDataSubject.m */; };
+		B2F1AEEE1C81AC3B006D56FF /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEE71C81AC3B006D56FF /* YBAppointMentDetailsDataTrainfieldlinfo.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1581,6 +1589,22 @@
 		B2F1AEA11C816FF0006D56FF /* YBCheatsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCheatsCell.m; sourceTree = "<group>"; };
 		B2F1AEA21C816FF0006D56FF /* YBCheatsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBCheatsCell.xib; sourceTree = "<group>"; };
 		B2F1AEA51C817AB2006D56FF /* YBCheatsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YBCheatsData.json; sourceTree = "<group>"; };
+		B2F1AEA71C819D3A006D56FF /* YBAppointMentDetailsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataModel.h; sourceTree = "<group>"; };
+		B2F1AEA81C819D3A006D56FF /* YBAppointMentDetailsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataModel.m; sourceTree = "<group>"; };
+		B2F1AEDA1C81AC3B006D56FF /* YBAppointMentDetailsDataCoachid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataCoachid.h; sourceTree = "<group>"; };
+		B2F1AEDB1C81AC3B006D56FF /* YBAppointMentDetailsDataCoachid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataCoachid.m; sourceTree = "<group>"; };
+		B2F1AEDC1C81AC3B006D56FF /* YBAppointMentDetailsDataData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataData.h; sourceTree = "<group>"; };
+		B2F1AEDD1C81AC3B006D56FF /* YBAppointMentDetailsDataData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataData.m; sourceTree = "<group>"; };
+		B2F1AEDE1C81AC3B006D56FF /* YBAppointMentDetailsDataDriveschoolinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataDriveschoolinfo.h; sourceTree = "<group>"; };
+		B2F1AEDF1C81AC3B006D56FF /* YBAppointMentDetailsDataDriveschoolinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataDriveschoolinfo.m; sourceTree = "<group>"; };
+		B2F1AEE01C81AC3B006D56FF /* YBAppointMentDetailsDataHeadportrait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataHeadportrait.h; sourceTree = "<group>"; };
+		B2F1AEE11C81AC3B006D56FF /* YBAppointMentDetailsDataHeadportrait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataHeadportrait.m; sourceTree = "<group>"; };
+		B2F1AEE21C81AC3B006D56FF /* YBAppointMentDetailsDataRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataRootClass.h; sourceTree = "<group>"; };
+		B2F1AEE31C81AC3B006D56FF /* YBAppointMentDetailsDataRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataRootClass.m; sourceTree = "<group>"; };
+		B2F1AEE41C81AC3B006D56FF /* YBAppointMentDetailsDataSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataSubject.h; sourceTree = "<group>"; };
+		B2F1AEE51C81AC3B006D56FF /* YBAppointMentDetailsDataSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataSubject.m; sourceTree = "<group>"; };
+		B2F1AEE61C81AC3B006D56FF /* YBAppointMentDetailsDataTrainfieldlinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataTrainfieldlinfo.h; sourceTree = "<group>"; };
+		B2F1AEE71C81AC3B006D56FF /* YBAppointMentDetailsDataTrainfieldlinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataTrainfieldlinfo.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3710,6 +3734,8 @@
 			children = (
 				B2E8E1AB1C72C78B000190C2 /* YBAppointMentController.h */,
 				B2E8E1AC1C72C78B000190C2 /* YBAppointMentController.m */,
+				B2F1AE4D1C7D7885006D56FF /* YBAppointMentDetailsController.h */,
+				B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */,
 				B226AE981C7478240028DF1A /* YBAppointMentChangeCoachController.h */,
 				B226AE991C7478240028DF1A /* YBAppointMentChangeCoachController.m */,
 				B226AF131C76E5490028DF1A /* YBCoachListViewController.h */,
@@ -3718,8 +3744,6 @@
 				B226AF1A1C76EAAA0028DF1A /* YBCoachListSearchController.m */,
 				B22E1E9A1C78923F000E8AEE /* YBForceEvaluateViewController.h */,
 				B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */,
-				B2F1AE4D1C7D7885006D56FF /* YBAppointMentDetailsController.h */,
-				B2F1AE4E1C7D7885006D56FF /* YBAppointMentDetailsController.m */,
 				B2F1AE591C7DBAED006D56FF /* YBCancleAppointMentController.h */,
 				B2F1AE5A1C7DBAED006D56FF /* YBCancleAppointMentController.m */,
 			);
@@ -3756,6 +3780,22 @@
 				B226AEC11C7480530028DF1A /* ModelDefine.h */,
 				B2F1AE501C7D9C34006D56FF /* YBAppointMentCoachModel.h */,
 				B2F1AE511C7D9C34006D56FF /* YBAppointMentCoachModel.m */,
+				B2F1AEA71C819D3A006D56FF /* YBAppointMentDetailsDataModel.h */,
+				B2F1AEA81C819D3A006D56FF /* YBAppointMentDetailsDataModel.m */,
+				B2F1AEE21C81AC3B006D56FF /* YBAppointMentDetailsDataRootClass.h */,
+				B2F1AEE31C81AC3B006D56FF /* YBAppointMentDetailsDataRootClass.m */,
+				B2F1AEDC1C81AC3B006D56FF /* YBAppointMentDetailsDataData.h */,
+				B2F1AEDD1C81AC3B006D56FF /* YBAppointMentDetailsDataData.m */,
+				B2F1AEDA1C81AC3B006D56FF /* YBAppointMentDetailsDataCoachid.h */,
+				B2F1AEDB1C81AC3B006D56FF /* YBAppointMentDetailsDataCoachid.m */,
+				B2F1AEDE1C81AC3B006D56FF /* YBAppointMentDetailsDataDriveschoolinfo.h */,
+				B2F1AEDF1C81AC3B006D56FF /* YBAppointMentDetailsDataDriveschoolinfo.m */,
+				B2F1AEE01C81AC3B006D56FF /* YBAppointMentDetailsDataHeadportrait.h */,
+				B2F1AEE11C81AC3B006D56FF /* YBAppointMentDetailsDataHeadportrait.m */,
+				B2F1AEE41C81AC3B006D56FF /* YBAppointMentDetailsDataSubject.h */,
+				B2F1AEE51C81AC3B006D56FF /* YBAppointMentDetailsDataSubject.m */,
+				B2F1AEE61C81AC3B006D56FF /* YBAppointMentDetailsDataTrainfieldlinfo.h */,
+				B2F1AEE71C81AC3B006D56FF /* YBAppointMentDetailsDataTrainfieldlinfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6627,6 +6667,7 @@
 				D588AFC21BDDDAAB000C5D6F /* Logoimg.m in Sources */,
 				D5C240031BE9F79B00832CF3 /* BLAVPlayerViewController.m in Sources */,
 				560D21DC1C813A7F001B8B83 /* SignInCoachIconModel.m in Sources */,
+				B2F1AEEB1C81AC3B006D56FF /* YBAppointMentDetailsDataHeadportrait.m in Sources */,
 				0647A5B61C34BB8700DBB8A3 /* DiscountShopController.m in Sources */,
 				D965CAB51C239E2E00DCD094 /* DVVCycleShowImagesView.m in Sources */,
 				D970D3A21C3D0468003FCED3 /* NSObject+YYModel.m in Sources */,
@@ -6747,6 +6788,7 @@
 				56DAB1091C7AFA2C00D7B942 /* ComplaintSchoolView.m in Sources */,
 				D977B8E41C7C69DD00ABE205 /* DVVSignUpSchoolViewModel.m in Sources */,
 				D996746C1C7D54610000CC65 /* CoachListDMDriveschoolinfo.m in Sources */,
+				B2F1AEEE1C81AC3B006D56FF /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */,
 				B2E8E1B31C72C8CB000190C2 /* YBMallViewController.m in Sources */,
 				D977B8DA1C7C69DD00ABE205 /* DVVSignUpCoachDMSubject.m in Sources */,
 				B226AF031C74A21C0028DF1A /* HMRecomendModel.m in Sources */,
@@ -6797,6 +6839,7 @@
 				D5604C8F1BF656F30020F0D7 /* EMChatViewCell.m in Sources */,
 				D970D39B1C3CFFEB003FCED3 /* CoachDMSubject.m in Sources */,
 				D588B1101BDDDC2F000C5D6F /* UIView+CalculateUIView.m in Sources */,
+				B2F1AEE91C81AC3B006D56FF /* YBAppointMentDetailsDataData.m in Sources */,
 				B226AF0F1C75CFC10028DF1A /* YBAppointMentUserCell.m in Sources */,
 				D919F3431C6099C600239B34 /* DVVCheckAppNewVersion.m in Sources */,
 				B20DBEDE1C5DB0FF0023676E /* WXUtil.mm in Sources */,
@@ -6914,6 +6957,7 @@
 				D9D4BA1D1C3B918600F62BE9 /* NSArray+adapter.m in Sources */,
 				D5604C9A1BF657AA0020F0D7 /* UserProfileManager.m in Sources */,
 				B2E8E1801C72BA4F000190C2 /* WMNavigationController.m in Sources */,
+				B2F1AEED1C81AC3B006D56FF /* YBAppointMentDetailsDataSubject.m in Sources */,
 				560D21E91C816BC2001B8B83 /* EditorDetailController.m in Sources */,
 				D5604C991BF657AA0020F0D7 /* InvitationManager.m in Sources */,
 				D965CAA51C239D9F00DCD094 /* DrivingCityListView.m in Sources */,
@@ -6950,6 +6994,7 @@
 				55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */,
 				D9A34F3E1C53191F0044CC25 /* AppDelegate+UMSocial.m in Sources */,
 				D5BCFEE51BF4924C0019402C /* BLImageViewController.m in Sources */,
+				B2F1AEEC1C81AC3B006D56FF /* YBAppointMentDetailsDataRootClass.m in Sources */,
 				D96D1BE91C2B88A000F1C282 /* UINavigationItem+DVVBackItem.m in Sources */,
 				D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */,
 				D98C6F771C8033830090C349 /* ChineseToPinyinResource.m in Sources */,
@@ -6962,6 +7007,7 @@
 				D5604B481BF656C50020F0D7 /* MBProgressHUD+Add.m in Sources */,
 				062734B81C59C9A90056B0BC /* SignUpController.m in Sources */,
 				560D22091C816BE1001B8B83 /* YBDiscountModel.m in Sources */,
+				B2F1AEA91C819D3A006D56FF /* YBAppointMentDetailsDataModel.m in Sources */,
 				B226AEF71C74937C0028DF1A /* HMSchoolInfoModel.m in Sources */,
 				B218183C1C5B201D00F973A7 /* tagslistModel.m in Sources */,
 				B2E8E1AA1C72C744000190C2 /* YBBaseViewController.m in Sources */,
@@ -7090,6 +7136,7 @@
 				0684361C1C611586004FEA62 /* HomeShowKnowController.m in Sources */,
 				D965CAAC1C239D9F00DCD094 /* DrivingTableHeaderView.m in Sources */,
 				D5604B5B1BF656C50020F0D7 /* NSData+EMImageContentType.m in Sources */,
+				B2F1AEEA1C81AC3B006D56FF /* YBAppointMentDetailsDataDriveschoolinfo.m in Sources */,
 				D5C2403D1BEF6E0400832CF3 /* VipserverModel.m in Sources */,
 				D5604B431BF656C50020F0D7 /* EMCDDeviceManager+Remind.m in Sources */,
 				568DF2381C7592C400008829 /* PrivateMessageController.m in Sources */,
@@ -7178,6 +7225,7 @@
 				560D22041C816BD1001B8B83 /* SignUpDetailCell.m in Sources */,
 				D5604C871BF656F30020F0D7 /* EMChatAudioBubbleView.m in Sources */,
 				56855C521C787736005D4517 /* SignInViewModel.m in Sources */,
+				B2F1AEE81C81AC3B006D56FF /* YBAppointMentDetailsDataCoachid.m in Sources */,
 				B226AEAA1C747EBE0028DF1A /* JGYuYueHeadView.m in Sources */,
 				D5604B571BF656C50020F0D7 /* EMSDWebImageDownloaderOperation.m in Sources */,
 				D588AFC41BDDDAAB000C5D6F /* CoachModel.m in Sources */,

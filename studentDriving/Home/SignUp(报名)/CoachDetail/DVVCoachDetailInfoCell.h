@@ -27,4 +27,6 @@
 
 - (void)refreshData:(DVVCoachDetailDMData *)dmData;
 
+- (void)refreshAppointMentData:(DVVCoachDetailDMData *)dmData;
+
 @end

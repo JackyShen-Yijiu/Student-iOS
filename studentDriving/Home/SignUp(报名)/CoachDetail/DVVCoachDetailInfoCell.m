@@ -51,6 +51,70 @@
     }
 }
 
+
+- (void)refreshAppointMentData:(DVVCoachDetailDMData *)dmData
+{
+    
+    if (0 == self.tag) {
+        if (dmData.seniority && dmData.seniority.length) {
+            _firstLabel.text = [NSString stringWithFormat:@"教龄 %@年", dmData.seniority];
+        }else {
+            _firstLabel.text = @"暂无教龄";
+        }
+        
+        NSMutableArray *array = [NSMutableArray array];
+        for (NSDictionary *dict in dmData.subject) {
+            
+            DVVCoachDetailDMSubject *dmSubject = [DVVCoachDetailDMSubject yy_modelWithDictionary:dict];
+            [array addObject:dmSubject.name];
+        }
+        if (array.count) {
+            _secondLabel.text = [array componentsJoinedByString:@"/"];
+        }else {
+            _secondLabel.text = @"未填写科目信息";
+        }
+        
+        NSMutableArray *carArray = [NSMutableArray array];
+        for (NSDictionary *dict in dmData.serverclasslist) {
+            
+            CoachListDMServerClassList *dmList = [CoachListDMServerClassList yy_modelWithDictionary:dict];
+            [carArray addObject:dmList.cartype];
+        }
+        
+        if (carArray.count) {
+            _thirdLabel.text = [array componentsJoinedByString:@" "];
+        }else {
+            _thirdLabel.text = @"未填写授课车型";
+        }
+        
+        _firstImageView.image = [UIImage imageNamed:@"ic_age"];
+        _secondImageView.image = [UIImage imageNamed:@"ic_teaching_subjects"];
+        _thirdImageView.image = [UIImage imageNamed:@"ic_car_type"];
+        
+    }else {
+        if (dmData.driveschoolinfo.name && dmData.driveschoolinfo.name.length) {
+            _firstLabel.text = dmData.driveschoolinfo.name;
+        }else {
+            _firstLabel.text = @"未填写所属驾校";
+        }
+        if (dmData.trainfield.fieldname && dmData.trainfield.fieldname.length) {
+            _secondLabel.text = dmData.trainfield.fieldname;
+        }else {
+            _secondLabel.text = @"未填写所属训练场";
+        }
+        if (dmData.trainfield.pictures && dmData.trainfield.pictures.count) {
+            _thirdLabel.text = @"";
+            [_scrollImagesView refreshData:dmData.trainfield.pictures];
+        }else {
+            _thirdLabel.text = @"暂无训练场照片";
+        }
+        
+        _firstImageView.image = [UIImage imageNamed:@"ic_school"];
+        _secondImageView.image = [UIImage imageNamed:@"ic_training_grounds"];
+        _thirdImageView.image = [UIImage imageNamed:@"ic_photos"];
+    }
+}
+
 - (void)refreshData:(DVVCoachDetailDMData *)dmData {
     
     if (0 == self.tag) {

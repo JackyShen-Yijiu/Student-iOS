@@ -315,7 +315,7 @@
 - (void)configUI {
     
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    CGFloat toolBarHeight = 40;
+    CGFloat toolBarHeight = 44;
     
     _dvvToolBarView.frame = CGRectMake(0, 0, screenSize.width, toolBarHeight);
     
