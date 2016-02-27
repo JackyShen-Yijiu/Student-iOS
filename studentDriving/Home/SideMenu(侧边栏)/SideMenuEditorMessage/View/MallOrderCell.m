@@ -109,7 +109,7 @@
     if (_offlineButton == nil) {
         _offlineButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _offlineButton.backgroundColor = [UIColor clearColor];
-        [_offlineButton setTitle:@"再次兑换" forState:UIControlStateNormal];
+        [_offlineButton setTitle:@"兑换" forState:UIControlStateNormal];
         [_offlineButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_offlineButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
         _offlineButton.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -195,21 +195,21 @@
         make.height.mas_equalTo(@10);
         make.width.mas_equalTo(@50);
     }];
+    [self.offlineButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.mas_right).offset(-15);
+        make.top.mas_equalTo(self.ordertime.mas_bottom).offset(15);
+        make.height.mas_equalTo(@25);
+        make.width.mas_equalTo(@60);
+        
+    }];
     [self.lineBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mallName.mas_left).offset(0);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.top.mas_equalTo(self.ordertime.mas_bottom).offset(15);
+        make.bottom.mas_equalTo(self.mas_bottom).offset(0);
         make.height.mas_equalTo(@0.5);
         
     }];
-    [self.offlineButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.mas_right).offset(-15);
-        make.top.mas_equalTo(self.lineBottomView.mas_bottom).offset(10);
-        make.height.mas_equalTo(@30);
-        make.width.mas_equalTo(@80);
-        
-    }];
-    
+
     
 }
 - (void)setListModel:(MallOrderListModel *)listModel{

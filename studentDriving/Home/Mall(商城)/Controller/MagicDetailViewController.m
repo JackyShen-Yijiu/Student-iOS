@@ -104,12 +104,12 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
             if (1 == [data[@"type"] integerValue]) {
                 NSDictionary *parm = data[@"data"];
                 self.integralNumber = [parm[@"wallet"] integerValue];
+                NSLog(@"%lu,%lu",[parm[@"wallet"] integerValue],_integralModel.productprice );
                 if ([parm[@"wallet"] integerValue] >= _integralModel.productprice) {
                     _exchangeButton.selected = YES;
                     _exchangeButton.userInteractionEnabled = YES;
                     _exchangeButton.backgroundColor = YBNavigationBarBgColor;
                 }else if ([parm[@"wallet"] integerValue] < _integralModel.productprice){
-                    NSLog(@"%lu%d",[parm[@"wallet"] integerValue],_integralModel.productprice);
                     _exchangeButton.selected = NO;
                     _exchangeButton.userInteractionEnabled = NO;
                     _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];

@@ -254,7 +254,6 @@
 		B2F1AE971C815218006D56FF /* YBMyWalletMallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE961C815218006D56FF /* YBMyWalletMallViewController.m */; };
 		B2F1AE9A1C8156D6006D56FF /* YBCheatsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE991C8156D6006D56FF /* YBCheatsViewController.m */; };
 		B2F1AE9D1C8156F5006D56FF /* YBCheatslistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE9C1C8156F5006D56FF /* YBCheatslistViewController.m */; };
-		B2F1AE9F1C816E5E006D56FF /* YBCheatsData.json in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AE9E1C816E5E006D56FF /* YBCheatsData.json */; };
 		B2F1AEA31C816FF0006D56FF /* YBCheatsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AEA11C816FF0006D56FF /* YBCheatsCell.m */; };
 		B2F1AEA41C816FF0006D56FF /* YBCheatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AEA21C816FF0006D56FF /* YBCheatsCell.xib */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
@@ -1574,7 +1573,6 @@
 		B2F1AE991C8156D6006D56FF /* YBCheatsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCheatsViewController.m; sourceTree = "<group>"; };
 		B2F1AE9B1C8156F5006D56FF /* YBCheatslistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCheatslistViewController.h; sourceTree = "<group>"; };
 		B2F1AE9C1C8156F5006D56FF /* YBCheatslistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCheatslistViewController.m; sourceTree = "<group>"; };
-		B2F1AE9E1C816E5E006D56FF /* YBCheatsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YBCheatsData.json; sourceTree = "<group>"; };
 		B2F1AEA01C816FF0006D56FF /* YBCheatsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCheatsCell.h; sourceTree = "<group>"; };
 		B2F1AEA11C816FF0006D56FF /* YBCheatsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCheatsCell.m; sourceTree = "<group>"; };
 		B2F1AEA21C816FF0006D56FF /* YBCheatsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBCheatsCell.xib; sourceTree = "<group>"; };
@@ -3959,7 +3957,6 @@
 		B2E8E1A61C72C6F2000190C2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				B2F1AE9E1C816E5E006D56FF /* YBCheatsData.json */,
 				B226AE841C7449240028DF1A /* YBStudyData.json */,
 				B226AE7D1C7440820028DF1A /* YBStudyTool.h */,
 			);
@@ -6419,7 +6416,6 @@
 				D5604C041BF656C50020F0D7 /* chatBar_more_location@2x.png in Resources */,
 				D5604BBB1BF656C50020F0D7 /* VoiceSearchFeedback019.png in Resources */,
 				D919F3271C60885A00239B34 /* UMSShareListController.xib in Resources */,
-				B2F1AE9F1C816E5E006D56FF /* YBCheatsData.json in Resources */,
 				D5604B931BF656C50020F0D7 /* 58.png in Resources */,
 				D5604B941BF656C50020F0D7 /* 80.png in Resources */,
 				568DF22C1C7591EF00008829 /* finishMessageView.xib in Resources */,

@@ -285,7 +285,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             }
             if (_myLoveState == MyLoveStateDriving) {
 //              NSString *msg = @"没有喜欢的教练";
-                _schoolBG = [[ShowWarningBG alloc] initWithTietleName:@"没有您喜欢的教练"];
+                _schoolBG = [[ShowWarningBG alloc] initWithTietleName:@"没有您喜欢的驾校"];
                 [_schoolBG show];
                 
             }
