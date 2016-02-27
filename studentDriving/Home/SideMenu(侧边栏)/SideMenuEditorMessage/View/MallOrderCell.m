@@ -90,6 +90,7 @@
         _payStaus.text = @"未支付";
         _payStaus.textColor = [UIColor colorWithHexString:@"bdbdbd"];
         _payStaus.font = [UIFont systemFontOfSize:10];
+        _payStaus.textAlignment = NSTextAlignmentRight;
     }
     return _payStaus;
 }
@@ -108,9 +109,10 @@
     if (_offlineButton == nil) {
         _offlineButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _offlineButton.backgroundColor = [UIColor clearColor];
-        [_offlineButton setTitle:@"重新报名" forState:UIControlStateNormal];
+        [_offlineButton setTitle:@"再次兑换" forState:UIControlStateNormal];
         [_offlineButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_offlineButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+        _offlineButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _offlineButton.selected = YES;
         if (_offlineButton.selected) {
             _offlineButton.layer.borderWidth = 1;
@@ -210,7 +212,54 @@
     
     
 }
-- (void)setDict:(NSDictionary *)dict{
+- (void)setListModel:(MallOrderListModel *)listModel{
+    
+    [self.mallImageView sd_setImageWithURL:[NSURL URLWithString:listModel.productimg] placeholderImage:nil];
+    self.mallName.text = listModel.productname;
+    self.exchangeMoney.text = [NSString stringWithFormat:@"兑换金额:%luYB",listModel.productprice];
+    self.ordertime.text = listModel.createtime;
+    self.numberMoney.text = [NSString stringWithFormat:@"%luYB",listModel.productprice];
+    
+    /*
+     exports.MallOrderState={
+     // 已申请
+     applying:1,
+     // 已确定 接受
+     applyconfirm:2,
+     //拒绝或者取消）
+     applyrefuse:3,
+     //  已发送
+     sended:4,
+     // 已完成
+     finished:5
+     
+     }
+     */
+    
+    if (1 == listModel.orderstate) {
+        self.payStaus.text = @"已申请";
+        
+    }
+    if (2 == listModel.orderstate) {
+        self.payStaus.text = @"已确认";
+        
+    }
+    if (3 == listModel.orderstate) {
+        self.payStaus.text = @"已发送";
+        
+    }
+    if (4 == listModel.orderstate) {
+        self.payStaus.text = @"已拒绝";
+        
+    }
+    if (5 == listModel.orderstate) {
+        self.payStaus.text = @"已完成";
+        
+    }
+    
+    
+    
+    
     /*
      self.dict = @{@"headerUrl":self.headerImageURl,
      @"schoolStr":self.schoolStr,

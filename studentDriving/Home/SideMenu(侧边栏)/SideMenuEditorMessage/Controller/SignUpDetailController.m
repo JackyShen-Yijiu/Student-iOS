@@ -20,6 +20,10 @@
 #import "SignUpDetailCell.h"
 #import "MallOrderCell.h"
 #import "ShowWarningBG.h"
+#import "MallOrderListModel.h"
+#import "YYModel.h"
+#import "YBMallViewController.h"
+
 
 
 #define StartOffset  kSystemWide/4-60/2
@@ -27,7 +31,7 @@
 //<<<<<<< HEAD
 static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 报名详情
 
-static NSString *const kgetMallList = @"getmyorderlist"; // 商品订单
+static NSString *const kgetMallList = @"userinfo/getmyorderlist"; // 商品订单
 
 
 typedef NS_ENUM(NSUInteger,MyLoveState){
@@ -61,6 +65,9 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 @property (nonatomic, strong) NSDictionary *dict;
 
 @property (nonatomic, strong) ShowWarningBG *warningBG; //提示背景图片
+@property (nonatomic, strong) NSMutableArray *dataListArray;
+
+
 @end
 
 @implementation SignUpDetailController
@@ -105,6 +112,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     _myLoveState = MyLoveStateCoach;
     [self.view addSubview:self.tableView];
     [self.view addSubview:[self tableViewHeadView]];
+    _dataListArray = [NSMutableArray array];
     
 }
 
@@ -149,15 +157,20 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 //    [self.dataArray removeAllObjects];
     
     NSString *urlString = nil;
+    NSDictionary *param = nil;
     
     if (_myLoveState == MyLoveStateCoach) {
         // 获取报名详情
         urlString = [NSString stringWithFormat:BASEURL,kgetapplyschoolinfo];
+        param = @{@"userid":[AcountManager manager].userid};
     }else if (_myLoveState == MyLoveStateDriving) {
         // 获取商品订单
         urlString = [NSString stringWithFormat:BASEURL,kgetMallList];
+        param = @{@"userid": [AcountManager manager].userid,
+                                     @"index":@"1",
+                                     @"count":@"10"};
     }
-    NSDictionary *param = @{@"userid":[AcountManager manager].userid};
+    
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
         NSDictionary *param = data;
@@ -264,13 +277,21 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                                     @"applySatus":self.applySatus};
                 
             }else if (_myLoveState == MyLoveStateDriving) {
-                NSLog(@"-----------------------------========================================%@",data);
+                NSArray *array = data[@"ordrelist"];
+                
+                [_dataListArray removeAllObjects];
+                for (NSDictionary *dic in array) {
+                MallOrderListModel *listModel = [MallOrderListModel yy_modelWithDictionary:dic];
+                    [_dataListArray addObject:listModel];
+                }
+                NSLog(@"-----------------------------========================================%@",_dataListArray);
             }
            [self.tableView reloadData];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             
         }
     } withFailure:^(id data) {
+        
         
     }];
     
@@ -360,13 +381,13 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     if (_myLoveState == MyLoveStateCoach) {
         return 1;
     }else if (_myLoveState == MyLoveStateDriving) {
-        return 1;
+        return _dataListArray.count;
     }
     return 0;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
+    __weak typeof (self) ws = self;
     
     if (_myLoveState == MyLoveStateCoach) {
         // 报名订单
@@ -397,7 +418,11 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             cell = [[MallOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
            
         }
-        
+        cell.listModel = _dataListArray[indexPath.row];
+        cell.didclickBlock = ^(NSInteger tag){
+            YBMallViewController *mallVC = [[YBMallViewController alloc] init];
+            [ws.navigationController pushViewController:mallVC animated:YES];
+        };
         return cell;
         
     }

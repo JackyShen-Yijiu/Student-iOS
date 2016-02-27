@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MallOrderListModel.h"
 
 typedef void (^DidClickBlock)(NSInteger tag);
 @interface MallOrderCell : UITableViewCell
 @property (nonatomic, strong) NSDictionary *dict;
 @property (nonatomic, strong) DidClickBlock didclickBlock;
+@property (nonatomic, strong) MallOrderListModel *listModel;
 @end
