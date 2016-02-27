@@ -44,6 +44,10 @@
 @property (copy, nonatomic) NSString *questionFourtesturl;
 @property (copy, nonatomic) NSString *questionFourerrorurl;
 
+@property (copy, nonatomic) NSString *kemuyichengjidanurl;
+
+@property (copy, nonatomic) NSString *kemusichengjidanurl;
+
 @end
 
 @implementation YBStudyViewController
@@ -407,9 +411,12 @@
             weakSelf.questionlisturl = subjectOne[@"questionlisturl"];
             weakSelf.questionerrorurl = subjectOne[@"questionerrorurl"];
 
+            weakSelf.kemuyichengjidanurl = subjectOne[@"kemuyichengjidanurl"];
+            
             self.kemuyiView.questionlisturl = weakSelf.questiontesturl;
             self.kemuyiView.questiontesturl = weakSelf.questionlisturl;
             self.kemuyiView.questionerrorurl = weakSelf.questionerrorurl;
+            self.kemuyiView.kemuyichengjidanurl = weakSelf.kemuyichengjidanurl;
             
         }
         
@@ -429,11 +436,13 @@
         weakSelf.questionFourtesturl = subjectOne[@"questiontesturl"];
         weakSelf.questionFourlisturl = subjectOne[@"questionlisturl"];
         weakSelf.questionFourerrorurl = subjectOne[@"questionerrorurl"];
+        weakSelf.kemusichengjidanurl = subjectOne[@"kemusichengjidanurl"];
         
         self.kemusiView.questionFourlisturl = weakSelf.questionFourlisturl;
         self.kemusiView.questionFourtesturl = weakSelf.questionFourtesturl;
         self.kemusiView.questionFourerrorurl = weakSelf.questionFourerrorurl;
-        
+        self.kemusiView.kemusichengjidanurl = weakSelf.kemusichengjidanurl;
+
     }];
     
 }
