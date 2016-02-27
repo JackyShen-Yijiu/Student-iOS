@@ -44,7 +44,7 @@
 - (UILabel *)userTitleLabel {
     if (_userTitleLabel == nil) {
         _userTitleLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
-        _userTitleLabel.text = @"相领时段学员";
+        _userTitleLabel.text = @"相邻时段学员";
     }
     return _userTitleLabel;
 }
