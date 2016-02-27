@@ -43,6 +43,10 @@
 }
 
 - (void)clicked {
+    
+    // 更新侧边栏用户信息
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kuserLogin" object:self];
+    
     if ([self.delegate respondsToSelector:@selector(leftBtnClicked)]) {
         [self.delegate leftBtnClicked];
     }
@@ -175,5 +179,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

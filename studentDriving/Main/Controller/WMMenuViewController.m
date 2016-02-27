@@ -28,8 +28,17 @@
 // 侧边栏顶部信息
 - (void)viewWillAppear:(BOOL)animated{
     
+    [super viewWillAppear:animated];
+    
     self.YLabel.text = @"我的Y码：暂无";
     [self.tableView reloadData];
+    
+    [self setUpUserData];
+
+}
+
+- (void)setUpUserData
+{
     
     if (![AcountManager isLogin]) {
         return;
@@ -45,10 +54,10 @@
     // 用户名
     if ([AcountManager manager].userMobile) {
         
-            self.userMobileLabel.text = [AcountManager manager].userMobile;
-        }
+        self.userMobileLabel.text = [AcountManager manager].userMobile;
+    }
     
-        
+    
     NSString *urlString = [NSString stringWithFormat:@"/userinfo/getmymoney?userid=%@&usertype=1", [AcountManager manager].userid];
     // 请求数据显示豆币相关信息
     [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL,urlString] postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
@@ -62,21 +71,21 @@
                 if (fcode && fcode.length) {
                     self.YLabel.text = [NSString stringWithFormat:@"我的Y码：%@", fcode];
                 }
-               
+                
                 [self.tableView reloadData];
                 // 显示我的优惠券信息
                 NSString *couponString = @"";
                 if (couponcount) {
                     couponString = [NSString stringWithFormat:@"还有%li张兑换券(点击兑换)",couponcount];
                 }
-//                self.headerView.coinCertificateLabel.text = couponString;
+                //                self.headerView.coinCertificateLabel.text = couponString;
                 // 存储兑换券
                 [AcountManager manager].userCoinCertificate = couponcount;
             }
         }
     }];
-
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -99,7 +108,16 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:k object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setUpUserData) name:@"kuserLogin" object:nil];
+    
+    
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 // 当头像改变时通知方法
 - (void)iconImage{
     [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:nil completed:nil];
