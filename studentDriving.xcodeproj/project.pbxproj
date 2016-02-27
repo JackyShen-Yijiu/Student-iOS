@@ -82,6 +82,7 @@
 		560D22051C816BD1001B8B83 /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D21FD1C816BD1001B8B83 /* YBDiscountCell.m */; };
 		560D22091C816BE1001B8B83 /* YBDiscountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D22081C816BE1001B8B83 /* YBDiscountModel.m */; };
 		560D220C1C816C3A001B8B83 /* MallOrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D220B1C816C3A001B8B83 /* MallOrderListModel.m */; };
+		560D22121C818BEB001B8B83 /* MallListSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D22111C818BEB001B8B83 /* MallListSuccessController.m */; };
 		5611A5A51C7F2D7700DC083D /* YBIntegrationMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */; };
 		5611A5A81C7F2F1900DC083D /* YBIntegrationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A71C7F2F1900DC083D /* YBIntegrationMessageCell.m */; };
 		56855C2B1C784EEA005D4517 /* ShuttleBusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C271C784EEA005D4517 /* ShuttleBusCell.m */; };
@@ -1166,6 +1167,8 @@
 		560D22081C816BE1001B8B83 /* YBDiscountModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBDiscountModel.m; sourceTree = "<group>"; };
 		560D220A1C816C3A001B8B83 /* MallOrderListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallOrderListModel.h; sourceTree = "<group>"; };
 		560D220B1C816C3A001B8B83 /* MallOrderListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallOrderListModel.m; sourceTree = "<group>"; };
+		560D22101C818BD4001B8B83 /* MallListSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallListSuccessController.h; sourceTree = "<group>"; };
+		560D22111C818BEB001B8B83 /* MallListSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallListSuccessController.m; sourceTree = "<group>"; };
 		5611A5A31C7F2D7700DC083D /* YBIntegrationMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegrationMessageController.h; sourceTree = "<group>"; };
 		5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegrationMessageController.m; sourceTree = "<group>"; };
 		5611A5A61C7F2F1900DC083D /* YBIntegrationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegrationMessageCell.h; sourceTree = "<group>"; };
@@ -3862,6 +3865,8 @@
 		B2E8E19A1C72C6F2000190C2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				560D22101C818BD4001B8B83 /* MallListSuccessController.h */,
+				560D22111C818BEB001B8B83 /* MallListSuccessController.m */,
 				B2E8E1B11C72C8CB000190C2 /* YBMallViewController.h */,
 				B2E8E1B21C72C8CB000190C2 /* YBMallViewController.m */,
 				568DF2311C7592C400008829 /* MagicDetailViewController.h */,
@@ -7196,6 +7201,7 @@
 				0647A5BF1C3509F700DBB8A3 /* DiscountWalletModel.m in Sources */,
 				D5604C7E1BF656F30020F0D7 /* ChatViewController+Category.m in Sources */,
 				B2E8E1871C72BA4F000190C2 /* WMOtherViewController.m in Sources */,
+				560D22121C818BEB001B8B83 /* MallListSuccessController.m in Sources */,
 				D5604B7C1BF656C50020F0D7 /* EMVoiceConverter.mm in Sources */,
 				554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */,
 				B226AE9A1C7478240028DF1A /* YBAppointMentChangeCoachController.m in Sources */,

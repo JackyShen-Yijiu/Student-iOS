@@ -8,6 +8,8 @@
 
 #import "YBIntegrationMessageController.h"
 #import "YBIntegrationMessageCell.h"
+#import "MallListSuccessController.h"
+#import "YBMallViewController.h"
 
 static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 @interface YBIntegrationMessageController ()<UITableViewDelegate,UITableViewDataSource>
@@ -29,12 +31,14 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 
 @property (nonatomic, strong) YBIntegrationMessageCell *dNameCell;
 @property (nonatomic, strong) YBIntegrationMessageCell *dPhoneCell;
+
 @end
 
 @implementation YBIntegrationMessageController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"个人信息";
     self.view.backgroundColor = RGBColor(249, 249, 249);
     [self.view addSubview:self.tabelView];
     [self.bgView addSubview:self.moneyLabel];
@@ -71,7 +75,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     self.integrationTagArray = @[@"500",@"501",@"502",@"503",@"504",@"505"];
     self.discountTagArray = @[@"600",@"601",@"602",@"603",@"604"];
     if (0 == _mallWay) {
-        self.describeIntegrationArray = @[_integraMallModel.productname,[NSString stringWithFormat:@"%dYB",_integraMallModel.productprice],@"快递免费",addressStr,nameStr,mobileStr];
+        self.describeIntegrationArray = @[_integraMallModel.productname,[NSString stringWithFormat:@"%luYB",_integraMallModel.productprice],@"快递免费",addressStr,nameStr,mobileStr];
     }else if (1 == _mallWay){
         self.describeDiscountArray = @[_discountMallModel.productname,@"1张报名兑换劵",@"到店自取",nameStr,mobileStr];
     }
@@ -181,6 +185,18 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
              type = 1;
              }
              */
+            if (1 == [data[@"type"] integerValue]) {
+                [self obj_showTotasViewWithMes:@"积分兑换完成"];
+                for (UIViewController *viewCon in self.navigationController.viewControllers) {
+                    if ([viewCon isKindOfClass:[YBMallViewController class]]) {
+                        YBMallViewController *mallVC = (YBMallViewController *)viewCon;
+                        [self.navigationController popToViewController:mallVC animated:YES];
+                    }
+                    
+                }
+
+            }
+            
             
         }  withFailure:^(id data) {
             NSLog(@"errorData = %@",data);
@@ -225,6 +241,10 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
              type = 1;
              }
              */
+            NSDictionary *parm = data[@"extra"];
+            MallListSuccessController *successVC = [[MallListSuccessController alloc] init];
+            successVC.successUrl = parm[@"finishorderurl"];
+            [self.navigationController pushViewController:successVC animated:YES];
             
         }  withFailure:^(id data) {
             NSLog(@"errorData = %@",data);
