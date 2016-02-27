@@ -23,6 +23,8 @@
 #import "MallOrderListModel.h"
 #import "YYModel.h"
 #import "YBMyWalletMallViewController.h"
+#import "YBSignUpSuccessController.h"
+#import "OrdetDetailController.h"
 
 
 
@@ -414,10 +416,26 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         cell.didclickBlock = ^(NSInteger tag){
             if (400 == tag) {
                 // 线下重新的报名
+                [SignUpInfoManager removeSignData];
+                [AcountManager saveUserApplyState:@"0"];
+                //1为重新报名，0为报名
+                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                [ud setObject:@"1" forKey:@"applyAgain"];
+                [ud synchronize];
+
             }else if(401 == tag){
                 // 线上重新报名
+                [SignUpInfoManager removeSignData];
+                [AcountManager saveUserApplyState:@"0"];
+                //1为重新报名，0为报名
+                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+                [ud setObject:@"1" forKey:@"applyAgain"];
+                [ud synchronize];
+
             }else if(401 == tag){
                 // 立即支付
+                OrdetDetailController *ordetVC = [[OrdetDetailController alloc] init];
+                [self.navigationController pushViewController:ordetVC animated:YES];
             }
         };
         cell.backgroundColor = [UIColor clearColor];
@@ -440,5 +458,13 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     }
     
     return nil;
+}
+// 当为线下报名，并且状态为1时，点击cell进入扫描功能
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if ([self.payWaystr isEqualToString:@"线下支付"] && [self.applySatus isEqualToString:@"申请中"]) {
+        // 跳转到扫描界面
+        YBSignUpSuccessController *signUpVC = [[YBSignUpSuccessController alloc] init];
+        [self.navigationController pushViewController:signUpVC animated:YES];
+    }
 }
 @end

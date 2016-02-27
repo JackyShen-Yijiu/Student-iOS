@@ -83,6 +83,9 @@
 		560D22091C816BE1001B8B83 /* YBDiscountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D22081C816BE1001B8B83 /* YBDiscountModel.m */; };
 		560D220C1C816C3A001B8B83 /* MallOrderListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D220B1C816C3A001B8B83 /* MallOrderListModel.m */; };
 		560D22121C818BEB001B8B83 /* MallListSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D22111C818BEB001B8B83 /* MallListSuccessController.m */; };
+		560D22151C819361001B8B83 /* YBSignUpSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D22141C819361001B8B83 /* YBSignUpSuccessController.m */; };
+		560D22191C819EC5001B8B83 /* OrdetDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D22171C819EC5001B8B83 /* OrdetDetailController.m */; };
+		560D221A1C819EC5001B8B83 /* OrdetDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560D22181C819EC5001B8B83 /* OrdetDetailController.xib */; };
 		5611A5A51C7F2D7700DC083D /* YBIntegrationMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */; };
 		5611A5A81C7F2F1900DC083D /* YBIntegrationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A71C7F2F1900DC083D /* YBIntegrationMessageCell.m */; };
 		56855C2B1C784EEA005D4517 /* ShuttleBusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C271C784EEA005D4517 /* ShuttleBusCell.m */; };
@@ -1177,6 +1180,11 @@
 		560D220B1C816C3A001B8B83 /* MallOrderListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallOrderListModel.m; sourceTree = "<group>"; };
 		560D22101C818BD4001B8B83 /* MallListSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallListSuccessController.h; sourceTree = "<group>"; };
 		560D22111C818BEB001B8B83 /* MallListSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallListSuccessController.m; sourceTree = "<group>"; };
+		560D22131C819361001B8B83 /* YBSignUpSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBSignUpSuccessController.h; path = ../../SideMenuSignUp/YBSignUpSuccessController.h; sourceTree = "<group>"; };
+		560D22141C819361001B8B83 /* YBSignUpSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBSignUpSuccessController.m; path = ../../SideMenuSignUp/YBSignUpSuccessController.m; sourceTree = "<group>"; };
+		560D22161C819EC5001B8B83 /* OrdetDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrdetDetailController.h; sourceTree = "<group>"; };
+		560D22171C819EC5001B8B83 /* OrdetDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrdetDetailController.m; sourceTree = "<group>"; };
+		560D22181C819EC5001B8B83 /* OrdetDetailController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OrdetDetailController.xib; sourceTree = "<group>"; };
 		5611A5A31C7F2D7700DC083D /* YBIntegrationMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegrationMessageController.h; sourceTree = "<group>"; };
 		5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegrationMessageController.m; sourceTree = "<group>"; };
 		5611A5A61C7F2F1900DC083D /* YBIntegrationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegrationMessageCell.h; sourceTree = "<group>"; };
@@ -3231,6 +3239,11 @@
 				560D21E61C816BC2001B8B83 /* FavouriteViewController.m */,
 				560D21E71C816BC2001B8B83 /* SignUpDetailController.h */,
 				560D21E81C816BC2001B8B83 /* SignUpDetailController.m */,
+				560D22161C819EC5001B8B83 /* OrdetDetailController.h */,
+				560D22171C819EC5001B8B83 /* OrdetDetailController.m */,
+				560D22181C819EC5001B8B83 /* OrdetDetailController.xib */,
+				560D22131C819361001B8B83 /* YBSignUpSuccessController.h */,
+				560D22141C819361001B8B83 /* YBSignUpSuccessController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6369,6 +6382,7 @@
 				D962FFFC1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib in Resources */,
 				D5604C1C1BF656C50020F0D7 /* chat_sender_audio_playing_002.png in Resources */,
 				D5604C3B1BF656C50020F0D7 /* tabbar_chatsHL@2x.png in Resources */,
+				560D221A1C819EC5001B8B83 /* OrdetDetailController.xib in Resources */,
 				D5604BE71BF656C50020F0D7 /* chatBar_more.png in Resources */,
 				B226AE851C7449240028DF1A /* YBStudyData.json in Resources */,
 				D5604BD21BF656C50020F0D7 /* chatBar_textBg@2x.png in Resources */,
@@ -6641,6 +6655,7 @@
 				D95E3DB41C3CEDC600F0B5A0 /* SearchCoachViewModel.m in Sources */,
 				D588B0D61BDDDC14000C5D6F /* DrivingDetailCell.m in Sources */,
 				B20DBEDA1C5DB0FF0023676E /* RSADataVerifier.m in Sources */,
+				560D22191C819EC5001B8B83 /* OrdetDetailController.m in Sources */,
 				B226AEE81C748F380028DF1A /* HMCarLicenseModel.m in Sources */,
 				D9B7F12C1C255F3400D1A143 /* CirclePoint.m in Sources */,
 				D996747E1C7D54610000CC65 /* DrivingDetailLocationCell.m in Sources */,
@@ -7059,6 +7074,7 @@
 				560D21EA1C816BC2001B8B83 /* EditorMessageController.m in Sources */,
 				D96D1BD31C2B859C00F1C282 /* FourViewController.m in Sources */,
 				D588B0D21BDDDC14000C5D6F /* UserCenterCell.m in Sources */,
+				560D22151C819361001B8B83 /* YBSignUpSuccessController.m in Sources */,
 				D5604B851BF656C50020F0D7 /* UIViewController+HUD.m in Sources */,
 				D5604B891BF656C50020F0D7 /* EMRemarkImageView.m in Sources */,
 				0647A5BC1C34FE5F00DBB8A3 /* DiscountWalletController.m in Sources */,

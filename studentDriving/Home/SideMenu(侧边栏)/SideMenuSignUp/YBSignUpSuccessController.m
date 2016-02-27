@@ -1,12 +1,12 @@
 //
-//  SignUpSuccessViewController.m
+//  YBSignUpSuccessController.m
 //  studentDriving
 //
-//  Created by 胡东苑 on 15/12/14.
-//  Copyright © 2015年 jatd. All rights reserved.
+//  Created by zyt on 16/2/27.
+//  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "SignUpSuccessViewController.h"
+#import "YBSignUpSuccessController.h"
 #import "ChooseBtnView.h"
 #import "SignSuccessView.h"
 #import "SignUpInfoManager.h"
@@ -17,12 +17,10 @@
 
 static NSString *const kUserInfo = @"/userinfo/getapplyschoolinfo";
 static NSString *const kCreatQrcode = @"/create_qrcode";
-//static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
 
-@interface SignUpSuccessViewController ()
+@interface YBSignUpSuccessController ()
 
 @property (strong, nonatomic) UIButton *referButton;
-@property (strong, nonatomic) UIButton *goBackButton;
 @property (strong, nonatomic) NSString *kRealScanauditUrl;
 @property (strong, nonatomic) NSString *kRealApplytime;
 @property (strong, nonatomic) NSString *kRealEndtime;
@@ -31,25 +29,14 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
 @property (strong, nonatomic) NSString *explainStr;
 
 @property (strong, nonatomic) UIScrollView *sv;
-
 @end
 
-@implementation SignUpSuccessViewController
-
-- (UIButton *)goBackButton{
-    if (_goBackButton == nil) {
-        _goBackButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
-//        [_goBackButton setBackgroundImage:[UIImage imageNamed:@"返回_click"] forState:UIControlStateNormal];
-        [_goBackButton addTarget:self action:@selector(dealGoBack) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _goBackButton;
-}
+@implementation YBSignUpSuccessController
 
 - (UIButton *)referButton{
     if (_referButton == nil) {
         _referButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _referButton.backgroundColor = [UIColor colorWithHexString:@"ff5d35"];
+        _referButton.backgroundColor = YBNavigationBarBgColor;
         _referButton.titleLabel.font = [UIFont systemFontOfSize:16];
         [_referButton setTitle:@"完成" forState:UIControlStateNormal];
         [_referButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -62,65 +49,65 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
-    NSDictionary *param = @{@"userid":[AcountManager manager].userid};
-    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        if (!data) {
-            return ;
-        }
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-        if ([type isEqualToString:@"1"]) {
-            /*
-             { "type": 1, "msg": "", "data": 
-             
-             { "_id": "560539bea694336c25c3acb9", 用户id "applyinfo": 
-             
-             {
-             "handelmessage": [], 处理消息 
-             "handelstate": 0, //处理状态 0 未处理 1 处理中 2 处理成功 
-             "applytime": "2015-10-11T02:56:09.281Z" 
-             },
-             
-             "applystate": 2 申请状态 0 未报名 1 申请中 2 申请成功 "paytypestatus": 0, 0 未支付 20支付成功(等待验证) 30 支付失败
-             "paytype": 1, 1 线下支付， 2 线上支付
-             } 
-             
-             }
-             */
-            
-            
-            NSDictionary *dataDic = [param objectForKey:@"data"];
-            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
-                return;
-            }
-            if (2 == [dataDic[@"paytype"] integerValue]) {
-                [self obj_showTotasViewWithMes:@"您已经支付,请等待我们的审核"];
-                [self.navigationController popViewControllerAnimated:YES];
-                return;
-            }
-            if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
-                [AcountManager saveUserApplyState:@"0"];
-            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
-                [AcountManager saveUserApplyState:@"1"];
-            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 2){
-                [AcountManager saveUserApplyState:@"2"];
-            }else {
-                [AcountManager saveUserApplyState:@"3"];
-            }
-            [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
-            if ([[AcountManager manager].userApplycount isEqualToString:@"0"]) {
-//                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.registAgainButton];
-            }
-        }else {
-            
-            NSLog(@"1:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
-            
-            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
-        }
-    } withFailure:^(id data) {
-        [self showTotasViewWithMes:@"网络错误"];
-    }];
+//    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kinfomationCheck];
+//    NSDictionary *param = @{@"userid":[AcountManager manager].userid};
+//    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+//        if (!data) {
+//            return ;
+//        }
+//        NSDictionary *param = data;
+//        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+//        if ([type isEqualToString:@"1"]) {
+//            /*
+//             { "type": 1, "msg": "", "data":
+//             
+//             { "_id": "560539bea694336c25c3acb9", 用户id "applyinfo":
+//             
+//             {
+//             "handelmessage": [], 处理消息
+//             "handelstate": 0, //处理状态 0 未处理 1 处理中 2 处理成功
+//             "applytime": "2015-10-11T02:56:09.281Z"
+//             },
+//             
+//             "applystate": 2 申请状态 0 未报名 1 申请中 2 申请成功 "paytypestatus": 0, 0 未支付 20支付成功(等待验证) 30 支付失败
+//             "paytype": 1, 1 线下支付， 2 线上支付
+//             }
+//             
+//             }
+//             */
+//            
+//            
+//            NSDictionary *dataDic = [param objectForKey:@"data"];
+//            if (!dataDic || ![dataDic isKindOfClass:[NSDictionary class]]) {
+//                return;
+//            }
+//            if (2 == [dataDic[@"paytype"] integerValue]) {
+//                [self obj_showTotasViewWithMes:@"您已经支付,请等待我们的审核"];
+//                [self.navigationController popViewControllerAnimated:YES];
+//                return;
+//            }
+//            if ([[dataDic objectForKey:@"applystate"] integerValue] == 0) {
+//                [AcountManager saveUserApplyState:@"0"];
+//            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 1) {
+//                [AcountManager saveUserApplyState:@"1"];
+//            }else if ([[dataDic objectForKey:@"applystate"] integerValue] == 2){
+//                [AcountManager saveUserApplyState:@"2"];
+//            }else {
+//                [AcountManager saveUserApplyState:@"3"];
+//            }
+//            [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];
+//            if ([[AcountManager manager].userApplycount isEqualToString:@"0"]) {
+//                //                self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.registAgainButton];
+//            }
+//        }else {
+//            
+//            NSLog(@"1:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
+//            
+//            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
+//        }
+//    } withFailure:^(id data) {
+//        [self showTotasViewWithMes:@"网络错误"];
+//    }];
     
 }
 
@@ -157,11 +144,11 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     scrollview.contentSize = CGSizeMake(kSystemWide, 500);
     [self.view addSubview:scrollview];
     
-//    ChooseBtnView *cbv = [[ChooseBtnView alloc] initWithSelectedBtn:2 leftTitle:@"选择驾校" midTitle:@"填写信息" rightTitle:@"报名验证" frame:CGRectMake(0, 10, kSystemWide, 77)];
-//    cbv.backgroundColor = [UIColor whiteColor];
-//    [scrollview addSubview:cbv];
+    //    ChooseBtnView *cbv = [[ChooseBtnView alloc] initWithSelectedBtn:2 leftTitle:@"选择驾校" midTitle:@"填写信息" rightTitle:@"报名验证" frame:CGRectMake(0, 10, kSystemWide, 77)];
+    //    cbv.backgroundColor = [UIColor whiteColor];
+    //    [scrollview addSubview:cbv];
     
-
+    
     SignSuccessView *ssv = [[SignSuccessView alloc] initWithFrame:CGRectMake(0, 10, kSystemWide, kSystemHeight-64-49-87) imageStr:_imageStr orderNumStr:_kRealOrderNumber timeStr:[NSString stringWithFormat:@"%@到%@",_kRealApplytime,_kRealEndtime] CarrydataExplainContentLb:_explainStr];
     [scrollview addSubview:ssv];
     [self.view addSubview:self.referButton];
@@ -203,30 +190,20 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
         }else {
             [self showTotasViewWithMes:[data objectForKey:@"msg"]];
         }
-       
+        
     } withFailure:^(id data) {
         [self showTotasViewWithMes:@"网络错误"];
     }];
     
 }
 
-- (void)dealGoBack {
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 - (void)callBtnClick {
-    [SignUpInfoManager removeSignData];
-    [AcountManager saveUserApplyState:@"0"];
-    //1为重新报名，0为报名
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    [ud setObject:@"1" forKey:@"applyAgain"];
-    [ud synchronize];
-
+        
     [self.navigationController pushViewController:[SignUpListViewController new] animated:YES];
 }
 
 - (void)dealRefer:(UIButton *)sender{
-    [self.navigationController popToRootViewControllerAnimated:YES];
+   [self.navigationController popViewControllerAnimated:YES];
     
 }
 
