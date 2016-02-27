@@ -82,7 +82,6 @@
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
-    
     [self.webView loadRequest:request];
     
 }

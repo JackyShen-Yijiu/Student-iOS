@@ -549,12 +549,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    // 退出侧边栏
     if ([WMCommon getInstance].homeState==kStateMenu) {
         [[NSNotificationCenter defaultCenter] postNotificationName:KhiddenSlide object:self];
+        return;
     }
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     HMCourseModel  * courseModel = nil;
     

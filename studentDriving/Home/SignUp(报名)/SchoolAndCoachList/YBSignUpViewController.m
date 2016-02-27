@@ -120,12 +120,6 @@ static NSString *coachCellID = @"coachCellID";
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     navBarHairlineImageView.hidden=NO;
-    
-    // 退出侧边栏
-    if ([WMCommon getInstance].homeState==kStateMenu) {
-        [self clicked];
-    }
-    
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -260,6 +254,12 @@ static NSString *coachCellID = @"coachCellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // 退出侧边栏
+    if ([WMCommon getInstance].homeState==kStateMenu) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:KhiddenSlide object:self];
+        return;
+    }
     
     if (0 == _showType) {
         
