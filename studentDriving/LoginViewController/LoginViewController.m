@@ -432,10 +432,10 @@ static NSString *const kuserType = @"usertype";
             if ([[params objectForKey:@"data"] boolValue]) {
                 [self userLogin];
             }else {
-                [ws showMsg:@"此用户未注册"];
+                [ws obj_showTotasViewWithMes:@"此用户未注册"];
             }
         }else {
-            [ws showMsg:@"网络错误"];
+            [ws obj_showTotasViewWithMes:@"网络错误"];
         }
     }];
 }
