@@ -100,6 +100,14 @@
         
         [YBWelcomeController show];
         
+    }else{
+        
+        if ([AcountManager isLogin]) {
+            [DVVUserManager userLoginSucces];
+        }else{
+            [DVVUserManager userNeedLogin];
+        }
+        
     }
     
     // 设置StatusBarStyle为白色（需要在在infor.plist中加入key:UIViewControllerBasedStatusBarAppearance 并设置其值为NO）

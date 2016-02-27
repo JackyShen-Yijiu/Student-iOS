@@ -84,13 +84,6 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     
     [super viewWillAppear:animated];
     
-    // 检测是否打开登录页
-    if (![AcountManager isLogin]) {
-        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
-        [self showHome];
-        [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
-    }
-    
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -167,7 +160,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         }
         
     }
-
+    
 }
 
 - (void)hiddenSlide
@@ -379,9 +372,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         
         // 检测是否打开登录页
         if (![AcountManager isLogin]) {
-            [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
-            [self showHome];
-            [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+            [DVVUserManager userNeedLogin];
             return;
         }
         
@@ -412,9 +403,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         // 设置与帮助
         // 检测是否打开登录页
         if (![AcountManager isLogin]) {
-            [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
-            [self showHome];
-            [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+            [DVVUserManager userNeedLogin];
             return;
         }
         SetupViewController *setUpVC = [SetupViewController new];
@@ -426,9 +415,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 - (void)didSelectIconImage:(UITapGestureRecognizer *)gestureRecognizer{
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
-        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
-        [self showHome];
-        [self.baomingVC.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+        [DVVUserManager userNeedLogin];
         return;
     }
     

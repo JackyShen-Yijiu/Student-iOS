@@ -259,7 +259,10 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     [AcountManager removeAllData];
 
     // 检测是否打开登录页
-    [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+//    [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+//    [self.navigationController presentViewController:[DVVUserManager loginController] animated:YES completion:nil];
+    
+    [DVVUserManager userNeedLogin];
     
     [SignUpInfoManager removeSignData];
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
