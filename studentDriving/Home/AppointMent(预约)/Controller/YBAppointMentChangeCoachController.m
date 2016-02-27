@@ -45,7 +45,6 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 
 @property (nonatomic ,strong) NSString *startTimeStr;
 @property (nonatomic ,strong) NSString *endTimeStr;
-@property (strong, nonatomic) NSString *updateTimeString;
 
 @property (nonatomic,strong) YBAppointMentNoCountentView *noCountmentView;
 
@@ -335,13 +334,6 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
         return;
     }
     
-    //    NSArray *userArray = [BLInformationManager sharedInstance].appointmentUserData;
-    //    if (userArray&&userArray.count==0) {
-    //        [self showTotasViewWithMes:@"请选择预约学员"];
-    //        return;
-    //    }
-    
-    
     // 数组排序
     NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
         //obj1.coursetime.numMark < obj2.coursetime.numMark
@@ -355,11 +347,11 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     
     NSArray *beginArray = [firstModel.coursetime.begintime componentsSeparatedByString:@":"];
     NSString *beginString = beginArray.firstObject;
-    _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:_updateTimeString]];
+    _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:self.selectDateStr]];
     
     NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
     NSString *endString = endArray.firstObject;
-    _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:_updateTimeString]];
+    _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:self.selectDateStr]];
     
     NSLog(@"self.selectDateStr:%@",self.selectDateStr);
     NSLog(@"firstModel.coursetime.begintime:%@",firstModel.coursetime.begintime);
@@ -388,21 +380,20 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     
     NSLog(@"%@",applyUrlString);
     NSDictionary *upData = @{@"coachid"   :self.appointCoach.coachid,
-                             @"begintime" :_startTimeStr,
-                             @"endtime"   :_endTimeStr,
+                             @"begintime" :[NSString stringWithFormat:@"%d",[self chagetime:firstModel.coursetime.begintime data:self.selectDateStr]],//[NSString stringWithFormat:@"%@ %@",self.selectDateStr,firstModel.coursetime.begintime],
+                             @"endtime"   :[NSString stringWithFormat:@"%d",[self chagetime:lastModel.coursetime.endtime data:self.selectDateStr]],//[NSString stringWithFormat:@"%@ %@",self.selectDateStr,lastModel.coursetime.endtime],
                              @"index"     :@"1"
                              };
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:upData WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
-        DYNSLog(@"同时段学员 %@",data);
+        DYNSLog(@"同时段学员 applyUrlString:%@ upData:%@ %@",applyUrlString,upData,data);
         
-        NSDictionary *param = data;
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
         
         if ([type isEqualToString:@"1"]) {
             
             NSError *error = nil;
-            ws.stuDataArray = [[MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:param[@"data"] error:&error] mutableCopy];
+            ws.stuDataArray = [[MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:data[@"data"] error:&error] mutableCopy];
             for (StudentModel *studentModel in self.stuDataArray) {
                 if ([studentModel.userid.userId isEqualToString:[AcountManager manager].userid]) {
                     [ws.stuDataArray removeObject:studentModel];
@@ -411,7 +402,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
             [ws.midYuYueheadView receiveCoachTimeDataWithStudentData:self.stuDataArray coachModel:self.appointCoach];
             
         }else {
-            kShowFail(param[@"msg"]);
+            [self obj_showTotasViewWithMes:[NSString stringWithFormat:@"%@",data[@"msg"]]];
         }
     } withFailure:^(id data) {
         kShowFail(@"网络连接失败，请检查网络连接");
@@ -449,11 +440,11 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     
     NSArray *beginArray = [firstModel.coursetime.begintime componentsSeparatedByString:@":"];
     NSString *beginString = beginArray.firstObject;
-    _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:_updateTimeString]];
+    _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:self.selectDateStr]];
     
     NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
     NSString *endString = endArray.firstObject;
-    _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:_updateTimeString]];
+    _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:self.selectDateStr]];
     
     NSLog(@"self.selectDateStr:%@",self.selectDateStr);
     NSLog(@"firstModel.coursetime.begintime:%@",firstModel.coursetime.begintime);
@@ -563,17 +554,22 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 }
 
 - (int)chagetime:(NSString *)timeStr data:(NSString *)dataStr {
-    NSLog(@"%@%@",timeStr,dataStr);
+    
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    
     //设置格式
     df.dateFormat = @"yyyy-MM-dd HH:mm:ss.0";
+    
     //将符合格式的字符串转成NSDate对象
-    NSDate *date = [df dateFromString:[NSString stringWithFormat:@"%@ %@:00:00",dataStr,timeStr]];
+    NSDate *date = [df dateFromString:[NSString stringWithFormat:@"%@ %@",dataStr,timeStr]];
+    NSLog(@"chagetime date:%@",date);
+    
     //计算一个时间和系统当前时间的时间差
     int second = [date timeIntervalSince1970];
+    
     return second;
+    
 }
-
 
 
 /*

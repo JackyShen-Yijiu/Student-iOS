@@ -88,14 +88,14 @@
     
     NSString *reuseIdentifier = @"footView";
     
-    YBAppointMentUserFooter *view =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:reuseIdentifier   forIndexPath:indexPath];
+    self.userFooter =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:reuseIdentifier   forIndexPath:indexPath];
     
-    view.studentArray = self.studentArray;
-    view.appointCoach = self.appointCoach;
+    self.userFooter.studentArray = self.studentArray;
+    self.userFooter.appointCoach = self.appointCoach;
     
-    view.parentViewController = self.parentViewController;
+    self.userFooter.parentViewController = self.parentViewController;
     
-    return view;
+    return self.userFooter;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -111,24 +111,6 @@
     return self;
 }
 
-//- (void)receiveCoachTimeselectData:(NSDate *)selectDate
-//{
-//    
-//   
-//    
-//    self.selectDate = selectDate;
-//    
-//    [self.upDateArray removeAllObjects];
-//    
-//    [self.dataArray removeAllObjects];
-//    [self.dataArray addObjectsFromArray:coachTimeData];
-//    
-//    [self.collectionView reloadData];
-//    
-//    self.userFooter.userCount = self.userCount;
-//    
-//}
-
 - (void)receiveCoachTimeDataWithStudentData:(NSMutableArray *)stuDataArray coachModel:(YBAppointMentCoachModel *)coachModel
 {
     self.studentArray = stuDataArray;
@@ -136,7 +118,7 @@
     
     UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
     // 行数
-    NSInteger hangshu = stuDataArray.count / 4;
+    NSInteger hangshu = stuDataArray.count % 4;
     NSLog(@"hangshu::%ld",(long)hangshu);
     CGFloat footHeight = hangshu * 60 + 45 + 60;
     NSLog(@"receiveCoachTimeData footHeight:%f",footHeight);
