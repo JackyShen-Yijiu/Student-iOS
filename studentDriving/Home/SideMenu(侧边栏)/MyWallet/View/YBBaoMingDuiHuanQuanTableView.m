@@ -40,7 +40,7 @@
 
 #pragma mark - table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return _dataArray.count;
+    return self.dataArray.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -48,8 +48,9 @@
     if (!cell) {
         cell = [[YBBaoMingDuiHuanQuanCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    cell.dictModel = _dataArray[indexPath.row];
+    cell.dictModel = self.dataArray[indexPath.row];
     
     return cell;
 }

@@ -100,7 +100,7 @@
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    navBarHairlineImageView.hidden=NO;
+//    navBarHairlineImageView.hidden=NO;
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {

@@ -39,6 +39,10 @@
 
 #pragma mark - table view
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
+    NSLog(@"self.jianglijifenArrray:%@",self.jianglijifenArrray);
+    NSLog(@"self.kequxianjineduArray:%@",self.kequxianjineduArray);
+
     if (self.isJianglijifen) {
         return self.jianglijifenArrray.count;
     }
@@ -50,6 +54,7 @@
     if (!cell) {
         cell = [[YBJiangliJifenCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier];
     }
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     if (self.isJianglijifen) {
         cell.jianglijifenModel = _jianglijifenArrray[indexPath.row];

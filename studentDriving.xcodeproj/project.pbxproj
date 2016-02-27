@@ -249,6 +249,7 @@
 		B2F1AE8F1C8042F9006D56FF /* YBBaoMingDuiHuanQuanTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE8E1C8042F9006D56FF /* YBBaoMingDuiHuanQuanTableView.m */; };
 		B2F1AE931C804320006D56FF /* YBBaoMingDuiHuanQuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE911C804320006D56FF /* YBBaoMingDuiHuanQuanCell.m */; };
 		B2F1AE941C804320006D56FF /* YBBaoMingDuiHuanQuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2F1AE921C804320006D56FF /* YBBaoMingDuiHuanQuanCell.xib */; };
+		B2F1AE971C815218006D56FF /* YBMyWalletMallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2F1AE961C815218006D56FF /* YBMyWalletMallViewController.m */; };
 		B84D9D211C2E807E00A8BDC2 /* ToastAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */; };
 		B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D231C2E80F000A8BDC2 /* UIViewController+Method.m */; };
 		B84D9D271C2EB28000A8BDC2 /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B84D9D261C2EB28000A8BDC2 /* AFNetworkActivityLogger.m */; };
@@ -1556,6 +1557,8 @@
 		B2F1AE901C804320006D56FF /* YBBaoMingDuiHuanQuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaoMingDuiHuanQuanCell.h; sourceTree = "<group>"; };
 		B2F1AE911C804320006D56FF /* YBBaoMingDuiHuanQuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaoMingDuiHuanQuanCell.m; sourceTree = "<group>"; };
 		B2F1AE921C804320006D56FF /* YBBaoMingDuiHuanQuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBBaoMingDuiHuanQuanCell.xib; sourceTree = "<group>"; };
+		B2F1AE951C815218006D56FF /* YBMyWalletMallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMyWalletMallViewController.h; sourceTree = "<group>"; };
+		B2F1AE961C815218006D56FF /* YBMyWalletMallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMyWalletMallViewController.m; sourceTree = "<group>"; };
 		B84D9D1F1C2E807E00A8BDC2 /* ToastAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToastAlertView.h; sourceTree = "<group>"; };
 		B84D9D201C2E807E00A8BDC2 /* ToastAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToastAlertView.m; sourceTree = "<group>"; };
 		B84D9D221C2E80F000A8BDC2 /* UIViewController+Method.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+Method.h"; sourceTree = "<group>"; };
@@ -3962,6 +3965,8 @@
 			children = (
 				B2F1AE821C8031BC006D56FF /* YBMyWalletViewController.h */,
 				B2F1AE831C8031BC006D56FF /* YBMyWalletViewController.m */,
+				B2F1AE951C815218006D56FF /* YBMyWalletMallViewController.h */,
+				B2F1AE961C815218006D56FF /* YBMyWalletMallViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6779,6 +6784,7 @@
 				D588B0E21BDDDC14000C5D6F /* AppointmentDrivingCell.m in Sources */,
 				D99674631C7D54610000CC65 /* ClassTypeDMSchoolinfo.m in Sources */,
 				D5C240141BECFCE600832CF3 /* BLAVDetailViewController.m in Sources */,
+				B2F1AE971C815218006D56FF /* YBMyWalletMallViewController.m in Sources */,
 				B226AEEE1C748F890028DF1A /* JGSubjectthreeModel.m in Sources */,
 				D588B1131BDDDC2F000C5D6F /* UIDevice+JEsystemVersion.m in Sources */,
 				D5604B821BF656C50020F0D7 /* UIImageView+HeadImage.m in Sources */,

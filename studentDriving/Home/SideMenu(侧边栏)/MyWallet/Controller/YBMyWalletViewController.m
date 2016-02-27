@@ -12,6 +12,8 @@
 #import "YBJianglijifenTableView.h"
 #import "YBBaoMingDuiHuanQuanTableView.h"
 #import "MJRefresh.h"
+#import "DVVShare.h"
+#import "YBMyWalletMallViewController.h"
 
 #define topViewH 175
 #define toolBarHeight 40
@@ -45,9 +47,96 @@
 @property (nonatomic, copy) NSString *baomingduihuanquanCount;
 @property (nonatomic, copy) NSString *kequxianjineduCount;
 
+@property (nonatomic,strong) UIView *footView;
+@property (nonatomic,strong) UILabel *messageLabel;
+@property (nonatomic,strong) UIButton *leftBtn;
+@property (nonatomic,strong) UIButton *rightBtn;
+
 @end
 
 @implementation YBMyWalletViewController
+
+- (UIView *)footView
+{
+    if (_footView==nil) {
+        
+        // 底部提交
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame)-50-64, self.view.width, 50)];
+        _footView.backgroundColor = [UIColor whiteColor];
+        
+        [_footView addSubview:self.messageLabel];
+        
+        [_footView addSubview:self.leftBtn];
+
+        [_footView addSubview:self.rightBtn];
+        
+    }
+    return _footView;
+}
+
+- (UILabel *)messageLabel
+{
+    if (_messageLabel==nil) {
+        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 150, self.footView.height-10)];
+        _messageLabel.text = @" 我的Y码：";
+        _messageLabel.font = [UIFont systemFontOfSize:12];
+        _messageLabel.textColor = [UIColor blackColor];
+    }
+    return _messageLabel;
+}
+
+- (UIButton *)rightBtn
+{
+    if (_rightBtn==nil) {
+        
+        _rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.footView.width-80-10, 5, 80, 40)];
+        _rightBtn.backgroundColor = YBNavigationBarBgColor;
+        _rightBtn.layer.masksToBounds = YES;
+        _rightBtn.layer.cornerRadius = 3;
+        [_rightBtn setTitle:@"兑换" forState:UIControlStateNormal];
+        [_rightBtn setTitle:@"兑换" forState:UIControlStateHighlighted];
+        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_rightBtn addTarget:self action:@selector(rightBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+
+    }
+    return _rightBtn;
+}
+
+- (UIButton *)leftBtn
+{
+    if (_leftBtn==nil) {
+        
+        _leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.footView.width-80*2-20, 5, 80, 40)];
+        _leftBtn.backgroundColor = YBNavigationBarBgColor;
+        _leftBtn.layer.masksToBounds = YES;
+        _leftBtn.layer.cornerRadius = 3;
+        [_leftBtn setTitle:@"邀请好友" forState:UIControlStateNormal];
+        [_leftBtn setTitle:@"邀请好友" forState:UIControlStateHighlighted];
+        _leftBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_leftBtn addTarget:self action:@selector(leftBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _leftBtn;
+}
+
+- (void)leftBtnDidClick{
+    
+    [DVVShare shareWithTitle:DVV_Share_Default_Title
+                     content:DVV_Share_Default_Content
+                       image:DVV_Share_Default_Image
+                    location:nil
+                         url:nil
+                     success:^(NSString *platformName) {
+                         [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
+                     }];
+}
+
+- (void)rightBtnDidClick
+{
+    NSLog(@"%s",__func__);
+    YBMyWalletMallViewController *vc = [[YBMyWalletMallViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 - (NSMutableArray *)jianglijifenArray
 {
@@ -137,9 +226,6 @@
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
     
-    // 更新数据
-    [self changeScrollViewOffSetX:0];
-    
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -167,6 +253,8 @@
     // 滚动视图
     [self.view addSubview:self.scrollView];
     
+    [self.view addSubview:self.footView];
+
     [_scrollView addSubview:self.jianglijifenTableView];
     [_scrollView addSubview:self.baomingduihuanquanTableView];
     [_scrollView addSubview:self.kequxianjinedu];
@@ -188,6 +276,12 @@
     
     // 请求数据
     [self setUpData];
+    
+    // 获取Y码
+    [self getYnum];
+    
+    // 更新数据
+    [self changeScrollViewOffSetX:0];
     
 }
 
@@ -271,7 +365,7 @@
     
 }
 
-#pragma mark 查询优惠券
+#pragma mark 报名兑换券
 - (void)getBaomingduihuanquanData{
     
     NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmycupon"];
@@ -279,7 +373,7 @@
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
-        NSLog(@"查询优惠券:%@",data);
+        NSLog(@"报名兑换券:%@",data);
         /*
          
          {
@@ -310,6 +404,7 @@
             for (NSDictionary *dict in dataArray) {
                 [self.baomingduihuanquanArray addObject:dict];
             }
+            NSLog(@"报名兑换券 self.baomingduihuanquanArray:%@",self.baomingduihuanquanArray);
             
             [self reloadData];
 
@@ -466,6 +561,9 @@
     
     if (studyProgress==0) {
         
+        self.leftBtn.hidden = NO;
+        self.rightBtn.hidden = NO;
+        
         self.titleLabel.text = @"奖励积分";
         self.countLabel.text = self.jianglijifenCount;
         
@@ -483,6 +581,9 @@
         
     }else if (studyProgress == 1){
 
+        self.leftBtn.hidden = YES;
+        self.rightBtn.hidden = NO;
+        
         self.titleLabel.text = @"报名兑换券";
         self.countLabel.text = self.baomingduihuanquanCount;
         
@@ -500,6 +601,9 @@
         [self.baomingduihuanquanTableView reloadData];
         
     }else if (studyProgress == 2){
+        
+        self.rightBtn.hidden = YES;
+        self.leftBtn.hidden = YES;
         
         self.titleLabel.text = @"可取现金额度";
         self.countLabel.text = self.kequxianjineduCount;
@@ -531,7 +635,7 @@
     
     _toolBarBottomLineView.frame = CGRectMake(0, CGRectGetMaxY(_dvvToolBarView.frame), screenSize.width, 1);
     
-    _scrollView.frame = CGRectMake(0, topViewH, screenSize.width, screenSize.height - topViewH-64);
+    _scrollView.frame = CGRectMake(0, topViewH, screenSize.width, screenSize.height - topViewH - 64 - 50);
     _scrollView.contentSize = CGSizeMake(screenSize.width * 3, 0);
     
     _jianglijifenTableView.frame = CGRectMake(0, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
@@ -580,6 +684,27 @@
     return _kequxianjinedu;
 }
 
+
+- (void)getYnum
+{
+    NSString *urlString = [NSString stringWithFormat:@"/userinfo/getmymoney?userid=%@&usertype=1", [AcountManager manager].userid];
+    // 请求数据显示豆币相关信息
+    [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL,urlString] postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSLog(@"=== %@",data);
+        NSDictionary *dict = data;
+        if ([dict objectForKey:@"type"]) {
+            NSDictionary *paramsDict = [dict objectForKey:@"data"];
+            if (paramsDict) {
+                NSString *fcode = [paramsDict objectForKey:@"fcode"];
+                NSInteger couponcount = [[paramsDict objectForKey:@"couponcount"] integerValue];
+                if (fcode && fcode.length) {
+                    self.messageLabel.text = [NSString stringWithFormat:@"我的Y码：%@", fcode];
+                }
+            }
+        }
+    }];
+
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
