@@ -22,7 +22,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未填写所属驾校" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0H-VK-gOh">
-                        <rect key="frame" x="72" y="38" width="144" height="12"/>
+                        <rect key="frame" x="72" y="38" width="134" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="rPQ-LD-UZw"/>
                         </constraints>
@@ -31,10 +31,10 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无距离信息" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ol-De-UlP">
-                        <rect key="frame" x="224" y="38" width="80" height="12"/>
+                        <rect key="frame" x="214" y="38" width="90" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="dS6-ZM-JlT"/>
-                            <constraint firstAttribute="width" constant="80" id="xJf-3n-t3w"/>
+                            <constraint firstAttribute="width" constant="90" id="xJf-3n-t3w"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>

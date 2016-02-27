@@ -53,7 +53,7 @@
 //    DVVSignUpSchoolDMLogoimg *
     
     [_iconImageView dvv_downloadImage:dmData.logoimg.originalpic
-                     placeholderImage:[UIImage imageNamed:@"120"]];
+                     placeholderImage:[UIImage imageNamed:@"ic_school_header"]];
     NSLog(@"dmData.logoimg.originalpic: %@", dmData.logoimg.originalpic);
     if (dmData.name) {
         _nameLabel.text = dmData.name;
@@ -66,7 +66,7 @@
         _addressLabel.text = @"未填写地址";
     }
     if (dmData.maxprice) {
-        _priceLabel.text = [NSString stringWithFormat:@"¥%i-¥%i",dmData.minprice,dmData.maxprice];
+        _priceLabel.text = [NSString stringWithFormat:@"¥%lu-¥%lu",dmData.minprice,dmData.maxprice];
     }else {
         _priceLabel.text = @"未填写价格";
     }
@@ -76,7 +76,7 @@
         _distanceLabel.text = @"暂无距离信息";
     }
     if (dmData.coachcount) {
-        _coachCountLabel.text = [NSString stringWithFormat:@"%i位认证教练", dmData.coachcount];
+        _coachCountLabel.text = [NSString stringWithFormat:@"%lu位认证教练", dmData.coachcount];
     }else {
         _coachCountLabel.text = @"暂无认证教练";
     }

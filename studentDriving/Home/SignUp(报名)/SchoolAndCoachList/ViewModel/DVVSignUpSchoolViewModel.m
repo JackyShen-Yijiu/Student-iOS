@@ -40,17 +40,23 @@
 }
 - (void)dvv_networkRequestWithIndex:(NSUInteger)index isRefresh:(BOOL)isRefresh {
     
+//    if (isRefresh) {
+//        [_dataArray removeAllObjects];
+//    }
+    
     NSString *url = [NSString stringWithFormat:BASEURL, @"searchschool"];
     
     NSDictionary *paramsDict = @{ @"latitude": [NSString stringWithFormat:@"%f", _latitude],
                                   @"longitude":  [NSString stringWithFormat:@"%f", _longitude],
-                                  @"radius":  [NSString stringWithFormat:@"%i", _radius],
+                                  @"radius":  [NSString stringWithFormat:@"%lu", _radius],
                                   @"cityname": _cityName,
                                   @"licensetype": @"",
                                   @"schoolname": _searchName,
-                                  @"ordertype":  [NSString stringWithFormat:@"%i", _orderType],
-                                  @"index":  [NSString stringWithFormat:@"%i", index],
-                                  @"count":  [NSString stringWithFormat:@"%i", _count] };
+                                  @"ordertype":  [NSString stringWithFormat:@"%lu", _orderType],
+                                  @"index":  [NSString stringWithFormat:@"%lu", index],
+                                  @"count":  [NSString stringWithFormat:@"%lu", _count] };
+    
+    NSLog(@"school paramsDict: %@", paramsDict);
     
     [JENetwoking startDownLoadWithUrl:url postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         

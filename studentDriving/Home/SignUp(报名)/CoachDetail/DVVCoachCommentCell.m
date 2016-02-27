@@ -50,10 +50,10 @@
     if (originalpic && originalpic.length) {
         [_iconImageView dvv_downloadImage:originalpic];
     }else {
-        NSString *imageName = @"coach_man_default_icon";
+        NSString *imageName = @"ic_student_man_header";
         if (dmData.userid.gender && dmData.userid.gender.length) {
             if ([dmData.userid.gender isEqualToString:@"女"]) {
-                imageName = @"coach_woman_default_icon";
+                imageName = @"ic_student_woman_header";
             }
         }
         _iconImageView.image = [UIImage imageNamed:imageName];

@@ -21,6 +21,7 @@
 #import "DrivingDetailController.h"
 #import "WMCommon.h"
 #import "DVVCoachDetailController.h"
+#import "DVVNoDataPromptView.h"
 
 static NSString *schoolCellID = @"schoolCellID";
 static NSString *coachCellID = @"coachCellID";
@@ -53,6 +54,8 @@ static NSString *coachCellID = @"coachCellID";
 
 @property (nonatomic, assign) CGFloat lastOffsetY;
 
+@property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
+
 @end
 
 @implementation YBSignUpViewController
@@ -61,6 +64,7 @@ static NSString *coachCellID = @"coachCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = NO;
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     
     [self.view addSubview:self.titleView];
     [_titleView addSubview:self.titleLeftButton];
@@ -119,7 +123,13 @@ static NSString *coachCellID = @"coachCellID";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-    navBarHairlineImageView.hidden=NO;
+//    // 显示导航条分割线
+//    navBarHairlineImageView.hidden=NO;
+    
+    // 退出侧边栏
+    if ([WMCommon getInstance].homeState==kStateMenu) {
+        [self clicked];
+    }
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -191,20 +201,37 @@ static NSString *coachCellID = @"coachCellID";
     
     CityListViewController *vc = [CityListViewController new];
     vc.delegate = self;
-    [self presentViewController:vc animated:YES completion:nil];
+    self.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+//    [self presentViewController:vc animated:YES completion:nil];
 }
 
 #pragma mark 选择城市的代理事件
 - (void)didClickedWithCityName:(NSString *)cityName {
     
+    NSLog(@"selected cityName: %@", cityName);
+    _locationLabel.text = cityName;
+    
+    _schoolViewModel.cityName = cityName;
+    _coachViewModel.cityName = cityName;
+    [self beginRefresh];
 }
 
 #pragma mark - public
 
 - (void)beginRefresh {
-    [DVVToast showFromView:self.view OffSetY:-10];
-    // 当刷新时，刷新下数据，避免驾校和教练切换时，由于网络延迟，点击cell崩溃
+    
+    // 当刷新时，刷新下数据，避免驾校和教练切换时，点击cell崩溃
+    if (0 == _showType) {
+        [_schoolViewModel.dataArray removeAllObjects];
+    }else {
+        [_coachViewModel.dataArray removeAllObjects];
+    }
     [self.tableView reloadData];
+    
+    // 开始请求数据
+    [self.noDataPromptView remove];
+    [DVVToast showFromView:self.view OffSetY:-10];
     if (0 == _showType) {
         [_schoolViewModel dvv_networkRequestRefresh];
     }else {
@@ -217,6 +244,19 @@ static NSString *coachCellID = @"coachCellID";
     _coachViewModel.searchName = @"";
     _searchView.textField.text = @"";
     [self.view endEditing:YES];
+}
+
+- (void)hideSearchView {
+    
+    if (!_schoolViewModel.isSearch) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.tableView.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0);
+        }];
+    }else if (!_coachViewModel.isSearch) {
+        [UIView animateWithDuration:0.3 animations:^{
+            self.tableView.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0);
+        }];
+    }
 }
 
 #pragma mark - table delegate datasource
@@ -317,14 +357,11 @@ static NSString *coachCellID = @"coachCellID";
     _schoolViewModel = [DVVSignUpSchoolViewModel new];
     
     [_schoolViewModel dvv_setRefreshSuccessBlock:^{
+        [ws.noDataPromptView remove];
         [ws.tableView reloadData];
-        if (!_schoolViewModel.isSearch) {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.tableView.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0);
-            }];
-        }
     }];
     [_schoolViewModel dvv_setLoadMoreSuccessBlock:^{
+        [ws.noDataPromptView remove];
         [ws.tableView reloadData];
     }];
     [_schoolViewModel dvv_setNilResponseObjectBlock:^{
@@ -332,16 +369,23 @@ static NSString *coachCellID = @"coachCellID";
             [ws obj_showTotasViewWithMes:@"已经全部加载完毕"];
             ws.tableView.mj_footer.state = MJRefreshStateNoMoreData;
         }else {
-            [ws obj_showTotasViewWithMes:@"暂无数据"];
+//            [ws obj_showTotasViewWithMes:@"暂无数据"];
+            ws.noDataPromptView.titleLabel.text = @"暂无合作驾校信息";
+            ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
+            [ws.tableView addSubview:ws.noDataPromptView];
         }
     }];
     [_schoolViewModel dvv_setNetworkCallBackBlock:^{
         [DVVToast hideFromView:ws.view];
         [ws.tableView.mj_header endRefreshing];
         [ws.tableView.mj_footer endRefreshing];
+        [self hideSearchView];
     }];
     [_schoolViewModel dvv_setNetworkErrorBlock:^{
-        [ws obj_showTotasViewWithMes:@"网络错误"];
+        ws.noDataPromptView.titleLabel.text = @"网络错误";
+        ws.noDataPromptView.subTitleLabel.text = @"";
+        [ws.tableView addSubview:ws.noDataPromptView];
+//        [ws obj_showTotasViewWithMes:@"网络错误"];
     }];
 }
 
@@ -351,14 +395,11 @@ static NSString *coachCellID = @"coachCellID";
     _coachViewModel = [DVVSignUpCoachViewModel new];
     
     [_coachViewModel dvv_setRefreshSuccessBlock:^{
+        [ws.noDataPromptView remove];
         [ws.tableView reloadData];
-        if (!_coachViewModel.isSearch) {
-            [UIView animateWithDuration:0.3 animations:^{
-                self.tableView.contentInset = UIEdgeInsetsMake(-40, 0, 0, 0);
-            }];
-        }
     }];
     [_coachViewModel dvv_setLoadMoreSuccessBlock:^{
+        [ws.noDataPromptView remove];
         [ws.tableView reloadData];
     }];
     [_coachViewModel dvv_setNilResponseObjectBlock:^{
@@ -366,16 +407,23 @@ static NSString *coachCellID = @"coachCellID";
             [ws obj_showTotasViewWithMes:@"已经全部加载完毕"];
             ws.tableView.mj_footer.state = MJRefreshStateNoMoreData;
         }else {
-            [ws obj_showTotasViewWithMes:@"暂无数据"];
+//            [ws obj_showTotasViewWithMes:@"暂无数据"];
+            ws.noDataPromptView.titleLabel.text = @"暂无合作教练信息";
+            ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
+            [ws.tableView addSubview:ws.noDataPromptView];
         }
     }];
     [_coachViewModel dvv_setNetworkCallBackBlock:^{
         [DVVToast hideFromView:ws.view];
         [ws.tableView.mj_header endRefreshing];
         [ws.tableView.mj_footer endRefreshing];
+        [ws hideSearchView];
     }];
     [_coachViewModel dvv_setNetworkErrorBlock:^{
-        [ws obj_showTotasViewWithMes:@"网络错误"];
+        ws.noDataPromptView.titleLabel.text = @"网络错误";
+        ws.noDataPromptView.subTitleLabel.text = @"";
+        [ws.tableView addSubview:ws.noDataPromptView];
+//        [ws obj_showTotasViewWithMes:@"网络错误"];
     }];
 }
 
@@ -511,6 +559,7 @@ static NSString *coachCellID = @"coachCellID";
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView= [UITableView new];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.clipsToBounds = NO;
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -540,6 +589,13 @@ static NSString *coachCellID = @"coachCellID";
         }];
     }
     return _searchView;
+}
+
+- (DVVNoDataPromptView *)noDataPromptView {
+    if (!_noDataPromptView) {
+        _noDataPromptView = [[DVVNoDataPromptView alloc] initWithTitle:@"暂无数据" image:[UIImage imageNamed:@"app_error_robot"]];
+    }
+    return _noDataPromptView;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -10,7 +10,7 @@
 #import "ClassTypeDMData.h"
 #import "YYModel.h"
 #import "ClassTypeCell.h"
-#import "DVVPromptNilDataView.h"
+#import "DVVNoDataPromptView.h"
 
 typedef void(^DVVCoachClassTypeViewBlock)(ClassTypeDMData *dmData);
 
@@ -25,7 +25,7 @@ typedef void(^DVVCoachClassTypeViewBlock)(ClassTypeDMData *dmData);
 @property (nonatomic, strong) NSMutableArray *heightArray;
 @property (nonatomic, assign) CGFloat totalHeight;
 
-@property (nonatomic, strong) DVVPromptNilDataView *promptNilDataView;
+@property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
 
 - (CGFloat)dynamicHeight:(NSArray *)dataArray;
 

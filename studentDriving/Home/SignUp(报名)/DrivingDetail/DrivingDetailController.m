@@ -30,6 +30,8 @@
 
 #import "DVVSignUpDetailController.h"
 
+#import "DVVNoDataPromptView.h"
+
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
@@ -51,6 +53,8 @@
 
 @property (nonatomic, strong) DVVSignUpToolBarView *toolBarView;
 
+@property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
+
 @end
 
 @implementation DrivingDetailController
@@ -64,7 +68,7 @@
     
     self.edgesForExtendedLayout = NO;
     self.title = @"驾校详情";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     
     NSLog(@"%@", _schoolID);
 
@@ -99,7 +103,7 @@
     // 背景色
     [bar setBackgroundColor:[UIColor clearColor]];
     // 背景图片
-    [bar setBackgroundImage:[UIImage imageNamed:@"naviBackgroundImag"] forBarMetrics:UIBarMetricsDefault];
+    [bar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
     // 打开透明效果
     [bar setTranslucent:YES];
 }
@@ -144,14 +148,17 @@
         [ws.tableHeaderView refreshData:_viewModel.dmData];
     }];
     [_viewModel dvvSetRefreshErrorBlock:^{
-        [ws obj_showTotasViewWithMes:@"加载失败"];
+//        [ws obj_showTotasViewWithMes:@"加载失败"];
+        [ws.view addSubview:ws.noDataPromptView];
     }];
     
     [_viewModel dvvSetNilResponseObjectBlock:^{
-        [ws obj_showTotasViewWithMes:@"没有数据"];
+//        [ws obj_showTotasViewWithMes:@"没有数据"];
+        [ws.view addSubview:ws.noDataPromptView];
     }];
     [_viewModel dvvSetNetworkErrorBlock:^{
-        [ws obj_showTotasViewWithMes:@"网络错误"];
+//        [ws obj_showTotasViewWithMes:@"网络错误"];
+        [ws.view addSubview:ws.noDataPromptView];
     }];
     [_viewModel dvvSetNetworkCallBackBlock:^{
         [DVVToast hide];
@@ -455,6 +462,14 @@
         }];
     }
     return _toolBarView;
+}
+
+- (DVVNoDataPromptView *)noDataPromptView {
+    if (!_noDataPromptView) {
+        _noDataPromptView = [[DVVNoDataPromptView alloc] initWithTitle:@"加载失败" image:[UIImage imageNamed:@"app_error_robot"]];
+        _noDataPromptView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    }
+    return _noDataPromptView;
 }
 
 

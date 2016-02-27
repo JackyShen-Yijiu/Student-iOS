@@ -48,17 +48,33 @@
 }
 
 - (void)refreshData:(DrivingDetailDMData *)dmData {
-    
-    _briefIntroductionLabel.text = dmData.introduction;
+    if (dmData.introduction && dmData.introduction.length) {
+        _briefIntroductionLabel.text = dmData.introduction;
+    }else {
+        _briefIntroductionLabel.text = @"暂无驾校简介";
+    }
 //    _briefIntroductionLabel.backgroundColor = [UIColor redColor];
 }
 
 + (CGFloat)dynamicHeight:(NSString *)string isShowMore:(BOOL)isShowMore {
     
+    if (!string || !string.length) {
+        string = @"暂无驾校简介";
+    }
+    CGFloat testHeight = [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 56 - 16 font:[UIFont systemFontOfSize:14]];
+    
     if (isShowMore) {
-        return 16 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 56 - 16 font:[UIFont systemFontOfSize:14]] + 8 + 1;
+        if (testHeight < 20) {
+            testHeight = 24;
+        }
+        return 16 + testHeight + 8 + 1;
     }else {
-        return 16 + 14*2 + 8 + 8;
+        if (testHeight < 20) {
+            testHeight = 24;
+        }else {
+            testHeight = 34;
+        }
+        return 16 + testHeight + 8 + 1;
     }
 }
 

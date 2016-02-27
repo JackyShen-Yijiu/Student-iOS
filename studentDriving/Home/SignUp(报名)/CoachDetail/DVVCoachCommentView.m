@@ -44,16 +44,16 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     __weak typeof(self) ws = self;
     [_viewModel dvv_setRefreshSuccessBlock:^{
         ws.bottomButton.hidden = NO;
-        [ws.promptNilDataView removeFromSuperview];
+        [ws.noDataPromptView remove];
         [ws reloadData];
     }];
     [_viewModel dvv_setNilResponseObjectBlock:^{
         ws.bottomButton.hidden = YES;
-        [ws addSubview:ws.promptNilDataView];
+        [ws addSubview:ws.noDataPromptView];
     }];
     [_viewModel dvv_setNetworkErrorBlock:^{
         ws.bottomButton.hidden = YES;
-        [ws addSubview:ws.promptNilDataView];
+        [ws addSubview:ws.noDataPromptView];
     }];
 }
 
@@ -98,14 +98,13 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     return _bottomButton;
 }
 
-- (DVVPromptNilDataView *)promptNilDataView {
-    if (!_promptNilDataView) {
-        _promptNilDataView = [DVVPromptNilDataView new];
-        _promptNilDataView.promptLabel.text = @"暂无评论信息";
+- (DVVNoDataPromptView *)noDataPromptView {
+    if (!_noDataPromptView) {
+        _noDataPromptView = [[DVVNoDataPromptView alloc] initWithTitle:@"暂无评论信息" image:[UIImage imageNamed:@"app_error_robot"]];
         CGSize size = [UIScreen mainScreen].bounds.size;
-        _promptNilDataView.center = CGPointMake(size.width / 2.f, (size.height - 64 - 44) / 2.f);
+        _noDataPromptView.frame = CGRectMake(0, 0, size.width, size.height - 64 - 44);
     }
-    return _promptNilDataView;
+    return _noDataPromptView;
 }
 
 /*

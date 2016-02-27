@@ -15,6 +15,7 @@
 @interface DVVCoachDetailHeaderView : UIView
 
 @property (nonatomic, strong) UIView *alphaView;
+@property (nonatomic, strong) UIImageView *maskView;
 
 @property (nonatomic, copy) NSString *coachID;
 

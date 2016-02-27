@@ -59,10 +59,10 @@
         [_heightArray addObject:[NSString stringWithFormat:@"%f",height]];
     }
     if (_dataArray.count) {
-        [self.promptNilDataView removeFromSuperview];
+        [self.noDataPromptView remove];
         [self reloadData];
     }else {
-        [self addSubview:self.promptNilDataView];
+        [self addSubview:self.noDataPromptView];
     }
     return _totalHeight;
 }
@@ -119,14 +119,13 @@
     }
 }
 
-- (DVVPromptNilDataView *)promptNilDataView {
-    if (!_promptNilDataView) {
-        _promptNilDataView = [DVVPromptNilDataView new];
-        _promptNilDataView.promptLabel.text = @"暂无班型信息";
+- (DVVNoDataPromptView *)noDataPromptView {
+    if (!_noDataPromptView) {
+        _noDataPromptView = [[DVVNoDataPromptView alloc] initWithTitle:@"暂无班型信息" image:[UIImage imageNamed:@"app_error_robot"]];
         CGSize size = [UIScreen mainScreen].bounds.size;
-        _promptNilDataView.center = CGPointMake(size.width / 2.f, (size.height - 64 - 44) / 2.f);
+        _noDataPromptView.frame = CGRectMake(0, 0, size.width, size.height - 64 - 44);
     }
-    return _promptNilDataView;
+    return _noDataPromptView;
 }
 
 #pragma mark - set block
