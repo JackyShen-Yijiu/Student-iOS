@@ -67,7 +67,7 @@
     if (_carNameLabel == nil) {
         _carNameLabel = [[UILabel alloc]init];
         _carNameLabel.text = @"C1手动挡VIP专项班";
-        _carNameLabel.textColor = [UIColor colorWithHexString:@"bdbddb"];
+        _carNameLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
         _carNameLabel.font = [UIFont systemFontOfSize:14];
     }
     return _carNameLabel;

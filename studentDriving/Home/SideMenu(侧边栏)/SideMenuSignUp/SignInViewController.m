@@ -94,7 +94,7 @@
         make.top.mas_equalTo(self.qrCodeImageView.mas_bottom).offset(15);
     }];
     [_explainTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(64 + 15);
+        make.top.mas_equalTo(30);
         make.height.equalTo(@20);
         make.left.with.right.mas_equalTo(15);
     }];
@@ -271,7 +271,7 @@
 - (UIButton *)completeButton {
     if (!_completeButton) {
         _completeButton = [UIButton new];
-        _completeButton.backgroundColor = MAINCOLOR;
+        _completeButton.backgroundColor = YBNavigationBarBgColor;
         [_completeButton setTitle:@"完成" forState:UIControlStateNormal];
         [_completeButton addTarget:self action:@selector(completeButtonAction) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -298,9 +298,9 @@
 - (UILabel *)explainTitleLabel {
     if (!_explainTitleLabel) {
         _explainTitleLabel = [UILabel new];
-        _explainTitleLabel.font = [UIFont systemFontOfSize:13];
+        _explainTitleLabel.font = [UIFont systemFontOfSize:14];
         _explainTitleLabel.text = @"签到须知:";
-        _explainTitleLabel.textColor = [UIColor redColor];
+        _explainTitleLabel.textColor = YBNavigationBarBgColor;
     }
     return _explainTitleLabel;
 }

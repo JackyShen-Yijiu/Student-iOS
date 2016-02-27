@@ -68,6 +68,7 @@
 		55901B6B1C267F5B00AC64FF /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6A1C267F5B00AC64FF /* AppointmentDetailViewController.m */; };
 		55901B6E1C26811900AC64FF /* AppointmentDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */; };
 		560D21DC1C813A7F001B8B83 /* SignInCoachIconModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D21DB1C813A7F001B8B83 /* SignInCoachIconModel.m */; };
+		560D21DF1C814826001B8B83 /* MallOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 560D21DE1C814826001B8B83 /* MallOrderCell.m */; };
 		5611A59C1C7EEE0500DC083D /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A59B1C7EEE0500DC083D /* YBDiscountCell.m */; };
 		5611A59F1C7EEEC800DC083D /* YBDiscountModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A59E1C7EEEC800DC083D /* YBDiscountModel.m */; };
 		5611A5A51C7F2D7700DC083D /* YBIntegrationMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */; };
@@ -1130,6 +1131,8 @@
 		55901B6D1C26811900AC64FF /* AppointmentDrivingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDrivingViewController.m; sourceTree = "<group>"; };
 		560D21DA1C813A7F001B8B83 /* SignInCoachIconModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInCoachIconModel.h; sourceTree = "<group>"; };
 		560D21DB1C813A7F001B8B83 /* SignInCoachIconModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInCoachIconModel.m; sourceTree = "<group>"; };
+		560D21DD1C814826001B8B83 /* MallOrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallOrderCell.h; sourceTree = "<group>"; };
+		560D21DE1C814826001B8B83 /* MallOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallOrderCell.m; sourceTree = "<group>"; };
 		5611A59A1C7EEE0500DC083D /* YBDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBDiscountCell.h; path = "studentDriving/Home/SideMenu(侧边栏)/SideMenuEditorMessage/YBDiscountCell.h"; sourceTree = SOURCE_ROOT; };
 		5611A59B1C7EEE0500DC083D /* YBDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBDiscountCell.m; path = "studentDriving/Home/SideMenu(侧边栏)/SideMenuEditorMessage/YBDiscountCell.m"; sourceTree = SOURCE_ROOT; };
 		5611A59D1C7EEEC800DC083D /* YBDiscountModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBDiscountModel.h; path = "studentDriving/Home/SideMenu(侧边栏)/SideMenuEditorMessage/YBDiscountModel.h"; sourceTree = SOURCE_ROOT; };
@@ -3331,6 +3334,8 @@
 				56C4073F1C7D4EF4002E0692 /* SignUpDetailController.m */,
 				56C407441C7DB5B0002E0692 /* SignUpDetailCell.h */,
 				56C407451C7DB5B0002E0692 /* SignUpDetailCell.m */,
+				560D21DD1C814826001B8B83 /* MallOrderCell.h */,
+				560D21DE1C814826001B8B83 /* MallOrderCell.m */,
 				56C407411C7D4F56002E0692 /* FavouriteViewController.h */,
 				56C407421C7D4F56002E0692 /* FavouriteViewController.m */,
 				56DD9C1E1C7C187600552A56 /* EditorDetailCell.h */,
@@ -7097,6 +7102,7 @@
 				D96D1C031C2BFB2D00F1C282 /* DVVSideMenuCollectionView.m in Sources */,
 				D9B268C01C7852C400F62804 /* DVVCoachDetailCourseCell.m in Sources */,
 				062734CA1C5A0C550056B0BC /* SignUpPayCell.m in Sources */,
+				560D21DF1C814826001B8B83 /* MallOrderCell.m in Sources */,
 				D9B268C41C788D7C00F62804 /* DVVCoachDetailTagCell.m in Sources */,
 				D99674861C7D54610000CC65 /* DVVHorizontalScrollImagesCell.m in Sources */,
 				D5C240061BE9FB8A00832CF3 /* BLAVplayerCell.m in Sources */,

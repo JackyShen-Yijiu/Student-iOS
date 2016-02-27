@@ -18,6 +18,8 @@
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
 #import "SignUpDetailCell.h"
+#import "MallOrderCell.h"
+#import "ShowWarningBG.h"
 
 
 #define StartOffset  kSystemWide/4-60/2
@@ -25,16 +27,8 @@
 //<<<<<<< HEAD
 static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 报名详情
 
-//=======
-//static NSString *const kinfomationCheck = @"userinfo/getapplyschoolinfo"; // 报名详情
-//>>>>>>> 385c61e92eb512a36de16af24c6947a2404c9c3a
-static NSString *const kGetMySaveCoach = @"userinfo/favoritecoach";
+static NSString *const kgetMallList = @"getmyorderlist"; // 商品订单
 
-static NSString *const kGetMySaveSchool = @"userinfo/favoriteschool";
-
-static NSString *const kDeleteMySaveCoach = @"userinfo/favoritecoach";
-
-static NSString *const kDeleteMySaveSchool = @"userinfo/favoriteschool";
 
 typedef NS_ENUM(NSUInteger,MyLoveState){
     MyLoveStateCoach,
@@ -65,6 +59,8 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 @property (nonatomic, strong) NSString *payStausStr; // 支付状态
 @property (nonatomic, strong) NSString *applySatus; // 申请状态
 @property (nonatomic, strong) NSDictionary *dict;
+
+@property (nonatomic, strong) ShowWarningBG *warningBG; //提示背景图片
 @end
 
 @implementation SignUpDetailController
@@ -129,6 +125,10 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     navBarHairlineImageView.hidden=NO;
     
     
+    
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [_warningBG hidden];
 }
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
     
@@ -155,7 +155,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         urlString = [NSString stringWithFormat:BASEURL,kgetapplyschoolinfo];
     }else if (_myLoveState == MyLoveStateDriving) {
         // 获取商品订单
-        urlString = [NSString stringWithFormat:BASEURL,kGetMySaveSchool];
+        urlString = [NSString stringWithFormat:BASEURL,kgetMallList];
     }
     NSDictionary *param = @{@"userid":[AcountManager manager].userid};
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
@@ -219,7 +219,11 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                  
                  }
                  */
-
+                if (0 == [[data objectForKey:@"applystate"] integerValue]) {
+               _warningBG = [[ShowWarningBG alloc] initWithTietleName:@"小步没有找到您的订单信息，请确认您是否报名"];
+                    [_warningBG show];
+                    return ;
+                }
                 
                 self.headerImageURl = data[@"schoollogoimg"];
                 NSLog(@"%@",data[@"schoollogoimg"]);
@@ -260,7 +264,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                                     @"applySatus":self.applySatus};
                 
             }else if (_myLoveState == MyLoveStateDriving) {
-//                [self.dataArray addObjectsFromArray:[MTLJSONAdapter modelsOfClass:DrivingModel.class fromJSONArray:param[@"data"] error:&error]];
+                NSLog(@"-----------------------------========================================%@",data);
             }
            [self.tableView reloadData];
             [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -326,6 +330,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     [UIView animateWithDuration:0.5 animations:^{
         self.menuIndicator.frame = CGRectMake(0, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
+    [_warningBG hidden];
     sender.selected = YES;
     _myLoveState = MyLoveStateCoach;
     [self startDownLoad];
@@ -346,7 +351,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     if (_myLoveState == MyLoveStateCoach) {
         return 150.0f;
     }else if (_myLoveState == MyLoveStateDriving) {
-        return 150.0f;
+        return 140.0f;
     }
     return 0;
 }
@@ -355,7 +360,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     if (_myLoveState == MyLoveStateCoach) {
         return 1;
     }else if (_myLoveState == MyLoveStateDriving) {
-        return 2;
+        return 1;
     }
     return 0;
 }
@@ -364,6 +369,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
     
     if (_myLoveState == MyLoveStateCoach) {
+        // 报名订单
         static NSString *cellId = @"Coach";
         SignUpDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
@@ -384,14 +390,13 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         cell.backgroundColor = [UIColor clearColor];
         return cell;
     }else if (_myLoveState == MyLoveStateDriving) {
+        // 兑换商品订单
         static NSString *cellId = @"Driving";
-        DrivingCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        MallOrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
         if (!cell) {
-            cell = [[DrivingCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-            //            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell = [[MallOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+           
         }
-//        DrivingModel *model = self.dataArray[indexPath.row];
-//        [cell updateAllContentWith:model];
         
         return cell;
         
@@ -399,80 +404,4 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
     return nil;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_myLoveState == MyLoveStateCoach) {
-//        CoachModel *model = self.dataArray[indexPath.row];
-//        self.coachDetailModel = model;
-//        //        self.naviBarRightButton.hidden = NO;
-//        
-//        JGDrivingDetailViewController *detailVC = [[JGDrivingDetailViewController alloc]init];
-//        DYNSLog(@"coachid = %@",model.coachid);
-//        detailVC.coachUserId = model.coachid;
-//        [self.navigationController pushViewController:detailVC animated:YES];
-        
-    }else if (_myLoveState == MyLoveStateDriving) {
-//        DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
-//        DrivingModel *model = self.dataArray[indexPath.row];
-//        self.drivingDetailModel = model;
-//        self.naviBarRightButton.hidden = YES;
-//        SelectVC.schoolID = model.schoolid;
-//        [self.navigationController pushViewController:SelectVC animated:YES];
-        
-    }
-}
-//- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-//    if (editingStyle == UITableViewCellEditingStyleDelete) {
-//        DYNSLog(@"delete");
-//        
-//        if (_myLoveState == MyLoveStateCoach) {
-//            CoachModel *model = self.dataArray[indexPath.row];
-//            self.coachDetailModel = model;
-//            
-//            NSString *deleteUrl = [NSString stringWithFormat:@"%@/%@",kDeleteMySaveCoach,model.coachid];
-//            NSString *urlString = [NSString stringWithFormat:BASEURL,deleteUrl];
-//            [self.dataArray removeObject:model];
-//            [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
-//                DYNSLog(@"data = %@",data);
-//                NSDictionary *param = data;
-//                NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-//                if ([type isEqualToString:@"0"]) {
-//                    [self showTotasViewWithMes:@"删除失败"];
-//                }else if ([type isEqualToString:@"1"]) {
-//                    [self showTotasViewWithMes:@"成功删除"];
-//                    
-//                }
-//                
-//            }];
-//            
-//            
-//        }else if (_myLoveState == MyLoveStateDriving) {
-//            
-//            DrivingModel *model = self.dataArray[indexPath.row];
-//            self.drivingDetailModel = model;
-//            [self.dataArray removeObject:model];
-//            
-//            NSString *deleteUrl = [NSString stringWithFormat:@"%@/%@",kDeleteMySaveSchool,model.schoolid];
-//            NSString *urlString = [NSString stringWithFormat:BASEURL,deleteUrl];
-//            [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
-//                DYNSLog(@"data = %@",data);
-//                NSDictionary *param = data;
-//                NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
-//                if ([type isEqualToString:@"0"]) {
-//                    [self showTotasViewWithMes:@"删除失败"];
-//                }else if ([type isEqualToString:@"1"]) {
-//                    [self showTotasViewWithMes:@"成功删除"];
-//                    
-//                }
-//            }];
-//            
-//        }
-//        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationBottom];
-//        
-//        
-//    }
-//    
-//}
-//- (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    return @"删除";
-//}
 @end

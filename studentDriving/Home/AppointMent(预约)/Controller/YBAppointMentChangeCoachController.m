@@ -529,7 +529,8 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
         
         if (type.integerValue == 1) {
             
-            [[BLInformationManager sharedInstance].appointmentData removeAllObjects];
+            [BLInformationManager sharedInstance].appointmentData = nil;
+//            [[BLInformationManager sharedInstance].appointmentData removeAllObjects];
             
             [self obj_showTotasViewWithMes:@"预约成功"];
             
