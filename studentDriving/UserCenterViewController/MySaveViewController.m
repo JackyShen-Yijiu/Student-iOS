@@ -17,6 +17,7 @@
 #import "JGDrivingDetailViewController.h"
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
+#import "ShowWarningBG.h"
 #define StartOffset  kSystemWide/4-60/2
 
 
@@ -47,6 +48,9 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 @property (strong, nonatomic) UIButton *naviBarRightButton;
 @property (strong, nonatomic) CoachModel *coachDetailModel;
 @property (strong, nonatomic) DrivingModel *drivingDetailModel;
+
+@property (strong, nonatomic) ShowWarningBG *coachBG;
+@property (nonatomic, strong) ShowWarningBG *schoolBG;
 
 
 @end
@@ -126,6 +130,10 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     navBarHairlineImageView.hidden=NO;
     
     
+}
+- (void)viewWillDisappear:(BOOL)animated{
+    [_coachBG hidden];
+    [_schoolBG hidden];
 }
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
     
@@ -271,11 +279,17 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         }
         [self.tableView reloadData];
         if (!self.dataArray.count) {
-            NSString *msg = @"没有喜欢的驾校";
             if (_myLoveState == MyLoveStateCoach) {
-                msg = @"没有喜欢的教练";
+                _coachBG = [[ShowWarningBG alloc] initWithTietleName:@"没有您喜欢的教练"];
+                [_coachBG show];
             }
-            [self showTotasViewWithMes:msg];
+            if (_myLoveState == MyLoveStateDriving) {
+//              NSString *msg = @"没有喜欢的教练";
+                _schoolBG = [[ShowWarningBG alloc] initWithTietleName:@"没有您喜欢的驾校"];
+                [_schoolBG show];
+                
+            }
+//            [self showTotasViewWithMes:msg];
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         
@@ -292,7 +306,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     // 选择教练
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [leftButton setTitle:@"教练" forState:UIControlStateNormal];
-    [leftButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+    [leftButton setTitleColor:[UIColor colorWithHexString:@"f4c7c3"] forState:UIControlStateNormal];
     leftButton.selected = YES;
     [leftButton addTarget:self action:@selector(clickLeftBtn:) forControlEvents:UIControlEventTouchUpInside];
     leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
@@ -309,7 +323,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     // 选择驾校
     UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightButton setTitle:@"驾校" forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor colorWithHexString:@"f4c7c3"] forState:UIControlStateNormal];
     [rightButton addTarget:self action:@selector(clickRightBtn:) forControlEvents:UIControlEventTouchUpInside];
     rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
     
@@ -336,6 +350,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     [UIView animateWithDuration:0.5 animations:^{
         self.menuIndicator.frame = CGRectMake(0, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
+    [_schoolBG hidden];
     sender.selected = YES;
     _myLoveState = MyLoveStateCoach;
     [self startDownLoad];
@@ -347,6 +362,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     [UIView animateWithDuration:0.5 animations:^{
         self.menuIndicator.frame = CGRectMake(kSystemWide/2, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
+    [_coachBG hidden];
     sender.selected = YES;
     _myLoveState = MyLoveStateDriving;
     [self startDownLoad];

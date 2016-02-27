@@ -10,6 +10,7 @@
 #import "DVVCoachDetailDMData.h"
 #import "DVVStarView.h"
 #import "THLabel.h"
+#import "YBAppointMentDetailsDataData.h"
 
 @interface DVVCoachDetailHeaderView : UIView
 
@@ -27,6 +28,7 @@
 @property (nonatomic, strong) UIImageView *collectionImageView;
 
 - (void)refreshData:(DVVCoachDetailDMData *)dmData;
+- (void)refreshAppointMentData:(YBAppointMentDetailsDataData *)dmData;
 
 + (CGFloat)defaultHeight;
 

@@ -21,6 +21,11 @@
               "title" : "我要约考",
               "description" : "提交约考信息，足不出户轻松报考"
               },
+               {
+               "icon" : "yibuStudyChengJiDanIcon",
+               "title" : "成绩单",
+               "description" : "上传模拟成绩，帮君顺利报考"
+               },
                ],
               
               [
@@ -79,6 +84,11 @@
                "icon" : "yibuStudyYuekaoIcon",
                "title" : "我要约考",
                "description" : "提交约考信息，足不出户轻松报考"
+               },
+               {
+               "icon" : "yibuStudyChengJiDanIcon",
+               "title" : "成绩单",
+               "description" : "上传模拟成绩，帮君顺利报考"
                },
                ]
               

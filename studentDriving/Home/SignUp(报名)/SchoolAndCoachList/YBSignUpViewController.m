@@ -64,6 +64,7 @@ static NSString *coachCellID = @"coachCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = NO;
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     
     [self.view addSubview:self.titleView];
     [_titleView addSubview:self.titleLeftButton];
@@ -129,7 +130,6 @@ static NSString *coachCellID = @"coachCellID";
     if ([WMCommon getInstance].homeState==kStateMenu) {
         [self clicked];
     }
-    
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -294,6 +294,12 @@ static NSString *coachCellID = @"coachCellID";
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    // 退出侧边栏
+    if ([WMCommon getInstance].homeState==kStateMenu) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:KhiddenSlide object:self];
+        return;
+    }
     
     if (0 == _showType) {
         
@@ -553,6 +559,7 @@ static NSString *coachCellID = @"coachCellID";
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView= [UITableView new];
+        _tableView.backgroundColor = [UIColor clearColor];
         _tableView.clipsToBounds = NO;
         _tableView.dataSource = self;
         _tableView.delegate = self;

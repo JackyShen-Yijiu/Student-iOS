@@ -130,8 +130,9 @@
             NSError *error = nil;
             
             MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
-
-            [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar.rating model:model];
+            if (model && model.userid && [model.userid length]!=0 && ![model.userid isEqualToString:@"(null)"]) {
+                [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar.rating model:model];
+            }
             
         };
         
@@ -169,8 +170,10 @@
    
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
-        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+//        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+//        [self.navigationController presentViewController:[DVVUserManager loginController] animated:YES completion:nil];
+        [DVVUserManager userNeedLogin];
         return;
     }
     
@@ -303,6 +306,13 @@
 
 - (void)commitComment:(NSString *)comment star:(CGFloat)star model:(MyAppointmentModel *)model{
     
+    NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+    NSLog(@"model.infoId:%@",model.infoId);
+    
+    if ([AcountManager manager].userid==nil && model.infoId == nil) {
+        return;
+    }
+    
     NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
     
     NSDictionary *param = @{@"userid":[AcountManager manager].userid,
@@ -313,6 +323,7 @@
                             @"attitudelevel":@"0",// 态度
                             @"hygienelevel":@"0",// 卫生
                             @"commentcontent":comment};
+    NSLog(@"param:%@",param);
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         
@@ -323,9 +334,10 @@
         NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
         
         if (type.integerValue == 1) {
-            kShowSuccess(@"评论成功");
-        }else {
-            kShowFail(msg);
+            [self obj_showTotasViewWithMes:@"评论成功"];
+            [self.feVc.view removeFromSuperview];
+        }else{
+            [self obj_showTotasViewWithMes:msg];
         }
     }];
     
@@ -549,12 +561,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    // 退出侧边栏
     if ([WMCommon getInstance].homeState==kStateMenu) {
         [[NSNotificationCenter defaultCenter] postNotificationName:KhiddenSlide object:self];
+        return;
     }
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     HMCourseModel  * courseModel = nil;
     
@@ -581,7 +594,7 @@
         
         YBAppointMentDetailsController *vc = [[YBAppointMentDetailsController alloc] init];
         vc.hidesBottomBarWhenPushed = YES;
-        vc.coachID = courseModel.userModel.coachid;
+        vc.appointMentID = courseModel.courseId;
         vc.courseModel = courseModel;
         [self.navigationController pushViewController:vc animated:YES];
         

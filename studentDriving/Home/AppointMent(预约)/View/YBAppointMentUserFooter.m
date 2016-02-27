@@ -10,6 +10,7 @@
 #import "YBAppointMentUserCell.h"
 #import "StudentModel.h"
 #import "YBAppointMentCoachModel.h"
+#import "ChatViewController.h"
 
 #define rightFooter 80
 
@@ -43,7 +44,7 @@
 - (UILabel *)userTitleLabel {
     if (_userTitleLabel == nil) {
         _userTitleLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:13]];
-        _userTitleLabel.text = @"相领时段学员";
+        _userTitleLabel.text = @"相邻时段学员";
     }
     return _userTitleLabel;
 }
@@ -57,7 +58,7 @@
         flowLayout.itemSize = CGSizeMake(50, 50);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
-        _userCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0,45, [UIScreen mainScreen].bounds.size.width-rightFooter,100) collectionViewLayout:flowLayout];
+        _userCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(10,40, [UIScreen mainScreen].bounds.size.width-rightFooter,100) collectionViewLayout:flowLayout];
         _userCollectionView.backgroundColor = RGBColor(238, 238, 238);
         _userCollectionView.delegate = self;
         _userCollectionView.dataSource = self;
@@ -114,7 +115,7 @@
 {
     _studentArray = studentArray;
     
-    NSInteger hangshu = _studentArray.count / 4;
+    NSInteger hangshu = _studentArray.count % 4;
     CGFloat footHeight = hangshu * 60 + 60;
     
     NSLog(@"setUserCount footHeight:%f",footHeight);
@@ -127,9 +128,9 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
-    NSLog(@"numberOfItemsInSection self.userCount:%ld",(long)self.studentArray.count);
+    NSLog(@"numberOfItemsInSection self.userCount:%ld",(long)_studentArray.count);
+    return _studentArray.count;
     
-    return self.studentArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,7 +155,11 @@
 {
     NSLog(@"%s",__func__);
     StudentModel *model = self.studentArray[indexPath.row];
-    
+        
+    ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:model.userid.userId
+                                                                    conversationType:eConversationTypeChat];
+    chatController.title = model.userid.name;
+    [self.parentViewController.navigationController pushViewController:chatController animated:YES];
     
 }
 

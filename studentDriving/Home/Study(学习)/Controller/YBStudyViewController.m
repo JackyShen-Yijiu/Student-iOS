@@ -44,6 +44,10 @@
 @property (copy, nonatomic) NSString *questionFourtesturl;
 @property (copy, nonatomic) NSString *questionFourerrorurl;
 
+@property (copy, nonatomic) NSString *kemuyichengjidanurl;
+
+@property (copy, nonatomic) NSString *kemusichengjidanurl;
+
 @end
 
 @implementation YBStudyViewController
@@ -94,13 +98,13 @@
     [super viewDidAppear:animated];
     
     // 更新进度
-    [self changeScrollViewOffSetX:0];
+    [self changeScrollViewOffSetX:studyProgress];
     
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    navBarHairlineImageView.hidden=NO;
+//    navBarHairlineImageView.hidden=NO;
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -151,6 +155,10 @@
 
 - (void)setUpData
 {
+    
+    [self startSubjectFirstDownLoad];
+    [self startSubjectFourDownLoad];
+    
     // JSON文件的路径
     NSString *path = [[NSBundle mainBundle] pathForResource:@"YBStudyData.json" ofType:nil];
     
@@ -226,8 +234,15 @@
         float progress = [[AcountManager manager].subjectone.finishcourse floatValue]/[[AcountManager manager].subjectone.totalcourse floatValue];
         NSLog(@"-------progress:%f",progress);
         
-        [self.progressView.progressSliderView setProgress:progress];
-        self.progressView.topLabel.text = topStr;
+        self.progressView.progressSliderView.realProgress = progress;
+
+        NSLog(@"topStr:%@",topStr);
+
+        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+            self.progressView.topLabel.text = topStr;
+        }else{
+            self.progressView.topLabel.text = @"暂无统计";
+        }
         
     }else if (studyProgress == 1){
        
@@ -238,8 +253,16 @@
         NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjecttwo.progress];
         float progress = [[AcountManager manager].subjecttwo.finishcourse floatValue]/[[AcountManager manager].subjecttwo.totalcourse floatValue];
         
-        [self.progressView.progressSliderView setProgress:progress];
-        self.progressView.topLabel.text = topStr;
+//        [self.progressView.progressSliderView setProgress:0.5];
+        self.progressView.progressSliderView.realProgress = progress;
+
+        NSLog(@"topStr:%@",topStr);
+
+        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+            self.progressView.topLabel.text = topStr;
+        }else{
+            self.progressView.topLabel.text = @"暂无统计";
+        }
         
     }else if (studyProgress == 2){
 
@@ -250,8 +273,14 @@
         NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectthree.progress];
         float progress = [[AcountManager manager].subjectthree.finishcourse floatValue]/[[AcountManager manager].subjectthree.totalcourse floatValue];
         
-        [self.progressView.progressSliderView setProgress:progress];
-        self.progressView.topLabel.text = topStr;
+        self.progressView.progressSliderView.realProgress = progress;
+
+        NSLog(@"topStr:%@",topStr);
+        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+            self.progressView.topLabel.text = topStr;
+        }else{
+            self.progressView.topLabel.text = @"暂无统计";
+        }
         
     }else if (studyProgress == 3){
        
@@ -266,10 +295,19 @@
         NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectfour.progress];
         float progress = [[AcountManager manager].subjectfour.finishcourse floatValue]/[[AcountManager manager].subjectfour.totalcourse floatValue];
         
-        [self.progressView.progressSliderView setProgress:progress];
-        self.progressView.topLabel.text = topStr;
+        self.progressView.progressSliderView.realProgress = progress;
+
+        NSLog(@"topStr:%@",topStr);
+        
+        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+            self.progressView.topLabel.text = topStr;
+        }else{
+            self.progressView.topLabel.text = @"暂无统计";
+        }
         
     }
+    
+    NSLog(@"self.progressView.progressSliderView.progress:%f",self.progressView.progressSliderView.progress);
     
 }
 
@@ -277,7 +315,7 @@
 - (void)configUI {
     
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
-    CGFloat toolBarHeight = 40;
+    CGFloat toolBarHeight = 44;
     
     _dvvToolBarView.frame = CGRectMake(0, 0, screenSize.width, toolBarHeight);
     
@@ -326,6 +364,7 @@
 {
     if (_progressView==nil) {
         _progressView = [[YBStudeyProgressView alloc]  init];
+        _progressView.progressSliderView.progress = 0.0;
     }
     return _progressView;
 }
@@ -393,9 +432,12 @@
             weakSelf.questionlisturl = subjectOne[@"questionlisturl"];
             weakSelf.questionerrorurl = subjectOne[@"questionerrorurl"];
 
+            weakSelf.kemuyichengjidanurl = subjectOne[@"kemuyichengjidanurl"];
+            
             self.kemuyiView.questionlisturl = weakSelf.questiontesturl;
             self.kemuyiView.questiontesturl = weakSelf.questionlisturl;
             self.kemuyiView.questionerrorurl = weakSelf.questionerrorurl;
+            self.kemuyiView.kemuyichengjidanurl = weakSelf.kemuyichengjidanurl;
             
         }
         
@@ -415,11 +457,13 @@
         weakSelf.questionFourtesturl = subjectOne[@"questiontesturl"];
         weakSelf.questionFourlisturl = subjectOne[@"questionlisturl"];
         weakSelf.questionFourerrorurl = subjectOne[@"questionerrorurl"];
+        weakSelf.kemusichengjidanurl = subjectOne[@"kemusichengjidanurl"];
         
         self.kemusiView.questionFourlisturl = weakSelf.questionFourlisturl;
         self.kemusiView.questionFourtesturl = weakSelf.questionFourtesturl;
         self.kemusiView.questionFourerrorurl = weakSelf.questionFourerrorurl;
-        
+        self.kemusiView.kemusichengjidanurl = weakSelf.kemusichengjidanurl;
+
     }];
     
 }

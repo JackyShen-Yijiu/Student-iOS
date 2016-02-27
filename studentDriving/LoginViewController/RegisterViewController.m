@@ -732,9 +732,7 @@ static NSString *const kcodeGainUrl = @"code";
              
              [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
              
-             [self dismissViewControllerAnimated:NO completion:^{
-                 [[NSNotificationCenter defaultCenter] postNotificationName:kregisterUser object:nil];
-             }];
+             [DVVUserManager userLoginSucces];
              
          }
          else

@@ -23,8 +23,6 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
 
 @property (strong, nonatomic) UIButton *referButton;
 @property (strong, nonatomic) UIButton *goBackButton;
-@property (strong, nonatomic) UIButton *registAgainButton;
-
 @property (strong, nonatomic) NSString *kRealScanauditUrl;
 @property (strong, nonatomic) NSString *kRealApplytime;
 @property (strong, nonatomic) NSString *kRealEndtime;
@@ -46,15 +44,6 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
         [_goBackButton addTarget:self action:@selector(dealGoBack) forControlEvents:UIControlEventTouchUpInside];
     }
     return _goBackButton;
-}
-
-- (UIButton *)registAgainButton {
-    if (_registAgainButton == nil) {
-        _registAgainButton = [WMUITool initWithTitle:@"重新报名" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
-        _registAgainButton.frame = CGRectMake(0, 0, 80, 44);
-        [_registAgainButton addTarget:self action:@selector(callBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _registAgainButton;
 }
 
 - (UIButton *)referButton{
@@ -246,15 +235,5 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

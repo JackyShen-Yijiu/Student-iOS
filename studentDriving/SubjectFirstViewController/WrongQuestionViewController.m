@@ -64,8 +64,9 @@
     self.progressView.progressBarView.backgroundColor = MAINCOLOR;
     self.progressView.hidden = YES;
     
-    NSString *urlString = self.questionerrorurl;
-    
+    NSString *urlString = [NSString stringWithFormat:@"%@?userid=%@",self.questionerrorurl,[AcountManager manager].userid];
+    NSLog(@"urlString:%@",urlString);
+
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
     [self.webView loadRequest:request];

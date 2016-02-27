@@ -65,11 +65,9 @@
     self.progressView.progressBarView.backgroundColor = MAINCOLOR;
     self.progressView.hidden = YES;
     
-    NSString *urlString = self.questionlisturl;
-    
+    NSString *urlString = [NSString stringWithFormat:@"%@?userid=%@",self.questionlisturl,[AcountManager manager].userid];
+    NSLog(@"urlString:%@",urlString);
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
-    
-    
     [self.webView loadRequest:request];
     
 }

@@ -60,6 +60,26 @@
     return screenWidth * 0.7;
 }
 
+- (void)refreshAppointMentData:(YBAppointMentDetailsDataData *)dmData
+{
+    NSString *iconName = @"coach_man_default_icon";
+    _iconImageView.image = [UIImage imageNamed:iconName];
+    [_iconImageView dvv_downloadImage:dmData.coachid.headportrait.originalpic];
+    
+    [_bgImageView dvv_downloadImage:dmData.coachid.headportrait.originalpic completed:^(UIImage *image, NSError *error) {
+        if (!error && image) {
+            
+            _bgImageView.image = [image applyBlurWithRadius:10 tintColor:[UIColor clearColor] saturationDeltaFactor:1 maskImage:nil];
+        }
+    }];
+    
+    if (dmData.coachid.name && dmData.coachid.name.length) {
+        _nameLabel.text = dmData.coachid.name;
+    }
+    [_starView dvv_setStar:dmData.coachid.starlevel];
+    
+}
+
 - (void)refreshData:(DVVCoachDetailDMData *)dmData {
     
     NSString *iconName = @"coach_man_default_icon";
