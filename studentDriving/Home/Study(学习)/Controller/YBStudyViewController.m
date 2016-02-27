@@ -236,8 +236,13 @@
         
         self.progressView.progressSliderView.realProgress = progress;
 
-//        [self.progressView.progressSliderView setProgress:0.2];
-        self.progressView.topLabel.text = topStr;
+        NSLog(@"topStr:%@",topStr);
+
+        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+            self.progressView.topLabel.text = topStr;
+        }else{
+            self.progressView.topLabel.text = @"暂无统计";
+        }
         
     }else if (studyProgress == 1){
        
@@ -250,7 +255,14 @@
         
 //        [self.progressView.progressSliderView setProgress:0.5];
         self.progressView.progressSliderView.realProgress = progress;
-        self.progressView.topLabel.text = topStr;
+
+        NSLog(@"topStr:%@",topStr);
+
+        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+            self.progressView.topLabel.text = topStr;
+        }else{
+            self.progressView.topLabel.text = @"暂无统计";
+        }
         
     }else if (studyProgress == 2){
 
@@ -263,8 +275,12 @@
         
         self.progressView.progressSliderView.realProgress = progress;
 
-//        [self.progressView.progressSliderView setProgress:0.7];
-        self.progressView.topLabel.text = topStr;
+        NSLog(@"topStr:%@",topStr);
+        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+            self.progressView.topLabel.text = topStr;
+        }else{
+            self.progressView.topLabel.text = @"暂无统计";
+        }
         
     }else if (studyProgress == 3){
        
@@ -281,8 +297,13 @@
         
         self.progressView.progressSliderView.realProgress = progress;
 
-//        [self.progressView.progressSliderView setProgress:1.0];
-        self.progressView.topLabel.text = topStr;
+        NSLog(@"topStr:%@",topStr);
+        
+        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+            self.progressView.topLabel.text = topStr;
+        }else{
+            self.progressView.topLabel.text = @"暂无统计";
+        }
         
     }
     
