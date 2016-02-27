@@ -10,6 +10,7 @@
 #import "DVVOpenControllerFromSideMenu.h"
 #import "LoginViewController.h"
 #import "AppDelegate.h"
+#import "ViewController.h"
 
 @implementation DVVUserManager
 
@@ -29,8 +30,12 @@
 // 打开登录窗体
 + (void)userNeedLogin {
     
-    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
+//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
+//    [(UINavigationController *)(window.rootViewController) presentViewController:[self loginController] animated:YES completion:nil];
+    
+    [UIApplication sharedApplication].keyWindow.rootViewController = [self loginController];
+    
 //    UIWindow *window = [UIApplication sharedApplication].keyWindow;
 //    [(UINavigationController *)(window.rootViewController) dismissViewControllerAnimated:YES completion:nil];
     
@@ -39,7 +44,10 @@
 // 用户登录成功后调用此方法打开主页
 + (void)userLoginSucces {
     
-    [[self loginController].navigationController popToRootViewControllerAnimated:NO];
+    [UIApplication sharedApplication].keyWindow.rootViewController = [[ViewController alloc] init];
+    
+//    [[self loginController] dismissViewControllerAnimated:YES completion:nil];
+//    [[self loginController].navigationController popToRootViewControllerAnimated:NO];
     //[self showNaviBar];
 }
 
@@ -52,7 +60,10 @@
 // 用户需要随便看看时调用此方法
 + (void)userNeedBrowsing {
     
-    [[self loginController].navigationController popToRootViewControllerAnimated:YES];
+    [UIApplication sharedApplication].keyWindow.rootViewController = [[ViewController alloc] init];
+
+//    [[self loginController].navigationController dismissViewControllerAnimated:YES completion:nil];
+//    [[self loginController].navigationController popToRootViewControllerAnimated:YES];
 //    [self showNaviBar];
 }
 

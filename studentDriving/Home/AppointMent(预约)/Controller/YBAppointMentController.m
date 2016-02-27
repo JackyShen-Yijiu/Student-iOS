@@ -169,8 +169,10 @@
    
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
-        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
-        [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+//        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+//        [self.navigationController presentViewController:[DVVUserManager loginController] animated:YES completion:nil];
+        [DVVUserManager userNeedLogin];
         return;
     }
     
