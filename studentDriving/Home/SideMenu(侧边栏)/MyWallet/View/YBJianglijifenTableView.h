@@ -10,8 +10,14 @@
 
 @interface YBJianglijifenTableView : UIView
 @property(nonatomic,weak) UIViewController *parentViewController;
+@property (nonatomic, strong) UITableView *dataTabelView;
 
-@property (nonatomic,strong) NSArray *dataArray;
+@property (nonatomic,strong) NSArray *jianglijifenArrray;
+@property (nonatomic,strong) NSArray *kequxianjineduArray;
+
+// YES:奖励积分 NO:不是奖励积分
+@property (nonatomic,assign) BOOL isJianglijifen;
+
 - (void)reloadData;
 
 @end

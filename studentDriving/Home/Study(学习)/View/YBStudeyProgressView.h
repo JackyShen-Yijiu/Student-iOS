@@ -8,8 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class KOAProgressBar;
+
 @interface YBStudeyProgressView : UIView
 
-- (void)setUpProgressDataWithTop:(NSString *)topStr progress:(float)progress;
+@property (nonatomic,weak) KOAProgressBar *progressSliderView;
+@property (nonatomic,weak) UILabel *topLabel;
 
 @end

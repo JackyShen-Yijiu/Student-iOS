@@ -14,8 +14,6 @@
 
 @interface YBBaoMingDuiHuanQuanTableView () <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) UITableView *dataTabelView;
-
 @end
 
 @implementation YBBaoMingDuiHuanQuanTableView

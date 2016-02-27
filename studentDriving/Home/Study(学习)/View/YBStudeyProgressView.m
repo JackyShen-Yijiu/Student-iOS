@@ -13,9 +13,6 @@
 
 @property (nonatomic,weak) UILabel *progressLabel;
 
-@property (nonatomic,weak) UILabel *topLabel;
-
-@property (nonatomic,weak) KOAProgressBar *progressSliderView;
 
 @end
 
@@ -80,11 +77,4 @@
     return self;
 }
 
-- (void)setUpProgressDataWithTop:(NSString *)topStr progress:(float)progress
-{
-    self.topLabel.text = topStr;
-    
-    [self.progressSliderView setRealProgress:progress];
-
-}
 @end

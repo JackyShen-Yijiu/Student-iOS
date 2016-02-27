@@ -11,6 +11,7 @@
 #import "YBStudyTableView.h"
 #import "YBStudeyProgressView.h"
 #import "YBStudyTool.h"
+#import "KOAProgressBar.h"
 
 @interface YBStudyViewController ()<UIScrollViewDelegate>
 {
@@ -86,17 +87,20 @@
     [self startSubjectFirstDownLoad];
     [self startSubjectFourDownLoad];
     
-    // 更新进度
-    [self reloadProgress];
-    [self reloadData];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    // 更新进度
+    [self changeScrollViewOffSetX:0];
+    
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
     [super viewDidDisappear:animated];
-    
     navBarHairlineImageView.hidden=NO;
-    
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -121,6 +125,9 @@
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"学习";
     
+    // 请求数据
+    [self setUpData];
+    
     // 顶部segment
     [self.view addSubview:self.dvvToolBarView];
     
@@ -129,7 +136,7 @@
     
     // 进度条
     [self.view addSubview:self.progressView];
-    
+
     // 滚动视图
     [self.view addSubview:self.scrollView];
     
@@ -140,10 +147,6 @@
 
     [self configUI];
     
-    [self startSubjectFirstDownLoad];
-    [self startSubjectFourDownLoad];
-    // 请求数据
-    [self setUpData];
 }
 
 - (void)setUpData
@@ -199,15 +202,19 @@
     
     studyProgress = tag;
     
-    // 更新进度
-    [self reloadProgress];
-    
     // 更新数据
     [self reloadData];
+    
 }
 
 - (void)reloadData
 {
+    
+    NSLog(@"[AcountManager manager].userSubject.name:%@",[AcountManager manager].userSubject.name);
+    NSLog(@"[AcountManager manager].subjectone.progress:%@",[AcountManager manager].subjectone.progress);
+    NSLog(@"[AcountManager manager].subjecttwo.progress:%@",[AcountManager manager].subjecttwo.progress);
+    NSLog(@"[AcountManager manager].subjectthree.progress:%@",[AcountManager manager].subjectthree.progress);
+    NSLog(@"[AcountManager manager].subjectfour.progress:%@",[AcountManager manager].subjectfour.progress);
     
     if (studyProgress==0) {
     
@@ -215,17 +222,36 @@
         self.kemuyiView.dataArray = [self.kemuyiArray mutableCopy];
         [self.kemuyiView reloadData];
         
+        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectone.progress];
+        float progress = [[AcountManager manager].subjectone.finishcourse floatValue]/[[AcountManager manager].subjectone.totalcourse floatValue];
+        NSLog(@"-------progress:%f",progress);
+        
+        [self.progressView.progressSliderView setProgress:progress];
+        self.progressView.topLabel.text = topStr;
+        
     }else if (studyProgress == 1){
        
         self.kemuerView.studyProgress = studyProgress;
         self.kemuerView.dataArray = [self.kemuerArray mutableCopy];
         [self.kemuerView reloadData];
         
+        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjecttwo.progress];
+        float progress = [[AcountManager manager].subjecttwo.finishcourse floatValue]/[[AcountManager manager].subjecttwo.totalcourse floatValue];
+        
+        [self.progressView.progressSliderView setProgress:progress];
+        self.progressView.topLabel.text = topStr;
+        
     }else if (studyProgress == 2){
 
         self.kemusanView.studyProgress = studyProgress;
         self.kemusanView.dataArray = [self.kemusanArray mutableCopy];
         [self.kemusanView reloadData];
+        
+        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectthree.progress];
+        float progress = [[AcountManager manager].subjectthree.finishcourse floatValue]/[[AcountManager manager].subjectthree.totalcourse floatValue];
+        
+        [self.progressView.progressSliderView setProgress:progress];
+        self.progressView.topLabel.text = topStr;
         
     }else if (studyProgress == 3){
        
@@ -237,48 +263,19 @@
         self.kemusiView.dataArray = [self.kemusiArray mutableCopy];
         [self.kemusiView reloadData];
         
-    }
-}
-
-- (void)reloadProgress
-{
-    
-    NSLog(@"[AcountManager manager].userSubject.name:%@",[AcountManager manager].userSubject.name);
-    NSLog(@"[AcountManager manager].subjectone.progress:%@",[AcountManager manager].subjectone.progress);
-    NSLog(@"[AcountManager manager].subjecttwo.progress:%@",[AcountManager manager].subjecttwo.progress);
-    NSLog(@"[AcountManager manager].subjectthree.progress:%@",[AcountManager manager].subjectthree.progress);
-    NSLog(@"[AcountManager manager].subjectfour.progress:%@",[AcountManager manager].subjectfour.progress);
-    
-    if (studyProgress==0) {
-        
-        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectone.progress];
-        float progress = [[AcountManager manager].subjectone.finishcourse floatValue]/[[AcountManager manager].subjectone.totalcourse floatValue];
-        [_progressView setUpProgressDataWithTop:topStr progress:progress];
-        
-    }else if (studyProgress == 1){
-        
-        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjecttwo.progress];
-        float progress = [[AcountManager manager].subjecttwo.finishcourse floatValue]/[[AcountManager manager].subjecttwo.totalcourse floatValue];
-        [_progressView setUpProgressDataWithTop:topStr progress:progress];
-        
-    }else if (studyProgress == 2){
-        
-        NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectthree.progress];
-        float progress = [[AcountManager manager].subjectthree.finishcourse floatValue]/[[AcountManager manager].subjectthree.totalcourse floatValue];
-        [_progressView setUpProgressDataWithTop:topStr progress:progress];
-        
-    }else if (studyProgress == 3){
-        
         NSString *topStr = [NSString stringWithFormat:@"  %@",[AcountManager manager].subjectfour.progress];
         float progress = [[AcountManager manager].subjectfour.finishcourse floatValue]/[[AcountManager manager].subjectfour.totalcourse floatValue];
-        [_progressView setUpProgressDataWithTop:topStr progress:progress];
+        
+        [self.progressView.progressSliderView setProgress:progress];
+        self.progressView.topLabel.text = topStr;
         
     }
+    
 }
-
 
 #pragma mark - configUI
 - (void)configUI {
+    
     CGSize screenSize = [UIScreen mainScreen].bounds.size;
     CGFloat toolBarHeight = 40;
     
@@ -300,6 +297,7 @@
 
 #pragma mark - lazy load
 - (YBToolBarView *)dvvToolBarView {
+    
     if (!_dvvToolBarView) {
         _dvvToolBarView = [YBToolBarView new];
         _dvvToolBarView.titleArray = @[ @"科目一", @"科目二", @"科目三" ,@"科目四"];
@@ -315,6 +313,7 @@
     }
     return _dvvToolBarView;
 }
+
 - (UIView *)toolBarBottomLineView {
     if (!_toolBarBottomLineView) {
         _toolBarBottomLineView = [UIView new];
@@ -322,6 +321,7 @@
     }
     return _toolBarBottomLineView;
 }
+
 - (YBStudeyProgressView *)progressView
 {
     if (_progressView==nil) {
@@ -340,6 +340,7 @@
     }
     return _scrollView;
 }
+
 - (YBStudyTableView *)kemuyiView {
     if (!_kemuyiView) {
         _kemuyiView = [YBStudyTableView new];
@@ -347,6 +348,7 @@
     }
     return _kemuyiView;
 }
+
 - (YBStudyTableView *)kemuerView {
     if (!_kemuerView) {
         _kemuerView = [YBStudyTableView new];
@@ -354,6 +356,7 @@
     }
     return _kemuerView;
 }
+
 - (YBStudyTableView *)kemusanView {
     if (!_kemusanView) {
         _kemusanView = [YBStudyTableView new];
@@ -395,6 +398,7 @@
             self.kemuyiView.questionerrorurl = weakSelf.questionerrorurl;
             
         }
+        
     }];
    
 }
