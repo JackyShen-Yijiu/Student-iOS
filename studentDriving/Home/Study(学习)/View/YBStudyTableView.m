@@ -17,6 +17,7 @@
 #import "WMCommon.h"
 #import "YBAppointTestViewController.h"
 #import "YBCheatslistViewController.h"
+#import "YBCheatsViewController.h"
 
 #define kCellIdentifier @"YBStudyViewCell"
 
@@ -132,6 +133,12 @@
                 [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
                 
             }else if (indexPath.row==4){
+                
+                YBCheatsViewController *vc = [[YBCheatsViewController alloc] init];
+                vc.title = @"科目一成绩单";
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.weburl = self.kemuyichengjidanurl;
+                [self.parentViewController.navigationController pushViewController:vc animated:YES];
                 
             }
             
@@ -259,6 +266,12 @@
                 [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
                 
             }else if (indexPath.row==4){
+                
+                YBCheatsViewController *vc = [[YBCheatsViewController alloc] init];
+                vc.title = @"科目四成绩单";
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.weburl = self.kemusichengjidanurl;
+                [self.parentViewController.navigationController pushViewController:vc animated:YES];
                 
             }
             
