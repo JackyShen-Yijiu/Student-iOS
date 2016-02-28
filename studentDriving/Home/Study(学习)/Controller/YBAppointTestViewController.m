@@ -54,14 +54,14 @@
     self.statDatePicker.timeZone = [NSTimeZone timeZoneWithName:@"GTM+8"]; // 设置时区，中国在东八区
     self.statDatePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:0]; // 设置最小时间
     self.statDatePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow:72 * 60 * 60 * 30 * 6]; // 设置最大时间
-    self.statDatePicker.datePickerMode = UIDatePickerModeDateAndTime; // 设置样式
+    self.statDatePicker.datePickerMode = UIDatePickerModeDate; // 设置样式
     [self.statDatePicker addTarget:self action:@selector(oneDatePickerValueChanged) forControlEvents:UIControlEventValueChanged]; // 添加监听器
     
     self.endDatePicker.date = [NSDate date]; // 设置初始时间
     self.endDatePicker.timeZone = [NSTimeZone timeZoneWithName:@"GTM+8"]; // 设置时区，中国在东八区
     self.endDatePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:0]; // 设置最小时间
     self.endDatePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow:72 * 60 * 60 * 30 * 6]; // 设置最大时间
-    self.endDatePicker.datePickerMode = UIDatePickerModeDateAndTime; // 设置样式
+    self.endDatePicker.datePickerMode = UIDatePickerModeDate; // 设置样式
     [self.endDatePicker addTarget:self action:@selector(twoDatePickerValueChanged) forControlEvents:UIControlEventValueChanged]; // 添加监听器
     
     NSDate *select = [self.statDatePicker date]; // 获取被选中的时间
@@ -135,7 +135,7 @@
     self.endDatePicker.date = select;
     self.endDatePicker.minimumDate = select; // 设置最小时间
     self.endDatePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow:72 * 60 * 60 * 30 * 6]; // 设置最大时间
-    self.endDatePicker.datePickerMode = UIDatePickerModeDateAndTime; // 设置样式
+    self.endDatePicker.datePickerMode = UIDatePickerModeDate; // 设置样式
 
     self.messageLabel.text = [NSString stringWithFormat:@"%@至%@",self.startTime,self.endTime];
     
