@@ -206,9 +206,12 @@
 - (void)emptyLocationService {
     
     // 停止位置更新服务
-    [_locationService stopUserLocationService];
-    _locationService.delegate = nil;
-    _geoCodeSearch.delegate = nil;
+    if (_locationService) {
+        [_locationService stopUserLocationService];
+        _locationService.delegate = nil;
+        _geoCodeSearch.delegate = nil;
+    }
+    
 }
 
 #pragma mark - lazy load

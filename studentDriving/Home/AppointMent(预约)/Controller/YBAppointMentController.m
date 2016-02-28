@@ -220,7 +220,7 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    NSLog(@"[AcountManager manager].userSubject.name:%@",[AcountManager manager].userSubject.name);
+    NSLog(@"%s,[AcountManager manager].userSubject.name:%@",__func__,[AcountManager manager].userSubject.name);
     
     // 设置顶部标题
     self.navigationItem.title = @"预约列表";
@@ -298,6 +298,11 @@
             
             // 强制评价
             [ws.tabBarController.view insertSubview:ws.feVc.view aboveSubview:((AppDelegate *)[UIApplication sharedApplication].delegate).window];
+            
+            NSError *error;
+            MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
+
+            ws.feVc.iconURL = model.coachid.headportrait.originalpic;
             
         }
     }];
@@ -427,6 +432,8 @@
             
             NSArray *tempArray = [[BaseModelMethod getCourseListArrayFormDicInfo:array] mutableCopy];
             
+            [self.noCountmentView setHidden:tempArray.count];
+            
             for (HMCourseModel *model in tempArray) {
                 NSLog(@"model.courseBeginTime:%@",model.courseBeginTime);
                 NSLog(@"getYearLocalDateFormateUTCDate model.courseBeginTime:%@",[NSString getYearLocalDateFormateUTCDate:model.courseBeginTime]);
@@ -519,7 +526,6 @@
     
     NSInteger count = 0;
     count =  self.courseCurDayTableData.count+self.courseTomDayTableData.count+self.courseYesDayTableData.count;
-    [self.noCountmentView setHidden:count];
     return count;
 }
 

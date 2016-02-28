@@ -44,13 +44,7 @@
         return;
     }
     
-    // 设置头像
-    [self.headerImageView.layer setMasksToBounds:YES];
-    [self.headerImageView.layer setCornerRadius:28];
-    self.headerImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(priateMessage:)];
-    [self.headerImageView addGestureRecognizer:tapGesture];
-    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:nil completed:nil];
+    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"me"] getRoundImage] completed:nil];
     // 用户名
     if ([AcountManager manager].userMobile) {
         
@@ -104,7 +98,14 @@
     // 设置tableFooterView为一个空的View，这样就不会显示多余的空白格子了
     self.tableView.tableFooterView = [[UIView alloc] init];
 
+    
+    // 设置头像
     self.headerImageView.image = [[UIImage imageNamed:@"me"] getRoundImage];
+    [self.headerImageView.layer setMasksToBounds:YES];
+    [self.headerImageView.layer setCornerRadius:28];
+    self.headerImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(priateMessage:)];
+    [self.headerImageView addGestureRecognizer:tapGesture];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:k object:nil];
     
@@ -120,7 +121,7 @@
 
 // 当头像改变时通知方法
 - (void)iconImage{
-    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:nil completed:nil];
+    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"me"] getRoundImage] completed:nil];
 }
 // 点击头像手势
 - (void)priateMessage:(UITapGestureRecognizer *)tapGesture{
@@ -151,11 +152,11 @@
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    WMOtherViewController *other = [[WMOtherViewController alloc] init];
+//    WMOtherViewController *other = [[WMOtherViewController alloc] init];
 //    other.navTitle = title;
-    other.hidesBottomBarWhenPushed = YES;
+//    other.hidesBottomBarWhenPushed = YES;
 //    [self showHome];
-    [self.navigationController pushViewController:other animated:YES];
+//    [self.navigationController pushViewController:other animated:YES];
     
     if ([self.delegate respondsToSelector:@selector(didSelectItem: indexPath:)]) {
         [self.delegate didSelectItem:self.listArray[indexPath.row] indexPath:(NSIndexPath *)indexPath];

@@ -33,21 +33,44 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     [self.view addSubview:self.tableView];
-    self.view.backgroundColor = RGBColor(249, 249, 249);
-    self.title = @"个人中心";
-    [self initData];
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
     
+    self.view.backgroundColor = RGBColor(249, 249, 249);
+    
+    self.title = @"个人中心";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
+    
+    [self initData];
+
 }
 - (void)initData{
+    
     self.titleArray = @[@"",@"报考驾校",@"报考班型",@"报考车型",@"我的喜欢",@"报名详情"];
-    if ([[AcountManager manager].userApplystate isEqualToString:@"0"] || [[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+    
+    if ([AcountManager manager].userApplystate && ([[AcountManager manager].userApplystate isEqualToString:@"0"] || [[AcountManager manager].userApplystate isEqualToString:@"1"])) {
         self.descriArray = @[@"",@"尚未报名",@"尚未报名",@"尚未报名"];
     }
-    if ([[AcountManager manager].userApplystate isEqualToString:@"2"]) {
-        self.descriArray = @[@"",[AcountManager manager].applyschool.name,[AcountManager manager].applyclasstype.name,[AcountManager manager].userCarmodels.name];
+    
+    if ([AcountManager manager].userApplystate && [[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+        
+        NSString *applyschoolname = [AcountManager manager].applyschool.name;
+        if (applyschoolname==nil) {
+            applyschoolname = @"";
+        }
+        NSString *applyclasstype = [AcountManager manager].applyclasstype.name;
+        if (applyclasstype==nil) {
+            applyclasstype = @"";
+        }
+        NSString *userCarmodelsname = [AcountManager manager].userCarmodels.name;
+        if (userCarmodelsname==nil) {
+            userCarmodelsname = @"";
+        }
+        self.descriArray = @[@"",applyschoolname,applyclasstype,userCarmodelsname];
     }
+    
+    [self.tableView reloadData];
     
     /*
      @property (readonly,strong, nonatomic) ApplyclasstypeinfoModel *applyclasstype;
@@ -64,7 +87,7 @@
  
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 6;
+    return self.titleArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (4 == indexPath.row || 5 == indexPath.row) {

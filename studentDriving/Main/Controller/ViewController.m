@@ -143,7 +143,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivePushInfo:) name:YBNotif_HandleNotification object:nil];
 
     // 判断进度
-    if ([AcountManager isLogin]) {
+    if ([AcountManager isLogin] && [AcountManager manager].userSubject) {
         
         if ([[AcountManager manager].userSubject.subjectId isEqual:@(1)]){
             self.mainNav.tabBarController.selectedIndex = 1;
@@ -343,6 +343,10 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 #pragma mark - WMMenuViewController代理方法
 - (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath{
     if (indexPath.row == 0) {
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
         // 我的消息
         ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
         [self controller:chatListVC];
@@ -385,6 +389,10 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         [self controller:shuttleBusVC];
     }
     if (indexPath.row == 4) {
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
         // 我的钱包
         YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
         [self controller:vc];

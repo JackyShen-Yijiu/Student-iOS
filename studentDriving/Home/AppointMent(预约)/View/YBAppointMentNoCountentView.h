@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface YBAppointMentNoCountentView : UIView
-
+@property (nonatomic,copy)NSString *message;
 @end

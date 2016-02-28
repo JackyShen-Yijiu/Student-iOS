@@ -8,6 +8,10 @@
 
 #import "YBAppointMentNoCountentView.h"
 
+@interface YBAppointMentNoCountentView ()
+@property (nonatomic,weak) UILabel *label1;
+@end
+
 @implementation YBAppointMentNoCountentView
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -19,8 +23,8 @@
                 
         // 创建图标
         UIImageView *img = [[UIImageView alloc] init];
-        img.image = [UIImage imageNamed:@"机器人"];
-        img.frame = CGRectMake(kSystemWide/2-50/2, kSystemHeight/2-74/2-64, 56, 74);
+        img.image = [UIImage imageNamed:@"app_error_robot.png"];
+        img.frame = CGRectMake(kSystemWide/2-72/2, kSystemHeight/2-75/2-64, 72, 75);
         [self addSubview:img];
 
         UILabel *label1 = [[UILabel alloc] init];
@@ -31,10 +35,18 @@
         label1.frame = CGRectMake(20, CGRectGetMaxY(img.frame), kSystemWide-40, 50);
         label1.text = @"小步没有找到您的预约教练信息，点击右上角添加教练，开始您愉快的学车之旅吧";
         [self addSubview:label1];
-        
+        self.label1 = label1;
         
     }
     return self;
+}
+
+- (void)setMessage:(NSString *)message
+{
+    _message = message;
+    
+    self.label1.text = _message;
+
 }
 
 

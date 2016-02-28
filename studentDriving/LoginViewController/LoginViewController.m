@@ -446,6 +446,8 @@ static NSString *const kuserType = @"usertype";
 {
     [self showHudInView:self.view hint:NSLocalizedString(@"登录中...", @"登录中...")];
    
+    NSLog(@"点击登录后的操作:dataDic:%@",dataDic);
+    
     BOOL isLoggedIn = [[EaseMob sharedInstance].chatManager isLoggedIn];
     NSLog(@"isLoggedIn:%d",isLoggedIn);
     if (isLoggedIn) {
@@ -510,14 +512,12 @@ static NSString *const kuserType = @"usertype";
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
              
              //保存最近一次登录用户名
-             
-             // 用户登录成功，打开相应的窗体
-             [DVVUserManager userLoginSucces];
-             
              [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
              
              [AcountManager configUserInformationWith:dataDic[@"data"]];
 
+             // 用户登录成功，打开相应的窗体
+             [DVVUserManager userLoginSucces];
              
          }
          else
