@@ -411,6 +411,11 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     }
     if (indexPath.row == 5) {
         // 我要投诉
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
+
         YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
         [self controller:complaintVC];
     }

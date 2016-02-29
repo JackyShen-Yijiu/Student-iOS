@@ -105,7 +105,7 @@
 
     
     // 设置头像
-    self.headerImageView.image = [[UIImage imageNamed:@"me"] getRoundImage];
+    self.headerImageView.image = [[UIImage imageNamed:@"coach_man_default_icon"] getRoundImage];
     [self.headerImageView.layer setMasksToBounds:YES];
     [self.headerImageView.layer setCornerRadius:28];
     self.headerImageView.userInteractionEnabled = YES;
@@ -126,7 +126,7 @@
 
 // 当头像改变时通知方法
 - (void)iconImage{
-    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"me"] getRoundImage] completed:nil];
+    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"coach_man_default_icon"] getRoundImage] completed:nil];
 }
 // 点击头像手势
 - (void)priateMessage:(UITapGestureRecognizer *)tapGesture{

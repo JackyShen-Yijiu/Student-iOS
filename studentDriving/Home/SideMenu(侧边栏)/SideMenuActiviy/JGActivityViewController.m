@@ -193,31 +193,31 @@
 {
     return 30;
 }
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 30)];
-    headerView.backgroundColor = RGBColor(244, 249, 250);
-    
-    UILabel *titleLabe = [[UILabel alloc] init];
-    titleLabe.textColor = [UIColor lightGrayColor];
-    titleLabe.textAlignment = NSTextAlignmentCenter;
-    titleLabe.backgroundColor = [UIColor clearColor];
-    titleLabe.frame = CGRectMake(0, 7, headerView.frame.size.width, 15);
-    titleLabe.text = @"进行中";
-    if (section==1) {
-        titleLabe.text = @"敬请期待";
-        headerView.backgroundColor = [UIColor whiteColor];
-    }else if (section==2){
-        titleLabe.text = @"已结束";
-        headerView.backgroundColor = [UIColor whiteColor];
-    }
-    titleLabe.font = [UIFont boldSystemFontOfSize:13];
-    [headerView addSubview:titleLabe];
-    
-    return headerView;
-    
-}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+//{
+//    
+//    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 30)];
+//    headerView.backgroundColor = RGBColor(244, 249, 250);
+//    
+//    UILabel *titleLabe = [[UILabel alloc] init];
+//    titleLabe.textColor = [UIColor lightGrayColor];
+//    titleLabe.textAlignment = NSTextAlignmentCenter;
+//    titleLabe.backgroundColor = [UIColor clearColor];
+//    titleLabe.frame = CGRectMake(0, 7, headerView.frame.size.width, 15);
+//    titleLabe.text = @"进行中";
+//    if (section==1) {
+//        titleLabe.text = @"敬请期待";
+//        headerView.backgroundColor = [UIColor whiteColor];
+//    }else if (section==2){
+//        titleLabe.text = @"已结束";
+//        headerView.backgroundColor = [UIColor whiteColor];
+//    }
+//    titleLabe.font = [UIFont boldSystemFontOfSize:13];
+//    [headerView addSubview:titleLabe];
+//    
+//    return headerView;
+//    
+//}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     return 130;
