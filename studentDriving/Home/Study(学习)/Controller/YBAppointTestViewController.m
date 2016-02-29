@@ -186,7 +186,7 @@
 
 - (UIView *)tableViewFootView {
     
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 64 - 50 - 10, kSystemWide, 50)];
+    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 64 - 50 - 8, kSystemWide, 50)];
     backGroundView.backgroundColor = [UIColor whiteColor];
     
     [backGroundView addSubview:self.submitBtn];

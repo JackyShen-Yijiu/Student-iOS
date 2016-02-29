@@ -8,6 +8,10 @@
 
 #import "HelpController.h"
 #import "HelpCell.h"
+#import "GuideDetailController.h"
+#import "TheoreticalTestController.h"
+#import "FrequentlyController.h"
+#import "NewsHanderController.h"
 
 @interface HelpController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) NSMutableArray *strArray;
@@ -88,14 +92,23 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (0 == indexPath.row) {
         // 使用指南
+        GuideDetailController *guideDetail = [[GuideDetailController alloc] init];
+        [self.navigationController pushViewController:guideDetail animated:YES];
     }else if (1 == indexPath.row){
         // 理论考试
+        TheoreticalTestController *thorVC = [[TheoreticalTestController alloc] init];
+        [self.navigationController pushViewController:thorVC animated:YES];
+    
     }
     else if (2 == indexPath.row){
         // 新手上路
+        NewsHanderController *newsHanderVC = [[NewsHanderController alloc] init];
+        [self.navigationController pushViewController:newsHanderVC animated:YES];
     }
     else if (3 == indexPath.row){
         // 常见问题
+        FrequentlyController *frequentVC = [[FrequentlyController alloc] init];
+        [self.navigationController pushViewController:frequentVC animated:YES];
     }
     
 }
