@@ -381,7 +381,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         }
         
         if (![AcountManager manager].applyschool.infoId) {
-            [self obj_showTotasViewWithMes:@"您还没有预约"];
+            [self obj_showTotasViewWithMes:@"您还没有报名"];
             return ;
         }
         

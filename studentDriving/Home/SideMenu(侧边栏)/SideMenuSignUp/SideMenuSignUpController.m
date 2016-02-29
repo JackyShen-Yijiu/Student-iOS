@@ -13,11 +13,12 @@
 #import "SignInDataModel.h"
 #import "ShowWarningBG.h"
 #import "SignInViewController.h"
+#import "DVVNoDataPromptView.h"
 
 @interface SideMenuSignUpController ()<UITableViewDataSource,UITableViewDelegate>
 @property (nonatomic, strong) SignInViewModel *viewModel;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) ShowWarningBG *warningBG;
+@property (nonatomic, strong) DVVNoDataPromptView *DvvView;
 @end
 
 @implementation SideMenuSignUpController
@@ -32,24 +33,18 @@
     UIView *lineFooterView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 0.3)];
     lineFooterView.backgroundColor = HM_LINE_COLOR ;
     self.tableView.tableFooterView = lineFooterView;
+    
+    
+}
+- (void)viewWillAppear:(BOOL)animated{
     [self configViewModel];
     [self configRefresh];
-    
-    [self.view addSubview:self.warningBG];
-    
 }
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [_warningBG hidden];
+    
 }
 
-- (ShowWarningBG *)warningBG
-{
-    if (_warningBG==nil) {
-        _warningBG = [[ShowWarningBG alloc] initWithTietleName:@"小步没有找到您的预约信息"];
-    }
-    return _warningBG;
-}
 
 #pragma mark - config ViewModel
 - (void)configViewModel {
@@ -62,7 +57,8 @@
     }];
     // 服务器返回的数据为空时的回调
     [_viewModel dvv_setNilResponseObjectBlock:^{
-        [_warningBG show];
+        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您的预约信息" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+        [self.view addSubview:self.DvvView];
     }];
     // 网络成功或错误都调用的回调 (一般在这里隐藏HUD)
     [_viewModel dvv_setNetworkCallBackBlock:^{

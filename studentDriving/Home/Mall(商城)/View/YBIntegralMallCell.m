@@ -54,7 +54,7 @@
         make.top.mas_equalTo(self.mas_top).offset(15);
         make.left.mas_equalTo(self.mas_left).offset(9);
         make.right.mas_equalTo (self.mas_right).offset(-9);
-        make.height.mas_equalTo(150);
+        make.height.mas_equalTo(130);
         
     }];
     [self.mallImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -66,21 +66,21 @@
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.backView.mas_top).offset(15);
-        make.left.mas_equalTo(self.mallImageView.mas_right).offset(20);
+        make.left.mas_equalTo(self.mallImageView.mas_right).offset(15);
         make.right.mas_equalTo (self.backView.mas_right).offset(0);
         make.height.mas_equalTo(14);
         
     }];
     [self.integralLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(15);
-        make.left.mas_equalTo(self.mallImageView.mas_right).offset(20);
+        make.left.mas_equalTo(self.mallImageView.mas_right).offset(15);
         make.right.mas_equalTo (self.backView.mas_right).offset(0);
         make.height.mas_equalTo(14);
         
     }];
     [self.addressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.integralLabel.mas_bottom).offset(15);
-        make.left.mas_equalTo(self.mallImageView.mas_right).offset(20);
+        make.left.mas_equalTo(self.mallImageView.mas_right).offset(15);
         make.right.mas_equalTo (self.backView.mas_right).offset(0);
         make.height.mas_equalTo(10);
         
@@ -93,14 +93,14 @@
         
     }];
     [self.peopleNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.lineView.mas_bottom).offset(20);
-        make.left.mas_equalTo(self.mallImageView.mas_right).offset(20);
+        make.top.mas_equalTo(self.lineView.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.mallImageView.mas_right).offset(15);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(14);
         
     }];
     [self.surplusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.lineView.mas_bottom).offset(20);
+        make.top.mas_equalTo(self.lineView.mas_bottom).offset(10);
         make.right.mas_equalTo (self.backView.mas_right).offset(-9);
         make.width.mas_equalTo(100);
         make.height.mas_equalTo(14);
@@ -152,6 +152,7 @@
     if (_addressLabel == nil) {
         _addressLabel = [[UILabel alloc] init];
         _addressLabel.text = @"地址：此商品无地址信息";
+        _addressLabel.numberOfLines = 0;
         _addressLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
         _addressLabel.font = [UIFont systemFontOfSize:10];
     }
@@ -204,7 +205,7 @@
     [self.mallImageView sd_setImageWithURL:[NSURL URLWithString:integralMallModel.productimg] placeholderImage:nil];
     self.nameLabel.text = integralMallModel.productname;
     self.integralLabel.text = [NSString stringWithFormat:@"兑换积分:%d",integralMallModel.productprice];
-    self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",integralMallModel.addressStr];
+    self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",integralMallModel.address];
     self.peopleNumberLabel.text = [NSString stringWithFormat:@"已有%d人兑换",integralMallModel.buycount];
     self.surplusLabel.text = [NSString stringWithFormat:@"剩余%d份",integralMallModel.productcount];
     
