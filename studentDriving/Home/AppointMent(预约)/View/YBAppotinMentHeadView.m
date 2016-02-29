@@ -147,23 +147,33 @@
         self.potraitView.imageView.image = [UIImage imageNamed:imageStr];
     }
     
+    
+    
+    NSMutableString *subStr = [NSMutableString string];
     if ([AcountManager manager].subjecttwo.reservation && [AcountManager manager].subjecttwo.finishcourse) {
-        
         NSInteger yiyuexueshiCount = [[AcountManager manager].subjecttwo.reservation integerValue] + [[AcountManager manager].subjecttwo.finishcourse integerValue];
-        
-        NSLog(@"yiyuexueshiCount:%lu",yiyuexueshiCount);
-        self.subTitle.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
 
-//        _yiyuexueshiLabel.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
-    }
-    if ([AcountManager manager].subjectthree.reservation && [AcountManager manager].subjectthree.finishcourse) {
+        [subStr appendString:[NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount]];
         
+        NSString *officiahours = [NSString stringWithFormat:@"%@",[AcountManager manager].subjecttwo.officialhours];
+        if (officiahours&&![officiahours isEqualToString:@"0"]) {
+            [subStr appendString:[NSString stringWithFormat:@"    官方学时:%@课时",[AcountManager manager].subjecttwo.officialhours]];
+        }
+
+    }else if ([AcountManager manager].subjectthree.reservation && [AcountManager manager].subjectthree.finishcourse) {
         NSInteger yiyuexueshiCount = [[AcountManager manager].subjectthree.reservation integerValue] + [[AcountManager manager].subjectthree.finishcourse integerValue];
         NSLog(@"yiyuexueshiCount:%lu",yiyuexueshiCount);
-        
-//        _yiyuexueshiLabel.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
-        self.subTitle.text = [NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount];
 
+        [subStr appendString:[NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount]];
+        
+        NSString *officiahours = [NSString stringWithFormat:@"%@",[AcountManager manager].subjectthree.officialhours];
+        if (officiahours&&![officiahours isEqualToString:@"0"]) {
+            [subStr appendString:[NSString stringWithFormat:@"    官方学时:%@课时",[AcountManager manager].subjectthree.officialhours]];
+        }
+        
+    }
+    if (subStr && [subStr length]!=0) {
+        self.subTitle.text = subStr;
     }
     
     NSMutableString *detailStr = [NSMutableString string];
