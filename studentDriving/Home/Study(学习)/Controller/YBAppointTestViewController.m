@@ -41,12 +41,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.view.backgroundColor = RGBColor(236, 236, 236);
+//    self.view.backgroundColor = RGBColor(236, 236, 236);
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self.mainScrollView addSubview:self.reasonMsg];
     
-    self.mainScrollView.frame = CGRectMake(0, 0, self.view.width, self.view.height-50-64);
-    self.mainScrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
+//    self.mainScrollView.frame = CGRectMake(0, 0, self.view.width, self.view.height-50-64);
+//    self.mainScrollView.contentSize = CGSizeMake(self.view.width, self.view.height);
     [self.view addSubview:[self tableViewFootView]];
     
     // 初始化信息
@@ -157,7 +158,7 @@
 - (ShowWarningMessageView *)reasonMsg
 {
     if (_reasonMsg==nil) {
-        _reasonMsg = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.width-100-20, self.phoneTextField.frame.origin.y-20, 100, 20)];
+        _reasonMsg = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width-100-20, self.phoneTextField.frame.origin.y-20, 100, 20)];
         _reasonMsg.message = @"您输入的信息有误";
         _reasonMsg.hidden = YES;
     }
@@ -185,7 +186,7 @@
 
 - (UIView *)tableViewFootView {
     
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.height-50-64, kSystemWide, 50)];
+    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 64 - 50 - 10, kSystemWide, 50)];
     backGroundView.backgroundColor = [UIColor whiteColor];
     
     [backGroundView addSubview:self.submitBtn];
@@ -200,7 +201,7 @@
     [self.messageLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(@5);
         make.bottom.equalTo(@5);
-        make.left.equalTo(@5);
+        make.left.equalTo(@10);
     }];
     
     return backGroundView;
