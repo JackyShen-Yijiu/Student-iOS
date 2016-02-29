@@ -370,6 +370,18 @@ static NSString *coachCellID = @"coachCellID";
     
 //    // 记录下本次的Y偏移位置
 //    _lastOffsetY = scrollView.contentOffset.y;
+    
+    // 在没有数据的时候不让用户滚动
+    if (0 == _showType) {
+        if (!_schoolViewModel.dataArray.count) {
+            _tableView.contentOffset = CGPointMake(0, 40);
+        }
+    }else {
+        if (!_coachViewModel.dataArray.count) {
+            _tableView.contentOffset = CGPointMake(0, 40);
+        }
+    }
+    
 }
 
 #pragma mark - config view model

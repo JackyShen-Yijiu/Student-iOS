@@ -129,7 +129,7 @@
     // 在加载出来数据之前先不能让用户点击搜索，否则就会有个小问题
     _searchContentView.userInteractionEnabled = NO;
 
-    [DVVToast showFromView:self.view OffSetY:-64];
+    [DVVToast show];
     // 开始定位用户所在的城市
     [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, CLLocationCoordinate2D coordinate, NSString *city, NSString *address) {
         
@@ -184,6 +184,12 @@
 //    [self.view addGestureRecognizer:tap];
     
 }
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [DVVToast hide];
+}
+
 - (void)resignFirstResponder:(UITapGestureRecognizer*)tap
 {
     [_searchText resignFirstResponder];
@@ -242,7 +248,7 @@
 
 - (void)ininHeaderView
 {
-    
+    [DVVToast hide];
     
     _tableHeaderView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, _tableView.frame.size.width, 250)];
     _tableHeaderView.backgroundColor = [UIColor clearColor];
@@ -309,7 +315,7 @@
     
     _tableHeaderView.frame = CGRectMake(0, 0, _tableView.frame.size.width, _hotCityGroupView.frame.origin.y+_hotCityGroupView.frame.size.height);
     
-    [DVVToast hideFromView:self.view];
+    [DVVToast hide];
     [self getCityData];
     [_tableView reloadData];
     // 显示出来控件
@@ -559,10 +565,10 @@
         NSString *url = [NSString stringWithFormat:BASEURL, @"getchildopencity"];
         NSDictionary *dict = @{ @"cityid": [NSString stringWithFormat:@"%lu", (long)cityID] };
         
-        [DVVToast showFromView:self.view OffSetY:-64];
+        [DVVToast show];
         [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
             
-            [DVVToast hideFromView:self.view];
+            [DVVToast hide];
 //            NSLog(@"%@", data);
             
             DVVCityListDMRootClass *dmRoot = [DVVCityListDMRootClass yy_modelWithJSON:data];
@@ -603,7 +609,7 @@
             }
             
         } withFailure:^(id data) {
-            [DVVToast hideFromView:self.view];
+            [DVVToast hide];
             [self obj_showTotasViewWithMes:@"网络错误"];
         }];
     }else {
