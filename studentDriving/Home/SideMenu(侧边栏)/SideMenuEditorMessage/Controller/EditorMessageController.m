@@ -47,7 +47,7 @@
 }
 - (void)initData{
     
-    self.titleArray = @[@"",@"报考驾校",@"报考班型",@"报考车型",@"我的喜欢",@"报名详情"];
+    self.titleArray = @[@"",@"报考驾校",@"报考班型",@"报考驾照类型",@"我的喜欢",@"我的订单"];
     
     if ([AcountManager manager].userApplystate && ([[AcountManager manager].userApplystate isEqualToString:@"0"] || [[AcountManager manager].userApplystate isEqualToString:@"1"])) {
         self.descriArray = @[@"",@"尚未报名",@"尚未报名",@"尚未报名"];
