@@ -64,6 +64,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 @property (nonatomic, strong) NSString *realMoneyStr; // 实付款
 @property (nonatomic, strong) NSString *payStausStr; // 支付状态
 @property (nonatomic, strong) NSString *applySatus; // 申请状态
+@property (nonatomic, strong) NSString *classType;
 @property (nonatomic, strong) NSDictionary *dict;
 
 @property (nonatomic, strong) ShowWarningBG *warningBG; //提示背景图片
@@ -250,6 +251,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                 self.signUpStr = [data objectForKey:@"applytime"];
                 
                 self.realMoneyStr = [NSString stringWithFormat:@"%lu",[[[data objectForKey:@"applyclasstypeinfo"] objectForKey:@"onsaleprice"] integerValue]];
+                self.classType = [[data objectForKey:@"applyclasstypeinfo"] objectForKey:@"name"];
                 // 支付状态
                 if (0 == [[data objectForKey:@"paytypestatus"] integerValue]) {
                 self.payStausStr = @"未支付";
@@ -439,6 +441,12 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             }else if(401 == tag){
                 // 立即支付
                 OrdetDetailController *ordetVC = [[OrdetDetailController alloc] init];
+                ordetVC.schoolStr = self.schoolStr;
+                ordetVC.carModelStr = self.carModelStr;
+                ordetVC.signUpStr = self.signUpStr;
+                ordetVC.realMoneyStr = self.realMoneyStr;
+                ordetVC.payStausStr = self.payStausStr;
+                ordetVC.classType = self.classType;
                 [self.navigationController pushViewController:ordetVC animated:YES];
             }
         };
@@ -468,6 +476,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     if ([self.payWaystr isEqualToString:@"线下支付"] && [self.applySatus isEqualToString:@"申请中"]) {
         // 跳转到扫描界面
         YBSignUpSuccessController *signUpVC = [[YBSignUpSuccessController alloc] init];
+        
         [self.navigationController pushViewController:signUpVC animated:YES];
     }
 }
