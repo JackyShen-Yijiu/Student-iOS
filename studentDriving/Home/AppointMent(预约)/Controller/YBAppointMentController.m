@@ -235,6 +235,9 @@
     // 没有内容，占位图
      [self.view addSubview:self.noCountmentView];
 
+    // 接收到预约消息
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addLoadSubjectProress) name:@"kuserapplysuccess" object:nil];
+    
 }
 
 - (void)dealloc
