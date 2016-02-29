@@ -41,7 +41,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未填写教练名" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fxe-RX-o5q">
-                        <rect key="frame" x="72" y="16" width="138" height="14"/>
+                        <rect key="frame" x="72" y="16" width="130" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="O7A-pR-Aok"/>
                         </constraints>
@@ -70,7 +70,7 @@
                     <constraint firstItem="3ol-De-UlP" firstAttribute="leading" secondItem="U0H-VK-gOh" secondAttribute="trailing" constant="8" id="aXQ-z8-94r"/>
                     <constraint firstItem="3ol-De-UlP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="38" id="dSe-Gm-Tl8"/>
                     <constraint firstItem="LB3-xQ-rUE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="kOy-ah-cal"/>
-                    <constraint firstAttribute="trailing" secondItem="fxe-RX-o5q" secondAttribute="trailing" constant="110" id="oyK-CE-wrH"/>
+                    <constraint firstAttribute="trailing" secondItem="fxe-RX-o5q" secondAttribute="trailing" constant="118" id="oyK-CE-wrH"/>
                     <constraint firstItem="LB3-xQ-rUE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="tCu-aQ-Oeo"/>
                     <constraint firstItem="TkQ-or-tvh" firstAttribute="top" secondItem="U0H-VK-gOh" secondAttribute="bottom" constant="8" id="wXm-lJ-FN3"/>
                 </constraints>
