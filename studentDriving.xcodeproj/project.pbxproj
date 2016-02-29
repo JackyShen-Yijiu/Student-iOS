@@ -56,7 +56,6 @@
 		554641CB1C250A2200A55326 /* SignUpSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CA1C250A2200A55326 /* SignUpSuccessViewController.m */; };
 		554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CD1C250A6900A55326 /* SignUpInfoManager.m */; };
 		554E8E881C3A89CC00233F2B /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 554E8E851C3A89CC00233F2B /* EaseMob.bundle */; };
-		554E8E8A1C3A985D00233F2B /* libEaseMobClientSDKLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */; };
 		556994AA1C3F885B00CD8BAF /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 556994A91C3F885B00CD8BAF /* mapapi.bundle */; };
 		556F42581C310E7A0052DE73 /* SignUpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F42571C310E7A0052DE73 /* SignUpListViewController.m */; };
 		556F425B1C310E980052DE73 /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F425A1C310E980052DE73 /* ApplyClassCell.m */; };
@@ -88,6 +87,7 @@
 		560D221A1C819EC5001B8B83 /* OrdetDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560D22181C819EC5001B8B83 /* OrdetDetailController.xib */; };
 		5611A5A51C7F2D7700DC083D /* YBIntegrationMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */; };
 		5611A5A81C7F2F1900DC083D /* YBIntegrationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A71C7F2F1900DC083D /* YBIntegrationMessageCell.m */; };
+		5647E7121C831B080050B649 /* libEaseMobClientSDKLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5647E7111C831B080050B649 /* libEaseMobClientSDKLite.a */; };
 		56855C2B1C784EEA005D4517 /* ShuttleBusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C271C784EEA005D4517 /* ShuttleBusCell.m */; };
 		56855C2C1C784EEA005D4517 /* ShuttleBusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56855C281C784EEA005D4517 /* ShuttleBusCell.xib */; };
 		56855C2D1C784EEA005D4517 /* ShuttleBusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C2A1C784EEA005D4517 /* ShuttleBusController.m */; };
@@ -766,11 +766,11 @@
 		D95FF5F21C84606900D55ED9 /* FrequentlyController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5E11C84606900D55ED9 /* FrequentlyController.m */; };
 		D95FF5F31C84606900D55ED9 /* GuideDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5E31C84606900D55ED9 /* GuideDetailController.m */; };
 		D95FF5F41C84606900D55ED9 /* NewsHanderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5E51C84606900D55ED9 /* NewsHanderController.m */; };
-		D95FF5F51C84606900D55ED9 /* TheoreticalTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5E71C84606900D55ED9 /* TheoreticalTestController.m */; };
 		D95FF5F61C84606900D55ED9 /* HelpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5E91C84606900D55ED9 /* HelpCell.m */; };
 		D95FF5F71C84606900D55ED9 /* HelpController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5EB1C84606900D55ED9 /* HelpController.m */; };
 		D95FF5F81C84606900D55ED9 /* SetupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5ED1C84606900D55ED9 /* SetupViewController.m */; };
 		D95FF5F91C84606900D55ED9 /* YBHelpData.json in Resources */ = {isa = PBXBuildFile; fileRef = D95FF5EE1C84606900D55ED9 /* YBHelpData.json */; };
+		D95FF5FF1C84784F00D55ED9 /* TheoreticalTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5FE1C84784F00D55ED9 /* TheoreticalTestController.m */; };
 		D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D961BC791C28004200940577 /* YBWelcomeController.m */; };
 		D96200011C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m in Sources */ = {isa = PBXBuildFile; fileRef = D96200001C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m */; };
 		D96200041C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96200031C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.m */; };
@@ -1147,7 +1147,6 @@
 		554E8E7F1C3A89CC00233F2B /* EMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMError.h; sourceTree = "<group>"; };
 		554E8E801C3A89CC00233F2B /* EMErrorDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMErrorDefs.h; sourceTree = "<group>"; };
 		554E8E851C3A89CC00233F2B /* EaseMob.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseMob.bundle; sourceTree = "<group>"; };
-		554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDKLite.a; sourceTree = "<group>"; };
 		556994A91C3F885B00CD8BAF /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		556F42561C310E7A0052DE73 /* SignUpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpListViewController.h; sourceTree = "<group>"; };
 		556F42571C310E7A0052DE73 /* SignUpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpListViewController.m; sourceTree = "<group>"; };
@@ -1208,6 +1207,7 @@
 		5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegrationMessageController.m; sourceTree = "<group>"; };
 		5611A5A61C7F2F1900DC083D /* YBIntegrationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegrationMessageCell.h; sourceTree = "<group>"; };
 		5611A5A71C7F2F1900DC083D /* YBIntegrationMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegrationMessageCell.m; sourceTree = "<group>"; };
+		5647E7111C831B080050B649 /* libEaseMobClientSDKLite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDKLite.a; sourceTree = "<group>"; };
 		56855C261C784EEA005D4517 /* ShuttleBusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleBusCell.h; sourceTree = "<group>"; };
 		56855C271C784EEA005D4517 /* ShuttleBusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleBusCell.m; sourceTree = "<group>"; };
 		56855C281C784EEA005D4517 /* ShuttleBusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShuttleBusCell.xib; sourceTree = "<group>"; };
@@ -2445,8 +2445,6 @@
 		D95FF5E31C84606900D55ED9 /* GuideDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GuideDetailController.m; sourceTree = "<group>"; };
 		D95FF5E41C84606900D55ED9 /* NewsHanderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsHanderController.h; sourceTree = "<group>"; };
 		D95FF5E51C84606900D55ED9 /* NewsHanderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsHanderController.m; sourceTree = "<group>"; };
-		D95FF5E61C84606900D55ED9 /* TheoreticalTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheoreticalTestController.h; sourceTree = "<group>"; };
-		D95FF5E71C84606900D55ED9 /* TheoreticalTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheoreticalTestController.m; sourceTree = "<group>"; };
 		D95FF5E81C84606900D55ED9 /* HelpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpCell.h; sourceTree = "<group>"; };
 		D95FF5E91C84606900D55ED9 /* HelpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpCell.m; sourceTree = "<group>"; };
 		D95FF5EA1C84606900D55ED9 /* HelpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpController.h; sourceTree = "<group>"; };
@@ -2454,6 +2452,8 @@
 		D95FF5EC1C84606900D55ED9 /* SetupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetupViewController.h; sourceTree = "<group>"; };
 		D95FF5ED1C84606900D55ED9 /* SetupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetupViewController.m; sourceTree = "<group>"; };
 		D95FF5EE1C84606900D55ED9 /* YBHelpData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YBHelpData.json; sourceTree = "<group>"; };
+		D95FF5FD1C84784F00D55ED9 /* TheoreticalTestController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheoreticalTestController.h; sourceTree = "<group>"; };
+		D95FF5FE1C84784F00D55ED9 /* TheoreticalTestController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheoreticalTestController.m; sourceTree = "<group>"; };
 		D961BC781C28004200940577 /* YBWelcomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBWelcomeController.h; sourceTree = "<group>"; };
 		D961BC791C28004200940577 /* YBWelcomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBWelcomeController.m; sourceTree = "<group>"; };
 		D96200001C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSignUpSchoolDMLogoimg.m; sourceTree = "<group>"; };
@@ -2868,7 +2868,6 @@
 				D5604CA81BF659830020F0D7 /* libresolv.tbd in Frameworks */,
 				D919F33B1C60885A00239B34 /* libSocialTwitter.a in Frameworks */,
 				D5604CA61BF659790020F0D7 /* libiconv.tbd in Frameworks */,
-				554E8E8A1C3A985D00233F2B /* libEaseMobClientSDKLite.a in Frameworks */,
 				B20DBED11C5DB0FF0023676E /* libssl.a in Frameworks */,
 				D919F3361C60885A00239B34 /* libSocialQQ.a in Frameworks */,
 				D919F32B1C60885A00239B34 /* FBSDKCoreKit.framework in Frameworks */,
@@ -2877,6 +2876,7 @@
 				D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */,
 				D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */,
 				D5604CB11BF65AA30020F0D7 /* Bolts.framework in Frameworks */,
+				5647E7121C831B080050B649 /* libEaseMobClientSDKLite.a in Frameworks */,
 				D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */,
 				0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */,
 				D919F3291C60885A00239B34 /* libAPOpenSdk.a in Frameworks */,
@@ -3272,7 +3272,7 @@
 		554E8E811C3A89CC00233F2B /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */,
+				5647E7111C831B080050B649 /* libEaseMobClientSDKLite.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -5778,6 +5778,8 @@
 		D95FF5D81C84606900D55ED9 /* SideMenuSetInfo */ = {
 			isa = PBXGroup;
 			children = (
+				D95FF5FD1C84784F00D55ED9 /* TheoreticalTestController.h */,
+				D95FF5FE1C84784F00D55ED9 /* TheoreticalTestController.m */,
 				D95FF5D91C84606900D55ED9 /* AboutUsViewController.h */,
 				D95FF5DA1C84606900D55ED9 /* AboutUsViewController.m */,
 				D95FF5DB1C84606900D55ED9 /* FeedBackViewController.h */,
@@ -5805,8 +5807,6 @@
 				D95FF5E31C84606900D55ED9 /* GuideDetailController.m */,
 				D95FF5E41C84606900D55ED9 /* NewsHanderController.h */,
 				D95FF5E51C84606900D55ED9 /* NewsHanderController.m */,
-				D95FF5E61C84606900D55ED9 /* TheoreticalTestController.h */,
-				D95FF5E71C84606900D55ED9 /* TheoreticalTestController.m */,
 			);
 			path = GuideDetail;
 			sourceTree = "<group>";
@@ -6861,7 +6861,6 @@
 				D99674731C7D54610000CC65 /* DrivingDetailAddressCell.m in Sources */,
 				D588B11E1BDDDC2F000C5D6F /* NSString+CurrentTimeDay.m in Sources */,
 				D96D1BCA1C2B858400F1C282 /* AppDelegate+DealTool.m in Sources */,
-				D95FF5F51C84606900D55ED9 /* TheoreticalTestController.m in Sources */,
 				D588AFCD1BDDDAAB000C5D6F /* AppointmentCoachTimeInfoModel.m in Sources */,
 				D96A02EF1C818F5700DFDCAC /* DVVNoDataPromptView.m in Sources */,
 				D95FF5F61C84606900D55ED9 /* HelpCell.m in Sources */,
@@ -7035,6 +7034,7 @@
 				D965CAA81C239D9F00DCD094 /* DrivingCycleShowDMRootClass.m in Sources */,
 				D96248291C5779160028EE62 /* CityListCell.m in Sources */,
 				D95FF5CC1C84417300D55ED9 /* YBStudentUserRootClass.m in Sources */,
+				D95FF5FF1C84784F00D55ED9 /* TheoreticalTestController.m in Sources */,
 				D95FF5F01C84606900D55ED9 /* FeedBackViewController.m in Sources */,
 				D51256C91BE348BA002717DA /* StudentCommentModel.m in Sources */,
 				D5604B611BF656C50020F0D7 /* UIImageView+EMWebCache.m in Sources */,
@@ -7548,6 +7548,7 @@
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Facebook",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
+					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/studentDriving/EaseMobSDK-PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7600,63 +7601,10 @@
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Whatsapp",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-weak_library",
-					/usr/lib/libz.dylib,
-					"-l\"AFNetworking\"",
-					"-l\"ChameleonFramework\"",
-					"-l\"HappyDNS\"",
-					"-l\"IQKeyboardManager\"",
-					"-l\"MJRefresh\"",
-					"-l\"Mantle\"",
-					"-l\"Masonry\"",
-					"-l\"MobClickLibrary\"",
-					"-l\"NJKWebViewProgress\"",
-					"-l\"PushSDK-1.8.8\"",
-					"-l\"Qiniu\"",
-					"-l\"RESideMenu\"",
-					"-l\"SDCycleScrollView\"",
-					"-l\"SDWebImage\"",
-					"-l\"SSKeychain\"",
-					"-l\"resolv\"",
-					"-l\"stdc++\"",
-					"-l\"stdc++.6\"",
-					"-l\"z\"",
-					"-framework",
-					"\"BaiduMapAPI\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreFoundation\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreLocation\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"-force_load",
 					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -7684,6 +7632,7 @@
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Facebook",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
+					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/studentDriving/EaseMobSDK-PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7736,63 +7685,10 @@
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Whatsapp",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-weak_library",
-					/usr/lib/libz.dylib,
-					"-l\"AFNetworking\"",
-					"-l\"ChameleonFramework\"",
-					"-l\"HappyDNS\"",
-					"-l\"IQKeyboardManager\"",
-					"-l\"MJRefresh\"",
-					"-l\"Mantle\"",
-					"-l\"Masonry\"",
-					"-l\"MobClickLibrary\"",
-					"-l\"NJKWebViewProgress\"",
-					"-l\"PushSDK-1.8.8\"",
-					"-l\"Qiniu\"",
-					"-l\"RESideMenu\"",
-					"-l\"SDCycleScrollView\"",
-					"-l\"SDWebImage\"",
-					"-l\"SSKeychain\"",
-					"-l\"resolv\"",
-					"-l\"stdc++\"",
-					"-l\"stdc++.6\"",
-					"-l\"z\"",
-					"-framework",
-					"\"BaiduMapAPI\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreFoundation\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreLocation\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"-force_load",
 					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

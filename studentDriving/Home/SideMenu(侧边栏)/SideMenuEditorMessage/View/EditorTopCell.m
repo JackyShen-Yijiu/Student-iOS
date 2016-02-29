@@ -64,7 +64,7 @@
     if (_IconImageView == nil) {
         _IconImageView = [[UIImageView alloc] init];
         _IconImageView.backgroundColor  = [UIColor clearColor];
-        [self.IconImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"coach_man_default_icon"] getRoundImage] completed:nil];
+        [self.IconImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"me"] getRoundImage] completed:nil];
         [_IconImageView.layer setCornerRadius:20];
         [_IconImageView.layer setMasksToBounds:YES];
     }
