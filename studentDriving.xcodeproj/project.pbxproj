@@ -761,6 +761,15 @@
 		D95E3DAB1C3CC19800F0B5A0 /* SearchCoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DAA1C3CC19800F0B5A0 /* SearchCoachController.m */; };
 		D95E3DAE1C3CDBFE00F0B5A0 /* DVVFilterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DAD1C3CDBFE00F0B5A0 /* DVVFilterView.m */; };
 		D95E3DB41C3CEDC600F0B5A0 /* SearchCoachViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95E3DB31C3CEDC600F0B5A0 /* SearchCoachViewModel.m */; };
+		D95FF5861C843EE500D55ED9 /* JGUserTools.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5841C843EE500D55ED9 /* JGUserTools.m */; };
+		D95FF5C71C84417300D55ED9 /* YBStudentUserApplyclasstypeinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5B81C84417300D55ED9 /* YBStudentUserApplyclasstypeinfo.m */; };
+		D95FF5C81C84417300D55ED9 /* YBStudentUserApplycoachinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5BA1C84417300D55ED9 /* YBStudentUserApplycoachinfo.m */; };
+		D95FF5C91C84417300D55ED9 /* YBStudentUserCarmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5BC1C84417300D55ED9 /* YBStudentUserCarmodel.m */; };
+		D95FF5CA1C84417300D55ED9 /* YBStudentUserData.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5BE1C84417300D55ED9 /* YBStudentUserData.m */; };
+		D95FF5CB1C84417300D55ED9 /* YBStudentUserHeadportrait.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5C01C84417300D55ED9 /* YBStudentUserHeadportrait.m */; };
+		D95FF5CC1C84417300D55ED9 /* YBStudentUserRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5C21C84417300D55ED9 /* YBStudentUserRootClass.m */; };
+		D95FF5CD1C84417300D55ED9 /* YBStudentUserSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5C41C84417300D55ED9 /* YBStudentUserSubject.m */; };
+		D95FF5CE1C84417300D55ED9 /* YBStudentUserSubjectthree.m in Sources */ = {isa = PBXBuildFile; fileRef = D95FF5C61C84417300D55ED9 /* YBStudentUserSubjectthree.m */; };
 		D961BC7A1C28004200940577 /* YBWelcomeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D961BC791C28004200940577 /* YBWelcomeController.m */; };
 		D96200011C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m in Sources */ = {isa = PBXBuildFile; fileRef = D96200001C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m */; };
 		D96200041C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96200031C7F02BC0000E1E6 /* DVVCoachDetailCommentListController.m */; };
@@ -2424,6 +2433,24 @@
 		D95E3DAD1C3CDBFE00F0B5A0 /* DVVFilterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVFilterView.m; sourceTree = "<group>"; };
 		D95E3DB21C3CEDC600F0B5A0 /* SearchCoachViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchCoachViewModel.h; sourceTree = "<group>"; };
 		D95E3DB31C3CEDC600F0B5A0 /* SearchCoachViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchCoachViewModel.m; sourceTree = "<group>"; };
+		D95FF5831C843EE500D55ED9 /* JGUserTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGUserTools.h; sourceTree = "<group>"; };
+		D95FF5841C843EE500D55ED9 /* JGUserTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGUserTools.m; sourceTree = "<group>"; };
+		D95FF5B71C84417300D55ED9 /* YBStudentUserApplyclasstypeinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudentUserApplyclasstypeinfo.h; sourceTree = "<group>"; };
+		D95FF5B81C84417300D55ED9 /* YBStudentUserApplyclasstypeinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudentUserApplyclasstypeinfo.m; sourceTree = "<group>"; };
+		D95FF5B91C84417300D55ED9 /* YBStudentUserApplycoachinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudentUserApplycoachinfo.h; sourceTree = "<group>"; };
+		D95FF5BA1C84417300D55ED9 /* YBStudentUserApplycoachinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudentUserApplycoachinfo.m; sourceTree = "<group>"; };
+		D95FF5BB1C84417300D55ED9 /* YBStudentUserCarmodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudentUserCarmodel.h; sourceTree = "<group>"; };
+		D95FF5BC1C84417300D55ED9 /* YBStudentUserCarmodel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudentUserCarmodel.m; sourceTree = "<group>"; };
+		D95FF5BD1C84417300D55ED9 /* YBStudentUserData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudentUserData.h; sourceTree = "<group>"; };
+		D95FF5BE1C84417300D55ED9 /* YBStudentUserData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudentUserData.m; sourceTree = "<group>"; };
+		D95FF5BF1C84417300D55ED9 /* YBStudentUserHeadportrait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudentUserHeadportrait.h; sourceTree = "<group>"; };
+		D95FF5C01C84417300D55ED9 /* YBStudentUserHeadportrait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudentUserHeadportrait.m; sourceTree = "<group>"; };
+		D95FF5C11C84417300D55ED9 /* YBStudentUserRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudentUserRootClass.h; sourceTree = "<group>"; };
+		D95FF5C21C84417300D55ED9 /* YBStudentUserRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudentUserRootClass.m; sourceTree = "<group>"; };
+		D95FF5C31C84417300D55ED9 /* YBStudentUserSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudentUserSubject.h; sourceTree = "<group>"; };
+		D95FF5C41C84417300D55ED9 /* YBStudentUserSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudentUserSubject.m; sourceTree = "<group>"; };
+		D95FF5C51C84417300D55ED9 /* YBStudentUserSubjectthree.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudentUserSubjectthree.h; sourceTree = "<group>"; };
+		D95FF5C61C84417300D55ED9 /* YBStudentUserSubjectthree.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudentUserSubjectthree.m; sourceTree = "<group>"; };
 		D961BC781C28004200940577 /* YBWelcomeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBWelcomeController.h; sourceTree = "<group>"; };
 		D961BC791C28004200940577 /* YBWelcomeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBWelcomeController.m; sourceTree = "<group>"; };
 		D96200001C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSignUpSchoolDMLogoimg.m; sourceTree = "<group>"; };
@@ -3736,6 +3763,24 @@
 		B2E8E1751C72BA4F000190C2 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D95FF5B71C84417300D55ED9 /* YBStudentUserApplyclasstypeinfo.h */,
+				D95FF5B81C84417300D55ED9 /* YBStudentUserApplyclasstypeinfo.m */,
+				D95FF5B91C84417300D55ED9 /* YBStudentUserApplycoachinfo.h */,
+				D95FF5BA1C84417300D55ED9 /* YBStudentUserApplycoachinfo.m */,
+				D95FF5BB1C84417300D55ED9 /* YBStudentUserCarmodel.h */,
+				D95FF5BC1C84417300D55ED9 /* YBStudentUserCarmodel.m */,
+				D95FF5BD1C84417300D55ED9 /* YBStudentUserData.h */,
+				D95FF5BE1C84417300D55ED9 /* YBStudentUserData.m */,
+				D95FF5BF1C84417300D55ED9 /* YBStudentUserHeadportrait.h */,
+				D95FF5C01C84417300D55ED9 /* YBStudentUserHeadportrait.m */,
+				D95FF5C11C84417300D55ED9 /* YBStudentUserRootClass.h */,
+				D95FF5C21C84417300D55ED9 /* YBStudentUserRootClass.m */,
+				D95FF5C31C84417300D55ED9 /* YBStudentUserSubject.h */,
+				D95FF5C41C84417300D55ED9 /* YBStudentUserSubject.m */,
+				D95FF5C51C84417300D55ED9 /* YBStudentUserSubjectthree.h */,
+				D95FF5C61C84417300D55ED9 /* YBStudentUserSubjectthree.m */,
+				D95FF5831C843EE500D55ED9 /* JGUserTools.h */,
+				D95FF5841C843EE500D55ED9 /* JGUserTools.m */,
 				D963FACE1C741C80006955D8 /* Macro */,
 				B2E8E1761C72BA4F000190C2 /* NavigationAnimation */,
 			);
@@ -6802,6 +6847,7 @@
 				56DAB0FD1C7ABB8500D7B942 /* FeedBackViewController.m in Sources */,
 				D588B0771BDDDBB6000C5D6F /* SubjectFirstViewController.m in Sources */,
 				060DB4051C5B3E850039C30F /* SignUpFirmOrderFooterView.m in Sources */,
+				D95FF5CB1C84417300D55ED9 /* YBStudentUserHeadportrait.m in Sources */,
 				D588B0DC1BDDDC14000C5D6F /* AppointmentCollectionCell.m in Sources */,
 				B20DBED31C5DB0FF0023676E /* base64.m in Sources */,
 				D5C240111BECFAD800832CF3 /* AVPlayModel.m in Sources */,
@@ -6816,6 +6862,7 @@
 				56855C3B1C785485005D4517 /* JGActivityModel.m in Sources */,
 				560D220C1C816C3A001B8B83 /* MallOrderListModel.m in Sources */,
 				55901B651C26797500AC64FF /* WhichStateViewController.m in Sources */,
+				D95FF5CA1C84417300D55ED9 /* YBStudentUserData.m in Sources */,
 				D5C2403A1BEF6C6200832CF3 /* UIColor+Hex.m in Sources */,
 				D98581AD1C58B1C80044E029 /* DVVImagePickerControllerManager.m in Sources */,
 				B2F1AE931C804320006D56FF /* YBBaoMingDuiHuanQuanCell.m in Sources */,
@@ -6982,6 +7029,7 @@
 				D996746D1C7D54610000CC65 /* CoachListDMHeadportrait.m in Sources */,
 				D965CAA81C239D9F00DCD094 /* DrivingCycleShowDMRootClass.m in Sources */,
 				D96248291C5779160028EE62 /* CityListCell.m in Sources */,
+				D95FF5CC1C84417300D55ED9 /* YBStudentUserRootClass.m in Sources */,
 				D51256C91BE348BA002717DA /* StudentCommentModel.m in Sources */,
 				D5604B611BF656C50020F0D7 /* UIImageView+EMWebCache.m in Sources */,
 				D5604B8A1BF656C50020F0D7 /* BaseViewController.m in Sources */,
@@ -7032,6 +7080,7 @@
 				560D21E91C816BC2001B8B83 /* EditorDetailController.m in Sources */,
 				D5604C991BF657AA0020F0D7 /* InvitationManager.m in Sources */,
 				D965CAA51C239D9F00DCD094 /* DrivingCityListView.m in Sources */,
+				D95FF5861C843EE500D55ED9 /* JGUserTools.m in Sources */,
 				D965CAAA1C239D9F00DCD094 /* DrivingDetailViewController.m in Sources */,
 				060624511C83D9DF00E9B3DC /* GuideDetailController.m in Sources */,
 				D5604B461BF656C50020F0D7 /* Emoji.m in Sources */,
@@ -7091,6 +7140,7 @@
 				56855C501C787736005D4517 /* SignInHelpViewController.m in Sources */,
 				56855C4F1C787736005D4517 /* SignInDataModel.m in Sources */,
 				D5604C911BF656F30020F0D7 /* MessageModelManager.m in Sources */,
+				D95FF5C81C84417300D55ED9 /* YBStudentUserApplycoachinfo.m in Sources */,
 				B226AEC51C7480530028DF1A /* HMTrainaddressModel.m in Sources */,
 				D5604C8D1BF656F30020F0D7 /* EMChatTimeCell.m in Sources */,
 				D99674791C7D54610000CC65 /* DrivingDetailDMLogoimg.m in Sources */,
@@ -7102,8 +7152,10 @@
 				D5604B471BF656C50020F0D7 /* EmojiEmoticons.m in Sources */,
 				D588B0DA1BDDDC14000C5D6F /* DrivingSelectedCoachCollectionCell.m in Sources */,
 				B20DBECC1C5DB0FF0023676E /* SBJSON.m in Sources */,
+				D95FF5C71C84417300D55ED9 /* YBStudentUserApplyclasstypeinfo.m in Sources */,
 				D96D1BEA1C2B88A000F1C282 /* DVVOpenControllerFromSideMenu.m in Sources */,
 				D51256B71BE1F084002717DA /* SubjectTwoModel.m in Sources */,
+				D95FF5CD1C84417300D55ED9 /* YBStudentUserSubject.m in Sources */,
 				B2E8E1C91C72CEFD000190C2 /* IWTabBarViewController.m in Sources */,
 				D588B0531BDDDB71000C5D6F /* UserCenterHeadView.m in Sources */,
 				D5604B5C1BF656C50020F0D7 /* UIButton+EMWebCache.m in Sources */,
@@ -7276,6 +7328,7 @@
 				B2F1AE881C803E52006D56FF /* YBJiangliJifenCell.m in Sources */,
 				B226AEF41C748FFE0028DF1A /* PortraitView.m in Sources */,
 				B84D9D241C2E80F000A8BDC2 /* UIViewController+Method.m in Sources */,
+				D95FF5C91C84417300D55ED9 /* YBStudentUserCarmodel.m in Sources */,
 				560D21EC1C816BC2001B8B83 /* SignUpDetailController.m in Sources */,
 				D588B1151BDDDC2F000C5D6F /* JENetwoking.m in Sources */,
 				D965CAB61C239E2E00DCD094 /* DVVToolBarView.m in Sources */,
@@ -7284,6 +7337,7 @@
 				B21818231C58E76300F973A7 /* Applyclasstypeinfo.m in Sources */,
 				B218181A1C58AEFE00F973A7 /* JGDrivingDetailPersonalNoteCell.m in Sources */,
 				D996740D1C7D4B400000CC65 /* DVVBaseDoubleRowCell.m in Sources */,
+				D95FF5CE1C84417300D55ED9 /* YBStudentUserSubjectthree.m in Sources */,
 				D5604CC91BF83A690020F0D7 /* ChatListCell.m in Sources */,
 				D5604B811BF656C50020F0D7 /* NSString+Valid.m in Sources */,
 				D5604B5F1BF656C50020F0D7 /* UIImage+EMWebP.m in Sources */,

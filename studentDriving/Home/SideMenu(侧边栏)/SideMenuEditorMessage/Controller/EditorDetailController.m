@@ -326,7 +326,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
         _iconImgView = [[UIImageView alloc] initWithFrame:CGRectMake((kSystemWide - 60)/2, 20, 60, 60)];
         [_iconImgView.layer setMasksToBounds:YES];
         [_iconImgView.layer setCornerRadius:30];
-        [_iconImgView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:nil completed:nil];
+        [_iconImgView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[UIImage imageNamed:@"side_user_header"] completed:nil];
     }
     return _iconImgView;
 }

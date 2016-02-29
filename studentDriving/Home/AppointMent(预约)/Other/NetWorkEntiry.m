@@ -206,11 +206,14 @@
                                   success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                                   failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-//    if (!userId) {
-//        return [self missParagramercallBackFailure:failure];
-//    }
-//    NSString * urlStr = [NSString stringWithFormat:@"%@/userinfo/getuserinfo/%@/userid/%@",[self domain],type,userId];
-//    [self GET:urlStr parameters:nil success:success failure:failure];
+    if (!userId) {
+        return [self missParagramercallBackFailure:failure];
+    }
+    
+    // http://127.0.0.1:8181/api/v1/userinfo/getuserinfo/2/userid/5616352721ec29041a9af889
+
+    NSString * urlStr = [NSString stringWithFormat:@"%@/userinfo/getuserinfo/%@/userid/%@",[self domain],type,userId];
+    [self GET:urlStr parameters:nil success:success failure:failure];
 }
 
 + (void)getSchoolTrainFieldWithSchoolId:(NSString *)schoolId

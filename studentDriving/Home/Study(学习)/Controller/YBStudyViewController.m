@@ -132,9 +132,6 @@
     // 请求数据
     [self setUpData];
     
-    // 顶部segment
-    [self.view addSubview:self.dvvToolBarView];
-    
     // 分割线
     [self.view addSubview:self.toolBarBottomLineView];
     
@@ -148,6 +145,9 @@
     [_scrollView addSubview:self.kemuerView];
     [_scrollView addSubview:self.kemusanView];
     [_scrollView addSubview:self.kemusiView];
+    
+    // 顶部segment
+    [self.view addSubview:self.dvvToolBarView];
 
     [self configUI];
     
@@ -348,6 +348,12 @@
             [ws toolBarItemSelectedAction:button];
         }];
         _dvvToolBarView.backgroundColor = YBNavigationBarBgColor;
+        
+        // 添加底部的阴影效果
+        _dvvToolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
+        _dvvToolBarView.layer.shadowOffset = CGSizeMake(0, 2);
+        _dvvToolBarView.layer.shadowOpacity = 0.3;
+        _dvvToolBarView.layer.shadowRadius = 2;
     }
     return _dvvToolBarView;
 }

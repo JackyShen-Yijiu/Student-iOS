@@ -83,11 +83,19 @@
     }
 }
 
+- (void)setImageURL:(NSURL *)imageURL
+{
+    _imageURL = imageURL;
+    
+    [self.imageView sd_setImageWithURL:_imageURL placeholderImage:[UIImage imageNamed:@"side_user_header"]];
+
+}
+
 -(void)layoutSubviews{
     [super layoutSubviews];
     CGRect frame = self.imageView.frame;
     
-    [self.imageView sd_setImageWithURL:_imageURL placeholderImage:_placeholderImage];
+    [self.imageView sd_setImageWithURL:_imageURL placeholderImage:[UIImage imageNamed:@"side_user_header"]];
    
     self.imageView.frame = CGRectMake(10, 7, 45, 45);
     self.imageView.layer.masksToBounds = YES;

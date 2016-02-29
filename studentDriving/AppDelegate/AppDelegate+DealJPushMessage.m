@@ -64,33 +64,11 @@
     NSLog(@"JPushfetchCompletionHandlerApplication userInfo:%@",userInfo);
     
 #if __IPHONE_OS_VERSION_MAX_ALLOWED >= __IPHONE_7_0
-    NSString *type = [NSString stringWithFormat:@"%@", userInfo[@"type"]];
-    NSLog(@"_______%ld",(long)application.applicationState);
-    if (application.applicationState == UIApplicationStateActive) {
-        
-        [BLPFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-            DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
-            if (selectedOtherButtonIndex == 0) {
-                [PushInformationManager receivePushInformation:userInfo];
-            }
-        }];
-        
-    }else if ([type isEqualToString:@"newversion"]) {
-        
-        [BLPFAlertView showAlertWithTitle:@"提示" message:userInfo[@"aps"][@"alert"] cancelButtonTitle:@"取消" otherButtonTitles:@[@"确定"] completion:^(NSUInteger selectedOtherButtonIndex) {
-            DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
-            if (selectedOtherButtonIndex == 0) {
-                // 去更新版本
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://itunes.apple.com/us/app/yi-bu-xue-che/id1060105429"]];
-            }
-        }];
-    }
-    else {
-        [PushInformationManager receivePushInformation:userInfo];
-    }
-    [UIApplication sharedApplication].applicationIconBadgeNumber = 0;
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:YBNotif_HandleNotification object:nil userInfo:userInfo];
+    
 #endif
-    [APService handleRemoteNotification:userInfo];
+    
 }
 
 @end

@@ -342,16 +342,18 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 
 #pragma mark - WMMenuViewController代理方法
 - (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath{
+    
+    
+    
+    
+    
+//     self.listArray = @[@"优惠活动", @"我的钱包", @"我的消息", @"班车接收" ,@"预约签到",@"我要投诉",@"一步优势",@"设置与帮助"];
+    
+    
+    
+    
+    
     if (indexPath.row == 0) {
-        if (![AcountManager isLogin]) {
-            [DVVUserManager userNeedLogin];
-            return;
-        }
-        // 我的消息
-        ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
-        [self controller:chatListVC];
-    }
-    if (indexPath.row == 1) {
         // 活动
         if (![AcountManager isLogin]) {
             [DVVUserManager userNeedLogin];
@@ -361,15 +363,23 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         JGActivityViewController *activityVC = [JGActivityViewController new];
         [self controller:activityVC];
     }
-    if (indexPath.row == 2) {
-        // 预约签到
+    if (indexPath.row == 1) {
         if (![AcountManager isLogin]) {
             [DVVUserManager userNeedLogin];
             return;
         }
-        
-        SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
-        [self controller:signUpVC];
+        // 我的钱包
+        YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
+        [self controller:vc];
+    }
+    if (indexPath.row == 2) {
+                if (![AcountManager isLogin]) {
+                    [DVVUserManager userNeedLogin];
+                    return;
+                }
+                // 我的消息
+                ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
+                [self controller:chatListVC];
     }
     if (indexPath.row == 3) {
         // 我的驾校班车
@@ -381,7 +391,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         }
         
         if (![AcountManager manager].applyschool.infoId) {
-            [self obj_showTotasViewWithMes:@"您还没有预约"];
+            [self obj_showTotasViewWithMes:@"您还没有报名"];
             return ;
         }
         
@@ -389,16 +399,23 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         [self controller:shuttleBusVC];
     }
     if (indexPath.row == 4) {
+                // 预约签到
+                if (![AcountManager isLogin]) {
+                    [DVVUserManager userNeedLogin];
+                    return;
+                }
+        
+                SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
+                [self controller:signUpVC];
+        
+    }
+    if (indexPath.row == 5) {
+        // 我要投诉
         if (![AcountManager isLogin]) {
             [DVVUserManager userNeedLogin];
             return;
         }
-        // 我的钱包
-        YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
-        [self controller:vc];
-    }
-    if (indexPath.row == 5) {
-        // 我要投诉
+
         YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
         [self controller:complaintVC];
     }
@@ -417,6 +434,83 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         SetupViewController *setUpVC = [SetupViewController new];
         [self controller:setUpVC];
     }
+
+    
+//    if (indexPath.row == 0) {
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        // 我的消息
+//        ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
+//        [self controller:chatListVC];
+//    }
+//    if (indexPath.row == 1) {
+//        // 活动
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        
+//        JGActivityViewController *activityVC = [JGActivityViewController new];
+//        [self controller:activityVC];
+//    }
+//    if (indexPath.row == 2) {
+//        // 预约签到
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        
+//        SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
+//        [self controller:signUpVC];
+//    }
+//    if (indexPath.row == 3) {
+//        // 我的驾校班车
+//        
+//        // 检测是否打开登录页
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        
+//        if (![AcountManager manager].applyschool.infoId) {
+//            [self obj_showTotasViewWithMes:@"您还没有报名"];
+//            return ;
+//        }
+//        
+//        ShuttleBusController *shuttleBusVC = [ShuttleBusController new];
+//        [self controller:shuttleBusVC];
+//    }
+//    if (indexPath.row == 4) {
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        // 我的钱包
+//        YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
+//        [self controller:vc];
+//    }
+//    if (indexPath.row == 5) {
+//        // 我要投诉
+//        YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
+//        [self controller:complaintVC];
+//    }
+//    if (indexPath.row == 6) {
+//        // 一步优势
+//        HomeAdvantageController *advantageVC = [[HomeAdvantageController alloc] init];
+//        [self controller:advantageVC];
+//    }
+//    if (indexPath.row == 7) {
+//        // 设置与帮助
+//        // 检测是否打开登录页
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        SetupViewController *setUpVC = [SetupViewController new];
+//        [self controller:setUpVC];
+//    }
     
 }
 // 点击头像编辑详情页
@@ -521,6 +615,16 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 #pragma mark 处理推送消息
 - (void)handlePushInfo:(NSDictionary *)userInfo {
     
+    DYNSLog(@"userInfo = %@",userInfo);
+    
+    // 跳到聊天界面
+    NSString *info = userInfo[@"ConversationChatter"];
+    if (info) {
+        ChatListViewController *chatlist = [[ChatListViewController alloc] init];
+        [self controller:chatlist];
+        return ;
+    }
+    
     NSString *type = [NSString stringWithFormat:@"%@", userInfo[@"type"]];
     
     if ([type isEqualToString:@"newversion"]) {
@@ -549,7 +653,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         detail.infoId = string;
         detail.state = AppointmentStateCoachConfirm;
         
-        [DVVUserManager pushController:detail];
+        [self controller:detail];
         
         
     }else if ([type isEqualToString:@"reservationcancel"]) {
@@ -561,7 +665,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         detail.infoId = string;
         detail.state = AppointmentStateCoachCancel;
         
-        [DVVUserManager pushController:detail];
+        [self controller:detail];
         
     }else if ([type isEqualToString:@"reservationcoachcomment"]) {
         // 获取到教练评价
@@ -578,6 +682,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您有一条系统消息，赶快去查看吧！" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
         [alertView show];
     }
+    
 }
 
 @end

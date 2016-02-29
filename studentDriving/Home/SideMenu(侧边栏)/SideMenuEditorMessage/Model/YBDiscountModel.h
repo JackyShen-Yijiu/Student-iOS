@@ -51,6 +51,6 @@
 @property (nonatomic,assign) int  productcount;
 @property (nonatomic,strong) NSString *detailsimg;
 @property (nonatomic,assign) BOOL is_scanconsumption;
-@property (nonatomic, strong) NSString *addressStr;
+@property (nonatomic, strong) NSString *address;
 @property (nonatomic,strong) NSString *detailurl;
 @end
