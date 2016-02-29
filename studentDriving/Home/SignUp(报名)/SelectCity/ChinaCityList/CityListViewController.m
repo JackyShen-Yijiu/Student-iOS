@@ -589,6 +589,11 @@
                     // 没有子城市（直接返回城市名）
                     [self successWithCityName:cityName];
                 }else {
+                    // 把城市名添加到区里
+                    DVVCityListDMData *dmData = [DVVCityListDMData new];
+                    dmData.name = cityName;
+                    [array insertObject:dmData atIndex:0];
+                    
                     // 有子城市（返回选择的区名）
                     DVVSubCityView *subView = [DVVSubCityView new];
                     subView.delegate = self;

@@ -125,6 +125,8 @@ static NSString *collectionCellId = @"kCollectionCellId";
         _collectionView.dataSource = self;
         _collectionView.delegate = self;
         _collectionView.backgroundColor = [UIColor whiteColor];
+        [_collectionView.layer setMasksToBounds:YES];
+        [_collectionView.layer setCornerRadius:4];
     }
     return _collectionView;
 }

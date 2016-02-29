@@ -49,8 +49,7 @@ static NSString *const kapplyexamination = @"userinfo/applyexamination";
 
 static NSString *const kdriveschoolSchoolexamurl = @"driveschool/schoolexamurl?schoolid=%@";
 
-//static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@";
-//[NSString stringWithFormat:@"%@%@?exambegintime=%@&examendtime=%@&exammobile=%@&examname=%@&exampractice=%@&subjectid=%@",BASEURL,kapplyexamination,self.startTime,self.endTime,self.phoneTextField.text,self.nameTextField.text,[NSString stringWithFormat:@"%d",self.isYESorNo],[AcountManager manager].userSubject.subjectId];
+static NSString *kgetuserinfo = @"userinfo/getuserinfo/1/userid/%@";
 
 /*************** 网络请求接口 ***************/
 
@@ -59,5 +58,7 @@ static NSString *const kdriveschoolSchoolexamurl = @"driveschool/schoolexamurl?s
 #define ksubjectTwo   @"subjecttwo"
 #define ksubjectThree @"subjectThree"
 #define ksubjectFour   @"subjectFour"
+
+#define KNOTIFICATION_USERLOADED @"userLoaded"
 
 #endif /* YBObject_h */

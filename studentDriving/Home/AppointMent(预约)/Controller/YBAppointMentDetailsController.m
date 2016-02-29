@@ -46,6 +46,8 @@ static NSString *courseCellID = @"kCourseCellID";
 @property (nonatomic,strong) YBAppointMentDetailsFootView *footView;
 @property (nonatomic,strong) YBAppointMentDetailsCancleView *cancleFootView;
 
+@property (nonatomic, assign) BOOL networkSuccess;
+
 @end
 
 @implementation YBAppointMentDetailsController
@@ -82,6 +84,11 @@ static NSString *courseCellID = @"kCourseCellID";
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
+    
+    if (_networkSuccess) {
+        [self naviTransparent];
+    }
+    
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -138,8 +145,6 @@ static NSString *courseCellID = @"kCourseCellID";
     [self.navigationController pushViewController:chatController animated:YES];
 }
 
-
-
 #pragma mark - config view model
 - (void)configViewModel {
     
@@ -148,7 +153,7 @@ static NSString *courseCellID = @"kCourseCellID";
     _viewModel.appointMentID = _appointMentID;
     
     [_viewModel dvv_setRefreshSuccessBlock:^{
-        
+        _networkSuccess = YES;
         [ws naviTransparent];
         [UIView animateWithDuration:0.3 animations:^{
             ws.headerView.alpha = 1;

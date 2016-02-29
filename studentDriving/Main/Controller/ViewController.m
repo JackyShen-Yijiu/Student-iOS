@@ -615,6 +615,16 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 #pragma mark 处理推送消息
 - (void)handlePushInfo:(NSDictionary *)userInfo {
     
+    DYNSLog(@"userInfo = %@",userInfo);
+    
+    // 跳到聊天界面
+    NSString *info = userInfo[@"ConversationChatter"];
+    if (info) {
+        ChatListViewController *chatlist = [[ChatListViewController alloc] init];
+        [self controller:chatlist];
+        return ;
+    }
+    
     NSString *type = [NSString stringWithFormat:@"%@", userInfo[@"type"]];
     
     if ([type isEqualToString:@"newversion"]) {
@@ -643,7 +653,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         detail.infoId = string;
         detail.state = AppointmentStateCoachConfirm;
         
-        [DVVUserManager pushController:detail];
+        [self controller:detail];
         
         
     }else if ([type isEqualToString:@"reservationcancel"]) {
@@ -655,7 +665,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         detail.infoId = string;
         detail.state = AppointmentStateCoachCancel;
         
-        [DVVUserManager pushController:detail];
+        [self controller:detail];
         
     }else if ([type isEqualToString:@"reservationcoachcomment"]) {
         // 获取到教练评价
@@ -672,6 +682,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"您有一条系统消息，赶快去查看吧！" delegate:nil cancelButtonTitle:@"知道了" otherButtonTitles:nil, nil];
         [alertView show];
     }
+    
 }
 
 @end

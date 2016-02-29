@@ -55,6 +55,8 @@
 
 @property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
 
+@property (nonatomic, assign) BOOL isLoaded;
+
 @end
 
 @implementation DrivingDetailController
@@ -106,11 +108,12 @@
     [bar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
     // 打开透明效果
     [bar setTranslucent:YES];
+    _isLoaded = YES;
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    navBarHairlineImageView.hidden=NO;
+//    navBarHairlineImageView.hidden=NO;
     
     UINavigationBar *bar = self.navigationController.navigationBar;
     // 背景色
@@ -386,6 +389,12 @@
             
             _tableHeaderView.alphaView.backgroundColor = [UIColor clearColor];
         }];
+    }
+    
+    // 取消tableView底部的弹簧效果的方法
+    CGFloat maxOffsetY = _tableView.contentSize.height - _tableView.bounds.size.height;
+    if (offsetY > maxOffsetY) {
+        _tableView.contentOffset = CGPointMake(0, maxOffsetY);
     }
 }
 

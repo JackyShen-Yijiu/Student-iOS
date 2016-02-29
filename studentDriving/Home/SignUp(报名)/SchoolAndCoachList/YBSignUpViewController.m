@@ -39,10 +39,12 @@ static NSString *coachCellID = @"coachCellID";
 // 当前显示的是驾校还是教练（0：驾校  1：教练）
 @property (nonatomic, assign) BOOL showType;
 
-@property (nonatomic, strong) UIView *titleView;
-@property (nonatomic, strong) UIButton *titleLeftButton;
-@property (nonatomic, strong) UIButton *titleRightButton;
-@property (nonatomic, strong) UILabel *titleLabel;
+//@property (nonatomic, strong) UIView *titleView;
+//@property (nonatomic, strong) UIButton *titleLeftButton;
+//@property (nonatomic, strong) UIButton *titleRightButton;
+//@property (nonatomic, strong) UILabel *titleLabel;
+@property (nonatomic, strong) UISegmentedControl *segment;
+
 // 定位
 @property (nonatomic, strong) UILabel *locationLabel;
 
@@ -66,11 +68,13 @@ static NSString *coachCellID = @"coachCellID";
     self.edgesForExtendedLayout = NO;
     self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     
-    [self.view addSubview:self.titleView];
-    [_titleView addSubview:self.titleLeftButton];
-    [_titleView addSubview:self.titleRightButton];
-    [_titleView addSubview:self.titleLabel];
-    self.navigationItem.titleView = _titleView;
+//    [self.view addSubview:self.titleView];
+//    [_titleView addSubview:self.titleLeftButton];
+//    [_titleView addSubview:self.titleRightButton];
+//    [_titleView addSubview:self.titleLabel];
+//    self.navigationItem.titleView = _titleView;
+    self.navigationItem.titleView = self.segment;
+    
     UIBarButtonItem *rightBBI = [[UIBarButtonItem alloc] initWithCustomView:self.locationLabel];
     self.navigationItem.rightBarButtonItem = rightBBI;
     [self.view addSubview:self.tableView];
@@ -147,20 +151,39 @@ static NSString *coachCellID = @"coachCellID";
 
 #pragma mark - action
 #pragma mark 选驾校或者选教练
-- (void)selectSchoolOrCoachAction {
+//- (void)selectSchoolOrCoachAction {
+//    
+//    // 根据当前的状态来判断是显示驾校还是教练
+//    if (0 == _showType) {
+//        _showType = 1;
+//        _titleLabel.text = @"教练";
+//        
+//    }else {
+//        _showType = 0;
+//        _titleLabel.text = @"驾校";
+//    }
+//
+//    [self cancelSearch];
+//    [self beginRefresh];
+//}
+- (void)didClicksegmentedControlAction:(UISegmentedControl *)Seg {
     
-    // 根据当前的状态来判断是显示驾校还是教练
-    if (0 == _showType) {
-        _showType = 1;
-        _titleLabel.text = @"教练";
-        
-    }else {
-        _showType = 0;
-        _titleLabel.text = @"驾校";
+    NSInteger index = Seg.selectedSegmentIndex;
+    NSLog(@"%lu", (long)index);
+    
+    if (0 == index) {
+        if (_showType != 0) {
+            _showType = 0;
+            [self cancelSearch];
+            [self beginRefresh];
+        }
+    }else if (1 == index) {
+        if (_showType != 1) {
+            _showType = 1;
+            [self cancelSearch];
+            [self beginRefresh];
+        }
     }
-
-    [self cancelSearch];
-    [self beginRefresh];
 }
 
 #pragma mark 筛选条件
@@ -489,41 +512,52 @@ static NSString *coachCellID = @"coachCellID";
 }
 
 #pragma mark - lazy load
-- (UIView *)titleView {
-    if (!_titleView) {
-        _titleView = [UIView new];
-        _titleView.frame = CGRectMake(0, 0, 30*2 + 40, 44);
+//- (UIView *)titleView {
+//    if (!_titleView) {
+//        _titleView = [UIView new];
+//        _titleView.frame = CGRectMake(0, 0, 30*2 + 40, 44);
+//    }
+//    return _titleView;
+//}
+//- (UILabel *)titleLabel {
+//    if (!_titleLabel) {
+//        _titleLabel = [UILabel new];
+//        _titleLabel.font = [UIFont systemFontOfSize:17];
+//        _titleLabel.textColor = [UIColor whiteColor];
+//        _titleLabel.textAlignment = NSTextAlignmentCenter;
+//        _titleLabel.text = @"驾校";
+//        _titleLabel.frame = CGRectMake(0, 0, 30*2 + 40, 44);
+//    }
+//    return _titleLabel;
+//}
+//- (UIButton *)titleLeftButton {
+//    if (!_titleLeftButton) {
+//        _titleLeftButton = [UIButton new];
+//        [_titleLeftButton setImage:[UIImage imageNamed:@"signup_titleLeftButton_icon"] forState:UIControlStateNormal];
+//        _titleLeftButton.frame = CGRectMake(0, 0, 30, 44);
+//        [_titleLeftButton addTarget:self action:@selector(selectSchoolOrCoachAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _titleLeftButton;
+//}
+//- (UIButton *)titleRightButton {
+//    if (!_titleRightButton) {
+//        _titleRightButton = [UIButton new];
+//        [_titleRightButton setImage:[UIImage imageNamed:@"signup_titleRightButton_icon"] forState:UIControlStateNormal];
+//        _titleRightButton.frame = CGRectMake(30 + 40, 0, 30, 44);
+//        [_titleRightButton addTarget:self action:@selector(selectSchoolOrCoachAction) forControlEvents:UIControlEventTouchUpInside];
+//    }
+//    return _titleRightButton;
+//}
+
+- (UISegmentedControl *)segment {
+    if (!_segment) {
+        _segment = [[UISegmentedControl alloc] initWithItems:@[ @"驾校", @"教练" ]];
+        _segment.frame = CGRectMake(100, 100, 100, 30);
+        _segment.tintColor = [UIColor whiteColor];
+        [_segment addTarget:self action:@selector(didClicksegmentedControlAction:) forControlEvents:UIControlEventValueChanged];
+        _segment.selectedSegmentIndex = 0;
     }
-    return _titleView;
-}
-- (UILabel *)titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [UILabel new];
-        _titleLabel.font = [UIFont systemFontOfSize:17];
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.text = @"驾校";
-        _titleLabel.frame = CGRectMake(0, 0, 30*2 + 40, 44);
-    }
-    return _titleLabel;
-}
-- (UIButton *)titleLeftButton {
-    if (!_titleLeftButton) {
-        _titleLeftButton = [UIButton new];
-        [_titleLeftButton setImage:[UIImage imageNamed:@"signup_titleLeftButton_icon"] forState:UIControlStateNormal];
-        _titleLeftButton.frame = CGRectMake(0, 0, 30, 44);
-        [_titleLeftButton addTarget:self action:@selector(selectSchoolOrCoachAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _titleLeftButton;
-}
-- (UIButton *)titleRightButton {
-    if (!_titleRightButton) {
-        _titleRightButton = [UIButton new];
-        [_titleRightButton setImage:[UIImage imageNamed:@"signup_titleRightButton_icon"] forState:UIControlStateNormal];
-        _titleRightButton.frame = CGRectMake(30 + 40, 0, 30, 44);
-        [_titleRightButton addTarget:self action:@selector(selectSchoolOrCoachAction) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _titleRightButton;
+    return _segment;
 }
 
 - (UILabel *)locationLabel {

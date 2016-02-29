@@ -49,6 +49,8 @@ static NSString *courseCellID = @"kCourseCellID";
 
 @property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
 
+@property (nonatomic, assign) BOOL networkSuccess;
+
 @end
 
 @implementation DVVCoachDetailController
@@ -78,6 +80,10 @@ static NSString *courseCellID = @"kCourseCellID";
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
+    
+    if (_networkSuccess) {
+        [self naviTransparent];
+    }
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
@@ -201,6 +207,7 @@ static NSString *courseCellID = @"kCourseCellID";
     
     [_viewModel dvv_setRefreshSuccessBlock:^{
         
+        _networkSuccess = YES;
         ws.tableView.backgroundColor = [UIColor whiteColor];
         // 使导航栏透明
         [self naviTransparent];
