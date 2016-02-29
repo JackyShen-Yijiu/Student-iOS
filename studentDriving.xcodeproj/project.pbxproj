@@ -56,7 +56,6 @@
 		554641CB1C250A2200A55326 /* SignUpSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CA1C250A2200A55326 /* SignUpSuccessViewController.m */; };
 		554641CE1C250A6A00A55326 /* SignUpInfoManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 554641CD1C250A6900A55326 /* SignUpInfoManager.m */; };
 		554E8E881C3A89CC00233F2B /* EaseMob.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 554E8E851C3A89CC00233F2B /* EaseMob.bundle */; };
-		554E8E8A1C3A985D00233F2B /* libEaseMobClientSDKLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */; };
 		556994AA1C3F885B00CD8BAF /* mapapi.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 556994A91C3F885B00CD8BAF /* mapapi.bundle */; };
 		556F42581C310E7A0052DE73 /* SignUpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F42571C310E7A0052DE73 /* SignUpListViewController.m */; };
 		556F425B1C310E980052DE73 /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 556F425A1C310E980052DE73 /* ApplyClassCell.m */; };
@@ -88,6 +87,7 @@
 		560D221A1C819EC5001B8B83 /* OrdetDetailController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 560D22181C819EC5001B8B83 /* OrdetDetailController.xib */; };
 		5611A5A51C7F2D7700DC083D /* YBIntegrationMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */; };
 		5611A5A81C7F2F1900DC083D /* YBIntegrationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5611A5A71C7F2F1900DC083D /* YBIntegrationMessageCell.m */; };
+		5647E7121C831B080050B649 /* libEaseMobClientSDKLite.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5647E7111C831B080050B649 /* libEaseMobClientSDKLite.a */; };
 		56855C2B1C784EEA005D4517 /* ShuttleBusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C271C784EEA005D4517 /* ShuttleBusCell.m */; };
 		56855C2C1C784EEA005D4517 /* ShuttleBusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56855C281C784EEA005D4517 /* ShuttleBusCell.xib */; };
 		56855C2D1C784EEA005D4517 /* ShuttleBusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56855C2A1C784EEA005D4517 /* ShuttleBusController.m */; };
@@ -1132,7 +1132,6 @@
 		554E8E7F1C3A89CC00233F2B /* EMError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMError.h; sourceTree = "<group>"; };
 		554E8E801C3A89CC00233F2B /* EMErrorDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMErrorDefs.h; sourceTree = "<group>"; };
 		554E8E851C3A89CC00233F2B /* EaseMob.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = EaseMob.bundle; sourceTree = "<group>"; };
-		554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDKLite.a; sourceTree = "<group>"; };
 		556994A91C3F885B00CD8BAF /* mapapi.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = mapapi.bundle; sourceTree = "<group>"; };
 		556F42561C310E7A0052DE73 /* SignUpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpListViewController.h; sourceTree = "<group>"; };
 		556F42571C310E7A0052DE73 /* SignUpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpListViewController.m; sourceTree = "<group>"; };
@@ -1193,6 +1192,7 @@
 		5611A5A41C7F2D7700DC083D /* YBIntegrationMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegrationMessageController.m; sourceTree = "<group>"; };
 		5611A5A61C7F2F1900DC083D /* YBIntegrationMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegrationMessageCell.h; sourceTree = "<group>"; };
 		5611A5A71C7F2F1900DC083D /* YBIntegrationMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegrationMessageCell.m; sourceTree = "<group>"; };
+		5647E7111C831B080050B649 /* libEaseMobClientSDKLite.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libEaseMobClientSDKLite.a; sourceTree = "<group>"; };
 		56855C261C784EEA005D4517 /* ShuttleBusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleBusCell.h; sourceTree = "<group>"; };
 		56855C271C784EEA005D4517 /* ShuttleBusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleBusCell.m; sourceTree = "<group>"; };
 		56855C281C784EEA005D4517 /* ShuttleBusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShuttleBusCell.xib; sourceTree = "<group>"; };
@@ -2823,7 +2823,6 @@
 				D5604CA81BF659830020F0D7 /* libresolv.tbd in Frameworks */,
 				D919F33B1C60885A00239B34 /* libSocialTwitter.a in Frameworks */,
 				D5604CA61BF659790020F0D7 /* libiconv.tbd in Frameworks */,
-				554E8E8A1C3A985D00233F2B /* libEaseMobClientSDKLite.a in Frameworks */,
 				B20DBED11C5DB0FF0023676E /* libssl.a in Frameworks */,
 				D919F3361C60885A00239B34 /* libSocialQQ.a in Frameworks */,
 				D919F32B1C60885A00239B34 /* FBSDKCoreKit.framework in Frameworks */,
@@ -2832,6 +2831,7 @@
 				D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */,
 				D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */,
 				D5604CB11BF65AA30020F0D7 /* Bolts.framework in Frameworks */,
+				5647E7121C831B080050B649 /* libEaseMobClientSDKLite.a in Frameworks */,
 				D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */,
 				0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */,
 				D919F3291C60885A00239B34 /* libAPOpenSdk.a in Frameworks */,
@@ -3227,7 +3227,7 @@
 		554E8E811C3A89CC00233F2B /* lib */ = {
 			isa = PBXGroup;
 			children = (
-				554E8E891C3A985D00233F2B /* libEaseMobClientSDKLite.a */,
+				5647E7111C831B080050B649 /* libEaseMobClientSDKLite.a */,
 			);
 			path = lib;
 			sourceTree = "<group>";
@@ -6344,7 +6344,7 @@
 				TargetAttributes = {
 					D588AF851BDDB62C000C5D6F = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = C34F4H4R4C;
+						DevelopmentTeam = MC3VUBEH8X;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -7386,7 +7386,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "22434bc0-7c8f-4b7b-b4d1-a6e1c6fc433e";
+				PROVISIONING_PROFILE = "9fe64bd0-4d36-4e32-8196-798e56d60dc7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -7426,7 +7426,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "22434bc0-7c8f-4b7b-b4d1-a6e1c6fc433e";
+				PROVISIONING_PROFILE = "9fe64bd0-4d36-4e32-8196-798e56d60dc7";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -7440,8 +7440,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7450,6 +7450,7 @@
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Facebook",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
+					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/studentDriving/EaseMobSDK-PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7502,63 +7503,10 @@
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Whatsapp",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-weak_library",
-					/usr/lib/libz.dylib,
-					"-l\"AFNetworking\"",
-					"-l\"ChameleonFramework\"",
-					"-l\"HappyDNS\"",
-					"-l\"IQKeyboardManager\"",
-					"-l\"MJRefresh\"",
-					"-l\"Mantle\"",
-					"-l\"Masonry\"",
-					"-l\"MobClickLibrary\"",
-					"-l\"NJKWebViewProgress\"",
-					"-l\"PushSDK-1.8.8\"",
-					"-l\"Qiniu\"",
-					"-l\"RESideMenu\"",
-					"-l\"SDCycleScrollView\"",
-					"-l\"SDWebImage\"",
-					"-l\"SSKeychain\"",
-					"-l\"resolv\"",
-					"-l\"stdc++\"",
-					"-l\"stdc++.6\"",
-					"-l\"z\"",
-					"-framework",
-					"\"BaiduMapAPI\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreFoundation\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreLocation\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"-force_load",
 					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -7576,8 +7524,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Guobin Shen (69F6W58BNP)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guobin Shen (69F6W58BNP)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7586,6 +7534,7 @@
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Facebook",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
+					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/studentDriving/EaseMobSDK-PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
@@ -7638,63 +7587,10 @@
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"$(PROJECT_DIR)/studentDriving/DVVShare/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Whatsapp",
-				);
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = (
-					"$(inherited)",
-					"-ObjC",
-					"-weak_library",
-					/usr/lib/libz.dylib,
-					"-l\"AFNetworking\"",
-					"-l\"ChameleonFramework\"",
-					"-l\"HappyDNS\"",
-					"-l\"IQKeyboardManager\"",
-					"-l\"MJRefresh\"",
-					"-l\"Mantle\"",
-					"-l\"Masonry\"",
-					"-l\"MobClickLibrary\"",
-					"-l\"NJKWebViewProgress\"",
-					"-l\"PushSDK-1.8.8\"",
-					"-l\"Qiniu\"",
-					"-l\"RESideMenu\"",
-					"-l\"SDCycleScrollView\"",
-					"-l\"SDWebImage\"",
-					"-l\"SSKeychain\"",
-					"-l\"resolv\"",
-					"-l\"stdc++\"",
-					"-l\"stdc++.6\"",
-					"-l\"z\"",
-					"-framework",
-					"\"BaiduMapAPI\"",
-					"-framework",
-					"\"CFNetwork\"",
-					"-framework",
-					"\"CoreFoundation\"",
-					"-framework",
-					"\"CoreGraphics\"",
-					"-framework",
-					"\"CoreLocation\"",
-					"-framework",
-					"\"CoreTelephony\"",
-					"-framework",
-					"\"Foundation\"",
-					"-framework",
-					"\"ImageIO\"",
-					"-framework",
-					"\"MobileCoreServices\"",
-					"-framework",
-					"\"OpenGLES\"",
-					"-framework",
-					"\"QuartzCore\"",
-					"-framework",
-					"\"Security\"",
-					"-framework",
-					"\"SystemConfiguration\"",
-					"-framework",
-					"\"UIKit\"",
-					"-force_load",
 					"\"$(SRCROOT)/studentDriving/EaseMobSDK/lib/libEaseMobClientSDKLite.a\"",
 				);
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
