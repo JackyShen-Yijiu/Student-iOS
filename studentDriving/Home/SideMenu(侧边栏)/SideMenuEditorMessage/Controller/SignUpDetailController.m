@@ -25,7 +25,7 @@
 #import "YBMyWalletMallViewController.h"
 #import "YBSignUpSuccessController.h"
 #import "OrdetDetailController.h"
-
+#import "DVVNoDataPromptView.h"
 
 
 #define StartOffset  kSystemWide/4-60/2
@@ -70,7 +70,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 @property (nonatomic, strong) ShowWarningBG *mallBG;
 @property (nonatomic, strong) NSMutableArray *dataListArray;
 
-
+@property (nonatomic,strong) DVVNoDataPromptView *p;
 
 @end
 
@@ -136,13 +136,10 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
     navBarHairlineImageView.hidden=NO;
     
-    
+    [self.p removeFromSuperview];
     
 }
-- (void)viewWillDisappear:(BOOL)animated{
-    [_warningBG hidden];
-    [_warningBG hidden];
-}
+
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
     
     if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
@@ -238,8 +235,10 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                  }
                  */
                 if (0 == [[data objectForKey:@"applystate"] integerValue]) {
-               _warningBG = [[ShowWarningBG alloc] initWithTietleName:@"小步没有找到您的订单信息，请确认您是否报名"];
-                    [_warningBG show];
+                    
+                    self.p = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您的订单信息，请确认您是否报名" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+                    [self.view addSubview:self.p];
+                    
                     return ;
                 }
                 

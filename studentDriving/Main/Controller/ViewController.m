@@ -123,16 +123,16 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.tabBarController.delegate = self;
     
     self.baomingVC = [[YBSignUpViewController alloc] init];
-    [self setUpTabbarVc:self.baomingVC title:@"报名" image:@"tab_buddy_nor" selectedImage:@"tab_buddy_nor"];
+    [self setUpTabbarVc:self.baomingVC title:@"报名" image:@"YBBaoMingTabSelectImg" selectedImage:@"tab_buddy_nor"];
 
     self.xuexiVC = [[YBStudyViewController alloc] init];
-    [self setUpTabbarVc:self.xuexiVC title:@"学习" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
+    [self setUpTabbarVc:self.xuexiVC title:@"学习" image:@"YBXueXiTabSelectImg" selectedImage:@"tab_buddy_nor"];
 
     self.yuyueVC = [[YBAppointMentController alloc] init];
-    [self setUpTabbarVc:self.yuyueVC title:@"预约" image:@"tab_recent_nor" selectedImage:@"tab_buddy_nor"];
+    [self setUpTabbarVc:self.yuyueVC title:@"预约" image:@"YBYuYueTabSelectImg" selectedImage:@"tab_buddy_nor"];
 
     self.shangchengVC = [[YBMallViewController alloc] init];
-    [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"tab_buddy_nor" selectedImage:@"tab_buddy_nor"];
+    [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"YBShangChengSelectImg" selectedImage:@"tab_buddy_nor"];
 //
 //    self.shequVC = [[YBCommunityViewController alloc] init];
 //    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];

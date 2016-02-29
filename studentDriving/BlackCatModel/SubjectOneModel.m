@@ -10,7 +10,7 @@
 
 @implementation SubjectOneModel
 + (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{@"finishcourse":@"finishcourse",@"progress":@"progress",@"reservation":@"reservation",@"totalcourse":@"totalcourse",@"missingcourse":@"missingcourse"};
+    return @{@"finishcourse":@"finishcourse",@"progress":@"progress",@"reservation":@"reservation",@"totalcourse":@"totalcourse",@"missingcourse":@"missingcourse",@"officialhours":@"officialhours"};
 }
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionaryValue error:(NSError **)error {
