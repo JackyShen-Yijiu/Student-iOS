@@ -21,6 +21,7 @@
 #import "ConvertToCommonEmoticonsHelper.h"
 #import "UserProfileManager.h"
 #import "DVVSideMenu.h"
+#import "YBAppointMentNoCountentView.h"
 
 @implementation EMConversation (search)
 
@@ -49,6 +50,8 @@
 @property (nonatomic, strong) UIView                *networkStateView;
 
 @property (strong, nonatomic) EMSearchDisplayController *searchController;
+
+@property (nonatomic,strong) YBAppointMentNoCountentView *noCountmentView;
 
 @end
 
@@ -93,6 +96,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
+    [self.view addSubview:self.noCountmentView];
 }
 
 - (void)didReceiveMemoryWarning
@@ -445,10 +449,19 @@
     return cell;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (!self.dataSource.count) {
-        [self showTotasViewWithMes:@"没有消息"];
+- (YBAppointMentNoCountentView *)noCountmentView
+{
+    if (_noCountmentView==nil) {
+        _noCountmentView = [[YBAppointMentNoCountentView alloc] init];
+        _noCountmentView.frame = self.view.bounds;
+        _noCountmentView.hidden = YES;
+        _noCountmentView.message = @"小步没有找到您的聊天信息\n您可以通过预约教练和相邻时段学员发起聊天";
     }
+    return _noCountmentView;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    self.noCountmentView.hidden = self.dataSource.count;
     return  self.dataSource.count;
 }
 

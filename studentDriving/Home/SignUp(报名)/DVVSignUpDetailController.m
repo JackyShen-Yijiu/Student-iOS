@@ -39,6 +39,8 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 // 保存Y码
 @property (nonatomic, copy) NSString *yCodeString;
 
+@property (nonatomic,copy) NSString *nameStr;
+
 @end
 
 @implementation DVVSignUpDetailController
@@ -125,13 +127,18 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return ;
     }
     
+    if (self.nameStr == nil) {
+        [self obj_showTotasViewWithMes:@"请输入真实姓名"];
+        return;
+    }
+    
     NSMutableDictionary *carmodelParams = [NSMutableDictionary dictionary];
     carmodelParams[@"modelsid"] = [NSString stringWithFormat:@"%lu",_dmData.carmodel.modelsid];
     carmodelParams[@"name"] = _dmData.carmodel.name;
     carmodelParams[@"code"] = _dmData.carmodel.code;
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"name"] = [AcountManager manager].userName;
+    params[@"name"] = self.nameStr;
     params[@"idcardnumber"] = @"";
     params[@"telephone"] = _mobileString;
     params[@"address"] = [AcountManager manager].userAddress;
@@ -145,7 +152,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     if (_isCoach) {
         params[@"coachid"] = _dmData.coachID;
     }else {
-        params[@"coachid"] = @"";
+        params[@"coachid"] = @"-1";
     }
     
     params[@"classtypeid"] = _dmData.calssid;
@@ -166,6 +173,8 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     
     [DVVToast show];
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:params WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        NSLog(@"报名:data:%@",data);
         
         [DVVToast hide];
         
@@ -283,6 +292,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField cell:(DVVBaseDoubleRowCell *)cell {
+    if (3 == cell.tag) {
+        self.nameStr = textField.text;
+    }
     if (4 == cell.tag) {
         // 验证手机号
         if (textField.text.length != 11) {
@@ -342,7 +354,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     cell.titleLabel.text = _titleArray[indexPath.row];
     cell.detailTextField.text = _detailArray[indexPath.row];
     // 如果是联系电话cell、Y码cell，则内容可编辑
-    if (4 == indexPath.row || 5 == indexPath.row) {
+    if (3 == indexPath.row || 4 == indexPath.row || 5 == indexPath.row) {
         cell.detailTextField.enabled = YES;
         [cell dvvBaseDoubleRowCell_setTextFieldDidBeginEditingBlock:^(UITextField *textField, DVVBaseDoubleRowCell *cell) {
             [self textFieldDidBeginEditing:textField cell:cell];
@@ -350,6 +362,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         [cell dvvBaseDoubleRowCell_setTextFieldDidEndEditingBlock:^(UITextField *textField, DVVBaseDoubleRowCell *cell) {
             [self textFieldDidEndEditing:textField cell:cell];
         }];
+        if (3 == indexPath.row) {
+            cell.detailTextField.placeholder = @"请输入真实姓名";
+        }
         if (4 == indexPath.row) {
             cell.detailTextField.placeholder = @"请输入手机号";
         }

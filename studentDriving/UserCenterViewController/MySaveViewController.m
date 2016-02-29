@@ -18,8 +18,9 @@
 #import "SignUpInfoManager.h"
 #import "BLPFAlertView.h"
 #import "ShowWarningBG.h"
-#define StartOffset  kSystemWide/4-60/2
+#import "DVVCoachDetailController.h"
 
+#define StartOffset  kSystemWide/4-60/2
 
 static NSString *const kGetMySaveCoach = @"userinfo/favoritecoach";
 
@@ -127,7 +128,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
     [super viewDidDisappear:animated];
     
-    navBarHairlineImageView.hidden=NO;
+//    navBarHairlineImageView.hidden=NO;
     
     
 }
@@ -415,27 +416,57 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
     return nil;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (_myLoveState == MyLoveStateCoach) {
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+//    if (_myLoveState == MyLoveStateCoach) {
+//        CoachModel *model = self.dataArray[indexPath.row];
+//        self.coachDetailModel = model;
+//        //        self.naviBarRightButton.hidden = NO;
+//        
+//        JGDrivingDetailViewController *detailVC = [[JGDrivingDetailViewController alloc]init];
+//        DYNSLog(@"coachid = %@",model.coachid);
+//        detailVC.coachUserId = model.coachid;
+//        [self.navigationController pushViewController:detailVC animated:YES];
+//        
+//    }else if (_myLoveState == MyLoveStateDriving) {
+//        DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
+//        DrivingModel *model = self.dataArray[indexPath.row];
+//        self.drivingDetailModel = model;
+//        self.naviBarRightButton.hidden = YES;
+//        SelectVC.schoolID = model.schoolid;
+//        [self.navigationController pushViewController:SelectVC animated:YES];
+//        
+//    }
+//}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+    if (_myLoveState == MyLoveStateCoach) {// 教练详情
+        
         CoachModel *model = self.dataArray[indexPath.row];
         self.coachDetailModel = model;
-        //        self.naviBarRightButton.hidden = NO;
         
-        JGDrivingDetailViewController *detailVC = [[JGDrivingDetailViewController alloc]init];
-        DYNSLog(@"coachid = %@",model.coachid);
-        detailVC.coachUserId = model.coachid;
-        [self.navigationController pushViewController:detailVC animated:YES];
+        // 跳转到教练详情
+        DVVCoachDetailController *vc = [DVVCoachDetailController new];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.coachID = model.coachid;
+        [self.navigationController pushViewController:vc animated:YES];
         
-    }else if (_myLoveState == MyLoveStateDriving) {
-        DrivingDetailController *SelectVC = [[DrivingDetailController alloc]init];
+    }else if (_myLoveState == MyLoveStateDriving) {// 驾校详情
+        
         DrivingModel *model = self.dataArray[indexPath.row];
         self.drivingDetailModel = model;
-        self.naviBarRightButton.hidden = YES;
-        SelectVC.schoolID = model.schoolid;
-        [self.navigationController pushViewController:SelectVC animated:YES];
+        
+        // 跳转到驾校详情
+        DrivingDetailController *vc = [DrivingDetailController new];
+        vc.hidesBottomBarWhenPushed = YES;
+        vc.schoolID = model.schoolid;
+        [self.navigationController pushViewController:vc animated:YES];
         
     }
+    
 }
+
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         DYNSLog(@"delete");

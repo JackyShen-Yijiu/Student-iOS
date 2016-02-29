@@ -43,6 +43,10 @@
 }
 
 - (void)clicked {
+    
+    // 更新侧边栏用户信息
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kuserLogin" object:self];
+    
     if ([self.delegate respondsToSelector:@selector(leftBtnClicked)]) {
         [self.delegate leftBtnClicked];
     }
@@ -143,11 +147,11 @@
                 [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjectfour"] WithKey:ksubjectFour];
             }
             
-            NSLog(@"[AcountManager manager].userSubject.name:%@",[AcountManager manager].userSubject.name);
-            NSLog(@"[AcountManager manager].subjectone.progress:%@",[AcountManager manager].subjectone.progress);
-            NSLog(@"[AcountManager manager].subjecttwo.progress:%@",[AcountManager manager].subjecttwo.progress);
-            NSLog(@"[AcountManager manager].subjectthree.progress:%@",[AcountManager manager].subjectthree.progress);
-            NSLog(@"[AcountManager manager].subjectfour.progress:%@",[AcountManager manager].subjectfour.progress);
+            NSLog(@"%s,[AcountManager manager].userSubject.name:%@",__func__,[AcountManager manager].userSubject.name);
+            NSLog(@"%s,[AcountManager manager].subjectone.progress:%@",__func__,[AcountManager manager].subjectone.progress);
+            NSLog(@"%s,[AcountManager manager].subjecttwo.progress:%@",__func__,[AcountManager manager].subjecttwo.progress);
+            NSLog(@"%s,[AcountManager manager].subjectthree.progress:%@",__func__,[AcountManager manager].subjectthree.progress);
+            NSLog(@"%s,[AcountManager manager].subjectfour.progress:%@",__func__,[AcountManager manager].subjectfour.progress);
             
         }else {
             
@@ -175,5 +179,10 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 @end

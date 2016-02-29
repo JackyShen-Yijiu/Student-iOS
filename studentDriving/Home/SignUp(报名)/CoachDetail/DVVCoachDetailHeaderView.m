@@ -196,6 +196,8 @@
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
+        NSLog(@"检测是否收藏data:%@",data);
+        
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {

@@ -177,6 +177,14 @@
     
 }
 
+- (void)setIconURL:(NSString *)iconURL
+{
+    _iconURL = iconURL;
+    
+    [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_iconURL]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
+
+}
+
 - (void)setUpUI
 {
     

@@ -154,15 +154,19 @@ static  NSString    *kUserSelectedLongitude = @"kUserSelectedLongitude";
         [NSUserStoreTool storeWithId:[userInformaiton objectForKey:kaddress] WithKey:kaddress];
     }
     
-    if ([userInformaiton objectForKey:kidcardnumber]) {
+    NSString *idcardnumber = [NSString stringWithFormat:@"%@",[userInformaiton objectForKey:kidcardnumber]];
+    if (idcardnumber && ![idcardnumber isEqual:[NSNull class]] && [idcardnumber length]!=0 && ![idcardnumber isEqualToString:@"<null>"]) {
         [NSUserStoreTool storeWithId:[userInformaiton objectForKey:kidcardnumber] WithKey:kidcardnumber];
     }
+    
     //签名
-    if ([userInformaiton objectForKey:kSignature]) {
+    NSString *signature = [NSString stringWithFormat:@"%@",[userInformaiton objectForKey:kSignature]];
+    if (signature && ![signature isEqual:[NSNull class]] && [signature length]!=0 && ![signature isEqualToString:@"<null>"]) {
         [NSUserStoreTool storeWithId:[userInformaiton objectForKey:kSignature] WithKey:kSignature];
     }
     
-    if ([userInformaiton objectForKey:kGender]) {
+    NSString *gender = [NSString stringWithFormat:@"%@",[userInformaiton objectForKey:kGender]];
+    if (gender && ![gender isEqual:[NSNull class]] && [gender length]!=0 && ![gender isEqualToString:@"<null>"]) {
         [NSUserStoreTool storeWithId:[userInformaiton objectForKey:kGender] WithKey:kGender];
     }
     

@@ -135,32 +135,39 @@
 }
 - (void)clickSubmit:(UIButton *)sender {
 
-    if (self.textView.text == nil || self.textView.text.length == 0) {
-        [self showToastWithMsg:@"反馈意见必须填写"];
-        return;
-    }
-    if ([self.textView.text.trimString isEqualToString:@""]) {
-        [self showToastWithMsg:@"请输入内容"];
-        self.textView.text = @"";
-        return;
+    NSLog(@"self.textView.text:(%@)",self.textView.text);
+    
+    if (self.textView.text && [self.textView.text length]!=0) {
+        
+        NSDictionary *param = @{@"userid":[AcountManager manager].userid,@"feedbackmessage":self.textView.text,@"mobileversion":[self getAppversion],@"network":[self getNetWorkState],@"resolution":[self getResolution]};
+        NSLog(@"反馈param:%@",param);
+        
+        NSString *url = [NSString stringWithFormat:BASEURL,@"userfeedback"];
+        
+        [JENetwoking startDownLoadWithUrl:url postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            
+            NSDictionary *dataParam = data;
+            
+            NSNumber *type = dataParam[@"type"];
+            
+            if (type.intValue == 1) {
+                
+                [self obj_showTotasViewWithMes:@"反馈成功"];
+                
+                // 成功后返回上一级窗体
+                [self.navigationController popViewControllerAnimated:YES];
+                
+            }else {
+                [self obj_showTotasViewWithMes:@"反馈失败"];
+            }
+        }];
+        
+    }else{
+        
+        [self obj_showTotasViewWithMes:@"反馈意见必须填写"];
+
     }
     
-    NSDictionary *param = @{@"userid":[AcountManager manager].userid,@"feedbackmessage":self.textView.text,@"mobileversion":[self getAppversion],@"network":[self getNetWorkState],@"resolution":[self getResolution]};
-    NSString *url = [NSString stringWithFormat:BASEURL,@"userfeedback"];
-    
-    [JENetwoking startDownLoadWithUrl:url postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        NSDictionary *dataParam = data;
-        NSNumber *messege = dataParam[@"type"];
-        if (messege.intValue == 1) {
-            [self showToastWithMsg:@"反馈成功"];
-            // 成功后返回上一级窗体
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [self performSelector:@selector(popVc) withObject:self afterDelay:1.0];
-            });
-        }else {
-            [self showToastWithMsg:@"反馈失败"];
-        }
-    }];
     
 }
 

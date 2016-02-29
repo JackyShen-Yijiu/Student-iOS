@@ -28,27 +28,30 @@
 // 侧边栏顶部信息
 - (void)viewWillAppear:(BOOL)animated{
     
+    [super viewWillAppear:animated];
+    
     self.YLabel.text = @"我的Y码：暂无";
     [self.tableView reloadData];
+    
+    [self setUpUserData];
+
+}
+
+- (void)setUpUserData
+{
     
     if (![AcountManager isLogin]) {
         return;
     }
     
-    // 设置头像
-    [self.headerImageView.layer setMasksToBounds:YES];
-    [self.headerImageView.layer setCornerRadius:28];
-    self.headerImageView.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(priateMessage:)];
-    [self.headerImageView addGestureRecognizer:tapGesture];
-    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:nil completed:nil];
+    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"me"] getRoundImage] completed:nil];
     // 用户名
     if ([AcountManager manager].userMobile) {
         
-            self.userMobileLabel.text = [AcountManager manager].userMobile;
-        }
+        self.userMobileLabel.text = [AcountManager manager].userMobile;
+    }
     
-        
+    
     NSString *urlString = [NSString stringWithFormat:@"/userinfo/getmymoney?userid=%@&usertype=1", [AcountManager manager].userid];
     // 请求数据显示豆币相关信息
     [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL,urlString] postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
@@ -62,21 +65,21 @@
                 if (fcode && fcode.length) {
                     self.YLabel.text = [NSString stringWithFormat:@"我的Y码：%@", fcode];
                 }
-               
+                
                 [self.tableView reloadData];
                 // 显示我的优惠券信息
                 NSString *couponString = @"";
                 if (couponcount) {
                     couponString = [NSString stringWithFormat:@"还有%li张兑换券(点击兑换)",couponcount];
                 }
-//                self.headerView.coinCertificateLabel.text = couponString;
+                //                self.headerView.coinCertificateLabel.text = couponString;
                 // 存储兑换券
                 [AcountManager manager].userCoinCertificate = couponcount;
             }
         }
     }];
-
 }
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -95,14 +98,30 @@
     // 设置tableFooterView为一个空的View，这样就不会显示多余的空白格子了
     self.tableView.tableFooterView = [[UIView alloc] init];
 
+    
+    // 设置头像
     self.headerImageView.image = [[UIImage imageNamed:@"me"] getRoundImage];
+    [self.headerImageView.layer setMasksToBounds:YES];
+    [self.headerImageView.layer setCornerRadius:28];
+    self.headerImageView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(priateMessage:)];
+    [self.headerImageView addGestureRecognizer:tapGesture];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:k object:nil];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setUpUserData) name:@"kuserLogin" object:nil];
+    
+    
 }
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 // 当头像改变时通知方法
 - (void)iconImage{
-    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:nil completed:nil];
+    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"me"] getRoundImage] completed:nil];
 }
 // 点击头像手势
 - (void)priateMessage:(UITapGestureRecognizer *)tapGesture{
@@ -133,11 +152,11 @@
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    WMOtherViewController *other = [[WMOtherViewController alloc] init];
+//    WMOtherViewController *other = [[WMOtherViewController alloc] init];
 //    other.navTitle = title;
-    other.hidesBottomBarWhenPushed = YES;
+//    other.hidesBottomBarWhenPushed = YES;
 //    [self showHome];
-    [self.navigationController pushViewController:other animated:YES];
+//    [self.navigationController pushViewController:other animated:YES];
     
     if ([self.delegate respondsToSelector:@selector(didSelectItem: indexPath:)]) {
         [self.delegate didSelectItem:self.listArray[indexPath.row] indexPath:(NSIndexPath *)indexPath];

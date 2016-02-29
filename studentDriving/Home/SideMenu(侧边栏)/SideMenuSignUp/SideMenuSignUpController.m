@@ -34,10 +34,23 @@
     self.tableView.tableFooterView = lineFooterView;
     [self configViewModel];
     [self configRefresh];
+    
+    [self.view addSubview:self.warningBG];
+    
 }
 - (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
     [_warningBG hidden];
 }
+
+- (ShowWarningBG *)warningBG
+{
+    if (_warningBG==nil) {
+        _warningBG = [[ShowWarningBG alloc] initWithTietleName:@"小步没有找到您的预约信息"];
+    }
+    return _warningBG;
+}
+
 #pragma mark - config ViewModel
 - (void)configViewModel {
     
@@ -49,9 +62,7 @@
     }];
     // 服务器返回的数据为空时的回调
     [_viewModel dvv_setNilResponseObjectBlock:^{
-     _warningBG =  [[ShowWarningBG alloc] initWithTietleName:@"小步没有找到您的预约信息"];
         [_warningBG show];
-        
     }];
     // 网络成功或错误都调用的回调 (一般在这里隐藏HUD)
     [_viewModel dvv_setNetworkCallBackBlock:^{
