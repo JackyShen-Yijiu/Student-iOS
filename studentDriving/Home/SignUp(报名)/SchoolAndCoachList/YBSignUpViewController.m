@@ -103,7 +103,6 @@ static NSString *coachCellID = @"coachCellID";
 //    _titleRightButton.backgroundColor = [UIColor orangeColor];
     
     _toolBarView.backgroundColor = YBNavigationBarBgColor;
-    _tableView.backgroundColor = [UIColor colorWithHexString:@"#FAFAFA"];
     
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
@@ -201,7 +200,7 @@ static NSString *coachCellID = @"coachCellID";
     
     CityListViewController *vc = [CityListViewController new];
     vc.delegate = self;
-    self.hidesBottomBarWhenPushed = YES;
+    vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 //    [self presentViewController:vc animated:YES completion:nil];
 }
@@ -454,10 +453,12 @@ static NSString *coachCellID = @"coachCellID";
 - (void)beginLocation {
     
     _locationLabel.text = @"定位中";
+    [DVVToast show];
     [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result,
                                   CLLocationCoordinate2D coordinate,
                                   NSString *city,
                                   NSString *address) {
+        [DVVToast hide];
         _locationLabel.text = city;
         [self saveUserLocationInfoWithCity:city address:address coordinate:coordinate];
         
@@ -470,6 +471,7 @@ static NSString *coachCellID = @"coachCellID";
         [self beginRefresh];
         
     } error:^{
+        [DVVToast hide];
         _locationLabel.text = @"北京市";
         [self beginRefresh];
     }];
@@ -559,7 +561,7 @@ static NSString *coachCellID = @"coachCellID";
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView= [UITableView new];
-        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
         _tableView.clipsToBounds = NO;
         _tableView.dataSource = self;
         _tableView.delegate = self;

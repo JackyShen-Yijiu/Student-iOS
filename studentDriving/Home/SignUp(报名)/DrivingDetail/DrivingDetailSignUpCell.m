@@ -56,6 +56,8 @@
     [UIView animateWithDuration:0.3 animations:^{
         _scrollView.contentOffset = CGPointMake(0, 0);
         _followLineImageView.frame = CGRectMake(0, 42, [UIScreen mainScreen].bounds.size.width/2.f, 2);
+    } completion:^(BOOL finished) {
+        
     }];
 }
 - (void)coachButtonAction {
@@ -66,6 +68,8 @@
     [UIView animateWithDuration:0.3 animations:^{
         _scrollView.contentOffset = CGPointMake(_scrollView.bounds.size.width, 0);
         _followLineImageView.frame = CGRectMake([UIScreen mainScreen].bounds.size.width/2.f, 42, [UIScreen mainScreen].bounds.size.width/2.f, 2);
+    } completion:^(BOOL finished) {
+        
     }];
 }
 

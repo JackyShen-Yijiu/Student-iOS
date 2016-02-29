@@ -129,7 +129,7 @@
     // 在加载出来数据之前先不能让用户点击搜索，否则就会有个小问题
     _searchContentView.userInteractionEnabled = NO;
 
-    [DVVToast showFromView:self.view];
+    [DVVToast showFromView:self.view OffSetY:-64];
     // 开始定位用户所在的城市
     [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, CLLocationCoordinate2D coordinate, NSString *city, NSString *address) {
         
@@ -539,9 +539,16 @@
     
     BOOL foundFlage = NO;
     NSInteger cityID = 0;
+    
     // 获取点击城市的ID（在开通的城市列表中搜索）
     for (DrivingCityListDMData *dmData in _openCityArray) {
-        if ([dmData.name isEqualToString:cityName]) {
+        
+        NSString *tempName = dmData.name.copy;
+        if ([tempName hasSuffix:@"市"]) {
+            tempName = [tempName substringToIndex:tempName.length - 1];
+        }
+        NSLog(@"%@ %@", tempName, dmData.name);
+        if ([dmData.name isEqualToString:cityName] || [tempName isEqualToString:cityName]) {
             foundFlage = YES;
             cityID = dmData.ID;
         }
@@ -552,7 +559,7 @@
         NSString *url = [NSString stringWithFormat:BASEURL, @"getchildopencity"];
         NSDictionary *dict = @{ @"cityid": [NSString stringWithFormat:@"%lu", (long)cityID] };
         
-        [DVVToast showFromView:self.view];
+        [DVVToast showFromView:self.view OffSetY:-64];
         [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
             
             [DVVToast hideFromView:self.view];
@@ -615,7 +622,7 @@
         
         [_delegate didClickedWithCityName:cityName];
     }
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
