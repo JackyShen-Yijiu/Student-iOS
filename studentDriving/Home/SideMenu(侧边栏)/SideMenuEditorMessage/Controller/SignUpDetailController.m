@@ -71,6 +71,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 @property (nonatomic, strong) NSMutableArray *dataListArray;
 
 @property (nonatomic,strong) DVVNoDataPromptView *p;
+@property (nonatomic,strong) DVVNoDataPromptView *mallView;
 
 @end
 
@@ -283,8 +284,8 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             }else if (_myLoveState == MyLoveStateDriving) {
                 NSArray *array = data[@"ordrelist"];
                 if (!array.count) {
-                    _mallBG = [[ShowWarningBG alloc] initWithTietleName:@"小步没有找到您的订单信息，请前往商城购买"];
-                    [_mallBG show];
+                    self.mallView = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您的订单信息，请前往商城购买" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+                    [self.view addSubview:self.mallView];
                     return ;
                     
                 }
@@ -363,7 +364,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     [UIView animateWithDuration:0.5 animations:^{
         self.menuIndicator.frame = CGRectMake(0, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
-    [_warningBG hidden];
+    [self.mallView removeFromSuperview];
     sender.selected = YES;
     _myLoveState = MyLoveStateCoach;
     [self startDownLoad];
@@ -376,7 +377,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         self.menuIndicator.frame = CGRectMake(kSystemWide/2, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
     sender.selected = YES;
-    [_mallBG hidden];
+    [self.p removeFromSuperview];
     _myLoveState = MyLoveStateDriving;
     [self startDownLoad];
 }

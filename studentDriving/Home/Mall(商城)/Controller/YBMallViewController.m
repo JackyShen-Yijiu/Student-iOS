@@ -122,11 +122,11 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
                     [self obj_showTotasViewWithMes:@"还没有商品哦!"];
                     return;
                 }
+                [self.shopMainListArray removeAllObjects];
                 for (NSDictionary *dic in array)
                 {
                     YBIntegralMallModel *mainDodel = [[YBIntegralMallModel alloc] init];
                     [mainDodel setValuesForKeysWithDictionary:dic];
-                    [self.shopMainListArray removeAllObjects];
                     [self.shopMainListArray addObject:mainDodel];
                 }
             }
@@ -153,11 +153,11 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
                     [self obj_showTotasViewWithMes:@"还没有商品哦!"];
                     return;
                 }
+                [self.discountArray removeAllObjects];
                 for (NSDictionary *dic in array)
                 {
                     YBDiscountModel *mainDodel = [[YBDiscountModel alloc] init];
                     [mainDodel setValuesForKeysWithDictionary:dic];
-                    [self.discountArray removeAllObjects];
                     [self.discountArray addObject:mainDodel];
                 }
             }
@@ -178,7 +178,7 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
     return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 165;
+    return 140;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (_mallType == kIntegralMall) {
@@ -240,7 +240,7 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
 #pragma mark ---- Lazy 加载
 - (UITableView *)tabelView{
     if (_tabelView == nil) {
-        _tabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 35, self.view.frame.size.width, self.view.frame.size.height - 100) style:UITableViewStylePlain];
+        _tabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 35, self.view.frame.size.width, self.view.frame.size.height - 110) style:UITableViewStylePlain];
         _tabelView.backgroundColor = [UIColor clearColor];
         _tabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
     

@@ -32,7 +32,7 @@
 - (void)setCellText:(NSString *)str withNormolImageStr:(NSString *)imageStr{
     self.normalImageStr = imageStr;
     self.textLabel.text = str;
-    self.textLabel.font = [UIFont systemFontOfSize:12];
+    self.textLabel.font = [UIFont systemFontOfSize:14];
     self.imageView.image = [UIImage imageNamed:imageStr];
 }
 

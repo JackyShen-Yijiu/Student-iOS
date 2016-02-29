@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.title = @"班车";
+    self.title = @"班车接送";
     self.view.backgroundColor = [UIColor clearColor];
     
     [self.view addSubview:self.tableView];

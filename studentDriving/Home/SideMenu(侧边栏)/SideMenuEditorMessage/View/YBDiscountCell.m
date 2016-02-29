@@ -195,7 +195,7 @@
     [self.mallImageView sd_setImageWithURL:[NSURL URLWithString:discountModel.productimg] placeholderImage:nil];
     self.nameLabel.text = discountModel.productname;
     self.integralLabel.text = @"兑换券:1张";
-    self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",discountModel.addressStr];
+    self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",discountModel.address];
     self.peopleNumberLabel.text = [NSString stringWithFormat:@"已有%d人兑换",discountModel.buycount];
     self.surplusLabel.text = [NSString stringWithFormat:@"剩余%d份",discountModel.productcount];
 
