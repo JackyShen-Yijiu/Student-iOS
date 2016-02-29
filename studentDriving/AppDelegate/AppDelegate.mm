@@ -69,14 +69,12 @@
 
     _connectionState = eEMConnectionConnected;
 
-    [MobClick startWithAppkey:@"564cba17e0f55ae100005919" reportPolicy:BATCH   channelId:@""];
+    [MobClick startWithAppkey:@"56d26a6467e58ee7fa000349" reportPolicy:BATCH   channelId:@""];
     
     // 配置百度地图
     [self configBaiduMap];
     // 配置友盟分享
     [self configUMSocial];
-    
-//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
 #pragma mark - 处理工具及样式
     [self dealTool];
@@ -89,8 +87,6 @@
     //注册环信聊天
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
-//    [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeHomeMainController];
-   
     WMCommon *common = [WMCommon getInstance];
     common.screenW = [[UIScreen mainScreen] bounds].size.width;
     common.screenH = [[UIScreen mainScreen] bounds].size.height;
@@ -115,7 +111,6 @@
     
     return YES;
 }
-
 
 - (void)configBaiduMap {
     _mapManager = [[BMKMapManager alloc] init];
