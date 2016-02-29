@@ -15,8 +15,8 @@
 @implementation CoachListViewModel
 
 - (void)dvvNetworkRequestRefresh {
-    
-    [self dvvNetworkRequestWithIndex:1 isRefresh:YES];
+    _index = 1;
+    [self dvvNetworkRequestWithIndex:_index isRefresh:YES];
 }
 
 - (void)dvvNetworkRequestLoadMore {
@@ -29,7 +29,7 @@
     
     _index = index;
     NSString *interface = [NSString stringWithFormat:BASEURL, @"getschoolcoach/"];
-    NSString *url = [NSString stringWithFormat:@"%@%@/%ld",interface, _schoolID, _index];
+    NSString *url = [NSString stringWithFormat:@"%@%@/%lu",interface, _schoolID, (long)_index];
     
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         

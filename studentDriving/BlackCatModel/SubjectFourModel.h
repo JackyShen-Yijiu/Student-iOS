@@ -14,5 +14,5 @@
 @property (strong, nonatomic, readonly) NSNumber *reservation;
 @property (strong, nonatomic, readonly) NSNumber *totalcourse;
 @property (nonatomic,strong,readonly) NSNumber *missingcourse;
-
+@property (strong, nonatomic, readonly) NSNumber *officialhours;
 @end

@@ -38,7 +38,7 @@
     UIBarButtonItem *barLeftBtn = [[UIBarButtonItem alloc]initWithCustomView:self.leftBtn];
     [self.navigationItem setLeftBarButtonItem:barLeftBtn];
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"菜单" style:UIBarButtonItemStyleDone target:self action:@selector(clicked)];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"YBSliderLeftBarImg"] style:UIBarButtonItemStyleDone target:self action:@selector(clicked)];
     
 }
 

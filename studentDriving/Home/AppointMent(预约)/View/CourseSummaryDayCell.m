@@ -47,7 +47,7 @@
     self.potraitView = [[PortraitView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
     self.potraitView.layer.cornerRadius = 20.f;
     self.potraitView.layer.shouldRasterize = YES;
-    self.potraitView.backgroundColor = [UIColor redColor];
+    self.potraitView.backgroundColor = [UIColor clearColor];
     [self.contentView addSubview:self.potraitView];
     
     // 状态
