@@ -82,18 +82,29 @@ static NSString *courseCellID = @"kCourseCellID";
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
+}
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    navBarHairlineImageView.hidden=NO;
+    
+    [self naviCancelTransparent];
+    
+    [DVVToast hide];
+}
+
+#pragma mark 使导航栏透明
+- (void)naviTransparent {
     
     UINavigationBar *bar = self.navigationController.navigationBar;
     // 背景色
     [bar setBackgroundColor:[UIColor clearColor]];
     // 背景图片
-    [bar setBackgroundImage:[UIImage imageNamed:@"naviBackgroundImag"] forBarMetrics:UIBarMetricsDefault];
+    [bar setBackgroundImage:[UIImage imageNamed:@"透明"] forBarMetrics:UIBarMetricsDefault];
     // 打开透明效果
     [bar setTranslucent:YES];
 }
-- (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
-    navBarHairlineImageView.hidden=NO;
+#pragma mark 取消导航栏透明
+- (void)naviCancelTransparent {
     
     UINavigationBar *bar = self.navigationController.navigationBar;
     // 背景色
@@ -102,8 +113,6 @@ static NSString *courseCellID = @"kCourseCellID";
     [bar setBackgroundImage:nil forBarMetrics:UIBarMetricsDefault];
     // 去掉透明效果
     [bar setTranslucent:NO];
-    
-    [DVVToast hide];
 }
 
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -139,6 +148,11 @@ static NSString *courseCellID = @"kCourseCellID";
     _viewModel.appointMentID = _appointMentID;
     
     [_viewModel dvv_setRefreshSuccessBlock:^{
+        
+        [ws naviTransparent];
+        [UIView animateWithDuration:0.3 animations:^{
+            ws.headerView.alpha = 1;
+        }];
         [ws.tableView reloadData];
         [ws.headerView refreshAppointMentData:ws.viewModel.dmData];
     }];
@@ -289,8 +303,11 @@ static NSString *courseCellID = @"kCourseCellID";
 - (DVVCoachDetailHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [DVVCoachDetailHeaderView new];
+        _headerView.alpha = 0;
         _headerView.frame = CGRectMake(0, -64, [UIScreen mainScreen].bounds.size.width, [DVVCoachDetailHeaderView defaultHeight]);
         _headerView.coachID = _appointMentID;
+        _headerView.collectionImageView.userInteractionEnabled = NO;
+        _headerView.collectionImageView.hidden = YES;
     }
     return _headerView;
 }
