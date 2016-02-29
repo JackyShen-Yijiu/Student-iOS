@@ -339,7 +339,7 @@
     if (!_dvvToolBarView) {
         _dvvToolBarView = [YBToolBarView new];
         _dvvToolBarView.titleArray = @[ @"科目一", @"科目二", @"科目三" ,@"科目四"];
-        _dvvToolBarView.titleNormalColor = [UIColor lightGrayColor];
+        _dvvToolBarView.titleNormalColor = [UIColor colorWithWhite:1 alpha:0.75];
         _dvvToolBarView.titleSelectedColor = [UIColor whiteColor];
         _dvvToolBarView.buttonNormalColor = YBNavigationBarBgColor;
         _dvvToolBarView.buttonSelectedColor = YBNavigationBarBgColor;

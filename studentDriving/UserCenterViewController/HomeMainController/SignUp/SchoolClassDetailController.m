@@ -19,7 +19,7 @@
 @implementation SchoolClassDetailController
 - (void)viewDidLoad{
     self.title = @"班型详情";
-    self.tabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     self.tabelView.dataSource = self;
     self.tabelView.delegate = self;
     [self.view addSubview:self.tabelView];
@@ -64,7 +64,8 @@
 }
 - (UITableView *)tabelView{
     if (_tabelView == nil) {
-        _tabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 10, kSystemWide, kSystemHeight) style:UITableViewStylePlain];
+        _tabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight) style:UITableViewStylePlain];
+        _tabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tabelView;
 }

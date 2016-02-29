@@ -24,7 +24,7 @@
 - (void)setUp {
     [self.contentView addSubview:self.textDetailLabel];
     [self.contentView addSubview:self.schoolDetailIntroduction];
-    [self.contentView addSubview:self.bottomLineView];
+//    [self.contentView addSubview:self.bottomLineView];
 }
 - (UIView *)backGroundView{
     if (_backGroundView == nil) {
@@ -77,13 +77,13 @@
         make.width.mas_equalTo(widthX);
 //        make.height.mas_equalTo(@16);
     }];
-    [self.bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.schoolDetailIntroduction.mas_bottom).with.offset(20);
-        make.left.mas_equalTo(self.contentView.mas_left).with.offset(0);
-        NSNumber *widthX = [[NSNumber alloc] initWithFloat:self.contentView.frame.size.width];
-        make.width.mas_equalTo(widthX);
-        make.height.mas_equalTo(@1);
-    }];
+//    [self.bottomLineView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.top.mas_equalTo(self.schoolDetailIntroduction.mas_bottom).with.offset(20);
+//        make.left.mas_equalTo(self.contentView.mas_left).with.offset(0);
+//        NSNumber *widthX = [[NSNumber alloc] initWithFloat:self.contentView.frame.size.width];
+//        make.width.mas_equalTo(widthX);
+//        make.height.mas_equalTo(@1);
+//    }];
 
     
 }
@@ -108,7 +108,11 @@
     return bounds.size.height + 100;
 }
 - (void)setClassTypeModel:(ClassTypeDMData *)classTypeModel{
-    self.schoolDetailIntroduction.text = classTypeModel.classdesc;
+    if (classTypeModel.classdesc && classTypeModel.classdesc.length) {
+        self.schoolDetailIntroduction.text = classTypeModel.classdesc;
+    }else {
+        self.schoolDetailIntroduction.text = @"未填写描述";
+    }
 }
 @end
 
