@@ -204,12 +204,22 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 - (void)didExchange:(UIButton *)btn{
     if (0 == _mallWay) {
         // 积分商城
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
+
         YBIntegrationMessageController *integrationMessageVC = [[YBIntegrationMessageController alloc] init];
         integrationMessageVC.mallWay = 0;
         integrationMessageVC.integraMallModel = self.integralModel;
         [self.navigationController pushViewController:integrationMessageVC animated:YES];
     }else if (1 == _mallWay){
         // 兑换劵商城
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
+
         YBIntegrationMessageController *integrationMessageVC = [[YBIntegrationMessageController alloc] init];
         integrationMessageVC.mallWay = 1;
         integrationMessageVC.discountMallModel = self.discountModel;
@@ -238,7 +248,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
         _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 18, 150, 14)];
         if (0 == _mallWay) {
             // 积分商城
-            _moneyLabel.text = [NSString stringWithFormat:@"需要消费积分:%d",_integralModel.productprice];
+            _moneyLabel.text = [NSString stringWithFormat:@"需要消费积分:%lu",_integralModel.productprice];
         }else if (1 == _mallWay){
             // 兑换劵商城
             _moneyLabel.text = @"需要消费一张兑换劵";
@@ -252,7 +262,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     if (_exchangeButton == nil) {
         _exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _exchangeButton.frame = CGRectMake(self.bgView.frame.size.width - 100 - 25, 7.5, 100, 35);
-        _exchangeButton.backgroundColor = YBNavigationBarBgColor;
+        _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
         [_exchangeButton setTitle:@"立即兑换" forState:UIControlStateNormal];
         [_exchangeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_exchangeButton addTarget:self action:@selector(didExchange:) forControlEvents:UIControlEventTouchUpInside];
