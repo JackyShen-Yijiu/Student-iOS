@@ -186,19 +186,12 @@
 
 }
 
-- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
-    DYNSLog(@"userInfo = %@",userInfo);
-    NSString *info = userInfo[@"ConversationChatter"];
-    if (info) {
-        ChatListViewController *chatlist = [[ChatListViewController alloc] init];
-        [DVVUserManager pushController:chatlist];
-    }
-#pragma mark - JPush接受推送消息 require
-    [self JPushApplication:application didReceiveRemoteNotification:userInfo];
-    
-    
-    
-}
+//- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+//    
+//#pragma mark - JPush接受推送消息 require
+//    [self JPushApplication:application didReceiveRemoteNotification:userInfo];
+//}
+
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler
 {
     completionHandler(UIBackgroundFetchResultNewData);
@@ -223,8 +216,10 @@
  }
  */
     DYNSLog(@"userInfo = %@",userInfo);
-#pragma mark - 推送消息统一接受JPush
+#pragma mark - JPush推送消息统一接受
     [self JPushfetchCompletionHandlerApplication:application didReceiveRemoteNotification:userInfo];
+#pragma mark - JPush接受推送消息 require
+    [self JPushApplication:application didReceiveRemoteNotification:userInfo];
     
 }
 

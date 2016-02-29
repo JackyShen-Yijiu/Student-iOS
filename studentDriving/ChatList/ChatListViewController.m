@@ -22,6 +22,7 @@
 #import "UserProfileManager.h"
 #import "DVVSideMenu.h"
 #import "YBAppointMentNoCountentView.h"
+#import "JGUserTools.h"
 
 @implementation EMConversation (search)
 
@@ -97,6 +98,9 @@
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
     [self.view addSubview:self.noCountmentView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDataSource) name:KNOTIFICATION_USERLOADED object:nil];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -403,41 +407,13 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-    if ([conversation.latestMessage.messageId isEqualToString:conversation.latestMessageFromOthers.messageId]) {
-        conversation.ext = conversation.latestMessageFromOthers.ext;
-    }
-    NSLog(@"ext = %@",conversation.ext);
-    cell.name = conversation.ext[@"nickName"];
-    if (conversation.conversationType == eConversationTypeChat) {
-        cell.name = conversation.ext[@"nickName"];
-        cell.placeholderImage = [UIImage imageNamed:@"chatListCellHead.png"];
-        cell.imageURL = [NSURL URLWithString:conversation.ext[@"headUrl"]];
-    }
-    else{
-        NSString *imageName = @"groupPublicHeader";
-        if (![conversation.ext objectForKey:@"groupSubject"] || ![conversation.ext objectForKey:@"isPublic"])
-        {
-            NSArray *groupArray = [[EaseMob sharedInstance].chatManager groupList];
-            for (EMGroup *group in groupArray) {
-                if ([group.groupId isEqualToString:conversation.chatter]) {
-                    cell.name = group.groupSubject;
-                    imageName = group.isPublic ? @"groupPublicHeader" : @"groupPrivateHeader";
-
-                    NSMutableDictionary *ext = [NSMutableDictionary dictionaryWithDictionary:conversation.ext];
-                    [ext setObject:group.groupSubject forKey:@"groupSubject"];
-                    [ext setObject:[NSNumber numberWithBool:group.isPublic] forKey:@"isPublic"];
-                    conversation.ext = ext;
-                    break;
-                }
-            }
-        }
-        else
-        {
-            cell.name = [conversation.ext objectForKey:@"groupSubject"];
-            imageName = [[conversation.ext objectForKey:@"isPublic"] boolValue] ? @"groupPublicHeader" : @"groupPrivateHeader";
-        }
-        cell.placeholderImage = [UIImage imageNamed:imageName];
-    }
+        
+    // 获取服务器用户名
+    cell.name = [NSString stringWithFormat:@"%@",[JGUserTools getNickNameByEMUserName:conversation.chatter]];
+    // 获取服务器用户头像
+    NSString *avatar = [JGUserTools getAvatarUrlByEMUserName:conversation.chatter];
+    cell.imageURL = [NSURL URLWithString:avatar];
+    
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
     cell.time = [self lastMessageTimeByConversation:conversation];
     cell.unreadCount = [self unreadMessageCountByConversation:conversation];
@@ -499,9 +475,8 @@
 
         chatController = [[ChatViewController alloc] initWithChatter:chatter
                                                     conversationType:conversation.conversationType];
-        chatController.title = conversation.ext[@"nickName"];
+        chatController.title = [NSString stringWithFormat:@"%@",[JGUserTools getNickNameByEMUserName:conversation.chatter]];
     
-//    chatController.delelgate = self;
     [self.navigationController pushViewController:chatController animated:YES];
 }
 

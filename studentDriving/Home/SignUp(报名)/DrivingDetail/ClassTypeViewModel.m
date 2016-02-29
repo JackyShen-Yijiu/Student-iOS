@@ -28,7 +28,7 @@
             [self dvvRefreshError];
             return ;
         }
-        if (!dmRoot.data) {
+        if (!dmRoot.data || !dmRoot.data.count) {
             [self dvvNilResponseObject];
             return ;
         }

@@ -307,6 +307,12 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
     
     [backGroundView addSubview:self.menuIndicator];
     
+    // 添加底部的阴影效果
+    backGroundView.layer.shadowColor = [UIColor blackColor].CGColor;
+    backGroundView.layer.shadowOffset = CGSizeMake(0, 2);
+    backGroundView.layer.shadowOpacity = 0.3;
+    backGroundView.layer.shadowRadius = 2;
+    
     return backGroundView;
 }
 #pragma mark - bntAciton
