@@ -53,7 +53,7 @@
     
     //跟随条
     _followBarColor = [UIColor yellowColor];
-    _followBarHeight = 1;
+    _followBarHeight = 2;
     _followBarLocation = 0;
     
 }

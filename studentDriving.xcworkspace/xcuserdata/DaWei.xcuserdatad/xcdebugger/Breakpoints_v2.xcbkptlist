@@ -138,12 +138,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478406959.82558"
+                  timestampString = "478420755.494316"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "423"
                   endingLineNumber = "423"
-                  offsetFromSymbolStart = "2459">
+                  offsetFromSymbolStart = "2400">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -153,12 +153,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478406959.825952"
+                  timestampString = "478420755.494647"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "423"
                   endingLineNumber = "423"
-                  offsetFromSymbolStart = "55">
+                  offsetFromSymbolStart = "39">
                </Location>
             </Locations>
          </BreakpointContent>
