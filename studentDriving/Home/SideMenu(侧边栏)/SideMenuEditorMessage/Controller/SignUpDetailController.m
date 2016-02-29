@@ -414,8 +414,6 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             //            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
         cell.dict = self.dict;
         cell.didclickBlock = ^(NSInteger tag){
             if (400 == tag) {
@@ -427,8 +425,6 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                 [ud setObject:@"1" forKey:@"applyAgain"];
                 [ud synchronize];
 
-                [DVVUserManager userLoginSucces];
-                
             }else if(401 == tag){
                 // 线上重新报名
                 [SignUpInfoManager removeSignData];
