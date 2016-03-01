@@ -120,7 +120,7 @@
     self.headerImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(priateMessage:)];
     [self.headerImageView addGestureRecognizer:tapGesture];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:kiconImage object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:YBNotif_ChangeUserPortrait object:nil];
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:k object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setUpUserData) name:@"kuserLogin" object:nil];

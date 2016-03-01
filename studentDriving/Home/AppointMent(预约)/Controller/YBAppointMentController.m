@@ -28,6 +28,8 @@
 #import "WMCommon.h"
 #import "YBActivity.h"
 
+#import "YBUserCenterController.h"
+
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
@@ -131,9 +133,7 @@
             NSError *error = nil;
             
             MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
-            if (model && model.userid && [model.userid length]!=0 && ![model.userid isEqualToString:@"(null)"]) {
-                [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar.rating model:model];
-            }
+            [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar.rating model:model];
             
         };
         
@@ -191,7 +191,6 @@
     [self loadCommentList];
     
     [self addLoadSubjectProress];
-
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -242,6 +241,12 @@
     // 接收到预约消息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addLoadSubjectProress) name:@"kuserapplysuccess" object:nil];
     
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+//        YBUserCenterController *vc = [YBUserCenterController new];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+    });
 }
 
 - (void)dealloc
@@ -348,9 +353,11 @@
         if (type.integerValue == 1) {
             [self obj_showTotasViewWithMes:@"评论成功"];
             [self.feVc.view removeFromSuperview];
+            [self.courseDayTableView.mj_header beginRefreshing];
         }else{
             [self obj_showTotasViewWithMes:msg];
         }
+        
     }];
     
 }
