@@ -14,6 +14,7 @@
 #import "YBEditUserInfoController.h"
 #import "ModifyPhoneNumViewController.h"
 #import "MySaveViewController.h"
+#import "YBOrderListViewController.h"
 
 static NSString *headerCellIdentifier = @"headerCellIdentifier";
 static NSString *cellIdentifier = @"kCellIdentifier";
@@ -237,7 +238,11 @@ static NSString *cellIdentifier = @"kCellIdentifier";
             [self.navigationController pushViewController:favouriteVC animated:YES];
             
         }else if (4 == indexPath.row) {
+            
             // 跳到报名信息
+            YBOrderListViewController *vc = [[YBOrderListViewController alloc] init];
+            [self.navigationController pushViewController:vc animated:YES];
+        
         }
     }
 }
