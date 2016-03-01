@@ -42,7 +42,7 @@
     [super viewDidLoad];
     
 //    self.view.backgroundColor = RGBColor(236, 236, 236);
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColor(232, 232, 237);
     
     [self.mainScrollView addSubview:self.reasonMsg];
     
@@ -186,7 +186,7 @@
 
 - (UIView *)tableViewFootView {
     
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 64 - 50 - 10, kSystemWide, 50)];
+    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, [UIScreen mainScreen].bounds.size.height - 64 - 50, kSystemWide, 50)];
     backGroundView.backgroundColor = [UIColor whiteColor];
     
     [backGroundView addSubview:self.submitBtn];

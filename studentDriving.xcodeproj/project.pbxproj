@@ -216,6 +216,8 @@
 		B22E1E9C1C78923F000E8AEE /* YBForceEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */; };
 		B22E1E9F1C7B0F35000E8AEE /* YBObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1E9E1C7B0F35000E8AEE /* YBObjectTool.m */; };
 		B22E1EA21C7B24B7000E8AEE /* HMCourseUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1EA11C7B24B7000E8AEE /* HMCourseUserModel.m */; };
+		B2600ED31C854E8D008D9D9A /* YBCheatslistViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2600ED11C854E8D008D9D9A /* YBCheatslistViewCell.m */; };
+		B2600ED41C854E8D008D9D9A /* YBCheatslistViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2600ED21C854E8D008D9D9A /* YBCheatslistViewCell.xib */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B2E8E1801C72BA4F000190C2 /* WMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1641C72BA4F000190C2 /* WMNavigationController.m */; };
 		B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1661C72BA4F000190C2 /* ViewController.m */; };
@@ -1532,6 +1534,9 @@
 		B22E1E9E1C7B0F35000E8AEE /* YBObjectTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBObjectTool.m; sourceTree = "<group>"; };
 		B22E1EA01C7B24B7000E8AEE /* HMCourseUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMCourseUserModel.h; sourceTree = "<group>"; };
 		B22E1EA11C7B24B7000E8AEE /* HMCourseUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMCourseUserModel.m; sourceTree = "<group>"; };
+		B2600ED01C854E8D008D9D9A /* YBCheatslistViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCheatslistViewCell.h; sourceTree = "<group>"; };
+		B2600ED11C854E8D008D9D9A /* YBCheatslistViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCheatslistViewCell.m; sourceTree = "<group>"; };
+		B2600ED21C854E8D008D9D9A /* YBCheatslistViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBCheatslistViewCell.xib; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B2E8E1631C72BA4F000190C2 /* WMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationController.h; sourceTree = "<group>"; };
@@ -4117,6 +4122,9 @@
 		B2E8E1A71C72C6F2000190C2 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B2600ED01C854E8D008D9D9A /* YBCheatslistViewCell.h */,
+				B2600ED11C854E8D008D9D9A /* YBCheatslistViewCell.m */,
+				B2600ED21C854E8D008D9D9A /* YBCheatslistViewCell.xib */,
 				B2E8E1E71C731B7E000190C2 /* YBToolBarView.h */,
 				B2E8E1E81C731B7E000190C2 /* YBToolBarView.m */,
 				B2E8E1CD1C73162D000190C2 /* YBStudyTableView.h */,
@@ -6466,6 +6474,7 @@
 				D5604BCC1BF656C50020F0D7 /* chatBar_more_cardSelected@2x.png in Resources */,
 				D5604BDF1BF656C50020F0D7 /* chatBar_face.png in Resources */,
 				D5604BAB1BF656C50020F0D7 /* VoiceSearchFeedback011.png in Resources */,
+				B2600ED41C854E8D008D9D9A /* YBCheatslistViewCell.xib in Resources */,
 				D996745F1C7D54610000CC65 /* ClassTypeCell.xib in Resources */,
 				D5604C291BF656C50020F0D7 /* back@2x.png in Resources */,
 				D9B268C51C788D7C00F62804 /* DVVCoachDetailTagCell.xib in Resources */,
@@ -7373,6 +7382,7 @@
 				D588AFD01BDDDAAB000C5D6F /* MyAppointmentCoachModel.m in Sources */,
 				D9D4BA1E1C3B918600F62BE9 /* NSDictionary+adapter.m in Sources */,
 				D51256B11BE1D005002717DA /* UserIdModel.m in Sources */,
+				B2600ED31C854E8D008D9D9A /* YBCheatslistViewCell.m in Sources */,
 				554641BC1C25098C00A55326 /* ChooseBtnView.m in Sources */,
 				D977B8D71C7C69DD00ABE205 /* DVVSignUpCoachDMDriveschoolinfo.m in Sources */,
 				568DF20E1C75756900008829 /* InfoModel.m in Sources */,
