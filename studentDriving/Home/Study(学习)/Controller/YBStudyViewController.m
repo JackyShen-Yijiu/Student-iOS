@@ -126,7 +126,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColor(232, 232, 237);
     self.title = @"学习";
     
     // 请求数据
@@ -380,7 +380,7 @@
         _scrollView = [UIScrollView new];
         _scrollView.delegate = self;
         _scrollView.pagingEnabled = YES;
-        _scrollView.backgroundColor = [UIColor whiteColor];
+        _scrollView.backgroundColor = RGBColor(232, 232, 237);
         _scrollView.bounces = NO;
     }
     return _scrollView;
