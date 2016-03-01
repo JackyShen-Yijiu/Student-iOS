@@ -13,6 +13,7 @@
 #import <QiniuSDK.h>
 #import "YBEditUserInfoController.h"
 #import "ModifyPhoneNumViewController.h"
+#import "MySaveViewController.h"
 
 static NSString *headerCellIdentifier = @"headerCellIdentifier";
 static NSString *cellIdentifier = @"kCellIdentifier";
@@ -232,6 +233,9 @@ static NSString *cellIdentifier = @"kCellIdentifier";
         
         if (3 == indexPath.row) {
             // 跳到我的收藏
+            MySaveViewController *favouriteVC = [[MySaveViewController alloc] init];
+            [self.navigationController pushViewController:favouriteVC animated:YES];
+            
         }else if (4 == indexPath.row) {
             // 跳到报名信息
         }

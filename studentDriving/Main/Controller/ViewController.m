@@ -34,6 +34,8 @@
 #import "PushInformationManager.h"
 #import "AppointmentDetailViewController.h"
 
+#import "YBUserCenterController.h"
+
 typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
     kYBSignUpViewController,
@@ -586,8 +588,11 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     }
     
 //     EditorUserViewController *editorUserVC = [EditorUserViewController new];
-    EditorMessageController *editorUserVC = [EditorMessageController new];
-    [self controller:editorUserVC];
+//    EditorMessageController *editorUserVC = [EditorMessageController new];
+//    [self controller:editorUserVC];
+    YBUserCenterController *vc = [YBUserCenterController new];
+    [self controller:vc];
+    
 
 }
 - (void)initWithButton:(UIButton *)btn{
