@@ -97,6 +97,53 @@
             endingLineNumber = "412"
             landmarkName = "-viewWillLayoutSubviews"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__48-[RegisterViewController viewWillLayoutSubviews]_block_invoke252"
+                  moduleName = "studentDriving"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
+                  timestampString = "478529418.535825"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "412"
+                  endingLineNumber = "412"
+                  offsetFromSymbolStart = "1593">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__copy_helper_block_259"
+                  moduleName = "studentDriving"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
+                  timestampString = "478529418.536054"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "18">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "__destroy_helper_block_260"
+                  moduleName = "studentDriving"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
+                  timestampString = "478529418.536253"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "14">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -129,38 +176,6 @@
             endingLineNumber = "422"
             landmarkName = "-viewWillLayoutSubviews"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[RegisterViewController viewWillLayoutSubviews]"
-                  moduleName = "studentDriving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478443893.479024"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "423"
-                  endingLineNumber = "423"
-                  offsetFromSymbolStart = "2400">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "__48-[RegisterViewController viewWillLayoutSubviews]_block_invoke281"
-                  moduleName = "studentDriving"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/DaWei/Desktop/YBProject/Student-iOS/studentDriving/LoginViewController/RegisterViewController.m"
-                  timestampString = "478443893.479291"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "423"
-                  endingLineNumber = "423"
-                  offsetFromSymbolStart = "39">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

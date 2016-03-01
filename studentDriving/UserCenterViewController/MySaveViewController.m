@@ -92,7 +92,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    self.title = @"我的喜欢";
+    self.title = @"我的收藏";
     self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
     self.automaticallyAdjustsScrollViewInsets = NO;
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarRightButton];

@@ -34,6 +34,8 @@
 #import "PushInformationManager.h"
 #import "AppointmentDetailViewController.h"
 
+#import "YBUserCenterController.h"
+
 typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
     kYBSignUpViewController,
@@ -88,7 +90,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //self.view.backgroundColor = YBNavigationBarBgColor;
+    self.view.backgroundColor = RGBColor(245, 245, 245);
     
     self.common = [WMCommon getInstance];
     self.common.homeState = kStateHome;
@@ -98,9 +100,9 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.leftDistance = self.common.screenW * viewSlideHorizonRatio;
     
     // 设置背景
-    UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.height)];
+    UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 198)];
 //    mightView.backgroundColor = [UIColor clearColor];
-    mightView.image = [UIImage imageNamed:@"YBSliderBarImg.jpg"];
+    mightView.image = [UIImage imageNamed:@"side_background.jpg"];
     [self.view addSubview:mightView];
     
     // 设置menu的view
@@ -350,90 +352,154 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 //     self.listArray = @[@"优惠活动", @"我的钱包", @"我的消息", @"班车接收" ,@"预约签到",@"我要投诉",@"一步优势",@"设置与帮助"];
     
     
-    
-    
-    
-    if (indexPath.row == 0) {
-        // 活动
-        if (![AcountManager isLogin]) {
-            [DVVUserManager userNeedLogin];
-            return;
+    if (0 == indexPath.section) {
+        if (0 == indexPath.row) {
+            // 我的消息
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                return;
+            }
+            ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
+            [self controller:chatListVC];
+        }else if (1 == indexPath.row) {
+            // 我的订单
+        }else if (2 == indexPath.row) {
+            // 我的钱包
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                return;
+            }
+            YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
+            [self controller:vc];
         }
-        
-        JGActivityViewController *activityVC = [JGActivityViewController new];
-        [self controller:activityVC];
-    }
-    if (indexPath.row == 1) {
-        if (![AcountManager isLogin]) {
-            [DVVUserManager userNeedLogin];
-            return;
-        }
-        // 我的钱包
-        YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
-        [self controller:vc];
-    }
-    if (indexPath.row == 2) {
-                if (![AcountManager isLogin]) {
-                    [DVVUserManager userNeedLogin];
-                    return;
-                }
-                // 我的消息
-                ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
-                [self controller:chatListVC];
-    }
-    if (indexPath.row == 3) {
-        // 我的驾校班车
-        
-        // 检测是否打开登录页
-        if (![AcountManager isLogin]) {
-            [DVVUserManager userNeedLogin];
-            return;
-        }
-        
-        if (![AcountManager manager].applyschool.infoId) {
-            [self obj_showTotasViewWithMes:@"您还没有报名"];
-            return ;
-        }
-        
-        ShuttleBusController *shuttleBusVC = [ShuttleBusController new];
-        [self controller:shuttleBusVC];
-    }
-    if (indexPath.row == 4) {
-                // 预约签到
-                if (![AcountManager isLogin]) {
-                    [DVVUserManager userNeedLogin];
-                    return;
-                }
-        
-                SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
-                [self controller:signUpVC];
-        
-    }
-    if (indexPath.row == 5) {
-        // 我要投诉
-        if (![AcountManager isLogin]) {
-            [DVVUserManager userNeedLogin];
-            return;
-        }
+    }else if (1 == indexPath.section){
+        if (0 == indexPath.row ) {
+            // 班车接送
+            // 检测是否打开登录页
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                return;
+            }
+            
+            if (![AcountManager manager].applyschool.infoId) {
+                [self obj_showTotasViewWithMes:@"您还没有报名"];
+                return ;
+            }
+            
+            ShuttleBusController *shuttleBusVC = [ShuttleBusController new];
+            [self controller:shuttleBusVC];
+        }else if (1 == indexPath.row) {
+            // 预约签到
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                return;
+            }
+            
+            SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
+            [self controller:signUpVC];
 
-        YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
-        [self controller:complaintVC];
-    }
-    if (indexPath.row == 6) {
-        // 一步优势
-        HomeAdvantageController *advantageVC = [[HomeAdvantageController alloc] init];
-        [self controller:advantageVC];
-    }
-    if (indexPath.row == 7) {
-        // 设置与帮助
-        // 检测是否打开登录页
-        if (![AcountManager isLogin]) {
-            [DVVUserManager userNeedLogin];
-            return;
+        }else if (2 == indexPath.row) {
+            // 优惠活动
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                return;
+            }
+            
+            JGActivityViewController *activityVC = [JGActivityViewController new];
+            [self controller:activityVC];
+        }else if (3 == indexPath.row) {
+            // 用户设置
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                return;
+            }
+            SetupViewController *setUpVC = [SetupViewController new];
+            [self controller:setUpVC];
         }
-        SetupViewController *setUpVC = [SetupViewController new];
-        [self controller:setUpVC];
     }
+    
+    
+//    if (indexPath.row == 0) {
+//        // 活动
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        
+//        JGActivityViewController *activityVC = [JGActivityViewController new];
+//        [self controller:activityVC];
+//    }
+//    if (indexPath.row == 1) {
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        // 我的钱包
+//        YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
+//        [self controller:vc];
+//    }
+//    if (indexPath.row == 2) {
+//                if (![AcountManager isLogin]) {
+//                    [DVVUserManager userNeedLogin];
+//                    return;
+//                }
+//                // 我的消息
+//                ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
+//                [self controller:chatListVC];
+//    }
+//    if (indexPath.row == 3) {
+//        // 我的驾校班车
+//        
+//        // 检测是否打开登录页
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        
+//        if (![AcountManager manager].applyschool.infoId) {
+//            [self obj_showTotasViewWithMes:@"您还没有报名"];
+//            return ;
+//        }
+//        
+//        ShuttleBusController *shuttleBusVC = [ShuttleBusController new];
+//        [self controller:shuttleBusVC];
+//    }
+//    if (indexPath.row == 4) {
+//                // 预约签到
+//                if (![AcountManager isLogin]) {
+//                    [DVVUserManager userNeedLogin];
+//                    return;
+//                }
+//        
+//                SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
+//                [self controller:signUpVC];
+//        
+//    }
+//    if (indexPath.row == 5) {
+//        // 我要投诉
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//
+//        YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
+//        [self controller:complaintVC];
+//    }
+//    if (indexPath.row == 6) {
+//        // 一步优势
+//        HomeAdvantageController *advantageVC = [[HomeAdvantageController alloc] init];
+//        [self controller:advantageVC];
+//    }
+//    if (indexPath.row == 7) {
+//        // 设置与帮助
+//        // 检测是否打开登录页
+//        if (![AcountManager isLogin]) {
+//            [DVVUserManager userNeedLogin];
+//            return;
+//        }
+//        SetupViewController *setUpVC = [SetupViewController new];
+//        [self controller:setUpVC];
+//    }
 
     
 //    if (indexPath.row == 0) {
@@ -522,9 +588,27 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     }
     
 //     EditorUserViewController *editorUserVC = [EditorUserViewController new];
-    EditorMessageController *editorUserVC = [EditorMessageController new];
-    [self controller:editorUserVC];
+//    EditorMessageController *editorUserVC = [EditorMessageController new];
+//    [self controller:editorUserVC];
+    YBUserCenterController *vc = [YBUserCenterController new];
+    [self controller:vc];
+    
 
+}
+- (void)initWithButton:(UIButton *)btn{
+    if (5000 == btn.tag) {
+        // 投诉跳转
+        if (![AcountManager isLogin]) {
+                    [DVVUserManager userNeedLogin];
+                    return;
+                }
+        
+                YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
+                [self controller:complaintVC];
+        
+    }else if (5001 == btn.tag) {
+        // 咨询跳转
+    }
 }
 - (void)controller:(UIViewController *)itemVC{
     itemVC.hidesBottomBarWhenPushed = YES;

@@ -28,6 +28,8 @@
 #import "WMCommon.h"
 #import "YBActivity.h"
 
+//#import "YBUserCenterController.h"
+
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
@@ -189,7 +191,6 @@
     [self loadCommentList];
     
     [self addLoadSubjectProress];
-
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -240,6 +241,12 @@
     // 接收到预约消息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addLoadSubjectProress) name:@"kuserapplysuccess" object:nil];
     
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        
+//        YBUserCenterController *vc = [YBUserCenterController new];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    });
 }
 
 - (void)dealloc
