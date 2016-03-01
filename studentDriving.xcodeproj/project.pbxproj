@@ -207,6 +207,8 @@
 		B22E1EA21C7B24B7000E8AEE /* HMCourseUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1EA11C7B24B7000E8AEE /* HMCourseUserModel.m */; };
 		B2600ED31C854E8D008D9D9A /* YBCheatslistViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2600ED11C854E8D008D9D9A /* YBCheatslistViewCell.m */; };
 		B2600ED41C854E8D008D9D9A /* YBCheatslistViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2600ED21C854E8D008D9D9A /* YBCheatslistViewCell.xib */; };
+		B2600ED71C8568D0008D9D9A /* YBMyComplaintListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2600ED61C8568D0008D9D9A /* YBMyComplaintListController.m */; };
+		B2600EDA1C856B80008D9D9A /* YBMyComplaintListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2600ED91C856B80008D9D9A /* YBMyComplaintListCell.m */; };
 		B2C49EE71C53A59600D8362A /* JGSelectDrivingVcHead.m in Sources */ = {isa = PBXBuildFile; fileRef = B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */; };
 		B2E8E1801C72BA4F000190C2 /* WMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1641C72BA4F000190C2 /* WMNavigationController.m */; };
 		B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2E8E1661C72BA4F000190C2 /* ViewController.m */; };
@@ -1517,6 +1519,10 @@
 		B2600ED01C854E8D008D9D9A /* YBCheatslistViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCheatslistViewCell.h; sourceTree = "<group>"; };
 		B2600ED11C854E8D008D9D9A /* YBCheatslistViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCheatslistViewCell.m; sourceTree = "<group>"; };
 		B2600ED21C854E8D008D9D9A /* YBCheatslistViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBCheatslistViewCell.xib; sourceTree = "<group>"; };
+		B2600ED51C8568D0008D9D9A /* YBMyComplaintListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMyComplaintListController.h; sourceTree = "<group>"; };
+		B2600ED61C8568D0008D9D9A /* YBMyComplaintListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMyComplaintListController.m; sourceTree = "<group>"; };
+		B2600ED81C856B80008D9D9A /* YBMyComplaintListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMyComplaintListCell.h; sourceTree = "<group>"; };
+		B2600ED91C856B80008D9D9A /* YBMyComplaintListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMyComplaintListCell.m; sourceTree = "<group>"; };
 		B2C49EE51C53A59600D8362A /* JGSelectDrivingVcHead.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGSelectDrivingVcHead.h; sourceTree = "<group>"; };
 		B2C49EE61C53A59600D8362A /* JGSelectDrivingVcHead.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGSelectDrivingVcHead.m; sourceTree = "<group>"; };
 		B2E8E1631C72BA4F000190C2 /* WMNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMNavigationController.h; sourceTree = "<group>"; };
@@ -3460,6 +3466,10 @@
 				56DAB1061C7AFA2C00D7B942 /* PlaceholderTextView.m */,
 				56DAB1071C7AFA2C00D7B942 /* YBComplaintCoachView.h */,
 				56DAB1081C7AFA2C00D7B942 /* YBComplaintCoachView.m */,
+				B2600ED51C8568D0008D9D9A /* YBMyComplaintListController.h */,
+				B2600ED61C8568D0008D9D9A /* YBMyComplaintListController.m */,
+				B2600ED81C856B80008D9D9A /* YBMyComplaintListCell.h */,
+				B2600ED91C856B80008D9D9A /* YBMyComplaintListCell.m */,
 			);
 			path = SideMenuComplaint;
 			sourceTree = "<group>";
@@ -6808,6 +6818,7 @@
 				D588AFCE1BDDDAAB000C5D6F /* CourseTimeModel.m in Sources */,
 				D588B08D1BDDDBDB000C5D6F /* SignUpSucceedViewController.m in Sources */,
 				D588B1181BDDDC2F000C5D6F /* WMUITool.m in Sources */,
+				B2600EDA1C856B80008D9D9A /* YBMyComplaintListCell.m in Sources */,
 				D5604B871BF656C50020F0D7 /* EMSearchBar.m in Sources */,
 				D52638531BDF1AED00ADC2C7 /* DrivingCandidatesViewController.m in Sources */,
 				D588B14C1BDE157A000C5D6F /* QuestionTestViewController.m in Sources */,
@@ -7362,6 +7373,7 @@
 				D9B268C01C7852C400F62804 /* DVVCoachDetailCourseCell.m in Sources */,
 				062734CA1C5A0C550056B0BC /* SignUpPayCell.m in Sources */,
 				D9B268C41C788D7C00F62804 /* DVVCoachDetailTagCell.m in Sources */,
+				B2600ED71C8568D0008D9D9A /* YBMyComplaintListController.m in Sources */,
 				D99674861C7D54610000CC65 /* DVVHorizontalScrollImagesCell.m in Sources */,
 				D5C240061BE9FB8A00832CF3 /* BLAVplayerCell.m in Sources */,
 				B2F1AE6A1C7EABDF006D56FF /* YBWebBaseViewController.m in Sources */,
