@@ -54,7 +54,7 @@
     return cell;
 }
 - (void)layoutSubviews{
-    self.imageView.frame = CGRectMake(24, 0, 16, 16);
+    self.imageView.frame = CGRectMake(24, 10, 16, 16);
     self.textLabel.frame = CGRectMake(self.imageView.frame.origin.x + 16 + 24, self.imageView.frame.origin.y , 100, 14);
 
 }
