@@ -5,10 +5,23 @@
 #import "AddlineButtomTextField.h"
 #import "NSString+DY_MD5.h"
 #import "ShowWarningMessageView.h"
+#import <JPush/APService.h>
 static NSString *const kchangePassword = @"kchangePassword";
 
 static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 
+
+
+
+static NSString *const kloginUrl = @"userinfo/userlogin";
+
+static NSString *const kregisterUser = @"kregisterUser";
+
+static NSString *const kmobileNum = @"mobile";
+
+static NSString *const kpassword = @"password";
+
+static NSString *const kuserType = @"usertype";
 
 @interface ForgetViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic) UITextField *phoneNumTextField;
@@ -32,9 +45,18 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 @property (nonatomic, strong) ShowWarningMessageView *phoneWarngingView;
 @property (nonatomic, strong) ShowWarningMessageView *gainNumWarningView;
 @property (nonatomic, strong) ShowWarningMessageView *passwordWarningView;
+
+@property (strong, nonatomic) NSMutableDictionary *userParam;
 @end
 
 @implementation ForgetViewController
+
+- (NSMutableDictionary *)userParam {
+    if (_userParam == nil) {
+        _userParam = [[NSMutableDictionary alloc] init];
+    }
+    return _userParam;
+}
 
 - (UILabel *)topLabel {
     if (_topLabel == nil) {
@@ -212,10 +234,10 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 - (UIButton *)eyeButton{
     if (_eyeButton == nil) {
         _eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"1-1"] forState:UIControlStateSelected];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateNormal];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateSelected];
         [_eyeButton addTarget:self action:@selector(didEyeButton:) forControlEvents:UIControlEventTouchUpInside];
-        _eyeButton.backgroundColor = [UIColor cyanColor];
+        _eyeButton.backgroundColor = [UIColor clearColor];
     }
     return _eyeButton;
 }
@@ -334,7 +356,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         make.width.mas_equalTo(@40);
     }];
     [self.eyeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-10);
         make.top.mas_equalTo(self.confirmTextField.mas_bottom).with.offset(0);
         make.height.mas_equalTo(@40);
         make.width.mas_equalTo(@40);
@@ -488,16 +510,21 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
             
             [self obj_showTotasViewWithMes:@"修改成功"];
             
-            [DVVUserManager userNeedLogin];
+//            [DVVUserManager userNeedLogin];
             
 //            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 //            [self dismissViewControllerAnimated:YES completion:^{
 ////                [[NSNotificationCenter defaultCenter] postNotificationName:kchangePassword object:nil];
 //            }];
             
+            
+            // 修改成功后直接登录
+        // 1.
+            [self userLogin];
+            
         }else {
             
-            [self obj_showTotasViewWithMes:param[@"msg"]];
+            [self obj_showTotasViewWithMes:resultData[@"msg"]];
             
         }
     }];
@@ -560,8 +587,174 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         }else {
             ws.confirmTextField.text = @"";
             [ws obj_showTotasViewWithMes:@"验证码错误"];
+            self.gainNumWarningView.hidden = NO;
         }
     }];
+}
+- (void)userLogin {
+    
+    //网络请求
+    [self.passWordTextFild resignFirstResponder];
+    [self.phoneNumTextField resignFirstResponder];
+    
+    [self.userParam setObject:@"1" forKey:kuserType];
+    [self.userParam setObject:self.phoneNumTextField.text forKey:kmobileNum];
+    NSString *pwdKey = [self.passWordTextFild.text DY_MD5];
+    [self.userParam setObject:pwdKey forKey:kpassword];
+    
+    NSString *url = [NSString stringWithFormat:BASEURL,kloginUrl];
+    
+    DYNSLog(@"%s url:%@ self.userParam:%@",__func__,url,self.userParam);
+    
+    [JENetwoking startDownLoadWithUrl:url postParam:self.userParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        NSDictionary *dataDic = data;
+        DYNSLog(@"%s dataDic:%@",__func__,dataDic);
+        
+        NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
+        
+        if ([type isEqualToString:@"0"]) {
+            
+            [self obj_showTotasViewWithMes:@"密码错误"];
+            self.passwordWarningView.hidden = NO;
+            
+        }else if ([type isEqualToString:@"1"]) {
+            
+            // 存储用户设置
+            [self saveUserSetWithData:dataDic];
+            
+            NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+            NSLog(@"self.phoneNumTextField.text:%@",self.phoneNumTextField.text);
+            NSLog(@"self.passwordTextField.text:%@",self.passWordTextFild.text);
+            
+            [self loginWithUsername:self.phoneNumTextField.text password:pwdKey  dataDic:dataDic];
+            
+        }
+    }];
+}
+- (void)saveUserSetWithData:(NSDictionary *)data {
+    //    usersetting =         {
+    //        classremind = 0;
+    //        newmessagereminder = 1;
+    //        reservationreminder = 1;
+    //    };
+    NSDictionary *setDict = [data objectForKey:@"usersetting"];
+    NSString *newMsg = [setDict objectForKey:@"newmessagereminder"];
+    NSString *reservation = [setDict objectForKey:@"reservationreminder"];
+    if (newMsg) {
+        [AcountManager manager].newmessagereminder = [newMsg boolValue];
+    }
+    if (reservation) {
+        [AcountManager manager].reservationreminder = [reservation boolValue];
+    }
+}
+// 点击登陆后的操作
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password  dataDic:(NSDictionary *)dataDic
+{
+    [self showHudInView:self.view hint:NSLocalizedString(@"登录中...", @"登录中...")];
+    
+    NSLog(@"点击登录后的操作:dataDic:%@",dataDic);
+    
+    BOOL isLoggedIn = [[EaseMob sharedInstance].chatManager isLoggedIn];
+    NSLog(@"isLoggedIn:%d",isLoggedIn);
+    if (isLoggedIn) {
+        [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:nil];
+        
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES];
+        
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+            DYNSLog(@"asyncLogoffWithUnbindDeviceToken%@",error);
+        } onQueue:nil];
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+            DYNSLog(@"退出成功 = %@ %@",info,error);
+            if (!error && info) {
+            }
+        } onQueue:nil];
+    }
+    
+    NSLog(@"username:%@ password:%@",username,password);
+    
+    NSString *userid = [NSString stringWithFormat:@"%@",dataDic[@"data"][@"userid"]];
+    NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
+    
+    if (!userid) {
+        userid = @"";
+             }
+    NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
+    
+    // 异步登陆账号
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:userid
+                                                        password:password
+                                                      completion:
+     ^(NSDictionary *loginInfo, EMError *error) {
+         
+         NSLog(@"error:%@",error);
+         [MBProgressHUD hideHUDForView:self.view animated:NO];
+         
+         if (loginInfo && !error) {
+             
+             DYNSLog(@"登录成功");
+             
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
+             
+             NSSet *set = [NSSet setWithObjects:@"", nil];
+             [APService setTags:set alias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+             
+             //设置是否自动登录
+             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+             
+             // 旧数据转换 (如果您的sdk是由2.1.2版本升级过来的，需要家这句话)
+             [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+             //获取数据库中数据
+             [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+             
+             //获取群组列表
+             //             [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+             
+             EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
+             options.nickname = [AcountManager manager].userName;
+             options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
+             
+             //发送自动登陆状态通知
+             [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+             
+             //保存最近一次登录用户名
+             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passWordTextFild.text];
+             
+             [AcountManager configUserInformationWith:dataDic[@"data"]];
+             
+             // 用户登录成功，打开相应的窗体
+             [DVVUserManager userLoginSucces];
+             
+         }
+         else
+         {
+             switch (error.errorCode)
+             {
+                 case EMErrorNotFound:
+                     TTAlertNoTitle(error.description);
+                     break;
+                 case EMErrorNetworkNotConnected:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
+                     break;
+                 case EMErrorServerNotReachable:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                     break;
+                 case EMErrorServerAuthenticationFailure:
+                     TTAlertNoTitle(error.description);
+                     break;
+                 case EMErrorServerTimeout:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                     break;
+                 default:
+                     TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Login failure"));
+                     break;
+             }
+         }
+         
+     } onQueue:nil];
+    
+    
 }
 
 - (void)showMsg:(NSString *)message {
