@@ -69,19 +69,24 @@
 
 - (void)loadData
 {
-    NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmywallet"];
-    NSDictionary *paramsDict = @{@"userid": [AcountManager manager].userid,@"usertype":@"1",@"seqindex":@"1"};
+
+    NSString *urlString = [NSString stringWithFormat:BASEURL, @"courseinfo/getmycomplaint"];
     
-    [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+    NSString *url = [NSString stringWithFormat:@"%@?userid=%@",urlString,[AcountManager manager].userid];
+    
+    [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"我的投诉urlString:%@ data:%@",url,data);
+        
+        NSArray *dictArray = data[@"data"];
         
         if ([[data objectForKey:@"type"] integerValue]) {
             
-            NSArray *listArray = data[@"list"];
-            for (NSDictionary *listDict in listArray) {
+            for (NSDictionary *listDict in dictArray) {
                 [self.dataArray addObject:listDict];
             }
             
-            [self.noCountmentView setHidden:listArray.count];
+            [self.noCountmentView setHidden:self.dataArray.count];
 
             [self.dataTabelView reloadData];
             
@@ -104,7 +109,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    static NSString *cellID = @"YBCheatslistViewCell";
+    static NSString *cellID = @"YBMyComplaintListCell";
     
     YBMyComplaintListCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {

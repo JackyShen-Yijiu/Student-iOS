@@ -131,9 +131,7 @@
             NSError *error = nil;
             
             MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
-            if (model && model.userid && [model.userid length]!=0 && ![model.userid isEqualToString:@"(null)"]) {
-                [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar.rating model:model];
-            }
+            [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar.rating model:model];
             
         };
         
@@ -348,9 +346,11 @@
         if (type.integerValue == 1) {
             [self obj_showTotasViewWithMes:@"评论成功"];
             [self.feVc.view removeFromSuperview];
+            [self.courseDayTableView.mj_header beginRefreshing];
         }else{
             [self obj_showTotasViewWithMes:msg];
         }
+        
     }];
     
 }

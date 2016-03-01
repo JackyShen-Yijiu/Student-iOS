@@ -34,7 +34,6 @@
     if (_titleLabel == nil) {
         _titleLabel = [WMUITool initWithTextColor:[UIColor grayColor] withFont:[UIFont boldSystemFontOfSize:14]];
         _titleLabel.text = @"投诉教练";
-        _titleLabel.textColor = MAINCOLOR;
     }
     return _titleLabel;
 }
@@ -44,7 +43,7 @@
     if (_countentLabel == nil) {
         _countentLabel = [WMUITool initWithTextColor:[UIColor lightGrayColor] withFont:[UIFont boldSystemFontOfSize:14]];
         _countentLabel.text = @"投诉教练内容投诉教练内容投诉教练内容投诉教练内容投诉教练内容投诉教练内容投诉教练内容";
-        _countentLabel.textColor = MAINCOLOR;
+        _countentLabel.numberOfLines = 0;
     }
     return _countentLabel;
 }
@@ -54,7 +53,6 @@
     if (_timeLabel == nil) {
         _timeLabel = [WMUITool initWithTextColor:[UIColor lightGrayColor] withFont:[UIFont boldSystemFontOfSize:12]];
         _timeLabel.text = @"2016年02月21日";
-        _timeLabel.textColor = MAINCOLOR;
     }
     return _timeLabel;
 }
@@ -104,7 +102,7 @@
     [self.countentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(JGMargin);
         make.top.mas_equalTo(self.titleLabel.mas_bottom).offset(12);//
-        make.right.mas_equalTo(self.contentView.mas_right).offset(JGMargin);
+        make.right.mas_equalTo(self.timeLabel.mas_right);
     }];
     
     // 分割线
@@ -121,18 +119,18 @@
 {
     _detailModel = detailModel;
 
-    self.titleLabel.text = [NSString stringWithFormat:@"%@",_detailModel[@"type"]];
+    self.titleLabel.text = [NSString stringWithFormat:@"投诉教练:%@",_detailModel[@"coachid"][@"name"]];
     
-    self.timeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_detailModel[@"createtime"]]];
+    self.timeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_detailModel[@"complaint"][@"complainttime"]]];
     
-    self.countentLabel.text = [NSString stringWithFormat:@"+%@积分",_detailModel[@"amount"]];
+    self.countentLabel.text = [NSString stringWithFormat:@"%@",_detailModel[@"complaint"][@"complaintcontent"]];
     
 }
 
 + (CGFloat)heightWithModel:(NSDictionary *)model
 {
     
-    YBMyComplaintListCell *cell = [[YBMyComplaintListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellTwo"];
+    YBMyComplaintListCell *cell = [[YBMyComplaintListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"YBMyComplaintListCell"];
     
     cell.detailModel = model;
     
