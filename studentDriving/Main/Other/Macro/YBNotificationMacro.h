@@ -15,4 +15,6 @@
 /** 用户修改过头像，改变侧边栏头像的通知 */
 #define YBNotif_ChangeUserPortrait @"kYBNotif_ChangeUserPortrait"
 
+#define YBNotif_ChangeUserInfo @"kYBNotif_ChangeUserInfo"
+
 #endif /* YBNotificationMacro_h */

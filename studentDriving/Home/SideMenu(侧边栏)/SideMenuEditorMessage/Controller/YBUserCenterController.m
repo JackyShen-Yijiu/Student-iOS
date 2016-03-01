@@ -12,6 +12,7 @@
 #import "DVVImagePickerControllerManager.h"
 #import <QiniuSDK.h>
 #import "YBEditUserInfoController.h"
+#import "ModifyPhoneNumViewController.h"
 
 static NSString *headerCellIdentifier = @"headerCellIdentifier";
 static NSString *cellIdentifier = @"kCellIdentifier";
@@ -45,18 +46,61 @@ static NSString *cellIdentifier = @"kCellIdentifier";
     
     _userInfoIconArray = @[ @"nickname", @"name", @"sexual", @"phone", @"address" ];
     _userInfoTitleArray = @[ @"昵称", @"姓名", @"性别", @"手机号码", @"地址" ];
-    _userInfoDetailArray = @[ @"", @"", @"", @"", @"" ].mutableCopy;
     
-    _applyInfoIconArray = @[ @"school", @"class", @"permit", @"bus", @"information" ];
+    
+    _applyInfoIconArray = @[ @"school", @"class", @"permit", @"ic_collect", @"information" ];
     _applyInfoTitleArray = @[ @"驾校", @"班型", @"驾照类型", @"我的收藏", @"报名信息" ];
-    _applyInfoDetailArray = @[ @"", @"", @"", @"", @"" ].mutableCopy;
+    
+    [self loadData];
     
     [self.view addSubview:self.tableView];
     
+    // 注册用户信息改变的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(loadData) name:YBNotif_ChangeUserInfo object:nil];
 }
 
 - (void)loadData {
     
+    NSString *nickName = [AcountManager manager].userNickName;
+    if (!nickName || !nickName.length) {
+        nickName = @"";
+    }
+    NSString *name = [AcountManager manager].userName;
+    if (!name || !name.length) {
+        name = @"";
+    }
+    NSString *gender = [AcountManager manager].userGender;
+    if (!gender || !gender.length) {
+        gender = @"";
+    }
+    NSString *mobile = [AcountManager manager].userMobile;
+    if (!mobile || !mobile.length) {
+        mobile = @"";
+    }
+    NSString *address = [AcountManager manager].userAddress;
+    if (!address || !address.length) {
+        address = @"";
+    }
+    
+    _userInfoDetailArray = @[ nickName, name, gender, mobile, address ].mutableCopy;
+    
+    
+    NSString *schoolName = [AcountManager manager].applyschool.name;
+    if (!schoolName || !schoolName.length) {
+        schoolName = @"";
+    }
+    NSString *classType = [AcountManager manager].applyclasstype.name;
+    if (!classType || !classType.length) {
+        classType = @"";
+    }
+    NSString *drivingType = [AcountManager manager].userCarmodels.code;
+    if (!drivingType || !drivingType.length) {
+        drivingType = @"";
+    }
+    
+    _applyInfoDetailArray = @[ schoolName, classType, drivingType, @"", @"" ].mutableCopy;
+    
+    [self.tableView reloadData];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -164,6 +208,11 @@ static NSString *cellIdentifier = @"kCellIdentifier";
         }
     }else if (1 == indexPath.section) {
         
+        if (3 == indexPath.row) {
+            ModifyPhoneNumViewController *vc = [ModifyPhoneNumViewController new];
+            [self.navigationController pushViewController:vc animated:YES];
+            return ;
+        }
         YBEditUserInfoController *vc = [YBEditUserInfoController new];
         vc.userInfoDetailArray = _userInfoDetailArray;
         vc.tableView = _tableView;
@@ -173,15 +222,19 @@ static NSString *cellIdentifier = @"kCellIdentifier";
             vc.editType = YBEditUserInfoType_Name;
         }else if (2 == indexPath.row) {
             vc.editType = YBEditUserInfoType_Sex;
-        }else if (3 == indexPath.row) {
-            vc.editType = YBEditUserInfoType_Mobile;
         }else if (4 == indexPath.row) {
             vc.editType = YBEditUserInfoType_Address;
         }
+        vc.defaultString = _userInfoDetailArray[vc.editType];
         [self.navigationController pushViewController:vc animated:YES];
         
-    }else {
+    }else if (2 == indexPath.section) {
         
+        if (3 == indexPath.row) {
+            // 跳到我的收藏
+        }else if (4 == indexPath.row) {
+            // 跳到报名信息
+        }
     }
 }
 
