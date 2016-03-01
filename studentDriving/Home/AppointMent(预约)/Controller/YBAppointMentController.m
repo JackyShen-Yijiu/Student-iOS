@@ -173,14 +173,31 @@
    
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
-//        [DVVUserManager loginController].hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
-//        [self.navigationController presentViewController:[DVVUserManager loginController] animated:YES completion:nil];
-        [DVVUserManager userNeedLogin];
+        
+        self.noCountmentView.label1.text = @"您尚未登陆，请登陆查看";
+        self.noCountmentView.label1.textColor = YBNavigationBarBgColor;
+        self.noCountmentView.label1.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidClick)];
+        [self.noCountmentView.label1 addGestureRecognizer:tap];
+        self.noCountmentView.hidden = NO;
+        
+        UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width/2-100/2, CGRectGetMaxY(self.noCountmentView.label1.frame)-10, 100, 20)];
+        btn.titleLabel.font = [UIFont systemFontOfSize:13];
+        [btn setTitle:@"登陆/注册" forState:UIControlStateNormal];
+        [btn setTitleColor:RGBColor(0, 176, 252) forState:UIControlStateNormal];
+        [btn setTitleColor:RGBColor(0, 176, 252) forState:UIControlStateHighlighted];
+        [btn addTarget:self action:@selector(tapDidClick) forControlEvents:UIControlEventTouchUpInside];
+        [self.noCountmentView addSubview:btn];
+        
         return;
     }
     
     
+}
+
+- (void)tapDidClick
+{
+    [DVVUserManager userNeedLogin];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -228,8 +245,17 @@
     // 设置顶部标题
     self.navigationItem.title = @"预约列表";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"YBSlideBarAppointMentBtnImg"] style:UIBarButtonItemStyleDone target:self action:@selector(addAppointMent)];
+    UIButton*rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0,50,30)];
+    [rightButton setTitle:@"立即预约" forState:UIControlStateNormal];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:12];
+    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [rightButton addTarget:self action:@selector(addAppointMent) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem*rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
+    self.navigationItem.rightBarButtonItem= rightItem;
     
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"立即预约" style:UIBarButtonItemStyleDone target:self action:@selector(addAppointMent)];
+
     [self initUI];
     
     // 加载底部预约列表数据
@@ -240,13 +266,7 @@
 
     // 接收到预约消息
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(addLoadSubjectProress) name:@"kuserapplysuccess" object:nil];
-    
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//        
-//        YBUserCenterController *vc = [YBUserCenterController new];
-//        vc.hidesBottomBarWhenPushed = YES;
-//        [self.navigationController pushViewController:vc animated:YES];
-//    });
+
 }
 
 - (void)dealloc
@@ -270,6 +290,12 @@
 
 - (void)addAppointMent
 {
+    
+    if (![AcountManager isLogin]) {
+        [DVVUserManager userNeedLogin];
+        return;
+    }
+    
     YBAppointMentChangeCoachController *vc = [[YBAppointMentChangeCoachController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];

@@ -431,7 +431,7 @@
         _noCountmentView = [[YBAppointMentNoCountentView alloc] init];
         _noCountmentView.frame = self.view.bounds;
         _noCountmentView.hidden = YES;
-        _noCountmentView.message = @"小步没有找到您的聊天信息\n您可以通过预约教练和相邻时段学员发起聊天";
+        _noCountmentView.label1.text = @"小步没有找到您的聊天信息\n您可以通过预约教练和相邻时段学员发起聊天";
     }
     return _noCountmentView;
 }

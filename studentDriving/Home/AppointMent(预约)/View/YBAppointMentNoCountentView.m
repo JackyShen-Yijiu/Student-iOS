@@ -9,7 +9,6 @@
 #import "YBAppointMentNoCountentView.h"
 
 @interface YBAppointMentNoCountentView ()
-@property (nonatomic,weak) UILabel *label1;
 @end
 
 @implementation YBAppointMentNoCountentView
@@ -24,8 +23,9 @@
         // 创建图标
         UIImageView *img = [[UIImageView alloc] init];
         img.image = [UIImage imageNamed:@"app_error_robot.png"];
-        img.frame = CGRectMake(kSystemWide/2-72/2, kSystemHeight/2-75/2-64, 72, 75);
+        img.frame = CGRectMake(kSystemWide/2-72/2+2, kSystemHeight/2-75/2-64-10, 72, 75);
         [self addSubview:img];
+        self.img = img;
 
         UILabel *label1 = [[UILabel alloc] init];
         label1.font = [UIFont systemFontOfSize:12];
@@ -41,13 +41,13 @@
     return self;
 }
 
-- (void)setMessage:(NSString *)message
-{
-    _message = message;
-    
-    self.label1.text = _message;
-
-}
+//- (void)setMessage:(NSString *)message
+//{
+//    _message = message;
+//    
+//    self.label1.text = _message;
+//
+//}
 
 
 /*

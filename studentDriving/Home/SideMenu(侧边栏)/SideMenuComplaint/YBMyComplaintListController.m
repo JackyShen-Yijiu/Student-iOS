@@ -24,7 +24,7 @@
 {
     if (_noCountmentView==nil) {
         _noCountmentView = [[YBAppointMentNoCountentView alloc] init];
-        _noCountmentView.message = @"暂无投诉记录";
+        _noCountmentView.label1.text = @"暂无投诉记录";
         _noCountmentView.frame = self.view.bounds;
     }
     return _noCountmentView;
