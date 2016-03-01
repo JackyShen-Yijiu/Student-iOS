@@ -203,6 +203,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 }
 - (void)didExchange:(UIButton *)btn{
     
+    
     if (![AcountManager isLogin]) {
         [DVVUserManager userNeedLogin];
         return;
