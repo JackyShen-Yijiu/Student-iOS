@@ -117,7 +117,7 @@
     self.listArray = @[@[@"我的消息", @"我的订单", @"我的钱包"],@[ @"班车接送",@"预约签到",@"优惠活动",@"用户设置"]];
     
     // 正常状态图片
-    self.imgArray = @[@[@"Message", @"order", @"wallet"], @[@"collect", @"scan", @"activity",@"set"]];
+    self.imgArray = @[@[@"Message", @"order", @"wallet"], @[@"bus", @"scan", @"activity",@"set"]];
     
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;

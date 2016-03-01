@@ -60,7 +60,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9KJ-98-F53">
                     <rect key="frame" x="0.0" y="522" width="320" height="46"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="side_complaint" translatesAutoresizingMaskIntoConstraints="NO" id="o2u-gN-Hlr">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="complaint" translatesAutoresizingMaskIntoConstraints="NO" id="o2u-gN-Hlr">
                             <rect key="frame" x="34" y="16" width="14" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="Mti-a7-4e0"/>
@@ -81,7 +81,7 @@
                                 <action selector="didClickComplaint:" destination="-1" eventType="touchUpInside" id="fld-1Y-scY"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="side_consulting" translatesAutoresizingMaskIntoConstraints="NO" id="ARM-Wb-aY6">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="consulting" translatesAutoresizingMaskIntoConstraints="NO" id="ARM-Wb-aY6">
                             <rect key="frame" x="160" y="16" width="14" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="14" id="eVp-RY-LpX"/>
@@ -157,7 +157,7 @@
     </objects>
     <resources>
         <image name="coach_man_default_icon" width="40" height="40"/>
-        <image name="side_complaint" width="14" height="14"/>
-        <image name="side_consulting" width="14" height="14"/>
+        <image name="complaint" width="14" height="14"/>
+        <image name="consulting" width="14" height="14"/>
     </resources>
 </document>

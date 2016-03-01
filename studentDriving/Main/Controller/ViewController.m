@@ -35,7 +35,8 @@
 #import "AppointmentDetailViewController.h"
 
 #import "YBUserCenterController.h"
-
+#import "MallOrderController.h"
+#import "MyConsultationListController.h"
 typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
     kYBSignUpViewController,
@@ -363,6 +364,14 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
             [self controller:chatListVC];
         }else if (1 == indexPath.row) {
             // 我的订单
+            if (![AcountManager isLogin]) {
+                [DVVUserManager userNeedLogin];
+                return;
+            }
+
+            MallOrderController *mallOrderVC = [[MallOrderController alloc] init];
+            [self controller:mallOrderVC];
+            
         }else if (2 == indexPath.row) {
             // 我的钱包
             if (![AcountManager isLogin]) {
@@ -608,6 +617,12 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
         
     }else if (5001 == btn.tag) {
         // 咨询跳转
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
+        MyConsultationListController *myconVC = [[MyConsultationListController alloc] init];
+        [self controller:myconVC];
     }
 }
 - (void)controller:(UIViewController *)itemVC{
