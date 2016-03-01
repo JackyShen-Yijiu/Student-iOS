@@ -266,7 +266,7 @@ static NSString *const kcodeGainUrl = @"code";
 - (UILabel *)invitationLabel{
     if (_invitationLabel == nil) {
         _invitationLabel = [[UILabel alloc] init];
-        _invitationLabel.text = @"邀请码(可选)";
+        _invitationLabel.text = @"邀请者的手机号(选填)";
         _invitationLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
         _invitationLabel.font = [UIFont systemFontOfSize:10];
     }

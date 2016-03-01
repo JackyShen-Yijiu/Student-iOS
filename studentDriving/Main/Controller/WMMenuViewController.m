@@ -36,6 +36,10 @@
     [self setUpUserData];
 
 }
+- (IBAction)didClickComplaint:(id)sender {
+}
+- (IBAction)didConsulting:(id)sender {
+}
 
 - (void)setUpUserData
 {
@@ -90,10 +94,15 @@
 //    // 正常状态图片
 //    self.imgArray = @[@"Slide_Menu_Message_Normal", @"Slide_Menu_Activity_Normal", @"Slide_Menu_SignUp_Normal", @"Slide_Menu_School_Normal", @"Slide_Menu_Money_Normal", @"Slide_Menu_Complaint_Normal",@"Slide_Menu_Advantage_Normal",@"Slide_Menu_Help_Normal"];
     
-    self.listArray = @[@"优惠活动", @"我的钱包", @"我的消息", @"班车接收" ,@"预约签到",@"我要投诉",@"一步优势",@"设置与帮助"];
+//    self.listArray = @[@"优惠活动", @"我的钱包", @"我的消息", @"班车接收" ,@"预约签到",@"我要投诉",@"一步优势",@"设置与帮助"];
+//    
+//    // 正常状态图片
+//    self.imgArray = @[@"Slide_Menu_Activity_Normal", @"Slide_Menu_Money_Normal", @"Slide_Menu_Message_Normal", @"Slide_Menu_School_Normal", @"Slide_Menu_SignUp_Normal", @"Slide_Menu_Complaint_Normal",@"Slide_Menu_Advantage_Normal",@"Slide_Menu_Help_Normal"];
+    
+    self.listArray = @[@"我的消息", @"我的订单", @"我的钱包", @"我的收藏",@"预约签到",@"优惠活动",@"用户设置"];
     
     // 正常状态图片
-    self.imgArray = @[@"Slide_Menu_Activity_Normal", @"Slide_Menu_Money_Normal", @"Slide_Menu_Message_Normal", @"Slide_Menu_School_Normal", @"Slide_Menu_SignUp_Normal", @"Slide_Menu_Complaint_Normal",@"Slide_Menu_Advantage_Normal",@"Slide_Menu_Help_Normal"];
+    self.imgArray = @[@"Message", @"order", @"wallet", @"collect", @"scan", @"activity",@"set"];
     
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;
@@ -137,15 +146,22 @@
 
 #pragma mark - tableView代理方法及数据源方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 1;
+    return 2;
 }
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 8;
+    if (0 == section) {
+        return 4;
+        
+    }
+    if (1 == section) {
+        return 3;
+    }
+    return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 0.09 * kSystemHeight;
+    return 39;
 }
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     // 没有用系统自带的类而用了自己重新定义的cell，仅仅为了之后扩展方便，无他
     WMMenuTableViewCell *cell = [WMMenuTableViewCell cellWithTableView:tableView];

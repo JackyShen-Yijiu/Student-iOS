@@ -18,20 +18,21 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    if (selected) {
-        self.textLabel.textColor = [UIColor whiteColor];
-        
-    }else{
-         self.textLabel.textColor = [UIColor whiteColor];
-        self.imageView.image = [UIImage imageNamed:self.normalImageStr];
-    }
-}
+//- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+//    [super setSelected:selected animated:animated];
+//
+//    if (selected) {
+//        self.textLabel.textColor = [UIColor whiteColor];
+//        
+//    }else{
+//         self.textLabel.textColor = [UIColor whiteColor];
+//        self.imageView.image = [UIImage imageNamed:self.normalImageStr];
+//    }
+//}
 - (void)setCellText:(NSString *)str withNormolImageStr:(NSString *)imageStr{
     self.normalImageStr = imageStr;
     self.textLabel.text = str;
+    self.textLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
     self.textLabel.font = [UIFont systemFontOfSize:14];
     self.imageView.image = [UIImage imageNamed:imageStr];
 }
@@ -53,8 +54,8 @@
     return cell;
 }
 - (void)layoutSubviews{
-    self.imageView.frame = CGRectMake(20, 10, 24, 24);
-    self.textLabel.frame = CGRectMake(self.imageView.frame.origin.x + 24 + 30, self.imageView.frame.origin.y + 5, 100, 12);
+    self.imageView.frame = CGRectMake(24, 0, 16, 16);
+    self.textLabel.frame = CGRectMake(self.imageView.frame.origin.x + 16 + 24, self.imageView.frame.origin.y , 100, 14);
 
 }
 

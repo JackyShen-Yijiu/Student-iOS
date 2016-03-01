@@ -20,4 +20,6 @@
 @property (weak, nonatomic) id<WMMenuViewControllerDelegate> delegate;
 @property (weak, nonatomic) id <WMMenuViewControllerDelegate> iconDelegage;
 
+@property (weak, nonatomic) IBOutlet UIButton *sideComplaintButton;
+@property (weak, nonatomic) IBOutlet UIButton *sideConsulting;
 @end

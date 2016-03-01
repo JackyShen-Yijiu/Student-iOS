@@ -88,7 +88,7 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    //self.view.backgroundColor = YBNavigationBarBgColor;
+    self.view.backgroundColor = RGBColor(245, 245, 245);
     
     self.common = [WMCommon getInstance];
     self.common.homeState = kStateHome;
@@ -98,9 +98,9 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
     self.leftDistance = self.common.screenW * viewSlideHorizonRatio;
     
     // 设置背景
-    UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.height)];
+    UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 198)];
 //    mightView.backgroundColor = [UIColor clearColor];
-    mightView.image = [UIImage imageNamed:@"YBSliderBarImg.jpg"];
+    mightView.image = [UIImage imageNamed:@"side_background.jpg"];
     [self.view addSubview:mightView];
     
     // 设置menu的view
