@@ -204,6 +204,7 @@
 		B226AF1D1C76F2E90028DF1A /* YBCoachListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B226AF1C1C76F2E90028DF1A /* YBCoachListViewCell.xib */; };
 		B228D6AC1C85ACD40043DD2A /* MyConsultationListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B228D6AB1C85ACD40043DD2A /* MyConsultationListController.m */; };
 		B228D6B01C85AE810043DD2A /* MyConsultationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B228D6AE1C85AE810043DD2A /* MyConsultationListCell.m */; };
+		B228D6B41C85D7EC0043DD2A /* YBConsultationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B228D6B31C85D7EC0043DD2A /* YBConsultationController.m */; };
 		B22E1E9C1C78923F000E8AEE /* YBForceEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */; };
 		B22E1E9F1C7B0F35000E8AEE /* YBObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1E9E1C7B0F35000E8AEE /* YBObjectTool.m */; };
 		B22E1EA21C7B24B7000E8AEE /* HMCourseUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1EA11C7B24B7000E8AEE /* HMCourseUserModel.m */; };
@@ -1523,6 +1524,8 @@
 		B228D6AB1C85ACD40043DD2A /* MyConsultationListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConsultationListController.m; sourceTree = "<group>"; };
 		B228D6AD1C85AE810043DD2A /* MyConsultationListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyConsultationListCell.h; sourceTree = "<group>"; };
 		B228D6AE1C85AE810043DD2A /* MyConsultationListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyConsultationListCell.m; sourceTree = "<group>"; };
+		B228D6B21C85D7EC0043DD2A /* YBConsultationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBConsultationController.h; sourceTree = "<group>"; };
+		B228D6B31C85D7EC0043DD2A /* YBConsultationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBConsultationController.m; sourceTree = "<group>"; };
 		B22E1E9A1C78923F000E8AEE /* YBForceEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBForceEvaluateViewController.h; sourceTree = "<group>"; };
 		B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBForceEvaluateViewController.m; sourceTree = "<group>"; };
 		B22E1E9D1C7B0F35000E8AEE /* YBObjectTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBObjectTool.h; sourceTree = "<group>"; };
@@ -3744,6 +3747,8 @@
 			children = (
 				B228D6AA1C85ACD40043DD2A /* MyConsultationListController.h */,
 				B228D6AB1C85ACD40043DD2A /* MyConsultationListController.m */,
+				B228D6B21C85D7EC0043DD2A /* YBConsultationController.h */,
+				B228D6B31C85D7EC0043DD2A /* YBConsultationController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7054,6 +7059,7 @@
 				56DAB10B1C7AFA2C00D7B942 /* YBComplaintCoachView.m in Sources */,
 				D5604B3F1BF656C50020F0D7 /* EMAudioRecorderUtil.m in Sources */,
 				D970D3971C3CFFEB003FCED3 /* CoachDMData.m in Sources */,
+				B228D6B41C85D7EC0043DD2A /* YBConsultationController.m in Sources */,
 				D96A02E91C814B9C00DFDCAC /* DVVCityListDMData.m in Sources */,
 				568DF21D1C75792B00008829 /* YBIntegralMallModel.m in Sources */,
 				B2E8E1891C72BA4F000190C2 /* WMCommon.m in Sources */,

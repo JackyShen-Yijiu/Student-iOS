@@ -99,7 +99,7 @@
 // 问时间
 - (UILabel *)askTimeLabel
 {
-    if (_askNameTitle==nil) {
+    if (_askTimeLabel==nil) {
         _askTimeLabel = [[UILabel alloc] init];
         _askTimeLabel.textAlignment = NSTextAlignmentRight;
         _askTimeLabel.font = [UIFont systemFontOfSize:10.f];
@@ -108,7 +108,7 @@
         _askTimeLabel.numberOfLines = 1;
         _askTimeLabel.text = @"askTimeLabel";
     }
-    return _askNameTitle;
+    return _askTimeLabel;
 }
 // 答时间
 - (UILabel *)replyTimeLabel
@@ -226,17 +226,17 @@
     
     // 问姓名
     [self.askNameTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.askPotraitView.top);
+        make.top.mas_equalTo(self.askPotraitView.mas_top);
         make.left.mas_equalTo(self.askPotraitView.mas_right).offset(16);
         make.height.mas_equalTo(@20);
-        make.width.mas_equalTo(@100);
+        make.width.mas_equalTo(@150);
     }];
     
     // 问时间
     [self.askTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.contentView.mas_right).offset(-16);
-        make.left.mas_equalTo(self.askNameTitle.mas_left).offset(20);
         make.top.mas_equalTo(self.askNameTitle.mas_top);
+        make.right.mas_equalTo(self.contentView.mas_right).offset(-16);
+        //make.left.mas_equalTo(self.askNameTitle.mas_left).offset(20);
     }];
     
     // 问内容
@@ -266,7 +266,7 @@
         make.left.mas_equalTo(self.askNameTitle.mas_left);
         make.top.mas_equalTo(self.replyPotraitView.mas_top);
         make.height.mas_equalTo(@20);
-        make.width.mas_equalTo(@100);
+        make.width.mas_equalTo(@150);
     }];
     
     // 答时间
@@ -296,35 +296,29 @@
 {
     _detailModel = detailModel;
     // 问头像
-    [self.askPotraitView.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",@""]] placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
+    [self.askPotraitView.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_detailModel[@"userid"][@"headportrait"][@"originalpic"]]] placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
     
     // 答头像
-    [self.replyPotraitView.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",@""]] placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
+//    [self.replyPotraitView.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",@""]] placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
 
     // 问姓名
-    self.askNameTitle.text = @"askNameTitle";
+    self.askNameTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"userid"][@"name"]];
     
     // 答姓名
-    self.replyNameTitle.text = @"replyNameTitle";
+    self.replyNameTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"replyuser"]];
     
     // 问时间
-    self.askTimeLabel.text = @"askTimeLabel";
+    self.askTimeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_detailModel[@"replytime"]]];
     
     // 答时间
-    self.replyTimeLabel.text = @"replyTimeLabel";
+    self.replyTimeLabel.text = [NSString getYearLocalDateFormateUTCDate:_detailModel[@"createtime"]];
     
     // 问内容
-    self.askSubTitle.text = @"askSubTitle";
+    self.askSubTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"content"]];
     
     // 答内容
-    self.replySubTitle.text = @"replySubTitle";
-    
-//    self.titleLabel.text = [NSString stringWithFormat:@"投诉教练:%@",_detailModel[@"coachid"][@"name"]];
-//    
-//    self.timeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_detailModel[@"complaint"][@"complainttime"]]];
-//    
-//    self.countentLabel.text = [NSString stringWithFormat:@"%@",_detailModel[@"complaint"][@"complaintcontent"]];
-    
+    self.replySubTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"replycontent"]];
+   
 }
 
 + (CGFloat)heightWithModel:(NSDictionary *)model
@@ -332,7 +326,7 @@
     
     MyConsultationListCell *cell = [[MyConsultationListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyConsultationListCell"];
     
-//    cell.detailModel = model;
+    cell.detailModel = model;
     
     [cell layoutIfNeeded];
     

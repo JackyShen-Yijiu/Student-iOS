@@ -37,6 +37,8 @@ static NSString *const kappointmentUrl = @"courseinfo/getmyuncommentreservation?
 
 static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 
+static NSString *const ksaveuserconsult = @"saveuserconsult";
+
 static NSString *const KAppointgetmyreservation = @"courseinfo/getmyreservation";
 
 static NSString *kinfomationCheck = @"userinfo/getmyapplystate";
