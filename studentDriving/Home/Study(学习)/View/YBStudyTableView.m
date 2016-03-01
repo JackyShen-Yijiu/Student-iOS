@@ -18,6 +18,7 @@
 #import "YBAppointTestViewController.h"
 #import "YBCheatslistViewController.h"
 #import "YBCheatsViewController.h"
+#import "MyConsultationListController.h"
 
 #define kCellIdentifier @"YBStudyViewCell"
 
@@ -89,6 +90,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"self.studyProgress:%ld",(long)self.studyProgress);
+    
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
