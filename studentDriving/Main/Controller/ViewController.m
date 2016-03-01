@@ -87,8 +87,8 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    self.view.backgroundColor = RGBColor(245, 245, 245);
+    self.view.backgroundColor = [UIColor colorWithHexString:@"f7f7f7"];
+//    self.view.backgroundColor = ;
     
     self.common = [WMCommon getInstance];
     self.common.homeState = kStateHome;
