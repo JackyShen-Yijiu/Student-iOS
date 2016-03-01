@@ -91,6 +91,7 @@
 {
     NSLog(@"self.studyProgress:%ld",(long)self.studyProgress);
     
+    
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
     if ([WMCommon getInstance].homeState==kStateMenu) {

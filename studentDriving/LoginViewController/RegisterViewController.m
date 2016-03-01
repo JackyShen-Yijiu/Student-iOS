@@ -579,7 +579,7 @@ static NSString *const kcodeGainUrl = @"code";
     
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
         
-        [self obj_showTotasViewWithMes:@"请输入手机号"];
+//        [self obj_showTotasViewWithMes:@"请输入手机号"];
         self.phoneWarngingView.hidden = NO;
 //        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
 //        _showWarningMessageView.isShowWarningMessage  = NO;
@@ -590,7 +590,7 @@ static NSString *const kcodeGainUrl = @"code";
     }else {
         
         if (![AcountManager isValidateMobile:self.phoneTextField.text]) {
-            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+//            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
             self.phoneWarngingView.hidden = NO;
 //            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
 //            _showWarningMessageView.isShowWarningMessage  = NO;
@@ -643,7 +643,7 @@ static NSString *const kcodeGainUrl = @"code";
     
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
         
-        [self obj_showTotasViewWithMes:@"请输入手机号"];
+//        [self obj_showTotasViewWithMes:@"请输入手机号"];
         self.phoneWarngingView.hidden = NO;
 //        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
 //        _showWarningMessageView.isShowWarningMessage  = NO;
@@ -654,7 +654,7 @@ static NSString *const kcodeGainUrl = @"code";
     }else {
         
         if (![AcountManager isValidateMobile:self.phoneTextField.text]) {
-            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+//            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
             self.phoneWarngingView.hidden = NO;
 //            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
 //            _showWarningMessageView.isShowWarningMessage  = NO;
@@ -666,13 +666,13 @@ static NSString *const kcodeGainUrl = @"code";
     
     [self.paramsPost setObject:self.phoneTextField.text forKey:@"mobile"];
     if (self.authCodeTextFild.text.length <= 0 || self.authCodeTextFild.text == nil) {
-        [self obj_showTotasViewWithMes:@"请输入验证码"];
+//        [self obj_showTotasViewWithMes:@"请输入验证码"];
         self.gainNumWarningView.hidden = NO;
         return;
     }
     [self.paramsPost setObject:self.authCodeTextFild.text forKey:@"smscode"];
     if (self.passWordTextFild.text == nil || self.passWordTextFild.text.length <= 0) {
-        [self obj_showTotasViewWithMes:@"请输入密码"];
+//        [self obj_showTotasViewWithMes:@"请输入密码"];
         self.passwordWarningView.hidden = NO;
 //        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _passwordLabel.frame.origin.y, 120, 18)];
 //        _showWarningMessageView.isShowWarningMessage  = NO;

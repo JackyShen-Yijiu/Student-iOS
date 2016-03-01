@@ -299,8 +299,8 @@
     [self.askPotraitView.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_detailModel[@"userid"][@"headportrait"][@"originalpic"]]] placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
     
     // 答头像
-//    [self.replyPotraitView.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",@""]] placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
-
+    //    [self.replyPotraitView.imageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",@""]] placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
+    
     // 问姓名
     self.askNameTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"userid"][@"name"]];
     
@@ -318,7 +318,7 @@
     
     // 答内容
     self.replySubTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"replycontent"]];
-   
+    
 }
 
 + (CGFloat)heightWithModel:(NSDictionary *)model
