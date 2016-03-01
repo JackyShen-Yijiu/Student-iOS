@@ -72,7 +72,7 @@
 
     _connectionState = eEMConnectionConnected;
 
-    [MobClick startWithAppkey:@"564cba17e0f55ae100005919" reportPolicy:BATCH   channelId:@""];
+    [MobClick startWithAppkey:@"56d26a6467e58ee7fa000349" reportPolicy:BATCH   channelId:@""];
     
     // 配置百度地图
     [self configBaiduMap];
@@ -122,7 +122,7 @@
 
 - (void)configBaiduMap {
     _mapManager = [[BMKMapManager alloc] init];
-    BOOL ret = [_mapManager start:@"qiKrc3cgNa2iFSWexjqstZ22" generalDelegate:self];
+    BOOL ret = [_mapManager start:@"HMNjNTeToLkeIKzo0CKH8bSK" generalDelegate:self];
     if (!ret) {
         NSLog(@"初始化失败 = %d",ret);
     }

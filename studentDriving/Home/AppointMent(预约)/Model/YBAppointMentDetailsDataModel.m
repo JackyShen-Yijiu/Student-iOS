@@ -20,8 +20,6 @@
     
     //     NSString *interface = [NSString stringWithFormat:@"userinfo/getuserinfo/2/userid/%@", _coachID];
 
-    // http://api.yibuxueche.com/api/v1/courseinfo/userreservationinfo/562a564f7e9f63f10185d220
-
     NSString *interface = [NSString stringWithFormat:@"courseinfo/userreservationinfo/%@", _appointMentID];
     NSString *url = [NSString stringWithFormat:BASEURL,interface];
     NSLog(@"dvv_networkRequestRefresh url:%@",url);

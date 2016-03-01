@@ -55,7 +55,7 @@
 - (UILabel *)contentDownLb {
     if (!_contentDownLb) {
         _contentDownLb = [[UILabel alloc] init];
-        _contentDownLb.text = @"一步学车将为您定制属于您的学车之路。";
+        _contentDownLb.text = @"极致驾服将为您定制属于您的学车之路。";
         _contentDownLb.textColor = [UIColor redColor];
         _contentDownLb.font = [UIFont systemFontOfSize:12];
     }

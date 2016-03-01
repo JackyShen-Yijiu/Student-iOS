@@ -111,7 +111,7 @@ static NSString *const kDrivingUrl = @"searchschool";
     
     _titleButton = [UIButton new];
     _titleButton.titleLabel.textAlignment = NSTextAlignmentCenter;
-    [_titleButton setTitle:@"一步学车" forState:UIControlStateNormal];
+    [_titleButton setTitle:@"极致驾服" forState:UIControlStateNormal];
     _titleButton.titleLabel.font= [UIFont systemFontOfSize:16];
     _titleButton.bounds = CGRectMake(0, 0, 16 * 4, 44);
     [_titleButton addTarget:self action:@selector(titleButtonClickAction:) forControlEvents:UIControlEventTouchUpInside];

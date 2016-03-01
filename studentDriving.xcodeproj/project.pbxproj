@@ -7735,7 +7735,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jizhijiafu.student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
@@ -7819,7 +7819,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jatd.studentDriving;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jizhijiafu.student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
