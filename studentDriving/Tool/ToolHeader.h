@@ -66,7 +66,7 @@ static NSString *const kQiniuImageUrl = @"http://7xnjg0.com1.z0.glb.clouddn.com/
 #define BACKGROUNDCOLOR [UIColor colorWithRed:247/255.0f green:249/255.0f blue:251/255.0f alpha:1]
 
 // 正式库
-#define BASEURL @"http://api.yibuxueche.com/api/v1/%@"
+#define BASEURL @"http://jzapi.yibuxueche.com/api/v1/%@"
 // 测试库
 //#define BASEURL @"http://101.200.204.240:8181/api/v1/%@"
 
