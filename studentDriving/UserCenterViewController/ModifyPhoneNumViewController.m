@@ -67,7 +67,9 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     if ([UIDevice jeSystemVersion] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-    self.view.backgroundColor = RGBColor(245, 247, 250);
+//    self.view.backgroundColor = RGBColor(245, 247, 250);
+//    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.nowPhoneNumLabel];
     [self.view addSubview:self.phoneNumLabel];
@@ -128,7 +130,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     }];
     DYNSLog(@"phone = %@",[AcountManager manager].userMobile);
     if ([AcountManager manager].userMobile) {
-        self.nowPhoneNumLabel.text = [NSString stringWithFormat:@"您当前手机号为%@",[AcountManager manager].userMobile] ;
+        self.nowPhoneNumLabel.text = [NSString stringWithFormat:@"您当前手机号为：%@",[AcountManager manager].userMobile] ;
     }
     
 }
@@ -162,9 +164,9 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         if (messege.intValue == 1) {
             
             [self obj_showTotasViewWithMes:@"绑定成功"];
-            weakSelf.nowPhoneNumLabel.text = [NSString stringWithFormat:@"您当前手机号为%@",weakSelf.phoneNumTextField.text];
+            weakSelf.nowPhoneNumLabel.text = [NSString stringWithFormat:@"您当前手机号为：%@",weakSelf.phoneNumTextField.text];
             [AcountManager saveUserPhoneNum:weakSelf.phoneNumTextField.text];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kphone object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:YBNotif_ChangeUserInfo object:nil];
             [self.navigationController popViewControllerAnimated:YES];
             
         }else {
@@ -250,6 +252,8 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         _phoneNumTextField.keyboardType = UIKeyboardTypeNumberPad;
         _phoneNumTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
         
+//        _phoneNumTextField.backgroundColor = [UIColor whiteColor];
+        
     }
     return _phoneNumTextField;
 }
@@ -266,6 +270,8 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
         _confirmTextField.font = [UIFont systemFontOfSize:15];
         _confirmTextField.textColor = [UIColor colorWithHexString:@"212121"];
         _confirmTextField.keyboardType = UIKeyboardTypeNumberPad;
+        
+//        _confirmTextField.backgroundColor = [UIColor whiteColor];
         
     }
     return _confirmTextField;

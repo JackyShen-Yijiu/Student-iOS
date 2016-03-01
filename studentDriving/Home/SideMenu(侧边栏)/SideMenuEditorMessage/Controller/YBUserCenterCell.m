@@ -34,7 +34,7 @@
     [super layoutSubviews];
     CGSize size = self.bounds.size;
     CGFloat minX = CGRectGetMinX(_titleLabel.frame);
-    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 15, 0.5);
+    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX, 0.5);
 }
 
 - (UIImageView *)lineImageView {

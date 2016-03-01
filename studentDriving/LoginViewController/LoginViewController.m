@@ -316,12 +316,12 @@ static NSString *const kuserType = @"usertype";
     if (20001 == textField.tag) {
         // 手机号输入完成
         if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length  == 0) {
-            [self obj_showTotasViewWithMes:@"请输入手机号"];
+//            [self obj_showTotasViewWithMes:@"请输入手机号"];
             self.phoneWarngingView.hidden = NO;
             return;
         }
         if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
-            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+//            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
             self.phoneWarngingView.hidden = NO;
             return;
         }
@@ -361,7 +361,7 @@ static NSString *const kuserType = @"usertype";
     
     
     if (self.passwordTextField.text == nil || self.passwordTextField.text.length  == 0) {
-        [self obj_showTotasViewWithMes:@"请输入密码"];
+//        [self obj_showTotasViewWithMes:@"请输入密码"];
         self.passwordWarningView.hidden = NO;
         return;
     }
@@ -393,7 +393,7 @@ static NSString *const kuserType = @"usertype";
         
         if ([type isEqualToString:@"0"]) {
             
-            [self obj_showTotasViewWithMes:@"密码错误"];
+//            [self obj_showTotasViewWithMes:@"密码错误"];
             self.passwordWarningView.hidden = NO;
             
         }else if ([type isEqualToString:@"1"]) {

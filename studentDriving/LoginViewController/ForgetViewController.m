@@ -586,7 +586,7 @@ static NSString *const kuserType = @"usertype";
             _mobile = ws.phoneNumTextField.text;
         }else {
             ws.confirmTextField.text = @"";
-            [ws obj_showTotasViewWithMes:@"验证码错误"];
+//            [ws obj_showTotasViewWithMes:@"验证码错误"];
             self.gainNumWarningView.hidden = NO;
         }
     }];
@@ -615,7 +615,7 @@ static NSString *const kuserType = @"usertype";
         
         if ([type isEqualToString:@"0"]) {
             
-            [self obj_showTotasViewWithMes:@"密码错误"];
+//            [self obj_showTotasViewWithMes:@"密码错误"];
             self.passwordWarningView.hidden = NO;
             
         }else if ([type isEqualToString:@"1"]) {
