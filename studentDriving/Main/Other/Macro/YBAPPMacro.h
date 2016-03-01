@@ -17,6 +17,10 @@ typedef enum state {
     kStateMenu
 }state;
 
+static const CGFloat viewSlideHorizonRatio = 0.8;
+static const CGFloat viewHeightNarrowRatio = 0.80;
+static const CGFloat menuStartNarrowRatio  = 0.70;
+
 // 教练列表
 static NSString *const kappointmentCoachUrl = @"userinfo/getusefulcoach/index/-1";
 

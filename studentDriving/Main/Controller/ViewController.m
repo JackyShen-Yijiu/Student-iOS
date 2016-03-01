@@ -49,10 +49,6 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
 };
 
-static const CGFloat viewSlideHorizonRatio = 0.8;
-static const CGFloat viewHeightNarrowRatio = 0.80;
-static const CGFloat menuStartNarrowRatio  = 0.70;
-
 @interface ViewController () <YBHomeBaseControllerDelegate, WMMenuViewControllerDelegate,UITabBarControllerDelegate>
 
 @property (assign, nonatomic) kOpenControllerType   vcType;// 控制器类型
