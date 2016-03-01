@@ -51,6 +51,9 @@
 #import "WMCommon.h"
 #import "ViewController.h"
 
+// 检查活动
+#import "YBActivity.h"
+
 @interface AppDelegate ()<UIAlertViewDelegate>
 {
     BOOL isReceiveMessage;
@@ -305,7 +308,9 @@
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
     // 当程序由后台进入前台后，调用检查活动的方法，检查今天是否有活动
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kCheckActivity" object:nil];
+    [YBActivity checkActivity];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"kCheckActivity" object:nil];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

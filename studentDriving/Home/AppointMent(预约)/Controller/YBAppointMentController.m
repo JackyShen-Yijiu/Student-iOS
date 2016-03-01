@@ -26,6 +26,7 @@
 #import "YBObjectTool.h"
 #import "YBAppointMentDetailsController.h"
 #import "WMCommon.h"
+#import "YBActivity.h"
 
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -164,6 +165,8 @@
 {
     [super viewWillAppear:animated];
     
+    [YBActivity  checkActivity];
+    
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
@@ -176,6 +179,7 @@
         [DVVUserManager userNeedLogin];
         return;
     }
+    
     
 }
 

@@ -56,6 +56,7 @@
         self.view.alpha = 1;
         self.backgroundImageView.alpha = 0.3;
     }];
+
 }
 - (void)viewWillDisappear:(BOOL)animated {
     [self.navigationController setNavigationBarHidden:NO];
@@ -82,6 +83,19 @@
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
+    
+//    CGRect rect = self.webView.frame;
+//    self.webView.frame = CGRectMake(0, 0, 0, 0);
+//    self.webView.center = self.view.center;
+//    
+//    [UIView animateWithDuration:0.7 delay:0 usingSpringWithDamping:0.7 initialSpringVelocity:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+//        self.webView.frame = rect;
+//        self.webView.center = self.view.center;
+//        
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+
     
     [MBProgressHUD hideHUDForView:self.view animated:YES];
 }

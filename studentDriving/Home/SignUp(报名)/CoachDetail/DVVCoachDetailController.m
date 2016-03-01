@@ -386,6 +386,12 @@ static NSString *courseCellID = @"kCourseCellID";
             _headerView.alphaView.backgroundColor = [UIColor clearColor];
         }];
     }
+    
+    // 取消tableView底部的弹簧效果的方法
+    CGFloat maxOffsetY = _tableView.contentSize.height - _tableView.bounds.size.height;
+    if (offsetY > maxOffsetY) {
+        _tableView.contentOffset = CGPointMake(0, maxOffsetY);
+    }
 }
 
 
