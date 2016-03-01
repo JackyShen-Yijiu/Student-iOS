@@ -166,10 +166,10 @@ static NSString *const kcodeGainUrl = @"code";
 - (UIButton *)eyeButton{
     if (_eyeButton == nil) {
         _eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"1-1"] forState:UIControlStateSelected];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateNormal];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateSelected];
         [_eyeButton addTarget:self action:@selector(didEyeButton:) forControlEvents:UIControlEventTouchUpInside];
-        _eyeButton.backgroundColor = [UIColor cyanColor];
+        _eyeButton.backgroundColor = [UIColor clearColor];
     }
     return _eyeButton;
 }
@@ -479,8 +479,8 @@ static NSString *const kcodeGainUrl = @"code";
     
     
     [self.eyeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
-        make.top.mas_equalTo(self.authCodeTextFild.mas_bottom).with.offset(0);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-10);
+        make.top.mas_equalTo(self.authCodeTextFild.mas_bottom).with.offset(5);
         make.height.mas_equalTo(@40);
         make.width.mas_equalTo(@40);
     }];

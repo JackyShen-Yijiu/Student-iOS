@@ -234,10 +234,10 @@ static NSString *const kuserType = @"usertype";
 - (UIButton *)eyeButton{
     if (_eyeButton == nil) {
         _eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"1"] forState:UIControlStateNormal];
-        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"1-1"] forState:UIControlStateSelected];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateNormal];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateSelected];
         [_eyeButton addTarget:self action:@selector(didEyeButton:) forControlEvents:UIControlEventTouchUpInside];
-        _eyeButton.backgroundColor = [UIColor cyanColor];
+        _eyeButton.backgroundColor = [UIColor clearColor];
     }
     return _eyeButton;
 }
@@ -356,7 +356,7 @@ static NSString *const kuserType = @"usertype";
         make.width.mas_equalTo(@40);
     }];
     [self.eyeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-10);
         make.top.mas_equalTo(self.confirmTextField.mas_bottom).with.offset(0);
         make.height.mas_equalTo(@40);
         make.width.mas_equalTo(@40);
