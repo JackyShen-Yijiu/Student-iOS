@@ -53,6 +53,7 @@
         self.editTextFidld.placeholder = @"请选择性别";
         _genderArray = @[ @"男", @"女" ];
         self.editTextFidld.inputView = self.pickerView;
+        [self.editTextFidld becomeFirstResponder];
         
     }else if (_editType == YBEditUserInfoType_Mobile) {
         self.title = @"手机号";
