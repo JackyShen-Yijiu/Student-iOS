@@ -524,7 +524,7 @@ static NSString *const kuserType = @"usertype";
             
         }else {
             
-            [self obj_showTotasViewWithMes:param[@"msg"]];
+            [self obj_showTotasViewWithMes:resultData[@"msg"]];
             
         }
     }];
@@ -587,6 +587,7 @@ static NSString *const kuserType = @"usertype";
         }else {
             ws.confirmTextField.text = @"";
             [ws obj_showTotasViewWithMes:@"验证码错误"];
+            self.gainNumWarningView.hidden = NO;
         }
     }];
 }
