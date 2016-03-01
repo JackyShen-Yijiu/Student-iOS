@@ -32,7 +32,7 @@
 {
     if (_noCountmentView==nil) {
         _noCountmentView = [[YBAppointMentNoCountentView alloc] init];
-        _noCountmentView.message = @"暂无数据";
+        _noCountmentView.label1.text = @"暂无数据";
         _noCountmentView.frame = self.view.bounds;
     }
     return _noCountmentView;

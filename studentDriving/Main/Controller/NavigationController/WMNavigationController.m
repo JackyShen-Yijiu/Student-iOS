@@ -22,7 +22,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+  
     self.interactivePopGestureRecognizer.delegate = self;
     
 //    UIGestureRecognizer *gesture = self.interactivePopGestureRecognizer;

@@ -189,7 +189,10 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
     self.mainNav.tabBarItem.title = title;
     self.mainNav.tabBarItem.image = [UIImage imageNamed:img];
-//    self.mainNav.tabBarItem.selectedImage = [UIImage imageNamed:@"tab_qworld_nor"];
+    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:16.f],
+                                      NSForegroundColorAttributeName: [UIColor whiteColor]
+                                      };
+    [[self.mainNav navigationBar]  setTitleTextAttributes:textAttributes1];
 
     // 设置tabbar字体颜色
     self.tabBarController.tabBar.tintColor = YBNavigationBarBgColor;

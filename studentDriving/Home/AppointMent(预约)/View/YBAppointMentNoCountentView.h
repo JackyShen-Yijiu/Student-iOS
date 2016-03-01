@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface YBAppointMentNoCountentView : UIView
-@property (nonatomic,copy)NSString *message;
+
+@property (nonatomic,weak)UIImageView *img;
+
+@property (nonatomic,weak)UILabel *label1;
+
 @end
