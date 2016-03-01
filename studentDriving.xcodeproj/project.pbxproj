@@ -207,6 +207,23 @@
 		B228D6B01C85AE810043DD2A /* MyConsultationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B228D6AE1C85AE810043DD2A /* MyConsultationListCell.m */; };
 		B228D6B41C85D7EC0043DD2A /* YBConsultationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B228D6B31C85D7EC0043DD2A /* YBConsultationController.m */; };
 		B228D6BA1C85F3520043DD2A /* YBOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B228D6B91C85F3520043DD2A /* YBOrderListViewController.m */; };
+		B228D6D51C8624C40043DD2A /* CertificateSigningRequest.certSigningRequest in Resources */ = {isa = PBXBuildFile; fileRef = B228D6BC1C8624C40043DD2A /* CertificateSigningRequest.certSigningRequest */; };
+		B228D6D61C8624C40043DD2A /* jizhijiafuStudentDevelopment.mobileprovision in Resources */ = {isa = PBXBuildFile; fileRef = B228D6BF1C8624C40043DD2A /* jizhijiafuStudentDevelopment.mobileprovision */; };
+		B228D6D71C8624C40043DD2A /* jizhijiafuStudentDistribution.mobileprovision in Resources */ = {isa = PBXBuildFile; fileRef = B228D6C01C8624C40043DD2A /* jizhijiafuStudentDistribution.mobileprovision */; };
+		B228D6D81C8624C40043DD2A /* ios_development.cer in Resources */ = {isa = PBXBuildFile; fileRef = B228D6C21C8624C40043DD2A /* ios_development.cer */; };
+		B228D6D91C8624C40043DD2A /* ios_distribution.cer in Resources */ = {isa = PBXBuildFile; fileRef = B228D6C31C8624C40043DD2A /* ios_distribution.cer */; };
+		B228D6DA1C8624C40043DD2A /* aps.cer in Resources */ = {isa = PBXBuildFile; fileRef = B228D6C51C8624C40043DD2A /* aps.cer */; };
+		B228D6DB1C8624C40043DD2A /* aps.p12 in Resources */ = {isa = PBXBuildFile; fileRef = B228D6C61C8624C40043DD2A /* aps.p12 */; };
+		B228D6DC1C8624C40043DD2A /* aps_development.cer in Resources */ = {isa = PBXBuildFile; fileRef = B228D6C71C8624C40043DD2A /* aps_development.cer */; };
+		B228D6DD1C8624C40043DD2A /* aps_development.p12 in Resources */ = {isa = PBXBuildFile; fileRef = B228D6C81C8624C40043DD2A /* aps_development.p12 */; };
+		B228D6DE1C8624C40043DD2A /* jizhijiafuCoachDevelopment.mobileprovision in Resources */ = {isa = PBXBuildFile; fileRef = B228D6CB1C8624C40043DD2A /* jizhijiafuCoachDevelopment.mobileprovision */; };
+		B228D6DF1C8624C40043DD2A /* jizhijiafuCoachDistribution.mobileprovision in Resources */ = {isa = PBXBuildFile; fileRef = B228D6CC1C8624C40043DD2A /* jizhijiafuCoachDistribution.mobileprovision */; };
+		B228D6E01C8624C40043DD2A /* ios_development.cer in Resources */ = {isa = PBXBuildFile; fileRef = B228D6CE1C8624C40043DD2A /* ios_development.cer */; };
+		B228D6E11C8624C40043DD2A /* ios_distribution.cer in Resources */ = {isa = PBXBuildFile; fileRef = B228D6CF1C8624C40043DD2A /* ios_distribution.cer */; };
+		B228D6E21C8624C40043DD2A /* aps.cer in Resources */ = {isa = PBXBuildFile; fileRef = B228D6D11C8624C40043DD2A /* aps.cer */; };
+		B228D6E31C8624C40043DD2A /* aps.p12 in Resources */ = {isa = PBXBuildFile; fileRef = B228D6D21C8624C40043DD2A /* aps.p12 */; };
+		B228D6E41C8624C40043DD2A /* aps_development.cer in Resources */ = {isa = PBXBuildFile; fileRef = B228D6D31C8624C40043DD2A /* aps_development.cer */; };
+		B228D6E51C8624C40043DD2A /* aps_development.p12 in Resources */ = {isa = PBXBuildFile; fileRef = B228D6D41C8624C40043DD2A /* aps_development.p12 */; };
 		B22E1E9C1C78923F000E8AEE /* YBForceEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */; };
 		B22E1E9F1C7B0F35000E8AEE /* YBObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1E9E1C7B0F35000E8AEE /* YBObjectTool.m */; };
 		B22E1EA21C7B24B7000E8AEE /* HMCourseUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B22E1EA11C7B24B7000E8AEE /* HMCourseUserModel.m */; };
@@ -1545,6 +1562,23 @@
 		B228D6B31C85D7EC0043DD2A /* YBConsultationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBConsultationController.m; sourceTree = "<group>"; };
 		B228D6B81C85F3520043DD2A /* YBOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBOrderListViewController.h; sourceTree = "<group>"; };
 		B228D6B91C85F3520043DD2A /* YBOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBOrderListViewController.m; sourceTree = "<group>"; };
+		B228D6BC1C8624C40043DD2A /* CertificateSigningRequest.certSigningRequest */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = CertificateSigningRequest.certSigningRequest; sourceTree = "<group>"; };
+		B228D6BF1C8624C40043DD2A /* jizhijiafuStudentDevelopment.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = jizhijiafuStudentDevelopment.mobileprovision; sourceTree = "<group>"; };
+		B228D6C01C8624C40043DD2A /* jizhijiafuStudentDistribution.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = jizhijiafuStudentDistribution.mobileprovision; sourceTree = "<group>"; };
+		B228D6C21C8624C40043DD2A /* ios_development.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = ios_development.cer; sourceTree = "<group>"; };
+		B228D6C31C8624C40043DD2A /* ios_distribution.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = ios_distribution.cer; sourceTree = "<group>"; };
+		B228D6C51C8624C40043DD2A /* aps.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps.cer; sourceTree = "<group>"; };
+		B228D6C61C8624C40043DD2A /* aps.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps.p12; sourceTree = "<group>"; };
+		B228D6C71C8624C40043DD2A /* aps_development.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_development.cer; sourceTree = "<group>"; };
+		B228D6C81C8624C40043DD2A /* aps_development.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_development.p12; sourceTree = "<group>"; };
+		B228D6CB1C8624C40043DD2A /* jizhijiafuCoachDevelopment.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = jizhijiafuCoachDevelopment.mobileprovision; sourceTree = "<group>"; };
+		B228D6CC1C8624C40043DD2A /* jizhijiafuCoachDistribution.mobileprovision */ = {isa = PBXFileReference; lastKnownFileType = file; path = jizhijiafuCoachDistribution.mobileprovision; sourceTree = "<group>"; };
+		B228D6CE1C8624C40043DD2A /* ios_development.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = ios_development.cer; sourceTree = "<group>"; };
+		B228D6CF1C8624C40043DD2A /* ios_distribution.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = ios_distribution.cer; sourceTree = "<group>"; };
+		B228D6D11C8624C40043DD2A /* aps.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps.cer; sourceTree = "<group>"; };
+		B228D6D21C8624C40043DD2A /* aps.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps.p12; sourceTree = "<group>"; };
+		B228D6D31C8624C40043DD2A /* aps_development.cer */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_development.cer; sourceTree = "<group>"; };
+		B228D6D41C8624C40043DD2A /* aps_development.p12 */ = {isa = PBXFileReference; lastKnownFileType = file; path = aps_development.p12; sourceTree = "<group>"; };
 		B22E1E9A1C78923F000E8AEE /* YBForceEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBForceEvaluateViewController.h; sourceTree = "<group>"; };
 		B22E1E9B1C78923F000E8AEE /* YBForceEvaluateViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBForceEvaluateViewController.m; sourceTree = "<group>"; };
 		B22E1E9D1C7B0F35000E8AEE /* YBObjectTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBObjectTool.h; sourceTree = "<group>"; };
@@ -3808,6 +3842,94 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B228D6BB1C8624C40043DD2A /* 开发者证书 */ = {
+			isa = PBXGroup;
+			children = (
+				B228D6BC1C8624C40043DD2A /* CertificateSigningRequest.certSigningRequest */,
+				B228D6BD1C8624C40043DD2A /* 学员端 */,
+				B228D6C91C8624C40043DD2A /* 教练端 */,
+			);
+			path = "开发者证书";
+			sourceTree = "<group>";
+		};
+		B228D6BD1C8624C40043DD2A /* 学员端 */ = {
+			isa = PBXGroup;
+			children = (
+				B228D6BE1C8624C40043DD2A /* pp */,
+				B228D6C11C8624C40043DD2A /* 开发者证书 */,
+				B228D6C41C8624C40043DD2A /* 推送证书 */,
+			);
+			path = "学员端";
+			sourceTree = "<group>";
+		};
+		B228D6BE1C8624C40043DD2A /* pp */ = {
+			isa = PBXGroup;
+			children = (
+				B228D6BF1C8624C40043DD2A /* jizhijiafuStudentDevelopment.mobileprovision */,
+				B228D6C01C8624C40043DD2A /* jizhijiafuStudentDistribution.mobileprovision */,
+			);
+			path = pp;
+			sourceTree = "<group>";
+		};
+		B228D6C11C8624C40043DD2A /* 开发者证书 */ = {
+			isa = PBXGroup;
+			children = (
+				B228D6C21C8624C40043DD2A /* ios_development.cer */,
+				B228D6C31C8624C40043DD2A /* ios_distribution.cer */,
+			);
+			path = "开发者证书";
+			sourceTree = "<group>";
+		};
+		B228D6C41C8624C40043DD2A /* 推送证书 */ = {
+			isa = PBXGroup;
+			children = (
+				B228D6C51C8624C40043DD2A /* aps.cer */,
+				B228D6C61C8624C40043DD2A /* aps.p12 */,
+				B228D6C71C8624C40043DD2A /* aps_development.cer */,
+				B228D6C81C8624C40043DD2A /* aps_development.p12 */,
+			);
+			path = "推送证书";
+			sourceTree = "<group>";
+		};
+		B228D6C91C8624C40043DD2A /* 教练端 */ = {
+			isa = PBXGroup;
+			children = (
+				B228D6CA1C8624C40043DD2A /* pp */,
+				B228D6CD1C8624C40043DD2A /* 开发者证书 */,
+				B228D6D01C8624C40043DD2A /* 推送证书 */,
+			);
+			path = "教练端";
+			sourceTree = "<group>";
+		};
+		B228D6CA1C8624C40043DD2A /* pp */ = {
+			isa = PBXGroup;
+			children = (
+				B228D6CB1C8624C40043DD2A /* jizhijiafuCoachDevelopment.mobileprovision */,
+				B228D6CC1C8624C40043DD2A /* jizhijiafuCoachDistribution.mobileprovision */,
+			);
+			path = pp;
+			sourceTree = "<group>";
+		};
+		B228D6CD1C8624C40043DD2A /* 开发者证书 */ = {
+			isa = PBXGroup;
+			children = (
+				B228D6CE1C8624C40043DD2A /* ios_development.cer */,
+				B228D6CF1C8624C40043DD2A /* ios_distribution.cer */,
+			);
+			path = "开发者证书";
+			sourceTree = "<group>";
+		};
+		B228D6D01C8624C40043DD2A /* 推送证书 */ = {
+			isa = PBXGroup;
+			children = (
+				B228D6D11C8624C40043DD2A /* aps.cer */,
+				B228D6D21C8624C40043DD2A /* aps.p12 */,
+				B228D6D31C8624C40043DD2A /* aps_development.cer */,
+				B228D6D41C8624C40043DD2A /* aps_development.p12 */,
+			);
+			path = "推送证书";
+			sourceTree = "<group>";
+		};
 		B2E8E1601C72BA4F000190C2 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -5221,7 +5343,7 @@
 		D588AF881BDDB62C000C5D6F /* studentDriving */ = {
 			isa = PBXGroup;
 			children = (
-				B2C65ADE1C840F9700E3194B /* 开发者证书 */,
+				B228D6BB1C8624C40043DD2A /* 开发者证书 */,
 				B2E8E18E1C72C6F2000190C2 /* Home */,
 				B2E8E1601C72BA4F000190C2 /* Main */,
 				B20DBE441C5DB0FF0023676E /* 支付相关 */,
@@ -6609,6 +6731,7 @@
 				D5604C3C1BF656C50020F0D7 /* tabbar_contacts.png in Resources */,
 				D5604C231BF656C50020F0D7 /* chat_sender_bg@2x.png in Resources */,
 				B2F1AEA61C817AB2006D56FF /* YBCheatsData.json in Resources */,
+				B228D6D81C8624C40043DD2A /* ios_development.cer in Resources */,
 				D5604BD71BF656C50020F0D7 /* chat_location_detail_disclosureHL.png in Resources */,
 				D5604BCC1BF656C50020F0D7 /* chatBar_more_cardSelected@2x.png in Resources */,
 				D5604BDF1BF656C50020F0D7 /* chatBar_face.png in Resources */,
@@ -6660,6 +6783,7 @@
 				D5604BAE1BF656C50020F0D7 /* VoiceSearchFeedback012@2x.png in Resources */,
 				D5604BD51BF656C50020F0D7 /* chat_location_detail_disclosure.png in Resources */,
 				D5604B921BF656C50020F0D7 /* 57.png in Resources */,
+				B228D6DB1C8624C40043DD2A /* aps.p12 in Resources */,
 				D5604C031BF656C50020F0D7 /* chatBar_more_location.png in Resources */,
 				D5604C471BF656C50020F0D7 /* tabbarSelectBg@2x.png in Resources */,
 				D919F31D1C60885A00239B34 /* UMSocialLocalizable.strings in Resources */,
@@ -6677,6 +6801,7 @@
 				D99674921C7D72B90000CC65 /* DVVSignUpDetailFooterView.xib in Resources */,
 				D5604C451BF656C50020F0D7 /* tabbarBackground@2x.png in Resources */,
 				D939BE601C8563080049BC7E /* YBUserCenterCell.xib in Resources */,
+				B228D6E01C8624C40043DD2A /* ios_development.cer in Resources */,
 				D5604C111BF656C50020F0D7 /* chat_receiver_audio_playing002@2x.png in Resources */,
 				D5604C2A1BF656C50020F0D7 /* delete@2x.png in Resources */,
 				B20DBEC61C5DB0FF0023676E /* AlipaySDK.bundle in Resources */,
@@ -6687,6 +6812,7 @@
 				D5604BF41BF656C50020F0D7 /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
 				D5604C401BF656C50020F0D7 /* tabbar_setting.png in Resources */,
 				D5604C301BF656C50020F0D7 /* group_invitee_delete@2x.png in Resources */,
+				B228D6DD1C8624C40043DD2A /* aps_development.p12 in Resources */,
 				D5604B9B1BF656C50020F0D7 /* VoiceSearchFeedback003.png in Resources */,
 				D5604BF01BF656C50020F0D7 /* chatBar_recordSelected@2x.png in Resources */,
 				D5604BA71BF656C50020F0D7 /* VoiceSearchFeedback009.png in Resources */,
@@ -6717,6 +6843,7 @@
 				568DF22E1C7591EF00008829 /* LTBottomView.xib in Resources */,
 				D5604B991BF656C50020F0D7 /* VoiceSearchFeedback002.png in Resources */,
 				D5604CC01BF6E0150020F0D7 /* Localizable.strings in Resources */,
+				B228D6E21C8624C40043DD2A /* aps.cer in Resources */,
 				D5604C1F1BF656C50020F0D7 /* chat_sender_audio_playing_003@2x.png in Resources */,
 				D95FF5F91C84606900D55ED9 /* YBHelpData.json in Resources */,
 				D5604BD01BF656C50020F0D7 /* chatBar_more_faceSelected@2x.png in Resources */,
@@ -6731,6 +6858,7 @@
 				D5604C041BF656C50020F0D7 /* chatBar_more_location@2x.png in Resources */,
 				D5604BBB1BF656C50020F0D7 /* VoiceSearchFeedback019.png in Resources */,
 				D919F3271C60885A00239B34 /* UMSShareListController.xib in Resources */,
+				B228D6E11C8624C40043DD2A /* ios_distribution.cer in Resources */,
 				D5604B931BF656C50020F0D7 /* 58.png in Resources */,
 				D5604B941BF656C50020F0D7 /* 80.png in Resources */,
 				568DF22C1C7591EF00008829 /* finishMessageView.xib in Resources */,
@@ -6785,6 +6913,8 @@
 				D5604BD81BF656C50020F0D7 /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				D588AF991BDDB62C000C5D6F /* LaunchScreen.storyboard in Resources */,
 				D5604B9F1BF656C50020F0D7 /* VoiceSearchFeedback005.png in Resources */,
+				B228D6D71C8624C40043DD2A /* jizhijiafuStudentDistribution.mobileprovision in Resources */,
+				B228D6D61C8624C40043DD2A /* jizhijiafuStudentDevelopment.mobileprovision in Resources */,
 				D5604BBD1BF656C50020F0D7 /* VoiceSearchFeedback020.png in Resources */,
 				D5604BA61BF656C50020F0D7 /* VoiceSearchFeedback008@2x.png in Resources */,
 				D99674741C7D54610000CC65 /* DrivingDetailAddressCell.xib in Resources */,
@@ -6792,8 +6922,10 @@
 				D588AF961BDDB62C000C5D6F /* Assets.xcassets in Resources */,
 				D919F3261C60885A00239B34 /* UMSnsAccountViewController.xib in Resources */,
 				D5604BF21BF656C50020F0D7 /* chatBar_recordSelectedBg@2x.png in Resources */,
+				B228D6DA1C8624C40043DD2A /* aps.cer in Resources */,
 				D5604BE51BF656C50020F0D7 /* chatBar_keyboardSelected.png in Resources */,
 				D5604C371BF656C50020F0D7 /* newFriends@2x.png in Resources */,
+				B228D6D51C8624C40043DD2A /* CertificateSigningRequest.certSigningRequest in Resources */,
 				B2C65AFB1C840F9700E3194B /* jizhijiafuStudentDistributionck.pem in Resources */,
 				D5604B951BF656C50020F0D7 /* chatListCellHead.png in Resources */,
 				D5604C3A1BF656C50020F0D7 /* tabbar_chatsHL.png in Resources */,
@@ -6809,6 +6941,7 @@
 				D5604C2B1BF656C50020F0D7 /* group_detail@2x.png in Resources */,
 				D5604BB21BF656C50020F0D7 /* VoiceSearchFeedback014@2x.png in Resources */,
 				D5604BF31BF656C50020F0D7 /* chatBar_colorMore_audioCall@2x.png in Resources */,
+				B228D6D91C8624C40043DD2A /* ios_distribution.cer in Resources */,
 				D5604BB81BF656C50020F0D7 /* VoiceSearchFeedback017@2x.png in Resources */,
 				B2C65AF51C840F9700E3194B /* ios_development.cer in Resources */,
 				D5604C271BF656C50020F0D7 /* password@2x.png in Resources */,
@@ -6819,6 +6952,7 @@
 				D5604C351BF656C50020F0D7 /* groupPublicHeader@2x.png in Resources */,
 				D5604C261BF656C50020F0D7 /* password.png in Resources */,
 				D5604B701BF656C50020F0D7 /* MWPhotoBrowser.bundle in Resources */,
+				B228D6E41C8624C40043DD2A /* aps_development.cer in Resources */,
 				D5604BDC1BF656C50020F0D7 /* faceDelete@2x.png in Resources */,
 				D5604BF81BF656C50020F0D7 /* chatBar_colorMore_locationSelected@2x.png in Resources */,
 				D9B2689E1C783C7F00F62804 /* DVVCoachDetailIntroductionCell.xib in Resources */,
@@ -6826,6 +6960,7 @@
 				D919F3231C60885A00239B34 /* UMShareEditViewController.xib in Resources */,
 				D5604C321BF656C50020F0D7 /* group_participant_add@2x.png in Resources */,
 				D5604C251BF656C50020F0D7 /* account@2x.png in Resources */,
+				B228D6DF1C8624C40043DD2A /* jizhijiafuCoachDistribution.mobileprovision in Resources */,
 				D5604BB41BF656C50020F0D7 /* VoiceSearchFeedback015@2x.png in Resources */,
 				D5604C071BF656C50020F0D7 /* chatBar_more_photo.png in Resources */,
 				D5604C0E1BF656C50020F0D7 /* chat_receiver_audio_playing001.png in Resources */,
@@ -6833,6 +6968,8 @@
 				B2C65AF31C840F9700E3194B /* aps_development.cer in Resources */,
 				D96248391C57A16D0028EE62 /* ComplaintController.xib in Resources */,
 				D5604C001BF656C50020F0D7 /* chatBar_more_camera@2x.png in Resources */,
+				B228D6E31C8624C40043DD2A /* aps.p12 in Resources */,
+				B228D6DE1C8624C40043DD2A /* jizhijiafuCoachDevelopment.mobileprovision in Resources */,
 				D5604BFE1BF656C50020F0D7 /* chatBar_colorMore_videoSelected@2x.png in Resources */,
 				D5604BC11BF656C50020F0D7 /* call_out_h.png in Resources */,
 				D5BCFED31BF201410019402C /* PushConfig.plist in Resources */,
@@ -6840,6 +6977,7 @@
 				D5604C011BF656C50020F0D7 /* chatBar_more_cameraSelected.png in Resources */,
 				B2F1AE941C804320006D56FF /* YBBaoMingDuiHuanQuanCell.xib in Resources */,
 				D977B8111C7BF56100ABE205 /* DVVCoachCommentCell.xib in Resources */,
+				B228D6E51C8624C40043DD2A /* aps_development.p12 in Resources */,
 				D5604B9A1BF656C50020F0D7 /* VoiceSearchFeedback002@2x.png in Resources */,
 				D919F3211C60885A00239B34 /* UMSCommentInputController.xib in Resources */,
 				D5604C1A1BF656C50020F0D7 /* chat_sender_audio_playing_001.png in Resources */,
@@ -6860,6 +6998,7 @@
 				D5604BDD1BF656C50020F0D7 /* imageDownloadFail@2x.png in Resources */,
 				D5604C101BF656C50020F0D7 /* chat_receiver_audio_playing002.png in Resources */,
 				D5604B9E1BF656C50020F0D7 /* VoiceSearchFeedback004@2x.png in Resources */,
+				B228D6DC1C8624C40043DD2A /* aps_development.cer in Resources */,
 				B2C65AF01C840F9700E3194B /* jizhijiafuStudentDevelopment.mobileprovision in Resources */,
 				D5604BB01BF656C50020F0D7 /* VoiceSearchFeedback013@2x.png in Resources */,
 				D5604BEE1BF656C50020F0D7 /* chatBar_recordBg@2x.png in Resources */,
