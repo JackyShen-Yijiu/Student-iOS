@@ -125,11 +125,11 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
                     [self obj_showTotasViewWithMes:@"还没有商品哦!"];
                     return;
                 }
+                [self.shopMainListArray removeAllObjects];
                 for (NSDictionary *dic in array)
                 {
                     YBIntegralMallModel *mainDodel = [[YBIntegralMallModel alloc] init];
                     [mainDodel setValuesForKeysWithDictionary:dic];
-                    [self.shopMainListArray removeAllObjects];
                     [self.shopMainListArray addObject:mainDodel];
                 }
             }
@@ -156,11 +156,11 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
                     [self obj_showTotasViewWithMes:@"还没有商品哦!"];
                     return;
                 }
+                [self.discountArray removeAllObjects];
                 for (NSDictionary *dic in array)
                 {
                     YBDiscountModel *mainDodel = [[YBDiscountModel alloc] init];
                     [mainDodel setValuesForKeysWithDictionary:dic];
-                    [self.discountArray removeAllObjects];
                     [self.discountArray addObject:mainDodel];
                 }
             }

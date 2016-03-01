@@ -67,7 +67,7 @@ static NSString *advantage = @"youshi.html";
     self.progressView.progressBarView.backgroundColor = [UIColor orangeColor];
     self.progressView.hidden = YES;
     
-    NSString *urlString = [NSString stringWithFormat:BTH5,advantage];
+    NSString *urlString = @"http://www.yibuxueche.com/userguide.html";
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     

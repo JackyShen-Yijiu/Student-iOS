@@ -130,7 +130,7 @@ static NSString *const kuserType = @"usertype";
 - (UIImageView *)logoImageView {
     if (_logoImageView == nil) {
         _logoImageView = [[UIImageView alloc] init];
-        _logoImageView.image = [UIImage imageNamed:@"loginLogo"];
+        _logoImageView.image = [UIImage imageNamed:@"jizhi_loginLogo"];
         _logoImageView.backgroundColor = [UIColor clearColor];
         [_logoImageView.layer setMasksToBounds:YES];
         [_logoImageView.layer setCornerRadius:30];
