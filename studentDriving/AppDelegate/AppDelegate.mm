@@ -79,8 +79,6 @@
     // 配置友盟分享
     [self configUMSocial];
     
-//    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    
 #pragma mark - 处理工具及样式
     [self dealTool];
 #pragma mark - 监听网络
@@ -92,8 +90,6 @@
     //注册环信聊天
     [self easemobApplication:application didFinishLaunchingWithOptions:launchOptions];
     
-//    [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeHomeMainController];
-   
     WMCommon *common = [WMCommon getInstance];
     common.screenW = [[UIScreen mainScreen] bounds].size.width;
     common.screenH = [[UIScreen mainScreen] bounds].size.height;
@@ -118,7 +114,6 @@
     
     return YES;
 }
-
 
 - (void)configBaiduMap {
     _mapManager = [[BMKMapManager alloc] init];
