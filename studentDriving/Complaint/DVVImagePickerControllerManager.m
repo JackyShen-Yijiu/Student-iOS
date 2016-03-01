@@ -12,7 +12,7 @@
 
 @implementation DVVImagePickerControllerManager
 
-+ (void)showImagePickerController:(UIViewController *)fromController delegate:(id)delegate {
++ (void)showImagePickerControllerFrom:(UIViewController *)fromController delegate:(id)delegate {
     
     [PFActionSheetView showAlertWithTitle:nil message:nil cancelButtonTitle:@"取消" otherButtonTitles:@[@"拍照",@"从相册选取"] withVc:fromController completion:^(NSUInteger selectedOtherButtonIndex) {
         
@@ -33,9 +33,10 @@
             
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 
-                DYNSLog(@"camera");
+                NSLog(@"camera");
                 
                 UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                picker.view.backgroundColor = [UIColor whiteColor];
                 picker.allowsEditing = YES;
                 picker.delegate = delegate;
                 UIImagePickerControllerSourceType type = UIImagePickerControllerSourceTypeCamera;
@@ -58,6 +59,7 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
                 
                 UIImagePickerController *picker = [[UIImagePickerController alloc] init];
+                picker.view.backgroundColor = [UIColor whiteColor];
                 picker.allowsEditing = YES;
                 picker.delegate = delegate;
                 picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;

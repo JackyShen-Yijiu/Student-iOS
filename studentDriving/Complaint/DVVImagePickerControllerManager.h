@@ -10,6 +10,6 @@
 
 @interface DVVImagePickerControllerManager : NSObject
 
-+ (void)showImagePickerController:(UIViewController *)fromController delegate:(id)delegate;
++ (void)showImagePickerControllerFrom:(UIViewController *)fromController delegate:(id)delegate;
 
 @end

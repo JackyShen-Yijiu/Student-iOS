@@ -743,6 +743,13 @@
 		D919F33F1C60885A00239B34 /* libWeChatSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D919F3161C60885A00239B34 /* libWeChatSDK.a */; };
 		D919F3401C60885A00239B34 /* libSocialWhatsapp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D919F31B1C60885A00239B34 /* libSocialWhatsapp.a */; };
 		D919F3431C6099C600239B34 /* DVVCheckAppNewVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = D919F3421C6099C600239B34 /* DVVCheckAppNewVersion.m */; };
+		D939BE561C8538930049BC7E /* YBUserCenterController.m in Sources */ = {isa = PBXBuildFile; fileRef = D939BE551C8538930049BC7E /* YBUserCenterController.m */; };
+		D939BE5A1C854E1D0049BC7E /* YBUserCenterHeaderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D939BE581C854E1D0049BC7E /* YBUserCenterHeaderCell.m */; };
+		D939BE5B1C854E1D0049BC7E /* YBUserCenterHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D939BE591C854E1D0049BC7E /* YBUserCenterHeaderCell.xib */; };
+		D939BE5F1C8563080049BC7E /* YBUserCenterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D939BE5D1C8563080049BC7E /* YBUserCenterCell.m */; };
+		D939BE601C8563080049BC7E /* YBUserCenterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D939BE5E1C8563080049BC7E /* YBUserCenterCell.xib */; };
+		D939BE631C8585120049BC7E /* YBEditUserInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = D939BE621C8585120049BC7E /* YBEditUserInfoController.m */; };
+		D939BE661C8597690049BC7E /* YBEditUserAdressController.m in Sources */ = {isa = PBXBuildFile; fileRef = D939BE651C8597690049BC7E /* YBEditUserAdressController.m */; };
 		D93EC2F21C32BF97005D7141 /* HomeActivityController.m in Sources */ = {isa = PBXBuildFile; fileRef = D93EC2F11C32BF97005D7141 /* HomeActivityController.m */; };
 		D95CCCEE1C2E636200AF1402 /* NSString+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCED1C2E636200AF1402 /* NSString+Helper.m */; };
 		D95CCCF71C2E84C000AF1402 /* UserSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D95CCCF61C2E84C000AF1402 /* UserSettingModel.m */; };
@@ -2399,6 +2406,18 @@
 		D919F31C1C60885A00239B34 /* UMSocialWhatsappHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialWhatsappHandler.h; sourceTree = "<group>"; };
 		D919F3411C6099C600239B34 /* DVVCheckAppNewVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DVVCheckAppNewVersion.h; path = ../DVVCheckAppNewVersion.h; sourceTree = "<group>"; };
 		D919F3421C6099C600239B34 /* DVVCheckAppNewVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DVVCheckAppNewVersion.m; path = ../DVVCheckAppNewVersion.m; sourceTree = "<group>"; };
+		D939BE541C8538930049BC7E /* YBUserCenterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBUserCenterController.h; sourceTree = "<group>"; };
+		D939BE551C8538930049BC7E /* YBUserCenterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBUserCenterController.m; sourceTree = "<group>"; };
+		D939BE571C854E1D0049BC7E /* YBUserCenterHeaderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBUserCenterHeaderCell.h; sourceTree = "<group>"; };
+		D939BE581C854E1D0049BC7E /* YBUserCenterHeaderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBUserCenterHeaderCell.m; sourceTree = "<group>"; };
+		D939BE591C854E1D0049BC7E /* YBUserCenterHeaderCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBUserCenterHeaderCell.xib; sourceTree = "<group>"; };
+		D939BE5C1C8563080049BC7E /* YBUserCenterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBUserCenterCell.h; sourceTree = "<group>"; };
+		D939BE5D1C8563080049BC7E /* YBUserCenterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBUserCenterCell.m; sourceTree = "<group>"; };
+		D939BE5E1C8563080049BC7E /* YBUserCenterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBUserCenterCell.xib; sourceTree = "<group>"; };
+		D939BE611C8585120049BC7E /* YBEditUserInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBEditUserInfoController.h; sourceTree = "<group>"; };
+		D939BE621C8585120049BC7E /* YBEditUserInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBEditUserInfoController.m; sourceTree = "<group>"; };
+		D939BE641C8597690049BC7E /* YBEditUserAdressController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBEditUserAdressController.h; sourceTree = "<group>"; };
+		D939BE651C8597690049BC7E /* YBEditUserAdressController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBEditUserAdressController.m; sourceTree = "<group>"; };
 		D93EC2F01C32BF97005D7141 /* HomeActivityController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeActivityController.h; sourceTree = "<group>"; };
 		D93EC2F11C32BF97005D7141 /* HomeActivityController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeActivityController.m; sourceTree = "<group>"; };
 		D95CCCEC1C2E636200AF1402 /* NSString+Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Helper.h"; sourceTree = "<group>"; };
@@ -3301,6 +3320,18 @@
 				560D22181C819EC5001B8B83 /* OrdetDetailController.xib */,
 				560D22131C819361001B8B83 /* YBSignUpSuccessController.h */,
 				560D22141C819361001B8B83 /* YBSignUpSuccessController.m */,
+				D939BE541C8538930049BC7E /* YBUserCenterController.h */,
+				D939BE551C8538930049BC7E /* YBUserCenterController.m */,
+				D939BE611C8585120049BC7E /* YBEditUserInfoController.h */,
+				D939BE621C8585120049BC7E /* YBEditUserInfoController.m */,
+				D939BE641C8597690049BC7E /* YBEditUserAdressController.h */,
+				D939BE651C8597690049BC7E /* YBEditUserAdressController.m */,
+				D939BE571C854E1D0049BC7E /* YBUserCenterHeaderCell.h */,
+				D939BE581C854E1D0049BC7E /* YBUserCenterHeaderCell.m */,
+				D939BE591C854E1D0049BC7E /* YBUserCenterHeaderCell.xib */,
+				D939BE5C1C8563080049BC7E /* YBUserCenterCell.h */,
+				D939BE5D1C8563080049BC7E /* YBUserCenterCell.m */,
+				D939BE5E1C8563080049BC7E /* YBUserCenterCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -6530,6 +6561,7 @@
 				D5604BB51BF656C50020F0D7 /* VoiceSearchFeedback016.png in Resources */,
 				D99674921C7D72B90000CC65 /* DVVSignUpDetailFooterView.xib in Resources */,
 				D5604C451BF656C50020F0D7 /* tabbarBackground@2x.png in Resources */,
+				D939BE601C8563080049BC7E /* YBUserCenterCell.xib in Resources */,
 				D5604C111BF656C50020F0D7 /* chat_receiver_audio_playing002@2x.png in Resources */,
 				D5604C2A1BF656C50020F0D7 /* delete@2x.png in Resources */,
 				B20DBEC61C5DB0FF0023676E /* AlipaySDK.bundle in Resources */,
@@ -6559,6 +6591,7 @@
 				D5604BAF1BF656C50020F0D7 /* VoiceSearchFeedback013.png in Resources */,
 				D5604BCB1BF656C50020F0D7 /* chatBar_more_cardSelected.png in Resources */,
 				D5604BA91BF656C50020F0D7 /* VoiceSearchFeedback010.png in Resources */,
+				D939BE5B1C854E1D0049BC7E /* YBUserCenterHeaderCell.xib in Resources */,
 				D5604BBE1BF656C50020F0D7 /* VoiceSearchFeedback020@2x.png in Resources */,
 				568DF2131C75756900008829 /* MagicMainTableViewCell.xib in Resources */,
 				D5604C121BF656C50020F0D7 /* chat_receiver_audio_playing003.png in Resources */,
@@ -6829,6 +6862,7 @@
 				D588B0DF1BDDDC14000C5D6F /* CancelAppointmentCell.m in Sources */,
 				55901B621C26796700AC64FF /* VerifyInformationController.m in Sources */,
 				B226AF121C75EFFE0028DF1A /* YBAppointMentUserFooter.m in Sources */,
+				D939BE561C8538930049BC7E /* YBUserCenterController.m in Sources */,
 				D966855F1C7701100047CDE2 /* THLabel.m in Sources */,
 				D5604B8D1BF656C50020F0D7 /* EMSearchDisplayController.m in Sources */,
 				D5604C841BF656F30020F0D7 /* FacialView.m in Sources */,
@@ -7148,6 +7182,7 @@
 				B226AF1B1C76EAAA0028DF1A /* YBCoachListSearchController.m in Sources */,
 				D96A02E31C8142B300DFDCAC /* DVVSubCityView.m in Sources */,
 				56855C501C787736005D4517 /* SignInHelpViewController.m in Sources */,
+				D939BE5A1C854E1D0049BC7E /* YBUserCenterHeaderCell.m in Sources */,
 				56855C4F1C787736005D4517 /* SignInDataModel.m in Sources */,
 				D5604C911BF656F30020F0D7 /* MessageModelManager.m in Sources */,
 				D95FF5C81C84417300D55ED9 /* YBStudentUserApplycoachinfo.m in Sources */,
@@ -7198,6 +7233,7 @@
 				D588B0D21BDDDC14000C5D6F /* UserCenterCell.m in Sources */,
 				560D22151C819361001B8B83 /* YBSignUpSuccessController.m in Sources */,
 				D5604B851BF656C50020F0D7 /* UIViewController+HUD.m in Sources */,
+				D939BE661C8597690049BC7E /* YBEditUserAdressController.m in Sources */,
 				D5604B891BF656C50020F0D7 /* EMRemarkImageView.m in Sources */,
 				0647A5BC1C34FE5F00DBB8A3 /* DiscountWalletController.m in Sources */,
 				D96A02E61C8143D900DFDCAC /* DVVSubCityCell.m in Sources */,
@@ -7375,6 +7411,7 @@
 				B21818171C58AEB200F973A7 /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				B226AEEB1C748F530028DF1A /* HMSubjectModel.m in Sources */,
 				4761DB8C1C353C47001CF897 /* UIBarButtonItem+JGBarButtonItem.m in Sources */,
+				D939BE5F1C8563080049BC7E /* YBUserCenterCell.m in Sources */,
 				D996746E1C7D54610000CC65 /* CoachListDMRootClass.m in Sources */,
 				D588AFD01BDDDAAB000C5D6F /* MyAppointmentCoachModel.m in Sources */,
 				D9D4BA1E1C3B918600F62BE9 /* NSDictionary+adapter.m in Sources */,
@@ -7397,6 +7434,7 @@
 				D977B8D91C7C69DD00ABE205 /* DVVSignUpCoachDMRootClass.m in Sources */,
 				D5604C7F1BF656F30020F0D7 /* ChatViewController.m in Sources */,
 				D5604B441BF656C50020F0D7 /* EMCDDeviceManagerBase.m in Sources */,
+				D939BE631C8585120049BC7E /* YBEditUserInfoController.m in Sources */,
 				B226AEFA1C7494430028DF1A /* NetWorkEntiry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

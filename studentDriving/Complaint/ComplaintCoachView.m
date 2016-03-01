@@ -82,12 +82,12 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 - (IBAction)photo_1_buttonAction:(UIButton *)sender {
     
     _photoButtonTag = 1;
-    [DVVImagePickerControllerManager showImagePickerController:_superController delegate:self];
+    [DVVImagePickerControllerManager showImagePickerControllerFrom:_superController delegate:self];
 }
 - (IBAction)photo_2_buttonAction:(UIButton *)sender {
     
     _photoButtonTag = 2;
-    [DVVImagePickerControllerManager showImagePickerController:_superController delegate:self];
+    [DVVImagePickerControllerManager showImagePickerControllerFrom:_superController delegate:self];
 }
 
 - (IBAction)okButtonAction:(UIButton *)sender {
