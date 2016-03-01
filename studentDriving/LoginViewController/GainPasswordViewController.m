@@ -10,6 +10,7 @@
 #import <Masonry/Masonry.h>
 #import "ToolHeader.h"
 #import "NSString+DY_MD5.h"
+#import "ShowWarningMessageView.h"
 static NSString *const kchangePassword = @"kchangePassword";
 
 static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
@@ -20,6 +21,8 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 @property (strong, nonatomic) UITextField *affirmTextFild;
 @property (strong, nonatomic) UILabel *topLabel;
 @property (strong, nonatomic) UIButton *goBackButton;
+
+
 
 @end
 
@@ -89,7 +92,6 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     }
     return _affirmTextFild;
 }
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.

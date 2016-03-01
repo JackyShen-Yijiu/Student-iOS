@@ -5,16 +5,29 @@
 #import "AddlineButtomTextField.h"
 #import "NSString+DY_MD5.h"
 #import "ShowWarningMessageView.h"
+#import <JPush/APService.h>
 static NSString *const kchangePassword = @"kchangePassword";
 
 static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 
 
+
+
+static NSString *const kloginUrl = @"userinfo/userlogin";
+
+static NSString *const kregisterUser = @"kregisterUser";
+
+static NSString *const kmobileNum = @"mobile";
+
+static NSString *const kpassword = @"password";
+
+static NSString *const kuserType = @"usertype";
+
 @interface ForgetViewController ()<UITextFieldDelegate>
 @property (strong, nonatomic) UITextField *phoneNumTextField;
 @property (strong, nonatomic) UITextField *confirmTextField;
 @property (strong, nonatomic) UITextField *passWordTextFild;
-@property (strong, nonatomic) UITextField *affirmTextFild;
+//@property (strong, nonatomic) UITextField *affirmTextFild;
 
 @property (strong, nonatomic) UIButton *gainNum;
 @property (strong, nonatomic) UIButton *runNextButton;
@@ -24,13 +37,26 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 @property (strong, nonatomic) UILabel *phoneNumLabel;
 @property (strong, nonatomic) UILabel *gainNumLabel;
 @property (strong, nonatomic) UILabel *passwordLabel;
-@property (strong, nonatomic) UILabel *affirmLabel;
-@property (nonatomic, strong) ShowWarningMessageView *showWarningMessageView;
 
+@property (strong, nonatomic) UIButton *eyeButton;
+//@property (strong, nonatomic) UILabel *affirmLabel;
+//@property (nonatomic, strong) ShowWarningMessageView *showWarningMessageView;
 
+@property (nonatomic, strong) ShowWarningMessageView *phoneWarngingView;
+@property (nonatomic, strong) ShowWarningMessageView *gainNumWarningView;
+@property (nonatomic, strong) ShowWarningMessageView *passwordWarningView;
+
+@property (strong, nonatomic) NSMutableDictionary *userParam;
 @end
 
 @implementation ForgetViewController
+
+- (NSMutableDictionary *)userParam {
+    if (_userParam == nil) {
+        _userParam = [[NSMutableDictionary alloc] init];
+    }
+    return _userParam;
+}
 
 - (UILabel *)topLabel {
     if (_topLabel == nil) {
@@ -58,7 +84,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     if (_phoneNumTextField == nil) {
         _phoneNumTextField = [[AddlineButtomTextField alloc]init];
         _phoneNumTextField.delegate = self;
-        _phoneNumTextField.tag = 200;
+        _phoneNumTextField.tag = 50001;
 //        _phoneNumTextField.placeholder = @"  手机号";
 //        _phoneNumTextField.leftViewMode = UITextFieldViewModeAlways;
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
@@ -75,7 +101,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 - (UITextField *)confirmTextField {
     if (_confirmTextField == nil) {
         _confirmTextField = [[AddlineButtomTextField alloc]init];
-        _confirmTextField.tag = 201;
+        _confirmTextField.tag = 50002;
         _confirmTextField.delegate = self;
 //        _confirmTextField.placeholder = @"验证码";
 //        _confirmTextField.leftViewMode = UITextFieldViewModeAlways;
@@ -92,7 +118,7 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 - (UITextField *)passWordTextFild{
     if (_passWordTextFild == nil) {
         _passWordTextFild = [[AddlineButtomTextField alloc]init];
-        _passWordTextFild.tag = 202;
+        _passWordTextFild.tag = 50003;
         _passWordTextFild.delegate = self;
 //        _passWordTextFild.placeholder = @"密码";
         _passWordTextFild.font  = [UIFont systemFontOfSize:15];
@@ -103,22 +129,22 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     return _passWordTextFild;
 }
 
-- (UITextField *)affirmTextFild{
-    if (_affirmTextFild == nil) {
-        _affirmTextFild = [[AddlineButtomTextField alloc]init];
-        _affirmTextFild.tag = 203;
-//        _affirmTextFild.placeholder = @"确认密码";
-        _affirmTextFild.font  = [UIFont systemFontOfSize:15];
-        _affirmTextFild.delegate = self;
-        _affirmTextFild.textColor = [UIColor colorWithHexString:@"212121"];
-        _affirmTextFild.secureTextEntry = YES;
-//        _affirmTextFild.backgroundColor = [UIColor cyanColor];
-        _affirmTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
-
-        
-    }
-    return _affirmTextFild;
-}
+//- (UITextField *)affirmTextFild{
+//    if (_affirmTextFild == nil) {
+//        _affirmTextFild = [[AddlineButtomTextField alloc]init];
+//        _affirmTextFild.tag = 203;
+////        _affirmTextFild.placeholder = @"确认密码";
+//        _affirmTextFild.font  = [UIFont systemFontOfSize:15];
+//        _affirmTextFild.delegate = self;
+//        _affirmTextFild.textColor = [UIColor colorWithHexString:@"212121"];
+//        _affirmTextFild.secureTextEntry = YES;
+////        _affirmTextFild.backgroundColor = [UIColor cyanColor];
+//        _affirmTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
+//
+//        
+//    }
+//    return _affirmTextFild;
+//}
 - (UILabel *)phoneNumLabel{
     if (_phoneNumLabel == nil) {
         _phoneNumLabel = [[UILabel alloc] init];
@@ -148,15 +174,15 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     return _passwordLabel;
 }
 
-- (UILabel *)affirmLabel{
-    if (_affirmLabel == nil) {
-        _affirmLabel = [[UILabel alloc] init];
-        _affirmLabel.text = @"确认密码";
-        _affirmLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
-        _affirmLabel.font = [UIFont systemFontOfSize:10];
-    }
-    return _affirmLabel;
-}
+//- (UILabel *)affirmLabel{
+//    if (_affirmLabel == nil) {
+//        _affirmLabel = [[UILabel alloc] init];
+//        _affirmLabel.text = @"确认密码";
+//        _affirmLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+//        _affirmLabel.font = [UIFont systemFontOfSize:10];
+//    }
+//    return _affirmLabel;
+//}
 
 
 - (UIButton *)gainNum {
@@ -183,6 +209,38 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     }
     return _runNextButton;
 }
+- (ShowWarningMessageView *)gainNumWarningView{
+    if (_gainNumWarningView == nil) {
+        _gainNumWarningView = [[ShowWarningMessageView alloc] init];
+        _gainNumWarningView.hidden = YES;
+    }
+    return _gainNumWarningView;
+}
+- (ShowWarningMessageView *)phoneWarngingView{
+    if (_phoneWarngingView == nil) {
+        _phoneWarngingView = [[ShowWarningMessageView alloc] init];
+        _phoneWarngingView.hidden = YES;
+    }
+    return _phoneWarngingView;
+}
+- (ShowWarningMessageView *)passwordWarningView{
+    if (_passwordWarningView == nil) {
+        _passwordWarningView = [[ShowWarningMessageView alloc] init];
+        _passwordWarningView.hidden = YES;
+    }
+    return _passwordWarningView;
+}
+
+- (UIButton *)eyeButton{
+    if (_eyeButton == nil) {
+        _eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateNormal];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateSelected];
+        [_eyeButton addTarget:self action:@selector(didEyeButton:) forControlEvents:UIControlEventTouchUpInside];
+        _eyeButton.backgroundColor = [UIColor clearColor];
+    }
+    return _eyeButton;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -204,14 +262,18 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     [self.view addSubview:self.topLabel];
     
     [self.view addSubview:self.phoneNumTextField];
+    [self.view addSubview:self.phoneWarngingView];
     [self.view addSubview:self.confirmTextField];
+    [self.view addSubview:self.gainNumWarningView];
     [self.view addSubview:self.passWordTextFild];
-    [self.view addSubview:self.affirmTextFild];
+    [self.view addSubview:self.passwordWarningView];
+    [self.view addSubview:self.eyeButton];
+//    [self.view addSubview:self.affirmTextFild];
     
     [self.view addSubview:self.phoneNumLabel];
     [self.view addSubview:self.gainNumLabel];
     [self.view addSubview:self.passwordLabel];
-    [self.view addSubview:self.affirmLabel];
+//    [self.view addSubview:self.affirmLabel];
     
     [self.view addSubview:self.runNextButton];
     [self.view addSubview:self.gainNum];
@@ -243,7 +305,13 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         make.top.mas_equalTo(self.phoneNumLabel.mas_bottom).with.offset(0);
         make.height.mas_equalTo(@40);
     }];
-    
+    [self.phoneWarngingView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-80);
+        make.top.mas_equalTo(self.phoneNumLabel.mas_top).with.offset(0);
+        make.height.mas_equalTo(@18);
+        make.width.mas_equalTo(@40);
+    }];
+
     [self.gainNum mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.view.mas_right).with.offset(-15);
         make.top.mas_equalTo(self.phoneNumTextField.mas_bottom).with.offset(10);
@@ -263,7 +331,12 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         make.top.mas_equalTo(self.gainNumLabel.mas_bottom).with.offset(0);
         make.height.mas_equalTo(@40);
     }];
-    
+    [self.gainNumWarningView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-200);
+        make.top.mas_equalTo(self.gainNumLabel.mas_top).with.offset(0);
+        make.height.mas_equalTo(@18);
+        make.width.mas_equalTo(@40);
+    }];
     [self.passwordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(18);
         make.top.mas_equalTo(self.confirmTextField.mas_bottom).with.offset(16);
@@ -276,35 +349,56 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         make.top.mas_equalTo(self.passwordLabel.mas_bottom).with.offset(0);
         make.height.mas_equalTo(@40);
     }];
-
-    [self.affirmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
-        make.top.mas_equalTo(self.passWordTextFild.mas_bottom).with.offset(16);
-        make.height.mas_equalTo(@10);
+    [self.passwordWarningView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-80);
+        make.top.mas_equalTo(self.passwordLabel.mas_top).with.offset(0);
+        make.height.mas_equalTo(@18);
         make.width.mas_equalTo(@40);
     }];
-    [self.affirmTextFild mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
-        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
-        make.top.mas_equalTo(self.affirmLabel.mas_bottom).with.offset(0);
+    [self.eyeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-10);
+        make.top.mas_equalTo(self.confirmTextField.mas_bottom).with.offset(0);
         make.height.mas_equalTo(@40);
+        make.width.mas_equalTo(@40);
     }];
+
+//    [self.affirmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+//        make.top.mas_equalTo(self.passWordTextFild.mas_bottom).with.offset(16);
+//        make.height.mas_equalTo(@10);
+//        make.width.mas_equalTo(@40);
+//    }];
+//    [self.affirmTextFild mas_updateConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+//        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+//        make.top.mas_equalTo(self.affirmLabel.mas_bottom).with.offset(0);
+//        make.height.mas_equalTo(@40);
+//    }];
 
     
     
     
     
     [self.runNextButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.confirmTextField.mas_bottom).with.offset(180);
+        make.top.mas_equalTo(self.passWordTextFild.mas_bottom).with.offset(180);
         make.right.mas_equalTo(self.view.mas_right).with.offset(0);
         make.left.mas_equalTo(self.view.mas_left).with.offset(0);
         make.height.mas_equalTo(@49);
     }];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-    if (!self.showWarningMessageView.isShowWarningMessage) {
-        self.showWarningMessageView.hidden = YES;
+    if (50001 == textField.tag) {
+        self.phoneWarngingView.hidden = YES;
     }
+    if (50002 == textField.tag) {
+        self.gainNumWarningView.hidden = YES;
+    }
+    if (50003 == textField.tag) {
+        self.passwordWarningView.hidden = YES;
+    }
+
+
+
 }
 
 #define TIME 60
@@ -312,18 +406,12 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
     NSLog(@"发送验证码");
     
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length <= 0) {
-        [self obj_showTotasViewWithMes:@"请输入手机号"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
+        self.phoneWarngingView.hidden = NO;
         return;
     }else {
         
         if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
-            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
-            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
-            _showWarningMessageView.isShowWarningMessage  = NO;
-            [self.view addSubview:_showWarningMessageView];
+            self.phoneWarngingView.hidden = NO;
 
             return;
         }
@@ -379,44 +467,28 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 - (void)dealNext:(UIButton *)sender {
     // 手机号的判断
     if (self.phoneNumTextField.text == nil || self.phoneNumTextField.text.length <= 0) {
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
+        self.phoneWarngingView.hidden = NO;
         return;
     }else {
         
         if (![AcountManager isValidateMobile:self.phoneNumTextField.text]) {
-            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
-            _showWarningMessageView.isShowWarningMessage  = NO;
-            [self.view addSubview:_showWarningMessageView];
+                    self.phoneWarngingView.hidden = NO;
             
             return;
         }
     }
     // 验证码的判断
     if (self.confirmTextField.text == nil || self.confirmTextField.text.length <= 0) {
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8 - 115, _gainNumLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
+        self.gainNumWarningView.hidden = NO;
         return;
     }
     // 密码的判断
     if (self.passWordTextFild.text == nil || self.passWordTextFild.text.length <= 0) {
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _passwordLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
+        self.passwordWarningView.hidden = NO;
         return;
     }
 
-    
-    if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
-        [self obj_showTotasViewWithMes:@"请输入相同的密码"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
-        return;
-    }
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kchangePasswordUrl];
+        NSString *urlString = [NSString stringWithFormat:BASEURL,kchangePasswordUrl];
     
     NSDictionary *param = @{@"smscode":self.confirmTextField.text,
                             @"password":[self.passWordTextFild.text DY_MD5],
@@ -438,21 +510,38 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
             
             [self obj_showTotasViewWithMes:@"修改成功"];
             
-            [DVVUserManager userNeedLogin];
+//            [DVVUserManager userNeedLogin];
             
 //            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 //            [self dismissViewControllerAnimated:YES completion:^{
 ////                [[NSNotificationCenter defaultCenter] postNotificationName:kchangePassword object:nil];
 //            }];
             
+            
+            // 修改成功后直接登录
+        // 1.
+            [self userLogin];
+            
         }else {
             
-            [self obj_showTotasViewWithMes:param[@"msg"]];
+            [self obj_showTotasViewWithMes:resultData[@"msg"]];
             
         }
     }];
 
     }
+#pragma  mark -----
+- (void)didEyeButton:(UIButton *)btn{
+    if (!btn.selected) {
+        self.passWordTextFild.secureTextEntry = NO;
+        btn.selected = YES;
+        
+    }else if (btn.selected) {
+        self.passWordTextFild.secureTextEntry = YES;
+        btn.selected = NO;
+    }
+    
+}
 
 #pragma mark - 验证用户是否存在
 - (void)userExist {
@@ -498,8 +587,174 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         }else {
             ws.confirmTextField.text = @"";
             [ws obj_showTotasViewWithMes:@"验证码错误"];
+            self.gainNumWarningView.hidden = NO;
         }
     }];
+}
+- (void)userLogin {
+    
+    //网络请求
+    [self.passWordTextFild resignFirstResponder];
+    [self.phoneNumTextField resignFirstResponder];
+    
+    [self.userParam setObject:@"1" forKey:kuserType];
+    [self.userParam setObject:self.phoneNumTextField.text forKey:kmobileNum];
+    NSString *pwdKey = [self.passWordTextFild.text DY_MD5];
+    [self.userParam setObject:pwdKey forKey:kpassword];
+    
+    NSString *url = [NSString stringWithFormat:BASEURL,kloginUrl];
+    
+    DYNSLog(@"%s url:%@ self.userParam:%@",__func__,url,self.userParam);
+    
+    [JENetwoking startDownLoadWithUrl:url postParam:self.userParam WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        NSDictionary *dataDic = data;
+        DYNSLog(@"%s dataDic:%@",__func__,dataDic);
+        
+        NSString *type = [NSString stringWithFormat:@"%@",dataDic[@"type"]];
+        
+        if ([type isEqualToString:@"0"]) {
+            
+            [self obj_showTotasViewWithMes:@"密码错误"];
+            self.passwordWarningView.hidden = NO;
+            
+        }else if ([type isEqualToString:@"1"]) {
+            
+            // 存储用户设置
+            [self saveUserSetWithData:dataDic];
+            
+            NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+            NSLog(@"self.phoneNumTextField.text:%@",self.phoneNumTextField.text);
+            NSLog(@"self.passwordTextField.text:%@",self.passWordTextFild.text);
+            
+            [self loginWithUsername:self.phoneNumTextField.text password:pwdKey  dataDic:dataDic];
+            
+        }
+    }];
+}
+- (void)saveUserSetWithData:(NSDictionary *)data {
+    //    usersetting =         {
+    //        classremind = 0;
+    //        newmessagereminder = 1;
+    //        reservationreminder = 1;
+    //    };
+    NSDictionary *setDict = [data objectForKey:@"usersetting"];
+    NSString *newMsg = [setDict objectForKey:@"newmessagereminder"];
+    NSString *reservation = [setDict objectForKey:@"reservationreminder"];
+    if (newMsg) {
+        [AcountManager manager].newmessagereminder = [newMsg boolValue];
+    }
+    if (reservation) {
+        [AcountManager manager].reservationreminder = [reservation boolValue];
+    }
+}
+// 点击登陆后的操作
+- (void)loginWithUsername:(NSString *)username password:(NSString *)password  dataDic:(NSDictionary *)dataDic
+{
+    [self showHudInView:self.view hint:NSLocalizedString(@"登录中...", @"登录中...")];
+    
+    NSLog(@"点击登录后的操作:dataDic:%@",dataDic);
+    
+    BOOL isLoggedIn = [[EaseMob sharedInstance].chatManager isLoggedIn];
+    NSLog(@"isLoggedIn:%d",isLoggedIn);
+    if (isLoggedIn) {
+        [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:nil];
+        
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES];
+        
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+            DYNSLog(@"asyncLogoffWithUnbindDeviceToken%@",error);
+        } onQueue:nil];
+        [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
+            DYNSLog(@"退出成功 = %@ %@",info,error);
+            if (!error && info) {
+            }
+        } onQueue:nil];
+    }
+    
+    NSLog(@"username:%@ password:%@",username,password);
+    
+    NSString *userid = [NSString stringWithFormat:@"%@",dataDic[@"data"][@"userid"]];
+    NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
+    
+    if (!userid) {
+        userid = @"";
+             }
+    NSLog(@"dataDic.userid:%@---userid:%@",dataDic[@"data"][@"userid"],userid);
+    
+    // 异步登陆账号
+    [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:userid
+                                                        password:password
+                                                      completion:
+     ^(NSDictionary *loginInfo, EMError *error) {
+         
+         NSLog(@"error:%@",error);
+         [MBProgressHUD hideHUDForView:self.view animated:NO];
+         
+         if (loginInfo && !error) {
+             
+             DYNSLog(@"登录成功");
+             
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
+             
+             NSSet *set = [NSSet setWithObjects:@"", nil];
+             [APService setTags:set alias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+             
+             //设置是否自动登录
+             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+             
+             // 旧数据转换 (如果您的sdk是由2.1.2版本升级过来的，需要家这句话)
+             [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+             //获取数据库中数据
+             [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+             
+             //获取群组列表
+             //             [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+             
+             EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
+             options.nickname = [AcountManager manager].userName;
+             options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
+             
+             //发送自动登陆状态通知
+             [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+             
+             //保存最近一次登录用户名
+             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passWordTextFild.text];
+             
+             [AcountManager configUserInformationWith:dataDic[@"data"]];
+             
+             // 用户登录成功，打开相应的窗体
+             [DVVUserManager userLoginSucces];
+             
+         }
+         else
+         {
+             switch (error.errorCode)
+             {
+                 case EMErrorNotFound:
+                     TTAlertNoTitle(error.description);
+                     break;
+                 case EMErrorNetworkNotConnected:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
+                     break;
+                 case EMErrorServerNotReachable:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                     break;
+                 case EMErrorServerAuthenticationFailure:
+                     TTAlertNoTitle(error.description);
+                     break;
+                 case EMErrorServerTimeout:
+                     TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                     break;
+                 default:
+                     TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Login failure"));
+                     break;
+             }
+         }
+         
+     } onQueue:nil];
+    
+    
 }
 
 - (void)showMsg:(NSString *)message {

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="YBCheatslistViewCell" id="KGk-i7-Jjw" customClass="YBCheatslistViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="54"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="53.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q6w-YZ-Z41">
+                        <rect key="frame" x="12" y="19" width="14" height="14"/>
+                        <color key="backgroundColor" red="0.99947339296340942" green="0.089262746274471283" blue="0.0032940446399152279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="AOl-jn-Ez0"/>
+                            <constraint firstAttribute="height" constant="14" id="cjz-rq-M7G"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="倒车入库" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eCl-I9-Fsy">
+                        <rect key="frame" x="40" y="19" width="68" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="Z9i-SX-D3P"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ET-Vj-HBy">
+                        <rect key="frame" x="0.0" y="53" width="320" height="1"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="kLT-7X-th9"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8ET-Vj-HBy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="DBg-4a-mc3"/>
+                    <constraint firstItem="Q6w-YZ-Z41" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="DeN-Zy-77q"/>
+                    <constraint firstItem="eCl-I9-Fsy" firstAttribute="leading" secondItem="Q6w-YZ-Z41" secondAttribute="trailing" constant="14" id="UgX-1n-Bwa"/>
+                    <constraint firstAttribute="bottom" secondItem="8ET-Vj-HBy" secondAttribute="bottom" constant="-0.5" id="W1X-jL-qkZ"/>
+                    <constraint firstItem="eCl-I9-Fsy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="ag0-yi-Xtt"/>
+                    <constraint firstAttribute="trailing" secondItem="8ET-Vj-HBy" secondAttribute="trailing" constant="-33" id="o6J-Uv-eSF"/>
+                    <constraint firstItem="Q6w-YZ-Z41" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="teS-Ok-mA7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="countLabel" destination="eCl-I9-Fsy" id="wN9-rT-Se8"/>
+                <outlet property="numberLabel" destination="Q6w-YZ-Z41" id="rHV-aI-il3"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

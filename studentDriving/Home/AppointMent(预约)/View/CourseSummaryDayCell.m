@@ -48,6 +48,7 @@
     self.potraitView.layer.cornerRadius = 20.f;
     self.potraitView.layer.shouldRasterize = YES;
     self.potraitView.backgroundColor = [UIColor clearColor];
+    self.potraitView.imageView.image = [UIImage imageNamed:@"coach_man_default_icon"];
     [self.contentView addSubview:self.potraitView];
     
     // 状态
@@ -175,7 +176,7 @@
 
     _model = model;
     
-    UIImage * defaultImage = [UIImage imageNamed:@"defoult_por"];
+    UIImage * defaultImage = [UIImage imageNamed:@"coach_man_default_icon"];
     self.potraitView.imageView.image = defaultImage;
     NSString * imageStr = _model.userModel.headportrait.originalpic;
     if(imageStr)

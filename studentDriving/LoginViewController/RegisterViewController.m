@@ -31,7 +31,7 @@ static NSString *const kcodeGainUrl = @"code";
 @property (strong, nonatomic)UITextField *phoneTextField;
 @property (strong, nonatomic)UITextField *authCodeTextFild;
 @property (strong, nonatomic)UITextField *passWordTextFild;
-@property (strong, nonatomic)UITextField *affirmTextFild;
+//@property (strong, nonatomic)UITextField *affirmTextFild;
 @property (strong, nonatomic)UITextField *invitationTextFild;
 @property (strong, nonatomic)UIButton *noteLabel;
 @property (strong, nonatomic) UILabel *topLabel;
@@ -41,13 +41,17 @@ static NSString *const kcodeGainUrl = @"code";
 @property (strong, nonatomic) UILabel *phoneNumLabel;
 @property (strong, nonatomic) UILabel *gainNumLabel;
 @property (strong, nonatomic) UILabel *passwordLabel;
-@property (strong, nonatomic) UILabel *affirmLabel;
+//@property (strong, nonatomic) UILabel *affirmLabel;
+
+@property (strong, nonatomic) UIButton *eyeButton;
 @property (strong, nonatomic) UILabel *invitationLabel;
 
 @property (strong, nonatomic) UIButton *selectButton;
 @property (strong, nonatomic) UIView *lineNoteView;
 
-@property (nonatomic, strong) ShowWarningMessageView *showWarningMessageView;
+@property (nonatomic, strong) ShowWarningMessageView *phoneWarngingView;
+@property (nonatomic, strong) ShowWarningMessageView *gainNumWarningView;
+@property (nonatomic, strong) ShowWarningMessageView *passwordWarningView;
 
 @end
 
@@ -125,7 +129,7 @@ static NSString *const kcodeGainUrl = @"code";
     if (_phoneTextField == nil) {
         _phoneTextField = [[AddlineButtomTextField alloc] init];
         _phoneTextField.delegate = self;
-        _phoneTextField.tag = 102;
+        _phoneTextField.tag = 10002;
 //        _phoneTextField.placeholder = @"    手机号";
 //        _phoneTextField.leftViewMode = UITextFieldViewModeAlways;
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
@@ -144,7 +148,7 @@ static NSString *const kcodeGainUrl = @"code";
     if (_passWordTextFild == nil) {
         _passWordTextFild = [[AddlineButtomTextField alloc]init];
         _passWordTextFild.delegate = self;
-        _passWordTextFild.tag = 103;
+        _passWordTextFild.tag = 10004;
 //        _passWordTextFild.placeholder = @"    密码";
 //        _passWordTextFild.leftViewMode = UITextFieldViewModeAlways;
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
@@ -153,17 +157,27 @@ static NSString *const kcodeGainUrl = @"code";
         _passWordTextFild.font  = [UIFont systemFontOfSize:15];
         _passWordTextFild.textColor = [UIColor colorWithHexString:@"212121"];
         _passWordTextFild.secureTextEntry = YES;
-        _passWordTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
+        _passWordTextFild.clearsOnBeginEditing = NO;
+//        _passWordTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
 
     }
     return _passWordTextFild;
 }
-
+- (UIButton *)eyeButton{
+    if (_eyeButton == nil) {
+        _eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_close"] forState:UIControlStateNormal];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"eye_open"] forState:UIControlStateSelected];
+        [_eyeButton addTarget:self action:@selector(didEyeButton:) forControlEvents:UIControlEventTouchUpInside];
+        _eyeButton.backgroundColor = [UIColor clearColor];
+    }
+    return _eyeButton;
+}
 - (UITextField *)authCodeTextFild{
     if (_authCodeTextFild == nil) {
         _authCodeTextFild = [[AddlineButtomTextField alloc]init];
         _authCodeTextFild.delegate = self;
-        _authCodeTextFild.tag = 104;
+        _authCodeTextFild.tag = 10003;
 //        _authCodeTextFild.placeholder = @"    验证码";
 //        _authCodeTextFild.leftViewMode = UITextFieldViewModeAlways;
         UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
@@ -172,28 +186,29 @@ static NSString *const kcodeGainUrl = @"code";
         _authCodeTextFild.font  = [UIFont systemFontOfSize:15];
         _authCodeTextFild.textColor = [UIColor colorWithHexString:@"212121"];
         _authCodeTextFild.keyboardType = UIKeyboardTypeNumberPad;
+
         
     }
     return _authCodeTextFild;
 }
 
-- (UITextField *)affirmTextFild{
-    if (_affirmTextFild == nil) {
-        _affirmTextFild = [[AddlineButtomTextField alloc]init];
-        _affirmTextFild.delegate = self;
-        _affirmTextFild.tag = 105;
-//        _affirmTextFild.placeholder = @"    确认密码";
-//        _affirmTextFild.leftViewMode = UITextFieldViewModeAlways;
-        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
-        leftView.image = [UIImage imageNamed:@"密码"];
-        _affirmTextFild.leftView = leftView;
-        _affirmTextFild.font  = [UIFont systemFontOfSize:15];
-        _affirmTextFild.textColor = [UIColor colorWithHexString:@"212121"];
-        _affirmTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
-        _affirmTextFild.secureTextEntry = YES;
-    }
-    return _affirmTextFild;
-}
+//- (UITextField *)affirmTextFild{
+//    if (_affirmTextFild == nil) {
+//        _affirmTextFild = [[AddlineButtomTextField alloc]init];
+//        _affirmTextFild.delegate = self;
+//        _affirmTextFild.tag = 105;
+////        _affirmTextFild.placeholder = @"    确认密码";
+////        _affirmTextFild.leftViewMode = UITextFieldViewModeAlways;
+//        UIImageView *leftView = [[UIImageView alloc] initWithFrame:CGRectMake(14, 0, 20, 20)];
+//        leftView.image = [UIImage imageNamed:@"密码"];
+//        _affirmTextFild.leftView = leftView;
+//        _affirmTextFild.font  = [UIFont systemFontOfSize:15];
+//        _affirmTextFild.textColor = [UIColor colorWithHexString:@"212121"];
+//        _affirmTextFild.clearButtonMode = UITextFieldViewModeWhileEditing;
+//        _affirmTextFild.secureTextEntry = YES;
+//    }
+//    return _affirmTextFild;
+//}
 
 - (UITextField *)invitationTextFild{
     if (_invitationTextFild == nil) {
@@ -239,15 +254,15 @@ static NSString *const kcodeGainUrl = @"code";
     return _passwordLabel;
 }
 
-- (UILabel *)affirmLabel{
-    if (_affirmLabel == nil) {
-        _affirmLabel = [[UILabel alloc] init];
-        _affirmLabel.text = @"确认密码";
-        _affirmLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
-        _affirmLabel.font = [UIFont systemFontOfSize:10];
-    }
-    return _affirmLabel;
-}
+//- (UILabel *)affirmLabel{
+//    if (_affirmLabel == nil) {
+//        _affirmLabel = [[UILabel alloc] init];
+//        _affirmLabel.text = @"确认密码";
+//        _affirmLabel.textColor  = [UIColor colorWithHexString:@"bdbdbd"];
+//        _affirmLabel.font = [UIFont systemFontOfSize:10];
+//    }
+//    return _affirmLabel;
+//}
 - (UILabel *)invitationLabel{
     if (_invitationLabel == nil) {
         _invitationLabel = [[UILabel alloc] init];
@@ -273,6 +288,27 @@ static NSString *const kcodeGainUrl = @"code";
         _lineNoteView.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
     }
     return _lineNoteView;
+}
+- (ShowWarningMessageView *)gainNumWarningView{
+    if (_gainNumWarningView == nil) {
+        _gainNumWarningView = [[ShowWarningMessageView alloc] init];
+        _gainNumWarningView.hidden = YES;
+    }
+    return _gainNumWarningView;
+}
+- (ShowWarningMessageView *)phoneWarngingView{
+    if (_phoneWarngingView == nil) {
+        _phoneWarngingView = [[ShowWarningMessageView alloc] init];
+        _phoneWarngingView.hidden = YES;
+    }
+    return _phoneWarngingView;
+}
+- (ShowWarningMessageView *)passwordWarningView{
+    if (_passwordWarningView == nil) {
+        _passwordWarningView = [[ShowWarningMessageView alloc] init];
+        _passwordWarningView.hidden = YES;
+    }
+    return _passwordWarningView;
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -300,19 +336,24 @@ static NSString *const kcodeGainUrl = @"code";
     [self.view addSubview:self.registerButton];
     
     [self.view addSubview:self.phoneTextField];
+    [self.view addSubview:self.phoneWarngingView];
     
     [self.view addSubview:self.authCodeTextFild];
     
+    [self.view addSubview:self.gainNumWarningView];
+    
     [self.view addSubview:self.passWordTextFild];
+    [self.view addSubview:self.passwordWarningView];
     
     [self.view addSubview:self.invitationTextFild];
     
-    [self.view addSubview:self.affirmTextFild];
+//    [self.view addSubview:self.affirmTextFild];
 
     [self.view addSubview:self.phoneNumLabel];
     [self.view addSubview:self.gainNumLabel];
     [self.view addSubview:self.passwordLabel];
-    [self.view addSubview:self.affirmLabel];
+    [self.view addSubview:self.eyeButton];
+//    [self.view addSubview:self.affirmLabel];
     [self.view addSubview:self.invitationLabel];
     
     [self.view addSubview:self.selectButton];
@@ -321,8 +362,18 @@ static NSString *const kcodeGainUrl = @"code";
     [self.view addSubview:self.lineNoteView];
     
 }
-
-
+#pragma  mark -----
+- (void)didEyeButton:(UIButton *)btn{
+    if (!btn.selected) {
+        self.passWordTextFild.secureTextEntry = NO;
+        btn.selected = YES;
+        
+    }else if (btn.selected) {
+        self.passWordTextFild.secureTextEntry = YES;
+        btn.selected = NO;
+        }
+    
+}
 
 
 #pragma make :自动布局
@@ -348,8 +399,8 @@ static NSString *const kcodeGainUrl = @"code";
     [self.phoneNumLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(18);
         make.top.mas_equalTo(self.view.mas_top).with.offset(24);
-        make.height.mas_equalTo(@10);
-        make.width.mas_equalTo(@40);
+        make.height.mas_equalTo(@18);
+        make.width.mas_equalTo(@120);
 
     }];
 
@@ -358,6 +409,12 @@ static NSString *const kcodeGainUrl = @"code";
         make.right.mas_equalTo(self.view.mas_right).with.offset(0);
         make.top.mas_equalTo(self.phoneNumLabel.mas_bottom).with.offset(0);
         make.height.mas_equalTo(@40);
+    }];
+    [self.phoneWarngingView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-80);
+        make.top.mas_equalTo(self.view.mas_top).with.offset(24);
+        make.height.mas_equalTo(@18);
+        make.width.mas_equalTo(@40);
     }];
     
     [self.sendButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -383,6 +440,21 @@ static NSString *const kcodeGainUrl = @"code";
         make.height.mas_equalTo(@40);
     }];
     
+    
+    [self.gainNumWarningView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.gainNumLabel.mas_right).with.offset(10);
+        make.top.mas_equalTo(self.phoneTextField.mas_bottom).with.offset(10);
+        make.height.mas_equalTo(@18);
+        make.width.mas_equalTo(@40);
+    }];
+    // 提示框
+    [self.authCodeTextFild mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+        make.top.mas_equalTo(self.gainNumLabel.mas_bottom).with.offset(0);
+        make.height.mas_equalTo(@40);
+    }];
+    
     // 密码
     [self.passwordLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(18);
@@ -397,24 +469,39 @@ static NSString *const kcodeGainUrl = @"code";
         make.top.mas_equalTo(self.passwordLabel.mas_bottom).with.offset(0);
         make.height.mas_equalTo(@40);
     }];
-    // 确认密码
-    [self.affirmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
-        make.top.mas_equalTo(self.passWordTextFild.mas_bottom).with.offset(16);
-        make.height.mas_equalTo(@10);
+    
+    [self.passwordWarningView mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-80);
+        make.top.mas_equalTo(self.authCodeTextFild.mas_bottom).with.offset(15);
+        make.height.mas_equalTo(@18);
         make.width.mas_equalTo(@40);
-        
     }];
-    [self.affirmTextFild mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
-        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
-        make.top.mas_equalTo(self.affirmLabel.mas_bottom).with.offset(0);
+    
+    
+    [self.eyeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.view.mas_right).with.offset(-10);
+        make.top.mas_equalTo(self.authCodeTextFild.mas_bottom).with.offset(5);
         make.height.mas_equalTo(@40);
+        make.width.mas_equalTo(@40);
     }];
+//    // 确认密码
+//    [self.affirmLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+//        make.top.mas_equalTo(self.passWordTextFild.mas_bottom).with.offset(16);
+//        make.height.mas_equalTo(@10);
+//        make.width.mas_equalTo(@40);
+//        
+//    }];
+//    [self.affirmTextFild mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.view.mas_left).with.offset(18);
+//        make.right.mas_equalTo(self.view.mas_right).with.offset(0);
+//        make.top.mas_equalTo(self.affirmLabel.mas_bottom).with.offset(0);
+//        make.height.mas_equalTo(@40);
+//    }];
     // 邀请码
     [self.invitationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_left).with.offset(18);
-        make.top.mas_equalTo(self.affirmTextFild.mas_bottom).with.offset(16);
+        make.top.mas_equalTo(self.passWordTextFild.mas_bottom).with.offset(16);
         make.height.mas_equalTo(@10);
         make.width.mas_equalTo(@80);
         
@@ -493,9 +580,10 @@ static NSString *const kcodeGainUrl = @"code";
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
         
         [self obj_showTotasViewWithMes:@"请输入手机号"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
+        self.phoneWarngingView.hidden = NO;
+//        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+//        _showWarningMessageView.isShowWarningMessage  = NO;
+//        [self.view addSubview:_showWarningMessageView];
         
         return;
         
@@ -503,9 +591,10 @@ static NSString *const kcodeGainUrl = @"code";
         
         if (![AcountManager isValidateMobile:self.phoneTextField.text]) {
             [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
-            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
-            _showWarningMessageView.isShowWarningMessage  = NO;
-            [self.view addSubview:_showWarningMessageView];
+            self.phoneWarngingView.hidden = NO;
+//            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+//            _showWarningMessageView.isShowWarningMessage  = NO;
+//            [self.view addSubview:_showWarningMessageView];
             return;
         }
         
@@ -555,9 +644,10 @@ static NSString *const kcodeGainUrl = @"code";
     if (self.phoneTextField.text == nil || self.phoneTextField.text.length <= 0) {
         
         [self obj_showTotasViewWithMes:@"请输入手机号"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
+        self.phoneWarngingView.hidden = NO;
+//        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+//        _showWarningMessageView.isShowWarningMessage  = NO;
+//        [self.view addSubview:_showWarningMessageView];
         
         return;
         
@@ -565,9 +655,10 @@ static NSString *const kcodeGainUrl = @"code";
         
         if (![AcountManager isValidateMobile:self.phoneTextField.text]) {
             [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
-            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
-            _showWarningMessageView.isShowWarningMessage  = NO;
-            [self.view addSubview:_showWarningMessageView];
+            self.phoneWarngingView.hidden = NO;
+//            _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _phoneNumLabel.frame.origin.y, 120, 18)];
+//            _showWarningMessageView.isShowWarningMessage  = NO;
+//            [self.view addSubview:_showWarningMessageView];
             return;
         }
         
@@ -576,36 +667,35 @@ static NSString *const kcodeGainUrl = @"code";
     [self.paramsPost setObject:self.phoneTextField.text forKey:@"mobile"];
     if (self.authCodeTextFild.text.length <= 0 || self.authCodeTextFild.text == nil) {
         [self obj_showTotasViewWithMes:@"请输入验证码"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8 - 115, _gainNumLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
+        self.gainNumWarningView.hidden = NO;
         return;
     }
     [self.paramsPost setObject:self.authCodeTextFild.text forKey:@"smscode"];
     if (self.passWordTextFild.text == nil || self.passWordTextFild.text.length <= 0) {
         [self obj_showTotasViewWithMes:@"请输入密码"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _passwordLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
+        self.passwordWarningView.hidden = NO;
+//        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _passwordLabel.frame.origin.y, 120, 18)];
+//        _showWarningMessageView.isShowWarningMessage  = NO;
+//        [self.view addSubview:_showWarningMessageView];
         return;
         
     }
     
-    if (self.affirmTextFild.text == nil || self.affirmTextFild.text.length <= 0) {
-        [self obj_showTotasViewWithMes:@"请输入确认密码"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
-        return;
-    }
-    if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
-        [self obj_showTotasViewWithMes:@"两次密码不一样"];
-        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
-        _showWarningMessageView.isShowWarningMessage  = NO;
-        [self.view addSubview:_showWarningMessageView];
-
-        return;
-    }
+//    if (self.affirmTextFild.text == nil || self.affirmTextFild.text.length <= 0) {
+//        [self obj_showTotasViewWithMes:@"请输入确认密码"];
+//        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
+//        _showWarningMessageView.isShowWarningMessage  = NO;
+//        [self.view addSubview:_showWarningMessageView];
+//        return;
+//    }
+//    if (![self.passWordTextFild.text isEqualToString:self.affirmTextFild.text]) {
+//        [self obj_showTotasViewWithMes:@"两次密码不一样"];
+//        _showWarningMessageView = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 120 - 8, _affirmLabel.frame.origin.y, 120, 18)];
+//        _showWarningMessageView.isShowWarningMessage  = NO;
+//        [self.view addSubview:_showWarningMessageView];
+//
+//        return;
+//    }
     if (!self.selectButton) {
         [self obj_showTotasViewWithMes:@"请同意用户服务协议"];
     }
@@ -637,8 +727,19 @@ static NSString *const kcodeGainUrl = @"code";
     }];
 }
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
-    if (!self.showWarningMessageView.isShowWarningMessage) {
-        self.showWarningMessageView.hidden = YES;
+//    if (!self.showWarningMessageView.isShowWarningMessage) {
+//        self.showWarningMessageView.hidden = YES;
+//    }
+    
+    
+    if (textField.tag == 10003) {
+        self.gainNumWarningView.hidden = YES;
+    }
+    if (textField.tag == 10002) {
+        self.phoneWarngingView.hidden = YES;
+    }
+    if (textField.tag == 10004) {
+        self.passwordWarningView.hidden = YES;
     }
 }
 

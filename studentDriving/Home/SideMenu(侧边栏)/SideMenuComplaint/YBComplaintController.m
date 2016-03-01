@@ -11,6 +11,7 @@
 #import "YBComplaintCoachView.h"
 #import "ComplaintSchoolView.h"
 #import "CoachListController.h"
+#import "YBMyComplaintListController.h"
 
 @interface YBComplaintController ()<UIScrollViewDelegate,complaintPushCoachDetail>
 {
@@ -63,7 +64,16 @@
     self.coachView.superController = self;
     self.drivingView.superController = self;
     
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"我的投诉" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarDidClick)];
+    
 }
+
+- (void)rightBarDidClick
+{
+    YBMyComplaintListController *vc = [[YBMyComplaintListController alloc] init];
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 - (void)viewWillAppear:(BOOL)animated{
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];

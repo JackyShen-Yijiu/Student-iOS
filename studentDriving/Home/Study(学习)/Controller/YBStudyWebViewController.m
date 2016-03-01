@@ -30,7 +30,7 @@
     [super viewDidLoad];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor lightGrayColor];
+    self.view.backgroundColor = RGBColor(232, 232, 237);
     
     self.title = @"自助约考";
     
