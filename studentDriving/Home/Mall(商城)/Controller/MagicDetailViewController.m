@@ -202,6 +202,12 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     
 }
 - (void)didExchange:(UIButton *)btn{
+    
+    if (![AcountManager isLogin]) {
+        [DVVUserManager userNeedLogin];
+        return;
+    }
+
     if (0 == _mallWay) {
         // 积分商城
         YBIntegrationMessageController *integrationMessageVC = [[YBIntegrationMessageController alloc] init];
@@ -252,7 +258,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     if (_exchangeButton == nil) {
         _exchangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _exchangeButton.frame = CGRectMake(self.bgView.frame.size.width - 100 - 25, 7.5, 100, 35);
-        _exchangeButton.backgroundColor = YBNavigationBarBgColor;
+        _exchangeButton.backgroundColor = [UIColor colorWithHexString:@"bdbdbd"];
         [_exchangeButton setTitle:@"立即兑换" forState:UIControlStateNormal];
         [_exchangeButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_exchangeButton addTarget:self action:@selector(didExchange:) forControlEvents:UIControlEventTouchUpInside];
