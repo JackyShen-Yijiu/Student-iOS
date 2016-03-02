@@ -194,7 +194,7 @@
         
         UIView *delive = [[UIView alloc] initWithFrame:CGRectMake(20, foot.height/2-1/2, foot.width, 1)];
         delive.backgroundColor = [UIColor lightGrayColor];
-        delive.alpha = 0.3;
+        delive.alpha = 0.2;
         [foot addSubview:delive];
         
         return foot;
