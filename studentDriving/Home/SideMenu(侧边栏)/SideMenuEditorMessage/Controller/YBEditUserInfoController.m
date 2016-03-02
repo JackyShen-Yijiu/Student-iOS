@@ -136,7 +136,13 @@
         
     }else if (_editType == YBEditUserInfoType_Sex) {
         // 性别
-        paramsDict[@"gender"] = _editTextFidld.text;
+        if ([_editTextFidld.text isEqualToString:@"男"] || [_editTextFidld.text isEqualToString:@"女"]) {
+            paramsDict[@"gender"] = _editTextFidld.text;
+        }else {
+            [self obj_showTotasViewWithMes:@"请选择正确的性别"];
+            return ;
+        }
+        
         
     }else if (_editType == YBEditUserInfoType_Mobile) {
         // 手机号
