@@ -174,7 +174,7 @@
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
         
-        self.noCountmentView.label1.text = @"您尚未登陆，请登陆查看";
+        self.noCountmentView.label1.text = @"您尚未登录，请登录查看";
         self.noCountmentView.label1.textColor = YBNavigationBarBgColor;
         self.noCountmentView.label1.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidClick)];
@@ -183,7 +183,7 @@
         
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width/2-100/2, CGRectGetMaxY(self.noCountmentView.label1.frame)-10, 100, 20)];
         btn.titleLabel.font = [UIFont systemFontOfSize:13];
-        [btn setTitle:@"登陆/注册" forState:UIControlStateNormal];
+        [btn setTitle:@"登录/注册" forState:UIControlStateNormal];
         [btn setTitleColor:RGBColor(0, 176, 252) forState:UIControlStateNormal];
         [btn setTitleColor:RGBColor(0, 176, 252) forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(tapDidClick) forControlEvents:UIControlEventTouchUpInside];

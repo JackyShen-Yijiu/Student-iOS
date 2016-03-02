@@ -107,9 +107,11 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     self.menuVC.delegate = self;
     self.menuVC.iconDelegage = self;
     
+//    CGSize size = [[UIScreen mainScreen] bounds].size;
+//    self.menuVC.view.frame = CGRectMake(- size.width * 0.8, 0, size.width * 0.8, size.height);
     self.menuVC.view.frame = [[UIScreen mainScreen] bounds];
     //self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuStartNarrowRatio, menuStartNarrowRatio);
-    self.menuVC.view.center = CGPointMake(self.menuCenterXStart, self.menuVC.view.center.y);
+//    self.menuVC.view.center = CGPointMake(self.menuCenterXStart, self.menuVC.view.center.y);
     [self.view addSubview:self.menuVC.view];
     
     // 添加tabBarController

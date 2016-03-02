@@ -35,6 +35,13 @@
     CGSize size = self.bounds.size;
     CGFloat minX = CGRectGetMinX(_titleLabel.frame);
     _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX, 0.5);
+    
+    if (_arrowImageView.hidden) {
+        __weak typeof(self) ws = self;
+        [_subTitleLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+            make.right.mas_equalTo(ws.right).offset(-14);
+        }];
+    }
 }
 
 - (UIImageView *)lineImageView {
