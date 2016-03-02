@@ -125,6 +125,8 @@
     
     [super viewDidLoad];
     
+    self.edgesForExtendedLayout = NO;
+
     // Do any additional setup after loading the view.
     self.view.backgroundColor = RGBColor(232, 232, 237);
     self.title = @"学习";
@@ -323,7 +325,7 @@
     
     _progressView.frame = CGRectMake(0, CGRectGetMaxY(self.dvvToolBarView.frame), screenSize.width, 47);
     
-    _scrollView.frame = CGRectMake(0, CGRectGetMaxY(_progressView.frame), screenSize.width, screenSize.height - CGRectGetMaxY(_progressView.frame));
+    _scrollView.frame = CGRectMake(0, CGRectGetMaxY(_progressView.frame), screenSize.width, screenSize.height - CGRectGetMaxY(_progressView.frame)-100);
     _scrollView.contentSize = CGSizeMake(screenSize.width * 4, 0);
     
     _kemuyiView.frame = CGRectMake(0, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
