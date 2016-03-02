@@ -23,6 +23,7 @@
 @property (nonatomic,strong) UIButton *callBtn;
 
 @property(nonatomic,strong)UIView * delive;
+@property(nonatomic,strong)UIView * topDelive;
 
 @end
 
@@ -56,12 +57,20 @@
     }
     return _delive;
 }
-
+- (UIView *)topDelive
+{
+    if (_topDelive == nil) {
+        _topDelive = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 1)];
+        _topDelive.backgroundColor = [UIColor lightGrayColor];
+        _topDelive.alpha = 0.3;
+    }
+    return _topDelive;
+}
 - (UIButton *)askBtn
 {
     if (_askBtn==nil) {
         
-        _askBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width/2, 0, _footView.width/2, 46)];
+        _askBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width/2, 1, _footView.width/2, 46)];
         _askBtn.backgroundColor = [UIColor whiteColor];
         [_askBtn setTitle:@"我要提问" forState:UIControlStateNormal];
         [_askBtn setTitle:@"我要提问" forState:UIControlStateNormal];
@@ -80,7 +89,7 @@
 {
     if (_callBtn==nil) {
         
-        _callBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, _footView.width/2, 46)];
+        _callBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 1, _footView.width/2, 46)];
         _callBtn.backgroundColor = [UIColor whiteColor];
         [_callBtn setTitle:@"拨打客服" forState:UIControlStateNormal];
         [_callBtn setTitle:@"拨打客服" forState:UIControlStateNormal];
@@ -104,7 +113,7 @@
 
 - (void)callBtnDidClick
 {
-    UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"咨询电话" message:@"400-626-9255" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"咨询电话" message:@"400-626-9255" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
     [alert show];
     
 }
@@ -136,9 +145,17 @@
         _dataTabelView.delegate = self;
         // 如果是固定高度的话在这里设置比较好
         _dataTabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        _dataTabelView.backgroundColor = RGBColor(232, 232, 237);
+        _dataTabelView.backgroundColor = [UIColor clearColor];
     }
     return _dataTabelView;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self loadData];
+
 }
 
 - (void)viewDidLoad {
@@ -154,11 +171,10 @@
     [self.footView addSubview:self.askBtn];
     [self.footView addSubview:self.callBtn];
     [self.footView addSubview:self.delive];
-    
+    [self.footView addSubview:self.topDelive];
+
     // 没有内容，占位图
     [self.view addSubview:self.noCountmentView];
-    
-    [self loadData];
     
 }
 
