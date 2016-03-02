@@ -131,7 +131,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     [self setUpTabbarVc:self.yuyueVC title:@"预约" image:@"YBYuYueTabSelectImg" selectedImage:@"tab_buddy_nor"];
 
     self.shangchengVC = [[YBMallViewController alloc] init];
-    [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"YBShangChengSelectImg" selectedImage:@"tab_buddy_nor"];
+    [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"YBShangChengTabSelectImg" selectedImage:@"tab_buddy_nor"];
 //
 //    self.shequVC = [[YBCommunityViewController alloc] init];
 //    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];

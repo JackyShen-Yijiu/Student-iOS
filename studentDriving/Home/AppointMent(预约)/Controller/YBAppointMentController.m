@@ -238,6 +238,8 @@
     
     [super viewDidLoad];
     
+    self.edgesForExtendedLayout = NO;
+
     self.view.backgroundColor = RGBColor(232, 232, 237);
     
     NSLog(@"%s,[AcountManager manager].userSubject.name:%@",__func__,[AcountManager manager].userSubject.name);
@@ -285,7 +287,8 @@
     self.courseDayTableView.backgroundColor = RGBColor(238, 238, 238);
     self.courseDayTableView.tableHeaderView = self.appointMentHeadView;
     [self.view addSubview:self.courseDayTableView];
-  
+    self.courseDayTableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
+    
 }
 
 - (void)addAppointMent
