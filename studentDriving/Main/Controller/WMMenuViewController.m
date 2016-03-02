@@ -181,7 +181,7 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section==0) {
-        return 1;
+        return 20;
     }
     return 0;
 }
@@ -189,9 +189,14 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     if (section==0) {
-        UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(20, 0, tableView.width-20, 1)];
-        foot.backgroundColor = [UIColor lightGrayColor];
-        foot.alpha = 0.3;
+        UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 20)];
+        foot.backgroundColor = [UIColor clearColor];
+        
+        UIView *delive = [[UIView alloc] initWithFrame:CGRectMake(20, foot.height/2-1/2, foot.width, 1)];
+        delive.backgroundColor = [UIColor lightGrayColor];
+        delive.alpha = 0.2;
+        [foot addSubview:delive];
+        
         return foot;
     }
     return nil;

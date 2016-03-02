@@ -11,7 +11,7 @@
 #import "YBAppointMentNoCountentView.h"
 #import "YBConsultationController.h"
 
-@interface MyConsultationListController ()<UITableViewDataSource,UITableViewDelegate>
+@interface MyConsultationListController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 
 @property (nonatomic,strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) UITableView *dataTabelView;
@@ -104,10 +104,21 @@
 
 - (void)callBtnDidClick
 {
-    NSLog(@"%s",__func__);
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"400-626-9255"];
-    //            NSLog(@"str======%@",str);
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+    UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"咨询电话" message:@"400-626-9255" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        
+        NSLog(@"%s",__func__);
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"400-626-9255"];
+        //            NSLog(@"str======%@",str);
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
+        
+    }
 }
 
 - (void)askBtnDidClick

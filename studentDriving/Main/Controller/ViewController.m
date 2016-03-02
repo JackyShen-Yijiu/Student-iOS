@@ -287,11 +287,11 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
  */
 - (void)showMenu {
     
-    [self.tabBarController.view addSubview:self.cover];
     self.distance = self.leftDistance;
     self.common.homeState = kStateMenu;
     [self doSlide:viewHeightNarrowRatio];
-    
+    [self.tabBarController.view addSubview:self.cover];
+
 }
 
 /**
