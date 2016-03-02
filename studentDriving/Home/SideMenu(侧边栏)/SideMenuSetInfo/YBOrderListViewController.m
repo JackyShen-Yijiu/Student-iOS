@@ -310,6 +310,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
             [ud setObject:@"1" forKey:@"applyAgain"];
             [ud synchronize];
+            [DVVUserManager userLoginSucces];
             
         }else if(401 == tag){
             // 线上重新报名
@@ -319,6 +320,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
             [ud setObject:@"1" forKey:@"applyAgain"];
             [ud synchronize];
+            [DVVUserManager userLoginSucces];
             
         }else if(401 == tag){
             // 立即支付

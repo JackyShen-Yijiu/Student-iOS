@@ -19,6 +19,7 @@
 #import "BLPFAlertView.h"
 #import "ShowWarningBG.h"
 #import "DVVCoachDetailController.h"
+#import "DVVNoDataPromptView.h"
 
 #define StartOffset  kSystemWide/4-60/2
 
@@ -50,8 +51,8 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 @property (strong, nonatomic) CoachModel *coachDetailModel;
 @property (strong, nonatomic) DrivingModel *drivingDetailModel;
 
-@property (strong, nonatomic) ShowWarningBG *coachBG;
-@property (nonatomic, strong) ShowWarningBG *schoolBG;
+@property (nonatomic,strong) DVVNoDataPromptView *p;
+@property (nonatomic,strong) DVVNoDataPromptView *mallView;
 
 
 @end
@@ -133,8 +134,8 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
 }
 - (void)viewWillDisappear:(BOOL)animated{
-    [_coachBG hidden];
-    [_schoolBG hidden];
+    [self.p removeFromSuperview];
+    [self.mallView removeFromSuperview];
 }
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
     
@@ -281,13 +282,16 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         [self.tableView reloadData];
         if (!self.dataArray.count) {
             if (_myLoveState == MyLoveStateCoach) {
-                _coachBG = [[ShowWarningBG alloc] initWithTietleName:@"没有您喜欢的教练"];
-                [_coachBG show];
+                self.p = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您喜欢的教练" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+                self.p.frame = CGRectMake(0, 44, kSystemWide, kSystemHeight - 44);
+                [self.view addSubview:self.p];
             }
             if (_myLoveState == MyLoveStateDriving) {
 //              NSString *msg = @"没有喜欢的教练";
-                _schoolBG = [[ShowWarningBG alloc] initWithTietleName:@"没有您喜欢的驾校"];
-                [_schoolBG show];
+                self.mallView = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您喜欢的驾校" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+                self.mallView.frame = CGRectMake(0, 44, kSystemWide, kSystemHeight - 44);
+                [self.view addSubview:self.mallView];
+
                 
             }
 //            [self showTotasViewWithMes:msg];
@@ -351,7 +355,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     [UIView animateWithDuration:0.5 animations:^{
         self.menuIndicator.frame = CGRectMake(0, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
-    [_schoolBG hidden];
+    [_mallView removeFromSuperview];
     sender.selected = YES;
     _myLoveState = MyLoveStateCoach;
     [self startDownLoad];
@@ -363,7 +367,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     [UIView animateWithDuration:0.5 animations:^{
         self.menuIndicator.frame = CGRectMake(kSystemWide/2, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
-    [_coachBG hidden];
+    [_p removeFromSuperview];
     sender.selected = YES;
     _myLoveState = MyLoveStateDriving;
     [self startDownLoad];
