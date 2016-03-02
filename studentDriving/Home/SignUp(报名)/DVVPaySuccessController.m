@@ -7,8 +7,11 @@
 //
 
 #import "DVVPaySuccessController.h"
+#import "DVVPaySuccessView.h"
 
 @interface DVVPaySuccessController ()
+
+@property (nonatomic, strong) DVVPaySuccessView *successView;
 
 @end
 
@@ -17,6 +20,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    self.title = @"报名信息";
+    
+    [self.view addSubview:self.successView];
+    
+}
+
+- (DVVPaySuccessView *)successView {
+    if (!_successView) {
+        _successView = [DVVPaySuccessView new];
+        _successView.frame = self.view.bounds;
+    }
+    return _successView;
 }
 
 - (void)didReceiveMemoryWarning {
