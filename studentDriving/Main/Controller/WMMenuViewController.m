@@ -145,7 +145,7 @@
     // 设置头像
     self.headerImageView.image = [[UIImage imageNamed:@"coach_man_default_icon"] getRoundImage];
     [self.headerImageView.layer setMasksToBounds:YES];
-    [self.headerImageView.layer setCornerRadius:20];
+    [self.headerImageView.layer setCornerRadius:28];
     self.headerImageView.userInteractionEnabled = YES;
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(priateMessage:)];
     [self.headerImageView addGestureRecognizer:tapGesture];
