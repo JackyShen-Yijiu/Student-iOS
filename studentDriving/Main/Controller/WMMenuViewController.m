@@ -32,24 +32,24 @@
     
     [super viewWillAppear:animated];
     
-    CGFloat margin = self.view.width-self.common.screenW * viewSlideHorizonRatio;
-    NSLog(@"margin:%f",margin);
-    
-    [self.headerImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(56, 56));
-        make.left.equalTo(self.view.mas_left).offset((self.view.width-margin)/2-40/2);
-        make.top.equalTo(@65);
-    }];
-    [self.userMobileLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(@0);
-        make.right.mas_equalTo(self.view.mas_right).offset(-margin);
-        make.top.mas_equalTo(self.headerImageView.mas_bottom).offset(10);
-    }];
-    [self.YLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(@0);
-        make.right.mas_equalTo(self.view.mas_right).offset(-margin);
-        make.top.mas_equalTo(self.userMobileLabel.mas_bottom).offset(10);
-    }];
+//    CGFloat margin = self.view.width-self.common.screenW * viewSlideHorizonRatio;
+//    NSLog(@"margin:%f",margin);
+//    
+//    [self.headerImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.size.mas_equalTo(CGSizeMake(56, 56));
+//        make.left.equalTo(self.view.mas_left).offset((self.view.width-margin)/2-40/2);
+//        make.top.equalTo(@65);
+//    }];
+//    [self.userMobileLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(@0);
+//        make.right.mas_equalTo(self.view.mas_right).offset(-margin);
+//        make.top.mas_equalTo(self.headerImageView.mas_bottom).offset(10);
+//    }];
+//    [self.YLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(@0);
+//        make.right.mas_equalTo(self.view.mas_right).offset(-margin);
+//        make.top.mas_equalTo(self.userMobileLabel.mas_bottom).offset(10);
+//    }];
     
     self.YLabel.text = @"我的Y码：暂无";
     [self.tableView reloadData];
@@ -78,7 +78,7 @@
         return;
     }
     
-    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"me"] getRoundImage] completed:nil];
+    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"coach_man_default_icon"] getRoundImage] completed:nil];
     // 用户名
     if ([AcountManager manager].userMobile) {
         
@@ -132,7 +132,7 @@
     self.listArray = @[@[@"我的消息", @"我的订单", @"我的钱包"],@[ @"班车接送",@"预约签到",@"优惠活动",@"用户设置"]];
     
     // 正常状态图片
-    self.imgArray = @[@[@"Message", @"order", @"wallet"], @[@"bus", @"scan", @"activity",@"set"]];
+    self.imgArray = @[@[@"YBSlideBarBtnImg_message", @"YBSlideBarBtnImg_order", @"YBSlideBarBtnImg_wallet"], @[@"bus", @"YBSlideBarBtnImg_scan", @"activity",@"set"]];
     
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;

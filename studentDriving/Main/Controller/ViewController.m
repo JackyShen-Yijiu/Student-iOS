@@ -107,15 +107,12 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     self.menuVC.delegate = self;
     self.menuVC.iconDelegage = self;
     
+//    CGSize size = [[UIScreen mainScreen] bounds].size;
+//    self.menuVC.view.frame = CGRectMake(- size.width * 0.8, 0, size.width * 0.8, size.height);
     self.menuVC.view.frame = [[UIScreen mainScreen] bounds];
     //self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuStartNarrowRatio, menuStartNarrowRatio);
-    self.menuVC.view.center = CGPointMake(self.menuCenterXStart, self.menuVC.view.center.y);
+//    self.menuVC.view.center = CGPointMake(self.menuCenterXStart, self.menuVC.view.center.y);
     [self.view addSubview:self.menuVC.view];
-    
-    // 设置遮盖
-//    self.cover = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    self.cover.backgroundColor = [UIColor colorWithPatternImage:[UIImage imageNamed:@"YBSliderBarImg"]];
-//    [self.view addSubview:self.cover];
     
     // 添加tabBarController
     self.tabBarController = [[IWTabBarViewController alloc] init];
@@ -131,11 +128,11 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     [self setUpTabbarVc:self.yuyueVC title:@"预约" image:@"YBYuYueTabSelectImg" selectedImage:@"tab_buddy_nor"];
 
     self.shangchengVC = [[YBMallViewController alloc] init];
-    [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"YBShangChengSelectImg" selectedImage:@"tab_buddy_nor"];
+    [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"YBShangChengTabSelectImg" selectedImage:@"tab_buddy_nor"];
 //
 //    self.shequVC = [[YBCommunityViewController alloc] init];
 //    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
-//    
+//
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSlide) name:KhiddenSlide object:nil];
     
     // 注册接收到推送消息，跳转到对应的窗体的通知
@@ -160,6 +157,19 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
         
     }
     
+}
+
+- (UIView *)cover
+{
+    if (_cover==nil) {
+        _cover = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+        _cover.backgroundColor = [UIColor blackColor];
+        _cover.alpha = 0.3;
+        _cover.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenSlide)];
+        [_cover addGestureRecognizer:tap];
+    }
+    return _cover;
 }
 
 - (void)hiddenSlide
@@ -234,12 +244,16 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     }
     
     CGFloat x = [recognizer translationInView:self.view].x;
+    NSLog(@"处理拖动事件x:%f",x);
+    
     // 禁止在主界面的时候向左滑动
     if (self.common.homeState == kStateHome && x < 0) {
         return;
     }
     
     CGFloat dis = self.distance + x;
+    NSLog(@"处理拖动事件dis:%f",dis);
+    
     // 当手势停止时执行操作
     if (recognizer.state == UIGestureRecognizerStateEnded) {
         if (dis >= self.common.screenW * viewSlideHorizonRatio / 2.0) {
@@ -251,13 +265,15 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     }
     
     CGFloat proportion = (viewHeightNarrowRatio - 1) * dis / self.leftDistance + 1;
+    NSLog(@"处理拖动事件proportion:%f",proportion);
+    
     if (proportion < viewHeightNarrowRatio || proportion > 1) {
         return;
     }
     self.tabBarController.view.center = CGPointMake(self.view.center.x + dis, self.view.center.y);
    // self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
     
-    self.baomingVC.leftBtn.alpha = self.cover.alpha = 1 - dis / self.leftDistance;
+//    self.baomingVC.leftBtn.alpha = self.cover.alpha = 1 - proportion;
     
     CGFloat menuProportion = dis * (1 - menuStartNarrowRatio) / self.leftDistance + menuStartNarrowRatio;
     CGFloat menuCenterMove = dis * (self.menuCenterXEnd - self.menuCenterXStart) / self.leftDistance;
@@ -270,18 +286,25 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
  *  展示侧边栏
  */
 - (void)showMenu {
+    
+    [self.tabBarController.view addSubview:self.cover];
     self.distance = self.leftDistance;
     self.common.homeState = kStateMenu;
     [self doSlide:viewHeightNarrowRatio];
+    
 }
 
 /**
  *  展示主界面
  */
 - (void)showHome {
+    
     self.distance = 0;
     self.common.homeState = kStateHome;
     [self doSlide:1];
+    [UIView animateWithDuration:1.0 animations:^{
+        [self.cover removeFromSuperview];
+    }];
 }
 
 /**
@@ -290,11 +313,12 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
  *  @param proportion 滑动比例
  */
 - (void)doSlide:(CGFloat)proportion {
+    
     [UIView animateWithDuration:0.3 animations:^{
         self.tabBarController.view.center = CGPointMake(self.view.center.x + self.distance, self.view.center.y);
         //self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
         
-        self.baomingVC.leftBtn.alpha = self.cover.alpha = proportion == 1 ? 1 : 0;
+//        self.baomingVC.leftBtn.alpha = self.cover.alpha = (proportion == 1 ? 0.3 : 0);
         
         CGFloat menuCenterX;
         CGFloat menuProportion;

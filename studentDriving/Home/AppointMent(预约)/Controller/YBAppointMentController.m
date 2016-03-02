@@ -174,7 +174,7 @@
     // 检测是否打开登录页
     if (![AcountManager isLogin]) {
         
-        self.noCountmentView.label1.text = @"您尚未登陆，请登陆查看";
+        self.noCountmentView.label1.text = @"您尚未登录，请登录查看";
         self.noCountmentView.label1.textColor = YBNavigationBarBgColor;
         self.noCountmentView.label1.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapDidClick)];
@@ -183,7 +183,7 @@
         
         UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(self.view.width/2-100/2, CGRectGetMaxY(self.noCountmentView.label1.frame)-10, 100, 20)];
         btn.titleLabel.font = [UIFont systemFontOfSize:13];
-        [btn setTitle:@"登陆/注册" forState:UIControlStateNormal];
+        [btn setTitle:@"登录/注册" forState:UIControlStateNormal];
         [btn setTitleColor:RGBColor(0, 176, 252) forState:UIControlStateNormal];
         [btn setTitleColor:RGBColor(0, 176, 252) forState:UIControlStateHighlighted];
         [btn addTarget:self action:@selector(tapDidClick) forControlEvents:UIControlEventTouchUpInside];
@@ -238,6 +238,8 @@
     
     [super viewDidLoad];
     
+    self.edgesForExtendedLayout = NO;
+
     self.view.backgroundColor = RGBColor(232, 232, 237);
     
     NSLog(@"%s,[AcountManager manager].userSubject.name:%@",__func__,[AcountManager manager].userSubject.name);
@@ -285,7 +287,8 @@
     self.courseDayTableView.backgroundColor = RGBColor(238, 238, 238);
     self.courseDayTableView.tableHeaderView = self.appointMentHeadView;
     [self.view addSubview:self.courseDayTableView];
-  
+    self.courseDayTableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0);
+    
 }
 
 - (void)addAppointMent
@@ -518,6 +521,29 @@
     self.number = [[AcountManager manager].userSubject.subjectId integerValue];
     [self.courseDayTableView.mj_header beginRefreshing];
     
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section==0) {
+        
+        return nil;
+        
+    }else if (section==1){
+        
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 30)];
+        header.backgroundColor = [UIColor clearColor];
+        return header;
+        
+    }else if (section==2){
+        
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 30)];
+        header.backgroundColor = [UIColor clearColor];
+        return header;
+        
+    }
+    
+    return nil;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

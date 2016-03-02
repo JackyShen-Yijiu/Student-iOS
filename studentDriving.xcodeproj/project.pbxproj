@@ -899,6 +899,9 @@
 		D98581A21C58669B0044E029 /* ComplaintDrivingView.m in Sources */ = {isa = PBXBuildFile; fileRef = D98581A11C58669B0044E029 /* ComplaintDrivingView.m */; };
 		D98581A51C58A5A40044E029 /* ComplaintCoachListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D98581A41C58A5A40044E029 /* ComplaintCoachListController.m */; };
 		D98581AD1C58B1C80044E029 /* DVVImagePickerControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D98581AC1C58B1C80044E029 /* DVVImagePickerControllerManager.m */; };
+		D9863C7B1C8696D800DED74A /* DVVPaySuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863C7A1C8696D800DED74A /* DVVPaySuccessController.m */; };
+		D9863C7E1C869F3F00DED74A /* DVVPaySuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863C7D1C869F3F00DED74A /* DVVPaySuccessView.m */; };
+		D9863C801C869F5A00DED74A /* DVVPaySuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9863C7F1C869F5A00DED74A /* DVVPaySuccessView.xib */; };
 		D9873B621C55D4EF000A3F6F /* DVVShare.m in Sources */ = {isa = PBXBuildFile; fileRef = D9873B611C55D4EF000A3F6F /* DVVShare.m */; };
 		D9873B651C56456F000A3F6F /* DVVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D9873B641C56456F000A3F6F /* DVVLocation.m */; };
 		D98C6F711C8033830090C349 /* ButtonGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F571C8033830090C349 /* ButtonGroupView.m */; };
@@ -2718,6 +2721,11 @@
 		D98581A41C58A5A40044E029 /* ComplaintCoachListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintCoachListController.m; sourceTree = "<group>"; };
 		D98581AB1C58B1C80044E029 /* DVVImagePickerControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVImagePickerControllerManager.h; sourceTree = "<group>"; };
 		D98581AC1C58B1C80044E029 /* DVVImagePickerControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVImagePickerControllerManager.m; sourceTree = "<group>"; };
+		D9863C791C8696D800DED74A /* DVVPaySuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVPaySuccessController.h; sourceTree = "<group>"; };
+		D9863C7A1C8696D800DED74A /* DVVPaySuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVPaySuccessController.m; sourceTree = "<group>"; };
+		D9863C7C1C869F3F00DED74A /* DVVPaySuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVPaySuccessView.h; sourceTree = "<group>"; };
+		D9863C7D1C869F3F00DED74A /* DVVPaySuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVPaySuccessView.m; sourceTree = "<group>"; };
+		D9863C7F1C869F5A00DED74A /* DVVPaySuccessView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVVPaySuccessView.xib; sourceTree = "<group>"; };
 		D9873B601C55D4EF000A3F6F /* DVVShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVShare.h; sourceTree = "<group>"; };
 		D9873B611C55D4EF000A3F6F /* DVVShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVShare.m; sourceTree = "<group>"; };
 		D9873B631C56456F000A3F6F /* DVVLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVLocation.h; sourceTree = "<group>"; };
@@ -4132,6 +4140,11 @@
 				D996748C1C7D55E80000CC65 /* DVVSignUpDetailController.m */,
 				D962FFF51C7EA79B0000E1E6 /* DVVConfirmOrderController.h */,
 				D962FFF61C7EA79B0000E1E6 /* DVVConfirmOrderController.m */,
+				D9863C791C8696D800DED74A /* DVVPaySuccessController.h */,
+				D9863C7A1C8696D800DED74A /* DVVPaySuccessController.m */,
+				D9863C7C1C869F3F00DED74A /* DVVPaySuccessView.h */,
+				D9863C7D1C869F3F00DED74A /* DVVPaySuccessView.m */,
+				D9863C7F1C869F5A00DED74A /* DVVPaySuccessView.xib */,
 				D962FFF81C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.h */,
 				D962FFF91C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m */,
 				D962FFFB1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib */,
@@ -6715,6 +6728,7 @@
 				D5604B731BF656C50020F0D7 /* sr_refresh.png in Resources */,
 				D919F3281C60885A00239B34 /* UMSocialSDKResourcesNew.bundle in Resources */,
 				D5604C161BF656C50020F0D7 /* chat_receiver_bg.png in Resources */,
+				D9863C801C869F5A00DED74A /* DVVPaySuccessView.xib in Resources */,
 				D5604C221BF656C50020F0D7 /* chat_sender_bg.png in Resources */,
 				D996747D1C7D54610000CC65 /* DrivingDetailInfoCell.xib in Resources */,
 				D5604BA31BF656C50020F0D7 /* VoiceSearchFeedback007.png in Resources */,
@@ -7022,6 +7036,7 @@
 				B2E8E1C71C72CEFD000190C2 /* IWTabBar.m in Sources */,
 				D5604C861BF656F30020F0D7 /* DXRecordView.m in Sources */,
 				B20DBED71C5DB0FF0023676E /* NSDataEx.m in Sources */,
+				D9863C7E1C869F3F00DED74A /* DVVPaySuccessView.m in Sources */,
 				D996746A1C7D54610000CC65 /* CoachListDMCarmodel.m in Sources */,
 				B20DBED51C5DB0FF0023676E /* DataVerifier.m in Sources */,
 				D99674661C7D54610000CC65 /* ClassTypeViewModel.m in Sources */,
@@ -7144,6 +7159,7 @@
 				560D22031C816BD1001B8B83 /* MallOrderCell.m in Sources */,
 				D970D39A1C3CFFEB003FCED3 /* CoachDMRootClass.m in Sources */,
 				D980218A1C51D21C00596C86 /* DVVAlert.m in Sources */,
+				D9863C7B1C8696D800DED74A /* DVVPaySuccessController.m in Sources */,
 				06F805A31C585AC400396445 /* CheckProgressTextField.m in Sources */,
 				064183F71C57552E00A33D88 /* HomeCheckProgressView.m in Sources */,
 				D588AFCC1BDDDAAB000C5D6F /* AppointmentCoachModel.m in Sources */,
@@ -7590,8 +7606,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = YES;
@@ -7614,7 +7628,6 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "2bfeb495-fc3e-4b01-beb7-194bcf623e08";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -7637,8 +7650,6 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = YES;
@@ -7654,7 +7665,6 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				PROVISIONING_PROFILE = "2bfeb495-fc3e-4b01-beb7-194bcf623e08";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
