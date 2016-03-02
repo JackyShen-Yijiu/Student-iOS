@@ -23,7 +23,7 @@
         _classTypeLabel.textColor = [UIColor lightGrayColor];
         _timeLabel.textColor = [UIColor lightGrayColor];
         _actualPaymentLabel.textColor = [UIColor lightGrayColor];
-        _havePayLabel.textColor = [UIColor lightGrayColor];
+        _havePayLabel.textColor = YBNavigationBarBgColor;
         _descLabel.textColor = [UIColor lightGrayColor];
         
         _numberLabel.textColor = [UIColor grayColor];
