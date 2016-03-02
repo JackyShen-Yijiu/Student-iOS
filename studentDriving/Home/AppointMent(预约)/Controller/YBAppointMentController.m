@@ -29,6 +29,8 @@
 #import "YBActivity.h"
 
 //#import "YBUserCenterController.h"
+#import "YBSignUpSuccessController.h"
+#import "DVVPaySuccessController.h"
 
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -192,7 +194,12 @@
         return;
     }
     
-    
+//    // 测试控制器
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        YBSignUpSuccessController *vc = [YBSignUpSuccessController new];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    });
 }
 
 - (void)tapDidClick
