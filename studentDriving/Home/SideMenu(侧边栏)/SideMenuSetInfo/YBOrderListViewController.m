@@ -322,7 +322,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             [ud synchronize];
             [DVVUserManager userLoginSucces];
             
-        }else if(401 == tag){
+        }else if(402 == tag){
             // 立即支付
             OrdetDetailController *ordetVC = [[OrdetDetailController alloc] init];
             ordetVC.schoolStr = self.schoolStr;

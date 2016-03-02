@@ -29,7 +29,7 @@
         _topLabel = [[UILabel alloc] init];
         _topLabel.textAlignment = NSTextAlignmentCenter;
         _topLabel.font = [UIFont boldSystemFontOfSize:14];
-        _topLabel.text = @"一步学车";
+        _topLabel.text = @"极致驾服";
     }
     return _topLabel;
 }
@@ -38,7 +38,7 @@
         _topLabelOne = [[UILabel alloc] init];
         _topLabelOne.textAlignment = NSTextAlignmentCenter;
         _topLabelOne.font = [UIFont boldSystemFontOfSize:14];
-        _topLabelOne.text = @"一步学车,专注学车美一步!";
+        _topLabelOne.text = @"极致驾服,专注学车美一步!";
     }
     return _topLabelOne;
 }
@@ -47,7 +47,7 @@
         _topLabelTwo = [[UILabel alloc] init];
         _topLabelTwo.textAlignment = NSTextAlignmentCenter;
         _topLabelTwo.font = [UIFont boldSystemFontOfSize:14];
-        _topLabelTwo.text = @"V 2.0.0";
+        _topLabelTwo.text = @"V 1.0.0";
     }
     return _topLabelTwo;
 }

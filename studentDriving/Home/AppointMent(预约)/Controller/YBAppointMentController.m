@@ -532,6 +532,29 @@
     
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section==0) {
+        
+        return nil;
+        
+    }else if (section==1){
+        
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 30)];
+        header.backgroundColor = [UIColor clearColor];
+        return header;
+        
+    }else if (section==2){
+        
+        UIView *header = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 30)];
+        header.backgroundColor = [UIColor clearColor];
+        return header;
+        
+    }
+    
+    return nil;
+}
+
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     if (section==0) {
