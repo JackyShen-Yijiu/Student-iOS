@@ -11,6 +11,7 @@
 #import "DVVBaseDoubleRowCell.h"
 #import "DVVConfirmOrderFooterView.h"
 #import "JGPayTool.h"
+#import "DVVPaySuccessController.h"
 
 static NSString *kCellIdentifier = @"kCellIdentifier";
 
@@ -83,6 +84,8 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
         [defauts setObject:@"" forKey:@"SignUp"];
         
+        DVVPaySuccessController *vc = [DVVPaySuccessController new];
+        [self.navigationController pushViewController:vc animated:YES];
         
         [self obj_showTotasViewWithMes:@"支付成功"];
         [AcountManager saveUserApplyState:@"2"];

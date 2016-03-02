@@ -902,6 +902,12 @@
 		D9863C7B1C8696D800DED74A /* DVVPaySuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863C7A1C8696D800DED74A /* DVVPaySuccessController.m */; };
 		D9863C7E1C869F3F00DED74A /* DVVPaySuccessView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863C7D1C869F3F00DED74A /* DVVPaySuccessView.m */; };
 		D9863C801C869F5A00DED74A /* DVVPaySuccessView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9863C7F1C869F5A00DED74A /* DVVPaySuccessView.xib */; };
+		D9863CB41C86E8D300DED74A /* DVVPaySuccessDMApplyclasstypeinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863CAB1C86E8D300DED74A /* DVVPaySuccessDMApplyclasstypeinfo.m */; };
+		D9863CB51C86E8D300DED74A /* DVVPaySuccessDMApplycoachinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863CAD1C86E8D300DED74A /* DVVPaySuccessDMApplycoachinfo.m */; };
+		D9863CB61C86E8D300DED74A /* DVVPaySuccessDMCarmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863CAF1C86E8D300DED74A /* DVVPaySuccessDMCarmodel.m */; };
+		D9863CB71C86E8D300DED74A /* DVVPaySuccessDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863CB11C86E8D300DED74A /* DVVPaySuccessDMData.m */; };
+		D9863CB81C86E8D300DED74A /* DVVPaySuccessDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863CB31C86E8D300DED74A /* DVVPaySuccessDMRootClass.m */; };
+		D9863CBB1C86E91100DED74A /* DVVPaySuccessViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D9863CBA1C86E91100DED74A /* DVVPaySuccessViewModel.m */; };
 		D9873B621C55D4EF000A3F6F /* DVVShare.m in Sources */ = {isa = PBXBuildFile; fileRef = D9873B611C55D4EF000A3F6F /* DVVShare.m */; };
 		D9873B651C56456F000A3F6F /* DVVLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D9873B641C56456F000A3F6F /* DVVLocation.m */; };
 		D98C6F711C8033830090C349 /* ButtonGroupView.m in Sources */ = {isa = PBXBuildFile; fileRef = D98C6F571C8033830090C349 /* ButtonGroupView.m */; };
@@ -2726,6 +2732,18 @@
 		D9863C7C1C869F3F00DED74A /* DVVPaySuccessView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVPaySuccessView.h; sourceTree = "<group>"; };
 		D9863C7D1C869F3F00DED74A /* DVVPaySuccessView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVPaySuccessView.m; sourceTree = "<group>"; };
 		D9863C7F1C869F5A00DED74A /* DVVPaySuccessView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVVPaySuccessView.xib; sourceTree = "<group>"; };
+		D9863CAA1C86E8D300DED74A /* DVVPaySuccessDMApplyclasstypeinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVPaySuccessDMApplyclasstypeinfo.h; sourceTree = "<group>"; };
+		D9863CAB1C86E8D300DED74A /* DVVPaySuccessDMApplyclasstypeinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVPaySuccessDMApplyclasstypeinfo.m; sourceTree = "<group>"; };
+		D9863CAC1C86E8D300DED74A /* DVVPaySuccessDMApplycoachinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVPaySuccessDMApplycoachinfo.h; sourceTree = "<group>"; };
+		D9863CAD1C86E8D300DED74A /* DVVPaySuccessDMApplycoachinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVPaySuccessDMApplycoachinfo.m; sourceTree = "<group>"; };
+		D9863CAE1C86E8D300DED74A /* DVVPaySuccessDMCarmodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVPaySuccessDMCarmodel.h; sourceTree = "<group>"; };
+		D9863CAF1C86E8D300DED74A /* DVVPaySuccessDMCarmodel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVPaySuccessDMCarmodel.m; sourceTree = "<group>"; };
+		D9863CB01C86E8D300DED74A /* DVVPaySuccessDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVPaySuccessDMData.h; sourceTree = "<group>"; };
+		D9863CB11C86E8D300DED74A /* DVVPaySuccessDMData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVPaySuccessDMData.m; sourceTree = "<group>"; };
+		D9863CB21C86E8D300DED74A /* DVVPaySuccessDMRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVPaySuccessDMRootClass.h; sourceTree = "<group>"; };
+		D9863CB31C86E8D300DED74A /* DVVPaySuccessDMRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVPaySuccessDMRootClass.m; sourceTree = "<group>"; };
+		D9863CB91C86E91100DED74A /* DVVPaySuccessViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVPaySuccessViewModel.h; sourceTree = "<group>"; };
+		D9863CBA1C86E91100DED74A /* DVVPaySuccessViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVPaySuccessViewModel.m; sourceTree = "<group>"; };
 		D9873B601C55D4EF000A3F6F /* DVVShare.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVShare.h; sourceTree = "<group>"; };
 		D9873B611C55D4EF000A3F6F /* DVVShare.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVShare.m; sourceTree = "<group>"; };
 		D9873B631C56456F000A3F6F /* DVVLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVLocation.h; sourceTree = "<group>"; };
@@ -4140,8 +4158,11 @@
 				D996748C1C7D55E80000CC65 /* DVVSignUpDetailController.m */,
 				D962FFF51C7EA79B0000E1E6 /* DVVConfirmOrderController.h */,
 				D962FFF61C7EA79B0000E1E6 /* DVVConfirmOrderController.m */,
+				D9863CA91C86E8B700DED74A /* PaySuccessDataModel */,
 				D9863C791C8696D800DED74A /* DVVPaySuccessController.h */,
 				D9863C7A1C8696D800DED74A /* DVVPaySuccessController.m */,
+				D9863CB91C86E91100DED74A /* DVVPaySuccessViewModel.h */,
+				D9863CBA1C86E91100DED74A /* DVVPaySuccessViewModel.m */,
 				D9863C7C1C869F3F00DED74A /* DVVPaySuccessView.h */,
 				D9863C7D1C869F3F00DED74A /* DVVPaySuccessView.m */,
 				D9863C7F1C869F5A00DED74A /* DVVPaySuccessView.xib */,
@@ -6265,6 +6286,23 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D9863CA91C86E8B700DED74A /* PaySuccessDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D9863CAA1C86E8D300DED74A /* DVVPaySuccessDMApplyclasstypeinfo.h */,
+				D9863CAB1C86E8D300DED74A /* DVVPaySuccessDMApplyclasstypeinfo.m */,
+				D9863CAC1C86E8D300DED74A /* DVVPaySuccessDMApplycoachinfo.h */,
+				D9863CAD1C86E8D300DED74A /* DVVPaySuccessDMApplycoachinfo.m */,
+				D9863CAE1C86E8D300DED74A /* DVVPaySuccessDMCarmodel.h */,
+				D9863CAF1C86E8D300DED74A /* DVVPaySuccessDMCarmodel.m */,
+				D9863CB01C86E8D300DED74A /* DVVPaySuccessDMData.h */,
+				D9863CB11C86E8D300DED74A /* DVVPaySuccessDMData.m */,
+				D9863CB21C86E8D300DED74A /* DVVPaySuccessDMRootClass.h */,
+				D9863CB31C86E8D300DED74A /* DVVPaySuccessDMRootClass.m */,
+			);
+			path = PaySuccessDataModel;
+			sourceTree = "<group>";
+		};
 		D98C6F551C8033830090C349 /* ChinaCityList */ = {
 			isa = PBXGroup;
 			children = (
@@ -6923,6 +6961,7 @@
 				554641C21C2509A000A55326 /* SignSuccessView.m in Sources */,
 				D5604B8C1BF656C50020F0D7 /* EMNavigationController.m in Sources */,
 				D99674971C7D8DA30000CC65 /* DVVSignUpDetailPayView.m in Sources */,
+				D9863CB41C86E8D300DED74A /* DVVPaySuccessDMApplyclasstypeinfo.m in Sources */,
 				D588B04F1BDDDB71000C5D6F /* EditorUserViewController.m in Sources */,
 				D98C6F721C8033830090C349 /* CityButton.m in Sources */,
 				D95CCCF71C2E84C000AF1402 /* UserSettingModel.m in Sources */,
@@ -7192,6 +7231,7 @@
 				55901B681C26798500AC64FF /* SubmitVerificationController.m in Sources */,
 				D977B80C1C7BEEBC00ABE205 /* DVVCoachCommentView.m in Sources */,
 				B226AEFD1C7494B90028DF1A /* NSString+MD5.m in Sources */,
+				D9863CB81C86E8D300DED74A /* DVVPaySuccessDMRootClass.m in Sources */,
 				D965CAA61C239D9F00DCD094 /* DrivingCycleShowDMData.m in Sources */,
 				063BB1EE1C5C521B00A5F3D5 /* SchoolClassDetailMessageCell.m in Sources */,
 				D5604C881BF656F30020F0D7 /* EMChatBaseBubbleView.m in Sources */,
@@ -7305,6 +7345,7 @@
 				D95FF5CD1C84417300D55ED9 /* YBStudentUserSubject.m in Sources */,
 				B2E8E1C91C72CEFD000190C2 /* IWTabBarViewController.m in Sources */,
 				D588B0531BDDDB71000C5D6F /* UserCenterHeadView.m in Sources */,
+				D9863CB61C86E8D300DED74A /* DVVPaySuccessDMCarmodel.m in Sources */,
 				D5604B5C1BF656C50020F0D7 /* UIButton+EMWebCache.m in Sources */,
 				D977B82A1C7C21DF00ABE205 /* DVVCoachDetailDMHeadportrait.m in Sources */,
 				D96D1BED1C2B88A000F1C282 /* DVVSideMenuFooterView.m in Sources */,
@@ -7315,6 +7356,7 @@
 				D5604B621BF656C50020F0D7 /* UIView+EMWebCacheOperation.m in Sources */,
 				D98E06141C3E4570009BFA81 /* DVVCheckActivity.m in Sources */,
 				D5604B8E1BF656C50020F0D7 /* XHMessageTextView.m in Sources */,
+				D9863CB51C86E8D300DED74A /* DVVPaySuccessDMApplycoachinfo.m in Sources */,
 				568DF2141C75756900008829 /* MagicMainTableViewController.m in Sources */,
 				D5604B681BF656C50020F0D7 /* PSTCollectionViewFlowLayout.m in Sources */,
 				D99674781C7D54610000CC65 /* DrivingDetailDMData.m in Sources */,
@@ -7408,6 +7450,7 @@
 				D977B8D41C7C69DD00ABE205 /* UIImage+DVVEffects.m in Sources */,
 				D5604B781BF656C50020F0D7 /* TTGlobalUICommon.m in Sources */,
 				D996745E1C7D54610000CC65 /* ClassTypeCell.m in Sources */,
+				D9863CBB1C86E91100DED74A /* DVVPaySuccessViewModel.m in Sources */,
 				B226AE7B1C7428420028DF1A /* koaGradient.m in Sources */,
 				D977B8271C7C21DF00ABE205 /* DVVCoachDetailDMCarmodel.m in Sources */,
 				0684361C1C611586004FEA62 /* HomeShowKnowController.m in Sources */,
@@ -7447,6 +7490,7 @@
 				D5604B421BF656C50020F0D7 /* EMCDDeviceManager+ProximitySensor.m in Sources */,
 				B226AF061C75990D0028DF1A /* YBAppotinMentHeadView.m in Sources */,
 				D965CAAB1C239D9F00DCD094 /* DrivingSelectMotorcycleTypeView.m in Sources */,
+				D9863CB71C86E8D300DED74A /* DVVPaySuccessDMData.m in Sources */,
 				0647A5C81C352DAD00DBB8A3 /* DiscountShopModel.m in Sources */,
 				D5604CCA1BF83A690020F0D7 /* ChatListViewController.m in Sources */,
 				D512569C1BDF602B002717DA /* CommonAddressViewController.m in Sources */,

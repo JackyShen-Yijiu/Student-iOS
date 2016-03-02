@@ -23,6 +23,8 @@
 #import "DVVCoachDetailController.h"
 #import "DVVNoDataPromptView.h"
 
+#import "DVVPaySuccessController.h"
+
 static NSString *schoolCellID = @"schoolCellID";
 static NSString *coachCellID = @"coachCellID";
 
@@ -93,6 +95,13 @@ static NSString *coachCellID = @"coachCellID";
     bottomView.backgroundColor = [UIColor whiteColor];
     bottomView.frame = CGRectMake(0, kSystemHeight - 64 - 49, kSystemWide, 49);
     [self.view addSubview:bottomView];
+    
+//    // 测试控制器
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//        DVVPaySuccessController *vc = [DVVPaySuccessController new];
+//        vc.hidesBottomBarWhenPushed = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
