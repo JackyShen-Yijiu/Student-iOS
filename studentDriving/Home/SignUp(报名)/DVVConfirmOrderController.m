@@ -53,7 +53,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     _titleArray = @[ @"折扣券", @"商品名称", @"商品金额", @"折扣金额" ];
     _detailArray = @[ @"", _extraDict[@"name"], [NSString stringWithFormat:@"%@", _extraDict[@"paymoney"]], @"-0" ].mutableCopy;
     
-    _payView.label.text = [NSString stringWithFormat:@"实际支付：￥%lu元", [_extraDict[@"paymoney"] integerValue]];
+    _payView.label.text = [NSString stringWithFormat:@"实际支付：￥%lu元", (long)[_extraDict[@"paymoney"] integerValue]];
 }
 
 #pragma mark - action
@@ -77,7 +77,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     // 描述
     NSString *desStr = [NSString stringWithFormat:@"%@ %@",_extraDict[@"applyclasstypeinfo"][@"name"],_extraDict[@"applyschoolinfo"][@"name"]];
     
-    [JGPayTool payWithPaye:paytype tradeNO:_extraDict[@"_id"] parentView:self price:[NSString stringWithFormat:@"%lu", _discountAmount] title:_extraDict[@"applyclasstypeinfo"][@"name"] description:desStr success:^(NSString *str) {
+    [JGPayTool payWithPaye:paytype tradeNO:_extraDict[@"_id"] parentView:self price:[NSString stringWithFormat:@"%lu", (long)_discountAmount] title:_extraDict[@"applyclasstypeinfo"][@"name"] description:desStr success:^(NSString *str) {
         
         // 报名成功时清除
         NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
