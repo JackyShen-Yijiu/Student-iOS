@@ -54,7 +54,7 @@
         ws.successView.timeLabel.text = _viewModel.dmData.applytime;
         ws.successView.actualPaymentLabel.text = [NSString stringWithFormat:@"实付款：￥%lu", _viewModel.dmData.applyclasstypeinfo.onsaleprice];
         ws.successView.havePayLabel.text = [NSString stringWithFormat:@"已付款：￥%lu", _viewModel.dmData.applyclasstypeinfo.price];
-        ws.successView.numberLabel.text = [NSString stringWithFormat:@"报名编号：%@", _viewModel.dmData.applyorderid];
+        
         NSString *descString = [NSString stringWithFormat:@"请您于%@日前携带资料前往您所报名的驾校确认报名信息，并支付报名费用。", _viewModel.dmData.endtime];
         ws.successView.descLabel.text = descString;
 //        CGFloat height = [NSString autoHeightWithString:descString width:[UIScreen mainScreen].bounds.size.width - 16*2 font:[UIFont systemFontOfSize:14]];
