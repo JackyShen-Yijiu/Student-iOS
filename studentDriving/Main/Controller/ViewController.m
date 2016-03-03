@@ -156,7 +156,15 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
         }
         
     }
+    // 注册接收到推送消息，跳转到对应的窗体的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMainVcChange) name:@"receiveMainVcChange" object:nil];
     
+}
+
+- (void)receiveMainVcChange
+{
+    self.mainNav.tabBarController.selectedIndex = 0;
+    self.vcType = 0;
 }
 
 - (UIView *)cover

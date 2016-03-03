@@ -62,7 +62,7 @@
         _replyPotraitView.layer.cornerRadius = 20.f;
         _replyPotraitView.layer.shouldRasterize = YES;
         _replyPotraitView.backgroundColor = [UIColor clearColor];
-        _replyPotraitView.imageView.image = [UIImage imageNamed:@"coach_man_default_icon"];
+        _replyPotraitView.imageView.image = [UIImage imageNamed:@"head_driving"];
     }
     return _replyPotraitView;
 }
@@ -91,7 +91,7 @@
         _replyNameTitle.textColor = [UIColor lightGrayColor];
         _replyNameTitle.backgroundColor = [UIColor clearColor];
         _replyNameTitle.numberOfLines = 1;
-        _replyNameTitle.text = @"replyNameTitle";
+        _replyNameTitle.text = @"驾校回复";
     }
     return _replyNameTitle;
 }
@@ -148,7 +148,7 @@
         _replySubTitle.textColor = [UIColor grayColor];
         _replySubTitle.backgroundColor = [UIColor clearColor];
         _replySubTitle.numberOfLines = 0;
-        _replySubTitle.text = @"replySubTitlereplySubTitlereplySubTitlereplySubTitlereplySubTitlereplySubTitle";
+        _replySubTitle.text = @"驾校回复中...";
     }
     return _replySubTitle;
 }
@@ -168,7 +168,7 @@
 {
     if (_footView == nil) {
         _footView = [[UIView alloc] init];
-        _footView.backgroundColor = RGBColor(216, 216, 216);
+        _footView.backgroundColor = RGBColor(232, 232, 237);
     }
     return _footView;
 }
@@ -176,7 +176,7 @@
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        self.contentView.backgroundColor = RGBColor(255, 255, 255);
+        self.contentView.backgroundColor = RGBColor(251, 251, 251);
         
         // 问头像
         [self.contentView addSubview:self.askPotraitView];
@@ -258,7 +258,7 @@
     [self.replyPotraitView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.size.mas_equalTo(CGSizeMake(40, 40.f));
         make.left.equalTo(@15);
-        make.top.mas_equalTo(self.delive.mas_bottom).offset(16);//
+        make.top.mas_equalTo(self.delive.mas_bottom).offset(10);//
     }];
     
     // 答姓名
@@ -282,14 +282,7 @@
         make.left.equalTo(self.replyNameTitle.mas_left);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-16);
     }];
-    
-    [self.footView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(@0);
-        make.right.mas_equalTo(@0);
-        make.top.mas_equalTo(self.replySubTitle.mas_bottom).offset(16);
-        make.height.mas_equalTo(@10);
-    }];
-    
+   
 }
 
 - (void)setDetailModel:(NSDictionary *)detailModel
@@ -305,7 +298,11 @@
     self.askNameTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"userid"][@"name"]];
     
     // 答姓名
-    self.replyNameTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"replyuser"]];
+    if (_detailModel[@"replyuser"] && [_detailModel[@"replyuser"] length]!=0) {
+        self.replyNameTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"replyuser"]];
+    }else{
+        self.replyNameTitle.text = @"驾校回复";
+    }
     
     // 问时间
     self.askTimeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_detailModel[@"replytime"]]];
@@ -317,7 +314,23 @@
     self.askSubTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"content"]];
     
     // 答内容
-    self.replySubTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"replycontent"]];
+    if (_detailModel[@"replycontent"] && [_detailModel[@"replycontent"] length]!=0) {
+        self.replySubTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"replycontent"]];
+        [self.footView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(@0);
+            make.right.mas_equalTo(@0);
+            make.top.mas_equalTo(self.replySubTitle.mas_bottom).offset(16);
+            make.height.mas_equalTo(@10);
+        }];
+    }else{
+        self.replySubTitle.text = @"驾校回复中...";
+        [self.footView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.mas_equalTo(@0);
+            make.right.mas_equalTo(@0);
+            make.top.mas_equalTo(self.replyPotraitView.mas_bottom).offset(16);
+            make.height.mas_equalTo(@10);
+        }];
+    }
     
 }
 

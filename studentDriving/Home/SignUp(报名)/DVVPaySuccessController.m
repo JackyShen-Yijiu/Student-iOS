@@ -31,7 +31,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.successView];
-    _successView.hidden = YES;
+//    _successView.hidden = YES;
     [self configViewModel];
 }
 
@@ -50,11 +50,16 @@
         ws.successView.hidden = NO;
         [ws.successView.iconImageView dvv_downloadImage:_viewModel.dmData.schoollogoimg];
         ws.successView.schoolNameLabel.text = _viewModel.dmData.applyschoolinfo.name;
-        ws.successView.classTypeLabel.text = _viewModel.dmData.carmodel.code;
-        ws.successView.timeLabel.text = _viewModel.dmData.applytime;
-        ws.successView.actualPaymentLabel.text = [NSString stringWithFormat:@"实付款：￥%lu", _viewModel.dmData.applyclasstypeinfo.onsaleprice];
-        ws.successView.havePayLabel.text = [NSString stringWithFormat:@"已付款：￥%lu", _viewModel.dmData.applyclasstypeinfo.price];
-        ws.successView.numberLabel.text = [NSString stringWithFormat:@"报名编号：%@", _viewModel.dmData.applyorderid];
+        if ([UIScreen mainScreen].bounds.size.width > 320) {
+            ws.successView.classTypeLabel.text = [NSString stringWithFormat:@"报考班型:%@", _viewModel.dmData.applyclasstypeinfo.name];
+            ws.successView.timeLabel.text = [NSString stringWithFormat:@"报考时间:%@", _viewModel.dmData.applytime];
+        }else {
+            ws.successView.classTypeLabel.text = [NSString stringWithFormat:@"%@", _viewModel.dmData.applyclasstypeinfo.name];
+            ws.successView.timeLabel.text = [NSString stringWithFormat:@"%@", _viewModel.dmData.applytime];
+        }
+        ws.successView.actualPaymentLabel.text = [NSString stringWithFormat:@"实付款:￥%lu", _viewModel.dmData.applyclasstypeinfo.onsaleprice];
+        ws.successView.havePayLabel.text = [NSString stringWithFormat:@"已付款:￥%lu", _viewModel.dmData.applyclasstypeinfo.price];
+        ws.successView.numberLabel.text = [NSString stringWithFormat:@"报名编号:%@", _viewModel.dmData.applyorderid];
         NSString *descString = [NSString stringWithFormat:@"请您于%@日前携带资料前往您所报名的驾校确认报名信息，并支付报名费用。", _viewModel.dmData.endtime];
         ws.successView.descLabel.text = descString;
 //        CGFloat height = [NSString autoHeightWithString:descString width:[UIScreen mainScreen].bounds.size.width - 16*2 font:[UIFont systemFontOfSize:14]];

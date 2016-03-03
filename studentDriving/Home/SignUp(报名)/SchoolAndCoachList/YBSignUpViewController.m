@@ -605,7 +605,7 @@ static NSString *coachCellID = @"coachCellID";
         _toolBarView.layer.shadowOpacity = 0.3;
         _toolBarView.layer.shadowRadius = 2;
         
-        _toolBarView.titleArray = @[ @"评分", @"价格", @"综合" ];
+        _toolBarView.titleArray = @[ @"评分最高", @"价格最低", @"综合排序" ];
         __weak typeof(self) ws = self;
         [_toolBarView dvvToolBarViewItemSelected:^(UIButton *button) {
             [ws dvvToolBarViewItemSelectedAction:button.tag];

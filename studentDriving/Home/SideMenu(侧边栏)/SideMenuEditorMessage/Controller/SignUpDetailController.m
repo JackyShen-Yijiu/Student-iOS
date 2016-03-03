@@ -136,7 +136,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     
     [super viewDidDisappear:animated];
     
-    navBarHairlineImageView.hidden=NO;
+    //navBarHairlineImageView.hidden=NO;
     
     [self.p removeFromSuperview];
     
@@ -414,6 +414,8 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             //            cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         cell.dict = self.dict;
         cell.didclickBlock = ^(NSInteger tag){
             if (400 == tag) {
@@ -456,6 +458,8 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             cell = [[MallOrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
            
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
         cell.listModel = _dataListArray[indexPath.row];
         cell.didclickBlock = ^(NSInteger tag){
             YBMyWalletMallViewController *mallVC = [[YBMyWalletMallViewController alloc] init];

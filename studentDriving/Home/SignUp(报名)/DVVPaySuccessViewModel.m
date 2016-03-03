@@ -30,6 +30,8 @@
             return ;
         }
         
+        _dmData = dmRoot.data;
+        
         [self dvv_refreshSuccess];
         
     } withFailure:^(id data) {
