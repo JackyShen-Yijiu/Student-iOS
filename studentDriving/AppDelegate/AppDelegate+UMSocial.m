@@ -16,7 +16,7 @@
 - (void)configUMSocial {
     
     // 配置友盟分享
-    [UMSocialData setAppKey:@"56d26a6467e58ee7fa000349"];
+    [UMSocialData setAppKey:umengAppkey];
     
     // 添加微信
     [UMSocialWechatHandler setWXAppId:@"wxf1c209725d178604" appSecret:@"4a17fd7d8cc0d0e1eacd0ce1d2e23e0e" url:@"http://www.ybxch.com/"];

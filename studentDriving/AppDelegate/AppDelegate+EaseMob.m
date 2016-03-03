@@ -40,8 +40,8 @@ didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self registerRemoteNotification];
     
     
-    NSString * easemobAppKey = @"black-cat#jizhijaifu";
-    NSString * easemobApnsCertName = @"jizhijiafuDistribution";
+    NSString * easemobAppKey = easeMobAPPkey;
+    NSString * easemobApnsCertName = easeMobPushName;
     
 //    easemobAppKey = @"black-cat#yibuxuecheprod";
 //    easemobApnsCertName = @"productionPush";
