@@ -29,14 +29,7 @@
 
 #define StartOffset  kSystemWide/4-60/2
 
-//<<<<<<< HEAD
 static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 报名详情
-
-
-typedef NS_ENUM(NSUInteger,MyLoveState){
-    MyLoveStateCoach,
-    MyLoveStateDriving
-};
 
 @interface YBOrderListViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -45,7 +38,6 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 
 @property (strong, nonatomic) UITableView *tableView;
 
-@property (assign, nonatomic) MyLoveState myLoveState;
 
 @property (strong, nonatomic) CoachModel *coachDetailModel;
 @property (strong, nonatomic) DrivingModel *drivingDetailModel;
@@ -89,7 +81,6 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
     self.title = @"报名信息";
     self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
-    _myLoveState = MyLoveStateCoach;
     [self.view addSubview:self.tableView];
 
     _dataListArray = [NSMutableArray array];
@@ -132,17 +123,13 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 
 - (void)startDownLoad {
     
-    //    [self.dataArray removeAllObjects];
     
     NSString *urlString = nil;
     NSDictionary *param = nil;
     
-    if (_myLoveState == MyLoveStateCoach) {
         // 获取报名详情
         urlString = [NSString stringWithFormat:BASEURL,kgetapplyschoolinfo];
         param = @{@"userid":[AcountManager manager].userid};
-        
-    }
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         DYNSLog(@"data = %@",data);
@@ -150,7 +137,6 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         NSError *error = nil;
         if (1 == [[data objectForKey:@"type"] integerValue]) {
             NSDictionary *data = param[@"data"];
-            if (_myLoveState == MyLoveStateCoach) {
                 /***************************************************** 报名详情请求数据
                  {
                  data =     {
@@ -213,7 +199,6 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                 }
                 
                 self.noCountentView.hidden = YES;
-
                 self.headerImageURl = data[@"schoollogoimg"];
                 NSLog(@"%@",data[@"schoollogoimg"]);
                 self.schoolStr = [[data objectForKey:@"applyschoolinfo"] objectForKey:@"name"];
@@ -253,25 +238,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
                               @"payWaystr":self.payWaystr,
                               @"applySatus":self.applySatus};
                 
-            }else if (_myLoveState == MyLoveStateDriving) {
-                NSArray *array = data[@"ordrelist"];
-                if (!array.count) {
-                    self.mallView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您的订单信息，请前往商城购买" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
-                    [self.view addSubview:self.mallView];
-                    return ;
-                    
-                }
-                
-                
-                [_dataListArray removeAllObjects];
-                for (NSDictionary *dic in array) {
-                    MallOrderListModel *listModel = [MallOrderListModel yy_modelWithDictionary:dic];
-                    [_dataListArray addObject:listModel];
-                }
-                
-                NSLog(@"-----------------------------========================================%@",_dataListArray);
-            }
-            [self.tableView reloadData];
+                       [self.tableView reloadData];
             
         }
     } withFailure:^(id data) {
