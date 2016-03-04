@@ -797,7 +797,7 @@
 		D962FFF71C7EA79B0000E1E6 /* DVVConfirmOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D962FFF61C7EA79B0000E1E6 /* DVVConfirmOrderController.m */; };
 		D962FFFA1C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D962FFF91C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m */; };
 		D962FFFC1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D962FFFB1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib */; };
-		D9646A3F1C892084009BB78F /* DVVCrashHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D9646A3E1C892084009BB78F /* DVVCrashHandler.m */; };
+		D9646A3F1C892084009BB78F /* DVVCrashHandler.mm in Sources */ = {isa = PBXBuildFile; fileRef = D9646A3E1C892084009BB78F /* DVVCrashHandler.mm */; };
 		D964ABED1C7AB8CF00A4D1D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */; };
 		D964ABFC1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */; };
 		D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA841C239D3B00DCD094 /* DrivingCell.m */; };
@@ -2530,7 +2530,7 @@
 		D962FFFF1C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpSchoolDMLogoimg.h; sourceTree = "<group>"; };
 		D963FACF1C741CAE006955D8 /* YBAPPMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAPPMacro.h; sourceTree = "<group>"; };
 		D9646A3D1C892084009BB78F /* DVVCrashHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCrashHandler.h; sourceTree = "<group>"; };
-		D9646A3E1C892084009BB78F /* DVVCrashHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCrashHandler.m; sourceTree = "<group>"; };
+		D9646A3E1C892084009BB78F /* DVVCrashHandler.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = DVVCrashHandler.mm; sourceTree = "<group>"; };
 		D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D964ABFA1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachClassTypeView.h; sourceTree = "<group>"; };
 		D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachClassTypeView.m; sourceTree = "<group>"; };
@@ -6221,7 +6221,7 @@
 			isa = PBXGroup;
 			children = (
 				D9646A3D1C892084009BB78F /* DVVCrashHandler.h */,
-				D9646A3E1C892084009BB78F /* DVVCrashHandler.m */,
+				D9646A3E1C892084009BB78F /* DVVCrashHandler.mm */,
 				D96A02ED1C818F5700DFDCAC /* DVVNoDataPromptView.h */,
 				D96A02EE1C818F5700DFDCAC /* DVVNoDataPromptView.m */,
 				D977B8A51C7C69DD00ABE205 /* DVVStarView.h */,
@@ -7094,7 +7094,7 @@
 				B226AF031C74A21C0028DF1A /* HMRecomendModel.m in Sources */,
 				D51256D21BE36826002717DA /* MySaveViewController.m in Sources */,
 				066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */,
-				D9646A3F1C892084009BB78F /* DVVCrashHandler.m in Sources */,
+				D9646A3F1C892084009BB78F /* DVVCrashHandler.mm in Sources */,
 				D5604C831BF656F30020F0D7 /* DXFaceView.m in Sources */,
 				D5604C821BF656F30020F0D7 /* DXMessageToolBar.m in Sources */,
 				D588B1191BDDDC2F000C5D6F /* UIImageView+WMClippingImage.m in Sources */,
@@ -7656,7 +7656,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jizhi Driver Services Co., Ltd (2VG884M937)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_BITCODE = YES;
@@ -7701,7 +7701,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jizhi Driver Services Co., Ltd (2VG884M937)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = YES;
@@ -7730,8 +7730,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jizhi Driver Services Co., Ltd (2VG884M937)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Jizhi Driver Services Co., Ltd (2VG884M937)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7799,7 +7799,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jizhijiafu.student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a107a87b-ec31-4ac5-8b41-402598a709d6";
+				PROVISIONING_PROFILE = "6ade73bf-057f-4222-a17c-f2c36bc3c6fc";
 				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7814,8 +7814,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jizhi Driver Services Co., Ltd (2VG884M937)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Beijing Jizhi Driver Services Co., Ltd (2VG884M937)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7883,7 +7883,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jizhijiafu.student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "a107a87b-ec31-4ac5-8b41-402598a709d6";
+				PROVISIONING_PROFILE = "6ade73bf-057f-4222-a17c-f2c36bc3c6fc";
 				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "./**";
