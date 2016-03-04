@@ -65,6 +65,10 @@
     self.drivingView.superController = self;
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"我的投诉" style:UIBarButtonItemStyleDone target:self action:@selector(rightBarDidClick)];
+    [self.navigationItem.rightBarButtonItem
+     setTitleTextAttributes:[NSDictionary
+                             dictionaryWithObjectsAndKeys:[UIFont
+                                                           boldSystemFontOfSize:14], NSFontAttributeName,nil] forState:UIControlStateNormal];
     
 }
 
