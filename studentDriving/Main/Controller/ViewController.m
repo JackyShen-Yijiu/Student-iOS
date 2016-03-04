@@ -444,6 +444,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
                 return;
             }
             
+            
             SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
             [self controller:signUpVC];
 
@@ -651,7 +652,11 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
                     [DVVUserManager userNeedLogin];
                     return;
                 }
-        
+        if (![AcountManager manager].applyschool.infoId) {
+            [self obj_showTotasViewWithMes:@"您还没有报名"];
+            return ;
+        }
+
                 YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
                 [self controller:complaintVC];
         
