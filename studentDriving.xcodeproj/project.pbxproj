@@ -797,6 +797,7 @@
 		D962FFF71C7EA79B0000E1E6 /* DVVConfirmOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = D962FFF61C7EA79B0000E1E6 /* DVVConfirmOrderController.m */; };
 		D962FFFA1C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = D962FFF91C7EACEA0000E1E6 /* DVVConfirmOrderFooterView.m */; };
 		D962FFFC1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D962FFFB1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib */; };
+		D9646A3F1C892084009BB78F /* DVVCrashHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D9646A3E1C892084009BB78F /* DVVCrashHandler.m */; };
 		D964ABED1C7AB8CF00A4D1D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */; };
 		D964ABFC1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */; };
 		D965CA851C239D3B00DCD094 /* DrivingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D965CA841C239D3B00DCD094 /* DrivingCell.m */; };
@@ -2528,6 +2529,8 @@
 		D962FFFB1C7EB1D60000E1E6 /* DVVConfirmOrderFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DVVConfirmOrderFooterView.xib; sourceTree = "<group>"; };
 		D962FFFF1C7EF9080000E1E6 /* DVVSignUpSchoolDMLogoimg.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSignUpSchoolDMLogoimg.h; sourceTree = "<group>"; };
 		D963FACF1C741CAE006955D8 /* YBAPPMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAPPMacro.h; sourceTree = "<group>"; };
+		D9646A3D1C892084009BB78F /* DVVCrashHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCrashHandler.h; sourceTree = "<group>"; };
+		D9646A3E1C892084009BB78F /* DVVCrashHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCrashHandler.m; sourceTree = "<group>"; };
 		D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D964ABFA1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachClassTypeView.h; sourceTree = "<group>"; };
 		D964ABFB1C7B14CE00A4D1D5 /* DVVCoachClassTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachClassTypeView.m; sourceTree = "<group>"; };
@@ -6217,6 +6220,8 @@
 		D977B8A21C7C69DD00ABE205 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				D9646A3D1C892084009BB78F /* DVVCrashHandler.h */,
+				D9646A3E1C892084009BB78F /* DVVCrashHandler.m */,
 				D96A02ED1C818F5700DFDCAC /* DVVNoDataPromptView.h */,
 				D96A02EE1C818F5700DFDCAC /* DVVNoDataPromptView.m */,
 				D977B8A51C7C69DD00ABE205 /* DVVStarView.h */,
@@ -7089,6 +7094,7 @@
 				B226AF031C74A21C0028DF1A /* HMRecomendModel.m in Sources */,
 				D51256D21BE36826002717DA /* MySaveViewController.m in Sources */,
 				066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */,
+				D9646A3F1C892084009BB78F /* DVVCrashHandler.m in Sources */,
 				D5604C831BF656F30020F0D7 /* DXFaceView.m in Sources */,
 				D5604C821BF656F30020F0D7 /* DXMessageToolBar.m in Sources */,
 				D588B1191BDDDC2F000C5D6F /* UIImageView+WMClippingImage.m in Sources */,
