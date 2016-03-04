@@ -123,9 +123,6 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    if (!_placeHolderColor) {
-        [self setValue:FOREGROUND_COLOR forKeyPath:@"placeholderLabel.textColor"];
-    }
     if (!_placeHolderFont) {
         [self setValue:FONT forKeyPath:@"_placeholderLabel.font"];
     }
