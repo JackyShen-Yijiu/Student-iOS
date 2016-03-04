@@ -8,7 +8,9 @@
 
 #import "DVVImagePickerControllerManager.h"
 #import "PFActionSheetView.h"
+#import "BLPFAlertView.h"
 #import <AVFoundation/AVFoundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
 @implementation DVVImagePickerControllerManager
 
@@ -18,15 +20,19 @@
         
         if (selectedOtherButtonIndex == 0) {
             
-            // 如果用户没有打开相机，则提示用户去设置中打开
+            // 检测摄像头的状态
             AVAuthorizationStatus authStatus = [AVCaptureDevice authorizationStatusForMediaType:AVMediaTypeVideo];
-            if (authStatus == AVAuthorizationStatusAuthorized) {
-                // 已经授权
+            if (authStatus == AVAuthorizationStatusDenied) {
+                // 用户拒绝App使用
                 
-            }else {
-                // 没有授权
-                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"相机不可用" message:@"请在设置中开启相机服务" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"我知道了", nil];
-                [alertView show];
+                [BLPFAlertView showAlertWithTitle:@"相机不可用" message:@"请在设置中开启相机服务" cancelButtonTitle:@"知道了" otherButtonTitles:@[ @"去设置" ] completion:^(NSUInteger selectedOtherButtonIndex) {
+                    
+                    if (0 == selectedOtherButtonIndex) {
+                        // 打开应用设置面板
+                        [self goAppSet];
+                    }
+                    
+                }];
                 
                 return ;
             }
@@ -46,8 +52,7 @@
                 picker.sourceType = type;
                 
                 picker.navigationBar.barTintColor = fromController.navigationController.navigationBar.barTintColor;
-//                picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-//                                                             NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
+                
                 picker.navigationBar.titleTextAttributes = fromController.navigationController.navigationBar.titleTextAttributes;
                 
                 [fromController presentViewController:picker animated:YES completion:nil];
@@ -55,6 +60,23 @@
             }
             
         }else if (selectedOtherButtonIndex == 1) {
+            
+            // 检测照片库授权状态
+            ALAuthorizationStatus authStatus = [ALAssetsLibrary authorizationStatus];
+            if (authStatus == ALAuthorizationStatusDenied) {
+                // 用户拒绝App使用
+                
+                [BLPFAlertView showAlertWithTitle:@"相册不可用" message:@"请在设置中开启相册服务" cancelButtonTitle:@"知道了" otherButtonTitles:@[ @"去设置" ] completion:^(NSUInteger selectedOtherButtonIndex) {
+                    
+                    if (0 == selectedOtherButtonIndex) {
+                        // 打开应用设置面板
+                        [self goAppSet];
+                    }
+                    
+                }];
+                
+                return ;
+            }
             
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary]) {
                 
@@ -65,9 +87,9 @@
                 picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
                 picker.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:picker.sourceType];
                 picker.navigationBar.barTintColor = fromController.navigationController.navigationBar.barTintColor;
-//                picker.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor whiteColor],
-//                                                             NSFontAttributeName : [UIFont boldSystemFontOfSize:18]};
+                
                 picker.navigationBar.titleTextAttributes = fromController.navigationController.navigationBar.titleTextAttributes;
+                
                 [fromController presentViewController:picker animated:YES completion:nil];
                 
                 //0x00007ff7f587e0a0
@@ -75,6 +97,13 @@
         }
         
     }];
+}
+
++ (void)goAppSet {
+    
+    // 打开应用设置面板
+    NSURL *appSettingUrl = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+    [[UIApplication sharedApplication] openURL:appSettingUrl];
 }
 
 @end

@@ -53,7 +53,16 @@
         self.editTextFidld.placeholder = @"请选择性别";
         _genderArray = @[ @"男", @"女" ];
         self.editTextFidld.inputView = self.pickerView;
-        [self.editTextFidld becomeFirstResponder];
+        if ([AcountManager manager].userGender && [AcountManager manager].userGender.length) {
+            _editTextFidld.text = [AcountManager manager].userGender;
+            if ([_genderArray.firstObject isEqualToString:_editTextFidld.text]) {
+                [self.pickerView selectRow:0 inComponent:0 animated:YES];
+            }else {
+                [self.pickerView selectRow:1 inComponent:0 animated:YES];
+            }
+        }else {
+            _editTextFidld.text = @"男";
+        }
         
     }else if (_editType == YBEditUserInfoType_Mobile) {
         self.title = @"手机号";
@@ -80,18 +89,13 @@
     _arrowImageView.frame = CGRectMake(size.width - 8 - 20, (editViewHeight - 28)/2.f, 20, 28);
     _addressButton.frame = _editView.bounds;
 //    _editTextFidld.backgroundColor = [UIColor lightGrayColor];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     
     if (_editType == YBEditUserInfoType_Sex) {
-        if ([AcountManager manager].userGender && [AcountManager manager].userGender.length) {
-            _editTextFidld.text = [AcountManager manager].userGender;
-            if ([_genderArray.firstObject isEqualToString:_editTextFidld.text]) {
-                [self.pickerView selectRow:0 inComponent:0 animated:YES];
-            }else {
-                [self.pickerView selectRow:1 inComponent:0 animated:YES];
-            }
-        }else {
-            _editTextFidld.text = @"男";
-        }
+        [self.editTextFidld becomeFirstResponder];
     }
 }
 

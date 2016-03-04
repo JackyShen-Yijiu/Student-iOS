@@ -51,8 +51,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     // 折扣金额默认0
     _discountAmount = 0;
     
+    NSLog(@"_extraDict: %@", _extraDict);
     _titleArray = @[ @"折扣券", @"商品名称", @"商品金额", @"折扣金额" ];
-    _detailArray = @[ @"", _extraDict[@"name"], [NSString stringWithFormat:@"%@", _extraDict[@"paymoney"]], @"-0" ].mutableCopy;
+    _detailArray = @[ @"", _extraDict[@"applyclasstypeinfo"][@"name"], [NSString stringWithFormat:@"%@", _extraDict[@"paymoney"]], @"-0" ].mutableCopy;
     
     _payView.label.text = [NSString stringWithFormat:@"实际支付：￥%lu元", (long)[_extraDict[@"paymoney"] integerValue]];
 }
