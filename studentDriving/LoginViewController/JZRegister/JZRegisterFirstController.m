@@ -8,6 +8,8 @@
 
 #import "JZRegisterFirstController.h"
 #import "DVVBaseTextField.h"
+#import "JZRegisterSecondController.h"
+static NSString *const kautoCode = @"Verificationsmscode";
 
 @interface JZRegisterFirstController ()<UITextFieldDelegate>
 @property (nonatomic, strong) DVVBaseTextField *phoneNumTextFiled; // 手机号
@@ -38,22 +40,43 @@
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     if (5000 == textField.tag) {
         // 手机号开始输入
-        self.sendButton.backgroundColor = YBNavigationBarBgColor;
-        self.sendButton.userInteractionEnabled = YES;
+//        self.sendButton.backgroundColor = YBNavigationBarBgColor;
+//        self.sendButton.userInteractionEnabled = YES;
         
     }
     if (5001 == textField.tag) {
         // 验证码开始输入
+//        self.nextRegisterButton.backgroundColor = YBNavigationBarBgColor;
+//        self.nextRegisterButton.userInteractionEnabled = YES;
+
     }
 
 }
 #pragma mark -- UItextFiledNotification
 - (void)phoenTextFieldTextDidChange:(NSNotification *)obj{
-    UITextField *phoneTextFiled = (UITextField *)obj;
+    UITextField *phoneTextFiled = (UITextField *)obj.object;
     if (phoneTextFiled.text.length == 0) {
          _sendButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
         _sendButton.userInteractionEnabled = NO;
+    }else{
+        _sendButton.backgroundColor = YBNavigationBarBgColor;
+        _sendButton.userInteractionEnabled = YES;
+
     }
+}
+- (void)authCodeTextFieldTextDidChange:(NSNotification *)obj{
+    UITextField *autoTextFiled = (UITextField *)obj.object;
+    
+
+    if (autoTextFiled.text.length == 0) {
+        _nextRegisterButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
+        _nextRegisterButton.userInteractionEnabled = NO;
+    }else if(self.phoneNumTextFiled.text.length){
+        _nextRegisterButton.backgroundColor = YBNavigationBarBgColor;
+        _nextRegisterButton.userInteractionEnabled = YES;
+        
+    }
+
 }
 #pragma mark - buttonAction
 
@@ -102,12 +125,13 @@
                 self.sendButton.titleLabel.font = [UIFont systemFontOfSize:15];
                 _sendButton.backgroundColor = YBNavigationBarBgColor;
                 [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 self.sendButton.userInteractionEnabled = YES;
             });
         }else {
             NSString *str = [NSString stringWithFormat:@"剩余(%d)s",count];
             dispatch_async(dispatch_get_main_queue(), ^{
-                self.sendButton.backgroundColor = [UIColor clearColor];
+                self.sendButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
                 [self.sendButton setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
                 [self.sendButton setTitle:str forState:UIControlStateNormal];
                 
@@ -119,6 +143,33 @@
 }
 // 点击下一步
 - (void)nextRegisterButton:(UIButton *)sender{
+    NSString *urlStr = [NSString stringWithFormat:BASEURL,kautoCode];
+//    /api/v1/Verificationsmscode?mobile=15652305650&code=123456
+    
+    NSDictionary *param = @{@"mobile":self.phoneNumTextFiled.text,
+                            @"code":self.authCodeTextFiled.text};
+    [JENetwoking startDownLoadWithUrl:urlStr postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        /*
+         {
+         "type": 0,
+         "msg": "验证码错误，请重新发送",
+         "data": ""
+         }
+        */
+        NSDictionary *param = data;
+        if (0 == [data[@"type"] integerValue]) {
+            [self obj_showTotasViewWithMes:param[@"msg"]];
+            return ;
+        }
+        if (1 == [data[@"type"] integerValue]) {
+            //  验证成功,跳转下界面
+            JZRegisterSecondController *secondVC = [[JZRegisterSecondController alloc] init];
+            [self.navigationController pushViewController:secondVC animated:YES];
+        }
+            
+    } withFailure:^(id data) {
+        
+    }];
     
 }
 - (void)viewDidLayoutSubviews{
