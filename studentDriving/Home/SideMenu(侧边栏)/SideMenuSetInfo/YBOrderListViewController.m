@@ -298,6 +298,7 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
             ordetVC.realMoneyStr = self.realMoneyStr;
             ordetVC.payStausStr = self.payStausStr;
             ordetVC.classType = self.classType;
+            
             [self.navigationController pushViewController:ordetVC animated:YES];
         }
     };

@@ -29,9 +29,9 @@
                     <rect key="frame" x="0.0" y="15" width="320" height="105"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="订单编号:98952222222222222" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJF-bD-ZcG">
-                            <rect key="frame" x="15" y="15" width="212" height="14"/>
+                            <rect key="frame" x="15" y="15" width="230" height="14"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="212" id="p6x-wq-7cb"/>
+                                <constraint firstAttribute="width" constant="230" id="p6x-wq-7cb"/>
                                 <constraint firstAttribute="height" constant="14" id="qbq-2g-4JA"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -289,6 +289,9 @@
                             <state key="normal" title="立即支付">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </state>
+                            <connections>
+                                <action selector="didClickAlipay:" destination="-1" eventType="touchUpInside" id="YSg-C3-5K4"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
