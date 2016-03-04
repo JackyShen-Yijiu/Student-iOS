@@ -24,6 +24,7 @@
 #import "DVVNoDataPromptView.h"
 
 #import "DVVPaySuccessController.h"
+#import "YBLoginController.h"
 
 static NSString *schoolCellID = @"schoolCellID";
 static NSString *coachCellID = @"coachCellID";
@@ -96,12 +97,14 @@ static NSString *coachCellID = @"coachCellID";
     bottomView.frame = CGRectMake(0, kSystemHeight - 64 - 49, kSystemWide, 49);
     [self.view addSubview:bottomView];
     
-//    // 测试控制器
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    // 测试控制器
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 //        DVVPaySuccessController *vc = [DVVPaySuccessController new];
 //        vc.hidesBottomBarWhenPushed = YES;
 //        [self.navigationController pushViewController:vc animated:YES];
-//    });
+        YBLoginController *vc = [YBLoginController new];
+        [self presentViewController:vc animated:YES completion:nil];
+    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
