@@ -53,6 +53,8 @@
 
 // 检查活动
 #import "YBActivity.h"
+// crash后给用户提示
+#import "DVVCrashHandler.h"
 
 @interface AppDelegate ()<UIAlertViewDelegate>
 {
@@ -64,7 +66,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-        
+    
+    // 添加crash后弹出提示
+    dvv_installCrashExceptionHandler();
+    
     // 容错处理
     [LJException startExtern];
     
