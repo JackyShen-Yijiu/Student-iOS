@@ -94,7 +94,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 
     _dataListArray = [NSMutableArray array];
     
-    self.noCountentView = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您的订单信息，请确认您是否报名" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+    self.noCountentView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您的订单信息，请确认您是否报名" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
     [self.view addSubview:self.noCountentView];
     
 }
@@ -256,7 +256,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             }else if (_myLoveState == MyLoveStateDriving) {
                 NSArray *array = data[@"ordrelist"];
                 if (!array.count) {
-                    self.mallView = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您的订单信息，请前往商城购买" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+                    self.mallView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您的订单信息，请前往商城购买" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
                     [self.view addSubview:self.mallView];
                     return ;
                     

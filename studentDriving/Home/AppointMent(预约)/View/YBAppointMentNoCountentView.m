@@ -33,7 +33,7 @@
         label1.textAlignment = NSTextAlignmentCenter;
         label1.numberOfLines = 2;
         label1.frame = CGRectMake(20, CGRectGetMaxY(img.frame), kSystemWide-40, 50);
-        label1.text = @"小步没有找到您的预约教练信息，点击右上角添加教练，开始您愉快的学车之旅吧";
+        label1.text = @"没有找到您的预约教练信息，点击右上角添加教练，开始您愉快的学车之旅吧";
         [self addSubview:label1];
         self.label1 = label1;
         
