@@ -144,10 +144,44 @@
 //    return UIInterfaceOrientationMaskPortrait;
 //}
 
+- (void)didReceiveMessage:(EMMessage *)message
+{
+    
+    NSLog(@"didReceiveMessage message.messageBodies:%@",message.messageBodies);
+    
+    if (([UIApplication sharedApplication].applicationState == UIApplicationStateActive)&&([[NSUserDefaults standardUserDefaults] boolForKey:@"isInChatVc"])) {
+        return;
+    }
+    
+    //发送本地推送
+    UILocalNotification *notification = [[UILocalNotification alloc] init];
+    notification.fireDate = [NSDate date]; //触发通知的时间
+    notification.alertBody = [NSString stringWithFormat:@"%@",@"你有一条新消息,快点击查看吧"];
+    notification.alertAction = NSLocalizedString(@"确定", @"确定");
+    notification.timeZone = [NSTimeZone defaultTimeZone];
+    notification.soundName = UILocalNotificationDefaultSoundName;
+    
+    //发送通知
+    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [[UIApplication sharedApplication] cancelLocalNotification:notification];
+        
+    });
+    
+    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
+    NSInteger unreadCount = 0;
+    for (EMConversation *conversation in conversations) {
+        unreadCount += conversation.unreadMessagesCount;
+    }
+    [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount;
+    
+}
 
 - (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification
 {
-    DYNSLog(@"UILocalNotification = %@",notification);
+    DYNSLog(@"接收到环信推送通知UILocalNotification = %@",notification);
     
     NSString *info = notification.userInfo[@"ConversationChatter"];
     if (info) {
@@ -157,9 +191,8 @@
     
     NSLog(@"[UIApplication sharedApplication].applicationState:%ld",(long)[UIApplication sharedApplication].applicationState);
     
-    if ([UIApplication sharedApplication].applicationState == UIApplicationStateActive) {
         NSLog(@"----------");
-
+        
         if (isReceiveMessage==NO) {
             isReceiveMessage=YES;
             
@@ -168,16 +201,20 @@
             
         }
         
-    }else{
-        NSLog(@"+++++++++");
-        [self JPushApplication:application didReceiveLocalNotification:notification];
-    }
+
     
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     isReceiveMessage = NO;
+    // 跳转到消息列表
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveMainChatMessage" object:self];
+    
+}
+
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
@@ -218,6 +255,18 @@
  type = userapplysuccess;
  }
  */
+    
+    /*
+     jpush后台自定义消息：
+     {
+     "_j_msgid" = 927937560;
+     aps =     {
+         alert = "\U6d4b\U8bd5\U63a8\U9001\U6d88\U606f";
+         badge = 1;
+         sound = default;
+     };
+     }
+     */
     DYNSLog(@"userInfo = %@",userInfo);
 #pragma mark - JPush推送消息统一接受
     [self JPushfetchCompletionHandlerApplication:application didReceiveRemoteNotification:userInfo];
@@ -321,43 +370,5 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
-
-- (void)didReceiveMessage:(EMMessage *)message
-{
-    
-    NSLog(@"message.messageBodies:%@",message.messageBodies);
-    
-    if (([UIApplication sharedApplication].applicationState == UIApplicationStateActive)&&([[NSUserDefaults standardUserDefaults] boolForKey:@"isInChatVc"])) {
-        return;
-    }
-    
-    //发送本地推送
-    UILocalNotification *notification = [[UILocalNotification alloc] init];
-    
-    notification.fireDate = [NSDate date]; //触发通知的时间
-    
-    notification.alertBody = [NSString stringWithFormat:@"%@",@"你有一条新消息,快点击查看吧"];
-    
-    notification.alertAction = NSLocalizedString(@"打开", @"打开");
-    notification.timeZone = [NSTimeZone defaultTimeZone];
-    notification.soundName = UILocalNotificationDefaultSoundName;
-    
-    //发送通知
-    [[UIApplication sharedApplication] scheduleLocalNotification:notification];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [[UIApplication sharedApplication] cancelLocalNotification:notification];
-        
-    });
-    
-    NSArray *conversations = [[[EaseMob sharedInstance] chatManager] conversations];
-    NSInteger unreadCount = 0;
-    for (EMConversation *conversation in conversations) {
-        unreadCount += conversation.unreadMessagesCount;
-    }
-    [UIApplication sharedApplication].applicationIconBadgeNumber = unreadCount;
-
-}
 
 @end

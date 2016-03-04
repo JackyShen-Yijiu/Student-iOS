@@ -159,6 +159,15 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     // 注册接收到推送消息，跳转到对应的窗体的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMainVcChange) name:@"receiveMainVcChange" object:nil];
     
+    // 接收到聊天消息通知，跳转到消息列表
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMainChatMessage) name:@"receiveMainChatMessage" object:nil];
+
+}
+
+- (void)receiveMainChatMessage
+{
+    ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
+    [self controller:chatListVC];
 }
 
 - (void)receiveMainVcChange
@@ -435,6 +444,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
                 return;
             }
             
+            
             SideMenuSignUpController *signUpVC = [SideMenuSignUpController new];
             [self controller:signUpVC];
 
@@ -642,7 +652,11 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
                     [DVVUserManager userNeedLogin];
                     return;
                 }
-        
+        if (![AcountManager manager].applyschool.infoId) {
+            [self obj_showTotasViewWithMes:@"您还没有报名"];
+            return ;
+        }
+
                 YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
                 [self controller:complaintVC];
         

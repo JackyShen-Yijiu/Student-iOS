@@ -713,6 +713,7 @@ static NSString *const kcodeGainUrl = @"code";
     [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
         NSLog(@"%@", data);
+        
         NSDictionary *params = data;
         BOOL type = [[params objectForKey:@"type"] boolValue];
         if (type) {
@@ -759,11 +760,7 @@ static NSString *const kcodeGainUrl = @"code";
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,kregisterUrl];
     
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    
     [JENetwoking startDownLoadWithUrl:urlString postParam:self.paramsPost WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-        
-        [MBProgressHUD hideHUDForView:self.view animated:NO];
         
         DYNSLog(@"向服务器注册用户data = %@",data);
         
@@ -803,37 +800,70 @@ static NSString *const kcodeGainUrl = @"code";
          
          if (loginInfo && !error) {
              
-             DYNSLog(@"登录成功");
+             NSLog(@"error:%@",error);
+             [MBProgressHUD hideHUDForView:self.view animated:NO];
              
-             [AcountManager configUserInformationWith:dataDic[@"data"]];
-             
-             [AcountManager saveUserName:self.phoneTextField.text andPassword:self.passWordTextFild.text];
-             
-//             [APService setAlias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
-             
-             //设置是否自动登录
-             [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
-             
-             // 旧数据转换 (如果您的sdk是由2.1.2版本升级过来的，需要家这句话)
-             [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
-             //获取数据库中数据
-             [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
-             
-             //获取群组列表
-             //             [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
-             
-             EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
-             options.nickname = [AcountManager manager].userName;
-             options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
-             
-             //发送自动登陆状态通知
-             [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
-             
-             //保存最近一次登录用户名
-             
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
-             
-             [DVVUserManager userLoginSucces];
+             if (loginInfo && !error) {
+                 
+                 DYNSLog(@"登录成功");
+                 
+                 //保存最近一次登录用户名
+                 [AcountManager saveUserName:self.phoneTextField.text andPassword:self.passWordTextFild.text];
+                 
+                 [AcountManager configUserInformationWith:dataDic[@"data"]];
+                 
+                 NSSet *set = [NSSet setWithObjects:@"", nil];
+                 NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+                 [APService setTags:set alias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+                 
+                 //设置是否自动登录
+                 [[EaseMob sharedInstance].chatManager setIsAutoLoginEnabled:YES];
+                 
+                 // 旧数据转换 (如果您的sdk是由2.1.2版本升级过来的，需要家这句话)
+                 [[EaseMob sharedInstance].chatManager importDataToNewDatabase];
+                 //获取数据库中数据
+                 [[EaseMob sharedInstance].chatManager loadDataFromDatabase];
+                 
+                 //获取群组列表
+                 //             [[EaseMob sharedInstance].chatManager asyncFetchMyGroupsList];
+                 
+                 EMPushNotificationOptions *options = [[EaseMob sharedInstance].chatManager pushNotificationOptions];
+                 options.nickname = [AcountManager manager].userName;
+                 options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
+                 
+                 [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
+                 
+                 //发送自动登陆状态通知
+                 [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
+                 
+                 // 用户登录成功，打开相应的窗体
+                 [DVVUserManager userLoginSucces];
+                 
+             }
+             else
+             {
+                 switch (error.errorCode)
+                 {
+                     case EMErrorNotFound:
+                         TTAlertNoTitle(error.description);
+                         break;
+                     case EMErrorNetworkNotConnected:
+                         TTAlertNoTitle(NSLocalizedString(@"error.connectNetworkFail", @"No network connection!"));
+                         break;
+                     case EMErrorServerNotReachable:
+                         TTAlertNoTitle(NSLocalizedString(@"error.connectServerFail", @"Connect to the server failed!"));
+                         break;
+                     case EMErrorServerAuthenticationFailure:
+                         TTAlertNoTitle(error.description);
+                         break;
+                     case EMErrorServerTimeout:
+                         TTAlertNoTitle(NSLocalizedString(@"error.connectServerTimeout", @"Connect to the server timed out!"));
+                         break;
+                     default:
+                         TTAlertNoTitle(NSLocalizedString(@"login.fail", @"Login failure"));
+                         break;
+                 }
+             }
              
          }
          else
@@ -860,8 +890,10 @@ static NSString *const kcodeGainUrl = @"code";
                      break;
              }
          }
+         
      } onQueue:nil];
 }
+
 - (void)tagsAliasCallback:(int)iResCode
                      tags:(NSSet *)tags
                     alias:(NSString *)alias {

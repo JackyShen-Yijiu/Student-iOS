@@ -71,7 +71,9 @@ static NSString *courseCellID = @"kCourseCellID";
     
     [self configViewModel];
 
-    if (self.courseModel.courseStatue == KCourseStatueapplying) {// 预约中,取消预约
+    NSLog(@"self.courseModel.courseStatue:%ld",(long)self.courseModel.courseStatue);
+    
+    if (self.courseModel.courseStatue == KCourseStatueapplyconfirm || self.courseModel.courseStatue == KCourseStatueapplying) {// 预约中,取消预约
         [self.view addSubview:self.footView];
     }else if (self.courseModel.courseStatue == KCourseStatueapplyrefuse){// 教练拒绝或者取消->教练取消
         [self.view addSubview:self.cancleFootView];

@@ -501,9 +501,13 @@ static NSString *const kuserType = @"usertype";
              
              DYNSLog(@"登录成功");
              
-             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
+             //保存最近一次登录用户名
+             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
              
+             [AcountManager configUserInformationWith:dataDic[@"data"]];
+
              NSSet *set = [NSSet setWithObjects:@"", nil];
+             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
              [APService setTags:set alias:[AcountManager manager].userid callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
              
              //设置是否自动登录
@@ -521,13 +525,10 @@ static NSString *const kuserType = @"usertype";
              options.nickname = [AcountManager manager].userName;
              options.displayStyle = ePushNotificationDisplayStyle_messageSummary;
              
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"kLoginSuccess" object:nil];
+             
              //发送自动登陆状态通知
              [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
-             
-             //保存最近一次登录用户名
-             [AcountManager saveUserName:self.phoneNumTextField.text andPassword:self.passwordTextField.text];
-             
-             [AcountManager configUserInformationWith:dataDic[@"data"]];
 
              // 用户登录成功，打开相应的窗体
              [DVVUserManager userLoginSucces];
