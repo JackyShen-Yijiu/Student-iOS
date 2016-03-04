@@ -10,7 +10,7 @@
 
 #define VIEW_HEIGHT 44.0f
 #define FONT [UIFont systemFontOfSize:14]
-#define FOREGROUND_COLOR [UIColor whiteColor]
+#define FOREGROUND_COLOR [UIColor colorWithHexString:@"7c7c7c"]
 #define CORNER_RADIUS 9
 
 @interface DVVBaseTextField ()
@@ -26,6 +26,7 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self initSelf];
+        
     }
     return self;
 }

@@ -24,6 +24,7 @@
 #import "VerifyPhoneController.h"
 #import "UIColor+Extension.h"
 #import "ShowWarningMessageView.h"
+#import "JZRegisterFirstController.h"
 
 static NSString *const kloginUrl = @"userinfo/userlogin";
 
@@ -607,8 +608,11 @@ static NSString *const kuserType = @"usertype";
 }
 
 - (void)dealRegister:(UIButton *)sender{
-    RegisterViewController *registerVc = [[RegisterViewController alloc]init];
-     UINavigationController *NC = [[UINavigationController alloc] initWithRootViewController:registerVc];
+//    RegisterViewController *registerVc = [[RegisterViewController alloc]init];
+//     UINavigationController *NC = [[UINavigationController alloc] initWithRootViewController:registerVc];
+//    [self presentViewController:NC animated:YES completion:nil];
+    JZRegisterFirstController *registerVc = [[JZRegisterFirstController alloc]init];
+    UINavigationController *NC = [[UINavigationController alloc] initWithRootViewController:registerVc];
     [self presentViewController:NC animated:YES completion:nil];
 
 }
