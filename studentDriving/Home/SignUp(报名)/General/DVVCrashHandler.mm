@@ -9,7 +9,6 @@
 #import "DVVCrashHandler.h"
 #import <libkern/OSAtomic.h>
 #import <execinfo.h>
-#import "DVVToast.h"
 
 NSString *const dvv_crashHandlerSignalExceptionName = @"dvv_crashHandlerSignalExceptionName";
 

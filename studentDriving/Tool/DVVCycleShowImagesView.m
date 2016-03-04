@@ -8,6 +8,7 @@
 
 #import "DVVCycleShowImagesView.h"
 #import "UIImageView+WebCache.h"
+//#define VIEW_WIDTH [UIScreen mainScreen].bounds.size.width
 #define VIEW_WIDTH self.bounds.size.width
 #define VIEW_HEIGHT self.bounds.size.height
 
@@ -94,7 +95,11 @@
     [self loadImages];
     
     if (_isCycle) {
-        [self beginCycle];
+        if (_imagesUrlArray.count > 1) {
+            [self beginCycle];
+        }else {
+            [self endCycle];
+        }
     }
 
 }
@@ -109,6 +114,8 @@
     _pageControl.numberOfPages = _imagesUrlArray.count;
     
     [self setPageControlFrame];
+    _pageControl.currentPage = 0;
+    [self reloadDataWithArray:_imagesUrlArray];
 }
 
 #pragma mark - 设置点击图片的回调方法 method
@@ -129,8 +136,8 @@
 #pragma mark - 计时器 method
 
 - (void)beginCycle {
-    
-    self.cycleTimer = [NSTimer timerWithTimeInterval:3 target:self selector:@selector(cycleTimerAction) userInfo:nil repeats:YES];
+    [self endCycle];
+    self.cycleTimer = [NSTimer timerWithTimeInterval:5 target:self selector:@selector(cycleTimerAction) userInfo:nil repeats:YES];
     [[NSRunLoop currentRunLoop] addTimer:self.cycleTimer forMode:NSDefaultRunLoopMode];
 }
 
