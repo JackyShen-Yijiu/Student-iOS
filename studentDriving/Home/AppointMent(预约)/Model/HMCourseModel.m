@@ -70,8 +70,8 @@
         case KCourseStatueapplycancel :// 学生取消->删除此订单
             return @"";
             break;
-        case KCourseStatueapplyconfirm:  // 已确定->新接收
-            return @"新接收";
+        case KCourseStatueapplyconfirm:  // 已确定
+            return @"已接收";
             break;
         case KCourseStatueapplyrefuse:      // 教练拒绝或者取消->教练取消
             return @"教练取消";

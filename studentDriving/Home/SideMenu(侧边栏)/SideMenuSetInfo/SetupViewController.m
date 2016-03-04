@@ -15,7 +15,7 @@
 #import <JPush/APService.h>
 #import "SignUpInfoManager.h"
 #import "HelpController.h"
-
+#import "LoginViewController.h"
 
 static NSString *const kSettingUrl = @"userinfo/personalsetting";
 
@@ -236,6 +236,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 - (void)clickQuit:(UIButton *)sender {
     
     [AcountManager removeAllData];
+    
     [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:nil];
     
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES];
@@ -245,29 +246,29 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     } onQueue:nil];
     
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES completion:^(NSDictionary *info, EMError *error) {
-        DYNSLog(@"退出成功 = %@ %@",info,error);
-        if (!error && info) {
-        }
+        
+        //    [self dismissViewControllerAnimated:NO completion:nil];
+        //    [APService setAlias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+        NSSet *set = [NSSet setWithObjects:@"", nil];
+        [APService setTags:set alias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
+        //    [self.navigationController popToRootViewControllerAnimated:NO];
+
+        [AcountManager removeAllData];
+        
+        // 检测是否打开登录页
+        //    [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
+        //    [self.navigationController presentViewController:[DVVUserManager loginController] animated:YES completion:nil];
+        
+        [SignUpInfoManager removeSignData];
+        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+        [ud setInteger:1 forKey:@"isCarReset"];
+        [ud synchronize];
+        
+//        [DVVUserManager userNeedLogin];
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[LoginViewController alloc] init];
+
     } onQueue:nil];
     
-    //    [self dismissViewControllerAnimated:NO completion:nil];
-    //    [APService setAlias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
-    NSSet *set = [NSSet setWithObjects:@"", nil];
-    [APService setTags:set alias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
-    //    [self.navigationController popToRootViewControllerAnimated:NO];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kQuitSuccess" object:nil];
-    [AcountManager removeAllData];
-
-    // 检测是否打开登录页
-//    [self.navigationController pushViewController:[DVVUserManager loginController] animated:NO];
-//    [self.navigationController presentViewController:[DVVUserManager loginController] animated:YES completion:nil];
-    
-    [DVVUserManager userNeedLogin];
-    
-    [SignUpInfoManager removeSignData];
-    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-    [ud setInteger:1 forKey:@"isCarReset"];
-    [ud synchronize];
 }
 //取消别名标示
 - (void)tagsAliasCallback:(int)iResCode

@@ -22,7 +22,7 @@ typedef NS_ENUM(NSInteger,KCourseStatue){
     
     KCourseStatueapplying = 1,   // 预约中->请求中
     KCourseStatueapplycancel = 2,// 学生取消->删除此订单
-    KCourseStatueapplyconfirm,  // 已确定->新接收
+    KCourseStatueapplyconfirm,  // 已确定
     KCourseStatueapplyrefuse,      // 教练拒绝或者取消->教练取消
     KCourseStatueunconfirmfinish, //  无此状态
     KCourseStatueucomments,    // 待评论->待评论

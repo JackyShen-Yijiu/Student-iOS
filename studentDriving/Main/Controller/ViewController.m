@@ -159,6 +159,15 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     // 注册接收到推送消息，跳转到对应的窗体的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMainVcChange) name:@"receiveMainVcChange" object:nil];
     
+    // 接收到聊天消息通知，跳转到消息列表
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMainChatMessage) name:@"receiveMainChatMessage" object:nil];
+
+}
+
+- (void)receiveMainChatMessage
+{
+    ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
+    [self controller:chatListVC];
 }
 
 - (void)receiveMainVcChange

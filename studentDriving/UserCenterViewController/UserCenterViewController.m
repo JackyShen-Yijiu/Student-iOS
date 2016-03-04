@@ -100,6 +100,7 @@
 - (void)clickQuit:(UIButton *)sender {
     
     [AcountManager removeAllData];
+ 
     [[EaseMob sharedInstance].chatManager logoffWithUnbindDeviceToken:YES error:nil];
     
     [[EaseMob sharedInstance].chatManager asyncLogoffWithUnbindDeviceToken:YES];
@@ -119,14 +120,16 @@
     NSSet *set = [NSSet setWithObjects:@"", nil];
     [APService setTags:set alias:@"" callbackSelector:@selector(tagsAliasCallback:tags:alias:) object:self];
 //    [self.navigationController popToRootViewControllerAnimated:NO];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kQuitSuccess" object:nil];
+
     [AcountManager removeAllData];
     [DVVUserManager userLogout];
     [SignUpInfoManager removeSignData];
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     [ud setInteger:1 forKey:@"isCarReset"];
     [ud synchronize];
+    
 }
+
 //取消别名标示
 - (void)tagsAliasCallback:(int)iResCode
                      tags:(NSSet *)tags
