@@ -37,6 +37,8 @@
 		066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */ = {isa = PBXBuildFile; fileRef = 066BFB171C23A2C3002A1DD8 /* HomeSpotView.m */; };
 		0684361C1C611586004FEA62 /* HomeShowKnowController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0684361B1C611586004FEA62 /* HomeShowKnowController.m */; };
 		068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 068716621C5607C50055D9DC /* AddlineButtomTextField.m */; };
+		06CACE191C898031004F75BA /* JZRegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CACE181C898031004F75BA /* JZRegisterFirstController.m */; };
+		06CACE1C1C898872004F75BA /* JZRegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CACE1B1C898872004F75BA /* JZRegisterSecondController.m */; };
 		06EDA4D31C85F3F100E6EC87 /* MallOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EDA4D21C85F3F100E6EC87 /* MallOrderController.m */; };
 		06F805A31C585AC400396445 /* CheckProgressTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F805A21C585AC400396445 /* CheckProgressTextField.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
@@ -981,6 +983,7 @@
 		D9A5DF5F1C35288A009DF18A /* CoinCertificateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9A5DF5D1C35288A009DF18A /* CoinCertificateController.xib */; };
 		D9ABF8961C898693001B6930 /* DVVBaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ABF8951C898693001B6930 /* DVVBaseTextField.m */; };
 		D9ABF89E1C898B7D001B6930 /* YBLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ABF89D1C898B7D001B6930 /* YBLoginController.m */; };
+		D9ABF8CA1C89C545001B6930 /* YBFindPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ABF8C91C89C545001B6930 /* YBFindPwdViewController.m */; };
 		D9B268911C78381200F62804 /* DVVCoachDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B268901C78381200F62804 /* DVVCoachDetailController.m */; };
 		D9B268941C78396D00F62804 /* DVVCoachDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B268931C78396D00F62804 /* DVVCoachDetailHeaderView.m */; };
 		D9B268981C783C5D00F62804 /* DVVCoachDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B268961C783C5C00F62804 /* DVVCoachDetailInfoCell.m */; };
@@ -1062,6 +1065,10 @@
 		0684361B1C611586004FEA62 /* HomeShowKnowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeShowKnowController.m; sourceTree = "<group>"; };
 		068716611C5607C50055D9DC /* AddlineButtomTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddlineButtomTextField.h; sourceTree = "<group>"; };
 		068716621C5607C50055D9DC /* AddlineButtomTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddlineButtomTextField.m; sourceTree = "<group>"; };
+		06CACE171C898031004F75BA /* JZRegisterFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRegisterFirstController.h; sourceTree = "<group>"; };
+		06CACE181C898031004F75BA /* JZRegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRegisterFirstController.m; sourceTree = "<group>"; };
+		06CACE1A1C898872004F75BA /* JZRegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRegisterSecondController.h; sourceTree = "<group>"; };
+		06CACE1B1C898872004F75BA /* JZRegisterSecondController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRegisterSecondController.m; sourceTree = "<group>"; };
 		06EDA4D11C85F3F100E6EC87 /* MallOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallOrderController.h; sourceTree = "<group>"; };
 		06EDA4D21C85F3F100E6EC87 /* MallOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallOrderController.m; sourceTree = "<group>"; };
 		06F805A11C585AC400396445 /* CheckProgressTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressTextField.h; sourceTree = "<group>"; };
@@ -2882,6 +2889,8 @@
 		D9ABF8951C898693001B6930 /* DVVBaseTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVBaseTextField.m; sourceTree = "<group>"; };
 		D9ABF89C1C898B7D001B6930 /* YBLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBLoginController.h; sourceTree = "<group>"; };
 		D9ABF89D1C898B7D001B6930 /* YBLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBLoginController.m; sourceTree = "<group>"; };
+		D9ABF8C81C89C545001B6930 /* YBFindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBFindPwdViewController.h; sourceTree = "<group>"; };
+		D9ABF8C91C89C545001B6930 /* YBFindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBFindPwdViewController.m; sourceTree = "<group>"; };
 		D9B2688F1C78381200F62804 /* DVVCoachDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachDetailController.h; sourceTree = "<group>"; };
 		D9B268901C78381200F62804 /* DVVCoachDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachDetailController.m; sourceTree = "<group>"; };
 		D9B268921C78396D00F62804 /* DVVCoachDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachDetailHeaderView.h; sourceTree = "<group>"; };
@@ -3085,6 +3094,17 @@
 			);
 			name = HomeMainController;
 			path = UserCenterViewController/HomeMainController;
+			sourceTree = "<group>";
+		};
+		06CACE161C897FBB004F75BA /* JZRegister */ = {
+			isa = PBXGroup;
+			children = (
+				06CACE171C898031004F75BA /* JZRegisterFirstController.h */,
+				06CACE181C898031004F75BA /* JZRegisterFirstController.m */,
+				06CACE1A1C898872004F75BA /* JZRegisterSecondController.h */,
+				06CACE1B1C898872004F75BA /* JZRegisterSecondController.m */,
+			);
+			path = JZRegister;
 			sourceTree = "<group>";
 		};
 		4FD586B5C72C30AF6B2C582E /* Pods */ = {
@@ -5664,6 +5684,7 @@
 		D588B12B1BDDDC5D000C5D6F /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
+				06CACE161C897FBB004F75BA /* JZRegister */,
 				D588B12C1BDDDC65000C5D6F /* LoginViewController.h */,
 				D588B12D1BDDDC65000C5D6F /* LoginViewController.m */,
 				D588B12E1BDDDC65000C5D6F /* ForgetViewController.h */,
@@ -6491,6 +6512,8 @@
 		D9ABF8981C898B39001B6930 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				D9ABF8C81C89C545001B6930 /* YBFindPwdViewController.h */,
+				D9ABF8C91C89C545001B6930 /* YBFindPwdViewController.m */,
 				D9ABF89C1C898B7D001B6930 /* YBLoginController.h */,
 				D9ABF89D1C898B7D001B6930 /* YBLoginController.m */,
 			);
@@ -7111,6 +7134,7 @@
 				B2E8E1B31C72C8CB000190C2 /* YBMallViewController.m in Sources */,
 				D977B8DA1C7C69DD00ABE205 /* DVVSignUpCoachDMSubject.m in Sources */,
 				B226AF031C74A21C0028DF1A /* HMRecomendModel.m in Sources */,
+				06CACE1C1C898872004F75BA /* JZRegisterSecondController.m in Sources */,
 				D51256D21BE36826002717DA /* MySaveViewController.m in Sources */,
 				066BFB1A1C23A2C3002A1DD8 /* HomeSpotView.m in Sources */,
 				D9646A3F1C892084009BB78F /* DVVCrashHandler.mm in Sources */,
@@ -7146,6 +7170,7 @@
 				D977B8D21C7C69DD00ABE205 /* DVVToast.m in Sources */,
 				D588B0931BDDDBDB000C5D6F /* CoachViewController.m in Sources */,
 				56DAB10B1C7AFA2C00D7B942 /* YBComplaintCoachView.m in Sources */,
+				D9ABF8CA1C89C545001B6930 /* YBFindPwdViewController.m in Sources */,
 				D5604B3F1BF656C50020F0D7 /* EMAudioRecorderUtil.m in Sources */,
 				D970D3971C3CFFEB003FCED3 /* CoachDMData.m in Sources */,
 				B228D6B41C85D7EC0043DD2A /* YBConsultationController.m in Sources */,
@@ -7189,6 +7214,7 @@
 				D5604B881BF656C50020F0D7 /* EMTextView.m in Sources */,
 				D5604B561BF656C50020F0D7 /* EMSDWebImageDownloader.m in Sources */,
 				D9A34F3B1C5318FA0044CC25 /* DVVShareView.m in Sources */,
+				06CACE191C898031004F75BA /* JZRegisterFirstController.m in Sources */,
 				D977B89D1C7C540F00ABE205 /* DVVCoachCommentDMRootClass.m in Sources */,
 				D5604C8E1BF656F30020F0D7 /* EMChatViewBaseCell.m in Sources */,
 				D5604C811BF656F30020F0D7 /* LocationViewController.m in Sources */,

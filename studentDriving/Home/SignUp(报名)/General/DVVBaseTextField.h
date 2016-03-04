@@ -25,6 +25,9 @@
 /** 提示语的字体大小 */
 @property (nonatomic, strong) UIFont *placeHolderFont;
 
+/** 前景色 */
+@property (nonatomic, strong) UIColor *foregroundColor;
+
 /** 默认的高度 */
 @property (nonatomic, readonly, assign) CGFloat defaultHeight;
 
