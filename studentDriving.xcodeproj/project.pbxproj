@@ -39,6 +39,9 @@
 		068716631C5607C50055D9DC /* AddlineButtomTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 068716621C5607C50055D9DC /* AddlineButtomTextField.m */; };
 		06CACE191C898031004F75BA /* JZRegisterFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CACE181C898031004F75BA /* JZRegisterFirstController.m */; };
 		06CACE1C1C898872004F75BA /* JZRegisterSecondController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CACE1B1C898872004F75BA /* JZRegisterSecondController.m */; };
+		06CACE2E1C89E5D6004F75BA /* YBFindPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CACE291C89E5D6004F75BA /* YBFindPwdViewController.m */; };
+		06CACE2F1C89E5D6004F75BA /* YBLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CACE2B1C89E5D6004F75BA /* YBLoginController.m */; };
+		06CACE301C89E5D6004F75BA /* YBSettingNewPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06CACE2D1C89E5D6004F75BA /* YBSettingNewPwdViewController.m */; };
 		06EDA4D31C85F3F100E6EC87 /* MallOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06EDA4D21C85F3F100E6EC87 /* MallOrderController.m */; };
 		06F805A31C585AC400396445 /* CheckProgressTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F805A21C585AC400396445 /* CheckProgressTextField.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
@@ -1067,6 +1070,12 @@
 		06CACE181C898031004F75BA /* JZRegisterFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRegisterFirstController.m; sourceTree = "<group>"; };
 		06CACE1A1C898872004F75BA /* JZRegisterSecondController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRegisterSecondController.h; sourceTree = "<group>"; };
 		06CACE1B1C898872004F75BA /* JZRegisterSecondController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRegisterSecondController.m; sourceTree = "<group>"; };
+		06CACE281C89E5D6004F75BA /* YBFindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBFindPwdViewController.h; sourceTree = "<group>"; };
+		06CACE291C89E5D6004F75BA /* YBFindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBFindPwdViewController.m; sourceTree = "<group>"; };
+		06CACE2A1C89E5D6004F75BA /* YBLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBLoginController.h; sourceTree = "<group>"; };
+		06CACE2B1C89E5D6004F75BA /* YBLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBLoginController.m; sourceTree = "<group>"; };
+		06CACE2C1C89E5D6004F75BA /* YBSettingNewPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSettingNewPwdViewController.h; sourceTree = "<group>"; };
+		06CACE2D1C89E5D6004F75BA /* YBSettingNewPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSettingNewPwdViewController.m; sourceTree = "<group>"; };
 		06EDA4D11C85F3F100E6EC87 /* MallOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallOrderController.h; sourceTree = "<group>"; };
 		06EDA4D21C85F3F100E6EC87 /* MallOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallOrderController.m; sourceTree = "<group>"; };
 		06F805A11C585AC400396445 /* CheckProgressTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CheckProgressTextField.h; sourceTree = "<group>"; };
@@ -3101,6 +3110,19 @@
 			path = JZRegister;
 			sourceTree = "<group>";
 		};
+		06CACE271C89E5D6004F75BA /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				06CACE281C89E5D6004F75BA /* YBFindPwdViewController.h */,
+				06CACE291C89E5D6004F75BA /* YBFindPwdViewController.m */,
+				06CACE2A1C89E5D6004F75BA /* YBLoginController.h */,
+				06CACE2B1C89E5D6004F75BA /* YBLoginController.m */,
+				06CACE2C1C89E5D6004F75BA /* YBSettingNewPwdViewController.h */,
+				06CACE2D1C89E5D6004F75BA /* YBSettingNewPwdViewController.m */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		4FD586B5C72C30AF6B2C582E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3937,6 +3959,7 @@
 		B2E8E18E1C72C6F2000190C2 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				06CACE271C89E5D6004F75BA /* Login */,
 				568DF23A1C759F6E00008829 /* SideMenu(侧边栏) */,
 				B2E8E18F1C72C6F2000190C2 /* AppointMent(预约) */,
 				B2E8E1991C72C6F2000190C2 /* Mall(商城) */,
@@ -7084,6 +7107,7 @@
 				D96D1BF71C2BD47900F1C282 /* DVVUserManager.m in Sources */,
 				B20DBEE11C5DB9120023676E /* JGPayTool.m in Sources */,
 				D588B0D91BDDDC14000C5D6F /* DrivingSelectedCoachCell.m in Sources */,
+				06CACE2F1C89E5D6004F75BA /* YBLoginController.m in Sources */,
 				B20DBECF1C5DB0FF0023676E /* SBJsonWriter.m in Sources */,
 				D977B82F1C7C21DF00ABE205 /* DVVCoachDetailDMTrainfieldlinfo.m in Sources */,
 				06073D841C251BF60058B372 /* HomeFavourableController.m in Sources */,
@@ -7528,6 +7552,7 @@
 				D512569C1BDF602B002717DA /* CommonAddressViewController.m in Sources */,
 				556F42581C310E7A0052DE73 /* SignUpListViewController.m in Sources */,
 				D588B1381BDDDC65000C5D6F /* LoginViewController.m in Sources */,
+				06CACE301C89E5D6004F75BA /* YBSettingNewPwdViewController.m in Sources */,
 				D588B1111BDDDC2F000C5D6F /* PFActionSheetView.m in Sources */,
 				D51256AB1BE1C6C7002717DA /* BCTextView.m in Sources */,
 				D5604B3E1BF656C50020F0D7 /* EMAudioPlayerUtil.m in Sources */,
@@ -7537,6 +7562,7 @@
 				B2E8E1811C72BA4F000190C2 /* ViewController.m in Sources */,
 				D588AFCB1BDDDAAB000C5D6F /* ExamCarModel.m in Sources */,
 				D96D1BFA1C2BF61700F1C282 /* DVVSideMenuBlockView.m in Sources */,
+				06CACE2E1C89E5D6004F75BA /* YBFindPwdViewController.m in Sources */,
 				D588AF8B1BDDB62C000C5D6F /* main.m in Sources */,
 				D588B06D1BDDDB90000C5D6F /* APWaitEvaluationViewController.m in Sources */,
 				D99674671C7D54610000CC65 /* CoachListCell.m in Sources */,

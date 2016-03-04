@@ -8,7 +8,7 @@
 
 #import "DVVUserManager.h"
 #import "DVVOpenControllerFromSideMenu.h"
-#import "LoginViewController.h"
+#import "YBLoginController.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
 
@@ -17,12 +17,12 @@
 // 获得登录窗体
 + (UIViewController *)loginController {
     
-    static LoginViewController *loginVC = nil;
+    static YBLoginController *loginVC = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        loginVC = [LoginViewController new];
+        loginVC = [YBLoginController new];
     });
     return loginVC;
 }
@@ -30,14 +30,14 @@
 // 打开登录窗体
 + (void)userNeedLogin {
     
-//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
-//    [(UINavigationController *)(window.rootViewController) presentViewController:[self loginController] animated:YES completion:nil];
+    //    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    //    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
+    //    [(UINavigationController *)(window.rootViewController) presentViewController:[self loginController] animated:YES completion:nil];
     
-    [UIApplication sharedApplication].keyWindow.rootViewController = [self loginController];
+    [UIApplication sharedApplication].keyWindow.rootViewController = [[YBLoginController alloc] init];
     
-//    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//    [(UINavigationController *)(window.rootViewController) dismissViewControllerAnimated:YES completion:nil];
+    //    UIWindow *window = [UIApplication sharedApplication].keyWindow;
+    //    [(UINavigationController *)(window.rootViewController) dismissViewControllerAnimated:YES completion:nil];
     
 }
 
@@ -46,8 +46,8 @@
     
     [UIApplication sharedApplication].keyWindow.rootViewController = [[ViewController alloc] init];
     
-//    [[self loginController] dismissViewControllerAnimated:YES completion:nil];
-//    [[self loginController].navigationController popToRootViewControllerAnimated:NO];
+    //    [[self loginController] dismissViewControllerAnimated:YES completion:nil];
+    //    [[self loginController].navigationController popToRootViewControllerAnimated:NO];
     //[self showNaviBar];
 }
 
@@ -61,10 +61,10 @@
 + (void)userNeedBrowsing {
     
     [UIApplication sharedApplication].keyWindow.rootViewController = [[ViewController alloc] init];
-
-//    [[self loginController].navigationController dismissViewControllerAnimated:YES completion:nil];
-//    [[self loginController].navigationController popToRootViewControllerAnimated:YES];
-//    [self showNaviBar];
+    
+    //    [[self loginController].navigationController dismissViewControllerAnimated:YES completion:nil];
+    //    [[self loginController].navigationController popToRootViewControllerAnimated:YES];
+    //    [self showNaviBar];
 }
 
 // 显示naviBar

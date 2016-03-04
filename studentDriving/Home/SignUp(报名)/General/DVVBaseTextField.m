@@ -168,6 +168,15 @@
     [self.layer setCornerRadius:_cornerRadius];
 }
 
+- (void)setForegroundColor:(UIColor *)foregroundColor {
+    _foregroundColor = foregroundColor;
+    
+    self.placeHolderColor = [UIColor whiteColor];
+    self.tintColor = [UIColor whiteColor];
+    self.borderColor = [UIColor whiteColor];
+    self.textColor = [UIColor whiteColor];
+}
+
 #pragma mark - lazy laod
 
 - (UIImageView *)leftImageView {
@@ -183,11 +192,11 @@
 }
 
 /*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+ // Only override drawRect: if you perform custom drawing.
+ // An empty implementation adversely affects performance during animation.
+ - (void)drawRect:(CGRect)rect {
+ // Drawing code
+ }
+ */
 
 @end

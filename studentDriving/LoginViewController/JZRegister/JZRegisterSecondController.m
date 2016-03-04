@@ -11,12 +11,7 @@
 #import "RegistNoteController.h"
 #import "NSString+DY_MD5.h"
 #import <JPush/APService.h>
-
-static NSString *const kkregisterUser = @"kregisterUser";
-
-//static NSString *const kregisterUrl = @"userinfo/signup";
-//
-//static NSString *const kcodeGainUrl = @"code";
+static NSString *const kkregisterUser = @"userinfo/signup";
 
 @interface JZRegisterSecondController ()<UITextFieldDelegate>
 @property (nonatomic, strong) DVVBaseTextField *passwordTextFiled; // 密码
@@ -43,7 +38,7 @@ static NSString *const kkregisterUser = @"kregisterUser";
 
 - (void)initUI{
     [self.view addSubview:self.passwordTextFiled];
-    [self.passwordTextFiled addSubview:self.eyeButton];
+    [self.view addSubview:self.eyeButton];
     [self.view addSubview:self.invitiTextFiled];
     [self.view addSubview:self.registButton];
     [self.view addSubview:self.selectButton];
@@ -68,6 +63,8 @@ static NSString *const kkregisterUser = @"kregisterUser";
 }
 // 点击下一步
 - (void)nextRegisterButton:(UIButton *)sender{
+    
+    [self.passwordTextFiled endEditing:YES];
     
     if (self.passwordTextFiled.text == nil || self.passwordTextFiled.text.length <= 0) {
                 [self obj_showTotasViewWithMes:@"请输入密码"];
@@ -95,11 +92,11 @@ static NSString *const kkregisterUser = @"kregisterUser";
         [self.paramsPost setObject:self.invitiTextFiled.text forKey:@"referrerCode"];
     }
     [self.paramsPost setObject:@"1" forKey:@"usertype"];
+    
     // 手机号字段
     [self.paramsPost setObject:self.phoneStr forKey:@"mobile"];
     // 验证码字段
     [self.paramsPost setObject:self.autoStr forKey:@"smscode"];
-
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,kkregisterUser];
     
@@ -241,11 +238,12 @@ static NSString *const kkregisterUser = @"kregisterUser";
 - (void)userExist {
     
     __weak typeof(self) ws = self;
+    
     NSString *urlString = [NSString stringWithFormat:@"userinfo/userexists?usertype=1&mobile=%@",self.phoneStr];
-    NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
+        NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
+    NSLog(@"codeUrl:%@",codeUrl);
     
     [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        
         NSLog(@"%@", data);
         
         NSDictionary *params = data;
@@ -259,7 +257,27 @@ static NSString *const kkregisterUser = @"kregisterUser";
         }else {
             [ws obj_showTotasViewWithMes:@"网络错误"];
         }
+
+    } withFailure:^(id data) {
+        
     }];
+    
+//    [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+//        
+//        NSLog(@"%@", data);
+//        
+//        NSDictionary *params = data;
+//        BOOL type = [[params objectForKey:@"type"] boolValue];
+//        if (type) {
+//            if ([[params objectForKey:@"data"] boolValue]) {
+//                [self obj_showTotasViewWithMes:@"此用户已经注册"];
+//            }else {
+//                [self userRegister];
+//            }
+//        }else {
+//            [ws obj_showTotasViewWithMes:@"网络错误"];
+//        }
+//    }];
 }
 
 - (void)viewDidLayoutSubviews{
@@ -273,10 +291,10 @@ static NSString *const kkregisterUser = @"kregisterUser";
     }];
     
     [self.eyeButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.passwordTextFiled.mas_bottom).offset(18);
-        make.right.mas_equalTo(self.passwordTextFiled.mas_right).offset(-12);
+        make.right.mas_equalTo(self.passwordTextFiled.mas_right).with.offset(-14);
+        make.top.mas_equalTo(self.passwordTextFiled.mas_top).with.offset(44/2-8/2);
         make.height.mas_equalTo(@8);
-         make.width.mas_equalTo(@16);
+        make.width.mas_equalTo(@16);
     }];
 
     [self.invitiTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -421,9 +439,15 @@ static NSString *const kkregisterUser = @"kregisterUser";
         [_eyeButton setBackgroundImage:[UIImage imageNamed:@"look_off"] forState:UIControlStateNormal];
         [_eyeButton setBackgroundImage:[UIImage imageNamed:@"look_on"] forState:UIControlStateSelected];
         [_eyeButton addTarget:self action:@selector(didEyeButton:) forControlEvents:UIControlEventTouchUpInside];
-        _eyeButton.backgroundColor = [UIColor cyanColor];
+        _eyeButton.backgroundColor = [UIColor clearColor];
     }
     return _eyeButton;
+}
+- (NSMutableDictionary *)paramsPost {
+    if (_paramsPost == nil) {
+        _paramsPost = [[NSMutableDictionary alloc] init];
+    }
+    return _paramsPost;
 }
 
 @end

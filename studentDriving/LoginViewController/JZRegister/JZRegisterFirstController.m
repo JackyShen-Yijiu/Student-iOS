@@ -25,8 +25,16 @@ static NSString *const kautoCode = @"Verificationsmscode";
 - (void)viewDidLoad{
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"注册";
+    
     [self initUI];
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+    
+}
+
+- (void)back
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)initUI{
@@ -36,6 +44,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
         [self.codeView addSubview:self.sendButton];
         [self.view addSubview:self.nextRegisterButton];
 }
+
 #pragma mark -- UItextFiledDelegate
 - (void)textFieldDidBeginEditing:(UITextField *)textField{
     if (5000 == textField.tag) {
@@ -79,7 +88,10 @@ static NSString *const kautoCode = @"Verificationsmscode";
 
 }
 #pragma mark - buttonAction
-
+- (void)sideMenuButtonAction:(UIButton *)btn{
+    [self.navigationController popViewControllerAnimated:YES];
+    
+}
 #define TIME 60
 - (void)dealSend:(UIButton *)sender {
     
