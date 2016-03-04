@@ -263,8 +263,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
         [ud setInteger:1 forKey:@"isCarReset"];
         [ud synchronize];
-        
-//        [DVVUserManager userNeedLogin];YBLoginController
+
         [UIApplication sharedApplication].keyWindow.rootViewController = [[YBLoginController alloc] init];
 
     } onQueue:nil];

@@ -14,7 +14,6 @@
 #import "YBFindPwdViewController.h"
 #import "WMNavigationController.h"
 #import "JZRegisterFirstController.h"
-
 @interface YBLoginController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *logoImageView;
@@ -122,7 +121,7 @@
     JZRegisterFirstController *vc = [[JZRegisterFirstController alloc] init];
     WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:inav animated:YES completion:nil];
-    
+
 }
 
 #pragma mark 重置密码

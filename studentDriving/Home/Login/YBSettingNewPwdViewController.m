@@ -191,11 +191,9 @@ static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
         if ([type isEqualToString:@"1"]) {
             
             [self obj_showTotasViewWithMes:@"修改成功"];
-            
+
             [self.navigationController dismissViewControllerAnimated:YES completion:nil];
-            
-            //[DVVUserManager userNeedLogin];
-            
+
         }else {
             
             [self obj_showTotasViewWithMes:resultData[@"msg"]];

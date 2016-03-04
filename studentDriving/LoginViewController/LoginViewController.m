@@ -455,7 +455,7 @@ static NSString *const kuserType = @"usertype";
 }
 
 
-// 点击登陆后的操作
+// 登陆后的操作
 - (void)loginWithUsername:(NSString *)username password:(NSString *)password  dataDic:(NSDictionary *)dataDic
 {
     [self showHudInView:self.view hint:NSLocalizedString(@"登录中...", @"登录中...")];
