@@ -8,7 +8,7 @@
 
 #import "DVVUserManager.h"
 #import "DVVOpenControllerFromSideMenu.h"
-#import "LoginViewController.h"
+#import "YBLoginController.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
 
@@ -17,12 +17,12 @@
 // 获得登录窗体
 + (UIViewController *)loginController {
     
-    static LoginViewController *loginVC = nil;
+    static YBLoginController *loginVC = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        loginVC = [LoginViewController new];
+        loginVC = [YBLoginController new];
     });
     return loginVC;
 }

@@ -984,6 +984,7 @@
 		D9ABF8961C898693001B6930 /* DVVBaseTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ABF8951C898693001B6930 /* DVVBaseTextField.m */; };
 		D9ABF89E1C898B7D001B6930 /* YBLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ABF89D1C898B7D001B6930 /* YBLoginController.m */; };
 		D9ABF8CA1C89C545001B6930 /* YBFindPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ABF8C91C89C545001B6930 /* YBFindPwdViewController.m */; };
+		D9ABF8CD1C89CA2B001B6930 /* YBSettingNewPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9ABF8CC1C89CA2B001B6930 /* YBSettingNewPwdViewController.m */; };
 		D9B268911C78381200F62804 /* DVVCoachDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B268901C78381200F62804 /* DVVCoachDetailController.m */; };
 		D9B268941C78396D00F62804 /* DVVCoachDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B268931C78396D00F62804 /* DVVCoachDetailHeaderView.m */; };
 		D9B268981C783C5D00F62804 /* DVVCoachDetailInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9B268961C783C5C00F62804 /* DVVCoachDetailInfoCell.m */; };
@@ -2891,6 +2892,8 @@
 		D9ABF89D1C898B7D001B6930 /* YBLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBLoginController.m; sourceTree = "<group>"; };
 		D9ABF8C81C89C545001B6930 /* YBFindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBFindPwdViewController.h; sourceTree = "<group>"; };
 		D9ABF8C91C89C545001B6930 /* YBFindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBFindPwdViewController.m; sourceTree = "<group>"; };
+		D9ABF8CB1C89CA2B001B6930 /* YBSettingNewPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSettingNewPwdViewController.h; sourceTree = "<group>"; };
+		D9ABF8CC1C89CA2B001B6930 /* YBSettingNewPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSettingNewPwdViewController.m; sourceTree = "<group>"; };
 		D9B2688F1C78381200F62804 /* DVVCoachDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachDetailController.h; sourceTree = "<group>"; };
 		D9B268901C78381200F62804 /* DVVCoachDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachDetailController.m; sourceTree = "<group>"; };
 		D9B268921C78396D00F62804 /* DVVCoachDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachDetailHeaderView.h; sourceTree = "<group>"; };
@@ -6514,6 +6517,8 @@
 			children = (
 				D9ABF8C81C89C545001B6930 /* YBFindPwdViewController.h */,
 				D9ABF8C91C89C545001B6930 /* YBFindPwdViewController.m */,
+				D9ABF8CB1C89CA2B001B6930 /* YBSettingNewPwdViewController.h */,
+				D9ABF8CC1C89CA2B001B6930 /* YBSettingNewPwdViewController.m */,
 				D9ABF89C1C898B7D001B6930 /* YBLoginController.h */,
 				D9ABF89D1C898B7D001B6930 /* YBLoginController.m */,
 			);
@@ -7547,6 +7552,7 @@
 				D5604CCA1BF83A690020F0D7 /* ChatListViewController.m in Sources */,
 				D512569C1BDF602B002717DA /* CommonAddressViewController.m in Sources */,
 				556F42581C310E7A0052DE73 /* SignUpListViewController.m in Sources */,
+				D9ABF8CD1C89CA2B001B6930 /* YBSettingNewPwdViewController.m in Sources */,
 				D588B1381BDDDC65000C5D6F /* LoginViewController.m in Sources */,
 				D588B1111BDDDC2F000C5D6F /* PFActionSheetView.m in Sources */,
 				D51256AB1BE1C6C7002717DA /* BCTextView.m in Sources */,

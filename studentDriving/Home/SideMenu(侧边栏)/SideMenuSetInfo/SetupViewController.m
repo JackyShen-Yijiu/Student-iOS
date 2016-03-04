@@ -15,7 +15,7 @@
 #import <JPush/APService.h>
 #import "SignUpInfoManager.h"
 #import "HelpController.h"
-#import "LoginViewController.h"
+#import "YBLoginController.h"
 
 static NSString *const kSettingUrl = @"userinfo/personalsetting";
 
@@ -265,7 +265,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         [ud synchronize];
         
 //        [DVVUserManager userNeedLogin];
-        [UIApplication sharedApplication].keyWindow.rootViewController = [[LoginViewController alloc] init];
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[YBLoginController alloc] init];
 
     } onQueue:nil];
     

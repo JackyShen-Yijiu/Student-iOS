@@ -12,6 +12,7 @@
 #import "NSString+DY_MD5.h"
 #import "DVVToast.h"
 #import "YBFindPwdViewController.h"
+#import "WMNavigationController.h"
 
 @interface YBLoginController () <UITextFieldDelegate>
 
@@ -124,7 +125,8 @@
 - (void)retrievePasswordButtonAction:(UIButton *)sender {
     
     YBFindPwdViewController *vc = [[YBFindPwdViewController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+    WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:inav animated:YES completion:nil];
     
 }
 
