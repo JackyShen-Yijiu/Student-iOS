@@ -53,8 +53,6 @@
         self.editTextFidld.placeholder = @"请选择性别";
         _genderArray = @[ @"男", @"女" ];
         self.editTextFidld.inputView = self.pickerView;
-        [self.editTextFidld becomeFirstResponder];
-        
         if ([AcountManager manager].userGender && [AcountManager manager].userGender.length) {
             _editTextFidld.text = [AcountManager manager].userGender;
             if ([_genderArray.firstObject isEqualToString:_editTextFidld.text]) {
@@ -91,6 +89,14 @@
     _arrowImageView.frame = CGRectMake(size.width - 8 - 20, (editViewHeight - 28)/2.f, 20, 28);
     _addressButton.frame = _editView.bounds;
 //    _editTextFidld.backgroundColor = [UIColor lightGrayColor];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    if (_editType == YBEditUserInfoType_Sex) {
+        [self.editTextFidld becomeFirstResponder];
+    }
 }
 
 #pragma mark - action
