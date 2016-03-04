@@ -28,6 +28,8 @@
 /** 默认的高度 */
 @property (nonatomic, readonly, assign) CGFloat defaultHeight;
 
+- (instancetype)initWithLeftImage:(UIImage *)leftImage
+                      placeholder:(NSString *)placeHolder;
 
 - (instancetype)initWithLeftImage:(UIImage *)leftImage
                       placeholder:(NSString *)placeHolder

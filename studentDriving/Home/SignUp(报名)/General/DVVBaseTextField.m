@@ -47,6 +47,14 @@
     return self;
 }
 
+- (instancetype)initWithLeftImage:(UIImage *)leftImage placeholder:(NSString *)placeHolder {
+    self = [super init];
+    if (self) {
+        [self initSelfWithLeftImage:leftImage placeholder:placeHolder borderColor:nil cornerRadius:CORNER_RADIUS];
+    }
+    return self;
+}
+
 - (instancetype)initWithLeftImage:(UIImage *)leftImage
                       placeholder:(NSString *)placeHolder
                       borderColor:(UIColor *)borderColor {
