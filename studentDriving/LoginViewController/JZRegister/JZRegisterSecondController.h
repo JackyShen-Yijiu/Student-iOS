@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface JZRegisterSecondController : UIViewController
-
+@property (nonatomic, strong) NSString *phoneStr;
+@property (nonatomic, strong) NSString *autoStr;
 @end

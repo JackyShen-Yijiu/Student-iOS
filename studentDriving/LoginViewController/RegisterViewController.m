@@ -670,6 +670,7 @@ static NSString *const kcodeGainUrl = @"code";
         self.gainNumWarningView.hidden = NO;
         return;
     }
+    
     [self.paramsPost setObject:self.authCodeTextFild.text forKey:@"smscode"];
     if (self.passWordTextFild.text == nil || self.passWordTextFild.text.length <= 0) {
 //        [self obj_showTotasViewWithMes:@"请输入密码"];

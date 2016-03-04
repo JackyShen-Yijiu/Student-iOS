@@ -132,7 +132,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
             NSString *str = [NSString stringWithFormat:@"剩余(%d)s",count];
             dispatch_async(dispatch_get_main_queue(), ^{
                 self.sendButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
-                [self.sendButton setTitleColor:[UIColor colorWithHexString:@"999999"] forState:UIControlStateNormal];
+                [self.sendButton setTitleColor:[UIColor colorWithHexString:@"fed"] forState:UIControlStateNormal];
                 [self.sendButton setTitle:str forState:UIControlStateNormal];
                 
             });
@@ -164,6 +164,8 @@ static NSString *const kautoCode = @"Verificationsmscode";
         if (1 == [data[@"type"] integerValue]) {
             //  验证成功,跳转下界面
             JZRegisterSecondController *secondVC = [[JZRegisterSecondController alloc] init];
+            secondVC.phoneStr = self.phoneNumTextFiled.text;
+            secondVC.autoStr = self.authCodeTextFiled.text;
             [self.navigationController pushViewController:secondVC animated:YES];
         }
             
