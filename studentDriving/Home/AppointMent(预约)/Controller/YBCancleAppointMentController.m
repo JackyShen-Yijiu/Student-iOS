@@ -97,17 +97,22 @@
         NSDictionary *param = data;
         NSNumber *type = param[@"type"];
         NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
+        
         if (type.integerValue == 1) {
-            kShowSuccess(@"取消成功");
+            
+            [self obj_showTotasViewWithMes:@"取消成功"];
+            
             for (UIViewController *vc in self.navigationController.viewControllers) {
                 if ([vc isKindOfClass:[YBAppointMentController class]]) {
                     [self.navigationController popToViewController:vc animated:YES];
                 }
             }
-        }else {
+            
+        }else{
 
             [self obj_showTotasViewWithMes:msg];
         }
+        
     }];
 }
 

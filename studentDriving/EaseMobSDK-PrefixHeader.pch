@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger, kLocationShowType){
 // 环信appKey
 #define easeMobAPPkey @"black-cat#jizhijaifu"
 // 环信推送证书 jizhijiafuStudentDevelopment:开发   jizhijiafuStudentDistribution:生产
-#define easeMobPushName @"jizhijiafuStudentDistribution"
+#define easeMobPushName @"jizhijiafuStudentDevelopment"
 // JPush（需要在pushconfig.plist中配置）
 #define JPushAppKey @"3ed0386d38153e3768ef0f26"
 // 友盟appkey
