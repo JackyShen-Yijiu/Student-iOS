@@ -57,7 +57,7 @@
     }];
     // 服务器返回的数据为空时的回调
     [_viewModel dvv_setNilResponseObjectBlock:^{
-        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您的预约信息" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您的预约信息" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
         [self.view addSubview:self.DvvView];
     }];
     // 网络成功或错误都调用的回调 (一般在这里隐藏HUD)

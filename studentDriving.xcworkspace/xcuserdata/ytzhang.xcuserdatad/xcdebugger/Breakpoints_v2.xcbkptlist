@@ -516,12 +516,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ytzhang/Desktop/Student-iOS/studentDriving/Home/SignUp(%E6%8A%A5%E5%90%8D)/DVVSignUpDetailController.m"
-                  timestampString = "478670668.002594"
+                  timestampString = "478748751.36032"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "175"
                   endingLineNumber = "175"
-                  offsetFromSymbolStart = "2908">
+                  offsetFromSymbolStart = "2578">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -531,12 +531,12 @@
                   moduleName = "studentDriving"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ytzhang/Desktop/Student-iOS/studentDriving/Home/SignUp(%E6%8A%A5%E5%90%8D)/DVVSignUpDetailController.m"
-                  timestampString = "478670668.002783"
+                  timestampString = "478748751.36052"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "175"
                   endingLineNumber = "175"
-                  offsetFromSymbolStart = "40">
+                  offsetFromSymbolStart = "46">
                </Location>
             </Locations>
          </BreakpointContent>

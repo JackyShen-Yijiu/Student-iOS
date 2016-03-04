@@ -282,13 +282,13 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         [self.tableView reloadData];
         if (!self.dataArray.count) {
             if (_myLoveState == MyLoveStateCoach) {
-                self.p = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您喜欢的教练" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+                self.p = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您喜欢的教练" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
                 self.p.frame = CGRectMake(0, 44, kSystemWide, kSystemHeight - 44);
                 [self.view addSubview:self.p];
             }
             if (_myLoveState == MyLoveStateDriving) {
 //              NSString *msg = @"没有喜欢的教练";
-                self.mallView = [[DVVNoDataPromptView alloc] initWithTitle:@"小步没有找到您喜欢的驾校" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+                self.mallView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您喜欢的驾校" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
                 self.mallView.frame = CGRectMake(0, 44, kSystemWide, kSystemHeight - 44);
                 [self.view addSubview:self.mallView];
 
