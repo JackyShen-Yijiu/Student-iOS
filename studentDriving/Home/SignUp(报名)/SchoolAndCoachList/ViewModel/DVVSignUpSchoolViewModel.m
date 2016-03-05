@@ -100,11 +100,19 @@
             [self dvv_loadMoreSuccess];
         }
         
+        // 缓存数据
+        [NSKeyedArchiver archiveRootObject:_dataArray toFile:[[self libCachePath] stringByAppendingString:ArchiverName_SchoolDataArray]];
         
     } withFailure:^(id data) {
         [self dvv_networkCallBack];
         [self dvv_networkError];
     }];
+}
+
+- (NSString *)libCachePath {
+    
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    return [[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
 }
 
 @end

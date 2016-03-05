@@ -98,7 +98,8 @@
         }else {
             [self dvv_loadMoreSuccess];
         }
-        
+        // 缓存数据
+        [self dvv_archiverToCacheWithObject:_dataArray fileName:ArchiverName_CoachDataArray];
         
     } withFailure:^(id data) {
         [self dvv_networkCallBack];

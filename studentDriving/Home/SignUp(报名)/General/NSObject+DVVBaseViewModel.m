@@ -42,6 +42,28 @@ static char dvv_kLoadMoreErrorBlock;
 }
 
 
+#pragma mark - 数据缓存
+
+- (void)dvv_archiverToCacheWithObject:(id)object fileName:(NSString *)fileName {
+    
+    [NSKeyedArchiver archiveRootObject:object toFile:[[self dvv_sandboxCachePath] stringByAppendingString:fileName]];
+}
+
+- (id)dvv_unarchiveFromCacheWithFileName:(NSString *)fileName {
+    
+    return [NSKeyedUnarchiver unarchiveObjectWithFile:[[self dvv_sandboxCachePath] stringByAppendingString:fileName]];
+}
+
+
+#pragma mark - public
+
+- (NSString *)dvv_sandboxCachePath {
+    
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    return [[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
+}
+
+
 #pragma mark - call back
 - (void)dvv_networkCallBack {
     if (objc_getAssociatedObject(self, &dvv_kNetworkCallBackBlock)) {

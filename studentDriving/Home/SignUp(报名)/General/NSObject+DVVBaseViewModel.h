@@ -40,6 +40,8 @@
 - (BOOL)dvv_checkResponseObject:(id)responseObject;
 
 
+#pragma mark - 调用回调
+
 /**  处理完网络数据后，调用刷新成功的回调 */
 - (void)dvv_refreshSuccess;
 /**  处理完网络数据后，调用刷新失败的回调 */
@@ -60,12 +62,15 @@
 - (void)dvv_networkCallBack;
 
 
+#pragma mark - 设置回调
+
 /**
  *  设置刷新成功时的回调Block
  *
  *  @param refreshSuccessBlock 刷新成功时的回调Block
  */
 - (void)dvv_setRefreshSuccessBlock:(dispatch_block_t)refreshSuccessBlock;
+
 /**
  *  设置刷新失败时的回调Block
  *
@@ -80,6 +85,7 @@
  *  @param loadMoreSuccessBlock 加载成功时的回调Block
  */
 - (void)dvv_setLoadMoreSuccessBlock:(dispatch_block_t)loadMoreSuccessBlock;
+
 /**
  *  设置加载失败时的回调Block
  *
@@ -108,5 +114,34 @@
  */
 - (void)dvv_setNetworkCallBackBlock:(dispatch_block_t)networkCallBackBlock;
 
+
+#pragma mark - 数据缓存
+
+/**
+ *  将对象存储到沙盒的Cache目录下
+ *
+ *  @param object   需要存储的对象
+ *  @param fileName 存储对象的文件名
+ */
+- (void)dvv_archiverToCacheWithObject:(id)object fileName:(NSString *)fileName;
+
+/**
+ *  将对象从沙盒的Cache目录下取出
+ *
+ *  @param fileName 沙盒的Cache目录下的文件名
+ *
+ *  @return 从Cache沙盒的目录下取出的对象
+ */
+- (id)dvv_unarchiveFromCacheWithFileName:(NSString *)fileName;
+
+
+#pragma mark - public
+
+/**
+ *  获取沙盒的Cache目录
+ *
+ *  @return 沙盒的Cache目录
+ */
+- (NSString *)dvv_sandboxCachePath;
 
 @end

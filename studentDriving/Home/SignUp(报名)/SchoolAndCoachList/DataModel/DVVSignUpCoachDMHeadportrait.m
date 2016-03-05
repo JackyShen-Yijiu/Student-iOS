@@ -10,5 +10,6 @@
 @end
 @implementation DVVSignUpCoachDMHeadportrait
 
+MJExtensionCodingImplementation
 
 @end

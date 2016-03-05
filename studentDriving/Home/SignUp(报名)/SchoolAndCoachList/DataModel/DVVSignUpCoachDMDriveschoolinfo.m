@@ -10,6 +10,8 @@
 @end
 @implementation DVVSignUpCoachDMDriveschoolinfo
 
+MJExtensionCodingImplementation
+
 + (NSDictionary *)modelCustomPropertyMapper {
     return @{ @"ID": @"id" };
 }

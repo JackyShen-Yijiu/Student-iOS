@@ -10,5 +10,6 @@
 @end
 @implementation DVVSignUpSchoolDMRootClass
 
+MJExtensionCodingImplementation
 
 @end

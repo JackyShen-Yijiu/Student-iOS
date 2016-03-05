@@ -263,6 +263,24 @@ static NSString *coachCellID = @"coachCellID";
     }
     [self.tableView reloadData];
     
+    
+    if (0 == _showType) {
+        // 加载驾校缓存数据
+        NSMutableArray *schoolDataArray = [self dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray];
+        if (schoolDataArray && schoolDataArray.count) {
+            _schoolViewModel.dataArray = schoolDataArray;
+            [_tableView reloadData];
+        }
+    }else {
+        // 加载教练缓存数据
+        NSMutableArray *coachDataArray = [self dvv_unarchiveFromCacheWithFileName:ArchiverName_CoachDataArray];
+        if (coachDataArray && coachDataArray.count) {
+            _coachViewModel.dataArray = coachDataArray;
+            [_tableView reloadData];
+        }
+    }
+    
+    
     // 开始请求数据
     [self.noDataPromptView remove];
     [DVVToast showFromView:self.view OffSetY:-10];
@@ -271,6 +289,13 @@ static NSString *coachCellID = @"coachCellID";
     }else {
         [_coachViewModel dvv_networkRequestRefresh];
     }
+    
+}
+
+- (NSString *)libCachePath {
+    
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+    return [[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
 }
 
 - (void)cancelSearch {

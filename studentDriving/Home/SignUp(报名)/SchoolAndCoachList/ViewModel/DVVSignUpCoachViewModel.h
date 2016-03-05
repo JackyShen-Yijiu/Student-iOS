@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "NSObject+DVVBaseViewModel.h"
 
+#define ArchiverName_CoachDataArray @"coachDataArray.archiver"
+
 @interface DVVSignUpCoachViewModel : NSObject
 
 @property (nonatomic, assign) BOOL isSearch;

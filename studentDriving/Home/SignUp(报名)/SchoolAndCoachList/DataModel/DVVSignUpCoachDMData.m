@@ -10,6 +10,8 @@
 @end
 @implementation DVVSignUpCoachDMData
 
+MJExtensionCodingImplementation
+
 + (NSDictionary *)modelCustomPropertyMapper {
     
     return @{ @"seniority": @"Seniority",

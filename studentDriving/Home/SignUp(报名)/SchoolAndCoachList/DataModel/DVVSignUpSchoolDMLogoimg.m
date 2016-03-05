@@ -10,5 +10,6 @@
 @end
 @implementation DVVSignUpSchoolDMLogoimg
 
+MJExtensionCodingImplementation
 
 @end
