@@ -440,10 +440,11 @@ static NSString *coachCellID = @"coachCellID";
             [ws obj_showTotasViewWithMes:@"已经全部加载完毕"];
             ws.tableView.mj_footer.state = MJRefreshStateNoMoreData;
         }else {
-//            [ws obj_showTotasViewWithMes:@"暂无数据"];
-            ws.noDataPromptView.titleLabel.text = @"暂无合作驾校信息";
-            ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
-            [ws.tableView addSubview:ws.noDataPromptView];
+            if (!((NSMutableArray *)[ws dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray]).count) {
+                ws.noDataPromptView.titleLabel.text = @"暂无合作驾校信息";
+                ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
+                [ws.tableView addSubview:ws.noDataPromptView];
+            }
         }
     }];
     [_schoolViewModel dvv_setNetworkCallBackBlock:^{
@@ -453,10 +454,12 @@ static NSString *coachCellID = @"coachCellID";
         [self hideSearchView];
     }];
     [_schoolViewModel dvv_setNetworkErrorBlock:^{
-        ws.noDataPromptView.titleLabel.text = @"网络错误";
-        ws.noDataPromptView.subTitleLabel.text = @"";
-        [ws.tableView addSubview:ws.noDataPromptView];
-//        [ws obj_showTotasViewWithMes:@"网络错误"];
+        if (!((NSMutableArray *)[ws dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray]).count) {
+            ws.noDataPromptView.titleLabel.text = @"网络错误";
+            ws.noDataPromptView.subTitleLabel.text = @"";
+            [ws.tableView addSubview:ws.noDataPromptView];
+        }
+        [ws obj_showTotasViewWithMes:@"网络错误"];
     }];
 }
 
@@ -478,10 +481,11 @@ static NSString *coachCellID = @"coachCellID";
             [ws obj_showTotasViewWithMes:@"已经全部加载完毕"];
             ws.tableView.mj_footer.state = MJRefreshStateNoMoreData;
         }else {
-//            [ws obj_showTotasViewWithMes:@"暂无数据"];
-            ws.noDataPromptView.titleLabel.text = @"暂无合作教练信息";
-            ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
-            [ws.tableView addSubview:ws.noDataPromptView];
+            if (!(NSMutableArray *)([ws dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray])) {
+                ws.noDataPromptView.titleLabel.text = @"暂无合作教练信息";
+                ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
+                [ws.tableView addSubview:ws.noDataPromptView];
+            }
         }
     }];
     [_coachViewModel dvv_setNetworkCallBackBlock:^{
@@ -491,10 +495,12 @@ static NSString *coachCellID = @"coachCellID";
         [ws hideSearchView];
     }];
     [_coachViewModel dvv_setNetworkErrorBlock:^{
-        ws.noDataPromptView.titleLabel.text = @"网络错误";
-        ws.noDataPromptView.subTitleLabel.text = @"";
-        [ws.tableView addSubview:ws.noDataPromptView];
-//        [ws obj_showTotasViewWithMes:@"网络错误"];
+        if (!(NSMutableArray *)([ws dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray])) {
+            ws.noDataPromptView.titleLabel.text = @"网络错误";
+            ws.noDataPromptView.subTitleLabel.text = @"";
+            [ws.tableView addSubview:ws.noDataPromptView];
+        }
+        [ws obj_showTotasViewWithMes:@"网络错误"];
     }];
 }
 
