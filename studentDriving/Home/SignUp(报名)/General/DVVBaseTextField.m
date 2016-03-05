@@ -10,8 +10,9 @@
 
 #define VIEW_HEIGHT 44.0f
 #define FONT [UIFont systemFontOfSize:14]
-#define FOREGROUND_COLOR [UIColor colorWithHexString:@"7c7c7c"]
-#define CORNER_RADIUS 9
+#define FOREGROUND_COLOR [UIColor colorWithHexString:@"7C7C7C"]
+//#define FOREGROUND_COLOR [UIColor whiteColor]
+#define CORNER_RADIUS 10
 
 @interface DVVBaseTextField ()
 
@@ -26,7 +27,6 @@
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self initSelf];
-        
     }
     return self;
 }
@@ -102,20 +102,24 @@
 
 - (void)initSelf {
     
+    _foregroundColor = FOREGROUND_COLOR;
+    
     // 圆角
     [self.layer setMasksToBounds:YES];
     [self.layer setCornerRadius:18];
-    // 边框
+    // 边框宽度
     [self.layer setBorderWidth:1];
-    [self.layer setBorderColor:FOREGROUND_COLOR.CGColor];
+    // 输入字体大小
+    self.font = FONT;
+    // 提示字体大小
+    self.placeHolderFont = FONT;
     
+    // 边框
+    self.borderColor = FOREGROUND_COLOR;
     // 光标颜色
     self.tintColor = FOREGROUND_COLOR;
-    
-    // 文字颜色
+    // 输入文字颜色
     self.textColor = FOREGROUND_COLOR;
-    // 字体大小
-    self.font = FONT;
     
     // 总是显示leftView
     self.leftViewMode = UITextFieldViewModeAlways;
@@ -124,8 +128,9 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
-    if (!_placeHolderFont) {
-        [self setValue:FONT forKeyPath:@"_placeholderLabel.font"];
+    // 在init的时候设置这个值没有效果，所以在这里设置了
+    if (!_placeHolderColor) {
+        self.placeHolderColor = FOREGROUND_COLOR;
     }
 }
 
@@ -171,10 +176,14 @@
 - (void)setForegroundColor:(UIColor *)foregroundColor {
     _foregroundColor = foregroundColor;
     
-    self.placeHolderColor = [UIColor whiteColor];
-    self.tintColor = [UIColor whiteColor];
-    self.borderColor = [UIColor whiteColor];
-    self.textColor = [UIColor whiteColor];
+    // 边框
+    self.borderColor = _foregroundColor;
+    // 光标颜色
+    self.tintColor = _foregroundColor;
+    // 提示文字颜色
+    self.placeHolderColor = _foregroundColor;
+    // 输入文字颜色
+    self.textColor = _foregroundColor;
 }
 
 #pragma mark - lazy laod

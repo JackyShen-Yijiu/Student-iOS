@@ -25,7 +25,7 @@
 /** 提示语的字体大小 */
 @property (nonatomic, strong) UIFont *placeHolderFont;
 
-/** 前景色 */
+/** 前景色(边框、光标、提示文字和输入文字的颜色) */
 @property (nonatomic, strong) UIColor *foregroundColor;
 
 /** 默认的高度 */

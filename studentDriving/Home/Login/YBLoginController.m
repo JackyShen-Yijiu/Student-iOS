@@ -439,6 +439,7 @@
 - (DVVBaseTextField *)loginNameTextField {
     if (!_loginNameTextField) {
         _loginNameTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user_white"] placeholder:@"请输入手机号"];
+        _loginNameTextField.keyboardType = UIKeyboardTypeNumberPad;
         _loginNameTextField.cornerRadius = 18;
         _loginNameTextField.foregroundColor = [UIColor whiteColor];
         _loginNameTextField.delegate = self;
