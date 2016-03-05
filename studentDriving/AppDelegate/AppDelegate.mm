@@ -102,7 +102,8 @@
     // 引导页
     if ([YBWelcomeController isShowWelcome]) {
         
-        [YBWelcomeController show];
+        self.window.backgroundColor = [UIColor whiteColor];
+        self.window.rootViewController = [[YBWelcomeController alloc] init];
         
     }else{
         
