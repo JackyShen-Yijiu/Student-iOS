@@ -119,14 +119,9 @@
 #pragma mark 按钮的点击事件
 - (void)buttonAction:(UIButton *)sender {
     
-    CGRect rect = self.view.frame;
-    rect.origin.x = -SCREEN_WIDTH;
-    [UIView animateWithDuration:0.5 animations:^{
-        self.view.frame = rect;
-        self.view.alpha = 0;
+    [UIView animateWithDuration:0.1 animations:^{
+        [DVVUserManager userLoginSucces];
     } completion:^(BOOL finished) {
-        [self.view.window resignKeyWindow];
-        self.view.window.hidden = YES;
     }];
 }
 
