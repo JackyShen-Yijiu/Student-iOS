@@ -117,6 +117,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     // 添加tabBarController
     self.tabBarController = [[IWTabBarViewController alloc] init];
     self.tabBarController.delegate = self;
+    [self addShowad:self.tabBarController.view];
     
     self.baomingVC = [[YBSignUpViewController alloc] init];
     [self setUpTabbarVc:self.baomingVC title:@"报名" image:@"YBBaoMingTabSelectImg" selectedImage:@"tab_buddy_nor"];
@@ -666,6 +667,50 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
         [alertView show];
     }
     
+}
+
+
+- (void)addShowad:(UIView *)view
+{
+    view.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
+    view.layer.shadowOffset = CGSizeMake(0,0);//shadowOffset阴影偏移，默认(0, -3),这个跟shadowRadius配合使用
+    view.layer.shadowOpacity = 0.2;//阴影透明度，默认0
+    view.layer.shadowRadius = 5;//阴影半径，默认3
+    
+    //路径阴影
+    UIBezierPath *path = [UIBezierPath bezierPath];
+    
+    float width = view.bounds.size.width;
+    float height = view.bounds.size.height;
+    float x = view.bounds.origin.x;
+    float y = view.bounds.origin.y;
+    float addWH = 5;
+    
+    CGPoint topLeft      = view.bounds.origin;
+    CGPoint topMiddle = CGPointMake(x+(width/2),y-addWH);
+    CGPoint topRight     = CGPointMake(x+width,y);
+    
+    CGPoint rightMiddle = CGPointMake(x+width+addWH,y+(height/2));
+    
+    CGPoint bottomRight  = CGPointMake(x+width,y+height);
+    CGPoint bottomMiddle = CGPointMake(x+(width/2),y+height+addWH);
+    CGPoint bottomLeft   = CGPointMake(x,y+height);
+    
+    
+    CGPoint leftMiddle = CGPointMake(x-addWH,y+(height/2));
+    
+    [path moveToPoint:topLeft];
+    //添加四个二元曲线
+    [path addQuadCurveToPoint:topRight
+                 controlPoint:topMiddle];
+    [path addQuadCurveToPoint:bottomRight
+                 controlPoint:rightMiddle];
+    [path addQuadCurveToPoint:bottomLeft
+                 controlPoint:bottomMiddle];
+    [path addQuadCurveToPoint:topLeft
+                 controlPoint:leftMiddle];
+    //设置阴影路径
+    view.layer.shadowPath = path.CGPath;
 }
 
 @end
