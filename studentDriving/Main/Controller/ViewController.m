@@ -98,20 +98,20 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
     // 设置背景
     UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 198)];
-//    mightView.backgroundColor = [UIColor clearColor];
-    mightView.image = [UIImage imageNamed:@"side_background.jpg"];
+    mightView.image = [UIImage imageNamed:@"background_mine"];
+//    [self.view insertSubview:mightView aboveSubview:self.menuVC.view];
     [self.view addSubview:mightView];
     
     // 设置menu的view
     self.menuVC = [[WMMenuViewController alloc] init];
+//    self.menuVC.view.backgroundColor = [UIColor whiteColor];
     self.menuVC.delegate = self;
     self.menuVC.iconDelegage = self;
-    
 //    CGSize size = [[UIScreen mainScreen] bounds].size;
 //    self.menuVC.view.frame = CGRectMake(- size.width * 0.8, 0, size.width * 0.8, size.height);
     self.menuVC.view.frame = [[UIScreen mainScreen] bounds];
-    //self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuStartNarrowRatio, menuStartNarrowRatio);
-//    self.menuVC.view.center = CGPointMake(self.menuCenterXStart, self.menuVC.view.center.y);
+    self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuStartNarrowRatio, menuStartNarrowRatio);
+    self.menuVC.view.center = CGPointMake(self.menuCenterXStart, self.menuVC.view.center.y);
     [self.view addSubview:self.menuVC.view];
     
     // 添加tabBarController
@@ -129,10 +129,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
 
     self.shangchengVC = [[YBMallViewController alloc] init];
     [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"YBShangChengTabSelectImg" selectedImage:@"tab_buddy_nor"];
-//
-//    self.shequVC = [[YBCommunityViewController alloc] init];
-//    [self setUpTabbarVc:self.shequVC title:@"社区" image:@"tab_qworld_nor" selectedImage:@"tab_buddy_nor"];
-//
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSlide) name:KhiddenSlide object:nil];
     
     // 注册接收到推送消息，跳转到对应的窗体的通知
@@ -181,7 +178,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     if (_cover==nil) {
         _cover = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
         _cover.backgroundColor = [UIColor blackColor];
-        _cover.alpha = 0.3;
+        _cover.alpha = 0.0;
         _cover.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenSlide)];
         [_cover addGestureRecognizer:tap];
@@ -288,14 +285,14 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
         return;
     }
     self.tabBarController.view.center = CGPointMake(self.view.center.x + dis, self.view.center.y);
-   // self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
+    self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
     
 //    self.baomingVC.leftBtn.alpha = self.cover.alpha = 1 - proportion;
     
     CGFloat menuProportion = dis * (1 - menuStartNarrowRatio) / self.leftDistance + menuStartNarrowRatio;
     CGFloat menuCenterMove = dis * (self.menuCenterXEnd - self.menuCenterXStart) / self.leftDistance;
     self.menuVC.view.center = CGPointMake(self.menuCenterXStart + menuCenterMove, self.view.center.y);
-  //  self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
+    self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
     
 }
 
@@ -333,7 +330,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
     [UIView animateWithDuration:0.3 animations:^{
         self.tabBarController.view.center = CGPointMake(self.view.center.x + self.distance, self.view.center.y);
-        //self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
+        self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
         
 //        self.baomingVC.leftBtn.alpha = self.cover.alpha = (proportion == 1 ? 0.3 : 0);
         
@@ -347,7 +344,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
             menuProportion = 1;
         }
         self.menuVC.view.center = CGPointMake(menuCenterX, self.view.center.y);
-        //self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
+        self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
     } completion:^(BOOL finished) {
 
     }];

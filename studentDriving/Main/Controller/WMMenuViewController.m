@@ -15,6 +15,7 @@
 
 
 @interface WMMenuViewController () <UITableViewDelegate, UITableViewDataSource>
+
 @property (strong, nonatomic) WMCommon *common;
 @property (strong ,nonatomic) NSArray  *listArray;
 @property (strong, nonatomic) NSArray *imgArray;
@@ -137,8 +138,13 @@
     self.tableView.delegate        = self;
     self.tableView.dataSource      = self;
     self.tableView.separatorStyle  = UITableViewCellSeparatorStyleNone;
-    self.tableView.rowHeight       = 39;
     self.tableView.scrollEnabled = NO;
+    self.tableView.rowHeight = 40;
+    if ([UIScreen mainScreen].bounds.size.height==736) {
+        self.tableView.rowHeight = 40 * 1.5;
+    }
+
+    // self.tableView.backgroundColor = [UIColor whiteColor];
     // 设置tableFooterView为一个空的View，这样就不会显示多余的空白格子了
 //    self.tableView.tableFooterView = [[UIView alloc] init];
     
@@ -153,7 +159,6 @@
 //    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(iconImage) name:k object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(setUpUserData) name:@"kuserLogin" object:nil];
-    
     
 }
 
@@ -192,9 +197,9 @@
         UIView *foot = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 20)];
         foot.backgroundColor = [UIColor clearColor];
         
-        UIView *delive = [[UIView alloc] initWithFrame:CGRectMake(20, foot.height/2-1/2, foot.width, 1)];
+        UIView *delive = [[UIView alloc] initWithFrame:CGRectMake(20, foot.height/2-0.5/2, foot.width, 0.5)];
         delive.backgroundColor = [UIColor lightGrayColor];
-        delive.alpha = 0.2;
+        delive.alpha = 0.1;
         [foot addSubview:delive];
         
         return foot;
@@ -210,9 +215,6 @@
         return 4;
     }
     return 0;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 39;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

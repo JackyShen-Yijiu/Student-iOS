@@ -17,7 +17,7 @@ typedef enum state {
     kStateMenu
 }state;
 
-static const CGFloat viewSlideHorizonRatio = 0.8;
+static const CGFloat viewSlideHorizonRatio = 0.64;
 static const CGFloat viewHeightNarrowRatio = 0.80;
 static const CGFloat menuStartNarrowRatio  = 0.70;
 

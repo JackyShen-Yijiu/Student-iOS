@@ -34,9 +34,11 @@
     self.textLabel.text = str;
     self.textLabel.textColor = [UIColor colorWithHexString:@"7b7b7b"];
     self.textLabel.font = [UIFont systemFontOfSize:14];
+    if ([UIScreen mainScreen].bounds.size.height>=736) {
+        self.textLabel.font = [UIFont systemFontOfSize:14*1.5];
+    }
     self.imageView.image = [UIImage imageNamed:imageStr];
 }
-
 
 + (instancetype)cellWithTableView:(UITableView *)tableView {
     static NSString *ID = @"menu";
@@ -54,8 +56,18 @@
     return cell;
 }
 - (void)layoutSubviews{
-    self.imageView.frame = CGRectMake(24, 10, 16, 16);
-    self.textLabel.frame = CGRectMake(self.imageView.frame.origin.x + 16 + 24, self.imageView.frame.origin.y , 100, 14);
+    
+    CGFloat imgW = 16;
+    CGFloat textLabelW = 100;
+    CGFloat textLabelH = 14;
+    if ([UIScreen mainScreen].bounds.size.height>=736) {
+        imgW *= 1.5;
+        textLabelW *= 1.5;
+        textLabelH *= 1.5;
+    }
+    
+    self.imageView.frame = CGRectMake(24, self.contentView.height/2-imgW/2, imgW, imgW);
+    self.textLabel.frame = CGRectMake(self.imageView.frame.origin.x + 16 + 24, self.contentView.height/2-textLabelH/2 , textLabelW, textLabelH);
 
 }
 
