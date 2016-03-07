@@ -35,7 +35,7 @@
     self.textLabel.textColor = [UIColor colorWithHexString:@"7b7b7b"];
     self.textLabel.font = [UIFont systemFontOfSize:14];
     if ([UIScreen mainScreen].bounds.size.height>=736) {
-        self.textLabel.font = [UIFont systemFontOfSize:14*1.5];
+        self.textLabel.font = [UIFont systemFontOfSize:14*YBRatio];
     }
     self.imageView.image = [UIImage imageNamed:imageStr];
 }
@@ -61,9 +61,9 @@
     CGFloat textLabelW = 100;
     CGFloat textLabelH = 14;
     if ([UIScreen mainScreen].bounds.size.height>=736) {
-        imgW *= 1.5;
-        textLabelW *= 1.5;
-        textLabelH *= 1.5;
+        imgW *= YBRatio;
+        textLabelW *= YBRatio;
+        textLabelH *= YBRatio;
     }
     
     self.imageView.frame = CGRectMake(24, self.contentView.height/2-imgW/2, imgW, imgW);

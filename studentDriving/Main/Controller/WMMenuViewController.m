@@ -141,7 +141,7 @@
     self.tableView.scrollEnabled = NO;
     self.tableView.rowHeight = 40;
     if ([UIScreen mainScreen].bounds.size.height==736) {
-        self.tableView.rowHeight = 40 * 1.5;
+        self.tableView.rowHeight = 40 * YBRatio;
     }
 
     // self.tableView.backgroundColor = [UIColor whiteColor];

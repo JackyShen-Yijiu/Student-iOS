@@ -674,8 +674,8 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
 {
     view.layer.shadowColor = [UIColor blackColor].CGColor;//shadowColor阴影颜色
     view.layer.shadowOffset = CGSizeMake(0,0);//shadowOffset阴影偏移，默认(0, -3),这个跟shadowRadius配合使用
-    view.layer.shadowOpacity = 0.2;//阴影透明度，默认0
-    view.layer.shadowRadius = 5;//阴影半径，默认3
+    view.layer.shadowOpacity = 0.036;//阴影透明度，默认0
+    view.layer.shadowRadius = 12;//阴影半径，默认3
     
     //路径阴影
     UIBezierPath *path = [UIBezierPath bezierPath];
