@@ -61,6 +61,8 @@ static NSString *coachCellID = @"coachCellID";
 
 @property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
 
+@property (nonatomic, assign) BOOL loadedCache;
+
 @end
 
 @implementation YBSignUpViewController
@@ -263,7 +265,24 @@ static NSString *coachCellID = @"coachCellID";
     }
     [self.tableView reloadData];
     
+    if (!_loadedCache) {
+        [self loadDataFromCache];
+        _loadedCache = YES;
+    }
     
+    
+    // 开始请求数据
+    [self.noDataPromptView remove];
+    [DVVToast showFromView:self.view OffSetY:-10];
+    if (0 == _showType) {
+        [_schoolViewModel dvv_networkRequestRefresh];
+    }else {
+        [_coachViewModel dvv_networkRequestRefresh];
+    }
+    
+}
+
+- (void)loadDataFromCache {
     if (0 == _showType) {
         // 加载驾校缓存数据
         NSMutableArray *schoolDataArray = [self dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray];
@@ -279,23 +298,6 @@ static NSString *coachCellID = @"coachCellID";
             [_tableView reloadData];
         }
     }
-    
-    
-    // 开始请求数据
-    [self.noDataPromptView remove];
-    [DVVToast showFromView:self.view OffSetY:-10];
-    if (0 == _showType) {
-        [_schoolViewModel dvv_networkRequestRefresh];
-    }else {
-        [_coachViewModel dvv_networkRequestRefresh];
-    }
-    
-}
-
-- (NSString *)libCachePath {
-    
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
-    return [[paths objectAtIndex:0] stringByAppendingFormat:@"/Caches"];
 }
 
 - (void)cancelSearch {
@@ -440,11 +442,12 @@ static NSString *coachCellID = @"coachCellID";
             [ws obj_showTotasViewWithMes:@"已经全部加载完毕"];
             ws.tableView.mj_footer.state = MJRefreshStateNoMoreData;
         }else {
-            if (!((NSMutableArray *)[ws dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray]).count) {
-                ws.noDataPromptView.titleLabel.text = @"暂无合作驾校信息";
-                ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
-                [ws.tableView addSubview:ws.noDataPromptView];
-            }
+//            if (!((NSMutableArray *)[ws dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray]).count) {
+//                ws.noDataPromptView.titleLabel.text = @"暂无合作驾校信息";
+//                ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
+//                [ws.tableView addSubview:ws.noDataPromptView];
+//            }
+            [ws.tableView addSubview:self.noDataPromptView];
         }
     }];
     [_schoolViewModel dvv_setNetworkCallBackBlock:^{
@@ -481,11 +484,12 @@ static NSString *coachCellID = @"coachCellID";
             [ws obj_showTotasViewWithMes:@"已经全部加载完毕"];
             ws.tableView.mj_footer.state = MJRefreshStateNoMoreData;
         }else {
-            if (!(NSMutableArray *)([ws dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray])) {
-                ws.noDataPromptView.titleLabel.text = @"暂无合作教练信息";
-                ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
-                [ws.tableView addSubview:ws.noDataPromptView];
-            }
+//            if (!(NSMutableArray *)([ws dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray])) {
+//                ws.noDataPromptView.titleLabel.text = @"暂无合作教练信息";
+//                ws.noDataPromptView.subTitleLabel.text = @"请切换合作城市";
+//                [ws.tableView addSubview:ws.noDataPromptView];
+//            }
+            [ws.tableView addSubview:self.noDataPromptView];
         }
     }];
     [_coachViewModel dvv_setNetworkCallBackBlock:^{
@@ -529,6 +533,9 @@ static NSString *coachCellID = @"coachCellID";
 
 #pragma mark - 右上角的定位
 - (void)beginLocation {
+    
+    // 先加载缓存数据
+    [self loadDataFromCache];
     
     _locationLabel.text = @"定位中";
     [DVVToast show];
