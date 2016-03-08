@@ -7855,7 +7855,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 				);
-				GCC_PREFIX_HEADER = "/Users/jiangangyang/Desktop/一步/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -7960,7 +7960,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 				);
-				GCC_PREFIX_HEADER = "/Users/jiangangyang/Desktop/一步/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
