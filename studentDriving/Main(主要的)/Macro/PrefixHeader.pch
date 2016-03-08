@@ -1,0 +1,70 @@
+//
+//  PrefixHeader.pch
+//  studentDriving
+//
+//  Created by bestseller on 15/11/14.
+//  Copyright © 2015年 jatd. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+
+#import "ChatDemoUIDefine.h"
+#import "EMAlertView.h"
+#import "TTGlobalUICommon.h"
+#import "UIViewController+HUD.h"
+#import "UIViewController+DismissKeyboard.h"
+#import "NSString+Valid.h"
+#import "EaseMob.h"
+#import "UIColor+Hex.h"
+#import "UIViewController+Method.h"
+#import "MBProgressHUD.h"
+#import "YBUIMacro.h"
+#import "DVVUserManager.h"
+#import "PartnerConfig.h"
+#import "YBNetworkMacro.h"
+#import "YBNotificationMacro.h"
+#import "UIView+Sizes.h"
+#import "ModelDefine.h"
+#import "NSDictionary+StrDic.h"
+#import "NetWorkEntiry.h"
+#import "MJExtension.h"
+#import "WMUITool.h"
+#import "JENetwoking.h"
+#import "AcountManager.h"
+#import "NetMonitor.h"
+#import "JsonTransformManager.h"
+#import <UIImageView+WebCache.h>
+#import "NSString+CurrentTimeDay.h"
+#import "UIColor+Extension.h"
+#import <Masonry.h>
+#import "YBModelDataMacro.h"
+
+// 环信appKey
+#define easeMobAPPkey @"black-cat#jizhijaifu"
+// 环信推送证书 jizhijiafuStudentDevelopment:开发   jizhijiafuStudentDistribution:生产
+#define easeMobPushName @"jizhijiafuStudentDistribution"
+// JPush（需要在pushconfig.plist中配置）
+#define JPushAppKey @"3ed0386d38153e3768ef0f26"
+// 友盟appkey
+#define umengAppkey @"56d26a6467e58ee7fa000349"
+// 百度地图
+#define baiduMapAppkey @"HMNjNTeToLkeIKzo0CKH8bSK"
+
+#ifdef DEBUG
+#define DYNSLog(...) NSLog(__VA_ARGS__)
+#else
+#define DYNSLog(...)
+#endif
+
+#define kShowSuccess(msg) [self showTotasViewWithMes:msg];
+
+#define kShowFail(msg)   [self showTotasViewWithMes:msg];
+
+#endif /* PrefixHeader_pch */
