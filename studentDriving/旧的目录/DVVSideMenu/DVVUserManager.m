@@ -34,7 +34,8 @@
     //    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
     //    [(UINavigationController *)(window.rootViewController) presentViewController:[self loginController] animated:YES completion:nil];
     
-    [UIApplication sharedApplication].keyWindow.rootViewController = [[YBLoginController alloc] init];
+    YBLoginController *vc = [[YBLoginController alloc] init];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
     
     //    UIWindow *window = [UIApplication sharedApplication].keyWindow;
     //    [(UINavigationController *)(window.rootViewController) dismissViewControllerAnimated:YES completion:nil];
