@@ -50,6 +50,7 @@
     if ([self.delegate respondsToSelector:@selector(leftBtnClicked)]) {
         [self.delegate leftBtnClicked];
     }
+    
 }
 
 - (void)addLoadSubjectProress

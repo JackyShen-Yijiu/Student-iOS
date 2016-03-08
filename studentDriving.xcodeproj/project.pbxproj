@@ -247,7 +247,6 @@
 		B251E3CE1C8E849500E6613A /* BLBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC761C8E849200E6613A /* BLBaseViewController.m */; };
 		B251E3CF1C8E849500E6613A /* WMNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC791C8E849200E6613A /* WMNavigationController.m */; };
 		B251E3D31C8E849500E6613A /* IWTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC821C8E849200E6613A /* IWTabBarViewController.m */; };
-		B251E3D41C8E849500E6613A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC841C8E849200E6613A /* ViewController.m */; };
 		B251E3D51C8E849500E6613A /* WMMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC861C8E849200E6613A /* WMMenuViewController.m */; };
 		B251E3D61C8E849500E6613A /* WMMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DC871C8E849200E6613A /* WMMenuViewController.xib */; };
 		B251E3D71C8E849500E6613A /* WMOtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC891C8E849200E6613A /* WMOtherViewController.m */; };
@@ -995,6 +994,7 @@
 		B251E6DE1C8E856E00E6613A /* IWTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6DA1C8E856E00E6613A /* IWTabBar.m */; };
 		B251E6DF1C8E856E00E6613A /* IWTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6DC1C8E856E00E6613A /* IWTabBarButton.m */; };
 		B251E6E31C8E87F300E6613A /* MyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6E21C8E87F300E6613A /* MyWallet.m */; };
+		B251E6EB1C8EDEAD00E6613A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6EA1C8EDEAD00E6613A /* ViewController.m */; };
 		D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */; };
 		D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9D1BF659480020F0D7 /* CFNetwork.framework */; };
 		D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */; };
@@ -1478,8 +1478,6 @@
 		B251DC791C8E849200E6613A /* WMNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMNavigationController.m; sourceTree = "<group>"; };
 		B251DC811C8E849200E6613A /* IWTabBarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IWTabBarViewController.h; sourceTree = "<group>"; };
 		B251DC821C8E849200E6613A /* IWTabBarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IWTabBarViewController.m; sourceTree = "<group>"; };
-		B251DC831C8E849200E6613A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		B251DC841C8E849200E6613A /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		B251DC851C8E849200E6613A /* WMMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMenuViewController.h; sourceTree = "<group>"; };
 		B251DC861C8E849200E6613A /* WMMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMenuViewController.m; sourceTree = "<group>"; };
 		B251DC871C8E849200E6613A /* WMMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMenuViewController.xib; sourceTree = "<group>"; };
@@ -2918,6 +2916,8 @@
 		B251E6E21C8E87F300E6613A /* MyWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWallet.m; sourceTree = "<group>"; };
 		B251E6E41C8E930000E6613A /* YBUIMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBUIMacro.h; sourceTree = "<group>"; };
 		B251E6E51C8E94F900E6613A /* YBModelDataMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBModelDataMacro.h; sourceTree = "<group>"; };
+		B251E6E91C8EDEAD00E6613A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		B251E6EA1C8EDEAD00E6613A /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -3653,10 +3653,10 @@
 			children = (
 				B251DC771C8E849200E6613A /* NavigationController */,
 				B251DC7A1C8E849200E6613A /* TabbarController */,
+				B251E6E91C8EDEAD00E6613A /* ViewController.h */,
+				B251E6EA1C8EDEAD00E6613A /* ViewController.m */,
 				B251DC751C8E849200E6613A /* BLBaseViewController.h */,
 				B251DC761C8E849200E6613A /* BLBaseViewController.m */,
-				B251DC831C8E849200E6613A /* ViewController.h */,
-				B251DC841C8E849200E6613A /* ViewController.m */,
 				B251DC851C8E849200E6613A /* WMMenuViewController.h */,
 				B251DC861C8E849200E6613A /* WMMenuViewController.m */,
 				B251DC871C8E849200E6613A /* WMMenuViewController.xib */,
@@ -7160,6 +7160,7 @@
 				B251E5B41C8E849500E6613A /* DVVSignUpDetailFooterView.m in Sources */,
 				B251E6BA1C8E849600E6613A /* payRequsestHandler.mm in Sources */,
 				B251E3481C8E849500E6613A /* DVVSideMenuFooterView.m in Sources */,
+				B251E6EB1C8EDEAD00E6613A /* ViewController.m in Sources */,
 				B251E62B1C8E849500E6613A /* PSTCollectionViewFlowLayout.m in Sources */,
 				B251E3BE1C8E849500E6613A /* MyExamCarViewController.m in Sources */,
 				B251E3821C8E849500E6613A /* ExamCarCollectionViewCell.m in Sources */,
@@ -7550,7 +7551,6 @@
 				B251E42F1C8E849500E6613A /* EMChatVideoBubbleView.m in Sources */,
 				B251E69E1C8E849600E6613A /* JENetwoking.m in Sources */,
 				B251E6941C8E849600E6613A /* DVVShareCell.m in Sources */,
-				B251E3D41C8E849500E6613A /* ViewController.m in Sources */,
 				B251E5281C8E849500E6613A /* HomeAdvantageController.m in Sources */,
 				B251E4251C8E849500E6613A /* DXMessageToolBar.m in Sources */,
 				B251E5B71C8E849500E6613A /* DVVBaseTextField.m in Sources */,
@@ -7855,7 +7855,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 				);
-				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/jiangangyang/Desktop/一步/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -7960,7 +7960,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 				);
-				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/jiangangyang/Desktop/一步/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
