@@ -7,7 +7,7 @@
 //
 
 #import "YBCheatsViewController.h"
-#import "ToolHeader.h"
+
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 @interface YBCheatsViewController ()<NJKWebViewProgressDelegate,UIWebViewDelegate>

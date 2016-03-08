@@ -7,7 +7,6 @@
 //
 
 #import "BLAVDetailViewController.h"
-#import "ToolHeader.h"
 #import "AppDelegate.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>

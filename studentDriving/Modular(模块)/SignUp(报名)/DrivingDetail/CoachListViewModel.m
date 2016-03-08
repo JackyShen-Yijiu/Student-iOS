@@ -7,7 +7,6 @@
 //
 
 #import "CoachListViewModel.h"
-#import "ToolHeader.h"
 #import "JENetwoking.h"
 #import "YYModel.h"
 #import "CoachListDMRootClass.h"

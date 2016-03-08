@@ -8,7 +8,7 @@
 
 #import "JENetwoking.h"
 #import <UIKit/UIKit.h>
-#import "ToolHeader.h"
+
 
 @interface JENetwoking ()
 @property (copy, nonatomic) NSString *urlString;

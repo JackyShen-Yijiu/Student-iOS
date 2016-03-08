@@ -7,7 +7,7 @@
 //
 
 #import "HomeActivityController.h"
-#import "ToolHeader.h"
+
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 #import "AFNetworkActivityLogger.h"

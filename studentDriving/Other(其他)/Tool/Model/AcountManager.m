@@ -8,7 +8,6 @@
 
 #import "AcountManager.h"
 #import "NSUserStoreTool.h"
-#import "ToolHeader.h"
 #import <SSKeychain.h>
 
 static  NSString    *kMobile = @"mobile";

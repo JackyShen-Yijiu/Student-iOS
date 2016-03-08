@@ -9,7 +9,6 @@
 #import "PrivateMessageController.h"
 #import "PrivateMessageCell.h"
 #import "finishMessageView.h"
-#import "ToolHeader.h"
 #import "MagicMainTableViewController.h"
 #import "InfoModel.h"
 #import "MyWalletViewController.h"

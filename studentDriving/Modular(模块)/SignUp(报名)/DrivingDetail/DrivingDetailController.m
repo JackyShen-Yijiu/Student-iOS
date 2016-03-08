@@ -21,7 +21,7 @@
 #import "SchoolClassDetailController.h"
 #import "SignUpController.h"
 #import "serverclasslistModel.h"
-#import "YBAPPMacro.h"
+
 #import "DrivingDetailTableHeaderView.h"
 #import "DrivingDetailLocationCell.h"
 

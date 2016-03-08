@@ -7,7 +7,6 @@
 //
 
 #import "WrongQuestionViewController.h"
-#import "ToolHeader.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 @interface WrongQuestionViewController ()<UIWebViewDelegate,NJKWebViewProgressDelegate>
@@ -34,8 +33,6 @@
     self.view.backgroundColor = [UIColor blackColor];//RGBColor(251, 251, 251);;
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    DYNSLog(@"request = %@",self.questionerrorurl);
-   
     [self.view addSubview:self.webView];
    
     if (self.isModal==YES) {

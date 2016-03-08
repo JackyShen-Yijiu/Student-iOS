@@ -18,7 +18,7 @@
 #import <BaiduMapAPI/BMKLocationService.h>
 #import <BaiduMapAPI/BMKGeocodeSearch.h>
 #import "WMUITool.h"
-#import "ToolHeader.h"
+
 #import "DrivingCityListView.h"
 #import "CoachDetailViewController.h"
 #import "AcountManager.h"

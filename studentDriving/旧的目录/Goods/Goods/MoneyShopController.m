@@ -10,7 +10,7 @@
 #import "UIDevice+JEsystemVersion.h"
 #import "UIView+CalculateUIView.h"
 #import <Chameleon.h>
-#import "ToolHeader.h"
+
 #import "MagicMainTableViewController.h"
 #import "MyWallet.h"
 #import <MJRefresh.h>

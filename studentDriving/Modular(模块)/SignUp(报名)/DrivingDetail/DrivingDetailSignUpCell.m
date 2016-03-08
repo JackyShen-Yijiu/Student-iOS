@@ -7,7 +7,7 @@
 //
 
 #import "DrivingDetailSignUpCell.h"
-#import "YBAPPMacro.h"
+
 
 @implementation DrivingDetailSignUpCell
 

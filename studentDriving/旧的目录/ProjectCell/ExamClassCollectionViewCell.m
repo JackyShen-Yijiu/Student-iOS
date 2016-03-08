@@ -7,7 +7,7 @@
 //
 
 #import "ExamClassCollectionViewCell.h"
-#import "ToolHeader.h"
+
 @interface ExamClassCollectionViewCell ()
 @property (strong, nonatomic) UIView *WMSelectedbackGroundView;
 

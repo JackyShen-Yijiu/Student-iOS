@@ -15,7 +15,6 @@
 #import "DVVSignUpSchoolViewModel.h"
 #import "DVVSignUpCoachViewModel.h"
 #import <MJRefresh/MJRefresh.h>
-#import "YBAPPMacro.h"
 #import "DVVToast.h"
 #import "DVVSearchView.h"
 #import "DrivingDetailController.h"

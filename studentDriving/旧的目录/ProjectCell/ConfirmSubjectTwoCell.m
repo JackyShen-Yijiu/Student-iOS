@@ -7,7 +7,6 @@
 //
 
 #import "ConfirmSubjectTwoCell.h"
-#import "ToolHeader.h"
 @interface ConfirmSubjectTwoCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *cancelTitle;

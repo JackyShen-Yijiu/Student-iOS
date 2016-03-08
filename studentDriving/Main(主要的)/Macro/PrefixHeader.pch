@@ -22,32 +22,29 @@
 #import "UIViewController+DismissKeyboard.h"
 #import "NSString+Valid.h"
 #import "EaseMob.h"
-
 #import "UIColor+Hex.h"
 #import "UIViewController+Method.h"
 #import "MBProgressHUD.h"
-#import "ToolHeader.h"
+#import "YBUIMacro.h"
 #import "DVVUserManager.h"
-
 #import "PartnerConfig.h"
-#import "YBAPPMacro.h"
+#import "YBNetworkMacro.h"
 #import "YBNotificationMacro.h"
 #import "UIView+Sizes.h"
 #import "ModelDefine.h"
 #import "NSDictionary+StrDic.h"
 #import "NetWorkEntiry.h"
 #import "MJExtension.h"
-
-/**
- *  根据城市名获取用户所在的城市是以驾校为主还是以教练为主
- */
-typedef NS_ENUM(NSInteger, kLocationShowType){
-    // 驾校
-    kLocationShowTypeDriving = 0,
-    // 教练
-    kLocationShowTypeCoach,
-};
-
+#import "WMUITool.h"
+#import "JENetwoking.h"
+#import "AcountManager.h"
+#import "NetMonitor.h"
+#import "JsonTransformManager.h"
+#import <UIImageView+WebCache.h>
+#import "NSString+CurrentTimeDay.h"
+#import "UIColor+Extension.h"
+#import <Masonry.h>
+#import "YBModelDataMacro.h"
 
 // 环信appKey
 #define easeMobAPPkey @"black-cat#jizhijaifu"
@@ -60,5 +57,14 @@ typedef NS_ENUM(NSInteger, kLocationShowType){
 // 百度地图
 #define baiduMapAppkey @"HMNjNTeToLkeIKzo0CKH8bSK"
 
+#ifdef DEBUG
+#define DYNSLog(...) NSLog(__VA_ARGS__)
+#else
+#define DYNSLog(...)
+#endif
+
+#define kShowSuccess(msg) [self showTotasViewWithMes:msg];
+
+#define kShowFail(msg)   [self showTotasViewWithMes:msg];
 
 #endif /* PrefixHeader_pch */

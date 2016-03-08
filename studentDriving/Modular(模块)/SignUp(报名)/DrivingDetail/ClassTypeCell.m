@@ -8,7 +8,7 @@
 
 #import "ClassTypeCell.h"
 #import "NSString+Helper.h"
-#import "YBAPPMacro.h"
+
 
 @implementation ClassTypeCell
 

@@ -7,7 +7,7 @@
 //
 
 #import "DrivingIntroductionCell.h"
-#import "ToolHeader.h"
+
 @interface DrivingIntroductionCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 

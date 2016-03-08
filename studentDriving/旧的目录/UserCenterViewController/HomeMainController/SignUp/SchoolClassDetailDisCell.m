@@ -7,7 +7,7 @@
 //
 
 #import "SchoolClassDetailDisCell.h"
-#import "ToolHeader.h"
+
 #import "VipserverModel.h"
 #import "UIColor+Hex.h"
 @interface SchoolClassDetailDisCell ()

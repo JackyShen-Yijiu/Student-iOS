@@ -7,7 +7,6 @@
 //
 
 #import "SignInViewController.h"
-#import "ToolHeader.h"
 #import "UIBarButtonItem+JGBarButtonItem.h"
 #import "SignInHelpViewController.h"
 #import "DVVCreateQRCode.h"

@@ -8,7 +8,6 @@
 
 #import "DrivingDetailViewModel.h"
 #import "JENetwoking.h"
-#import "ToolHeader.h"
 #import "YYModel.h"
 
 @implementation DrivingDetailViewModel

@@ -7,7 +7,6 @@
 //
 
 #import "VirtualViewController.h"
-#import "ToolHeader.h"
 #import "MyWalletViewController.h"
 #import "UIColor+Hex.h"
 #import "MagicMainTableViewController.h"

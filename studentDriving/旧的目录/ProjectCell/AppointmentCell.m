@@ -7,7 +7,6 @@
 //
 
 #import "AppointmentCell.h"
-#import "ToolHeader.h"
 @interface AppointmentCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 

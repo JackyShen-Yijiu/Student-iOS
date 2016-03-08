@@ -7,7 +7,7 @@
 //
 
 #import "DrivingInformationCell.h"
-#import "ToolHeader.h"
+
 @interface DrivingInformationCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *drivingTitle;

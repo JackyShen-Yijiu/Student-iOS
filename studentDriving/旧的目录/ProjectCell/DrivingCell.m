@@ -7,7 +7,6 @@
 //
 
 #import "DrivingCell.h"
-#import "ToolHeader.h"
 #import "DrivingModel.h"
 
 #define starViewWidth 100

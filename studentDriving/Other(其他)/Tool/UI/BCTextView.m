@@ -7,7 +7,7 @@
 //
 
 #import "BCTextView.h"
-#import "ToolHeader.h"
+
 @interface BCTextView ()
 @end
 @implementation BCTextView

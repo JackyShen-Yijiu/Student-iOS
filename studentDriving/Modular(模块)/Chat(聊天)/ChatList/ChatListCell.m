@@ -14,7 +14,6 @@
 #import "ChatListCell.h"
 //#import "UIImageView+HeadImage.h"
 #import <UIImageView+WebCache.h>
-#import "ToolHeader.h"
 @interface ChatListCell (){
     UILabel *_timeLabel;
     UILabel *_unreadLabel;

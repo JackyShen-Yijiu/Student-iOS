@@ -9,7 +9,7 @@
 #import "SignUpCoachViewController.h"
 #import "CoachTableViewCell.h"
 #import "SignUpCoachDetailViewController.h"
-#import "ToolHeader.h"
+
 #import <Masonry.h>
 #import "UIView+CalculateUIView.h"
 #import <BaiduMapAPI/BMKLocationService.h>

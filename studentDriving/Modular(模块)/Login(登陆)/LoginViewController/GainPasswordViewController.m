@@ -8,7 +8,7 @@
 
 #import "GainPasswordViewController.h"
 #import <Masonry/Masonry.h>
-#import "ToolHeader.h"
+
 #import "NSString+DY_MD5.h"
 #import "ShowWarningMessageView.h"
 static NSString *const kchangePassword = @"kchangePassword";

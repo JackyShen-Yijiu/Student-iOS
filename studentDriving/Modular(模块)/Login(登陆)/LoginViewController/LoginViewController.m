@@ -12,7 +12,6 @@
 #import "ForgetViewController.h"
 #import "RegisterViewController.h"
 #import <Masonry/Masonry.h>
-#import "ToolHeader.h"
 #import "JENetwoking.h"
 #import "NSString+DY_MD5.h"
 #import <AFNetworking.h>

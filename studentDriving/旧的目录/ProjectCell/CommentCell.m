@@ -8,7 +8,6 @@
 
 
 #import "CommentCell.h"
-#import "ToolHeader.h"
 @interface CommentCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) NSIndexPath *indexPath;

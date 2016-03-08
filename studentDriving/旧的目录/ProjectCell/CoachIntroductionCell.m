@@ -7,7 +7,6 @@
 //
 
 #import "CoachIntroductionCell.h"
-#import "ToolHeader.h"
 
 @interface CoachIntroductionCell ()
 @property (strong, nonatomic) UIView *backGroundView;

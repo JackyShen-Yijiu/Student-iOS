@@ -7,7 +7,7 @@
 //
 
 #import "AppointmentCollectionCell.h"
-#import "ToolHeader.h"
+
 @interface AppointmentCollectionCell ()
 
 @end

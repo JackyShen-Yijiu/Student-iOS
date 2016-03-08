@@ -11,7 +11,6 @@
 
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
-#import "ToolHeader.h"
 #import "DiscountOrderController.h"
 
 #import "DVVUserManager.h"

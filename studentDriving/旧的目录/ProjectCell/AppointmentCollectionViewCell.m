@@ -7,7 +7,7 @@
 //
 
 #import "AppointmentCollectionViewCell.h"
-#import "ToolHeader.h"
+
 #import "AppointmentCoachTimeInfoModel.h"
 @interface AppointmentCollectionViewCell ()
 @property (strong, nonatomic) UIView *selectedAppView;

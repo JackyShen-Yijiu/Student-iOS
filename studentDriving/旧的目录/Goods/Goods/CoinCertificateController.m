@@ -8,7 +8,6 @@
 
 #import "CoinCertificateController.h"
 #import "JENetwoking.h"
-#import "ToolHeader.h"
 
 @interface CoinCertificateController ()
 

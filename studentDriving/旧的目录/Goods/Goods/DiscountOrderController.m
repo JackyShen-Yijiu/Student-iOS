@@ -9,7 +9,6 @@
 #import "DiscountOrderController.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
-#import "ToolHeader.h"
 
 static NSString *kDiscountShopAPI = @"userinfo/buyproduct";
 @interface DiscountOrderController ()<NJKWebViewProgressDelegate,UIWebViewDelegate>

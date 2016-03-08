@@ -9,7 +9,7 @@
 #import "RegistNoteController.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
-#import "ToolHeader.h"
+
 
 static NSString *advantage = @"3.html";
 

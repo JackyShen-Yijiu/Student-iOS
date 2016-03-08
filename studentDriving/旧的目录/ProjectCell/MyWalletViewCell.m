@@ -7,7 +7,7 @@
 //
 
 #import "MyWalletViewCell.h"
-#import "ToolHeader.h"
+
 
 @interface MyWalletViewCell ()
 

@@ -7,7 +7,7 @@
 //
 
 #import "JGDrivingDetailPersonalNoteCell.h"
-#import "ToolHeader.h"
+
 #import "CoachDetail.h"
 
 #define JGMargin 10

@@ -8,7 +8,7 @@
 
 #import "UserCenterHeadView.h"
 #import "UIView+CalculateUIView.h"
-#import "ToolHeader.h"
+
 @interface UserCenterHeadView ()
 @end
 @implementation UserCenterHeadView

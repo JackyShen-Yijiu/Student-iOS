@@ -7,7 +7,7 @@
 //
 
 #import "CoachDetailCell.h"
-#import "ToolHeader.h"
+
 @interface CoachDetailCell ()<RatingBarDelegate>
 @property (strong, nonatomic) UIView *backGroundView;
 

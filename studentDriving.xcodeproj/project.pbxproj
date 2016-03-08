@@ -1506,8 +1506,7 @@
 		B251DC9F1C8E849200E6613A /* YBActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBActivity.m; sourceTree = "<group>"; };
 		B251DCB31C8E849200E6613A /* WMMenuTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMenuTableViewCell.h; sourceTree = "<group>"; };
 		B251DCB41C8E849200E6613A /* WMMenuTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMenuTableViewCell.m; sourceTree = "<group>"; };
-		B251DCB71C8E849200E6613A /* ToolHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolHeader.h; sourceTree = "<group>"; };
-		B251DCB81C8E849200E6613A /* YBAPPMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAPPMacro.h; sourceTree = "<group>"; };
+		B251DCB81C8E849200E6613A /* YBNetworkMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBNetworkMacro.h; sourceTree = "<group>"; };
 		B251DCB91C8E849200E6613A /* YBNotificationMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBNotificationMacro.h; sourceTree = "<group>"; };
 		B251DCBD1C8E849200E6613A /* YBAppointMentChangeCoachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentChangeCoachController.h; sourceTree = "<group>"; };
 		B251DCBE1C8E849200E6613A /* YBAppointMentChangeCoachController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentChangeCoachController.m; sourceTree = "<group>"; };
@@ -2917,6 +2916,8 @@
 		B251E6E01C8E860300E6613A /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		B251E6E11C8E87F300E6613A /* MyWallet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyWallet.h; sourceTree = "<group>"; };
 		B251E6E21C8E87F300E6613A /* MyWallet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyWallet.m; sourceTree = "<group>"; };
+		B251E6E41C8E930000E6613A /* YBUIMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBUIMacro.h; sourceTree = "<group>"; };
+		B251E6E51C8E94F900E6613A /* YBModelDataMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBModelDataMacro.h; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -3759,9 +3760,10 @@
 			isa = PBXGroup;
 			children = (
 				B251E6E01C8E860300E6613A /* PrefixHeader.pch */,
-				B251DCB71C8E849200E6613A /* ToolHeader.h */,
-				B251DCB81C8E849200E6613A /* YBAPPMacro.h */,
+				B251E6E41C8E930000E6613A /* YBUIMacro.h */,
+				B251DCB81C8E849200E6613A /* YBNetworkMacro.h */,
 				B251DCB91C8E849200E6613A /* YBNotificationMacro.h */,
+				B251E6E51C8E94F900E6613A /* YBModelDataMacro.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";

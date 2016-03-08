@@ -7,7 +7,7 @@
 //
 
 #import "WaitConfirmCell.h"
-#import "ToolHeader.h"
+
 @interface WaitConfirmCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 

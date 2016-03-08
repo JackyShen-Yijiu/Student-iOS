@@ -1,6 +1,6 @@
 #import "ForgetViewController.h"
 #import <Masonry/Masonry.h>
-#import "ToolHeader.h"
+
 #import "GainPasswordViewController.h"
 #import "AddlineButtomTextField.h"
 #import "NSString+DY_MD5.h"

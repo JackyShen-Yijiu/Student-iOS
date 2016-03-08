@@ -21,7 +21,6 @@
 #import "SubmitVerificationController.h"
 #import "WhichStateViewController.h"
 #import "SignUpInfoManager.h"
-#import "ToolHeader.h"
 #import "AcountManager.h"
 #import "DrivingViewController.h"
 #import "SignUpCoachDetailViewController.h"

@@ -10,7 +10,6 @@
 
 #import "DiscountShopCell.h"
 #import "AcountManager.h"
-#import "ToolHeader.h"
 #import "DiscountShopModel.h"
 #import "DiscountShopDatailController.h"
 

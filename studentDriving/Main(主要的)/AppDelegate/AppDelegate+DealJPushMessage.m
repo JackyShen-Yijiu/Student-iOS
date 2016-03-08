@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate+DealJPushMessage.h"
-#import "ToolHeader.h"
 #import "BLPFAlertView.h"
 #import "PushInformationManager.h"
 

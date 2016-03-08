@@ -8,7 +8,7 @@
 //
 //#import "GainPasswordView.h"
 //#import <Masonry/Masonry.h>
-//#import "ToolHeader.h"
+//
 //
 //@interface GainPasswordView ()
 //@property (strong, nonatomic, readwrite) UITextField *phoneNumTextField;

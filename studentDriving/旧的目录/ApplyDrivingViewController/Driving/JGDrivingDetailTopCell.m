@@ -7,7 +7,7 @@
 //
 
 #import "JGDrivingDetailTopCell.h"
-#import "ToolHeader.h"
+
 #import "RatingBar.h"
 #import "CoachDetail.h"
 #import "UIViewController+Method.h"

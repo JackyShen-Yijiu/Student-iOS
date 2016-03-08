@@ -9,7 +9,7 @@
 #import "JEPhotoPickManger.h"
 #import "PFActionSheetView.h"
 #import "BLPFAlertView.h"
-#import "ToolHeader.h"
+
 #import <AVFoundation/AVFoundation.h>
 #import <AssetsLibrary/AssetsLibrary.h>
 

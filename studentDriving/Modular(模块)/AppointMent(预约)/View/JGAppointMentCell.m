@@ -7,7 +7,7 @@
 //
 
 #import "JGAppointMentCell.h"
-#import "ToolHeader.h"
+
 #import "AppointmentCoachTimeInfoModel.h"
 #import "YBObjectTool.h"
 

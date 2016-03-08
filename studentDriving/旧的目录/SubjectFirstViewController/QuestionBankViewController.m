@@ -7,7 +7,7 @@
 //
 
 #import "QuestionBankViewController.h"
-#import "ToolHeader.h"
+
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 @interface QuestionBankViewController ()<NJKWebViewProgressDelegate,UIWebViewDelegate>

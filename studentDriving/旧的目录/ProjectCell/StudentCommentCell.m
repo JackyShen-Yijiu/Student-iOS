@@ -7,7 +7,6 @@
 //
 
 #import "StudentCommentCell.h"
-#import "ToolHeader.h"
 #import "StudentCommentModel.h"
 
 #define TopH 10

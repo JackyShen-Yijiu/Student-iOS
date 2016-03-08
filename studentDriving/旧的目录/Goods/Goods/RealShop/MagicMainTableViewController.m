@@ -13,7 +13,7 @@
 #import "ShopMainModel.h"
 #import "AFNetworking.h"
 #import "JENetwoking.h"
-#import "ToolHeader.h"
+
 
 static NSString *kMagicShop = @"getmailproduct?index=1&count=10&producttype=0";
 

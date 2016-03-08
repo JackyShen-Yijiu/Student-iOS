@@ -7,7 +7,6 @@
 //
 
 #import "StudentDetailCell.h"
-#import "ToolHeader.h"
 
 @interface StudentDetailCell ()
 @property (strong, nonatomic) UIView *backGroundView;

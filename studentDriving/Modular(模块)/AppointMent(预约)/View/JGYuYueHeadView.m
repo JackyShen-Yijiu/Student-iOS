@@ -7,7 +7,7 @@
 //
 
 #import "JGYuYueHeadView.h"
-#import "ToolHeader.h"
+
 #import "JGAppointMentCell.h"
 #import "AppointmentCoachTimeInfoModel.h"
 #import "YBAppointMentUserFooter.h"

@@ -7,7 +7,7 @@
 //
 
 #import "CancelAppointmentCell.h"
-#import "ToolHeader.h"
+
 @interface CancelAppointmentCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *cancelTitle;

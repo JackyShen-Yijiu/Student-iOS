@@ -8,7 +8,7 @@
 
 #import "RegisterViewController.h"
 #import <Masonry/Masonry.h>
-#import "ToolHeader.h"
+
 #import "NSString+DY_MD5.h"
 #import <JPush/APService.h>
 #import "RegistNoteController.h"

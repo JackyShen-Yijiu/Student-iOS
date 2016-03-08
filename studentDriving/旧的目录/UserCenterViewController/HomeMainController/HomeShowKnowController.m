@@ -9,7 +9,6 @@
 #import "HomeShowKnowController.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
-#import "ToolHeader.h"
 #import "SignUpListViewController.h"
 #import "SignUpSuccessViewController.h"
 #import "LoginViewController.h"

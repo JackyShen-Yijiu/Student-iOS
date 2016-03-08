@@ -8,7 +8,6 @@
 
 #import "DrivingSelectMotorcycleTypeView.h"
 #import "JENetwoking.h"
-#import "ToolHeader.h"
 #import "DrivingCarTypeDMRootClass.h"
 
 @interface DrivingSelectMotorcycleTypeView()<JENetwokingDelegate>

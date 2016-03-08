@@ -7,7 +7,7 @@
 //
 
 #import "ExamCarCollectionViewCell.h"
-#import "ToolHeader.h"
+
 #import "UIColor+Hex.h"
 @interface ExamCarCollectionViewCell ()
 @property (strong, nonatomic) UIView *WMSelectedbackGroundView;

@@ -7,7 +7,7 @@
 //
 
 #import "CoachInformationCell.h"
-#import "ToolHeader.h"
+
 @interface CoachInformationCell ()
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *coachTitle;

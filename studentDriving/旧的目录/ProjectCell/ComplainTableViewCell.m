@@ -7,7 +7,6 @@
 //
 
 #import "ComplainTableViewCell.h"
-#import "ToolHeader.h"
 
 @interface ComplainTableViewCell ()
 @property (strong, nonatomic) UIView *backGroundView;

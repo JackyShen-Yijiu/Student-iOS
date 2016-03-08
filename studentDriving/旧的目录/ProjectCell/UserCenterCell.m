@@ -7,7 +7,7 @@
 //
 
 #import "UserCenterCell.h"
-#import "ToolHeader.h"
+
 
 @interface UserCenterCell ()
 @property (strong, nonatomic) UIView *backGroundView;

@@ -7,8 +7,7 @@
 //
 
 #import "SignUpInfoCell.h"
-#import "ToolHeader.h"
-@interface SignUpInfoCell ()<UITextFieldDelegate>
+ @interface SignUpInfoCell ()<UITextFieldDelegate>
 @property (strong, nonatomic) UIView *backGroundView;
 @property (strong, nonatomic) UILabel *signUpLabel;
 

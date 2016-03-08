@@ -30,7 +30,7 @@
  */
 #import "AppDelegate.h"
 #import "LoginViewController.h"
-#import "ToolHeader.h"
+
 #import "AppDelegate+DealJPushMessage.h"
 #import "AppDelegate+DealTool.h"
 #import "EaseMob.h"

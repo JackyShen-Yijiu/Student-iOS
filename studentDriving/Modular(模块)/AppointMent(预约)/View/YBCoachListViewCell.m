@@ -7,7 +7,6 @@
 //
 
 #import "YBCoachListViewCell.h"
-#import "ToolHeader.h"
 #import <Masonry.h>
 #import "CoachModel.h"
 #import "RatingBar.h"

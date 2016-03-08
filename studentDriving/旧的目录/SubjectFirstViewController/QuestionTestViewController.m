@@ -7,7 +7,6 @@
 //
 
 #import "QuestionTestViewController.h"
-#import "ToolHeader.h"
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 

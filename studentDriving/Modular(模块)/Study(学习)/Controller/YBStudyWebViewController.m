@@ -7,7 +7,7 @@
 //
 
 #import "YBStudyWebViewController.h"
-#import "ToolHeader.h"
+
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 @interface YBStudyWebViewController ()<NJKWebViewProgressDelegate,UIWebViewDelegate>
