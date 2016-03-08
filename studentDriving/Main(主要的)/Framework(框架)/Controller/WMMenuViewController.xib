@@ -26,7 +26,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="230" height="568"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="coach_man_default_icon" translatesAutoresizingMaskIntoConstraints="NO" id="YkR-PW-D1O">
-                            <rect key="frame" x="87" y="50" width="56" height="56"/>
+                            <rect key="frame" x="95" y="50" width="56" height="56"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="Bkf-2H-p3y"/>
                                 <constraint firstAttribute="width" constant="56" id="CaD-YP-rer"/>
@@ -160,7 +160,7 @@
                         <constraint firstAttribute="trailing" secondItem="9KJ-98-F53" secondAttribute="trailing" constant="-26" id="Vye-rm-C0N"/>
                         <constraint firstItem="YkR-PW-D1O" firstAttribute="top" secondItem="JfE-jZ-Qgf" secondAttribute="top" constant="50" id="auc-aU-ysf"/>
                         <constraint firstAttribute="trailing" secondItem="5aD-kz-4A4" secondAttribute="trailing" id="e9b-zX-OMu"/>
-                        <constraint firstItem="YkR-PW-D1O" firstAttribute="centerX" secondItem="JfE-jZ-Qgf" secondAttribute="centerX" id="hDX-DE-RSE"/>
+                        <constraint firstItem="YkR-PW-D1O" firstAttribute="centerX" secondItem="JfE-jZ-Qgf" secondAttribute="centerX" constant="8" id="hDX-DE-RSE"/>
                         <constraint firstItem="9KJ-98-F53" firstAttribute="top" secondItem="eGt-Fe-0zL" secondAttribute="bottom" id="hPX-44-WOd"/>
                         <constraint firstAttribute="trailing" secondItem="MAY-vZ-sly" secondAttribute="trailing" id="o5Z-sp-Zgs"/>
                         <constraint firstItem="eGt-Fe-0zL" firstAttribute="top" secondItem="MAY-vZ-sly" secondAttribute="bottom" constant="5" id="oZG-C5-VXt"/>
