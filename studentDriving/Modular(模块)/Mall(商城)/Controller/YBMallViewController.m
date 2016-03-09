@@ -14,6 +14,7 @@
 #import "MagicDetailViewController.h"
 #import "UIView+CalculateUIView.h"
 #import "WMCommon.h"
+#import <MJRefresh.h>
 
 static NSString *const kGetMySaveCoach = @"userinfo/favoritecoach";
 
@@ -45,10 +46,12 @@ typedef NS_ENUM(NSUInteger,MallType){
 
 @property (nonatomic, assign) MallType mallType;
 
+@property (nonatomic,assign) NSInteger index;
+
 @end
 
-static NSString *kMagicShop = @"getmailproduct?index=1&count=10&producttype=0";
-static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1";
+static NSString *kMagicShop = @"getmailproduct";
+static NSString *kDiscountShop = @"getmailproduct";
 static NSString *kMallID = @"MallID";
 
 @implementation YBMallViewController
@@ -59,6 +62,8 @@ static NSString *kMallID = @"MallID";
     self.discountArray = [[NSMutableArray alloc] init];
     self.title = @"商城";
     _mallType = kIntegralMall;
+    [self initMallMoreData:NO];
+    _index = 1;
      self.view.backgroundColor = [UIColor colorWithHexString:@"e8e8ed"];
     [self.view addSubview:self.collectionView];
     [self.view addSubview:[self tableViewHeadView]];
@@ -69,14 +74,15 @@ static NSString *kMallID = @"MallID";
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self startDownLoad];
+    
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
     navBarHairlineImageView.hidden=YES;
     
+    [self initMallMoreData:NO];
+    [self initDiscountMoreData:NO];
+    [self refresh];
     
-//    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    [self startDownLoad];
 }
 -(void)viewDidDisappear:(BOOL)animated {
     
@@ -98,74 +104,100 @@ static NSString *kMallID = @"MallID";
 }
 
 #pragma mark --------加载数据
-- (void)startDownLoad {
-    if (_mallType == kIntegralMall) {
-        // 加载积分商城数据
-        NSString *urlString = [NSString stringWithFormat:BASEURL,kMagicShop];
-        NSLog(@"%@",urlString);
-        NSDictionary *parm = @{@"cityname":@"北京"};
-        //    NSLog(@"%@",[AcountManager manager].userCity);
-        [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            DYNSLog(@"data = %@",data);
-            if (data == nil) {
-                return ;
-            }
-            NSDictionary *dataDic = [data objectForKey:@"data"];
-            
-            {
-                NSArray *array = [dataDic objectForKey:@"mainlist"];
-                if (array.count == 0) {
-                    [self obj_showTotasViewWithMes:@"还没有商品哦!"];
-                    return;
-                }
-                [self.shopMainListArray removeAllObjects];
-                for (NSDictionary *dic in array)
-                {
-                    YBIntegralMallModel *mainDodel = [[YBIntegralMallModel alloc] init];
-                    [mainDodel setValuesForKeysWithDictionary:dic];
-                    [self.shopMainListArray addObject:mainDodel];
-                }
-            }
-            [self.collectionView reloadData];
-        } ];
-    }
-    if (_mallType == kDiscountMall) {
-        // 加载兑换劵商城数据
-        NSString *urlString = [NSString stringWithFormat:BASEURL,kDiscountShop];
-        NSLog(@"%@",urlString);
-        NSDictionary *parm = @{@"cityname":@"北京"};
-        //    NSLog(@"%@",[AcountManager manager].userCity);
-        [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            DYNSLog(@"data = %@",data);
-            if (data == nil) {
-                return ;
-            }
-            NSDictionary *dataDic = [data objectForKey:@"data"];
-            
-            {
-                NSArray *array = [dataDic objectForKey:@"mainlist"];
-                if (array.count == 0) {
-                    [self obj_showTotasViewWithMes:@"还没有商品哦!"];
-                    return;
-                }
-                [self.discountArray removeAllObjects];
-                for (NSDictionary *dic in array)
-                {
-                    YBDiscountModel *mainDodel = [[YBDiscountModel alloc] init];
-                    [mainDodel setValuesForKeysWithDictionary:dic];
-                    [self.discountArray addObject:mainDodel];
-                }
-            }
-            [self.collectionView reloadData];
-        } ];
-
+- (void)initMallMoreData:(BOOL)isMoreData{
+// 积分商城数据
+    // 加载积分商城数据
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kMagicShop];
+    NSLog(@"%@",urlString);
+    NSDictionary *parm = @{@"cityname":@"北京",
+                           @"index":@"1",
+                           @"count":@"10",
+                           @"producttype":@"0"};
+    //    NSLog(@"%@",[AcountManager manager].userCity);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        DYNSLog(@"data = %@",data);
+        if (data == nil) {
+            return ;
+        }
+        NSDictionary *dataDic = [data objectForKey:@"data"];
         
-    }
+        {
+            NSArray *array = [dataDic objectForKey:@"mainlist"];
+            if (array.count == 0) {
+                [self obj_showTotasViewWithMes:@"还没有商品哦!"];
+                 [self.collectionView.mj_header endRefreshing];
+                return;
+            }
+            [self.shopMainListArray removeAllObjects];
+            for (NSDictionary *dic in array)
+            {
+                YBIntegralMallModel *mainDodel = [[YBIntegralMallModel alloc] init];
+                [mainDodel setValuesForKeysWithDictionary:dic];
+                [self.shopMainListArray addObject:mainDodel];
+                [self.collectionView.mj_header endRefreshing];
+            }
+        }
+        [self.collectionView reloadData];
+    } withFailure:^(id data) {
+         [self.collectionView.mj_header endRefreshing];
+    }];
+
+}
+- (void)initDiscountMoreData:(BOOL)isMoreData{
+    // 优惠劵商城数据
+    // 加载兑换劵商城数据
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kDiscountShop];
+    NSLog(@"%@",urlString);
+    NSDictionary *parm = @{@"cityname":@"北京",
+                           @"index":@"1",
+                           @"count":@"10",
+                           @"producttype":@"1"};
+    //    NSLog(@"%@",[AcountManager manager].userCity);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        DYNSLog(@"data = %@",data);
+        if (data == nil) {
+            return ;
+        }
+        NSDictionary *dataDic = [data objectForKey:@"data"];
+        
+        {
+            NSArray *array = [dataDic objectForKey:@"mainlist"];
+            if (array.count == 0) {
+                [self obj_showTotasViewWithMes:@"还没有商品哦!"];
+                [self.collectionView.mj_header endRefreshing];
+                return;
+            }
+            [self.discountArray removeAllObjects];
+            for (NSDictionary *dic in array)
+            {
+                YBDiscountModel *mainDodel = [[YBDiscountModel alloc] init];
+                [mainDodel setValuesForKeysWithDictionary:dic];
+                [self.discountArray addObject:mainDodel];
+                [self.collectionView.mj_header endRefreshing];
+            }
+        }
+        [self.collectionView reloadData];
+    }withFailure:^(id data) {
+         [self.collectionView.mj_header endRefreshing];
+    } ];
+
 }
 
+- (void)refresh{
+    
+        __weak typeof(self) ws = self;
+        MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+            if (_mallType == kIntegralMall) {
+                [ws initMallMoreData:NO];
+            }else {
+                [ws initDiscountMoreData:NO];
+            }
+        }];
+    _collectionView.mj_header = header;
 
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
@@ -183,11 +215,9 @@ static NSString *kMallID = @"MallID";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
         if (_mallType == kIntegralMall) {
             // 加载积分商城
+            
             YBIntegralMallCell *mallCell = [collectionView dequeueReusableCellWithReuseIdentifier:kMallID forIndexPath:indexPath];
                         mallCell.integralMallModel = self.shopMainListArray[indexPath.row];
-//            mallCell.backgroundColor = [UIColor clearColor];
-            
-
             return mallCell;
         }else if (_mallType == kDiscountMall){
             // 加载兑换券商城
@@ -354,7 +384,7 @@ static NSString *kMallID = @"MallID";
     }];
     sender.selected = YES;
     _mallType = kIntegralMall;
-    [self startDownLoad];
+    [self initMallMoreData:NO];
 }
 // 兑换劵商城
 - (void)clickRightBtn:(UIButton *)sender {
@@ -367,7 +397,7 @@ static NSString *kMallID = @"MallID";
     }];
     sender.selected = YES;
     _mallType = kDiscountMall;
-    [self startDownLoad];
+    [self initDiscountMoreData:NO];
 }
 
 @end
