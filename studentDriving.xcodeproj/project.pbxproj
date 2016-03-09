@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0673FC5C1C8FB0B4000FD8A4 /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */; };
+		0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5E1C904867000FD8A4 /* MallCollectionView.m */; };
+		0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -1005,6 +1007,10 @@
 /* Begin PBXFileReference section */
 		0673FC5A1C8FB0B4000FD8A4 /* YBDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBDiscountCell.h; sourceTree = "<group>"; };
 		0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBDiscountCell.m; sourceTree = "<group>"; };
+		0673FC5D1C904867000FD8A4 /* MallCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallCollectionView.h; sourceTree = "<group>"; };
+		0673FC5E1C904867000FD8A4 /* MallCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallCollectionView.m; sourceTree = "<group>"; };
+		0673FC601C904B55000FD8A4 /* DiscountCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountCollectionView.h; sourceTree = "<group>"; };
+		0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCollectionView.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5510F87D1C34F52300A431CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -4579,6 +4585,10 @@
 				B251DE8D1C8E849200E6613A /* YBIntegralMallCell.m */,
 				0673FC5A1C8FB0B4000FD8A4 /* YBDiscountCell.h */,
 				0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */,
+				0673FC5D1C904867000FD8A4 /* MallCollectionView.h */,
+				0673FC5E1C904867000FD8A4 /* MallCollectionView.m */,
+				0673FC601C904B55000FD8A4 /* DiscountCollectionView.h */,
+				0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7106,6 +7116,7 @@
 				B251E6021C8E849500E6613A /* EMAlertView.m in Sources */,
 				B251E3261C8E849500E6613A /* ExamClassModel.m in Sources */,
 				B251E4FD1C8E849500E6613A /* GainPasswordView.m in Sources */,
+				0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */,
 				B251E5311C8E849500E6613A /* FavouriteViewController.m in Sources */,
 				B251E5C71C8E849500E6613A /* DVVSignUpCoachDMRootClass.m in Sources */,
 				B251E3AA1C8E849500E6613A /* HomeCheckProgressView.m in Sources */,
@@ -7611,6 +7622,7 @@
 				B251E54F1C8E849500E6613A /* SetupViewController.m in Sources */,
 				B251E3601C8E849500E6613A /* MoneyShopController.m in Sources */,
 				B251E4121C8E849500E6613A /* JGYuYueHeadView.m in Sources */,
+				0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */,
 				B251E2E81C8E849500E6613A /* CityListCell.m in Sources */,
 				B251E5C81C8E849500E6613A /* DVVSignUpCoachDMSubject.m in Sources */,
 				B251E3F21C8E849500E6613A /* YBForceEvaluateViewController.m in Sources */,
