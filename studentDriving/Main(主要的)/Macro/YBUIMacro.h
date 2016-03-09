@@ -39,10 +39,13 @@ static const CGFloat viewSlideHorizonRatio = 0.64;
 static const CGFloat viewHeightNarrowRatio = 0.80;
 static const CGFloat menuStartNarrowRatio  = 0.70;
 
-#define YBRatio 1.2
+#define YBRatio 1.15
 
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
 
 #define kSystemHeight [UIScreen mainScreen].bounds.size.height
+
+/** 屏幕的宽度是6s或者更宽 */
+#define ScreenWidthIs_6Plus_OrWider [UIScreen mainScreen].bounds.size.width >= 414
 
 #endif /* YBUIMacro_h */
