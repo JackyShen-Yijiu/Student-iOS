@@ -122,8 +122,7 @@
 {
     if (_cover==nil) {
         _cover = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-        _cover.backgroundColor = [UIColor blackColor];
-        _cover.alpha = 0.0;
+        _cover.backgroundColor = [UIColor clearColor];
         _cover.userInteractionEnabled = YES;
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hiddenSlide)];
         [_cover addGestureRecognizer:tap];
