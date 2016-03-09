@@ -11,7 +11,6 @@
 #import "WMOtherViewController.h"
 #import "WMNavigationController.h"
 #import "WMCommon.h"
-
 #import "YBAppointMentController.h"
 #import "YBSignUpViewController.h"
 #import "YBStudyViewController.h"
@@ -19,7 +18,6 @@
 #import "YBCommunityViewController.h"
 #import "IWTabBarViewController.h"
 #import "YBMyWalletViewController.h"
-
 //  侧边栏控制器
 #import "YBComplaintController.h" // 我要投诉
 #import "ChatListViewController.h" // 我的消息
@@ -29,29 +27,14 @@
 #import "SideMenuSignUpController.h" // 签到
 #import "EditorMessageController.h" // 点击头像
 #import "SetupViewController.h"
-
 #import "BLPFAlertView.h"
 #import "PushInformationManager.h"
 #import "AppointmentDetailViewController.h"
-
 #import "YBUserCenterController.h"
 #import "MallOrderController.h"
 #import "MyConsultationListController.h"
-typedef NS_ENUM(NSInteger, kOpenControllerType) {
-    
-    kYBSignUpViewController,
-    kYBStudyViewController,
-    kYBAppointMentController,
-    kYBMallViewController,
-    kYBCommunityViewController,
-    // 侧边栏推出界面
-    kYBComplainViewController,
-    
-};
 
-@interface ViewController () <YBHomeBaseControllerDelegate, WMMenuViewControllerDelegate,UITabBarControllerDelegate>
-
-@property (assign, nonatomic) kOpenControllerType   vcType;// 控制器类型
+@interface ViewController () <WMMenuViewControllerDelegate,IWTabBarViewControllerDelegate>
 
 @property (assign, nonatomic) state   sta;              // 状态(Home or Menu)
 @property (assign, nonatomic) CGFloat distance;         // 距离左边的边距
@@ -66,28 +49,17 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
 
 @property (strong, nonatomic) IWTabBarViewController     *tabBarController;
 
-@property (strong, nonatomic) WMNavigationController *mainNav;
-
-@property (strong, nonatomic) YBSignUpViewController   *baomingVC;
-@property (strong, nonatomic) YBStudyViewController   *xuexiVC;
-@property (strong, nonatomic) YBAppointMentController   *yuyueVC;
-@property (strong, nonatomic) YBMallViewController   *shangchengVC;
-@property (strong, nonatomic) YBCommunityViewController   *shequVC;
 // 侧边栏推出
 @property (strong, nonatomic) YBComplaintController *complaintVC;
 
 @end
 
 @implementation ViewController
-- (void)viewWillAppear:(BOOL)animated{
-    
-    [super viewWillAppear:animated];
-    
-}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.view.backgroundColor = [UIColor colorWithHexString:@"f7f7f7"];
-//    self.view.backgroundColor = ;
     
     self.common = [WMCommon getInstance];
     self.common.homeState = kStateHome;
@@ -99,12 +71,10 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     // 设置背景
     UIImageView *mightView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 198)];
     mightView.image = [UIImage imageNamed:@"background_mine"];
-//    [self.view insertSubview:mightView aboveSubview:self.menuVC.view];
     [self.view addSubview:mightView];
     
     // 设置menu的view
     self.menuVC = [[WMMenuViewController alloc] init];
-//    self.menuVC.view.backgroundColor = [UIColor whiteColor];
     self.menuVC.delegate = self;
     self.menuVC.iconDelegage = self;
 //    CGSize size = [[UIScreen mainScreen] bounds].size;
@@ -114,64 +84,37 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     self.menuVC.view.center = CGPointMake(self.menuCenterXStart, self.menuVC.view.center.y);
     [self.view addSubview:self.menuVC.view];
     
-    // 添加tabBarController
+    // 初始化子控制器
     self.tabBarController = [[IWTabBarViewController alloc] init];
     self.tabBarController.delegate = self;
-    [self addShowad:self.tabBarController.view];
+    [self.view addSubview:self.tabBarController.view];
     
-    self.baomingVC = [[YBSignUpViewController alloc] init];
-    [self setUpTabbarVc:self.baomingVC title:@"报名" image:@"YBBaoMingTabSelectImg" selectedImage:@"tab_buddy_nor"];
-
-    self.xuexiVC = [[YBStudyViewController alloc] init];
-    [self setUpTabbarVc:self.xuexiVC title:@"学习" image:@"YBXueXiTabSelectImg" selectedImage:@"tab_buddy_nor"];
-
-    self.yuyueVC = [[YBAppointMentController alloc] init];
-    [self setUpTabbarVc:self.yuyueVC title:@"预约" image:@"YBYuYueTabSelectImg" selectedImage:@"tab_buddy_nor"];
-
-    self.shangchengVC = [[YBMallViewController alloc] init];
-    [self setUpTabbarVc:self.shangchengVC title:@"商城" image:@"YBShangChengTabSelectImg" selectedImage:@"tab_buddy_nor"];
-
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+    [self.tabBarController.view addGestureRecognizer:pan];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hiddenSlide) name:KhiddenSlide object:nil];
     
     // 注册接收到推送消息，跳转到对应的窗体的通知
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receivePushInfo:) name:YBNotif_HandleNotification object:nil];
 
-    // 判断进度
-    if ([AcountManager isLogin] && [AcountManager manager].userSubject) {
-        
-        if ([[AcountManager manager].userSubject.subjectId isEqual:@(1)]){
-            self.mainNav.tabBarController.selectedIndex = 1;
-            self.vcType = 1;
-        }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(2)]){
-            self.mainNav.tabBarController.selectedIndex = 2;
-            self.vcType = 2;
-        }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(3)]){
-            self.mainNav.tabBarController.selectedIndex = 2;
-            self.vcType = 2;
-        }else if ([[AcountManager manager].userSubject.subjectId isEqual:@(4)]){
-            self.mainNav.tabBarController.selectedIndex = 1;
-            self.vcType = 1;
-        }
-        
-    }
-    // 注册接收到推送消息，跳转到对应的窗体的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMainVcChange) name:@"receiveMainVcChange" object:nil];
-    
     // 接收到聊天消息通知，跳转到消息列表
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMainChatMessage) name:@"receiveMainChatMessage" object:nil];
 
+    // 尚未报名推送消息，跳转到对应的窗体的通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveMainVcChange) name:@"receiveMainVcChange" object:nil];
+    
+}
+
+- (void)receiveMainVcChange
+{
+    self.tabBarController.mainNav.tabBarController.selectedIndex = 0;
+    self.tabBarController.vcType = 0;
 }
 
 - (void)receiveMainChatMessage
 {
     ChatListViewController *chatListVC = [[ChatListViewController alloc] init];
     [self controller:chatListVC];
-}
-
-- (void)receiveMainVcChange
-{
-    self.mainNav.tabBarController.selectedIndex = 0;
-    self.vcType = 0;
 }
 
 - (UIView *)cover
@@ -187,49 +130,6 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     return _cover;
 }
 
-- (void)hiddenSlide
-{
-    // 退出侧边栏
-    if ([WMCommon getInstance].homeState==kStateMenu) {
-        [self leftBtnClicked];
-    }
-}
-
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-    NSUInteger index = tabBarController.selectedIndex;
-    
-    NSLog(@"index:%lu",(unsigned long)index);
-    self.vcType = index;
-    
-}
-
-- (void)setUpTabbarVc:(YBHomeBaseController *)vc title:(NSString *)title image:(NSString *)img selectedImage:(NSString *)selectedImage
-{
-    
-    vc.view.frame = [[UIScreen mainScreen] bounds];
-    vc.delegate = self;
-
-    self.mainNav = [[WMNavigationController alloc] initWithRootViewController:vc];
-    
-    self.mainNav.tabBarItem.title = title;
-    self.mainNav.tabBarItem.image = [UIImage imageNamed:img];
-    NSDictionary *textAttributes1 = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:16.f],
-                                      NSForegroundColorAttributeName: [UIColor whiteColor]
-                                      };
-    [[self.mainNav navigationBar]  setTitleTextAttributes:textAttributes1];
-
-    // 设置tabbar字体颜色
-    self.tabBarController.tabBar.tintColor = YBNavigationBarBgColor;
-    
-    [self.tabBarController addChildViewController:self.mainNav];
-    
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
-    [self.tabBarController.view addGestureRecognizer:pan];
-    [self.view addSubview:self.tabBarController.view];
-    
-}
-
 /**
  *  设置statusbar的状态
  */
@@ -243,8 +143,6 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
  *  @param recognizer
  */
 - (void)handlePan:(UIPanGestureRecognizer *)recognizer {
-    
-    NSLog(@"self.mainNav.viewControllers.count:%lu",(unsigned long)self.mainNav.viewControllers.count);
     
     if (self.tabBarController.tabBar.hidden) return;
     
@@ -297,6 +195,14 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     
 }
 
+- (void)hiddenSlide
+{
+    // 退出侧边栏
+    if ([WMCommon getInstance].homeState==kStateMenu) {
+        [self leftBtnClicked];
+    }
+}
+
 /**
  *  展示侧边栏
  */
@@ -320,6 +226,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
     [UIView animateWithDuration:1.0 animations:^{
         [self.cover removeFromSuperview];
     }];
+    
 }
 
 /**
@@ -330,6 +237,7 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
 - (void)doSlide:(CGFloat)proportion {
     
     [UIView animateWithDuration:0.3 animations:^{
+        
         self.tabBarController.view.center = CGPointMake(self.view.center.x + self.distance, self.view.center.y);
         self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
         
@@ -346,18 +254,16 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
         }
         self.menuVC.view.center = CGPointMake(menuCenterX, self.view.center.y);
         self.menuVC.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, menuProportion, menuProportion);
+        
     } completion:^(BOOL finished) {
 
     }];
+    
 }
 
-#pragma mark - WMHomeViewController代理方法
-- (void)leftBtnClicked:(state)state
+- (void)IWTabBarViewControllerWithLeftBarDidClick
 {
-    if (state==kStateMenu) {
-        [self showHome];
-    }
-    
+    [self leftBtnClicked];
 }
 
 - (void)leftBtnClicked {
@@ -513,25 +419,23 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
 - (void)controller:(UIViewController *)itemVC{
     itemVC.hidesBottomBarWhenPushed = YES;
     [self showHome];
-    switch (self.vcType) {
+    switch (self.tabBarController.vcType) {
         case kYBSignUpViewController:
-            [self.baomingVC.navigationController pushViewController:itemVC animated:NO];
+            [self.tabBarController.baomingVC.navigationController pushViewController:itemVC animated:NO];
             break;
         case kYBStudyViewController:
-            [self.xuexiVC.navigationController pushViewController:itemVC animated:NO];
+            [self.tabBarController.xuexiVC.navigationController pushViewController:itemVC animated:NO];
             break;
         case kYBAppointMentController:
-            [self.yuyueVC.navigationController pushViewController:itemVC animated:NO];
+            [self.tabBarController.yuyueVC.navigationController pushViewController:itemVC animated:NO];
             break;
         case kYBMallViewController:
-            [self.shangchengVC.navigationController pushViewController:itemVC animated:NO];
+            [self.tabBarController.shangchengVC.navigationController pushViewController:itemVC animated:NO];
             break;
         case kYBCommunityViewController:
-            [self.shequVC.navigationController pushViewController:itemVC animated:NO];
+            [self.tabBarController.shequVC.navigationController pushViewController:itemVC animated:NO];
             break;
-        case kYBComplainViewController:
-            [self.complaintVC.navigationController pushViewController:itemVC animated:NO];
-            break;
+        
         default:
             break;
     }
@@ -539,7 +443,6 @@ typedef NS_ENUM(NSInteger, kOpenControllerType) {
 }
 
 #pragma mark - 推送
-
 #pragma mark 接收到推送消息
 - (void)receivePushInfo:(NSNotification *)notification {
     

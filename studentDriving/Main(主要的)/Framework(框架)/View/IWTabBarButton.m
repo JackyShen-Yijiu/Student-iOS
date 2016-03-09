@@ -9,12 +9,10 @@
 // 图标的比例
 #define IWTabBarButtonImageRatio 0.7
 
-#define KFZThemeColor RGBColor(87,168,244)
-
 // 按钮的默认文字颜色
-#define  IWTabBarButtonTitleColor (iOS7 ? RGBColor(136, 165, 189) : RGBColor(136, 165, 189))
+#define  IWTabBarButtonTitleColor [UIColor lightGrayColor]
 // 按钮的选中文字颜色
-#define  IWTabBarButtonTitleSelectedColor KFZThemeColor
+#define  IWTabBarButtonTitleSelectedColor YBNavigationBarBgColor
 
 #import "IWTabBarButton.h"
 #import "IWBadgeButton.h"
@@ -39,9 +37,13 @@
         // 字体大小
         self.titleLabel.font = [UIFont systemFontOfSize:10];
         // 文字颜色
-        [self setTitleColor:RGBColor(136, 165, 189) forState:UIControlStateNormal];
-        [self setTitleColor:RGBColor(136, 165, 189) forState:UIControlStateSelected];
-       
+        [self setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        [self setTitleColor:IWTabBarButtonTitleSelectedColor forState:UIControlStateSelected];
+        
+//        if (!iOS7) { // 非iOS7下,设置按钮选中时的背景
+//            [self setBackgroundImage:[UIImage imageWithName:@"tabbar_slider"] forState:UIControlStateSelected];
+//        }
+        
         // 添加一个提醒数字按钮
         IWBadgeButton *badgeButton = [[IWBadgeButton alloc] init];
         badgeButton.autoresizingMask = UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin;
@@ -115,7 +117,7 @@
     
     // 设置提醒数字的位置
     CGFloat badgeY = 2;
-    CGFloat badgeX = ([UIScreen mainScreen].bounds.size.height == 736) ? (self.frame.size.width - self.badgeButton.frame.size.width - 15) : (self.frame.size.width - self.badgeButton.frame.size.width - 5);
+    CGFloat badgeX = ([UIScreen mainScreen].bounds.size.height==736) ? (self.frame.size.width - self.badgeButton.frame.size.width - 15) : (self.frame.size.width - self.badgeButton.frame.size.width - 5);
     CGRect badgeF = self.badgeButton.frame;
     badgeF.origin.x = badgeX;
     badgeF.origin.y = badgeY;

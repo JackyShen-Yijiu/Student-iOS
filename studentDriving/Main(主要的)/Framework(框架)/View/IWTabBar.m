@@ -28,7 +28,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        self.backgroundColor = RGBColor(249, 249, 249);
+       
     }
     return self;
 }
@@ -47,11 +47,11 @@
     // 3.监听按钮点击
     [button addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchDown];
     
-    if(self.curSelectedIndex > 4) self.curSelectedIndex = 0;
     // 4.默认选中第0个按钮
-    if (self.tabBarButtons.count == self.curSelectedIndex + 1) {
+    if (self.tabBarButtons.count == 1) {
         [self buttonClick:button];
     }
+    
 }
 
 /**
@@ -68,6 +68,7 @@
     self.selectedButton.selected = NO;
     button.selected = YES;
     self.selectedButton = button;
+    
 }
 
 - (void)layoutSubviews
@@ -90,5 +91,6 @@
         // 3.绑定tag
         button.tag = index;
     }
+    
 }
 @end

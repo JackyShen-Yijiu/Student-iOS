@@ -7,7 +7,6 @@
 //
 
 #import "IWBadgeButton.h"
-#import "UIImage+WM.h"
 
 @implementation IWBadgeButton
 
@@ -17,7 +16,8 @@
     if (self) {
         self.hidden = YES;
         self.userInteractionEnabled = NO;
-        [self setBackgroundImage:[UIImage resizedImageWithName:@"main_badge"] forState:UIControlStateNormal];
+//        [self setBackgroundImage:[UIImage resizedImageWithName:@"main_badge"] forState:UIControlStateNormal];
+        self.backgroundColor = YBNavigationBarBgColor;
         self.titleLabel.font = [UIFont systemFontOfSize:11];
     }
     return self;
@@ -46,6 +46,10 @@
         frame.size.width = badgeW;
         frame.size.height = badgeH;
         self.frame = frame;
+        
+        self.layer.masksToBounds = YES;
+        self.layer.cornerRadius = self.width/2;
+        
     } else {
         self.hidden = YES;
     }
