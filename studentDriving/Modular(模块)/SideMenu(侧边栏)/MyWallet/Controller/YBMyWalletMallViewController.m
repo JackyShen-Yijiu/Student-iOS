@@ -184,29 +184,29 @@ static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1
     return 165;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_mallType == kIntegralMall) {
-        // 加载积分商城
-        NSString *cellID =@"MallCellID";
-        YBIntegralMallCell *mallCell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!mallCell) {
-            mallCell = [[YBIntegralMallCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            mallCell.backgroundColor = [UIColor clearColor];
-        }
-        mallCell.integralMallModel = self.shopMainListArray[indexPath.row];
-        mallCell.selectionStyle  = UITableViewCellSelectionStyleNone;
-        return mallCell;
-    }else if (_mallType == kDiscountMall){
-        // 加载兑换券商城
-        NSString *cellID =@"DiscountCellID";
-        YBDiscountCell *mallCell = [tableView dequeueReusableCellWithIdentifier:cellID];
-        if (!mallCell) {
-            mallCell = [[YBDiscountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
-            mallCell.backgroundColor = [UIColor clearColor];
-        }
-        mallCell.selectionStyle  = UITableViewCellSelectionStyleNone;
-        mallCell.discountModel = self.discountArray[indexPath.row];
-        return mallCell;
-    }
+//    if (_mallType == kIntegralMall) {
+//        // 加载积分商城
+//        NSString *cellID =@"MallCellID";
+//        YBIntegralMallCell *mallCell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//        if (!mallCell) {
+//            mallCell = [[YBIntegralMallCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//            mallCell.backgroundColor = [UIColor clearColor];
+//        }
+//        mallCell.integralMallModel = self.shopMainListArray[indexPath.row];
+//        mallCell.selectionStyle  = UITableViewCellSelectionStyleNone;
+//        return mallCell;
+//    }else if (_mallType == kDiscountMall){
+//        // 加载兑换券商城
+//        NSString *cellID =@"DiscountCellID";
+//        YBDiscountCell *mallCell = [tableView dequeueReusableCellWithIdentifier:cellID];
+//        if (!mallCell) {
+//            mallCell = [[YBDiscountCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellID];
+//            mallCell.backgroundColor = [UIColor clearColor];
+//        }
+//        mallCell.selectionStyle  = UITableViewCellSelectionStyleNone;
+//        mallCell.discountModel = self.discountArray[indexPath.row];
+//        return mallCell;
+//    }
     return nil;
 }
 - (void)didReceiveMemoryWarning {
