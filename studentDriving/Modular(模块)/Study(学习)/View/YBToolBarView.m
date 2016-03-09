@@ -52,7 +52,7 @@
     _titleSelectedColor = TITLE_COLOR;
     
     //跟随条
-    _followBarColor = [UIColor yellowColor];
+    _followBarColor = YBNavigationBarBgColor;
     _followBarHeight = 2;
     _followBarLocation = 0;
     

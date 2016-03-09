@@ -7,14 +7,6 @@
 //
 #import "JGUserTools.h"
 #import <sqlite3.h>
-#import "YBStudentUserApplyclasstypeinfo.h"
-#import "YBStudentUserApplycoachinfo.h"
-#import "YBStudentUserApplycoachinfo.h"
-#import "YBStudentUserCarmodel.h"
-#import "YBStudentUserHeadportrait.h"
-#import "YBStudentUserSubject.h"
-#import "YBStudentUserSubjectthree.h"
-#import "YBStudentUserSubjectthree.h"
 
 //本地已经加载的所有用户，key为环信id
 static NSMutableDictionary *usersDictionary;
@@ -92,7 +84,7 @@ NSString *sqlCreateGroupInfoTable = nil;
  *
  *  @param user 用户对象
  */
-+ (void)saveKFZUser:(YBStudentUserData *) user
++ (void)saveKFZUser:(JGUserModel *) user
 {
     [self checkInitialization];
     
@@ -104,7 +96,7 @@ NSString *sqlCreateGroupInfoTable = nil;
         
             NSString *sql = [NSString stringWithFormat:
                              @"INSERT OR REPLACE INTO '%@' ('%@', '%@', '%@') VALUES ('%@', '%@', '%@')",
-                             USER_TABLE, @"mid", @"nickname", @"avatar", user.userid,user.name,user.headportrait.originalpic];
+                             USER_TABLE, @"mid", @"nickname", @"avatar", user.userid,user.nickname,user.originalpic];
             [self execSql:sql];
             
         }
@@ -115,11 +107,11 @@ NSString *sqlCreateGroupInfoTable = nil;
 /**
  *根据环信ID获取对应的我们的服务器上的用户昵称和头像等信息
  */
-+ (YBStudentUserData *) getKFZUserByEMUserName:(NSString *)mEMUserName
++ (JGUserModel *) getKFZUserByEMUserName:(NSString *)mEMUserName
 {
     [self checkInitialization];
     
-    YBStudentUserData *user = [usersDictionary objectForKey:mEMUserName];
+    JGUserModel *user = [usersDictionary objectForKey:mEMUserName];
     
     if(user){
         
@@ -139,10 +131,10 @@ NSString *sqlCreateGroupInfoTable = nil;
 {
     [self checkInitialization];
     NSLog(@"获取用户昵称:%@", mEMUserName);
-    YBStudentUserData *user = [self getKFZUserByEMUserName:mEMUserName];
+    JGUserModel *user = [self getKFZUserByEMUserName:mEMUserName];
     if(user){
-        NSLog(@"user.name:%@",user.name);
-        return user.name;
+        NSLog(@"user.name:%@",user.nickname);
+        return user.nickname;
     }
     return @"";
 }
@@ -153,13 +145,15 @@ NSString *sqlCreateGroupInfoTable = nil;
 + (NSString *) getAvatarUrlByEMUserName:(NSString *)mEMUserName
 {
     [self checkInitialization];
+    JGUserModel *user = [[JGUserModel alloc] init];
+    
     NSLog(@"获取用户头像:%@", mEMUserName);
-    YBStudentUserData *user = [[YBStudentUserData alloc] init];
+
     if (mEMUserName && [mEMUserName length]!=0) {
         user = [self getKFZUserByEMUserName:mEMUserName];
     }
     if(user){
-        return user.headportrait.originalpic;
+        return user.originalpic;
     }
     return @"";
 }
@@ -176,28 +170,36 @@ NSString *sqlCreateGroupInfoTable = nil;
     char *err;
     if (sqlite3_prepare_v2(db, [sqlQuery UTF8String], -1, &statement, &err) == SQLITE_OK) {
         @synchronized(usersDictionary){
-        while (sqlite3_step(statement) == SQLITE_ROW) {
-            NSString *mid = [NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 1)];
-            NSString *nickname = [NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 2)];
-            NSString *avatar = [NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 3)];
             
-            YBStudentUserData *user = [[YBStudentUserData alloc] init];
-            [user setUserid:mid];
-//            [user setOriginalpic:avatar];
-            user.headportrait.originalpic = avatar;
-            [user setName:nickname];
-            [usersDictionary setObject:user forKey:mid];
+            while (sqlite3_step(statement) == SQLITE_ROW) {
+                
+                NSString *mid = [NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 1)];
+                NSString *nickname = [NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 2)];
+                NSString *avatar = [NSString stringWithUTF8String:(char*)sqlite3_column_text(statement, 3)];
+                
+                NSLog(@"mid:%@ nickname:%@ avatar:%@",mid,nickname,avatar);
+                
+                JGUserModel *user = [[JGUserModel alloc] init];
+                user.userid = mid;
+                user.originalpic = avatar;
+                user.nickname = nickname;
+                [usersDictionary setObject:user forKey:mid];
+                
+                NSLog(@"mid:%@  nickname:%@  avatar:%@",mid, nickname, avatar);
+                
+            }
             
-            NSLog(@"mid:%@  nickname:%@  avatar:%@",mid, nickname, avatar);
         }
-        }
+        
         [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_USERLOADED object:nil];
+        
     }else{
         NSLog(@"操作数据库失败，err=%s", err);
     }
     
     NSLog(@"加载用户列表完成！");
     return usersDictionary;
+    
 }
 
 /**
@@ -210,7 +212,7 @@ NSString *sqlCreateGroupInfoTable = nil;
     return usersDictionary;
 }
 
-+(YBStudentUserData *)queryUserFromRemote:(NSString *)mEMUsername
++(JGUserModel *)queryUserFromRemote:(NSString *)mEMUsername
 {
     NSLog(@"从远程同步加载用户信息...%@", mEMUsername);
     
@@ -232,19 +234,15 @@ NSString *sqlCreateGroupInfoTable = nil;
             
             NSDictionary *headportrait = [dictData objectForKey:@"headportrait"];
             
-            if (dictData && dictData.count > 0) {
-                
-                YBStudentUserData *globalUserObject = [[YBStudentUserData alloc] init];
-                
-                [globalUserObject setUserid:mEMUsername];
-                
-                [globalUserObject setName:[dictData objectForKey:@"name"]];
-                
-                [globalUserObject.headportrait setOriginalpic:[headportrait objectForKey:@"originalpic"]];
-                
-                [self saveKFZUser:globalUserObject];
-                
-            }
+            NSLog(@"headportrait objectForKey:originalpic:%@",[headportrait objectForKey:@"originalpic"]);
+            
+            JGUserModel *globalUserObject = [[JGUserModel alloc] init];
+            globalUserObject.userid = mEMUsername;
+            globalUserObject.nickname = [dictData objectForKey:@"name"];
+            globalUserObject.originalpic = [NSString stringWithFormat:@"%@",[headportrait objectForKey:@"originalpic"]];
+            [self saveKFZUser:globalUserObject];
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_USERLOADED object:nil];
             
         }
         
@@ -257,7 +255,7 @@ NSString *sqlCreateGroupInfoTable = nil;
     // 等待5秒
     dispatch_semaphore_wait(semaphore, dispatch_time(DISPATCH_TIME_NOW, 0.0*NSEC_PER_SEC));
     
-    YBStudentUserData *user = [usersDictionary objectForKey:mEMUsername];
+    JGUserModel *user = [usersDictionary objectForKey:mEMUsername];
     
     return user;
 }
@@ -289,16 +287,11 @@ NSString *sqlCreateGroupInfoTable = nil;
             
             NSDictionary *headportrait = [dictData objectForKey:@"headportrait"];
             
-            if (dictData && dictData.count > 0) {
-                
-                YBStudentUserData *globalUserObject = [[YBStudentUserData alloc] init];
-                [globalUserObject setUserid:mEMUsername];
-                [globalUserObject setName:[dictData objectForKey:@"name"]];
-                
-                [globalUserObject.headportrait setOriginalpic:[headportrait objectForKey:@"originalpic"]];
-                
-                [self saveKFZUser:globalUserObject];
-            }
+            JGUserModel *globalUserObject = [[JGUserModel alloc] init];
+            globalUserObject.userid = mEMUsername;
+            globalUserObject.nickname = [dictData objectForKey:@"name"];
+            globalUserObject.originalpic = [NSString stringWithFormat:@"%@",[headportrait objectForKey:@"originalpic"]];
+            [self saveKFZUser:globalUserObject];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_USERLOADED object:nil];
             

@@ -46,6 +46,6 @@ static NSString *const kapplyexamination = @"userinfo/applyexamination";
 
 static NSString *const kdriveschoolSchoolexamurl = @"driveschool/schoolexamurl?schoolid=%@";
 
-static NSString *kgetuserinfo = @"userinfo/getuserinfo/1/userid/%@";
+static NSString *kgetuserinfo = @"userinfo/getimuserinfo?userid=%@";
 
 #endif /* YBNetworkMacro_h */

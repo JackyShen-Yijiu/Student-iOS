@@ -82,9 +82,6 @@ static NSString *kMallID = @"MallID";
     
     [super viewDidDisappear:animated];
     
-    navBarHairlineImageView.hidden=NO;
-    
-    
 }
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
     

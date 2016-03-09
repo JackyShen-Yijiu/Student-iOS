@@ -650,6 +650,10 @@ static NSString *coachCellID = @"coachCellID";
         [_toolBarView dvvToolBarViewItemSelected:^(UIButton *button) {
             [ws dvvToolBarViewItemSelectedAction:button.tag];
         }];
+        
+        if (ScreenWidthIs_6Plus_OrWider) {
+            _toolBarView.titleFont = [UIFont systemFontOfSize:14*YBRatio];
+        }
     }
     return _toolBarView;
 }
