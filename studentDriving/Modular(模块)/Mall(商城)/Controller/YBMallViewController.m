@@ -50,6 +50,7 @@ typedef NS_ENUM(NSUInteger,MallType){
 static NSString *kMagicShop = @"getmailproduct?index=1&count=10&producttype=0";
 static NSString *kDiscountShop = @"getmailproduct?index=1&count=10&producttype=1";
 static NSString *kMallID = @"MallID";
+
 @implementation YBMallViewController
 
 - (void)viewDidLoad {
@@ -101,7 +102,6 @@ static NSString *kMallID = @"MallID";
 
 #pragma mark --------加载数据
 - (void)startDownLoad {
-    
     if (_mallType == kIntegralMall) {
         // 加载积分商城数据
         NSString *urlString = [NSString stringWithFormat:BASEURL,kMagicShop];
@@ -230,11 +230,16 @@ static NSString *kMallID = @"MallID";
 
 #pragma mark - collectionView flowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    // 机型适配
+    
     if (kSystemHeight < 667) {
+        // iphone 5
         return CGSizeMake((kSystemWide - 1) / 2, 219);
     } else if (kSystemHeight > 667) {
+        // iphone 6p
         return CGSizeMake((kSystemWide - 1) / 2, 269);
     } else{
+        // iphone 6
         return CGSizeMake((kSystemWide - 1) / 2, 249);
     }
     
@@ -258,6 +263,7 @@ static NSString *kMallID = @"MallID";
 #pragma mark - lazy load
 - (UICollectionView *)collectionView {
     if (!_collectionView) {
+        
         // 自动布局方式
         UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
@@ -293,7 +299,7 @@ static NSString *kMallID = @"MallID";
     backGroundView.backgroundColor = [UIColor whiteColor];
     backGroundView.layer.shadowColor = RGBColor(204, 204, 204).CGColor;
     backGroundView.layer.shadowOffset = CGSizeMake(0, 1);
-    backGroundView.layer.shadowOpacity = 0.5;
+    backGroundView.layer.shadowOpacity = 0.08;
     backGroundView.userInteractionEnabled = YES;
     // 积分商城
     UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
