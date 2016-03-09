@@ -35,6 +35,14 @@
         _schoolNameLabel.textColor = [UIColor colorWithHexString:@"757575"];
         _distanceLabel.textColor = [UIColor colorWithHexString:@"757575"];
         _priceLabel.textColor = [UIColor colorWithHexString:@"DB4437"];
+        
+        
+        if ( ScreenWidthIs_6Plus_OrWider ) {
+            _nameLabel.font = [UIFont systemFontOfSize:14*YBRatio];
+            _schoolNameLabel.font = [UIFont systemFontOfSize:12*YBRatio];
+            _distanceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
+            _priceLabel.font = [UIFont systemFontOfSize:14*YBRatio];
+        }
     }
     return self;
 }
