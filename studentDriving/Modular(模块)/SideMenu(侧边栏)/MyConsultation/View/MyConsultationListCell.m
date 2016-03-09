@@ -340,6 +340,7 @@
     MyConsultationListCell *cell = [[MyConsultationListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"MyConsultationListCell"];
     
     cell.detailModel = model;
+    NSLog(@"model =========== ============== ================%@",model);
     
     [cell layoutIfNeeded];
     

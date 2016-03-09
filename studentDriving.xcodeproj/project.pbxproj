@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0673FC5C1C8FB0B4000FD8A4 /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -606,7 +607,6 @@
 		B251E5421C8E849500E6613A /* EditorTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEEF1C8E849300E6613A /* EditorTopCell.m */; };
 		B251E5431C8E849500E6613A /* MallOrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEF11C8E849300E6613A /* MallOrderCell.m */; };
 		B251E5441C8E849500E6613A /* SignUpDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEF31C8E849300E6613A /* SignUpDetailCell.m */; };
-		B251E5451C8E849500E6613A /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEF51C8E849300E6613A /* YBDiscountCell.m */; };
 		B251E5461C8E849500E6613A /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEF81C8E849300E6613A /* AboutUsViewController.m */; };
 		B251E5471C8E849500E6613A /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEFA1C8E849300E6613A /* FeedBackViewController.m */; };
 		B251E5481C8E849500E6613A /* DuideDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEFD1C8E849300E6613A /* DuideDetailCell.m */; };
@@ -1010,6 +1010,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0673FC5A1C8FB0B4000FD8A4 /* YBDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBDiscountCell.h; sourceTree = "<group>"; };
+		0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBDiscountCell.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5510F87D1C34F52300A431CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -2004,8 +2006,6 @@
 		B251DEF11C8E849300E6613A /* MallOrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallOrderCell.m; sourceTree = "<group>"; };
 		B251DEF21C8E849300E6613A /* SignUpDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpDetailCell.h; sourceTree = "<group>"; };
 		B251DEF31C8E849300E6613A /* SignUpDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpDetailCell.m; sourceTree = "<group>"; };
-		B251DEF41C8E849300E6613A /* YBDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBDiscountCell.h; sourceTree = "<group>"; };
-		B251DEF51C8E849300E6613A /* YBDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBDiscountCell.m; sourceTree = "<group>"; };
 		B251DEF71C8E849300E6613A /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		B251DEF81C8E849300E6613A /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		B251DEF91C8E849300E6613A /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
@@ -4612,6 +4612,8 @@
 				B251DE8B1C8E849200E6613A /* PrivateMessageCell.xib */,
 				B251DE8C1C8E849200E6613A /* YBIntegralMallCell.h */,
 				B251DE8D1C8E849200E6613A /* YBIntegralMallCell.m */,
+				0673FC5A1C8FB0B4000FD8A4 /* YBDiscountCell.h */,
+				0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -4844,8 +4846,6 @@
 				B251DEF11C8E849300E6613A /* MallOrderCell.m */,
 				B251DEF21C8E849300E6613A /* SignUpDetailCell.h */,
 				B251DEF31C8E849300E6613A /* SignUpDetailCell.m */,
-				B251DEF41C8E849300E6613A /* YBDiscountCell.h */,
-				B251DEF51C8E849300E6613A /* YBDiscountCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7376,6 +7376,7 @@
 				B251E5271C8E849500E6613A /* JGActivityViewController.m in Sources */,
 				B251E5B31C8E849500E6613A /* DVVSignUpDetailController.m in Sources */,
 				B251E3AB1C8E849500E6613A /* HomeFavourableController.m in Sources */,
+				0673FC5C1C8FB0B4000FD8A4 /* YBDiscountCell.m in Sources */,
 				B251E2E51C8E849500E6613A /* SearchCoachViewModel.m in Sources */,
 				B251E5801C8E849500E6613A /* DVVCoachDetailViewModel.m in Sources */,
 				B251E3291C8E849500E6613A /* MyAppointmentModel.m in Sources */,
@@ -7395,7 +7396,6 @@
 				B251E5131C8E849500E6613A /* LTBottomView.m in Sources */,
 				B251E5751C8E849500E6613A /* DVVCoachCommentViewModel.m in Sources */,
 				B251E4391C8E849500E6613A /* EMSearchBar.m in Sources */,
-				B251E5451C8E849500E6613A /* YBDiscountCell.m in Sources */,
 				B251E2E21C8E849500E6613A /* DVVFilterView.m in Sources */,
 				B251E6741C8E849600E6613A /* UIColor+Hex.m in Sources */,
 				B251E5051C8E849500E6613A /* ShowWarningMessageView.m in Sources */,
@@ -7855,7 +7855,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 				);
-				GCC_PREFIX_HEADER = "/Users/jiangangyang/Desktop/一步/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -7960,7 +7960,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 				);
-				GCC_PREFIX_HEADER = "/Users/jiangangyang/Desktop/一步/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
