@@ -775,8 +775,6 @@
 		B251E5EB1C8E849500E6613A /* YBStudyWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0441C8E849300E6613A /* YBStudyWebViewController.m */; };
 		B251E5EC1C8E849500E6613A /* YBCheatsData.json in Resources */ = {isa = PBXBuildFile; fileRef = B251E0471C8E849300E6613A /* YBCheatsData.json */; };
 		B251E5ED1C8E849500E6613A /* YBStudyData.json in Resources */ = {isa = PBXBuildFile; fileRef = B251E0481C8E849300E6613A /* YBStudyData.json */; };
-		B251E5EE1C8E849500E6613A /* koaGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E04C1C8E849300E6613A /* koaGradient.m */; };
-		B251E5EF1C8E849500E6613A /* KOAProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E04E1C8E849300E6613A /* KOAProgressBar.m */; };
 		B251E5F01C8E849500E6613A /* YBCheatsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0501C8E849300E6613A /* YBCheatsCell.m */; };
 		B251E5F11C8E849500E6613A /* YBCheatsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251E0511C8E849300E6613A /* YBCheatsCell.xib */; };
 		B251E5F21C8E849500E6613A /* YBCheatslistViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0531C8E849300E6613A /* YBCheatslistViewCell.m */; };
@@ -995,6 +993,8 @@
 		B251E6DF1C8E856E00E6613A /* IWTabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6DC1C8E856E00E6613A /* IWTabBarButton.m */; };
 		B251E6E31C8E87F300E6613A /* MyWallet.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6E21C8E87F300E6613A /* MyWallet.m */; };
 		B251E6EB1C8EDEAD00E6613A /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6EA1C8EDEAD00E6613A /* ViewController.m */; };
+		B251E6F01C8FC59400E6613A /* koaGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6ED1C8FC59400E6613A /* koaGradient.m */; };
+		B251E6F11C8FC59400E6613A /* KOAProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6EF1C8FC59400E6613A /* KOAProgressBar.m */; };
 		D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */; };
 		D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9D1BF659480020F0D7 /* CFNetwork.framework */; };
 		D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */; };
@@ -2319,10 +2319,6 @@
 		B251E0471C8E849300E6613A /* YBCheatsData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YBCheatsData.json; sourceTree = "<group>"; };
 		B251E0481C8E849300E6613A /* YBStudyData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YBStudyData.json; sourceTree = "<group>"; };
 		B251E0491C8E849300E6613A /* YBStudyTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudyTool.h; sourceTree = "<group>"; };
-		B251E04B1C8E849300E6613A /* koaGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = koaGradient.h; sourceTree = "<group>"; };
-		B251E04C1C8E849300E6613A /* koaGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = koaGradient.m; sourceTree = "<group>"; };
-		B251E04D1C8E849300E6613A /* KOAProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOAProgressBar.h; sourceTree = "<group>"; };
-		B251E04E1C8E849300E6613A /* KOAProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOAProgressBar.m; sourceTree = "<group>"; };
 		B251E04F1C8E849300E6613A /* YBCheatsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCheatsCell.h; sourceTree = "<group>"; };
 		B251E0501C8E849300E6613A /* YBCheatsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCheatsCell.m; sourceTree = "<group>"; };
 		B251E0511C8E849300E6613A /* YBCheatsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBCheatsCell.xib; sourceTree = "<group>"; };
@@ -2918,6 +2914,10 @@
 		B251E6E51C8E94F900E6613A /* YBModelDataMacro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YBModelDataMacro.h; sourceTree = "<group>"; };
 		B251E6E91C8EDEAD00E6613A /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		B251E6EA1C8EDEAD00E6613A /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		B251E6EC1C8FC59400E6613A /* koaGradient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = koaGradient.h; sourceTree = "<group>"; };
+		B251E6ED1C8FC59400E6613A /* koaGradient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = koaGradient.m; sourceTree = "<group>"; };
+		B251E6EE1C8FC59400E6613A /* KOAProgressBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KOAProgressBar.h; sourceTree = "<group>"; };
+		B251E6EF1C8FC59400E6613A /* KOAProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOAProgressBar.m; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -5378,10 +5378,6 @@
 		B251E04A1C8E849300E6613A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B251E04B1C8E849300E6613A /* koaGradient.h */,
-				B251E04C1C8E849300E6613A /* koaGradient.m */,
-				B251E04D1C8E849300E6613A /* KOAProgressBar.h */,
-				B251E04E1C8E849300E6613A /* KOAProgressBar.m */,
 				B251E04F1C8E849300E6613A /* YBCheatsCell.h */,
 				B251E0501C8E849300E6613A /* YBCheatsCell.m */,
 				B251E0511C8E849300E6613A /* YBCheatsCell.xib */,
@@ -6355,6 +6351,10 @@
 			children = (
 				B251E2331C8E849400E6613A /* DVVShare */,
 				B251E2261C8E849400E6613A /* CircularMotion */,
+				B251E6EC1C8FC59400E6613A /* koaGradient.h */,
+				B251E6ED1C8FC59400E6613A /* koaGradient.m */,
+				B251E6EE1C8FC59400E6613A /* KOAProgressBar.h */,
+				B251E6EF1C8FC59400E6613A /* KOAProgressBar.m */,
 				B251E2221C8E849400E6613A /* BCTextView.h */,
 				B251E2231C8E849400E6613A /* BCTextView.m */,
 				B251E2241C8E849400E6613A /* BLPFAlertView.h */,
@@ -7234,6 +7234,7 @@
 				B251E5B81C8E849500E6613A /* DVVCrashHandler.mm in Sources */,
 				B251E5FB1C8E849500E6613A /* EMCDDeviceManager+Media.m in Sources */,
 				B251E4051C8E849500E6613A /* YBAppointMentDetailsDataRootClass.m in Sources */,
+				B251E6F11C8FC59400E6613A /* KOAProgressBar.m in Sources */,
 				B251E3B11C8E849500E6613A /* SchoolClassDetailController.m in Sources */,
 				B251E6281C8E849500E6613A /* PSTCollectionViewCell.m in Sources */,
 				B251E6311C8E849500E6613A /* PSTGridLayoutRow.m in Sources */,
@@ -7244,7 +7245,6 @@
 				B251E3081C8E849500E6613A /* SignSuccessView.m in Sources */,
 				B251E5111C8E849500E6613A /* finishMessageView.m in Sources */,
 				B251E41C1C8E849500E6613A /* YBTextView.m in Sources */,
-				B251E5EE1C8E849500E6613A /* koaGradient.m in Sources */,
 				B251E37B1C8E849500E6613A /* ConfirmSubjectTwoCell.m in Sources */,
 				B251E32C1C8E849500E6613A /* StudentCommentModel.m in Sources */,
 				B251E5421C8E849500E6613A /* EditorTopCell.m in Sources */,
@@ -7512,6 +7512,7 @@
 				B251E3461C8E849500E6613A /* DVVSideMenuCell.m in Sources */,
 				B251E50F1C8E849500E6613A /* YBIntegrationMessageController.m in Sources */,
 				B251E55E1C8E849500E6613A /* SignInViewModel.m in Sources */,
+				B251E6F01C8FC59400E6613A /* koaGradient.m in Sources */,
 				B251E3011C8E849500E6613A /* JGSelectDrivingVcHeadSearch.m in Sources */,
 				B251E5861C8E849500E6613A /* ClassTypeDMSchoolinfo.m in Sources */,
 				B251E5691C8E849500E6613A /* DVVCoachDetailDMDriveschoolinfo.m in Sources */,
@@ -7666,7 +7667,6 @@
 				B251E5F51C8E849500E6613A /* YBStudyTableView.m in Sources */,
 				B251E3431C8E849500E6613A /* DVVSideMenu.m in Sources */,
 				B251E36F1C8E849500E6613A /* AppointmentCollectionViewCell.m in Sources */,
-				B251E5EF1C8E849500E6613A /* KOAProgressBar.m in Sources */,
 				B251E5D91C8E849500E6613A /* DVVCityListDMData.m in Sources */,
 				B251E6091C8E849500E6613A /* NSMutableArray+adapter.m in Sources */,
 				B251E3421C8E849500E6613A /* DVVOpenControllerFromSideMenu.m in Sources */,
@@ -7839,8 +7839,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7855,7 +7855,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 				);
-				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -7929,7 +7929,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jizhijiafu.student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ade73bf-057f-4222-a17c-f2c36bc3c6fc";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = 1;
@@ -7944,8 +7944,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Guo Bin Shen (L74C9NC842)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -7960,7 +7960,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/Umeng_SDK_Social_iOS_ARM64_4.4/UMSocial_Sdk_Extra_Frameworks/Twitter",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 				);
-				GCC_PREFIX_HEADER = "/Users/ytzhang/Desktop/Student-iOS/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
+				GCC_PREFIX_HEADER = "$(SRCROOT)/studentDriving/Main(主要的)/Macro/PrefixHeader.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -8034,7 +8034,7 @@
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jizhijiafu.student;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6ade73bf-057f-4222-a17c-f2c36bc3c6fc";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "studentDriving/ApplyDrivingViewController/Driving/studentDriving-Bridging-Header.h";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "./**";
