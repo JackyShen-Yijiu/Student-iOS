@@ -313,10 +313,9 @@
 - (NSMutableArray *)loadDataSource
 {
     NSMutableArray *ret = nil;
+    
     NSArray *conversations = [[EaseMob sharedInstance].chatManager conversations];
 
-    
-    
     NSArray* sorte = [conversations sortedArrayUsingComparator:
            ^(EMConversation *obj1, EMConversation* obj2){
                EMMessage *message1 = [obj1 latestMessage];
@@ -398,8 +397,6 @@
 -(UITableViewCell *)tableView:(UITableView *)tableView
         cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
-    
     static NSString *identify = @"chatListCell";
     ChatListCell *cell = [tableView dequeueReusableCellWithIdentifier:identify];
     
@@ -407,11 +404,14 @@
         cell = [[ChatListCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:identify];
     }
     EMConversation *conversation = [self.dataSource objectAtIndex:indexPath.row];
-        
+    
+    NSLog(@"conversation.ext:%@",conversation.ext);
+    
     // 获取服务器用户名
     cell.name = [NSString stringWithFormat:@"%@",[JGUserTools getNickNameByEMUserName:conversation.chatter]];
     // 获取服务器用户头像
     NSString *avatar = [JGUserTools getAvatarUrlByEMUserName:conversation.chatter];
+    NSLog(@"获取服务器用户头像avatar:%@",avatar);
     cell.imageURL = [NSURL URLWithString:avatar];
     
     cell.detailMsg = [self subTitleMessageByConversation:conversation];
