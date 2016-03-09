@@ -230,8 +230,17 @@ static NSString *kMallID = @"MallID";
 
 #pragma mark - collectionView flowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
+    if (kSystemHeight < 667) {
+        return CGSizeMake((kSystemWide - 1) / 2, 219);
+    } else if (kSystemHeight > 667) {
+        return CGSizeMake((kSystemWide - 1) / 2, 269);
+    } else{
+        return CGSizeMake((kSystemWide - 1) / 2, 249);
+    }
     
-    return CGSizeMake((kSystemWide - 1) / 2, 249);
+
+    
+    
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
