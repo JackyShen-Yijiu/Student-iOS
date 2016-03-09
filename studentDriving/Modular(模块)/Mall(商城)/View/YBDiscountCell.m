@@ -1,14 +1,13 @@
 //
-//  YBIntegralMallCell.m
+//  YBDiscountCell.m
 //  studentDriving
 //
-//  Created by zyt on 16/2/18.
+//  Created by ytzhang on 16/3/9.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "YBIntegralMallCell.h"
-
-@interface YBIntegralMallCell ()
+#import "YBDiscountCell.h"
+@interface YBDiscountCell ()
 
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIImageView *mallImageView;
@@ -21,10 +20,9 @@
 
 @end
 
-@implementation YBIntegralMallCell
-
+@implementation YBDiscountCell
 - (void)awakeFromNib {
-   
+    
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -40,7 +38,7 @@
     
     [self addSubview:self.backView];
     self.backgroundColor = [UIColor whiteColor];
-//    self.backView.backgroundColor = [UIColor grayColor];
+    //    self.backView.backgroundColor = [UIColor grayColor];
     [self.backView addSubview:self.mallImageView];
     [self.backView addSubview:self.nameLabel];
     [self.backView addSubview:self.integralLabel];
@@ -63,7 +61,7 @@
         make.top.mas_equalTo(self.backView.mas_top).offset(0);
         make.left.mas_equalTo(self.backView.mas_left).offset(0);
         make.bottom.mas_equalTo(self.backView.mas_bottom).offset(-80);
-       make.right.mas_equalTo(self.backView.mas_right).offset(0);
+        make.right.mas_equalTo(self.backView.mas_right).offset(0);
         
     }];
     [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -81,7 +79,7 @@
         make.height.mas_equalTo(12);
         
     }];
-
+    
     
     [self.integralLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.addressLabel.mas_bottom).offset(8);
@@ -93,11 +91,11 @@
     [self.integralLabelTitle mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.integralLabel.mas_bottom).offset(0);
         make.left.mas_equalTo(self.integralLabel.mas_right).offset(4);
-       make.width.mas_equalTo(50);
+        make.width.mas_equalTo(50);
         make.height.mas_equalTo(12);
         
     }];
-
+    
     [self.surplusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.integralLabel.mas_top).offset(0);
         make.right.mas_equalTo (self.backView.mas_right).offset(-12);
@@ -112,8 +110,8 @@
         make.height.mas_equalTo(14);
         
     }];
-
-
+    
+    
 }
 // Lazy ---- 加载
 - (UIView *)backView{
@@ -192,8 +190,7 @@
     }
     return _surplusLabelTitle;
 }
-
-- (void)setIntegralMallModel:(YBIntegralMallModel *)integralMallModel{
+- (void)setDiscountModel:(YBDiscountModel *)discountModel{
     /*
      
      @property (nonatomic,strong) NSString *productid;
@@ -207,31 +204,17 @@
      @property (nonatomic,assign) BOOL is_scanconsumption;
      
      @property (nonatomic,strong) NSString *detailurl;
-
+     
      */
-    [self.mallImageView sd_setImageWithURL:[NSURL URLWithString:integralMallModel.productimg] placeholderImage:nil];
-    self.nameLabel.text = integralMallModel.productname;
-    self.integralLabel.text = [NSString stringWithFormat:@"%lu",integralMallModel.productprice];
-    
-    NSString *timeStr = [self getLocalDateFormateUTCDate:integralMallModel.enddate format:@"yyyy/MM/dd"];
-    self.addressLabel.text = [NSString stringWithFormat:@"截止日期: %@",timeStr];
-    self.surplusLabel.text = [NSString stringWithFormat:@"%d份",integralMallModel.productcount];
-    
-    
+    [self.mallImageView sd_setImageWithURL:[NSURL URLWithString:discountModel.productimg] placeholderImage:nil];
+    self.nameLabel.text = discountModel.productname;
+    self.integralLabel.text = [NSString stringWithFormat:@"%d",discountModel.productprice];
+    self.addressLabel.text = [NSString stringWithFormat:@"地址:%@",discountModel.address];
+    self.surplusLabel.text = [NSString stringWithFormat:@"%d份",discountModel.productcount];
+
 }
-- (NSString *)getLocalDateFormateUTCDate:(NSString *)utcDate format:(NSString *)formatString {
-    //    NSLog(@"utc = %@",utcDate);
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //输入格式
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-    NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
-    [dateFormatter setTimeZone:localTimeZone];
-    
-    NSDate *dateFormatted = [dateFormatter dateFromString:utcDate];
-    //输出格式
-    [dateFormatter setDateFormat:formatString];
-    //    [dateFormatter setDateFormat:@"HH:mm"];
-    NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
-    return dateString;
-}
+
+
+
+
 @end

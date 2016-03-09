@@ -22,4 +22,5 @@
 @property (nonatomic,strong) NSString *detailurl;
 @property (nonatomic,assign) int  productcount;
 @property (nonatomic, copy) NSString *address;
+@property (nonatomic, copy) NSString *enddate;
 @end
