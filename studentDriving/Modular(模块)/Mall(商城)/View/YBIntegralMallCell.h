@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "YBIntegralMallModel.h"
 
-@interface YBIntegralMallCell : UITableViewCell
+@interface YBIntegralMallCell : UICollectionViewCell
 @property (nonatomic, strong) YBIntegralMallModel *integralMallModel;
 @end
