@@ -51,6 +51,7 @@
 @end
 
 @implementation YBStudyViewController
+WMSingletonM(YBStudyViewController)
 
 - (NSMutableArray *)kemuyiArray
 {

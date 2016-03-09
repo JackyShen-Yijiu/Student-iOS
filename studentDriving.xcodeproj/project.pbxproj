@@ -2897,6 +2897,7 @@
 		B251E6EF1C8FC59400E6613A /* KOAProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOAProgressBar.m; sourceTree = "<group>"; };
 		B251E6F21C8FE5B100E6613A /* JGUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGUserModel.h; sourceTree = "<group>"; };
 		B251E6F31C8FE5B100E6613A /* JGUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGUserModel.m; sourceTree = "<group>"; };
+		B251E73E1C901CA200E6613A /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -3729,6 +3730,7 @@
 				B251DCB81C8E849200E6613A /* YBNetworkMacro.h */,
 				B251DCB91C8E849200E6613A /* YBNotificationMacro.h */,
 				B251E6E51C8E94F900E6613A /* YBModelDataMacro.h */,
+				B251E73E1C901CA200E6613A /* Singleton.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";

@@ -45,6 +45,7 @@
 #import "UIColor+Extension.h"
 #import <Masonry.h>
 #import "YBModelDataMacro.h"
+#import "Singleton.h"
 
 // 环信appKey
 #define easeMobAPPkey @"black-cat#jizhijaifu"
