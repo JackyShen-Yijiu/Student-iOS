@@ -56,13 +56,23 @@
         make.top.mas_equalTo(self.mas_top).offset(12);
         make.left.mas_equalTo(self.mas_left).offset(12);
         make.right.mas_equalTo (self.mas_right).offset(-12);
-        make.height.mas_equalTo(237);
+        if (kSystemHeight < 667) {
+            make.height.mas_equalTo(207);
+        } else if (kSystemHeight > 667) {
+            make.height.mas_equalTo(257);
+        } else{
+           make.height.mas_equalTo(237);
+        }
+        
+        
+        
         
     }];
     [self.mallImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.backView.mas_top).offset(0);
         make.left.mas_equalTo(self.backView.mas_left).offset(0);
-        make.bottom.mas_equalTo(self.backView.mas_bottom).offset(-80);
+//        make.bottom.mas_equalTo(self.backView.mas_bottom).offset(-80);
+        make.height.mas_equalTo(self.mallImageView.mas_width);
        make.right.mas_equalTo(self.backView.mas_right).offset(0);
         
     }];
@@ -216,6 +226,7 @@
     NSString *timeStr = [self getLocalDateFormateUTCDate:integralMallModel.enddate format:@"yyyy/MM/dd"];
     self.addressLabel.text = [NSString stringWithFormat:@"截止日期: %@",timeStr];
     self.surplusLabel.text = [NSString stringWithFormat:@"%d份",integralMallModel.productcount];
+    
     
     
 }

@@ -54,7 +54,13 @@
         make.top.mas_equalTo(self.mas_top).offset(12);
         make.left.mas_equalTo(self.mas_left).offset(12);
         make.right.mas_equalTo (self.mas_right).offset(-12);
-        make.height.mas_equalTo(237);
+        if (kSystemHeight < 667) {
+            make.height.mas_equalTo(207);
+        } else if (kSystemHeight > 667) {
+            make.height.mas_equalTo(257);
+        } else{
+            make.height.mas_equalTo(237);
+        }
         
     }];
     [self.mallImageView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -118,18 +124,18 @@
     if (_backView == nil) {
         _backView = [[UIView alloc] init];
         _backView.backgroundColor = [UIColor whiteColor];
-        [_backView.layer setMasksToBounds:YES];
-        [_backView.layer setCornerRadius:2.0];
-        _backView.layer.shadowColor = [UIColor blackColor].CGColor;
-        _backView.layer.shadowOffset = CGSizeMake(7.0, 7.0);
-        _backView.layer.shadowOpacity = YES;
+//        [_backView.layer setMasksToBounds:YES];
+//        [_backView.layer setCornerRadius:2.0];
+//        _backView.layer.shadowColor = [UIColor blackColor].CGColor;
+//        _backView.layer.shadowOffset = CGSizeMake(7.0, 7.0);
+//        _backView.layer.shadowOpacity = YES;
     }
     return _backView;
 }
 - (UIImageView *)mallImageView{
     if (_mallImageView == nil) {
         _mallImageView = [[UIImageView alloc] init];
-        _mallImageView.backgroundColor = [UIColor cyanColor];
+        _mallImageView.backgroundColor = [UIColor whiteColor];
     }
     return _mallImageView;
 }
