@@ -341,20 +341,20 @@
     if (!_dvvToolBarView) {
         _dvvToolBarView = [YBToolBarView new];
         _dvvToolBarView.titleArray = @[ @"科目一", @"科目二", @"科目三" ,@"科目四"];
-        _dvvToolBarView.titleNormalColor = [UIColor colorWithWhite:1 alpha:0.75];
-        _dvvToolBarView.titleSelectedColor = [UIColor whiteColor];
-        _dvvToolBarView.buttonNormalColor = YBNavigationBarBgColor;
-        _dvvToolBarView.buttonSelectedColor = YBNavigationBarBgColor;
+        _dvvToolBarView.titleNormalColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _dvvToolBarView.titleSelectedColor = YBNavigationBarBgColor;
+        _dvvToolBarView.buttonNormalColor = [UIColor whiteColor];
+        _dvvToolBarView.buttonSelectedColor = [UIColor whiteColor];
         __weak typeof(self) ws = self;
         [_dvvToolBarView dvvSetItemSelectedBlock:^(UIButton *button) {
             [ws toolBarItemSelectedAction:button];
         }];
-        _dvvToolBarView.backgroundColor = YBNavigationBarBgColor;
+        _dvvToolBarView.backgroundColor = [UIColor whiteColor];
         
         // 添加底部的阴影效果
         _dvvToolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
         _dvvToolBarView.layer.shadowOffset = CGSizeMake(0, 2);
-        _dvvToolBarView.layer.shadowOpacity = 0.3;
+        _dvvToolBarView.layer.shadowOpacity = 0.08;
         _dvvToolBarView.layer.shadowRadius = 2;
     }
     return _dvvToolBarView;

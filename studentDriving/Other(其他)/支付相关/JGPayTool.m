@@ -109,7 +109,7 @@
     order.productName = productName; //商品标题
     order.productDescription = productDescription; //商品描述
     order.amount = amount; //商品价格
-    order.notifyURL = @"http://api.yibuxueche.com/paynotice/alipay"; //回调URL
+    order.notifyURL = @"http://jzapi.yibuxueche.com/paynotice/alipay"; //回调URL
     
     order.service = @"mobile.securitypay.pay";
     order.paymentType = @"1";

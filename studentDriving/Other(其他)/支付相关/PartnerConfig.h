@@ -17,18 +17,18 @@
 
 #pragma mark ------------------  支付宝 ------------------
 //合作身份者id，以2088开头的16位纯数字
-#define PartnerID @"2088121519930520"
+#define PartnerID @"2088221033158753"
 //收款支付宝账号
-#define SellerID  @"ybpay@ybxch.com"
+#define SellerID  @"jizhipay@joyincorp.com"
 
 //安全校验码（MD5）密钥，以数字和字母组成的32位字符
-#define MD5_KEY @"4d52gmvg1v9a5kt9ldi4ja6dchw7hmth"
+#define MD5_KEY @"xjz579z3wds1kd9244pfeu9r8ha913ta"
 
 //商户私钥，自助生成
-#define PartnerPrivKey @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBAM1vo5i8yDX9XxbVh7jBBT5a68B3IDSv9Sn7BB/eUmMn/saqrnSlZnJTdnUor9YUuIwZWNaHbVFfIzoqFP9Nz+SxnvKrZx01+KwGkJkQWgwD19ZMDZ7W+Pl2p/dpSmOsXa5aVQ84/joapjzCU265wjoZeNgF+3Tlu85qucUqNtRBAgMBAAECgYAjSjw2LqfN7np5N7Ea4b1+2quI4m3b3yYkUgSBXPWWJvazNfrF+uvAU+oTcivSgLi7CFekcpsq0UcB5Ny6hqlhdsAQDYGUGu3HdO4+I7HT8kZVrNpH2Z10RUFeR1lCPg48zIrtBidQs+rbUffHz7WlW3LROGk9L1Zc2FZLpd/+6QJBAPhBZGzclHkRyz/RsHrRQIGa4ib1i4jWGb+K29Gf1J3VBqvvXdhji7gbQGK4CgOHkpwdwokf+MgEWWfHtJHq/a8CQQDT2EjafwluaHvXwvovklqJgiDHLm9bS6AerVThH/6Kc9oN0WV+hYObWx0wvSTHwDN+cX1g9+sSOIWMxApn6jkPAkBvoBejy1sHRTT6sTKFRumWXSorEmV3Va2mLq3Ah/l2Ln8deDfeQIRmd/pvaQk3pRILGGaMec/HQA1jWKycn+kJAkEAvTLGZjXdE3lHWbyuOvxn1bWdVqbXF19kYuGFFAbCC59KWNrx3Vya3I40dMoIZkn282+ifY8Np9lJFR4k+QfL6wJAGQWQcBrNPMHLbwkuwrmlHGw6bsA0GiZn/y4pfw82nQo2Q+xjb+w1EfUDB47eoQzRJHBSoRDYxlLbwQRjr3EOng=="
+#define PartnerPrivKey @"MIICXQIBAAKBgQDHAoGG/CCMvSVVebXZjbWcawAfZPU/yZMzNyrar4MyEyxAyHHqB1SbMiPC0Nq/JGR3nw+eyzJHp76OsbTQwhfwWZ+DSsq0F/Jjr33iqbMKei8J6PaEvKBEvqdG1yZZZeJR0Yv0wQipl/rfUXPDtckVMUHx4fwaRsc9eSe5kUa8bwIDAQABAoGAW6aVzHq06tv5I6JH04dlykGk7tBp+hR1TDLt84S9IQSfbr5hZ+w0VL0EpyXUeA7kjgqdAP6Hi2R/Z+wDX9jjeKdSczdNFdJo4cpPg1+a4Bwprh6mWsp1qY+R2VzVP8Res+GRcMV6AQMq3MAHElVsBzlsGTActX7oo57S0uZh2wECQQDr/vtcrWIYRyLTaQATaA13LyCW2GdmU2hDNHW0+ZKxgXPKNu2qm6j1JP4CtT2tPBslvxjNaOhV7q7s0rDEuwQvAkEA1+DwEp4zjZTtZ6X2OLxXsO5Ins6GgWa7Fkx0N5ylpT4j7xjAqczgoeulMo1PBAkG9YPPSl4vyiaEi0sp75p7wQJBAJZ9w00WQ7e3pT2rd6Doea3HH8ERvt5B0fsJOQZvIFyRcIVDAcwJ93RcYp7XdL1D1wv7EJXskDw8ONBMiuzpVYECQBf/LBCVv1tMo7syypTx8rl7M11bzb3SopdO9lg8NHmS18G7OadmW84D+MAOzyq+qiRee4tjvuI0t+UX/NhijsECQQDgWMOFgs4ingbXALr9ZyGtvWOwMI9WkX2lJIeh9fO1Q4rVoj1Xkd0DrVsv/SFOMBY5CIETatYjABRGWhBmS8Tb"
 
 //支付宝公钥
-#define AlipayPubKey   @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDDI6d306Q8fIfCOaTXyiUeJHkrIvYISRcc73s3vF1ZT7XN8RNPwJxo8pWaJMmvyTn9N4HQ632qJBVHf8sxHi/fEsraprwCtzvzQETrNRwVxLO5jVmRGi60j8Ue1efIlzPXV9je9mkjzOmdssymZkh2QhUrCmZYI/FCEa3/cNMW0QIDAQAB"
+#define AlipayPubKey   @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHAoGG/CCMvSVVebXZjbWcawAfZPU/yZMzNyrar4MyEyxAyHHqB1SbMiPC0Nq/JGR3nw+eyzJHp76OsbTQwhfwWZ+DSsq0F/Jjr33iqbMKei8J6PaEvKBEvqdG1yZZZeJR0Yv0wQipl/rfUXPDtckVMUHx4fwaRsc9eSe5kUa8bwIDAQAB"
 
 
 #pragma mark ------------------ 微信 ------------------

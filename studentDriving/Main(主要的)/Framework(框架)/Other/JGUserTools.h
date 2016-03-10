@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "YBStudentUserData.h"
+#import "JGUserModel.h"
 
 @interface JGUserTools : NSObject
 
@@ -16,11 +16,11 @@
 /**
  *将从我们的服务器上得到的用户昵称和头像等信息保存到本地数据库中
  */
-+ (void)saveKFZUser:(YBStudentUserData *) user;
++ (void)saveKFZUser:(JGUserModel *) user;
 /**
  *根据环信ID获取对应的我们的服务器上的用户昵称和头像等信息
  */
-+ (YBStudentUserData *) getKFZUserByEMUserName:(NSString *)mEMUserName;
++ (JGUserModel *) getKFZUserByEMUserName:(NSString *)mEMUserName;
 /**
  *根据环信ID获取对应的我们的服务器上的用户昵称
  */
@@ -40,7 +40,7 @@
 /**
  *从我们的服务器上获取用户信息，同步方法
  */
-+(YBStudentUserData *)queryUserFromRemote:(NSString *)mEMUsername;
++(JGUserModel *)queryUserFromRemote:(NSString *)mEMUsername;
 /**
  *从我们的服务器上获取用户信息，异步方法
  */
