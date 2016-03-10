@@ -32,6 +32,7 @@
 #import "YBSignUpSuccessController.h"
 #import "DVVPaySuccessController.h"
 #import "YBLoginController.h"
+#import "YBAppointController.h"
 
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -248,7 +249,7 @@
     
     self.edgesForExtendedLayout = NO;
 
-    self.view.backgroundColor = RGBColor(232, 232, 237);
+    self.view.backgroundColor = MAIN_FOREGROUND_COLOR;
     
     NSLog(@"%s,[AcountManager manager].userSubject.name:%@",__func__,[AcountManager manager].userSubject.name);
     
@@ -303,7 +304,7 @@
         return;
     }
     
-    YBAppointMentChangeCoachController *vc = [[YBAppointMentChangeCoachController alloc] init];
+    YBAppointController *vc = [[YBAppointController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
