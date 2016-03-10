@@ -119,7 +119,7 @@ static NSString *coachCellID = @"coachCellID";
 //    _titleLeftButton.backgroundColor = [UIColor orangeColor];
 //    _titleRightButton.backgroundColor = [UIColor orangeColor];
     
-    _toolBarView.backgroundColor = YBNavigationBarBgColor;
+    _toolBarView.backgroundColor = [UIColor whiteColor];
     
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
