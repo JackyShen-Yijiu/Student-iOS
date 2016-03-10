@@ -9,5 +9,5 @@
 #import "YBHomeBaseController.h"
 
 @interface YBStudyViewController : YBHomeBaseController
-
+WMSingletonH(YBStudyViewController)
 @end

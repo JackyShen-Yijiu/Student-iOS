@@ -254,18 +254,9 @@
     
     // 设置顶部标题
     self.navigationItem.title = @"预约列表";
-    
-    UIButton*rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0,50,30)];
-    [rightButton setTitle:@"立即预约" forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(addAppointMent) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem*rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem= rightItem;
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"立即预约" style:UIBarButtonItemStyleDone target:self action:@selector(addAppointMent)];
 
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"立即预约" target:self action:@selector(addAppointMent)];
+    
     [self initUI];
     
     // 加载底部预约列表数据
