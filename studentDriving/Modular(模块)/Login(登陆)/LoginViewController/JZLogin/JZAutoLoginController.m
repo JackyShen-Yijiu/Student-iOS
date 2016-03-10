@@ -135,7 +135,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
     
     JZPasswordLoginController *vc = [[JZPasswordLoginController alloc] init];
     WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:inav animated:YES completion:nil];
+    [self presentViewController:inav animated:NO completion:nil];
     
 }
 

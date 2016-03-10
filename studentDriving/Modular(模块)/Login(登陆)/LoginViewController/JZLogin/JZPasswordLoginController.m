@@ -122,7 +122,7 @@
     
     JZRegisterController *vc = [[JZRegisterController alloc] init];
     WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:inav animated:YES completion:nil];
+    [self presentViewController:inav animated:NO completion:nil];
     
 }
 
@@ -131,7 +131,7 @@
     
     YBFindPwdViewController *vc = [[YBFindPwdViewController alloc] init];
     WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:inav animated:YES completion:nil];
+    [self presentViewController:inav animated:NO completion:nil];
     
 }
 
