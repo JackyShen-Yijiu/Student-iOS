@@ -107,7 +107,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     
     self.seletedDate = [NSDate date];
     
-    self.view.backgroundColor = MAIN_FOREGROUND_COLOR;
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     [self initUI];
     

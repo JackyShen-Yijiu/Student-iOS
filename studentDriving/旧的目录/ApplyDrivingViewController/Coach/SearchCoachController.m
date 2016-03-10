@@ -348,7 +348,7 @@
 }
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"定位中" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton = [WMUITool initWithTitle:@"定位中" withTitleColor:YBMainViewControlerBackgroundColor withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.frame = CGRectMake(0, 0, 70, 44);
         [_naviBarRightButton setImage:[UIImage imageNamed:@"dingwei"] forState:UIControlStateNormal];
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
