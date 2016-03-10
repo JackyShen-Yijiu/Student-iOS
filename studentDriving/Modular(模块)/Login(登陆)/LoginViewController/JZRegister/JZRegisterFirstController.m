@@ -186,6 +186,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
     }];
     
 }
+
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     [self.phoneNumTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {

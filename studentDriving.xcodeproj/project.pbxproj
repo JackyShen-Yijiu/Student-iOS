@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		064BD6081C911F990021C116 /* JZPasswordLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064BD6071C911F990021C116 /* JZPasswordLoginController.m */; };
+		064BD60B1C914C6D0021C116 /* JZRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064BD60A1C914C6D0021C116 /* JZRegisterController.m */; };
 		0673FC5C1C8FB0B4000FD8A4 /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */; };
 		0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5E1C904867000FD8A4 /* MallCollectionView.m */; };
 		0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */; };
+		0673FC691C91106E000FD8A4 /* JZAutoLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -1009,12 +1012,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		064BD6061C911F990021C116 /* JZPasswordLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZPasswordLoginController.h; sourceTree = "<group>"; };
+		064BD6071C911F990021C116 /* JZPasswordLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZPasswordLoginController.m; sourceTree = "<group>"; };
+		064BD6091C914C6D0021C116 /* JZRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRegisterController.h; sourceTree = "<group>"; };
+		064BD60A1C914C6D0021C116 /* JZRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRegisterController.m; sourceTree = "<group>"; };
 		0673FC5A1C8FB0B4000FD8A4 /* YBDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBDiscountCell.h; sourceTree = "<group>"; };
 		0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBDiscountCell.m; sourceTree = "<group>"; };
 		0673FC5D1C904867000FD8A4 /* MallCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallCollectionView.h; sourceTree = "<group>"; };
 		0673FC5E1C904867000FD8A4 /* MallCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallCollectionView.m; sourceTree = "<group>"; };
 		0673FC601C904B55000FD8A4 /* DiscountCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountCollectionView.h; sourceTree = "<group>"; };
 		0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCollectionView.m; sourceTree = "<group>"; };
+		0673FC671C91106E000FD8A4 /* JZAutoLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAutoLoginController.h; sourceTree = "<group>"; };
+		0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAutoLoginController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5510F87D1C34F52300A431CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1900,12 +1909,12 @@
 		B251DE671C8E849200E6613A /* ShowWarningMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWarningMessageView.m; sourceTree = "<group>"; };
 		B251DE681C8E849200E6613A /* YBIntegralMallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegralMallModel.h; sourceTree = "<group>"; };
 		B251DE691C8E849200E6613A /* YBIntegralMallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegralMallModel.m; sourceTree = "<group>"; };
-		B251DE6A1C8E849200E6613A /* YBFindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBFindPwdViewController.h; sourceTree = "<group>"; };
-		B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBFindPwdViewController.m; sourceTree = "<group>"; };
+		B251DE6A1C8E849200E6613A /* YBFindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBFindPwdViewController.h; path = ../../YBFindPwdViewController.h; sourceTree = "<group>"; };
+		B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBFindPwdViewController.m; path = ../../YBFindPwdViewController.m; sourceTree = "<group>"; };
 		B251DE6C1C8E849200E6613A /* YBLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBLoginController.h; sourceTree = "<group>"; };
 		B251DE6D1C8E849200E6613A /* YBLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBLoginController.m; sourceTree = "<group>"; };
-		B251DE6E1C8E849200E6613A /* YBSettingNewPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSettingNewPwdViewController.h; sourceTree = "<group>"; };
-		B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSettingNewPwdViewController.m; sourceTree = "<group>"; };
+		B251DE6E1C8E849200E6613A /* YBSettingNewPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBSettingNewPwdViewController.h; path = ../../YBSettingNewPwdViewController.h; sourceTree = "<group>"; };
+		B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBSettingNewPwdViewController.m; path = ../../YBSettingNewPwdViewController.m; sourceTree = "<group>"; };
 		B251DE721C8E849200E6613A /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDetailViewController.h; sourceTree = "<group>"; };
 		B251DE731C8E849200E6613A /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicDetailViewController.m; sourceTree = "<group>"; };
 		B251DE741C8E849200E6613A /* MallListSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallListSuccessController.h; sourceTree = "<group>"; };
@@ -2998,6 +3007,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0673FC631C911017000FD8A4 /* JZLogin */ = {
+			isa = PBXGroup;
+			children = (
+				0673FC671C91106E000FD8A4 /* JZAutoLoginController.h */,
+				0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */,
+				064BD6061C911F990021C116 /* JZPasswordLoginController.h */,
+				064BD6071C911F990021C116 /* JZPasswordLoginController.m */,
+				064BD6091C914C6D0021C116 /* JZRegisterController.h */,
+				064BD60A1C914C6D0021C116 /* JZRegisterController.m */,
+				B251DE6A1C8E849200E6613A /* YBFindPwdViewController.h */,
+				B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */,
+				B251DE6E1C8E849200E6613A /* YBSettingNewPwdViewController.h */,
+				B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */,
+			);
+			path = JZLogin;
+			sourceTree = "<group>";
+		};
 		4FD586B5C72C30AF6B2C582E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -4490,12 +4516,8 @@
 			isa = PBXGroup;
 			children = (
 				B251DE501C8E849200E6613A /* LoginViewController */,
-				B251DE6A1C8E849200E6613A /* YBFindPwdViewController.h */,
-				B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */,
 				B251DE6C1C8E849200E6613A /* YBLoginController.h */,
 				B251DE6D1C8E849200E6613A /* YBLoginController.m */,
-				B251DE6E1C8E849200E6613A /* YBSettingNewPwdViewController.h */,
-				B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */,
 			);
 			path = "Login(登陆)";
 			sourceTree = "<group>";
@@ -4503,6 +4525,7 @@
 		B251DE501C8E849200E6613A /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0673FC631C911017000FD8A4 /* JZLogin */,
 				B251DE511C8E849200E6613A /* AddlineButtomTextField.h */,
 				B251DE521C8E849200E6613A /* AddlineButtomTextField.m */,
 				B251DE531C8E849200E6613A /* ForgetViewController.h */,
@@ -7169,6 +7192,7 @@
 				B251E3BD1C8E849500E6613A /* ModifyPhoneNumViewController.m in Sources */,
 				B251E59B1C8E849500E6613A /* DrivingDetailDMData.m in Sources */,
 				B251E2FA1C8E849500E6613A /* JGCoachDetailViewController.m in Sources */,
+				064BD60B1C914C6D0021C116 /* JZRegisterController.m in Sources */,
 				B251E3151C8E849500E6613A /* Applyclasstypeinfo.m in Sources */,
 				B251E5891C8E849500E6613A /* ClassTypeViewModel.m in Sources */,
 				B251E3F51C8E849500E6613A /* HMClassInfoModel.m in Sources */,
@@ -7411,6 +7435,7 @@
 				B251E3A11C8E849500E6613A /* CommonAddressViewController.m in Sources */,
 				B251E6851C8E849600E6613A /* BLInformationManager.m in Sources */,
 				B251E5BD1C8E849500E6613A /* UIImage+DVVEffects.m in Sources */,
+				064BD6081C911F990021C116 /* JZPasswordLoginController.m in Sources */,
 				B251E3361C8E849500E6613A /* trainfieldModel.m in Sources */,
 				B251E3DB1C8E849500E6613A /* YBWebBaseViewController.m in Sources */,
 				B251E38C1C8E849500E6613A /* WaitConfirmCell.m in Sources */,
@@ -7515,6 +7540,7 @@
 				B251E6081C8E849500E6613A /* NSDictionary+adapter.m in Sources */,
 				B251E5291C8E849500E6613A /* ComplaintSchoolView.m in Sources */,
 				B251E4141C8E849500E6613A /* YBAppointMentDetailsCancleView.m in Sources */,
+				0673FC691C91106E000FD8A4 /* JZAutoLoginController.m in Sources */,
 				B251E3D31C8E849500E6613A /* IWTabBarViewController.m in Sources */,
 				B251E4271C8E849500E6613A /* FacialView.m in Sources */,
 				B251E5FC1C8E849500E6613A /* EMCDDeviceManager+Microphone.m in Sources */,
