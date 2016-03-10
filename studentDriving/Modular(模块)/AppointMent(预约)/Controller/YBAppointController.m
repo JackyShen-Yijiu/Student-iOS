@@ -1,15 +1,14 @@
 //
-//  YBAppointMentChangeCoachController.m
+//  YBAppointController.m
 //  studentDriving
 //
 //  Created by JiangangYang on 16/2/16.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "YBAppointMentChangeCoachController.h"
-#import "YBAppointMentChangeCoachController.h"
+#import "YBAppointController.h"
+#import "YBAppointController.h"
 #import "HMCourseModel.h"
-#import "FDCalendar.h"
 #import "JGYuYueHeadView.h"
 #import "AppointmentCoachTimeInfoModel.h"
 #import "YBCoachListViewController.h"
@@ -20,6 +19,7 @@
 #import "StudentModel.h"
 #import "CoachModel.h"
 #import "YBAppointMentCoachModel.h"
+#import "DIDatepicker.h"
 
 static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?coachid=%@&date=%@";
 
@@ -27,10 +27,10 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
-@interface YBAppointMentChangeCoachController ()<FDCalendarDelegate,YBCoachListViewControllerDelegate,JGYuYueHeadViewDelegate>
+@interface YBAppointController ()<YBCoachListViewControllerDelegate,JGYuYueHeadViewDelegate>
 
-// 日历
-@property(nonatomic,strong) FDCalendar *TopCalendarHeadView;
+@property (nonatomic,strong) DIDatepicker *datepicker;
+
 // 中间预约时间
 @property (nonatomic,strong) JGYuYueHeadView *midYuYueheadView;
 
@@ -57,7 +57,18 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 
 @end
 
-@implementation YBAppointMentChangeCoachController
+@implementation YBAppointController
+
+- (DIDatepicker *)datepicker
+{
+    if (_datepicker == nil) {
+        
+        _datepicker = [[DIDatepicker alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
+        _datepicker.backgroundColor = [UIColor whiteColor];
+    }
+    return _datepicker;
+}
+
 
 - (YBAppointMentNoCountentView *)noCountmentView
 {
@@ -91,8 +102,8 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 {
     [super viewDidAppear:animated];
     
-    [self fdCalendar:nil didSelectedDate:self.seletedDate];
-    
+//    [self fdCalendar:nil didSelectedDate:self.seletedDate];
+    [self updateSelectedDate];
 }
 
 -(void)viewDidDisappear:(BOOL)animated {
@@ -115,7 +126,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     [self.view addSubview:self.noCountmentView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kCellChange) name:@"kCellChange" object:nil];
-
+    
     YBAppointMentCoachModel *appointCoach = [self getPersonArrayData];
     NSLog(@"appointCoach.coachid：%@",appointCoach.coachid);
     if (appointCoach&&appointCoach.coachid) {
@@ -148,7 +159,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     
     self.noCountmentView.hidden = YES;
     self.appointCoach = model;
-
+    
     
 }
 
@@ -183,14 +194,25 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 -(void)initUI
 {
     
+    [self.view addSubview:self.datepicker];
+    [self.datepicker addTarget:self action:@selector(updateSelectedDate) forControlEvents:UIControlEventValueChanged];
+    
+    // 从今天开始-14天后
+    [self.datepicker fillDatesFromCurrentDate:14];
+    //    [self.datepicker fillCurrentWeek];
+    //    [self.datepicker fillCurrentMonth];
+    //    [self.datepicker fillCurrentYear];
+    // 选中第0个
+    [self.datepicker selectDateAtIndex:0];
+    
     // 顶部日历
-    self.TopCalendarHeadView = [[FDCalendar alloc] initWithData:[NSDate date]];
-    self.TopCalendarHeadView.delegate = self;
-    self.TopCalendarHeadView.frame = CGRectMake(0, 0, self.view.width, 30+35);
-    [self.view addSubview:self.TopCalendarHeadView];
+//    self.TopCalendarHeadView = [[FDCalendar alloc] initWithData:[NSDate date]];
+//    self.TopCalendarHeadView.delegate = self;
+//    self.TopCalendarHeadView.frame = CGRectMake(0, 0, self.view.width, 30+35);
+//    [self.view addSubview:self.TopCalendarHeadView];
     
     // 中间方格
-    self.midYuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.TopCalendarHeadView.frame), self.view.width, kSystemHeight-self.TopCalendarHeadView.height-50)];
+    self.midYuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.datepicker.frame), self.view.width, kSystemHeight-self.datepicker.height-50)];
     self.midYuYueheadView.parentViewController = self;
     self.midYuYueheadView.delegate = self;
     [self.view addSubview:self.midYuYueheadView];
@@ -199,7 +221,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame)-50-64, self.view.width, 50)];
     footView.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:footView];
-
+    
     UIButton *commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(kSystemWide-10-90, 5, 90, 40)];
     commitBtn.backgroundColor = YBNavigationBarBgColor;
     commitBtn.layer.masksToBounds = YES;
@@ -215,7 +237,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     countLabel.textColor = [UIColor blackColor];
     [footView addSubview:countLabel];
     self.countLabel = countLabel;
-
+    
     [self setupcountLabelData];
     
 }
@@ -224,17 +246,17 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 {
     
     NSMutableString *detailStr = [NSMutableString string];
-
+    
     if ([AcountManager manager].subjecttwo.progress) {
         [detailStr appendString:[NSString stringWithFormat:@" %@",[AcountManager manager].subjecttwo.progress]];
     }else if ([AcountManager manager].subjectthree.progress) {
         [detailStr appendString:[NSString stringWithFormat:@" %@",[AcountManager manager].subjectthree.progress]];
     }
- 
+    
     if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
         
         NSInteger doneCourse = [AcountManager manager].subjecttwo.finishcourse.integerValue;
-       
+        
         [detailStr appendString:[NSString stringWithFormat:@" 完成:%ld课时",(long)doneCourse]];
         
     }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
@@ -250,40 +272,53 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     
 }
 
-#pragma mark LoadDayData
-- (void)fdCalendar:(FDCalendar *)calendar didSelectedDate:(NSDate *)date
+
+- (void)updateSelectedDate
 {
-    NSLog(@"切换日历代理方法 %s date:%@",__func__,date);
+    NSLog(@"self.datepicker.selectedDate:%@",self.datepicker.selectedDate);
     
-    self.seletedDate = date;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateFormat = [NSDateFormatter dateFormatFromTemplate:@"yyyy年dd月MM日,EEEE" options:0 locale:nil];
+    
+    NSLog(@"self.datepicker.selectedDate:%@",self.datepicker.selectedDate);
+    
+//    self.selectedDateLabel.text = [formatter stringFromDate:self.datepicker.selectedDate];
+    
+    self.seletedDate = self.datepicker.selectedDate;
     
     if (!self.dateFormattor) {
         self.dateFormattor = [[NSDateFormatter alloc] init];
         [self.dateFormattor setDateFormat:@"yyyy-M-d"];
     }
-    NSString * dataStr = [self.dateFormattor stringFromDate:date];
+    NSString * dataStr = [self.dateFormattor stringFromDate:self.datepicker.selectedDate];
     NSLog(@"切换日历代理方法 dataStr:%@",dataStr);
     self.selectDateStr = dataStr;
- 
+    
     // 初始化日历
-    [self.TopCalendarHeadView setCurrentDate:self.seletedDate coachID:self.appointCoach.coachid];
-
+//    [self.TopCalendarHeadView setCurrentDate:self.seletedDate coachID:self.appointCoach.coachid];
+    
     // 加载中间预约时间
     [self loadMidYuyueTimeData:dataStr];
-   
+    
     // 设置顶部标题
-    self.navigationItem.title = [NSString stringWithFormat:@"%@",[self.dateFormattor stringFromDate:date]];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@",[self.dateFormattor stringFromDate:self.datepicker.selectedDate]];
     
 }
+
+#pragma mark LoadDayData
+//- (void)fdCalendar:(FDCalendar *)calendar didSelectedDate:(NSDate *)date
+//{
+//    
+//}
 
 - (void)loadMidYuyueTimeData:(NSString *)dataStr
 {
     
     NSLog(@"loadMidYuyueTimeData dataStr:%@",dataStr);
- 
-     if (self.appointCoach.coachid==nil) {
-         return;
-     }
+    
+    if (self.appointCoach.coachid==nil) {
+        return;
+    }
     
     WS(ws);
     NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl,self.appointCoach.coachid,dataStr];
@@ -304,7 +339,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
             NSError *error = nil;
             
             if (array&&array.count!=0) {
-               
+                
                 self.appointDataArray = [[MTLJSONAdapter modelsOfClass:AppointmentCoachTimeInfoModel.class fromJSONArray:array error:&error] mutableCopy];
                 
                 DYNSLog(@"error = %@",error);
@@ -316,9 +351,9 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
         }else{
             
             [self obj_showTotasViewWithMes:param[@"msg"]];
-
+            
             [ws.midYuYueheadView receiveCoachTimeData:nil selectData:self.seletedDate coachModel:self.appointCoach];
-
+            
         }
         
     }];
@@ -375,7 +410,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     }
     
     WS(ws);
-
+    
     NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kSameTimeStudent];
     
     NSLog(@"%@",applyUrlString);
@@ -407,7 +442,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     } withFailure:^(id data) {
         kShowFail(@"网络连接失败，请检查网络连接");
     }];
-
+    
     
 }
 
@@ -521,7 +556,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
         if (type.integerValue == 1) {
             
             [BLInformationManager sharedInstance].appointmentData = nil;
-//            [[BLInformationManager sharedInstance].appointmentData removeAllObjects];
+            //            [[BLInformationManager sharedInstance].appointmentData removeAllObjects];
             
             [self obj_showTotasViewWithMes:@"预约成功"];
             

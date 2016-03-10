@@ -32,6 +32,7 @@
 #import "YBSignUpSuccessController.h"
 #import "DVVPaySuccessController.h"
 #import "YBLoginController.h"
+#import "YBAppointController.h"
 
 @interface YBAppointMentController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -248,24 +249,15 @@
     
     self.edgesForExtendedLayout = NO;
 
-    self.view.backgroundColor = RGBColor(232, 232, 237);
+    self.view.backgroundColor = MAIN_FOREGROUND_COLOR;
     
     NSLog(@"%s,[AcountManager manager].userSubject.name:%@",__func__,[AcountManager manager].userSubject.name);
     
     // 设置顶部标题
     self.navigationItem.title = @"预约列表";
-    
-    UIButton*rightButton = [[UIButton alloc]initWithFrame:CGRectMake(0,0,50,30)];
-    [rightButton setTitle:@"立即预约" forState:UIControlStateNormal];
-    rightButton.titleLabel.font = [UIFont systemFontOfSize:12];
-    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(addAppointMent) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem*rightItem = [[UIBarButtonItem alloc]initWithCustomView:rightButton];
-    self.navigationItem.rightBarButtonItem= rightItem;
-    
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"立即预约" style:UIBarButtonItemStyleDone target:self action:@selector(addAppointMent)];
 
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"立即预约" target:self action:@selector(addAppointMent)];
+    
     [self initUI];
     
     // 加载底部预约列表数据
@@ -312,7 +304,7 @@
         return;
     }
     
-    YBAppointMentChangeCoachController *vc = [[YBAppointMentChangeCoachController alloc] init];
+    YBAppointController *vc = [[YBAppointController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }

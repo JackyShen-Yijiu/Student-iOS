@@ -135,7 +135,7 @@
 - (UIImageView *)mallImageView{
     if (_mallImageView == nil) {
         _mallImageView = [[UIImageView alloc] init];
-        _mallImageView.backgroundColor = [UIColor whiteColor];
+        _mallImageView.backgroundColor = [UIColor grayColor];
     }
     return _mallImageView;
 }

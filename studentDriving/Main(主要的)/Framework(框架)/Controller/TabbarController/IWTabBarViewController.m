@@ -77,7 +77,7 @@
     self.baomingVC = [[YBSignUpViewController alloc] init];
     [self setUpTabbarVc:self.baomingVC title:@"报名" image:@"YBTabbarapply" selectedImage:@"YBTabbarapply_fill"];
     
-    self.xuexiVC = [[YBStudyViewController alloc] init];
+    self.xuexiVC = [YBStudyViewController sharedYBStudyViewController];;
     [self setUpTabbarVc:self.xuexiVC title:@"学习" image:@"YBTabbarlearn" selectedImage:@"YBTabbarlearn_fill"];
     
     self.yuyueVC = [[YBAppointMentController alloc] init];

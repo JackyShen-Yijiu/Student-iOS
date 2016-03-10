@@ -1,12 +1,13 @@
 //
-//  YBLoginController.m
+//  JZPasswordLoginController.m
 //  studentDriving
 //
-//  Created by 大威 on 16/3/4.
+//  Created by ytzhang on 16/3/10.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "YBLoginController.h"
+#import "JZPasswordLoginController.h"
+
 #import "DVVBaseTextField.h"
 #import <JPush/APService.h>
 #import "NSString+DY_MD5.h"
@@ -14,10 +15,8 @@
 #import "YBFindPwdViewController.h"
 #import "WMNavigationController.h"
 #import "JZRegisterFirstController.h"
-#import "JZPasswordLoginController.h"
-@interface YBLoginController () <UITextFieldDelegate>
-
-@property (nonatomic, strong) UIImageView *logoImageView;
+#import "JZRegisterController.h"
+@interface JZPasswordLoginController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) DVVBaseTextField *loginNameTextField;
@@ -25,42 +24,44 @@
 @property (nonatomic, strong) UIButton *loginButton;
 @property (nonatomic, strong) UIButton *registerButton;
 @property (nonatomic, strong) UIButton *retrievePasswordButton;
-
-@property (nonatomic, strong) UIButton *bottomButton;
-
-
 @property (nonatomic, strong) NSMutableDictionary *userParam;
-
-
+@property (nonatomic, strong) UIView *lineView;
+@property (strong, nonatomic) UIButton *eyeButton;
 @end
 
-@implementation YBLoginController
+@implementation JZPasswordLoginController
 
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
-    self.view.layer.contents = (id)([UIImage imageNamed:@"background_login"].CGImage);
     
-    [self.view addSubview:self.logoImageView];
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    self.title = @"登录";
     
     [self.view addSubview:self.contentView];
+    [self.view addSubview:self.eyeButton];
     [_contentView addSubview:self.loginNameTextField];
     [_contentView addSubview:self.passwordTextField];
     [_contentView addSubview:self.loginButton];
     [_contentView addSubview:self.registerButton];
+    [_contentView addSubview:self.lineView];
     [_contentView addSubview:self.retrievePasswordButton];
-    
-    [self.view addSubview:self.bottomButton];
-    
     [self configUI];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+    
 }
+
+- (void)back
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    self.navigationController.navigationBarHidden = YES;
+//    self.navigationController.navigationBarHidden = YES;
     
 }
 
@@ -119,10 +120,10 @@
 #pragma mark 注册按钮
 - (void)registerButtonAction:(UIButton *)sender {
     
-    JZRegisterFirstController *vc = [[JZRegisterFirstController alloc] init];
+    JZRegisterController *vc = [[JZRegisterController alloc] init];
     WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:inav animated:YES completion:nil];
-
+    
 }
 
 #pragma mark 重置密码
@@ -137,6 +138,17 @@
 #pragma mark 随便看看
 - (void)bottomButtonAction:(UIButton *)sender {
     [DVVUserManager userLoginSucces];
+}
+- (void)didEyeButton:(UIButton *)btn{
+    if (!btn.selected) {
+        self.passwordTextField.secureTextEntry = NO;
+        btn.selected = YES;
+        
+    }else if (btn.selected) {
+        self.passwordTextField.secureTextEntry = YES;
+        btn.selected = NO;
+    }
+    
 }
 
 #pragma mark - network
@@ -375,6 +387,13 @@
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(ws.loginNameTextField.mas_bottom).offset(20);
     }];
+    [self.eyeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.passwordTextField.mas_right).with.offset(-14);
+        make.top.mas_equalTo(self.passwordTextField.mas_top).with.offset(44/2-8/2);
+        make.height.mas_equalTo(@8);
+        make.width.mas_equalTo(@16);
+    }];
+
     [_loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(contentViewWidth);
         make.height.mas_equalTo(height);
@@ -387,6 +406,13 @@
         make.top.mas_equalTo(ws.loginButton.mas_bottom).offset(18);
         make.left.mas_equalTo(contentViewWidth / 2.f - 18 - 12*4);
     }];
+    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(1);
+        make.height.mas_equalTo(12);
+        make.top.mas_equalTo(ws.loginButton.mas_bottom).offset(18);
+        make.left.mas_equalTo(contentViewWidth / 2.f);
+    }];
+
     [_retrievePasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(12 * 4);
         make.height.mas_equalTo(12);
@@ -398,37 +424,13 @@
         make.width.mas_equalTo(contentViewWidth);
         make.height.mas_equalTo(214);
         make.centerX.mas_equalTo(ws.view.mas_centerX);
-        make.centerY.mas_equalTo(ws.view.mas_centerY).offset(50);
+//        make.centerY.mas_equalTo(ws.view.mas_centerY).offset(-30);
+        make.top.mas_equalTo(ws.view.mas_top).offset(48);
     }];
     
-    [_logoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(20);
-        make.left.and.right.mas_equalTo(0);
-        make.bottom.mas_equalTo(ws.contentView.mas_top);
-    }];
-    
-    [_bottomButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(12 * 4);
-        make.height.mas_equalTo(12);
-        make.centerX.mas_equalTo(ws.view.mas_centerX);
-        make.bottom.mas_equalTo(-24);
-    }];
-    
-//    _contentView.backgroundColor = [UIColor lightGrayColor];
-//    _registerButton.backgroundColor = [UIColor redColor];
-}
+    }
 
 #pragma mark - lazy load
-
-- (UIImageView *)logoImageView {
-    if (!_logoImageView) {
-        _logoImageView = [UIImageView new];
-        _logoImageView.image = [UIImage imageNamed:@"logo"];
-        _logoImageView.bounds = CGRectMake(0, 0, 166, 120);
-        _logoImageView.contentMode = UIViewContentModeCenter;
-    }
-    return _logoImageView;
-}
 
 - (UIView *)contentView {
     if (!_contentView) {
@@ -439,10 +441,10 @@
 
 - (DVVBaseTextField *)loginNameTextField {
     if (!_loginNameTextField) {
-        _loginNameTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user_white"] placeholder:@"请输入手机号"];
+        _loginNameTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user"] placeholder:@"请输入手机号"];
         _loginNameTextField.keyboardType = UIKeyboardTypeNumberPad;
         _loginNameTextField.cornerRadius = 18;
-        _loginNameTextField.foregroundColor = [UIColor whiteColor];
+        _loginNameTextField.foregroundColor = [UIColor colorWithHexString:@"b7b7b7"];
         _loginNameTextField.delegate = self;
     }
     return _loginNameTextField;
@@ -450,10 +452,10 @@
 
 - (DVVBaseTextField *)passwordTextField {
     if (!_passwordTextField) {
-        _passwordTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password_white"] placeholder:@"请输入密码"];
+        _passwordTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请输入密码"];
         _passwordTextField.cornerRadius = 18;
-        _passwordTextField.foregroundColor = [UIColor whiteColor];
         _passwordTextField.secureTextEntry = YES;
+         _passwordTextField.foregroundColor = [UIColor colorWithHexString:@"b7b7b7"];
     }
     return _passwordTextField;
 }
@@ -477,10 +479,17 @@
         _registerButton = [UIButton new];
         [_registerButton setTitle:@"立即注册" forState:UIControlStateNormal];
         _registerButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        
+        [_registerButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
         [_registerButton addTarget:self action:@selector(registerButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registerButton;
+}
+- (UIView *)lineView{
+    if (_lineView == nil) {
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = [UIColor colorWithHexString:@"6e6e6e"];
+    }
+    return _lineView;
 }
 
 - (UIButton *)retrievePasswordButton {
@@ -488,21 +497,20 @@
         _retrievePasswordButton = [UIButton new];
         [_retrievePasswordButton setTitle:@"找回密码" forState:UIControlStateNormal];
         _retrievePasswordButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        
+        [_retrievePasswordButton setTitleColor:[UIColor colorWithHexString:@"6e6e6e"] forState:UIControlStateNormal];
         [_retrievePasswordButton addTarget:self action:@selector(retrievePasswordButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _retrievePasswordButton;
 }
-
-- (UIButton *)bottomButton {
-    if (!_bottomButton) {
-        _bottomButton = [UIButton new];
-        [_bottomButton setTitle:@"先看看去" forState:UIControlStateNormal];
-        _bottomButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        
-        [_bottomButton addTarget:self action:@selector(bottomButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+- (UIButton *)eyeButton{
+    if (_eyeButton == nil) {
+        _eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"look_off"] forState:UIControlStateNormal];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"look_on"] forState:UIControlStateSelected];
+        [_eyeButton addTarget:self action:@selector(didEyeButton:) forControlEvents:UIControlEventTouchUpInside];
+        _eyeButton.backgroundColor = [UIColor clearColor];
     }
-    return _bottomButton;
+    return _eyeButton;
 }
 
 - (NSMutableDictionary *)userParam {
@@ -517,14 +525,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

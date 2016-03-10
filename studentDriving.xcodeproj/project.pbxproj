@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		064BD6081C911F990021C116 /* JZPasswordLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064BD6071C911F990021C116 /* JZPasswordLoginController.m */; };
+		064BD60B1C914C6D0021C116 /* JZRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064BD60A1C914C6D0021C116 /* JZRegisterController.m */; };
 		0673FC5C1C8FB0B4000FD8A4 /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */; };
 		0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5E1C904867000FD8A4 /* MallCollectionView.m */; };
 		0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */; };
+		0673FC691C91106E000FD8A4 /* JZAutoLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -18,6 +21,11 @@
 		5510F8841C34F5C700A431CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8831C34F5C700A431CD /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		5510F8861C34F5D800A431CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8851C34F5D800A431CD /* UIKit.framework */; };
 		5510F8881C34F5EB00A431CD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8871C34F5EB00A431CD /* Security.framework */; };
+		B221AF591C914BFB001F6EED /* NetWorkEntiry.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF581C914BFB001F6EED /* NetWorkEntiry.m */; };
+		B221AF5C1C914C18001F6EED /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF5B1C914C18001F6EED /* NSString+MD5.m */; };
+		B221AF611C91729F001F6EED /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF5E1C91729F001F6EED /* DIDatepicker.m */; };
+		B221AF621C91729F001F6EED /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF601C91729F001F6EED /* DIDatepickerDateView.m */; };
+		B221AF651C9172E4001F6EED /* YBAppointController.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF641C9172E4001F6EED /* YBAppointController.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -295,8 +303,6 @@
 		B251E4081C8E849500E6613A /* FDCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFA1C8E849200E6613A /* FDCalendar.m */; };
 		B251E4091C8E849500E6613A /* FDCalendarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFC1C8E849200E6613A /* FDCalendarItem.m */; };
 		B251E40A1C8E849500E6613A /* NSString+CurrentTimeDay.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFE1C8E849200E6613A /* NSString+CurrentTimeDay.m */; };
-		B251E40B1C8E849500E6613A /* NetWorkEntiry.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD001C8E849200E6613A /* NetWorkEntiry.m */; };
-		B251E40C1C8E849500E6613A /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD021C8E849200E6613A /* NSString+MD5.m */; };
 		B251E40D1C8E849500E6613A /* NSDictionary+StrDic.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD051C8E849200E6613A /* NSDictionary+StrDic.m */; };
 		B251E40E1C8E849500E6613A /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD081C8E849200E6613A /* UIView+Sizes.m */; };
 		B251E40F1C8E849500E6613A /* YBObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD0A1C8E849200E6613A /* YBObjectTool.m */; };
@@ -990,6 +996,7 @@
 		B251E6F01C8FC59400E6613A /* koaGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6ED1C8FC59400E6613A /* koaGradient.m */; };
 		B251E6F11C8FC59400E6613A /* KOAProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6EF1C8FC59400E6613A /* KOAProgressBar.m */; };
 		B251E6F41C8FE5B100E6613A /* JGUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6F31C8FE5B100E6613A /* JGUserModel.m */; };
+		B251E7441C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E7431C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m */; };
 		D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */; };
 		D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9D1BF659480020F0D7 /* CFNetwork.framework */; };
 		D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */; };
@@ -1005,12 +1012,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		064BD6061C911F990021C116 /* JZPasswordLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZPasswordLoginController.h; sourceTree = "<group>"; };
+		064BD6071C911F990021C116 /* JZPasswordLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZPasswordLoginController.m; sourceTree = "<group>"; };
+		064BD6091C914C6D0021C116 /* JZRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRegisterController.h; sourceTree = "<group>"; };
+		064BD60A1C914C6D0021C116 /* JZRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRegisterController.m; sourceTree = "<group>"; };
 		0673FC5A1C8FB0B4000FD8A4 /* YBDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBDiscountCell.h; sourceTree = "<group>"; };
 		0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBDiscountCell.m; sourceTree = "<group>"; };
 		0673FC5D1C904867000FD8A4 /* MallCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallCollectionView.h; sourceTree = "<group>"; };
 		0673FC5E1C904867000FD8A4 /* MallCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MallCollectionView.m; sourceTree = "<group>"; };
 		0673FC601C904B55000FD8A4 /* DiscountCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscountCollectionView.h; sourceTree = "<group>"; };
 		0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCollectionView.m; sourceTree = "<group>"; };
+		0673FC671C91106E000FD8A4 /* JZAutoLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAutoLoginController.h; sourceTree = "<group>"; };
+		0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAutoLoginController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5510F87D1C34F52300A431CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -1021,6 +1034,16 @@
 		5510F8871C34F5EB00A431CD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B221AF571C914BFB001F6EED /* NetWorkEntiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkEntiry.h; sourceTree = "<group>"; };
+		B221AF581C914BFB001F6EED /* NetWorkEntiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkEntiry.m; sourceTree = "<group>"; };
+		B221AF5A1C914C18001F6EED /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		B221AF5B1C914C18001F6EED /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
+		B221AF5D1C91729F001F6EED /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
+		B221AF5E1C91729F001F6EED /* DIDatepicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepicker.m; sourceTree = "<group>"; };
+		B221AF5F1C91729F001F6EED /* DIDatepickerDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepickerDateView.h; sourceTree = "<group>"; };
+		B221AF601C91729F001F6EED /* DIDatepickerDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepickerDateView.m; sourceTree = "<group>"; };
+		B221AF631C9172E4001F6EED /* YBAppointController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointController.h; sourceTree = "<group>"; };
+		B221AF641C9172E4001F6EED /* YBAppointController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointController.m; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -1570,10 +1593,6 @@
 		B251DCFC1C8E849200E6613A /* FDCalendarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCalendarItem.m; sourceTree = "<group>"; };
 		B251DCFD1C8E849200E6613A /* NSString+CurrentTimeDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CurrentTimeDay.h"; sourceTree = "<group>"; };
 		B251DCFE1C8E849200E6613A /* NSString+CurrentTimeDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CurrentTimeDay.m"; sourceTree = "<group>"; };
-		B251DCFF1C8E849200E6613A /* NetWorkEntiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkEntiry.h; sourceTree = "<group>"; };
-		B251DD001C8E849200E6613A /* NetWorkEntiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkEntiry.m; sourceTree = "<group>"; };
-		B251DD011C8E849200E6613A /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
-		B251DD021C8E849200E6613A /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		B251DD041C8E849200E6613A /* NSDictionary+StrDic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StrDic.h"; sourceTree = "<group>"; };
 		B251DD051C8E849200E6613A /* NSDictionary+StrDic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+StrDic.m"; sourceTree = "<group>"; };
 		B251DD071C8E849200E6613A /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
@@ -1890,12 +1909,12 @@
 		B251DE671C8E849200E6613A /* ShowWarningMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWarningMessageView.m; sourceTree = "<group>"; };
 		B251DE681C8E849200E6613A /* YBIntegralMallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegralMallModel.h; sourceTree = "<group>"; };
 		B251DE691C8E849200E6613A /* YBIntegralMallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegralMallModel.m; sourceTree = "<group>"; };
-		B251DE6A1C8E849200E6613A /* YBFindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBFindPwdViewController.h; sourceTree = "<group>"; };
-		B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBFindPwdViewController.m; sourceTree = "<group>"; };
+		B251DE6A1C8E849200E6613A /* YBFindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBFindPwdViewController.h; path = ../../YBFindPwdViewController.h; sourceTree = "<group>"; };
+		B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBFindPwdViewController.m; path = ../../YBFindPwdViewController.m; sourceTree = "<group>"; };
 		B251DE6C1C8E849200E6613A /* YBLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBLoginController.h; sourceTree = "<group>"; };
 		B251DE6D1C8E849200E6613A /* YBLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBLoginController.m; sourceTree = "<group>"; };
-		B251DE6E1C8E849200E6613A /* YBSettingNewPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSettingNewPwdViewController.h; sourceTree = "<group>"; };
-		B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSettingNewPwdViewController.m; sourceTree = "<group>"; };
+		B251DE6E1C8E849200E6613A /* YBSettingNewPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBSettingNewPwdViewController.h; path = ../../YBSettingNewPwdViewController.h; sourceTree = "<group>"; };
+		B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBSettingNewPwdViewController.m; path = ../../YBSettingNewPwdViewController.m; sourceTree = "<group>"; };
 		B251DE721C8E849200E6613A /* MagicDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MagicDetailViewController.h; sourceTree = "<group>"; };
 		B251DE731C8E849200E6613A /* MagicDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MagicDetailViewController.m; sourceTree = "<group>"; };
 		B251DE741C8E849200E6613A /* MallListSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallListSuccessController.h; sourceTree = "<group>"; };
@@ -2903,6 +2922,9 @@
 		B251E6EF1C8FC59400E6613A /* KOAProgressBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KOAProgressBar.m; sourceTree = "<group>"; };
 		B251E6F21C8FE5B100E6613A /* JGUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGUserModel.h; sourceTree = "<group>"; };
 		B251E6F31C8FE5B100E6613A /* JGUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGUserModel.m; sourceTree = "<group>"; };
+		B251E73E1C901CA200E6613A /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		B251E7421C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+YBBarButtonItem.h"; sourceTree = "<group>"; };
+		B251E7431C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+YBBarButtonItem.m"; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -2985,6 +3007,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0673FC631C911017000FD8A4 /* JZLogin */ = {
+			isa = PBXGroup;
+			children = (
+				0673FC671C91106E000FD8A4 /* JZAutoLoginController.h */,
+				0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */,
+				064BD6061C911F990021C116 /* JZPasswordLoginController.h */,
+				064BD6071C911F990021C116 /* JZPasswordLoginController.m */,
+				064BD6091C914C6D0021C116 /* JZRegisterController.h */,
+				064BD60A1C914C6D0021C116 /* JZRegisterController.m */,
+				B251DE6A1C8E849200E6613A /* YBFindPwdViewController.h */,
+				B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */,
+				B251DE6E1C8E849200E6613A /* YBSettingNewPwdViewController.h */,
+				B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */,
+			);
+			path = JZLogin;
+			sourceTree = "<group>";
+		};
 		4FD586B5C72C30AF6B2C582E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3735,6 +3774,7 @@
 				B251DCB81C8E849200E6613A /* YBNetworkMacro.h */,
 				B251DCB91C8E849200E6613A /* YBNotificationMacro.h */,
 				B251E6E51C8E94F900E6613A /* YBModelDataMacro.h */,
+				B251E73E1C901CA200E6613A /* Singleton.h */,
 			);
 			path = Macro;
 			sourceTree = "<group>";
@@ -3782,6 +3822,8 @@
 				B251DCC81C8E849200E6613A /* YBCoachListViewController.m */,
 				B251DCC91C8E849200E6613A /* YBForceEvaluateViewController.h */,
 				B251DCCA1C8E849200E6613A /* YBForceEvaluateViewController.m */,
+				B221AF631C9172E4001F6EED /* YBAppointController.h */,
+				B221AF641C9172E4001F6EED /* YBAppointController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3839,11 +3881,11 @@
 		B251DCF71C8E849200E6613A /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				B221AF5D1C91729F001F6EED /* DIDatepicker.h */,
+				B221AF5E1C91729F001F6EED /* DIDatepicker.m */,
+				B221AF5F1C91729F001F6EED /* DIDatepickerDateView.h */,
+				B221AF601C91729F001F6EED /* DIDatepickerDateView.m */,
 				B251DCF81C8E849200E6613A /* FDCalendar */,
-				B251DCFF1C8E849200E6613A /* NetWorkEntiry.h */,
-				B251DD001C8E849200E6613A /* NetWorkEntiry.m */,
-				B251DD011C8E849200E6613A /* NSString+MD5.h */,
-				B251DD021C8E849200E6613A /* NSString+MD5.m */,
 				B251DD031C8E849200E6613A /* SafeDic */,
 				B251DD061C8E849200E6613A /* UIView+Sizes */,
 				B251DD091C8E849200E6613A /* YBObjectTool.h */,
@@ -4474,12 +4516,8 @@
 			isa = PBXGroup;
 			children = (
 				B251DE501C8E849200E6613A /* LoginViewController */,
-				B251DE6A1C8E849200E6613A /* YBFindPwdViewController.h */,
-				B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */,
 				B251DE6C1C8E849200E6613A /* YBLoginController.h */,
 				B251DE6D1C8E849200E6613A /* YBLoginController.m */,
-				B251DE6E1C8E849200E6613A /* YBSettingNewPwdViewController.h */,
-				B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */,
 			);
 			path = "Login(登陆)";
 			sourceTree = "<group>";
@@ -4487,6 +4525,7 @@
 		B251DE501C8E849200E6613A /* LoginViewController */ = {
 			isa = PBXGroup;
 			children = (
+				0673FC631C911017000FD8A4 /* JZLogin */,
 				B251DE511C8E849200E6613A /* AddlineButtomTextField.h */,
 				B251DE521C8E849200E6613A /* AddlineButtomTextField.m */,
 				B251DE531C8E849200E6613A /* ForgetViewController.h */,
@@ -6239,6 +6278,8 @@
 			isa = PBXGroup;
 			children = (
 				B251E1E31C8E849400E6613A /* DVVNavigation */,
+				B221AF5A1C914C18001F6EED /* NSString+MD5.h */,
+				B221AF5B1C914C18001F6EED /* NSString+MD5.m */,
 				B251E6D41C8E852300E6613A /* UIImage+WM.h */,
 				B251E6D51C8E852300E6613A /* UIImage+WM.m */,
 				B251E1EA1C8E849400E6613A /* NSDate+Category.h */,
@@ -6273,6 +6314,8 @@
 				B251E2071C8E849400E6613A /* UIViewController+HUD.m */,
 				B251E2081C8E849400E6613A /* UIViewController+Method.h */,
 				B251E2091C8E849400E6613A /* UIViewController+Method.m */,
+				B251E7421C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.h */,
+				B251E7431C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -6388,6 +6431,8 @@
 		B251E2491C8E849400E6613A /* 网络 */ = {
 			isa = PBXGroup;
 			children = (
+				B221AF571C914BFB001F6EED /* NetWorkEntiry.h */,
+				B221AF581C914BFB001F6EED /* NetWorkEntiry.m */,
 				B251E24A1C8E849400E6613A /* DVVCheckAppNewVersion.h */,
 				B251E24B1C8E849400E6613A /* DVVCheckAppNewVersion.m */,
 				B251E24C1C8E849400E6613A /* JENetwoking.h */,
@@ -7071,7 +7116,6 @@
 				B251E42A1C8E849500E6613A /* EMChatAudioBubbleView.m in Sources */,
 				B251E3C21C8E849500E6613A /* SignatureViewController.m in Sources */,
 				B251E5B91C8E849500E6613A /* DVVNoDataPromptView.m in Sources */,
-				B251E40C1C8E849500E6613A /* NSString+MD5.m in Sources */,
 				B251E6731C8E849600E6613A /* NSString+Valid.m in Sources */,
 				B251E3881C8E849500E6613A /* StudentCommentCell.m in Sources */,
 				B251E3C41C8E849500E6613A /* SignInListController.m in Sources */,
@@ -7148,6 +7192,7 @@
 				B251E3BD1C8E849500E6613A /* ModifyPhoneNumViewController.m in Sources */,
 				B251E59B1C8E849500E6613A /* DrivingDetailDMData.m in Sources */,
 				B251E2FA1C8E849500E6613A /* JGCoachDetailViewController.m in Sources */,
+				064BD60B1C914C6D0021C116 /* JZRegisterController.m in Sources */,
 				B251E3151C8E849500E6613A /* Applyclasstypeinfo.m in Sources */,
 				B251E5891C8E849500E6613A /* ClassTypeViewModel.m in Sources */,
 				B251E3F51C8E849500E6613A /* HMClassInfoModel.m in Sources */,
@@ -7157,6 +7202,7 @@
 				B251E40F1C8E849500E6613A /* YBObjectTool.m in Sources */,
 				B251E2DD1C8E849500E6613A /* CoachDMData.m in Sources */,
 				B251E3061C8E849500E6613A /* KindlyReminderView.m in Sources */,
+				B251E7441C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m in Sources */,
 				B251E6AC1C8E849600E6613A /* SBJsonWriter.m in Sources */,
 				B251E30E1C8E849500E6613A /* SignUpSucceedViewController.m in Sources */,
 				B251E4041C8E849500E6613A /* YBAppointMentDetailsDataModel.m in Sources */,
@@ -7213,6 +7259,7 @@
 				B251E6971C8E849600E6613A /* JEPhotoPickManger.m in Sources */,
 				B251E2DC1C8E849500E6613A /* ChooseBtnView.m in Sources */,
 				B251E5341C8E849500E6613A /* SignUpDetailController.m in Sources */,
+				B221AF621C91729F001F6EED /* DIDatepickerDateView.m in Sources */,
 				B251E3F31C8E849500E6613A /* BaseModelMethod.m in Sources */,
 				B251E3081C8E849500E6613A /* SignSuccessView.m in Sources */,
 				B251E5111C8E849500E6613A /* finishMessageView.m in Sources */,
@@ -7275,6 +7322,7 @@
 				B251E5CB1C8E849500E6613A /* DVVSignUpSchoolDMRootClass.m in Sources */,
 				B251E3181C8E849500E6613A /* ApplyschoolinfoModel.m in Sources */,
 				B251E3DE1C8E849500E6613A /* JGUserTools.m in Sources */,
+				B221AF611C91729F001F6EED /* DIDatepicker.m in Sources */,
 				B251E6811C8E849600E6613A /* main.m in Sources */,
 				B251E3441C8E849500E6613A /* DVVSideMenuBlockView.m in Sources */,
 				B251E5901C8E849500E6613A /* CoachListDMHeadportrait.m in Sources */,
@@ -7300,6 +7348,7 @@
 				B251E42D1C8E849500E6613A /* EMChatLocationBubbleView.m in Sources */,
 				B251E5501C8E849500E6613A /* TheoreticalTestController.m in Sources */,
 				B251E3861C8E849500E6613A /* MyWalletViewCell.m in Sources */,
+				B221AF5C1C914C18001F6EED /* NSString+MD5.m in Sources */,
 				B251E2F21C8E849500E6613A /* DrivingDetailViewController.m in Sources */,
 				B251E3FC1C8E849500E6613A /* HMSubjectModel.m in Sources */,
 				B251E2EF1C8E849500E6613A /* DrivingCycleShowDMHeadportrait.m in Sources */,
@@ -7307,7 +7356,6 @@
 				B251E4FF1C8E849500E6613A /* JZRegisterFirstController.m in Sources */,
 				B251E61A1C8E849500E6613A /* EMSDWebImageDownloaderOperation.m in Sources */,
 				B251E4071C8E849500E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */,
-				B251E40B1C8E849500E6613A /* NetWorkEntiry.m in Sources */,
 				B251E5471C8E849500E6613A /* FeedBackViewController.m in Sources */,
 				B251E6121C8E849500E6613A /* MWTapDetectingImageView.m in Sources */,
 				B251E33A1C8E849500E6613A /* ComplaintCoachListController.m in Sources */,
@@ -7387,6 +7435,7 @@
 				B251E3A11C8E849500E6613A /* CommonAddressViewController.m in Sources */,
 				B251E6851C8E849600E6613A /* BLInformationManager.m in Sources */,
 				B251E5BD1C8E849500E6613A /* UIImage+DVVEffects.m in Sources */,
+				064BD6081C911F990021C116 /* JZPasswordLoginController.m in Sources */,
 				B251E3361C8E849500E6613A /* trainfieldModel.m in Sources */,
 				B251E3DB1C8E849500E6613A /* YBWebBaseViewController.m in Sources */,
 				B251E38C1C8E849500E6613A /* WaitConfirmCell.m in Sources */,
@@ -7491,6 +7540,7 @@
 				B251E6081C8E849500E6613A /* NSDictionary+adapter.m in Sources */,
 				B251E5291C8E849500E6613A /* ComplaintSchoolView.m in Sources */,
 				B251E4141C8E849500E6613A /* YBAppointMentDetailsCancleView.m in Sources */,
+				0673FC691C91106E000FD8A4 /* JZAutoLoginController.m in Sources */,
 				B251E3D31C8E849500E6613A /* IWTabBarViewController.m in Sources */,
 				B251E4271C8E849500E6613A /* FacialView.m in Sources */,
 				B251E5FC1C8E849500E6613A /* EMCDDeviceManager+Microphone.m in Sources */,
@@ -7573,6 +7623,7 @@
 				B251E5941C8E849500E6613A /* CoachListView.m in Sources */,
 				B251E63B1C8E849500E6613A /* TTGlobalUICommon.m in Sources */,
 				B251E60A1C8E849500E6613A /* LJSwizzleMethod.m in Sources */,
+				B221AF651C9172E4001F6EED /* YBAppointController.m in Sources */,
 				B251E32A1C8E849500E6613A /* SchoolInfo.m in Sources */,
 				B251E6611C8E849500E6613A /* amrFileCodec.mm in Sources */,
 				B251E37C1C8E849500E6613A /* DrivingCell.m in Sources */,
@@ -7613,6 +7664,7 @@
 				B251E3CA1C8E849500E6613A /* AppDelegate+EaseMob.m in Sources */,
 				B251E3551C8E849500E6613A /* DiscountWalletController.m in Sources */,
 				B251E68D1C8E849600E6613A /* CirclePoint.m in Sources */,
+				B221AF591C914BFB001F6EED /* NetWorkEntiry.m in Sources */,
 				B251E4321C8E849500E6613A /* EMChatViewCell.m in Sources */,
 				B251E3241C8E849500E6613A /* DrvingDetailModel.m in Sources */,
 				B251E3211C8E849500E6613A /* CourseTimeModel.m in Sources */,

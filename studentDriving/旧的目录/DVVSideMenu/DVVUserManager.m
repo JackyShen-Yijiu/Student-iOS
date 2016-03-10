@@ -11,18 +11,19 @@
 #import "YBLoginController.h"
 #import "AppDelegate.h"
 #import "ViewController.h"
+#import "JZAutoLoginController.h"
 
 @implementation DVVUserManager
 
 // 获得登录窗体
 + (UIViewController *)loginController {
     
-    static YBLoginController *loginVC = nil;
+    static JZAutoLoginController *loginVC = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         
-        loginVC = [YBLoginController new];
+        loginVC = [JZAutoLoginController new];
     });
     return loginVC;
 }
@@ -34,7 +35,7 @@
     //    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
     //    [(UINavigationController *)(window.rootViewController) presentViewController:[self loginController] animated:YES completion:nil];
     
-    YBLoginController *vc = [[YBLoginController alloc] init];
+    JZAutoLoginController *vc = [[JZAutoLoginController alloc] init];
     [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
     
     //    UIWindow *window = [UIApplication sharedApplication].keyWindow;
