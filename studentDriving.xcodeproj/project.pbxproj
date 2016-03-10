@@ -990,6 +990,7 @@
 		B251E6F01C8FC59400E6613A /* koaGradient.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6ED1C8FC59400E6613A /* koaGradient.m */; };
 		B251E6F11C8FC59400E6613A /* KOAProgressBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6EF1C8FC59400E6613A /* KOAProgressBar.m */; };
 		B251E6F41C8FE5B100E6613A /* JGUserModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E6F31C8FE5B100E6613A /* JGUserModel.m */; };
+		B251E7441C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E7431C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m */; };
 		D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */; };
 		D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9D1BF659480020F0D7 /* CFNetwork.framework */; };
 		D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */; };
@@ -2904,6 +2905,8 @@
 		B251E6F21C8FE5B100E6613A /* JGUserModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JGUserModel.h; sourceTree = "<group>"; };
 		B251E6F31C8FE5B100E6613A /* JGUserModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JGUserModel.m; sourceTree = "<group>"; };
 		B251E73E1C901CA200E6613A /* Singleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Singleton.h; sourceTree = "<group>"; };
+		B251E7421C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+YBBarButtonItem.h"; sourceTree = "<group>"; };
+		B251E7431C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+YBBarButtonItem.m"; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -6275,6 +6278,8 @@
 				B251E2071C8E849400E6613A /* UIViewController+HUD.m */,
 				B251E2081C8E849400E6613A /* UIViewController+Method.h */,
 				B251E2091C8E849400E6613A /* UIViewController+Method.m */,
+				B251E7421C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.h */,
+				B251E7431C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -7159,6 +7164,7 @@
 				B251E40F1C8E849500E6613A /* YBObjectTool.m in Sources */,
 				B251E2DD1C8E849500E6613A /* CoachDMData.m in Sources */,
 				B251E3061C8E849500E6613A /* KindlyReminderView.m in Sources */,
+				B251E7441C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m in Sources */,
 				B251E6AC1C8E849600E6613A /* SBJsonWriter.m in Sources */,
 				B251E30E1C8E849500E6613A /* SignUpSucceedViewController.m in Sources */,
 				B251E4041C8E849500E6613A /* YBAppointMentDetailsDataModel.m in Sources */,
