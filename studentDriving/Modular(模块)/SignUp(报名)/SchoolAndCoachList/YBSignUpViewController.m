@@ -640,6 +640,10 @@ static NSString *coachCellID = @"coachCellID";
     if (!_toolBarView) {
         _toolBarView = [DVVSignUpToolBarView new];
         
+        _toolBarView.titleNormalColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _toolBarView.titleSelectColor = YBNavigationBarBgColor;
+        _toolBarView.followBarColor = YBNavigationBarBgColor;
+        
         _toolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
         _toolBarView.layer.shadowOffset = CGSizeMake(0, 2);
         _toolBarView.layer.shadowOpacity = 0.3;
