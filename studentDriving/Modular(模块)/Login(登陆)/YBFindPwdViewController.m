@@ -10,6 +10,9 @@
 #import "DVVBaseTextField.h"
 #import "JZRegisterSecondController.h"
 #import "YBSettingNewPwdViewController.h"
+#import "NSString+DY_MD5.h"
+
+static NSString *const kchangePasswordUrl = @"/userinfo/updatepwd";
 
 static NSString *const kautoCode = @"Verificationsmscode";
 
@@ -17,9 +20,13 @@ static NSString *const kautoCode = @"Verificationsmscode";
 @property (nonatomic, strong) DVVBaseTextField *phoneNumTextFiled; // 手机号
 @property (nonatomic, strong) DVVBaseTextField *authCodeTextFiled; // 验证码
 @property (strong, nonatomic)UIButton *sendButton;
-@property (strong, nonatomic)UIButton *nextRegisterButton;
+
 
 @property (nonatomic,strong) UIView *codeView;
+
+@property (nonatomic, strong) DVVBaseTextField *pwdTextFiled; // 设置新密码
+@property (strong, nonatomic) UIButton *eyeButton;
+@property (strong, nonatomic)UIButton *nextRegisterButton;
 
 @end
 
@@ -49,23 +56,9 @@ static NSString *const kautoCode = @"Verificationsmscode";
     [self.view addSubview:self.codeView];
     [self.codeView addSubview:self.authCodeTextFiled];
     [self.codeView addSubview:self.sendButton];
+    [self.view addSubview:self.pwdTextFiled];
+    [self.view addSubview:self.eyeButton];
     [self.view addSubview:self.nextRegisterButton];
-}
-#pragma mark -- UItextFiledDelegate
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    if (5000 == textField.tag) {
-        // 手机号开始输入
-        //        self.sendButton.backgroundColor = YBNavigationBarBgColor;
-        //        self.sendButton.userInteractionEnabled = YES;
-        
-    }
-    if (5001 == textField.tag) {
-        // 验证码开始输入
-        //        self.nextRegisterButton.backgroundColor = YBNavigationBarBgColor;
-        //        self.nextRegisterButton.userInteractionEnabled = YES;
-        
-    }
-    
 }
 #pragma mark -- UItextFiledNotification
 - (void)phoenTextFieldTextDidChange:(NSNotification *)obj{
@@ -73,27 +66,56 @@ static NSString *const kautoCode = @"Verificationsmscode";
     if (phoneTextFiled.text.length == 0) {
         _sendButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
         _sendButton.userInteractionEnabled = NO;
+        
+        // 注册按钮不可编辑
+        _nextRegisterButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
+        _nextRegisterButton.userInteractionEnabled = NO;
+        
     }else{
         _sendButton.backgroundColor = YBNavigationBarBgColor;
         _sendButton.userInteractionEnabled = YES;
+        // 判断注册按钮是否可编辑
+        if (self.authCodeTextFiled.text.length && self.pwdTextFiled.text.length) {
+            _nextRegisterButton.backgroundColor = YBNavigationBarBgColor;
+            _nextRegisterButton.userInteractionEnabled = YES;
+        }
         
     }
 }
+#pragma mark ---- 验证码改变的通知
 - (void)authCodeTextFieldTextDidChange:(NSNotification *)obj{
     UITextField *autoTextFiled = (UITextField *)obj.object;
-    
-    
-    if (autoTextFiled.text.length == 0) {
-        _nextRegisterButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
-        _nextRegisterButton.userInteractionEnabled = NO;
-    }else if(self.phoneNumTextFiled.text.length){
+    if (autoTextFiled.text.length && self.phoneNumTextFiled.text.length && self.pwdTextFiled.text.length ) {
         _nextRegisterButton.backgroundColor = YBNavigationBarBgColor;
         _nextRegisterButton.userInteractionEnabled = YES;
-        
+    }else{
+        _nextRegisterButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
+        _nextRegisterButton.userInteractionEnabled = NO;
+    }
+}
+#pragma mark ---- 密码改变的通知
+- (void)pwdTextFieldTextDidChange:(NSNotification *)obj{
+    UITextField *passwordTextFiled = (UITextField *)obj.object;
+    if (passwordTextFiled.text.length && self.phoneNumTextFiled.text.length && self.pwdTextFiled.text.length ) {
+        _nextRegisterButton.backgroundColor = YBNavigationBarBgColor;
+        _nextRegisterButton.userInteractionEnabled = YES;
+    }else{
+        _nextRegisterButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
+        _nextRegisterButton.userInteractionEnabled = NO;
     }
     
 }
+
 #pragma mark - buttonAction
+- (void)didEyeButton:(UIButton *)btn{
+    if (!btn.selected) {
+        self.pwdTextFiled.secureTextEntry = NO;
+        btn.selected = YES;
+    }else if (btn.selected) {
+        self.pwdTextFiled.secureTextEntry = YES;
+        btn.selected = NO;
+    }
+}
 
 #define TIME 60
 - (void)dealSend:(UIButton *)sender {
@@ -179,11 +201,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
         if (1 == [data[@"type"] integerValue]) {
            
             NSLog(@"设置新密码");
-            YBSettingNewPwdViewController *vc = [[YBSettingNewPwdViewController alloc] init];
-            vc.phoneNumber = self.phoneNumTextFiled.text;
-            vc.codeNumber = self.authCodeTextFiled.text;
-            [self.navigationController pushViewController:vc animated:YES];
-            
+            [self nextAuto];
         }
         
     } withFailure:^(id data) {
@@ -191,6 +209,51 @@ static NSString *const kautoCode = @"Verificationsmscode";
     }];
     
 }
+- (void)nextAuto
+{
+    // 手机号的判断
+    if (self.phoneNumTextFiled.text == nil) {
+        return;
+    }
+    
+    // 密码的判断
+    if (self.pwdTextFiled.text == nil || self.pwdTextFiled.text.length <= 0) {
+        return;
+    }
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kchangePasswordUrl];
+    
+    NSDictionary *param = @{@"smscode":self.authCodeTextFiled.text,
+                            @"password":[self.pwdTextFiled.text DY_MD5],
+                            @"mobile":self.phoneNumTextFiled.text};
+    
+    NSLog(@"param:%@",param);
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        NSDictionary *resultData = data;
+        
+        DYNSLog(@"resultData.message = %@",resultData[@"msg"]);
+        NSLog(@"data:%@",data);
+        
+        NSString *type = [NSString stringWithFormat:@"%@",resultData[@"type"]];
+        NSLog(@"type:%@",type);
+        
+        if ([type isEqualToString:@"1"]) {
+            
+            [self obj_showTotasViewWithMes:@"修改成功"];
+            
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+            
+        }else {
+            
+            [self obj_showTotasViewWithMes:resultData[@"msg"]];
+            
+        }
+    }];
+    
+}
+
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     [self.phoneNumTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -222,8 +285,23 @@ static NSString *const kautoCode = @"Verificationsmscode";
         make.width.mas_equalTo(@86);
     }];
     
+    [self.pwdTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.codeView.mas_bottom).offset(18);
+        make.left.mas_equalTo(self.view.mas_left).offset(20);
+        make.right.mas_equalTo(self.view.mas_right).offset(-20);
+        make.height.mas_equalTo(@44);
+        
+    }];
+    
+    [self.eyeButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(self.pwdTextFiled.mas_right).with.offset(-14);
+        make.top.mas_equalTo(self.pwdTextFiled.mas_top).with.offset(44/2-8/2);
+        make.height.mas_equalTo(@8);
+        make.width.mas_equalTo(@16);
+    }];
+
     [self.nextRegisterButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.authCodeTextFiled.mas_bottom).offset(40);
+        make.top.mas_equalTo(self.pwdTextFiled.mas_bottom).offset(40);
         make.right.mas_equalTo(self.view.mas_right).offset(-20);
         make.left.mas_equalTo(self.view.mas_left).offset(20);
         make.height.mas_equalTo(@44);
@@ -236,7 +314,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
 #pragma mark ----- Lazy 加载
 - (DVVBaseTextField *)phoneNumTextFiled{
     if (_phoneNumTextFiled == nil) {
-        _phoneNumTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user"] placeholder:@"请输入手机号" borderColor:YBNavigationBarBgColor];
+        _phoneNumTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user"] placeholder:@"请输入手机号" borderColor:[UIColor colorWithHexString:@"b7b7b7"]];
         _phoneNumTextFiled.tag = 5000;
         _phoneNumTextFiled.delegate = self;
         [[NSNotificationCenter defaultCenter]
@@ -254,7 +332,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
         _codeView.layer.masksToBounds = YES;
         _codeView.layer.cornerRadius = 10;
         _codeView.layer.borderWidth = 1;
-        _codeView.layer.borderColor = YBNavigationBarBgColor.CGColor;
+        _codeView.layer.borderColor = [UIColor colorWithHexString:@"b7b7b7"].CGColor;
     }
     return _codeView;
 }
@@ -286,6 +364,21 @@ static NSString *const kautoCode = @"Verificationsmscode";
     }
     return _sendButton;
 }
+- (DVVBaseTextField *)pwdTextFiled{
+    if (_pwdTextFiled == nil) {
+        _pwdTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请设置新密码" borderColor:[UIColor colorWithHexString:@"b7b7b7"]];
+        _pwdTextFiled.tag = 5000;
+        _pwdTextFiled.delegate = self;
+        _pwdTextFiled.secureTextEntry = YES;
+        [[NSNotificationCenter defaultCenter]
+         addObserver:self
+         selector:@selector(pwdTextFieldTextDidChange:)
+         name:UITextFieldTextDidChangeNotification
+         object:_pwdTextFiled];
+    }
+    return _pwdTextFiled;
+}
+
 - (UIButton *)nextRegisterButton{
     if (_nextRegisterButton == nil) {
         _nextRegisterButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -293,7 +386,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
         _nextRegisterButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_nextRegisterButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_nextRegisterButton addTarget:self action:@selector(nextRegisterButton:) forControlEvents:UIControlEventTouchUpInside];
-        [_nextRegisterButton setTitle:@"下一步" forState:UIControlStateNormal];
+        [_nextRegisterButton setTitle:@"找回密码" forState:UIControlStateNormal];
         _nextRegisterButton.layer.masksToBounds = YES;
         _nextRegisterButton.layer.cornerRadius = 10;
         _nextRegisterButton.layer.borderWidth = 1;
@@ -301,6 +394,16 @@ static NSString *const kautoCode = @"Verificationsmscode";
         _nextRegisterButton.userInteractionEnabled = NO;
     }
     return _nextRegisterButton;
+}
+- (UIButton *)eyeButton{
+    if (_eyeButton == nil) {
+        _eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"look_off"] forState:UIControlStateNormal];
+        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"look_on"] forState:UIControlStateSelected];
+        [_eyeButton addTarget:self action:@selector(didEyeButton:) forControlEvents:UIControlEventTouchUpInside];
+        _eyeButton.backgroundColor = [UIColor clearColor];
+    }
+    return _eyeButton;
 }
 
 @end

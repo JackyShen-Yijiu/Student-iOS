@@ -16,6 +16,7 @@
 #import "SignUpInfoManager.h"
 #import "HelpController.h"
 #import "YBLoginController.h"
+#include "JZAutoLoginController.h"
 
 static NSString *const kSettingUrl = @"userinfo/personalsetting";
 
@@ -264,7 +265,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         [ud setInteger:1 forKey:@"isCarReset"];
         [ud synchronize];
 
-        [UIApplication sharedApplication].keyWindow.rootViewController = [[YBLoginController alloc] init];
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[JZAutoLoginController alloc] init];
 
     } onQueue:nil];
     

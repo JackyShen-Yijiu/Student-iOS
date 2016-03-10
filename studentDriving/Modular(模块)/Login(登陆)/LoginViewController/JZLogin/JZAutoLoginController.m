@@ -1,21 +1,21 @@
 //
-//  YBLoginController.m
+//  JZAutoLoginController.m
 //  studentDriving
 //
-//  Created by 大威 on 16/3/4.
+//  Created by ytzhang on 16/3/10.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "YBLoginController.h"
+#import "JZAutoLoginController.h"
+
 #import "DVVBaseTextField.h"
 #import <JPush/APService.h>
 #import "NSString+DY_MD5.h"
 #import "DVVToast.h"
 #import "YBFindPwdViewController.h"
 #import "WMNavigationController.h"
-#import "JZRegisterFirstController.h"
 #import "JZPasswordLoginController.h"
-@interface YBLoginController () <UITextFieldDelegate>
+@interface JZAutoLoginController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *logoImageView;
 
@@ -25,16 +25,14 @@
 @property (nonatomic, strong) UIButton *loginButton;
 @property (nonatomic, strong) UIButton *registerButton;
 @property (nonatomic, strong) UIButton *retrievePasswordButton;
-
-@property (nonatomic, strong) UIButton *bottomButton;
-
-
+@property (nonatomic, strong) UIView *lineView;
+@property (strong, nonatomic)UIButton *sendButton;
 @property (nonatomic, strong) NSMutableDictionary *userParam;
 
 
 @end
 
-@implementation YBLoginController
+@implementation JZAutoLoginController
 
 #pragma mark - life cycle
 - (void)viewDidLoad {
@@ -48,11 +46,11 @@
     [self.view addSubview:self.contentView];
     [_contentView addSubview:self.loginNameTextField];
     [_contentView addSubview:self.passwordTextField];
+    [_passwordTextField addSubview:self.sendButton];
     [_contentView addSubview:self.loginButton];
     [_contentView addSubview:self.registerButton];
+    [_contentView addSubview:self.lineView];
     [_contentView addSubview:self.retrievePasswordButton];
-    
-    [self.view addSubview:self.bottomButton];
     
     [self configUI];
 }
@@ -91,6 +89,18 @@
     
     return YES;
 }
+#pragma mark -- UItextFiledNotification
+- (void)passwordTextFieldTextDidChange:(NSNotification *)obj{
+    UITextField *passwordTextFiled = (UITextField *)obj.object;
+    if (passwordTextFiled.text.length == 0) {
+        _loginButton.backgroundColor = [UIColor colorWithHexString:@"fb7064"];
+        _loginButton.userInteractionEnabled = NO;
+    }else{
+        _loginButton.backgroundColor = YBNavigationBarBgColor;
+        _loginButton.userInteractionEnabled = YES;
+        
+    }
+}
 
 #pragma mark - action
 
@@ -119,10 +129,10 @@
 #pragma mark 注册按钮
 - (void)registerButtonAction:(UIButton *)sender {
     
-    JZRegisterFirstController *vc = [[JZRegisterFirstController alloc] init];
+    JZPasswordLoginController *vc = [[JZPasswordLoginController alloc] init];
     WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:inav animated:YES completion:nil];
-
+    
 }
 
 #pragma mark 重置密码
@@ -132,6 +142,67 @@
     WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
     [self presentViewController:inav animated:YES completion:nil];
     
+}
+#define TIME 60
+- (void)dealSend:(UIButton *)sender {
+    
+    NSLog(@"发送验证码");
+    
+    [self sendYanZhengMa:sender];
+    
+}
+
+#pragma mark 发送验证码
+- (void)sendYanZhengMa:(UIButton *)sender
+{
+    
+    if (self.loginNameTextField.text == nil || self.loginNameTextField.text.length <= 0) {
+        [self obj_showTotasViewWithMes:@"请输入手机号"];
+        return;
+        
+    }else {
+        
+        if (![AcountManager isValidateMobile:self.loginNameTextField.text]) {
+            [self obj_showTotasViewWithMes:@"请输入正确的手机号"];
+            return;
+        }
+        
+        NSString *urlString = [NSString stringWithFormat:@"code/%@",self.loginNameTextField.text];
+        NSString *codeUrl = [NSString stringWithFormat:BASEURL,urlString];
+        
+        [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            [self obj_showTotasViewWithMes:@"发送成功"];
+        }];
+        
+    }
+    
+    sender.userInteractionEnabled = NO;
+    __block int count = TIME;
+    dispatch_queue_t myQueue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, myQueue);
+    dispatch_source_set_timer(timer, dispatch_walltime(NULL, 0), 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    dispatch_source_set_event_handler(timer, ^{
+        if (count < 0) {
+            dispatch_source_cancel(timer);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.sendButton.titleLabel.font = [UIFont systemFontOfSize:12];
+                _sendButton.backgroundColor = [UIColor clearColor];
+                [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+                [self.sendButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
+                self.sendButton.userInteractionEnabled = YES;
+            });
+        }else {
+            NSString *str = [NSString stringWithFormat:@"%d秒后重发",count];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.sendButton.backgroundColor = [UIColor clearColor];;
+                [self.sendButton setTitleColor:[UIColor colorWithHexString:@"e7afaa"] forState:UIControlStateNormal];
+                [self.sendButton setTitle:str forState:UIControlStateNormal];
+                
+            });
+            count--;
+        }
+    });
+    dispatch_resume(timer);
 }
 
 #pragma mark 随便看看
@@ -375,6 +446,14 @@
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(ws.loginNameTextField.mas_bottom).offset(20);
     }];
+    [_sendButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(ws.passwordTextField.mas_top).offset(0);
+        make.width.mas_equalTo(86);
+        make.height.mas_equalTo(44);
+        make.right.mas_equalTo(ws.passwordTextField.mas_right).offset(-10);
+        
+    }];
+
     [_loginButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(contentViewWidth);
         make.height.mas_equalTo(height);
@@ -386,6 +465,12 @@
         make.height.mas_equalTo(12);
         make.top.mas_equalTo(ws.loginButton.mas_bottom).offset(18);
         make.left.mas_equalTo(contentViewWidth / 2.f - 18 - 12*4);
+    }];
+    [_lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.width.mas_equalTo(1);
+        make.height.mas_equalTo(12);
+        make.top.mas_equalTo(ws.loginButton.mas_bottom).offset(18);
+        make.left.mas_equalTo(contentViewWidth / 2.f);
     }];
     [_retrievePasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(12 * 4);
@@ -407,15 +492,6 @@
         make.bottom.mas_equalTo(ws.contentView.mas_top);
     }];
     
-    [_bottomButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.width.mas_equalTo(12 * 4);
-        make.height.mas_equalTo(12);
-        make.centerX.mas_equalTo(ws.view.mas_centerX);
-        make.bottom.mas_equalTo(-24);
-    }];
-    
-//    _contentView.backgroundColor = [UIColor lightGrayColor];
-//    _registerButton.backgroundColor = [UIColor redColor];
 }
 
 #pragma mark - lazy load
@@ -439,7 +515,7 @@
 
 - (DVVBaseTextField *)loginNameTextField {
     if (!_loginNameTextField) {
-        _loginNameTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user_white"] placeholder:@"请输入手机号"];
+        _loginNameTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user_white"] placeholder:@"请输入手机号/昵称"];
         _loginNameTextField.keyboardType = UIKeyboardTypeNumberPad;
         _loginNameTextField.cornerRadius = 18;
         _loginNameTextField.foregroundColor = [UIColor whiteColor];
@@ -450,10 +526,15 @@
 
 - (DVVBaseTextField *)passwordTextField {
     if (!_passwordTextField) {
-        _passwordTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password_white"] placeholder:@"请输入密码"];
+        _passwordTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"test"] placeholder:@"请输入验证码"];
         _passwordTextField.cornerRadius = 18;
         _passwordTextField.foregroundColor = [UIColor whiteColor];
-        _passwordTextField.secureTextEntry = YES;
+//        _passwordTextField.secureTextEntry = YES;
+//        [[NSNotificationCenter defaultCenter]
+//         addObserver:self
+//         selector:@selector(passwordTextFieldTextDidChange:)
+//         name:UITextFieldTextDidChangeNotification
+//         object:_passwordTextField];
     }
     return _passwordTextField;
 }
@@ -464,7 +545,7 @@
         [_loginButton.layer setMasksToBounds:YES];
         [_loginButton.layer setCornerRadius:18];
         _loginButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
+        [_loginButton setTitle:@"验证登录" forState:UIControlStateNormal];
         _loginButton.backgroundColor = YBNavigationBarBgColor;
         
         [_loginButton addTarget:self action:@selector(loginButtonAction:) forControlEvents:UIControlEventTouchUpInside];
@@ -475,34 +556,42 @@
 - (UIButton *)registerButton {
     if (!_registerButton) {
         _registerButton = [UIButton new];
-        [_registerButton setTitle:@"立即注册" forState:UIControlStateNormal];
+        [_registerButton setTitle:@"密码登录" forState:UIControlStateNormal];
         _registerButton.titleLabel.font = [UIFont systemFontOfSize:12];
         
         [_registerButton addTarget:self action:@selector(registerButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registerButton;
 }
-
+- (UIView *)lineView{
+    if (_lineView == nil) {
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = [UIColor whiteColor];
+    }
+    return _lineView;
+}
 - (UIButton *)retrievePasswordButton {
     if (!_retrievePasswordButton) {
         _retrievePasswordButton = [UIButton new];
-        [_retrievePasswordButton setTitle:@"找回密码" forState:UIControlStateNormal];
+        [_retrievePasswordButton setTitle:@"随便看看" forState:UIControlStateNormal];
         _retrievePasswordButton.titleLabel.font = [UIFont systemFontOfSize:12];
         
-        [_retrievePasswordButton addTarget:self action:@selector(retrievePasswordButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+        [_retrievePasswordButton addTarget:self action:@selector(bottomButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _retrievePasswordButton;
 }
-
-- (UIButton *)bottomButton {
-    if (!_bottomButton) {
-        _bottomButton = [UIButton new];
-        [_bottomButton setTitle:@"先看看去" forState:UIControlStateNormal];
-        _bottomButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        
-        [_bottomButton addTarget:self action:@selector(bottomButtonAction:) forControlEvents:UIControlEventTouchUpInside];
+- (UIButton *)sendButton{
+    if (_sendButton == nil) {
+        _sendButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_sendButton addTarget:self action:@selector(dealSend:) forControlEvents:UIControlEventTouchUpInside];
+        //        [_sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        _sendButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        _sendButton.backgroundColor = [UIColor clearColor];
+        [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
+        [self.sendButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
+        self.sendButton.userInteractionEnabled = YES;
     }
-    return _bottomButton;
+    return _sendButton;
 }
 
 - (NSMutableDictionary *)userParam {
@@ -517,14 +606,5 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
-
 @end
+
