@@ -8,7 +8,7 @@
 
 #import "DVVSignUpToolBarView.h"
 
-#define TITLE_COLOR YBNavigationBarBgColor
+#define TITLE_COLOR [UIColor whiteColor]
 
 #define WIDTH self.bounds.size.width
 #define HEIGHT self.bounds.size.height
@@ -51,11 +51,11 @@
     _titleArray=[NSArray new];
     _titleArray = @[ @"标题1", @"标题2", @"..." ];
     _titleFont = [UIFont systemFontOfSize:14];
-    _titleNormalColor = [UIColor colorWithHexString:@"6e6e6e"];
+    _titleNormalColor = [UIColor colorWithWhite:1 alpha:0.75];
     _titleSelectColor = TITLE_COLOR;
     
     //跟随条
-    _followBarColor = TITLE_COLOR;
+    _followBarColor = [UIColor yellowColor];
     _followBarHeight = 2;
     _followBarLocation = 0;
 }

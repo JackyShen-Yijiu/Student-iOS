@@ -15,16 +15,18 @@
 #import "YBFindPwdViewController.h"
 #import "WMNavigationController.h"
 #import "JZPasswordLoginController.h"
+static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
+
 @interface JZAutoLoginController () <UITextFieldDelegate>
 
 @property (nonatomic, strong) UIImageView *logoImageView;
 
 @property (nonatomic, strong) UIView *contentView;
 @property (nonatomic, strong) DVVBaseTextField *loginNameTextField;
-@property (nonatomic, strong) DVVBaseTextField *passwordTextField;
-@property (nonatomic, strong) UIButton *loginButton;
-@property (nonatomic, strong) UIButton *registerButton;
-@property (nonatomic, strong) UIButton *retrievePasswordButton;
+@property (nonatomic, strong) DVVBaseTextField *autoTextField;
+@property (nonatomic, strong) UIButton *loginButton; // 验证登录
+@property (nonatomic, strong) UIButton *registerButton; // 密码登录
+@property (nonatomic, strong) UIButton *retrievePasswordButton; // 随便看看
 @property (nonatomic, strong) UIView *lineView;
 @property (strong, nonatomic)UIButton *sendButton;
 @property (nonatomic, strong) NSMutableDictionary *userParam;
@@ -45,8 +47,8 @@
     
     [self.view addSubview:self.contentView];
     [_contentView addSubview:self.loginNameTextField];
-    [_contentView addSubview:self.passwordTextField];
-    [_passwordTextField addSubview:self.sendButton];
+    [_contentView addSubview:self.autoTextField];
+    [_autoTextField addSubview:self.sendButton];
     [_contentView addSubview:self.loginButton];
     [_contentView addSubview:self.registerButton];
     [_contentView addSubview:self.lineView];
@@ -118,12 +120,14 @@
         return ;
     }
     
-    if (!_passwordTextField.text || _passwordTextField.text.length == 0) {
-        [DVVToast showMessage:@"请输入密码"];
+    if (!_autoTextField.text || _autoTextField.text.length == 0) {
+        [DVVToast showMessage:@"请输入验证码"];
         return;
     }
     
-    [self userExist];
+//    [self userExist];
+    [self userLogin];
+
 }
 
 #pragma mark 注册按钮
@@ -135,14 +139,6 @@
     
 }
 
-#pragma mark 重置密码
-- (void)retrievePasswordButtonAction:(UIButton *)sender {
-    
-    YBFindPwdViewController *vc = [[YBFindPwdViewController alloc] init];
-    WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:inav animated:YES completion:nil];
-    
-}
 #define TIME 60
 - (void)dealSend:(UIButton *)sender {
     
@@ -241,14 +237,12 @@
 - (void)userLogin {
     
     //网络请求
-    [_passwordTextField resignFirstResponder];
+    [_autoTextField resignFirstResponder];
     [_loginNameTextField resignFirstResponder];
-    [self.userParam setObject:@"1" forKey:@"usertype"];
     [self.userParam setObject:_loginNameTextField.text forKey:@"mobile"];
-    NSString *pwdKey = [self.passwordTextField.text DY_MD5];
-    [self.userParam setObject:pwdKey forKey:@"password"];
+    [self.userParam setObject:_autoTextField.text forKey:@"smscode"];
     
-    NSString *url = [NSString stringWithFormat:BASEURL, @"userinfo/userlogin"];
+    NSString *url = [NSString stringWithFormat:BASEURL, kcodeLogin];
     
     DYNSLog(@"%s url:%@ self.userParam:%@",__func__,url,self.userParam);
     
@@ -261,7 +255,7 @@
         
         if ([type isEqualToString:@"0"]) {
             
-            [DVVToast showMessage:@"密码错误"];
+            [DVVToast showMessage:@"验证码错误"];
             
         }else if ([type isEqualToString:@"1"]) {
             
@@ -270,9 +264,9 @@
             
             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
             NSLog(@"self.phoneNumTextField.text:%@",_loginNameTextField.text);
-            NSLog(@"self.passwordTextField.text:%@",_passwordTextField.text);
+            NSLog(@"self.passwordTextField.text:%@",_autoTextField.text);
             
-            [self loginWithUsername:_loginNameTextField.text password:pwdKey  dataDic:dataDic];
+            [self loginWithUsername:_loginNameTextField.text password:_autoTextField.text  dataDic:dataDic];
             
         }
     }];
@@ -332,7 +326,7 @@
     
     // 异步登陆账号
     [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:userid
-                                                        password:password
+                                                        password:@""
                                                       completion:
      ^(NSDictionary *loginInfo, EMError *error) {
          
@@ -344,7 +338,7 @@
              DYNSLog(@"登录成功");
              
              //保存最近一次登录用户名
-             [AcountManager saveUserName:_loginNameTextField.text andPassword:_passwordTextField.text];
+             [AcountManager saveUserName:_loginNameTextField.text andPassword:_autoTextField.text];
              
              [AcountManager configUserInformationWith:dataDic[@"data"]];
              
@@ -440,17 +434,17 @@
         make.height.mas_equalTo(height);
         make.left.and.top.mas_equalTo(0);
     }];
-    [_passwordTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+    [_autoTextField mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(contentViewWidth);
         make.height.mas_equalTo(height);
         make.left.mas_equalTo(0);
         make.top.mas_equalTo(ws.loginNameTextField.mas_bottom).offset(20);
     }];
     [_sendButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(ws.passwordTextField.mas_top).offset(0);
+        make.top.mas_equalTo(ws.autoTextField.mas_top).offset(0);
         make.width.mas_equalTo(86);
         make.height.mas_equalTo(44);
-        make.right.mas_equalTo(ws.passwordTextField.mas_right).offset(-10);
+        make.right.mas_equalTo(ws.autoTextField.mas_right).offset(-10);
         
     }];
 
@@ -458,7 +452,7 @@
         make.width.mas_equalTo(contentViewWidth);
         make.height.mas_equalTo(height);
         make.left.mas_equalTo(0);
-        make.top.mas_equalTo(ws.passwordTextField.mas_bottom).offset(32);
+        make.top.mas_equalTo(ws.autoTextField.mas_bottom).offset(32);
     }];
     [_registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(12 * 4);
@@ -524,11 +518,11 @@
     return _loginNameTextField;
 }
 
-- (DVVBaseTextField *)passwordTextField {
-    if (!_passwordTextField) {
-        _passwordTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"test"] placeholder:@"请输入验证码"];
-        _passwordTextField.cornerRadius = 18;
-        _passwordTextField.foregroundColor = [UIColor whiteColor];
+- (DVVBaseTextField *)autoTextField {
+    if (!_autoTextField) {
+        _autoTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"test"] placeholder:@"请输入验证码"];
+        _autoTextField.cornerRadius = 18;
+        _autoTextField.foregroundColor = [UIColor whiteColor];
 //        _passwordTextField.secureTextEntry = YES;
 //        [[NSNotificationCenter defaultCenter]
 //         addObserver:self
@@ -536,7 +530,7 @@
 //         name:UITextFieldTextDidChangeNotification
 //         object:_passwordTextField];
     }
-    return _passwordTextField;
+    return _autoTextField;
 }
 
 - (UIButton *)loginButton {
