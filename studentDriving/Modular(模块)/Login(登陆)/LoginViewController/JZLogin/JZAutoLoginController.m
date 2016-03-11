@@ -135,7 +135,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
     
     JZPasswordLoginController *vc = [[JZPasswordLoginController alloc] init];
     WMNavigationController *inav = [[WMNavigationController alloc] initWithRootViewController:vc];
-    [self presentViewController:inav animated:YES completion:nil];
+    [self presentViewController:inav animated:NO completion:nil];
     
 }
 
@@ -456,7 +456,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
     }];
     [_registerButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(12 * 4);
-        make.height.mas_equalTo(12);
+        make.height.mas_equalTo(44);
         make.top.mas_equalTo(ws.loginButton.mas_bottom).offset(18);
         make.left.mas_equalTo(contentViewWidth / 2.f - 18 - 12*4);
     }];
@@ -468,14 +468,14 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
     }];
     [_retrievePasswordButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(12 * 4);
-        make.height.mas_equalTo(12);
+        make.height.mas_equalTo(44);
         make.top.mas_equalTo(ws.loginButton.mas_bottom).offset(18);
         make.left.mas_equalTo(contentViewWidth / 2.f + 18);
     }];
     
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.width.mas_equalTo(contentViewWidth);
-        make.height.mas_equalTo(214);
+        make.height.mas_equalTo(246);
         make.centerX.mas_equalTo(ws.view.mas_centerX);
         make.centerY.mas_equalTo(ws.view.mas_centerY).offset(50);
     }];
@@ -552,7 +552,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
         _registerButton = [UIButton new];
         [_registerButton setTitle:@"密码登录" forState:UIControlStateNormal];
         _registerButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        
+        [_registerButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 44 - 12, 0)];
         [_registerButton addTarget:self action:@selector(registerButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _registerButton;
@@ -569,7 +569,8 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
         _retrievePasswordButton = [UIButton new];
         [_retrievePasswordButton setTitle:@"随便看看" forState:UIControlStateNormal];
         _retrievePasswordButton.titleLabel.font = [UIFont systemFontOfSize:12];
-        
+//        _retrievePasswordButton.backgroundColor = [UIColor cyanColor];
+        [_retrievePasswordButton setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, 44 - 12, 0)];
         [_retrievePasswordButton addTarget:self action:@selector(bottomButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _retrievePasswordButton;
