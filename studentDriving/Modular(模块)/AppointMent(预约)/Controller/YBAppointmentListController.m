@@ -67,6 +67,12 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveMainVcChange" object:self];
+    }
+}
 
 #pragma mark - action
 

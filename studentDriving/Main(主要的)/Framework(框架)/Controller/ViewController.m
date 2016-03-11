@@ -110,8 +110,7 @@
 
 - (void)receiveMainVcChange
 {
-    self.tabBarController.mainNav.tabBarController.selectedIndex = 0;
-    self.tabBarController.vcType = 0;
+    [self.tabBarController changeVc:0];
 }
 
 - (void)receiveMainChatMessage

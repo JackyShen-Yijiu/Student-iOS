@@ -25,6 +25,8 @@
 
 @interface IWTabBarViewController : UITabBarController
 
+- (void)changeVc:(NSInteger)number;
+
 @property (assign, nonatomic) kControllerType   vcType;// 控制器类型
 
 @property (strong, nonatomic) YBSignUpViewController   *baomingVC;
