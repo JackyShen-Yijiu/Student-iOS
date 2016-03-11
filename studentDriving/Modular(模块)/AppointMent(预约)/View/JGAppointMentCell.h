@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 @class AppointmentCoachTimeInfoModel;
+@class YBAppointMentCoachModel;
+
 @interface JGAppointMentCell : UICollectionViewCell
 
 @property (strong, nonatomic) UILabel *startTimeLabel;
@@ -20,5 +22,8 @@
 @property (nonatomic,assign) BOOL isModifyCoach;
 
 @property (strong, nonatomic) NSDate *selectDate;
+
+// 预约教练
+@property (nonatomic,strong) YBAppointMentCoachModel *appointCoach;
 
 @end

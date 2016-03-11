@@ -20,31 +20,32 @@
 #import "CoachModel.h"
 #import "YBAppointMentCoachModel.h"
 #import "DIDatepicker.h"
+#import "YBAppointMentFootView.h"
 
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
+#define datePickerH 55
+#define footViewH 150
+
 @interface YBAppointController ()<YBCoachListViewControllerDelegate,JGYuYueHeadViewDelegate>
 
+// 顶部日历
 @property (nonatomic,strong) DIDatepicker *datepicker;
 
 // 中间预约时间
 @property (nonatomic,strong) JGYuYueHeadView *midYuYueheadView;
 
+// 底部工具条
+@property (nonatomic,strong) YBAppointMentFootView *footView;
+
 @property(nonatomic,strong)NSDateFormatter *dateFormattor;
 
-@property (nonatomic,weak) UICollectionView *collectionView;
-
-@property (strong, nonatomic) NSDate *seletedDate;
 @property (nonatomic,copy) NSString *selectDateStr;
 
 @property (nonatomic,strong) YBAppointMentCoachModel *appointCoach;
 
 @property (nonatomic ,strong) NSString *startTimeStr;
 @property (nonatomic ,strong) NSString *endTimeStr;
-
-@property (nonatomic,strong) YBAppointMentNoCountentView *noCountmentView;
-
-@property ( nonatomic,weak) UILabel *countLabel;
 
 @property (strong, nonatomic) NSMutableArray *stuDataArray;
 @property (strong, nonatomic) NSMutableArray *appointDataArray;
@@ -55,27 +56,6 @@
 
 @implementation YBAppointController
 
-- (DIDatepicker *)datepicker
-{
-    if (_datepicker == nil) {
-        
-        _datepicker = [[DIDatepicker alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 50)];
-        _datepicker.backgroundColor = [UIColor whiteColor];
-    }
-    return _datepicker;
-}
-
-
-- (YBAppointMentNoCountentView *)noCountmentView
-{
-    if (_noCountmentView==nil) {
-        _noCountmentView = [[YBAppointMentNoCountentView alloc] init];
-        _noCountmentView.frame = self.view.bounds;
-        _noCountmentView.hidden = YES;
-    }
-    return _noCountmentView;
-}
-
 - (NSMutableArray *)coachArray
 {
     if (_coachArray==nil) {
@@ -84,27 +64,12 @@
     return _coachArray;
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    // 隐藏导航条底部分割线
-    [self.navigationController.navigationBar setBackgroundImage:[[UIImage alloc]init] forBarMetrics:UIBarMetricsDefault];
-    [self.navigationController.navigationBar setShadowImage:[[UIImage alloc]init]];
-    
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
     
-//    [self fdCalendar:nil didSelectedDate:self.seletedDate];
+    // 初始化日期、预约教练、预约时间
     [self updateSelectedDate];
-}
-
--(void)viewDidDisappear:(BOOL)animated {
-    
-    [super viewDidDisappear:animated];
     
 }
 
@@ -112,63 +77,81 @@
     
     [super viewDidLoad];
     
-    self.seletedDate = [NSDate date];
-    
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     [self initUI];
     
-    // 没有内容，占位图
-    [self.view addSubview:self.noCountmentView];
-    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"预约列表" target:self action:@selector(back)];
+
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(kCellChange) name:@"kCellChange" object:nil];
-    
-    YBAppointMentCoachModel *appointCoach = [self getPersonArrayData];
-    NSLog(@"appointCoach.coachid：%@",appointCoach.coachid);
-    if (appointCoach&&appointCoach.coachid) {
-        self.appointCoach = appointCoach;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"换教练" style:UIBarButtonItemStyleDone target:self action:@selector(changeCoach)];
-    }else{
-        self.noCountmentView.hidden = NO;
-        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"添加教练" style:UIBarButtonItemStyleDone target:self action:@selector(changeCoach)];
+
+}
+
+- (void)back
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (DIDatepicker *)datepicker
+{
+    if (_datepicker == nil) {
+        
+        _datepicker = [[DIDatepicker alloc] initWithFrame:CGRectMake(0, 0, self.view.width, datePickerH)];
+        _datepicker.backgroundColor = [UIColor whiteColor];
+        [_datepicker addTarget:self action:@selector(updateSelectedDate) forControlEvents:UIControlEventValueChanged];
+
     }
+    return _datepicker;
+}
+
+- (YBAppointMentFootView *)footView
+{
+    if (_footView==nil) {
+        _footView = [[YBAppointMentFootView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame)-footViewH-64, self.view.width, footViewH)];
+        _footView.parentViewController = self;
+        [_footView.commitBtn addTarget:self action:@selector(commitBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+        [_footView.changeCoachBtn addTarget:self action:@selector(changeCoachBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _footView;
+}
+
+-(void)initUI
+{
+    
+    [self.view addSubview:self.datepicker];
+    
+    // 从今天开始-14天后
+    [self.datepicker fillDatesFromCurrentDate:14];
+    //    [self.datepicker fillCurrentWeek];
+    //    [self.datepicker fillCurrentMonth];
+    //    [self.datepicker fillCurrentYear];
+    // 选中第0个
+    [self.datepicker selectDateAtIndex:0];
+    
+    // 中间方格
+    self.midYuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.datepicker.frame), self.view.width, kSystemHeight-64-self.datepicker.height)];
+    self.midYuYueheadView.parentViewController = self;
+    self.midYuYueheadView.delegate = self;
+    [self.view addSubview:self.midYuYueheadView];
+    
+    // 底部提交
+    [self.view addSubview:self.footView];
+    
+    // 初始化数据
+    [self setupcountLabelData];
     
 }
 
-- (void)changeCoach
+- (void)changeCoachBtnDidClick
 {
     YBCoachListViewController *vc = [[YBCoachListViewController alloc] init];
     vc.delegate = self;
     [self.navigationController pushViewController:vc animated:YES];
-}
-
-- (void)YBCoachListViewControllerWithCoach:(CoachModel *)coachModel
-{
-    
-    YBAppointMentCoachModel *model = [[YBAppointMentCoachModel alloc] init];
-    model.coachid = coachModel.coachid;
-    model.headportrait = coachModel.headportrait.originalpic;
-    model.name = coachModel.name;
-    
-    // 保存教练信息
-    [self savePersonArrayData:model];
-    
-    self.noCountmentView.hidden = YES;
-    self.appointCoach = model;
-    
-    
-}
-
-- (YBAppointMentCoachModel *)getPersonArrayData{
-    
-    YBAppointMentCoachModel *coach = [NSKeyedUnarchiver unarchiveObjectWithFile:[YBPath stringByAppendingPathComponent:@"saveAppointMentData"]];
-    
-    return coach;
-}
-
-- (void)savePersonArrayData:(YBAppointMentCoachModel *)coachModel {
-    
-    [NSKeyedArchiver archiveRootObject:coachModel toFile:[YBPath stringByAppendingPathComponent:@"saveAppointMentData"]];
 }
 
 - (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView dateString:(NSString *)dateString isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid
@@ -182,92 +165,32 @@
     [self.navigationController pushViewController:coachList animated:YES];
 }
 
-- (void)dealloc
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-}
-
--(void)initUI
+- (void)YBCoachListViewControllerWithCoach:(CoachModel *)coachModel
 {
     
-    [self.view addSubview:self.datepicker];
-    [self.datepicker addTarget:self action:@selector(updateSelectedDate) forControlEvents:UIControlEventValueChanged];
+    YBAppointMentCoachModel *model = [[YBAppointMentCoachModel alloc] init];
+    model.coachid = coachModel.coachid;
+    model.headportrait = coachModel.headportrait.originalpic;
+    model.name = coachModel.name;
     
-    // 从今天开始-14天后
-    [self.datepicker fillDatesFromCurrentDate:14];
-    //    [self.datepicker fillCurrentWeek];
-    //    [self.datepicker fillCurrentMonth];
-    //    [self.datepicker fillCurrentYear];
-    // 选中第0个
-    [self.datepicker selectDateAtIndex:0];
+    // 保存教练信息
+    [self savePersonArrayData:model];
     
-    // 顶部日历
-//    self.TopCalendarHeadView = [[FDCalendar alloc] initWithData:[NSDate date]];
-//    self.TopCalendarHeadView.delegate = self;
-//    self.TopCalendarHeadView.frame = CGRectMake(0, 0, self.view.width, 30+35);
-//    [self.view addSubview:self.TopCalendarHeadView];
-    
-    // 中间方格
-    self.midYuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.datepicker.frame), self.view.width, kSystemHeight-self.datepicker.height-50)];
-    self.midYuYueheadView.parentViewController = self;
-    self.midYuYueheadView.delegate = self;
-    [self.view addSubview:self.midYuYueheadView];
-    
-    // 底部提交
-    UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame)-50-64, self.view.width, 50)];
-    footView.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:footView];
-    
-    UIButton *commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(kSystemWide-10-90, 5, 90, 40)];
-    commitBtn.backgroundColor = YBNavigationBarBgColor;
-    commitBtn.layer.masksToBounds = YES;
-    commitBtn.layer.cornerRadius = 3;
-    [commitBtn setTitle:@"提交" forState:UIControlStateNormal];
-    [commitBtn setTitle:@"提交" forState:UIControlStateHighlighted];
-    [commitBtn addTarget:self action:@selector(commitBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
-    [footView addSubview:commitBtn];
-    UILabel *countLabel = [[UILabel alloc] init];
-    countLabel.frame = CGRectMake(0, 0, kSystemWide-commitBtn.width-20, footView.height);
-    countLabel.text = @" 科目二 第20-33课时 已完成44课时";
-    countLabel.font = [UIFont systemFontOfSize:12];
-    countLabel.textColor = [UIColor blackColor];
-    [footView addSubview:countLabel];
-    self.countLabel = countLabel;
-    
-    [self setupcountLabelData];
+    self.appointCoach = model;
     
 }
 
-- (void)setupcountLabelData
-{
+- (void)savePersonArrayData:(YBAppointMentCoachModel *)coachModel {
     
-    NSMutableString *detailStr = [NSMutableString string];
-    
-    if ([AcountManager manager].subjecttwo.progress) {
-        [detailStr appendString:[NSString stringWithFormat:@" %@",[AcountManager manager].subjecttwo.progress]];
-    }else if ([AcountManager manager].subjectthree.progress) {
-        [detailStr appendString:[NSString stringWithFormat:@" %@",[AcountManager manager].subjectthree.progress]];
-    }
-    
-    if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
-        
-        NSInteger doneCourse = [AcountManager manager].subjecttwo.finishcourse.integerValue;
-        
-        [detailStr appendString:[NSString stringWithFormat:@" 完成:%ld课时",(long)doneCourse]];
-        
-    }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
-        
-        NSInteger doneCourse = [AcountManager manager].subjectthree.finishcourse.integerValue;
-        [detailStr appendString:[NSString stringWithFormat:@" 完成:%ld课时",(long)doneCourse]];
-        
-    }
-    
-    if (detailStr&&[detailStr length]!=0) {
-        self.countLabel.text = detailStr;
-    }
-    
+    [NSKeyedArchiver archiveRootObject:coachModel toFile:[YBPath stringByAppendingPathComponent:@"saveAppointMentData"]];
 }
 
+- (YBAppointMentCoachModel *)getPersonArrayData{
+    
+    YBAppointMentCoachModel *coach = [NSKeyedUnarchiver unarchiveObjectWithFile:[YBPath stringByAppendingPathComponent:@"saveAppointMentData"]];
+    
+    return coach;
+}
 
 - (void)updateSelectedDate
 {
@@ -278,10 +201,6 @@
     
     NSLog(@"self.datepicker.selectedDate:%@",self.datepicker.selectedDate);
     
-//    self.selectedDateLabel.text = [formatter stringFromDate:self.datepicker.selectedDate];
-    
-    self.seletedDate = self.datepicker.selectedDate;
-    
     if (!self.dateFormattor) {
         self.dateFormattor = [[NSDateFormatter alloc] init];
         [self.dateFormattor setDateFormat:@"yyyy-M-d"];
@@ -289,9 +208,11 @@
     NSString * dataStr = [self.dateFormattor stringFromDate:self.datepicker.selectedDate];
     NSLog(@"切换日历代理方法 dataStr:%@",dataStr);
     self.selectDateStr = dataStr;
-    
-    // 初始化日历
-//    [self.TopCalendarHeadView setCurrentDate:self.seletedDate coachID:self.appointCoach.coachid];
+
+    // 获取教练
+    YBAppointMentCoachModel *appointCoach = [self getPersonArrayData];
+    self.appointCoach = appointCoach;
+    self.footView.appointCoach = self.appointCoach;
     
     // 加载中间预约时间
     [self loadMidYuyueTimeData:dataStr];
@@ -300,12 +221,6 @@
     self.navigationItem.title = [NSString stringWithFormat:@"%@",[self.dateFormattor stringFromDate:self.datepicker.selectedDate]];
     
 }
-
-#pragma mark LoadDayData
-//- (void)fdCalendar:(FDCalendar *)calendar didSelectedDate:(NSDate *)date
-//{
-//    
-//}
 
 - (void)loadMidYuyueTimeData:(NSString *)dataStr
 {
@@ -340,7 +255,7 @@
                 
                 DYNSLog(@"error = %@",error);
                 
-                [ws.midYuYueheadView receiveCoachTimeData:self.appointDataArray selectData:self.seletedDate coachModel:self.appointCoach];
+                [ws.midYuYueheadView receiveCoachTimeData:self.appointDataArray selectData:self.datepicker.selectedDate coachModel:self.appointCoach];
                 
             }
             
@@ -348,11 +263,28 @@
             
             [self obj_showTotasViewWithMes:param[@"msg"]];
             
-            [ws.midYuYueheadView receiveCoachTimeData:nil selectData:self.seletedDate coachModel:self.appointCoach];
+            [ws.midYuYueheadView receiveCoachTimeData:nil selectData:self.datepicker.selectedDate coachModel:self.appointCoach];
             
         }
         
     }];
+    
+}
+
+- (void)setupcountLabelData
+{
+    
+    NSMutableString *detailStr = [NSMutableString string];
+    
+    if ([AcountManager manager].subjecttwo.progress) {
+        [detailStr appendString:[NSString stringWithFormat:@"  %@",[AcountManager manager].subjecttwo.progress]];
+    }else if ([AcountManager manager].subjectthree.progress) {
+        [detailStr appendString:[NSString stringWithFormat:@"  %@",[AcountManager manager].subjectthree.progress]];
+    }
+    
+    if (detailStr&&[detailStr length]!=0) {
+        self.footView.countLabel.text = detailStr;
+    }
     
 }
 
@@ -405,6 +337,16 @@
         
     }
     
+    if (beginString && endString) {
+        if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
+            self.footView.countLabel.text = [NSString stringWithFormat:@" 科目二第%@-%@时段",beginString,endString];
+        }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
+            self.footView.countLabel.text = [NSString stringWithFormat:@" 科目三第%@-%@时段",beginString,endString];
+        }
+    }else {
+        self.footView.countLabel.text = @"";
+    }
+    
     WS(ws);
     
     NSString *applyUrlString = [NSString stringWithFormat:BASEURL,kSameTimeStudent];
@@ -430,7 +372,7 @@
                     [ws.stuDataArray removeObject:studentModel];
                 }
             }
-            [ws.midYuYueheadView receiveCoachTimeDataWithStudentData:self.stuDataArray coachModel:self.appointCoach];
+            ws.footView.studentArray = self.stuDataArray;
             
         }else {
             [self obj_showTotasViewWithMes:[NSString stringWithFormat:@"%@",data[@"msg"]]];

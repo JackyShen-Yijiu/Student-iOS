@@ -6,9 +6,6 @@
 #import "DIDatepickerDateView.h"
 #import "YBObjectTool.h"
 
-const CGFloat kDIDatepickerItemWidth = 46.;
-const CGFloat kDIDatepickerSelectionLineWidth = 51.;
-
 @interface DIDatepickerDateView ()
 
 @property (strong, nonatomic) UILabel *weekLabel;
@@ -112,9 +109,9 @@ const CGFloat kDIDatepickerSelectionLineWidth = 51.;
 - (UILabel *)dateLabel
 {
     if (!_dateLabel) {
-        _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height/2-5, self.width, self.height/2)];
-        _dateLabel.font = [UIFont systemFontOfSize:13];
-        _dateLabel.textColor = [UIColor grayColor];
+        _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height/2-4, self.width, self.height/2)];
+        _dateLabel.font = [UIFont systemFontOfSize:12];
+        _dateLabel.textColor = RGBColor(100, 100, 100);
         _dateLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_dateLabel];
     }
@@ -126,8 +123,8 @@ const CGFloat kDIDatepickerSelectionLineWidth = 51.;
     if (!_weekLabel) {
         _weekLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height/2)];
         _weekLabel.textAlignment = NSTextAlignmentCenter;
-        _weekLabel.font = [UIFont systemFontOfSize:15];
-        _weekLabel.textColor = [UIColor lightGrayColor];
+        _weekLabel.font = [UIFont systemFontOfSize:14];
+        _weekLabel.textColor = [UIColor colorWithHexString:@"e6e6e6"];
         [self addSubview:_weekLabel];
     }
     return _weekLabel;
@@ -136,7 +133,6 @@ const CGFloat kDIDatepickerSelectionLineWidth = 51.;
 - (UIView *)selectionView
 {
     if (!_selectionView) {
-        // CGRectMake((self.frame.size.width - 51) / 2, self.frame.size.height - 3, 51, 3)
         _selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-25/2, self.frame.size.height - 25 - 5, 25, 25)];
         _selectionView.alpha = 0;
         _selectionView.layer.masksToBounds = YES;
