@@ -20,7 +20,7 @@
 }
 
 - (instancetype)initWithFrame:(CGRect)frame withPlaceholder:(NSString *)placeholder{
-    
+    NSLog(@"%@",placeholder);
     if (self = [super initWithFrame:frame]) {
         
         self.placeholderLabel.text = placeholder;

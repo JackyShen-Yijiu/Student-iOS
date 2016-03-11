@@ -18,7 +18,7 @@
     if (_starBar == nil) {
         _starBar = [[RatingBar alloc] init];
         
-        [_starBar setImageDeselected:@"starUnSelected30.png" halfSelected:nil fullSelected:@"starSelected30.png" andDelegate:self];
+        [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:self];
         _starBar.isIndicator = NO;
     }
     return _starBar;
@@ -26,7 +26,7 @@
 - (UILabel *)topLabel {
     if (_topLabel == nil) {
         _topLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:16]];
-        _topLabel.text = @"总体评价";
+        _topLabel.text = @"总体";
     }
     return _topLabel;
 }
@@ -51,7 +51,7 @@
     [self.backGroundView addSubview:self.topLabel];
     
     [self.topLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
+        make.left.mas_equalTo(self.backGroundView.mas_left).offset(70);
         make.top.mas_equalTo(self.backGroundView.mas_top).offset(14);
     }];
     [self.backGroundView addSubview:self.starBar];
@@ -59,8 +59,8 @@
     [self.starBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.topLabel.mas_right).offset(15);
         make.top.mas_equalTo(self.backGroundView.mas_top).offset(15);
-        make.width.mas_equalTo(@5);
-        make.height.mas_equalTo(@5);
+        make.width.mas_equalTo(@200);
+        make.height.mas_equalTo(@15);
     }];
 }
 - (void)receiveIndex:(NSIndexPath *)indexPath {
