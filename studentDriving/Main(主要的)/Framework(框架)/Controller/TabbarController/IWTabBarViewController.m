@@ -80,7 +80,7 @@
     self.xuexiVC = [YBStudyViewController sharedYBStudyViewController];;
     [self setUpTabbarVc:self.xuexiVC title:@"学习" image:@"YBTabbarlearn" selectedImage:@"YBTabbarlearn_fill"];
     
-    self.yuyueVC = [[YBAppointMentController alloc] init];
+    self.yuyueVC = [[YBAppointmentListController alloc] init];
     [self setUpTabbarVc:self.yuyueVC title:@"预约" image:@"YBTabbarorder" selectedImage:@"YBTabbarorder_fill"];
     
     self.shangchengVC = [[YBMallViewController alloc] init];

@@ -21,10 +21,6 @@
 #import "YBAppointMentCoachModel.h"
 #import "DIDatepicker.h"
 
-static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?coachid=%@&date=%@";
-
-static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
-
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
 @interface YBAppointController ()<YBCoachListViewControllerDelegate,JGYuYueHeadViewDelegate>
