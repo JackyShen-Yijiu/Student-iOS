@@ -26,4 +26,6 @@
 @property (nonatomic, strong) NSString * shuttleaddress;
 @property (nonatomic, strong) YBAppointMentDetailsDataSubject * subject;
 @property (nonatomic, strong) YBAppointMentDetailsDataDriveschoolinfo * trainfieldlinfo;
+@property (nonatomic, strong) NSString * sigintime;
+
 @end
