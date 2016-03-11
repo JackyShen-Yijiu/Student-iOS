@@ -30,7 +30,7 @@
     [super viewDidLoad];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = RGBColor(232, 232, 237);
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     

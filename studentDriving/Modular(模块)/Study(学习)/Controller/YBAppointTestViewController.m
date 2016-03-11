@@ -41,8 +41,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    self.view.backgroundColor = RGBColor(236, 236, 236);
-    self.view.backgroundColor = RGBColor(232, 232, 237);
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     [self.mainScrollView addSubview:self.reasonMsg];
     
