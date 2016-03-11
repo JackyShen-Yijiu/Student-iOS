@@ -22,10 +22,8 @@ typedef NS_ENUM(NSInteger, kControllerType) {
 #define RGBColor(R,G,B)  [UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:1]
 //RGBColor(255, 102, 51)
 #define MAINCOLOR  [UIColor colorWithRed:255/255.0f green:102/255.0f blue:51/255.0f alpha:1]
-// 主背景色
-#define MAIN_BACKGROUND_COLOR [UIColor colorWithHexString:@"3E3E64"]
 // 主前景色
-#define MAIN_FOREGROUND_COLOR [UIColor whiteColor]
+#define YBMainViewControlerBackgroundColor RGBColor(232,232,237)
 
 //247, 249, 251
 #define TEXTGRAYCOLOR [UIColor colorWithRed:153/255.0f green:153/255.0f blue:153/255.0f alpha:1]

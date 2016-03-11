@@ -487,7 +487,7 @@ static NSString *const kDrivingUrl = @"searchschool";
 - (UIButton *)naviBarRightselectjiaolian {
     if (_naviBarRightselectjiaolian == nil) {
         
-        _naviBarRightselectjiaolian = [WMUITool initWithTitle:@"找教练" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:14]];
+        _naviBarRightselectjiaolian = [WMUITool initWithTitle:@"找教练" withTitleColor:YBMainViewControlerBackgroundColor withTitleFont:[UIFont systemFontOfSize:14]];
         _naviBarRightselectjiaolian.frame = CGRectMake(0, 0, 14 * 3, 44);
         [_naviBarRightselectjiaolian addTarget:self action:@selector(clickRight) forControlEvents:UIControlEventTouchUpInside];
         
@@ -497,7 +497,7 @@ static NSString *const kDrivingUrl = @"searchschool";
 - (UIButton *)naviBarRightselectjiaxiao {
     if (_naviBarRightselectjiaxiao == nil) {
         
-        _naviBarRightselectjiaxiao = [WMUITool initWithTitle:@"找驾校" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:14]];
+        _naviBarRightselectjiaxiao = [WMUITool initWithTitle:@"找驾校" withTitleColor:YBMainViewControlerBackgroundColor withTitleFont:[UIFont systemFontOfSize:14]];
         _naviBarRightselectjiaxiao.frame = CGRectMake(0, 0, 14 * 3, 44);
         [_naviBarRightselectjiaxiao addTarget:self action:@selector(clickRight) forControlEvents:UIControlEventTouchUpInside];
         

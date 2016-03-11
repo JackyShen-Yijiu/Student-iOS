@@ -48,4 +48,8 @@ static NSString *const kdriveschoolSchoolexamurl = @"driveschool/schoolexamurl?s
 
 static NSString *kgetuserinfo = @"userinfo/getimuserinfo?userid=%@";
 
+static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?coachid=%@&date=%@";
+
+static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
+
 #endif /* YBNetworkMacro_h */

@@ -27,12 +27,10 @@
 
 static NSString *const kStudentTimeStudy = @"courseinfo/sametimestudents/reservationid/%@/index/%@";
 
-static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 //http://101.200.204.240:3000/api/v1/courseinfo/getcoursebycoach?coachid=5616352721ec29041a9af889&date=2015-10-10
 //http://101.200.204.240:3000/api/v1/courseinfo/userreservationcourse
 static NSString *const kcoachDataParam = @"userinfo/getuserinfo/2/userid/%@";
 
-static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?coachid=%@&date=%@";
 @interface AppointmentDrivingViewController ()<UITableViewDataSource,UITableViewDelegate,UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,AppointmentDrivingCellDelegate>
 @property (strong, nonatomic) UITableView *tableView;
 @property (strong, nonatomic) UICollectionView *coachHeadCollectionView;

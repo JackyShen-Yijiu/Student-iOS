@@ -249,7 +249,7 @@
     
     self.edgesForExtendedLayout = NO;
 
-    self.view.backgroundColor = MAIN_FOREGROUND_COLOR;
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     NSLog(@"%s,[AcountManager manager].userSubject.name:%@",__func__,[AcountManager manager].userSubject.name);
     

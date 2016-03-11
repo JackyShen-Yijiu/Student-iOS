@@ -21,10 +21,6 @@
 #import "CoachModel.h"
 #import "YBAppointMentCoachModel.h"
 
-static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?coachid=%@&date=%@";
-
-static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
-
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
 @interface YBAppointMentChangeCoachController ()<FDCalendarDelegate,YBCoachListViewControllerDelegate,JGYuYueHeadViewDelegate>
@@ -107,7 +103,7 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
     
     self.seletedDate = [NSDate date];
     
-    self.view.backgroundColor = MAIN_FOREGROUND_COLOR;
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     [self initUI];
     

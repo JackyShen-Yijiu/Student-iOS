@@ -25,7 +25,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 
 - (UIButton *)naviBarRightButton {
     if (_naviBarRightButton == nil) {
-        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarRightButton = [WMUITool initWithTitle:@"完成" withTitleColor:YBMainViewControlerBackgroundColor withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarRightButton.frame = CGRectMake(0, 0, 44, 44);
         [_naviBarRightButton addTarget:self action:@selector(clickRight:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -58,7 +58,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 
 - (UIButton *)naviBarLeftButton {
     if (_naviBarLeftButton == nil) {
-        _naviBarLeftButton = [WMUITool initWithTitle:@"取消" withTitleColor:MAIN_FOREGROUND_COLOR withTitleFont:[UIFont systemFontOfSize:16]];
+        _naviBarLeftButton = [WMUITool initWithTitle:@"取消" withTitleColor:YBMainViewControlerBackgroundColor withTitleFont:[UIFont systemFontOfSize:16]];
         _naviBarLeftButton.frame = CGRectMake(0, 0, 44, 44);
         [_naviBarLeftButton addTarget:self action:@selector(clickLeft:) forControlEvents:UIControlEventTouchUpInside];
     }
