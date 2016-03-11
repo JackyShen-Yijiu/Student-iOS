@@ -23,8 +23,6 @@
 // 刷新数据源
 - (void)receiveCoachTimeData:(NSArray *)coachTimeData selectData:(NSDate *)selectDate coachModel:(YBAppointMentCoachModel *)coachModel;
 
-- (void)receiveCoachTimeDataWithStudentData:(NSMutableArray *)stuDataArray coachModel:(YBAppointMentCoachModel *)coachModel;
-
 // 点击选中的数据
 @property (strong, nonatomic) NSMutableArray *upDateArray;
 

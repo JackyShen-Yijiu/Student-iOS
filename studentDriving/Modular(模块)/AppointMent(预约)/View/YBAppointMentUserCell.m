@@ -19,9 +19,7 @@
 {
     if (_iconImageView==nil) {
         _iconImageView = [[UIImageView alloc] init];
-        _iconImageView.image = [UIImage imageNamed:@"loginLogo"];
-        _iconImageView.layer.masksToBounds = YES;
-        _iconImageView.layer.cornerRadius = 25;
+        _iconImageView.image = [UIImage imageNamed:@"coach_man_default_icon"];
     }
     return _iconImageView;
 }

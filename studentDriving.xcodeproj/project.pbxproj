@@ -23,9 +23,10 @@
 		5510F8881C34F5EB00A431CD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8871C34F5EB00A431CD /* Security.framework */; };
 		B221AF591C914BFB001F6EED /* NetWorkEntiry.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF581C914BFB001F6EED /* NetWorkEntiry.m */; };
 		B221AF5C1C914C18001F6EED /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF5B1C914C18001F6EED /* NSString+MD5.m */; };
-		B221AF611C91729F001F6EED /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF5E1C91729F001F6EED /* DIDatepicker.m */; };
-		B221AF621C91729F001F6EED /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF601C91729F001F6EED /* DIDatepickerDateView.m */; };
 		B221AF651C9172E4001F6EED /* YBAppointController.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF641C9172E4001F6EED /* YBAppointController.m */; };
+		B221AF6A1C928D34001F6EED /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF671C928D34001F6EED /* DIDatepicker.m */; };
+		B221AF6B1C928D34001F6EED /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF691C928D34001F6EED /* DIDatepickerDateView.m */; };
+		B221AF6E1C92970B001F6EED /* YBAppointMentFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF6D1C92970B001F6EED /* YBAppointMentFootView.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -302,7 +303,6 @@
 		B251E4071C8E849500E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCF61C8E849200E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.m */; };
 		B251E4081C8E849500E6613A /* FDCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFA1C8E849200E6613A /* FDCalendar.m */; };
 		B251E4091C8E849500E6613A /* FDCalendarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFC1C8E849200E6613A /* FDCalendarItem.m */; };
-		B251E40A1C8E849500E6613A /* NSString+CurrentTimeDay.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFE1C8E849200E6613A /* NSString+CurrentTimeDay.m */; };
 		B251E40D1C8E849500E6613A /* NSDictionary+StrDic.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD051C8E849200E6613A /* NSDictionary+StrDic.m */; };
 		B251E40E1C8E849500E6613A /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD081C8E849200E6613A /* UIView+Sizes.m */; };
 		B251E40F1C8E849500E6613A /* YBObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD0A1C8E849200E6613A /* YBObjectTool.m */; };
@@ -1038,12 +1038,14 @@
 		B221AF581C914BFB001F6EED /* NetWorkEntiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkEntiry.m; sourceTree = "<group>"; };
 		B221AF5A1C914C18001F6EED /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		B221AF5B1C914C18001F6EED /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-		B221AF5D1C91729F001F6EED /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
-		B221AF5E1C91729F001F6EED /* DIDatepicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepicker.m; sourceTree = "<group>"; };
-		B221AF5F1C91729F001F6EED /* DIDatepickerDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepickerDateView.h; sourceTree = "<group>"; };
-		B221AF601C91729F001F6EED /* DIDatepickerDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepickerDateView.m; sourceTree = "<group>"; };
 		B221AF631C9172E4001F6EED /* YBAppointController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointController.h; sourceTree = "<group>"; };
 		B221AF641C9172E4001F6EED /* YBAppointController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointController.m; sourceTree = "<group>"; };
+		B221AF661C928D34001F6EED /* DIDatepicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepicker.h; sourceTree = "<group>"; };
+		B221AF671C928D34001F6EED /* DIDatepicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepicker.m; sourceTree = "<group>"; };
+		B221AF681C928D34001F6EED /* DIDatepickerDateView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIDatepickerDateView.h; sourceTree = "<group>"; };
+		B221AF691C928D34001F6EED /* DIDatepickerDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepickerDateView.m; sourceTree = "<group>"; };
+		B221AF6C1C92970B001F6EED /* YBAppointMentFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentFootView.h; sourceTree = "<group>"; };
+		B221AF6D1C92970B001F6EED /* YBAppointMentFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentFootView.m; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -1591,8 +1593,6 @@
 		B251DCFA1C8E849200E6613A /* FDCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCalendar.m; sourceTree = "<group>"; };
 		B251DCFB1C8E849200E6613A /* FDCalendarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCalendarItem.h; sourceTree = "<group>"; };
 		B251DCFC1C8E849200E6613A /* FDCalendarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCalendarItem.m; sourceTree = "<group>"; };
-		B251DCFD1C8E849200E6613A /* NSString+CurrentTimeDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+CurrentTimeDay.h"; sourceTree = "<group>"; };
-		B251DCFE1C8E849200E6613A /* NSString+CurrentTimeDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+CurrentTimeDay.m"; sourceTree = "<group>"; };
 		B251DD041C8E849200E6613A /* NSDictionary+StrDic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StrDic.h"; sourceTree = "<group>"; };
 		B251DD051C8E849200E6613A /* NSDictionary+StrDic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+StrDic.m"; sourceTree = "<group>"; };
 		B251DD071C8E849200E6613A /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
@@ -3881,10 +3881,6 @@
 		B251DCF71C8E849200E6613A /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				B221AF5D1C91729F001F6EED /* DIDatepicker.h */,
-				B221AF5E1C91729F001F6EED /* DIDatepicker.m */,
-				B221AF5F1C91729F001F6EED /* DIDatepickerDateView.h */,
-				B221AF601C91729F001F6EED /* DIDatepickerDateView.m */,
 				B251DCF81C8E849200E6613A /* FDCalendar */,
 				B251DD031C8E849200E6613A /* SafeDic */,
 				B251DD061C8E849200E6613A /* UIView+Sizes */,
@@ -3901,8 +3897,6 @@
 				B251DCFA1C8E849200E6613A /* FDCalendar.m */,
 				B251DCFB1C8E849200E6613A /* FDCalendarItem.h */,
 				B251DCFC1C8E849200E6613A /* FDCalendarItem.m */,
-				B251DCFD1C8E849200E6613A /* NSString+CurrentTimeDay.h */,
-				B251DCFE1C8E849200E6613A /* NSString+CurrentTimeDay.m */,
 			);
 			path = FDCalendar;
 			sourceTree = "<group>";
@@ -3928,12 +3922,20 @@
 		B251DD0B1C8E849200E6613A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B251DD0C1C8E849200E6613A /* CourseSummaryDayCell.h */,
-				B251DD0D1C8E849200E6613A /* CourseSummaryDayCell.m */,
-				B251DD0E1C8E849200E6613A /* JGAppointMentCell.h */,
-				B251DD0F1C8E849200E6613A /* JGAppointMentCell.m */,
+				B221AF661C928D34001F6EED /* DIDatepicker.h */,
+				B221AF671C928D34001F6EED /* DIDatepicker.m */,
+				B221AF681C928D34001F6EED /* DIDatepickerDateView.h */,
+				B221AF691C928D34001F6EED /* DIDatepickerDateView.m */,
 				B251DD101C8E849200E6613A /* JGYuYueHeadView.h */,
 				B251DD111C8E849200E6613A /* JGYuYueHeadView.m */,
+				B251DD0E1C8E849200E6613A /* JGAppointMentCell.h */,
+				B251DD0F1C8E849200E6613A /* JGAppointMentCell.m */,
+				B221AF6C1C92970B001F6EED /* YBAppointMentFootView.h */,
+				B221AF6D1C92970B001F6EED /* YBAppointMentFootView.m */,
+				B251DD1A1C8E849200E6613A /* YBAppointMentUserCell.h */,
+				B251DD1B1C8E849200E6613A /* YBAppointMentUserCell.m */,
+				B251DD0C1C8E849200E6613A /* CourseSummaryDayCell.h */,
+				B251DD0D1C8E849200E6613A /* CourseSummaryDayCell.m */,
 				B251DD121C8E849200E6613A /* PortraitView.h */,
 				B251DD131C8E849200E6613A /* PortraitView.m */,
 				B251DD141C8E849200E6613A /* YBAppointMentDetailsCancleView.h */,
@@ -3942,8 +3944,6 @@
 				B251DD171C8E849200E6613A /* YBAppointMentDetailsFootView.m */,
 				B251DD181C8E849200E6613A /* YBAppointMentNoCountentView.h */,
 				B251DD191C8E849200E6613A /* YBAppointMentNoCountentView.m */,
-				B251DD1A1C8E849200E6613A /* YBAppointMentUserCell.h */,
-				B251DD1B1C8E849200E6613A /* YBAppointMentUserCell.m */,
 				B251DD1C1C8E849200E6613A /* YBAppointMentUserFooter.h */,
 				B251DD1D1C8E849200E6613A /* YBAppointMentUserFooter.m */,
 				B251DD1E1C8E849200E6613A /* YBAppotinMentHeadView.h */,
@@ -7180,6 +7180,7 @@
 				B251E6EB1C8EDEAD00E6613A /* ViewController.m in Sources */,
 				B251E62B1C8E849500E6613A /* PSTCollectionViewFlowLayout.m in Sources */,
 				B251E3BE1C8E849500E6613A /* MyExamCarViewController.m in Sources */,
+				B221AF6A1C928D34001F6EED /* DIDatepicker.m in Sources */,
 				B251E3821C8E849500E6613A /* ExamCarCollectionViewCell.m in Sources */,
 				B251E39C1C8E849500E6613A /* ComplainViewController.m in Sources */,
 				B251E56B1C8E849500E6613A /* DVVCoachDetailDMRootClass.m in Sources */,
@@ -7217,6 +7218,7 @@
 				B251E39A1C8E849500E6613A /* CancelAppointmentViewController.m in Sources */,
 				B251E36A1C8E849500E6613A /* ShopMainModel.m in Sources */,
 				B251E3381C8E849500E6613A /* UserSettingModel.m in Sources */,
+				B221AF6E1C92970B001F6EED /* YBAppointMentFootView.m in Sources */,
 				B251E5A51C8E849500E6613A /* DrivingDetailTableHeaderView.m in Sources */,
 				B251E59D1C8E849500E6613A /* DrivingDetailDMRootClass.m in Sources */,
 				B251E2EB1C8E849500E6613A /* DrivingCityListDMData.m in Sources */,
@@ -7259,7 +7261,6 @@
 				B251E6971C8E849600E6613A /* JEPhotoPickManger.m in Sources */,
 				B251E2DC1C8E849500E6613A /* ChooseBtnView.m in Sources */,
 				B251E5341C8E849500E6613A /* SignUpDetailController.m in Sources */,
-				B221AF621C91729F001F6EED /* DIDatepickerDateView.m in Sources */,
 				B251E3F31C8E849500E6613A /* BaseModelMethod.m in Sources */,
 				B251E3081C8E849500E6613A /* SignSuccessView.m in Sources */,
 				B251E5111C8E849500E6613A /* finishMessageView.m in Sources */,
@@ -7322,7 +7323,6 @@
 				B251E5CB1C8E849500E6613A /* DVVSignUpSchoolDMRootClass.m in Sources */,
 				B251E3181C8E849500E6613A /* ApplyschoolinfoModel.m in Sources */,
 				B251E3DE1C8E849500E6613A /* JGUserTools.m in Sources */,
-				B221AF611C91729F001F6EED /* DIDatepicker.m in Sources */,
 				B251E6811C8E849600E6613A /* main.m in Sources */,
 				B251E3441C8E849500E6613A /* DVVSideMenuBlockView.m in Sources */,
 				B251E5901C8E849500E6613A /* CoachListDMHeadportrait.m in Sources */,
@@ -7444,7 +7444,6 @@
 				B251E3371C8E849500E6613A /* UserIdModel.m in Sources */,
 				B251E66C1C8E849500E6613A /* UINavigationBar+DVVNavigationBar.m in Sources */,
 				B251E31D1C8E849500E6613A /* CarModel.m in Sources */,
-				B251E40A1C8E849500E6613A /* NSString+CurrentTimeDay.m in Sources */,
 				B251E6391C8E849500E6613A /* SRSlimeView.m in Sources */,
 				B251E30C1C8E849500E6613A /* SignUpDrivingViewController.m in Sources */,
 				B251E5781C8E849500E6613A /* DVVCoachDetailCourseCell.m in Sources */,
@@ -7641,6 +7640,7 @@
 				B251E5C41C8E849500E6613A /* DVVSignUpCoachDMData.m in Sources */,
 				B251E30B1C8E849500E6613A /* SignUpDrivingDetailViewController.m in Sources */,
 				B251E2F11C8E849500E6613A /* DrivingCycleShowViewModel.m in Sources */,
+				B221AF6B1C928D34001F6EED /* DIDatepickerDateView.m in Sources */,
 				B251E5B61C8E849500E6613A /* DVVSignUpDetailPayView.m in Sources */,
 				B251E5A31C8E849500E6613A /* DrivingDetailSignUpCell.m in Sources */,
 				B251E3F71C8E849500E6613A /* HMCourseUserModel.m in Sources */,
