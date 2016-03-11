@@ -12,6 +12,7 @@
 #import "MyAppointmentModel.h"
 #import "BCTextView.h"
 #import "AppointmentViewController.h"
+#import "YBTextView.h"
 
 //static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
 
@@ -46,13 +47,257 @@
 
 @property (nonatomic , strong) NSMutableArray *commentTitleArray;
 
-@property (nonatomic, strong) UITextView *reasonTextView;
+@property (nonatomic, strong) YBTextView *reasonTextView;
 @property (nonatomic, strong) UIView *lineView;
-
+// 评价多少字
+@property (nonatomic,strong) UILabel *commentCountLabel;
 @end
 
 @implementation APCommentViewController
 
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self.view addSubview:self.submitBtn];
+    [self.submitBtn addSubview:self.lineView];
+    // Do any additional setup after loading the view.
+    
+    // 默认5颗星
+    // 总体评论星级
+    _starProgress = 5;
+    // 能力
+    _abilitylevel = 5;
+    // 时间
+    _timelevel = 5;
+    // 态度
+    _attitudelevel = 5;
+    // 卫生
+    _hygienelevel = 5;
+
+    bctextView.text = @"";
+    self.title = @"评论";
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    if ([UIDevice jeSystemVersion] >= 7.0f) {
+        //当你的容器是navigation controller时，默认的布局将从navigation bar的顶部开始。这就是为什么所有的UI元素都往上漂移了44pt
+        self.edgesForExtendedLayout = UIRectEdgeNone;
+    }
+    
+    [self.view addSubview:self.tableView];
+    
+    [self.BGView addSubview:self.coachTitleLabel];
+    [self.BGView addSubview:self.iconImgView];
+    [self.BGView addSubview:self.coachNameLabel];
+    self.tableView.tableHeaderView = self.BGView;
+ 
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
+    
+    
+}
+#pragma mark ---- 手势
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.view endEditing:YES];
+}
+#pragma mark ----- UIbutton
+- (void)clickSubmit:(UIButton *)sender {
+    if (self.reasonTextView.text.length == 0) {
+        [self obj_showTotasViewWithMes:@"请输入评价内容"];
+        return ;
+    }
+    
+    NSLog(@"self.starProgress:%d bctextView.text:%@",self.starProgress ,bctextView.text);
+    NSLog(@"bctextView.text.length:%lu",(unsigned long)bctextView.text.length);
+    
+    if (self.starProgress != 1 || (bctextView.text && bctextView.text.length!=0)) {
+     
+        NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
+        
+        NSDictionary *param = @{@"userid":[AcountManager manager].userid,
+                                @"reservationid":self.model.infoId,
+                                @"starlevel":[NSString stringWithFormat:@"%d",self.starProgress],// 总体评论星级
+                                @"abilitylevel":[NSString stringWithFormat:@"%f",self.abilitylevel],// 能力
+                                @"timelevel":[NSString stringWithFormat:@"%f",self.timelevel],// 时间
+                                @"attitudelevel":[NSString stringWithFormat:@"%f",self.attitudelevel],// 态度
+                                @"hygienelevel":[NSString stringWithFormat:@"%f",self.hygienelevel],// 卫生
+                                @"commentcontent":bctextView.text};
+        
+        [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+            
+            DYNSLog(@"%s data = %@",__func__,data);
+            
+            NSDictionary *param = data;
+            NSNumber *type = param[@"type"];
+            NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+            
+            if (type.integerValue == 1) {
+                kShowSuccess(@"评论成功");
+                
+                if (self.isForceComment) {
+                    [self.navigationController popViewControllerAnimated:YES];
+                    return;
+                }
+                
+                for (UIViewController *vc in self.navigationController.viewControllers) {
+                    if ([vc isKindOfClass:[AppointmentViewController class]]) {
+                        [self.navigationController popToViewController:vc animated:YES];
+                    }
+                }
+                
+            }else {
+                kShowFail(msg);
+            }
+        }];
+        
+    }else{
+        
+        [self obj_showTotasViewWithMes:@"请填写评价内容"];
+        
+    }
+    
+}
+#pragma mark ----- UITableView Delegate方法
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (0 == section) {
+        return 0;
+    }
+    return 20;
+}
+//- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+//    UIView *view = [[UIView alloc] init];
+//    view.backgroundColor = BACKGROUNDCOLOR;
+//    return view;
+//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (0 == indexPath.section) {
+        return 30;
+    }
+    return 60;
+}
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (section == 0) {
+        return 5;
+    }
+    return 1;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.section == 0) {
+        
+        static NSString *cellId = @"cellOne";
+        CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        
+        if (!cell) {
+            cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            cell.delegate = self;
+        }
+        
+        if (indexPath.row==4) {
+            cell.userInteractionEnabled = NO;
+            totleCell = cell;
+            cell.topLabel.textColor = [UIColor blackColor];
+        }else{
+            cell.userInteractionEnabled = YES;
+            totleCell = nil;
+            cell.topLabel.textColor = [UIColor blackColor];
+        }
+        
+        cell.topLabel.text = self.commentTitleArray[indexPath.row][@"title"];
+        
+        [cell receiveIndex:indexPath];
+        
+        CGFloat progress = [self.commentTitleArray[indexPath.row][@"progress"] floatValue];
+        NSLog(@"创建cell progress:%f",progress);
+        
+        [cell.starBar setUpRating:progress];
+        
+        return cell;
+
+    }else if (indexPath.section == 1) {
+        
+        static NSString *cellId = @"cell";
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
+        if (!cell) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            [self.reasonTextView addSubview:self.commentCountLabel];
+            [cell.contentView addSubview:self.reasonTextView];
+        }
+        return cell;
+    }
+    return nil;
+}
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    YBTextView *bcTextView = (YBTextView *)textView;
+    bcTextView.placeholderLabel.hidden = YES;
+}
+#pragma mark ---- UITextView Delegate代理方法
+-(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
+{
+    if ([text isEqualToString:@"\n"]) {
+        [textView resignFirstResponder];
+        return NO;
+    }
+    return YES;
+}
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (!textView.text.length) {
+        YBTextView *yntextView = (YBTextView *)textView;
+        yntextView.placeholderLabel.hidden = NO;
+    }
+    if ([textView.text length]>40) {
+        
+        textView.text = [textView.text substringToIndex:40];
+        return;
+        
+    }
+    _commentCountLabel.text = [NSString stringWithFormat:@"%lu/40",(unsigned long)[textView.text length]];
+}
+
+#pragma mark ---- 代理方法
+- (void)senderStarProgress:(CGFloat)newProgress withIndex:(NSIndexPath *)indexPath
+{
+    NSLog(@"%s indexPath.section:%ld indexPath.row:%ld",__func__ ,(long)indexPath.section,(long)indexPath.row);
+    
+    if (newProgress==0) {
+        newProgress = 1;
+    }
+    
+    // 上面4个评价
+    NSString *title = self.commentTitleArray[indexPath.row][@"title"];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"progress"] = [NSString stringWithFormat:@"%f",newProgress];
+    dict[@"title"] = title;
+    [self.commentTitleArray replaceObjectAtIndex:indexPath.row withObject:dict];
+    
+    if (indexPath.row == 0) {
+        _abilitylevel = newProgress;
+    }else if (indexPath.row == 1) {
+        _timelevel = newProgress;
+    }else if (indexPath.row == 2) {
+        _attitudelevel = newProgress;
+    }else if (indexPath.row == 3) {
+        _hygienelevel = newProgress;
+    }
+
+    // 总体评价
+    _starProgress = (_abilitylevel + _timelevel + _attitudelevel + _hygienelevel) / 4;
+    NSString *totleTitle = self.commentTitleArray[4][@"title"];
+    NSMutableDictionary *totleDict = [NSMutableDictionary dictionary];
+    totleDict[@"progress"] = [NSString stringWithFormat:@"%d",_starProgress];
+    totleDict[@"title"] = totleTitle;
+    [self.commentTitleArray replaceObjectAtIndex:4 withObject:totleDict];
+
+    NSLog(@"self.commentTitleArray:%@",self.commentTitleArray);
+
+    [self.tableView reloadData];
+    
+}
+#pragma mark ----- Lazy 加载
 - (UIView *)BGView{
     if (_BGView == nil) {
         _BGView = [[UIView alloc] init];
@@ -115,11 +360,11 @@
     if (_commentTitleArray == nil) {
         
         _commentTitleArray = [NSMutableArray arrayWithObjects:@{@"title":@"守时",@"progress":@5},
-                                                                @{@"title":@"态度",@"progress":@5},
-                                                                @{@"title":@"能力",@"progress":@5},
-                                                                @{@"title":@"卫生",@"progress":@5},
-                                                                @{@"title":@"总体评价",@"progress":@5}
-                                                                , nil];
+                              @{@"title":@"态度",@"progress":@5},
+                              @{@"title":@"能力",@"progress":@5},
+                              @{@"title":@"卫生",@"progress":@5},
+                              @{@"title":@"总体",@"progress":@5}
+                              , nil];
     }
     return _commentTitleArray;
 }
@@ -144,22 +389,22 @@
     return _tableView;
 }
 // 请输入原因
-- (UITextView *)reasonTextView
+- (YBTextView *)reasonTextView
 {
     if (_reasonTextView==nil) {
         CGFloat height = 50;
         CGFloat margin = 18;
-        _reasonTextView = [[UITextView alloc] initWithFrame:CGRectMake(margin, 0, kSystemWide-2*margin, height)];
+        _reasonTextView = [[YBTextView alloc] initWithFrame:CGRectMake(margin, 0, kSystemWide-2*margin, height) withPlaceholder:@"我来说两句"];
+        _reasonTextView.placeholderLabel.font = [UIFont systemFontOfSize:12];
         _reasonTextView.textColor = [UIColor blackColor];
         _reasonTextView.font = [UIFont systemFontOfSize:13];
         _reasonTextView.backgroundColor = [UIColor clearColor];
         _reasonTextView.delegate = self;
-        [_reasonTextView becomeFirstResponder];
         _reasonTextView.layer.borderColor = [[UIColor colorWithHexString:@"6e6e6e"]CGColor];
         _reasonTextView.layer.borderWidth = 1.0;
         _reasonTextView.layer.cornerRadius = 4.0f;
         [_reasonTextView.layer setMasksToBounds:YES];
-        
+       
         
     }
     return _reasonTextView;
@@ -172,226 +417,17 @@
     }
     return _lineView;
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    [self.view addSubview:self.submitBtn];
-    [self.submitBtn addSubview:self.lineView];
-    // Do any additional setup after loading the view.
-    
-    // 默认5颗星
-    // 总体评论星级
-    _starProgress = 5;
-    // 能力
-    _abilitylevel = 5;
-    // 时间
-    _timelevel = 5;
-    // 态度
-    _attitudelevel = 5;
-    // 卫生
-    _hygienelevel = 5;
-
-    bctextView.text = @"";
-    self.title = @"评论";
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    if ([UIDevice jeSystemVersion] >= 7.0f) {
-        //当你的容器是navigation controller时，默认的布局将从navigation bar的顶部开始。这就是为什么所有的UI元素都往上漂移了44pt
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
-    
-    [self.view addSubview:self.tableView];
-    
-    [self.BGView addSubview:self.coachTitleLabel];
-    [self.BGView addSubview:self.iconImgView];
-    [self.BGView addSubview:self.coachNameLabel];
-    self.tableView.tableHeaderView = self.BGView;
- 
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
-    
-    
-}
-
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+// 评价多少字
+- (UILabel *)commentCountLabel
 {
-    [self.view endEditing:YES];
+    if (_commentCountLabel==nil) {
+        _commentCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.reasonTextView.frame)-110, CGRectGetMaxY(self.reasonTextView.frame)-22, 100, 25)];
+        _commentCountLabel.text = @"0/40";
+        _commentCountLabel.textAlignment = NSTextAlignmentRight;
+        _commentCountLabel.font = [UIFont systemFontOfSize:12];
+        _commentCountLabel.textColor = [UIColor lightGrayColor];
+    }
+    return _commentCountLabel;
 }
 
-- (void)clickSubmit:(UIButton *)sender {
-    
-    NSLog(@"self.starProgress:%d bctextView.text:%@",self.starProgress ,bctextView.text);
-    NSLog(@"bctextView.text.length:%lu",(unsigned long)bctextView.text.length);
-    
-    if (self.starProgress != 1 || (bctextView.text && bctextView.text.length!=0)) {
-     
-        NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
-        
-        NSDictionary *param = @{@"userid":[AcountManager manager].userid,
-                                @"reservationid":self.model.infoId,
-                                @"starlevel":[NSString stringWithFormat:@"%d",self.starProgress],// 总体评论星级
-                                @"abilitylevel":[NSString stringWithFormat:@"%f",self.abilitylevel],// 能力
-                                @"timelevel":[NSString stringWithFormat:@"%f",self.timelevel],// 时间
-                                @"attitudelevel":[NSString stringWithFormat:@"%f",self.attitudelevel],// 态度
-                                @"hygienelevel":[NSString stringWithFormat:@"%f",self.hygienelevel],// 卫生
-                                @"commentcontent":bctextView.text};
-        
-        [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
-            
-            DYNSLog(@"%s data = %@",__func__,data);
-            
-            NSDictionary *param = data;
-            NSNumber *type = param[@"type"];
-            NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
-            
-            if (type.integerValue == 1) {
-                kShowSuccess(@"评论成功");
-                
-                if (self.isForceComment) {
-                    [self.navigationController popViewControllerAnimated:YES];
-                    return;
-                }
-                
-                for (UIViewController *vc in self.navigationController.viewControllers) {
-                    if ([vc isKindOfClass:[AppointmentViewController class]]) {
-                        [self.navigationController popToViewController:vc animated:YES];
-                    }
-                }
-                
-            }else {
-                kShowFail(msg);
-            }
-        }];
-        
-    }else{
-        
-        [self obj_showTotasViewWithMes:@"请填写评价内容"];
-        
-    }
-    
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    return 10;
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    UIView *view = [[UIView alloc] init];
-    view.backgroundColor = BACKGROUNDCOLOR;
-    return view;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (0 == indexPath.section) {
-        return 30;
-    }
-    return 60;
-}
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (section == 0) {
-        return 5;
-    }
-    return 1;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    if (indexPath.section == 0) {
-        
-        static NSString *cellId = @"cellOne";
-        CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        
-        if (!cell) {
-            cell = [[CommentCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            cell.delegate = self;
-        }
-        
-        if (indexPath.row==4) {
-            cell.userInteractionEnabled = NO;
-            totleCell = cell;
-            cell.topLabel.textColor = [UIColor orangeColor];
-        }else{
-            cell.userInteractionEnabled = YES;
-            totleCell = nil;
-            cell.topLabel.textColor = [UIColor blackColor];
-        }
-        
-        cell.topLabel.text = self.commentTitleArray[indexPath.row][@"title"];
-        
-        [cell receiveIndex:indexPath];
-        
-        CGFloat progress = [self.commentTitleArray[indexPath.row][@"progress"] floatValue];
-        NSLog(@"创建cell progress:%f",progress);
-        
-        [cell.starBar setUpRating:progress];
-        
-        return cell;
-
-    }else if (indexPath.section == 1) {
-        
-        static NSString *cellId = @"cell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId];
-        if (!cell) {
-            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-//            bctextView = [[BCTextView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 79) withPlaceholder:@"写点评论吧,对其他伙伴有帮助"];
-//            bctextView.delegate = self;
-//            bctextView.font = [UIFont systemFontOfSize:16];
-//            bctextView.returnKeyType = UIReturnKeyDone;
-            [cell.contentView addSubview:self.reasonTextView];
-        }
-        return cell;
-    }
-    return nil;
-}
-//- (void)textViewDidBeginEditing:(UITextView *)textView {
-//    BCTextView *bcTextView = (BCTextView *)textView;
-//    bcTextView.placeholder.hidden = YES;
-//}
--(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
-{
-    if ([text isEqualToString:@"\n"]) {
-        [textView resignFirstResponder];
-        return NO;
-    }
-    return YES;
-}
-
-- (void)senderStarProgress:(CGFloat)newProgress withIndex:(NSIndexPath *)indexPath
-{
-    NSLog(@"%s indexPath.section:%ld indexPath.row:%ld",__func__ ,(long)indexPath.section,(long)indexPath.row);
-    
-    if (newProgress==0) {
-        newProgress = 1;
-    }
-    
-    // 上面4个评价
-    NSString *title = self.commentTitleArray[indexPath.row][@"title"];
-    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
-    dict[@"progress"] = [NSString stringWithFormat:@"%f",newProgress];
-    dict[@"title"] = title;
-    [self.commentTitleArray replaceObjectAtIndex:indexPath.row withObject:dict];
-    
-    if (indexPath.row == 0) {
-        _abilitylevel = newProgress;
-    }else if (indexPath.row == 1) {
-        _timelevel = newProgress;
-    }else if (indexPath.row == 2) {
-        _attitudelevel = newProgress;
-    }else if (indexPath.row == 3) {
-        _hygienelevel = newProgress;
-    }
-
-    // 总体评价
-    _starProgress = (_abilitylevel + _timelevel + _attitudelevel + _hygienelevel) / 4;
-    NSString *totleTitle = self.commentTitleArray[4][@"title"];
-    NSMutableDictionary *totleDict = [NSMutableDictionary dictionary];
-    totleDict[@"progress"] = [NSString stringWithFormat:@"%d",_starProgress];
-    totleDict[@"title"] = totleTitle;
-    [self.commentTitleArray replaceObjectAtIndex:4 withObject:totleDict];
-
-    NSLog(@"self.commentTitleArray:%@",self.commentTitleArray);
-
-    [self.tableView reloadData];
-    
-}
 @end
