@@ -13,6 +13,7 @@
 #import "YBCompletedAppointmentListController.h"
 #import "YBAppointmentListViewModel.h"
 #import "DVVToast.h"
+#import "YBAppointController.h"
 
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -37,6 +38,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"预约列表";
+    
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"立马预约" target:self action:@selector(rightBarButtonItemDidClick)];
+    
     self.edgesForExtendedLayout = NO;
     
     _isShowTodayAppointment = YES;
@@ -47,6 +51,22 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [self configViewModel];
 }
 
+- (void)rightBarButtonItemDidClick{
+    
+    if (![AcountManager isLogin]) {
+        [DVVUserManager userNeedLogin];
+        return;
+    }
+    if ([AcountManager manager].userApplystate && [[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+        UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,貌似您还没有报名/n如果您已报名,请联系驾校或教练" message:@"" delegate:self cancelButtonTitle:@"前去报名" otherButtonTitles:@"再看看", nil];
+        [alert show];
+        return;
+    }
+    
+    YBAppointController *vc = [[YBAppointController alloc] init];
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+}
 
 #pragma mark - action
 
