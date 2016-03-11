@@ -6,12 +6,10 @@
 #import "DIDatepicker.h"
 #import "DIDatepickerDateView.h"
 
-
 const NSTimeInterval kSecondsInDay = 86400;
 const NSInteger kMondayOffset = 2;
 const CGFloat kDIDetepickerHeight = 60.;
 const CGFloat kDIDatepickerSpaceBetweenItems = 15.;
-
 
 @interface DIDatepicker ()
 
@@ -40,14 +38,14 @@ const CGFloat kDIDatepickerSpaceBetweenItems = 15.;
 - (void)setupViews
 {
     self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-    self.backgroundColor = [UIColor whiteColor];
+    self.backgroundColor = RGBColor(255, 255, 255);
+    
     self.bottomLineColor = [UIColor colorWithWhite:0.816 alpha:1.000];
     self.selectedDateBottomLineColor = [UIColor colorWithRed:0.910 green:0.278 blue:0.128 alpha:1.000];
+    
 }
 
-
 #pragma mark Setters | Getters
-
 - (void)setDates:(NSArray *)dates
 {
     _dates = dates;
@@ -95,7 +93,6 @@ const CGFloat kDIDatepickerSpaceBetweenItems = 15.;
         }
     }
 }
-
 
 #pragma mark Public methods
 
