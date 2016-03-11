@@ -1008,7 +1008,20 @@
 		D5604CB91BF65DD50020F0D7 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CA11BF659690020F0D7 /* libstdc++.6.0.9.tbd */; };
 		D5604CBB1BF65E030020F0D7 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBA1BF65E030020F0D7 /* Twitter.framework */; };
 		D5604CBD1BF65E1F0020F0D7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBC1BF65E1F0020F0D7 /* Social.framework */; };
+		D96445121C91812600E7C29F /* YBAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445111C91812600E7C29F /* YBAppointmentListController.m */; };
+		D96445151C91816300E7C29F /* YBAppointmentHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445141C91816300E7C29F /* YBAppointmentHeaderView.m */; };
+		D96445181C9181A600E7C29F /* YBAppointmentSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445171C9181A600E7C29F /* YBAppointmentSectionHeaderView.m */; };
+		D964451A1C9184AE00E7C29F /* YBAppointmentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96445191C9184AE00E7C29F /* YBAppointmentHeaderView.xib */; };
+		D964451E1C91877900E7C29F /* YBAppointmentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D964451C1C91877900E7C29F /* YBAppointmentListCell.m */; };
+		D964451F1C91877900E7C29F /* YBAppointmentListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D964451D1C91877900E7C29F /* YBAppointmentListCell.xib */; };
+		D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445211C918D5200E7C29F /* YBCompletedAppointmentListController.m */; };
+		D96445261C918EA600E7C29F /* YBCompletedAppointmentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445241C918EA600E7C29F /* YBCompletedAppointmentListCell.m */; };
+		D96445271C918EA600E7C29F /* YBCompletedAppointmentListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D96445251C918EA600E7C29F /* YBCompletedAppointmentListCell.xib */; };
+		D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445291C91969100E7C29F /* YBAppointmentDetailController.m */; };
 		D964ABED1C7AB8CF00A4D1D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */; };
+		D97704971C926D7A00A3865F /* YBAppointmentListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704961C926D7A00A3865F /* YBAppointmentListViewModel.m */; };
+		D977049B1C926ED200A3865F /* YBAppointmentListDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D977049A1C926ED200A3865F /* YBAppointmentListDMRootClass.m */; };
+		D977049E1C926EE900A3865F /* YBAppointmentListDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D977049D1C926EE900A3865F /* YBAppointmentListDMData.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2939,7 +2952,30 @@
 		D5604CBA1BF65E030020F0D7 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		D5604CBC1BF65E1F0020F0D7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D588AF861BDDB62C000C5D6F /* studentDriving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = studentDriving.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D96445101C91812600E7C29F /* YBAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListController.h; sourceTree = "<group>"; };
+		D96445111C91812600E7C29F /* YBAppointmentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListController.m; sourceTree = "<group>"; };
+		D96445131C91816300E7C29F /* YBAppointmentHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentHeaderView.h; sourceTree = "<group>"; };
+		D96445141C91816300E7C29F /* YBAppointmentHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentHeaderView.m; sourceTree = "<group>"; };
+		D96445161C9181A600E7C29F /* YBAppointmentSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentSectionHeaderView.h; sourceTree = "<group>"; };
+		D96445171C9181A600E7C29F /* YBAppointmentSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentSectionHeaderView.m; sourceTree = "<group>"; };
+		D96445191C9184AE00E7C29F /* YBAppointmentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBAppointmentHeaderView.xib; sourceTree = "<group>"; };
+		D964451B1C91877900E7C29F /* YBAppointmentListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListCell.h; sourceTree = "<group>"; };
+		D964451C1C91877900E7C29F /* YBAppointmentListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListCell.m; sourceTree = "<group>"; };
+		D964451D1C91877900E7C29F /* YBAppointmentListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBAppointmentListCell.xib; sourceTree = "<group>"; };
+		D96445201C918D5200E7C29F /* YBCompletedAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentListController.h; sourceTree = "<group>"; };
+		D96445211C918D5200E7C29F /* YBCompletedAppointmentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCompletedAppointmentListController.m; sourceTree = "<group>"; };
+		D96445231C918EA600E7C29F /* YBCompletedAppointmentListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentListCell.h; sourceTree = "<group>"; };
+		D96445241C918EA600E7C29F /* YBCompletedAppointmentListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCompletedAppointmentListCell.m; sourceTree = "<group>"; };
+		D96445251C918EA600E7C29F /* YBCompletedAppointmentListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBCompletedAppointmentListCell.xib; sourceTree = "<group>"; };
+		D96445281C91969100E7C29F /* YBAppointmentDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentDetailController.h; sourceTree = "<group>"; };
+		D96445291C91969100E7C29F /* YBAppointmentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentDetailController.m; sourceTree = "<group>"; };
 		D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		D97704951C926D7A00A3865F /* YBAppointmentListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListViewModel.h; sourceTree = "<group>"; };
+		D97704961C926D7A00A3865F /* YBAppointmentListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListViewModel.m; sourceTree = "<group>"; };
+		D97704991C926ED200A3865F /* YBAppointmentListDMRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMRootClass.h; sourceTree = "<group>"; };
+		D977049A1C926ED200A3865F /* YBAppointmentListDMRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMRootClass.m; sourceTree = "<group>"; };
+		D977049C1C926EE900A3865F /* YBAppointmentListDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMData.h; sourceTree = "<group>"; };
+		D977049D1C926EE900A3865F /* YBAppointmentListDMData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMData.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3812,6 +3848,26 @@
 				B251DCBE1C8E849200E6613A /* YBAppointMentChangeCoachController.m */,
 				B251DCBF1C8E849200E6613A /* YBAppointMentController.h */,
 				B251DCC01C8E849200E6613A /* YBAppointMentController.m */,
+				D97704981C926E0500A3865F /* YBAppointmentListDataModel */,
+				D96445101C91812600E7C29F /* YBAppointmentListController.h */,
+				D96445111C91812600E7C29F /* YBAppointmentListController.m */,
+				D97704951C926D7A00A3865F /* YBAppointmentListViewModel.h */,
+				D97704961C926D7A00A3865F /* YBAppointmentListViewModel.m */,
+				D96445131C91816300E7C29F /* YBAppointmentHeaderView.h */,
+				D96445141C91816300E7C29F /* YBAppointmentHeaderView.m */,
+				D96445191C9184AE00E7C29F /* YBAppointmentHeaderView.xib */,
+				D96445161C9181A600E7C29F /* YBAppointmentSectionHeaderView.h */,
+				D96445171C9181A600E7C29F /* YBAppointmentSectionHeaderView.m */,
+				D964451B1C91877900E7C29F /* YBAppointmentListCell.h */,
+				D964451C1C91877900E7C29F /* YBAppointmentListCell.m */,
+				D964451D1C91877900E7C29F /* YBAppointmentListCell.xib */,
+				D96445201C918D5200E7C29F /* YBCompletedAppointmentListController.h */,
+				D96445211C918D5200E7C29F /* YBCompletedAppointmentListController.m */,
+				D96445281C91969100E7C29F /* YBAppointmentDetailController.h */,
+				D96445291C91969100E7C29F /* YBAppointmentDetailController.m */,
+				D96445231C918EA600E7C29F /* YBCompletedAppointmentListCell.h */,
+				D96445241C918EA600E7C29F /* YBCompletedAppointmentListCell.m */,
+				D96445251C918EA600E7C29F /* YBCompletedAppointmentListCell.xib */,
 				B251DCC11C8E849200E6613A /* YBAppointMentDetailsController.h */,
 				B251DCC21C8E849200E6613A /* YBAppointMentDetailsController.m */,
 				B251DCC31C8E849200E6613A /* YBCancleAppointMentController.h */,
@@ -6667,6 +6723,17 @@
 			path = studentDriving;
 			sourceTree = "<group>";
 		};
+		D97704981C926E0500A3865F /* YBAppointmentListDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				D97704991C926ED200A3865F /* YBAppointmentListDMRootClass.h */,
+				D977049A1C926ED200A3865F /* YBAppointmentListDMRootClass.m */,
+				D977049C1C926EE900A3865F /* YBAppointmentListDMData.h */,
+				D977049D1C926EE900A3865F /* YBAppointmentListDMData.m */,
+			);
+			path = YBAppointmentListDataModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -6781,6 +6848,7 @@
 				B251E4DD1C8E849500E6613A /* group_detail@2x.png in Resources */,
 				B251E4D31C8E849500E6613A /* chat_sender_audio_playing_full@2x.png in Resources */,
 				B251E4B91C8E849500E6613A /* chatBar_more_photo.png in Resources */,
+				D964451A1C9184AE00E7C29F /* YBAppointmentHeaderView.xib in Resources */,
 				B251E4721C8E849500E6613A /* call_out@2x.png in Resources */,
 				B251E6A11C8E849600E6613A /* Main.strings in Resources */,
 				B251E4511C8E849500E6613A /* VoiceSearchFeedback005.png in Resources */,
@@ -6981,6 +7049,7 @@
 				B251E4B61C8E849500E6613A /* chatBar_more_location@2x.png in Resources */,
 				B251E5991C8E849500E6613A /* DrivingDetailBriefIntroductionCell.xib in Resources */,
 				B251E4C51C8E849500E6613A /* chat_receiver_audio_playing003@2x.png in Resources */,
+				D964451F1C91877900E7C29F /* YBAppointmentListCell.xib in Resources */,
 				B251E4B11C8E849500E6613A /* chatBar_more_camera.png in Resources */,
 				B251E49F1C8E849500E6613A /* chatBar_recordBg.png in Resources */,
 				B251E4841C8E849500E6613A /* chatBar_textBg@2x.png in Resources */,
@@ -6989,6 +7058,7 @@
 				B251E4D41C8E849500E6613A /* chat_sender_bg.png in Resources */,
 				B251E47A1C8E849500E6613A /* chat_video_play.png in Resources */,
 				B251E4A71C8E849500E6613A /* chatBar_colorMore_camera@2x.png in Resources */,
+				D96445271C918EA600E7C29F /* YBCompletedAppointmentListCell.xib in Resources */,
 				B251E4821C8E849500E6613A /* chatBar_more_faceSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -7198,6 +7268,7 @@
 				B251E5891C8E849500E6613A /* ClassTypeViewModel.m in Sources */,
 				B251E3F51C8E849500E6613A /* HMClassInfoModel.m in Sources */,
 				B251E3471C8E849500E6613A /* DVVSideMenuCollectionView.m in Sources */,
+				D977049B1C926ED200A3865F /* YBAppointmentListDMRootClass.m in Sources */,
 				B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */,
 				B251E5041C8E849500E6613A /* RegistNoteController.m in Sources */,
 				B251E40F1C8E849500E6613A /* YBObjectTool.m in Sources */,
@@ -7230,6 +7301,7 @@
 				B251E3A21C8E849500E6613A /* DrivingCandidatesViewController.m in Sources */,
 				B251E5391C8E849500E6613A /* YBUserCenterController.m in Sources */,
 				B251E3AD1C8E849500E6613A /* HomeMainView.m in Sources */,
+				D964451E1C91877900E7C29F /* YBAppointmentListCell.m in Sources */,
 				B251E2F51C8E849500E6613A /* DrivingViewController.m in Sources */,
 				B251E5841C8E849500E6613A /* ClassTypeDMData.m in Sources */,
 				B251E3F91C8E849500E6613A /* HMRecomendModel.m in Sources */,
@@ -7255,6 +7327,7 @@
 				B251E5FB1C8E849500E6613A /* EMCDDeviceManager+Media.m in Sources */,
 				B251E4051C8E849500E6613A /* YBAppointMentDetailsDataRootClass.m in Sources */,
 				B251E6F11C8FC59400E6613A /* KOAProgressBar.m in Sources */,
+				D96445261C918EA600E7C29F /* YBCompletedAppointmentListCell.m in Sources */,
 				B251E3B11C8E849500E6613A /* SchoolClassDetailController.m in Sources */,
 				B251E6281C8E849500E6613A /* PSTCollectionViewCell.m in Sources */,
 				B251E6311C8E849500E6613A /* PSTGridLayoutRow.m in Sources */,
@@ -7273,6 +7346,7 @@
 				B251E6711C8E849600E6613A /* NSString+DY_MD5.m in Sources */,
 				B251E5C61C8E849500E6613A /* DVVSignUpCoachDMHeadportrait.m in Sources */,
 				B251E32B1C8E849500E6613A /* serverclasslistModel.m in Sources */,
+				D977049E1C926EE900A3865F /* YBAppointmentListDMData.m in Sources */,
 				B251E3C61C8E849500E6613A /* UserCenterHeadView.m in Sources */,
 				B251E5411C8E849500E6613A /* EditorMessageCell.m in Sources */,
 				B251E6051C8E849500E6613A /* JRSwizzle.m in Sources */,
@@ -7287,8 +7361,10 @@
 				B251E3351C8E849500E6613A /* TrainFieldInfoModel.m in Sources */,
 				B251E4191C8E849500E6613A /* YBAppotinMentHeadView.m in Sources */,
 				B251E3CE1C8E849500E6613A /* BLBaseViewController.m in Sources */,
+				D96445121C91812600E7C29F /* YBAppointmentListController.m in Sources */,
 				B251E53D1C8E849500E6613A /* YBDiscountModel.m in Sources */,
 				B251E3A71C8E849500E6613A /* CheckProgressController.m in Sources */,
+				D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */,
 				B251E5AF1C8E849500E6613A /* DVVPaySuccessController.m in Sources */,
 				B251E5E21C8E849500E6613A /* PinYinForObjc.m in Sources */,
 				B251E3A31C8E849500E6613A /* EditorUserViewController.m in Sources */,
@@ -7353,6 +7429,7 @@
 				B251E3FC1C8E849500E6613A /* HMSubjectModel.m in Sources */,
 				B251E2EF1C8E849500E6613A /* DrivingCycleShowDMHeadportrait.m in Sources */,
 				B251E3411C8E849500E6613A /* DVVImagePickerControllerManager.m in Sources */,
+				D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */,
 				B251E4FF1C8E849500E6613A /* JZRegisterFirstController.m in Sources */,
 				B251E61A1C8E849500E6613A /* EMSDWebImageDownloaderOperation.m in Sources */,
 				B251E4071C8E849500E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */,
@@ -7444,6 +7521,8 @@
 				B251E3371C8E849500E6613A /* UserIdModel.m in Sources */,
 				B251E66C1C8E849500E6613A /* UINavigationBar+DVVNavigationBar.m in Sources */,
 				B251E31D1C8E849500E6613A /* CarModel.m in Sources */,
+				B251E40A1C8E849500E6613A /* NSString+CurrentTimeDay.m in Sources */,
+				D96445151C91816300E7C29F /* YBAppointmentHeaderView.m in Sources */,
 				B251E6391C8E849500E6613A /* SRSlimeView.m in Sources */,
 				B251E30C1C8E849500E6613A /* SignUpDrivingViewController.m in Sources */,
 				B251E5781C8E849500E6613A /* DVVCoachDetailCourseCell.m in Sources */,
@@ -7593,6 +7672,7 @@
 				B251E55B1C8E849500E6613A /* SignInDataModel.m in Sources */,
 				B251E5D51C8E849500E6613A /* CityButton.m in Sources */,
 				B251E2F61C8E849500E6613A /* DVVAlert.m in Sources */,
+				D96445181C9181A600E7C29F /* YBAppointmentSectionHeaderView.m in Sources */,
 				B251E62E1C8E849500E6613A /* PSTCollectionViewUpdateItem.m in Sources */,
 				B251E5A61C8E849500E6613A /* DrivingDetailTrainingGroundCell.m in Sources */,
 				B251E6871C8E849600E6613A /* JsonTransformManager.m in Sources */,
@@ -7613,6 +7693,7 @@
 				B251E32E1C8E849500E6613A /* StudentModel.m in Sources */,
 				B251E4111C8E849500E6613A /* JGAppointMentCell.m in Sources */,
 				B251E34F1C8E849500E6613A /* DiscountOrderController.m in Sources */,
+				D97704971C926D7A00A3865F /* YBAppointmentListViewModel.m in Sources */,
 				B251E6DF1C8E856E00E6613A /* IWTabBarButton.m in Sources */,
 				B251E38B1C8E849500E6613A /* UserCenterCell.m in Sources */,
 				B251E2FE1C8E849500E6613A /* JGDrivingDetailTopCell.m in Sources */,
