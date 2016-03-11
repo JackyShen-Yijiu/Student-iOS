@@ -31,7 +31,7 @@
     
     CGSize size = self.bounds.size;
     
-    _titleLabel.frame = CGRectMake(16, 0, size.width/2.0, size.height);
+    _titleLabel.frame = CGRectMake(8, 0, size.width/2.0, size.height);
     _arrowImageView.frame = CGRectMake(size.width - 14 - 12*2, 0, 14 + 12*2, size.height);
     _button.frame = self.bounds;
     _statusLabel.frame = CGRectMake(size.width - 14 - 14, 0, 14, size.height);
@@ -48,7 +48,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.font = [UIFont systemFontOfSize:14];
-        _titleLabel.textColor = [UIColor lightGrayColor];
+        _titleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
     }
     return _titleLabel;
 }
@@ -73,6 +73,7 @@
     if (!_statusLabel) {
         _statusLabel = [UILabel new];
         _statusLabel.font = [UIFont systemFontOfSize:14];
+        _statusLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
         _statusLabel.text = @"无";
     }
     return _statusLabel;

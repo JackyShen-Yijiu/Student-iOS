@@ -57,6 +57,11 @@
             
             NSArray *tempArray = [[BaseModelMethod getCourseListArrayFormDicInfo:array] mutableCopy];
             
+            // 清空数据
+            [_todayArray removeAllObjects];
+            [_nextArray removeAllObjects];
+            [_completedArray removeAllObjects];
+            
             for (HMCourseModel *model in tempArray) {
                 NSLog(@"model.courseBeginTime:%@",model.courseBeginTime);
                 NSLog(@"getYearLocalDateFormateUTCDate model.courseBeginTime:%@",[NSString getYearLocalDateFormateUTCDate:model.courseBeginTime]);

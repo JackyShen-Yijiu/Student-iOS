@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="95.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="coach" translatesAutoresizingMaskIntoConstraints="NO" id="n15-kP-oe0">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="coach_man_default_icon" translatesAutoresizingMaskIntoConstraints="NO" id="n15-kP-oe0">
                         <rect key="frame" x="8" y="15" width="38" height="38"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="海淀驾校  第一训练场" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sMY-Ua-SrP">
@@ -105,7 +105,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="coach" width="16" height="16"/>
+        <image name="coach_man_default_icon" width="40" height="40"/>
         <image name="code_on" width="16" height="16"/>
     </resources>
 </document>

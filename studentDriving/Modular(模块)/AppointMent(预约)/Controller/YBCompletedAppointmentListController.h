@@ -10,4 +10,6 @@
 
 @interface YBCompletedAppointmentListController : UIViewController
 
+@property (nonatomic, strong) NSArray *dataArray;
+
 @end

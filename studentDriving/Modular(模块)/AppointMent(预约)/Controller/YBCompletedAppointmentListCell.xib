@@ -14,7 +14,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="89.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="coach" translatesAutoresizingMaskIntoConstraints="NO" id="SXv-Cd-mYz">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="coach_man_default_icon" translatesAutoresizingMaskIntoConstraints="NO" id="SXv-Cd-mYz">
                         <rect key="frame" x="8" y="15" width="38" height="38"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="海淀驾校  第一训练场" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y5q-Y0-nhd">
@@ -35,7 +35,7 @@
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="海淀驾校  第一训练场" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpJ-2T-34d">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="02/23  8:00 - 11:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HpJ-2T-34d">
                         <rect key="frame" x="54" y="62" width="140" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -82,12 +82,19 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="nameLabel" destination="aCv-KD-pnD" id="vd8-qS-6Vd"/>
+                <outlet property="iconImageView" destination="SXv-Cd-mYz" id="bCZ-ka-XjQ"/>
+                <outlet property="nameLabel" destination="aCv-KD-pnD" id="cmt-8p-7AO"/>
+                <outlet property="schoolLabel" destination="y5q-Y0-nhd" id="SXY-i1-HGg"/>
+                <outlet property="signInTimeLabel" destination="NrW-Wi-ysi" id="7rH-eR-zYN"/>
+                <outlet property="statusLabel" destination="wEc-dU-iuV" id="FkP-pG-HxQ"/>
+                <outlet property="subjectIntroductionLabel" destination="HI6-1a-8ic" id="vYO-HU-FvB"/>
+                <outlet property="subjectLabel" destination="yHf-HT-Gax" id="KbO-Wj-yLB"/>
+                <outlet property="timeLabel" destination="HpJ-2T-34d" id="W0r-u2-q4A"/>
             </connections>
             <point key="canvasLocation" x="229" y="332"/>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="coach" width="16" height="16"/>
+        <image name="coach_man_default_icon" width="40" height="40"/>
     </resources>
 </document>

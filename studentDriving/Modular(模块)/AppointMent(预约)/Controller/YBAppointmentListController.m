@@ -14,6 +14,7 @@
 #import "YBAppointmentListViewModel.h"
 #import "DVVToast.h"
 #import "YBAppointController.h"
+#import <MJRefresh/MJRefresh.h>
 
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -49,6 +50,15 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [self.view addSubview:self.tableView];
     
     [self configViewModel];
+    [self configRefresh];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // 开始请求数据
+    [DVVToast showFromView:self.view OffSetY:-10];
+    [_viewModel dvv_networkRequestRefresh];
 }
 
 - (void)rightBarButtonItemDidClick{
@@ -80,6 +90,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (void)completedAppointmentAction {
     
     YBCompletedAppointmentListController *vc = [YBCompletedAppointmentListController new];
+    vc.dataArray = _viewModel.completedArray;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -112,11 +123,25 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }];
     [_viewModel dvv_setNetworkCallBackBlock:^{
         [DVVToast hideFromView:ws.view];
+        [ws.tableView.mj_header endRefreshing];
     }];
     
-    // 开始请求数据
-    [DVVToast showFromView:ws.view OffSetY:-64];
-    [_viewModel dvv_networkRequestRefresh];
+//    // 开始请求数据
+//    [DVVToast showFromView:ws.view OffSetY:-64];
+//    [_viewModel dvv_networkRequestRefresh];
+}
+
+#pragma mark - config refresh
+
+- (void)configRefresh {
+    
+    WS(ws)
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [ws.viewModel dvv_networkRequestRefresh];
+    }];
+    
+    self.tableView.mj_header = header;
 }
 
 
@@ -273,7 +298,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     if (!_footerView) {
         _footerView = [YBAppointmentSectionHeaderView new];
         _footerView.frame = CGRectMake(0, 0, kSystemWide, 44);
-        _footerView.titleLabel.text = @"已完成的预约";
+        _footerView.titleLabel.text = @"完成的预约";
         [_footerView.button addTarget:self action:@selector(completedAppointmentAction) forControlEvents:UIControlEventTouchUpInside];
         _footerView.statusLabel.hidden = YES;
     }

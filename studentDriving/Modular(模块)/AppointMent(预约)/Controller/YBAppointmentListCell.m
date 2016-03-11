@@ -8,6 +8,7 @@
 
 #import "YBAppointmentListCell.h"
 #import "YBObjectTool.h"
+#import "UIImageView+DVVWebImage.h"
 
 @implementation YBAppointmentListCell
 
@@ -25,6 +26,16 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         [self.contentView addSubview:self.lineImageView];
+        
+        [_iconImageView.layer setMasksToBounds:YES];
+        [_iconImageView.layer setCornerRadius:19];
+        
+        // 字体颜色
+        _statusLabel.textColor = YBNavigationBarBgColor;
+        _nameLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _schoolLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _timeLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _subjectLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
     }
     return self;
 }
@@ -38,6 +49,8 @@
 }
 
 - (IBAction)qrCodeButtonAction:(UIButton *)sender {
+    
+    NSLog(@"点击了二维码");
     
     
 }
@@ -68,12 +81,8 @@
         _timeLabel.text = [NSString stringWithFormat:@"%@/%@ %@-%@", MMString, ddString, beginString, endString];
     }
     
-    UIImage *defaultImage = [UIImage imageNamed:@"coach_man_default_icon"];
-    _iconImageView.image = defaultImage;
     NSString * imageStr = _model.userModel.headportrait.originalpic;
-    if(imageStr) {
-        [_iconImageView sd_setImageWithURL:[NSURL URLWithString:imageStr] placeholderImage:defaultImage];
-    }
+    [_iconImageView dvv_downloadImage:imageStr placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
     
     _statusLabel.text = [_model getStatueString];
     
@@ -123,12 +132,12 @@
     
     if (flage) {
         _qrCodeButton.userInteractionEnabled = YES;
-        _qrCodeImageView.image = [UIImage imageNamed:@"code_on"];
-        _qrCodeMarkLabel.textColor = [UIColor lightGrayColor];
+        _qrCodeImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscode_on"];
+        _qrCodeMarkLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
     }else {
         _qrCodeButton.userInteractionEnabled = NO;
-        _qrCodeImageView.image = [UIImage imageNamed:@"code_off"];
-        _qrCodeMarkLabel.textColor = [UIColor blackColor];
+        _qrCodeImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscode_off"];
+        _qrCodeMarkLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
     }
 }
 

@@ -25,7 +25,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科目一" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-rZ-D6Y">
-                    <rect key="frame" x="56" y="21" width="168" height="21"/>
+                    <rect key="frame" x="56" y="21" width="174" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="GjX-g0-Vgf"/>
                     </constraints>
@@ -34,7 +34,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wP-OF-K1t">
-                    <rect key="frame" x="232" y="25" width="80" height="58"/>
+                    <rect key="frame" x="238" y="25" width="80" height="58"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exam_on" translatesAutoresizingMaskIntoConstraints="NO" id="DoK-BJ-IYe">
                             <rect key="frame" x="0.0" y="0.0" width="80" height="58"/>
@@ -86,7 +86,7 @@
                 <constraint firstItem="1wP-OF-K1t" firstAttribute="leading" secondItem="Cco-rZ-D6Y" secondAttribute="trailing" constant="8" id="CdT-Wk-sza"/>
                 <constraint firstAttribute="bottom" secondItem="dXL-uL-Vo3" secondAttribute="bottom" id="DKc-2q-Aj9"/>
                 <constraint firstAttribute="trailing" secondItem="dXL-uL-Vo3" secondAttribute="trailing" id="EKE-9S-aaT"/>
-                <constraint firstAttribute="trailing" secondItem="1wP-OF-K1t" secondAttribute="trailing" constant="8" id="MAq-V7-1CR"/>
+                <constraint firstAttribute="trailing" secondItem="1wP-OF-K1t" secondAttribute="trailing" constant="2" id="MAq-V7-1CR"/>
                 <constraint firstItem="1wP-OF-K1t" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-5" id="PXp-uS-E7M"/>
                 <constraint firstItem="dXL-uL-Vo3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bH3-5l-4Cq"/>
                 <constraint firstItem="itl-uW-IFJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="bZz-R2-SCY"/>
