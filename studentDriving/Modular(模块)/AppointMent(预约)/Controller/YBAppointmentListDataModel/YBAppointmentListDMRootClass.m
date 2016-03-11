@@ -1,13 +1,12 @@
 //
-//  YBAppointmentListDMRootClass.m
-//  studentDriving
-//
-//  Created by 大威 on 16/3/11.
-//  Copyright © 2016年 jatd. All rights reserved.
-//
+//	YBAppointmentListDMRootClass.m
+//	Model file Generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
+
+
 
 #import "YBAppointmentListDMRootClass.h"
 
 @implementation YBAppointmentListDMRootClass
+
 
 @end

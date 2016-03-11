@@ -1019,8 +1019,12 @@
 		D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445291C91969100E7C29F /* YBAppointmentDetailController.m */; };
 		D964ABED1C7AB8CF00A4D1D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */; };
 		D97704971C926D7A00A3865F /* YBAppointmentListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704961C926D7A00A3865F /* YBAppointmentListViewModel.m */; };
-		D977049B1C926ED200A3865F /* YBAppointmentListDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D977049A1C926ED200A3865F /* YBAppointmentListDMRootClass.m */; };
-		D977049E1C926EE900A3865F /* YBAppointmentListDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D977049D1C926EE900A3865F /* YBAppointmentListDMData.m */; };
+		D97704AB1C92A99700A3865F /* YBAppointmentListDMCoachid.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A01C92A99700A3865F /* YBAppointmentListDMCoachid.m */; };
+		D97704AC1C92A99700A3865F /* YBAppointmentListDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A21C92A99700A3865F /* YBAppointmentListDMData.m */; };
+		D97704AD1C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A41C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m */; };
+		D97704AE1C92A99700A3865F /* YBAppointmentListDMHeadportrait.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A61C92A99700A3865F /* YBAppointmentListDMHeadportrait.m */; };
+		D97704AF1C92A99700A3865F /* YBAppointmentListDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A81C92A99700A3865F /* YBAppointmentListDMRootClass.m */; };
+		D97704B01C92A99700A3865F /* YBAppointmentListDMSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704AA1C92A99700A3865F /* YBAppointmentListDMSubject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -2969,10 +2973,18 @@
 		D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D97704951C926D7A00A3865F /* YBAppointmentListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListViewModel.h; sourceTree = "<group>"; };
 		D97704961C926D7A00A3865F /* YBAppointmentListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListViewModel.m; sourceTree = "<group>"; };
-		D97704991C926ED200A3865F /* YBAppointmentListDMRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMRootClass.h; sourceTree = "<group>"; };
-		D977049A1C926ED200A3865F /* YBAppointmentListDMRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMRootClass.m; sourceTree = "<group>"; };
-		D977049C1C926EE900A3865F /* YBAppointmentListDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMData.h; sourceTree = "<group>"; };
-		D977049D1C926EE900A3865F /* YBAppointmentListDMData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMData.m; sourceTree = "<group>"; };
+		D977049F1C92A99700A3865F /* YBAppointmentListDMCoachid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMCoachid.h; sourceTree = "<group>"; };
+		D97704A01C92A99700A3865F /* YBAppointmentListDMCoachid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMCoachid.m; sourceTree = "<group>"; };
+		D97704A11C92A99700A3865F /* YBAppointmentListDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMData.h; sourceTree = "<group>"; };
+		D97704A21C92A99700A3865F /* YBAppointmentListDMData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMData.m; sourceTree = "<group>"; };
+		D97704A31C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMDriveschoolinfo.h; sourceTree = "<group>"; };
+		D97704A41C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMDriveschoolinfo.m; sourceTree = "<group>"; };
+		D97704A51C92A99700A3865F /* YBAppointmentListDMHeadportrait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMHeadportrait.h; sourceTree = "<group>"; };
+		D97704A61C92A99700A3865F /* YBAppointmentListDMHeadportrait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMHeadportrait.m; sourceTree = "<group>"; };
+		D97704A71C92A99700A3865F /* YBAppointmentListDMRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMRootClass.h; sourceTree = "<group>"; };
+		D97704A81C92A99700A3865F /* YBAppointmentListDMRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMRootClass.m; sourceTree = "<group>"; };
+		D97704A91C92A99700A3865F /* YBAppointmentListDMSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMSubject.h; sourceTree = "<group>"; };
+		D97704AA1C92A99700A3865F /* YBAppointmentListDMSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMSubject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -6761,10 +6773,18 @@
 		D97704981C926E0500A3865F /* YBAppointmentListDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				D97704991C926ED200A3865F /* YBAppointmentListDMRootClass.h */,
-				D977049A1C926ED200A3865F /* YBAppointmentListDMRootClass.m */,
-				D977049C1C926EE900A3865F /* YBAppointmentListDMData.h */,
-				D977049D1C926EE900A3865F /* YBAppointmentListDMData.m */,
+				D977049F1C92A99700A3865F /* YBAppointmentListDMCoachid.h */,
+				D97704A01C92A99700A3865F /* YBAppointmentListDMCoachid.m */,
+				D97704A11C92A99700A3865F /* YBAppointmentListDMData.h */,
+				D97704A21C92A99700A3865F /* YBAppointmentListDMData.m */,
+				D97704A31C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.h */,
+				D97704A41C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m */,
+				D97704A51C92A99700A3865F /* YBAppointmentListDMHeadportrait.h */,
+				D97704A61C92A99700A3865F /* YBAppointmentListDMHeadportrait.m */,
+				D97704A71C92A99700A3865F /* YBAppointmentListDMRootClass.h */,
+				D97704A81C92A99700A3865F /* YBAppointmentListDMRootClass.m */,
+				D97704A91C92A99700A3865F /* YBAppointmentListDMSubject.h */,
+				D97704AA1C92A99700A3865F /* YBAppointmentListDMSubject.m */,
 			);
 			path = YBAppointmentListDataModel;
 			sourceTree = "<group>";
@@ -7152,6 +7172,7 @@
 				B251E5C21C8E849500E6613A /* DVVPaySuccessDMData.m in Sources */,
 				B251E3271C8E849500E6613A /* Logoimg.m in Sources */,
 				B251E3AE1C8E849500E6613A /* HomeRewardController.m in Sources */,
+				D97704AB1C92A99700A3865F /* YBAppointmentListDMCoachid.m in Sources */,
 				B251E67C1C8E849600E6613A /* UIViewController+HUD.m in Sources */,
 				B251E63A1C8E849500E6613A /* THProgressView.m in Sources */,
 				B251E5EA1C8E849500E6613A /* YBStudyViewController.m in Sources */,
@@ -7291,6 +7312,7 @@
 				B251E59F1C8E849500E6613A /* DrivingDetailInfoCell.m in Sources */,
 				B251E6041C8E849500E6613A /* EmojiEmoticons.m in Sources */,
 				B251E56F1C8E849500E6613A /* DVVCoachDetailDMTrainfieldlinfo.m in Sources */,
+				D97704AF1C92A99700A3865F /* YBAppointmentListDMRootClass.m in Sources */,
 				B251E5FA1C8E849500E6613A /* EMAudioRecorderUtil.m in Sources */,
 				B251E3301C8E849500E6613A /* SubjectModel.m in Sources */,
 				B251E3BD1C8E849500E6613A /* ModifyPhoneNumViewController.m in Sources */,
@@ -7301,7 +7323,6 @@
 				B251E5891C8E849500E6613A /* ClassTypeViewModel.m in Sources */,
 				B251E3F51C8E849500E6613A /* HMClassInfoModel.m in Sources */,
 				B251E3471C8E849500E6613A /* DVVSideMenuCollectionView.m in Sources */,
-				D977049B1C926ED200A3865F /* YBAppointmentListDMRootClass.m in Sources */,
 				B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */,
 				B251E5041C8E849500E6613A /* RegistNoteController.m in Sources */,
 				B251E40F1C8E849500E6613A /* YBObjectTool.m in Sources */,
@@ -7377,7 +7398,7 @@
 				B251E6711C8E849600E6613A /* NSString+DY_MD5.m in Sources */,
 				B251E5C61C8E849500E6613A /* DVVSignUpCoachDMHeadportrait.m in Sources */,
 				B251E32B1C8E849500E6613A /* serverclasslistModel.m in Sources */,
-				D977049E1C926EE900A3865F /* YBAppointmentListDMData.m in Sources */,
+				D97704AC1C92A99700A3865F /* YBAppointmentListDMData.m in Sources */,
 				B251E3C61C8E849500E6613A /* UserCenterHeadView.m in Sources */,
 				B251E5411C8E849500E6613A /* EditorMessageCell.m in Sources */,
 				B251E6051C8E849500E6613A /* JRSwizzle.m in Sources */,
@@ -7459,6 +7480,7 @@
 				B251E2EF1C8E849500E6613A /* DrivingCycleShowDMHeadportrait.m in Sources */,
 				B251E3411C8E849500E6613A /* DVVImagePickerControllerManager.m in Sources */,
 				D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */,
+				D97704B01C92A99700A3865F /* YBAppointmentListDMSubject.m in Sources */,
 				B251E4FF1C8E849500E6613A /* JZRegisterFirstController.m in Sources */,
 				B251E61A1C8E849500E6613A /* EMSDWebImageDownloaderOperation.m in Sources */,
 				B251E5471C8E849500E6613A /* FeedBackViewController.m in Sources */,
@@ -7533,6 +7555,7 @@
 				B251E68C1C8E849600E6613A /* BLPFAlertView.m in Sources */,
 				B251E5C11C8E849500E6613A /* DVVPaySuccessDMCarmodel.m in Sources */,
 				B251E5481C8E849500E6613A /* DuideDetailCell.m in Sources */,
+				D97704AE1C92A99700A3865F /* YBAppointmentListDMHeadportrait.m in Sources */,
 				B251E6751C8E849600E6613A /* UIColor+RGBColor.m in Sources */,
 				B251E6621C8E849500E6613A /* wav.mm in Sources */,
 				B251E3951C8E849500E6613A /* APWaitConfirmViewController.m in Sources */,
@@ -7717,6 +7740,7 @@
 				B251E4221C8E849500E6613A /* ChatViewController.m in Sources */,
 				B251E6861C8E849600E6613A /* DVVBaseViewModel.m in Sources */,
 				B251E3541C8E849500E6613A /* DiscountWalletCell.m in Sources */,
+				D97704AD1C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m in Sources */,
 				B251E31A1C8E849500E6613A /* AppointmentCoachTimeInfoModel.m in Sources */,
 				B251E43C1C8E849500E6613A /* BaseViewController.m in Sources */,
 				B251E32E1C8E849500E6613A /* StudentModel.m in Sources */,

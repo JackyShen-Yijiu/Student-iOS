@@ -8,6 +8,7 @@
 
 #import "YBCompletedAppointmentListController.h"
 #import "YBCompletedAppointmentListCell.h"
+#import "DVVToast.h"
 
 static NSString *kCellIdentifier = @"kCellIdentifier";
 
@@ -27,7 +28,11 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     self.title = @"已完成的预约";
     self.edgesForExtendedLayout = NO;
     
-    [self.view addSubview:self.tableView];
+    if (!_dataArray.count) {
+        [DVVToast showMessage:@"暂无已完成预约"];
+    }else {
+        [self.view addSubview:self.tableView];
+    }
 }
 
 
@@ -35,7 +40,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 20;
+    return _dataArray.count;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -45,6 +50,13 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     YBCompletedAppointmentListCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    
+    [cell refreshData:_dataArray[indexPath.row]];
+    if (indexPath.row == _dataArray.count - 1) {
+        cell.lineImageView.hidden = YES;
+    }else {
+        cell.lineImageView.hidden = NO;
+    }
     
     return cell;
 }
