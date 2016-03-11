@@ -8,10 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import "NSObject+DVVBaseViewModel.h"
-#import "YBAppointmentListDMRootClass.h"
+//#import "YBAppointmentListDMRootClass.h"
+#import "BaseModelMethod.h"
+#import "HMCourseModel.h"
+#import "YBObjectTool.h"
 
 @interface YBAppointmentListViewModel : NSObject
 
-@property (nonatomic, strong) YBAppointmentListDMData *dmData;
+/** 今天的预约 */
+@property (nonatomic, strong) NSMutableArray *todayArray;
+/** 未来的预约 */
+@property (nonatomic, strong) NSMutableArray *nextArray;
+/** 已完成的预约 */
+@property (nonatomic, strong) NSMutableArray *completedArray;
 
 @end

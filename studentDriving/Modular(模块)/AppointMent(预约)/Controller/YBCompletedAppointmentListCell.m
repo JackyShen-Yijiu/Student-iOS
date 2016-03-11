@@ -22,6 +22,8 @@
         self = xibArray.firstObject;
         [self setRestorationIdentifier:reuseIdentifier];
         
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         [self.contentView addSubview:self.lineImageView];
     }
     return self;

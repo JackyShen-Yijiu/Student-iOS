@@ -14,6 +14,8 @@
 @property (nonatomic, strong) UIImageView *arrowImageView;
 @property (nonatomic, strong) UIButton *button;
 
+@property (nonatomic, strong) UILabel *statusLabel;
+
 @property (nonatomic, strong) UIImageView *lineImageView;
 
 @end

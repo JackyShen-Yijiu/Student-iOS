@@ -1,12 +1,12 @@
 //
-//	YBAppointmentListDMData.m
+//	YBAppointmentListDMCoachid.m
 //	Model file Generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
 
 
 
-#import "YBAppointmentListDMData.h"
+#import "YBAppointmentListDMCoachid.h"
 
-@implementation YBAppointmentListDMData
+@implementation YBAppointmentListDMCoachid
 
 + (NSDictionary *)modelCustomPropertyMapper {
     

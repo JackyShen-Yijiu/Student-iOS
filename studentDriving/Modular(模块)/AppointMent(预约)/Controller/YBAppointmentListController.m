@@ -88,6 +88,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         [DVVToast hideFromView:ws.view];
     }];
     
+    // 开始请求数据
     [DVVToast showFromView:ws.view OffSetY:-64];
     [_viewModel dvv_networkRequestRefresh];
 }
@@ -104,13 +105,15 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     
     if (0 == section) {
         if (_isShowTodayAppointment) {
-            return 4;
+            return _viewModel.todayArray.count;
+//            return 5;
         }else {
             return 0;
         }
     }else {
         if (_isShowNextAppointment) {
-            return 5;
+            return _viewModel.nextArray.count;
+//            return 4;
         }else {
             return 0;
         }
@@ -135,20 +138,39 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     headerView.button.tag = section;
     [headerView.button addTarget:self action:@selector(sectionHeaderAction:) forControlEvents:UIControlEventTouchUpInside];
     if (0 == section) {
+        headerView.titleLabel.text = @"今日的预约";
+        if (_viewModel.todayArray.count) {
+            headerView.statusLabel.hidden = YES;
+            headerView.arrowImageView.hidden = NO;
+            headerView.button.userInteractionEnabled = YES;
+        }else {
+            headerView.statusLabel.hidden = NO;
+            headerView.arrowImageView.hidden = YES;
+            headerView.button.userInteractionEnabled = NO;
+        }
         if (_isShowTodayAppointment) {
-            headerView.arrowImageView.image = [UIImage imageNamed:@"1"];
+            headerView.arrowImageView.image = [UIImage imageNamed:@"more_down"];
         }else {
             headerView.arrowImageView.image = [UIImage imageNamed:@"more_right"];
         }
     }else if (1 == section) {
+        headerView.titleLabel.text = @"未来的预约";
+        if (_viewModel.nextArray.count) {
+            headerView.statusLabel.hidden = YES;
+            headerView.arrowImageView.hidden = NO;
+            headerView.button.userInteractionEnabled = YES;
+        }else {
+            headerView.statusLabel.hidden = NO;
+            headerView.arrowImageView.hidden = YES;
+            headerView.button.userInteractionEnabled = NO;
+        }
         if (_isShowNextAppointment) {
-            headerView.arrowImageView.image = [UIImage imageNamed:@"1"];
+            headerView.arrowImageView.image = [UIImage imageNamed:@"more_down"];
         }else {
             headerView.arrowImageView.image = [UIImage imageNamed:@"more_right"];
         }
     }
     
-    headerView.titleLabel.text = @"title";
     return headerView;
 }
 
@@ -161,6 +183,23 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     YBAppointmentListCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    
+    if (0 == indexPath.section) {
+        // 隐藏最后一个cell的线
+        if (indexPath.row == _viewModel.todayArray.count - 1) {
+            cell.lineImageView.hidden = YES;
+        }else {
+            cell.lineImageView.hidden = NO;
+        }
+        [cell refreshData:_viewModel.todayArray[indexPath.row] appointmentTime:0];
+    }else if (1 == indexPath.section) {
+        if (indexPath.row == _viewModel.nextArray.count - 1) {
+            cell.lineImageView.hidden = YES;
+        }else {
+            cell.lineImageView.hidden = NO;
+        }
+        [cell refreshData:_viewModel.nextArray[indexPath.row] appointmentTime:1];
+    }
     
     return cell;
 }
@@ -210,6 +249,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         _footerView.frame = CGRectMake(0, 0, kSystemWide, 44);
         _footerView.titleLabel.text = @"已完成的预约";
         [_footerView.button addTarget:self action:@selector(completedAppointmentAction) forControlEvents:UIControlEventTouchUpInside];
+        _footerView.statusLabel.hidden = YES;
     }
     return _footerView;
 }

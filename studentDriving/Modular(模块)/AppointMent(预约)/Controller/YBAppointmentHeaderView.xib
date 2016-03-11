@@ -11,7 +11,7 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="itl-uW-IFJ">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car" translatesAutoresizingMaskIntoConstraints="NO" id="itl-uW-IFJ">
                     <rect key="frame" x="8" y="28" width="40" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="SYd-XL-WE9"/>
@@ -33,12 +33,20 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1wP-OF-K1t">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wP-OF-K1t">
                     <rect key="frame" x="232" y="25" width="80" height="58"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exam_on" translatesAutoresizingMaskIntoConstraints="NO" id="DoK-BJ-IYe">
+                            <rect key="frame" x="0.0" y="0.0" width="80" height="58"/>
+                        </imageView>
+                    </subviews>
                     <constraints>
+                        <constraint firstAttribute="bottom" secondItem="DoK-BJ-IYe" secondAttribute="bottom" id="0Fa-wJ-vxj"/>
+                        <constraint firstAttribute="trailing" secondItem="DoK-BJ-IYe" secondAttribute="trailing" id="99q-UA-QgF"/>
+                        <constraint firstItem="DoK-BJ-IYe" firstAttribute="leading" secondItem="1wP-OF-K1t" secondAttribute="leading" id="dpf-3Q-rcQ"/>
                         <constraint firstAttribute="height" constant="58" id="gnL-yI-8sI"/>
                         <constraint firstAttribute="width" constant="80" id="pSc-Vs-XK4"/>
+                        <constraint firstItem="DoK-BJ-IYe" firstAttribute="top" secondItem="1wP-OF-K1t" secondAttribute="top" id="vLa-Rk-YnA"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="购买：32课时" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-gI-OEO">
@@ -79,7 +87,7 @@
                 <constraint firstAttribute="bottom" secondItem="dXL-uL-Vo3" secondAttribute="bottom" id="DKc-2q-Aj9"/>
                 <constraint firstAttribute="trailing" secondItem="dXL-uL-Vo3" secondAttribute="trailing" id="EKE-9S-aaT"/>
                 <constraint firstAttribute="trailing" secondItem="1wP-OF-K1t" secondAttribute="trailing" constant="8" id="MAq-V7-1CR"/>
-                <constraint firstItem="1wP-OF-K1t" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="PXp-uS-E7M"/>
+                <constraint firstItem="1wP-OF-K1t" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-5" id="PXp-uS-E7M"/>
                 <constraint firstItem="dXL-uL-Vo3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bH3-5l-4Cq"/>
                 <constraint firstItem="itl-uW-IFJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="bZz-R2-SCY"/>
                 <constraint firstItem="itl-uW-IFJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="8" id="dJ8-o9-D7o"/>
@@ -91,4 +99,8 @@
             <point key="canvasLocation" x="359" y="456"/>
         </view>
     </objects>
+    <resources>
+        <image name="car" width="40" height="32"/>
+        <image name="exam_on" width="78" height="54"/>
+    </resources>
 </document>
