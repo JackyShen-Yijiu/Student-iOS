@@ -277,7 +277,6 @@
 		B251E3ED1C8E849500E6613A /* YBAppointMentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC01C8E849200E6613A /* YBAppointMentController.m */; };
 		B251E3EE1C8E849500E6613A /* YBAppointMentDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC21C8E849200E6613A /* YBAppointMentDetailsController.m */; };
 		B251E3EF1C8E849500E6613A /* YBCancleAppointMentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC41C8E849200E6613A /* YBCancleAppointMentController.m */; };
-		B251E3F01C8E849500E6613A /* YBCoachListSearchController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC61C8E849200E6613A /* YBCoachListSearchController.m */; };
 		B251E3F11C8E849500E6613A /* YBCoachListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC81C8E849200E6613A /* YBCoachListViewController.m */; };
 		B251E3F21C8E849500E6613A /* YBForceEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCCA1C8E849200E6613A /* YBForceEvaluateViewController.m */; };
 		B251E3F31C8E849500E6613A /* BaseModelMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCCD1C8E849200E6613A /* BaseModelMethod.m */; };
@@ -1553,8 +1552,6 @@
 		B251DCC21C8E849200E6613A /* YBAppointMentDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsController.m; sourceTree = "<group>"; };
 		B251DCC31C8E849200E6613A /* YBCancleAppointMentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCancleAppointMentController.h; sourceTree = "<group>"; };
 		B251DCC41C8E849200E6613A /* YBCancleAppointMentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCancleAppointMentController.m; sourceTree = "<group>"; };
-		B251DCC51C8E849200E6613A /* YBCoachListSearchController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCoachListSearchController.h; sourceTree = "<group>"; };
-		B251DCC61C8E849200E6613A /* YBCoachListSearchController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCoachListSearchController.m; sourceTree = "<group>"; };
 		B251DCC71C8E849200E6613A /* YBCoachListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCoachListViewController.h; sourceTree = "<group>"; };
 		B251DCC81C8E849200E6613A /* YBCoachListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCoachListViewController.m; sourceTree = "<group>"; };
 		B251DCC91C8E849200E6613A /* YBForceEvaluateViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBForceEvaluateViewController.h; sourceTree = "<group>"; };
@@ -3872,8 +3869,6 @@
 				B251DCC21C8E849200E6613A /* YBAppointMentDetailsController.m */,
 				B251DCC31C8E849200E6613A /* YBCancleAppointMentController.h */,
 				B251DCC41C8E849200E6613A /* YBCancleAppointMentController.m */,
-				B251DCC51C8E849200E6613A /* YBCoachListSearchController.h */,
-				B251DCC61C8E849200E6613A /* YBCoachListSearchController.m */,
 				B251DCC71C8E849200E6613A /* YBCoachListViewController.h */,
 				B251DCC81C8E849200E6613A /* YBCoachListViewController.m */,
 				B251DCC91C8E849200E6613A /* YBForceEvaluateViewController.h */,
@@ -7521,7 +7516,6 @@
 				B251E3371C8E849500E6613A /* UserIdModel.m in Sources */,
 				B251E66C1C8E849500E6613A /* UINavigationBar+DVVNavigationBar.m in Sources */,
 				B251E31D1C8E849500E6613A /* CarModel.m in Sources */,
-				B251E40A1C8E849500E6613A /* NSString+CurrentTimeDay.m in Sources */,
 				D96445151C91816300E7C29F /* YBAppointmentHeaderView.m in Sources */,
 				B251E6391C8E849500E6613A /* SRSlimeView.m in Sources */,
 				B251E30C1C8E849500E6613A /* SignUpDrivingViewController.m in Sources */,
@@ -7589,7 +7583,6 @@
 				B251E5071C8E849500E6613A /* YBFindPwdViewController.m in Sources */,
 				B251E41E1C8E849500E6613A /* ChatListViewController.m in Sources */,
 				B251E31B1C8E849500E6613A /* AVPlayModel.m in Sources */,
-				B251E3F01C8E849500E6613A /* YBCoachListSearchController.m in Sources */,
 				B251E36E1C8E849500E6613A /* AppointmentCollectionCell.m in Sources */,
 				B251E55F1C8E849500E6613A /* YBSignUpSuccessController.m in Sources */,
 				B251E3FD1C8E849500E6613A /* HMTrainaddressModel.m in Sources */,
