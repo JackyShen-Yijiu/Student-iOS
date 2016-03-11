@@ -57,10 +57,10 @@
     [self.backGroundView addSubview:self.starBar];
     
     [self.starBar mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
-        make.top.mas_equalTo(self.topLabel.mas_bottom).offset(9);
-        make.width.mas_equalTo(@150);
-        make.height.mas_equalTo(@30);
+        make.left.mas_equalTo(self.topLabel.mas_right).offset(15);
+        make.top.mas_equalTo(self.backGroundView.mas_top).offset(15);
+        make.width.mas_equalTo(@5);
+        make.height.mas_equalTo(@5);
     }];
 }
 - (void)receiveIndex:(NSIndexPath *)indexPath {

@@ -21,6 +21,16 @@
 }
 @property (strong, nonatomic) UITableView *tableView;
 
+@property (nonatomic, strong) UIView *BGView;
+// 教练文字
+@property (nonatomic, strong) UILabel *coachTitleLabel;
+
+// 头像
+@property (nonatomic,strong) UIImageView *iconImgView;
+
+// 教练姓名
+@property (nonatomic, strong) UILabel *coachNameLabel;
+
 // 总体评论星级
 @property (assign, nonatomic) int starProgress;
 // 能力
@@ -36,9 +46,69 @@
 
 @property (nonatomic , strong) NSMutableArray *commentTitleArray;
 
+@property (nonatomic, strong) UITextView *reasonTextView;
+@property (nonatomic, strong) UIView *lineView;
+
 @end
 
 @implementation APCommentViewController
+
+- (UIView *)BGView{
+    if (_BGView == nil) {
+        _BGView = [[UIView alloc] init];
+        _BGView.backgroundColor = [UIColor clearColor];
+        _BGView.frame = CGRectMake(0, 0, kSystemWide, 104);
+    }
+    
+    return _BGView;
+}
+// 描述文字
+- (UILabel *)coachTitleLabel
+{
+    if (_coachTitleLabel==nil) {
+        CGFloat width = 12 * 2;
+        CGFloat height = 12;
+        _coachTitleLabel = [[UILabel alloc] init];
+        _coachTitleLabel.text = @"教练";
+        _coachTitleLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _coachTitleLabel.font = [UIFont systemFontOfSize:12];
+        _coachTitleLabel.textAlignment = NSTextAlignmentCenter;
+        _coachTitleLabel.frame = CGRectMake(self.BGView.width/2 - width/2, 20, width, height);
+        
+    }
+    return _coachTitleLabel;
+}
+
+
+// 头像
+- (UIImageView *)iconImgView
+{
+    if (_iconImgView==nil) {
+        _iconImgView = [[UIImageView alloc] init];
+        _iconImgView.backgroundColor = YBNavigationBarBgColor;
+        _iconImgView.frame = CGRectMake(self.BGView.width/2-40/2, CGRectGetMaxY(self.coachTitleLabel.frame)+10, 40, 40);
+        _iconImgView.layer.masksToBounds = YES;
+        _iconImgView.layer.cornerRadius = 20;
+    }
+    return _iconImgView;
+}
+// 教练姓名
+- (UILabel *)coachNameLabel
+{
+    if (_coachNameLabel==nil) {
+        CGFloat width = 12 * 8;
+        CGFloat height = 12;
+        _coachNameLabel = [[UILabel alloc] init];
+        _coachNameLabel.text = @"######";
+        _coachNameLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _coachNameLabel.font = [UIFont systemFontOfSize:12];
+        _coachNameLabel.textAlignment = NSTextAlignmentCenter;
+        _coachNameLabel.frame = CGRectMake(self.BGView.width/2 - width/2, CGRectGetMaxY(self.iconImgView.frame)+10, width, height);
+        
+    }
+    return _coachNameLabel;
+}
+
 
 - (NSMutableArray *)commentTitleArray
 {
@@ -56,24 +126,56 @@
 
 - (UIButton *)submitBtn {
     if (_submitBtn == nil) {
-        _submitBtn = [WMUITool initWithTitle:@"提交" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
-        _submitBtn.backgroundColor = MAINCOLOR;
+        _submitBtn = [WMUITool initWithTitle:@"提交评价" withTitleColor:YBNavigationBarBgColor withTitleFont:[UIFont systemFontOfSize:14]];
+        _submitBtn.backgroundColor = [UIColor whiteColor];
+        _submitBtn.frame = CGRectMake(0, kSystemHeight - 44 - 64, kSystemWide, 44);
         [_submitBtn addTarget:self action:@selector(clickSubmit:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submitBtn;
 }
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 44 - 64) style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = BACKGROUNDCOLOR;
-        //_tableView.scrollEnabled = NO;
+        _tableView.backgroundColor = [UIColor whiteColor];
+        _tableView.scrollEnabled = NO;
     }
     return _tableView;
 }
+// 请输入原因
+- (UITextView *)reasonTextView
+{
+    if (_reasonTextView==nil) {
+        CGFloat height = 50;
+        CGFloat margin = 18;
+        _reasonTextView = [[UITextView alloc] initWithFrame:CGRectMake(margin, 0, kSystemWide-2*margin, height)];
+        _reasonTextView.textColor = [UIColor blackColor];
+        _reasonTextView.font = [UIFont systemFontOfSize:13];
+        _reasonTextView.backgroundColor = [UIColor clearColor];
+        _reasonTextView.delegate = self;
+        [_reasonTextView becomeFirstResponder];
+        _reasonTextView.layer.borderColor = [[UIColor colorWithHexString:@"6e6e6e"]CGColor];
+        _reasonTextView.layer.borderWidth = 1.0;
+        _reasonTextView.layer.cornerRadius = 4.0f;
+        [_reasonTextView.layer setMasksToBounds:YES];
+        
+        
+    }
+    return _reasonTextView;
+}
+- (UIView *)lineView{
+    if (_lineView == nil) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 0.5)];
+        _lineView.backgroundColor = HM_LINE_COLOR;
+        
+    }
+    return _lineView;
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view addSubview:self.submitBtn];
+    [self.submitBtn addSubview:self.lineView];
     // Do any additional setup after loading the view.
     
     // 默认5颗星
@@ -98,7 +200,10 @@
     
     [self.view addSubview:self.tableView];
     
-    self.tableView.tableFooterView = [self tableViewFootView];
+    [self.BGView addSubview:self.coachTitleLabel];
+    [self.BGView addSubview:self.iconImgView];
+    [self.BGView addSubview:self.coachNameLabel];
+    self.tableView.tableHeaderView = self.BGView;
  
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 80, 0);
     
@@ -163,20 +268,6 @@
     
 }
 
-- (UIView *)tableViewFootView {
-    
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 80)];
-    [backGroundView addSubview:self.submitBtn];
-    
-    [self.submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(backGroundView.mas_left).offset(15);
-        make.top.mas_equalTo(backGroundView.mas_top).offset(15);
-        make.right.mas_equalTo(backGroundView.mas_right).offset(-15);
-        make.height.mas_equalTo(@45);
-    }];
-    
-    return backGroundView;
-}
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     return 10;
 }
@@ -186,7 +277,10 @@
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 79;
+    if (0 == indexPath.section) {
+        return 30;
+    }
+    return 60;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -239,20 +333,20 @@
             cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellId];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             
-            bctextView = [[BCTextView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 79) withPlaceholder:@"写点评论吧,对其他伙伴有帮助"];
-            bctextView.delegate = self;
-            bctextView.font = [UIFont systemFontOfSize:16];
-            bctextView.returnKeyType = UIReturnKeyDone;
-            [cell.contentView addSubview:bctextView];
+//            bctextView = [[BCTextView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 79) withPlaceholder:@"写点评论吧,对其他伙伴有帮助"];
+//            bctextView.delegate = self;
+//            bctextView.font = [UIFont systemFontOfSize:16];
+//            bctextView.returnKeyType = UIReturnKeyDone;
+            [cell.contentView addSubview:self.reasonTextView];
         }
         return cell;
     }
     return nil;
 }
-- (void)textViewDidBeginEditing:(UITextView *)textView {
-    BCTextView *bcTextView = (BCTextView *)textView;
-    bcTextView.placeholder.hidden = YES;
-}
+//- (void)textViewDidBeginEditing:(UITextView *)textView {
+//    BCTextView *bcTextView = (BCTextView *)textView;
+//    bcTextView.placeholder.hidden = YES;
+//}
 -(BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text
 {
     if ([text isEqualToString:@"\n"]) {
