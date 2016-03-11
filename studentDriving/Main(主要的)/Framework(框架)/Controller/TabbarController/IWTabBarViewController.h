@@ -15,6 +15,8 @@
 #import "YBCommunityViewController.h"
 #import "WMNavigationController.h"
 
+#import "YBAppointmentListController.h"
+
 @protocol IWTabBarViewControllerDelegate <NSObject>
 
 - (void)IWTabBarViewControllerWithLeftBarDidClick;
@@ -27,7 +29,7 @@
 
 @property (strong, nonatomic) YBSignUpViewController   *baomingVC;
 @property (strong, nonatomic) YBStudyViewController   *xuexiVC;
-@property (strong, nonatomic) YBAppointMentController   *yuyueVC;
+@property (strong, nonatomic) YBAppointmentListController   *yuyueVC;
 @property (strong, nonatomic) YBMallViewController   *shangchengVC;
 @property (strong, nonatomic) YBCommunityViewController   *shequVC;
 
