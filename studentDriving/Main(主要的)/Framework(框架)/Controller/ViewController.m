@@ -33,6 +33,8 @@
 #import "YBUserCenterController.h"
 #import "MallOrderController.h"
 #import "MyConsultationListController.h"
+#import "YBForceEvaluateViewController.h"
+#import "APCommentViewController.h"
 
 @interface ViewController () <WMMenuViewControllerDelegate,IWTabBarViewControllerDelegate>
 
@@ -108,8 +110,7 @@
 
 - (void)receiveMainVcChange
 {
-    self.tabBarController.mainNav.tabBarController.selectedIndex = 0;
-    self.tabBarController.vcType = 0;
+    [self.tabBarController changeVc:0];
 }
 
 - (void)receiveMainChatMessage
@@ -412,8 +413,13 @@
             [DVVUserManager userNeedLogin];
             return;
         }
-        MyConsultationListController *myconVC = [[MyConsultationListController alloc] init];
+//        MyConsultationListController *myconVC = [[MyConsultationListController alloc] init];
+//        [self controller:myconVC];
+        YBForceEvaluateViewController *myconVC = [[YBForceEvaluateViewController alloc] init];
         [self controller:myconVC];
+//        APCommentViewController *myconVC = [[APCommentViewController alloc] init];
+//        [self controller:myconVC];
+        
     }
 }
 - (void)controller:(UIViewController *)itemVC{

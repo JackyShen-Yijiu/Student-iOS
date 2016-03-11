@@ -482,9 +482,9 @@ static NSString *const kautoCode = @"Verificationsmscode";
     
     [self.eyeButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.passwordTextFiled.mas_right).with.offset(-14);
-        make.top.mas_equalTo(self.passwordTextFiled.mas_top).with.offset(44/2-8/2);
-        make.height.mas_equalTo(@8);
-        make.width.mas_equalTo(@16);
+        make.top.mas_equalTo(self.passwordTextFiled.mas_top).with.offset(0);
+        make.height.mas_equalTo(@44);
+        make.width.mas_equalTo(@44);
     }];
     
 //    [self.invitiTextFiled mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -628,9 +628,10 @@ static NSString *const kautoCode = @"Verificationsmscode";
 - (UIButton *)eyeButton{
     if (_eyeButton == nil) {
         _eyeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"look_off"] forState:UIControlStateNormal];
-        [_eyeButton setBackgroundImage:[UIImage imageNamed:@"look_on"] forState:UIControlStateSelected];
+        [_eyeButton setImage:[UIImage imageNamed:@"look_off"] forState:UIControlStateNormal];
+        [_eyeButton setImage:[UIImage imageNamed:@"look_on"] forState:UIControlStateSelected];
         [_eyeButton addTarget:self action:@selector(didEyeButton:) forControlEvents:UIControlEventTouchUpInside];
+        [_eyeButton setImageEdgeInsets:UIEdgeInsetsMake(14, 28, 14, 0)];
         _eyeButton.backgroundColor = [UIColor clearColor];
     }
     return _eyeButton;

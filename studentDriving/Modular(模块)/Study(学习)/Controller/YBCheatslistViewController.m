@@ -73,7 +73,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = RGBColor(232, 232, 237);
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     self.title = @"学车秘籍";
     

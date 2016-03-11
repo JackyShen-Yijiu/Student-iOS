@@ -9,7 +9,10 @@
 const NSTimeInterval kSecondsInDay = 86400;
 const NSInteger kMondayOffset = 2;
 const CGFloat kDIDetepickerHeight = 60.;
-const CGFloat kDIDatepickerSpaceBetweenItems = 15.;
+const CGFloat kDIDatepickerSpaceBetweenItems = 0;// item之间的间隔
+
+#define kDIDatepickerItemWidth kSystemWide/7
+const CGFloat kDIDatepickerSelectionLineWidth = 51.;
 
 @interface DIDatepicker ()
 
@@ -203,7 +206,6 @@ const CGFloat kDIDatepickerSpaceBetweenItems = 15.;
 
 
 #pragma mark Private methods
-
 - (void)drawRect:(CGRect)rect
 {
     [super drawRect:rect];
@@ -228,7 +230,6 @@ const CGFloat kDIDatepickerSpaceBetweenItems = 15.;
         dateView.selected = [date isEqualToDate:self.selectedDate];
         [dateView setItemSelectionColor:self.selectedDateBottomLineColor];
         [dateView addTarget:self action:@selector(updateSelectedDate:) forControlEvents:UIControlEventValueChanged];
-
         [self.datesScrollView addSubview:dateView];
 
         currentItemXPosition += kDIDatepickerItemWidth + kDIDatepickerSpaceBetweenItems;

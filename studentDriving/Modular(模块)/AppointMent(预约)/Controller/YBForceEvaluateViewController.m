@@ -17,17 +17,33 @@
 @property (nonatomic,strong) UIView *alertBgView;
 
 @property (nonatomic,strong) UIView *alertView;
+// 车标头像
+@property (nonatomic, strong) UIImageView *carImagView;
+
+// 顶部文字
+@property (nonatomic, strong) UILabel *topTitleLabel;
+
+// 描述文字
+@property (nonatomic, strong) UILabel *desLabel;
+
+// 教练文字
+@property (nonatomic, strong) UILabel *coachTitleLabel;
 
 // 头像
 @property (nonatomic,strong) UIImageView *iconImgView;
 
+// 教练姓名
+@property (nonatomic, strong) UILabel *coachNameLabel;
+
 // 评价多少字
 @property (nonatomic,strong) UILabel *commentCountLabel;
 
-@property (nonatomic,strong) ShowWarningMessageView *reasonMsg;
 
 // 分割线
 @property (nonatomic,strong) UIView *delive;
+
+// 分割竖线
+@property (nonatomic, strong) UIView *verticalLineView;
 
 // 更多选项
 @property (nonatomic,strong) UIButton *moreBtn;
@@ -39,6 +55,111 @@
 
 @implementation YBForceEvaluateViewController
 
+
+- (void)viewDidLoad {
+    
+    [super viewDidLoad];
+   
+    // 更新UI
+    [self setUpUI];
+    
+    [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_iconURL]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
+    
+}
+
+- (void)setIconURL:(NSString *)iconURL
+{
+    _iconURL = iconURL;
+    
+    [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_iconURL]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
+
+}
+
+- (void)setUpUI
+{
+    self.automaticallyAdjustsScrollViewInsets = NO;
+    self.edgesForExtendedLayout = UIRectEdgeNone;
+   
+
+    [self.view addSubview:self.bgView];
+    [self.view addSubview:self.alertBgView];
+    [self.alertBgView addSubview:self.alertView];
+    
+    // 汽车头像
+    [self.alertView addSubview:self.carImagView];
+    
+    // 顶部文字
+    [self.alertView addSubview:self.topTitleLabel];
+    
+    // 描述文字
+    [self.alertView addSubview:self.desLabel];
+    
+    // 教练文字
+    [self.alertView addSubview:self.coachTitleLabel];
+
+    // 头像
+    [self.alertView addSubview:self.iconImgView];
+    
+    // 教练姓名
+    [self.alertView addSubview:self.coachNameLabel];
+    
+    // 用户星级
+    [self.alertView addSubview:self.starBar];
+    
+    // 评价多少字
+    [self.alertView addSubview:self.commentCountLabel];
+    
+    // 请输入原因
+    [self.alertView addSubview:self.reasonTextView];
+    
+    // 分割线
+    [self.alertView addSubview:self.delive];
+    
+    // 更多选项
+    [self.alertView addSubview:self.moreBtn];
+    
+    // 提交评价
+    [self.alertView addSubview:self.commitBtn];
+    
+//     更新尺寸
+    CGRect alertBgF = self.alertBgView.frame;
+    alertBgF.size.height = CGRectGetMaxY(self.commitBtn.frame);
+    self.alertBgView.frame = alertBgF;
+    self.alertView.frame = self.alertBgView.bounds;
+
+}
+
+- (void)moreBtnDidClick{
+    NSLog(@"%s",__func__);
+    self.moteblock();
+}
+- (void)commitBtnDidClick
+{
+    NSLog(@"%s",__func__);
+    self.commitBlock();
+}
+#pragma mark --- UITextView Delegate
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if ([textView.text length]>40) {
+        
+        textView.text = [textView.text substringToIndex:40];
+        return;
+        
+    }
+    if (textView.text && [textView.text length]!=0) {
+        _commitBtn.enabled = YES;
+    }else{
+        _commitBtn.enabled = NO;
+    }
+    _commentCountLabel.text = [NSString stringWithFormat:@"%lu/40",(unsigned long)[textView.text length]];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+#pragma mark --- Lazy 加载
 - (UIView *)bgView
 {
     if (_bgView==nil) {
@@ -54,10 +175,9 @@
     if (_alertBgView==nil) {
         // 540 446
         CGFloat width = 540/2;
-        CGFloat height = 440/2;
+        CGFloat height = 600;
         CGFloat X = kSystemWide/2-width/2;
-        CGFloat Y = kSystemHeight/2-height/2;
-        _alertBgView = [[UIView alloc] initWithFrame:CGRectMake(X, Y, width, height)];
+        _alertBgView = [[UIView alloc] initWithFrame:CGRectMake(X, 0, width, height)];
         _alertBgView.backgroundColor = [UIColor blackColor];
     }
     return _alertBgView;
@@ -71,6 +191,66 @@
     }
     return _alertView;
 }
+// 汽车头像
+- (UIImageView *)carImagView
+{
+    if (_carImagView==nil) {
+        _carImagView = [[UIImageView alloc] init];
+        _carImagView.backgroundColor = YBNavigationBarBgColor;
+        _carImagView.frame = CGRectMake(self.alertView.width/2-40/2, 20, 40, 40);
+        
+    }
+    return _carImagView;
+}
+// 顶部文字
+- (UILabel *)topTitleLabel
+{
+    if (_topTitleLabel==nil) {
+        CGFloat width = 14 * 10;
+        CGFloat height = 14;
+        _topTitleLabel = [[UILabel alloc] init];
+        _topTitleLabel.text = @"上次练车练的怎么样?";
+        _topTitleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _topTitleLabel.font = [UIFont systemFontOfSize:14];
+        _topTitleLabel.textAlignment = NSTextAlignmentCenter;
+        _topTitleLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.carImagView.frame)+20, width, height);
+        
+    }
+    return _topTitleLabel;
+}
+// 描述文字
+- (UILabel *)desLabel
+{
+    if (_desLabel==nil) {
+        CGFloat width = 14 * 7;
+        CGFloat height = 14;
+        _desLabel = [[UILabel alloc] init];
+        _desLabel.text = @"先来评价一下~";
+        _desLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _desLabel.font = [UIFont systemFontOfSize:14];
+        _desLabel.textAlignment = NSTextAlignmentCenter;
+        _desLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.topTitleLabel.frame)+10, width, height);
+        
+    }
+    return _desLabel;
+}
+// 描述文字
+- (UILabel *)coachTitleLabel
+{
+    if (_coachTitleLabel==nil) {
+        CGFloat width = 12 * 2;
+        CGFloat height = 12;
+        _coachTitleLabel = [[UILabel alloc] init];
+        _coachTitleLabel.text = @"教练";
+        _coachTitleLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _coachTitleLabel.font = [UIFont systemFontOfSize:12];
+        _coachTitleLabel.textAlignment = NSTextAlignmentCenter;
+        _coachTitleLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.desLabel.frame)+40, width, height);
+        
+    }
+    return _coachTitleLabel;
+}
+
 
 // 头像
 - (UIImageView *)iconImgView
@@ -78,56 +258,75 @@
     if (_iconImgView==nil) {
         _iconImgView = [[UIImageView alloc] init];
         _iconImgView.backgroundColor = YBNavigationBarBgColor;
-        _iconImgView.frame = CGRectMake(self.alertView.width/2-40/2, 20, 40, 40);
+        _iconImgView.frame = CGRectMake(self.alertView.width/2-40/2, CGRectGetMaxY(self.coachTitleLabel.frame)+10, 40, 40);
         _iconImgView.layer.masksToBounds = YES;
         _iconImgView.layer.cornerRadius = 20;
     }
     return _iconImgView;
 }
+// 教练姓名
+- (UILabel *)coachNameLabel
+{
+    if (_coachNameLabel==nil) {
+        CGFloat width = 12 * 8;
+        CGFloat height = 12;
+        _coachNameLabel = [[UILabel alloc] init];
+        _coachNameLabel.text = @"######";
+        _coachNameLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _coachNameLabel.font = [UIFont systemFontOfSize:12];
+        _coachNameLabel.textAlignment = NSTextAlignmentCenter;
+        _coachNameLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.iconImgView.frame)+10, width, height);
+        
+    }
+    return _coachNameLabel;
+}
+
 // 用户星级
 - (RatingBar *)starBar
 {
     if (_starBar==nil) {
         CGFloat width = 150;
         CGFloat height = 30;
-        _starBar = [[RatingBar alloc] initWithFrame:CGRectMake(self.alertView.width/2-width/2, CGRectGetMaxY(self.iconImgView.frame)+10, width, height)];
+        _starBar = [[RatingBar alloc] initWithFrame:CGRectMake(self.alertView.width/2-width/2, CGRectGetMaxY(self.coachNameLabel.frame)+20, width, height)];
         [_starBar setUpRating:0.0];
-        [_starBar setImageDeselected:@"YBStarNomalImg.png" halfSelected:nil fullSelected:@"YBStarSelectImg.png" andDelegate:nil];
+        [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:nil];
     }
     return _starBar;
-}
-// 评价多少字
-- (UILabel *)commentCountLabel
-{
-    if (_commentCountLabel==nil) {
-        _commentCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(18, CGRectGetMaxY(self.starBar.frame)+20, 100, 20)];
-        _commentCountLabel.text = @"评价 0/40";
-        _commentCountLabel.font = [UIFont systemFontOfSize:12];
-        _commentCountLabel.textColor = [UIColor lightGrayColor];
-    }
-    return _commentCountLabel;
 }
 // 请输入原因
 - (UITextView *)reasonTextView
 {
     if (_reasonTextView==nil) {
-        _reasonTextView = [[UITextView alloc] initWithFrame:CGRectMake(self.commentCountLabel.origin.x, CGRectGetMaxY(self.commentCountLabel.frame)+10, self.alertView.width-2*self.commentCountLabel.origin.x, 30)];
+        CGFloat height = 50;
+        CGFloat margin = 18;
+        _reasonTextView = [[UITextView alloc] initWithFrame:CGRectMake(margin, CGRectGetMaxY(self.starBar.frame)+10, self.alertView.width-2*margin, height)];
         _reasonTextView.textColor = [UIColor blackColor];
         _reasonTextView.font = [UIFont systemFontOfSize:13];
         _reasonTextView.backgroundColor = [UIColor clearColor];
         _reasonTextView.delegate = self;
         [_reasonTextView becomeFirstResponder];
+        _reasonTextView.layer.borderColor = [[UIColor colorWithHexString:@"6e6e6e"]CGColor];
+        _reasonTextView.layer.borderWidth = 1.0;
+        _reasonTextView.layer.cornerRadius = 4.0f;
+        [_reasonTextView.layer setMasksToBounds:YES];
+        
+        
     }
     return _reasonTextView;
 }
-- (ShowWarningMessageView *)reasonMsg
+// 评价多少字
+- (UILabel *)commentCountLabel
 {
-    if (_reasonMsg==nil) {
-        _reasonMsg = [[ShowWarningMessageView alloc] initWithFrame:CGRectMake(self.alertView.width-100-20, self.commentCountLabel.frame.origin.y, 100, 20)];
-        _reasonMsg.message = @"请输入原因";
+    if (_commentCountLabel==nil) {
+        _commentCountLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.reasonTextView.frame)-100, CGRectGetMaxY(self.reasonTextView.frame)-22, 100, 25)];
+        _commentCountLabel.text = @"0/40";
+        _commentCountLabel.textAlignment = NSTextAlignmentRight;
+        _commentCountLabel.font = [UIFont systemFontOfSize:12];
+        _commentCountLabel.textColor = [UIColor lightGrayColor];
     }
-    return _reasonMsg;
+    return _commentCountLabel;
 }
+
 // 分割线
 - (UIView *)delive
 {
@@ -164,95 +363,6 @@
         _commitBtn.enabled = NO;
     }
     return _commitBtn;
-}
-
-- (void)viewDidLoad {
-    
-    [super viewDidLoad];
-   
-    // 更新UI
-    [self setUpUI];
-    
-    [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_iconURL]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
-    
-}
-
-- (void)setIconURL:(NSString *)iconURL
-{
-    _iconURL = iconURL;
-    
-    [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_iconURL]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
-
-}
-
-- (void)setUpUI
-{
-    
-    [self.view addSubview:self.bgView];
-    [self.view addSubview:self.alertBgView];
-    [self.alertBgView addSubview:self.alertView];
-
-    // 头像
-    [self.alertView addSubview:self.iconImgView];
-    
-    // 用户星级
-    [self.alertView addSubview:self.starBar];
-    
-    // 评价多少字
-    [self.alertView addSubview:self.commentCountLabel];
-    
-    // 请输入原因
-    [self.alertView addSubview:self.reasonTextView];
-    
-    [self.alertView addSubview:self.reasonMsg];
-    self.reasonMsg.isShowWarningMessage  = NO;
-    
-    // 分割线
-    [self.alertView addSubview:self.delive];
-    
-    // 更多选项
-    [self.alertView addSubview:self.moreBtn];
-    
-    // 提交评价
-    [self.alertView addSubview:self.commitBtn];
-    
-//     更新尺寸
-    CGRect alertBgF = self.alertBgView.frame;
-    alertBgF.size.height = CGRectGetMaxY(self.commitBtn.frame);
-    self.alertBgView.frame = alertBgF;
-    self.alertView.frame = self.alertBgView.bounds;
-
-}
-
-- (void)moreBtnDidClick{
-    NSLog(@"%s",__func__);
-    self.moteblock();
-}
-- (void)commitBtnDidClick
-{
-    NSLog(@"%s",__func__);
-    self.commitBlock();
-}
-
-- (void)textViewDidChange:(UITextView *)textView
-{
-    if ([textView.text length]>40) {
-        
-        textView.text = [textView.text substringToIndex:40];
-        return;
-        
-    }
-    if (textView.text && [textView.text length]!=0) {
-        _commitBtn.enabled = YES;
-    }else{
-        _commitBtn.enabled = NO;
-    }
-    _commentCountLabel.text = [NSString stringWithFormat:@"评价 %lu/40",(unsigned long)[textView.text length]];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

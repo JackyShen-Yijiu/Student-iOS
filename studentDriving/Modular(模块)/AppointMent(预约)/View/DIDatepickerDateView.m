@@ -6,9 +6,6 @@
 #import "DIDatepickerDateView.h"
 #import "YBObjectTool.h"
 
-const CGFloat kDIDatepickerItemWidth = 46.;
-const CGFloat kDIDatepickerSelectionLineWidth = 51.;
-
 @interface DIDatepickerDateView ()
 
 @property (strong, nonatomic) UILabel *weekLabel;
@@ -104,7 +101,7 @@ const CGFloat kDIDatepickerSelectionLineWidth = 51.;
     if (isSelected) {
         self.dateLabel.textColor = [UIColor whiteColor];
     }else{
-        self.dateLabel.textColor = [UIColor grayColor];
+        self.dateLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
     }
     
 }
@@ -113,8 +110,8 @@ const CGFloat kDIDatepickerSelectionLineWidth = 51.;
 {
     if (!_dateLabel) {
         _dateLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.height/2-5, self.width, self.height/2)];
-        _dateLabel.font = [UIFont systemFontOfSize:13];
-        _dateLabel.textColor = [UIColor grayColor];
+        _dateLabel.font = [UIFont boldSystemFontOfSize:14];
+        _dateLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
         _dateLabel.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_dateLabel];
     }
@@ -126,8 +123,8 @@ const CGFloat kDIDatepickerSelectionLineWidth = 51.;
     if (!_weekLabel) {
         _weekLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.width, self.height/2)];
         _weekLabel.textAlignment = NSTextAlignmentCenter;
-        _weekLabel.font = [UIFont systemFontOfSize:15];
-        _weekLabel.textColor = [UIColor lightGrayColor];
+        _weekLabel.font = [UIFont systemFontOfSize:10];
+        _weekLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
         [self addSubview:_weekLabel];
     }
     return _weekLabel;
@@ -136,8 +133,7 @@ const CGFloat kDIDatepickerSelectionLineWidth = 51.;
 - (UIView *)selectionView
 {
     if (!_selectionView) {
-        // CGRectMake((self.frame.size.width - 51) / 2, self.frame.size.height - 3, 51, 3)
-        _selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-25/2, self.frame.size.height - 25 - 5, 25, 25)];
+        _selectionView = [[UIView alloc] initWithFrame:CGRectMake(self.frame.size.width/2-26/2, self.frame.size.height - 26 - 5, 26, 26)];
         _selectionView.alpha = 0;
         _selectionView.layer.masksToBounds = YES;
         _selectionView.layer.cornerRadius = _selectionView.width/2;

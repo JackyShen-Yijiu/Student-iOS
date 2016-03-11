@@ -68,15 +68,15 @@
     [self.starBar displayRating:starLevel];
     
     if (coachModel.passrate) {
-        self.tongguolvLabel.text = [NSString stringWithFormat:@"通过率:%@%@",coachModel.passrate,@"%"];
+        self.jialingLabel.text = [NSString stringWithFormat:@"通过率:%@%@",coachModel.passrate,@"%"];
     }else {
-        self.tongguolvLabel.text = [NSString stringWithFormat:@"通过率:暂无"];
+        self.jialingLabel.text = [NSString stringWithFormat:@"通过率:暂无"];
     }
 
     if (coachModel.Seniority) {
-        self.jialingLabel.text = [NSString stringWithFormat:@"%@年教龄",coachModel.Seniority] ;
+        self.tongguolvLabel.text = [NSString stringWithFormat:@"%@年教龄",coachModel.Seniority] ;
     }else{
-        self.jialingLabel.text = [NSString stringWithFormat:@"暂无"];
+        self.tongguolvLabel.text = [NSString stringWithFormat:@"暂无"];
     }
     
 }

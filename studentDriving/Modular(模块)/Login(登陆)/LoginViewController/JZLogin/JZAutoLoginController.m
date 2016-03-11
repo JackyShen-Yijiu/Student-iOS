@@ -30,7 +30,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
 @property (nonatomic, strong) UIView *lineView;
 @property (strong, nonatomic)UIButton *sendButton;
 @property (nonatomic, strong) NSMutableDictionary *userParam;
-
+@property (nonatomic, strong) NSString *passwordStr;
 
 @end
 
@@ -258,7 +258,8 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
             [DVVToast showMessage:@"验证码错误"];
             
         }else if ([type isEqualToString:@"1"]) {
-            
+            self.passwordStr = data[@"data"][@"password"];
+            DYNSLog(@"%s dataDic:%@",__func__,self.passwordStr);
             // 存储用户设置
             [self saveUserSetWithData:dataDic];
             
@@ -266,7 +267,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
             NSLog(@"self.phoneNumTextField.text:%@",_loginNameTextField.text);
             NSLog(@"self.passwordTextField.text:%@",_autoTextField.text);
             
-            [self loginWithUsername:_loginNameTextField.text password:_autoTextField.text  dataDic:dataDic];
+            [self loginWithUsername:_loginNameTextField.text password:self.passwordStr  dataDic:dataDic];
             
         }
     }];
@@ -326,7 +327,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
     
     // 异步登陆账号
     [[EaseMob sharedInstance].chatManager asyncLoginWithUsername:userid
-                                                        password:@""
+                                                        password:password
                                                       completion:
      ^(NSDictionary *loginInfo, EMError *error) {
          
@@ -338,7 +339,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
              DYNSLog(@"登录成功");
              
              //保存最近一次登录用户名
-             [AcountManager saveUserName:_loginNameTextField.text andPassword:_autoTextField.text];
+             [AcountManager saveUserName:_loginNameTextField.text andPassword:password];
              
              [AcountManager configUserInformationWith:dataDic[@"data"]];
              

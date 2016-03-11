@@ -10,7 +10,6 @@
 
 #import "JGAppointMentCell.h"
 #import "AppointmentCoachTimeInfoModel.h"
-#import "YBAppointMentUserFooter.h"
 #import "YBCoachListViewController.h"
 #import "BLInformationManager.h"
 #import "YBAppointMentCoachModel.h"
@@ -23,10 +22,9 @@
 
 @property (nonatomic,strong) UIView *footView;
 
-@property (nonatomic,strong) YBAppointMentUserFooter *userFooter;
-
 @property (nonatomic,assign) NSArray *studentArray;
 
+// 预约教练
 @property (nonatomic,strong) YBAppointMentCoachModel *appointCoach;
 
 @end
@@ -44,13 +42,6 @@
         _dataArray = [[NSMutableArray alloc] init];
     }
     return _dataArray;
-}
-- (YBAppointMentUserFooter *)userFooter
-{
-    if (_userFooter==nil) {
-        _userFooter = [[YBAppointMentUserFooter alloc] init];
-    }
-    return _userFooter;
 }
 
 - (UICollectionView *)collectionView {
@@ -72,30 +63,11 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         [_collectionView registerClass:[JGAppointMentCell class] forCellWithReuseIdentifier:@"JGAppointMentCell"];
-       
-        _collectionView.contentInset = UIEdgeInsetsMake(0, 0, 100, 0);
-        [_collectionView registerClass:[self.userFooter class] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:@"footView"];
-       
+        
     }
     
     return _collectionView;
     
-}
-
--(UICollectionReusableView *)collectionView:(UICollectionView *)collectionView
-          viewForSupplementaryElementOfKind:(NSString *)kind
-                                atIndexPath:(NSIndexPath *)indexPath{
-    
-    NSString *reuseIdentifier = @"footView";
-    
-    self.userFooter =  [collectionView dequeueReusableSupplementaryViewOfKind :kind   withReuseIdentifier:reuseIdentifier   forIndexPath:indexPath];
-    
-    self.userFooter.studentArray = self.studentArray;
-    self.userFooter.appointCoach = self.appointCoach;
-    
-    self.userFooter.parentViewController = self.parentViewController;
-    
-    return self.userFooter;
 }
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -103,35 +75,12 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = RGBColor(238, 238, 238);
+        self.backgroundColor = YBMainViewControlerBackgroundColor;
         
         [self addSubview:self.collectionView];
         
     }
     return self;
-}
-
-- (void)receiveCoachTimeDataWithStudentData:(NSMutableArray *)stuDataArray coachModel:(YBAppointMentCoachModel *)coachModel
-{
-    self.studentArray = stuDataArray;
-    self.appointCoach = coachModel;
-    
-    UICollectionViewFlowLayout *flowLayout = (UICollectionViewFlowLayout *)self.collectionView.collectionViewLayout;
-    // 行数
-    NSInteger hangshu = stuDataArray.count % 4;
-    NSLog(@"hangshu::%ld",(long)hangshu);
-    CGFloat footHeight = hangshu * 60 + 45 + 60;
-    NSLog(@"receiveCoachTimeData footHeight:%f",footHeight);
-    flowLayout.footerReferenceSize = CGSizeMake(kSystemWide-rightFooter, footHeight);
-    self.collectionView.collectionViewLayout = flowLayout;
-    
-    NSLog(@"receiveCoachTimeData self.userCount:%ld",(long)stuDataArray.count);
-    
-    self.userFooter.appointCoach = self.appointCoach;
-    self.userFooter.studentArray = self.studentArray;
-
-    [self.userFooter.userCollectionView reloadData];
-    
 }
 
 - (void)receiveCoachTimeData:(NSArray *)coachTimeData selectData:(NSDate *)selectDate coachModel:(YBAppointMentCoachModel *)coachModel{
@@ -176,6 +125,8 @@
     cell.backgroundColor = RGBColor(250, 250, 250);
     
     cell.selectDate = self.selectDate;
+    
+    cell.appointCoach = self.appointCoach;
     
     if (self.dataArray && self.dataArray.count>0) {
         AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
@@ -241,9 +192,10 @@
         if (self.upDateArray.count == 0) {
             
             JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
-            cell.startTimeLabel.textColor = MAINCOLOR;
-            cell.finalTimeLabel.textColor = MAINCOLOR;
-            cell.remainingPersonLabel.textColor = MAINCOLOR;
+            cell.contentView.backgroundColor = YBNavigationBarBgColor;
+            cell.startTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
+            cell.finalTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
+            cell.remainingPersonLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
             model.is_selected = YES;
             [self.upDateArray addObject:model];
             [self.dataArray replaceObjectAtIndex:indexPath.row withObject:model];
@@ -259,9 +211,10 @@
             if ((model.indexPath + 1 == UpDatemodel.indexPath )|| (model.indexPath-1 == UpDatemodel.indexPath)) {
                 //            [SVProgressHUD showInfoWithStatus:@"请选择相邻的时间段"];
                 JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
-                cell.startTimeLabel.textColor = MAINCOLOR;
-                cell.finalTimeLabel.textColor = MAINCOLOR;
-                cell.remainingPersonLabel.textColor = MAINCOLOR;
+                cell.contentView.backgroundColor = YBNavigationBarBgColor;
+                cell.startTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
+                cell.finalTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
+                cell.remainingPersonLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
                 model.is_selected = YES;
                 [self.upDateArray addObject:model];
                 [self.dataArray replaceObjectAtIndex:indexPath.row withObject:model];
@@ -292,6 +245,7 @@
             if ([fistModel.infoId isEqualToString:model.infoId]||[lastModel.infoId isEqualToString:model.infoId]) {
                 DYNSLog(@"unSelected");
                 JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
+                cell.contentView.backgroundColor = RGBColor(250, 250, 250);
                 cell.startTimeLabel.textColor = [UIColor blackColor];
                 cell.finalTimeLabel.textColor = [UIColor blackColor];
                 cell.remainingPersonLabel.textColor = TEXTGRAYCOLOR;
@@ -302,13 +256,14 @@
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"kCellChange" object:nil];
                 return;
             }else {
-                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"次操作会造成预约时间不连续!"];
+                ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"此操作会造成预约时间不连续!"];
                 [alertView show];
             }
             return;
         }
         DYNSLog(@"unSelected");
         JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
+        cell.contentView.backgroundColor = RGBColor(250, 250, 250);
         cell.startTimeLabel.textColor = [UIColor blackColor];
         cell.finalTimeLabel.textColor = [UIColor blackColor];
         cell.remainingPersonLabel.textColor = TEXTGRAYCOLOR;

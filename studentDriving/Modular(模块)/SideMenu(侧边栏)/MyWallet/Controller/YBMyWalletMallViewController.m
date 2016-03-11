@@ -58,7 +58,7 @@ static NSString *kMallID = @"MallID";
     self.discountArray = [[NSMutableArray alloc] init];
     self.title = @"商城";
     _mallType = kIntegralMall;
-    self.view.backgroundColor = [UIColor colorWithHexString:@"e8e8ed"];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     [self.view addSubview:self.collectionView];
     [self.view addSubview:[self tableViewHeadView]];
     

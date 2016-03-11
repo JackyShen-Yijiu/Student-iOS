@@ -137,7 +137,7 @@
             }else if (indexPath.row==4){
                 
                 YBCheatsViewController *vc = [[YBCheatsViewController alloc] init];
-                vc.title = @"科目一成绩单";
+//                vc.title = @"科目一成绩单";
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.weburl = self.kemuyichengjidanurl;
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];
@@ -270,7 +270,7 @@
             }else if (indexPath.row==4){
                 
                 YBCheatsViewController *vc = [[YBCheatsViewController alloc] init];
-                vc.title = @"科目四成绩单";
+//                vc.title = @"科目四成绩单";
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.weburl = self.kemusichengjidanurl;
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];

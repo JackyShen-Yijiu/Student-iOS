@@ -395,7 +395,7 @@
                     [ws.stuDataArray removeObject:studentModel];
                 }
             }
-            [ws.midYuYueheadView receiveCoachTimeDataWithStudentData:self.stuDataArray coachModel:self.appointCoach];
+//            [ws.midYuYueheadView receiveCoachTimeDataWithStudentData:self.stuDataArray coachModel:self.appointCoach];
             
         }else {
             [self obj_showTotasViewWithMes:[NSString stringWithFormat:@"%@",data[@"msg"]]];

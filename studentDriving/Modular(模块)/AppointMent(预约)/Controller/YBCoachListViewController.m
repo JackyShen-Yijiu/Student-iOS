@@ -9,8 +9,6 @@
 #import "YBCoachListViewController.h"
 #import "YBCoachListViewCell.h"
 #import "CoachModel.h"
-#import "YBCoachListSearchController.h"
-#import "YBCoachListSearchController.h"
 #import "DVVCoachDetailController.h"
 
 @interface YBCoachListViewController ()<UITableViewDelegate,UITableViewDataSource,BMKLocationServiceDelegate>
@@ -45,21 +43,11 @@
     
     self.title = @"教练列表";
     
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"iconfont-chazhao_coach"] style:UIBarButtonItemStyleDone target:self action:@selector(clickRight)];
-    
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     [self.view addSubview:self.tableView];
    
     [self loadData];
-    
-}
-
-- (void)clickRight{
-    NSLog(@"%s",__func__);
-    
-    YBCoachListSearchController *vc = [[YBCoachListSearchController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
     
 }
 
@@ -114,7 +102,7 @@
     
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 88;
+    return 105;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

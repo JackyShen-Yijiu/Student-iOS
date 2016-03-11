@@ -2,15 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "YBAppointstatus_date_red.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "starUnSelected30.png",
+      "filename" : "YBAppointstatus_date_red@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
+      "filename" : "YBAppointstatus_date_red@3x.png",
       "scale" : "3x"
     }
   ],
