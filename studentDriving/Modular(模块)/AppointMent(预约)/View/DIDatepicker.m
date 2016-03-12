@@ -33,6 +33,8 @@ const CGFloat kDIDatepickerSelectionLineWidth = 51.;
     self = [super initWithFrame:frame];
     if (!self) return self;
 
+    self.selectedDate = [NSDate date];
+    
     [self setupViews];
 
     return self;

@@ -10,7 +10,6 @@
 #import "YBAppointController.h"
 #import "HMCourseModel.h"
 #import "JGYuYueHeadView.h"
-#import "AppointmentCoachTimeInfoModel.h"
 #import "YBCoachListViewController.h"
 #import "BLInformationManager.h"
 #import "EMMessage.h"
@@ -21,6 +20,11 @@
 #import "YBAppointMentCoachModel.h"
 #import "DIDatepicker.h"
 #import "YBAppointMentFootView.h"
+#import "YBAppointRootClass.h"
+#import "YBAppointData.h"
+#import "YBAppointCoursedata.h"
+#import "YBAppointCoursetime.h"
+#import "YYModel.h"
 
 #define kSameTimeStudent @"courseinfo/sametimestudentsv2"
 
@@ -134,7 +138,7 @@
     [self.datepicker selectDateAtIndex:0];
     
     // 中间方格
-    self.midYuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.datepicker.frame), self.view.width, kSystemHeight-64-self.datepicker.height)];
+    self.midYuYueheadView = [[JGYuYueHeadView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.datepicker.frame), self.view.width, kSystemHeight-64-self.datepicker.height-footViewH)];
     self.midYuYueheadView.parentViewController = self;
     self.midYuYueheadView.delegate = self;
     [self.view addSubview:self.midYuYueheadView];
@@ -188,6 +192,7 @@
 - (YBAppointMentCoachModel *)getPersonArrayData{
     
     YBAppointMentCoachModel *coach = [NSKeyedUnarchiver unarchiveObjectWithFile:[YBPath stringByAppendingPathComponent:@"saveAppointMentData"]];
+    coach.coachid = @"566651c1f14c20d07ffa6af3";
     
     return coach;
 }
@@ -232,7 +237,7 @@
     }
     
     WS(ws);
-    NSString *urlString = [NSString stringWithFormat:kappointmentCoachTimeUrl,self.appointCoach.coachid,dataStr];
+    NSString *urlString = [NSString stringWithFormat:kgetcoursebycoachv2,self.appointCoach.coachid,dataStr,[AcountManager manager].userid];
     
     NSString *url = [NSString stringWithFormat:BASEURL,urlString];
     
@@ -240,20 +245,18 @@
         
         NSLog(@"loadMidYuyueTimeData data:%@",data);
         
-        NSDictionary *param = data;
-        DYNSLog(@"msg = %@",param[@"msg"]);
-        NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+        DYNSLog(@"msg = %@",data[@"msg"]);
+        NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
         
         if ([type isEqualToString:@"1"]) {
             
-            NSArray *array = param[@"data"];
-            NSError *error = nil;
+            NSArray *dataDict = data[@"data"];
             
-            if (array&&array.count!=0) {
+            if (dataDict&&dataDict.count!=0) {
                 
-                self.appointDataArray = [[MTLJSONAdapter modelsOfClass:AppointmentCoachTimeInfoModel.class fromJSONArray:array error:&error] mutableCopy];
-                
-                DYNSLog(@"error = %@",error);
+                YBAppointRootClass *class = [YBAppointRootClass yy_modelWithJSON:data];
+               
+                self.appointDataArray = [class.data mutableCopy];
                 
                 [ws.midYuYueheadView receiveCoachTimeData:self.appointDataArray selectData:self.datepicker.selectedDate coachModel:self.appointCoach];
                 
@@ -261,9 +264,9 @@
             
         }else{
             
-            [self obj_showTotasViewWithMes:param[@"msg"]];
-            
-            [ws.midYuYueheadView receiveCoachTimeData:nil selectData:self.datepicker.selectedDate coachModel:self.appointCoach];
+            if (data[@"msg"] && [data[@"msg"] length]!=0) {
+                [self obj_showTotasViewWithMes:data[@"msg"]];
+            }
             
         }
         
@@ -298,38 +301,39 @@
     }
     
     // 数组排序
-    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
+    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(YBAppointData *  _Nonnull obj1, YBAppointData *  _Nonnull obj2) {
         //obj1.coursetime.numMark < obj2.coursetime.numMark
-        return obj1.coursetime.numMark > obj2.coursetime.numMark ;
+        return obj1.timeid > obj2.timeid;
         
     }];
     NSLog(@"appointmentData resultArray:%@",resultArray);
     
-    AppointmentCoachTimeInfoModel *firstModel = resultArray.firstObject;
-    AppointmentCoachTimeInfoModel *lastModel = resultArray.lastObject;
+    YBAppointData *firstModel = resultArray.firstObject;
+    YBAppointData *lastModel = resultArray.lastObject;
     
-    NSArray *beginArray = [firstModel.coursetime.begintime componentsSeparatedByString:@":"];
+    NSArray *beginArray = [firstModel.coursedata.coursebegintime componentsSeparatedByString:@":"];
     NSString *beginString = beginArray.firstObject;
     _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:self.selectDateStr]];
     
-    NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
+    NSArray *endArray = [lastModel.coursedata.courseendtime componentsSeparatedByString:@":"];
     NSString *endString = endArray.firstObject;
     _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:self.selectDateStr]];
     
     NSLog(@"self.selectDateStr:%@",self.selectDateStr);
-    NSLog(@"firstModel.coursetime.begintime:%@",firstModel.coursetime.begintime);
-    NSLog(@"lastModel.coursetime.endtime:%@",lastModel.coursetime.endtime);
+    NSLog(@"firstModel.coursetime.begintime:%@",firstModel.coursedata.coursebegintime);
+    NSLog(@"lastModel.coursetime.endtime:%@",lastModel.coursedata.courseendtime);
     
     NSMutableString *courselistStr = [NSMutableString string];
     for (int i = 0; i<resultArray.count; i++) {
         
-        AppointmentCoachTimeInfoModel *model = resultArray[i];
+        YBAppointData *model = resultArray[i];
         
-        NSString *courseID = model.infoId;
+        NSString *courseID = [NSString stringWithFormat:@"%ld",(long)model.timeid];
         NSLog(@"courseID:%@",courseID);
         
         if (i==resultArray.count-1) {
-            NSString *lastID = ((AppointmentCoachTimeInfoModel *)[resultArray lastObject]).infoId;
+            NSString *lastID = [NSString stringWithFormat:@"%ld",(long)((YBAppointData *)[resultArray lastObject]).timeid]
+            ;
             [courselistStr appendString:[NSString stringWithFormat:@"%@",lastID]];
         }else{
             [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
@@ -353,8 +357,8 @@
     
     NSLog(@"%@",applyUrlString);
     NSDictionary *upData = @{@"coachid"   :self.appointCoach.coachid,
-                             @"begintime" :[NSString stringWithFormat:@"%d",[self chagetime:firstModel.coursetime.begintime data:self.selectDateStr]],//[NSString stringWithFormat:@"%@ %@",self.selectDateStr,firstModel.coursetime.begintime],
-                             @"endtime"   :[NSString stringWithFormat:@"%d",[self chagetime:lastModel.coursetime.endtime data:self.selectDateStr]],//[NSString stringWithFormat:@"%@ %@",self.selectDateStr,lastModel.coursetime.endtime],
+                             @"begintime" :[NSString stringWithFormat:@"%d",[self chagetime:firstModel.coursedata.coursebegintime data:self.selectDateStr]],//[NSString stringWithFormat:@"%@ %@",self.selectDateStr,firstModel.coursetime.begintime],
+                             @"endtime"   :[NSString stringWithFormat:@"%d",[self chagetime:lastModel.coursedata.courseendtime data:self.selectDateStr]],//[NSString stringWithFormat:@"%@ %@",self.selectDateStr,lastModel.coursetime.endtime],
                              @"index"     :@"1"
                              };
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:upData WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
@@ -401,38 +405,33 @@
     
     
     // 数组排序
-    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
+    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(YBAppointData *  _Nonnull obj1, YBAppointData *  _Nonnull obj2) {
         //obj1.coursetime.numMark < obj2.coursetime.numMark
-        return obj1.coursetime.numMark > obj2.coursetime.numMark ;
+        return obj1.timeid > obj2.timeid ;
         
     }];
     NSLog(@"appointmentData resultArray:%@",resultArray);
     
-    AppointmentCoachTimeInfoModel *firstModel = resultArray.firstObject;
-    AppointmentCoachTimeInfoModel *lastModel = resultArray.lastObject;
+    YBAppointData *firstModel = resultArray.firstObject;
+    YBAppointData *lastModel = resultArray.lastObject;
     
-    NSArray *beginArray = [firstModel.coursetime.begintime componentsSeparatedByString:@":"];
+    NSArray *beginArray = [firstModel.coursedata.coursebegintime componentsSeparatedByString:@":"];
     NSString *beginString = beginArray.firstObject;
     _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:self.selectDateStr]];
     
-    NSArray *endArray = [lastModel.coursetime.endtime componentsSeparatedByString:@":"];
+    NSArray *endArray = [lastModel.coursedata.courseendtime componentsSeparatedByString:@":"];
     NSString *endString = endArray.firstObject;
     _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:self.selectDateStr]];
-    
-    NSLog(@"self.selectDateStr:%@",self.selectDateStr);
-    NSLog(@"firstModel.coursetime.begintime:%@",firstModel.coursetime.begintime);
-    NSLog(@"lastModel.coursetime.endtime:%@",lastModel.coursetime.endtime);
     
     NSMutableString *courselistStr = [NSMutableString string];
     for (int i = 0; i<resultArray.count; i++) {
         
-        AppointmentCoachTimeInfoModel *model = resultArray[i];
+        YBAppointData *model = resultArray[i];
         
-        NSString *courseID = model.infoId;
-        NSLog(@"courseID:%@",courseID);
+        NSString *courseID = [NSString stringWithFormat:@"%lu",(long)model.timeid];
         
         if (i==resultArray.count-1) {
-            NSString *lastID = ((AppointmentCoachTimeInfoModel *)[resultArray lastObject]).infoId;
+            NSString *lastID = [NSString stringWithFormat:@"%lu",((YBAppointData *)[resultArray lastObject]).timeid];
             [courselistStr appendString:[NSString stringWithFormat:@"%@",lastID]];
         }else{
             [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
@@ -464,8 +463,8 @@
     params[@"courselist"] = courselistStr;
     params[@"is_shuttle"] = @"1";
     params[@"address"] = @"";
-    params[@"begintime"] = [NSString stringWithFormat:@"%@ %@",self.selectDateStr,firstModel.coursetime.begintime];
-    params[@"endtime"] = [NSString stringWithFormat:@"%@ %@",self.selectDateStr,lastModel.coursetime.endtime];
+    params[@"begintime"] = [NSString stringWithFormat:@"%@ %@",self.selectDateStr,firstModel.coursedata.coursebegintime];
+    params[@"endtime"] = [NSString stringWithFormat:@"%@ %@",self.selectDateStr,lastModel.coursedata.courseendtime];
     
     NSLog(@"预约params:%@",params);
     /*

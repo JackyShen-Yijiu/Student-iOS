@@ -9,10 +9,13 @@
 #import "JGYuYueHeadView.h"
 
 #import "JGAppointMentCell.h"
-#import "AppointmentCoachTimeInfoModel.h"
+//#import "AppointmentCoachTimeInfoModel.h"
 #import "YBCoachListViewController.h"
 #import "BLInformationManager.h"
 #import "YBAppointMentCoachModel.h"
+#import "YBAppointData.h"
+#import "YBAppointCoursedata.h"
+#import "YYModel.h"
 
 @interface JGYuYueHeadView ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
@@ -48,17 +51,13 @@
     
     if (_collectionView == nil) {
         
-        CGFloat height = kSystemHeight-30-35-50;
-        
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.minimumLineSpacing = 0;
         flowLayout.itemSize = CGSizeMake(kSystemWide/3-0.5, 70);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
-        flowLayout.footerReferenceSize = CGSizeMake(kSystemWide-rightFooter, 100);
-        
-        _collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width,height) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = RGBColor(236, 236, 236);
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
@@ -85,13 +84,15 @@
 
 - (void)receiveCoachTimeData:(NSArray *)coachTimeData selectData:(NSDate *)selectDate coachModel:(YBAppointMentCoachModel *)coachModel{
     
+    NSLog(@"coachTimeData:%@",coachTimeData);
+    
     self.appointCoach = coachModel;
     
     self.selectDate = selectDate;
 
     [self.upDateArray removeAllObjects];
-    
     [self.dataArray removeAllObjects];
+    
     if (coachTimeData&&coachTimeData.count!=0) {
         [self.dataArray addObjectsFromArray:coachTimeData];
     }
@@ -124,12 +125,11 @@
     }
     cell.backgroundColor = RGBColor(250, 250, 250);
     
-    cell.selectDate = self.selectDate;
-    
     cell.appointCoach = self.appointCoach;
     
     if (self.dataArray && self.dataArray.count>0) {
-        AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
+        NSDictionary *modelDict = self.dataArray[indexPath.row];
+        YBAppointData *model = [YBAppointData yy_modelWithDictionary:modelDict];
         cell.appointInfoModel = model;
     }
     
@@ -139,8 +139,10 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    AppointmentCoachTimeInfoModel *model = self.dataArray[indexPath.row];
+    NSDictionary *modelDict = self.dataArray[indexPath.row];
     
+    YBAppointData *model = [YBAppointData yy_modelWithDictionary:modelDict];
+
     JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
     
     DYNSLog(@"clickModel = %d",model.is_selected);
@@ -153,27 +155,13 @@
         
         // 判断是否是更换同时段教练
         if (cell.isModifyCoach) {
-            NSLog(@"跳转到更多教练列表");
             
-            NSString *dateString = [NSString getYearLocalDateFormateUTCDate:cell.appointInfoModel.coursedate];
+            NSString *dateString = [NSString getYearLocalDateFormateUTCDate:cell.appointInfoModel.coursedata.coursedate];
             
             if ([self.delegate respondsToSelector:@selector(JGYuYueHeadViewWithModifyCoach:dateString:isModifyCoach:timeid:)]) {
-                [self.delegate JGYuYueHeadViewWithModifyCoach:self dateString:dateString isModifyCoach:YES timeid:cell.appointInfoModel.coursetime.timeid];
+                [self.delegate JGYuYueHeadViewWithModifyCoach:self dateString:dateString isModifyCoach:YES timeid:@(cell.appointInfoModel.coursedata.coursetime.timeid)];
             }
-            
-//            CoachViewController *coach = [[CoachViewController alloc] init];
-//            coach.markNum = 2;
-//            coach.isModifyCoach = YES;
-//            coach.timeid = cell.coachTimeInfo.coursetime.timeid;
-//            coach.coursedate = dateString;
-//            [self.parentViewController.navigationController pushViewController:coach animated:YES];
-            
-//            YBCoachListViewController *coachList = [[YBCoachListViewController alloc] init];
-//            coachList.isModifyCoach = YES;
-//            coachList.timeid = cell.appointInfoModel.coursetime.timeid;
-//            coachList.coursedate = dateString;
-//            [self.parentViewController.navigationController pushViewController:coachList animated:YES];
-            
+
             return;
         }
         
@@ -205,9 +193,8 @@
             return;
         }
         
-        for (AppointmentCoachTimeInfoModel *UpDatemodel in self.upDateArray) {
+        for (YBAppointData *UpDatemodel in self.upDateArray) {
             
-            DYNSLog(@"upDateModel = %ld",UpDatemodel.indexPath);
             if ((model.indexPath + 1 == UpDatemodel.indexPath )|| (model.indexPath-1 == UpDatemodel.indexPath)) {
                 //            [SVProgressHUD showInfoWithStatus:@"请选择相邻的时间段"];
                 JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
@@ -236,13 +223,15 @@
             
             NSArray *array = self.upDateArray;//[BLInformationManager sharedInstance].appointmentData;
             
-            NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(AppointmentCoachTimeInfoModel *  _Nonnull obj1, AppointmentCoachTimeInfoModel *  _Nonnull obj2) {
+            NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(YBAppointData *  _Nonnull obj1, YBAppointData *  _Nonnull obj2) {
                 //obj1.coursetime.numMark < obj2.coursetime.numMark
-                return obj1.coursetime.numMark > obj2.coursetime.numMark ;
+                return obj1.timeid > obj2.timeid ;
             }];
-            AppointmentCoachTimeInfoModel *fistModel = resultArray.firstObject;
-            AppointmentCoachTimeInfoModel *lastModel = resultArray.lastObject;
-            if ([fistModel.infoId isEqualToString:model.infoId]||[lastModel.infoId isEqualToString:model.infoId]) {
+            YBAppointData *fistModel = resultArray.firstObject;
+            YBAppointData *lastModel = resultArray.lastObject;
+            
+            if ([[NSString stringWithFormat:@"%ld",fistModel.timeid] isEqualToString:[NSString stringWithFormat:@"%ld",model.timeid]]||[[NSString stringWithFormat:@"%ld",lastModel.timeid] isEqualToString:[NSString stringWithFormat:@"%ld",model.timeid]]) {
+                
                 DYNSLog(@"unSelected");
                 JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
                 cell.contentView.backgroundColor = RGBColor(250, 250, 250);

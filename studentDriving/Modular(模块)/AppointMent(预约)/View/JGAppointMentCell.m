@@ -8,7 +8,10 @@
 
 #import "JGAppointMentCell.h"
 
-#import "AppointmentCoachTimeInfoModel.h"
+#import "YBAppointData.h"
+#import "YBAppointCoursedata.h"
+#import "YBAppointCoursetime.h"
+
 #import "YBObjectTool.h"
 #import "YBAppointMentCoachModel.h"
 
@@ -117,7 +120,7 @@
     return self;
 }
 
-- (void)setAppointInfoModel:(AppointmentCoachTimeInfoModel *)appointInfoModel
+- (void)setAppointInfoModel:(YBAppointData *)appointInfoModel
 {
     _appointInfoModel = appointInfoModel;
     
@@ -126,173 +129,255 @@
     self.remainingPersonLabel.text = nil;
     self.stateImgview.hidden = YES;
     
+    NSLog(@"_appointInfoModel.isRest:%ld",(long)_appointInfoModel.isRest);
+    NSLog(@"_appointInfoModel.isOutofdate:%ld",(long)_appointInfoModel.isOutofdate);
+    NSLog(@"_appointInfoModel.isReservation:%ld",(long)_appointInfoModel.isReservation);
+    
     // 时间
-    self.startTimeLabel.text = [self dealStringWithTime:_appointInfoModel.coursetime.begintime];
+    self.startTimeLabel.text = _appointInfoModel.begintime;
     
     // 14点结束
-    self.finalTimeLabel.text = [NSString stringWithFormat:@"%@结束",[self dealStringWithTime:_appointInfoModel.coursetime.endtime]];
+    self.finalTimeLabel.text = [NSString stringWithFormat:@"%@结束",_appointInfoModel.endtime];
     
-    // 剩余2个名额
-    NSInteger keyueCount = [_appointInfoModel.coursestudentcount integerValue] - [_appointInfoModel.selectedstudentcount integerValue];
-    self.remainingPersonLabel.text = [NSString stringWithFormat:@"剩余%ld个名额",(long)keyueCount];
-
-    // 判断_appointInfoModel.coursedate上课日期是否大于等于当前时间，如果大于等于当前时间并且有预约名额，就显示黑色
-    [self isRiChengCellCanClick:_appointInfoModel.coursebegintime startTimeStr:_appointInfoModel.coursetime.begintime];
-
-    // 判断是否已约过
-    BOOL isYueCurrentCoach=NO;// 已约当前教练
-    BOOL isYueOtherCoach=NO;// 已约其他教练
-    for (NSString *string in _appointInfoModel.courseuser) {
+    if (_appointInfoModel.isOutofdate) {// 正常，未过期
         
-        if ([string isEqualToString:[AcountManager manager].userid]) {// 已约当前教练
-            isYueCurrentCoach = YES;
-        }
-        if ([string isEqualToString:self.appointInfoModel.coachid]) {// 已约其他教练
-            isYueOtherCoach = YES;
-        }
-        
-    }
-    
-    if (isYueCurrentCoach) {// 已约当前教练
-        self.userInteractionEnabled = NO;
-        self.startTimeLabel.textColor = YBNavigationBarBgColor;
-        self.finalTimeLabel.textColor = YBNavigationBarBgColor;
-        self.remainingPersonLabel.textColor = YBNavigationBarBgColor;
-        self.remainingPersonLabel.text = @"已约该教练";
-        self.stateImgview.hidden = NO;
-        self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_date_red"];
-    }
-    if (isYueOtherCoach) {// 已约其他教练
-        self.userInteractionEnabled = NO;
-        self.startTimeLabel.textColor = YBNavigationBarBgColor;
-        self.finalTimeLabel.textColor = YBNavigationBarBgColor;
-        self.remainingPersonLabel.textColor = YBNavigationBarBgColor;
-        self.remainingPersonLabel.text = [NSString stringWithFormat:@"已约其他教练"];
-        self.stateImgview.hidden = NO;
-        self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_date_blue"];
-    }
-    
-    // 判断是否已约满 YBAppointstatus_full
-    
-    
-    // 判断是否休息 YBAppointstatus_rest
-    
-    
-    // 选中的
-    if (_appointInfoModel.is_selected) {
-        self.startTimeLabel.textColor = MAINCOLOR;
-        self.finalTimeLabel.textColor = MAINCOLOR;
-        self.remainingPersonLabel.textColor = MAINCOLOR;
-    }
-    
-}
-
-- (void)isRiChengCellCanClick:(NSString *)coursedate startTimeStr:(NSString *)startTimeStr
-{
-    
-    self.userInteractionEnabled = YES;
-    self.isModifyCoach = NO;
-    self.startTimeLabel.textColor = [UIColor lightGrayColor];
-    self.finalTimeLabel.textColor = [UIColor lightGrayColor];
-    self.remainingPersonLabel.textColor = [UIColor lightGrayColor];
-    
-    // 当前时间
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateStyle:NSDateFormatterMediumStyle];
-    [formatter setTimeStyle:NSDateFormatterShortStyle];
-    [formatter setDateFormat:@"YYYY-MM-dd"];
-   
-    NSDate *datenow = [NSDate date];
-    NSString *nowtimeymdStr = [formatter stringFromDate:datenow];
-    
-    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
-    NSString *nowtimeymdhmsStr = [formatter stringFromDate:datenow];
-
-//    NSRange range = NSMakeRange(0, 10);
-//    NSString *nowTimeStr = [nowtimeStr substringWithRange:range];//当前的时间 YYYY-MM-dd
-    NSString *appointTimeStr = [NSString getYearLocalDateFormateUTCDate:coursedate];//预约课程的时间 YYYY-MM-dd
-    
-    
-    int lessThan = [YBObjectTool compareDateWithSelectDate:self.selectDate];
-    NSLog(@"lessThan:%d",lessThan);
-    // 1:大于当前日期 -1:小于当前时间 0:等于当前时间
-    if (lessThan==-1){// 预约时间小于当前时间
-        
-        self.userInteractionEnabled = NO;
-        
-        NSLog(@"------------------------");
-        self.startTimeLabel.textColor = [UIColor lightGrayColor];
-        self.finalTimeLabel.textColor = [UIColor lightGrayColor];
-        self.remainingPersonLabel.textColor = [UIColor lightGrayColor];
-        
-    }else{
-        
-        NSArray *indexArray= [startTimeStr componentsSeparatedByString:@":"];//课程开始的时间 hh:mm
-        NSString *indexString = indexArray.firstObject;
-        NSInteger startTime = indexString.integerValue;
-        NSRange range = NSMakeRange(11,8);
-        NSString *subNowTimeStr = [nowtimeymdhmsStr substringWithRange:range];//现在的时间 HH:mm:ss
-        NSArray *nowTimeArray= [subNowTimeStr componentsSeparatedByString:@":"];//课程开始的时间 hh:mm
-        NSString *nowTimeStr = nowTimeArray.firstObject;
-        NSInteger nowTime = nowTimeStr.integerValue;
-        
-        if (lessThan==1) {// 大于今天
+        // 判断是否休息 0休息  1不休息
+        if (_appointInfoModel.isRest==0) {// 休息
             
-            NSInteger shengyuCount = _appointInfoModel.coursestudentcount.intValue - _appointInfoModel.selectedstudentcount.intValue;
+            self.userInteractionEnabled = NO;
+            self.stateImgview.hidden = NO;
+            self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_rest"];
             
-            if (shengyuCount>0) {// 可预约
-                
-                self.startTimeLabel.textColor = [UIColor blackColor];
-                self.finalTimeLabel.textColor = [UIColor blackColor];
-                
-            }else{// 不可预约
-                
-                self.startTimeLabel.textColor = [UIColor lightGrayColor];
-                self.finalTimeLabel.textColor = [UIColor lightGrayColor];
-                self.remainingPersonLabel.textColor = [UIColor blackColor];
-                self.remainingPersonLabel.text = @"换同时段其他教练";
-                self.isModifyCoach = YES;
-                
+        }else{// 不休息
+            
+            // 判断是否已满
+            NSInteger count = _appointInfoModel.coursedata.coursestudentcount - _appointInfoModel.coursedata.selectedstudentcount;
+            if (count==0) {// 已满
+                self.userInteractionEnabled = NO;
+                self.stateImgview.hidden = NO;
+                self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_full"];
             }
             
-        }else{// 今天
-           
-            if (startTime <= nowTime) {// 开始时间小于当前时间
+            // 判断是否已约 0没有预约  1已经预约
+            if (_appointInfoModel.isReservation) {// 已经预约
                 
                 self.userInteractionEnabled = NO;
+
+                // 判断是否是已约的当前选中教练
+                if ([_appointInfoModel.coursedata.coachid isEqualToString:_appointCoach.coachid]) {// 已约的是当前选中的教练
+                    self.stateImgview.hidden = NO;
+                    self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_date_red"];
+                    self.remainingPersonLabel.text = @"已约该教练";
+                    self.remainingPersonLabel.textColor = YBNavigationBarBgColor;
+                }else{// 已约的其他教练
+                    self.stateImgview.hidden = NO;
+                    self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_date_blue"];
+                    self.remainingPersonLabel.text = [NSString stringWithFormat:@"已约%@",_appointInfoModel.coursedata.coachname];
+                    self.remainingPersonLabel.textColor = RGBColor(91, 142, 251);
+                }
                 
-                self.startTimeLabel.textColor = [UIColor lightGrayColor];
-                self.finalTimeLabel.textColor = [UIColor lightGrayColor];
-                self.remainingPersonLabel.textColor = [UIColor lightGrayColor];
+            }else{// 没有预约
                 
-            }else{// 开始时间大于当前时间
-                
-                NSInteger shengyuCount = _appointInfoModel.coursestudentcount.intValue - _appointInfoModel.selectedstudentcount.intValue;
-                
-                if (shengyuCount>0) {// 可预约
+                if (count!=0) {// 不满
                     
                     self.startTimeLabel.textColor = [UIColor blackColor];
                     self.finalTimeLabel.textColor = [UIColor blackColor];
-                    
-                }else{// 不可预约
-                    
-                    self.startTimeLabel.textColor = [UIColor lightGrayColor];
-                    self.finalTimeLabel.textColor = [UIColor lightGrayColor];
-                    self.remainingPersonLabel.textColor = [UIColor blackColor];
-                    self.remainingPersonLabel.text = @"换同时段其他教练";
+                    self.remainingPersonLabel.textColor = [UIColor grayColor];
+                    self.remainingPersonLabel.text = [NSString stringWithFormat:@"%ld个其他教练可预约",(long)count];
                     self.isModifyCoach = YES;
-
                 }
                 
             }
             
         }
         
-       
+    }else{// 已过期
+        
+        self.userInteractionEnabled = NO;
+        self.backgroundColor = RGBColor(247, 247, 247);
+        self.startTimeLabel.textColor = [UIColor lightGrayColor];
+        self.finalTimeLabel.textColor = [UIColor lightGrayColor];
+        
+        if (_appointInfoModel.isRest) {// 休息
+            
+            self.stateImgview.hidden = NO;
+            self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_rest"];
+            
+        }else{// 不休息
+            
+            // 判断是否已满
+            NSInteger count = _appointInfoModel.coursedata.coursestudentcount - _appointInfoModel.coursedata.selectedstudentcount;
+            if (count==0) {// 已满
+                self.stateImgview.hidden = NO;
+                self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_full"];
+            }
+            
+        }
         
     }
-        
+    
+    // 判断_appointInfoModel.coursedate上课日期是否大于等于当前时间，如果大于等于当前时间并且有预约名额，就显示黑色
+    //    [self isRiChengCellCanClick:_appointInfoModel.coursebegintime startTimeStr:_appointInfoModel.coursetime.begintime];
+
+//    
+//    // 剩余2个名额
+//    NSInteger keyueCount = 0;//[_appointInfoModel.coursestudentcount integerValue] - [_appointInfoModel.selectedstudentcount integerValue];
+//    self.remainingPersonLabel.text = [NSString stringWithFormat:@"剩余%ld个名额",(long)keyueCount];
+//
+//    // 判断是否已约过
+//    BOOL isYueCurrentCoach=NO;// 已约当前教练
+//    BOOL isYueOtherCoach=NO;// 已约其他教练
+//    for (NSString *string in _appointInfoModel.courseuser) {
+//        
+//        if ([string isEqualToString:[AcountManager manager].userid]) {// 已约当前教练
+//            isYueCurrentCoach = YES;
+//        }
+//        if ([string isEqualToString:self.appointInfoModel.coachid]) {// 已约其他教练
+//            isYueOtherCoach = YES;
+//        }
+//        
+//    }
+//    
+//    if (isYueCurrentCoach) {// 已约当前教练
+//        self.userInteractionEnabled = NO;
+//        self.startTimeLabel.textColor = YBNavigationBarBgColor;
+//        self.finalTimeLabel.textColor = YBNavigationBarBgColor;
+//        self.remainingPersonLabel.textColor = YBNavigationBarBgColor;
+//        self.remainingPersonLabel.text = @"已约该教练";
+//        self.stateImgview.hidden = NO;
+//        self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_date_red"];
+//    }
+//    if (isYueOtherCoach) {// 已约其他教练
+//        self.userInteractionEnabled = NO;
+//        self.startTimeLabel.textColor = YBNavigationBarBgColor;
+//        self.finalTimeLabel.textColor = YBNavigationBarBgColor;
+//        self.remainingPersonLabel.textColor = YBNavigationBarBgColor;
+//        self.remainingPersonLabel.text = [NSString stringWithFormat:@"已约其他教练"];
+//        self.stateImgview.hidden = NO;
+//        self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_date_blue"];
+//    }
+//    
+//    // 判断是否已约满 YBAppointstatus_full
+//    
+//    
+//    // 判断是否休息 YBAppointstatus_rest
+    
+    
+    // 选中的
+    if (_appointInfoModel.is_selected) {
+        self.startTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
+        self.finalTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
+        self.remainingPersonLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
+    }
+    
 }
+
+//- (void)isRiChengCellCanClick:(NSString *)coursedate startTimeStr:(NSString *)startTimeStr
+//{
+//    
+//    self.userInteractionEnabled = YES;
+//    self.isModifyCoach = NO;
+//    self.startTimeLabel.textColor = [UIColor lightGrayColor];
+//    self.finalTimeLabel.textColor = [UIColor lightGrayColor];
+//    self.remainingPersonLabel.textColor = [UIColor lightGrayColor];
+//    
+//    // 当前时间
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateStyle:NSDateFormatterMediumStyle];
+//    [formatter setTimeStyle:NSDateFormatterShortStyle];
+//    [formatter setDateFormat:@"YYYY-MM-dd"];
+//   
+//    NSDate *datenow = [NSDate date];
+//    NSString *nowtimeymdStr = [formatter stringFromDate:datenow];
+//    
+//    [formatter setDateFormat:@"YYYY-MM-dd HH:mm:ss"];
+//    NSString *nowtimeymdhmsStr = [formatter stringFromDate:datenow];
+//
+////    NSRange range = NSMakeRange(0, 10);
+////    NSString *nowTimeStr = [nowtimeStr substringWithRange:range];//当前的时间 YYYY-MM-dd
+//    NSString *appointTimeStr = [NSString getYearLocalDateFormateUTCDate:coursedate];//预约课程的时间 YYYY-MM-dd
+//    
+//    
+//    int lessThan = [YBObjectTool compareDateWithSelectDate:self.selectDate];
+//    NSLog(@"lessThan:%d",lessThan);
+//    // 1:大于当前日期 -1:小于当前时间 0:等于当前时间
+//    if (lessThan==-1){// 预约时间小于当前时间
+//        
+//        self.userInteractionEnabled = NO;
+//        
+//        NSLog(@"------------------------");
+//        self.startTimeLabel.textColor = [UIColor lightGrayColor];
+//        self.finalTimeLabel.textColor = [UIColor lightGrayColor];
+//        self.remainingPersonLabel.textColor = [UIColor lightGrayColor];
+//        
+//    }else{
+//        
+//        NSArray *indexArray= [startTimeStr componentsSeparatedByString:@":"];//课程开始的时间 hh:mm
+//        NSString *indexString = indexArray.firstObject;
+//        NSInteger startTime = indexString.integerValue;
+//        NSRange range = NSMakeRange(11,8);
+//        NSString *subNowTimeStr = [nowtimeymdhmsStr substringWithRange:range];//现在的时间 HH:mm:ss
+//        NSArray *nowTimeArray= [subNowTimeStr componentsSeparatedByString:@":"];//课程开始的时间 hh:mm
+//        NSString *nowTimeStr = nowTimeArray.firstObject;
+//        NSInteger nowTime = nowTimeStr.integerValue;
+//        
+//        if (lessThan==1) {// 大于今天
+//            
+//            NSInteger shengyuCount = _appointInfoModel.coursestudentcount.intValue - _appointInfoModel.selectedstudentcount.intValue;
+//            
+//            if (shengyuCount>0) {// 可预约
+//                
+//                self.startTimeLabel.textColor = [UIColor blackColor];
+//                self.finalTimeLabel.textColor = [UIColor blackColor];
+//                
+//            }else{// 不可预约
+//                
+//                self.startTimeLabel.textColor = [UIColor lightGrayColor];
+//                self.finalTimeLabel.textColor = [UIColor lightGrayColor];
+//                self.remainingPersonLabel.textColor = [UIColor blackColor];
+//                self.remainingPersonLabel.text = @"换同时段其他教练";
+//                self.isModifyCoach = YES;
+//                
+//            }
+//            
+//        }else{// 今天
+//           
+//            if (startTime <= nowTime) {// 开始时间小于当前时间
+//                
+//                self.userInteractionEnabled = NO;
+//                
+//                self.startTimeLabel.textColor = [UIColor lightGrayColor];
+//                self.finalTimeLabel.textColor = [UIColor lightGrayColor];
+//                self.remainingPersonLabel.textColor = [UIColor lightGrayColor];
+//                
+//            }else{// 开始时间大于当前时间
+//                
+//                NSInteger shengyuCount = _appointInfoModel.coursestudentcount.intValue - _appointInfoModel.selectedstudentcount.intValue;
+//                
+//                if (shengyuCount>0) {// 可预约
+//                    
+//                    self.startTimeLabel.textColor = [UIColor blackColor];
+//                    self.finalTimeLabel.textColor = [UIColor blackColor];
+//                    
+//                }else{// 不可预约
+//                    
+//                    self.startTimeLabel.textColor = [UIColor lightGrayColor];
+//                    self.finalTimeLabel.textColor = [UIColor lightGrayColor];
+//                    self.remainingPersonLabel.textColor = [UIColor blackColor];
+//                    self.remainingPersonLabel.text = @"换同时段其他教练";
+//                    self.isModifyCoach = YES;
+//
+//                }
+//                
+//            }
+//            
+//        }
+//        
+//       
+//        
+//    }
+//        
+//}
 
 - (NSString *)dealStringWithTime:(NSString *)value {
     NSUInteger lenth = value.length;

@@ -50,6 +50,9 @@ static NSString *kgetuserinfo = @"userinfo/getimuserinfo?userid=%@";
 
 static NSString *const kappointmentCoachTimeUrl = @"courseinfo/getcoursebycoach?coachid=%@&date=%@";
 
+// 2.0版本获取我和教练的课程安排
+static NSString *const kgetcoursebycoachv2 = @"courseinfo/getcoursebycoachv2?coachid=%@&date=%@&userid=%@";
+
 static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 
 #endif /* YBNetworkMacro_h */
