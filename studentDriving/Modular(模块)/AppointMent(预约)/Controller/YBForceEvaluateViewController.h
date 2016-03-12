@@ -7,6 +7,7 @@
 //  强制评价
 
 #import "YBBaseViewController.h"
+#import "YBTextView.h"
 
 typedef void (^moreBlock)();
 typedef void (^commitBlock)();
@@ -21,7 +22,7 @@ typedef void (^commitBlock)();
 
 @property (nonatomic,strong) RatingBar *starBar;
 
-@property (nonatomic,strong) UITextView *reasonTextView;
+@property (nonatomic,strong)  YBTextView *reasonTextView;
 
 @property (nonatomic,copy) NSString *iconURL;
 

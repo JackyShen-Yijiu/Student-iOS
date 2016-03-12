@@ -246,7 +246,7 @@ static NSString *kMallID = @"MallID";
     for (UIButton *b in self.buttonArray) {
         b.selected = NO;
     }
-    [UIView animateWithDuration:0.5 animations:^{
+    [UIView animateWithDuration:0.3 animations:^{
         self.menuIndicator.frame = CGRectMake(kSystemWide/2, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
     sender.selected = YES;
