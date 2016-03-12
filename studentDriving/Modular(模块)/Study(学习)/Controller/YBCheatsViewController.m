@@ -20,7 +20,7 @@
 
 - (UIWebView *)webView {
     if (_webView == nil) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight-64)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight)];
         _webView.backgroundColor = [UIColor lightGrayColor];//RGBColor(251, 251, 251);
     }
     return _webView;
@@ -30,7 +30,7 @@
     [super viewDidLoad];
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = RGBColor(232, 232, 237);
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     

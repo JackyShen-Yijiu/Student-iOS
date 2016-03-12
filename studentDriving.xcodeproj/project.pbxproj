@@ -27,6 +27,15 @@
 		B221AF6A1C928D34001F6EED /* DIDatepicker.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF671C928D34001F6EED /* DIDatepicker.m */; };
 		B221AF6B1C928D34001F6EED /* DIDatepickerDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF691C928D34001F6EED /* DIDatepickerDateView.m */; };
 		B221AF6E1C92970B001F6EED /* YBAppointMentFootView.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF6D1C92970B001F6EED /* YBAppointMentFootView.m */; };
+		B221AF761C92EE87001F6EED /* YBAppointMentDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF751C92EE87001F6EED /* YBAppointMentDetailsController.m */; };
+		B221AF871C92F31E001F6EED /* YBAppointMentDetailsDataCoachid.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF781C92F31E001F6EED /* YBAppointMentDetailsDataCoachid.m */; };
+		B221AF881C92F31E001F6EED /* YBAppointMentDetailsDataData.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF7A1C92F31E001F6EED /* YBAppointMentDetailsDataData.m */; };
+		B221AF891C92F31E001F6EED /* YBAppointMentDetailsDataDriveschoolinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF7C1C92F31E001F6EED /* YBAppointMentDetailsDataDriveschoolinfo.m */; };
+		B221AF8A1C92F31E001F6EED /* YBAppointMentDetailsDataHeadportrait.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF7E1C92F31E001F6EED /* YBAppointMentDetailsDataHeadportrait.m */; };
+		B221AF8B1C92F31E001F6EED /* YBAppointMentDetailsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF801C92F31E001F6EED /* YBAppointMentDetailsDataModel.m */; };
+		B221AF8C1C92F31E001F6EED /* YBAppointMentDetailsDataRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF821C92F31E001F6EED /* YBAppointMentDetailsDataRootClass.m */; };
+		B221AF8D1C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF841C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m */; };
+		B221AF8E1C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF861C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -275,7 +284,6 @@
 		B251E3EB1C8E849500E6613A /* WMMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCB41C8E849200E6613A /* WMMenuTableViewCell.m */; };
 		B251E3EC1C8E849500E6613A /* YBAppointMentChangeCoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCBE1C8E849200E6613A /* YBAppointMentChangeCoachController.m */; };
 		B251E3ED1C8E849500E6613A /* YBAppointMentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC01C8E849200E6613A /* YBAppointMentController.m */; };
-		B251E3EE1C8E849500E6613A /* YBAppointMentDetailsController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC21C8E849200E6613A /* YBAppointMentDetailsController.m */; };
 		B251E3EF1C8E849500E6613A /* YBCancleAppointMentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC41C8E849200E6613A /* YBCancleAppointMentController.m */; };
 		B251E3F11C8E849500E6613A /* YBCoachListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC81C8E849200E6613A /* YBCoachListViewController.m */; };
 		B251E3F21C8E849500E6613A /* YBForceEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCCA1C8E849200E6613A /* YBForceEvaluateViewController.m */; };
@@ -292,14 +300,6 @@
 		B251E3FD1C8E849500E6613A /* HMTrainaddressModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCE11C8E849200E6613A /* HMTrainaddressModel.m */; };
 		B251E3FE1C8E849500E6613A /* JGSubjectthreeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCE31C8E849200E6613A /* JGSubjectthreeModel.m */; };
 		B251E3FF1C8E849500E6613A /* YBAppointMentCoachModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCE61C8E849200E6613A /* YBAppointMentCoachModel.m */; };
-		B251E4001C8E849500E6613A /* YBAppointMentDetailsDataCoachid.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCE81C8E849200E6613A /* YBAppointMentDetailsDataCoachid.m */; };
-		B251E4011C8E849500E6613A /* YBAppointMentDetailsDataData.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCEA1C8E849200E6613A /* YBAppointMentDetailsDataData.m */; };
-		B251E4021C8E849500E6613A /* YBAppointMentDetailsDataDriveschoolinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCEC1C8E849200E6613A /* YBAppointMentDetailsDataDriveschoolinfo.m */; };
-		B251E4031C8E849500E6613A /* YBAppointMentDetailsDataHeadportrait.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCEE1C8E849200E6613A /* YBAppointMentDetailsDataHeadportrait.m */; };
-		B251E4041C8E849500E6613A /* YBAppointMentDetailsDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCF01C8E849200E6613A /* YBAppointMentDetailsDataModel.m */; };
-		B251E4051C8E849500E6613A /* YBAppointMentDetailsDataRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCF21C8E849200E6613A /* YBAppointMentDetailsDataRootClass.m */; };
-		B251E4061C8E849500E6613A /* YBAppointMentDetailsDataSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCF41C8E849200E6613A /* YBAppointMentDetailsDataSubject.m */; };
-		B251E4071C8E849500E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCF61C8E849200E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.m */; };
 		B251E4081C8E849500E6613A /* FDCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFA1C8E849200E6613A /* FDCalendar.m */; };
 		B251E4091C8E849500E6613A /* FDCalendarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFC1C8E849200E6613A /* FDCalendarItem.m */; };
 		B251E40D1C8E849500E6613A /* NSDictionary+StrDic.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD051C8E849200E6613A /* NSDictionary+StrDic.m */; };
@@ -1019,8 +1019,12 @@
 		D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445291C91969100E7C29F /* YBAppointmentDetailController.m */; };
 		D964ABED1C7AB8CF00A4D1D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */; };
 		D97704971C926D7A00A3865F /* YBAppointmentListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704961C926D7A00A3865F /* YBAppointmentListViewModel.m */; };
-		D977049B1C926ED200A3865F /* YBAppointmentListDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D977049A1C926ED200A3865F /* YBAppointmentListDMRootClass.m */; };
-		D977049E1C926EE900A3865F /* YBAppointmentListDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D977049D1C926EE900A3865F /* YBAppointmentListDMData.m */; };
+		D97704AB1C92A99700A3865F /* YBAppointmentListDMCoachid.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A01C92A99700A3865F /* YBAppointmentListDMCoachid.m */; };
+		D97704AC1C92A99700A3865F /* YBAppointmentListDMData.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A21C92A99700A3865F /* YBAppointmentListDMData.m */; };
+		D97704AD1C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A41C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m */; };
+		D97704AE1C92A99700A3865F /* YBAppointmentListDMHeadportrait.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A61C92A99700A3865F /* YBAppointmentListDMHeadportrait.m */; };
+		D97704AF1C92A99700A3865F /* YBAppointmentListDMRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704A81C92A99700A3865F /* YBAppointmentListDMRootClass.m */; };
+		D97704B01C92A99700A3865F /* YBAppointmentListDMSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = D97704AA1C92A99700A3865F /* YBAppointmentListDMSubject.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -1058,6 +1062,24 @@
 		B221AF691C928D34001F6EED /* DIDatepickerDateView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIDatepickerDateView.m; sourceTree = "<group>"; };
 		B221AF6C1C92970B001F6EED /* YBAppointMentFootView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentFootView.h; sourceTree = "<group>"; };
 		B221AF6D1C92970B001F6EED /* YBAppointMentFootView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentFootView.m; sourceTree = "<group>"; };
+		B221AF741C92EE87001F6EED /* YBAppointMentDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsController.h; sourceTree = "<group>"; };
+		B221AF751C92EE87001F6EED /* YBAppointMentDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsController.m; sourceTree = "<group>"; };
+		B221AF771C92F31E001F6EED /* YBAppointMentDetailsDataCoachid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataCoachid.h; sourceTree = "<group>"; };
+		B221AF781C92F31E001F6EED /* YBAppointMentDetailsDataCoachid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataCoachid.m; sourceTree = "<group>"; };
+		B221AF791C92F31E001F6EED /* YBAppointMentDetailsDataData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataData.h; sourceTree = "<group>"; };
+		B221AF7A1C92F31E001F6EED /* YBAppointMentDetailsDataData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataData.m; sourceTree = "<group>"; };
+		B221AF7B1C92F31E001F6EED /* YBAppointMentDetailsDataDriveschoolinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataDriveschoolinfo.h; sourceTree = "<group>"; };
+		B221AF7C1C92F31E001F6EED /* YBAppointMentDetailsDataDriveschoolinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataDriveschoolinfo.m; sourceTree = "<group>"; };
+		B221AF7D1C92F31E001F6EED /* YBAppointMentDetailsDataHeadportrait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataHeadportrait.h; sourceTree = "<group>"; };
+		B221AF7E1C92F31E001F6EED /* YBAppointMentDetailsDataHeadportrait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataHeadportrait.m; sourceTree = "<group>"; };
+		B221AF7F1C92F31E001F6EED /* YBAppointMentDetailsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataModel.h; sourceTree = "<group>"; };
+		B221AF801C92F31E001F6EED /* YBAppointMentDetailsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataModel.m; sourceTree = "<group>"; };
+		B221AF811C92F31E001F6EED /* YBAppointMentDetailsDataRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataRootClass.h; sourceTree = "<group>"; };
+		B221AF821C92F31E001F6EED /* YBAppointMentDetailsDataRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataRootClass.m; sourceTree = "<group>"; };
+		B221AF831C92F31E001F6EED /* YBAppointMentDetailsDataSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataSubject.h; sourceTree = "<group>"; };
+		B221AF841C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataSubject.m; sourceTree = "<group>"; };
+		B221AF851C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataTrainfieldlinfo.h; sourceTree = "<group>"; };
+		B221AF861C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataTrainfieldlinfo.m; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -1548,8 +1570,6 @@
 		B251DCBE1C8E849200E6613A /* YBAppointMentChangeCoachController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentChangeCoachController.m; sourceTree = "<group>"; };
 		B251DCBF1C8E849200E6613A /* YBAppointMentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentController.h; sourceTree = "<group>"; };
 		B251DCC01C8E849200E6613A /* YBAppointMentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentController.m; sourceTree = "<group>"; };
-		B251DCC11C8E849200E6613A /* YBAppointMentDetailsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsController.h; sourceTree = "<group>"; };
-		B251DCC21C8E849200E6613A /* YBAppointMentDetailsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsController.m; sourceTree = "<group>"; };
 		B251DCC31C8E849200E6613A /* YBCancleAppointMentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCancleAppointMentController.h; sourceTree = "<group>"; };
 		B251DCC41C8E849200E6613A /* YBCancleAppointMentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCancleAppointMentController.m; sourceTree = "<group>"; };
 		B251DCC71C8E849200E6613A /* YBCoachListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCoachListViewController.h; sourceTree = "<group>"; };
@@ -1583,22 +1603,6 @@
 		B251DCE41C8E849200E6613A /* ModelDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelDefine.h; sourceTree = "<group>"; };
 		B251DCE51C8E849200E6613A /* YBAppointMentCoachModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentCoachModel.h; sourceTree = "<group>"; };
 		B251DCE61C8E849200E6613A /* YBAppointMentCoachModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentCoachModel.m; sourceTree = "<group>"; };
-		B251DCE71C8E849200E6613A /* YBAppointMentDetailsDataCoachid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataCoachid.h; sourceTree = "<group>"; };
-		B251DCE81C8E849200E6613A /* YBAppointMentDetailsDataCoachid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataCoachid.m; sourceTree = "<group>"; };
-		B251DCE91C8E849200E6613A /* YBAppointMentDetailsDataData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataData.h; sourceTree = "<group>"; };
-		B251DCEA1C8E849200E6613A /* YBAppointMentDetailsDataData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataData.m; sourceTree = "<group>"; };
-		B251DCEB1C8E849200E6613A /* YBAppointMentDetailsDataDriveschoolinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataDriveschoolinfo.h; sourceTree = "<group>"; };
-		B251DCEC1C8E849200E6613A /* YBAppointMentDetailsDataDriveschoolinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataDriveschoolinfo.m; sourceTree = "<group>"; };
-		B251DCED1C8E849200E6613A /* YBAppointMentDetailsDataHeadportrait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataHeadportrait.h; sourceTree = "<group>"; };
-		B251DCEE1C8E849200E6613A /* YBAppointMentDetailsDataHeadportrait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataHeadportrait.m; sourceTree = "<group>"; };
-		B251DCEF1C8E849200E6613A /* YBAppointMentDetailsDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataModel.h; sourceTree = "<group>"; };
-		B251DCF01C8E849200E6613A /* YBAppointMentDetailsDataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataModel.m; sourceTree = "<group>"; };
-		B251DCF11C8E849200E6613A /* YBAppointMentDetailsDataRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataRootClass.h; sourceTree = "<group>"; };
-		B251DCF21C8E849200E6613A /* YBAppointMentDetailsDataRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataRootClass.m; sourceTree = "<group>"; };
-		B251DCF31C8E849200E6613A /* YBAppointMentDetailsDataSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataSubject.h; sourceTree = "<group>"; };
-		B251DCF41C8E849200E6613A /* YBAppointMentDetailsDataSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataSubject.m; sourceTree = "<group>"; };
-		B251DCF51C8E849200E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataTrainfieldlinfo.h; sourceTree = "<group>"; };
-		B251DCF61C8E849200E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataTrainfieldlinfo.m; sourceTree = "<group>"; };
 		B251DCF91C8E849200E6613A /* FDCalendar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCalendar.h; sourceTree = "<group>"; };
 		B251DCFA1C8E849200E6613A /* FDCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCalendar.m; sourceTree = "<group>"; };
 		B251DCFB1C8E849200E6613A /* FDCalendarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCalendarItem.h; sourceTree = "<group>"; };
@@ -2969,10 +2973,18 @@
 		D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		D97704951C926D7A00A3865F /* YBAppointmentListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListViewModel.h; sourceTree = "<group>"; };
 		D97704961C926D7A00A3865F /* YBAppointmentListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListViewModel.m; sourceTree = "<group>"; };
-		D97704991C926ED200A3865F /* YBAppointmentListDMRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMRootClass.h; sourceTree = "<group>"; };
-		D977049A1C926ED200A3865F /* YBAppointmentListDMRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMRootClass.m; sourceTree = "<group>"; };
-		D977049C1C926EE900A3865F /* YBAppointmentListDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMData.h; sourceTree = "<group>"; };
-		D977049D1C926EE900A3865F /* YBAppointmentListDMData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMData.m; sourceTree = "<group>"; };
+		D977049F1C92A99700A3865F /* YBAppointmentListDMCoachid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMCoachid.h; sourceTree = "<group>"; };
+		D97704A01C92A99700A3865F /* YBAppointmentListDMCoachid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMCoachid.m; sourceTree = "<group>"; };
+		D97704A11C92A99700A3865F /* YBAppointmentListDMData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMData.h; sourceTree = "<group>"; };
+		D97704A21C92A99700A3865F /* YBAppointmentListDMData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMData.m; sourceTree = "<group>"; };
+		D97704A31C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMDriveschoolinfo.h; sourceTree = "<group>"; };
+		D97704A41C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMDriveschoolinfo.m; sourceTree = "<group>"; };
+		D97704A51C92A99700A3865F /* YBAppointmentListDMHeadportrait.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMHeadportrait.h; sourceTree = "<group>"; };
+		D97704A61C92A99700A3865F /* YBAppointmentListDMHeadportrait.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMHeadportrait.m; sourceTree = "<group>"; };
+		D97704A71C92A99700A3865F /* YBAppointmentListDMRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMRootClass.h; sourceTree = "<group>"; };
+		D97704A81C92A99700A3865F /* YBAppointmentListDMRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMRootClass.m; sourceTree = "<group>"; };
+		D97704A91C92A99700A3865F /* YBAppointmentListDMSubject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListDMSubject.h; sourceTree = "<group>"; };
+		D97704AA1C92A99700A3865F /* YBAppointmentListDMSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListDMSubject.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -3064,6 +3076,63 @@
 				72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B221AF6F1C92ECBF001F6EED /* 预约详情 */ = {
+			isa = PBXGroup;
+			children = (
+				B221AF701C92ECBF001F6EED /* Controller */,
+				B221AF711C92ECBF001F6EED /* Model */,
+				B221AF721C92ECBF001F6EED /* Other */,
+				B221AF731C92ECBF001F6EED /* View */,
+			);
+			path = "预约详情";
+			sourceTree = "<group>";
+		};
+		B221AF701C92ECBF001F6EED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B221AF741C92EE87001F6EED /* YBAppointMentDetailsController.h */,
+				B221AF751C92EE87001F6EED /* YBAppointMentDetailsController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B221AF711C92ECBF001F6EED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B221AF7F1C92F31E001F6EED /* YBAppointMentDetailsDataModel.h */,
+				B221AF801C92F31E001F6EED /* YBAppointMentDetailsDataModel.m */,
+				B221AF771C92F31E001F6EED /* YBAppointMentDetailsDataCoachid.h */,
+				B221AF781C92F31E001F6EED /* YBAppointMentDetailsDataCoachid.m */,
+				B221AF791C92F31E001F6EED /* YBAppointMentDetailsDataData.h */,
+				B221AF7A1C92F31E001F6EED /* YBAppointMentDetailsDataData.m */,
+				B221AF7B1C92F31E001F6EED /* YBAppointMentDetailsDataDriveschoolinfo.h */,
+				B221AF7C1C92F31E001F6EED /* YBAppointMentDetailsDataDriveschoolinfo.m */,
+				B221AF7D1C92F31E001F6EED /* YBAppointMentDetailsDataHeadportrait.h */,
+				B221AF7E1C92F31E001F6EED /* YBAppointMentDetailsDataHeadportrait.m */,
+				B221AF811C92F31E001F6EED /* YBAppointMentDetailsDataRootClass.h */,
+				B221AF821C92F31E001F6EED /* YBAppointMentDetailsDataRootClass.m */,
+				B221AF831C92F31E001F6EED /* YBAppointMentDetailsDataSubject.h */,
+				B221AF841C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m */,
+				B221AF851C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.h */,
+				B221AF861C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		B221AF721C92ECBF001F6EED /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		B221AF731C92ECBF001F6EED /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		B251DA7D1C8E849100E6613A /* 旧的目录 */ = {
@@ -3830,6 +3899,7 @@
 		B251DCBB1C8E849200E6613A /* AppointMent(预约) */ = {
 			isa = PBXGroup;
 			children = (
+				B221AF6F1C92ECBF001F6EED /* 预约详情 */,
 				B251DCBC1C8E849200E6613A /* Controller */,
 				B251DCCB1C8E849200E6613A /* Model */,
 				B251DCF71C8E849200E6613A /* Other */,
@@ -3865,8 +3935,6 @@
 				D96445231C918EA600E7C29F /* YBCompletedAppointmentListCell.h */,
 				D96445241C918EA600E7C29F /* YBCompletedAppointmentListCell.m */,
 				D96445251C918EA600E7C29F /* YBCompletedAppointmentListCell.xib */,
-				B251DCC11C8E849200E6613A /* YBAppointMentDetailsController.h */,
-				B251DCC21C8E849200E6613A /* YBAppointMentDetailsController.m */,
 				B251DCC31C8E849200E6613A /* YBCancleAppointMentController.h */,
 				B251DCC41C8E849200E6613A /* YBCancleAppointMentController.m */,
 				B251DCC71C8E849200E6613A /* YBCoachListViewController.h */,
@@ -3909,22 +3977,6 @@
 				B251DCE41C8E849200E6613A /* ModelDefine.h */,
 				B251DCE51C8E849200E6613A /* YBAppointMentCoachModel.h */,
 				B251DCE61C8E849200E6613A /* YBAppointMentCoachModel.m */,
-				B251DCE71C8E849200E6613A /* YBAppointMentDetailsDataCoachid.h */,
-				B251DCE81C8E849200E6613A /* YBAppointMentDetailsDataCoachid.m */,
-				B251DCE91C8E849200E6613A /* YBAppointMentDetailsDataData.h */,
-				B251DCEA1C8E849200E6613A /* YBAppointMentDetailsDataData.m */,
-				B251DCEB1C8E849200E6613A /* YBAppointMentDetailsDataDriveschoolinfo.h */,
-				B251DCEC1C8E849200E6613A /* YBAppointMentDetailsDataDriveschoolinfo.m */,
-				B251DCED1C8E849200E6613A /* YBAppointMentDetailsDataHeadportrait.h */,
-				B251DCEE1C8E849200E6613A /* YBAppointMentDetailsDataHeadportrait.m */,
-				B251DCEF1C8E849200E6613A /* YBAppointMentDetailsDataModel.h */,
-				B251DCF01C8E849200E6613A /* YBAppointMentDetailsDataModel.m */,
-				B251DCF11C8E849200E6613A /* YBAppointMentDetailsDataRootClass.h */,
-				B251DCF21C8E849200E6613A /* YBAppointMentDetailsDataRootClass.m */,
-				B251DCF31C8E849200E6613A /* YBAppointMentDetailsDataSubject.h */,
-				B251DCF41C8E849200E6613A /* YBAppointMentDetailsDataSubject.m */,
-				B251DCF51C8E849200E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.h */,
-				B251DCF61C8E849200E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -6721,10 +6773,18 @@
 		D97704981C926E0500A3865F /* YBAppointmentListDataModel */ = {
 			isa = PBXGroup;
 			children = (
-				D97704991C926ED200A3865F /* YBAppointmentListDMRootClass.h */,
-				D977049A1C926ED200A3865F /* YBAppointmentListDMRootClass.m */,
-				D977049C1C926EE900A3865F /* YBAppointmentListDMData.h */,
-				D977049D1C926EE900A3865F /* YBAppointmentListDMData.m */,
+				D977049F1C92A99700A3865F /* YBAppointmentListDMCoachid.h */,
+				D97704A01C92A99700A3865F /* YBAppointmentListDMCoachid.m */,
+				D97704A11C92A99700A3865F /* YBAppointmentListDMData.h */,
+				D97704A21C92A99700A3865F /* YBAppointmentListDMData.m */,
+				D97704A31C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.h */,
+				D97704A41C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m */,
+				D97704A51C92A99700A3865F /* YBAppointmentListDMHeadportrait.h */,
+				D97704A61C92A99700A3865F /* YBAppointmentListDMHeadportrait.m */,
+				D97704A71C92A99700A3865F /* YBAppointmentListDMRootClass.h */,
+				D97704A81C92A99700A3865F /* YBAppointmentListDMRootClass.m */,
+				D97704A91C92A99700A3865F /* YBAppointmentListDMSubject.h */,
+				D97704AA1C92A99700A3865F /* YBAppointmentListDMSubject.m */,
 			);
 			path = YBAppointmentListDataModel;
 			sourceTree = "<group>";
@@ -7112,6 +7172,7 @@
 				B251E5C21C8E849500E6613A /* DVVPaySuccessDMData.m in Sources */,
 				B251E3271C8E849500E6613A /* Logoimg.m in Sources */,
 				B251E3AE1C8E849500E6613A /* HomeRewardController.m in Sources */,
+				D97704AB1C92A99700A3865F /* YBAppointmentListDMCoachid.m in Sources */,
 				B251E67C1C8E849600E6613A /* UIViewController+HUD.m in Sources */,
 				B251E63A1C8E849500E6613A /* THProgressView.m in Sources */,
 				B251E5EA1C8E849500E6613A /* YBStudyViewController.m in Sources */,
@@ -7146,7 +7207,6 @@
 				B251E3AF1C8E849500E6613A /* HomeShowKnowController.m in Sources */,
 				B251E5771C8E849500E6613A /* DVVCoachDetailController.m in Sources */,
 				B251E3BB1C8E849500E6613A /* ModifyNameViewController.m in Sources */,
-				B251E3EE1C8E849500E6613A /* YBAppointMentDetailsController.m in Sources */,
 				B251E5C01C8E849500E6613A /* DVVPaySuccessDMApplycoachinfo.m in Sources */,
 				B251E3931C8E849500E6613A /* AppointmentDrivingViewController.m in Sources */,
 				B251E3971C8E849500E6613A /* BLAVDetailViewController.m in Sources */,
@@ -7158,7 +7218,6 @@
 				B251E5BC1C8E849500E6613A /* NSObject+DVVBaseViewModel.m in Sources */,
 				B251E5B01C8E849500E6613A /* DVVPaySuccessView.m in Sources */,
 				B251E69C1C8E849600E6613A /* WMUITool.m in Sources */,
-				B251E4011C8E849500E6613A /* YBAppointMentDetailsDataData.m in Sources */,
 				B251E2FD1C8E849500E6613A /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				B251E2F41C8E849500E6613A /* DrivingTableHeaderView.m in Sources */,
 				B251E6D61C8E852300E6613A /* UIImage+WM.m in Sources */,
@@ -7253,6 +7312,7 @@
 				B251E59F1C8E849500E6613A /* DrivingDetailInfoCell.m in Sources */,
 				B251E6041C8E849500E6613A /* EmojiEmoticons.m in Sources */,
 				B251E56F1C8E849500E6613A /* DVVCoachDetailDMTrainfieldlinfo.m in Sources */,
+				D97704AF1C92A99700A3865F /* YBAppointmentListDMRootClass.m in Sources */,
 				B251E5FA1C8E849500E6613A /* EMAudioRecorderUtil.m in Sources */,
 				B251E3301C8E849500E6613A /* SubjectModel.m in Sources */,
 				B251E3BD1C8E849500E6613A /* ModifyPhoneNumViewController.m in Sources */,
@@ -7263,7 +7323,6 @@
 				B251E5891C8E849500E6613A /* ClassTypeViewModel.m in Sources */,
 				B251E3F51C8E849500E6613A /* HMClassInfoModel.m in Sources */,
 				B251E3471C8E849500E6613A /* DVVSideMenuCollectionView.m in Sources */,
-				D977049B1C926ED200A3865F /* YBAppointmentListDMRootClass.m in Sources */,
 				B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */,
 				B251E5041C8E849500E6613A /* RegistNoteController.m in Sources */,
 				B251E40F1C8E849500E6613A /* YBObjectTool.m in Sources */,
@@ -7272,7 +7331,6 @@
 				B251E7441C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m in Sources */,
 				B251E6AC1C8E849600E6613A /* SBJsonWriter.m in Sources */,
 				B251E30E1C8E849500E6613A /* SignUpSucceedViewController.m in Sources */,
-				B251E4041C8E849500E6613A /* YBAppointMentDetailsDataModel.m in Sources */,
 				B251E68E1C8E849600E6613A /* CircularMotion.m in Sources */,
 				B251E5011C8E849500E6613A /* LoginViewController.m in Sources */,
 				B251E3201C8E849500E6613A /* CommentModel.m in Sources */,
@@ -7320,7 +7378,6 @@
 				B251E3961C8E849500E6613A /* APWaitEvaluationViewController.m in Sources */,
 				B251E5B81C8E849500E6613A /* DVVCrashHandler.mm in Sources */,
 				B251E5FB1C8E849500E6613A /* EMCDDeviceManager+Media.m in Sources */,
-				B251E4051C8E849500E6613A /* YBAppointMentDetailsDataRootClass.m in Sources */,
 				B251E6F11C8FC59400E6613A /* KOAProgressBar.m in Sources */,
 				D96445261C918EA600E7C29F /* YBCompletedAppointmentListCell.m in Sources */,
 				B251E3B11C8E849500E6613A /* SchoolClassDetailController.m in Sources */,
@@ -7341,7 +7398,7 @@
 				B251E6711C8E849600E6613A /* NSString+DY_MD5.m in Sources */,
 				B251E5C61C8E849500E6613A /* DVVSignUpCoachDMHeadportrait.m in Sources */,
 				B251E32B1C8E849500E6613A /* serverclasslistModel.m in Sources */,
-				D977049E1C926EE900A3865F /* YBAppointmentListDMData.m in Sources */,
+				D97704AC1C92A99700A3865F /* YBAppointmentListDMData.m in Sources */,
 				B251E3C61C8E849500E6613A /* UserCenterHeadView.m in Sources */,
 				B251E5411C8E849500E6613A /* EditorMessageCell.m in Sources */,
 				B251E6051C8E849500E6613A /* JRSwizzle.m in Sources */,
@@ -7352,7 +7409,6 @@
 				B251E4151C8E849500E6613A /* YBAppointMentDetailsFootView.m in Sources */,
 				B251E5A91C8E849500E6613A /* DVVHorizontalScrollImagesCell.m in Sources */,
 				B251E34B1C8E849500E6613A /* FourViewController.m in Sources */,
-				B251E4021C8E849500E6613A /* YBAppointMentDetailsDataDriveschoolinfo.m in Sources */,
 				B251E3351C8E849500E6613A /* TrainFieldInfoModel.m in Sources */,
 				B251E4191C8E849500E6613A /* YBAppotinMentHeadView.m in Sources */,
 				B251E3CE1C8E849500E6613A /* BLBaseViewController.m in Sources */,
@@ -7366,7 +7422,6 @@
 				B251E5F21C8E849500E6613A /* YBCheatslistViewCell.m in Sources */,
 				B251E37E1C8E849500E6613A /* DrivingInformationCell.m in Sources */,
 				B251E67A1C8E849600E6613A /* UIView+CalculateUIView.m in Sources */,
-				B251E4031C8E849500E6613A /* YBAppointMentDetailsDataHeadportrait.m in Sources */,
 				B251E6061C8E849500E6613A /* LJException.m in Sources */,
 				B251E6241C8E849500E6613A /* UIImageView+EMWebCache.m in Sources */,
 				B251E6661C8E849500E6613A /* NSObject+YYModel.m in Sources */,
@@ -7425,9 +7480,9 @@
 				B251E2EF1C8E849500E6613A /* DrivingCycleShowDMHeadportrait.m in Sources */,
 				B251E3411C8E849500E6613A /* DVVImagePickerControllerManager.m in Sources */,
 				D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */,
+				D97704B01C92A99700A3865F /* YBAppointmentListDMSubject.m in Sources */,
 				B251E4FF1C8E849500E6613A /* JZRegisterFirstController.m in Sources */,
 				B251E61A1C8E849500E6613A /* EMSDWebImageDownloaderOperation.m in Sources */,
-				B251E4071C8E849500E6613A /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */,
 				B251E5471C8E849500E6613A /* FeedBackViewController.m in Sources */,
 				B251E6121C8E849500E6613A /* MWTapDetectingImageView.m in Sources */,
 				B251E33A1C8E849500E6613A /* ComplaintCoachListController.m in Sources */,
@@ -7443,7 +7498,6 @@
 				B251E4161C8E849500E6613A /* YBAppointMentNoCountentView.m in Sources */,
 				B251E37F1C8E849500E6613A /* DrivingIntroductionCell.m in Sources */,
 				B251E6631C8E849500E6613A /* EMVoiceConverter.mm in Sources */,
-				B251E4001C8E849500E6613A /* YBAppointMentDetailsDataCoachid.m in Sources */,
 				B251E6791C8E849600E6613A /* UIResponder+Router.m in Sources */,
 				B251E3531C8E849500E6613A /* DiscountShopModel.m in Sources */,
 				B251E3751C8E849500E6613A /* CoachInformationCell.m in Sources */,
@@ -7501,6 +7555,7 @@
 				B251E68C1C8E849600E6613A /* BLPFAlertView.m in Sources */,
 				B251E5C11C8E849500E6613A /* DVVPaySuccessDMCarmodel.m in Sources */,
 				B251E5481C8E849500E6613A /* DuideDetailCell.m in Sources */,
+				D97704AE1C92A99700A3865F /* YBAppointmentListDMHeadportrait.m in Sources */,
 				B251E6751C8E849600E6613A /* UIColor+RGBColor.m in Sources */,
 				B251E6621C8E849500E6613A /* wav.mm in Sources */,
 				B251E3951C8E849500E6613A /* APWaitConfirmViewController.m in Sources */,
@@ -7510,8 +7565,10 @@
 				064BD6081C911F990021C116 /* JZPasswordLoginController.m in Sources */,
 				B251E3361C8E849500E6613A /* trainfieldModel.m in Sources */,
 				B251E3DB1C8E849500E6613A /* YBWebBaseViewController.m in Sources */,
+				B221AF881C92F31E001F6EED /* YBAppointMentDetailsDataData.m in Sources */,
 				B251E38C1C8E849500E6613A /* WaitConfirmCell.m in Sources */,
 				B251E60B1C8E849500E6613A /* MBProgressHUD+Add.m in Sources */,
+				B221AF871C92F31E001F6EED /* YBAppointMentDetailsDataCoachid.m in Sources */,
 				B251E3331C8E849500E6613A /* SubjectTwoModel.m in Sources */,
 				B251E3371C8E849500E6613A /* UserIdModel.m in Sources */,
 				B251E66C1C8E849500E6613A /* UINavigationBar+DVVNavigationBar.m in Sources */,
@@ -7527,6 +7584,7 @@
 				B251E3E01C8E849500E6613A /* WMPopAnimation.m in Sources */,
 				B251E5D81C8E849500E6613A /* CityListViewController.m in Sources */,
 				B251E6BB1C8E849600E6613A /* WXUtil.mm in Sources */,
+				B221AF8C1C92F31E001F6EED /* YBAppointMentDetailsDataRootClass.m in Sources */,
 				B251E3091C8E849500E6613A /* SignUpCoachDetailViewController.m in Sources */,
 				B251E2F01C8E849500E6613A /* DrivingCycleShowDMRootClass.m in Sources */,
 				B251E3721C8E849500E6613A /* CancelAppointmentCell.m in Sources */,
@@ -7537,10 +7595,10 @@
 				B251E3831C8E849500E6613A /* ExamClassCollectionViewCell.m in Sources */,
 				B251E34C1C8E849500E6613A /* CoinCertificateController.m in Sources */,
 				B251E3B51C8E849500E6613A /* SignUpFirmOrderFooterView.m in Sources */,
-				B251E4061C8E849500E6613A /* YBAppointMentDetailsDataSubject.m in Sources */,
 				B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */,
 				B251E52A1C8E849500E6613A /* PlaceholderTextView.m in Sources */,
 				B251E51D1C8E849500E6613A /* YBBaoMingDuiHuanQuanCell.m in Sources */,
+				B221AF8B1C92F31E001F6EED /* YBAppointMentDetailsDataModel.m in Sources */,
 				B251E5951C8E849500E6613A /* CoachListViewModel.m in Sources */,
 				B251E4231C8E849500E6613A /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				B251E6181C8E849500E6613A /* EMSDWebImageDecoder.m in Sources */,
@@ -7636,6 +7694,7 @@
 				B251E4171C8E849500E6613A /* YBAppointMentUserCell.m in Sources */,
 				B251E5C91C8E849500E6613A /* DVVSignUpSchoolDMData.m in Sources */,
 				B251E3C11C8E849500E6613A /* MyWalletViewController.m in Sources */,
+				B221AF8E1C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */,
 				B251E5E81C8E849500E6613A /* YBCheatslistViewController.m in Sources */,
 				B251E56A1C8E849500E6613A /* DVVCoachDetailDMHeadportrait.m in Sources */,
 				B251E61C1C8E849500E6613A /* EMSDWebImagePrefetcher.m in Sources */,
@@ -7681,6 +7740,7 @@
 				B251E4221C8E849500E6613A /* ChatViewController.m in Sources */,
 				B251E6861C8E849600E6613A /* DVVBaseViewModel.m in Sources */,
 				B251E3541C8E849500E6613A /* DiscountWalletCell.m in Sources */,
+				D97704AD1C92A99700A3865F /* YBAppointmentListDMDriveschoolinfo.m in Sources */,
 				B251E31A1C8E849500E6613A /* AppointmentCoachTimeInfoModel.m in Sources */,
 				B251E43C1C8E849500E6613A /* BaseViewController.m in Sources */,
 				B251E32E1C8E849500E6613A /* StudentModel.m in Sources */,
@@ -7691,6 +7751,7 @@
 				B251E38B1C8E849500E6613A /* UserCenterCell.m in Sources */,
 				B251E2FE1C8E849500E6613A /* JGDrivingDetailTopCell.m in Sources */,
 				B251E3C01C8E849500E6613A /* MySaveViewController.m in Sources */,
+				B221AF891C92F31E001F6EED /* YBAppointMentDetailsDataDriveschoolinfo.m in Sources */,
 				B251E5321C8E849500E6613A /* OrdetDetailController.m in Sources */,
 				B251E5DB1C8E849500E6613A /* DVVSubCityCell.m in Sources */,
 				B251E5941C8E849500E6613A /* CoachListView.m in Sources */,
@@ -7715,6 +7776,7 @@
 				B251E30B1C8E849500E6613A /* SignUpDrivingDetailViewController.m in Sources */,
 				B251E2F11C8E849500E6613A /* DrivingCycleShowViewModel.m in Sources */,
 				B221AF6B1C928D34001F6EED /* DIDatepickerDateView.m in Sources */,
+				B221AF8A1C92F31E001F6EED /* YBAppointMentDetailsDataHeadportrait.m in Sources */,
 				B251E5B61C8E849500E6613A /* DVVSignUpDetailPayView.m in Sources */,
 				B251E5A31C8E849500E6613A /* DrivingDetailSignUpCell.m in Sources */,
 				B251E3F71C8E849500E6613A /* HMCourseUserModel.m in Sources */,
@@ -7730,6 +7792,7 @@
 				B251E5CC1C8E849500E6613A /* DVVSignUpCoachCell.m in Sources */,
 				B251E4081C8E849500E6613A /* FDCalendar.m in Sources */,
 				B251E67B1C8E849600E6613A /* UIViewController+DismissKeyboard.m in Sources */,
+				B221AF761C92EE87001F6EED /* YBAppointMentDetailsController.m in Sources */,
 				B251E5101C8E849500E6613A /* YBMallViewController.m in Sources */,
 				B251E3141C8E849500E6613A /* WhichStateViewController.m in Sources */,
 				B251E5E61C8E849500E6613A /* YBAppointTestViewController.m in Sources */,
@@ -7748,6 +7811,7 @@
 				B251E54F1C8E849500E6613A /* SetupViewController.m in Sources */,
 				B251E3601C8E849500E6613A /* MoneyShopController.m in Sources */,
 				B251E4121C8E849500E6613A /* JGYuYueHeadView.m in Sources */,
+				B221AF8D1C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m in Sources */,
 				0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */,
 				B251E2E81C8E849500E6613A /* CityListCell.m in Sources */,
 				B251E5C81C8E849500E6613A /* DVVSignUpCoachDMSubject.m in Sources */,

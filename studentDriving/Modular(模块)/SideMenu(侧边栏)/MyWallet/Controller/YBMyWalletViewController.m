@@ -244,7 +244,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     self.title = @"钱包";
     
     // 顶部view

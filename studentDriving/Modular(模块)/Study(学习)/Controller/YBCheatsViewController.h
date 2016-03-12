@@ -6,8 +6,8 @@
 //  Copyright © 2016年 jatd. All rights reserved.
 //  秘籍
 
-#import "YBBaseViewController.h"
+#import "YBWebBaseViewController.h"
 
-@interface YBCheatsViewController : YBBaseViewController
+@interface YBCheatsViewController : YBWebBaseViewController
 @property (nonatomic,copy)NSString *weburl;
 @end

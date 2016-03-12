@@ -14,6 +14,7 @@
 #import "YBAppointmentListViewModel.h"
 #import "DVVToast.h"
 #import "YBAppointController.h"
+#import <MJRefresh/MJRefresh.h>
 
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -49,6 +50,15 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [self.view addSubview:self.tableView];
     
     [self configViewModel];
+    [self configRefresh];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    // 开始请求数据
+    [DVVToast showFromView:self.view OffSetY:-10];
+    [_viewModel dvv_networkRequestRefresh];
 }
 
 - (void)rightBarButtonItemDidClick{
@@ -67,6 +77,12 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveMainVcChange" object:self];
+    }
+}
 
 #pragma mark - action
 
@@ -74,6 +90,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (void)completedAppointmentAction {
     
     YBCompletedAppointmentListController *vc = [YBCompletedAppointmentListController new];
+    vc.dataArray = _viewModel.completedArray;
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
@@ -106,10 +123,25 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }];
     [_viewModel dvv_setNetworkCallBackBlock:^{
         [DVVToast hideFromView:ws.view];
+        [ws.tableView.mj_header endRefreshing];
     }];
     
-    [DVVToast showFromView:ws.view OffSetY:-64];
-    [_viewModel dvv_networkRequestRefresh];
+//    // 开始请求数据
+//    [DVVToast showFromView:ws.view OffSetY:-64];
+//    [_viewModel dvv_networkRequestRefresh];
+}
+
+#pragma mark - config refresh
+
+- (void)configRefresh {
+    
+    WS(ws)
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        
+        [ws.viewModel dvv_networkRequestRefresh];
+    }];
+    
+    self.tableView.mj_header = header;
 }
 
 
@@ -124,13 +156,15 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     
     if (0 == section) {
         if (_isShowTodayAppointment) {
-            return 4;
+            return _viewModel.todayArray.count;
+//            return 5;
         }else {
             return 0;
         }
     }else {
         if (_isShowNextAppointment) {
-            return 5;
+            return _viewModel.nextArray.count;
+//            return 4;
         }else {
             return 0;
         }
@@ -155,20 +189,39 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     headerView.button.tag = section;
     [headerView.button addTarget:self action:@selector(sectionHeaderAction:) forControlEvents:UIControlEventTouchUpInside];
     if (0 == section) {
+        headerView.titleLabel.text = @"今日的预约";
+        if (_viewModel.todayArray.count) {
+            headerView.statusLabel.hidden = YES;
+            headerView.arrowImageView.hidden = NO;
+            headerView.button.userInteractionEnabled = YES;
+        }else {
+            headerView.statusLabel.hidden = NO;
+            headerView.arrowImageView.hidden = YES;
+            headerView.button.userInteractionEnabled = NO;
+        }
         if (_isShowTodayAppointment) {
-            headerView.arrowImageView.image = [UIImage imageNamed:@"1"];
+            headerView.arrowImageView.image = [UIImage imageNamed:@"more_down"];
         }else {
             headerView.arrowImageView.image = [UIImage imageNamed:@"more_right"];
         }
     }else if (1 == section) {
+        headerView.titleLabel.text = @"未来的预约";
+        if (_viewModel.nextArray.count) {
+            headerView.statusLabel.hidden = YES;
+            headerView.arrowImageView.hidden = NO;
+            headerView.button.userInteractionEnabled = YES;
+        }else {
+            headerView.statusLabel.hidden = NO;
+            headerView.arrowImageView.hidden = YES;
+            headerView.button.userInteractionEnabled = NO;
+        }
         if (_isShowNextAppointment) {
-            headerView.arrowImageView.image = [UIImage imageNamed:@"1"];
+            headerView.arrowImageView.image = [UIImage imageNamed:@"more_down"];
         }else {
             headerView.arrowImageView.image = [UIImage imageNamed:@"more_right"];
         }
     }
     
-    headerView.titleLabel.text = @"title";
     return headerView;
 }
 
@@ -181,6 +234,23 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     YBAppointmentListCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    
+    if (0 == indexPath.section) {
+        // 隐藏最后一个cell的线
+        if (indexPath.row == _viewModel.todayArray.count - 1) {
+            cell.lineImageView.hidden = YES;
+        }else {
+            cell.lineImageView.hidden = NO;
+        }
+        [cell refreshData:_viewModel.todayArray[indexPath.row] appointmentTime:0];
+    }else if (1 == indexPath.section) {
+        if (indexPath.row == _viewModel.nextArray.count - 1) {
+            cell.lineImageView.hidden = YES;
+        }else {
+            cell.lineImageView.hidden = NO;
+        }
+        [cell refreshData:_viewModel.nextArray[indexPath.row] appointmentTime:1];
+    }
     
     return cell;
 }
@@ -228,8 +298,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     if (!_footerView) {
         _footerView = [YBAppointmentSectionHeaderView new];
         _footerView.frame = CGRectMake(0, 0, kSystemWide, 44);
-        _footerView.titleLabel.text = @"已完成的预约";
+        _footerView.titleLabel.text = @"完成的预约";
         [_footerView.button addTarget:self action:@selector(completedAppointmentAction) forControlEvents:UIControlEventTouchUpInside];
+        _footerView.statusLabel.hidden = YES;
     }
     return _footerView;
 }

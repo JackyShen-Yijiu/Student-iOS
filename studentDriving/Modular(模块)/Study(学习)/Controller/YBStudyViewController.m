@@ -129,7 +129,7 @@ WMSingletonM(YBStudyViewController)
     self.edgesForExtendedLayout = NO;
 
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = RGBColor(232, 232, 237);
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     self.title = @"学习";
     
     // 请求数据

@@ -1,20 +1,18 @@
-//
-//  YBAppointmentListDMData.h
-//  studentDriving
-//
-//  Created by 大威 on 16/3/11.
-//  Copyright © 2016年 jatd. All rights reserved.
-//
+#import <UIKit/UIKit.h>
+#import "YBAppointmentListDMCoachid.h"
+#import "YBAppointmentListDMSubject.h"
+#import "YBAppointmentListDMDriveschoolinfo.h"
+#import "YYModel.h"
 
-#import <Foundation/Foundation.h>
+@interface YBAppointmentListDMData : NSObject<YYModel>
 
-@interface YBAppointmentListDMData : NSObject
-
-/** 今天的预约 */
-@property (nonatomic, strong) NSArray *todayArray;
-/** 未来的预约 */
-@property (nonatomic, strong) NSArray *nextArray;
-/** 已完成的预约 */
-@property (nonatomic, strong) NSArray *completedArray;
-
+@property (nonatomic, strong) NSString * ID;
+@property (nonatomic, strong) NSString * classdatetimedesc;
+@property (nonatomic, strong) YBAppointmentListDMCoachid * coachid;
+@property (nonatomic, strong) NSString * courseprocessdesc;
+@property (nonatomic, strong) NSString * reservationcreatetime;
+@property (nonatomic, assign) NSInteger reservationstate;
+@property (nonatomic, strong) NSString * shuttleaddress;
+@property (nonatomic, strong) YBAppointmentListDMSubject * subject;
+@property (nonatomic, strong) YBAppointmentListDMDriveschoolinfo * trainfieldlinfo;
 @end

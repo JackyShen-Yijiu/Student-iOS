@@ -1,13 +1,16 @@
 //
-//  YBAppointmentListDMData.m
-//  studentDriving
-//
-//  Created by 大威 on 16/3/11.
-//  Copyright © 2016年 jatd. All rights reserved.
-//
+//	YBAppointmentListDMData.m
+//	Model file Generated using JSONExport: https://github.com/Ahmed-Ali/JSONExport
+
+
 
 #import "YBAppointmentListDMData.h"
 
 @implementation YBAppointmentListDMData
+
++ (NSDictionary *)modelCustomPropertyMapper {
+    
+    return @{ @"ID": @"_id" };
+}
 
 @end
