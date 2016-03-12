@@ -464,7 +464,7 @@
     if (!_loginButton) {
         _loginButton = [UIButton new];
         [_loginButton.layer setMasksToBounds:YES];
-        [_loginButton.layer setCornerRadius:18];
+        [_loginButton.layer setCornerRadius:10];
         _loginButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_loginButton setTitle:@"登录" forState:UIControlStateNormal];
         _loginButton.backgroundColor = YBNavigationBarBgColor;
