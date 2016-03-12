@@ -443,7 +443,7 @@
     if (!_loginNameTextField) {
         _loginNameTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user"] placeholder:@"请输入手机号"];
         _loginNameTextField.keyboardType = UIKeyboardTypeNumberPad;
-        _loginNameTextField.cornerRadius = 18;
+        _loginNameTextField.cornerRadius = 10;
         _loginNameTextField.foregroundColor = [UIColor colorWithHexString:@"b7b7b7"];
         _loginNameTextField.delegate = self;
     }
@@ -453,7 +453,7 @@
 - (DVVBaseTextField *)passwordTextField {
     if (!_passwordTextField) {
         _passwordTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请输入密码"];
-        _passwordTextField.cornerRadius = 18;
+        _passwordTextField.cornerRadius = 10;
         _passwordTextField.secureTextEntry = YES;
          _passwordTextField.foregroundColor = [UIColor colorWithHexString:@"b7b7b7"];
     }

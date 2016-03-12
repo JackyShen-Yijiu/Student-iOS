@@ -94,10 +94,10 @@
     
 }
 #pragma mark ---- 手势
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
-    [self.view endEditing:YES];
-}
+//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+//{
+//    [self.view endEditing:YES];
+//}
 #pragma mark ----- UIbutton
 - (void)clickSubmit:(UIButton *)sender {
     if (self.reasonTextView.text.length == 0) {

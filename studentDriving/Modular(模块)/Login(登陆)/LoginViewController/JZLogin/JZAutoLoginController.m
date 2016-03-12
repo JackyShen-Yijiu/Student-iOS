@@ -184,7 +184,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
                 self.sendButton.titleLabel.font = [UIFont systemFontOfSize:12];
                 _sendButton.backgroundColor = [UIColor clearColor];
                 [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-                [self.sendButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
+                [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
                 self.sendButton.userInteractionEnabled = YES;
             });
         }else {
@@ -510,9 +510,9 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
 
 - (DVVBaseTextField *)loginNameTextField {
     if (!_loginNameTextField) {
-        _loginNameTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user_white"] placeholder:@"请输入手机号/昵称"];
+        _loginNameTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user_white"] placeholder:@"请输入手机号"];
         _loginNameTextField.keyboardType = UIKeyboardTypeNumberPad;
-        _loginNameTextField.cornerRadius = 18;
+        _loginNameTextField.cornerRadius = 10;
         _loginNameTextField.foregroundColor = [UIColor whiteColor];
         _loginNameTextField.delegate = self;
     }
@@ -522,7 +522,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
 - (DVVBaseTextField *)autoTextField {
     if (!_autoTextField) {
         _autoTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"test"] placeholder:@"请输入验证码"];
-        _autoTextField.cornerRadius = 18;
+        _autoTextField.cornerRadius = 10;
         _autoTextField.foregroundColor = [UIColor whiteColor];
 //        _passwordTextField.secureTextEntry = YES;
 //        [[NSNotificationCenter defaultCenter]
@@ -584,7 +584,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
         _sendButton.titleLabel.font = [UIFont systemFontOfSize:12];
         _sendButton.backgroundColor = [UIColor clearColor];
         [self.sendButton setTitle:@"获取验证码" forState:UIControlStateNormal];
-        [self.sendButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
+        [self.sendButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         self.sendButton.userInteractionEnabled = YES;
     }
     return _sendButton;
