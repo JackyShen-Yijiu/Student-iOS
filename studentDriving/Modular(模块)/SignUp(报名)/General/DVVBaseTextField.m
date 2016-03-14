@@ -165,6 +165,7 @@
     _placeHolderFont = placeHolderFont;
     
     [self setValue:_placeHolderFont forKeyPath:@"_placeholderLabel.font"];
+    
 }
 
 - (void)setCornerRadius:(CGFloat)cornerRadius {

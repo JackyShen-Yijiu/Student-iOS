@@ -83,6 +83,9 @@
     
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
+    // 获取教练
+    [self getPersonArrayData];
+    
     [self initUI];
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"预约列表" target:self action:@selector(back)];
@@ -189,12 +192,50 @@
     [NSKeyedArchiver archiveRootObject:coachModel toFile:[YBPath stringByAppendingPathComponent:@"saveAppointMentData"]];
 }
 
-- (YBAppointMentCoachModel *)getPersonArrayData{
+- (void)getPersonArrayData{
     
     YBAppointMentCoachModel *coach = [NSKeyedUnarchiver unarchiveObjectWithFile:[YBPath stringByAppendingPathComponent:@"saveAppointMentData"]];
-    coach.coachid = @"566651c1f14c20d07ffa6af3";
     
-    return coach;
+    if (coach.coachid && [coach.coachid length]!=0) {
+        self.appointCoach = coach;
+        return;
+    }
+    
+    WS(ws);
+
+    NSString *url = [NSString stringWithFormat:kgetmyfirstcoach,[AcountManager manager].userid,[AcountManager manager].userSubject.subjectId];
+    
+    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,url];
+    
+    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSLog(@"获取明星教练%@",data);
+        
+        NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
+        
+        NSDictionary *dictData = data[@"data"];
+        
+        if ([type isEqualToString:@"1"]) {
+            
+            YBAppointMentCoachModel *coach = [[YBAppointMentCoachModel alloc] init];
+            coach.coachid = [NSString stringWithFormat:@"%@",dictData[@"coachid"]];
+            coach.name = [NSString stringWithFormat:@"%@",dictData[@"name"]];
+            coach.headportrait = [NSString stringWithFormat:@"%@",dictData[@"headportrait"][@"originalpic"]];
+            [ws savePersonArrayData:coach];
+            ws.appointCoach = coach;
+            
+            [ws updateSelectedDate];
+            
+        }else {
+            
+            [self obj_showTotasViewWithMes:[NSString stringWithFormat:@"%@",data[@"msg"]]];
+            
+        }
+        
+    } withFailure:^(id data) {
+        [self obj_showTotasViewWithMes:@"网络连接失败，请检查网络连接"];
+    }];
+
 }
 
 - (void)updateSelectedDate
@@ -214,13 +255,13 @@
         self.selectDateStr = [self.dateFormattor stringFromDate:[NSDate date]];
     }
 
-    // 获取教练
-    YBAppointMentCoachModel *appointCoach = [self getPersonArrayData];
-    self.appointCoach = appointCoach;
-    self.footView.appointCoach = self.appointCoach;
-    
-    // 加载中间预约时间
-    [self loadMidYuyueTimeData:self.selectDateStr];
+    if (self.appointCoach.coachid) {
+        
+        self.footView.appointCoach = self.appointCoach;
+
+        [self loadMidYuyueTimeData:self.selectDateStr];
+
+    }
     
     // 设置顶部标题
     self.navigationItem.title = [NSString stringWithFormat:@"%@",[self.dateFormattor stringFromDate:self.datepicker.selectedDate]];

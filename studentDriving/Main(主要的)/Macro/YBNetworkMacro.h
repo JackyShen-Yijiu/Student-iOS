@@ -55,4 +55,7 @@ static NSString *const kgetcoursebycoachv2 = @"courseinfo/getcoursebycoachv2?coa
 
 static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 
+// 第一次获取预约教练
+static NSString *const kgetmyfirstcoach = @"userinfo/getmyfirstcoach?userid=%@&subjectid=%@";
+
 #endif /* YBNetworkMacro_h */

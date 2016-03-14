@@ -118,9 +118,9 @@
 {
     _appointCoach = appointCoach;
     
-    self.appointLabel.text = [NSString stringWithFormat:@"       教练:%@    同时段学员",self.appointCoach.name];
+    self.appointLabel.text = [NSString stringWithFormat:@"       教练:%@    同时段学员",_appointCoach.name];
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.appointCoach.headportrait] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_appointCoach.headportrait] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
     
 }
 
