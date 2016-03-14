@@ -102,4 +102,19 @@
     NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
     return dateString;
 }
+
++ (NSString *)getHourLocalDateFormateDate:(NSString *)date {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //输入格式
+    [dateFormatter setDateFormat:@"HH:mm:ss"];
+    NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
+    [dateFormatter setTimeZone:localTimeZone];
+    
+    NSDate *dateFormatted = [dateFormatter dateFromString:date];
+    //输出格式
+    [dateFormatter setDateFormat:@"HH:mm"];
+    NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
+    return dateString;
+}
+
 @end

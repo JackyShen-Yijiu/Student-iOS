@@ -1,25 +1,16 @@
 //
-//  APCommentViewController.m
-//  BlackCat
+//  JZComplaintView.m
+//  studentDriving
 //
-//  Created by bestseller on 15/10/3.
-//  Copyright © 2015年 lord. All rights reserved.
+//  Created by ytzhang on 16/3/12.
+//  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "APCommentViewController.h"
-#import "UIDevice+JEsystemVersion.h"
+#import "JZComplaintView.h"
 #import "CommentCell.h"
-#import "MyAppointmentModel.h"
-#import "BCTextView.h"
-#import "AppointmentViewController.h"
-#import "YBTextView.h"
+#import "YBTextView.h" 
+@interface JZComplaintView ()<UITableViewDataSource,UITableViewDelegate,CommentCellDelegate,UITextViewDelegate>
 
-//static NSString *const kuserCommentAppointment = @"courseinfo/usercomment";
-
-@interface APCommentViewController ()<UITableViewDataSource,UITableViewDelegate,CommentCellDelegate,UITextViewDelegate>{
-    BCTextView *bctextView;
-    CommentCell *totleCell;
-}
 @property (nonatomic,strong) UIView *bgView; // 全局半透明背景
 
 @property (strong, nonatomic) UITableView *tableView;
@@ -52,31 +43,37 @@
 
 @property (nonatomic, strong) YBTextView *reasonTextView;
 @property (nonatomic, strong) UIView *lineView;
+
 // 评价多少字
 @property (nonatomic,strong) UILabel *commentCountLabel;
+
+
+@property (nonatomic,strong) NSString *iconStr;
+
+@property (nonatomic, strong) NSString *nameStr;
+
 @end
-
-@implementation APCommentViewController
-
-- (void)viewWillAppear:(BOOL)animated{
-    [self.tableView reloadData];
+@implementation JZComplaintView
+- (instancetype)initWithFrame:(CGRect)frame{
+    if (self = [super initWithFrame:frame]) {
+        [self initUI];
+    }
+    return self;
 }
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    [self.view addSubview:self.bgView];
-    
+- (void)initUI{
+    [self addSubview:self.bgView];
     [self.headerView addSubview:self.coachTitleLabel];
     [self.headerView addSubview:self.iconImgView];
     [self.headerView addSubview:self.coachNameLabel];
     self.tableView.tableHeaderView = self.headerView;
-
-    [self.view addSubview:self.tableView];
     
-     [self.submitBtn addSubview:self.lineView];
-    [self.tableView addSubview:self.submitBtn];
+    [self addSubview:self.tableView];
     
-   
+    [self.submitBtn addSubview:self.lineView];
+    self.tableView.tableFooterView = self.submitBtn;
+//    [self.tableView addSubview:self.submitBtn];
+    
+    
     // Do any additional setup after loading the view.
     
     // 默认5颗星
@@ -91,33 +88,21 @@
     // 卫生
     _hygienelevel = 5;
 
-    bctextView.text = @"";
-    self.title = @"评论";
-    self.automaticallyAdjustsScrollViewInsets = NO;
-    if ([UIDevice jeSystemVersion] >= 7.0f) {
-        //当你的容器是navigation controller时，默认的布局将从navigation bar的顶部开始。这就是为什么所有的UI元素都往上漂移了44pt
-        self.edgesForExtendedLayout = UIRectEdgeNone;
-    }
-    
-    
 }
-#pragma mark ---- 手势
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-//{
-//    [self.view endEditing:YES];
-//}
 #pragma mark ----- UIbutton
 - (void)clickSubmit:(UIButton *)sender {
+    
+    NSLog(@"_____ 更多评价的点击事件");
     if (self.reasonTextView.text.length == 0) {
         [self obj_showTotasViewWithMes:@"请输入评价内容"];
         return ;
     }
-    
-    NSLog(@"self.starProgress:%d bctextView.text:%@",self.starProgress ,bctextView.text);
-    NSLog(@"bctextView.text.length:%lu",(unsigned long)bctextView.text.length);
-    
-    if (self.starProgress != 1 || (bctextView.text && bctextView.text.length!=0)) {
-     
+
+    NSLog(@"self.starProgress:%d bctextView.text:%@",self.starProgress ,self.reasonTextView.text);
+    NSLog(@"bctextView.text.length:%lu",(unsigned long)self.reasonTextView.text.length);
+
+    if (self.starProgress != 1 || (self.reasonTextView.text && self.reasonTextView.text.length!=0)) {
+        
         NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
         
         NSDictionary *param = @{@"userid":[AcountManager manager].userid,
@@ -127,7 +112,7 @@
                                 @"timelevel":[NSString stringWithFormat:@"%f",self.timelevel],// 时间
                                 @"attitudelevel":[NSString stringWithFormat:@"%f",self.attitudelevel],// 态度
                                 @"hygienelevel":[NSString stringWithFormat:@"%f",self.hygienelevel],// 卫生
-                                @"commentcontent":bctextView.text};
+                                @"commentcontent":self.reasonTextView.text};
         
         [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
             
@@ -138,21 +123,11 @@
             NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
             
             if (type.integerValue == 1) {
-                kShowSuccess(@"评论成功");
-                
-                if (self.isForceComment) {
-                    [self.navigationController popViewControllerAnimated:YES];
-                    return;
-                }
-                
-                for (UIViewController *vc in self.navigationController.viewControllers) {
-                    if ([vc isKindOfClass:[AppointmentViewController class]]) {
-                        [self.navigationController popToViewController:vc animated:YES];
-                    }
-                }
+                [self obj_showTotasViewWithMes:@"评论成功"];
+                [self removeFromSuperview];
                 
             }else {
-                kShowFail(msg);
+                [self obj_showTotasViewWithMes:msg];
             }
         }];
         
@@ -200,11 +175,11 @@
         
         if (indexPath.row==4) {
             cell.userInteractionEnabled = NO;
-            totleCell = cell;
+//            totleCell = cell;
             cell.topLabel.textColor = [UIColor blackColor];
         }else{
             cell.userInteractionEnabled = YES;
-            totleCell = nil;
+//            totleCell = nil;
             cell.topLabel.textColor = [UIColor blackColor];
         }
         
@@ -217,7 +192,7 @@
         
         [cell.starBar setUpRating:progress];
         return cell;
-
+        
     }else if (indexPath.section == 1) {
         
         static NSString *cellId = @"cell";
@@ -285,7 +260,7 @@
     }else if (indexPath.row == 3) {
         _hygienelevel = newProgress;
     }
-
+    
     // 总体评价
     _starProgress = (_abilitylevel + _timelevel + _attitudelevel + _hygienelevel) / 4;
     NSString *totleTitle = self.commentTitleArray[4][@"title"];
@@ -293,17 +268,27 @@
     totleDict[@"progress"] = [NSString stringWithFormat:@"%d",_starProgress];
     totleDict[@"title"] = totleTitle;
     [self.commentTitleArray replaceObjectAtIndex:4 withObject:totleDict];
-
+    
     NSLog(@"self.commentTitleArray:%@",self.commentTitleArray);
-
+    
     [self.tableView reloadData];
     
+}
+#pragma mark ----- 数据赋值
+- (void)setIconImgUrl:(NSString *)iconImgUrl{
+    _iconStr = iconImgUrl;
+    [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:iconImgUrl] placeholderImage:nil];
+    
+}
+- (void)setCoachName:(NSString *)coachName{
+    _nameStr = coachName;
+    self.coachNameLabel.text = coachName;
 }
 #pragma mark ----- Lazy 加载
 - (UIView *)bgView
 {
     if (_bgView==nil) {
-        _bgView = [[UIView alloc] initWithFrame:self.view.bounds];
+        _bgView = [[UIView alloc] initWithFrame:self.bounds];
         _bgView.backgroundColor = [UIColor blackColor];
         _bgView.alpha = 0.5;
     }
@@ -314,7 +299,7 @@
     if (_headerView == nil) {
         _headerView = [[UIView alloc] init];
         _headerView.backgroundColor = [UIColor clearColor];
-        _headerView.frame = CGRectMake(0, 0, kSystemWide - 36, 104);
+        _headerView.frame = CGRectMake(0, 0, kSystemWide - 48, 104);
     }
     
     return _headerView;
@@ -392,11 +377,12 @@
 }
 - (UITableView *)tableView {
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(18, 64, kSystemWide - 18 * 2, kSystemHeight - 44 - 64 - 100) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(18, 64, kSystemWide - 18 * 2, kSystemHeight - 44 - 64 - 80) style:UITableViewStylePlain];
+        _tableView.centerY = self.centerY - 64;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor whiteColor];
-//        _tableView.scrollEnabled = NO;
+        _tableView.scrollEnabled = NO;
     }
     return _tableView;
 }
@@ -406,7 +392,7 @@
     if (_reasonTextView==nil) {
         CGFloat height = 50;
         CGFloat margin = 18;
-        _reasonTextView = [[YBTextView alloc] initWithFrame:CGRectMake(margin, 0, kSystemWide-2*margin, height) withPlaceholder:@"我来说两句"];
+        _reasonTextView = [[YBTextView alloc] initWithFrame:CGRectMake(margin, 0, self.tableView.width-2*margin, height) withPlaceholder:@"我来说两句"];
         _reasonTextView.placeholderLabel.font = [UIFont systemFontOfSize:12];
         _reasonTextView.textColor = [UIColor blackColor];
         _reasonTextView.font = [UIFont systemFontOfSize:13];
@@ -416,7 +402,7 @@
         _reasonTextView.layer.borderWidth = 1.0;
         _reasonTextView.layer.cornerRadius = 4.0f;
         [_reasonTextView.layer setMasksToBounds:YES];
-       
+        
         
     }
     return _reasonTextView;

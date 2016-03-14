@@ -16,15 +16,14 @@
 @property (nonatomic, assign) NSInteger coachcount;
 @property (nonatomic, strong) YBAppointCoursedata * coursedata;
 @property (nonatomic, copy) NSString * endtime;
-@property (nonatomic, assign) NSInteger isOutofdate;
-@property (nonatomic, assign) NSInteger isReservation;
-@property (nonatomic, assign) NSInteger isRest;
+@property (nonatomic, assign) NSInteger is_outofdate;
+@property (nonatomic, assign) NSInteger is_reservation;
+@property (nonatomic, assign) NSInteger is_rest;
 @property (nonatomic, copy) NSString * reservationcoachname;
 @property (nonatomic, assign) NSInteger timeid;
 @property (nonatomic, copy) NSString * timespace;
 
-@property (strong, nonatomic, readonly) NSNumber *selectedstudentcount;
-@property (assign, nonatomic, readwrite) NSInteger indexPath;
-@property (assign, nonatomic, readwrite) BOOL is_selected;
+@property (assign, nonatomic) NSInteger indexPath;
+@property (assign, nonatomic) BOOL is_selected;
 
 @end

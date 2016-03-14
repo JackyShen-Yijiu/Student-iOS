@@ -65,15 +65,8 @@
     [self setUpUI];
     
     [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_iconURL]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
+    self.coachNameLabel.text = self.nameStr;
     
-}
-
-- (void)setIconURL:(NSString *)iconURL
-{
-    _iconURL = iconURL;
-    
-    [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_iconURL]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
-
 }
 
 - (void)setUpUI
@@ -130,17 +123,22 @@
 
 - (void)moreBtnDidClick{
     NSLog(@"%s",__func__);
-//    self.moteblock();
-//    [UIView animateWithDuration:3 animations:^{
+    
+    if (self.moteblock) {
+        self.moteblock();
+    }
         APCommentViewController *apcVC = [[APCommentViewController alloc] init];
         [self.view addSubview:apcVC.view];
-//    }];
-//    [self.navigationController pushViewController:[[APCommentViewController alloc] init] animated:YES];
+
 }
 - (void)commitBtnDidClick
 {
     NSLog(@"%s",__func__);
-    self.commitBlock();
+    
+    if (self.commitBlock) {
+            self.commitBlock();
+    }
+
 }
 #pragma mark --- UITextView Delegate
 - (void)textViewDidChange:(UITextView *)textView
@@ -167,6 +165,19 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark --- 加载数据
+// 加载教练头像
+- (void)setIconURL:(NSString *)iconURL
+{
+    _iconURL = iconURL;
+    
+    [self.iconImgView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",_iconURL]] placeholderImage:[UIImage imageNamed:@"loginLogo"]];
+    
+}
+// 加载教练姓名
+- (void)setNameStr:(NSString *)nameStr{
+    self.coachNameLabel.text = nameStr;
+}
 #pragma mark --- Lazy 加载
 - (UIView *)bgView
 {
@@ -182,10 +193,10 @@
 {
     if (_alertBgView==nil) {
         // 540 446
-        CGFloat width = 540/2;
+        CGFloat width = (kSystemWide - 24 * 2 );
         CGFloat height = 600;
-        CGFloat X = kSystemWide/2-width/2;
-        _alertBgView = [[UIView alloc] initWithFrame:CGRectMake(X, 0, width, height)];
+        CGFloat X = 24 ;
+        _alertBgView = [[UIView alloc] initWithFrame:CGRectMake(X, 64 + 22, width, height)];
         _alertBgView.backgroundColor = [UIColor blackColor];
     }
     return _alertBgView;
@@ -203,14 +214,14 @@
 - (UILabel *)topTitleLabel
 {
     if (_topTitleLabel==nil) {
-        CGFloat width = 14 * 10;
-        CGFloat height = 14;
+        CGFloat width = 16 * 10;
+        CGFloat height = 16;
         _topTitleLabel = [[UILabel alloc] init];
         _topTitleLabel.text = @"上次练车练的怎么样?";
         _topTitleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        _topTitleLabel.font = [UIFont systemFontOfSize:14];
+        _topTitleLabel.font = [UIFont systemFontOfSize:16];
         _topTitleLabel.textAlignment = NSTextAlignmentCenter;
-        _topTitleLabel.frame = CGRectMake(self.alertView.width/2 - width/2, 20, width, height);
+        _topTitleLabel.frame = CGRectMake(self.alertView.width/2 - width/2, 36, width, height);
         
     }
     return _topTitleLabel;
@@ -219,30 +230,30 @@
 - (UILabel *)desLabel
 {
     if (_desLabel==nil) {
-        CGFloat width = 14 * 7;
-        CGFloat height = 14;
+        CGFloat width = 16 * 7;
+        CGFloat height = 16;
         _desLabel = [[UILabel alloc] init];
         _desLabel.text = @"先来评价一下~";
         _desLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        _desLabel.font = [UIFont systemFontOfSize:14];
+        _desLabel.font = [UIFont systemFontOfSize:16];
         _desLabel.textAlignment = NSTextAlignmentCenter;
-        _desLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.topTitleLabel.frame)+10, width, height);
+        _desLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.topTitleLabel.frame)+16, width, height);
         
     }
     return _desLabel;
 }
-// 描述文字
+// 教练文字
 - (UILabel *)coachTitleLabel
 {
     if (_coachTitleLabel==nil) {
-        CGFloat width = 12 * 2;
-        CGFloat height = 12;
+        CGFloat width = 14 * 2;
+        CGFloat height = 14;
         _coachTitleLabel = [[UILabel alloc] init];
         _coachTitleLabel.text = @"教练";
         _coachTitleLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
-        _coachTitleLabel.font = [UIFont systemFontOfSize:12];
+        _coachTitleLabel.font = [UIFont systemFontOfSize:14];
         _coachTitleLabel.textAlignment = NSTextAlignmentCenter;
-        _coachTitleLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.desLabel.frame)+20, width, height);
+        _coachTitleLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.desLabel.frame)+24, width, height);
         
     }
     return _coachTitleLabel;
@@ -255,9 +266,9 @@
     if (_iconImgView==nil) {
         _iconImgView = [[UIImageView alloc] init];
         _iconImgView.backgroundColor = YBNavigationBarBgColor;
-        _iconImgView.frame = CGRectMake(self.alertView.width/2-40/2, CGRectGetMaxY(self.coachTitleLabel.frame)+10, 40, 40);
+        _iconImgView.frame = CGRectMake(self.alertView.width/2-60/2, CGRectGetMaxY(self.coachTitleLabel.frame)+10, 60, 60);
         _iconImgView.layer.masksToBounds = YES;
-        _iconImgView.layer.cornerRadius = 20;
+        _iconImgView.layer.cornerRadius = 30;
     }
     return _iconImgView;
 }
@@ -265,14 +276,14 @@
 - (UILabel *)coachNameLabel
 {
     if (_coachNameLabel==nil) {
-        CGFloat width = 12 * 8;
-        CGFloat height = 12;
+        CGFloat width = 14 * 8;
+        CGFloat height = 14;
         _coachNameLabel = [[UILabel alloc] init];
         _coachNameLabel.text = @"######";
         _coachNameLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
-        _coachNameLabel.font = [UIFont systemFontOfSize:12];
+        _coachNameLabel.font = [UIFont systemFontOfSize:14];
         _coachNameLabel.textAlignment = NSTextAlignmentCenter;
-        _coachNameLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.iconImgView.frame)+10, width, height);
+        _coachNameLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.iconImgView.frame)+12, width, height);
         
     }
     return _coachNameLabel;
@@ -296,13 +307,13 @@
     if (_reasonTextView==nil) {
         CGFloat height = 50;
         CGFloat margin = 18;
-        _reasonTextView = [[YBTextView alloc] initWithFrame:CGRectMake(margin, CGRectGetMaxY(self.starBar.frame)+10, self.alertView.width-2*margin, height) withPlaceholder:@"我来说两句" ];
+        _reasonTextView = [[YBTextView alloc] initWithFrame:CGRectMake(margin, CGRectGetMaxY(self.starBar.frame)+25, self.alertView.width-2*margin, height) withPlaceholder:@"我来说两句" ];
         _reasonTextView.placeholderLabel.font = [UIFont systemFontOfSize:12];
         _reasonTextView.textColor = [UIColor blackColor];
         _reasonTextView.font = [UIFont systemFontOfSize:13];
         _reasonTextView.backgroundColor = [UIColor clearColor];
         _reasonTextView.delegate = self;
-        _reasonTextView.layer.borderColor = [[UIColor colorWithHexString:@"6e6e6e"]CGColor];
+        _reasonTextView.layer.borderColor = [[UIColor colorWithHexString:@"b7b7b7"]CGColor];
         _reasonTextView.layer.borderWidth = 1.0;
         _reasonTextView.layer.cornerRadius = 4.0f;
         [_reasonTextView.layer setMasksToBounds:YES];
@@ -329,7 +340,7 @@
 - (UIView *)delive
 {
     if (_delive==nil) {
-        _delive = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.reasonTextView.frame)+10, self.alertView.width, 0.5)];
+        _delive = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.reasonTextView.frame)+40, self.alertView.width, 0.5)];
         _delive.backgroundColor = HM_LINE_COLOR;
         _delive.alpha = 0.5;
     }
@@ -339,7 +350,7 @@
 - (UIButton *)moreBtn
 {
     if (_moreBtn==nil) {
-        _moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.delive.frame), self.alertView.width/2, 50)];
+        _moreBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.delive.frame), self.alertView.width/2, 48)];
         [_moreBtn setTitle:@"更多选项" forState:UIControlStateNormal];
         [_moreBtn setTitleColor:RGBColor(114, 114, 114) forState:UIControlStateNormal];
         [_moreBtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
@@ -360,7 +371,7 @@
 - (UIButton *)commitBtn
 {
     if (_commitBtn==nil) {
-        _commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.moreBtn.frame), self.moreBtn.frame.origin.y, self.alertView.width/2, 50)];
+        _commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.moreBtn.frame), self.moreBtn.frame.origin.y, self.alertView.width/2, 48)];
         [_commitBtn setTitle:@"提交评价" forState:UIControlStateNormal];
         [_commitBtn setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
         [_commitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
