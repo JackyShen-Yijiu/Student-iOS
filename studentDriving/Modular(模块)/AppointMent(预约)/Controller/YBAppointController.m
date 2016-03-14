@@ -399,19 +399,28 @@
         
         NSString *courseID = [NSString stringWithFormat:@"%@",model.coursedata._id];
         
-        if (i==0) {
-            
-            [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
-            
-        }else if (i==resultArray.count-1){
+        if (resultArray.count==1) {
             
             [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
             
         }else{
             
-            [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+            if (i==0) {
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
+                
+            }else if (i==resultArray.count-1){
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                
+            }else{
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                
+            }
             
         }
+        
         
     }
     
@@ -501,19 +510,28 @@
         
         NSString *courseID = [NSString stringWithFormat:@"%@",model.coursedata._id];
 
-        if (i==0) {
-            
-            [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
-            
-        }else if (i==resultArray.count-1){
+        if (resultArray.count==1) {
             
             [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
-            
+
         }else{
             
-            [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+            if (i==0) {
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
+                
+            }else if (i==resultArray.count-1){
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                
+            }else{
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                
+            }
             
         }
+        
         
     }
 
