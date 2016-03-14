@@ -68,7 +68,7 @@
     WS(ws);
     [JENetwoking startDownLoadWithUrl:url postParam:dict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
        
-        NSLog(@"教练列表data:%@",data);
+        NSLog(@"教练列表dict:%@ data:%@",dict,data);
         
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         

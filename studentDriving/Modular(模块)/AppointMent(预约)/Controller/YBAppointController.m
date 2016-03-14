@@ -161,14 +161,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView dateString:(NSString *)dateString isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid
+- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid
 {
     
     YBCoachListViewController *coachList = [[YBCoachListViewController alloc] init];
     coachList.delegate = self;
     coachList.isModifyCoach = isModifyCoach;
     coachList.timeid = timeid;
-    coachList.coursedate = dateString;
+    coachList.coursedate = [self.dateFormattor stringFromDate:self.datepicker.selectedDate];
     [self.navigationController pushViewController:coachList animated:YES];
 }
 
