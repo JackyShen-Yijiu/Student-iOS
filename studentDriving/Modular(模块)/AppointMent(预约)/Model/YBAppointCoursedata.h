@@ -13,7 +13,7 @@
 @interface YBAppointCoursedata : NSObject
 
 @property (nonatomic, assign) NSInteger v;
-@property (nonatomic, strong) NSString * idField;
+@property (nonatomic, strong) NSString * _id;
 @property (nonatomic, assign) NSInteger carmodelid;
 @property (nonatomic, copy) NSString * coachid;
 @property (nonatomic, copy) NSString * coachname;

@@ -94,12 +94,18 @@
     [self.dataArray removeAllObjects];
     
     if (coachTimeData&&coachTimeData.count!=0) {
-        [self.dataArray addObjectsFromArray:coachTimeData];
+        
+        for (NSDictionary *dict in coachTimeData) {
+            
+            YBAppointData *model = [YBAppointData yy_modelWithDictionary:dict];
+
+            [self.dataArray addObject:model];
+
+        }
+        
     }
    
     [self.collectionView reloadData];
-        
-    NSLog(@"self.dataArray.count:%lu",(unsigned long)self.dataArray.count);
     
 }
 
@@ -123,13 +129,13 @@
     if (!cell) {
         DYNSLog(@"创建错误");
     }
-    cell.backgroundColor = RGBColor(250, 250, 250);
     
     cell.appointCoach = self.appointCoach;
+    cell.isModifyCoach = NO;
     
     if (self.dataArray && self.dataArray.count>0) {
-        NSDictionary *modelDict = self.dataArray[indexPath.row];
-        YBAppointData *model = [YBAppointData yy_modelWithDictionary:modelDict];
+        YBAppointData *model = self.dataArray[indexPath.row];
+        model.indexPath = indexPath.row;
         cell.appointInfoModel = model;
     }
     
@@ -139,17 +145,9 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSDictionary *modelDict = self.dataArray[indexPath.row];
-    
-    YBAppointData *model = [YBAppointData yy_modelWithDictionary:modelDict];
+    YBAppointData *model = self.dataArray[indexPath.row];
 
     JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
-    
-    DYNSLog(@"clickModel = %d",model.is_selected);
-    
-    DYNSLog(@"self.upDateArray.count:%lu",self.upDateArray.count);
-    
-    DYNSLog(@"cell.isModify:%d",cell.isModifyCoach);
     
     if (model.is_selected == NO) {
         
@@ -159,13 +157,12 @@
             NSString *dateString = [NSString getYearLocalDateFormateUTCDate:cell.appointInfoModel.coursedata.coursedate];
             
             if ([self.delegate respondsToSelector:@selector(JGYuYueHeadViewWithModifyCoach:dateString:isModifyCoach:timeid:)]) {
-                [self.delegate JGYuYueHeadViewWithModifyCoach:self dateString:dateString isModifyCoach:YES timeid:@(cell.appointInfoModel.coursedata.coursetime.timeid)];
+                [self.delegate JGYuYueHeadViewWithModifyCoach:self dateString:dateString isModifyCoach:YES timeid:@(cell.appointInfoModel.timeid)];
             }
 
             return;
         }
         
-        DYNSLog(@"Selected");
         if (self.upDateArray.count>=4) {
             
             ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"您最多可预约4个课时"];
@@ -179,89 +176,89 @@
         
         if (self.upDateArray.count == 0) {
             
-            JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
             cell.contentView.backgroundColor = YBNavigationBarBgColor;
             cell.startTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
             cell.finalTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
             cell.remainingPersonLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
             model.is_selected = YES;
+            model.indexPath = indexPath.row;
             [self.upDateArray addObject:model];
             [self.dataArray replaceObjectAtIndex:indexPath.row withObject:model];
             [BLInformationManager sharedInstance].appointmentData = self.upDateArray;
             [[NSNotificationCenter defaultCenter] postNotificationName:@"kCellChange" object:nil];
-            
+
             return;
         }
         
         for (YBAppointData *UpDatemodel in self.upDateArray) {
             
-            if ((model.indexPath + 1 == UpDatemodel.indexPath )|| (model.indexPath-1 == UpDatemodel.indexPath)) {
-                //            [SVProgressHUD showInfoWithStatus:@"请选择相邻的时间段"];
-                JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
+            if ((model.timeid + 1 == UpDatemodel.timeid) || (model.timeid-1 == UpDatemodel.timeid)) {
+                
                 cell.contentView.backgroundColor = YBNavigationBarBgColor;
                 cell.startTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
                 cell.finalTimeLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
                 cell.remainingPersonLabel.textColor = [UIColor whiteColor];//MAINCOLOR;
                 model.is_selected = YES;
+                model.indexPath = indexPath.row;
                 [self.upDateArray addObject:model];
                 [self.dataArray replaceObjectAtIndex:indexPath.row withObject:model];
                 [BLInformationManager sharedInstance].appointmentData = self.upDateArray;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"kCellChange" object:nil];
                 
                 return;
+
             }
+            
+            
         }
         
         
         ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"请选择连续的时间"];
         [alertView show];
+            
         [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
-
+        
     }else if (model.is_selected == YES) {
         
-        if (self.upDateArray.count == 4) {
+        if (self.upDateArray.count >= 3) {
             
             NSArray *array = self.upDateArray;//[BLInformationManager sharedInstance].appointmentData;
             
             NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(YBAppointData *  _Nonnull obj1, YBAppointData *  _Nonnull obj2) {
-                //obj1.coursetime.numMark < obj2.coursetime.numMark
-                return obj1.timeid > obj2.timeid ;
+                return obj1.timeid < obj2.timeid;
             }];
             YBAppointData *fistModel = resultArray.firstObject;
             YBAppointData *lastModel = resultArray.lastObject;
             
-            if ([[NSString stringWithFormat:@"%ld",fistModel.timeid] isEqualToString:[NSString stringWithFormat:@"%ld",model.timeid]]||[[NSString stringWithFormat:@"%ld",lastModel.timeid] isEqualToString:[NSString stringWithFormat:@"%ld",model.timeid]]) {
+            if (fistModel.timeid == model.timeid || lastModel.timeid == model.timeid) {
                 
-                DYNSLog(@"unSelected");
-                JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
-                cell.contentView.backgroundColor = RGBColor(250, 250, 250);
-                cell.startTimeLabel.textColor = [UIColor blackColor];
-                cell.finalTimeLabel.textColor = [UIColor blackColor];
-                cell.remainingPersonLabel.textColor = TEXTGRAYCOLOR;
                 model.is_selected = NO;
-                [self.upDateArray removeObject:model];
                 [self.dataArray replaceObjectAtIndex:indexPath.row withObject:model];
+                [self.upDateArray removeObject:model];
                 [BLInformationManager sharedInstance].appointmentData = self.upDateArray;
                 [[NSNotificationCenter defaultCenter] postNotificationName:@"kCellChange" object:nil];
+                [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+
                 return;
+                
             }else {
+                
                 ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"此操作会造成预约时间不连续!"];
                 [alertView show];
+                
             }
+            
             return;
+            
         }
-        DYNSLog(@"unSelected");
-        JGAppointMentCell *cell = (JGAppointMentCell *)[collectionView cellForItemAtIndexPath:indexPath];
-        cell.contentView.backgroundColor = RGBColor(250, 250, 250);
-        cell.startTimeLabel.textColor = [UIColor blackColor];
-        cell.finalTimeLabel.textColor = [UIColor blackColor];
-        cell.remainingPersonLabel.textColor = TEXTGRAYCOLOR;
+        
         model.is_selected = NO;
-        [self.upDateArray removeObject:model];
         [self.dataArray replaceObjectAtIndex:indexPath.row withObject:model];
+        [self.upDateArray removeObject:model];
         [BLInformationManager sharedInstance].appointmentData = self.upDateArray;
         [[NSNotificationCenter defaultCenter] postNotificationName:@"kCellChange" object:nil];
-        
+        [self.collectionView reloadItemsAtIndexPaths:@[indexPath]];
+
     }
     
 }

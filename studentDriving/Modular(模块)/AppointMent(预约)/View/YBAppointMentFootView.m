@@ -162,9 +162,7 @@
     if (!cell) {
         DYNSLog(@"创建错误");
     }
-    cell.iconImageView.layer.masksToBounds = YES;
-    cell.iconImageView.layer.cornerRadius = cell.iconImageView.width/2;
-        
+   
     StudentModel *model = self.studentArray[indexPath.row];
     
     [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
