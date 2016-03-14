@@ -13,6 +13,7 @@
 		0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5E1C904867000FD8A4 /* MallCollectionView.m */; };
 		0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */; };
 		0673FC691C91106E000FD8A4 /* JZAutoLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */; };
+		06B303571C93DF240095BD39 /* JZComplaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B303561C93DF240095BD39 /* JZComplaintView.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -1040,6 +1041,8 @@
 		0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCollectionView.m; sourceTree = "<group>"; };
 		0673FC671C91106E000FD8A4 /* JZAutoLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAutoLoginController.h; sourceTree = "<group>"; };
 		0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAutoLoginController.m; sourceTree = "<group>"; };
+		06B303551C93DF240095BD39 /* JZComplaintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintView.h; sourceTree = "<group>"; };
+		06B303561C93DF240095BD39 /* JZComplaintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintView.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5510F87D1C34F52300A431CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -3052,6 +3055,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		064909411C96608800126299 /* JZSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				064909421C96608800126299 /* Controller */,
+				064909431C96608800126299 /* Model */,
+				064909441C96608800126299 /* View */,
+			);
+			path = JZSignUp;
+			sourceTree = "<group>";
+		};
+		064909421C96608800126299 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		064909431C96608800126299 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		064909441C96608800126299 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		0673FC631C911017000FD8A4 /* JZLogin */ = {
 			isa = PBXGroup;
 			children = (
@@ -4056,6 +4090,8 @@
 				B251DD221C8E849200E6613A /* YBCoachListViewCell.xib */,
 				B251DD231C8E849200E6613A /* YBTextView.h */,
 				B251DD241C8E849200E6613A /* YBTextView.m */,
+				06B303551C93DF240095BD39 /* JZComplaintView.h */,
+				06B303561C93DF240095BD39 /* JZComplaintView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5049,6 +5085,7 @@
 		B251DF2C1C8E849300E6613A /* SignUp(报名) */ = {
 			isa = PBXGroup;
 			children = (
+				064909411C96608800126299 /* JZSignUp */,
 				B251DF2D1C8E849300E6613A /* CoachDetail */,
 				B251DF6E1C8E849300E6613A /* DrivingDetail */,
 				B251DFBE1C8E849300E6613A /* DVVBaseDoubleRowCell.h */,
@@ -7416,6 +7453,7 @@
 				B251E53D1C8E849500E6613A /* YBDiscountModel.m in Sources */,
 				B251E3A71C8E849500E6613A /* CheckProgressController.m in Sources */,
 				D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */,
+				06B303571C93DF240095BD39 /* JZComplaintView.m in Sources */,
 				B251E5AF1C8E849500E6613A /* DVVPaySuccessController.m in Sources */,
 				B251E5E21C8E849500E6613A /* PinYinForObjc.m in Sources */,
 				B251E3A31C8E849500E6613A /* EditorUserViewController.m in Sources */,
