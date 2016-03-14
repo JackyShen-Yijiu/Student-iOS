@@ -10,6 +10,9 @@
 #import "YBAppointmentDetailCell.h"
 #import "HMCourseModel.h"
 #import "ChatViewController.h"
+#import "NSString+Helper.h"
+
+#import "DVVStarView.h"
 
 
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -17,6 +20,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 @interface YBCompletedAppointmentDetailController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
+
+@property (nonatomic, strong) DVVStarView *starView;
+
 
 @end
 
@@ -30,6 +36,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     self.title = @"预约详情";
     [self.view addSubview:self.tableView];
+    
+    // 加载评论
+    [self requestData];
 }
 
 
@@ -105,6 +114,108 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 }
 
 
+#pragma mark - network
+
+- (void)requestData {
+    
+    if (!_courseModel.courseId.length) {
+        return ;
+    }
+    
+    NSString *url = [NSString stringWithFormat:BASEURL, @"courseinfo/userreservationinfo/"];
+    NSString *urlString = [NSString stringWithFormat:@"%@%@", url, _courseModel.courseId];
+    [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+//    comment:{ starlevel :Number, // 星级
+//              attitudelevel:Number, //态度级别
+//              timelevel:Number,  //时间观念星级
+//              abilitylevel:Number,  // 能力星级
+//              commentcontent:String,
+//              commenttime:Date } , // 评论内容
+        
+        
+        NSDictionary *dict = data[@"comment"];
+        if ([dict isKindOfClass:[NSDictionary class]]) {
+    
+//    // 测试数据
+//    NSDictionary *dict = @{ @"starlevel": @"3",
+//                            @"commenttime": @"2016-03-05T12:00:00.000Z",
+//                            @"commentcontent": @"fjkldsjflkdsjflksdjfkljdslkfjsdlkfjkdnvdcnvdfvldk;fnv;ldkf" };
+    
+            NSUInteger star = [dict[@"starlevel"] integerValue];
+            NSString *time = dict[@"commenttime"];
+            NSString *content = dict[@"commentcontent"];
+            
+            CGFloat width = [UIScreen mainScreen].bounds.size.width;
+            
+            UILabel *titleLabel = [UILabel new];
+            titleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+            titleLabel.font = [UIFont systemFontOfSize:14];
+            titleLabel.text = @"我的评价";
+            
+            // 线
+            UIView *lineView = [UIView new];
+            lineView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.2];
+            
+            // 星级
+            DVVStarView *starView = [DVVStarView new];
+            [starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+            [starView dvv_setStar:star];
+            
+            // 时间
+            UILabel *timeLabel = [UILabel new];
+            timeLabel.textAlignment = NSTextAlignmentRight;
+            timeLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+            timeLabel.font = [UIFont systemFontOfSize:12];
+            timeLabel.text = [self getLocalDateFormateUTCDate:time format:@"MM/dd HH:mm"];
+            
+            // 评论内容
+            UILabel *contentLabel = [UILabel new];
+            contentLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+            contentLabel.font = [UIFont systemFontOfSize:12];
+            contentLabel.numberOfLines = 0;
+            contentLabel.text = content;
+            
+            UIView *bgView = [UIView new];
+            [bgView addSubview:titleLabel];
+            [bgView addSubview:starView];
+            [bgView addSubview:lineView];
+            [bgView addSubview:timeLabel];
+            [bgView addSubview:contentLabel];
+            
+            // 配置frame
+            titleLabel.frame = CGRectMake(16, 0, width - 16, 44);
+            lineView.frame = CGRectMake(0, 44, width, 0.5);
+            starView.frame = CGRectMake(15, 44+15, 94, 14);
+            timeLabel.frame = CGRectMake(width/2.0 - 16, 44+15 + 1, width/2.0, 12);
+            CGFloat contentHeight = [NSString autoHeightWithString:content width:width-16*2 font:[UIFont systemFontOfSize:12]];
+            contentLabel.frame = CGRectMake(16, CGRectGetMaxY(timeLabel.frame) + 15, width - 16*2, contentHeight);
+            
+            bgView.frame = CGRectMake(0, 10, width, CGRectGetMaxY(contentLabel.frame) + 15);
+            
+            
+            // 分割上下两部分的分割块
+            UIView *splitBlockView = [UIView new];
+            splitBlockView.backgroundColor = YBMainViewControlerBackgroundColor;
+            splitBlockView.frame = CGRectMake(0, 0, width, 10);
+            
+            UIView *contentView = [UIView new];
+            contentView.backgroundColor = [UIColor whiteColor];
+            contentView.frame = CGRectMake(0, 0, width, 10 + CGRectGetHeight(bgView.frame));
+            
+            [contentView addSubview:splitBlockView];
+            [contentView addSubview:bgView];
+            
+            self.tableView.tableFooterView = contentView;
+        }
+        
+        
+    } withFailure:^(id data) {
+        ;
+    }];
+}
+
+
 #pragma mark - lazy load
 
 - (UITableView *)tableView {
@@ -146,6 +257,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
     return dateString;
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
