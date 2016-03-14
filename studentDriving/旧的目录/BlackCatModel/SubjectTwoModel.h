@@ -16,4 +16,5 @@
 @property (strong, nonatomic, readonly) NSNumber *totalcourse;
 @property (nonatomic,strong,readonly) NSNumber *missingcourse;
 @property (strong, nonatomic, readonly) NSNumber *officialhours;
+@property (nonatomic,strong,readonly) NSNumber *buycoursecount;
 @end

@@ -22,7 +22,7 @@
     [super viewWillAppear:animated];
     
     // 获取进度
-    [self addLoadSubjectProress];
+    [self loadSubjectProress];
     
 }
 
@@ -53,8 +53,9 @@
     
 }
 
-- (void)addLoadSubjectProress
+- (void)loadSubjectProress
 {
+    
     if (![AcountManager isLogin]) {
         return;
     }
@@ -159,7 +160,9 @@
             NSLog(@"2:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
             
             [self showTotasViewWithMes:[data objectForKey:@"msg"]];
+            
         }
+        
     } withFailure:^(id data) {
         [self showTotasViewWithMes:@"网络错误"];
     }];
