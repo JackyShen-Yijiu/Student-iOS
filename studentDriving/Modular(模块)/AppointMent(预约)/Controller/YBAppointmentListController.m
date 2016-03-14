@@ -70,7 +70,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    if (![AcountManager isLogin]) {
+        [DVVUserManager userNeedLogin];
+        return;
+    }
     // 开始请求数据
     [DVVToast showFromView:self.view OffSetY:-10];
     [_viewModel dvv_networkRequestRefresh];
