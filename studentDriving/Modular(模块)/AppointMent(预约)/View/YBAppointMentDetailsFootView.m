@@ -21,25 +21,32 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.backgroundColor = RGBColor(236, 236, 236);
+//        self.backgroundColor = RGBColor(236, 236, 236);
         
-        UIButton *commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(kSystemWide-10-90, 5, 90, 40)];
-        commitBtn.backgroundColor = YBNavigationBarBgColor;
+//        UIButton *commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(kSystemWide-10-90, 5, 90, 40)];
+        UIButton *commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, kSystemWide - 16*2, 44)];
         commitBtn.layer.masksToBounds = YES;
-        commitBtn.layer.cornerRadius = 3;
+        commitBtn.layer.cornerRadius = 4;
+        commitBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [commitBtn setTitle:@"取消预约" forState:UIControlStateNormal];
         [commitBtn setTitle:@"取消预约" forState:UIControlStateHighlighted];
         [commitBtn addTarget:self action:@selector(commitBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:commitBtn];
         self.commitBtn = commitBtn;
         
-        UILabel *countLabel = [[UILabel alloc] init];
-        countLabel.frame = CGRectMake(0, 0, kSystemWide-commitBtn.width-20, self.height);
-        countLabel.text = @"";
-        countLabel.font = [UIFont systemFontOfSize:12];
-        countLabel.textColor = [UIColor blackColor];
-        [self addSubview:countLabel];
-        self.countLabel = countLabel;
+        
+        commitBtn.backgroundColor = YBNavigationBarBgColor;
+        
+        // 判断是否是在开始前24小时内
+        
+        
+//        UILabel *countLabel = [[UILabel alloc] init];
+//        countLabel.frame = CGRectMake(0, 0, kSystemWide-commitBtn.width-20, self.height);
+//        countLabel.text = @"";
+//        countLabel.font = [UIFont systemFontOfSize:12];
+//        countLabel.textColor = [UIColor blackColor];
+//        [self addSubview:countLabel];
+//        self.countLabel = countLabel;
         
     }
     return self;

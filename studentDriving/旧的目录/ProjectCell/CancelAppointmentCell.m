@@ -59,12 +59,12 @@
         make.top.mas_equalTo(self.backGroundView.mas_top).offset(20);
     }];
     
-    NSArray *titleArray = @[@"临时有事无法参加",@"预约错教练",@"暂时不参加驾照自考",@"其他"];
+    NSArray *titleArray = @[@"临时有事无法参加",@"预约错教练",@"调整了练车时间",@"其他"];
     for (NSUInteger i = 0; i<4; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         button.frame = CGRectMake(15, 60+(15+20)*i, 15, 15);
-        [button setBackgroundImage:[UIImage imageNamed:@"cancelSelect.png"] forState:UIControlStateNormal];
-        [button setBackgroundImage:[UIImage imageNamed:@"cancelSelect_click.png"] forState:UIControlStateSelected];
+        [button setBackgroundImage:[UIImage imageNamed:@"ic_appointment_selected_no"] forState:UIControlStateNormal];
+        [button setBackgroundImage:[UIImage imageNamed:@"ic_appointment_selected_yes"] forState:UIControlStateSelected];
         button.tag = 100 + i;
         [button addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
         [self.bntArray addObject:button];

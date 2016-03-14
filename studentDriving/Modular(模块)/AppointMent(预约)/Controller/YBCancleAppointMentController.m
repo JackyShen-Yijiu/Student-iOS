@@ -33,10 +33,10 @@
 
 - (UIButton *)submitBtn {
     if (_submitBtn == nil) {
-        _submitBtn = [WMUITool initWithTitle:@"提交" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:16]];
+        _submitBtn = [WMUITool initWithTitle:@"提交" withTitleColor:[UIColor whiteColor] withTitleFont:[UIFont systemFontOfSize:14]];
         _submitBtn.backgroundColor = YBNavigationBarBgColor;
         _submitBtn.layer.masksToBounds = YES;
-        _submitBtn.layer.cornerRadius = 3;
+        _submitBtn.layer.cornerRadius = 4;
         [_submitBtn addTarget:self action:@selector(clickSubmit:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _submitBtn;
@@ -47,7 +47,7 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = BACKGROUNDCOLOR;
+        _tableView.backgroundColor = YBMainViewControlerBackgroundColor;
     }
     return _tableView;
 }
@@ -66,6 +66,7 @@
     [self.view addSubview:self.tableView];
     
     [self.view addSubview:[self tableViewFootView]];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
 }
 
@@ -79,12 +80,12 @@
     
     if (self.cancelMessage == nil) {
         
-        [self obj_showTotasViewWithMes:@"请填写取消原因!"];
+        [self obj_showTotasViewWithMes:@"请填写取消原因"];
 
         return;
     }
     if (self.cancelContent == nil) {
-        [self obj_showTotasViewWithMes:@"请填写取消原因!"];
+        [self obj_showTotasViewWithMes:@"请填写取消原因"];
 
         return;
     }
@@ -118,16 +119,17 @@
 
 - (UIView *)tableViewFootView {
     
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.height-50-64, kSystemWide, 50)];
-    backGroundView.backgroundColor = [UIColor whiteColor];
+    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, self.view.height-56-64, kSystemWide, 56)];
+    backGroundView.backgroundColor = YBMainViewControlerBackgroundColor;
     
     [backGroundView addSubview:self.submitBtn];
     
     [self.submitBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(backGroundView.mas_top).offset(5);
-        make.right.mas_equalTo(backGroundView.mas_right).offset(-15);
-        make.height.mas_equalTo(@40);
-        make.width.mas_equalTo(@90);
+        make.top.mas_equalTo(backGroundView.mas_top).offset(0);
+        make.right.mas_equalTo(backGroundView.mas_right).offset(-16);
+        make.left.mas_equalTo(backGroundView.mas_left).offset(16);
+        make.height.mas_equalTo(@44);
+//        make.width.mas_equalTo(@90);
     }];
     
     return backGroundView;
