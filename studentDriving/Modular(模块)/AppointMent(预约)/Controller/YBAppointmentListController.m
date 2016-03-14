@@ -20,6 +20,7 @@
 #import "APCommentViewController.h"
 #import "MyAppointmentModel.h"
 #import "JZComplaintView.h"
+#import "JGPayTool.h"
 
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -86,9 +87,20 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         [self addLoadSubjectProress];
     }
     
-    
 }
 - (void)rightBarButtonItemDidClick{
+    
+//    [JGPayTool payWithPaye:WeChatPay tradeNO:@"56e6b21e38ad72723dcebf76" parentView:self price:nil title:nil description:nil success:^(NSString *str) {
+//        
+//        NSLog(@"支付成功:%@",str);
+//        
+//    } error:^(NSString *str) {
+//        
+//        NSLog(@"支付失败:%@",str);
+//        
+//    }];
+//    
+//    return;
     
     if (![AcountManager isLogin]) {
         [DVVUserManager userNeedLogin];

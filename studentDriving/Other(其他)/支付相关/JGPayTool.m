@@ -24,7 +24,6 @@
 + (void)payWithPaye:(payType)payType tradeNO:(NSString *)tradeNO parentView:(UIViewController *)vc price:(NSString *)price title:(NSString *)title description:(NSString *)description success:(paySuccess)success error:(payError)error
 {
     
-    
     if (payType==AlixPay) {// 支付宝支付
        
         
@@ -46,14 +45,14 @@
             return;
         }
         
-        [self wxPayWithtradeNO:tradeNO amount:price productName:title productDescription:description success:^(NSString *str) {
+        [self wxPayWithtradeNO:tradeNO success:^(NSString *str) {
             
             success(str);
-            
+
         } error:^(NSString *str) {
             
             error(str);
-            
+
         }];
         
     }
@@ -188,8 +187,10 @@
 }
 
 #pragma mark -------- 微信支付
-+ (void)wxPayWithtradeNO:(NSString *)tradeNO amount:(NSString *)amount productName:(NSString *)productName productDescription:(NSString *)productDescription success:(paySuccess)success error:(payError)error
++ (void)wxPayWithtradeNO:(NSString *)tradeNO success:(paySuccess)success error:(payError)error
 {
+    
+    /*
     //{{{
     //本实例只是演示签名过程， 请将该过程在商户服务器上实现
     
@@ -202,40 +203,50 @@
     
     //}}}
     
-    // 获取到实际调起微信支付的参数后，在app端调起支付
+//     获取到实际调起微信支付的参数后，在app端调起支付
     NSMutableDictionary *dict = [req sendPay_demoWithtradeNO:tradeNO amount:amount productName:productName productDescription:productDescription type:0];
     
     NSLog(@"获取到实际调起微信支付的参数后，在app端调起支付dict:%@",dict);
+    */
     
-    if(dict == nil){
+    NSString *url = [NSString stringWithFormat:kgetprepayinfo,[AcountManager manager].userid,tradeNO];
+    
+    NSString *applyUrlString = [NSString stringWithFormat:BASEURL,url];
+    
+    [JENetwoking startDownLoadWithUrl:applyUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
-        //错误提示
-        NSString *debug = [req getDebugifo];
+        NSLog(@"获取微信预支付订单信息：%@",data);
         
-        [self alert:@"提示信息" msg:debug];
+        NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
+
+        NSMutableDictionary *dict = data[@"data"];
+       
+        if ([type isEqualToString:@"1"]) {
+            
+            NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+            
+            //调起微信支付
+            PayReq* req             = [[PayReq alloc] init];
+            req.openID              = [dict objectForKey:@"appid"];
+            req.partnerId           = [dict objectForKey:@"partnerid"];
+            req.prepayId            = [dict objectForKey:@"prepayid"];
+            req.nonceStr            = [dict objectForKey:@"noncestr"];
+            req.timeStamp           = stamp.intValue;
+            req.package             = [dict objectForKey:@"package"];
+            req.sign                = [dict objectForKey:@"sign"];
+            
+            [WXApi sendReq:req];
+            
+        }else {
+            
+            [self obj_showTotasViewWithMes:[NSString stringWithFormat:@"%@",data[@"msg"]]];
+            
+        }
         
-        NSLog(@"%@\n\n",debug);
-        
-    }else{
-        
-        NSLog(@"%@\n\n",[req getDebugifo]);
-        //[self alert:@"确认" msg:@"下单成功，点击OK后调起支付！"];
-        
-        NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
-        
-        //调起微信支付
-        PayReq* req             = [[PayReq alloc] init];
-        req.openID              = [dict objectForKey:@"appid"];
-        req.partnerId           = [dict objectForKey:@"partnerid"];
-        req.prepayId            = [dict objectForKey:@"prepayid"];
-        req.nonceStr            = [dict objectForKey:@"noncestr"];
-        req.timeStamp           = stamp.intValue;
-        req.package             = [dict objectForKey:@"package"];
-        req.sign                = [dict objectForKey:@"sign"];
-        
-        [WXApi sendReq:req];
-        
-    }
+    } withFailure:^(id data) {
+        [self obj_showTotasViewWithMes:@"网络连接失败，请检查网络连接"];
+    }];
+    
 }
 
 - (void)onResp:(BaseResp*)resp
@@ -252,6 +263,7 @@
         strTitle = [NSString stringWithFormat:@"支付结果"];
         
         switch (resp.errCode) {
+                
             case WXSuccess:
                 strMsg = @"支付结果：成功！";
                 NSLog(@"支付成功－PaySuccess，retcode = %d", resp.errCode);
@@ -270,6 +282,7 @@
                 NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
                 
                 break;
+                
         }
     }
     

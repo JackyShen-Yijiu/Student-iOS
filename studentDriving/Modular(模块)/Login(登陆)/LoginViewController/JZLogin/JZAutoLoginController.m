@@ -206,8 +206,6 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
     [DVVUserManager userLoginSucces];
 }
 
-#pragma mark - network
-
 #pragma mark 验证用户是否存在
 - (void)userExist {
     

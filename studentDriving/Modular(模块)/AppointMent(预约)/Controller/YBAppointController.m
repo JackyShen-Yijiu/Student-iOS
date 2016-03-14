@@ -305,6 +305,8 @@
             
         }else{
             
+            [ws.midYuYueheadView receiveCoachTimeData:nil selectData:self.datepicker.selectedDate coachModel:self.appointCoach];
+
             if (data[@"msg"] && [data[@"msg"] length]!=0) {
                 [self obj_showTotasViewWithMes:data[@"msg"]];
             }
