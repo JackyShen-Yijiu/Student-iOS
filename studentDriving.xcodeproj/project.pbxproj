@@ -37,6 +37,10 @@
 		B221AF8C1C92F31E001F6EED /* YBAppointMentDetailsDataRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF821C92F31E001F6EED /* YBAppointMentDetailsDataRootClass.m */; };
 		B221AF8D1C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF841C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m */; };
 		B221AF8E1C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF861C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m */; };
+		B221AF971C93C232001F6EED /* YBAppointCoursedata.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF901C93C232001F6EED /* YBAppointCoursedata.m */; };
+		B221AF981C93C232001F6EED /* YBAppointCoursetime.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF921C93C232001F6EED /* YBAppointCoursetime.m */; };
+		B221AF991C93C232001F6EED /* YBAppointData.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF941C93C232001F6EED /* YBAppointData.m */; };
+		B221AF9A1C93C232001F6EED /* YBAppointRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF961C93C232001F6EED /* YBAppointRootClass.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -1083,6 +1087,14 @@
 		B221AF841C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataSubject.m; sourceTree = "<group>"; };
 		B221AF851C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailsDataTrainfieldlinfo.h; sourceTree = "<group>"; };
 		B221AF861C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailsDataTrainfieldlinfo.m; sourceTree = "<group>"; };
+		B221AF8F1C93C232001F6EED /* YBAppointCoursedata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointCoursedata.h; sourceTree = "<group>"; };
+		B221AF901C93C232001F6EED /* YBAppointCoursedata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointCoursedata.m; sourceTree = "<group>"; };
+		B221AF911C93C232001F6EED /* YBAppointCoursetime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointCoursetime.h; sourceTree = "<group>"; };
+		B221AF921C93C232001F6EED /* YBAppointCoursetime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointCoursetime.m; sourceTree = "<group>"; };
+		B221AF931C93C232001F6EED /* YBAppointData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointData.h; sourceTree = "<group>"; };
+		B221AF941C93C232001F6EED /* YBAppointData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointData.m; sourceTree = "<group>"; };
+		B221AF951C93C232001F6EED /* YBAppointRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointRootClass.h; sourceTree = "<group>"; };
+		B221AF961C93C232001F6EED /* YBAppointRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointRootClass.m; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -4011,6 +4023,14 @@
 				B251DCE41C8E849200E6613A /* ModelDefine.h */,
 				B251DCE51C8E849200E6613A /* YBAppointMentCoachModel.h */,
 				B251DCE61C8E849200E6613A /* YBAppointMentCoachModel.m */,
+				B221AF8F1C93C232001F6EED /* YBAppointCoursedata.h */,
+				B221AF901C93C232001F6EED /* YBAppointCoursedata.m */,
+				B221AF911C93C232001F6EED /* YBAppointCoursetime.h */,
+				B221AF921C93C232001F6EED /* YBAppointCoursetime.m */,
+				B221AF931C93C232001F6EED /* YBAppointData.h */,
+				B221AF941C93C232001F6EED /* YBAppointData.m */,
+				B221AF951C93C232001F6EED /* YBAppointRootClass.h */,
+				B221AF961C93C232001F6EED /* YBAppointRootClass.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7411,6 +7431,7 @@
 				B251E42B1C8E849500E6613A /* EMChatBaseBubbleView.m in Sources */,
 				B251E5AA1C8E849500E6613A /* DVVHorizontalScrollImagesView.m in Sources */,
 				B251E4281C8E849500E6613A /* DXChatBarMoreView.m in Sources */,
+				B221AF9A1C93C232001F6EED /* YBAppointRootClass.m in Sources */,
 				B251E3D91C8E849500E6613A /* YBBaseViewController.m in Sources */,
 				B251E3961C8E849500E6613A /* APWaitEvaluationViewController.m in Sources */,
 				B251E5B81C8E849500E6613A /* DVVCrashHandler.mm in Sources */,
@@ -7545,6 +7566,7 @@
 				B251E3911C8E849500E6613A /* APCommentViewController.m in Sources */,
 				B251E5191C8E849500E6613A /* YBConsultationController.m in Sources */,
 				B251E51C1C8E849500E6613A /* YBMyWalletViewController.m in Sources */,
+				B221AF991C93C232001F6EED /* YBAppointData.m in Sources */,
 				B251E3251C8E849500E6613A /* ExamCarModel.m in Sources */,
 				B251E69F1C8E849600E6613A /* NetMonitor.m in Sources */,
 				B251E6B41C8E849600E6613A /* NSDataEx.m in Sources */,
@@ -7591,6 +7613,7 @@
 				B251E6881C8E849600E6613A /* NSUserStoreTool.m in Sources */,
 				B251E6A81C8E849600E6613A /* NSString+SBJSON.m in Sources */,
 				B251E68C1C8E849600E6613A /* BLPFAlertView.m in Sources */,
+				B221AF981C93C232001F6EED /* YBAppointCoursetime.m in Sources */,
 				B251E5C11C8E849500E6613A /* DVVPaySuccessDMCarmodel.m in Sources */,
 				B251E5481C8E849500E6613A /* DuideDetailCell.m in Sources */,
 				D97704AE1C92A99700A3865F /* YBAppointmentListDMHeadportrait.m in Sources */,
@@ -7628,6 +7651,7 @@
 				B251E3721C8E849500E6613A /* CancelAppointmentCell.m in Sources */,
 				B251E3761C8E849500E6613A /* CoachIntroductionCell.m in Sources */,
 				B251E3D51C8E849500E6613A /* WMMenuViewController.m in Sources */,
+				B221AF971C93C232001F6EED /* YBAppointCoursedata.m in Sources */,
 				B251E5981C8E849500E6613A /* DrivingDetailBriefIntroductionCell.m in Sources */,
 				B251E6E31C8E87F300E6613A /* MyWallet.m in Sources */,
 				B251E3831C8E849500E6613A /* ExamClassCollectionViewCell.m in Sources */,
