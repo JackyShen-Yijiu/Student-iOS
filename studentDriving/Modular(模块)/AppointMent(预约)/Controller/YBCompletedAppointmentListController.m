@@ -26,7 +26,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"已完成的预约";
+    self.title = @"完成的预约";
     self.edgesForExtendedLayout = NO;
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
