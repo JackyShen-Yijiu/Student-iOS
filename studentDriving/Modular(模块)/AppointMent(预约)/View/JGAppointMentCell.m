@@ -233,7 +233,8 @@
     }else{// 已过期
         
         self.userInteractionEnabled = NO;
-        self.backgroundColor = RGBColor(247, 247, 247);
+        self.backgroundColor = [UIColor colorWithHexString:@"f7f7f7"];
+        self.contentView.backgroundColor = [UIColor colorWithHexString:@"f7f7f7"];
         self.startTimeLabel.textColor = [UIColor lightGrayColor];
         self.finalTimeLabel.textColor = [UIColor lightGrayColor];
         
