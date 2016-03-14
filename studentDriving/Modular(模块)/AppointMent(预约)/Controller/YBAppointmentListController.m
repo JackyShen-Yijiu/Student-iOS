@@ -15,6 +15,10 @@
 #import "DVVToast.h"
 #import "YBAppointController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "YBForceEvaluateViewController.h"
+#import "APCommentViewController.h"
+#import "MyAppointmentModel.h"
+#import "JZComplaintView.h"
 
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -31,6 +35,15 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 @property (nonatomic, assign) BOOL isShowTodayAppointment;
 @property (nonatomic, assign) BOOL isShowNextAppointment;
 
+@property (nonatomic,strong) YBForceEvaluateViewController *feVc;
+
+@property (nonatomic,strong) NSArray *commentListArray;
+
+@property (nonatomic,assign) NSInteger number;// 科目几
+
+@property (nonatomic,assign) BOOL isShowComplaintView;  // 是否显示强制评价界面
+
+
 @end
 
 @implementation YBAppointmentListController
@@ -46,6 +59,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     
     _isShowTodayAppointment = YES;
     _isShowNextAppointment = YES;
+    _isShowComplaintView = YES;
     
     [self.view addSubview:self.tableView];
     
@@ -60,7 +74,16 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [DVVToast showFromView:self.view OffSetY:-10];
     [_viewModel dvv_networkRequestRefresh];
 }
-
+- (void)viewDidAppear:(BOOL)animated{
+    // 请求评论数据
+    if (_isShowComplaintView) {
+        [self loadCommentList];
+        // 学车进度
+        [self addLoadSubjectProress];
+    }
+    
+    
+}
 - (void)rightBarButtonItemDidClick{
     
     if (![AcountManager isLogin]) {
@@ -68,7 +91,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return;
     }
     if ([AcountManager manager].userApplystate && [[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-        UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,貌似您还没有报名/n如果您已报名,请联系驾校或教练" message:@"" delegate:self cancelButtonTitle:@"前去报名" otherButtonTitles:@"再看看", nil];
+        UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,貌似您还没有报名\n如果您已报名,请联系驾校或教练" message:@"" delegate:self cancelButtonTitle:@"前去报名" otherButtonTitles:@"再看看", nil];
         [alert show];
         return;
     }
@@ -265,6 +288,143 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         
     }
 }
+#pragma mark ----- 请求评论数据
+- (void)loadCommentList
+{
+    
+    NSString *appointmentUrl = [NSString stringWithFormat:kappointmentUrl,[AcountManager manager].userid,(long)self.number];
+    
+    NSString *downLoadUrl = [NSString stringWithFormat:BASEURL,appointmentUrl];
+    DYNSLog(@"url = %@ %@",[AcountManager manager].userid,[AcountManager manager].userToken);
+    
+    __weak typeof (self) ws = self;
+    [JENetwoking startDownLoadWithUrl:downLoadUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        NSDictionary *param = data;
+        NSArray *commentListArray = param[@"data"];
+        NSNumber *type = param[@"type"];
+        // 测试数据
+//        NSArray *commentListArray = @[@"你好,红啊呀"];
+        
+        if (type.integerValue == 1 && commentListArray.count>0) {
+            
+            ws.commentListArray = commentListArray;
+            
+            [self.navigationController.view addSubview:ws.feVc.view];
+            // 强制评价
+//            [ws.tabBarController.view insertSubview:ws.feVc.view aboveSubview:((AppDelegate *)[UIApplication sharedApplication].delegate).window];
+            
+            NSError *error;
+            MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
+            ws.feVc.iconURL = model.coachid.headportrait.originalpic; // 教练头像
+            ws.feVc.nameStr = model.coachid.name; // 教练姓名
+        }
+    }];
+    
+}
+- (void)addLoadSubjectProress
+{
+    if (![AcountManager isLogin]) {
+        return;
+    }
+    
+    self.number = [[AcountManager manager].userSubject.subjectId integerValue];
+//    [self.courseDayTableView.mj_header beginRefreshing];
+    
+}
+
+- (YBForceEvaluateViewController *)feVc
+{
+    if (_feVc==nil) {
+        
+        WS(ws);
+        _feVc = [[YBForceEvaluateViewController alloc] init];
+        _feVc.view.frame = ((AppDelegate *)[UIApplication sharedApplication].delegate).window.bounds;
+        _feVc.moteblock = ^{
+            
+            NSLog(@"更多");
+//            NSLog(@"_feVc.starBar.rating:%f",ws.feVc.starBar.rating);
+            NSLog(@"feVc.reasonTextView.text:%@",ws.feVc.reasonTextView.text);
+            
+            if (self.commentListArray && self.commentListArray.count==1) {// 跳转到评论界面
+                
+                NSError *error = nil;
+                MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
+//
+               
+//                comment.model = model;
+//                comment.hidesBottomBarWhenPushed = YES;
+//                comment.isForceComment = YES;
+//                [ws.navigationController pushViewController:comment animated:YES]; ------
+                [ws.feVc.view removeFromSuperview];
+                _isShowComplaintView = NO;
+                JZComplaintView *moreComVC = [[JZComplaintView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight  - 50)];
+                                    [ws.navigationController.view addSubview:moreComVC];
+                moreComVC.iconImgUrl = model.coachid.headportrait.originalpic; // 教练头像
+                moreComVC.coachName = model.coachid.name; // 教练姓名
+                moreComVC.viewVC = ws;
+                moreComVC.model = model;
+            }
+            
+        };
+        _feVc.commitBlock = ^{
+            
+            NSLog(@"提交");
+
+//            NSLog(@"_feVc.starBar.rating:%f",ws.feVc.starBar.rating);
+            NSLog(@"feVc.reasonTextView.text:%@",ws.feVc.reasonTextView.text);
+            
+            NSError *error = nil;
+            
+            MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
+//            [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar. model:model];
+            
+        };
+        
+    }
+    return _feVc;
+}
+
+- (void)commitComment:(NSString *)comment star:(CGFloat)star model:(MyAppointmentModel *)model{
+    
+    NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+    NSLog(@"model.infoId:%@",model.infoId);
+    
+    if ([AcountManager manager].userid==nil && model.infoId == nil) {
+        return;
+    }
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kuserCommentAppointment];
+    
+    NSDictionary *param = @{@"userid":[AcountManager manager].userid,
+                            @"reservationid":model.infoId,
+                            @"starlevel":[NSString stringWithFormat:@"%f",star],// 总体评论星级
+                            @"abilitylevel":@"0",// 能力
+                            @"timelevel":@"0",// 时间
+                            @"attitudelevel":@"0",// 态度
+                            @"hygienelevel":@"0",// 卫生
+                            @"commentcontent":comment};
+    NSLog(@"param:%@",param);
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        DYNSLog(@"%s data = %@",__func__,data);
+        
+        NSDictionary *param = data;
+        NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@", param[@"msg"]];
+        
+        if (type.integerValue == 1) {
+            [self obj_showTotasViewWithMes:@"评论成功"];
+            [self.feVc.view removeFromSuperview];
+//            [self.courseDayTableView.mj_header beginRefreshing];
+        }else{
+            [self obj_showTotasViewWithMes:msg];
+        }
+        
+    }];
+    
+}
 
 
 #pragma mark - lazy load
@@ -310,15 +470,5 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

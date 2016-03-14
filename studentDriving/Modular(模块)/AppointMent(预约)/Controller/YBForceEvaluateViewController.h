@@ -18,13 +18,15 @@ typedef void (^commitBlock)();
 
 @property (nonatomic,copy) moreBlock moteblock;
 
-@property (nonatomic,copy) moreBlock commitBlock;
+@property (nonatomic,copy) commitBlock commitBlock;
 
 @property (nonatomic,strong) RatingBar *starBar;
 
 @property (nonatomic,strong)  YBTextView *reasonTextView;
 
 @property (nonatomic,copy) NSString *iconURL;
+
+@property (nonatomic,copy) NSString *nameStr; // 教练姓名
 
 @end
 
