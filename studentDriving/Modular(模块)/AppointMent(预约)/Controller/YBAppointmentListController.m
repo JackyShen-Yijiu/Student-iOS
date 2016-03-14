@@ -15,6 +15,7 @@
 #import "DVVToast.h"
 #import "YBAppointController.h"
 #import <MJRefresh/MJRefresh.h>
+#import "YBAppointMentDetailsController.h"
 #import "YBForceEvaluateViewController.h"
 #import "APCommentViewController.h"
 #import "MyAppointmentModel.h"
@@ -280,13 +281,22 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    HMCourseModel *model = nil;
     if (0 == indexPath.section) {
         
+        model = _viewModel.todayArray[indexPath.row];
         
     }else if (1 == indexPath.section) {
         
-        
+        model = _viewModel.nextArray[indexPath.row];
     }
+    
+    YBAppointMentDetailsController *vc = [YBAppointMentDetailsController new];
+    vc.courseModel = model;
+    vc.appointMentID = model.courseId;
+    
+    vc.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 #pragma mark ----- 请求评论数据
 - (void)loadCommentList

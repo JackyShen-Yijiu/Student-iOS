@@ -73,12 +73,12 @@
     NSLog(@"%@%@",self.cancelContent,self.cancelMessage);
     if (self.cancelContent == nil || self.cancelMessage == nil) {
        
-        [self obj_showTotasViewWithMes:@"请填写取消原因!"];
+        [self obj_showTotasViewWithMes:@"请填写取消原因"];
          self.cancelContent = @"";
         return;
     }
     if (self.cancelMessage == nil || self.cancelContent == nil) {
-        [self obj_showTotasViewWithMes:@"请填写取消原因!"];
+        [self obj_showTotasViewWithMes:@"请填写取消原因"];
         self.cancelMessage = @"";
         return;
     }

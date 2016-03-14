@@ -9,6 +9,7 @@
 #import "YBCompletedAppointmentListController.h"
 #import "YBCompletedAppointmentListCell.h"
 #import "DVVToast.h"
+#import "YBCompletedAppointmentDetailController.h"
 
 static NSString *kCellIdentifier = @"kCellIdentifier";
 
@@ -27,6 +28,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [super viewDidLoad];
     self.title = @"已完成的预约";
     self.edgesForExtendedLayout = NO;
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     if (!_dataArray.count) {
         [DVVToast showMessage:@"暂无已完成预约"];
@@ -63,6 +65,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
+    HMCourseModel *model = _dataArray[indexPath.row];
+    YBCompletedAppointmentDetailController *vc = [YBCompletedAppointmentDetailController new];
+    vc.courseModel = model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

@@ -118,9 +118,9 @@
 {
     _appointCoach = appointCoach;
     
-    self.appointLabel.text = [NSString stringWithFormat:@"       教练:%@    同时段学员",self.appointCoach.name];
+    self.appointLabel.text = [NSString stringWithFormat:@"       教练:%@    同时段学员",_appointCoach.name];
     
-    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:self.appointCoach.headportrait] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:_appointCoach.headportrait] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
     
 }
 
@@ -162,9 +162,7 @@
     if (!cell) {
         DYNSLog(@"创建错误");
     }
-    cell.iconImageView.layer.masksToBounds = YES;
-    cell.iconImageView.layer.cornerRadius = cell.iconImageView.width/2;
-        
+   
     StudentModel *model = self.studentArray[indexPath.row];
     
     [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
