@@ -24,10 +24,10 @@ typedef void (^payError)(NSString *str);
  * payType:支付方式选择 必选
  * tradeNO:订单号 必选
  * vc:父控制器 必选
- * ID:商品ID 必选
- * price:商品价格 必选
- * title:商品标题 必选
- * description:商品描述 必选
+ * ID:商品ID 可选
+ * price:商品价格 可选
+ * title:商品标题 可选
+ * description:商品描述 可选
  */
 + (void)payWithPaye:(payType)payType tradeNO:(NSString *)tradeNO parentView:(UIViewController *)vc price:(NSString *)price title:(NSString *)title description:(NSString *)description success:(paySuccess)success error:(payError)error;
 

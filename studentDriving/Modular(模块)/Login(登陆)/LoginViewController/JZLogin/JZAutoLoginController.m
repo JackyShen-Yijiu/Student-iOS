@@ -206,8 +206,6 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
     [DVVUserManager userLoginSucces];
 }
 
-#pragma mark - network
-
 #pragma mark 验证用户是否存在
 - (void)userExist {
     
@@ -524,6 +522,7 @@ static NSString *const kcodeLogin = @"userinfo/studentloginbycode";
         _autoTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"test"] placeholder:@"请输入验证码"];
         _autoTextField.cornerRadius = 10;
         _autoTextField.foregroundColor = [UIColor whiteColor];
+        _autoTextField.keyboardType=UIKeyboardTypeNumberPad;
 //        _passwordTextField.secureTextEntry = YES;
 //        [[NSNotificationCenter defaultCenter]
 //         addObserver:self

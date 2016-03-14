@@ -48,9 +48,6 @@
     
     [UIApplication sharedApplication].keyWindow.rootViewController = [[ViewController alloc] init];
     
-    //    [[self loginController] dismissViewControllerAnimated:YES completion:nil];
-    //    [[self loginController].navigationController popToRootViewControllerAnimated:NO];
-    //[self showNaviBar];
 }
 
 // 用户退出登录后调用此方法

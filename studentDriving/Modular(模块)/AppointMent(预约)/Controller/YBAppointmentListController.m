@@ -20,6 +20,7 @@
 #import "APCommentViewController.h"
 #import "MyAppointmentModel.h"
 #import "JZComplaintView.h"
+#import "JGPayTool.h"
 
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -70,7 +71,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    
+    if (![AcountManager isLogin]) {
+        [DVVUserManager userNeedLogin];
+        return;
+    }
     // 开始请求数据
     [DVVToast showFromView:self.view OffSetY:-10];
     [_viewModel dvv_networkRequestRefresh];
@@ -83,14 +87,26 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         [self addLoadSubjectProress];
     }
     
-    
 }
 - (void)rightBarButtonItemDidClick{
+    
+//    [JGPayTool payWithPaye:WeChatPay tradeNO:@"56e6b21e38ad72723dcebf76" parentView:self price:nil title:nil description:nil success:^(NSString *str) {
+//        
+//        NSLog(@"支付成功:%@",str);
+//        
+//    } error:^(NSString *str) {
+//        
+//        NSLog(@"支付失败:%@",str);
+//        
+//    }];
+//    
+//    return;
     
     if (![AcountManager isLogin]) {
         [DVVUserManager userNeedLogin];
         return;
     }
+    
     if ([AcountManager manager].userApplystate && [[AcountManager manager].userApplystate isEqualToString:@"0"]) {
         UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,貌似您还没有报名\n如果您已报名,请联系驾校或教练" message:@"" delegate:self cancelButtonTitle:@"前去报名" otherButtonTitles:@"再看看", nil];
         [alert show];
@@ -100,7 +116,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     YBAppointController *vc = [[YBAppointController alloc] init];
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if (buttonIndex==0) {
@@ -338,6 +356,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return;
     }
     
+    [self.headerView setUpData];
     self.number = [[AcountManager manager].userSubject.subjectId integerValue];
 //    [self.courseDayTableView.mj_header beginRefreshing];
     
@@ -459,6 +478,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (YBAppointmentHeaderView *)headerView {
     if (!_headerView) {
         _headerView = [YBAppointmentHeaderView new];
+        _headerView.parentViewController = self;
         _headerView.frame = CGRectMake(0, 0, kSystemWide, 118);
     }
     return _headerView;

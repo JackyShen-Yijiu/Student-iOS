@@ -149,11 +149,11 @@
             
             self.stateImgview.hidden = NO;
             self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_rest"];
-            self.remainingPersonLabel.text = [NSString stringWithFormat:@"有%ld个教练可预约",(long)_appointInfoModel.coachcount];
+            self.remainingPersonLabel.text = [NSString stringWithFormat:@"%ld个其他教练可预约",(long)_appointInfoModel.coachcount];
             
             if (_appointInfoModel.coachcount!=0) {// 有可预约教练
                 self.isModifyCoach = YES;
-                self.remainingPersonLabel.text = [NSString stringWithFormat:@"有%ld个教练可预约",(long)_appointInfoModel.coachcount];
+                self.remainingPersonLabel.text = [NSString stringWithFormat:@"%ld个其他教练可预约",(long)_appointInfoModel.coachcount];
                 self.remainingPersonLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
             }else{// 无可预约教练
                 self.userInteractionEnabled = NO;
@@ -172,7 +172,7 @@
                     self.stateImgview.hidden = NO;
                     self.stateImgview.image = [UIImage imageNamed:@"YBAppointstatus_full"];
                     if (_appointInfoModel.coachcount!=0) {// 有可预约教练
-                        self.remainingPersonLabel.text = [NSString stringWithFormat:@"有%ld个教练可预约",(long)_appointInfoModel.coachcount];
+                        self.remainingPersonLabel.text = [NSString stringWithFormat:@"%ld个其他教练可预约",(long)_appointInfoModel.coachcount];
                         self.remainingPersonLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
                         self.isModifyCoach = YES;
                     }else{// 无可预约教练
@@ -233,7 +233,8 @@
     }else{// 已过期
         
         self.userInteractionEnabled = NO;
-        self.backgroundColor = RGBColor(247, 247, 247);
+        self.backgroundColor = [UIColor colorWithHexString:@"f7f7f7"];
+        self.contentView.backgroundColor = [UIColor colorWithHexString:@"f7f7f7"];
         self.startTimeLabel.textColor = [UIColor lightGrayColor];
         self.finalTimeLabel.textColor = [UIColor lightGrayColor];
         

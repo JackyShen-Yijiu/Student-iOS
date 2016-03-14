@@ -14,7 +14,7 @@
 
 @protocol JGYuYueHeadViewDelegate <NSObject>
 
-- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView dateString:(NSString *)dateString isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid;
+- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid;
 
 @end
 

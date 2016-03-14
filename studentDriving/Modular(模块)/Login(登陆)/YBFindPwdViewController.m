@@ -315,6 +315,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
 - (DVVBaseTextField *)phoneNumTextFiled{
     if (_phoneNumTextFiled == nil) {
         _phoneNumTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user"] placeholder:@"请输入手机号" borderColor:[UIColor colorWithHexString:@"b7b7b7"]];
+        _phoneNumTextFiled.keyboardType = UIKeyboardTypeNumberPad;
         _phoneNumTextFiled.tag = 5000;
         _phoneNumTextFiled.delegate = self;
         [[NSNotificationCenter defaultCenter]
@@ -340,6 +341,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
 - (DVVBaseTextField *)authCodeTextFiled{
     if (_authCodeTextFiled == nil) {
         _authCodeTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"test"] placeholder:@"请输入验证码" borderColor:[UIColor clearColor]];
+        _authCodeTextFiled.keyboardType = UIKeyboardTypeNumberPad;
         _authCodeTextFiled.tag = 5001;
         _authCodeTextFiled.delegate = self;
         [[NSNotificationCenter defaultCenter]

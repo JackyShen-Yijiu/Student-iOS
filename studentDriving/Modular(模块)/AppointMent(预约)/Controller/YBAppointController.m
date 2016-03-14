@@ -161,14 +161,14 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView dateString:(NSString *)dateString isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid
+- (void)JGYuYueHeadViewWithModifyCoach:(JGYuYueHeadView *)headView isModifyCoach:(BOOL)isModifyCoach timeid:(NSNumber *)timeid
 {
     
     YBCoachListViewController *coachList = [[YBCoachListViewController alloc] init];
     coachList.delegate = self;
     coachList.isModifyCoach = isModifyCoach;
     coachList.timeid = timeid;
-    coachList.coursedate = dateString;
+    coachList.coursedate = [self.dateFormattor stringFromDate:self.datepicker.selectedDate];
     [self.navigationController pushViewController:coachList animated:YES];
 }
 
@@ -305,6 +305,8 @@
             
         }else{
             
+            [ws.midYuYueheadView receiveCoachTimeData:nil selectData:self.datepicker.selectedDate coachModel:self.appointCoach];
+
             if (data[@"msg"] && [data[@"msg"] length]!=0) {
                 [self obj_showTotasViewWithMes:data[@"msg"]];
             }
@@ -399,19 +401,28 @@
         
         NSString *courseID = [NSString stringWithFormat:@"%@",model.coursedata._id];
         
-        if (i==0) {
-            
-            [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
-            
-        }else if (i==resultArray.count-1){
+        if (resultArray.count==1) {
             
             [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
             
         }else{
             
-            [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+            if (i==0) {
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
+                
+            }else if (i==resultArray.count-1){
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                
+            }else{
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                
+            }
             
         }
+        
         
     }
     
@@ -501,19 +512,28 @@
         
         NSString *courseID = [NSString stringWithFormat:@"%@",model.coursedata._id];
 
-        if (i==0) {
-            
-            [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
-            
-        }else if (i==resultArray.count-1){
+        if (resultArray.count==1) {
             
             [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
-            
+
         }else{
             
-            [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+            if (i==0) {
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
+                
+            }else if (i==resultArray.count-1){
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                
+            }else{
+                
+                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                
+            }
             
         }
+        
         
     }
 

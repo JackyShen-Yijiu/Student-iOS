@@ -19,7 +19,7 @@
     [UMSocialData setAppKey:umengAppkey];
     
     // 添加微信
-    [UMSocialWechatHandler setWXAppId:@"wxf1c209725d178604" appSecret:@"4a17fd7d8cc0d0e1eacd0ce1d2e23e0e" url:@"http://www.ybxch.com/"];
+    [UMSocialWechatHandler setWXAppId:@"wxb815a53dcb2faf06" appSecret:@"2637931343bdd1d1991fcef1b28a187a" url:@"http://www.ybxch.com/"];
     
     // 添加QQ
     [UMSocialQQHandler setQQWithAppId:@"1105047313" appKey:@"V2WpihDDnIaxxXwL" url:@"http://www.ybxch.com/"];

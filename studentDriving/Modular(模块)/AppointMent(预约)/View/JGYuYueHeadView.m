@@ -154,10 +154,8 @@
         // 判断是否是更换同时段教练
         if (cell.isModifyCoach) {
             
-            NSString *dateString = [NSString getYearLocalDateFormateUTCDate:cell.appointInfoModel.coursedata.coursedate];
-            
-            if ([self.delegate respondsToSelector:@selector(JGYuYueHeadViewWithModifyCoach:dateString:isModifyCoach:timeid:)]) {
-                [self.delegate JGYuYueHeadViewWithModifyCoach:self dateString:dateString isModifyCoach:YES timeid:@(cell.appointInfoModel.timeid)];
+            if ([self.delegate respondsToSelector:@selector(JGYuYueHeadViewWithModifyCoach:isModifyCoach:timeid:)]) {
+                [self.delegate JGYuYueHeadViewWithModifyCoach:self isModifyCoach:YES timeid:@(model.timeid)];
             }
 
             return;

@@ -33,17 +33,17 @@
 
 #pragma mark ------------------ 微信 ------------------
 
-#define weixinApp_ID @"wxc8c5f0de7e6f52a64"
-#define weixinApp_Secret @"9557eca4e02713adee0bd73634a147864"
+#define weixinApp_ID @"wxb815a53dcb2faf06"//
+#define weixinApp_Secret @"2637931343bdd1d1991fcef1b28a187a"//
 #define weixinApp_URL @"http://a.app.qq.com/o/simple.jsp?pkgname=com.kongfuzi.student&g_f=991653"
 #define APP_SECRET      @"1c29d52efd9f74625413c97a06136870"
 
 //商户号，填写商户对应参数
-#define MCH_ID          @"1237752602"
+#define MCH_ID          @"1317721101"//
 //商户API密钥，填写相应参数
-#define PARTNER_ID      @"546B81028427A64421F7B0691D0AB32D"
+#define PARTNER_ID      @"JIZHIjiafu20150810andyibukejiinn"//
 //支付结果回调页面
-#define NOTIFY_URL      @"http://wxpay.weixin.qq.com/pub_v2/pay/notify.v2.php"
+#define NOTIFY_URL      @"http://jzapi.yibuxueche.com/paynotice/weixin"//
 //获取服务器端支付数据地址（商户自定义）
 #define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
 
@@ -57,5 +57,10 @@
 #define payErrorWithPayType @"payErrorWithPayType"
 // 手机号码
 #define payErrorWithPhone @"payErrorWithPhone"
+
+// 微信支付成功的通知
+#define weixinpaySuccessNotification @"weixinPaySuccessNotification"
+// 微信支付失败的通知
+#define weixinpayErrorNotification @"weixinPayErrorNotification"
 
 #endif
