@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		064909471C96683800126299 /* JZSignUpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064909461C96683800126299 /* JZSignUpCell.m */; };
+		0649094A1C96952B00126299 /* JZSignUpTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064909491C96952B00126299 /* JZSignUpTopCell.m */; };
+		0649094D1C9698AE00126299 /* JZShowTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0649094C1C9698AE00126299 /* JZShowTitleCell.m */; };
+		064909501C969ACB00126299 /* JZSignUpFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0649094F1C969ACB00126299 /* JZSignUpFooterView.m */; };
+		064909521C969B8F00126299 /* JZSignUpFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 064909511C969B8F00126299 /* JZSignUpFooterView.xib */; };
+		064909551C96A65D00126299 /* JZMainSignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064909541C96A65D00126299 /* JZMainSignUpController.m */; };
 		064BD6081C911F990021C116 /* JZPasswordLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064BD6071C911F990021C116 /* JZPasswordLoginController.m */; };
 		064BD60B1C914C6D0021C116 /* JZRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064BD60A1C914C6D0021C116 /* JZRegisterController.m */; };
 		0673FC5C1C8FB0B4000FD8A4 /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */; };
@@ -1033,6 +1039,17 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		064909451C96683800126299 /* JZSignUpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSignUpCell.h; sourceTree = "<group>"; };
+		064909461C96683800126299 /* JZSignUpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSignUpCell.m; sourceTree = "<group>"; };
+		064909481C96952B00126299 /* JZSignUpTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSignUpTopCell.h; sourceTree = "<group>"; };
+		064909491C96952B00126299 /* JZSignUpTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSignUpTopCell.m; sourceTree = "<group>"; };
+		0649094B1C9698AE00126299 /* JZShowTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZShowTitleCell.h; path = "studentDriving/Modular(模块)/SignUp(报名)/JZSignUp/JZShowTitleCell.h"; sourceTree = SOURCE_ROOT; };
+		0649094C1C9698AE00126299 /* JZShowTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZShowTitleCell.m; path = "studentDriving/Modular(模块)/SignUp(报名)/JZSignUp/JZShowTitleCell.m"; sourceTree = SOURCE_ROOT; };
+		0649094E1C969ACB00126299 /* JZSignUpFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSignUpFooterView.h; sourceTree = "<group>"; };
+		0649094F1C969ACB00126299 /* JZSignUpFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSignUpFooterView.m; sourceTree = "<group>"; };
+		064909511C969B8F00126299 /* JZSignUpFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZSignUpFooterView.xib; sourceTree = "<group>"; };
+		064909531C96A65D00126299 /* JZMainSignUpController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMainSignUpController.h; sourceTree = "<group>"; };
+		064909541C96A65D00126299 /* JZMainSignUpController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMainSignUpController.m; sourceTree = "<group>"; };
 		064BD6061C911F990021C116 /* JZPasswordLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZPasswordLoginController.h; sourceTree = "<group>"; };
 		064BD6071C911F990021C116 /* JZPasswordLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZPasswordLoginController.m; sourceTree = "<group>"; };
 		064BD6091C914C6D0021C116 /* JZRegisterController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRegisterController.h; sourceTree = "<group>"; };
@@ -3080,6 +3097,8 @@
 		064909421C96608800126299 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				064909531C96A65D00126299 /* JZMainSignUpController.h */,
+				064909541C96A65D00126299 /* JZMainSignUpController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -3094,6 +3113,15 @@
 		064909441C96608800126299 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				064909451C96683800126299 /* JZSignUpCell.h */,
+				064909461C96683800126299 /* JZSignUpCell.m */,
+				064909481C96952B00126299 /* JZSignUpTopCell.h */,
+				064909491C96952B00126299 /* JZSignUpTopCell.m */,
+				0649094B1C9698AE00126299 /* JZShowTitleCell.h */,
+				0649094C1C9698AE00126299 /* JZShowTitleCell.m */,
+				0649094E1C969ACB00126299 /* JZSignUpFooterView.h */,
+				0649094F1C969ACB00126299 /* JZSignUpFooterView.m */,
+				064909511C969B8F00126299 /* JZSignUpFooterView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7016,6 +7044,7 @@
 				B251E4A11C8E849500E6613A /* chatBar_recordSelected.png in Resources */,
 				B251E5E71C8E849500E6613A /* YBAppointTestViewController.xib in Resources */,
 				B251E4A61C8E849500E6613A /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
+				064909521C969B8F00126299 /* JZSignUpFooterView.xib in Resources */,
 				B251E4E81C8E849500E6613A /* nav_createGroup@2x.png in Resources */,
 				B251E4CB1C8E849500E6613A /* chat_sender_audio_playing_000@2x.png in Resources */,
 				B251E4641C8E849500E6613A /* VoiceSearchFeedback014@2x.png in Resources */,
@@ -7404,6 +7433,7 @@
 				B251E59D1C8E849500E6613A /* DrivingDetailDMRootClass.m in Sources */,
 				B251E2EB1C8E849500E6613A /* DrivingCityListDMData.m in Sources */,
 				B251E3711C8E849500E6613A /* BLAVplayerCell.m in Sources */,
+				064909551C96A65D00126299 /* JZMainSignUpController.m in Sources */,
 				B251E3F61C8E849500E6613A /* HMCourseModel.m in Sources */,
 				B251E3111C8E849500E6613A /* SubmitVerificationController.m in Sources */,
 				B251E3EF1C8E849500E6613A /* YBCancleAppointMentController.m in Sources */,
@@ -7490,6 +7520,7 @@
 				B251E57C1C8E849500E6613A /* DVVCoachDetailIntroductionCell.m in Sources */,
 				B251E4241C8E849500E6613A /* LocationViewController.m in Sources */,
 				B251E61D1C8E849500E6613A /* MKAnnotationView+EMWebCache.m in Sources */,
+				0649094A1C96952B00126299 /* JZSignUpTopCell.m in Sources */,
 				B251E5851C8E849500E6613A /* ClassTypeDMRootClass.m in Sources */,
 				B251E5DC1C8E849500E6613A /* DVVSubCityView.m in Sources */,
 				B251E6201C8E849500E6613A /* UIImage+EMGIF.m in Sources */,
@@ -7518,6 +7549,7 @@
 				B251E53E1C8E849500E6613A /* EditorBottomCell.m in Sources */,
 				B251E5961C8E849500E6613A /* DrivingDetailAddressCell.m in Sources */,
 				B251E5E31C8E849500E6613A /* PinyinHelper.m in Sources */,
+				064909501C969ACB00126299 /* JZSignUpFooterView.m in Sources */,
 				B251E42C1C8E849500E6613A /* EMChatImageBubbleView.m in Sources */,
 				B251E39F1C8E849500E6613A /* SubjectSecondViewController.m in Sources */,
 				B251E54A1C8E849500E6613A /* GuideDetailController.m in Sources */,
@@ -7754,6 +7786,7 @@
 				B251E38F1C8E849500E6613A /* SubjectFirstViewController.m in Sources */,
 				B251E3EC1C8E849500E6613A /* YBAppointMentChangeCoachController.m in Sources */,
 				B251E4171C8E849500E6613A /* YBAppointMentUserCell.m in Sources */,
+				0649094D1C9698AE00126299 /* JZShowTitleCell.m in Sources */,
 				B251E5C91C8E849500E6613A /* DVVSignUpSchoolDMData.m in Sources */,
 				B251E3C11C8E849500E6613A /* MyWalletViewController.m in Sources */,
 				B221AF8E1C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m in Sources */,
@@ -7819,6 +7852,7 @@
 				B251E5941C8E849500E6613A /* CoachListView.m in Sources */,
 				B251E63B1C8E849500E6613A /* TTGlobalUICommon.m in Sources */,
 				B251E60A1C8E849500E6613A /* LJSwizzleMethod.m in Sources */,
+				064909471C96683800126299 /* JZSignUpCell.m in Sources */,
 				B221AF651C9172E4001F6EED /* YBAppointController.m in Sources */,
 				B251E32A1C8E849500E6613A /* SchoolInfo.m in Sources */,
 				B251E6611C8E849500E6613A /* amrFileCodec.mm in Sources */,

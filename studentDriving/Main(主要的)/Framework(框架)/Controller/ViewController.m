@@ -35,6 +35,7 @@
 #import "MyConsultationListController.h"
 #import "YBForceEvaluateViewController.h"
 #import "APCommentViewController.h"
+#import "JZMainSignUpController.h"
 
 @interface ViewController () <WMMenuViewControllerDelegate,IWTabBarViewControllerDelegate>
 
@@ -413,12 +414,16 @@
             [DVVUserManager userNeedLogin];
             return;
         }
-//        MyConsultationListController *myconVC = [[MyConsultationListController alloc] init];
+////        MyConsultationListController *myconVC = [[MyConsultationListController alloc] init];
+////        [self controller:myconVC];
+//        YBForceEvaluateViewController *myconVC = [[YBForceEvaluateViewController alloc] init];
 //        [self controller:myconVC];
-        YBForceEvaluateViewController *myconVC = [[YBForceEvaluateViewController alloc] init];
+////        APCommentViewController *myconVC = [[APCommentViewController alloc] init];
+////        [self controller:myconVC];
+        
+        
+        JZMainSignUpController *myconVC = [[JZMainSignUpController alloc] init];
         [self controller:myconVC];
-//        APCommentViewController *myconVC = [[APCommentViewController alloc] init];
-//        [self controller:myconVC];
         
     }
 }
