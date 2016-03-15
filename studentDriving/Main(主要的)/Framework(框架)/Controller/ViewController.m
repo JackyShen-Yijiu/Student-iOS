@@ -37,6 +37,7 @@
 #import "APCommentViewController.h"
 #import "JZMainSignUpController.h"
 #import "JZYListController.h"
+#import "JZPayWayController.h"
 
 @interface ViewController () <WMMenuViewControllerDelegate,IWTabBarViewControllerDelegate>
 
@@ -425,10 +426,11 @@
         
 //        JZMainSignUpController *myconVC = [[JZMainSignUpController alloc] init];
 //        [self controller:myconVC];
-                JZYListController *myconVC = [[JZYListController alloc] init];
-                [self controller:myconVC];
+//                JZYListController *myconVC = [[JZYListController alloc] init];
+//                [self controller:myconVC];
 
-        
+        JZPayWayController *myconVC = [[JZPayWayController alloc] init];
+        [self controller:myconVC];
     }
 }
 - (void)controller:(UIViewController *)itemVC{

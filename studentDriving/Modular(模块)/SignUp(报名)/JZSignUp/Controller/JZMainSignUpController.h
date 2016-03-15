@@ -13,4 +13,5 @@
 
 @interface JZMainSignUpController : UIViewController
 @property (nonatomic, strong) ClassTypeDMData *dmData;
+
 @end

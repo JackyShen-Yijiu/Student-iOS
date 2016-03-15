@@ -14,6 +14,7 @@
 #import "JZYListController.h"
 #import "YBCoachListViewController.h"
 #import "CoachModel.h"
+#import "JZPayWayController.h"
 
 @class CoachModel;
 @interface JZMainSignUpController ()<UITableViewDataSource,UITableViewDelegate,didCellBackYModelDelegate,YBCoachListViewControllerDelegate>
@@ -393,6 +394,10 @@
             [ud setObject:@"0" forKey:@"applyAgain"];
         }
         [ud synchronize];
+        JZPayWayController *payWayVC = [[JZPayWayController alloc] init];
+        payWayVC.dmData = self.dmData;
+        payWayVC.yCodeStr = self.yStr;
+        [self.navigationController pushViewController:payWayVC animated:YES];
         
     } withFailure:^(id data) {
     
