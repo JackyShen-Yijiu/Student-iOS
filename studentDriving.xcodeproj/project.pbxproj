@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		060106A71C97AAC90084379F /* JZYListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 060106A61C97AAC90084379F /* JZYListModel.m */; };
 		064909471C96683800126299 /* JZSignUpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064909461C96683800126299 /* JZSignUpCell.m */; };
 		0649094A1C96952B00126299 /* JZSignUpTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064909491C96952B00126299 /* JZSignUpTopCell.m */; };
 		0649094D1C9698AE00126299 /* JZShowTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0649094C1C9698AE00126299 /* JZShowTitleCell.m */; };
@@ -1045,6 +1046,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		060106A51C97AAC90084379F /* JZYListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZYListModel.h; path = ../Controller/JZYListModel.h; sourceTree = "<group>"; };
+		060106A61C97AAC90084379F /* JZYListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZYListModel.m; path = ../Controller/JZYListModel.m; sourceTree = "<group>"; };
 		064909451C96683800126299 /* JZSignUpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSignUpCell.h; sourceTree = "<group>"; };
 		064909461C96683800126299 /* JZSignUpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSignUpCell.m; sourceTree = "<group>"; };
 		064909481C96952B00126299 /* JZSignUpTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSignUpTopCell.h; sourceTree = "<group>"; };
@@ -3125,6 +3128,8 @@
 		064909431C96608800126299 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				060106A51C97AAC90084379F /* JZYListModel.h */,
+				060106A61C97AAC90084379F /* JZYListModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7485,6 +7490,7 @@
 				B251E5181C8E849500E6613A /* MyConsultationListController.m in Sources */,
 				B251E3391C8E849500E6613A /* VipserverModel.m in Sources */,
 				B251E3B41C8E849500E6613A /* SignUpFirmOrderController.m in Sources */,
+				060106A71C97AAC90084379F /* JZYListModel.m in Sources */,
 				B251E40D1C8E849500E6613A /* NSDictionary+StrDic.m in Sources */,
 				B251E6981C8E849600E6613A /* PFActionSheetView.m in Sources */,
 				B251E68B1C8E849600E6613A /* BCTextView.m in Sources */,

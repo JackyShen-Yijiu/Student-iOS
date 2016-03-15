@@ -21,6 +21,8 @@
 
 @property(nonatomic,weak)id<YBCoachListViewControllerDelegate>delegate;
 
+
+
 /*
  *  点击更换更多预约教练
  */

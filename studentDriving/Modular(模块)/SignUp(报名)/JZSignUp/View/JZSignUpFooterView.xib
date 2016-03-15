@@ -8,7 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="JZSignUpFooterView"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="259"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exclamation" translatesAutoresizingMaskIntoConstraints="NO" id="i66-kF-tas">
@@ -84,7 +84,9 @@
                 <constraint firstItem="WHU-ex-ceC" firstAttribute="top" secondItem="xg9-n5-luO" secondAttribute="bottom" constant="12" id="oYf-aI-E47"/>
                 <constraint firstItem="xg9-n5-luO" firstAttribute="top" secondItem="4Tp-cL-Kge" secondAttribute="bottom" constant="12" id="w3d-x3-CzC"/>
             </constraints>
-            <point key="canvasLocation" x="268" y="295"/>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="314" y="37.5"/>
         </view>
     </objects>
     <resources>

@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JZYListModel.h"
 
+@protocol didCellBackYModelDelegate <NSObject>
+
+- (void)initWithYlistModel:(JZYListModel *)ylistModel;
+
+@end
 @interface JZYListController : UIViewController
-
+@property(nonatomic,weak)id<didCellBackYModelDelegate>delegate;
 @end
