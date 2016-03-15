@@ -22,6 +22,8 @@
         self = xibArray.firstObject;
         
         _statusLabel.textColor = YBNavigationBarBgColor;
+        [self addSubview:self.imageMarkLabel];
+        [self addSubview:self.markLabel];
         _imageMarkLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
         _markLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
         
@@ -35,10 +37,32 @@
 }
 
 
-- (CGFloat)defaultHeight {
+- (CGFloat)siginTextHeight {
     
     CGFloat width = [UIScreen mainScreen].bounds.size.width - 16*2;
-    return 228 + [NSString autoHeightWithString:DescString width:width font:[UIFont systemFontOfSize:12]];
+    return [NSString autoHeightWithString:DescString width:width font:[UIFont systemFontOfSize:12]];
+}
+
+- (UILabel *)imageMarkLabel {
+    if (!_imageMarkLabel) {
+        _imageMarkLabel = [UILabel new];
+        _imageMarkLabel.font = [UIFont systemFontOfSize:14];
+        _imageMarkLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _imageMarkLabel.numberOfLines = 0;
+        _imageMarkLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _imageMarkLabel;
+}
+
+- (UILabel *)markLabel {
+    if (!_markLabel) {
+        _markLabel = [UILabel new];
+        _markLabel.font = [UIFont systemFontOfSize:12];
+        _markLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _markLabel.numberOfLines = 0;
+//        _markLabel.textAlignment = NSTextAlignmentCenter;
+    }
+    return _markLabel;
 }
 
 /*

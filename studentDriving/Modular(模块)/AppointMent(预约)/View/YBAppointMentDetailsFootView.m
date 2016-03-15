@@ -8,10 +8,13 @@
 
 #import "YBAppointMentDetailsFootView.h"
 #import "HMCourseModel.h"
+#import "YBAppointmentTool.h"
 
 @interface YBAppointMentDetailsFootView()
-@property (nonatomic,weak) UIButton *commitBtn;
+
+@property (nonatomic,strong) UIButton *commitBtn;
 @property (nonatomic,weak) UILabel *countLabel;
+
 @end
 
 @implementation YBAppointMentDetailsFootView
@@ -24,18 +27,17 @@
 //        self.backgroundColor = RGBColor(236, 236, 236);
         
 //        UIButton *commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(kSystemWide-10-90, 5, 90, 40)];
-        UIButton *commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, kSystemWide - 16*2, 44)];
-        commitBtn.layer.masksToBounds = YES;
-        commitBtn.layer.cornerRadius = 4;
-        commitBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-        [commitBtn setTitle:@"取消预约" forState:UIControlStateNormal];
-        [commitBtn setTitle:@"取消预约" forState:UIControlStateHighlighted];
-        [commitBtn addTarget:self action:@selector(commitBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:commitBtn];
-        self.commitBtn = commitBtn;
+        _commitBtn = [[UIButton alloc] initWithFrame:CGRectMake(16, 0, kSystemWide - 16*2, 44)];
+        _commitBtn.layer.masksToBounds = YES;
+        _commitBtn.layer.cornerRadius = 4;
+        _commitBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        [_commitBtn setTitle:@"取消预约" forState:UIControlStateNormal];
+        [_commitBtn setTitle:@"取消预约" forState:UIControlStateHighlighted];
+        [_commitBtn addTarget:self action:@selector(commitBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:_commitBtn];
         
         
-        commitBtn.backgroundColor = YBNavigationBarBgColor;
+        _commitBtn.backgroundColor = YBNavigationBarBgColor;
         
         // 判断是否是在开始前24小时内
         
@@ -57,6 +59,12 @@
     _courseModel = courseModel;
    
     self.countLabel.text = [NSString stringWithFormat:@" %@",_courseModel.courseprocessdesc];
+    
+    if (![YBAppointmentTool checkCancelAppointmentWithBeginTime:_courseModel.courseBeginTime]) {
+        
+        _commitBtn.backgroundColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _commitBtn.userInteractionEnabled = NO;
+    }
     
 }
 

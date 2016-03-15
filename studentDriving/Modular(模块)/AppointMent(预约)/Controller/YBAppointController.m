@@ -464,15 +464,22 @@
         
         if ([type isEqualToString:@"1"]) {
             
+            ws.footView.studentArray = nil;
+
             NSError *error = nil;
             ws.stuDataArray = [[MTLJSONAdapter modelsOfClass:StudentModel.class fromJSONArray:data[@"data"] error:&error] mutableCopy];
-            for (StudentModel *studentModel in self.stuDataArray) {
-                if ([studentModel.userid.userId isEqualToString:[AcountManager manager].userid]) {
-                    [ws.stuDataArray removeObject:studentModel];
-                }
-            }
-            ws.footView.studentArray = self.stuDataArray;
             
+            if (ws.stuDataArray&&ws.stuDataArray.count!=0) {
+                NSLog(@"ws.stuDataArray:%@",ws.stuDataArray);
+                for (StudentModel *studentModel in ws.stuDataArray) {
+                    NSLog(@"studentModel.userid.name:%@",studentModel.userid.name);
+                    if (studentModel.userid.userId && [studentModel.userid.userId length]!=0 && [studentModel.userid.userId isEqualToString:[AcountManager manager].userid]) {
+                        [ws.stuDataArray removeObject:studentModel];
+                    }
+                }
+                ws.footView.studentArray = ws.stuDataArray;
+            }
+           
         }else {
             [self obj_showTotasViewWithMes:[NSString stringWithFormat:@"%@",data[@"msg"]]];
         }

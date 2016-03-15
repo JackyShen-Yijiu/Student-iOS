@@ -59,6 +59,12 @@ static NSString *const kuserUpdateParam = @"courseinfo/userreservationcourse";
 static NSString *const kgetmyfirstcoach = @"userinfo/getmyfirstcoach?userid=%@&subjectid=%@";
 
 // 获取预支付订单
-static NSString *const kgetprepayinfo = @"payinfo/getprepayinfo?userid=%@&payoderid=%@";
+static NSString *const kgetprepayinfo = @"payinfo/getprepayinfo?userid=%@&payoderid=%@&clientip=%@";
+
+// 获取我的报名订单
+static NSString *kgetmyorderk = @"userinfo/getmyorder?userid=%@";
+
+// 取消报名订单
+static NSString *kusercancelorder = @"userinfo/usercancelorder?userid=%@";
 
 #endif /* YBNetworkMacro_h */

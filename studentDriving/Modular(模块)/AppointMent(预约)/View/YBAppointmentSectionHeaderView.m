@@ -31,7 +31,7 @@
     
     CGSize size = self.bounds.size;
     
-    _titleLabel.frame = CGRectMake(8, 0, size.width/2.0, size.height);
+    _titleLabel.frame = CGRectMake(16, 0, size.width/2.0, size.height);
     _arrowImageView.frame = CGRectMake(size.width - 14 - 12*2, 0, 14 + 12*2, size.height);
     _button.frame = self.bounds;
     _statusLabel.frame = CGRectMake(size.width - 14 - 14, 0, 14, size.height);

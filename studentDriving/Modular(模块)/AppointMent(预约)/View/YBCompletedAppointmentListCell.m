@@ -47,7 +47,7 @@
     
     CGSize size = self.bounds.size;
     CGFloat minX = CGRectGetMinX(_nameLabel.frame);
-    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 8, 0.5);
+    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX, 0.5);
 }
 
 
@@ -80,6 +80,15 @@
     _subjectLabel.text = _model.courseprocessdesc;
     
     _schoolLabel.text = _model.courseTrainInfo.address;
+    
+    _subjectIntroductionLabel.text = _model.learningcontent;
+    
+    if (_model.sigintime.length) {
+        _signInTimeLabel.text = [NSString stringWithFormat:@"签到时间:%@", [self getLocalDateFormateUTCDate:_model.sigintime format:@"HH:mm"]];
+    }else {
+        _signInTimeLabel.text = @"";
+
+    }
 }
 
 - (NSString *)dateFromLocalWithFormatString:(NSString *)formatString {
