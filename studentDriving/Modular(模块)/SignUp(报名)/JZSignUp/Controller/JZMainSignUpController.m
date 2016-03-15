@@ -11,8 +11,12 @@
 #import "JZSignUpTopCell.h"
 #import "JZShowTitleCell.h"
 #import "JZSignUpFooterView.h"
+#import "JZYListController.h"
+#import "YBCoachListViewController.h"
+#import "CoachModel.h"
 
-@interface JZMainSignUpController ()<UITableViewDataSource,UITableViewDelegate>
+@class CoachModel;
+@interface JZMainSignUpController ()<UITableViewDataSource,UITableViewDelegate,didCellBackYModelDelegate,YBCoachListViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -30,13 +34,17 @@
 
 @property (nonatomic, strong) NSMutableArray *topDesArray;
 
-@property (nonatomic, strong) NSArray *bottonDesArray;
+@property (nonatomic, strong) NSMutableArray *bottonDesArray;
 
 @property (nonatomic, strong) NSArray *tagArray;
 
 @property (nonatomic, copy) NSString *nameStr;
 
 @property (nonatomic, copy) NSString *phoneStr;
+
+@property (nonatomic, strong) NSString *yStr;
+
+@property (nonatomic, strong) NSString *coachStr;
 
 
 @end
@@ -59,7 +67,7 @@
     self.topDesArray = @[@"报考驾校",@"报考教练",@"班级类型"].mutableCopy;
     
     self.bottonTitleArray = @[@"您的姓名",@"电话号码",@"Y返现"];
-    self.bottonDesArray = @[@"请填写您的真实姓名",@"请填写您的真实号码",@"请选择一张您所领取的Y码"];
+    self.bottonDesArray = @[@"请填写您的真实姓名",@"请填写您的真实号码",@"请选择一张您所领取的Y码"].mutableCopy;
     self.tagArray =  @[@"6000",@"6001",@"6002"];
     [self loadData];
 
@@ -91,7 +99,7 @@
         {
             if (3 == indexPath.row)
             {
-                return 100;
+                return 50;
             }else{
                 return 44;
             }
@@ -139,6 +147,7 @@
                 if (!showTitleCell) {
                     showTitleCell = [[JZShowTitleCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:ID];
                 }
+                showTitleCell.titleLabel.text = self.dmData.classdesc;
                 return showTitleCell;
             }else{
                 NSString *topCellID = @"topCell";
@@ -236,17 +245,24 @@
                 _isShowTitle = YES;
                 JZSignUpTopCell *signUpTopCell = (JZSignUpTopCell *)[tableView cellForRowAtIndexPath:indexPath];
                 signUpTopCell.arrowImageView.image = [UIImage imageNamed:@"more_down"];
+                
                 [self.tableView reloadData];
             }
         }
         
         if (1 == indexPath.row) {
             // 报考教练
+            YBCoachListViewController *coachListVC = [[YBCoachListViewController alloc] init];
+            coachListVC.delegate = self;
+            [self.navigationController pushViewController:coachListVC animated:YES];
         }
     }
     if (1 == indexPath.section) {
         if (2 == indexPath.row) {
             // Y码选择
+            JZYListController *jzListVC = [[JZYListController alloc] init];
+            jzListVC.delegate = self;
+            [self.navigationController pushViewController:jzListVC animated:YES];
         }
     }
     
@@ -407,6 +423,19 @@
     
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
+}
+#pragma mark ---- y码列表点击回调
+- (void)initWithYlistModel:(JZYListModel *)ylistModel{
+    
+    _yStr = ylistModel.Ycode;
+    [_bottonDesArray replaceObjectAtIndex:2 withObject:_yStr];
+    [self.tableView reloadData];
+}
+#pragma mark --- 教练列表点击回调
+- (void)YBCoachListViewControllerWithCoach:(CoachModel *)coachModel{
+    _coachStr = coachModel.name;
+   [_topDesArray replaceObjectAtIndex:1 withObject:_coachStr];
+    [self.tableView reloadData];
 }
 
 #pragma mark ---- Lazy 加载

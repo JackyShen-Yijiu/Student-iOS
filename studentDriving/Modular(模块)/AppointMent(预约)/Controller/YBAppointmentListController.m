@@ -22,6 +22,7 @@
 #import "JZComplaintView.h"
 #import "JGPayTool.h"
 
+@class RatingBar;
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
 static NSString *kCellIdentifier = @"kCellIdentifier";
 
@@ -406,7 +407,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             NSError *error = nil;
             
             MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
-//            [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar. model:model];
+
+                    
+           
+            //            [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar. model:model];
             
         };
         

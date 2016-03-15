@@ -15,6 +15,8 @@
 #import "APAuthV2Info.h"
 #import "WXApi.h"
 #import "WXApiObject.h"
+#import "DataMD5.h"
+#import "getIPhoneIP.h"
 
 @interface JGPayTool ()
 
@@ -190,7 +192,7 @@
 + (void)wxPayWithtradeNO:(NSString *)tradeNO success:(paySuccess)success error:(payError)error
 {
     
-    /*
+/*
     //{{{
     //本实例只是演示签名过程， 请将该过程在商户服务器上实现
     
@@ -204,19 +206,62 @@
     //}}}
     
 //     获取到实际调起微信支付的参数后，在app端调起支付
-    NSMutableDictionary *dict = [req sendPay_demoWithtradeNO:tradeNO amount:amount productName:productName productDescription:productDescription type:0];
+    NSMutableDictionary *dict = [req sendPay_demoWithtradeNO:[self generateTradeNO] amount:@"0.1" productName:@"商品名称" productDescription:@"商品描述" type:1];
     
     NSLog(@"获取到实际调起微信支付的参数后，在app端调起支付dict:%@",dict);
+
+// {
+// appid = wxb815a53dcb2faf06;
+// noncestr = F7FC63236A6AC4BDB3A76316B3B0B5B6;
+// package = "Sign=WXPay";
+// partnerid = 1317721101;
+// prepayid = wx20160315112410a68bf1f1eb0847349642;
+// sign = 0D2AECE22949EAD9DDB6B895D92B3299;
+// timestamp = 1458012250;
+// }
+
+    NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+
+    //调起微信支付
+    PayReq* reqs             = [[PayReq alloc] init];
+    reqs.openID              = [dict objectForKey:@"appid"];
+    reqs.partnerId           = [dict objectForKey:@"partnerid"];
+    reqs.prepayId            = [dict objectForKey:@"prepayid"];
+    reqs.nonceStr            = [dict objectForKey:@"noncestr"];
+    reqs.timeStamp           = stamp.intValue;
+    reqs.package             = [dict objectForKey:@"package"];
+    reqs.sign                = [dict objectForKey:@"sign"];
+    
+    [WXApi sendReq:reqs];
+    
+    return;
     */
     
-    NSString *url = [NSString stringWithFormat:kgetprepayinfo,[AcountManager manager].userid,tradeNO];
+
+    NSString *url = [NSString stringWithFormat:kgetprepayinfo,[AcountManager manager].userid,tradeNO,[getIPhoneIP getIPAddress]];
     
     NSString *applyUrlString = [NSString stringWithFormat:BASEURL,url];
     
     [JENetwoking startDownLoadWithUrl:applyUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
-        NSLog(@"获取微信预支付订单信息：%@",data);
-        
+        NSLog(@"获取微信预支付订单信息：applyUrlString:%@ %@",applyUrlString,data);
+     
+         
+//         {
+//         data =     {
+//             appId = wxb815a53dcb2faf06;
+//             nonceStr = 74WoK8vGsXD5yCqa;
+//             package = "Sign=WXPay";
+//             partnerid = 1317721101;
+//             prepayid = wx201603142047172dc82e8fd70008487768;
+//             sign = 02C94A241426095E06EEC8C5160E8567;
+//             signType = MD5;
+//             timeStamp = 1457959637;
+//         };
+//         msg = "";
+//         type = 1;
+//         }
+     
         NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
 
         NSMutableDictionary *dict = data[@"data"];
@@ -226,16 +271,16 @@
             NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
             
             //调起微信支付
-            PayReq* req             = [[PayReq alloc] init];
-            req.openID              = [dict objectForKey:@"appid"];
-            req.partnerId           = [dict objectForKey:@"partnerid"];
-            req.prepayId            = [dict objectForKey:@"prepayid"];
-            req.nonceStr            = [dict objectForKey:@"noncestr"];
-            req.timeStamp           = stamp.intValue;
-            req.package             = [dict objectForKey:@"package"];
-            req.sign                = [dict objectForKey:@"sign"];
+            PayReq* reqs             = [[PayReq alloc] init];
+            reqs.openID              = [dict objectForKey:@"appid"];
+            reqs.partnerId           = [dict objectForKey:@"partnerid"];
+            reqs.prepayId            = [dict objectForKey:@"prepayid"];
+            reqs.nonceStr            = [dict objectForKey:@"noncestr"];
+            reqs.timeStamp           = stamp.intValue;
+            reqs.package             = [dict objectForKey:@"package"];
+            reqs.sign                = [dict objectForKey:@"sign"];
             
-            [WXApi sendReq:req];
+            [WXApi sendReq:reqs];
             
         }else {
             

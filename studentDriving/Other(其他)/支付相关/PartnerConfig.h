@@ -35,8 +35,8 @@
 
 #define weixinApp_ID @"wxb815a53dcb2faf06"//
 #define weixinApp_Secret @"2637931343bdd1d1991fcef1b28a187a"//
-#define weixinApp_URL @"http://a.app.qq.com/o/simple.jsp?pkgname=com.kongfuzi.student&g_f=991653"
-#define APP_SECRET      @"1c29d52efd9f74625413c97a06136870"
+//#define weixinApp_URL @"http://a.app.qq.com/o/simple.jsp?pkgname=com.kongfuzi.student&g_f=991653"
+//#define APP_SECRET      @"1c29d52efd9f74625413c97a06136870"
 
 //商户号，填写商户对应参数
 #define MCH_ID          @"1317721101"//

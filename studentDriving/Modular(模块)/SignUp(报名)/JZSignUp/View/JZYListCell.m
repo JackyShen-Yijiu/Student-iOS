@@ -58,41 +58,41 @@
         make.height.mas_equalTo(@120);
         
     }];
-//    [self.shareLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.bgImgView.mas_top).offset(20);
-//        make.left.mas_equalTo(self.bgImgView.mas_left).offset(20);
-//        make.width.mas_equalTo(@36);
-//        make.height.mas_equalTo(@12);
-//        
-//    }];
-//    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.bgImgView.mas_top).offset(18);
-//        make.left.mas_equalTo(self.shareLabel.mas_right).offset(5);
-//        make.width.mas_equalTo(@36);
-//        make.height.mas_equalTo(@14);
-//        
-//    }];
-//    [self.YTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.shareLabel.mas_bottom).offset(10);
-//        make.left.mas_equalTo(self.shareLabel.mas_left);
-//        make.width.mas_equalTo(@32);
-//        make.height.mas_equalTo(@16);
-//        
-//    }];
-//    [self.YNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.nameLabel.mas_top).offset(10);
-//        make.left.mas_equalTo(self.YTitleLabel.mas_right).offset(5);
-//        make.width.mas_equalTo(@150);
-//        make.height.mas_equalTo(@16);
-//        
-//    }];
-//    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.top.mas_equalTo(self.YTitleLabel.mas_bottom).offset(10);
-//        make.left.mas_equalTo(self.YTitleLabel.mas_left);
-//        make.width.mas_equalTo(@150);
-//        make.height.mas_equalTo(@12);
-//        
-//    }];
+    [self.shareLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.bgImgView.mas_top).offset(20);
+        make.left.mas_equalTo(self.bgImgView.mas_left).offset(20);
+        make.width.mas_equalTo(@36);
+        make.height.mas_equalTo(@12);
+        
+    }];
+    [self.nameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.bgImgView.mas_top).offset(18);
+        make.left.mas_equalTo(self.shareLabel.mas_right).offset(5);
+        make.width.mas_equalTo(@72);
+        make.height.mas_equalTo(@14);
+        
+    }];
+    [self.YTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.shareLabel.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.shareLabel.mas_left);
+        make.width.mas_equalTo(@32);
+        make.height.mas_equalTo(@16);
+        
+    }];
+    [self.YNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.YTitleLabel.mas_right).offset(5);
+        make.width.mas_equalTo(@150);
+        make.height.mas_equalTo(@16);
+        
+    }];
+    [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.YTitleLabel.mas_bottom).offset(10);
+        make.left.mas_equalTo(self.YTitleLabel.mas_left);
+        make.width.mas_equalTo(@150);
+        make.height.mas_equalTo(@12);
+        
+    }];
     
 }
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -102,6 +102,7 @@
 }
 - (UIImageView *)bgImgView{
     if (_bgImgView == nil) {
+        _bgImgView = [[UIImageView alloc] init];
         _bgImgView.backgroundColor = [UIColor clearColor];
         _bgImgView.image = [UIImage imageNamed:@"quan"];
     }

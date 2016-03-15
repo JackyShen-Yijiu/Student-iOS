@@ -32,6 +32,8 @@
 
 #import "DVVNoDataPromptView.h"
 
+#import "JZMainSignUpController.h"
+
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
@@ -227,7 +229,7 @@
 #pragma mark 班型cell中的报名按钮单击事件
 - (void)signUpButtonAction:(ClassTypeDMData *)dmData {
     
-    DVVSignUpDetailController *vc = [DVVSignUpDetailController new];
+    JZMainSignUpController *vc = [JZMainSignUpController new];
     vc.dmData = dmData;
     [self.navigationController pushViewController:vc animated:YES];
     
