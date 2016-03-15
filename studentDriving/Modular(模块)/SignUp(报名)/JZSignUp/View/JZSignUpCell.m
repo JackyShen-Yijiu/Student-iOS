@@ -64,6 +64,20 @@
     }];
 
 }
+#pragma mark - UITextField delegate
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (_didBeginEditingBlock) {
+        _didBeginEditingBlock(textField, self);
+    }
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if (_didEndEditingBlock) {
+        _didEndEditingBlock(textField, self);
+    }
+}
+
 #pragma mark --- Lazy 加载
 - (UILabel *)titleLabel{
     if (_titleLabel == nil) {

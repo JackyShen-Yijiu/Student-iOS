@@ -36,6 +36,7 @@
 #import "YBForceEvaluateViewController.h"
 #import "APCommentViewController.h"
 #import "JZMainSignUpController.h"
+#import "JZYListController.h"
 
 @interface ViewController () <WMMenuViewControllerDelegate,IWTabBarViewControllerDelegate>
 
@@ -422,8 +423,11 @@
 ////        [self controller:myconVC];
         
         
-        JZMainSignUpController *myconVC = [[JZMainSignUpController alloc] init];
-        [self controller:myconVC];
+//        JZMainSignUpController *myconVC = [[JZMainSignUpController alloc] init];
+//        [self controller:myconVC];
+                JZYListController *myconVC = [[JZYListController alloc] init];
+                [self controller:myconVC];
+
         
     }
 }

@@ -23,6 +23,8 @@
 #import "DVVCoachDetailCommentListController.h"
 #import "DVVNoDataPromptView.h"
 
+#import "JZMainSignUpController.h"
+
 static NSString *infoCellID = @"kInfoCellID";
 static NSString *introductionCellID = @"kIntroductionCellID";
 static NSString *tagCellID = @"kTagCellID";
@@ -184,7 +186,7 @@ static NSString *courseCellID = @"kCourseCellID";
 #pragma mark 班型cell中的报名按钮单击事件
 - (void)signUpButtonAction:(ClassTypeDMData *)dmData {
     
-    DVVSignUpDetailController *vc = [DVVSignUpDetailController new];
+    JZMainSignUpController *vc = [JZMainSignUpController new];
     vc.dmData = dmData;
     [self.navigationController pushViewController:vc animated:YES];
     

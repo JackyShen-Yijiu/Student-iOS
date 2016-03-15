@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
           
-@interface JZSignUpCell : UITableViewCell
+@interface JZSignUpCell : UITableViewCell <UITextFieldDelegate>
 
 typedef void(^SignUpRowCell_TextFieldBlock)(UITextField *textField, JZSignUpCell *cell);
 

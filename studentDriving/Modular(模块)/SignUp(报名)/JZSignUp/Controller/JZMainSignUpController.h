@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClassTypeDMData.h"
+
 
 
 @interface JZMainSignUpController : UIViewController
-
+@property (nonatomic, strong) ClassTypeDMData *dmData;
 @end

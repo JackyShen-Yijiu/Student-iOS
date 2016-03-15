@@ -123,7 +123,7 @@
 
 - (void)moreBtnDidClick{
     NSLog(@"%s",__func__);
-    
+    // 更多选项的点击事件
     if (self.moteblock) {
         self.moteblock();
     }
@@ -135,6 +135,7 @@
 {
     NSLog(@"%s",__func__);
     
+    // 提交评价的点击事件
     if (self.commitBlock) {
             self.commitBlock();
     }
