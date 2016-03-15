@@ -81,6 +81,7 @@
                 <outlet property="payWayIcon" destination="UI8-di-DtN" id="wx4-yy-Uoq"/>
                 <outlet property="payWayLabel" destination="mqG-AB-QEa" id="6J6-Ej-hwE"/>
             </connections>
+            <point key="canvasLocation" x="-21" y="474"/>
         </tableViewCell>
     </objects>
 </document>

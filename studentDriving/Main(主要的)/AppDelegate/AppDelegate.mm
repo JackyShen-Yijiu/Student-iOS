@@ -327,19 +327,14 @@
                           *用公钥验证签名 严格验证请使用result.resultString与result.signString验签
                           */
                          NSLog(@"支付宝交易成功");
-                         [self obj_showTotasViewWithMes:@"支付成功"];
-                         
-                         NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-                         [user setBool:NO forKey:isPayErrorKey];
-                         [user setObject:nil forKey:payErrorWithDictKey];
-                         [user synchronize];
-                         
+                      //   [self obj_showTotasViewWithMes:@"支付成功"];
+                        
                      }
                      else
                      {
                          //交易失败
                          NSLog(@"支付失败");
-                         [self obj_showTotasViewWithMes:@"支付失败"];
+                       //  [self obj_showTotasViewWithMes:@"支付失败"];
 
                      }
                  }
@@ -347,7 +342,7 @@
                  {
                      //失败
                      NSLog(@"支付失败");
-                     [self obj_showTotasViewWithMes:@"支付失败"];
+                   //  [self obj_showTotasViewWithMes:@"支付失败"];
 
                  }
                  

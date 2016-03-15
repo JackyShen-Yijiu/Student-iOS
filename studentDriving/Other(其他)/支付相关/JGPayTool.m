@@ -25,11 +25,10 @@
 @implementation JGPayTool
 + (void)payWithPaye:(payType)payType tradeNO:(NSString *)tradeNO parentView:(UIViewController *)vc price:(NSString *)price title:(NSString *)title description:(NSString *)description success:(paySuccess)success error:(payError)error
 {
-    
-    if (payType==AlixPay) {// 支付宝支付
-       
         
-        [self alipayWithtradeNO:[self generateTradeNO] amount:price productName:title productDescription:description success:^(NSString *str) {
+    if (payType==AlixPay) {// 支付宝支付
+        
+        [self alipayWithtradeNO:tradeNO amount:price productName:title productDescription:description success:^(NSString *str) {
             
             success(str);
             
@@ -65,6 +64,8 @@
 #pragma mark -------- 支付宝支付
 + (void)alipayWithtradeNO:(NSString *)tradeNO amount:(NSString *)amount productName:(NSString *)productName productDescription:(NSString *)productDescription success:(paySuccess)success error:(payError)error
 {
+    
+    NSLog(@"tradeNO:%@ amount:%@ productName:%@ productDescription:%@",tradeNO,amount,productName,productDescription);
     
     /*
      *点击获取prodcut实例并初始化订单信息

@@ -120,7 +120,6 @@ static NSString *const kUserInfo = @"/userinfo/getapplyschoolinfo";
 
     self.view.backgroundColor = RGBColor(245, 247, 250);
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UILabel new]];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone   target:self action:@selector(leftBarDidClick)];
     

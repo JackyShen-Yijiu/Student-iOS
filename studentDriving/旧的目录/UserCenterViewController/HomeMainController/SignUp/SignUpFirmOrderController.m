@@ -411,10 +411,10 @@ static NSString *const applyUrl = @"system/verifyactivitycoupon";
             [AcountManager saveUserApplyState:@"2"];
             
 
-            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            [user setBool:NO forKey:isPayErrorKey];
-            [user setObject:nil forKey:payErrorWithDictKey];
-            [user synchronize];
+//            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+//            [user setBool:NO forKey:isPayErrorKey];
+//            [user setObject:nil forKey:payErrorWithDictKey];
+//            [user synchronize];
             
             //SignUpSucceedViewController *vc = [[SignUpSucceedViewController alloc] init];
             //[self.navigationController pushViewController:vc animated:YES];

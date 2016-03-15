@@ -13,4 +13,11 @@
 @property (nonatomic, assign) BOOL isHaveYCode;
 @property (nonatomic, strong) ClassTypeDMData *dmData;
 @property (nonatomic, strong) NSString *yCodeStr;
+
+
+// 订单返回到信息
+@property (nonatomic, strong) NSDictionary *extraDict;
+// 手机号
+@property (nonatomic, copy) NSString *mobileString;
+
 @end

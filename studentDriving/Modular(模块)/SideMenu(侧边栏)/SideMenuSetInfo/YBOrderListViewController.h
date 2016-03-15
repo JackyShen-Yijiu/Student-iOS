@@ -9,5 +9,5 @@
 #import "YBBaseViewController.h"
 
 @interface YBOrderListViewController : YBBaseViewController
-
+@property (nonatomic,assign) BOOL isPaySuccess;
 @end

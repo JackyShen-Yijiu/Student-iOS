@@ -162,6 +162,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         }];
     }
     
+    /*
     // 判断上次是否有尚未支付的订单
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     BOOL isAlipayError = [user boolForKey:isPayErrorKey];
@@ -199,7 +200,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:_vc];
         
     }
-    
+    */
     
 }
 

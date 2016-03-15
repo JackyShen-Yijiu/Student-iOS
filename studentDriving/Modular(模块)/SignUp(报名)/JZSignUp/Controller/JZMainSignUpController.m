@@ -370,33 +370,34 @@
         NSDictionary *extraDict = data[@"extra"];
         //        NSLog(@"extraDict: %@", extraDict);
         
-        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-        
-        // 存储状态
-        //是否支付失败
-#define isPayErrorKey @"payError"
-        [ud setBool:YES forKey:isPayErrorKey];
-        
-        // 订单信息
-        //#define payErrorWithDictKey @"payErrorWithDict"
-        [ud setObject:extraDict forKey:payErrorWithDictKey];
-        
-        // 支付方式
-        //#define payErrorWithPayType @"payErrorWithPayType"
-        
-        // 手机号码
-        //#define payErrorWithPhone @"payErrorWithPhone"
-        [ud setObject:_phoneStr forKey:payErrorWithPhone];
-        
+//        NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//        
+//        // 存储状态
+//        //是否支付失败
+//#define isPayErrorKey @"payError"
+//        [ud setBool:YES forKey:isPayErrorKey];
+//        
+//        // 订单信息
+//        //#define payErrorWithDictKey @"payErrorWithDict"
+//        [ud setObject:extraDict forKey:payErrorWithDictKey];
+//        
+//        // 支付方式
+//        //#define payErrorWithPayType @"payErrorWithPayType"
+//        
+//        // 手机号码
+//        //#define payErrorWithPhone @"payErrorWithPhone"
+//        [ud setObject:_phoneStr forKey:payErrorWithPhone];
+//        
         
         //使重新报名变为0
-        if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
-            [ud setObject:@"0" forKey:@"applyAgain"];
-        }
-        [ud synchronize];
+//        if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
+//            [ud setObject:@"0" forKey:@"applyAgain"];
+//        }
+//        [ud synchronize];
         JZPayWayController *payWayVC = [[JZPayWayController alloc] init];
         payWayVC.dmData = self.dmData;
         payWayVC.yCodeStr = self.yStr;
+        payWayVC.extraDict = extraDict;
         [self.navigationController pushViewController:payWayVC animated:YES];
         
     } withFailure:^(id data) {

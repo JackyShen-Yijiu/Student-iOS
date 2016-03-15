@@ -480,30 +480,30 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                 
                 NSDictionary *extraDict = data[@"extra"];;
                 
-                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-
-                // 存储状态
-                 //是否支付失败
-#define isPayErrorKey @"payError"
-                [ud setBool:YES forKey:isPayErrorKey];
-                
-                // 订单信息
-//#define payErrorWithDictKey @"payErrorWithDict"
-                [ud setObject:extraDict forKey:payErrorWithDictKey];
-                
-                // 支付方式
-//#define payErrorWithPayType @"payErrorWithPayType"
-                
-                // 手机号码
-//#define payErrorWithPhone @"payErrorWithPhone"
-                [ud setObject:self.baomingTel forKey:payErrorWithPhone];
-
-                
-                //使重新报名变为0
-                if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
-                    [ud setObject:@"0" forKey:@"applyAgain"];
-                }
-                [ud synchronize];
+//                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//
+//                // 存储状态
+//                 //是否支付失败
+//#define isPayErrorKey @"payError"
+//                [ud setBool:YES forKey:isPayErrorKey];
+//                
+//                // 订单信息
+////#define payErrorWithDictKey @"payErrorWithDict"
+//                [ud setObject:extraDict forKey:payErrorWithDictKey];
+//                
+//                // 支付方式
+////#define payErrorWithPayType @"payErrorWithPayType"
+//                
+//                // 手机号码
+////#define payErrorWithPhone @"payErrorWithPhone"
+//                [ud setObject:self.baomingTel forKey:payErrorWithPhone];
+//
+//                
+//                //使重新报名变为0
+//                if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
+//                    [ud setObject:@"0" forKey:@"applyAgain"];
+//                }
+//                [ud synchronize];
 
                 if (1 == [number integerValue]) {
                     // 线下报名
@@ -582,30 +582,30 @@ static NSString *const kVerifyFcode = @"verifyfcodecorrect";
                 
                 NSDictionary *extraDict = data[@"extra"];;
                 
-                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-                
-                // 存储状态
-                //是否支付失败
-#define isPayErrorKey @"payError"
-                [ud setBool:YES forKey:isPayErrorKey];
-                
-                // 订单信息
-                //#define payErrorWithDictKey @"payErrorWithDict"
-                [ud setObject:extraDict forKey:payErrorWithDictKey];
-                
-                // 支付方式
-                //#define payErrorWithPayType @"payErrorWithPayType"
-                
-                // 手机号码
-                //#define payErrorWithPhone @"payErrorWithPhone"
-                [ud setObject:self.baomingTel forKey:payErrorWithPhone];
-                
-                
-                //使重新报名变为0
-                if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
-                    [ud setObject:@"0" forKey:@"applyAgain"];
-                }
-                [ud synchronize];
+//                NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//                
+//                // 存储状态
+//                //是否支付失败
+//#define isPayErrorKey @"payError"
+//                [ud setBool:YES forKey:isPayErrorKey];
+//                
+//                // 订单信息
+//                //#define payErrorWithDictKey @"payErrorWithDict"
+//                [ud setObject:extraDict forKey:payErrorWithDictKey];
+//                
+//                // 支付方式
+//                //#define payErrorWithPayType @"payErrorWithPayType"
+//                
+//                // 手机号码
+//                //#define payErrorWithPhone @"payErrorWithPhone"
+//                [ud setObject:self.baomingTel forKey:payErrorWithPhone];
+//                
+//                
+//                //使重新报名变为0
+//                if ([[ud objectForKey:@"applyAgain"] isEqualToString:@"1"]) {
+//                    [ud setObject:@"0" forKey:@"applyAgain"];
+//                }
+//                [ud synchronize];
                 
                 if (1 == [number integerValue]) {
                     // 线下报名

@@ -11,8 +11,12 @@
 #import "JZPayWayHeaderCell.h"
 #import "JZSignUpCell.h"
 #import "JZPayWayFooterCell.h"
+#import "JGPayTool.h"
+#import "DVVPaySuccessController.h"
+#import "YBOrderListViewController.h"
+#import "SignUpSuccessViewController.h"
 
-@interface JZPayWayController ()<UITableViewDataSource,UITableViewDelegate,JZPayWayDelegate>
+@interface JZPayWayController ()<UITableViewDataSource,UITableViewDelegate,JZPayWayDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -47,23 +51,51 @@
 @property (nonatomic, strong) NSMutableArray *btnArray;
 @property (nonatomic, assign) NSInteger tag;
 
-
-
-
-
-
 @end
 
 @implementation JZPayWayController
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     self.view.backgroundColor = RGBColor(226, 226, 233);
     [self.view addSubview:self.tableView];
     [self initUI];
     [self initData];
     
+    self.title = @"费用支付";
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weixinPaySuccess) name:weixinpaySuccessNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(weixinPayError) name:weixinpayErrorNotification object:nil];
+
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+    
 }
+
+- (void)back
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"退出支付" message:@"您还没有支付成功,确定要退出支付吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+    [alert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        
+        // 报名成功时清除
+        NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+        [defauts setObject:@"" forKey:@"SignUp"];
+        
+        YBOrderListViewController *vc = [[YBOrderListViewController alloc] init];
+        vc.isPaySuccess = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+        
+        [AcountManager saveUserApplyState:@"1"];
+        
+    }
+}
+
 - (void)initUI{
     [self.btnBG addSubview:self.leftButton];
     [self.btnBG addSubview:self.rightButton];
@@ -223,17 +255,104 @@
 }
 #pragma   mark ------   action Target
 - (void)didRight:(UIButton *)btn{
+    
     // 确认支付
     if (_tag == 1000) {
-        // 微信支付
+        
+        [self pay:WeChatPay];
+        
     }
     if (_tag == 1001) {
         // 支付宝支付
+        [self pay:AlixPay];
+
     }
     if (_tag == 1002) {
         // 线下支付
+        SignUpSuccessViewController *vc = [[SignUpSuccessViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
+
+
+- (void)pay:(payType)paytype
+{
+    NSLog(@"_extraDict:%@",_extraDict);
+    /*
+    
+     {
+     "__v" = 0;
+     "_id" = 56e82044a9f1542a1c7053dc;
+     applyclasstypeinfo =     {
+     id = 56aecf9b70667d997fda6247;
+     name = "\U6d4b\U8bd5\U73ed\U578b \U8df3\U697c\U4ef7";
+     onsaleprice = 1;
+     price = 1;
+     };
+     applyschoolinfo =     {
+     id = 562dcc3ccb90f25c3bde40da;
+     name = "\U4e00\U6b65\U4e92\U8054\U7f51\U9a7e\U6821";
+     };
+     couponcode = "";
+     creattime = "2016-03-15T14:46:28.184Z";
+     discountmoney = 0;
+     paychannel = 0;
+     payendtime = "2016-03-18T14:46:28.184Z";
+     paymoney = 1;
+     userid = 56e802cfcd82196b068682e4;
+     userpaystate = 0;
+     weixinpayinfo = "";
+     }
+     
+     */
+    // 描述
+    NSString *desStr = [NSString stringWithFormat:@"%@ %@",_extraDict[@"applyclasstypeinfo"][@"name"],_extraDict[@"applyschoolinfo"][@"name"]];
+    
+    [JGPayTool payWithPaye:paytype tradeNO:_extraDict[@"_id"] parentView:self price:[NSString stringWithFormat:@"%ld",(long)self.dmData.price] title:_extraDict[@"applyclasstypeinfo"][@"name"] description:desStr success:^(NSString *str) {
+        
+        // 支付宝支付成功回调
+        [self weixinPaySuccess];
+        
+    } error:^(NSString *str) {
+        
+        NSLog(@"支付失败");
+        [self obj_showTotasViewWithMes:@"支付失败"];
+        [self weixinPayError];
+    }];
+}
+
+- (void)weixinPaySuccess{
+    
+    [self obj_showTotasViewWithMes:@"支付成功"];
+
+    // 报名成功时清除
+    NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+    [defauts setObject:@"" forKey:@"SignUp"];
+    
+    DVVPaySuccessController *vc = [DVVPaySuccessController new];
+    vc.isPaySuccess = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    [AcountManager saveUserApplyState:@"2"];
+    
+}
+
+- (void)weixinPayError{
+    
+    [self obj_showTotasViewWithMes:@"支付失败"];
+    
+    // 报名成功时清除
+    NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
+    [defauts setObject:@"" forKey:@"SignUp"];
+    
+    YBOrderListViewController *vc = [[YBOrderListViewController alloc] init];
+    vc.isPaySuccess = YES;
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    [AcountManager saveUserApplyState:@"1"];
+    
+}
+
 #pragma mark ---- 支付方式代理方法
 - (void)initWithPayWay:(UIButton *)btn{
     for (UIButton *sender in self.btnArray) {
