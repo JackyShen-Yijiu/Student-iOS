@@ -13,9 +13,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *subjectTopLabel;
 @property (weak, nonatomic) IBOutlet UILabel *buySubjectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *guidingLabel;
+@property (weak, nonatomic) IBOutlet UILabel *yiXueLabel;
+@property (weak, nonatomic) IBOutlet UILabel *wanChengLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *yuekaoBtn;
 
 @property (nonatomic,weak) UIViewController *parentViewController;
+
+@property (weak, nonatomic) IBOutlet UIView *bottomView;
 
 - (void)setUpData;
 

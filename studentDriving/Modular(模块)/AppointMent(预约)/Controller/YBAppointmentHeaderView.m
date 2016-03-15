@@ -18,8 +18,22 @@
     if (self) {
         NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"YBAppointmentHeaderView" owner:self options:nil];
         self = xibArray.firstObject;
+        
+        _subjectLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _subjectTopLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        
+        [self setLabelTextColor:_buySubjectLabel];
+        [self setLabelTextColor:_yiXueLabel];
+        [self setLabelTextColor:_guidingLabel];
+        [self setLabelTextColor:_wanChengLabel];
+        
+        _bottomView.backgroundColor = YBMainViewControlerBackgroundColor;
     }
     return self;
+}
+
+- (void)setLabelTextColor:(UILabel *)label {
+    label.textColor = [UIColor colorWithHexString:@"b7b7b7"];
 }
 
 - (void)setUpData
@@ -36,7 +50,10 @@
         self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",@"科目二"];
     }
     
-    NSMutableString *subStr = [NSMutableString string];
+    NSString *buyStr = @"";
+    NSString *yiXueStr = @"";
+    
+//    NSMutableString *subStr = [NSMutableString string];
     if ([AcountManager manager].subjecttwo.reservation && [AcountManager manager].subjecttwo.finishcourse) {
         
         NSInteger yiyuexueshiCount = [[AcountManager manager].subjecttwo.reservation integerValue] + [[AcountManager manager].subjecttwo.finishcourse integerValue];
@@ -48,13 +65,15 @@
         //            [subStr appendString:[NSString stringWithFormat:@"    官方学时:%@课时",[AcountManager manager].subjecttwo.officialhours]];
         //        }
         //
-        [subStr appendString:[NSString stringWithFormat:@"购买:%@课时",(long)[AcountManager manager].subjecttwo.buycoursecount]];
-        [subStr appendString:[NSString stringWithFormat:@"     已学:%ld课时",yiyuexueshiCount]];
+        buyStr = [NSString stringWithFormat:@"购买:%ld课时",(long)[AcountManager manager].subjecttwo.buycoursecount.longValue];
+        yiXueStr = [NSString stringWithFormat:@"已学:%ld课时",(long)yiyuexueshiCount];
+//        [subStr appendString:[NSString stringWithFormat:@"购买:%ld课时",(long)[AcountManager manager].subjecttwo.buycoursecount]];
+//        [subStr appendString:[NSString stringWithFormat:@"     已学:%ld课时",(long)yiyuexueshiCount]];
         
     }else if ([AcountManager manager].subjectthree.reservation && [AcountManager manager].subjectthree.finishcourse) {
         
         NSInteger yiyuexueshiCount = [[AcountManager manager].subjectthree.reservation integerValue] + [[AcountManager manager].subjectthree.finishcourse integerValue];
-        NSLog(@"yiyuexueshiCount:%lu",yiyuexueshiCount);
+        NSLog(@"yiyuexueshiCount:%lu",(long)yiyuexueshiCount);
         
         //        [subStr appendString:[NSString stringWithFormat:@"已约学时:%ld课时",(long)yiyuexueshiCount]];
         //
@@ -62,18 +81,30 @@
         //        if (officiahours&&![officiahours isEqualToString:@"0"]) {
         //            [subStr appendString:[NSString stringWithFormat:@"    官方学时:%@课时",[AcountManager manager].subjectthree.officialhours]];
         //        }
-        [subStr appendString:[NSString stringWithFormat:@"购买:%@课时",(long)[AcountManager manager].subjectthree.buycoursecount]];
-        [subStr appendString:[NSString stringWithFormat:@"     已学:%ld课时",yiyuexueshiCount]];
+        
+        buyStr = [NSString stringWithFormat:@"购买:%ld课时",(long)[AcountManager manager].subjectthree.buycoursecount.longValue];
+        yiXueStr = [NSString stringWithFormat:@"已学:%ld课时",(long)yiyuexueshiCount];
+//        [subStr appendString:[NSString stringWithFormat:@"购买:%ld课时",(long)[AcountManager manager].subjectthree.buycoursecount]];
+//        [subStr appendString:[NSString stringWithFormat:@"     已学:%ld课时",(long)yiyuexueshiCount]];
         
     }
     // 购买多少课、已学多少课时
-    if (subStr && [subStr length]!=0) {
-        self.buySubjectLabel.text = subStr;
+    if (buyStr.length) {
+        _buySubjectLabel.text = buyStr;
     }
+    if (yiXueStr) {
+        _yiXueLabel.text = yiXueStr;
+    }
+//    if (subStr && [subStr length]!=0) {
+//        self.buySubjectLabel.text = subStr;
+//    }
     
     //
     //
-    NSMutableString *detailStr = [NSMutableString string];
+    
+    NSString *guiDingStr = @"";
+    NSString *wanChengStr = @"";
+//    NSMutableString *detailStr = [NSMutableString string];
     //    if ([AcountManager manager].subjecttwo.missingcourse) {
     //
     //        NSInteger loukeCount = [[AcountManager manager].subjecttwo.missingcourse integerValue];;
@@ -97,8 +128,10 @@
         NSInteger totalCourse = [AcountManager manager].subjecttwo.totalcourse.integerValue;
         NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
-        [detailStr appendString:[NSString stringWithFormat:@"规定:%ld课时",totalCourse]];
-        [detailStr appendString:[NSString stringWithFormat:@"     完成:%ld课时",doneCourse]];
+        guiDingStr = [NSString stringWithFormat:@"规定:%ld学时",(long)totalCourse];
+        wanChengStr = [NSString stringWithFormat:@"完成:%ld学时",(long)doneCourse];
+//        [detailStr appendString:[NSString stringWithFormat:@"规定:%ld学时",totalCourse]];
+//        [detailStr appendString:[NSString stringWithFormat:@"     完成:%ld学时",doneCourse]];
         
     }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
         
@@ -107,15 +140,23 @@
         NSInteger totalCourse = [AcountManager manager].subjectthree.totalcourse.integerValue;
         NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
-        [detailStr appendString:[NSString stringWithFormat:@"规定:%ld课时",totalCourse]];
-        [detailStr appendString:[NSString stringWithFormat:@"     完成:%ld课时",doneCourse]];
+        guiDingStr = [NSString stringWithFormat:@"规定:%ld学时",(long)totalCourse];
+        wanChengStr = [NSString stringWithFormat:@"完成:%ld学时",(long)doneCourse];
+//        [detailStr appendString:[NSString stringWithFormat:@"规定:%ld学时",totalCourse]];
+//        [detailStr appendString:[NSString stringWithFormat:@"     完成:%ld学时",doneCourse]];
         
     }
     
     // 规定多少课、完成多少课时
-    if (detailStr&&[detailStr length]!=0) {
-        self.guidingLabel.text = detailStr;
+    if (guiDingStr.length) {
+        _guidingLabel.text = guiDingStr;
     }
+    if (wanChengStr.length) {
+        _wanChengLabel.text = wanChengStr;
+    }
+//    if (detailStr&&[detailStr length]!=0) {
+//        self.guidingLabel.text = detailStr;
+//    }
     
     if (![AcountManager isLogin]) {
         self.yuekaoBtn.hidden = YES;

@@ -25,6 +25,7 @@
 #import "DVVToast.h"
 #import "YBAppointmentDetailHeaderView.h"
 #import "YBAppointmentDetailCell.h"
+#import "YBAppointmentCheckSignInTool.h"
 
 //static NSString *infoCellID = @"kInfoCellID";
 //static NSString *introductionCellID = @"kIntroductionCellID";
@@ -66,7 +67,6 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     
     [self.view addSubview:self.tableView];
     _tableView.tableHeaderView = self.headerView;
-    [self loadQRCode];
     
     [self configViewModel];
 
@@ -97,7 +97,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 #pragma mark - public
 
-- (void)loadQRCode {
+- (void)loadQRCodeWithImageView:(UIImageView *)imageView {
     
     [DVVToast showFromView:self.view OffSetY:-64];
     [DVVLocation reverseGeoCode:^(BMKReverseGeoCodeResult *result, CLLocationCoordinate2D coordinate, NSString *city, NSString *address) {
@@ -145,7 +145,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         
         // 显示二维码
         CGFloat size = 128;
-        _headerView.imageView.image = [DVVCreateQRCode createQRCodeWithContent:string size:size];
+        imageView.image = [DVVCreateQRCode createQRCodeWithContent:string size:size];
         
     } error:^{
         [DVVToast hideFromView:self.view];
@@ -272,8 +272,34 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (YBAppointmentDetailHeaderView *)headerView {
     if (!_headerView) {
         _headerView =[YBAppointmentDetailHeaderView new];
-        _headerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, _headerView.defaultHeight);
-        _headerView.statusLabel.text = [_courseModel getStatueString];
+        
+        NSString *statusStr = [_courseModel getStatueString];
+        UIImage *image = nil;
+        NSString *markStr = nil;
+        CGFloat height = _headerView.defaultHeight;
+        
+        if ([statusStr isEqualToString:@"请求中"]) {
+            
+            statusStr = @"预约请求中";
+            image = [UIImage imageNamed:@"alipy_way"];
+            markStr = @"（教练还没有接受预约，请耐心等一下哦）";
+            height = 228;
+            
+        }else if ([statusStr isEqualToString:@"已接收"]) {
+            
+            statusStr = @"预约已接受";
+            if ([YBAppointmentCheckSignInTool checkSignInWithBeginTime:_courseModel.courseBeginTime endTime:_courseModel.courseEndtime]) {
+                [self loadQRCodeWithImageView:_headerView.imageView];
+                markStr = @"（给教练扫一扫二维码即可签到）";
+            }else {
+                image = [UIImage imageNamed:@"默认"];
+                markStr = @"（还没有到签到时间哦）";
+            }
+        }
+        _headerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, height);
+        _headerView.statusLabel.text = statusStr;
+        _headerView.imageView.image = image;
+        _headerView.imageMarkLabel.text = markStr;
     }
     return _headerView;
 }

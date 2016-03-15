@@ -50,7 +50,7 @@
     
     CGSize size = self.bounds.size;
     CGFloat minX = CGRectGetMinX(_nameLabel.frame);
-    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 8, 0.5);
+    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX, 0.5);
 }
 
 - (IBAction)qrCodeButtonAction:(UIButton *)sender {
