@@ -118,7 +118,7 @@
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         
         // 显示二维码
-        CGFloat size = 128;
+        CGFloat size = 188;
         [self showQRInfoWithImage:[DVVCreateQRCode createQRCodeWithContent:string size:size]];
         
     } error:^{
@@ -147,7 +147,7 @@
     [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
         
         bgView.alpha = 1;
-        imageView.bounds = CGRectMake(0, 0, 128, 128);
+        imageView.bounds = CGRectMake(0, 0, 188, 188);
 
     } completion:^(BOOL finished) {
         

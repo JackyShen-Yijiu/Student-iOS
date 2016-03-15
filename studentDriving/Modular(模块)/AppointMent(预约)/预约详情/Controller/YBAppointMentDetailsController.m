@@ -25,7 +25,8 @@
 #import "DVVToast.h"
 #import "YBAppointmentDetailHeaderView.h"
 #import "YBAppointmentDetailCell.h"
-#import "YBAppointmentCheckSignInTool.h"
+#import "YBAppointmentTool.h"
+#import "NSString+Helper.h"
 
 //static NSString *infoCellID = @"kInfoCellID";
 //static NSString *introductionCellID = @"kIntroductionCellID";
@@ -273,32 +274,79 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     if (!_headerView) {
         _headerView =[YBAppointmentDetailHeaderView new];
         
+        CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+        
+        // 状态
         NSString *statusStr = [_courseModel getStatueString];
+        // 显示的图片
         UIImage *image = nil;
+        // 根据不同的状态，显示不同的提示信息
         NSString *markStr = nil;
-        CGFloat height = _headerView.defaultHeight;
+        // 是否显示签到提示信息
+        BOOL showSigninText = NO;
+        // 是否可以签到
+        BOOL canSignin = NO;
         
         if ([statusStr isEqualToString:@"请求中"]) {
             
             statusStr = @"预约请求中";
-            image = [UIImage imageNamed:@"alipy_way"];
-            markStr = @"（教练还没有接受预约，请耐心等一下哦）";
-            height = 228;
+            image = [UIImage imageNamed:@"hold"];
+            markStr = @"教练还没有接受预约，请耐心等一下哦";
             
         }else if ([statusStr isEqualToString:@"已接收"]) {
             
             statusStr = @"预约已接受";
-            if ([YBAppointmentCheckSignInTool checkSignInWithBeginTime:_courseModel.courseBeginTime endTime:_courseModel.courseEndtime]) {
+            showSigninText = YES;
+            if ([YBAppointmentTool checkSignInWithBeginTime:_courseModel.courseBeginTime endTime:_courseModel.courseEndtime]) {
                 [self loadQRCodeWithImageView:_headerView.imageView];
                 markStr = @"（给教练扫一扫二维码即可签到）";
+                canSignin = YES;
             }else {
-                image = [UIImage imageNamed:@"默认"];
-                markStr = @"（还没有到签到时间哦）";
+                image = [UIImage imageNamed:@"wait"];
+                markStr = @"还没有到签到时间哦";
             }
+        }else if ([statusStr isEqualToString:@"已漏课"]) {
+            
+            statusStr = @"该预约漏课";
+            image = [UIImage imageNamed:@"omit"];
+            markStr = @"您没能及时签到该预约，请及时联系客服进行补课事宜。";
+            
+        }else if ([statusStr isEqualToString:@"_markLabel"]) {
+            
+            statusStr = @"预约已签到";
+            image = [UIImage imageNamed:@"order_indent"];
+            markStr = @"该预约已签到";
+            showSigninText = YES;
+            
+        }else if ([statusStr isEqualToString:@"教练取消"]) {
+            
+            statusStr = @"预约被拒绝";
+            image = [UIImage imageNamed:@"order_fail"];
+            markStr = @"";
+            
         }
+#warning 还有一个系统取消状态暂未处理
+        
+        // 测试图片状态提示语的高度
+        CGFloat imageMarkHeight = [NSString autoHeightWithString:markStr width:screenWidth - 48*2 font:[UIFont systemFontOfSize:14]];
+        
+        // 使用（masonry更新约束没成功）所以就这样写了
+        _headerView.imageMarkLabel.frame = CGRectMake(48, 202, screenWidth - 48*2, imageMarkHeight);
+        _headerView.markLabel.frame = CGRectMake(16, 202+imageMarkHeight+12, screenWidth - 16*2, _headerView.siginTextHeight);
+        
+        CGFloat height = 202 + imageMarkHeight + 12 + 16;
+        _headerView.markLabel.hidden = YES;
+        if (showSigninText) {
+            height += _headerView.siginTextHeight;
+            _headerView.markLabel.hidden = NO;
+        }
+        
         _headerView.frame = CGRectMake(0, 0, [UIScreen mainScreen].bounds.size.width, height);
         _headerView.statusLabel.text = statusStr;
-        _headerView.imageView.image = image;
+        // 如果不可以签到才设置状态图片
+        if (!canSignin) {
+            _headerView.imageView.image = image;
+        }
         _headerView.imageMarkLabel.text = markStr;
     }
     return _headerView;

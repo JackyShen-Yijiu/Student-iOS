@@ -1,14 +1,14 @@
 //
-//  YBAppointmentCheckSignInTool.m
+//  YBAppointmentTool.m
 //  studentDriving
 //
 //  Created by 大威 on 16/3/15.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "YBAppointmentCheckSignInTool.h"
+#import "YBAppointmentTool.h"
 
-@implementation YBAppointmentCheckSignInTool
+@implementation YBAppointmentTool
 
 
 + (BOOL)checkSignInWithBeginTime:(NSString *)beginTime
@@ -43,6 +43,38 @@
         flage = YES;
     }
     
+    return flage;
+}
+
++ (BOOL)checkCancelAppointmentWithBeginTime:(NSString *)beginTime {
+    
+    NSString *yyyyStr = [self getLocalDateFormateUTCDate:beginTime format:@"yyyy"];
+    NSString *MMStr = [self getLocalDateFormateUTCDate:beginTime format:@"MM"];
+    NSString *ddStr = [self getLocalDateFormateUTCDate:beginTime format:@"dd"];
+    NSString *HHStr = [self getLocalDateFormateUTCDate:beginTime format:@"HH"];
+    
+    NSString *currentyyyyStr = [self dateFromLocalWithFormatString:@"yyyy"];
+    NSString *currentMMStr = [self dateFromLocalWithFormatString:@"MM"];
+    NSString *currentddStr = [self dateFromLocalWithFormatString:@"dd"];
+    NSString *currentHHStr = [self dateFromLocalWithFormatString:@"HH"];
+    
+    BOOL flage = NO;
+    //判断年份
+    if ([yyyyStr integerValue] >= [currentyyyyStr integerValue]) {
+        // 判断月份
+        if ([MMStr integerValue] >= [currentMMStr integerValue]) {
+            // 判断天
+            if ([ddStr integerValue] >= [currentddStr integerValue]) {
+                // 相差一天的情况
+                if (1 == [ddStr integerValue] - [currentddStr integerValue]) {
+                    
+                    if (24 - [currentHHStr integerValue] + [HHStr integerValue] > 24) {
+                        flage = YES;
+                    }
+                }
+            }
+        }
+    }
     return flage;
 }
 

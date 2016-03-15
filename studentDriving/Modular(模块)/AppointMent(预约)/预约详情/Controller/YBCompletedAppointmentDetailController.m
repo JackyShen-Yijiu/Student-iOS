@@ -87,11 +87,17 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     }else if (indexPath.row==2){// 签到时间
         
         cell.iconImageView.image = [UIImage imageNamed:@"YBAppointMentDetailstime"];
-//        cell.titleLabel.text = _courseModel.sigintime;
+        
+        if (_courseModel.sigintime.length) {
+            cell.titleLabel.text = [NSString stringWithFormat:@"签到时间:%@", [self getLocalDateFormateUTCDate:_courseModel.sigintime format:@"HH:mm"]];
+        }else {
+            cell.titleLabel.text = @"";
+            
+        }
         
     }else if (indexPath.row==3){// 学习内容
         cell.iconImageView.image = [UIImage imageNamed:@"YBAppointMentDetailsmodel"];
-//        cell.titleLabel.text = _courseModel.learningcontent;
+        cell.titleLabel.text = _courseModel.learningcontent;
     }else if (indexPath.row==4){// 教练
         cell.iconImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscoach"];
         cell.titleLabel.text = _courseModel.userModel.name;
