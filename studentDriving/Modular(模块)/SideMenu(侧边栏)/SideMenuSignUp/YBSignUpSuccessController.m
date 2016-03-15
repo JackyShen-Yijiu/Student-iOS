@@ -131,28 +131,30 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithCustomView:button];
     self.navigationItem.rightBarButtonItem = item;
 }
+
 - (void)share {
     
     // 显示分享
     [DVVShare shareWithTitle:DVV_Share_Default_Title content:DVV_Share_Default_Content image:DVV_Share_Default_Image location:nil url:nil success:^(NSString *platformName) {
         [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
     }];
+    
 }
 
 - (void)initUI {
     UIScrollView *scrollview = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kSystemHeight, kSystemHeight - 64-49)];
-    scrollview.contentSize = CGSizeMake(kSystemWide, 500);
     [self.view addSubview:scrollview];
     
     //    ChooseBtnView *cbv = [[ChooseBtnView alloc] initWithSelectedBtn:2 leftTitle:@"选择驾校" midTitle:@"填写信息" rightTitle:@"报名验证" frame:CGRectMake(0, 10, kSystemWide, 77)];
     //    cbv.backgroundColor = [UIColor whiteColor];
     //    [scrollview addSubview:cbv];
     
-    
-    SignSuccessView *ssv = [[SignSuccessView alloc] initWithFrame:CGRectMake(0, 10, kSystemWide, kSystemHeight-64-49-87) imageStr:_imageStr orderNumStr:_kRealOrderNumber timeStr:[NSString stringWithFormat:@"%@到%@",_kRealApplytime,_kRealEndtime] CarrydataExplainContentLb:_explainStr];
+    SignSuccessView *ssv = nil;//[[SignSuccessView alloc] initWithFrame:CGRectMake(0, 10, kSystemWide, kSystemHeight-64-49-87) imageStr:_imageStr orderNumStr:_kRealOrderNumber timeStr:[NSString stringWithFormat:@"%@到%@",_kRealApplytime,_kRealEndtime] CarrydataExplainContentLb:_explainStr iconImgStr:@"" nameStr:@"" payMoneyStr:@"" payTypeStr:@"" typeStr:@""];
     [scrollview addSubview:ssv];
     [self.view addSubview:self.referButton];
     
+    scrollview.contentSize = CGSizeMake(kSystemWide, [ssv successViewH]);
+
     scrollview.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     ssv.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     
