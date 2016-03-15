@@ -252,6 +252,7 @@
     [packageParams setObject: @"196.168.1.1"    forKey:@"spbill_create_ip"];//发器支付的机器ip
     [packageParams setObject: order_price       forKey:@"total_fee"];       //订单金额，单位为分
     
+    NSLog(@"提交预支付packageParams:%@",packageParams);
     NSMutableDictionary *resParams = [self sendPrepayWithParams:packageParams];
     NSLog(@"提交预支付resParams:%@",resParams);
     

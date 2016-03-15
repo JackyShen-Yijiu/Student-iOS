@@ -28,6 +28,8 @@
 		5510F8841C34F5C700A431CD /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8831C34F5C700A431CD /* Foundation.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		5510F8861C34F5D800A431CD /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8851C34F5D800A431CD /* UIKit.framework */; };
 		5510F8881C34F5EB00A431CD /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F8871C34F5EB00A431CD /* Security.framework */; };
+		B20E59411C97C04B00912F5A /* DataMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E593E1C97C04B00912F5A /* DataMD5.m */; };
+		B20E59421C97C04B00912F5A /* getIPhoneIP.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E59401C97C04B00912F5A /* getIPhoneIP.m */; };
 		B221AF591C914BFB001F6EED /* NetWorkEntiry.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF581C914BFB001F6EED /* NetWorkEntiry.m */; };
 		B221AF5C1C914C18001F6EED /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF5B1C914C18001F6EED /* NSString+MD5.m */; };
 		B221AF651C9172E4001F6EED /* YBAppointController.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF641C9172E4001F6EED /* YBAppointController.m */; };
@@ -1078,6 +1080,10 @@
 		5510F8871C34F5EB00A431CD /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		6B72926ACF2D3A739BF3CB87 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		72DA1A6E4E9DDCA9DDBC3DAA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		B20E593D1C97C04B00912F5A /* DataMD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataMD5.h; sourceTree = "<group>"; };
+		B20E593E1C97C04B00912F5A /* DataMD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataMD5.m; sourceTree = "<group>"; };
+		B20E593F1C97C04B00912F5A /* getIPhoneIP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = getIPhoneIP.h; sourceTree = "<group>"; };
+		B20E59401C97C04B00912F5A /* getIPhoneIP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = getIPhoneIP.m; sourceTree = "<group>"; };
 		B221AF571C914BFB001F6EED /* NetWorkEntiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkEntiry.h; sourceTree = "<group>"; };
 		B221AF581C914BFB001F6EED /* NetWorkEntiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkEntiry.m; sourceTree = "<group>"; };
 		B221AF5A1C914C18001F6EED /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -6637,6 +6643,10 @@
 		B251E2491C8E849400E6613A /* 网络 */ = {
 			isa = PBXGroup;
 			children = (
+				B20E593D1C97C04B00912F5A /* DataMD5.h */,
+				B20E593E1C97C04B00912F5A /* DataMD5.m */,
+				B20E593F1C97C04B00912F5A /* getIPhoneIP.h */,
+				B20E59401C97C04B00912F5A /* getIPhoneIP.m */,
 				B221AF571C914BFB001F6EED /* NetWorkEntiry.h */,
 				B221AF581C914BFB001F6EED /* NetWorkEntiry.m */,
 				B251E24A1C8E849400E6613A /* DVVCheckAppNewVersion.h */,
@@ -7370,6 +7380,7 @@
 				B251E3341C8E849500E6613A /* tagslistModel.m in Sources */,
 				B251E5D41C8E849500E6613A /* ButtonGroupView.m in Sources */,
 				B251E5DE1C8E849500E6613A /* ChineseToPinyinResource.m in Sources */,
+				B20E59411C97C04B00912F5A /* DataMD5.m in Sources */,
 				B251E3191C8E849500E6613A /* AppointmentCoachModel.m in Sources */,
 				B251E66D1C8E849500E6613A /* UINavigationItem+DVVBackItem.m in Sources */,
 				B251E5151C8E849500E6613A /* PrivateMessageCell.m in Sources */,
@@ -7598,6 +7609,7 @@
 				B251E5471C8E849500E6613A /* FeedBackViewController.m in Sources */,
 				B251E6121C8E849500E6613A /* MWTapDetectingImageView.m in Sources */,
 				B251E33A1C8E849500E6613A /* ComplaintCoachListController.m in Sources */,
+				B20E59421C97C04B00912F5A /* getIPhoneIP.m in Sources */,
 				B251E4181C8E849500E6613A /* YBAppointMentUserFooter.m in Sources */,
 				B251E3841C8E849500E6613A /* ExamDetailCell.m in Sources */,
 				B251E5001C8E849500E6613A /* JZRegisterSecondController.m in Sources */,

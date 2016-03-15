@@ -80,15 +80,6 @@
 
     [MobClick startWithAppkey:umengAppkey reportPolicy:BATCH   channelId:@""];
     
-    [WXApi registerApp:weixinApp_ID withDescription:@"极致驾服"];
-    
-    BOOL isok = [WXApi registerApp:weixinApp_ID];
-    if (isok) {
-        NSLog(@"微信注册成功");
-    }else{
-        NSLog(@"微信注册失败");
-    }
-    
     // 配置百度地图
     [self configBaiduMap];
     // 配置友盟分享
@@ -123,6 +114,13 @@
             [DVVUserManager userNeedLogin];
         }
         
+    }
+    
+    BOOL isok = [WXApi registerApp:weixinApp_ID withDescription:@"微信支付2.0"];
+    if (isok) {
+        NSLog(@"微信注册成功");
+    }else{
+        NSLog(@"微信注册失败");
     }
     
     // 设置StatusBarStyle为白色（需要在在infor.plist中加入key:UIViewControllerBasedStatusBarAppearance 并设置其值为NO）
@@ -286,9 +284,8 @@
     
 }
 
-- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
-{
-    return [WXApi handleOpenURL:url delegate:self];
+- (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url {
+    return  [WXApi handleOpenURL:url delegate:self];
 }
 
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
@@ -297,6 +294,12 @@
     NSLog(@"openURL:%@",url);
     NSLog(@"url.host:%@",url.host);
 
+    // 微信：openURL:wxb815a53dcb2faf06://pay/?returnKey=(null)&ret=-2
+    // 微信: url.host:pay
+    if (url.host && [url.host isEqualToString:@"pay"]) {// 微信支付
+        return [WXApi handleOpenURL:url delegate:self];
+    }
+    
     // yibuxuechePay://safepay/?%7B%22memo%22:%7B%22memo%22:%22%E7%94%A8%E6%88%B7%E4%B8%AD%E9%80%94%E5%8F%96%E6%B6%88%22,%22ResultStatus%22:%226001%22,%22result%22:%22%22%7D,%22requestType%22:%22safepay%22%7D
     
     BOOL result = [UMSocialSnsService handleOpenURL:url];
@@ -383,7 +386,8 @@
             case WXErrCodeUserCancel:
                 
                 NSLog(@"用户点击取消");
-                
+                [[NSNotificationCenter defaultCenter] postNotificationName:weixinpayErrorNotification object:self];
+
                 break;
                 
             default:
@@ -392,7 +396,6 @@
                 NSLog(@"错误，retcode = %d, retstr = %@", resp.errCode,resp.errStr);
                 
                 [[NSNotificationCenter defaultCenter] postNotificationName:weixinpayErrorNotification object:self];
-                
                 
                 break;
         }
