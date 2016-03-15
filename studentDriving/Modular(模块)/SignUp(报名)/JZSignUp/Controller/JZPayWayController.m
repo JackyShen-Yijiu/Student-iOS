@@ -278,6 +278,8 @@
 - (void)pay:(payType)paytype
 {
     NSLog(@"_extraDict:%@",_extraDict);
+    NSLog(@"self.dmData.price:%ld",(long)self.dmData.price);
+    
     /*
     
      {
