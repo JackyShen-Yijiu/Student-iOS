@@ -30,7 +30,6 @@
 //支付宝公钥
 #define AlipayPubKey   @"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDHAoGG/CCMvSVVebXZjbWcawAfZPU/yZMzNyrar4MyEyxAyHHqB1SbMiPC0Nq/JGR3nw+eyzJHp76OsbTQwhfwWZ+DSsq0F/Jjr33iqbMKei8J6PaEvKBEvqdG1yZZZeJR0Yv0wQipl/rfUXPDtckVMUHx4fwaRsc9eSe5kUa8bwIDAQAB"
 
-
 #pragma mark ------------------ 微信 ------------------
 
 #define weixinApp_ID @"wxb815a53dcb2faf06"//
@@ -46,17 +45,6 @@
 #define NOTIFY_URL      @"http://jzapi.yibuxueche.com/paynotice/weixin"//
 //获取服务器端支付数据地址（商户自定义）
 #define SP_URL          @"http://wxpay.weixin.qq.com/pub_v2/app/app_pay.php"
-
-
-#pragma mark ------------------ 支付相关保存的信息
-// 是否支付失败
-#define isPayErrorKey @"payError"
-// 订单信息
-#define payErrorWithDictKey @"payErrorWithDict"
-// 支付方式
-#define payErrorWithPayType @"payErrorWithPayType"
-// 手机号码
-#define payErrorWithPhone @"payErrorWithPhone"
 
 // 微信支付成功的通知
 #define weixinpaySuccessNotification @"weixinPaySuccessNotification"

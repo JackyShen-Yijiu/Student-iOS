@@ -38,7 +38,6 @@ static NSString *const kUserInfo = @"/userinfo/getapplyschoolinfo";
     
     self.view.backgroundColor = RGBColor(245, 247, 250);
     self.automaticallyAdjustsScrollViewInsets = NO;
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UILabel new]];
     
 }
 

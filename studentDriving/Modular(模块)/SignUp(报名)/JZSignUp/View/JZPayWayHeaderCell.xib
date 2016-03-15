@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="122" id="KGk-i7-Jjw" customClass="JZPayWayHeaderCell">
+            <rect key="frame" x="0.0" y="0.0" width="446" height="111"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="446" height="110"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Yu-HC-ebJ">
+                        <rect key="frame" x="0.0" y="0.0" width="446" height="110"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WQe-yA-shb">
+                                <rect key="frame" x="16" y="16" width="123" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="5nX-va-3U6"/>
+                                    <constraint firstAttribute="width" constant="123" id="9Gl-3j-Wma"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="一步互联网驾校" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6jt-jN-PsM">
+                                <rect key="frame" x="155" y="24" width="291" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="Ndw-1G-Jkg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" red="0.35686274509803922" green="0.35686274509803922" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="地址: 北京市海淀区北安和路29号" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g8N-SH-ias">
+                                <rect key="frame" x="155" y="56" width="291" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="U6v-KC-tP3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="报考教练: 陈志云" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xq-qh-KqE">
+                                <rect key="frame" x="155" y="86" width="291" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="dh1-Ou-ApY"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.35686274509999999" green="0.35686274509999999" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="WQe-yA-shb" firstAttribute="leading" secondItem="8Yu-HC-ebJ" secondAttribute="leading" constant="16" id="0z0-JK-C3E"/>
+                            <constraint firstItem="6jt-jN-PsM" firstAttribute="top" secondItem="8Yu-HC-ebJ" secondAttribute="top" constant="24" id="5nC-4Z-Nmt"/>
+                            <constraint firstItem="g8N-SH-ias" firstAttribute="top" secondItem="6jt-jN-PsM" secondAttribute="bottom" constant="18" id="8hb-fh-zUU"/>
+                            <constraint firstItem="0xq-qh-KqE" firstAttribute="leading" secondItem="g8N-SH-ias" secondAttribute="leading" id="FKU-6K-oz9"/>
+                            <constraint firstItem="6jt-jN-PsM" firstAttribute="leading" secondItem="WQe-yA-shb" secondAttribute="trailing" constant="16" id="PdY-f4-pXr"/>
+                            <constraint firstAttribute="trailing" secondItem="g8N-SH-ias" secondAttribute="trailing" id="Qbv-Rt-nkx"/>
+                            <constraint firstAttribute="trailing" secondItem="6jt-jN-PsM" secondAttribute="trailing" id="Uia-ss-iYx"/>
+                            <constraint firstItem="0xq-qh-KqE" firstAttribute="top" secondItem="g8N-SH-ias" secondAttribute="bottom" constant="18" id="YUc-Fj-zpK"/>
+                            <constraint firstItem="g8N-SH-ias" firstAttribute="leading" secondItem="6jt-jN-PsM" secondAttribute="leading" id="fP8-MI-u3W"/>
+                            <constraint firstItem="WQe-yA-shb" firstAttribute="top" secondItem="8Yu-HC-ebJ" secondAttribute="top" constant="16" id="gE9-nV-b4A"/>
+                            <constraint firstAttribute="trailing" secondItem="0xq-qh-KqE" secondAttribute="trailing" id="sZk-y2-6ng"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="8Yu-HC-ebJ" secondAttribute="trailing" id="4GW-dY-mrf"/>
+                    <constraint firstItem="8Yu-HC-ebJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="WDD-Db-Zj2"/>
+                    <constraint firstItem="8Yu-HC-ebJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Zub-2K-3du"/>
+                    <constraint firstAttribute="bottom" secondItem="8Yu-HC-ebJ" secondAttribute="bottom" id="x8m-xL-zVS"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="address" destination="g8N-SH-ias" id="zlr-gl-WC0"/>
+                <outlet property="coachName" destination="0xq-qh-KqE" id="lDq-ZD-KUj"/>
+                <outlet property="driveIconImageView" destination="WQe-yA-shb" id="OmO-qk-I0G"/>
+                <outlet property="driveName" destination="6jt-jN-PsM" id="njo-gM-FmP"/>
+            </connections>
+            <point key="canvasLocation" x="185" y="224.5"/>
+        </tableViewCell>
+    </objects>
+</document>

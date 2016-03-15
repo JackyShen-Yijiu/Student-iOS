@@ -95,13 +95,11 @@ static NSString *YgetMyList = @"userinfo/getUserAvailableFcode";
     return listCell;
 }
 
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
    
 }
+
 #pragma mark ---- Lazy 加载
 
 - (UITableView *)tableView{

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DVVPaySuccessController : UIViewController
-
+@property (nonatomic,assign) BOOL isPaySuccess;
 @end

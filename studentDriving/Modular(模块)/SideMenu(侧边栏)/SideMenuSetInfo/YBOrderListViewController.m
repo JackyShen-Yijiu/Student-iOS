@@ -88,6 +88,15 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
     self.noCountentView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您的订单信息，请确认您是否报名" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
     [self.view addSubview:self.noCountentView];
     
+    if (self.isPaySuccess) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+    }
+    
+}
+
+-  (void)back
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

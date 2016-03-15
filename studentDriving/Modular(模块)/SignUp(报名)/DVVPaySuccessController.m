@@ -33,6 +33,17 @@
     [self.view addSubview:self.successView];
 //    _successView.hidden = YES;
     [self configViewModel];
+    
+    
+    if (self.isPaySuccess) {
+        self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
+    }
+    
+}
+
+-  (void)back
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {

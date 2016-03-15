@@ -91,12 +91,12 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         [self obj_showTotasViewWithMes:@"支付成功"];
         [AcountManager saveUserApplyState:@"2"];
         
-        
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        [user setBool:NO forKey:isPayErrorKey];
-        [user setObject:nil forKey:payErrorWithDictKey];
-        [user synchronize];
-        
+//        
+//        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+//        [user setBool:NO forKey:isPayErrorKey];
+//        [user setObject:nil forKey:payErrorWithDictKey];
+//        [user synchronize];
+//        
         [self.navigationController popToRootViewControllerAnimated:YES];
         
     } error:^(NSString *str) {
