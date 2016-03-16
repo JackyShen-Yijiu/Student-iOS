@@ -271,7 +271,7 @@
             // 报考教练
             YBCoachListViewController *coachListVC = [[YBCoachListViewController alloc] init];
             coachListVC.delegate = self;
-            [self.navigationController pushViewController:coachListVC animated:YES];
+//            [self.navigationController pushViewController:coachListVC animated:YES];
         }
     }
     if (1 == indexPath.section) {
