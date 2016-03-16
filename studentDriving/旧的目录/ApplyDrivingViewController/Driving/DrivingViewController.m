@@ -361,7 +361,7 @@ static NSString *const kDrivingUrl = @"searchschool";
         
         if (0 == _searchCoachViewModel.dataArray.count && 0 == _searchCoachViewModel.licenseType && 0 == _searchCoachViewModel.orderType) {
             
-            [BLPFAlertView showAlertWithTitle:@"提示" message:@"对不起，该地区暂无合作教练。如有疑问，请致电 400-626-9255"cancelButtonTitle:@"返回" otherButtonTitles:nil completion:^(NSUInteger selectedOtherButtonIndex) {
+            [BLPFAlertView showAlertWithTitle:@"提示" message:@"对不起，该地区暂无合作教练。如有疑问，请致电 400-101-6669"cancelButtonTitle:@"返回" otherButtonTitles:nil completion:^(NSUInteger selectedOtherButtonIndex) {
                 DYNSLog(@"selected = %ld",selectedOtherButtonIndex);
                 [ws.navigationController popViewControllerAnimated:YES];
             }];

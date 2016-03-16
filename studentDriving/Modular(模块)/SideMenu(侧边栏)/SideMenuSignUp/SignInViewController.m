@@ -308,7 +308,7 @@
         _explainLabel = [UILabel new];
         _explainLabel.numberOfLines = 0;
         _explainLabel.font = [UIFont systemFontOfSize:12];
-        _explainLabel.text = @"        签到开放的时间为,预定学车开始前的15分钟至学车时间结束，请您及时签到。如不签到，可能会影响您的学时记录以及教练的工时记录。\n如有疑问，请拨打400-626-9255";
+        _explainLabel.text = @"        签到开放的时间为,预定学车开始前的15分钟至学车时间结束，请您及时签到。如不签到，可能会影响您的学时记录以及教练的工时记录。\n如有疑问，请拨打400-101-6669";
         NSMutableParagraphStyle *paragraphStyle = [[NSMutableParagraphStyle alloc] init];
         
         [paragraphStyle setLineSpacing:8];//调整行间距
