@@ -50,7 +50,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 }
 - (NSArray *)dataArray {
     if (_dataArray == nil) {
-        _dataArray = @[@[@"预约提醒",@"新消息通知"],@[@"使用帮助",@"关于我们",@"去评分",@"反馈"]];
+        _dataArray = @[@[@"预约提醒",@"新消息通知"],@[@"使用帮助",@"关于我们",@"去评分",@"反馈",@"版本更新"]];
     }
     return _dataArray;
 }
@@ -59,7 +59,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         _tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
         _tableView.delegate = self;
         _tableView.dataSource = self;
-        _tableView.backgroundColor = RGBColor(249, 249, 249);
+        _tableView.backgroundColor = YBMainViewControlerBackgroundColor;
     }
     return _tableView;
 }
@@ -67,13 +67,16 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
+    
     self.title = @"设置";
     self.automaticallyAdjustsScrollViewInsets = NO;
     if ([UIDevice jeSystemVersion] >= 7.0f) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
     [self.view addSubview:self.tableView];
-    [self.view addSubview:self.quitButton];
+
+    self.tableView.tableFooterView = [self quitButton];
     
     [self checkSet];
 }
@@ -93,11 +96,11 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 }
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section {
     UIView *view = [[UIView alloc] init];
-    view.backgroundColor = RGBColor(249, 249, 249);
+    view.backgroundColor = YBMainViewControlerBackgroundColor;
     return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 20;
+    return 15;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -106,7 +109,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
     if (section == 0) {
         return 2;
     }else if (section == 1) {
-        return 4;
+        return 5;
     }
     return 0;
 }
@@ -193,11 +196,13 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         [self.navigationController pushViewController:about animated:YES];
     }else if (indexPath.section == 1 && indexPath.row == 2) {
         // 去评分
-        [self gotoAppStorePageRaisal:@"1060105429"];
+        [self gotoAppStorePageRaisal:@"1089292482"];
     }else if (indexPath.section == 1 && indexPath.row == 3) {
         // 反馈
         FeedBackViewController *feedBack = [[FeedBackViewController alloc] init];
         [self.navigationController pushViewController:feedBack animated:YES];
+    }else if (indexPath.section==1&&indexPath.row==4){
+        [self gotoAppStorePageRaisal:@"1089292482"];
     }
     
 }
@@ -224,10 +229,10 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 - (UIButton *)quitButton{
     if (_quitButton == nil) {
         _quitButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _quitButton.backgroundColor = YBNavigationBarBgColor;
-        [_quitButton setTitle:@"退出" forState:UIControlStateNormal];
+        _quitButton.backgroundColor = [UIColor whiteColor];
+        [_quitButton setTitle:@"退出登录" forState:UIControlStateNormal];
         _quitButton.titleLabel.font = [UIFont systemFontOfSize:14];
-        [_quitButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_quitButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
         _quitButton.frame = CGRectMake(0,kSystemHeight - 108, kSystemWide, 44);
         [_quitButton addTarget:self action:@selector(clickQuit:) forControlEvents:UIControlEventTouchUpInside];
         return _quitButton;
