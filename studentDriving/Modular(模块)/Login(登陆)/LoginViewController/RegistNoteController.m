@@ -33,7 +33,7 @@ static NSString *advantage = @"3.html";
 - (UIWebView *)webView
 {
     if (_webView == nil) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 64, kSystemWide, kSystemHeight-64)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight-64)];
         _webView.hidden = YES;
     }
     return _webView;
@@ -59,7 +59,7 @@ static NSString *advantage = @"3.html";
     self.progressView.progressBarView.backgroundColor = [UIColor orangeColor];
     self.progressView.hidden = YES;
     
-    NSString *urlString = @"http://www.ifanying.com/userAgreement.html";
+    NSString *urlString = @"http://www.yibuxueche.com/jzjfstudentAgreement.htm";
     
     NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:urlString]];
     
@@ -71,10 +71,10 @@ static NSString *advantage = @"3.html";
 }
 - (void)addSignUp
 {
-    CGRect backframe= CGRectMake(0, 0, 16, 16);
+    CGRect backframe= CGRectMake(0, 0, 44, 44);
     UIButton* backButton= [UIButton buttonWithType:UIButtonTypeCustom];
     backButton.frame = backframe;
-    [backButton setImage:[UIImage imageNamed:@"back"] forState:UIControlStateNormal];
+    [backButton setImage:[UIImage imageNamed:@"navi_back"] forState:UIControlStateNormal];
     [backButton addTarget:self action:@selector(pushBtnClick) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:backButton];
 }
