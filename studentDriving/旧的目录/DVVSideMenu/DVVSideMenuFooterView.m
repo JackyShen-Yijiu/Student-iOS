@@ -47,7 +47,7 @@
         _contactUsLabel.font = [UIFont systemFontOfSize:12];
         _contactUsLabel.textColor = [UIColor colorWithWhite:1 alpha:1];
         _contactUsLabel.backgroundColor = [UIColor clearColor];
-        _contactUsLabel.text = @"联系我们：400-626-9255";
+        _contactUsLabel.text = @"联系我们：400-101-6669";
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(contactUsLabelAction)];
         [_contactUsLabel addGestureRecognizer:tapGesture];
         _contactUsLabel.userInteractionEnabled = YES;

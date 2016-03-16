@@ -245,7 +245,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     _dataExplainLb.textColor = [UIColor colorWithHexString:@"6e6e6e"];
     _dataExplainLb.font = [UIFont boldSystemFontOfSize:13];
     
-    _dataExplainContentLb.text = @"去驾校缴费时请携带身份证，体检表，户口本，报名电子订单，相关流程如有疑问，请直接致电400-626-9255";
+    _dataExplainContentLb.text = @"去驾校缴费时请携带身份证，体检表，户口本，报名电子订单，相关流程如有疑问，请直接致电400-101-6669";
     _dataExplainContentLb.textColor = [UIColor lightGrayColor];
     _dataExplainContentLb.font = [UIFont systemFontOfSize:12];
     

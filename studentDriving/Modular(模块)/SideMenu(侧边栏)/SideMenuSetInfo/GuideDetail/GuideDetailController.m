@@ -108,7 +108,7 @@
 - (UILabel *)phoneLabel{
     if (_phoneLabel == nil) {
         _phoneLabel = [[UILabel alloc] initWithFrame:CGRectMake(20, 0, 200, 14)];
-        _phoneLabel.text = @"客服电话:400-626-9255";
+        _phoneLabel.text = @"客服电话:400-101-6669";
         _phoneLabel.font = [UIFont systemFontOfSize:14];
         _phoneLabel.textColor = [UIColor colorWithHexString:@"212121"];
         
