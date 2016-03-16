@@ -19,13 +19,13 @@
     [UMSocialData setAppKey:umengAppkey];
     
     // 添加微信
-    [UMSocialWechatHandler setWXAppId:weixinApp_ID appSecret:weixinApp_Secret url:@"http://www.ybxch.com/"];
+    [UMSocialWechatHandler setWXAppId:weixinApp_ID appSecret:weixinApp_Secret url:@"http://www.jizhijiafu.cn/"];
     
     // 添加QQ
-    [UMSocialQQHandler setQQWithAppId:@"1105047313" appKey:@"V2WpihDDnIaxxXwL" url:@"http://www.ybxch.com/"];
+    [UMSocialQQHandler setQQWithAppId:@"1105167294" appKey:@"sk0sNHbwgipoGI00" url:@"http://www.jizhijiafu.cn/"];
     
     // 添加新浪微博分享
-    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"16181237" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:@"1218454084" RedirectURL:@"http://sns.whalecloud.com/sina2/callback"];
     
 }
 
