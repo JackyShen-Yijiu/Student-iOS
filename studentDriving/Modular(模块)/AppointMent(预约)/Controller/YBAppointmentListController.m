@@ -108,8 +108,19 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return;
     }
     
+    
+    NSLog(@"[AcountManager manager].userApplystate:%@",[AcountManager manager].userApplystate);
+    
+    // 0) {// 尚未报名
     if ([AcountManager manager].userApplystate && [[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-        UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,貌似您还没有报名\n如果您已报名,请联系驾校或教练" message:@"" delegate:self cancelButtonTitle:@"前去报名" otherButtonTitles:@"再看看", nil];
+        UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,貌似您还没有报名;如果您已报名,请联系驾校或教练" message:@"" delegate:self cancelButtonTitle:@"前去报名" otherButtonTitles:@"再看看", nil];
+        alert.tag = 100;
+        [alert show];
+        return;
+    }
+    // 1) {// 已报名,尚未交钱
+    if (([AcountManager manager].userApplystate && [[AcountManager manager].userApplystate isEqualToString:@"1"])) {
+        UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,您尚未付款，请尽快前往驾校支付费用" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"我知道了", nil];
         [alert show];
         return;
     }
@@ -122,7 +133,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex==0) {
+    if (alertView.tag == 100 && buttonIndex==0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveMainVcChange" object:self];
     }
 }

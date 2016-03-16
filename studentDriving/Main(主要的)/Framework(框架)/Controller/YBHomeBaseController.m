@@ -92,9 +92,6 @@
                 
                 [AcountManager saveUserApplyState:@"2"];
                 
-            }else {
-                
-                [AcountManager saveUserApplyState:@"3"];
             }
             
             [AcountManager saveUserApplyCount:[NSString stringWithFormat:@"%@",[dataDic objectForKey:@"applycount"]]];

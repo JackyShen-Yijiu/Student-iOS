@@ -355,7 +355,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
                  [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
                  
                  // 用户登录成功，打开相应的窗体
-                 [DVVUserManager userLoginSucces];
+                 [DVVUserManager loginSuccsssAndSetupMainVc];
                  
              }
              else

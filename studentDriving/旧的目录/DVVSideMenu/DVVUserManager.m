@@ -59,6 +59,11 @@
 
 }
 
++ (void)loginSuccsssAndSetupMainVc
+{
+    [UIApplication sharedApplication].keyWindow.rootViewController = [[ViewController alloc] init];
+}
+
 // 用户退出登录后调用此方法
 + (void)userLogout {
     [DVVOpenControllerFromSideMenu openControllerWithControllerType:kOpenControllerTypeHomeMainController];
