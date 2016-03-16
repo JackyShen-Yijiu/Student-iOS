@@ -14,6 +14,18 @@
 
 @implementation YBBaseViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    for (UIView *child in self.tabBarController.tabBar.subviews) {
+        if ([child isKindOfClass:[UIControl class]]) {
+            [child removeFromSuperview];
+        }
+    }
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
         
