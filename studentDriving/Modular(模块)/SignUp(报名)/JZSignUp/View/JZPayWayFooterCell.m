@@ -24,6 +24,7 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        _payWayButton.backgroundColor = [UIColor clearColor];
         [_payWayButton setImage:[UIImage imageNamed:@"pay_off"] forState:UIControlStateNormal];
         [_payWayButton setImage:[UIImage imageNamed:@"pay_on"] forState:UIControlStateSelected];
     }

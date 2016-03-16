@@ -105,10 +105,10 @@
     // 中部cell赋值
     if (_isHaveYCode) {
         self.middhtTitleArray = @[@"报考班型",@"支付费用",@"Y码返现",@"邀请码"];
-        self.midDesArray = @[self.dmData.carmodel.name,[NSString stringWithFormat:@"%lu",self.dmData.price],self.yCodeStr,@"请输入或扫描邀请码(选填)"];
+        self.midDesArray = @[self.dmData.carmodel.name,[NSString stringWithFormat:@"%lu¥",self.dmData.price],self.yCodeStr,@"请输入或扫描邀请码(选填)"];
     }else if (!_isHaveYCode){
         self.middhtTitleArray = @[@"报考班型",@"支付费用",@"邀请码"];
-        self.midDesArray = @[self.dmData.carmodel.name,[NSString stringWithFormat:@"%lu",self.dmData.price],@"请输入或扫描邀请码(选填)"];
+        self.midDesArray = @[self.dmData.carmodel.name,[NSString stringWithFormat:@"%lu¥",self.dmData.price],@"请输入或扫描邀请码(选填)"];
     }
     // 底部cell赋值
     self.imgArray = @[@"wechat",@"alipay",@"offline"];
@@ -221,13 +221,14 @@
         }
         // 设置价格字体为主题色
         if (1 == indexPath.row) {
-            [signUpCell.desTextFiled setValue:YBNavigationBarBgColor forKeyPath:@"placeholderLabel.textColor"];       }
+            signUpCell.desTextFiled.textColor = YBNavigationBarBgColor;
+        }
         // 隐藏右侧箭头
         signUpCell.arrowImageView.hidden = YES ;
 
         // 设置数据
         signUpCell.titleLabel.text = self.middhtTitleArray[indexPath.row];
-        signUpCell.desTextFiled.placeholder = self.midDesArray[indexPath.row];
+        signUpCell.desTextFiled.text = self.midDesArray[indexPath.row];
             return signUpCell;
     }
     if (2 == indexPath.section) {

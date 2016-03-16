@@ -416,20 +416,7 @@
             [DVVUserManager userNeedLogin];
             return;
         }
-////        MyConsultationListController *myconVC = [[MyConsultationListController alloc] init];
-////        [self controller:myconVC];
-//        YBForceEvaluateViewController *myconVC = [[YBForceEvaluateViewController alloc] init];
-//        [self controller:myconVC];
-////        APCommentViewController *myconVC = [[APCommentViewController alloc] init];
-////        [self controller:myconVC];
-        
-        
-//        JZMainSignUpController *myconVC = [[JZMainSignUpController alloc] init];
-//        [self controller:myconVC];
-//                JZYListController *myconVC = [[JZYListController alloc] init];
-//                [self controller:myconVC];
-
-        JZPayWayController *myconVC = [[JZPayWayController alloc] init];
+        MyConsultationListController *myconVC = [[MyConsultationListController alloc] init];
         [self controller:myconVC];
     }
 }

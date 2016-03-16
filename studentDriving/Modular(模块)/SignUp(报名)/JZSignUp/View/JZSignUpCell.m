@@ -92,8 +92,8 @@
     if (_desTextFiled == nil) {
         _desTextFiled = [[UITextField alloc] init];
         _desTextFiled.font = [UIFont systemFontOfSize:14];
-        _desTextFiled.tintColor = [UIColor lightGrayColor];
         _desTextFiled.delegate = self;
+        _desTextFiled.textColor = [UIColor colorWithHexString:@"b7b7b7"];
         [_desTextFiled setValue:[UIFont systemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
         [_desTextFiled setValue:[UIColor colorWithHexString:@"b7b7b7"] forKeyPath:@"placeholderLabel.textColor"];
     }
