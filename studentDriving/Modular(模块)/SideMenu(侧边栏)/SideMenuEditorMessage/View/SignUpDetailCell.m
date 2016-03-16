@@ -249,6 +249,17 @@
         }
         if ([[dict objectForKey:@"applySatus"] isEqualToString:@"申请成功"]) {
             self.payStaus.text = @"报名成功";
+            _bottomBG.hidden = YES;
+            _bgView.hidden = YES;
+            [self.mightBGView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.top.mas_equalTo(self.mas_top).offset(0);
+                make.left.mas_equalTo(self.mas_left).offset(0);
+                make.height.mas_equalTo(@98);
+                make.right.mas_equalTo(self.mas_right).offset(0);
+                
+            }];
+
+
         }
     }
 }
