@@ -8,18 +8,18 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="YBAppointmentHeaderView">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="118"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car" translatesAutoresizingMaskIntoConstraints="NO" id="itl-uW-IFJ">
-                    <rect key="frame" x="16" y="28" width="40" height="32"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="car" translatesAutoresizingMaskIntoConstraints="NO" id="itl-uW-IFJ">
+                    <rect key="frame" x="16" y="29" width="40" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="SYd-XL-WE9"/>
                         <constraint firstAttribute="height" constant="32" id="ioh-kq-rfn"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科目二" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTQ-UJ-QLr">
-                    <rect key="frame" x="15" y="68" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="科目二" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTQ-UJ-QLr">
+                    <rect key="frame" x="15" y="69" width="42" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="42" id="NDc-ei-MrX"/>
                         <constraint firstAttribute="height" constant="21" id="TMj-cv-H8M"/>
@@ -29,11 +29,17 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wP-OF-K1t">
-                    <rect key="frame" x="251" y="31" width="64" height="46"/>
+                    <rect key="frame" x="251" y="32" width="64" height="46"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exam_on" translatesAutoresizingMaskIntoConstraints="NO" id="DoK-BJ-IYe">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YBAppointMentDetailsexam_off" translatesAutoresizingMaskIntoConstraints="NO" id="DoK-BJ-IYe">
                             <rect key="frame" x="0.0" y="0.0" width="64" height="46"/>
                         </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="剩32学时" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksz-Wk-Vbs">
+                            <rect key="frame" x="0.0" y="26" width="64" height="10"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="DoK-BJ-IYe" secondAttribute="bottom" id="0Fa-wJ-vxj"/>
@@ -45,14 +51,14 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXL-uL-Vo3">
-                    <rect key="frame" x="0.0" y="108" width="320" height="10"/>
+                    <rect key="frame" x="0.0" y="109" width="320" height="10"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="10" id="gtV-Sz-AvT"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T6j-d4-bsL">
-                    <rect key="frame" x="89" y="-1" width="141" height="110"/>
+                    <rect key="frame" x="89" y="0.0" width="141" height="110"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="医学23课时  坡道起步" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-rZ-D6Y">
                             <rect key="frame" x="0.0" y="21" width="162" height="21"/>
@@ -111,17 +117,18 @@
                 <outlet property="bottomView" destination="dXL-uL-Vo3" id="NKX-7j-0OB"/>
                 <outlet property="buySubjectLabel" destination="YhA-gI-OEO" id="wHn-lv-PkQ"/>
                 <outlet property="guidingLabel" destination="amI-fL-2lI" id="26Z-gn-DfT"/>
+                <outlet property="shengXueShiLabel" destination="Ksz-Wk-Vbs" id="Z2W-Mm-X0n"/>
                 <outlet property="subjectLabel" destination="wTQ-UJ-QLr" id="Di7-95-4ro"/>
                 <outlet property="subjectTopLabel" destination="Cco-rZ-D6Y" id="1eo-BX-uyC"/>
                 <outlet property="wanChengLabel" destination="QoU-kQ-nuh" id="bkZ-EK-WMZ"/>
                 <outlet property="yiXueLabel" destination="CeQ-Bb-oNA" id="oc9-v1-2U0"/>
                 <outlet property="yuekaoBtn" destination="DoK-BJ-IYe" id="Hyz-pg-kaj"/>
             </connections>
-            <point key="canvasLocation" x="324" y="468"/>
+            <point key="canvasLocation" x="384" y="412.5"/>
         </view>
     </objects>
     <resources>
+        <image name="YBAppointMentDetailsexam_off" width="64" height="46"/>
         <image name="car" width="40" height="32"/>
-        <image name="exam_on" width="78" height="54"/>
     </resources>
 </document>

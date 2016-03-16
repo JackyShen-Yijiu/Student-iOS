@@ -69,7 +69,7 @@
             return @"请求中";
             break;
         case KCourseStatueapplycancel :// 学生取消->删除此订单
-            return @"";
+            return @"学员取消";
             break;
         case KCourseStatueapplyconfirm:  // 已确定
             return @"已接收";
@@ -86,8 +86,8 @@
         case KCourseStatuefinish: // 订单完成->已完成
             return @"已完成";
             break;
-        case KCourseStatuesystemcancel: // 系统取消->已完成
-            return @"已完成";
+        case KCourseStatuesystemcancel: // 系统取消->已完成->系统取消
+            return @"系统取消";
             break;
         case KCourseStatuesignin: // 已签到->已签到
             return @"已签到";

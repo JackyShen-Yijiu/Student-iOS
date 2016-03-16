@@ -11,6 +11,7 @@
 #import "YBAppointMentDetailsDataCoachid.h"
 #import "YBAppointMentDetailsDataSubject.h"
 #import "YBAppointMentDetailsDataDriveschoolinfo.h"
+#import "YBAppointMentDetailDataCancelReason.h"
 
 @interface YBAppointMentDetailsDataData : NSObject
 
@@ -26,6 +27,9 @@
 @property (nonatomic, strong) NSString * shuttleaddress;
 @property (nonatomic, strong) YBAppointMentDetailsDataSubject * subject;
 @property (nonatomic, strong) YBAppointMentDetailsDataDriveschoolinfo * trainfieldlinfo;
-@property (nonatomic, strong) NSString * sigintime;
+@property (nonatomic, copy) NSString * sigintime;
+
+// 取消原因
+@property (nonatomic, strong) YBAppointMentDetailDataCancelReason *cancelreason;
 
 @end

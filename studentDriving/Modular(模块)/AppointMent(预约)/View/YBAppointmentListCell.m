@@ -202,6 +202,11 @@
     _subjectLabel.text = _model.courseprocessdesc;
     
     _schoolLabel.text = _model.courseTrainInfo.address;
+    
+    // 虽然在签到时间之内，如果已签到则也不能点击二维码
+    if ([[model getStatueString] isEqualToString:@"已签到"]) {
+        [self qrCodeGray];
+    }
 }
 
 
@@ -246,10 +251,14 @@
         _qrCodeImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscode_on"];
         _qrCodeMarkLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
     }else {
-        _qrCodeButton.userInteractionEnabled = NO;
-        _qrCodeImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscode_off"];
-        _qrCodeMarkLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        [self qrCodeGray];
     }
+}
+
+- (void)qrCodeGray {
+    _qrCodeButton.userInteractionEnabled = NO;
+    _qrCodeImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscode_off"];
+    _qrCodeMarkLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
 }
 
 - (NSString *)dateFromLocalWithFormatString:(NSString *)formatString {

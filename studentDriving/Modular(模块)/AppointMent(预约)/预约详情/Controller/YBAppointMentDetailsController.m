@@ -47,6 +47,8 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 @property (nonatomic, assign) BOOL isShowIntroduction;
 
+@property (nonatomic, strong) UILabel *promptLabel;
+
 @property (nonatomic,strong) YBAppointMentDetailsFootView *footView;
 @property (nonatomic,strong) YBAppointMentDetailsCancleView *cancleFootView;
 
@@ -67,13 +69,12 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     self.title = @"预约详情";
     
     [self.view addSubview:self.tableView];
+    [self.view addSubview:self.footView];
     _tableView.tableHeaderView = self.headerView;
     
     [self configViewModel];
 
     NSLog(@"self.courseModel.courseStatue:%ld",(long)self.courseModel.courseStatue);
-    
-    [self.view addSubview:self.footView];
 //    if (self.courseModel.courseStatue == KCourseStatueapplyconfirm || self.courseModel.courseStatue == KCourseStatueapplying) {// 预约中,取消预约
 //        [self.view addSubview:self.footView];
 //    }
@@ -143,9 +144,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         
         NSData *data = [NSJSONSerialization dataWithJSONObject:dict options:NSJSONWritingPrettyPrinted error:nil];
         NSString *string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        
+        NSLog(@"dict: %@  string: %@", dict, string);
         // 显示二维码
-        CGFloat size = 128;
+        CGFloat size = 148;
+        imageView.contentMode = UIViewContentModeCenter;
         imageView.image = [DVVCreateQRCode createQRCodeWithContent:string size:size];
         
     } error:^{
@@ -166,6 +168,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [_viewModel dvv_setRefreshSuccessBlock:^{
         _networkSuccess = YES;
         [ws.tableView reloadData];
+        
+        if ([[_courseModel getStatueString] isEqualToString:@"教练取消"]) {
+            [ws loadCancelReason];
+        }
     }];
     [_viewModel dvv_setNilResponseObjectBlock:^{
         [ws obj_showTotasViewWithMes:@"暂无数据"];
@@ -179,6 +185,44 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [_viewModel dvv_networkRequestRefresh];
 }
 
+- (void)loadCancelReason {
+    
+    UIView *contentView = [UIView new];
+    contentView.backgroundColor = [UIColor whiteColor];
+    
+    UIView *splitView = [UIView new];
+    splitView.backgroundColor = YBMainViewControlerBackgroundColor;
+    
+    UILabel *titleLabel = [UILabel new];
+    
+    titleLabel.text = @"取消原因";
+    titleLabel.font = [UIFont systemFontOfSize:14];
+    titleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+    
+    UIView *lineView = [UIView new];
+    lineView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
+    
+    UILabel *contentLabel = [UILabel new];
+    contentLabel.font = [UIFont systemFontOfSize:14];
+    contentLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+    contentLabel.text = [NSString stringWithFormat:@"%@  %@", _viewModel.dmData.cancelreason.reason, _viewModel.dmData.cancelreason.cancelcontent];
+    
+    splitView.frame = CGRectMake(0, 0, kSystemWide, 10);
+    titleLabel.frame = CGRectMake(16, 10, kSystemWide - 16*2, 44);
+    lineView.frame = CGRectMake(0, CGRectGetMaxY(titleLabel.frame) - 0.5, kSystemWide, 0.5);
+    CGFloat contentLabelHeight = [NSString autoHeightWithString:contentLabel.text width:kSystemWide - 16*2 font:[UIFont systemFontOfSize:14]];
+    contentLabel.frame = CGRectMake(16, CGRectGetMaxY(titleLabel.frame) + 15, kSystemWide - 16*2, contentLabelHeight);
+    
+    contentView.frame = CGRectMake(0, 0, kSystemWide, CGRectGetMaxY(contentLabel.frame) + 15);
+    
+    [contentView addSubview:splitView];
+    [contentView addSubview:titleLabel];
+    [contentView addSubview:lineView];
+    [contentView addSubview:contentLabel];
+    
+    self.tableView.tableFooterView = contentView;
+}
+
 #pragma mark - tableView delegate datasourse
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -188,6 +232,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     return 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (_viewModel.dmData.sigintime.length) {
+        return 5;
+    }
     return 4;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -214,16 +261,38 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         NSString *endString = [self getLocalDateFormateUTCDate:_courseModel.courseEndtime format:format];
         
         cell.titleLabel.text = [NSString stringWithFormat:@"%@/%@ %@-%@", MMString, ddString, beginString, endString];
-    }else if (indexPath.row==2){// 教练
-        cell.iconImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscoach"];
-        cell.titleLabel.text = _courseModel.userModel.name;
+    }
+    
+    if (_viewModel.dmData.sigintime.length) {
         
-        [cell.button setImage:[UIImage imageNamed:@"YBAppointMentDetailstalk"] forState:UIControlStateNormal];
-        [cell.button addTarget:self action:@selector(imButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        if (indexPath.row==2) {
+            cell.iconImageView.image = [UIImage imageNamed:@"YBAppointMentDetailstime"];
+            cell.titleLabel.text = [NSString stringWithFormat:@"签到时间 %@", [self getLocalDateFormateUTCDate:_viewModel.dmData.sigintime format:@"HH:mm"]];
+        }
+        if (indexPath.row==3){// 教练
+            cell.iconImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscoach"];
+            cell.titleLabel.text = _courseModel.userModel.name;
+            
+            [cell.button setImage:[UIImage imageNamed:@"YBAppointMentDetailstalk"] forState:UIControlStateNormal];
+            [cell.button addTarget:self action:@selector(imButtonAction) forControlEvents:UIControlEventTouchUpInside];
+            
+        }else if (indexPath.row==4){// 训练场地
+            cell.imageView.image = [UIImage imageNamed:@"YBAppointMentDetailslocation"];
+            cell.titleLabel.text = _courseModel.courseTrainInfo.address;
+        }
         
-    }else if (indexPath.row==3){// 训练场地
-        cell.imageView.image = [UIImage imageNamed:@"YBAppointMentDetailslocation"];
-        cell.titleLabel.text = _courseModel.courseTrainInfo.address;
+    }else {
+        if (indexPath.row==2){// 教练
+            cell.iconImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscoach"];
+            cell.titleLabel.text = _courseModel.userModel.name;
+            
+            [cell.button setImage:[UIImage imageNamed:@"YBAppointMentDetailstalk"] forState:UIControlStateNormal];
+            [cell.button addTarget:self action:@selector(imButtonAction) forControlEvents:UIControlEventTouchUpInside];
+            
+        }else if (indexPath.row==3){// 训练场地
+            cell.imageView.image = [UIImage imageNamed:@"YBAppointMentDetailslocation"];
+            cell.titleLabel.text = _courseModel.courseTrainInfo.address;
+        }
     }
     
     if (indexPath.row == 3) {
@@ -259,13 +328,13 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         [_tableView registerClass:[YBAppointmentDetailCell class] forCellReuseIdentifier:kCellIdentifier];
         
-        UILabel *label = [UILabel new];
-        label.text = @"预约开始前24小时内将不能取消预约";
-        label.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        label.font = [UIFont systemFontOfSize:10];
-        label.frame = CGRectMake(0, CGRectGetMaxY(_tableView.frame), kSystemWide, 30);
-        label.textAlignment = NSTextAlignmentCenter;
-        [self.view addSubview:label];
+        _promptLabel = [UILabel new];
+        _promptLabel.text = @"预约开始前24小时内将不能取消预约";
+        _promptLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _promptLabel.font = [UIFont systemFontOfSize:10];
+        _promptLabel.frame = CGRectMake(0, CGRectGetMaxY(_tableView.frame), kSystemWide, 30);
+        _promptLabel.textAlignment = NSTextAlignmentCenter;
+        [self.view addSubview:_promptLabel];
     }
     return _tableView;
 }
@@ -311,6 +380,13 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             image = [UIImage imageNamed:@"omit"];
             markStr = @"您没能及时签到该预约，请及时联系客服进行补课事宜。";
             
+            // 隐藏取消预约按钮和提示文字
+            [self hideBottomInfo];
+            
+            // 添加联系客服按钮
+            [self addContactUs];
+            self.tableView.frame = CGRectMake(0, 0, kSystemWide, kSystemHeight - 64 - 56 - 12);
+            
         }else if ([statusStr isEqualToString:@"_markLabel"]) {
             
             statusStr = @"预约已签到";
@@ -318,23 +394,53 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             markStr = @"该预约已签到";
             showSigninText = YES;
             
+            // 隐藏取消预约按钮和提示文字
+            [self hideBottomInfo];
+            
         }else if ([statusStr isEqualToString:@"教练取消"]) {
             
             statusStr = @"预约被拒绝";
             image = [UIImage imageNamed:@"order_fail"];
             markStr = @"";
             
+        }else if ([statusStr isEqualToString:@"学员取消"]) {
+            
+            statusStr = @"已取消";
+            image = [UIImage imageNamed:@"order_cancel"];
+            markStr = @"您取消了订单，请重新预约吧";
+            
+            // 隐藏取消预约按钮和提示文字
+            [self hideBottomInfo];
+            
+        }else if ([statusStr isEqualToString:@"系统取消"]) {
+            
+            statusStr = @"预约被取消";
+            image = [UIImage imageNamed:@"order_cancel"];
+            markStr = @"抱歉，由于驾校或其他原因，该预约已被系统取消，您可以重新预约";
+            
+            // 隐藏取消预约按钮和提示文字
+            [self hideBottomInfo];
+            
+        }else if ([statusStr isEqualToString:@"已签到"]) {
+            
+            statusStr = @"该预约已签到";
+            image = [UIImage imageNamed:@"order_indent"];
+            markStr = @"该预约已签到";
+            
+            showSigninText = YES;
+            
+            // 隐藏取消预约按钮和提示文字
+            [self hideBottomInfo];
         }
-#warning 还有一个系统取消状态暂未处理
         
         // 测试图片状态提示语的高度
         CGFloat imageMarkHeight = [NSString autoHeightWithString:markStr width:screenWidth - 48*2 font:[UIFont systemFontOfSize:14]];
         
         // 使用（masonry更新约束没成功）所以就这样写了
-        _headerView.imageMarkLabel.frame = CGRectMake(48, 202, screenWidth - 48*2, imageMarkHeight);
-        _headerView.markLabel.frame = CGRectMake(16, 202+imageMarkHeight+12, screenWidth - 16*2, _headerView.siginTextHeight);
+        _headerView.imageMarkLabel.frame = CGRectMake(48, 222, screenWidth - 48*2, imageMarkHeight);
+        _headerView.markLabel.frame = CGRectMake(16, 222+imageMarkHeight+12, screenWidth - 16*2, _headerView.siginTextHeight);
         
-        CGFloat height = 202 + imageMarkHeight + 12 + 16;
+        CGFloat height = 222 + imageMarkHeight + 12 + 16;
         _headerView.markLabel.hidden = YES;
         if (showSigninText) {
             height += _headerView.siginTextHeight;
@@ -348,8 +454,45 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             _headerView.imageView.image = image;
         }
         _headerView.imageMarkLabel.text = markStr;
+        
+        UIView *splitView = [UIView new];
+        splitView.backgroundColor = YBMainViewControlerBackgroundColor;
+        splitView.frame = CGRectMake(0, CGRectGetHeight(_headerView.frame), kSystemWide, 10);
+        [_headerView addSubview:splitView];
+        CGRect rect = _headerView.frame;
+        rect.size.height += 10;
+        _headerView.frame = rect;
     }
     return _headerView;
+}
+
+- (void)hideBottomInfo {
+    
+    _promptLabel.hidden = YES;
+    self.footView.hidden = YES;
+    self.tableView.frame = CGRectMake(0, 0, kSystemWide, kSystemHeight - 64);
+}
+
+- (void)addContactUs {
+    
+    UIButton *button = [UIButton new];
+    button = [[UIButton alloc] initWithFrame:CGRectMake(16, kSystemHeight - 64 - 56, kSystemWide - 16*2, 44)];
+    button.layer.masksToBounds = YES;
+    button.layer.cornerRadius = 4;
+    button.titleLabel.font = [UIFont systemFontOfSize:14];
+    [button setTitle:@"联系客服" forState:UIControlStateNormal];
+    [button setTitle:@"联系客服" forState:UIControlStateHighlighted];
+    [button addTarget:self action:@selector(ContactUsButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    button.backgroundColor = YBNavigationBarBgColor;
+    [self.view addSubview:button];
+}
+
+- (void)ContactUsButtonAction {
+    
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"4006269255"];
+    UIWebView * callWebview = [[UIWebView alloc] init];
+    [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
+    [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:callWebview];
 }
 
 - (YBAppointMentDetailsFootView *)footView

@@ -63,15 +63,28 @@
             [_completedArray removeAllObjects];
             
             for (HMCourseModel *model in tempArray) {
+                
+                // 如果是学员取消、待评论则不显示
+                if ([[model getStatueString] isEqualToString:@"学员取消"] ||
+                    [[model getStatueString] isEqualToString:@"待评论"]) {
+                    continue ;
+                }
+                
                 NSLog(@"model.courseBeginTime:%@",model.courseBeginTime);
                 NSLog(@"getYearLocalDateFormateUTCDate model.courseBeginTime:%@",[NSString getYearLocalDateFormateUTCDate:model.courseBeginTime]);
                 
                 int compareDataNum = [YBObjectTool compareDateWithSelectDateStr:[NSString getYearLocalDateFormateUTCDate:model.courseBeginTime]];
                 NSLog(@"[NSString getYearLocalDateFormateUTCDate:model.courseBeginTime]:%@ compareDataNum:%d",[NSString getYearLocalDateFormateUTCDate:model.courseBeginTime],compareDataNum);
                 
+                // 如果已完成就直接添加（因为当天的也有已完成的）
+                if ([[model getStatueString] isEqualToString:@"已完成"]) {
+                    [_completedArray addObject:model];
+                    continue ;
+                }
                 if (compareDataNum==0) {// 当前
                     [_todayArray addObject:model];
                 }else if (compareDataNum==1){// 大于当前日期
+                    NSLog(@"%lu", (long)model.courseStatue);
                     [_nextArray addObject:model];
                 }else if (compareDataNum==-1){// 小于当前日期
                     [_completedArray addObject:model];

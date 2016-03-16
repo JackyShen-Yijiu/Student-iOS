@@ -20,7 +20,7 @@
         
         NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"YBAppointmentDetailHeaderView" owner:self options:nil];
         self = xibArray.firstObject;
-        
+
         _statusLabel.textColor = YBNavigationBarBgColor;
         [self addSubview:self.imageMarkLabel];
         [self addSubview:self.markLabel];
