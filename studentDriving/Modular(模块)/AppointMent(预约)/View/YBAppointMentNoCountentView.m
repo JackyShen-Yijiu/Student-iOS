@@ -23,7 +23,8 @@
         // 创建图标
         UIImageView *img = [[UIImageView alloc] init];
         img.image = [UIImage imageNamed:@"app_error_robot.png"];
-        img.frame = CGRectMake(kSystemWide/2-72/2+2, kSystemHeight/2-75/2-64-10, 72, 75);
+        CGSize size = img.image.size;
+        img.frame = CGRectMake(kSystemWide/2-size.width/2+2, kSystemHeight/2-size.height/2-64, size.width, size.height);
         [self addSubview:img];
         self.img = img;
 

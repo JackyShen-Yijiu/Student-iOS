@@ -27,7 +27,7 @@
 #import "YBSignUpSuccessController.h"
 #import "OrdetDetailController.h"
 #import "DVVNoDataPromptView.h"
-
+#import "YBAppointMentNoCountentView.h"
 
 #define StartOffset  kSystemWide/4-60/2
 
@@ -174,7 +174,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
             NSDictionary *data = param[@"data"];
                 NSArray *array = data[@"ordrelist"];
                 if (!array.count) {
-                    self.mallView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您的订单信息，请前往商城购买" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+                    self.mallView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您的订单信息" image:[UIImage imageNamed:@"YBNocountentimage_order"] subTitle:nil];
                     [self.view addSubview:self.mallView];
                     return ;
                     
@@ -209,10 +209,11 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    
     if (_myLoveState == MyLoveStateCoach) {
         return 1;
     }else if (_myLoveState == MyLoveStateDriving) {
-        return _dataListArray.count;
+            return _dataListArray.count;
     }
     return 0;
 }
