@@ -14,6 +14,7 @@
 #import "MJRefresh.h"
 #import "DVVShare.h"
 #import "YBMyWalletMallViewController.h"
+#import "DVVNoDataPromptView.h"
 
 #define topViewH 175
 #define toolBarHeight 40
@@ -52,6 +53,7 @@
 @property (nonatomic,strong) UIButton *leftBtn;
 @property (nonatomic,strong) UIButton *rightBtn;
 
+@property (nonatomic,strong)DVVNoDataPromptView *DvvView;
 @end
 
 @implementation YBMyWalletViewController
@@ -559,6 +561,8 @@
 - (void)reloadData
 {
     
+    [self.DvvView removeFromSuperview];
+    
     if (studyProgress==0) {
         
         self.leftBtn.hidden = NO;
@@ -578,6 +582,11 @@
         self.jianglijifenTableView.isJianglijifen = YES;
         self.jianglijifenTableView.jianglijifenArrray = [self.jianglijifenArray mutableCopy];
         [self.jianglijifenTableView reloadData];
+        
+        if (self.jianglijifenArray.count==0) {
+            self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您没有奖励积分" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+            [self.jianglijifenTableView addSubview:self.DvvView];
+        }
         
     }else if (studyProgress == 1){
 
@@ -600,6 +609,11 @@
         self.baomingduihuanquanTableView.dataArray = [self.baomingduihuanquanArray mutableCopy];
         [self.baomingduihuanquanTableView reloadData];
         
+        if (self.baomingduihuanquanArray.count==0) {
+            self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您没有报名兑换券" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+            [self.baomingduihuanquanTableView addSubview:self.DvvView];
+        }
+        
     }else if (studyProgress == 2){
         
         self.rightBtn.hidden = YES;
@@ -618,6 +632,11 @@
         self.kequxianjinedu.isJianglijifen = NO;
         self.kequxianjinedu.kequxianjineduArray = [self.kequxianjineduArray mutableCopy];
         [self.kequxianjinedu reloadData];
+        
+        if (self.kequxianjineduArray.count==0) {
+            self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您没有可取现金额度" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+            [self.kequxianjinedu addSubview:self.DvvView];
+        }
         
     }
     

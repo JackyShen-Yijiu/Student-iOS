@@ -12,6 +12,7 @@
 #import "YYModel.h"
 #import "DrivingDetailViewModel.h"
 #import "DVVToast.h"
+#import "DVVNoDataPromptView.h"
 
 #define kShuttleBusCellID @"kShuttleBusCell"
 
@@ -23,8 +24,9 @@
 
 @property (nonatomic, strong) NSMutableArray *heightArray;
 
-
 @property (nonatomic, strong) DrivingDetailViewModel *viewModel;
+
+@property (nonatomic,strong) DVVNoDataPromptView *DvvView;
 
 @end
 
@@ -34,12 +36,16 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"班车接送";
-    self.view.backgroundColor = [UIColor clearColor];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     [self.view addSubview:self.tableView];
     if (!_dataArray) {
         [self configViewModel];
     }
+    
+    self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"暂时没有班车接送信息" image:[UIImage imageNamed:@"YBNocountentimage_bus"] subTitle:nil];
+    [self.tableView addSubview:self.DvvView];
+    
 }
 
 #pragma mark - config view model
@@ -87,8 +93,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    self.DvvView.hidden =_dataArray.count;
     return _dataArray.count;
+    
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     return [_heightArray[indexPath.row] floatValue];

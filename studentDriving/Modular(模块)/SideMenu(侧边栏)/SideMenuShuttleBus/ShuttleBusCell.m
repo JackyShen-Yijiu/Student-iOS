@@ -24,7 +24,9 @@
         [cell setRestorationIdentifier:reuseIdentifier];
         self = cell;
         _titleLabel.textColor = MAINCOLOR;
-//        self.contentView.backgroundColor = [UIColor colorWithRed:247 green:249 blue:251 alpha:1];
+        self.contentView.backgroundColor = YBMainViewControlerBackgroundColor;
+        self.backgroundColor = YBMainViewControlerBackgroundColor;
+
     }
     return self;
 }
