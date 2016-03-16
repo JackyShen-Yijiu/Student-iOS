@@ -29,13 +29,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wP-OF-K1t">
-                    <rect key="frame" x="251" y="32" width="64" height="46"/>
+                    <rect key="frame" x="244" y="32" width="64" height="46"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YBAppointMentDetailsexam_off" translatesAutoresizingMaskIntoConstraints="NO" id="DoK-BJ-IYe">
                             <rect key="frame" x="0.0" y="0.0" width="64" height="46"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩32学时" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksz-Wk-Vbs">
-                            <rect key="frame" x="0.0" y="30" width="64" height="10"/>
+                            <rect key="frame" x="0.0" y="26" width="64" height="10"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -43,7 +43,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="DoK-BJ-IYe" secondAttribute="bottom" id="0Fa-wJ-vxj"/>
-                        <constraint firstItem="Ksz-Wk-Vbs" firstAttribute="top" secondItem="1wP-OF-K1t" secondAttribute="top" constant="30" id="0ta-TS-rAT"/>
+                        <constraint firstItem="Ksz-Wk-Vbs" firstAttribute="top" secondItem="1wP-OF-K1t" secondAttribute="top" constant="26" id="0ta-TS-rAT"/>
                         <constraint firstItem="Ksz-Wk-Vbs" firstAttribute="trailing" secondItem="DoK-BJ-IYe" secondAttribute="trailing" id="7LP-t5-ZGN"/>
                         <constraint firstAttribute="trailing" secondItem="DoK-BJ-IYe" secondAttribute="trailing" id="99q-UA-QgF"/>
                         <constraint firstItem="DoK-BJ-IYe" firstAttribute="leading" secondItem="1wP-OF-K1t" secondAttribute="leading" id="dpf-3Q-rcQ"/>
@@ -105,7 +105,7 @@
                 <constraint firstAttribute="bottom" secondItem="dXL-uL-Vo3" secondAttribute="bottom" id="DKc-2q-Aj9"/>
                 <constraint firstAttribute="trailing" secondItem="dXL-uL-Vo3" secondAttribute="trailing" id="EKE-9S-aaT"/>
                 <constraint firstItem="wTQ-UJ-QLr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Ju7-0X-MZ4"/>
-                <constraint firstAttribute="trailing" secondItem="1wP-OF-K1t" secondAttribute="trailing" constant="5" id="MAq-V7-1CR"/>
+                <constraint firstAttribute="trailing" secondItem="1wP-OF-K1t" secondAttribute="trailing" constant="12" id="MAq-V7-1CR"/>
                 <constraint firstItem="1wP-OF-K1t" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-5" id="PXp-uS-E7M"/>
                 <constraint firstItem="T6j-d4-bsL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-5" id="QD4-Mi-rXC"/>
                 <constraint firstItem="T6j-d4-bsL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aKf-9a-6HQ"/>
