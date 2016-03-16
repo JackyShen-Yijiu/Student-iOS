@@ -700,7 +700,7 @@ static NSString *coachCellID = @"coachCellID";
 
 - (DVVNoDataPromptView *)noDataPromptView {
     if (!_noDataPromptView) {
-        _noDataPromptView = [[DVVNoDataPromptView alloc] initWithTitle:@"暂无数据" image:[UIImage imageNamed:@"app_error_robot"]];
+        _noDataPromptView = [[DVVNoDataPromptView alloc] initWithTitle:@"暂无数据" image:[UIImage imageNamed:@"YBNocountentimage_net_off"]];
     }
     return _noDataPromptView;
 }
