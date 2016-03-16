@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="微信支付" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mqG-AB-QEa">
-                        <rect key="frame" x="51" y="13" width="297" height="14"/>
+                        <rect key="frame" x="51" y="20" width="288" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="N7p-H4-WVM"/>
                         </constraints>
@@ -25,14 +25,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UI8-di-DtN">
-                        <rect key="frame" x="5" y="12" width="32" height="32"/>
+                        <rect key="frame" x="5" y="19" width="32" height="32"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="32" id="Xss-qQ-1GY"/>
                             <constraint firstAttribute="height" constant="32" id="sdS-gO-g7H"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="推荐开通微信支付的用户使用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKf-Qv-AY4">
-                        <rect key="frame" x="51" y="31" width="297" height="12"/>
+                        <rect key="frame" x="51" y="38" width="288" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="WJt-Ws-6qA"/>
                         </constraints>
@@ -41,18 +41,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWX-6d-Kzr">
-                        <rect key="frame" x="280" y="19" width="18" height="18"/>
+                        <rect key="frame" x="271" y="8" width="36" height="36"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="18" id="5Yb-Ob-qbl"/>
-                            <constraint firstAttribute="width" constant="18" id="fiN-JG-ioO"/>
+                            <constraint firstAttribute="height" constant="36" id="5Yb-Ob-qbl"/>
+                            <constraint firstAttribute="width" constant="36" id="fiN-JG-ioO"/>
                         </constraints>
                         <connections>
                             <action selector="didPayWay:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="8gO-Vc-p0o"/>
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F3m-TA-GK4">
-                        <rect key="frame" x="71" y="46" width="327" height="1"/>
+                        <rect key="frame" x="71" y="53" width="327" height="1"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="Gx0-Bb-bIz"/>
@@ -61,12 +61,12 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="SKf-Qv-AY4" firstAttribute="leading" secondItem="mqG-AB-QEa" secondAttribute="leading" id="26a-mS-4hI"/>
-                    <constraint firstItem="lWX-6d-Kzr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="11" id="5k2-8f-cYU"/>
+                    <constraint firstItem="lWX-6d-Kzr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="5k2-8f-cYU"/>
                     <constraint firstAttribute="trailingMargin" secondItem="F3m-TA-GK4" secondAttribute="trailing" constant="-86" id="6If-BS-nTH"/>
                     <constraint firstItem="mqG-AB-QEa" firstAttribute="leading" secondItem="UI8-di-DtN" secondAttribute="trailing" constant="14" id="8aP-TY-hXm"/>
                     <constraint firstItem="SKf-Qv-AY4" firstAttribute="trailing" secondItem="mqG-AB-QEa" secondAttribute="trailing" id="IXu-2X-Fip"/>
                     <constraint firstItem="F3m-TA-GK4" firstAttribute="leading" secondItem="UI8-di-DtN" secondAttribute="trailing" constant="34" id="Lbk-U8-ecJ"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="lWX-6d-Kzr" secondAttribute="trailing" constant="14" id="Lhg-58-gnZ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="lWX-6d-Kzr" secondAttribute="trailing" constant="5" id="Lhg-58-gnZ"/>
                     <constraint firstItem="F3m-TA-GK4" firstAttribute="top" secondItem="SKf-Qv-AY4" secondAttribute="bottom" constant="3" id="UIA-7n-ILM"/>
                     <constraint firstItem="SKf-Qv-AY4" firstAttribute="top" secondItem="mqG-AB-QEa" secondAttribute="bottom" constant="4" id="VIl-R2-KCe"/>
                     <constraint firstItem="lWX-6d-Kzr" firstAttribute="leading" secondItem="SKf-Qv-AY4" secondAttribute="trailing" constant="-68" id="bF4-HG-wOE"/>

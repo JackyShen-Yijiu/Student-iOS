@@ -331,7 +331,7 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
             
             // 跳转到选择支付界面
             NSDictionary *param = @{@"userid":[AcountManager manager].userid,
-                                    @"orderstate":@"-1"};
+                                    @"orderstate":@"0"};
             //    NSString *appleStr = [NSString stringWithFormat:@"%@",kCellIdentifier,[AcountManager manager].userid];
             NSString *urlString = [NSString stringWithFormat:BASEURL,kCellIdentifier];
             [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
