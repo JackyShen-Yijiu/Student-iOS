@@ -347,7 +347,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         // 测试数据
 //        NSArray *commentListArray = @[@"你好,红啊呀"];
         
-        if (type.integerValue == 1 && commentListArray.count>0) {
+        if (type.integerValue == 1 && commentListArray.count==0) {
             
             ws.commentListArray = commentListArray;
             
@@ -388,8 +388,8 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 //            NSLog(@"_feVc.starBar.rating:%f",ws.feVc.starBar.rating);
             NSLog(@"feVc.reasonTextView.text:%@",ws.feVc.reasonTextView.text);
             
-            if (self.commentListArray && self.commentListArray.count==1) {// 跳转到评论界面
-                
+//            if (self.commentListArray && self.commentListArray.count==1) {// 跳转到评论界面
+            
                 NSError *error = nil;
                 MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
 //
@@ -406,12 +406,17 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
                 moreComVC.coachName = model.coachid.name; // 教练姓名
                 moreComVC.viewVC = ws;
                 moreComVC.model = model;
-            }
+//            }
             
         };
         _feVc.commitBlock = ^{
             
             NSLog(@"提交");
+            if (ws.feVc.reasonTextView.text.length == 0) {
+                [ws obj_showTotasViewWithMes:@"请输入评价内容"];
+                return ;
+            }
+
 
 //            NSLog(@"_feVc.starBar.rating:%f",ws.feVc.starBar.rating);
             NSLog(@"feVc.reasonTextView.text:%@",ws.feVc.reasonTextView.text);
