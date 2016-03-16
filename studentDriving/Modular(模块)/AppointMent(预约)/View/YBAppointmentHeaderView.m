@@ -44,13 +44,6 @@
 - (void)setUpData
 {
     
-    
-    NSString *buyStr = @"";
-    NSString *yiXueStr = @"";
-    NSString *studycountent = @"";
-    NSString *guiDingStr = @"";
-    NSString *wanChengStr = @"";
-    
     if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
         
         self.subjectLabel.text = [NSString stringWithFormat:@"%@",@"科目二"];
@@ -60,23 +53,29 @@
         NSInteger totalCourse = [AcountManager manager].subjecttwo.totalcourse.integerValue;
         NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
-        guiDingStr = [NSString stringWithFormat:@"规定:%ld学时",(long)totalCourse];
-        wanChengStr = [NSString stringWithFormat:@"完成:%ld学时",(long)doneCourse];
+        NSInteger shengyuxueshi = [[AcountManager manager].subjecttwo.totalcourse integerValue] - [[AcountManager manager].subjecttwo.finishcourse integerValue];
+
+        // 学习内容
+        self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",[AcountManager manager].subjecttwo.progress];
+        // 规定
+        self.buySubjectLabel.text = [NSString stringWithFormat:@"规定:%@学时",[AcountManager manager].subjecttwo.officialhours];
+        // 购买
+        self.guidingLabel.text = [NSString stringWithFormat:@"购买:%@课时",[AcountManager manager].subjecttwo.totalcourse];
+        // 完成
+        self.yiXueLabel.text = [NSString stringWithFormat:@"完成:%ld学时",(long)[AcountManager manager].subjecttwo.officialfinishhours];
+        // 已学
+        self.wanChengLabel.text = [NSString stringWithFormat:@"已学:%@课时",[AcountManager manager].subjecttwo.finishcourse];
+        // 还需
+        self.shengxueshiLabel.text = [NSString stringWithFormat:@"还需%ld学时",(long)shengyuxueshi];
+        
         // 如果没有完成规定的学时，则不能点击约考
-        if (doneCourse < totalCourse) {
+        if (shengyuxueshi>0) {
             _yuekaoBtn.userInteractionEnabled = NO;
             _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_off"];
-            _shengXueShiLabel.text = [NSString stringWithFormat:@"还剩%d学时", totalCourse - doneCourse];
         }else {
+            _yuekaoBtn.userInteractionEnabled = YES;
             _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_on"];
-            _shengXueShiLabel.text = @"";
         }
-        
-        NSInteger yiyuexueshiCount = [[AcountManager manager].subjecttwo.reservation integerValue] + [[AcountManager manager].subjecttwo.finishcourse integerValue];
-
-        studycountent = [AcountManager manager].subjecttwo.progress;
-        buyStr = [NSString stringWithFormat:@"购买:%ld课时",(long)[AcountManager manager].subjecttwo.buycoursecount.longValue];
-        yiXueStr = [NSString stringWithFormat:@"已学:%ld课时",(long)yiyuexueshiCount];
 
     }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
         
@@ -87,46 +86,33 @@
         NSInteger totalCourse = [AcountManager manager].subjectthree.totalcourse.integerValue;
         NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
-        guiDingStr = [NSString stringWithFormat:@"规定:%ld学时",(long)totalCourse];
-        wanChengStr = [NSString stringWithFormat:@"完成:%ld学时",(long)doneCourse];
+        NSInteger shengyuxueshi = [[AcountManager manager].subjectthree.totalcourse integerValue] - [[AcountManager manager].subjectthree.finishcourse integerValue];
+        
+        // 学习内容
+        self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",[AcountManager manager].subjectthree.progress];
+        // 规定
+        self.buySubjectLabel.text = [NSString stringWithFormat:@"规定:%@学时",[AcountManager manager].subjectthree.officialhours];
+        // 购买
+        self.guidingLabel.text = [NSString stringWithFormat:@"购买:%@课时",[AcountManager manager].subjectthree.totalcourse];
+        // 完成
+        self.yiXueLabel.text = [NSString stringWithFormat:@"完成:%ld学时",(long)[AcountManager manager].subjectthree.officialfinishhours];
+        // 已学
+        self.wanChengLabel.text = [NSString stringWithFormat:@"已学:%@课时",[AcountManager manager].subjectthree.finishcourse];
+        // 还需
+        self.shengxueshiLabel.text = [NSString stringWithFormat:@"还需%ld学时",(long)shengyuxueshi];
+        
         
         // 如果没有完成规定的学时，则不能点击约考
-        if (doneCourse < totalCourse) {
+        if (shengyuxueshi>0) {
             _yuekaoBtn.userInteractionEnabled = NO;
             _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_off"];
-            _shengXueShiLabel.text = [NSString stringWithFormat:@"还剩%d学时", totalCourse - doneCourse];
         }else {
+            _yuekaoBtn.userInteractionEnabled = YES;
             _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_on"];
-            _shengXueShiLabel.text = @"";
         }
         
-        NSInteger yiyuexueshiCount = [[AcountManager manager].subjectthree.reservation integerValue] + [[AcountManager manager].subjectthree.finishcourse integerValue];
-        NSLog(@"yiyuexueshiCount:%lu",(long)yiyuexueshiCount);
-        
-        studycountent = [AcountManager manager].subjectthree.progress;
-        buyStr = [NSString stringWithFormat:@"购买:%ld课时",(long)[AcountManager manager].subjectthree.buycoursecount.longValue];
-        yiXueStr = [NSString stringWithFormat:@"已学:%ld课时",(long)yiyuexueshiCount];
+    }
 
-    }
-    
-    // 购买多少课、已学多少课时
-    if (buyStr.length) {
-        _buySubjectLabel.text = buyStr;
-    }
-    if (yiXueStr) {
-        _yiXueLabel.text = yiXueStr;
-    }
-    
-    self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",studycountent];
-
-    // 规定多少课、完成多少课时
-    if (guiDingStr.length) {
-        _guidingLabel.text = guiDingStr;
-    }
-    if (wanChengStr.length) {
-        _wanChengLabel.text = wanChengStr;
-    }
-    
     if (![AcountManager isLogin]) {
         self.yuekaoBtn.hidden = YES;
     }

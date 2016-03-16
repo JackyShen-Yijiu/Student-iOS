@@ -9,14 +9,19 @@
 #import <UIKit/UIKit.h>
 
 @interface YBAppointmentHeaderView : UIView
+
 @property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *subjectTopLabel;
 @property (weak, nonatomic) IBOutlet UILabel *buySubjectLabel;
 @property (weak, nonatomic) IBOutlet UILabel *guidingLabel;
 @property (weak, nonatomic) IBOutlet UILabel *yiXueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *wanChengLabel;
+
+@property (weak, nonatomic) IBOutlet UILabel *shengxueshiLabel;
+
+
 @property (weak, nonatomic) IBOutlet UIImageView *yuekaoBtn;
-@property (weak, nonatomic) IBOutlet UILabel *shengXueShiLabel;
 
 @property (nonatomic,weak) UIViewController *parentViewController;
 

@@ -113,7 +113,7 @@
 
 - (void)callBtnDidClick
 {
-    UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"咨询电话" message:@"400-626-9255" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
+    UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"咨询电话" message:@"400-101-6669" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"呼叫", nil];
     [alert show];
     
 }
@@ -123,7 +123,7 @@
     if (buttonIndex==1) {
         
         NSLog(@"%s",__func__);
-        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"400-626-9255"];
+        NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"400-101-6669"];
         //            NSLog(@"str======%@",str);
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:str]];
         
