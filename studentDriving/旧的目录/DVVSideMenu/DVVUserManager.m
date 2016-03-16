@@ -31,23 +31,37 @@
 // 打开登录窗体
 + (void)userNeedLogin {
     
-    //    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    //    [(UINavigationController *)(window.rootViewController) pushViewController:[self loginController] animated:YES];
-    //    [(UINavigationController *)(window.rootViewController) presentViewController:[self loginController] animated:YES completion:nil];
-    
-    JZAutoLoginController *vc = [[JZAutoLoginController alloc] init];
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
-    
-    //    UIWindow *window = [UIApplication sharedApplication].keyWindow;
-    //    [(UINavigationController *)(window.rootViewController) dismissViewControllerAnimated:YES completion:nil];
+    if ([AcountManager isLogin]) {
+
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[JZAutoLoginController alloc] init];
+
+    }else{
+        
+        JZAutoLoginController *vc = [[JZAutoLoginController alloc] init];
+        [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:vc animated:YES completion:nil];
+        
+    }
     
 }
 
 // 用户登录成功后调用此方法打开主页
 + (void)userLoginSucces {
     
+    if ([AcountManager isLogin]) {
+        
+        [[UIApplication sharedApplication].keyWindow.rootViewController dismissViewControllerAnimated:YES completion:nil];
+
+    }else{
+        
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[ViewController alloc] init];
+
+    }
+
+}
+
++ (void)loginSuccsssAndSetupMainVc
+{
     [UIApplication sharedApplication].keyWindow.rootViewController = [[ViewController alloc] init];
-    
 }
 
 // 用户退出登录后调用此方法

@@ -74,6 +74,7 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder";
              }
              */
             
+            
             // 获取订单编号
             if ([param[@"data"] count]) {
                 self.orderNumberLabel.text = [NSString stringWithFormat:@"订单号 %@",[param[@"data"] firstObject][@"_id"]];

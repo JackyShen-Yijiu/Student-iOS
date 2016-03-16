@@ -21,6 +21,7 @@
 #import "MyAppointmentModel.h"
 #import "JZComplaintView.h"
 #import "JGPayTool.h"
+#import "RatingBar.h"
 
 @class RatingBar;
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
@@ -108,8 +109,19 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return;
     }
     
+    
+    NSLog(@"[AcountManager manager].userApplystate:%@",[AcountManager manager].userApplystate);
+    
+    // 0) {// 尚未报名
     if ([AcountManager manager].userApplystate && [[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-        UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,貌似您还没有报名\n如果您已报名,请联系驾校或教练" message:@"" delegate:self cancelButtonTitle:@"前去报名" otherButtonTitles:@"再看看", nil];
+        UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,貌似您还没有报名;如果您已报名,请联系驾校或教练" message:@"" delegate:self cancelButtonTitle:@"前去报名" otherButtonTitles:@"再看看", nil];
+        alert.tag = 100;
+        [alert show];
+        return;
+    }
+    // 1) {// 已报名,尚未交钱
+    if (([AcountManager manager].userApplystate && [[AcountManager manager].userApplystate isEqualToString:@"1"])) {
+        UIAlertView  * alert = [[UIAlertView alloc] initWithTitle:@"抱歉,您尚未付款，请尽快前往驾校支付费用" message:@"" delegate:self cancelButtonTitle:nil otherButtonTitles:@"我知道了", nil];
         [alert show];
         return;
     }
@@ -122,7 +134,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    if (buttonIndex==0) {
+    if (alertView.tag == 100 && buttonIndex==0) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"receiveMainVcChange" object:self];
     }
 }
@@ -335,7 +347,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         // 测试数据
 //        NSArray *commentListArray = @[@"你好,红啊呀"];
         
-        if (type.integerValue == 1 && commentListArray.count>0) {
+        if (type.integerValue == 1 && commentListArray.count > 0) {
             
             ws.commentListArray = commentListArray;
             
@@ -377,7 +389,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             NSLog(@"feVc.reasonTextView.text:%@",ws.feVc.reasonTextView.text);
             
             if (self.commentListArray && self.commentListArray.count==1) {// 跳转到评论界面
-                
+            
                 NSError *error = nil;
                 MyAppointmentModel *model = [MTLJSONAdapter modelsOfClass:MyAppointmentModel.class fromJSONArray:ws.commentListArray error:&error].firstObject;
 //
@@ -400,6 +412,11 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         _feVc.commitBlock = ^{
             
             NSLog(@"提交");
+            if (ws.feVc.reasonTextView.text.length == 0) {
+                [ws obj_showTotasViewWithMes:@"请输入评价内容"];
+                return ;
+            }
+
 
 //            NSLog(@"_feVc.starBar.rating:%f",ws.feVc.starBar.rating);
             NSLog(@"feVc.reasonTextView.text:%@",ws.feVc.reasonTextView.text);
@@ -410,7 +427,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
                     
            
-            //            [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar. model:model];
+                        [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar.rating model:model];
             
         };
         

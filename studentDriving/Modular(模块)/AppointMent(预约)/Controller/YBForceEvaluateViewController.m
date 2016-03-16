@@ -127,8 +127,8 @@
     if (self.moteblock) {
         self.moteblock();
     }
-        APCommentViewController *apcVC = [[APCommentViewController alloc] init];
-        [self.view addSubview:apcVC.view];
+//        APCommentViewController *apcVC = [[APCommentViewController alloc] init];
+//        [self.view addSubview:apcVC.view];
 
 }
 - (void)commitBtnDidClick
@@ -161,7 +161,10 @@
     }
     _commentCountLabel.text = [NSString stringWithFormat:@"%lu/40",(unsigned long)[textView.text length]];
 }
-
+-  (void)textViewDidBeginEditing:(UITextView *)textView{
+    YBTextView *ybTextView = (YBTextView *)textView;
+    ybTextView.placeholderLabel.hidden = YES;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -378,7 +381,7 @@
         [_commitBtn setTitleColor:[UIColor blackColor] forState:UIControlStateHighlighted];
         _commitBtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [_commitBtn addTarget:self action:@selector(commitBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
-        _commitBtn.enabled = NO;
+//        _commitBtn.enabled = NO;
     }
     return _commitBtn;
 }

@@ -26,10 +26,14 @@
 #import "YBSignUpSuccessController.h"
 #import "OrdetDetailController.h"
 #import "DVVNoDataPromptView.h"
+#import "DVVPaySuccessController.h"
+#import "JZPayWayController.h"
 
 #define StartOffset  kSystemWide/4-60/2
 
 static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 报名详情
+
+static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订单
 
 @interface YBOrderListViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
@@ -79,7 +83,7 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
     // Do any additional setup after loading the view.
     
     self.title = @"报名信息";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColor(226, 226, 233);
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
 
@@ -258,7 +262,7 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150.0f;
+    return 198;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -278,37 +282,145 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
     
     cell.dict = self.dict;
     cell.didclickBlock = ^(NSInteger tag){
-        if (400 == tag) {
-            // 线下重新的报名
-            [SignUpInfoManager removeSignData];
-            [AcountManager saveUserApplyState:@"0"];
-            //1为重新报名，0为报名
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            [ud setObject:@"1" forKey:@"applyAgain"];
-            [ud synchronize];
-            [DVVUserManager userLoginSucces];
+        if(401 == tag){
+//            // 取消报名
+//            [SignUpInfoManager removeSignData];
+//            [AcountManager saveUserApplyState:@"0"];
+//            //1为重新报名，0为报名
+//            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//            [ud setObject:@"1" forKey:@"applyAgain"];
+//            [ud synchronize];
+//            [DVVUserManager userLoginSucces];
             
-        }else if(401 == tag){
-            // 线上重新报名
-            [SignUpInfoManager removeSignData];
-            [AcountManager saveUserApplyState:@"0"];
-            //1为重新报名，0为报名
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            [ud setObject:@"1" forKey:@"applyAgain"];
-            [ud synchronize];
-            [DVVUserManager userLoginSucces];
+            // 取消订单
+            NSLog(@"%s",__func__);
+            NSString *url = [NSString stringWithFormat:kusercancelorder,[AcountManager manager].userid];
+            NSString *applyUrlString = [NSString stringWithFormat:BASEURL,url];
+            [JENetwoking startDownLoadWithUrl:applyUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+                
+                NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
+                
+                if ([type isEqualToString:@"1"]) {
+                    
+                    [self obj_showTotasViewWithMes:@"取消成功"];
+                    
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                }else{
+                    
+                    [self obj_showTotasViewWithMes:data[@"msg"]];
+                    
+                }
+                
+            } withFailure:^(id data) {
+                
+                
+            }];
+
             
         }else if(402 == tag){
-            // 立即支付
-            OrdetDetailController *ordetVC = [[OrdetDetailController alloc] init];
-            ordetVC.schoolStr = self.schoolStr;
-            ordetVC.carModelStr = self.carModelStr;
-            ordetVC.signUpStr = self.signUpStr;
-            ordetVC.realMoneyStr = self.realMoneyStr;
-            ordetVC.payStausStr = self.payStausStr;
-            ordetVC.classType = self.classType;
+            // 继续支付
+//            OrdetDetailController *ordetVC = [[OrdetDetailController alloc] init];
+//            ordetVC.schoolStr = self.schoolStr;
+//            ordetVC.carModelStr = self.carModelStr;
+//            ordetVC.signUpStr = self.signUpStr;
+//            ordetVC.realMoneyStr = self.realMoneyStr;
+//            ordetVC.payStausStr = self.payStausStr;
+//            ordetVC.classType = self.classType;
+//            [self.navigationController pushViewController:ordetVC animated:YES];
             
-            [self.navigationController pushViewController:ordetVC animated:YES];
+            // 跳转到选择支付界面
+            NSDictionary *param = @{@"userid":[AcountManager manager].userid,
+                                    @"orderstate":@"-1"};
+            //    NSString *appleStr = [NSString stringWithFormat:@"%@",kCellIdentifier,[AcountManager manager].userid];
+            NSString *urlString = [NSString stringWithFormat:BASEURL,kCellIdentifier];
+            [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+                NSDictionary *param = data;
+                
+                NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
+                
+                if ([type isEqualToString:@"1"]){
+                    /*
+                     {
+                     data =     (
+                     {
+                     "_id" = 56d8fa833947daad595e5a53;
+                     activitycoupon = "";
+                     applyclasstypeinfo =             {
+                     id = 56aecf9b70667d997fda6247;
+                     name = "\U6d4b\U8bd5\U73ed\U578b \U8df3\U697c\U4ef7";
+                     onsaleprice = 1;
+                     price = 1;
+                     };
+                     applyschoolinfo =             {
+                     id = 562dcc3ccb90f25c3bde40da;
+                     name = "\U4e00\U6b65\U4e92\U8054\U7f51\U9a7e\U6821";
+                     };
+                     couponcode = "";
+                     creattime = "2016-03-04T03:01:23.453Z";
+                     discountmoney = 0;
+                     paychannel = 0;
+                     payendtime = "2016-03-07T03:01:23.453Z";
+                     paymoney = 1;
+                     userpaystate = 0;
+                     }
+                     );
+                     msg = "";
+                     type = 1;
+                     }
+                     */
+    
+                    
+                    
+                    // push界面需要的字典类型
+                   /* {
+                        "type": 1,
+                        "msg": "",
+                        "data": "success",
+                        "extra": {
+                            "__v": 0,
+                            "paymoney": 4700,
+                            //支付金额"payendtime": "2016-02-03T12:29:49.423Z",
+                            "creattime": "2016-01-31T12:29:49.423Z",
+                            "userid": "564e1242aa5c58b901e4961a",
+                            "_id": "56adfe3d323ed17278e71914",
+                            订单id"discountmoney": 0,
+                            "applyclasstypeinfo": {
+                                "onsaleprice": 4700,
+                                "price": 4700,
+                                "name": "一步互联网驾校快班",
+                                "id": "562dd1fd1cdf5c60873625f3"
+                            },
+                            "applyschoolinfo": {
+                                "name": "一步互联网驾校",
+                                "id": "562dcc3ccb90f25c3bde40da"
+                            },
+                            "paychannel": 0,
+                            userpaystate": 0订单状态//0订单生成1开始支付2支付成功3支付失败4订单取消 //支付方式"
+                        }
+                    }
+                    */
+                    NSDictionary *dict =  [param[@"data"] firstObject];
+
+                    JZPayWayController *payWayVC= [[JZPayWayController alloc] init];
+                    payWayVC.extraDict =  dict;
+                    [self.navigationController pushViewController:payWayVC animated:YES];
+                    
+                    
+            }
+                
+            } withFailure:^(id data) {
+                
+            }];
+
+            
+            
+            
+            
+            
+            
+            
+            
         }
     };
     cell.backgroundColor = [UIColor clearColor];
@@ -319,8 +431,19 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
     if ([self.payWaystr isEqualToString:@"线下支付"] && [self.applySatus isEqualToString:@"申请中"]) {
         // 跳转到扫描界面
         YBSignUpSuccessController *signUpVC = [[YBSignUpSuccessController alloc] init];
-        
         [self.navigationController pushViewController:signUpVC animated:YES];
+    }
+    if ([self.payWaystr isEqualToString:@"线下支付"] && [self.applySatus isEqualToString:@"申请成功"]) {
+        // 跳转到线下报名成功界面
+        DVVPaySuccessController *vc = [DVVPaySuccessController new];
+        vc.isPaySuccess = YES;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
+    if ([self.payWaystr isEqualToString:@"线上支付"] && [self.applySatus isEqualToString:@"支付成功"]) {
+        // 跳转到线上报名成界面
+        DVVPaySuccessController *vc = [DVVPaySuccessController new];
+        vc.isPaySuccess = YES;
+        [self.navigationController pushViewController:vc animated:YES];
     }
 }
 @end

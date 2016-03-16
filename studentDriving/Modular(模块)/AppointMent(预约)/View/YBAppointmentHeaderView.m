@@ -117,7 +117,7 @@
         _yiXueLabel.text = yiXueStr;
     }
     
-    self.subjectTopLabel.text = [NSString stringWithFormat:@"%@  %@",yiXueStr,studycountent];
+    self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",studycountent];
 
     // 规定多少课、完成多少课时
     if (guiDingStr.length) {

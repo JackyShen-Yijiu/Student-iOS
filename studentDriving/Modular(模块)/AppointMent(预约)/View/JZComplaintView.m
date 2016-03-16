@@ -145,6 +145,14 @@
     }
     return 20;
 }
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    if (1 == section) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.headerView.width, 20)];
+        view.backgroundColor = [UIColor whiteColor];
+        return view;
+    }
+    return nil;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (0 == indexPath.section) {
         return 30;
@@ -202,6 +210,7 @@
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
             [self.reasonTextView addSubview:self.commentCountLabel];
             [cell.contentView addSubview:self.reasonTextView];
+            cell.backgroundColor = [UIColor whiteColor];
         }
         return cell;
     }
@@ -378,11 +387,12 @@
 - (UITableView *)tableView {
     if (_tableView == nil) {
         _tableView = [[UITableView alloc] initWithFrame:CGRectMake(18, 64, kSystemWide - 18 * 2, kSystemHeight - 44 - 64 - 80) style:UITableViewStylePlain];
-        _tableView.centerY = self.centerY - 64;
+        _tableView.centerY = self.centerY + 20;
         _tableView.delegate = self;
         _tableView.dataSource = self;
         _tableView.backgroundColor = [UIColor whiteColor];
         _tableView.scrollEnabled = NO;
+        _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tableView;
 }
@@ -396,7 +406,7 @@
         _reasonTextView.placeholderLabel.font = [UIFont systemFontOfSize:12];
         _reasonTextView.textColor = [UIColor blackColor];
         _reasonTextView.font = [UIFont systemFontOfSize:13];
-        _reasonTextView.backgroundColor = [UIColor clearColor];
+        _reasonTextView.backgroundColor = [UIColor whiteColor];
         _reasonTextView.delegate = self;
         _reasonTextView.layer.borderColor = [[UIColor colorWithHexString:@"6e6e6e"]CGColor];
         _reasonTextView.layer.borderWidth = 1.0;

@@ -355,7 +355,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
                  [[NSNotificationCenter defaultCenter] postNotificationName:KNOTIFICATION_LOGINCHANGE object:@YES];
                  
                  // 用户登录成功，打开相应的窗体
-                 [DVVUserManager userLoginSucces];
+                 [DVVUserManager loginSuccsssAndSetupMainVc];
                  
              }
              else
@@ -549,7 +549,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
 
 - (DVVBaseTextField *)authCodeTextFiled{
     if (_authCodeTextFiled == nil) {
-        _authCodeTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"test"] placeholder:@"请输入验证码" borderColor:[UIColor clearColor]];
+        _authCodeTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"test"] placeholder:@"获取验证码" borderColor:[UIColor clearColor]];
         _authCodeTextFiled.keyboardType = UIKeyboardTypeNumberPad;
         _authCodeTextFiled.tag = 5001;
         _authCodeTextFiled.delegate = self;
@@ -563,7 +563,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
 }
 - (DVVBaseTextField *)passwordTextFiled{
     if (_passwordTextFiled == nil) {
-        _passwordTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请输入密码" borderColor:[UIColor colorWithHexString:@"b7b7b7"]];
+        _passwordTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请设置密码" borderColor:[UIColor colorWithHexString:@"b7b7b7"]];
         _passwordTextFiled.tag = 5002;
         _passwordTextFiled.delegate = self;
         _passwordTextFiled.secureTextEntry = YES;

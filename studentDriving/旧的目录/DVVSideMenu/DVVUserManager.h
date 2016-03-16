@@ -28,4 +28,6 @@
 // Push一个视图
 + (void)pushController:(UIViewController *)controller;
 
++ (void)loginSuccsssAndSetupMainVc;
+
 @end

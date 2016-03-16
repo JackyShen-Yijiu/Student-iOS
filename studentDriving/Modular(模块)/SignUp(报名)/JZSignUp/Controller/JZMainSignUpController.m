@@ -182,6 +182,14 @@
             if (0 == indexPath.row || 1 == indexPath.row) {
                 signUpCell.arrowImageView.hidden = YES;
             }
+            if (1 == indexPath.row) {
+                // 显示数字键盘
+                signUpCell.desTextFiled.keyboardType = UIKeyboardTypeNumberPad;
+            }
+            if (2 == indexPath.row) {
+                // UITextFiled 不可编辑
+                signUpCell.desTextFiled.enabled = NO;
+            }
 
             return signUpCell;
         }
@@ -220,6 +228,14 @@
             // 隐藏右侧箭头
             if (0 == indexPath.row || 1 == indexPath.row) {
                 signUpCell.arrowImageView.hidden = YES;
+            }
+            if (1 == indexPath.row) {
+                // 显示数字键盘
+                signUpCell.desTextFiled.keyboardType = UIKeyboardTypeNumberPad;
+            }
+            if (2 == indexPath.row) {
+                // UITextFiled 不可编辑
+                signUpCell.desTextFiled.enabled = NO;
             }
 
             return signUpCell;
