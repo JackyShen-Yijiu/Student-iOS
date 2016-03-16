@@ -489,7 +489,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (void)ContactUsButtonAction {
     
-    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"4006269255"];
+    NSMutableString * str=[[NSMutableString alloc] initWithFormat:@"tel:%@",@"4001016669"];
     UIWebView * callWebview = [[UIWebView alloc] init];
     [callWebview loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:str]]];
     [[UIApplication sharedApplication].keyWindow.rootViewController.view addSubview:callWebview];
