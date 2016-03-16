@@ -55,7 +55,7 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
 @property (nonatomic, strong) NSString *payStausStr; // 支付状态
 @property (nonatomic, strong) NSString *applySatus; // 申请状态
 @property (nonatomic, strong) NSString *classType;
-@property (nonatomic, strong) NSDictionary *dict;
+@property (nonatomic, strong) NSMutableDictionary *dict;
 
 @property (nonatomic, strong) ShowWarningBG *warningBG; //提示背景图片
 @property (nonatomic, strong) ShowWarningBG *mallBG;
@@ -81,6 +81,8 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.dict = [NSMutableDictionary dictionary];
     
     self.title = @"报名信息";
     self.view.backgroundColor = RGBColor(226, 226, 233);
@@ -212,20 +214,20 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
                 }
                 
                 self.noCountentView.hidden = YES;
-                self.headerImageURl = data[@"schoollogoimg"];
+                self.headerImageURl = [NSString stringWithFormat:@"%@",data[@"schoollogoimg"]];
                 NSLog(@"%@",data[@"schoollogoimg"]);
-                self.schoolStr = [[data objectForKey:@"applyschoolinfo"] objectForKey:@"name"];
-                self.carModelStr = [[data objectForKey:@"carmodel"] objectForKey:@"name"];
-                self.signUpStr = [data objectForKey:@"applytime"];
+                self.schoolStr = [NSString stringWithFormat:@"%@",[[data objectForKey:@"applyschoolinfo"] objectForKey:@"name"]];
+                self.carModelStr = [NSString stringWithFormat:@"%@",[[data objectForKey:@"carmodel"] objectForKey:@"name"]];
+                self.signUpStr = [NSString stringWithFormat:@"%@",[data objectForKey:@"applytime"]];
                 
                 self.realMoneyStr = [NSString stringWithFormat:@"%lu",[[[data objectForKey:@"applyclasstypeinfo"] objectForKey:@"onsaleprice"] integerValue]];
                 self.classType = [[data objectForKey:@"applyclasstypeinfo"] objectForKey:@"name"];
                 // 支付状态
                 if (0 == [[data objectForKey:@"paytypestatus"] integerValue]) {
                     self.payStausStr = @"未支付";
-                }else if (1 == [[data objectForKey:@"paytypestatus"] integerValue]) {
+                }else if (20 == [[data objectForKey:@"paytypestatus"] integerValue]) {
                     self.payStausStr = @"支付成功";
-                }else if (2 == [[data objectForKey:@"paytypestatus"] integerValue]) {
+                }else if (30 == [[data objectForKey:@"paytypestatus"] integerValue]) {
                     self.payStausStr = @"支付失败";
                 }
                 // 支付方式
@@ -242,15 +244,27 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
                 } else if (2 == [[data objectForKey:@"applystate"] integerValue]) {
                     self.applySatus = @"申请成功";
                 }
-                self.dict = @{@"headerUrl":self.headerImageURl,
-                              @"schoolStr":self.schoolStr,
-                              @"carModelStr":self.carModelStr,
-                              @"signUpStr":self.signUpStr,
-                              @"realMoneyStr":self.realMoneyStr,
-                              @"payStausStr":self.payStausStr,
-                              @"payWaystr":self.payWaystr,
-                              @"applySatus":self.applySatus};
-                
+            
+            self.dict[@"headerUrl"] = self.headerImageURl;
+            self.dict[@"schoolStr"] = self.schoolStr;
+            self.dict[@"carModelStr"] = self.carModelStr;
+            self.dict[@"signUpStr"] = self.signUpStr;
+            self.dict[@"realMoneyStr"] = self.realMoneyStr;
+            self.dict[@"payStausStr"] = self.payStausStr;
+            self.dict[@"payWaystr"] = self.payWaystr;
+            self.dict[@"applySatus"] = self.applySatus;
+        
+//
+//            
+//                self.dict = @{@"headerUrl":self.headerImageURl,
+//                              @"schoolStr":self.schoolStr,
+//                              @"carModelStr":self.carModelStr,
+//                              @"signUpStr":self.signUpStr,
+//                              @"realMoneyStr":self.realMoneyStr,
+//                              @"payStausStr":self.payStausStr,
+//                              @"payWaystr":self.payWaystr,
+//                              @"applySatus":self.applySatus};
+//                
                        [self.tableView reloadData];
             
         }
@@ -439,7 +453,7 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
         vc.isPaySuccess = YES;
         [self.navigationController pushViewController:vc animated:YES];
     }
-    if ([self.payWaystr isEqualToString:@"线上支付"] && [self.applySatus isEqualToString:@"支付成功"]) {
+    if ([self.payWaystr isEqualToString:@"线上支付"] && [self.payStausStr isEqualToString:@"支付成功"]) {
         // 跳转到线上报名成界面
         DVVPaySuccessController *vc = [DVVPaySuccessController new];
         vc.isPaySuccess = YES;

@@ -438,17 +438,10 @@
         _cancelButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _cancelButton.backgroundColor = [UIColor clearColor];
         [_cancelButton setTitle:@"取消订单" forState:UIControlStateNormal];
-        [_cancelButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_cancelButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        _cancelButton.selected = YES;
-        if (_cancelButton.selected) {
-            _cancelButton.layer.borderWidth = 1;
-            _cancelButton.layer.borderColor = YBNavigationBarBgColor.CGColor;
-        }
-        if (!_cancelButton.selected) {
             _cancelButton.layer.borderWidth = 1;
             _cancelButton.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
-        }
+        
         [_cancelButton addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
         _cancelButton.tag = 401;
         
@@ -460,18 +453,10 @@
         _payButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _payButton.backgroundColor = [UIColor clearColor];
         [_payButton setTitle:@"继续支付" forState:UIControlStateNormal];
-        [_payButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
-        [_payButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        _payButton.selected = NO;
-        if (_payButton.selected) {
+        [_payButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
             _payButton.layer.borderWidth = 1;
             _payButton.layer.borderColor = YBNavigationBarBgColor.CGColor;
-        }
-        if (!_payButton.selected) {
-            _payButton.layer.borderWidth = 1;
-            _payButton.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
-        }
-        [_payButton addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
+       [_payButton addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
         _payButton.tag = 402;
         
     }
