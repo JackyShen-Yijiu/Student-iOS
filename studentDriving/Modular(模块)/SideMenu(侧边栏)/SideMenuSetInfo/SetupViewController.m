@@ -265,8 +265,10 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         [ud setInteger:1 forKey:@"isCarReset"];
         [ud synchronize];
 
-        [UIApplication sharedApplication].keyWindow.rootViewController = [[JZAutoLoginController alloc] init];
+//        [UIApplication sharedApplication].keyWindow.rootViewController = [[JZAutoLoginController alloc] init];
 
+        [DVVUserManager userNeedLogin];
+        
     } onQueue:nil];
     
 }
