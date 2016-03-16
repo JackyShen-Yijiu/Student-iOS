@@ -417,7 +417,7 @@
                 
             }else{
                 
-                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
                 
             }
             
@@ -535,7 +535,7 @@
                 
             }else{
                 
-                [courselistStr appendString:[NSString stringWithFormat:@"%@",courseID]];
+                [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
                 
             }
             

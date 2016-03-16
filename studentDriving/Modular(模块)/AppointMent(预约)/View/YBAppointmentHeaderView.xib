@@ -34,7 +34,7 @@
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YBAppointMentDetailsexam_off" translatesAutoresizingMaskIntoConstraints="NO" id="DoK-BJ-IYe">
                             <rect key="frame" x="0.0" y="0.0" width="64" height="46"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="剩32学时" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksz-Wk-Vbs">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩32学时" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksz-Wk-Vbs">
                             <rect key="frame" x="0.0" y="30" width="64" height="10"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,11 +43,14 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="DoK-BJ-IYe" secondAttribute="bottom" id="0Fa-wJ-vxj"/>
+                        <constraint firstItem="Ksz-Wk-Vbs" firstAttribute="top" secondItem="1wP-OF-K1t" secondAttribute="top" constant="30" id="0ta-TS-rAT"/>
+                        <constraint firstItem="Ksz-Wk-Vbs" firstAttribute="trailing" secondItem="DoK-BJ-IYe" secondAttribute="trailing" id="7LP-t5-ZGN"/>
                         <constraint firstAttribute="trailing" secondItem="DoK-BJ-IYe" secondAttribute="trailing" id="99q-UA-QgF"/>
                         <constraint firstItem="DoK-BJ-IYe" firstAttribute="leading" secondItem="1wP-OF-K1t" secondAttribute="leading" id="dpf-3Q-rcQ"/>
                         <constraint firstAttribute="height" constant="46" id="gnL-yI-8sI"/>
                         <constraint firstAttribute="width" constant="64" id="pSc-Vs-XK4"/>
                         <constraint firstItem="DoK-BJ-IYe" firstAttribute="top" secondItem="1wP-OF-K1t" secondAttribute="top" id="vLa-Rk-YnA"/>
+                        <constraint firstItem="Ksz-Wk-Vbs" firstAttribute="leading" secondItem="DoK-BJ-IYe" secondAttribute="leading" id="wqX-Kc-mEN"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXL-uL-Vo3">
