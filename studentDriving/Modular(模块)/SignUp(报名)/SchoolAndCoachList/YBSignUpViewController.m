@@ -546,9 +546,11 @@ static NSString *coachCellID = @"coachCellID";
         _locationLabel.text = city;
         [self saveUserLocationInfoWithCity:city address:address coordinate:coordinate];
         
+        _schoolViewModel.cityName = city;
         _schoolViewModel.latitude = coordinate.latitude;
-        _coachViewModel.longitude = coordinate.longitude;
+        _schoolViewModel.longitude = coordinate.longitude;
         
+        _coachViewModel.cityName = city;
         _coachViewModel.latitude = coordinate.latitude;
         _coachViewModel.longitude = coordinate.longitude;
         

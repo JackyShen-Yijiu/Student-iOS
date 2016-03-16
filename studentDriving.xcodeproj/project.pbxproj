@@ -1036,6 +1036,7 @@
 		D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445211C918D5200E7C29F /* YBCompletedAppointmentListController.m */; };
 		D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445291C91969100E7C29F /* YBAppointmentDetailController.m */; };
 		D964ABED1C7AB8CF00A4D1D5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */; };
+		D96E86A21C9940980097DAD6 /* YBAppointMentDetailDataCancelReason.m in Sources */ = {isa = PBXBuildFile; fileRef = D96E86A11C9940980097DAD6 /* YBAppointMentDetailDataCancelReason.m */; };
 		D97676251C97DF6F0033221E /* YBAppointmentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97676211C97DF6F0033221E /* YBAppointmentDetailCell.m */; };
 		D97676261C97DF6F0033221E /* YBAppointmentDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97676231C97DF6F0033221E /* YBAppointmentDetailHeaderView.m */; };
 		D97676271C97DF6F0033221E /* YBAppointmentDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97676241C97DF6F0033221E /* YBAppointmentDetailHeaderView.xib */; };
@@ -3037,6 +3038,8 @@
 		D96445281C91969100E7C29F /* YBAppointmentDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentDetailController.h; sourceTree = "<group>"; };
 		D96445291C91969100E7C29F /* YBAppointmentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentDetailController.m; sourceTree = "<group>"; };
 		D964ABEC1C7AB8CF00A4D1D5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		D96E86A01C9940980097DAD6 /* YBAppointMentDetailDataCancelReason.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentDetailDataCancelReason.h; sourceTree = "<group>"; };
+		D96E86A11C9940980097DAD6 /* YBAppointMentDetailDataCancelReason.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentDetailDataCancelReason.m; sourceTree = "<group>"; };
 		D97676201C97DF6F0033221E /* YBAppointmentDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentDetailCell.h; sourceTree = "<group>"; };
 		D97676211C97DF6F0033221E /* YBAppointmentDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentDetailCell.m; sourceTree = "<group>"; };
 		D97676221C97DF6F0033221E /* YBAppointmentDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentDetailHeaderView.h; sourceTree = "<group>"; };
@@ -3261,6 +3264,8 @@
 				B221AF841C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m */,
 				B221AF851C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.h */,
 				B221AF861C92F31E001F6EED /* YBAppointMentDetailsDataTrainfieldlinfo.m */,
+				D96E86A01C9940980097DAD6 /* YBAppointMentDetailDataCancelReason.h */,
+				D96E86A11C9940980097DAD6 /* YBAppointMentDetailDataCancelReason.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7410,6 +7415,7 @@
 				B251E6D61C8E852300E6613A /* UIImage+WM.m in Sources */,
 				B251E3C81C8E849500E6613A /* AppDelegate+DealJPushMessage.m in Sources */,
 				B251E6251C8E849500E6613A /* UIView+EMWebCacheOperation.m in Sources */,
+				D96E86A21C9940980097DAD6 /* YBAppointMentDetailDataCancelReason.m in Sources */,
 				B251E3781C8E849500E6613A /* CommentCell.m in Sources */,
 				B251E6951C8E849600E6613A /* DVVShareView.m in Sources */,
 				B251E4341C8E849500E6613A /* MessageModelManager.m in Sources */,
@@ -7873,7 +7879,6 @@
 				B251E5691C8E849500E6613A /* DVVCoachDetailDMDriveschoolinfo.m in Sources */,
 				B251E3731C8E849500E6613A /* CoachDetailCell.m in Sources */,
 				060106B81C983CA80084379F /* JZPayWayFooterCell.m in Sources */,
-				D99855601C965A950090036D /* YBAppointmentDetailCell.m in Sources */,
 				B251E5221C8E849500E6613A /* YBJianglijifenTableView.m in Sources */,
 				B251E6081C8E849500E6613A /* NSDictionary+adapter.m in Sources */,
 				B251E5291C8E849500E6613A /* ComplaintSchoolView.m in Sources */,

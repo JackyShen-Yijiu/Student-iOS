@@ -71,6 +71,10 @@
                     if (24 - [currentHHStr integerValue] + [HHStr integerValue] > 24) {
                         flage = YES;
                     }
+                }else {
+                    if ([ddStr integerValue] - [currentddStr integerValue] > 1) {
+                        flage = YES;
+                    }
                 }
             }
         }

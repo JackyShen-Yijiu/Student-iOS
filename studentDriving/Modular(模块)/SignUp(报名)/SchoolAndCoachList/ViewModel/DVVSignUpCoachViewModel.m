@@ -46,8 +46,8 @@
     
     NSString *url = [NSString stringWithFormat:BASEURL, @"searchcoach"];
     
-    NSDictionary *paramsDict = @{ @"latitude": [NSString stringWithFormat:@"%f", _latitude],
-                                  @"longitude":  [NSString stringWithFormat:@"%f", _longitude],
+    NSDictionary *paramsDict = @{ @"latitude": @(_latitude),
+                                  @"longitude": @(_longitude),
                                   @"radius":  [NSString stringWithFormat:@"%lu", _radius],
                                   @"cityname": _cityName,
                                   @"licensetype": @"",

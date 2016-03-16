@@ -16,6 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *yiXueLabel;
 @property (weak, nonatomic) IBOutlet UILabel *wanChengLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *yuekaoBtn;
+@property (weak, nonatomic) IBOutlet UILabel *shengXueShiLabel;
 
 @property (nonatomic,weak) UIViewController *parentViewController;
 

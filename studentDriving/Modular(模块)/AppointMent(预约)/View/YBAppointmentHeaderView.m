@@ -27,6 +27,11 @@
         [self setLabelTextColor:_guidingLabel];
         [self setLabelTextColor:_wanChengLabel];
         
+        self.yuekaoBtn.hidden = NO;
+        self.yuekaoBtn.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yuekaoBtnDidClick)];
+        [self.yuekaoBtn addGestureRecognizer:tap];
+        
         _bottomView.backgroundColor = YBMainViewControlerBackgroundColor;
     }
     return self;
@@ -57,6 +62,15 @@
         
         guiDingStr = [NSString stringWithFormat:@"规定:%ld学时",(long)totalCourse];
         wanChengStr = [NSString stringWithFormat:@"完成:%ld学时",(long)doneCourse];
+        // 如果没有完成规定的学时，则不能点击约考
+        if (doneCourse < totalCourse) {
+            _yuekaoBtn.userInteractionEnabled = NO;
+            _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_off"];
+            _shengXueShiLabel.text = [NSString stringWithFormat:@"还剩%d学时", totalCourse - doneCourse];
+        }else {
+            _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_on"];
+            _shengXueShiLabel.text = @"";
+        }
         
         NSInteger yiyuexueshiCount = [[AcountManager manager].subjecttwo.reservation integerValue] + [[AcountManager manager].subjecttwo.finishcourse integerValue];
 
@@ -75,6 +89,16 @@
         
         guiDingStr = [NSString stringWithFormat:@"规定:%ld学时",(long)totalCourse];
         wanChengStr = [NSString stringWithFormat:@"完成:%ld学时",(long)doneCourse];
+        
+        // 如果没有完成规定的学时，则不能点击约考
+        if (doneCourse < totalCourse) {
+            _yuekaoBtn.userInteractionEnabled = NO;
+            _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_off"];
+            _shengXueShiLabel.text = [NSString stringWithFormat:@"还剩%d学时", totalCourse - doneCourse];
+        }else {
+            _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_on"];
+            _shengXueShiLabel.text = @"";
+        }
         
         NSInteger yiyuexueshiCount = [[AcountManager manager].subjectthree.reservation integerValue] + [[AcountManager manager].subjectthree.finishcourse integerValue];
         NSLog(@"yiyuexueshiCount:%lu",(long)yiyuexueshiCount);
@@ -106,10 +130,6 @@
     if (![AcountManager isLogin]) {
         self.yuekaoBtn.hidden = YES;
     }
-    self.yuekaoBtn.hidden = NO;
-    self.yuekaoBtn.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yuekaoBtnDidClick)];
-    [self.yuekaoBtn addGestureRecognizer:tap];
     
 }
 
