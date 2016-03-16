@@ -21,6 +21,7 @@
 #import "MyAppointmentModel.h"
 #import "JZComplaintView.h"
 #import "JGPayTool.h"
+#import "RatingBar.h"
 
 @class RatingBar;
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
@@ -410,7 +411,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
                     
            
-            //            [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar. model:model];
+                        [ws commitComment:ws.feVc.reasonTextView.text star:ws.feVc.starBar.rating model:model];
             
         };
         

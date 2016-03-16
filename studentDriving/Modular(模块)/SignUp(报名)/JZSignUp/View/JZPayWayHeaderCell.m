@@ -81,19 +81,19 @@
     self.driveName.text = extraDict[@"applyschoolinfo"][@"name"];
     
     NSString *addressStr = nil;
-    if (extraDict[@"applyschoolinfo"][@"address"] == nil || [extraDict[@"applyschoolinfo"][@"address"] isEqualToString:@""]) {
+    if (extraDict[@"schooladdress"] == nil || [extraDict[@"schooladdress"] isEqualToString:@""]) {
         addressStr = @"暂无";
     }else {
-        addressStr = extraDict[@"applyschoolinfo"][@"address"];
+        addressStr = extraDict[@"schooladdress"];
     }
     
     self.address.text = [NSString stringWithFormat:@"地址:%@",addressStr];
     
     NSString *coachStr = nil;
-    if (extraDict[@"applyschoolinfo"][@"address"] == nil || [extraDict[@"applyschoolinfo"][@"address"] isEqualToString:@""]) {
+    if (extraDict[@"applycoachinfo"][@"name"] == nil || [extraDict[@"applycoachinfo"][@"name"] isEqualToString:@""]) {
         coachStr = @"暂无";
     }else {
-        coachStr = extraDict[@"applyschoolinfo"][@"address"];
+        coachStr = extraDict[@"applycoachinfo"][@"name"];
     }
     self.coachName.text = [NSString stringWithFormat:@"报考教练:%@",coachStr];
 }
