@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -11,14 +11,14 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="119"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="car" translatesAutoresizingMaskIntoConstraints="NO" id="itl-uW-IFJ">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="car" translatesAutoresizingMaskIntoConstraints="NO" id="itl-uW-IFJ">
                     <rect key="frame" x="16" y="29" width="40" height="32"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="SYd-XL-WE9"/>
                         <constraint firstAttribute="height" constant="32" id="ioh-kq-rfn"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="科目二" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTQ-UJ-QLr">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科目二" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTQ-UJ-QLr">
                     <rect key="frame" x="15" y="69" width="42" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="42" id="NDc-ei-MrX"/>
@@ -29,12 +29,12 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1wP-OF-K1t">
-                    <rect key="frame" x="251" y="32" width="64" height="46"/>
+                    <rect key="frame" x="244" y="32" width="64" height="46"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YBAppointMentDetailsexam_off" translatesAutoresizingMaskIntoConstraints="NO" id="DoK-BJ-IYe">
                             <rect key="frame" x="0.0" y="0.0" width="64" height="46"/>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="剩32学时" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksz-Wk-Vbs">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="剩32学时" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ksz-Wk-Vbs">
                             <rect key="frame" x="0.0" y="26" width="64" height="10"/>
                             <fontDescription key="fontDescription" type="system" pointSize="8"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -43,11 +43,14 @@
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="DoK-BJ-IYe" secondAttribute="bottom" id="0Fa-wJ-vxj"/>
+                        <constraint firstItem="Ksz-Wk-Vbs" firstAttribute="top" secondItem="1wP-OF-K1t" secondAttribute="top" constant="26" id="0ta-TS-rAT"/>
+                        <constraint firstItem="Ksz-Wk-Vbs" firstAttribute="trailing" secondItem="DoK-BJ-IYe" secondAttribute="trailing" id="7LP-t5-ZGN"/>
                         <constraint firstAttribute="trailing" secondItem="DoK-BJ-IYe" secondAttribute="trailing" id="99q-UA-QgF"/>
                         <constraint firstItem="DoK-BJ-IYe" firstAttribute="leading" secondItem="1wP-OF-K1t" secondAttribute="leading" id="dpf-3Q-rcQ"/>
                         <constraint firstAttribute="height" constant="46" id="gnL-yI-8sI"/>
                         <constraint firstAttribute="width" constant="64" id="pSc-Vs-XK4"/>
                         <constraint firstItem="DoK-BJ-IYe" firstAttribute="top" secondItem="1wP-OF-K1t" secondAttribute="top" id="vLa-Rk-YnA"/>
+                        <constraint firstItem="Ksz-Wk-Vbs" firstAttribute="leading" secondItem="DoK-BJ-IYe" secondAttribute="leading" id="wqX-Kc-mEN"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dXL-uL-Vo3">
@@ -60,32 +63,32 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T6j-d4-bsL">
                     <rect key="frame" x="89" y="0.0" width="141" height="110"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="医学23课时  坡道起步" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-rZ-D6Y">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-rZ-D6Y">
                             <rect key="frame" x="0.0" y="21" width="162" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="购买:99课时" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-gI-OEO">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YhA-gI-OEO">
                             <rect key="frame" x="0.0" y="47" width="74" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="规定:40学时" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amI-fL-2lI">
-                            <rect key="frame" x="0.0" y="69" width="74" height="21"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="已学:99课时" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeQ-Bb-oNA">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeQ-Bb-oNA">
                             <rect key="frame" x="74" y="47" width="67" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="完成:99学时" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QoU-kQ-nuh">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QoU-kQ-nuh">
                             <rect key="frame" x="74" y="69" width="67" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amI-fL-2lI">
+                            <rect key="frame" x="0.0" y="69" width="74" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                             <nil key="highlightedColor"/>
@@ -102,13 +105,13 @@
                 <constraint firstAttribute="bottom" secondItem="dXL-uL-Vo3" secondAttribute="bottom" id="DKc-2q-Aj9"/>
                 <constraint firstAttribute="trailing" secondItem="dXL-uL-Vo3" secondAttribute="trailing" id="EKE-9S-aaT"/>
                 <constraint firstItem="wTQ-UJ-QLr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Ju7-0X-MZ4"/>
-                <constraint firstAttribute="trailing" secondItem="1wP-OF-K1t" secondAttribute="trailing" constant="5" id="MAq-V7-1CR"/>
+                <constraint firstAttribute="trailing" secondItem="1wP-OF-K1t" secondAttribute="trailing" constant="12" id="MAq-V7-1CR"/>
                 <constraint firstItem="1wP-OF-K1t" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-5" id="PXp-uS-E7M"/>
                 <constraint firstItem="T6j-d4-bsL" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-5" id="QD4-Mi-rXC"/>
                 <constraint firstItem="T6j-d4-bsL" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="aKf-9a-6HQ"/>
                 <constraint firstItem="wTQ-UJ-QLr" firstAttribute="top" secondItem="itl-uW-IFJ" secondAttribute="bottom" constant="8" id="arU-NK-kk0"/>
                 <constraint firstItem="dXL-uL-Vo3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bH3-5l-4Cq"/>
-                <constraint firstItem="itl-uW-IFJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="bZz-R2-SCY"/>
+                <constraint firstItem="itl-uW-IFJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="29" id="bZz-R2-SCY"/>
                 <constraint firstItem="itl-uW-IFJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="dJ8-o9-D7o"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
@@ -117,7 +120,7 @@
                 <outlet property="bottomView" destination="dXL-uL-Vo3" id="NKX-7j-0OB"/>
                 <outlet property="buySubjectLabel" destination="YhA-gI-OEO" id="wHn-lv-PkQ"/>
                 <outlet property="guidingLabel" destination="amI-fL-2lI" id="26Z-gn-DfT"/>
-                <outlet property="shengXueShiLabel" destination="Ksz-Wk-Vbs" id="Z2W-Mm-X0n"/>
+                <outlet property="shengxueshiLabel" destination="Ksz-Wk-Vbs" id="3Ru-hz-8e3"/>
                 <outlet property="subjectLabel" destination="wTQ-UJ-QLr" id="Di7-95-4ro"/>
                 <outlet property="subjectTopLabel" destination="Cco-rZ-D6Y" id="1eo-BX-uyC"/>
                 <outlet property="wanChengLabel" destination="QoU-kQ-nuh" id="bkZ-EK-WMZ"/>
