@@ -33,8 +33,10 @@
 
 }
 - (void)setDmdata:(ClassTypeDMData *)dmdata{
+    NSLog(@"dmdata ================================== %@",dmdata);
+    self.driveIconImageView.image = [UIImage imageNamed:@"background_mine"];
     self.driveName.text = dmdata.schoolinfo.name;
-    self.address.text = dmdata.schoolinfo.address;
-    self.coachName.text = dmdata.coachName;
+    self.address.text = [NSString stringWithFormat:@"地址:%@",dmdata.schoolinfo.address];
+    self.coachName.text = [NSString stringWithFormat:@"报考教练:%@",dmdata.coachName];
 }
 @end

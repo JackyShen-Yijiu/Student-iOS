@@ -221,13 +221,14 @@
         }
         // 设置价格字体为主题色
         if (1 == indexPath.row) {
-            [signUpCell.desTextFiled setValue:YBNavigationBarBgColor forKeyPath:@"placeholderLabel.textColor"];       }
+            signUpCell.desTextFiled.textColor = YBNavigationBarBgColor;
+        }
         // 隐藏右侧箭头
         signUpCell.arrowImageView.hidden = YES ;
 
         // 设置数据
         signUpCell.titleLabel.text = self.middhtTitleArray[indexPath.row];
-        signUpCell.desTextFiled.placeholder = self.midDesArray[indexPath.row];
+        signUpCell.desTextFiled.text = self.midDesArray[indexPath.row];
             return signUpCell;
     }
     if (2 == indexPath.section) {
