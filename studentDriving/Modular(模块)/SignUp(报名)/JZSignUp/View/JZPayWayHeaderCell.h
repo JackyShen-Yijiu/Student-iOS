@@ -15,4 +15,5 @@
 @property (weak, nonatomic) IBOutlet UILabel *address;
 @property (weak, nonatomic) IBOutlet UILabel *coachName;
 @property (nonatomic, strong) ClassTypeDMData *dmdata;
+@property (nonatomic, strong) NSDictionary *extraDict;
 @end

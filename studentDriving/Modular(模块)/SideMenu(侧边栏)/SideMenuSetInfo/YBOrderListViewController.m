@@ -79,7 +79,7 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
     // Do any additional setup after loading the view.
     
     self.title = @"报名信息";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = RGBColor(226, 226, 233);
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.tableView];
 
@@ -258,7 +258,7 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150.0f;
+    return 198;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -278,37 +278,55 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
     
     cell.dict = self.dict;
     cell.didclickBlock = ^(NSInteger tag){
-        if (400 == tag) {
-            // 线下重新的报名
-            [SignUpInfoManager removeSignData];
-            [AcountManager saveUserApplyState:@"0"];
-            //1为重新报名，0为报名
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            [ud setObject:@"1" forKey:@"applyAgain"];
-            [ud synchronize];
-            [DVVUserManager userLoginSucces];
+        if(401 == tag){
+//            // 取消报名
+//            [SignUpInfoManager removeSignData];
+//            [AcountManager saveUserApplyState:@"0"];
+//            //1为重新报名，0为报名
+//            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+//            [ud setObject:@"1" forKey:@"applyAgain"];
+//            [ud synchronize];
+//            [DVVUserManager userLoginSucces];
             
-        }else if(401 == tag){
-            // 线上重新报名
-            [SignUpInfoManager removeSignData];
-            [AcountManager saveUserApplyState:@"0"];
-            //1为重新报名，0为报名
-            NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
-            [ud setObject:@"1" forKey:@"applyAgain"];
-            [ud synchronize];
-            [DVVUserManager userLoginSucces];
+            // 取消订单
+            NSLog(@"%s",__func__);
+            NSString *url = [NSString stringWithFormat:kusercancelorder,[AcountManager manager].userid];
+            NSString *applyUrlString = [NSString stringWithFormat:BASEURL,url];
+            [JENetwoking startDownLoadWithUrl:applyUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+                
+                NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
+                
+                if ([type isEqualToString:@"1"]) {
+                    
+                    [self obj_showTotasViewWithMes:@"取消成功"];
+                    
+                    [self.navigationController popToRootViewControllerAnimated:YES];
+                    
+                }else{
+                    
+                    [self obj_showTotasViewWithMes:data[@"msg"]];
+                    
+                }
+                
+            } withFailure:^(id data) {
+                
+                
+            }];
+
             
         }else if(402 == tag){
-            // 立即支付
-            OrdetDetailController *ordetVC = [[OrdetDetailController alloc] init];
-            ordetVC.schoolStr = self.schoolStr;
-            ordetVC.carModelStr = self.carModelStr;
-            ordetVC.signUpStr = self.signUpStr;
-            ordetVC.realMoneyStr = self.realMoneyStr;
-            ordetVC.payStausStr = self.payStausStr;
-            ordetVC.classType = self.classType;
+            // 继续支付
+//            OrdetDetailController *ordetVC = [[OrdetDetailController alloc] init];
+//            ordetVC.schoolStr = self.schoolStr;
+//            ordetVC.carModelStr = self.carModelStr;
+//            ordetVC.signUpStr = self.signUpStr;
+//            ordetVC.realMoneyStr = self.realMoneyStr;
+//            ordetVC.payStausStr = self.payStausStr;
+//            ordetVC.classType = self.classType;
+//            [self.navigationController pushViewController:ordetVC animated:YES];
             
-            [self.navigationController pushViewController:ordetVC animated:YES];
+            // 跳转到选择支付界面
+            
         }
     };
     cell.backgroundColor = [UIColor clearColor];

@@ -102,13 +102,36 @@
     [self.view addSubview:self.btnBG];
 }
 - (void)initData{
+    /* _extraDict = {
+     "__v": 0,
+     "paymoney": 4700,
+     //支付金额"payendtime": "2016-02-03T12:29:49.423Z",
+     "creattime": "2016-01-31T12:29:49.423Z",
+     "userid": "564e1242aa5c58b901e4961a",
+     "_id": "56adfe3d323ed17278e71914",
+     订单id"discountmoney": 0,
+     "applyclasstypeinfo": {
+     "onsaleprice": 4700,
+     "price": 4700,
+     "name": "一步互联网驾校快班",
+     "id": "562dd1fd1cdf5c60873625f3"
+     },
+     "applyschoolinfo": {
+     "name": "一步互联网驾校",
+     "id": "562dcc3ccb90f25c3bde40da"
+     },
+     "paychannel": 0,
+     userpaystate": 0订单状态//0订单生成1开始支付2支付成功3支付失败4订单取消 //支付方式"
+     }
+     */
+
     // 中部cell赋值
     if (_isHaveYCode) {
         self.middhtTitleArray = @[@"报考班型",@"支付费用",@"Y码返现",@"邀请码"];
-        self.midDesArray = @[self.dmData.carmodel.name,[NSString stringWithFormat:@"%lu¥",self.dmData.price],self.yCodeStr,@"请输入或扫描邀请码(选填)"];
+        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],self.yCodeStr,@"请输入或扫描邀请码(选填)"];
     }else if (!_isHaveYCode){
         self.middhtTitleArray = @[@"报考班型",@"支付费用",@"邀请码"];
-        self.midDesArray = @[self.dmData.carmodel.name,[NSString stringWithFormat:@"%lu¥",self.dmData.price],@"请输入或扫描邀请码(选填)"];
+        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],@"请输入或扫描邀请码(选填)"];
     }
     // 底部cell赋值
     self.imgArray = @[@"wechat",@"alipay",@"offline"];
@@ -199,7 +222,7 @@
         if (!payWayeHeaderCell) {
             payWayeHeaderCell = [[JZPayWayHeaderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:payHeaderID];
         }
-        payWayeHeaderCell.dmdata = self.dmData;
+        payWayeHeaderCell.extraDict = self.extraDict;
         return payWayeHeaderCell;
     }
     if (1 == indexPath.section) {
@@ -256,7 +279,11 @@
 }
 #pragma   mark ------   action Target
 - (void)didRight:(UIButton *)btn{
-    
+    NSLog(@"_ben =%ld",_tag);
+    if ( !(_tag == 1000) && !(_tag == 1001) && !(_tag == 1002) ) {
+        [self obj_showTotasViewWithMes:@"请选择支付方式!"];
+        return;
+    }
     // 确认支付
     if (_tag == 1000) {
         
@@ -280,6 +307,34 @@
 {
     NSLog(@"_extraDict:%@",_extraDict);
     NSLog(@"self.dmData.price:%ld",(long)self.dmData.price);
+    
+    
+    
+    
+    
+    
+    /* _extraDict = {
+        "__v": 0,
+        "paymoney": 4700,
+        //支付金额"payendtime": "2016-02-03T12:29:49.423Z",
+        "creattime": "2016-01-31T12:29:49.423Z",
+        "userid": "564e1242aa5c58b901e4961a",
+        "_id": "56adfe3d323ed17278e71914",
+        订单id"discountmoney": 0,
+        "applyclasstypeinfo": {
+            "onsaleprice": 4700,
+            "price": 4700,
+            "name": "一步互联网驾校快班",
+            "id": "562dd1fd1cdf5c60873625f3"
+        },
+        "applyschoolinfo": {
+            "name": "一步互联网驾校",
+            "id": "562dcc3ccb90f25c3bde40da"
+        },
+        "paychannel": 0,
+        userpaystate": 0订单状态//0订单生成1开始支付2支付成功3支付失败4订单取消 //支付方式"
+    }
+*/
     
     /*
     
