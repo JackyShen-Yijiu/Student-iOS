@@ -7,6 +7,7 @@
 //
 
 #import "YBWelcomeController.h"
+#import "ViewController.h"
 
 #pragma mark - 给NSString添加一个方法，用来获取当前的版本
 @interface NSString(Version)
@@ -124,7 +125,7 @@
 - (void)buttonAction{
     
     [UIView animateWithDuration:0.1 animations:^{
-        [DVVUserManager userLoginSucces];
+        [UIApplication sharedApplication].keyWindow.rootViewController = [[ViewController alloc] init];
     } completion:^(BOOL finished) {
     }];
 }

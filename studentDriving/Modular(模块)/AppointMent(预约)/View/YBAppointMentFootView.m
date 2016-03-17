@@ -50,6 +50,11 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(iconImageViewDidClick)];
         [self.iconImageView addGestureRecognizer:tap];
         
+        UIView *footView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.width, 0.5)];
+        footView.backgroundColor = [UIColor lightGrayColor];
+        footView.alpha = 0.3;
+        [topview addSubview:footView];
+        
         // 同时段学员collectionview
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumInteritemSpacing = 5;
@@ -151,6 +156,9 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     
     NSLog(@"numberOfItemsInSection self.userCount:%ld",(long)_studentArray.count);
+    if (_studentArray.count==0) {
+        return 4;
+    }
     return _studentArray.count;
     
 }
@@ -163,10 +171,13 @@
         DYNSLog(@"创建错误");
     }
    
-    StudentModel *model = self.studentArray[indexPath.row];
-    
-    [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
-    
+    if (self.studentArray.count>0) {
+        
+        StudentModel *model = self.studentArray[indexPath.row];
+        
+        [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+        
+    }
     return cell;
     
 }
@@ -174,13 +185,16 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     NSLog(@"%s",__func__);
-    StudentModel *model = self.studentArray[indexPath.row];
-    
-    ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:model.userid.userId
-                                                                    conversationType:eConversationTypeChat];
-    chatController.title = model.userid.name;
-    [self.parentViewController.navigationController pushViewController:chatController animated:YES];
-    
+    if (self.studentArray.count>0) {
+
+        StudentModel *model = self.studentArray[indexPath.row];
+        
+        ChatViewController *chatController = [[ChatViewController alloc] initWithChatter:model.userid.userId
+                                                                        conversationType:eConversationTypeChat];
+        chatController.title = model.userid.name;
+        [self.parentViewController.navigationController pushViewController:chatController animated:YES];
+        
+    }
 }
 
 @end

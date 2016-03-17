@@ -95,17 +95,26 @@
             make.height.mas_equalTo(@41);
         }];
         
+        CGFloat topMargin = 14;
+        CGFloat midMargin = 4;
+        CGFloat bottomMargin = 8;
+        if ([UIScreen mainScreen].bounds.size.height>=736) {
+            topMargin*=1.5;
+            midMargin*=1.5;
+            bottomMargin*=1.5;
+        }
+        
         [self.startTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.mas_centerX);
-            make.top.mas_equalTo(self.mas_top).offset(15);
+            make.top.mas_equalTo(self.mas_top).offset(topMargin);
         }];
         [self.finalTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.mas_centerX);
-            make.top.mas_equalTo(self.startTimeLabel.mas_bottom);
+            make.top.mas_equalTo(self.startTimeLabel.mas_bottom).offset(midMargin);
         }];
         [self.remainingPersonLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.mas_equalTo(self.mas_centerX);
-            make.top.mas_equalTo(self.finalTimeLabel.mas_bottom).offset(0);
+            make.top.mas_equalTo(self.finalTimeLabel.mas_bottom).offset(bottomMargin);
         }];
         [self.delive mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.mas_equalTo(@0);
@@ -230,6 +239,19 @@
             
         }
         
+        CGFloat topMargin = 14;
+//        if ([UIScreen mainScreen].bounds.size.height>=736) {
+            topMargin*=1.5;
+//        }
+//        else{
+//            topMargin=10;
+//        }
+        
+        [self.startTimeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(self.mas_centerX);
+            make.top.mas_equalTo(self.mas_top).offset(topMargin);
+        }];
+        
     }else{// 已过期
         
         self.userInteractionEnabled = NO;
@@ -237,6 +259,16 @@
         self.contentView.backgroundColor = [UIColor colorWithHexString:@"f7f7f7"];
         self.startTimeLabel.textColor = [UIColor lightGrayColor];
         self.finalTimeLabel.textColor = [UIColor lightGrayColor];
+        
+        CGFloat topMargin = 22;
+//        if ([UIScreen mainScreen].bounds.size.height>=736) {
+            topMargin*=1.5;
+//        }
+        
+        [self.startTimeLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.mas_equalTo(self.mas_centerX);
+            make.top.mas_equalTo(self.mas_top).offset(topMargin);
+        }];
         
     }
    

@@ -54,7 +54,11 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.minimumLineSpacing = 0;
-        flowLayout.itemSize = CGSizeMake(kSystemWide/3-0.5, 70);
+        CGFloat height = 70;
+//        if ([UIScreen mainScreen].bounds.size.height>=736) {
+            height*=1.5;
+//        }
+        flowLayout.itemSize = CGSizeMake(kSystemWide/3-0.5, height);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
         
         _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
