@@ -477,9 +477,9 @@
                         [ws.stuDataArray removeObject:studentModel];
                     }
                 }
-                ws.footView.studentArray = ws.stuDataArray;
             }
-           
+            ws.footView.studentArray = ws.stuDataArray;
+
         }else {
             [self obj_showTotasViewWithMes:[NSString stringWithFormat:@"%@",data[@"msg"]]];
         }
