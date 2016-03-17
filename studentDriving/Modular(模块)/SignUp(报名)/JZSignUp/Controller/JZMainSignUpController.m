@@ -15,9 +15,11 @@
 #import "YBCoachListViewController.h"
 #import "CoachModel.h"
 #import "JZPayWayController.h"
+#import "JZCoachListController.h"
+#import "JZCoachListMoel.h"
 
 @class CoachModel;
-@interface JZMainSignUpController ()<UITableViewDataSource,UITableViewDelegate,didCellBackYModelDelegate,YBCoachListViewControllerDelegate>
+@interface JZMainSignUpController ()<UITableViewDataSource,UITableViewDelegate,didCellBackYModelDelegate,JZCoachListViewControllerDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
@@ -269,10 +271,14 @@
         
         if (1 == indexPath.row) {
             // 报考教练
-            YBCoachListViewController *coachListVC = [[YBCoachListViewController alloc] init];
-            coachListVC.delegate = self;
-//            [self.navigationController pushViewController:coachListVC animated:YES];
-        }
+            if (!_isCoach) {
+                JZCoachListController *coachListVC = [[JZCoachListController alloc] init];
+                coachListVC.delegate = self;
+                coachListVC.dmData = self.dmData;
+                [self.navigationController pushViewController:coachListVC animated:YES];
+
+            }
+                    }
     }
     if (1 == indexPath.section) {
         if (2 == indexPath.row) {
@@ -454,10 +460,12 @@
     [self.tableView reloadData];
 }
 #pragma mark --- 教练列表点击回调
-- (void)YBCoachListViewControllerWithCoach:(CoachModel *)coachModel{
+- (void)JZCoachListViewControllerWithCoach:(JZCoachListMoel *)coachModel{
+    
     _coachStr = coachModel.name;
-   [_topDesArray replaceObjectAtIndex:1 withObject:_coachStr];
+    [_topDesArray replaceObjectAtIndex:1 withObject:_coachStr];
     [self.tableView reloadData];
+
 }
 
 #pragma mark ---- Lazy 加载

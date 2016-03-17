@@ -357,7 +357,7 @@
     if (_signUptime == nil) {
         _signUptime = [[UILabel alloc]init];
         _signUptime.text = @"报名时间:2016-12-20";
-        _signUptime.font = [UIFont systemFontOfSize:10];
+        _signUptime.font = [UIFont systemFontOfSize:12];
         _signUptime.textColor = [UIColor colorWithHexString:@"bdbdbd"];
     }
     return _signUptime;
@@ -366,7 +366,7 @@
 - (UILabel *)numberMoneyLabel {
     if (_numberMoneyLabel == nil) {
         _numberMoneyLabel = [[UILabel alloc] init];
-        _numberMoneyLabel.font = [UIFont systemFontOfSize:10];
+        _numberMoneyLabel.font = [UIFont systemFontOfSize:12];
         _numberMoneyLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
         _numberMoneyLabel.text = @"实付款:";
     }
@@ -376,7 +376,7 @@
     if (_numberMoney == nil) {
         _numberMoney = [[UILabel alloc] init];
         _numberMoney.text = @"#3980";
-        _numberMoney.font = [UIFont systemFontOfSize:10];
+        _numberMoney.font = [UIFont systemFontOfSize:12];
         _numberMoney.textColor = YBNavigationBarBgColor;
     }
     return _numberMoney;
@@ -386,7 +386,7 @@
         _payStaus = [[UILabel alloc] init];
         _payStaus.text = @"未支付";
         _payStaus.textColor = [UIColor colorWithHexString:@"bdbdbd"];
-        _payStaus.font = [UIFont systemFontOfSize:10];
+        _payStaus.font = [UIFont systemFontOfSize:12];
     }
     return _payStaus;
 }
@@ -441,7 +441,7 @@
         [_cancelButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
             _cancelButton.layer.borderWidth = 1;
             _cancelButton.layer.borderColor = [UIColor colorWithHexString:@"bdbdbd"].CGColor;
-        
+                _cancelButton.titleLabel.font  = [UIFont systemFontOfSize:12];
         [_cancelButton addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
         _cancelButton.tag = 401;
         
@@ -453,6 +453,7 @@
         _payButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _payButton.backgroundColor = [UIColor clearColor];
         [_payButton setTitle:@"继续支付" forState:UIControlStateNormal];
+        _payButton.titleLabel.font  = [UIFont systemFontOfSize:12];
         [_payButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
             _payButton.layer.borderWidth = 1;
             _payButton.layer.borderColor = YBNavigationBarBgColor.CGColor;
