@@ -162,17 +162,19 @@
     
     CGFloat x = [recognizer translationInView:self.view].x;
     NSLog(@"处理拖动事件x:%f",x);
+    NSLog(@"self.common.homeState:%d",self.common.homeState);
     
     // 禁止在主界面的时候向左滑动
-    if (self.common.homeState == kStateHome && x < 0) {
-        return;
-    }
+//    if (self.common.homeState == kStateHome && x < 0) {
+//        return;
+//    }
     
     CGFloat dis = self.distance + x;
     NSLog(@"处理拖动事件dis:%f",dis);
     
     // 当手势停止时执行操作
     if (recognizer.state == UIGestureRecognizerStateEnded) {
+        NSLog(@"当手势停止时执行操作");
         if (dis >= self.common.screenW * viewSlideHorizonRatio / 2.0) {
             [self showMenu];
         } else {
@@ -189,8 +191,6 @@
     }
     self.tabBarController.view.center = CGPointMake(self.view.center.x + dis, self.view.center.y);
     self.tabBarController.view.transform = CGAffineTransformScale(CGAffineTransformIdentity, proportion, proportion);
-    
-//    self.baomingVC.leftBtn.alpha = self.cover.alpha = 1 - proportion;
     
     CGFloat menuProportion = dis * (1 - menuStartNarrowRatio) / self.leftDistance + menuStartNarrowRatio;
     CGFloat menuCenterMove = dis * (self.menuCenterXEnd - self.menuCenterXStart) / self.leftDistance;
