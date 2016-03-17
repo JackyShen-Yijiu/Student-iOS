@@ -59,7 +59,7 @@
     
     [super viewDidLoad];
     
-    self.view.backgroundColor = RGBColor(226, 226, 233);
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     [self.view addSubview:self.tableView];
     [self initUI];
     [self initData];
@@ -149,13 +149,13 @@
     }
     if (2 == section) {
         if (_isHaveYCode) {
-            return 72;
+            return 62;
         }else if (!_isHaveYCode){
-            return 60;
+            return 50;
         }
         
     }
-    return 20;
+    return 10;
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 3;
@@ -181,6 +181,20 @@
             }
     return self.otherHeaderView;
 }
+//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+//    if (2 == section) {
+//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0 , kSystemWide, 10)];
+//        view.backgroundColor = YBMainViewControlerBackgroundColor;
+//        return view;
+//    }
+//    return nil;
+//}
+//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
+//    if (2 == section) {
+//        return 10;
+//    }
+//    return 0;
+//}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (0 == section) {
         return 1;
@@ -276,6 +290,10 @@
         [self.btnArray addObject:payWayFooterCell.payWayButton];
         payWayFooterCell.delegate = self;
         NSLog(@"imgStr = %@,payWayFooterCell.payWayLabel.text = %@,payWayFooterCell.desPayWay.text = %@",imgStr,self.titleArray[indexPath.row],payWayFooterCell.desPayWay.text);
+        if (0 == indexPath.row) {
+            payWayFooterCell.payWayButton.selected = YES;
+            _tag = 1000;
+        }
         return payWayFooterCell;
     }
 
@@ -432,11 +450,12 @@
 
 - (UITableView *)tableView{
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 64 - 48 - 5 ) style:UITableViewStylePlain];
-        _tableView.backgroundColor = [UIColor clearColor];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 64 - 48 ) style:UITableViewStylePlain];
+        _tableView.backgroundColor = YBMainViewControlerBackgroundColor;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.dataSource  = self;
         _tableView.delegate = self;
+        _tableView.contentInset = UIEdgeInsetsMake(0, 0, 10, 0);
     }
     return _tableView;
 }
@@ -456,10 +475,10 @@
     if (_topMoreView == nil) {
         
         if (_isHaveYCode) {
-            _topMoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.moreShowYBGView.width, 32)];
+            _topMoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.moreShowYBGView.width, 22)];
                     }
         else if(!_isHaveYCode){
-           _topMoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.moreShowYBGView.width, 20)];
+           _topMoreView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.moreShowYBGView.width, 10)];
         }
         
         _topMoreView.backgroundColor = RGBColor(226, 226, 233);
