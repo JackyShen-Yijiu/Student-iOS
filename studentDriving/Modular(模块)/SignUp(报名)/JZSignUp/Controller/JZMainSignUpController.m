@@ -50,6 +50,9 @@
 @property (nonatomic, strong) NSString *coachStr;
 
 
+@property (nonatomic, strong) NSString *coachID;
+
+
 @end
 
 @implementation JZMainSignUpController
@@ -334,8 +337,14 @@
     if (_isCoach) {
         params[@"coachid"] = _dmData.coachID;
     }else {
-        params[@"coachid"] = @"-1";
-    }
+        if ([_coachID isEqualToString:@""] || _coachID == nil) {
+            params[@"coachid"] = @"-1";
+
+        }else{
+            params[@"coachid"] = _coachID;
+        }
+        
+            }
     
     params[@"classtypeid"] = _dmData.calssid;
     params[@"carmodel"] = [self dictionaryToJson:carmodelParams];
@@ -420,6 +429,7 @@
         payWayVC.dmData = self.dmData;
         payWayVC.yCodeStr = self.yStr;
         payWayVC.extraDict = extraDict;
+        payWayVC.coachName = _coachStr;
         [self.navigationController pushViewController:payWayVC animated:YES];
         
     } withFailure:^(id data) {
@@ -463,11 +473,12 @@
 - (void)JZCoachListViewControllerWithCoach:(JZCoachListMoel *)coachModel{
     
     _coachStr = coachModel.name;
+    _coachID = coachModel.coachid;
     [_topDesArray replaceObjectAtIndex:1 withObject:_coachStr];
     [self.tableView reloadData];
 
 }
-
+  
 #pragma mark ---- Lazy 加载
 - (UITableView *)tableView{
     if (_tableView == nil) {
