@@ -44,6 +44,7 @@
 		B20E59611C981B6400912F5A /* YBSignUpSuccessApplyschoolinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E595B1C981B6400912F5A /* YBSignUpSuccessApplyschoolinfo.m */; };
 		B20E59621C981B6400912F5A /* YBSignUpSuccessData.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E595D1C981B6400912F5A /* YBSignUpSuccessData.m */; };
 		B20E59631C981B6400912F5A /* YBSignUpSuccessRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E595F1C981B6400912F5A /* YBSignUpSuccessRootClass.m */; };
+		B20E59A51C9AA0E400912F5A /* DVVUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E59A41C9AA0E400912F5A /* DVVUserManager.m */; };
 		B221AF591C914BFB001F6EED /* NetWorkEntiry.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF581C914BFB001F6EED /* NetWorkEntiry.m */; };
 		B221AF5C1C914C18001F6EED /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF5B1C914C18001F6EED /* NSString+MD5.m */; };
 		B221AF651C9172E4001F6EED /* YBAppointController.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF641C9172E4001F6EED /* YBAppointController.m */; };
@@ -174,7 +175,6 @@
 		B251E3471C8E849500E6613A /* DVVSideMenuCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB5F1C8E849100E6613A /* DVVSideMenuCollectionView.m */; };
 		B251E3481C8E849500E6613A /* DVVSideMenuFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB611C8E849100E6613A /* DVVSideMenuFooterView.m */; };
 		B251E3491C8E849500E6613A /* DVVSideMenuHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB631C8E849100E6613A /* DVVSideMenuHeaderView.m */; };
-		B251E34A1C8E849500E6613A /* DVVUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB651C8E849100E6613A /* DVVUserManager.m */; };
 		B251E34B1C8E849500E6613A /* FourViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB681C8E849100E6613A /* FourViewController.m */; };
 		B251E34C1C8E849500E6613A /* CoinCertificateController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB6C1C8E849100E6613A /* CoinCertificateController.m */; };
 		B251E34D1C8E849500E6613A /* CoinCertificateController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DB6D1C8E849100E6613A /* CoinCertificateController.xib */; };
@@ -1124,6 +1124,8 @@
 		B20E595D1C981B6400912F5A /* YBSignUpSuccessData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSignUpSuccessData.m; sourceTree = "<group>"; };
 		B20E595E1C981B6400912F5A /* YBSignUpSuccessRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSignUpSuccessRootClass.h; sourceTree = "<group>"; };
 		B20E595F1C981B6400912F5A /* YBSignUpSuccessRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSignUpSuccessRootClass.m; sourceTree = "<group>"; };
+		B20E59A31C9AA0E400912F5A /* DVVUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVUserManager.h; sourceTree = "<group>"; };
+		B20E59A41C9AA0E400912F5A /* DVVUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVUserManager.m; sourceTree = "<group>"; };
 		B221AF571C914BFB001F6EED /* NetWorkEntiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkEntiry.h; sourceTree = "<group>"; };
 		B221AF581C914BFB001F6EED /* NetWorkEntiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkEntiry.m; sourceTree = "<group>"; };
 		B221AF5A1C914C18001F6EED /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -1381,8 +1383,6 @@
 		B251DB611C8E849100E6613A /* DVVSideMenuFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenuFooterView.m; sourceTree = "<group>"; };
 		B251DB621C8E849100E6613A /* DVVSideMenuHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVSideMenuHeaderView.h; sourceTree = "<group>"; };
 		B251DB631C8E849100E6613A /* DVVSideMenuHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSideMenuHeaderView.m; sourceTree = "<group>"; };
-		B251DB641C8E849100E6613A /* DVVUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVUserManager.h; sourceTree = "<group>"; };
-		B251DB651C8E849100E6613A /* DVVUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVUserManager.m; sourceTree = "<group>"; };
 		B251DB671C8E849100E6613A /* FourViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FourViewController.h; sourceTree = "<group>"; };
 		B251DB681C8E849100E6613A /* FourViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FourViewController.m; sourceTree = "<group>"; };
 		B251DB6B1C8E849100E6613A /* CoinCertificateController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinCertificateController.h; sourceTree = "<group>"; };
@@ -3574,8 +3574,6 @@
 				B251DB611C8E849100E6613A /* DVVSideMenuFooterView.m */,
 				B251DB621C8E849100E6613A /* DVVSideMenuHeaderView.h */,
 				B251DB631C8E849100E6613A /* DVVSideMenuHeaderView.m */,
-				B251DB641C8E849100E6613A /* DVVUserManager.h */,
-				B251DB651C8E849100E6613A /* DVVUserManager.m */,
 			);
 			path = DVVSideMenu;
 			sourceTree = "<group>";
@@ -3981,11 +3979,13 @@
 		B251DC961C8E849200E6613A /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				B251DC991C8E849200E6613A /* NavigationAnimation */,
+				B20E59A31C9AA0E400912F5A /* DVVUserManager.h */,
+				B20E59A41C9AA0E400912F5A /* DVVUserManager.m */,
 				B251DC971C8E849200E6613A /* JGUserTools.h */,
 				B251DC981C8E849200E6613A /* JGUserTools.m */,
 				B251E6F21C8FE5B100E6613A /* JGUserModel.h */,
 				B251E6F31C8FE5B100E6613A /* JGUserModel.m */,
-				B251DC991C8E849200E6613A /* NavigationAnimation */,
 				B251DC9E1C8E849200E6613A /* YBActivity.h */,
 				B251DC9F1C8E849200E6613A /* YBActivity.m */,
 			);
@@ -7649,7 +7649,6 @@
 				B251E5831C8E849500E6613A /* ClassTypeDMCarmodel.m in Sources */,
 				B251E5BA1C8E849500E6613A /* DVVStarView.m in Sources */,
 				B251E3171C8E849500E6613A /* ApplycoachinfoModel.m in Sources */,
-				B251E34A1C8E849500E6613A /* DVVUserManager.m in Sources */,
 				B251E4311C8E849500E6613A /* EMChatViewBaseCell.m in Sources */,
 				B251E5CB1C8E849500E6613A /* DVVSignUpSchoolDMRootClass.m in Sources */,
 				B251E3181C8E849500E6613A /* ApplyschoolinfoModel.m in Sources */,
@@ -7777,6 +7776,7 @@
 				B251E3DB1C8E849500E6613A /* YBWebBaseViewController.m in Sources */,
 				B221AF881C92F31E001F6EED /* YBAppointMentDetailsDataData.m in Sources */,
 				B251E38C1C8E849500E6613A /* WaitConfirmCell.m in Sources */,
+				B20E59A51C9AA0E400912F5A /* DVVUserManager.m in Sources */,
 				B251E60B1C8E849500E6613A /* MBProgressHUD+Add.m in Sources */,
 				B221AF871C92F31E001F6EED /* YBAppointMentDetailsDataCoachid.m in Sources */,
 				B251E3331C8E849500E6613A /* SubjectTwoModel.m in Sources */,
