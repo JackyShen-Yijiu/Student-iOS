@@ -66,4 +66,5 @@
 
 @property (nonatomic, assign) NSInteger passrate;
 @property (nonatomic, strong) NSString *Seniority;
+@property (nonatomic, strong) NSString *coachid;
 @end

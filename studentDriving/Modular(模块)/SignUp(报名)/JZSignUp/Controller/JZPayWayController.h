@@ -13,6 +13,7 @@
 @property (nonatomic, assign) BOOL isHaveYCode;
 @property (nonatomic, strong) ClassTypeDMData *dmData;
 @property (nonatomic, strong) NSString *yCodeStr;
+@property (nonatomic, strong) NSString *coachName;
 
 
 // 订单返回到信息
