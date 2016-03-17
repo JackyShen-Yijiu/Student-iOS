@@ -165,6 +165,9 @@
                 if (0 == indexPath.row) {
                     signUpTopCell.arrowImageView.hidden = YES;
                 }
+                if (2 == indexPath.row) {
+                signUpTopCell.lineView.hidden = YES;
+                }
                 signUpTopCell.titleLabel.text = self.topTitleArray[indexPath.row];
                 signUpTopCell.rightLabel.text = self.topDesArray[indexPath.row];
                 return signUpTopCell;
@@ -194,6 +197,7 @@
             if (2 == indexPath.row) {
                 // UITextFiled 不可编辑
                 signUpCell.desTextFiled.enabled = NO;
+                signUpCell.lineView.hidden = YES;
             }
 
             return signUpCell;
@@ -213,6 +217,9 @@
             // 隐藏右侧箭头
             if (0 == indexPath.row) {
                 signUpTopCell.arrowImageView.hidden = YES;
+            }
+            if (2 == indexPath.row) {
+                signUpTopCell.lineView.hidden = YES;
             }
 
                 return signUpTopCell;
@@ -241,8 +248,9 @@
             if (2 == indexPath.row) {
                 // UITextFiled 不可编辑
                 signUpCell.desTextFiled.enabled = NO;
+                signUpCell.lineView.hidden = YES;
             }
-
+            
             return signUpCell;
         }
 
@@ -482,7 +490,7 @@
 #pragma mark ---- Lazy 加载
 - (UITableView *)tableView{
     if (_tableView == nil) {
-        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 64) style:UITableViewStylePlain];
+        _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 64 - 16) style:UITableViewStylePlain];
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.dataSource  = self;
         _tableView.delegate = self;
@@ -500,7 +508,7 @@
         _commitButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _commitButton.backgroundColor = YBNavigationBarBgColor;
         CGFloat margin = 18;
-        _commitButton.frame = CGRectMake(margin, kSystemHeight - 44 - 64, kSystemWide - 2 * margin, 44);
+        _commitButton.frame = CGRectMake(margin, kSystemHeight - 44 - 64 - 16, kSystemWide - 2 * margin, 44);
         _commitButton.layer.cornerRadius = 5;
         _commitButton.layer.masksToBounds = YES;
         [_commitButton setTitle:@"提交" forState:UIControlStateNormal];

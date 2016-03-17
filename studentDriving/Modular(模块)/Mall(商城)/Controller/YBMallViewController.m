@@ -230,7 +230,7 @@ static NSString *kMallID = @"MallID";
         b.selected = NO;
     }
     [UIView animateWithDuration:0.5 animations:^{
-        self.menuIndicator.frame = CGRectMake(0, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
+        self.menuIndicator.frame = CGRectMake(5, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
     sender.selected = YES;
     _mallType = kIntegralMall;
@@ -247,7 +247,7 @@ static NSString *kMallID = @"MallID";
         b.selected = NO;
     }
     [UIView animateWithDuration:0.3 animations:^{
-        self.menuIndicator.frame = CGRectMake(kSystemWide/2, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
+        self.menuIndicator.frame = CGRectMake(kSystemWide/2 + 5, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
     }];
     sender.selected = YES;
     _mallType = kDiscountMall;
@@ -304,7 +304,7 @@ static NSString *kMallID = @"MallID";
         // 自动布局方式
         UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 160) collectionViewLayout:flowLayout];
+        _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 158) collectionViewLayout:flowLayout];
         // 注册Cell
         
     }
@@ -325,7 +325,7 @@ static NSString *kMallID = @"MallID";
 
 - (UIView *)menuIndicator {
     if (_menuIndicator == nil) {
-        _menuIndicator = [[UIView alloc] initWithFrame:CGRectMake(5,44-2, (kSystemWide - 10) / 2, 2)];
+        _menuIndicator = [[UIView alloc] initWithFrame:CGRectMake(5,44-2, (kSystemWide - 20) / 2, 2)];
         _menuIndicator.backgroundColor = YBNavigationBarBgColor;
     }
     return _menuIndicator;
@@ -386,7 +386,7 @@ static NSString *kMallID = @"MallID";
     
     // 添加底部的阴影效果
     backGroundView.layer.shadowColor = [UIColor blackColor].CGColor;
-    backGroundView.layer.shadowOffset = CGSizeMake(0, 2);
+    backGroundView.layer.shadowOffset = CGSizeMake(0, 0.36);
     backGroundView.layer.shadowOpacity = 0.3;
     backGroundView.layer.shadowRadius = 2;
     
