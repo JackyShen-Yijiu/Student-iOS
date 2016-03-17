@@ -251,8 +251,14 @@
 
         // 设置数据
         signUpCell.titleLabel.text = self.middhtTitleArray[indexPath.row];
-        signUpCell.desTextFiled.text = self.midDesArray[indexPath.row];
-            return signUpCell;
+        if (0 == indexPath.row || 1 == indexPath.row) {
+            signUpCell.desTextFiled.text = self.midDesArray[indexPath.row];
+
+        }
+        if (2 == indexPath.row) {
+            signUpCell.desTextFiled.placeholder = self.midDesArray[indexPath.row];
+        }
+                   return signUpCell;
     }
     if (2 == indexPath.section) {
         // 加载低部Cell

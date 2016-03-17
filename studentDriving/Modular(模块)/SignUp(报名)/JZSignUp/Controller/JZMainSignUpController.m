@@ -165,6 +165,9 @@
                 if (0 == indexPath.row) {
                     signUpTopCell.arrowImageView.hidden = YES;
                 }
+                if (2 == indexPath.row) {
+                signUpTopCell.lineView.hidden = YES;
+                }
                 signUpTopCell.titleLabel.text = self.topTitleArray[indexPath.row];
                 signUpTopCell.rightLabel.text = self.topDesArray[indexPath.row];
                 return signUpTopCell;
@@ -194,6 +197,7 @@
             if (2 == indexPath.row) {
                 // UITextFiled 不可编辑
                 signUpCell.desTextFiled.enabled = NO;
+                signUpCell.lineView.hidden = YES;
             }
 
             return signUpCell;
@@ -213,6 +217,9 @@
             // 隐藏右侧箭头
             if (0 == indexPath.row) {
                 signUpTopCell.arrowImageView.hidden = YES;
+            }
+            if (2 == indexPath.row) {
+                signUpTopCell.lineView.hidden = YES;
             }
 
                 return signUpTopCell;
@@ -241,8 +248,9 @@
             if (2 == indexPath.row) {
                 // UITextFiled 不可编辑
                 signUpCell.desTextFiled.enabled = NO;
+                signUpCell.lineView.hidden = YES;
             }
-
+            
             return signUpCell;
         }
 
