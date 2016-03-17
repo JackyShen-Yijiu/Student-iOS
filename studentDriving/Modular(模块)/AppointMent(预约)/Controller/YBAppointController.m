@@ -323,9 +323,9 @@
     NSMutableString *detailStr = [NSMutableString string];
     
     if ([AcountManager manager].subjecttwo.progress) {
-        [detailStr appendString:[NSString stringWithFormat:@"  %@",[AcountManager manager].subjecttwo.progress]];
+        [detailStr appendString:[NSString stringWithFormat:@"   %@",[AcountManager manager].subjecttwo.progress]];
     }else if ([AcountManager manager].subjectthree.progress) {
-        [detailStr appendString:[NSString stringWithFormat:@"  %@",[AcountManager manager].subjectthree.progress]];
+        [detailStr appendString:[NSString stringWithFormat:@"   %@",[AcountManager manager].subjectthree.progress]];
     }
     
     if (detailStr&&[detailStr length]!=0) {
@@ -342,41 +342,6 @@
         [self showTotasViewWithMes:@"请选择预约时间"];
         return;
     }
-    
-//    // 数组排序
-//    NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(YBAppointData *  _Nonnull obj1, YBAppointData *  _Nonnull obj2) {
-//        return obj1.timeid > obj2.timeid;
-//    }];
-//    
-//    YBAppointData *firstModel = resultArray.firstObject;
-//    YBAppointData *lastModel = resultArray.lastObject;
-//    
-//    NSArray *beginArray = [firstModel.begintime componentsSeparatedByString:@":"];
-//    NSString *beginString = beginArray.firstObject;
-//    _startTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:beginString data:self.selectDateStr]];
-//    
-//    NSArray *endArray = [lastModel.endtime componentsSeparatedByString:@":"];
-//    NSString *endString = endArray.firstObject;
-//    _endTimeStr = [NSString stringWithFormat:@"%d",[self chagetime:endString data:self.selectDateStr]];
-//    
-//    NSMutableString *courselistStr = [NSMutableString string];
-//    for (int i = 0; i<resultArray.count; i++) {
-//        
-//        YBAppointData *model = resultArray[i];
-//        
-//        NSString *courseID = [NSString stringWithFormat:@"%@",model.coursedata._id];
-//        NSLog(@"courseID:%@",courseID);
-//        
-//        if (i==resultArray.count-1) {
-//            NSString *lastID = [NSString stringWithFormat:@"%@",lastModel.coursedata._id];
-//            [courselistStr appendString:[NSString stringWithFormat:@"%@",lastID]];
-//        }else{
-//            [courselistStr appendString:[NSString stringWithFormat:@"%@,",courseID]];
-//        }
-//        
-//    }
-    
-//    NSArray *array = [BLInformationManager sharedInstance].appointmentData;
     
     // 数组排序
     NSArray *resultArray = [array sortedArrayUsingComparator:^NSComparisonResult(YBAppointData *  _Nonnull obj1, YBAppointData *  _Nonnull obj2) {
@@ -436,9 +401,9 @@
     
     if (begingtime && endtime) {
         if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
-            self.footView.countLabel.text = [NSString stringWithFormat:@" 科目二 %@-%@",[NSString getHourLocalDateFormateDate:begingtime],[NSString getHourLocalDateFormateDate:endtime]];
+            self.footView.countLabel.text = [NSString stringWithFormat:@"  科目二 %@-%@",[NSString getHourLocalDateFormateDate:begingtime],[NSString getHourLocalDateFormateDate:endtime]];
         }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
-            self.footView.countLabel.text = [NSString stringWithFormat:@" 科目三 %@-%@",[NSString getHourLocalDateFormateDate:begingtime],[NSString getHourLocalDateFormateDate:endtime]];
+            self.footView.countLabel.text = [NSString stringWithFormat:@"  科目三 %@-%@",[NSString getHourLocalDateFormateDate:begingtime],[NSString getHourLocalDateFormateDate:endtime]];
         }
     }else {
         self.footView.countLabel.text = @"";
