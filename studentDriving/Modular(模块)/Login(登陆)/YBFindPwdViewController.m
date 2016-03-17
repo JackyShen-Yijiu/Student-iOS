@@ -146,6 +146,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
         
         [JENetwoking startDownLoadWithUrl:codeUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
             [self obj_showTotasViewWithMes:@"发送成功"];
+            [self.authCodeTextFiled becomeFirstResponder];
         }];
         
     }
