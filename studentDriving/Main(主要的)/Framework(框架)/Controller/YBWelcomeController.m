@@ -90,6 +90,12 @@
         imageView.image = [UIImage imageNamed:nameArray[i]];
         imageView.tag = i;
         
+        if (i==nameArray.count-1) {
+            imageView.userInteractionEnabled = YES;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(buttonAction)];
+            [imageView addGestureRecognizer:tap];
+        }
+        
         [self.scrollView addSubview:imageView];
     }
     self.scrollView.contentSize = CGSizeMake(nameArray.count * SCREEN_WIDTH, 0);
@@ -109,7 +115,7 @@
     
     button.frame = CGRectMake((SCREEN_WIDTH - btnWidth) / 2, SCREEN_HEIGHT - btnHeight - btnBottom, btnWidth, btnHeight);
 //    button.backgroundColor = [UIColor orangeColor];
-    [button addTarget:self action:@selector(buttonAction:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self action:@selector(buttonAction) forControlEvents:UIControlEventTouchUpInside];
     
     UIImageView *imageView = (UIImageView *)[self.scrollView viewWithTag:tag];
     imageView.userInteractionEnabled = YES;
@@ -117,7 +123,7 @@
 }
 
 #pragma mark 按钮的点击事件
-- (void)buttonAction:(UIButton *)sender {
+- (void)buttonAction{
     
     [UIView animateWithDuration:0.1 animations:^{
         [DVVUserManager userLoginSucces];
