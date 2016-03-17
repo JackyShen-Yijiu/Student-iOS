@@ -9,7 +9,6 @@
 #import "YBStudyTableView.h"
 #import "YBStudyViewCell.h"
 #import "DVVToast.h"
-#import "WMOtherViewController.h"
 #import "QuestionTestViewController.h"
 #import "QuestionBankViewController.h"
 #import "WrongQuestionViewController.h"

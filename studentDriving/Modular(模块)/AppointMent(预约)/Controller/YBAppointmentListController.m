@@ -57,7 +57,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [super viewDidLoad];
     self.title = @"预约列表";
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"立马预约" target:self action:@selector(rightBarButtonItemDidClick)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"马上预约" target:self action:@selector(rightBarButtonItemDidClick)];
     
     self.edgesForExtendedLayout = NO;
     
@@ -132,6 +132,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 #pragma mark 跳转到已完成的预约
 - (void)completedAppointmentAction {
     
+    NSLog(@"_viewModel.completedArray:%@",_viewModel.completedArray);
+    for (HMCourseModel *model in _viewModel.completedArray) {
+        NSLog(@"model.sigintime:%@",model.sigintime);
+    }
     YBCompletedAppointmentListController *vc = [YBCompletedAppointmentListController new];
     vc.dataArray = _viewModel.completedArray;
     vc.hidesBottomBarWhenPushed = YES;
@@ -232,7 +236,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     headerView.button.tag = section;
     [headerView.button addTarget:self action:@selector(sectionHeaderAction:) forControlEvents:UIControlEventTouchUpInside];
     if (0 == section) {
-        headerView.titleLabel.text = @"今日的预约";
+        headerView.titleLabel.text = @"今日预约";
         if (_viewModel.todayArray.count) {
             headerView.statusLabel.hidden = YES;
             headerView.arrowImageView.hidden = NO;
@@ -248,7 +252,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             headerView.arrowImageView.image = [UIImage imageNamed:@"more_right"];
         }
     }else if (1 == section) {
-        headerView.titleLabel.text = @"未来的预约";
+        headerView.titleLabel.text = @"未来预约";
         if (_viewModel.nextArray.count) {
             headerView.statusLabel.hidden = YES;
             headerView.arrowImageView.hidden = NO;
@@ -497,7 +501,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     if (!_footerView) {
         _footerView = [YBAppointmentSectionHeaderView new];
         _footerView.frame = CGRectMake(0, 0, kSystemWide, 44);
-        _footerView.titleLabel.text = @"完成的预约";
+        _footerView.titleLabel.text = @"已完成预约";
         [_footerView.button addTarget:self action:@selector(completedAppointmentAction) forControlEvents:UIControlEventTouchUpInside];
         _footerView.statusLabel.hidden = YES;
     }

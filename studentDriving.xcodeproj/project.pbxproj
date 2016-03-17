@@ -298,8 +298,6 @@
 		B251E3D31C8E849500E6613A /* IWTabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC821C8E849200E6613A /* IWTabBarViewController.m */; };
 		B251E3D51C8E849500E6613A /* WMMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC861C8E849200E6613A /* WMMenuViewController.m */; };
 		B251E3D61C8E849500E6613A /* WMMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DC871C8E849200E6613A /* WMMenuViewController.xib */; };
-		B251E3D71C8E849500E6613A /* WMOtherViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC891C8E849200E6613A /* WMOtherViewController.m */; };
-		B251E3D81C8E849500E6613A /* WMOtherViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DC8A1C8E849200E6613A /* WMOtherViewController.xib */; };
 		B251E3D91C8E849500E6613A /* YBBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC8C1C8E849200E6613A /* YBBaseViewController.m */; };
 		B251E3DA1C8E849500E6613A /* YBHomeBaseController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC8E1C8E849200E6613A /* YBHomeBaseController.m */; };
 		B251E3DB1C8E849500E6613A /* YBWebBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC901C8E849200E6613A /* YBWebBaseViewController.m */; };
@@ -1628,9 +1626,6 @@
 		B251DC851C8E849200E6613A /* WMMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMMenuViewController.h; sourceTree = "<group>"; };
 		B251DC861C8E849200E6613A /* WMMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMMenuViewController.m; sourceTree = "<group>"; };
 		B251DC871C8E849200E6613A /* WMMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMMenuViewController.xib; sourceTree = "<group>"; };
-		B251DC881C8E849200E6613A /* WMOtherViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WMOtherViewController.h; sourceTree = "<group>"; };
-		B251DC891C8E849200E6613A /* WMOtherViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WMOtherViewController.m; sourceTree = "<group>"; };
-		B251DC8A1C8E849200E6613A /* WMOtherViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WMOtherViewController.xib; sourceTree = "<group>"; };
 		B251DC8B1C8E849200E6613A /* YBBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaseViewController.h; sourceTree = "<group>"; };
 		B251DC8C1C8E849200E6613A /* YBBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaseViewController.m; sourceTree = "<group>"; };
 		B251DC8D1C8E849200E6613A /* YBHomeBaseController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBHomeBaseController.h; sourceTree = "<group>"; };
@@ -3949,9 +3944,6 @@
 				B251DC851C8E849200E6613A /* WMMenuViewController.h */,
 				B251DC861C8E849200E6613A /* WMMenuViewController.m */,
 				B251DC871C8E849200E6613A /* WMMenuViewController.xib */,
-				B251DC881C8E849200E6613A /* WMOtherViewController.h */,
-				B251DC891C8E849200E6613A /* WMOtherViewController.m */,
-				B251DC8A1C8E849200E6613A /* WMOtherViewController.xib */,
 				B251DC8B1C8E849200E6613A /* YBBaseViewController.h */,
 				B251DC8C1C8E849200E6613A /* YBBaseViewController.m */,
 				B251DC8D1C8E849200E6613A /* YBHomeBaseController.h */,
@@ -7125,7 +7117,6 @@
 				B251E4521C8E849500E6613A /* VoiceSearchFeedback005@2x.png in Resources */,
 				B251E4A91C8E849500E6613A /* chatBar_colorMore_location@2x.png in Resources */,
 				B251E5971C8E849500E6613A /* DrivingDetailAddressCell.xib in Resources */,
-				B251E3D81C8E849500E6613A /* WMOtherViewController.xib in Resources */,
 				B251E4F41C8E849500E6613A /* tabbar_settingHL.png in Resources */,
 				B251E44B1C8E849500E6613A /* VoiceSearchFeedback002.png in Resources */,
 				B251E34D1C8E849500E6613A /* CoinCertificateController.xib in Resources */,
@@ -7403,7 +7394,6 @@
 				B251E5931C8E849500E6613A /* CoachListDMSubject.m in Sources */,
 				B251E3161C8E849500E6613A /* ApplyclasstypeinfoModel.m in Sources */,
 				B251E6DE1C8E856E00E6613A /* IWTabBar.m in Sources */,
-				B251E3D71C8E849500E6613A /* WMOtherViewController.m in Sources */,
 				B251E61B1C8E849500E6613A /* EMSDWebImageManager.m in Sources */,
 				B251E5711C8E849500E6613A /* DVVCoachClassTypeView.m in Sources */,
 				B251E5D11C8E849500E6613A /* DVVSignUpCoachViewModel.m in Sources */,
