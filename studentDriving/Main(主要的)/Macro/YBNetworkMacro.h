@@ -67,4 +67,7 @@ static NSString *kgetmyorderk = @"userinfo/getmyorder?userid=%@";
 // 取消报名订单
 static NSString *kusercancelorder = @"userinfo/usercancelorder?userid=%@";
 
+// 获取驾校里的教练
+static NSString *kdriveschoolofcoach = @"getschoolcoach/%@";
+
 #endif /* YBNetworkMacro_h */

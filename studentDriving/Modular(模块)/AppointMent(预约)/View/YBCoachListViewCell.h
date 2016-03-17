@@ -10,11 +10,16 @@
 
 @class CoachModel;
 @class RatingBar;
+@class JZCoachListMoel;
 
 @interface YBCoachListViewCell : UITableViewCell
 
 @property (strong, nonatomic) IBOutlet UIImageView *headImageView;
 
+@property (nonatomic, assign) BOOL isFormSignUp; // 判断是否从报名界面进入的教练列表;
+
 - (void)receivedCellModelWith:(CoachModel *)coachModel;
+
+- (void)receivedCellModelFormSignUpWith:(JZCoachListMoel *)coachModel;
 
 @end

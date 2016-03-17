@@ -92,6 +92,7 @@
                 [ws.tableView reloadData];
                 
             }else {
+                [self obj_showTotasViewWithMes:msg];
                 kShowFail(msg);
             }
         }

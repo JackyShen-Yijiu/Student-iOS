@@ -10,6 +10,7 @@
 #import <Masonry.h>
 #import "CoachModel.h"
 #import "RatingBar.h"
+#import "JZCoachListMoel.h"
 
 @interface YBCoachListViewCell ()
 
@@ -80,6 +81,59 @@
     }
     
 }
+- (void)receivedCellModelFormSignUpWith:(JZCoachListMoel *)coachModel{
+    
+    
+    
+    /*
+     
+     @property (nonatomic, strong) NSDictionary *headportrait;
+     @property (nonatomic, strong) NSString *name;
+     @property (nonatomic, strong) NSArray *subject;
+     @property (nonatomic, assign) NSInteger commentcount;
+     
+     @property (nonatomic, assign) NSInteger starlevel;
+     
+     @property (nonatomic, assign) NSInteger passrate;
 
+     */
+    self.headImageView.layer.masksToBounds = YES;
+    self.headImageView.layer.cornerRadius = self.headImageView.width/2;
+    
+    [self.headImageView sd_setImageWithURL:[NSURL URLWithString:coachModel.headportrait[@"originalpic"]] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+    
+    self.coachNameLabel.text = coachModel.name;
+    
+    NSMutableString *kemuStr = [NSMutableString string];
+    for (NSDictionary *subject in coachModel.subject) {
+        NSLog(@"subject:%@",subject);
+        NSString *name = [NSString stringWithFormat:@"%@ ",subject[@"name"]];
+        [kemuStr appendString:name];
+    }
+    self.kemuLabel.text = kemuStr;
+    
+    self.pinglunCountLabel.text = [NSString stringWithFormat:@"%lu条评论",coachModel.commentcount];
+    
+    [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:nil];
+    CGFloat starLevel = 0;
+    if (coachModel.starlevel) {
+        starLevel = coachModel.starlevel;
+    }
+    NSLog(@"starLevel:%f",starLevel);
+    [self.starBar displayRating:starLevel];
+    
+    if (coachModel.passrate) {
+        self.jialingLabel.text = [NSString stringWithFormat:@"通过率:%lu%@",coachModel.passrate,@"%"];
+    }else {
+        self.jialingLabel.text = [NSString stringWithFormat:@"通过率:暂无"];
+    }
+    
+    if (coachModel.Seniority) {
+        self.tongguolvLabel.text = [NSString stringWithFormat:@"%@年教龄",coachModel.Seniority] ;
+    }else{
+        self.tongguolvLabel.text = [NSString stringWithFormat:@"暂无"];
+    }
+
+}
 
 @end
