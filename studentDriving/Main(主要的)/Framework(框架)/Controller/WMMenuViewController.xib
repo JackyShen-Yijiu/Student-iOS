@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -13,8 +13,10 @@
                 <outlet property="sideComplaintButton" destination="nd1-PX-f8h" id="scJ-EF-QUL"/>
                 <outlet property="sideConsulting" destination="rBC-ny-iEO" id="e3f-qA-rUi"/>
                 <outlet property="tableView" destination="eGt-Fe-0zL" id="CCg-sn-6S6"/>
+                <outlet property="tousuBtn" destination="nd1-PX-f8h" id="N41-f5-r0v"/>
                 <outlet property="userMobileLabel" destination="5aD-kz-4A4" id="OBZ-GQ-SAa"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="zixunBtn" destination="rBC-ny-iEO" id="tiI-XM-BV0"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -51,7 +53,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="40" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="eGt-Fe-0zL">
-                            <rect key="frame" x="0.0" y="182" width="256" height="337"/>
+                            <rect key="frame" x="0.0" y="172" width="256" height="342"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </tableView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9KJ-98-F53">
@@ -163,7 +165,7 @@
                         </view>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="eGt-Fe-0zL" secondAttribute="bottom" constant="49" id="4vd-mQ-JRe"/>
+                        <constraint firstAttribute="bottom" secondItem="eGt-Fe-0zL" secondAttribute="bottom" constant="54" id="4vd-mQ-JRe"/>
                         <constraint firstItem="eGt-Fe-0zL" firstAttribute="leading" secondItem="JfE-jZ-Qgf" secondAttribute="leading" id="7za-Wz-lbL"/>
                         <constraint firstItem="5aD-kz-4A4" firstAttribute="leading" secondItem="JfE-jZ-Qgf" secondAttribute="leading" constant="8" id="8dI-9z-VCT"/>
                         <constraint firstItem="5aD-kz-4A4" firstAttribute="top" secondItem="YkR-PW-D1O" secondAttribute="bottom" constant="15" id="ADU-yb-xNy"/>
@@ -175,9 +177,9 @@
                         <constraint firstItem="YkR-PW-D1O" firstAttribute="top" secondItem="JfE-jZ-Qgf" secondAttribute="top" constant="50" id="auc-aU-ysf"/>
                         <constraint firstAttribute="trailing" secondItem="5aD-kz-4A4" secondAttribute="trailing" id="e9b-zX-OMu"/>
                         <constraint firstItem="YkR-PW-D1O" firstAttribute="centerX" secondItem="JfE-jZ-Qgf" secondAttribute="centerX" constant="8" id="hDX-DE-RSE"/>
-                        <constraint firstItem="9KJ-98-F53" firstAttribute="top" secondItem="eGt-Fe-0zL" secondAttribute="bottom" id="hPX-44-WOd"/>
+                        <constraint firstItem="9KJ-98-F53" firstAttribute="top" secondItem="eGt-Fe-0zL" secondAttribute="bottom" constant="5" id="hPX-44-WOd"/>
                         <constraint firstAttribute="trailing" secondItem="MAY-vZ-sly" secondAttribute="trailing" id="o5Z-sp-Zgs"/>
-                        <constraint firstItem="eGt-Fe-0zL" firstAttribute="top" secondItem="MAY-vZ-sly" secondAttribute="bottom" constant="5" id="oZG-C5-VXt"/>
+                        <constraint firstItem="eGt-Fe-0zL" firstAttribute="top" secondItem="MAY-vZ-sly" secondAttribute="bottom" constant="-5" id="oZG-C5-VXt"/>
                         <constraint firstItem="MAY-vZ-sly" firstAttribute="top" secondItem="5aD-kz-4A4" secondAttribute="bottom" constant="20" id="wL8-XR-xZe"/>
                     </constraints>
                 </view>

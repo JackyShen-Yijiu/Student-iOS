@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import "WMMenuViewController.h"
-#import "WMOtherViewController.h"
 #import "WMNavigationController.h"
 #import "WMCommon.h"
 #import "YBAppointMentController.h"

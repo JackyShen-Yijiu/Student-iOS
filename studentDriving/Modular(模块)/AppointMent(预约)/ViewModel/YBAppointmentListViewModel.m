@@ -64,6 +64,8 @@
             
             for (HMCourseModel *model in tempArray) {
                 
+                NSLog(@"加载model.sigintime:%@",model.sigintime);
+                
                 // 如果是学员取消、待评论则不显示
                 if ([[model getStatueString] isEqualToString:@"学员取消"] ||
                     [[model getStatueString] isEqualToString:@"待评论"]) {

@@ -83,12 +83,14 @@
     
     _subjectIntroductionLabel.text = _model.learningcontent;
     
-    if (_model.sigintime.length) {
+    NSLog(@"_model.sigintime:%@",_model.sigintime);
+    
+    if (_model.sigintime && _model.sigintime.length) {
         _signInTimeLabel.text = [NSString stringWithFormat:@"签到时间:%@", [self getLocalDateFormateUTCDate:_model.sigintime format:@"HH:mm"]];
     }else {
         _signInTimeLabel.text = @"";
-
     }
+    
 }
 
 - (NSString *)dateFromLocalWithFormatString:(NSString *)formatString {

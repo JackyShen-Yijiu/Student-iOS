@@ -46,9 +46,9 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 /** 屏幕的宽度是6Plus或者更宽 */
 #define ScreenWidthIs_6Plus_OrWider [UIScreen mainScreen].bounds.size.width >= 414
 
-#define YBIphone6Plus [UIScreen mainScreen].bounds.size.height=736
-#define YBIphone6 [UIScreen mainScreen].bounds.size.height=667
-#define YBIphone5 [UIScreen mainScreen].bounds.size.height=568
-#define YBIphone4 [UIScreen mainScreen].bounds.size.height=480
+#define YBIphone6Plus [UIScreen mainScreen].bounds.size.height==736
+#define YBIphone6 [UIScreen mainScreen].bounds.size.height==667
+#define YBIphone5 [UIScreen mainScreen].bounds.size.height==568
+#define YBIphone4 [UIScreen mainScreen].bounds.size.height==480
 
 #endif /* YBUIMacro_h */
