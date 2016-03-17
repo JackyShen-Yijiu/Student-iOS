@@ -74,7 +74,7 @@
         midview.backgroundColor = [UIColor whiteColor];
         [self addSubview:midview];
         // 更换教练
-        self.changeCoachBtn = [[UIButton alloc] initWithFrame:CGRectMake(midview.width-82-2, 2, 82, 32)];
+        self.changeCoachBtn = [[UIButton alloc] initWithFrame:CGRectMake(midview.width-76-2, midview.height/2-30/2, 76, 30)];
         self.changeCoachBtn.backgroundColor = [UIColor whiteColor];
         self.changeCoachBtn.layer.masksToBounds = YES;
         self.changeCoachBtn.layer.cornerRadius = 3;
@@ -88,7 +88,7 @@
         [midview addSubview:self.changeCoachBtn];
         // 预约教练、同时段学员
         self.appointLabel = [[UILabel alloc] init];
-        self.appointLabel.frame = CGRectMake(0, 0, midview.width-82-20, midview.height);
+        self.appointLabel.frame = CGRectMake(0, 0, midview.width-76-20, midview.height);
         self.appointLabel.text = @"       教练刘洋洋    同时段学员";
         self.appointLabel.font = [UIFont systemFontOfSize:12];
         self.appointLabel.textColor = [UIColor grayColor];

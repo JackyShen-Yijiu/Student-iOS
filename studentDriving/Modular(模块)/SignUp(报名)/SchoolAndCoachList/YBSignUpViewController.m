@@ -648,7 +648,7 @@ static NSString *coachCellID = @"coachCellID";
         
         _toolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
         _toolBarView.layer.shadowOffset = CGSizeMake(0, 2);
-        _toolBarView.layer.shadowOpacity = 0.3;
+        _toolBarView.layer.shadowOpacity = 0.036;
         _toolBarView.layer.shadowRadius = 2;
         
         _toolBarView.titleArray = @[ @"评分最高", @"价格最低", @"综合排序" ];

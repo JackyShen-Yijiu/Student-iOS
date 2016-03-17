@@ -355,7 +355,7 @@ WMSingletonM(YBStudyViewController)
         // 添加底部的阴影效果
         _dvvToolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
         _dvvToolBarView.layer.shadowOffset = CGSizeMake(0, 2);
-        _dvvToolBarView.layer.shadowOpacity = 0.08;
+        _dvvToolBarView.layer.shadowOpacity = 0.036;
         _dvvToolBarView.layer.shadowRadius = 2;
     }
     return _dvvToolBarView;
