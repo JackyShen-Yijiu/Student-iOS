@@ -60,7 +60,6 @@
 //        }
         flowLayout.itemSize = CGSizeMake(kSystemWide/3-0.5, height);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionVertical;
-        
         _collectionView = [[UICollectionView alloc] initWithFrame:self.bounds collectionViewLayout:flowLayout];
         _collectionView.backgroundColor = RGBColor(236, 236, 236);
         _collectionView.delegate = self;
@@ -94,6 +93,7 @@
     
     self.selectDate = selectDate;
 
+    [BLInformationManager sharedInstance].appointmentData = nil;
     [self.upDateArray removeAllObjects];
     [self.dataArray removeAllObjects];
     
@@ -213,7 +213,6 @@
             
             
         }
-        
         
         ToastAlertView * alertView = [[ToastAlertView alloc] initWithTitle:@"请选择连续的时间"];
         [alertView show];

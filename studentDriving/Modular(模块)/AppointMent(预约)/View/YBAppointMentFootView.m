@@ -58,11 +58,11 @@
         // 同时段学员collectionview
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc] init];
         flowLayout.minimumInteritemSpacing = 5;
-        flowLayout.minimumLineSpacing = 5;
+        flowLayout.minimumLineSpacing = 10;
         flowLayout.itemSize = CGSizeMake(44, 44);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         flowLayout.sectionInset = UIEdgeInsetsMake(5, 5, 5, 5);
-        _userCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.iconImageView.frame)+56/2,13, topview.width-CGRectGetMaxX(self.iconImageView.frame)-56/2,topview.height-26) collectionViewLayout:flowLayout];
+        _userCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.iconImageView.frame)+56/2-10,13, topview.width-CGRectGetMaxX(self.iconImageView.frame)-56/2,topview.height-26) collectionViewLayout:flowLayout];
         _userCollectionView.backgroundColor = [UIColor whiteColor];
         _userCollectionView.delegate = self;
         _userCollectionView.dataSource = self;
@@ -100,9 +100,10 @@
         // @" 科目二 第20-33课时 已完成44课时"
         self.countLabel = [[UILabel alloc] init];
         self.countLabel.frame = CGRectMake(0, 0, footview.width/2, footview.height);
-        self.countLabel.text = @"  科目二 第20-33课时";
+        self.countLabel.text = @"   科目二 第20-33课时";
         self.countLabel.font = [UIFont systemFontOfSize:14];
         self.countLabel.textColor = [UIColor blackColor];
+        self.countLabel.textAlignment = NSTextAlignmentCenter;
         self.countLabel.backgroundColor = RGBColor(247, 247, 247);
         [footview addSubview:self.countLabel];
 
@@ -176,6 +177,10 @@
         StudentModel *model = self.studentArray[indexPath.row];
         
         [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
+        
+    }else{
+        
+        cell.iconImageView.image = [UIImage imageNamed:@"littleImage.png"];
         
     }
     return cell;
