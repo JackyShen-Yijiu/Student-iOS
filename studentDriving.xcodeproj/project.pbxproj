@@ -69,6 +69,9 @@
 		B20E59621C981B6400912F5A /* YBSignUpSuccessData.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E595D1C981B6400912F5A /* YBSignUpSuccessData.m */; };
 		B20E59631C981B6400912F5A /* YBSignUpSuccessRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E595F1C981B6400912F5A /* YBSignUpSuccessRootClass.m */; };
 		B20E59A51C9AA0E400912F5A /* DVVUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E59A41C9AA0E400912F5A /* DVVUserManager.m */; };
+		B20E59A81C9BB5D200912F5A /* DrivingDetailItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E59A71C9BB5D200912F5A /* DrivingDetailItemCell.m */; };
+		B20E59AE1C9BD98B00912F5A /* DrivingDetailTopItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E59AD1C9BD98B00912F5A /* DrivingDetailTopItemCell.m */; };
+		B20E59B31C9C1C4600912F5A /* DrivingDetailCoachInfoController.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E59B21C9C1C4600912F5A /* DrivingDetailCoachInfoController.m */; };
 		B221AF591C914BFB001F6EED /* NetWorkEntiry.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF581C914BFB001F6EED /* NetWorkEntiry.m */; };
 		B221AF5C1C914C18001F6EED /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF5B1C914C18001F6EED /* NSString+MD5.m */; };
 		B221AF651C9172E4001F6EED /* YBAppointController.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF641C9172E4001F6EED /* YBAppointController.m */; };
@@ -1174,6 +1177,12 @@
 		B20E595F1C981B6400912F5A /* YBSignUpSuccessRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSignUpSuccessRootClass.m; sourceTree = "<group>"; };
 		B20E59A31C9AA0E400912F5A /* DVVUserManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVUserManager.h; sourceTree = "<group>"; };
 		B20E59A41C9AA0E400912F5A /* DVVUserManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVUserManager.m; sourceTree = "<group>"; };
+		B20E59A61C9BB5D200912F5A /* DrivingDetailItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingDetailItemCell.h; sourceTree = "<group>"; };
+		B20E59A71C9BB5D200912F5A /* DrivingDetailItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingDetailItemCell.m; sourceTree = "<group>"; };
+		B20E59AC1C9BD98B00912F5A /* DrivingDetailTopItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingDetailTopItemCell.h; sourceTree = "<group>"; };
+		B20E59AD1C9BD98B00912F5A /* DrivingDetailTopItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingDetailTopItemCell.m; sourceTree = "<group>"; };
+		B20E59B11C9C1C4600912F5A /* DrivingDetailCoachInfoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrivingDetailCoachInfoController.h; sourceTree = "<group>"; };
+		B20E59B21C9C1C4600912F5A /* DrivingDetailCoachInfoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrivingDetailCoachInfoController.m; sourceTree = "<group>"; };
 		B221AF571C914BFB001F6EED /* NetWorkEntiry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetWorkEntiry.h; sourceTree = "<group>"; };
 		B221AF581C914BFB001F6EED /* NetWorkEntiry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetWorkEntiry.m; sourceTree = "<group>"; };
 		B221AF5A1C914C18001F6EED /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
@@ -5442,6 +5451,8 @@
 				B251DF9E1C8E849300E6613A /* DrivingDetailBriefIntroductionCell.xib */,
 				B251DF9F1C8E849300E6613A /* DrivingDetailController.h */,
 				B251DFA01C8E849300E6613A /* DrivingDetailController.m */,
+				B20E59B11C9C1C4600912F5A /* DrivingDetailCoachInfoController.h */,
+				B20E59B21C9C1C4600912F5A /* DrivingDetailCoachInfoController.m */,
 				B251DFA11C8E849300E6613A /* DrivingDetailDataModel */,
 				B251DFAA1C8E849300E6613A /* DrivingDetailInfoCell.h */,
 				B251DFAB1C8E849300E6613A /* DrivingDetailInfoCell.m */,
@@ -5463,6 +5474,10 @@
 				B251DFBB1C8E849300E6613A /* DVVHorizontalScrollImagesCell.m */,
 				B251DFBC1C8E849300E6613A /* DVVHorizontalScrollImagesView.h */,
 				B251DFBD1C8E849300E6613A /* DVVHorizontalScrollImagesView.m */,
+				B20E59A61C9BB5D200912F5A /* DrivingDetailItemCell.h */,
+				B20E59A71C9BB5D200912F5A /* DrivingDetailItemCell.m */,
+				B20E59AC1C9BD98B00912F5A /* DrivingDetailTopItemCell.h */,
+				B20E59AD1C9BD98B00912F5A /* DrivingDetailTopItemCell.m */,
 			);
 			path = DrivingDetail;
 			sourceTree = "<group>";
@@ -7653,12 +7668,14 @@
 				B221AF9A1C93C232001F6EED /* YBAppointRootClass.m in Sources */,
 				B251E3D91C8E849500E6613A /* YBBaseViewController.m in Sources */,
 				B251E3961C8E849500E6613A /* APWaitEvaluationViewController.m in Sources */,
+				B20E59B31C9C1C4600912F5A /* DrivingDetailCoachInfoController.m in Sources */,
 				B251E5B81C8E849500E6613A /* DVVCrashHandler.mm in Sources */,
 				B251E5FB1C8E849500E6613A /* EMCDDeviceManager+Media.m in Sources */,
 				B251E6F11C8FC59400E6613A /* KOAProgressBar.m in Sources */,
 				B251E3B11C8E849500E6613A /* SchoolClassDetailController.m in Sources */,
 				B251E6281C8E849500E6613A /* PSTCollectionViewCell.m in Sources */,
 				B251E6311C8E849500E6613A /* PSTGridLayoutRow.m in Sources */,
+				B20E59A81C9BB5D200912F5A /* DrivingDetailItemCell.m in Sources */,
 				B251E6971C8E849600E6613A /* JEPhotoPickManger.m in Sources */,
 				B251E2DC1C8E849500E6613A /* ChooseBtnView.m in Sources */,
 				B251E5341C8E849500E6613A /* SignUpDetailController.m in Sources */,
@@ -8112,6 +8129,7 @@
 				B221AF8D1C92F31E001F6EED /* YBAppointMentDetailsDataSubject.m in Sources */,
 				0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */,
 				B251E2E81C8E849500E6613A /* CityListCell.m in Sources */,
+				B20E59AE1C9BD98B00912F5A /* DrivingDetailTopItemCell.m in Sources */,
 				B251E5C81C8E849500E6613A /* DVVSignUpCoachDMSubject.m in Sources */,
 				B251E3F21C8E849500E6613A /* YBForceEvaluateViewController.m in Sources */,
 				B251E3491C8E849500E6613A /* DVVSideMenuHeaderView.m in Sources */,

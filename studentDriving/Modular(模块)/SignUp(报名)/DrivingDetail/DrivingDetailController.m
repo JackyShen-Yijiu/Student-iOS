@@ -34,6 +34,10 @@
 
 #import "JZMainSignUpController.h"
 
+#import "DrivingDetailItemCell.h"
+#import "DrivingDetailTopItemCell.h"
+#import "DrivingDetailCoachInfoController.h"
+
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
@@ -58,6 +62,11 @@
 @property (nonatomic, strong) DVVNoDataPromptView *noDataPromptView;
 
 @property (nonatomic, assign) BOOL isLoaded;
+
+@property (nonatomic,strong) DrivingDetailItemCell *drivingDetailsCell;
+
+@property (nonatomic,strong) UIView *headView;
+@property (nonatomic,strong) UILabel *headLabel;
 
 @end
 
@@ -202,13 +211,15 @@
 
 #pragma mark 班型选择、教练信息切换
 - (void)dvvToolBarViewItemSelectedAction:(NSInteger)index {
+    
+    NSLog(@"班型选择、教练信息切换index:%ld",(long)index);
+    
     if (0 == index) {
         [_signUpCell courseButtonAction];
     }else {
         [_signUpCell coachButtonAction];
     }
 }
-
 
 #pragma mark 更多教练
 - (void)allCoachInSchoolAction:(UIButton *)sender {
@@ -242,94 +253,171 @@
 #pragma mark - table view
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     if (_viewModel.dmData) {
-        return 2;
+        return 4;
     }
     return 0;
 }
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (0 == section) {
         return 4;
-    }else {
+    }else{
         return 1;
     }
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     if (0 == indexPath.section) {
-        if (0 == indexPath.row) {
-            return [DrivingDetailLocationCell defaultHeight];
-        }else if (1 == indexPath.row){
-            // 驾校信息
-            return [DrivingDetailInfoCell defaultHeight];
-        }else if (2 == indexPath.row) {
-            // 驾校简介
-            return [DrivingDetailBriefIntroductionCell dynamicHeight:_viewModel.dmData.introduction isShowMore:_isShowMore];
-        }else {
-            // 训练场
-            return [DrivingDetailTrainingGroundCell dynamicHeight:_viewModel.dmData];
-        }
-    }else {
+        
+        return 44;
+
+    }else if (indexPath.section==1){// 驾校详情
+        
+        return [DrivingDetailItemCell cellHeightDmData:_viewModel.dmData];
+        
+    }else if (indexPath.section==2){// 教练信息
+        
+        return 44;
+        
+    }else{
+        
         // 报名（班型和教练信息）
         return [self.signUpCell dynamicHeight];
+        
+    }
+    
+    return 0;
+    
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (3 == section) {
+        return 44;
+    }else {
+        return 0;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section!=3) {
+        return 10;
+    }
+    return 0;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (3 == section) {
+        return self.toolBarView;
+    }else {
+        return nil;
     }
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 1;
-}
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    if (1 == section) {
-        return 44;
-    }else {
-        return 1;
-    }
-}
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (1 == section) {
-        return self.toolBarView;
-    }else {
-        return [UIView new];
-    }
-}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (0 == indexPath.section) {
+    if (indexPath.section == 0) {
+        
+        DrivingDetailTopItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
+        if (cell==nil) {
+            cell = [[DrivingDetailTopItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+        }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell.delive.hidden = NO;
+        
         if (0 == indexPath.row) {
-            DrivingDetailLocationCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kLocationCell"];
-            if (!cell) {
-                cell = [[DrivingDetailLocationCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kLocationCell"];
-            }
-            [cell refreshData:_viewModel.dmData];
-            return cell;
-        }
-        // 驾校信息
-        if (1 == indexPath.row) {
-            DrivingDetailInfoCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kInfoCell"];
-            if (!cell) {
-                cell = [[DrivingDetailInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kInfoCell"];
-            }
-            [cell refreshData:_viewModel.dmData];
-            return cell;
-        }
-        // 驾校简介
-        if (2 == indexPath.row) {
+          
+            cell.leftLabel.text = @"价格:";
+            cell.detailsLabel.text = [NSString stringWithFormat:@"%ld-%ld",(long)_viewModel.dmData.minprice,(long)_viewModel.dmData.maxprice];
+            cell.detailsLabel.textColor = YBNavigationBarBgColor;
+            cell.imgView.image = [UIImage imageNamed:@"YBDringDetailsmoney"];
+
+        }else if (indexPath.row == 1){
             
-            [self.introductionCell refreshData:_viewModel.dmData];
-            return _introductionCell;
+            cell.leftLabel.text = @"地址:";
+            cell.detailsLabel.text = _viewModel.dmData.address;
+            cell.detailsLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+            cell.imgView.image = [UIImage imageNamed:@"YBDringDetailslocation"];
+
+        }else if (indexPath.row == 2){
+            
+            cell.leftLabel.text = @"通过率:";
+            cell.detailsLabel.text = [NSString stringWithFormat:@"%ld%",(long)_viewModel.dmData.passingrate];
+            cell.detailsLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+            cell.imgView.image = [UIImage imageNamed:@"YBDringDetailspass"];
+
+        }else if (indexPath.row == 3){
+            
+            cell.leftLabel.text = @"营业时间:";
+            cell.detailsLabel.text = [NSString stringWithFormat:@"%@",_viewModel.dmData.hours];
+            cell.detailsLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+            cell.imgView.image = [UIImage imageNamed:@"YBDringDetailstime"];
+            cell.delive.hidden = YES;
+            
         }
-        // 训练场
-        if (3 == indexPath.row) {
-            DrivingDetailTrainingGroundCell *cell = [tableView dequeueReusableCellWithIdentifier:@"kTrainingCell"];
-            if (!cell) {
-                cell = [[DrivingDetailTrainingGroundCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"kTrainingCell"];
-            }
-            [cell refreshData:_viewModel.dmData];
-            return cell;
+        
+        return cell;
+        
+    }else if (indexPath.section == 1){// 驾校详情
+        
+        DrivingDetailItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DrivingDetailItemCell"];
+        if (cell==nil) {
+            cell = [[DrivingDetailItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"DrivingDetailItemCell"];
         }
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        self.drivingDetailsCell = cell;
+        
+        cell.dmData = _viewModel.dmData;
+        
+        cell.detailsLabel.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreBtnDidClick)];
+        [cell.detailsLabel addGestureRecognizer:tap];
+        
+        return cell;
+        
+    }else if (indexPath.section == 2){// 教练信息
+        
+        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cellID"];
+        if (cell==nil) {
+            cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cellID"];
+        }
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        cell.textLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
+        if (YBIphone6Plus) {
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:13*1.5];
+        }
+        cell.textLabel.text = @"教练信息";
+        
+        return cell;
+
+    }else{
+        
+        // 报名（班型和教练信息）
+        return self.signUpCell;
+        
     }
     
-    // 报名（班型和教练信息）
-    return self.signUpCell;
+    return nil;
+}
+
+-(void)moreBtnDidClick
+{
+    _viewModel.dmData.isMore = !_viewModel.dmData.isMore;
+        
+    [self.tableView reloadData];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section==2) {
+        NSLog(@"教练信息");
+        DrivingDetailCoachInfoController *vc = [[DrivingDetailCoachInfoController alloc] init];
+        vc.schoolID = _schoolID;
+        [self.navigationController pushViewController:vc animated:YES];
+    }
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -431,8 +519,6 @@
             ws.isShowMore = isShowMore;
             [ws.tableView reloadData];
             
-//            NSIndexPath *indexPath = [NSIndexPath indexPathForItem:3 inSection:0];
-//            [ws.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationNone];
         }];
     }
     return _introductionCell;
@@ -458,15 +544,61 @@
     return _signUpCell;
 }
 
+- (UIView *)headView
+{
+    if (_headView==nil) {
+        
+        _headView = [[UIView alloc] init];
+        _headView.backgroundColor = [UIColor whiteColor];
+        
+        UIView *delive = [[UIView alloc] initWithFrame:CGRectMake(0, 43.5, kSystemWide, 0.5)];
+        delive.backgroundColor = [UIColor lightGrayColor];
+        delive.alpha = 0.3;
+        [_headView addSubview:delive];
+        [_headView addSubview:_headLabel];
+        [self dvvToolBarViewItemSelectedAction:0];
+
+    }
+    return _headView;
+}
+
+- (UILabel *)headLabel
+{
+    if (_headLabel == nil) {
+        
+        _headLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 44)];
+        _headLabel.font = [UIFont boldSystemFontOfSize:13];
+        if (YBIphone6Plus) {
+            _headLabel.font = [UIFont boldSystemFontOfSize:13*1.5];
+        }
+        _headLabel.text = @"课程班型";
+        _headLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _headLabel.textAlignment = NSTextAlignmentLeft;
+        
+    }
+    return _headLabel;
+}
+
+
 - (DVVSignUpToolBarView *)toolBarView {
     if (!_toolBarView) {
         _toolBarView = [DVVSignUpToolBarView new];
-        _toolBarView.backgroundColor = YBNavigationBarBgColor;
-        _toolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
-        _toolBarView.layer.shadowOffset = CGSizeMake(0, 2);
-        _toolBarView.layer.shadowOpacity = 0.3;
-        _toolBarView.layer.shadowRadius = 2;
-        _toolBarView.titleArray = @[ @"课程费用", @"教练信息" ];
+        _toolBarView.backgroundColor = [UIColor whiteColor];;
+//        _toolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
+//        _toolBarView.layer.shadowOffset = CGSizeMake(0, 2);
+//        _toolBarView.layer.shadowOpacity = 0.3;
+//        _toolBarView.layer.shadowRadius = 2;
+        _toolBarView.titleNormalColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _toolBarView.titleSelectColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _toolBarView.textAlignment = NSTextAlignmentLeft;
+        _toolBarView.titleFont = [UIFont boldSystemFontOfSize:13];
+        if (YBIphone6Plus) {
+            _toolBarView.titleFont = [UIFont boldSystemFontOfSize:13*1.5];
+        }
+        _toolBarView.followBarColor = [UIColor lightGrayColor];
+        _toolBarView.followBarHeight = 0.5;
+        _toolBarView.titleArray = @[@"课程班型"];
+
         __weak typeof(self) ws = self;
         [_toolBarView dvvToolBarViewItemSelected:^(UIButton *button) {
             [ws dvvToolBarViewItemSelectedAction:button.tag];
@@ -482,7 +614,6 @@
     }
     return _noDataPromptView;
 }
-
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

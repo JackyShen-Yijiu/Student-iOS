@@ -8,15 +8,27 @@
 
 #import "DrivingDetailTableHeaderView.h"
 
+@interface DrivingDetailTableHeaderView()
+
+@property (nonatomic,strong) UIView *footAlphaView;
+@property (nonatomic,strong) UIView *footAlphaBgView;
+
+@end
+
 @implementation DrivingDetailTableHeaderView
 
 - (instancetype)init
 {
     self = [super init];
     if (self) {
+        
         [self addSubview:self.cycleShowImagesView];
         
-        [self addSubview:self.nameLabel];
+        // 添加底部阴影背景
+        [self addSubview:self.footAlphaView];
+        [self.footAlphaView addSubview:self.footAlphaBgView];
+        [self.footAlphaView addSubview:self.nameLabel];
+        [self.footAlphaView addSubview:self.starBar];
         
         [self addSubview:self.alphaView];
         
@@ -29,11 +41,13 @@
         CGFloat collectionWidth = 63;
         CGFloat collectionHeight = 63;
         _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, cycleShowImagesViewHeight - collectionHeight/2.f, collectionWidth, collectionHeight);
-        _nameLabel.frame = CGRectMake(47, selfWidth*0.7 - 28 - 30, selfWidth - 56 - 16, 35);
+
+        _footAlphaView.frame = CGRectMake(0, cycleShowImagesViewHeight-44, selfWidth, 44);
+        _footAlphaBgView.frame = CGRectMake(0, 0, selfWidth, 44);
+        _nameLabel.frame = CGRectMake(10, 0, 200, 44);
+        _starBar.frame = CGRectMake(_collectionImageView.frame.origin.x-94-10, _footAlphaBgView.height/2-14/2, 94, 14);
         
-//        _nameLabel.backgroundColor = [UIColor redColor];
-//        self.backgroundColor = [UIColor redColor];
-//        _collectionImageView.backgroundColor = [UIColor orangeColor];
+
     }
     return self;
 }
@@ -46,13 +60,21 @@
 
 - (void)refreshData:(DrivingDetailDMData *)dmData {
     
+    NSLog(@"dmData.name:%@",dmData.name);
+    
     // 轮播图数据
     [_cycleShowImagesView reloadDataWithArray:dmData.pictures];
+    
     if (dmData.name && dmData.name.length) {
         _nameLabel.text = dmData.name;
     }else {
         _nameLabel.text = @"未填写驾校名";
     }
+    
+    // 设置星级
+    [self.starBar dvv_setStar:dmData.schoollevel];
+    
+    
 }
 
 - (DVVCycleShowImagesView *)cycleShowImagesView {
@@ -73,15 +95,48 @@
     }
     return _collectionImageView;
 }
+
+- (UIView *)footAlphaView
+{
+    if (_footAlphaView == nil) {
+        
+        _footAlphaView = [[UIView alloc] init];
+        _footAlphaView.backgroundColor = [UIColor blackColor];
+        _footAlphaView.alpha = 0.5;
+    }
+    return _footAlphaView;
+}
+- (UIView *)footAlphaBgView
+{
+    if (_footAlphaBgView == nil) {
+        
+        _footAlphaBgView = [[UIView alloc] init];
+        _footAlphaBgView.backgroundColor = [UIColor clearColor];
+        
+    }
+    return _footAlphaBgView;
+}
+
+- (DVVStarView *)starBar {
+    if (!_starBar) {
+        _starBar = [DVVStarView new];
+        [_starBar dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+    }
+    return _starBar;
+}
+
 - (THLabel *)nameLabel {
     if (!_nameLabel) {
         _nameLabel = [THLabel new];
         _nameLabel.userInteractionEnabled = NO;
-        _nameLabel.font = [UIFont boldSystemFontOfSize:28];
+        _nameLabel.font = [UIFont boldSystemFontOfSize:15];
+        if (YBIphone6Plus) {
+            _nameLabel.font = [UIFont boldSystemFontOfSize:15*1.5];
+        }
         _nameLabel.textColor = [UIColor whiteColor];
-        _nameLabel.shadowBlur = 5;
-        _nameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.7];
-        _nameLabel.shadowOffset = CGSizeMake(1, 1);
+//        _nameLabel.shadowBlur = 5;
+//        _nameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.7];
+//        _nameLabel.shadowOffset = CGSizeMake(1, 1);
     }
     return _nameLabel;
 }

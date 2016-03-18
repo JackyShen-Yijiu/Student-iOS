@@ -39,6 +39,8 @@ typedef void(^DVVSignUpToolBarViewBlock)(UIButton *button);
 
 @property(nonatomic,assign) CGFloat minWidth;
 
+@property (nonatomic,assign) NSTextAlignment textAlignment;
+
 //模拟点击一项的方法(参数为一个Block)
 - (void)dvvToolBarViewItemSelected:(DVVSignUpToolBarViewBlock)handle;
 

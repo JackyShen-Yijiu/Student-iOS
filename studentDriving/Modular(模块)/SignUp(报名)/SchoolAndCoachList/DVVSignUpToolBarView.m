@@ -21,8 +21,6 @@
 //跟随条
 @property (nonatomic, strong) UILabel             *followBarLabel;
 
-//@property (nonatomic, strong) UILabel             *lineLabel;
-
 @end
 
 @implementation DVVSignUpToolBarView
@@ -51,12 +49,18 @@
     _titleArray=[NSArray new];
     _titleArray = @[ @"标题1", @"标题2", @"..." ];
     _titleFont = [UIFont systemFontOfSize:14];
-    _titleNormalColor = [UIColor colorWithWhite:1 alpha:0.75];
+    if (_titleNormalColor==nil) {
+        _titleNormalColor = [UIColor colorWithWhite:1 alpha:0.75];
+    }
     _titleSelectColor = TITLE_COLOR;
     
     //跟随条
-    _followBarColor = [UIColor yellowColor];
-    _followBarHeight = 2;
+    if (_followBarColor==nil) {
+        _followBarColor = [UIColor yellowColor];
+    }
+    if (_followBarHeight==0) {
+        _followBarHeight = 2;
+    }
     _followBarLocation = 0;
 }
 
@@ -146,19 +150,11 @@
     //循环创建所有的按钮
     for (int i = 0; i < _titleArray.count; i++) {
         
-        UIButton *itemButton = [self createOneButtonWithTitle:_titleArray[i] Size:buttonSize MinX:i*buttonSize.width Tag:i];
+        UIButton *itemButton = [self createOneButtonWithTitle:_titleArray[i] Size:buttonSize MinX:i*buttonSize.width Tag:i titleArray:_titleArray];
         
         [self addSubview:itemButton];
     }
-//    for (int i = 1; i < _titleArray.count; i++) {
-//        UIImageView *lineImageView = [UIImageView new];
-//        
-//        lineImageView.backgroundColor = [UIColor colorWithRed:207/255.0 green:207/255.0 blue:207/255.0 alpha:1];
-//        lineImageView.backgroundColor = [UIColor grayColor];
-//        lineImageView.frame = CGRectMake(buttonSize.width * i, (HEIGHT-20)/2.0, 2, 20);
-//        [self addSubview:lineImageView];
-//    }
-    
+
     _followBarLabel = [UILabel new];
     //添加跟随的按钮
     CGFloat locationFloat = _selectButtonInteger * buttonSize.width;
@@ -169,6 +165,9 @@
     }
     //颜色
     _followBarLabel.backgroundColor = _followBarColor;
+    if (_followBarColor) {
+        _followBarLabel.alpha = 0.3;
+    }
     
     //将跟随条的tag值设为12345，避免和按钮的tag值起冲突
     _followBarLabel.tag = 12345;
@@ -180,15 +179,22 @@
 }
 
 #pragma mark 创建一个按钮
-- (UIButton *)createOneButtonWithTitle:(NSString *)title Size:(CGSize)size MinX:(CGFloat)mimX Tag:(NSInteger)tag {
+- (UIButton *)createOneButtonWithTitle:(NSString *)title Size:(CGSize)size MinX:(CGFloat)mimX Tag:(NSInteger)tag titleArray:(NSArray *)titleArray{
     
     UIButton *btn = [UIButton new];
-    //位置和大小
-    btn.frame = CGRectMake(mimX, 0, size.width, size.height);
-    //字体
-    
+
     btn.titleLabel.font = [UIFont fontWithName:@"DIN-Regular" size:11];
     btn.titleLabel.font = _titleFont;
+    
+    CGSize btnSize = size;
+    if (titleArray.count==1) {
+        CGSize btnSize = [title sizeWithFont:_titleFont];
+        btn.frame = CGRectMake(15, 0, btnSize.width, size.height);
+    }else{
+        //位置和大小
+        btn.frame = CGRectMake(mimX, 0, size.width, size.height);
+    }
+    btn.titleLabel.textAlignment = _textAlignment;
     
     //显示文字
     [btn setTitle:title forState:UIControlStateNormal];
