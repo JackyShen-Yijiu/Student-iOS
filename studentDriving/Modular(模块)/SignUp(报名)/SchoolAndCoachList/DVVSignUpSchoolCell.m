@@ -60,14 +60,17 @@
     _lineImageView.frame = CGRectMake(0, size.height - 0.5, kSystemWide, 0.5);
     if (YBIphone5) {
         [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(@72);
+            make.height.mas_equalTo(@62);
             make.width.mas_equalTo(@80);
         }];
+        [self.nameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.contentView.mas_top).offset(13);
+        }];
         [self.addressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(8);
+            make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(1);
         }];
         [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.addressLabel.mas_bottom).offset(8);
+            make.top.mas_equalTo(self.addressLabel.mas_bottom).offset(10);
         }];
         [self.distanceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.addressLabel.mas_top);
