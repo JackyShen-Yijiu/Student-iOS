@@ -21,12 +21,8 @@
                             <constraint firstAttribute="width" constant="44" id="8ve-q5-iSb"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="暂无距离信息" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ol-De-UlP">
-                        <rect key="frame" x="228" y="48" width="80" height="12"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="12" id="6DS-bn-YrX"/>
-                            <constraint firstAttribute="width" constant="80" id="fi6-7T-9aF"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="暂无距离信息" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ol-De-UlP">
+                        <rect key="frame" x="222" y="48" width="90" height="12"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -40,7 +36,7 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="未填写价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TkQ-or-tvh">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未填写价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TkQ-or-tvh">
                         <rect key="frame" x="168" y="48" width="60" height="12"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="60" id="0sp-KW-Zwy"/>
@@ -49,13 +45,8 @@
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="0sp-KW-Zwy"/>
-                            </mask>
-                        </variation>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="未填写所属驾校" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0H-VK-gOh">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="未填写所属驾校" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U0H-VK-gOh">
                         <rect key="frame" x="72" y="48" width="86" height="12"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="12" id="2eh-9C-SHl"/>
@@ -64,21 +55,14 @@
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="KmE-s3-5Yx"/>
-                            </mask>
-                        </variation>
                     </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="TkQ-or-tvh" firstAttribute="leading" secondItem="U0H-VK-gOh" secondAttribute="trailing" constant="10" id="31S-hX-fij"/>
                     <constraint firstItem="TkQ-or-tvh" firstAttribute="top" secondItem="U0H-VK-gOh" secondAttribute="top" id="7gG-Bo-UlT"/>
                     <constraint firstItem="fxe-RX-o5q" firstAttribute="leading" secondItem="LB3-xQ-rUE" secondAttribute="trailing" constant="16" id="9c9-v0-ne7"/>
-                    <constraint firstItem="3ol-De-UlP" firstAttribute="top" secondItem="TkQ-or-tvh" secondAttribute="top" id="EFd-p7-p3Y"/>
                     <constraint firstItem="U0H-VK-gOh" firstAttribute="leading" secondItem="fxe-RX-o5q" secondAttribute="leading" id="I43-dq-Iyl"/>
                     <constraint firstItem="U0H-VK-gOh" firstAttribute="top" secondItem="fxe-RX-o5q" secondAttribute="bottom" constant="10" id="O0f-4i-gPo"/>
-                    <constraint firstAttribute="trailing" secondItem="3ol-De-UlP" secondAttribute="trailing" constant="12" id="RsM-Ld-KZS"/>
                     <constraint firstItem="fxe-RX-o5q" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="Zwp-mt-bQ3"/>
                     <constraint firstItem="LB3-xQ-rUE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="12" id="kOy-ah-cal"/>
                     <constraint firstAttribute="trailing" secondItem="fxe-RX-o5q" secondAttribute="trailing" constant="118" id="oyK-CE-wrH"/>
@@ -92,7 +76,7 @@
                 <outlet property="priceLabel" destination="TkQ-or-tvh" id="9kf-kv-qBL"/>
                 <outlet property="schoolNameLabel" destination="U0H-VK-gOh" id="M2X-4e-x8I"/>
             </connections>
-            <point key="canvasLocation" x="337" y="289"/>
+            <point key="canvasLocation" x="533" y="258"/>
         </tableViewCell>
     </objects>
 </document>

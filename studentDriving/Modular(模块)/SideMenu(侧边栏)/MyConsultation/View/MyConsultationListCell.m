@@ -24,7 +24,7 @@
 
 // 底部下线
 @property (nonatomic, strong) UIView *lineView;
-@property(nonatomic,strong)UIView * footView;
+
 
 @end
 
@@ -38,7 +38,7 @@
         _askPotraitView.layer.cornerRadius = 5.f;
         _askPotraitView.layer.shouldRasterize = YES;
         _askPotraitView.backgroundColor = [UIColor clearColor];
-        _askPotraitView.imageView.image = [UIImage imageNamed:@"coach_man_default_icon"];
+        _askPotraitView.imageView.image = [UIImage imageNamed:@"Q"];
     }
     return _askPotraitView;
 }
@@ -46,11 +46,11 @@
 - (PortraitView *)replyPotraitView
 {
     if (_replyPotraitView==nil) {
-        _replyPotraitView = [[PortraitView alloc] initWithFrame:CGRectMake(0, 0, 40, 40)];
-        _replyPotraitView.layer.cornerRadius = 20.f;
+        _replyPotraitView = [[PortraitView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
+        _replyPotraitView.layer.cornerRadius = 5.f;
         _replyPotraitView.layer.shouldRasterize = YES;
         _replyPotraitView.backgroundColor = [UIColor clearColor];
-        _replyPotraitView.imageView.image = [UIImage imageNamed:@"head_driving"];
+        _replyPotraitView.imageView.image = [UIImage imageNamed:@"A"];
     }
     return _replyPotraitView;
 }
@@ -85,15 +85,6 @@
     return _replySubTitle;
 }
 
-// 中间分割线
-- (UIView *)footView
-{
-    if (_footView == nil) {
-        _footView = [[UIView alloc] init];
-        _footView.backgroundColor = RGBColor(232, 232, 237);
-    }
-    return _footView;
-}
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
@@ -112,9 +103,8 @@
         // 答内容
         [self.contentView addSubview:self.replySubTitle];
         
-        [self.contentView addSubview:[self getOnelineView]];
+        [self.contentView addSubview:self.lineView];
         
-        [self.contentView addSubview:self.footView];
         
         [self updateConstraints];
         
@@ -175,20 +165,6 @@
     // 答内容
     if (_detailModel[@"replycontent"] && [_detailModel[@"replycontent"] length]!=0) {
         self.replySubTitle.text = [NSString stringWithFormat:@"%@",_detailModel[@"replycontent"]];
-        [self.footView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(@0);
-            make.right.mas_equalTo(@0);
-            make.top.mas_equalTo(self.replySubTitle.mas_bottom).offset(16);
-            make.height.mas_equalTo(@10);
-        }];
-    }else{
-        self.replySubTitle.text = @"驾校回复中...";
-        [self.footView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(@0);
-            make.right.mas_equalTo(@0);
-            make.top.mas_equalTo(self.replyPotraitView.mas_bottom).offset(16);
-            make.height.mas_equalTo(@10);
-        }];
     }
     
 }
@@ -203,14 +179,14 @@
     
     [cell layoutIfNeeded];
     
-    return cell.askSubTitle.height+cell.replySubTitle.height+16+12+32+cell.footView.height;
+    return cell.askSubTitle.height+cell.replySubTitle.height+16+12;
     
 }
 
 - (UIView *)getOnelineView
 {
     UIView * view = [[UIView alloc] init];
-    view.backgroundColor = HM_LINE_COLOR;
+    view.backgroundColor = [UIColor cyanColor] ;
     return view;
 }
 
@@ -224,5 +200,11 @@
     label.lineBreakMode = NSLineBreakByTruncatingTail;
     return label;
 }
-
+- (UIView *)lineView{
+    if (_lineView == nil) {
+        _lineView = [[UIView alloc] init];
+        _lineView.backgroundColor = HM_LINE_COLOR;
+    }
+    return _lineView;
+}
 @end

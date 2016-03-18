@@ -88,11 +88,11 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="YBNameLabel" destination="hXm-nz-mUK" id="iVd-0d-y22"/>
                 <outlet property="addressLabel" destination="REk-bR-fdn" id="iLl-xS-3Ad"/>
                 <outlet property="coachCountLabel" destination="E6x-cJ-Nhb" id="6Or-YQ-goQ"/>
                 <outlet property="distanceLabel" destination="dKI-JC-hnZ" id="quX-ff-i6J"/>
                 <outlet property="iconImageView" destination="0fv-ij-9zg" id="CRI-nN-BOi"/>
-                <outlet property="nameLabel" destination="hXm-nz-mUK" id="4pb-k4-w70"/>
                 <outlet property="priceLabel" destination="aVi-CS-Nf3" id="BlN-je-vs0"/>
             </connections>
             <point key="canvasLocation" x="337" y="289"/>

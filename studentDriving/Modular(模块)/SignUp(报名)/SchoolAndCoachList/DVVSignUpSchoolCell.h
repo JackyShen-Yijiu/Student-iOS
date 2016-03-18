@@ -14,9 +14,10 @@
 #import "RatingBar.h"
 
 @interface DVVSignUpSchoolCell : UITableViewCell
+@property (weak, nonatomic) IBOutlet UILabel *YBNameLabel;
 
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *YBnameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
