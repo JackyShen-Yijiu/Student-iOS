@@ -34,8 +34,8 @@
 - (PortraitView *)askPotraitView
 {
     if (_askPotraitView==nil) {
-        _askPotraitView = [[PortraitView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-        _askPotraitView.layer.cornerRadius = 5.f;
+        _askPotraitView = [[PortraitView alloc] initWithFrame:CGRectMake(0, 0, 14, 14)];
+//        _askPotraitView.layer.cornerRadius = 5.f;
         _askPotraitView.layer.shouldRasterize = YES;
         _askPotraitView.backgroundColor = [UIColor clearColor];
         _askPotraitView.imageView.image = [UIImage imageNamed:@"Q"];
@@ -46,8 +46,8 @@
 - (PortraitView *)replyPotraitView
 {
     if (_replyPotraitView==nil) {
-        _replyPotraitView = [[PortraitView alloc] initWithFrame:CGRectMake(0, 0, 10, 10)];
-        _replyPotraitView.layer.cornerRadius = 5.f;
+        _replyPotraitView = [[PortraitView alloc] initWithFrame:CGRectMake(0, 0, 14, 14)];
+//        _replyPotraitView.layer.cornerRadius = 5.f;
         _replyPotraitView.layer.shouldRasterize = YES;
         _replyPotraitView.backgroundColor = [UIColor clearColor];
         _replyPotraitView.imageView.image = [UIImage imageNamed:@"A"];
@@ -77,7 +77,7 @@
         _replySubTitle = [[UILabel alloc] init];
         _replySubTitle.textAlignment = NSTextAlignmentLeft;
         _replySubTitle.font = [UIFont systemFontOfSize:13.f];
-        _replySubTitle.textColor = [UIColor grayColor];
+        _replySubTitle.textColor = [UIColor colorWithHexString:@"b7b7b7"];
         _replySubTitle.backgroundColor = [UIColor clearColor];
         _replySubTitle.numberOfLines = 0;
         _replySubTitle.text = @"驾校回复中...";
@@ -118,7 +118,7 @@
     
     // 问头像
     [self.askPotraitView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(10, 10.f));
+        make.size.mas_equalTo(CGSizeMake(14, 14.f));
         make.left.equalTo(@16);
         make.top.equalTo(@16);//
     }];
@@ -133,7 +133,7 @@
     
     // 答头像
     [self.replyPotraitView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.size.mas_equalTo(CGSizeMake(10, 10.f));
+        make.size.mas_equalTo(CGSizeMake(14, 14.f));
         make.left.equalTo(@16);
         make.top.mas_equalTo(self.askPotraitView.mas_bottom).offset(12);//
     }];
@@ -179,7 +179,7 @@
     
     [cell layoutIfNeeded];
     
-    return cell.askSubTitle.height+cell.replySubTitle.height+16+12;
+    return cell.askSubTitle.height+cell.replySubTitle.height+16+12 + 16;
     
 }
 
