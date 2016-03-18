@@ -9,6 +9,10 @@
 #import "DVVSignUpSchoolCell.h"
 #import "UIImageView+DVVWebImage.h"
 
+
+@interface DVVSignUpSchoolCell ()<RatingBarDelegate>
+
+@end
 @implementation DVVSignUpSchoolCell
 
 - (void)awakeFromNib {
@@ -24,49 +28,72 @@
         self = cell;
         [self setRestorationIdentifier:reuseIdentifier];
         
-        [self.contentView addSubview:self.starView];
+//        [self.contentView addSubview:self.starView];
+        [self.contentView addSubview:self.rateStarView];
         [self.contentView addSubview:self.lineImageView];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        [_iconImageView.layer setMasksToBounds:YES];
-        [_iconImageView.layer setCornerRadius:20];
-        
-        _nameLabel.textColor = [UIColor colorWithHexString:@"#212121"];
+            
+        _YBNameLabel.textColor = [UIColor colorWithHexString:@"#212121"];
         _addressLabel.textColor = [UIColor colorWithHexString:@"757575"];
         _distanceLabel.textColor = [UIColor colorWithHexString:@"757575"];
         _priceLabel.textColor = [UIColor colorWithHexString:@"DB4437"];
         _coachCountLabel.textColor = [UIColor colorWithHexString:@"DB4437"];
         
         if ( ScreenWidthIs_6Plus_OrWider ) {
-            _nameLabel.font = [UIFont systemFontOfSize:14*YBRatio];
+            _YBNameLabel.font = [UIFont systemFontOfSize:14*YBRatio];
             _addressLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             _distanceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
-            _priceLabel.font = [UIFont systemFontOfSize:14*YBRatio];
+            _priceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             _coachCountLabel.font = [UIFont systemFontOfSize:12*YBRatio];
         }
-    }
+            }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    NSLog(@"%@",self.YBNameLabel);
     CGSize size = self.bounds.size;
-    _starView.frame = CGRectMake(size.width - 94 - 16, 16, 94, 14);
-    CGFloat minX = CGRectGetMinX(_nameLabel.frame);
-    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
+//    _starView.frame = CGRectMake(size.width - 94 - 16,CGRectGetMidY(self.nameLabel.frame) - 7, 94, 14);
+    _rateStarView.frame = CGRectMake(size.width - 94,CGRectGetMidY(self.YBNameLabel.frame) - 7, 94, 12);
+    _lineImageView.frame = CGRectMake(0, size.height - 0.5, kSystemWide, 0.5);
+    if (YBIphone5) {
+        [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(@62);
+            make.width.mas_equalTo(@80);
+        }];
+        [self.YBNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(@18);
+            make.height.mas_equalTo(@14);
+        }];
+        [self.addressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.YBNameLabel.mas_bottom).offset(1);
+        }];
+        [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.addressLabel.mas_bottom).offset(10);
+        }];
+        [self.distanceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.addressLabel.mas_top);
+        }];
+NSLog(@"%@",self.YBNameLabel);
+    }
+
 }
 
 - (void)refreshData:(DVVSignUpSchoolDMData *)dmData {
+    NSLog(@"%@",self.YBNameLabel);
+
     
 //    DVVSignUpSchoolDMLogoimg *
-    
+    NSLog(@"%@",self.iconImageView);
     [_iconImageView dvv_downloadImage:dmData.logoimg.originalpic
                      placeholderImage:[UIImage imageNamed:@"ic_school_header"]];
     NSLog(@"dmData.logoimg.originalpic: %@", dmData.logoimg.originalpic);
     if (dmData.name) {
-        _nameLabel.text = dmData.name;
+        _YBNameLabel.text = dmData.name;
     }else {
-        _nameLabel.text = @"未填写驾校名";
+        _YBNameLabel.text = @"未填写驾校名";
     }
     if (dmData.address) {
         _addressLabel.text = dmData.address;
@@ -89,18 +116,29 @@
         _coachCountLabel.text = @"暂无认证教练";
     }
     if (dmData.schoollevel) {
-        [_starView dvv_setStar:[dmData.schoollevel integerValue]];
+//        [_starView dvv_setStar:[dmData.schoollevel integerValue]];
+        [_rateStarView setUpRating:[dmData.schoollevel floatValue]];
     }else {
-        [_starView dvv_setStar:0];
+//        [_starView dvv_setStar:0];
+        [_rateStarView setUpRating:0.f];
     }
 }
 
-- (DVVStarView *)starView {
-    if (!_starView) {
-        _starView = [DVVStarView new];
-        [_starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+//- (DVVStarView *)starView {
+//    if (!_starView) {
+//        _starView = [DVVStarView new];
+//        [_starView dvv_setBackgroundImage:@"star_five_default" foregroundImage:@"star_five_fill" width:94 height:14];
+//    }
+//    return _starView;
+//}
+- (RatingBar *)rateStarView{
+    if (_rateStarView == nil) {
+        _rateStarView = [[RatingBar alloc] init];
+//        _rateStarView.backgroundColor = [UIColor cyanColor];
+        [_rateStarView setImageDeselected:@"YBAppointMentDetailsstar.png" halfSelected:nil fullSelected:@"YBAppointMentDetailsstar_fill.png" andDelegate:self];
+        
     }
-    return _starView;
+    return _rateStarView;
 }
 
 - (UIImageView *)lineImageView {
@@ -116,5 +154,7 @@
 
     // Configure the view for the selected state
 }
-
+- (void)ratingChanged:(CGFloat)newRating{
+    
+}
 @end

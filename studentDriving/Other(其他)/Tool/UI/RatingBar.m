@@ -18,6 +18,7 @@
     UIImage *unSelectedImage;
     UIImage *halfSelectedImage;
     UIImage *fullSelectedImage;
+    CGFloat margin;
 }
 @property (nonatomic,strong) UIImageView *s1;
 @property (nonatomic,strong) UIImageView *s2;
@@ -56,7 +57,7 @@
     fullSelectedImage = [UIImage imageNamed:fullSelectedName];
     
     height = 0.0,width = 0.0;
-    
+    margin = 4;
     if (height < [fullSelectedImage size].height) {
         height = [fullSelectedImage size].height;
     }
@@ -85,10 +86,10 @@
     _s5 = [[UIImageView alloc] initWithImage:unSelectedImage];
     
     [_s1 setFrame:CGRectMake(0,         0, width, height)];
-    [_s2 setFrame:CGRectMake(width,     0, width, height)];
-    [_s3 setFrame:CGRectMake(2 * width, 0, width, height)];
-    [_s4 setFrame:CGRectMake(3 * width, 0, width, height)];
-    [_s5 setFrame:CGRectMake(4 * width, 0, width, height)];
+    [_s2 setFrame:CGRectMake(width + margin,     0, width, height)];
+    [_s3 setFrame:CGRectMake(2 * width + 2 * margin, 0, width, height)];
+    [_s4 setFrame:CGRectMake(3 * width + 3 * margin, 0, width, height)];
+    [_s5 setFrame:CGRectMake(4 * width + 4 * margin, 0, width, height)];
     
     [_s1 setUserInteractionEnabled:YES];
     [_s2 setUserInteractionEnabled:YES];

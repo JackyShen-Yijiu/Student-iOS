@@ -329,9 +329,13 @@ static NSString *coachCellID = @"coachCellID";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (0 == _showType) {
-        return 88;
+        if (YBIphone5) {
+            return 104;
+        }
+        return 122;
+        
     }else {
-        return 88;
+        return 84;
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

@@ -24,12 +24,12 @@
         self = cell;
         [self setRestorationIdentifier:reuseIdentifier];
         
-        [self.contentView addSubview:self.starView];
+        [self.contentView addSubview:self.rateBar];
         [self.contentView addSubview:self.lineImageView];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [_iconImageView.layer setMasksToBounds:YES];
-        [_iconImageView.layer setCornerRadius:20];
+        [_iconImageView.layer setCornerRadius:22];
         
         _nameLabel.textColor = [UIColor colorWithHexString:@"#212121"];
         _schoolNameLabel.textColor = [UIColor colorWithHexString:@"757575"];
@@ -41,7 +41,7 @@
             _nameLabel.font = [UIFont systemFontOfSize:14*YBRatio];
             _schoolNameLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             _distanceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
-            _priceLabel.font = [UIFont systemFontOfSize:14*YBRatio];
+            _priceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
         }
     }
     return self;
@@ -50,9 +50,8 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGSize size = self.bounds.size;
-    _starView.frame = CGRectMake(size.width - 94 - 16, 16, 94, 14);
-    CGFloat minX = CGRectGetMinX(_nameLabel.frame);
-    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
+    _rateBar.frame = CGRectMake(size.width - 89, CGRectGetMidY(self.nameLabel.frame) - 7, 94, 14);
+    _lineImageView.frame = CGRectMake(0, size.height - 0.5, size.width, 0.5);
 }
 
 - (void)refreshData:(DVVSignUpCoachDMData *)dmData {
@@ -90,18 +89,21 @@
         _distanceLabel.text = @"暂无距离信息";
     }
     if (dmData.starlevel) {
-        [_starView dvv_setStar:dmData.starlevel];
+        //        [_starView dvv_setStar:[dmData.schoollevel integerValue]];
+        [_rateBar setUpRating:(CGFloat)dmData.starlevel ];
     }else {
-        [_starView dvv_setStar:0];
-    }
-}
+        //        [_starView dvv_setStar:0];
+        [_rateBar setUpRating:0];
+    }}
 
-- (DVVStarView *)starView {
-    if (!_starView) {
-        _starView = [DVVStarView new];
-        [_starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+- (RatingBar *)rateBar{
+    if (_rateBar == nil) {
+        _rateBar = [[RatingBar alloc] init];
+        //        _rateStarView.backgroundColor = [UIColor cyanColor];
+        [_rateBar setImageDeselected:@"YBAppointMentDetailsstar.png" halfSelected:nil fullSelected:@"YBAppointMentDetailsstar_fill.png" andDelegate:nil];
+        
     }
-    return _starView;
+    return _rateBar;
 }
 
 - (UIImageView *)lineImageView {

@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DVVSignUpCoachDMData.h"
 #import "DVVStarView.h"
+#import "RatingBar.h"
 
 @interface DVVSignUpCoachCell : UITableViewCell
 
@@ -17,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *schoolNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
-@property (nonatomic, strong) DVVStarView *starView;
+@property (nonatomic, strong) RatingBar *rateBar;
 
 @property (nonatomic, strong) UIImageView *lineImageView;
 
