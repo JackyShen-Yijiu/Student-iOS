@@ -50,7 +50,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGSize size = self.bounds.size;
-    _rateBar.frame = CGRectMake(size.width - 94, 16, 94, 14);
+    _rateBar.frame = CGRectMake(size.width - 89, CGRectGetMidY(self.nameLabel.frame) - 7, 94, 14);
     _lineImageView.frame = CGRectMake(0, size.height - 0.5, size.width, 0.5);
 }
 

@@ -64,7 +64,7 @@
             make.width.mas_equalTo(@80);
         }];
         [self.nameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.contentView.mas_top).offset(13);
+            make.top.mas_equalTo(self.iconImageView.mas_top);
         }];
         [self.addressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(1);
@@ -81,14 +81,7 @@
 }
 
 - (void)refreshData:(DVVSignUpSchoolDMData *)dmData {
-    
-        
-    
-    
-    
-    
-    
-    
+
     
 //    DVVSignUpSchoolDMLogoimg *
     NSLog(@"%@",self.iconImageView);
