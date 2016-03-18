@@ -47,25 +47,48 @@
             _priceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             _coachCountLabel.font = [UIFont systemFontOfSize:12*YBRatio];
         }
-        if (YBIphone5) {
-            _iconImageView.frame = CGRectMake(16, 16, 80, 72);
-        }
-    }
+            }
     return self;
 }
 
 - (void)layoutSubviews {
     [super layoutSubviews];
+    NSLog(@"%@",self.iconImageView);
     CGSize size = self.bounds.size;
 //    _starView.frame = CGRectMake(size.width - 94 - 16,CGRectGetMidY(self.nameLabel.frame) - 7, 94, 14);
     _rateStarView.frame = CGRectMake(size.width - 94,CGRectGetMidY(self.nameLabel.frame) - 7, 94, 12);
     _lineImageView.frame = CGRectMake(0, size.height - 0.5, kSystemWide, 0.5);
+    if (YBIphone5) {
+        [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.height.mas_equalTo(@72);
+            make.width.mas_equalTo(@80);
+        }];
+        [self.addressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.nameLabel.mas_bottom).offset(8);
+        }];
+        [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.addressLabel.mas_bottom).offset(8);
+        }];
+        [self.distanceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.addressLabel.mas_top);
+        }];
+
+    }
+
 }
 
 - (void)refreshData:(DVVSignUpSchoolDMData *)dmData {
     
-//    DVVSignUpSchoolDMLogoimg *
+        
     
+    
+    
+    
+    
+    
+    
+//    DVVSignUpSchoolDMLogoimg *
+    NSLog(@"%@",self.iconImageView);
     [_iconImageView dvv_downloadImage:dmData.logoimg.originalpic
                      placeholderImage:[UIImage imageNamed:@"ic_school_header"]];
     NSLog(@"dmData.logoimg.originalpic: %@", dmData.logoimg.originalpic);
