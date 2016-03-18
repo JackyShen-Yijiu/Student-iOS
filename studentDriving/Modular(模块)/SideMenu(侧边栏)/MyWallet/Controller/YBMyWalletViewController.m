@@ -610,7 +610,7 @@
         [self.baomingduihuanquanTableView reloadData];
         
         if (self.baomingduihuanquanArray.count==0) {
-            self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您没有报名兑换券" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+            self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您没有报名兑换券" image:[UIImage imageNamed:@"YBNocountentimage_wallet_ticket"] subTitle:nil];
             [self.baomingduihuanquanTableView addSubview:self.DvvView];
         }
         
@@ -634,7 +634,7 @@
         [self.kequxianjinedu reloadData];
         
         if (self.kequxianjineduArray.count==0) {
-            self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您没有可取现金额度" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+            self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您没有可取现金额度" image:[UIImage imageNamed:@"YBNocountentimage_wallet_cash"] subTitle:nil];
             [self.kequxianjinedu addSubview:self.DvvView];
         }
         

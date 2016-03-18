@@ -264,7 +264,8 @@
     }
     
     // 设置顶部标题
-    self.navigationItem.title = [NSString stringWithFormat:@"%@",[self.dateFormattor stringFromDate:self.datepicker.selectedDate]];
+    [formatter setDateFormat:@"yyyy年M月"];
+    self.navigationItem.title = [NSString stringWithFormat:@"%@",[formatter stringFromDate:self.datepicker.selectedDate]];
     
 }
 
