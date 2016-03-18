@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1509" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -21,18 +21,18 @@
                             <constraint firstAttribute="height" constant="21" id="ZpK-mU-tez"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="班型简介" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgN-59-Jgw">
                         <rect key="frame" x="16" y="45" width="288" height="12"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Fi-h1-mfg">
-                        <rect key="frame" x="216" y="64.5" width="88" height="36"/>
+                        <rect key="frame" x="216" y="65" width="88" height="36"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="36" id="hAi-yL-afC"/>
                             <constraint firstAttribute="width" constant="88" id="zCA-Ml-M6b"/>
@@ -53,29 +53,38 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="驾校名  班型  价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjF-ad-yP6">
-                        <rect key="frame" x="16" y="72" width="192" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="驾校名  班型  价格" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjF-ad-yP6">
+                        <rect key="frame" x="37" y="72" width="171" height="21"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="Z82-4f-e2S"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YBDringDetailstime" translatesAutoresizingMaskIntoConstraints="NO" id="eSp-cw-fWo">
+                        <rect key="frame" x="16" y="75" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="QUT-19-RPn"/>
+                            <constraint firstAttribute="width" constant="16" id="xl2-wC-Epu"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="bPu-vO-kSj" secondAttribute="trailing" constant="16" id="6no-8h-ozH"/>
+                    <constraint firstItem="eSp-cw-fWo" firstAttribute="centerY" secondItem="BjF-ad-yP6" secondAttribute="centerY" id="72B-bG-pzF"/>
                     <constraint firstItem="7Fi-h1-mfg" firstAttribute="top" secondItem="GgN-59-Jgw" secondAttribute="bottom" constant="7.5" id="7SD-xs-UXh"/>
                     <constraint firstItem="wZJ-jo-IEW" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="CrQ-Gz-dbH"/>
                     <constraint firstItem="wZJ-jo-IEW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="PSD-0w-jlb"/>
                     <constraint firstItem="7Fi-h1-mfg" firstAttribute="leading" secondItem="BjF-ad-yP6" secondAttribute="trailing" constant="8" id="QpJ-YV-f1b"/>
                     <constraint firstAttribute="trailing" secondItem="7Fi-h1-mfg" secondAttribute="trailing" constant="16" id="TH5-Xg-hjH"/>
                     <constraint firstAttribute="trailing" secondItem="GgN-59-Jgw" secondAttribute="trailing" constant="16" id="WRY-yI-I2t"/>
+                    <constraint firstItem="eSp-cw-fWo" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="-136" id="WnF-g1-yml"/>
                     <constraint firstAttribute="bottom" secondItem="BjF-ad-yP6" secondAttribute="bottom" constant="23.5" id="Wxb-d1-uKZ"/>
                     <constraint firstItem="bPu-vO-kSj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="bmu-dR-Svh"/>
                     <constraint firstItem="GgN-59-Jgw" firstAttribute="top" secondItem="bPu-vO-kSj" secondAttribute="bottom" constant="8" id="gat-jd-lPA"/>
-                    <constraint firstItem="BjF-ad-yP6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="kTN-EN-Olm"/>
+                    <constraint firstItem="BjF-ad-yP6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="37" id="kTN-EN-Olm"/>
                     <constraint firstAttribute="bottom" secondItem="7Fi-h1-mfg" secondAttribute="bottom" constant="16" id="lLe-O0-80V"/>
                     <constraint firstItem="GgN-59-Jgw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="nTg-3r-M5P"/>
                     <constraint firstItem="bPu-vO-kSj" firstAttribute="leading" secondItem="wZJ-jo-IEW" secondAttribute="trailing" constant="8" id="zxL-nI-KQ5"/>
@@ -97,6 +106,7 @@
         </imageView>
     </objects>
     <resources>
+        <image name="YBDringDetailstime" width="16" height="16"/>
         <image name="signUpButton_icon" width="100" height="45"/>
     </resources>
 </document>

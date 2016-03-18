@@ -22,4 +22,8 @@
 @property (nonatomic, strong) NSArray * schoolbusroute;
 @property (nonatomic, strong) NSString * schoolid;
 @property (nonatomic, strong) NSArray * trainingfiledpiclist;
+@property (nonatomic, assign) NSInteger schoollevel;
+
+@property (nonatomic,assign) BOOL isMore;
+
 @end

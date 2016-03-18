@@ -11,6 +11,7 @@
 #import "DVVCycleShowImagesView.h"
 #import "DrivingDetailDMData.h"
 #import "THLabel.h"
+#import "DVVStarView.h"
 
 @interface DrivingDetailTableHeaderView : UIView
 
@@ -23,6 +24,8 @@
 @property (nonatomic, strong) DVVCycleShowImagesView *cycleShowImagesView;
 
 @property (nonatomic, strong) UIImageView *collectionImageView;
+
+@property (nonatomic,strong) DVVStarView *starBar;
 
 - (void)refreshData:(DrivingDetailDMData *)dmData;
 

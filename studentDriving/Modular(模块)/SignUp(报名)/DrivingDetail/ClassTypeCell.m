@@ -28,9 +28,10 @@
         [self addSubview:self.lineImageView];
         _nameLabel.font = [UIFont boldSystemFontOfSize:14];
         _introductionLabel.textColor = [UIColor colorWithHexString:@"757575"];
+        _markLabel.textColor = [UIColor colorWithHexString:@"757575"];
         _nameLabel.textColor = [UIColor blackColor];
-        _priceLabel.textColor = [UIColor blackColor];
-//        _signUpButton.backgroundColor = YBNavigationBarBgColor;
+        _priceLabel.textColor = YBNavigationBarBgColor;
+
     }
     return self;
 }
@@ -48,8 +49,8 @@
     _nameLabel.text = dmData.classname;
     _introductionLabel.text = dmData.classdesc;
     _priceLabel.text = [NSString stringWithFormat:@"￥%zi", dmData.price];
-//    _markLabel.text = [NSString stringWithFormat:@"%@ %@ ￥%zi", dmData.schoolinfo.name, dmData.classname, dmData.price];
-    _markLabel.text = [NSString stringWithFormat:@"%@ ￥%zi",dmData.classname, dmData.price];
+    _markLabel.text = [NSString stringWithFormat:@"%@~%@",[NSString getYearLocalDateFormateUTCDate:dmData.begindate], [NSString getYearLocalDateFormateUTCDate:dmData.enddate]];
+    
 }
 
 + (CGFloat)dynamicHeight:(NSString *)string {
