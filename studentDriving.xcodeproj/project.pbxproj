@@ -34,6 +34,12 @@
 		062F5B211C9BA8D10057FE5E /* PlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 062F5B191C9BA8D10057FE5E /* PlaceholderTextView.m */; };
 		062F5B221C9BA8D10057FE5E /* YBComplaintCoachView.m in Sources */ = {isa = PBXBuildFile; fileRef = 062F5B1B1C9BA8D10057FE5E /* YBComplaintCoachView.m */; };
 		062F5B231C9BA8D10057FE5E /* YBMyComplaintListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062F5B1D1C9BA8D10057FE5E /* YBMyComplaintListCell.m */; };
+		062F5B2D1C9C31A20057FE5E /* ShuttleBusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 062F5B271C9C31A20057FE5E /* ShuttleBusController.m */; };
+		062F5B2E1C9C31A20057FE5E /* ShuttleBusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062F5B2B1C9C31A20057FE5E /* ShuttleBusCell.m */; };
+		062F5B2F1C9C31A20057FE5E /* ShuttleBusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 062F5B2C1C9C31A20057FE5E /* ShuttleBusCell.xib */; };
+		062F5B321C9C31E50057FE5E /* JZShuttleBusController.m in Sources */ = {isa = PBXBuildFile; fileRef = 062F5B311C9C31E50057FE5E /* JZShuttleBusController.m */; };
+		062F5B351C9C32AC0057FE5E /* JZShuttleBusMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062F5B341C9C32AC0057FE5E /* JZShuttleBusMainCell.m */; };
+		062F5B381C9C32D10057FE5E /* JZShuttleBusDesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062F5B371C9C32D10057FE5E /* JZShuttleBusDesCell.m */; };
 		064909471C96683800126299 /* JZSignUpCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064909461C96683800126299 /* JZSignUpCell.m */; };
 		0649094A1C96952B00126299 /* JZSignUpTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 064909491C96952B00126299 /* JZSignUpTopCell.m */; };
 		0649094D1C9698AE00126299 /* JZShowTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0649094C1C9698AE00126299 /* JZShowTitleCell.m */; };
@@ -666,9 +672,6 @@
 		B251E5501C8E849500E6613A /* TheoreticalTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DF0D1C8E849300E6613A /* TheoreticalTestController.m */; };
 		B251E5511C8E849500E6613A /* YBHelpData.json in Resources */ = {isa = PBXBuildFile; fileRef = B251DF0E1C8E849300E6613A /* YBHelpData.json */; };
 		B251E5521C8E849500E6613A /* YBOrderListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DF101C8E849300E6613A /* YBOrderListViewController.m */; };
-		B251E5531C8E849500E6613A /* ShuttleBusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DF131C8E849300E6613A /* ShuttleBusCell.m */; };
-		B251E5541C8E849500E6613A /* ShuttleBusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DF141C8E849300E6613A /* ShuttleBusCell.xib */; };
-		B251E5551C8E849500E6613A /* ShuttleBusController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DF161C8E849300E6613A /* ShuttleBusController.m */; };
 		B251E5601C8E849500E6613A /* DVVCoachCommentDMApplyclasstypeinfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DF301C8E849300E6613A /* DVVCoachCommentDMApplyclasstypeinfo.m */; };
 		B251E5611C8E849500E6613A /* DVVCoachCommentDMCarmodel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DF321C8E849300E6613A /* DVVCoachCommentDMCarmodel.m */; };
 		B251E5621C8E849500E6613A /* DVVCoachCommentDMComment.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DF341C8E849300E6613A /* DVVCoachCommentDMComment.m */; };
@@ -1114,6 +1117,17 @@
 		062F5B1B1C9BA8D10057FE5E /* YBComplaintCoachView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBComplaintCoachView.m; sourceTree = "<group>"; };
 		062F5B1C1C9BA8D10057FE5E /* YBMyComplaintListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMyComplaintListCell.h; sourceTree = "<group>"; };
 		062F5B1D1C9BA8D10057FE5E /* YBMyComplaintListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMyComplaintListCell.m; sourceTree = "<group>"; };
+		062F5B261C9C31A20057FE5E /* ShuttleBusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleBusController.h; sourceTree = "<group>"; };
+		062F5B271C9C31A20057FE5E /* ShuttleBusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleBusController.m; sourceTree = "<group>"; };
+		062F5B2A1C9C31A20057FE5E /* ShuttleBusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleBusCell.h; sourceTree = "<group>"; };
+		062F5B2B1C9C31A20057FE5E /* ShuttleBusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleBusCell.m; sourceTree = "<group>"; };
+		062F5B2C1C9C31A20057FE5E /* ShuttleBusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShuttleBusCell.xib; sourceTree = "<group>"; };
+		062F5B301C9C31E50057FE5E /* JZShuttleBusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZShuttleBusController.h; sourceTree = "<group>"; };
+		062F5B311C9C31E50057FE5E /* JZShuttleBusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZShuttleBusController.m; sourceTree = "<group>"; };
+		062F5B331C9C32AC0057FE5E /* JZShuttleBusMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZShuttleBusMainCell.h; sourceTree = "<group>"; };
+		062F5B341C9C32AC0057FE5E /* JZShuttleBusMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZShuttleBusMainCell.m; sourceTree = "<group>"; };
+		062F5B361C9C32D10057FE5E /* JZShuttleBusDesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZShuttleBusDesCell.h; sourceTree = "<group>"; };
+		062F5B371C9C32D10057FE5E /* JZShuttleBusDesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZShuttleBusDesCell.m; sourceTree = "<group>"; };
 		064909451C96683800126299 /* JZSignUpCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSignUpCell.h; sourceTree = "<group>"; };
 		064909461C96683800126299 /* JZSignUpCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSignUpCell.m; sourceTree = "<group>"; };
 		064909481C96952B00126299 /* JZSignUpTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSignUpTopCell.h; sourceTree = "<group>"; };
@@ -2174,11 +2188,6 @@
 		B251DF0E1C8E849300E6613A /* YBHelpData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = YBHelpData.json; sourceTree = "<group>"; };
 		B251DF0F1C8E849300E6613A /* YBOrderListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBOrderListViewController.h; sourceTree = "<group>"; };
 		B251DF101C8E849300E6613A /* YBOrderListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBOrderListViewController.m; sourceTree = "<group>"; };
-		B251DF121C8E849300E6613A /* ShuttleBusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleBusCell.h; sourceTree = "<group>"; };
-		B251DF131C8E849300E6613A /* ShuttleBusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleBusCell.m; sourceTree = "<group>"; };
-		B251DF141C8E849300E6613A /* ShuttleBusCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShuttleBusCell.xib; sourceTree = "<group>"; };
-		B251DF151C8E849300E6613A /* ShuttleBusController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShuttleBusController.h; sourceTree = "<group>"; };
-		B251DF161C8E849300E6613A /* ShuttleBusController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShuttleBusController.m; sourceTree = "<group>"; };
 		B251DF2F1C8E849300E6613A /* DVVCoachCommentDMApplyclasstypeinfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachCommentDMApplyclasstypeinfo.h; sourceTree = "<group>"; };
 		B251DF301C8E849300E6613A /* DVVCoachCommentDMApplyclasstypeinfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVCoachCommentDMApplyclasstypeinfo.m; sourceTree = "<group>"; };
 		B251DF311C8E849300E6613A /* DVVCoachCommentDMCarmodel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVCoachCommentDMCarmodel.h; sourceTree = "<group>"; };
@@ -3284,6 +3293,48 @@
 				062F5B1B1C9BA8D10057FE5E /* YBComplaintCoachView.m */,
 				062F5B1C1C9BA8D10057FE5E /* YBMyComplaintListCell.h */,
 				062F5B1D1C9BA8D10057FE5E /* YBMyComplaintListCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		062F5B241C9C31A20057FE5E /* SideMenuShuttleBus */ = {
+			isa = PBXGroup;
+			children = (
+				062F5B251C9C31A20057FE5E /* Controller */,
+				062F5B281C9C31A20057FE5E /* Model */,
+				062F5B291C9C31A20057FE5E /* View */,
+			);
+			path = SideMenuShuttleBus;
+			sourceTree = "<group>";
+		};
+		062F5B251C9C31A20057FE5E /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				062F5B261C9C31A20057FE5E /* ShuttleBusController.h */,
+				062F5B271C9C31A20057FE5E /* ShuttleBusController.m */,
+				062F5B301C9C31E50057FE5E /* JZShuttleBusController.h */,
+				062F5B311C9C31E50057FE5E /* JZShuttleBusController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		062F5B281C9C31A20057FE5E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		062F5B291C9C31A20057FE5E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				062F5B2A1C9C31A20057FE5E /* ShuttleBusCell.h */,
+				062F5B2B1C9C31A20057FE5E /* ShuttleBusCell.m */,
+				062F5B2C1C9C31A20057FE5E /* ShuttleBusCell.xib */,
+				062F5B331C9C32AC0057FE5E /* JZShuttleBusMainCell.h */,
+				062F5B341C9C32AC0057FE5E /* JZShuttleBusMainCell.m */,
+				062F5B361C9C32D10057FE5E /* JZShuttleBusDesCell.h */,
+				062F5B371C9C32D10057FE5E /* JZShuttleBusDesCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5049,6 +5100,7 @@
 		B251DE8E1C8E849200E6613A /* SideMenu(侧边栏) */ = {
 			isa = PBXGroup;
 			children = (
+				062F5B241C9C31A20057FE5E /* SideMenuShuttleBus */,
 				062F5B0E1C9BA8D10057FE5E /* SideMenuComplaint */,
 				062F5AFC1C9BA85B0057FE5E /* SideMenuActiviy */,
 				062F5ADA1C9BA7A60057FE5E /* SideMenuSignUp */,
@@ -5057,7 +5109,6 @@
 				B251DEB71C8E849300E6613A /* SideMenuAdvantage */,
 				B251DEC71C8E849300E6613A /* SideMenuEditorMessage */,
 				B251DEF61C8E849300E6613A /* SideMenuSetInfo */,
-				B251DF111C8E849300E6613A /* SideMenuShuttleBus */,
 			);
 			path = "SideMenu(侧边栏)";
 			sourceTree = "<group>";
@@ -5281,18 +5332,6 @@
 				B251DF031C8E849300E6613A /* NewsHanderController.m */,
 			);
 			path = GuideDetail;
-			sourceTree = "<group>";
-		};
-		B251DF111C8E849300E6613A /* SideMenuShuttleBus */ = {
-			isa = PBXGroup;
-			children = (
-				B251DF121C8E849300E6613A /* ShuttleBusCell.h */,
-				B251DF131C8E849300E6613A /* ShuttleBusCell.m */,
-				B251DF141C8E849300E6613A /* ShuttleBusCell.xib */,
-				B251DF151C8E849300E6613A /* ShuttleBusController.h */,
-				B251DF161C8E849300E6613A /* ShuttleBusController.m */,
-			);
-			path = SideMenuShuttleBus;
 			sourceTree = "<group>";
 		};
 		B251DF2C1C8E849300E6613A /* SignUp(报名) */ = {
@@ -7246,11 +7285,11 @@
 				B251E4641C8E849500E6613A /* VoiceSearchFeedback014@2x.png in Resources */,
 				B251E66A1C8E849500E6613A /* Main.storyboard in Resources */,
 				B251E6A21C8E849600E6613A /* AlipaySDK.bundle in Resources */,
-				B251E5541C8E849500E6613A /* ShuttleBusCell.xib in Resources */,
 				B251E4731C8E849500E6613A /* call_out_h.png in Resources */,
 				B251E5E41C8E849500E6613A /* unicode_to_hanyu_pinyin.txt in Resources */,
 				B251E53B1C8E849500E6613A /* YBUserCenterHeaderCell.xib in Resources */,
 				B251E45D1C8E849500E6613A /* VoiceSearchFeedback011.png in Resources */,
+				062F5B2F1C9C31A20057FE5E /* ShuttleBusCell.xib in Resources */,
 				B251E49B1C8E849500E6613A /* chatBar_moreSelected.png in Resources */,
 				B251E4A21C8E849500E6613A /* chatBar_recordSelected@2x.png in Resources */,
 				B251E5821C8E849500E6613A /* ClassTypeCell.xib in Resources */,
@@ -7637,6 +7676,7 @@
 				B251E3711C8E849500E6613A /* BLAVplayerCell.m in Sources */,
 				064909551C96A65D00126299 /* JZMainSignUpController.m in Sources */,
 				B251E3F61C8E849500E6613A /* HMCourseModel.m in Sources */,
+				062F5B381C9C32D10057FE5E /* JZShuttleBusDesCell.m in Sources */,
 				B251E3111C8E849500E6613A /* SubmitVerificationController.m in Sources */,
 				B251E3EF1C8E849500E6613A /* YBCancleAppointMentController.m in Sources */,
 				D97676351C97E0A10033221E /* YBAppointmentListDMCoachid.m in Sources */,
@@ -7840,6 +7880,7 @@
 				B251E43E1C8E849500E6613A /* EMNavigationController.m in Sources */,
 				B251E5641C8E849500E6613A /* DVVCoachCommentDMHeadportrait.m in Sources */,
 				B251E5EB1C8E849500E6613A /* YBStudyWebViewController.m in Sources */,
+				062F5B351C9C32AC0057FE5E /* JZShuttleBusMainCell.m in Sources */,
 				B251E6761C8E849600E6613A /* UIDevice+JEsystemVersion.m in Sources */,
 				B251E5131C8E849500E6613A /* LTBottomView.m in Sources */,
 				B251E5751C8E849500E6613A /* DVVCoachCommentViewModel.m in Sources */,
@@ -7870,6 +7911,7 @@
 				B251E3DB1C8E849500E6613A /* YBWebBaseViewController.m in Sources */,
 				062F5B1F1C9BA8D10057FE5E /* YBMyComplaintListController.m in Sources */,
 				B221AF881C92F31E001F6EED /* YBAppointMentDetailsDataData.m in Sources */,
+				062F5B321C9C31E50057FE5E /* JZShuttleBusController.m in Sources */,
 				B251E38C1C8E849500E6613A /* WaitConfirmCell.m in Sources */,
 				B20E59A51C9AA0E400912F5A /* DVVUserManager.m in Sources */,
 				B251E60B1C8E849500E6613A /* MBProgressHUD+Add.m in Sources */,
@@ -7922,6 +7964,7 @@
 				B251E5171C8E849500E6613A /* YBIntegralMallCell.m in Sources */,
 				B251E6A51C8E849600E6613A /* APAuthV2Info.m in Sources */,
 				B251E5C31C8E849500E6613A /* DVVPaySuccessDMRootClass.m in Sources */,
+				062F5B2D1C9C31A20057FE5E /* ShuttleBusController.m in Sources */,
 				B251E6991C8E849600E6613A /* RatingBar.m in Sources */,
 				B251E3FB1C8E849500E6613A /* HMStudentModel.m in Sources */,
 				B251E5371C8E849500E6613A /* YBUserCenterCell.m in Sources */,
@@ -7930,7 +7973,6 @@
 				B251E32F1C8E849500E6613A /* SubjectFourModel.m in Sources */,
 				B251E58F1C8E849500E6613A /* CoachListDMDriveschoolinfo.m in Sources */,
 				B251E50A1C8E849500E6613A /* MagicDetailViewController.m in Sources */,
-				B251E5531C8E849500E6613A /* ShuttleBusCell.m in Sources */,
 				B251E4401C8E849500E6613A /* XHMessageTextView.m in Sources */,
 				B251E4351C8E849500E6613A /* MessageReadManager.m in Sources */,
 				B251E59E1C8E849500E6613A /* DrivingDetailDMSchoolbusroute.m in Sources */,
@@ -7998,10 +8040,10 @@
 				D97676391C97E0A10033221E /* YBAppointmentListDMRootClass.m in Sources */,
 				B251E5521C8E849500E6613A /* YBOrderListViewController.m in Sources */,
 				B251E5E51C8E849500E6613A /* ZYPinYinSearch.m in Sources */,
-				B251E5551C8E849500E6613A /* ShuttleBusController.m in Sources */,
 				B251E6B51C8E849600E6613A /* openssl_wrapper.m in Sources */,
 				B251E38F1C8E849500E6613A /* SubjectFirstViewController.m in Sources */,
 				B251E3EC1C8E849500E6613A /* YBAppointMentChangeCoachController.m in Sources */,
+				062F5B2E1C9C31A20057FE5E /* ShuttleBusCell.m in Sources */,
 				B251E4171C8E849500E6613A /* YBAppointMentUserCell.m in Sources */,
 				0649094D1C9698AE00126299 /* JZShowTitleCell.m in Sources */,
 				B251E5C91C8E849500E6613A /* DVVSignUpSchoolDMData.m in Sources */,
