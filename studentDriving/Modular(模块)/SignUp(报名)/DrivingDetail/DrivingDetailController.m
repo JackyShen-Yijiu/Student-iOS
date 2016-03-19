@@ -65,9 +65,6 @@
 
 @property (nonatomic,strong) DrivingDetailItemCell *drivingDetailsCell;
 
-@property (nonatomic,strong) UIView *headView;
-@property (nonatomic,strong) UILabel *headLabel;
-
 @end
 
 @implementation DrivingDetailController
@@ -544,42 +541,6 @@
     return _signUpCell;
 }
 
-- (UIView *)headView
-{
-    if (_headView==nil) {
-        
-        _headView = [[UIView alloc] init];
-        _headView.backgroundColor = [UIColor whiteColor];
-        
-        UIView *delive = [[UIView alloc] initWithFrame:CGRectMake(0, 43.5, kSystemWide, 0.5)];
-        delive.backgroundColor = [UIColor lightGrayColor];
-        delive.alpha = 0.3;
-        [_headView addSubview:delive];
-        [_headView addSubview:_headLabel];
-        [self dvvToolBarViewItemSelectedAction:0];
-
-    }
-    return _headView;
-}
-
-- (UILabel *)headLabel
-{
-    if (_headLabel == nil) {
-        
-        _headLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 44)];
-        _headLabel.font = [UIFont boldSystemFontOfSize:13];
-        if (YBIphone6Plus) {
-            _headLabel.font = [UIFont boldSystemFontOfSize:13*1.5];
-        }
-        _headLabel.text = @"课程班型";
-        _headLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        _headLabel.textAlignment = NSTextAlignmentLeft;
-        
-    }
-    return _headLabel;
-}
-
-
 - (DVVSignUpToolBarView *)toolBarView {
     if (!_toolBarView) {
         _toolBarView = [DVVSignUpToolBarView new];
@@ -597,6 +558,7 @@
         }
         _toolBarView.followBarColor = [UIColor lightGrayColor];
         _toolBarView.followBarHeight = 0.5;
+        _toolBarView.followBarAlpha = 0.3;
         _toolBarView.titleArray = @[@"课程班型"];
 
         __weak typeof(self) ws = self;

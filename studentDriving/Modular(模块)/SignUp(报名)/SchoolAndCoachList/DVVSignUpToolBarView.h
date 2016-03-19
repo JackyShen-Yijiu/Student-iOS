@@ -36,6 +36,8 @@ typedef void(^DVVSignUpToolBarViewBlock)(UIButton *button);
 @property(nonatomic,strong) UIColor *followBarColor;
 //跟随条的高度
 @property(nonatomic,assign) CGFloat followBarHeight;
+// 跟随条
+@property (nonatomic,assign) CGFloat followBarAlpha;
 
 @property(nonatomic,assign) CGFloat minWidth;
 

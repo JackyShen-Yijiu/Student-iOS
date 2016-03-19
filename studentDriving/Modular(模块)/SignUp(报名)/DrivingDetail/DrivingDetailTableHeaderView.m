@@ -13,6 +13,8 @@
 @property (nonatomic,strong) UIView *footAlphaView;
 @property (nonatomic,strong) UIView *footAlphaBgView;
 
+@property (strong, nonatomic) CAGradientLayer *gradientLayer;
+
 @end
 
 @implementation DrivingDetailTableHeaderView
@@ -45,8 +47,7 @@
         _footAlphaView.frame = CGRectMake(0, cycleShowImagesViewHeight-44, selfWidth, 44);
         _footAlphaBgView.frame = CGRectMake(0, 0, selfWidth, 44);
         _nameLabel.frame = CGRectMake(10, 0, 200, 44);
-        _starBar.frame = CGRectMake(_collectionImageView.frame.origin.x-94-10, _footAlphaBgView.height/2-14/2, 94, 14);
-        
+        _starBar.frame = CGRectMake(_collectionImageView.frame.origin.x-94, _footAlphaBgView.height/2-14/2, 94, 14);
 
     }
     return self;
@@ -60,10 +61,16 @@
 
 - (void)refreshData:(DrivingDetailDMData *)dmData {
     
-    NSLog(@"dmData.name:%@",dmData.name);
+    NSLog(@"dmData.pictures:%@",dmData.pictures);
+    
+    NSMutableArray *tempArray = [dmData.pictures mutableCopy];
+
+    if (tempArray.count==0){
+        [tempArray addObject:dmData.logoimg.originalpic];
+    }
     
     // 轮播图数据
-    [_cycleShowImagesView reloadDataWithArray:dmData.pictures];
+    [_cycleShowImagesView reloadDataWithArray:tempArray];
     
     if (dmData.name && dmData.name.length) {
         _nameLabel.text = dmData.name;
@@ -72,8 +79,7 @@
     }
     
     // 设置星级
-    [self.starBar dvv_setStar:dmData.schoollevel];
-    
+    [self.starBar setUpRating:dmData.schoollevel];
     
 }
 
@@ -109,18 +115,18 @@
 - (UIView *)footAlphaBgView
 {
     if (_footAlphaBgView == nil) {
-        
         _footAlphaBgView = [[UIView alloc] init];
         _footAlphaBgView.backgroundColor = [UIColor clearColor];
-        
     }
     return _footAlphaBgView;
 }
 
-- (DVVStarView *)starBar {
-    if (!_starBar) {
-        _starBar = [DVVStarView new];
-        [_starBar dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+- (RatingBar *)starBar{
+    if (_starBar == nil) {
+        _starBar = [[RatingBar alloc] init];
+        _starBar.backgroundColor = [UIColor clearColor];
+        [_starBar setImageDeselected:@"YBAppointMentDetailsstar.png" halfSelected:nil fullSelected:@"YBAppointMentDetailsstar_fill.png" andDelegate:nil];
+        
     }
     return _starBar;
 }
@@ -134,9 +140,6 @@
             _nameLabel.font = [UIFont boldSystemFontOfSize:15*1.5];
         }
         _nameLabel.textColor = [UIColor whiteColor];
-//        _nameLabel.shadowBlur = 5;
-//        _nameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.7];
-//        _nameLabel.shadowOffset = CGSizeMake(1, 1);
     }
     return _nameLabel;
 }

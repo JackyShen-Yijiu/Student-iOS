@@ -84,8 +84,8 @@
         
         [self.detailsLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.delive.mas_bottom).offset(10);//
-            make.left.mas_equalTo(20);
-            make.right.mas_equalTo(-20);
+            make.left.mas_equalTo(15);
+            make.right.mas_equalTo(-15);
         }];
         
     }
@@ -113,8 +113,8 @@
     
     [self.detailsLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.delive.mas_bottom).offset(10);//
-        make.left.mas_equalTo(20);
-        make.right.mas_equalTo(-20);
+        make.left.mas_equalTo(15);
+        make.right.mas_equalTo(-15);
     }];
     
 }
