@@ -42,11 +42,7 @@
         _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, bgImagesViewHeight - collectionHeight/2.f, collectionWidth, collectionHeight);
         
         _centerView.center = CGPointMake(CGRectGetMidX(_bgImageView.frame), CGRectGetMidY(_bgImageView.frame) + 18);
-        
-//        _nameLabel.backgroundColor = [UIColor redColor];
-//        self.backgroundColor = [UIColor redColor];
-//        _collectionImageView.backgroundColor = [UIColor orangeColor];
-//        _centerView.backgroundColor = [UIColor orangeColor];
+
     }
     return self;
 }
@@ -76,8 +72,7 @@
     if (dmData.coachid.name && dmData.coachid.name.length) {
         _nameLabel.text = dmData.coachid.name;
     }
-    [_starView dvv_setStar:dmData.coachid.starlevel];
-    
+    [_starView displayRating:dmData.coachid.starlevel];
 }
 
 - (void)refreshData:(DVVCoachDetailDMData *)dmData {
@@ -101,7 +96,7 @@
     if (dmData.name && dmData.name.length) {
         _nameLabel.text = dmData.name;
     }
-    [_starView dvv_setStar:dmData.starlevel];
+    [_starView displayRating:dmData.starlevel];
 }
 
 - (UIView *)alphaView {
@@ -153,17 +148,14 @@
         _nameLabel.font = [UIFont systemFontOfSize:16];
         _nameLabel.textColor = [UIColor whiteColor];
         _nameLabel.textAlignment = NSTextAlignmentCenter;
-//        _nameLabel.shadowBlur = 5;
-//        _nameLabel.shadowColor = [UIColor colorWithWhite:0 alpha:0.7];
-//        _nameLabel.shadowOffset = CGSizeMake(1, 1);
         _nameLabel.text = @"暂无教练名";
     }
     return _nameLabel;
 }
-- (DVVStarView *)starView {
+- (RatingBar *)starView {
     if (!_starView) {
-        _starView = [DVVStarView new];
-        [_starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+        _starView = [RatingBar new];
+        [_starView setImageDeselected:@"YBAppointMentDetailsstar.png" halfSelected:nil fullSelected:@"YBAppointMentDetailsstar_fill.png" andDelegate:nil];
     }
     return _starView;
 }
@@ -178,7 +170,7 @@
         [_centerView addSubview:self.starView];
         _iconImageView.frame = CGRectMake((94-60) / 2, 0, 60, 60);
         _nameLabel.frame = CGRectMake(0, 60, 94, 10 + 16 + 10);
-        _starView.frame = CGRectMake(0, CGRectGetMaxY(_nameLabel.frame), 94, 14);
+        _starView.frame = CGRectMake(10, CGRectGetMaxY(_nameLabel.frame), 94, 14);
     }
     return _centerView;
 }
