@@ -98,6 +98,10 @@
 		B221AF981C93C232001F6EED /* YBAppointCoursetime.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF921C93C232001F6EED /* YBAppointCoursetime.m */; };
 		B221AF991C93C232001F6EED /* YBAppointData.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF941C93C232001F6EED /* YBAppointData.m */; };
 		B221AF9A1C93C232001F6EED /* YBAppointRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF961C93C232001F6EED /* YBAppointRootClass.m */; };
+		B22312D81C9D55B8001D6EC2 /* collect_off.gif in Resources */ = {isa = PBXBuildFile; fileRef = B22312D61C9D55B8001D6EC2 /* collect_off.gif */; };
+		B22312D91C9D55B8001D6EC2 /* collect_on.gif in Resources */ = {isa = PBXBuildFile; fileRef = B22312D71C9D55B8001D6EC2 /* collect_on.gif */; };
+		B22312E01C9D5D2F001D6EC2 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B22312DC1C9D5D2F001D6EC2 /* OLImage.m */; };
+		B22312E11C9D5D2F001D6EC2 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22312DE1C9D5D2F001D6EC2 /* OLImageView.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -1238,6 +1242,13 @@
 		B221AF941C93C232001F6EED /* YBAppointData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointData.m; sourceTree = "<group>"; };
 		B221AF951C93C232001F6EED /* YBAppointRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointRootClass.h; sourceTree = "<group>"; };
 		B221AF961C93C232001F6EED /* YBAppointRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointRootClass.m; sourceTree = "<group>"; };
+		B22312D61C9D55B8001D6EC2 /* collect_off.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = collect_off.gif; sourceTree = "<group>"; };
+		B22312D71C9D55B8001D6EC2 /* collect_on.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = collect_on.gif; sourceTree = "<group>"; };
+		B22312DB1C9D5D2F001D6EC2 /* OLImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImage.h; sourceTree = "<group>"; };
+		B22312DC1C9D5D2F001D6EC2 /* OLImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImage.m; sourceTree = "<group>"; };
+		B22312DD1C9D5D2F001D6EC2 /* OLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImageView.h; sourceTree = "<group>"; };
+		B22312DE1C9D5D2F001D6EC2 /* OLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImageView.m; sourceTree = "<group>"; };
+		B22312DF1C9D5D2F001D6EC2 /* OLImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImageViewDelegate.h; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -3498,6 +3509,18 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B22312DA1C9D5D2F001D6EC2 /* OLImageView */ = {
+			isa = PBXGroup;
+			children = (
+				B22312DB1C9D5D2F001D6EC2 /* OLImage.h */,
+				B22312DC1C9D5D2F001D6EC2 /* OLImage.m */,
+				B22312DD1C9D5D2F001D6EC2 /* OLImageView.h */,
+				B22312DE1C9D5D2F001D6EC2 /* OLImageView.m */,
+				B22312DF1C9D5D2F001D6EC2 /* OLImageViewDelegate.h */,
+			);
+			path = OLImageView;
+			sourceTree = "<group>";
+		};
 		B251DA7D1C8E849100E6613A /* 旧的目录 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5509,6 +5532,8 @@
 				B251DFB21C8E849300E6613A /* DrivingDetailSignUpCell.xib */,
 				B251DFB31C8E849300E6613A /* DrivingDetailTableHeaderView.h */,
 				B251DFB41C8E849300E6613A /* DrivingDetailTableHeaderView.m */,
+				B22312D61C9D55B8001D6EC2 /* collect_off.gif */,
+				B22312D71C9D55B8001D6EC2 /* collect_on.gif */,
 				B251DFB51C8E849300E6613A /* DrivingDetailTrainingGroundCell.h */,
 				B251DFB61C8E849300E6613A /* DrivingDetailTrainingGroundCell.m */,
 				B251DFB71C8E849300E6613A /* DrivingDetailTrainingGroundCell.xib */,
@@ -6782,6 +6807,7 @@
 		B251E2211C8E849400E6613A /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				B22312DA1C9D5D2F001D6EC2 /* OLImageView */,
 				B251E2331C8E849400E6613A /* DVVShare */,
 				B251E2261C8E849400E6613A /* CircularMotion */,
 				B251E6EC1C8FC59400E6613A /* koaGradient.h */,
@@ -7199,6 +7225,7 @@
 				B251E5CF1C8E849500E6613A /* DVVSignUpSchoolCell.xib in Resources */,
 				B251E33C1C8E849500E6613A /* ComplaintCoachView.xib in Resources */,
 				B251E4B81C8E849500E6613A /* chatBar_more_locationSelected@2x.png in Resources */,
+				B22312D81C9D55B8001D6EC2 /* collect_off.gif in Resources */,
 				B251E4A01C8E849500E6613A /* chatBar_recordBg@2x.png in Resources */,
 				B251E6451C8E849500E6613A /* UMSLoginViewController.xib in Resources */,
 				B251E4971C8E849500E6613A /* chatBar_keyboardSelected.png in Resources */,
@@ -7324,6 +7351,7 @@
 				B251E6481C8E849500E6613A /* UMSocialSDKResourcesNew.bundle in Resources */,
 				B251E47B1C8E849500E6613A /* chatBar_more_card.png in Resources */,
 				B251E6401C8E849500E6613A /* UMSCommentDetailController.xib in Resources */,
+				B22312D91C9D55B8001D6EC2 /* collect_on.gif in Resources */,
 				B251E63D1C8E849500E6613A /* UMSocialLocalizable.strings in Resources */,
 				B251E45F1C8E849500E6613A /* VoiceSearchFeedback012.png in Resources */,
 				B251E4B51C8E849500E6613A /* chatBar_more_location.png in Resources */,
@@ -7474,6 +7502,7 @@
 				B251E58A1C8E849500E6613A /* CoachListCell.m in Sources */,
 				B251E3901C8E849500E6613A /* WrongQuestionViewController.m in Sources */,
 				B251E5661C8E849500E6613A /* DVVCoachCommentDMUserid.m in Sources */,
+				B22312E01C9D5D2F001D6EC2 /* OLImage.m in Sources */,
 				B251E3A91C8E849500E6613A /* YBBaseTableCell.m in Sources */,
 				06FBB6E21C9AA88F00F04A35 /* JZSignUpCoachListCell.m in Sources */,
 				B251E5021C8E849500E6613A /* ModificationView.m in Sources */,
@@ -7599,6 +7628,7 @@
 				B251E5151C8E849500E6613A /* PrivateMessageCell.m in Sources */,
 				B251E38E1C8E849500E6613A /* QuestionTestViewController.m in Sources */,
 				B20E59481C97EA5300912F5A /* SignSuccessView.m in Sources */,
+				B22312E11C9D5D2F001D6EC2 /* OLImageView.m in Sources */,
 				B251E5701C8E849500E6613A /* DVVCoachDetailDMWorktimespace.m in Sources */,
 				B251E43D1C8E849500E6613A /* EMChooseViewController.m in Sources */,
 				B251E59C1C8E849500E6613A /* DrivingDetailDMLogoimg.m in Sources */,
