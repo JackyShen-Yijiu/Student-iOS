@@ -56,6 +56,8 @@
         [self addSubview:self.pageControl];
         
         [self initialProperty];
+       
+        
     }
     return self;
 }
@@ -88,6 +90,8 @@
 //刷新数据
 - (void)reloadDataWithArray:(NSArray *)array {
     
+    NSLog(@"刷新数据array:%@",array);
+    
     self.imagesUrlArray = array;
     self.pageControl.numberOfPages = self.imagesUrlArray.count;
     self.pageControl.currentPage = 0;
@@ -113,9 +117,22 @@
     _rightImageView.frame = CGRectMake(VIEW_WIDTH * 2, 0, VIEW_WIDTH, VIEW_HEIGHT);
     _pageControl.numberOfPages = _imagesUrlArray.count;
     
+    // 绘制渐变颜色
+    UIImage *maskImg = [UIImage imageNamed:@"shade"];
+    [maskImg resizableImageWithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5) resizingMode:UIImageResizingModeStretch];
+    UIImageView *maskView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, VIEW_WIDTH, 64)];
+    maskView.alpha = 0.1;
+    maskView.image = maskImg;
+    [self addSubview:maskView];
+
+//    _leftImageView.maskView = maskView;
+//    _centerImageView.maskView = maskView;
+//    _rightImageView.maskView = maskView;
+    
     [self setPageControlFrame];
     _pageControl.currentPage = 0;
     [self reloadDataWithArray:_imagesUrlArray];
+    
 }
 
 #pragma mark - 设置点击图片的回调方法 method

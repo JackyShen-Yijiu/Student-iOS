@@ -55,9 +55,9 @@
     _titleSelectColor = TITLE_COLOR;
     
     //跟随条
-    if (_followBarColor==nil) {
-        _followBarColor = [UIColor yellowColor];
-    }
+//    if (_followBarColor==nil) {
+//        _followBarColor = [UIColor yellowColor];
+//    }
     if (_followBarHeight==0) {
         _followBarHeight = 2;
     }
@@ -164,9 +164,12 @@
         _followBarLabel.frame = CGRectMake(locationFloat, buttonSize.height-_followBarHeight, buttonSize.width, _followBarHeight);
     }
     //颜色
-    _followBarLabel.backgroundColor = _followBarColor;
+    _followBarLabel.backgroundColor = [UIColor yellowColor];
     if (_followBarColor) {
-        _followBarLabel.alpha = 0.3;
+        _followBarLabel.backgroundColor = _followBarColor;
+    }
+    if (_followBarAlpha) {
+        _followBarLabel.alpha = _followBarAlpha;
     }
     
     //将跟随条的tag值设为12345，避免和按钮的tag值起冲突

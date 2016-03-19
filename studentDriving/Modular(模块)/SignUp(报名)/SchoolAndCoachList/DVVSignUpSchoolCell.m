@@ -28,7 +28,6 @@
         self = cell;
         [self setRestorationIdentifier:reuseIdentifier];
         
-//        [self.contentView addSubview:self.starView];
         [self.contentView addSubview:self.rateStarView];
         [self.contentView addSubview:self.lineImageView];
         
@@ -40,44 +39,41 @@
         _priceLabel.textColor = [UIColor colorWithHexString:@"DB4437"];
         _coachCountLabel.textColor = [UIColor colorWithHexString:@"DB4437"];
         
-        if ( ScreenWidthIs_6Plus_OrWider ) {
+        if ( ScreenWidthIs_6Plus_OrWider) {
             _YBNameLabel.font = [UIFont systemFontOfSize:14*YBRatio];
             _addressLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             _distanceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             _priceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             _coachCountLabel.font = [UIFont systemFontOfSize:12*YBRatio];
         }
-            }
+    
+    }
+    
     return self;
 }
 
 - (void)layoutSubviews {
+    
     [super layoutSubviews];
-    NSLog(@"%@",self.YBNameLabel);
-    CGSize size = self.bounds.size;
-//    _starView.frame = CGRectMake(size.width - 94 - 16,CGRectGetMidY(self.nameLabel.frame) - 7, 94, 14);
-    _rateStarView.frame = CGRectMake(size.width - 94,CGRectGetMidY(self.YBNameLabel.frame) - 7, 94, 12);
-    _lineImageView.frame = CGRectMake(0, size.height - 0.5, kSystemWide, 0.5);
-    if (YBIphone5) {
-        [self.iconImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.height.mas_equalTo(@62);
-            make.width.mas_equalTo(@80);
-        }];
-        [self.YBNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(@18);
-            make.height.mas_equalTo(14);
-        }];
-        [self.addressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.YBNameLabel.mas_bottom).offset(1);
-        }];
-        [self.priceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.addressLabel.mas_bottom).offset(10);
-        }];
-        [self.distanceLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.addressLabel.mas_top);
-        }];
-NSLog(@"%@",self.YBNameLabel);
-    }
+    
+    [_rateStarView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.YBNameLabel.mas_top).offset(2);
+        make.right.mas_equalTo(self.contentView.mas_right);
+        make.left.mas_equalTo(self.YBNameLabel.mas_right).offset(20);
+        make.width.mas_equalTo(94);
+        make.height.mas_equalTo(12);
+    }];
+    
+    [self.YBNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        make.right.mas_equalTo(_rateStarView.mas_left).offset(10);
+    }];
+    
+    [_lineImageView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom);
+        make.height.mas_equalTo(0.5);
+    }];
 
 }
 

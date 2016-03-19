@@ -82,8 +82,8 @@
         [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.mas_equalTo(self.mas_centerY);
             make.left.mas_equalTo(12);
-            make.width.mas_equalTo(22);
-            make.height.mas_equalTo(22);
+            make.width.mas_equalTo(16);
+            make.height.mas_equalTo(16);
         }];
 
         [self.leftLabel mas_makeConstraints:^(MASConstraintMaker *make) {

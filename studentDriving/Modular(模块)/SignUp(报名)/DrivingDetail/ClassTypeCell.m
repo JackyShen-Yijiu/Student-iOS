@@ -25,13 +25,26 @@
         self = cell;
         [cell setRestorationIdentifier:reuseIdentifier];
         
+        self.signUpButton.layer.masksToBounds = YES;
+        self.signUpButton.layer.cornerRadius = 4;
+        [self.signUpButton setBackgroundColor:YBNavigationBarBgColor];
+        
         [self addSubview:self.lineImageView];
-        _nameLabel.font = [UIFont boldSystemFontOfSize:14];
-        _introductionLabel.textColor = [UIColor colorWithHexString:@"757575"];
-        _markLabel.textColor = [UIColor colorWithHexString:@"757575"];
-        _nameLabel.textColor = [UIColor blackColor];
-        _priceLabel.textColor = YBNavigationBarBgColor;
 
+        _markLabel.textColor = [UIColor colorWithHexString:@"757575"];
+        _priceLabel.textColor = YBNavigationBarBgColor;
+        _nameLabel.font = [UIFont boldSystemFontOfSize:13];
+        if (YBIphone6Plus) {
+            _nameLabel.font = [UIFont boldSystemFontOfSize:13*1.5];
+        }
+        _nameLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        
+        _introductionLabel.font = [UIFont systemFontOfSize:12];
+        if (YBIphone6Plus) {
+            _introductionLabel.font = [UIFont systemFontOfSize:12*1.5];
+        }
+        _introductionLabel.textColor = [UIColor lightGrayColor];
+        
     }
     return self;
 }
@@ -55,8 +68,15 @@
 
 + (CGFloat)dynamicHeight:(NSString *)string {
     
-    CGFloat newFloat = 45 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 16 * 2 font:[UIFont systemFontOfSize:12]] + 60;
+    CGFloat font = 12;
+    if (YBIphone6Plus) {
+        font = 12*1.5;
+    }
+    
+    CGFloat newFloat = 45 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 16 * 2 font:[UIFont systemFontOfSize:font]] + 60;
+    
     return newFloat;
+    
 }
 
 - (UIImageView *)lineImageView {

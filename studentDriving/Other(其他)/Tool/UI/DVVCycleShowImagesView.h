@@ -14,6 +14,7 @@ typedef void(^dvvCycleShowImagesViewTouchUpInsideBlock)(NSUInteger selectedIdx);
 
 //未下载成功、预显示的替换图片
 @property (nonatomic, strong) UIImage * placeImage;
+@property (nonatomic, copy) NSString * placeImageurl;
 
 //存储所有图片路径
 @property (nonatomic, strong) NSArray * imagesUrlArray;
