@@ -276,7 +276,7 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 198;
+    return 188;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
