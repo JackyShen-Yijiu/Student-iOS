@@ -31,7 +31,8 @@ typedef NS_ENUM(NSInteger, kControllerType) {
 #define BACKGROUNDCOLOR [UIColor colorWithRed:247/255.0f green:249/255.0f blue:251/255.0f alpha:1]
 
 // 红色导航条颜色
-#define YBNavigationBarBgColor RGBColor(209,65,53)
+//#define YBNavigationBarBgColor RGBColor(209,65,53)
+#define YBNavigationBarBgColor RGBColor(219,68,55)
 
 static const CGFloat viewSlideHorizonRatio = 0.64;
 static const CGFloat viewHeightNarrowRatio = 0.80;
