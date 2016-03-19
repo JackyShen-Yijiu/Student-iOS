@@ -7,4 +7,5 @@
 @property (nonatomic, copy) NSString * routecontent;
 @property (nonatomic, copy) NSString * routename;
 @property (nonatomic, copy) NSString * schoolid;
+@property (nonatomic, strong) NSArray * stationinfo;
 @end

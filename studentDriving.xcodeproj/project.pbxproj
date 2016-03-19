@@ -54,6 +54,7 @@
 		0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5E1C904867000FD8A4 /* MallCollectionView.m */; };
 		0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */; };
 		0673FC691C91106E000FD8A4 /* JZAutoLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */; };
+		06771F3C1C9D0008006120A2 /* JZBusDetailStationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06771F3B1C9D0008006120A2 /* JZBusDetailStationModel.m */; };
 		06B303571C93DF240095BD39 /* JZComplaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B303561C93DF240095BD39 /* JZComplaintView.m */; };
 		06FBB6DC1C9A848100F04A35 /* JZCoachListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DB1C9A848100F04A35 /* JZCoachListController.m */; };
 		06FBB6DF1C9A89C800F04A35 /* JZCoachListMoel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DE1C9A89C800F04A35 /* JZCoachListMoel.m */; };
@@ -1155,6 +1156,8 @@
 		0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCollectionView.m; sourceTree = "<group>"; };
 		0673FC671C91106E000FD8A4 /* JZAutoLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAutoLoginController.h; sourceTree = "<group>"; };
 		0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAutoLoginController.m; sourceTree = "<group>"; };
+		06771F3A1C9D0008006120A2 /* JZBusDetailStationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZBusDetailStationModel.h; path = ../Controller/JZBusDetailStationModel.h; sourceTree = "<group>"; };
+		06771F3B1C9D0008006120A2 /* JZBusDetailStationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZBusDetailStationModel.m; path = ../Controller/JZBusDetailStationModel.m; sourceTree = "<group>"; };
 		06B303551C93DF240095BD39 /* JZComplaintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintView.h; sourceTree = "<group>"; };
 		06B303561C93DF240095BD39 /* JZComplaintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintView.m; sourceTree = "<group>"; };
 		06FBB6DA1C9A848100F04A35 /* JZCoachListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZCoachListController.h; sourceTree = "<group>"; };
@@ -3321,6 +3324,8 @@
 		062F5B281C9C31A20057FE5E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				06771F3A1C9D0008006120A2 /* JZBusDetailStationModel.h */,
+				06771F3B1C9D0008006120A2 /* JZBusDetailStationModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7630,6 +7635,7 @@
 				B251E6BA1C8E849600E6613A /* payRequsestHandler.mm in Sources */,
 				B251E3481C8E849500E6613A /* DVVSideMenuFooterView.m in Sources */,
 				B251E6EB1C8EDEAD00E6613A /* ViewController.m in Sources */,
+				06771F3C1C9D0008006120A2 /* JZBusDetailStationModel.m in Sources */,
 				B251E62B1C8E849500E6613A /* PSTCollectionViewFlowLayout.m in Sources */,
 				B251E3BE1C8E849500E6613A /* MyExamCarViewController.m in Sources */,
 				B221AF6A1C928D34001F6EED /* DIDatepicker.m in Sources */,

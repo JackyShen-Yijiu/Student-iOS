@@ -10,4 +10,6 @@
 
 @interface JZShuttleBusController : UIViewController
 
+
+@property (nonatomic, strong) NSArray *dataArray;
 @end

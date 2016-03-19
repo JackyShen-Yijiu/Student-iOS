@@ -12,11 +12,6 @@
 
 @interface JZShuttleBusMainCell ()
 
-@property (nonatomic, strong) UILabel *lineNameLabel;
-
-@property (nonatomic, strong) UIImageView *arrowImageView;
-
-@property (nonatomic, strong) UIView *lineView;
 
 @end
 @implementation JZShuttleBusMainCell
@@ -43,11 +38,12 @@
     [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).offset(11);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-16);
-        make.height.mas_equalTo(@7);
-        make.width.mas_equalTo(@4);
+    
+        make.height.mas_equalTo(@14);
+        make.width.mas_equalTo(@8);
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
+        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-18);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-5);
         make.left.mas_equalTo(self.contentView.mas_left).offset(5);
         make.height.mas_equalTo(@0.5);
@@ -86,5 +82,20 @@
         
     }
     return _lineView;
+}
+// 数据赋值
+- (void)setTitleModel:(DrivingDetailDMSchoolbusroute *)titleModel{
+    self.lineNameLabel.text = titleModel.routename;
+    if (_isSelectionHeaderCell) {
+        [self.arrowImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+            make.top.mas_equalTo(self.contentView.mas_top).offset(11);
+            make.right.mas_equalTo(self.contentView.mas_right).offset(-16);
+            
+            make.height.mas_equalTo(@8);
+            make.width.mas_equalTo(@14);
+        }];
+    }
+   
+
 }
 @end
