@@ -11,7 +11,7 @@
 @interface DrivingDetailTableHeaderView()
 
 @property (nonatomic,strong) UIView *footAlphaView;
-@property (nonatomic,strong) UIView *footAlphaBgView;
+@property (nonatomic,strong) UIImageView *footAlphaBgView;
 
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
 
@@ -107,16 +107,15 @@
     if (_footAlphaView == nil) {
         
         _footAlphaView = [[UIView alloc] init];
-        _footAlphaView.backgroundColor = [UIColor blackColor];
-        _footAlphaView.alpha = 0.5;
+        _footAlphaView.backgroundColor = [UIColor clearColor];
     }
     return _footAlphaView;
 }
-- (UIView *)footAlphaBgView
+- (UIImageView *)footAlphaBgView
 {
     if (_footAlphaBgView == nil) {
-        _footAlphaBgView = [[UIView alloc] init];
-        _footAlphaBgView.backgroundColor = [UIColor clearColor];
+        _footAlphaBgView = [[UIImageView alloc] init];
+        _footAlphaBgView.image = [UIImage imageNamed:@"YBDrigingDetailsshade_black"];
     }
     return _footAlphaBgView;
 }
