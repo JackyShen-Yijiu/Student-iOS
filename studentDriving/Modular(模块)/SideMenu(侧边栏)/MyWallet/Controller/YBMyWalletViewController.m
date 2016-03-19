@@ -166,7 +166,7 @@
     if (!_dvvToolBarView) {
         _dvvToolBarView = [YBToolBarView new];
         _dvvToolBarView.titleArray = @[ @"奖励积分", @"报名兑换券", @"可取现金额度" ];
-        _dvvToolBarView.titleNormalColor = [UIColor colorWithHexString:@"fb7064"];
+        _dvvToolBarView.titleNormalColor = [UIColor colorWithHexString:@"ffc5c0"];
         _dvvToolBarView.titleSelectedColor = [UIColor whiteColor];
         _dvvToolBarView.buttonNormalColor = YBNavigationBarBgColor;
         _dvvToolBarView.buttonSelectedColor = YBNavigationBarBgColor;

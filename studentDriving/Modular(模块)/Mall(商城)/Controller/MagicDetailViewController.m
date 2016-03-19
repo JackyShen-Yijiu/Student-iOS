@@ -37,8 +37,9 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 - (UIWebView *)webView
 {
     if (_webView == nil) {
-        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 64 - 50 - 5)];
+        _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 64 - 50)];
         _webView.hidden = YES;
+        _webView.backgroundColor = [UIColor clearColor];
     }
     return _webView;
 }
@@ -61,7 +62,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"商品详情";
-    self.view.backgroundColor = [UIColor colorWithHexString:@"e6e6e6"];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
     [self.bgView addSubview:self.moneyLabel];
