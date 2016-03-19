@@ -174,23 +174,23 @@
     [self.bottomBG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.mas_right).offset(0);
         make.top.mas_equalTo(self.lineBottomView.mas_bottom).offset(0);
-        make.height.mas_equalTo(@50);
+        make.height.mas_equalTo(@40);
        make.left.mas_equalTo(self.mas_left).offset(0);
     }];
     
     [self.payButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.bottomBG.mas_right).offset(-15);
-        make.top.mas_equalTo(self.bottomBG.mas_top).offset(10);
-        make.height.mas_equalTo(@30);
-        make.width.mas_equalTo(@80);
+        make.right.mas_equalTo(self.bottomBG.mas_right).offset(-16);
+        make.top.mas_equalTo(self.bottomBG.mas_top).offset(8);
+        make.height.mas_equalTo(@24);
+        make.width.mas_equalTo(@64);
         
     }];
 
     [self.cancelButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.payButton.mas_left).offset(-15);
+        make.right.mas_equalTo(self.payButton.mas_left).offset(-16);
         make.top.mas_equalTo(self.payButton.mas_top);
-        make.height.mas_equalTo(@30);
-        make.width.mas_equalTo(@80);
+        make.height.mas_equalTo(@24);
+        make.width.mas_equalTo(@64);
         
     }];
     
@@ -444,6 +444,8 @@
                 _cancelButton.titleLabel.font  = [UIFont systemFontOfSize:12];
         [_cancelButton addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
         _cancelButton.tag = 401;
+        _cancelButton.layer.masksToBounds = YES;
+        _cancelButton.layer.cornerRadius = 4;
         
     }
     return _cancelButton;
@@ -459,6 +461,9 @@
             _payButton.layer.borderColor = YBNavigationBarBgColor.CGColor;
        [_payButton addTarget:self action:@selector(didClick:) forControlEvents:UIControlEventTouchUpInside];
         _payButton.tag = 402;
+        _payButton.layer.masksToBounds = YES;
+        _payButton.layer.cornerRadius = 4;
+
         
     }
     return _payButton;

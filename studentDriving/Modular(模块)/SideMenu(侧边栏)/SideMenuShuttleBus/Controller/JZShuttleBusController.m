@@ -169,6 +169,17 @@
         if (_isSelectionHeaderCell) {
             if (!(1 == indexPath.row) && !(self.detailBusArray.count == indexPath.row)) {
                 desCell.titleImageView.image = [UIImage imageNamed:@"node"];
+                [desCell.titleImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.size.mas_equalTo(CGSizeMake(10, 10));
+                }];
+            }
+        }
+        if (!_isSelectionHeaderCell){
+            if (2 == indexPath.row) {
+                desCell.titleImageView.image = [UIImage imageNamed:@"bus_red"];
+                [desCell.titleImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.size.mas_equalTo(CGSizeMake(12, 14));
+                }];
             }
         }
         
@@ -200,15 +211,21 @@
         if (_isSelectionHeaderCell) {
             // 不显示路线详细信息
             JZShuttleBusMainCell *mainCell = [tableView cellForRowAtIndexPath:indexPath];
-            mainCell.arrowImageView.image = [UIImage imageNamed:@"more_right"];
-             mainCell.isSelectionHeaderCell = _isSelectionHeaderCell;
+            [UIView animateWithDuration:0.5 animations:^{
+                mainCell.arrowImageView.transform = CGAffineTransformMakeRotation(M_PI * 2);
+            } completion:^(BOOL finished) {
+                
+            }];
             _isSelectionHeaderCell = NO;
             [self.tableView reloadData];
         }else if (!_isSelectionHeaderCell){
             // 显示路线详细信息
             JZShuttleBusMainCell *mainCell = [tableView cellForRowAtIndexPath:indexPath];
-            mainCell.arrowImageView.image = [UIImage imageNamed:@"more_down"];
-            mainCell.isSelectionHeaderCell = _isSelectionHeaderCell;
+            [UIView animateWithDuration:0.5 animations:^{
+                mainCell.arrowImageView.transform = CGAffineTransformMakeRotation(M_PI);
+            } completion:^(BOOL finished) {
+                
+            }];
             _isSelectionHeaderCell = YES;
             [self.tableView reloadData];
 
