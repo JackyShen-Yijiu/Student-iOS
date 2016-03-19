@@ -10,13 +10,7 @@
 
 @interface JZShuttleBusDesCell ()
 
-@property (nonatomic, strong) UIImageView *titleImageView;
 
-@property (nonatomic, strong) UILabel *stationLabel;
-
-@property (nonatomic, strong) UILabel *timeLabel;
-
-@property (nonatomic, strong) UIView *bottomView;
 
 
 @end
@@ -39,8 +33,8 @@
     [self.titleImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).offset(18);
         make.left.mas_equalTo(self.contentView.mas_left).offset(16);
-        make.height.mas_equalTo(@12);
-        make.width.mas_equalTo(@150);
+        make.height.mas_equalTo(@14);
+        make.width.mas_equalTo(@12);
     }];
     [self.stationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).offset(18);
@@ -52,7 +46,7 @@
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.titleImageView.mas_bottom).offset(4);
         make.left.mas_equalTo(self.contentView.mas_left).offset(20);
-        make.height.mas_equalTo(@34);
+        make.height.mas_equalTo(@38);
         make.width.mas_equalTo(@1);
         
     }];
@@ -77,7 +71,7 @@
 - (UIImageView *)titleImageView{
     if (_titleImageView == nil) {
         _titleImageView = [[UIImageView alloc] init];
-        _titleImageView.image = [UIImage imageNamed:@""];
+        _titleImageView.image = [UIImage imageNamed:@"bus_red"];
     }
     return _titleImageView;
 }
@@ -107,5 +101,8 @@
     }
     return _timeLabel;
 }
-
+- (void)setDetailStationModel:(JZBusDetailStationModel *)detailStationModel{
+    self.stationLabel.text = detailStationModel.stationname;
+    self.timeLabel.text = detailStationModel.time;
+}
 @end

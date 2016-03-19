@@ -10,19 +10,95 @@
 #import "JZShuttleBusMainCell.h"
 #import "JZShuttleBusDesCell.h"
 
+#import "DrivingDetailDMSchoolbusroute.h"
+#import "YYModel.h"
+#import "DrivingDetailViewModel.h"
+#import "DVVToast.h"
+#import "DVVNoDataPromptView.h"
+#import "JZBusDetailStationModel.h"
+
+
+
+
 @interface JZShuttleBusController ()<UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;
 
+@property (nonatomic, assign) BOOL isSelectionHeaderCell;
+
+@property (nonatomic, strong) NSMutableArray *heightArray;
+
+@property (nonatomic, strong) DrivingDetailViewModel *viewModel;
+
+@property (nonatomic,strong) DVVNoDataPromptView *DvvView;
+
+@property (nonatomic, strong) NSMutableArray *detailBusArray; // 详细路线数组;
 @end
 
 @implementation JZShuttleBusController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"班车信息";
+    _detailBusArray = [NSMutableArray array];
+
     self.view.backgroundColor = RGBColor(226, 226, 233);
     [self.view addSubview:self.tableView];
+    if (!_dataArray) {
+        [self configViewModel];
+    }
     
+    self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"暂时没有班车接送信息" image:[UIImage imageNamed:@"YBNocountentimage_bus"] subTitle:nil];
+    [self.tableView addSubview:self.DvvView];
+
+    
+}
+#pragma mark - config view model
+- (void)configViewModel {
+    
+    _viewModel = [DrivingDetailViewModel new];
+    _viewModel.schoolID = [AcountManager manager].applyschool.infoId;
+    __weak typeof(self) ws = self;
+    [_viewModel dvvSetRefreshSuccessBlock:^{
+        ws.dataArray = ws.viewModel.dmData.schoolbusroute;
+    }];
+    [_viewModel dvvSetNilResponseObjectBlock:^{
+        [ws obj_showTotasViewWithMes:@"没有数据啦"];
+    }];
+    [_viewModel dvvSetRefreshErrorBlock:^{
+        [ws obj_showTotasViewWithMes:@"数据加载失败"];
+    }];
+    [_viewModel dvvSetNetworkErrorBlock:^{
+        [ws obj_showTotasViewWithMes:@"网络错误"];
+    }];
+    [_viewModel dvvSetNetworkCallBackBlock:^{
+        [DVVToast hideFromView:ws.view];
+    }];
+    [DVVToast showFromView:self.view];
+    [_viewModel dvvNetworkRequestRefresh];
+}
+
+- (void)setDataArray:(NSArray *)dataArray {
+    NSMutableArray *array = [NSMutableArray array];
+    _heightArray = [NSMutableArray array];
+    for (NSDictionary *dict in dataArray) {
+        
+        DrivingDetailDMSchoolbusroute *dmBus = [DrivingDetailDMSchoolbusroute yy_modelWithDictionary:dict];
+        [array addObject:dmBus];
+         _dataArray = array;
+        
+        // 加载详细路线数据
+        NSArray *detailArray = [dict objectForKey:@"stationinfo"];
+        for (NSDictionary *dic in detailArray) {
+            JZBusDetailStationModel *stationModel = [JZBusDetailStationModel yy_modelWithDictionary:dic];
+            [_detailBusArray addObject:stationModel];
+        }
+    }
+   
+    if (!_dataArray.count) {
+        [self obj_showTotasViewWithMes:@"暂无班车路线"];
+    }
+    [self.tableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,18 +112,26 @@
     return 0;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
-   return  3;
+    if (!_isSelectionHeaderCell) {
+        return 3;
+    }
+    else if(_isSelectionHeaderCell){
+        return _detailBusArray.count + 1;
+    }
+    return 0;
+   
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 2;
+    
+     self.DvvView.hidden =_dataArray.count;
+    return _dataArray.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (0 == indexPath.row) {
-        return 34;
+        return 42;
     }
-    return 37;
+    return 65;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (0 == indexPath.row) {
@@ -56,24 +140,83 @@
             mainCell = [[JZShuttleBusMainCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainCell"];
         }
         mainCell.backgroundColor = [UIColor whiteColor];
+        mainCell.selectionStyle = UITableViewCellSelectionStyleNone;
+        mainCell.titleModel  = self.dataArray[indexPath.row];
         return mainCell;
     }
-    if (1 == indexPath.row || 2 == indexPath.row) {
+    else{
         JZShuttleBusDesCell *desCell = [tableView dequeueReusableCellWithIdentifier:@"desCell"];
         if (!desCell) {
             desCell = [[JZShuttleBusDesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"desCell"];
         }
         desCell.backgroundColor = [UIColor whiteColor];
+        
+        // 隐藏班车信息不展开时最后的线
+        if (_isSelectionHeaderCell) {
+            if (self.detailBusArray.count - 1 == indexPath.row) {
+                desCell.bottomView.hidden = NO;
+            }
+            if (self.detailBusArray.count == indexPath.row) {
+                desCell.bottomView.hidden = YES;
+            }
+        } else if (!_isSelectionHeaderCell){
+            if (self.detailBusArray.count - 1 == indexPath.row) {
+                desCell.bottomView.hidden = YES;
+            }
+        }
+        
+        // 设置展示详情时,图标为圆点
+        if (_isSelectionHeaderCell) {
+            if (!(1 == indexPath.row) && !(self.detailBusArray.count == indexPath.row)) {
+                desCell.titleImageView.image = [UIImage imageNamed:@"node"];
+            }
+        }
+        
+        // cell赋值
+        if (_isSelectionHeaderCell) {
+            //  路线详情数据
+            desCell.detailStationModel = self.detailBusArray[indexPath.row - 1];
+            
+        } else if (!_isSelectionHeaderCell){
+            // 始发站和目的站数据
+            if (1 == indexPath.row) {
+                // 始发站
+                desCell.detailStationModel = [self.detailBusArray firstObject];
+            }else if (2 == indexPath.row){
+                // 终点站
+                desCell.detailStationModel = [self.detailBusArray lastObject];
+                
+            }
+        }
+         desCell.selectionStyle = UITableViewCellSelectionStyleNone;
         return desCell;
+
     }
-    
-    
-    
-    
     
     return nil;
 }
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 0) {
+        if (_isSelectionHeaderCell) {
+            // 不显示路线详细信息
+            JZShuttleBusMainCell *mainCell = [tableView cellForRowAtIndexPath:indexPath];
+            mainCell.arrowImageView.image = [UIImage imageNamed:@"more_right"];
+             mainCell.isSelectionHeaderCell = _isSelectionHeaderCell;
+            _isSelectionHeaderCell = NO;
+            [self.tableView reloadData];
+        }else if (!_isSelectionHeaderCell){
+            // 显示路线详细信息
+            JZShuttleBusMainCell *mainCell = [tableView cellForRowAtIndexPath:indexPath];
+            mainCell.arrowImageView.image = [UIImage imageNamed:@"more_down"];
+            mainCell.isSelectionHeaderCell = _isSelectionHeaderCell;
+            _isSelectionHeaderCell = YES;
+            [self.tableView reloadData];
 
+        }
+        
+
+    }
+}
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView = [UITableView new];
