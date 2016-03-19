@@ -72,7 +72,7 @@
     if (_arrowImageView == nil) {
         _arrowImageView = [[UIImageView alloc] init];
         _arrowImageView.contentMode = UIViewContentModeCenter;
-        _arrowImageView.image = [UIImage imageNamed:@"more_right"];
+        _arrowImageView.image = [UIImage imageNamed:@"more_down"];
     }
     return _arrowImageView;
 }

@@ -177,6 +177,9 @@
         if (!_isSelectionHeaderCell){
             if (2 == indexPath.row) {
                 desCell.titleImageView.image = [UIImage imageNamed:@"bus_red"];
+                [desCell.titleImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
+                    make.size.mas_equalTo(CGSizeMake(12, 14));
+                }];
             }
         }
         
@@ -208,13 +211,23 @@
         if (_isSelectionHeaderCell) {
             // 不显示路线详细信息
             JZShuttleBusMainCell *mainCell = [tableView cellForRowAtIndexPath:indexPath];
-            mainCell.arrowImageView.image = [UIImage imageNamed:@"more_right"];
+            mainCell.arrowImageView.image = [UIImage imageNamed:@"more_down"];
+//            [UIView animateWithDuration:0.5 animations:^{
+//                mainCell.arrowImageView.transform = CGAffineTransformMakeRotation(M_PI);
+//            } completion:^(BOOL finished) {
+//                
+//            }];
             _isSelectionHeaderCell = NO;
             [self.tableView reloadData];
         }else if (!_isSelectionHeaderCell){
             // 显示路线详细信息
             JZShuttleBusMainCell *mainCell = [tableView cellForRowAtIndexPath:indexPath];
-            mainCell.arrowImageView.image = [UIImage imageNamed:@"more_down"];
+//            mainCell.arrowImageView.image = [UIImage imageNamed:@"more_down"];
+            [UIView animateWithDuration:0.5 animations:^{
+                mainCell.arrowImageView.transform = CGAffineTransformMakeRotation(M_PI);
+            } completion:^(BOOL finished) {
+                
+            }];
             _isSelectionHeaderCell = YES;
             [self.tableView reloadData];
 
