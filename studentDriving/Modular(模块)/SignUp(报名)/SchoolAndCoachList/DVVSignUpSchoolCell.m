@@ -65,7 +65,7 @@
         }];
         [self.YBNameLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(@18);
-            make.height.mas_equalTo(@14);
+            make.height.mas_equalTo(14);
         }];
         [self.addressLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.mas_equalTo(self.YBNameLabel.mas_bottom).offset(1);
@@ -82,9 +82,9 @@ NSLog(@"%@",self.YBNameLabel);
 }
 
 - (void)refreshData:(DVVSignUpSchoolDMData *)dmData {
-    NSLog(@"%@",self.YBNameLabel);
-
     
+
+        NSLog(@"%@",self.YBNameLabel);
 //    DVVSignUpSchoolDMLogoimg *
     NSLog(@"%@",self.iconImageView);
     [_iconImageView dvv_downloadImage:dmData.logoimg.originalpic

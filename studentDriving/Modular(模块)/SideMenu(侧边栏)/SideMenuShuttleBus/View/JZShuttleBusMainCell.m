@@ -43,8 +43,8 @@
     [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.contentView.mas_top).offset(11);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-16);
-        make.height.mas_equalTo(@30);
-        make.width.mas_equalTo(@30);
+        make.height.mas_equalTo(@7);
+        make.width.mas_equalTo(@4);
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(0);
@@ -75,7 +75,7 @@
 - (UIImageView *)arrowImageView{
     if (_arrowImageView == nil) {
         _arrowImageView = [[UIImageView alloc] init];
-        _arrowImageView.image = [UIImage imageNamed:@""];
+        _arrowImageView.image = [UIImage imageNamed:@"more_right"];
     }
     return _arrowImageView;
 }

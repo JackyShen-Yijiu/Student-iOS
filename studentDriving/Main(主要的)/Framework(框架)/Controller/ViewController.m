@@ -37,6 +37,7 @@
 #import "JZMainSignUpController.h"
 #import "JZYListController.h"
 #import "JZPayWayController.h"
+#import "JZShuttleBusController.h"
 
 @interface ViewController () <WMMenuViewControllerDelegate,IWTabBarViewControllerDelegate>
 
@@ -342,7 +343,11 @@
                 return ;
             }
             
-            ShuttleBusController *shuttleBusVC = [ShuttleBusController new];
+//            ShuttleBusController *shuttleBusVC = [ShuttleBusController new];
+//            [self controller:shuttleBusVC];
+            
+            
+            JZShuttleBusController *shuttleBusVC = [JZShuttleBusController new];
             [self controller:shuttleBusVC];
         }else if (1 == indexPath.row) {
             // 预约签到

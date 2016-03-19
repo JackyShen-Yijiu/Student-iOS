@@ -7,6 +7,8 @@
 //
 
 #import "JZShuttleBusController.h"
+#import "JZShuttleBusMainCell.h"
+#import "JZShuttleBusDesCell.h"
 
 @interface JZShuttleBusController ()<UITableViewDataSource, UITableViewDelegate>
 
@@ -18,6 +20,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = RGBColor(226, 226, 233);
+    [self.view addSubview:self.tableView];
     
 }
 
@@ -25,20 +29,47 @@
     [super didReceiveMemoryWarning];
     
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    if (1 == section) {
+        return 10;
+    }
+    return 0;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-   return  10;
+   return  3;
 }
-
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 2;
+}
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 50;
+    if (0 == indexPath.row) {
+        return 34;
+    }
+    return 37;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (0 == indexPath.row) {
+        JZShuttleBusMainCell *mainCell = [tableView dequeueReusableCellWithIdentifier:@"mainCell"];
+        if (!mainCell) {
+            mainCell = [[JZShuttleBusMainCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainCell"];
+        }
+        mainCell.backgroundColor = [UIColor whiteColor];
+        return mainCell;
+    }
+    if (1 == indexPath.row || 2 == indexPath.row) {
+        JZShuttleBusDesCell *desCell = [tableView dequeueReusableCellWithIdentifier:@"desCell"];
+        if (!desCell) {
+            desCell = [[JZShuttleBusDesCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"desCell"];
+        }
+        desCell.backgroundColor = [UIColor whiteColor];
+        return desCell;
+    }
     
-//    ShuttleBusCell *cell = [tableView dequeueReusableCellWithIdentifier:kShuttleBusCellID];
-//    
-//    [cell refreshData:_dataArray[indexPath.row]];
+    
+    
+    
     
     return nil;
 }
@@ -50,6 +81,7 @@
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableView.backgroundColor = [UIColor clearColor];
 //        [_tableView registerClass:[ShuttleBusCell class] forCellReuseIdentifier:kShuttleBusCellID];
     }
     return _tableView;
