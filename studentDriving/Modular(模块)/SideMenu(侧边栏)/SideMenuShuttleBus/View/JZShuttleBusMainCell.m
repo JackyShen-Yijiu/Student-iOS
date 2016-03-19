@@ -43,7 +43,7 @@
         make.width.mas_equalTo(@8);
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(self.contentView.mas_bottom).offset(-18);
+        make.top.mas_equalTo(self.contentView.mas_top).offset(35);
         make.right.mas_equalTo(self.contentView.mas_right).offset(-5);
         make.left.mas_equalTo(self.contentView.mas_left).offset(5);
         make.height.mas_equalTo(@0.5);
@@ -71,6 +71,7 @@
 - (UIImageView *)arrowImageView{
     if (_arrowImageView == nil) {
         _arrowImageView = [[UIImageView alloc] init];
+        _arrowImageView.contentMode = UIViewContentModeCenter;
         _arrowImageView.image = [UIImage imageNamed:@"more_right"];
     }
     return _arrowImageView;
@@ -86,15 +87,6 @@
 // 数据赋值
 - (void)setTitleModel:(DrivingDetailDMSchoolbusroute *)titleModel{
     self.lineNameLabel.text = titleModel.routename;
-    if (_isSelectionHeaderCell) {
-        [self.arrowImageView mas_remakeConstraints:^(MASConstraintMaker *make) {
-            make.top.mas_equalTo(self.contentView.mas_top).offset(11);
-            make.right.mas_equalTo(self.contentView.mas_right).offset(-16);
-            
-            make.height.mas_equalTo(@8);
-            make.width.mas_equalTo(@14);
-        }];
-    }
    
 
 }

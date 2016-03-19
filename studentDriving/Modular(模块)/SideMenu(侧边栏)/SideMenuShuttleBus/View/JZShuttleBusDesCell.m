@@ -46,7 +46,7 @@
     [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.titleImageView.mas_bottom).offset(4);
         make.left.mas_equalTo(self.contentView.mas_left).offset(20);
-        make.height.mas_equalTo(@38);
+        make.height.mas_equalTo(@44);
         make.width.mas_equalTo(@1);
         
     }];
@@ -103,6 +103,14 @@
 }
 - (void)setDetailStationModel:(JZBusDetailStationModel *)detailStationModel{
     self.stationLabel.text = detailStationModel.stationname;
-    self.timeLabel.text = detailStationModel.time;
+    
+     NSArray  *array = [detailStationModel.time componentsSeparatedByString:@"/"];
+    NSString *timestr = @"";
+    for (NSString *str in array) {
+        timestr = [NSString stringWithFormat:@"%@  %@",timestr,str];
+    }
+    NSLog(@"%@",timestr);
+    
+    self.timeLabel.text = [NSString stringWithFormat:@"到站时间  %@",timestr];
 }
 @end
