@@ -20,7 +20,7 @@ static NSString *const kIntegralMall = @"userinfo/getmywallet?userid=%@&usertype
 
 static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 
-@interface MagicDetailViewController ()<NJKWebViewProgressDelegate,UIWebViewDelegate>
+@interface MagicDetailViewController ()<NJKWebViewProgressDelegate,UIWebViewDelegate,UIScrollViewDelegate>
 @property(nonatomic,strong) UIWebView *webView;
 @property (strong, nonatomic) NJKWebViewProgress *webviewProgress;
 @property (strong, nonatomic) NJKWebViewProgressView *progressView;
@@ -62,7 +62,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"商品详情";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = YBNavigationBarBgColor;
     self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:self.webView];
     [self.bgView addSubview:self.exchangeButton];
@@ -72,6 +72,8 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     self.webView.delegate = _webviewProgress;
     self.webviewProgress.webViewProxyDelegate = self;
     self.webviewProgress.progressDelegate = self;
+    
+    self.webView.scrollView.delegate = self;
     
     CGFloat progressBarHeight = 2.f;
     CGRect navigationBarBounds = self.navigationController.navigationBar.bounds;
@@ -92,9 +94,29 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     
     [self.webView loadRequest:request];
 
-    
    
 }
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    
+//    scrollView.scrollEnabled = YES;
+    self.webView.backgroundColor = YBNavigationBarBgColor;
+
+    NSLog(@"scrollView.contentOffset.y:%f",scrollView.contentOffset.y);
+    if (scrollView.contentOffset.y>=38.5) {
+//        scrollView.scrollEnabled = NO;
+        self.webView.backgroundColor = [UIColor whiteColor];
+        return;
+    }
+
+}
+
+- (BOOL)scrollViewShouldScrollToTop:(UIScrollView *)scrollView
+{
+    return YES;
+}
+
 - (void)initData{
     if (0 == _mallWay) {
         // 积分商城
