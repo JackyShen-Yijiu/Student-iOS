@@ -7,13 +7,17 @@
 //
 
 #import "DrivingDetailTableHeaderView.h"
+#import "OLImageView.h"
+#import "OLImage.h"
 
-@interface DrivingDetailTableHeaderView()
+@interface DrivingDetailTableHeaderView()<UIWebViewDelegate>
 
 @property (nonatomic,strong) UIView *footAlphaView;
 @property (nonatomic,strong) UIImageView *footAlphaBgView;
 
 @property (strong, nonatomic) CAGradientLayer *gradientLayer;
+
+@property (nonatomic,strong) OLImageView *Aimv;
 
 @end
 
@@ -40,15 +44,15 @@
         CGFloat cycleShowImagesViewHeight = selfWidth * 0.7;
         _cycleShowImagesView.frame = CGRectMake(0, 0, selfWidth, cycleShowImagesViewHeight);
         _alphaView.frame = _cycleShowImagesView.frame;
-        CGFloat collectionWidth = 63;
-        CGFloat collectionHeight = 63;
+        CGFloat collectionWidth = 64;
+        CGFloat collectionHeight = 64;
         _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, cycleShowImagesViewHeight - collectionHeight/2.f, collectionWidth, collectionHeight);
 
         _footAlphaView.frame = CGRectMake(0, cycleShowImagesViewHeight-44, selfWidth, 44);
         _footAlphaBgView.frame = CGRectMake(0, 0, selfWidth, 44);
         _nameLabel.frame = CGRectMake(10, 0, 200, 44);
         _starBar.frame = CGRectMake(_collectionImageView.frame.origin.x-94, _footAlphaBgView.height/2-14/2, 94, 14);
-
+        
     }
     return self;
 }
@@ -185,6 +189,8 @@
 
 - (void)collectionClickAction:(UITapGestureRecognizer *)tapGesture {
     
+    NSLog(@"%s",__func__);
+    
     if (![AcountManager isLogin]) {
         [self obj_showTotasViewWithMes:@"您还没有登录哟"];
         return ;
@@ -195,13 +201,27 @@
     }else {
         [self addLoveSchool];
     }
+    
 }
+
 #pragma mark 添加喜欢的驾校
 - (void)addLoveSchool {
     
+    _Aimv = [OLImageView new];
+    _Aimv.backgroundColor = [UIColor clearColor];
+    _Aimv.layer.masksToBounds = YES;
+    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_on" ofType:@"gif"];
+    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
+    _Aimv.image = [OLImage imageWithData:GIFDATA];
+    [_Aimv setFrame:_collectionImageView.frame];
+    [self addSubview:_Aimv];
+    
+    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
+
     NSString *interface = [NSString stringWithFormat:@"userinfo/favoriteschool/%@",_schoolID];
     NSString *urlString = [NSString stringWithFormat:BASEURL,interface];
-    
+
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodPut withCompletion:^(id data) {
         
         NSDictionary *param = data;
@@ -216,12 +236,30 @@
     }];
     
 }
+
+- (void)removeAimv
+{
+    [_Aimv removeFromSuperview];
+}
+
 #pragma mark 删除喜欢的驾校
 - (void)deleteLoveSchool {
+   
+    _Aimv = [OLImageView new];
+    _Aimv.backgroundColor = [UIColor clearColor];
+    _Aimv.layer.masksToBounds = YES;
+    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_off" ofType:@"gif"];
+    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
+    _Aimv.image = [OLImage imageWithData:GIFDATA];
+    [_Aimv setFrame:_collectionImageView.frame];
+    [self addSubview:_Aimv];
     
+    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
+
     NSString *interface = [NSString stringWithFormat:@"userinfo/favoriteschool/%@",_schoolID];
     NSString *urlString = [NSString stringWithFormat:BASEURL,interface];
-    
+    WS(ws);
     [JENetwoking startDownLoadWithUrl:urlString postParam:nil WithMethod:JENetworkingRequestMethodDelete withCompletion:^(id data) {
         
         NSDictionary *param = data;

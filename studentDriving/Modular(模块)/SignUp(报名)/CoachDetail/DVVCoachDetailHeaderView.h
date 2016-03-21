@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "DVVCoachDetailDMData.h"
-#import "DVVStarView.h"
 #import "THLabel.h"
 #import "YBAppointMentDetailsDataData.h"
+#import "RatingBar.h"
 
 @interface DVVCoachDetailHeaderView : UIView
 
@@ -21,7 +21,7 @@
 
 @property (nonatomic, strong) UIImageView *iconImageView;
 @property (nonatomic, strong) THLabel *nameLabel;
-@property (nonatomic, strong) DVVStarView *starView;
+@property (nonatomic, strong) RatingBar *starView;
 
 @property (nonatomic, strong) UIImageView *bgImageView;
 
