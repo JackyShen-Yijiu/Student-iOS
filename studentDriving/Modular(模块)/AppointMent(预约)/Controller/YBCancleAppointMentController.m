@@ -12,10 +12,7 @@
 #import "YBTextView.h"
 #import "MyAppointmentModel.h"
 #import "HMCourseModel.h"
-#import "YBAppointMentController.h"
-
-//static NSString *const kuserCancelAppointment = @"/courseinfo/cancelreservation";
-
+#import "YBAppointmentListController.h"
 
 @interface YBCancleAppointMentController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate,CancelAppointmentCellDelegate> {
     YBTextView *contentField;
@@ -104,7 +101,7 @@
             [self obj_showTotasViewWithMes:@"取消成功"];
             
             for (UIViewController *vc in self.navigationController.viewControllers) {
-                if ([vc isKindOfClass:[YBAppointMentController class]]) {
+                if ([vc isKindOfClass:[YBAppointmentListController class]]) {
                     [self.navigationController popToViewController:vc animated:YES];
                 }
             }

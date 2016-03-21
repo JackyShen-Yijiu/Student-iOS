@@ -70,7 +70,7 @@ static NSString *coachCellID = @"coachCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.edgesForExtendedLayout = NO;
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
 //    [self.view addSubview:self.titleView];
 //    [_titleView addSubview:self.titleLeftButton];

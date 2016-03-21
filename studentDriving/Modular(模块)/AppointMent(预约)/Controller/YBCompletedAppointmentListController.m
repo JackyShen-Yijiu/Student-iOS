@@ -10,6 +10,7 @@
 #import "YBCompletedAppointmentListCell.h"
 #import "DVVToast.h"
 #import "YBCompletedAppointmentDetailController.h"
+#import "YBAppointMentDetailsController.h"
 
 static NSString *kCellIdentifier = @"kCellIdentifier";
 
@@ -66,9 +67,19 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     HMCourseModel *model = _dataArray[indexPath.row];
+    
+    if ([[model getStatueString] isEqualToString:@"已漏课"]) {
+        YBAppointMentDetailsController *vc = [[YBAppointMentDetailsController alloc] init];
+        vc.courseModel = model;
+        vc.appointMentID = model.courseId;
+        [self.navigationController pushViewController:vc animated:YES];
+        return;
+    }
+    
     YBCompletedAppointmentDetailController *vc = [YBCompletedAppointmentDetailController new];
     vc.courseModel = model;
     [self.navigationController pushViewController:vc animated:YES];
+    
 }
 
 

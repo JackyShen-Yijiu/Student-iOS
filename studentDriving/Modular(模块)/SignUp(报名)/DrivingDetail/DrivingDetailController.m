@@ -78,7 +78,7 @@
     
     self.edgesForExtendedLayout = NO;
     self.title = @"驾校详情";
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     NSLog(@"%@", _schoolID);
 

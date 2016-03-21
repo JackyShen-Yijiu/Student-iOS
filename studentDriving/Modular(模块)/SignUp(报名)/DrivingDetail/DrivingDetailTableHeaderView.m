@@ -47,7 +47,9 @@
         CGFloat collectionWidth = 64;
         CGFloat collectionHeight = 64;
         _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, cycleShowImagesViewHeight - collectionHeight/2.f, collectionWidth, collectionHeight);
-
+        _collectionImageView.layer.masksToBounds = YES;
+        _collectionImageView.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+        
         _footAlphaView.frame = CGRectMake(0, cycleShowImagesViewHeight-44, selfWidth, 44);
         _footAlphaBgView.frame = CGRectMake(0, 0, selfWidth, 44);
         _nameLabel.frame = CGRectMake(10, 0, 200, 44);
