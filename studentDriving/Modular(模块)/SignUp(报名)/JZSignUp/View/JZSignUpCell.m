@@ -50,9 +50,9 @@
     }];
     [self.arrowImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.contentView.mas_right).offset(-16);
-        make.top.mas_equalTo(self.contentView.mas_top).offset(19);
-        make.height.mas_equalTo(@7);
-        make.width.mas_equalTo(@4);
+        make.top.mas_equalTo(self.contentView.mas_top).offset(15);
+        make.height.mas_equalTo(@14);
+        make.width.mas_equalTo(@8);
         
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {

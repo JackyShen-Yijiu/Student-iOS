@@ -269,12 +269,20 @@
             if (_isShowTitle) {
                 _isShowTitle = NO;
                 JZSignUpTopCell *signUpTopCell = (JZSignUpTopCell *)[tableView cellForRowAtIndexPath:indexPath];
-                signUpTopCell.arrowImageView.image = [UIImage imageNamed:@"more_right"];
+//                signUpTopCell.arrowImageView.image = [UIImage imageNamed:@"more_right"];
+                [ UIView animateWithDuration:0.5 animations:^{
+                    signUpTopCell.arrowImageView.transform = CGAffineTransformMakeRotation((M_PI * 2));
+                } completion:^(BOOL finished) {
+                }];
                 [self.tableView reloadData];
             }else if(!_isShowTitle){
                 _isShowTitle = YES;
                 JZSignUpTopCell *signUpTopCell = (JZSignUpTopCell *)[tableView cellForRowAtIndexPath:indexPath];
-                signUpTopCell.arrowImageView.image = [UIImage imageNamed:@"more_down"];
+               [ UIView animateWithDuration:0.5 animations:^{
+                    signUpTopCell.arrowImageView.transform = CGAffineTransformMakeRotation(M_PI / 2);
+                } completion:^(BOOL finished) {
+                }];
+//                signUpTopCell.arrowImageView.image = [UIImage imageNamed:@"more_down"];
                 
                 [self.tableView reloadData];
             }
