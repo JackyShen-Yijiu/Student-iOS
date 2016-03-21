@@ -14,6 +14,10 @@
 #import <MJRefresh.h>
 
 @interface JZCoachListController ()<UITableViewDelegate,UITableViewDataSource>
+{
+    NSInteger moreIndex; // 上拉加载更多时,下标
+
+}
 
 @property (strong, nonatomic) UITableView *tableView;
 
@@ -24,14 +28,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    moreIndex = 1;
     self.title = @"教练列表";
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
-    [self initData];
+    [self initDataWithRefresh:YES];
     [self refresh];
 }
-- (void)initData{
-    NSString *index =  [NSString stringWithFormat:@"/%d",1];
+- (void)initDataWithRefresh:(BOOL)isRefresh{
+    if (isRefresh) {
+        moreIndex = 1;
+    }
+    if (!isRefresh) {
+        ++moreIndex;
+    }
+    NSString *index =  [NSString stringWithFormat:@"/%lu",moreIndex];
     NSString *coachListUrl = [NSString stringWithFormat:kdriveschoolofcoach,self.dmData.schoolinfo.schoolid];
     NSLog(@"coachListUrl%@",coachListUrl);
     NSString *resultURl = [NSString stringWithFormat:@"%@%@",coachListUrl,index];
@@ -46,23 +57,46 @@
         
         NSDictionary *param = data;
         if ([param[@"type"] integerValue] == 1) {
-            [self.tableView.mj_header  endRefreshing];
-                         NSArray *array = param[@"data"];
-            if (array.count) {
-                for (NSDictionary *dic in array) {
-                    JZCoachListMoel *coachListModel = [JZCoachListMoel yy_modelWithDictionary:dic];
-                    [self.coachListDataArray addObject:coachListModel];
-                    
+            NSArray *array = param[@"data"];
+            if (isRefresh) {
+                // 下拉刷新
+               [ self.tableView.mj_header  endRefreshing];
+                if (array.count) {
+                    [self.coachListDataArray removeAllObjects];
+                    for (NSDictionary *dic in array) {
+                        JZCoachListMoel *coachListModel = [JZCoachListMoel yy_modelWithDictionary:dic];
+                        [self.coachListDataArray addObject:coachListModel];
+                        
+                    }
+                    [self.tableView reloadData];
+                } else if (array.count == 0){
+                    [self obj_showTotasViewWithMes:@"暂没有教练"];
+                    return ;
                 }
-                [self.tableView reloadData];
-            } else if (array.count == 0){
-                [self obj_showTotasViewWithMes:@"暂没有教练"];
-                return ;
+
+            } else if (!isRefresh){
+                // 上拉加载更多
+                if (array.count) {
+                    for (NSDictionary *dic in array) {
+                        JZCoachListMoel *coachListModel = [JZCoachListMoel yy_modelWithDictionary:dic];
+                        [self.coachListDataArray addObject:coachListModel];
+                        [self.tableView reloadData];
+                        
+                    }
+
+                }else if (array.count == 0){
+                    [self obj_showTotasViewWithMes:@"已加载全部数据"];
+                    self.tableView.mj_footer.state = MJRefreshStateNoMoreData;
+                }
             }
+           
+            [self.tableView.mj_footer endRefreshing];
+        
         }
         
     } withFailure:^(id data) {
          [self.tableView.mj_header  endRefreshing];
+        [self.tableView.mj_footer  endRefreshing];
         [self obj_showTotasViewWithMes:data[@"msg"]];
     }];
 }
@@ -70,12 +104,17 @@
     
     __weak typeof(self) ws = self;
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self initData];
+        [self initDataWithRefresh:YES];
        
     
     }];
     
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        [self initDataWithRefresh:NO];
+            }];
+
    ws.tableView.mj_header = header;
+    ws.tableView.mj_footer = footer;
 }
 
 - (void)didReceiveMemoryWarning {
