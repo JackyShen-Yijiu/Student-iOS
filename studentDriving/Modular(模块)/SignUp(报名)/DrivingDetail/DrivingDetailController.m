@@ -307,6 +307,15 @@
         return nil;
     }
 }
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section!=3) {
+        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 10)];
+        headView.backgroundColor = YBMainViewControlerBackgroundColor;
+        return headView;
+    }
+    return nil;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
