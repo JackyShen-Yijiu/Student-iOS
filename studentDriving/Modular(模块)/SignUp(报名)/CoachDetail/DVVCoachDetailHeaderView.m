@@ -9,10 +9,14 @@
 #import "DVVCoachDetailHeaderView.h"
 #import "UIImageView+DVVWebImage.h"
 #import "UIImage+DVVEffects.h"
+#import "OLImageView.h"
+#import "OLImage.h"
 
 @interface DVVCoachDetailHeaderView ()
 
 @property (nonatomic, strong) UIView *centerView;
+
+@property (nonatomic,strong) OLImageView *Aimv;
 
 @end
 
@@ -41,6 +45,9 @@
         CGFloat collectionHeight = 63;
         _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, bgImagesViewHeight - collectionHeight/2.f, collectionWidth, collectionHeight);
         
+        _collectionImageView.layer.masksToBounds = YES;
+        _collectionImageView.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+
         _centerView.center = CGPointMake(CGRectGetMidX(_bgImageView.frame), CGRectGetMidY(_bgImageView.frame) + 18);
 
     }
@@ -227,6 +234,18 @@
 #pragma mark 添加喜欢的驾校
 - (void)addLoveSchool {
     
+    _Aimv = [OLImageView new];
+    _Aimv.backgroundColor = [UIColor clearColor];
+    _Aimv.layer.masksToBounds = YES;
+    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_on" ofType:@"gif"];
+    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
+    _Aimv.image = [OLImage imageWithData:GIFDATA];
+    [_Aimv setFrame:_collectionImageView.frame];
+    [self addSubview:_Aimv];
+    
+    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
+
     NSString *interface = [NSString stringWithFormat:@"userinfo/favoritecoach/%@",_coachID];
     NSString *urlString = [NSString stringWithFormat:BASEURL,interface];
     
@@ -244,9 +263,29 @@
     }];
     
 }
+
+
+- (void)removeAimv
+{
+    [_Aimv removeFromSuperview];
+}
+
 #pragma mark 删除喜欢的驾校
 - (void)deleteLoveSchool {
     
+    
+    _Aimv = [OLImageView new];
+    _Aimv.backgroundColor = [UIColor clearColor];
+    _Aimv.layer.masksToBounds = YES;
+    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_off" ofType:@"gif"];
+    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
+    _Aimv.image = [OLImage imageWithData:GIFDATA];
+    [_Aimv setFrame:_collectionImageView.frame];
+    [self addSubview:_Aimv];
+    
+    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
+
     NSString *interface = [NSString stringWithFormat:@"userinfo/favoritecoach/%@",_coachID];
     NSString *urlString = [NSString stringWithFormat:BASEURL,interface];
     

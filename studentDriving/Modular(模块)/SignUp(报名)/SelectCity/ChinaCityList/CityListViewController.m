@@ -84,11 +84,9 @@
     
     self.edgesForExtendedLayout = NO;
     
-//    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.title = @"选择城市";
-//    [self setNavigationWithTitle:@"选择城市"];
     
     _searchView = [DVVSearchView new];
     _searchView.placeholder = @"请输入您想要搜索的城市";
@@ -103,7 +101,7 @@
     }];
 
     _searchContentView = [UIView new];
-    _searchContentView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    _searchContentView.backgroundColor = YBMainViewControlerBackgroundColor;
     _searchContentView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 40);
     [_searchContentView addSubview:_searchView];
     
@@ -375,7 +373,7 @@
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 30)];
-    bgView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];;
+    bgView.backgroundColor = YBMainViewControlerBackgroundColor;
     
     UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(13, 0, 250, 30)];
     titleLabel.backgroundColor = [UIColor clearColor];

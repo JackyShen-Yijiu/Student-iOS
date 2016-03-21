@@ -10,7 +10,6 @@
 #import "IWTabBar.h"
 #import "YBSignUpViewController.h"
 #import "YBStudyViewController.h"
-#import "YBAppointMentController.h"
 #import "YBMallViewController.h"
 #import "YBCommunityViewController.h"
 #import "WMNavigationController.h"

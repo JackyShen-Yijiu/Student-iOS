@@ -19,7 +19,7 @@
 @implementation SchoolClassDetailController
 - (void)viewDidLoad{
     self.title = @"班型详情";
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     self.tabelView.dataSource = self;
     self.tabelView.delegate = self;
     [self.view addSubview:self.tabelView];

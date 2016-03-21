@@ -90,14 +90,17 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         
         if (_courseModel.sigintime.length) {
             cell.titleLabel.text = [NSString stringWithFormat:@"签到时间:%@", [self getLocalDateFormateUTCDate:_courseModel.sigintime format:@"HH:mm"]];
-        }else {
+        }else{
             cell.titleLabel.text = @"";
-            
         }
         
     }else if (indexPath.row==3){// 学习内容
         cell.iconImageView.image = [UIImage imageNamed:@"YBAppointMentDetailsmodel"];
-        cell.titleLabel.text = _courseModel.learningcontent;
+        if (_courseModel.learningcontent) {
+            cell.titleLabel.text = _courseModel.learningcontent;
+        }else{
+            cell.titleLabel.text = @"学习内容为空";
+        }
     }else if (indexPath.row==4){// 教练
         cell.iconImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscoach"];
         cell.titleLabel.text = _courseModel.userModel.name;
@@ -228,7 +231,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     if (!_tableView) {
         _tableView = [UITableView new];
         _tableView.frame = CGRectMake(0, 0, kSystemWide, [UIScreen mainScreen].bounds.size.height - 64);
-        _tableView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+        _tableView.backgroundColor = YBMainViewControlerBackgroundColor;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

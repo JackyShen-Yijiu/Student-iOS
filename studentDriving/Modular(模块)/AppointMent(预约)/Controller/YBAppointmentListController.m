@@ -78,7 +78,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return;
     }
     // 开始请求数据
-    [DVVToast showFromView:self.view OffSetY:-10];
+//    [DVVToast showFromView:self.view OffSetY:-10];
     [_viewModel dvv_networkRequestRefresh];
 }
 - (void)viewDidAppear:(BOOL)animated{
@@ -169,7 +169,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 //        [ws obj_showTotasViewWithMes:@"网络错误"];
     }];
     [_viewModel dvv_setNetworkCallBackBlock:^{
-        [DVVToast hideFromView:ws.view];
+//        [DVVToast hideFromView:ws.view];
         [ws.tableView.mj_header endRefreshing];
     }];
     

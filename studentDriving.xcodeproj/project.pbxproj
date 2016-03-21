@@ -344,7 +344,6 @@
 		B251E3E11C8E849500E6613A /* YBActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC9F1C8E849200E6613A /* YBActivity.m */; };
 		B251E3EB1C8E849500E6613A /* WMMenuTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCB41C8E849200E6613A /* WMMenuTableViewCell.m */; };
 		B251E3EC1C8E849500E6613A /* YBAppointMentChangeCoachController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCBE1C8E849200E6613A /* YBAppointMentChangeCoachController.m */; };
-		B251E3ED1C8E849500E6613A /* YBAppointMentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC01C8E849200E6613A /* YBAppointMentController.m */; };
 		B251E3EF1C8E849500E6613A /* YBCancleAppointMentController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC41C8E849200E6613A /* YBCancleAppointMentController.m */; };
 		B251E3F11C8E849500E6613A /* YBCoachListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCC81C8E849200E6613A /* YBCoachListViewController.m */; };
 		B251E3F21C8E849500E6613A /* YBForceEvaluateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCCA1C8E849200E6613A /* YBForceEvaluateViewController.m */; };
@@ -1728,8 +1727,6 @@
 		B251DCB91C8E849200E6613A /* YBNotificationMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBNotificationMacro.h; sourceTree = "<group>"; };
 		B251DCBD1C8E849200E6613A /* YBAppointMentChangeCoachController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentChangeCoachController.h; sourceTree = "<group>"; };
 		B251DCBE1C8E849200E6613A /* YBAppointMentChangeCoachController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentChangeCoachController.m; sourceTree = "<group>"; };
-		B251DCBF1C8E849200E6613A /* YBAppointMentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointMentController.h; sourceTree = "<group>"; };
-		B251DCC01C8E849200E6613A /* YBAppointMentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointMentController.m; sourceTree = "<group>"; };
 		B251DCC31C8E849200E6613A /* YBCancleAppointMentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCancleAppointMentController.h; sourceTree = "<group>"; };
 		B251DCC41C8E849200E6613A /* YBCancleAppointMentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCancleAppointMentController.m; sourceTree = "<group>"; };
 		B251DCC71C8E849200E6613A /* YBCoachListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCoachListViewController.h; sourceTree = "<group>"; };
@@ -4293,8 +4290,6 @@
 			children = (
 				B251DCBD1C8E849200E6613A /* YBAppointMentChangeCoachController.h */,
 				B251DCBE1C8E849200E6613A /* YBAppointMentChangeCoachController.m */,
-				B251DCBF1C8E849200E6613A /* YBAppointMentController.h */,
-				B251DCC01C8E849200E6613A /* YBAppointMentController.m */,
 				D96445101C91812600E7C29F /* YBAppointmentListController.h */,
 				D96445111C91812600E7C29F /* YBAppointmentListController.m */,
 				D96445201C918D5200E7C29F /* YBCompletedAppointmentListController.h */,
@@ -7810,7 +7805,6 @@
 				B251E5DC1C8E849500E6613A /* DVVSubCityView.m in Sources */,
 				062F5B0A1C9BA85B0057FE5E /* JGActivityViewController.m in Sources */,
 				B251E6201C8E849500E6613A /* UIImage+EMGIF.m in Sources */,
-				B251E3ED1C8E849500E6613A /* YBAppointMentController.m in Sources */,
 				B251E3681C8E849500E6613A /* MagicMainTableViewController.m in Sources */,
 				062F5B211C9BA8D10057FE5E /* PlaceholderTextView.m in Sources */,
 				B251E6A41C8E849600E6613A /* AlixPayResult.m in Sources */,

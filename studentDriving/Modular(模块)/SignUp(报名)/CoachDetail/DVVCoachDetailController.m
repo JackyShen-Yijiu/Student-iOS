@@ -62,7 +62,9 @@ static NSString *courseCellID = @"kCourseCellID";
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.edgesForExtendedLayout = NO;
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
+
     self.title = @"教练详情";
     
     // 测试时打开此注释

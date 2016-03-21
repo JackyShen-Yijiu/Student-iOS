@@ -52,7 +52,7 @@
 
 - (void)initSelf {
     
-    self.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.backgroundColor = YBMainViewControlerBackgroundColor;
     [self addSubview:self.contentView];
     [_contentView addSubview:self.imageView];
     [_contentView addSubview:self.titleLabel];

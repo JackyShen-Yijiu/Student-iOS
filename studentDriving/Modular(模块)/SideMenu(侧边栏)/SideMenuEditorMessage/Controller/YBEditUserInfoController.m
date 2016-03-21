@@ -33,7 +33,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     UIBarButtonItem *bbiRight = [[UIBarButtonItem alloc] initWithCustomView:self.naviRightButton];
     self.navigationItem.rightBarButtonItem = bbiRight;

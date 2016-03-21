@@ -78,13 +78,10 @@
     
     self.edgesForExtendedLayout = NO;
     self.title = @"驾校详情";
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     NSLog(@"%@", _schoolID);
 
-    // 测试时打开
-//    _schoolID = @"562dcc3ccb90f25c3bde40da";
-    
     [self.view addSubview:self.tableView];
     [self.view addSubview:self.tableHeaderView];
     
@@ -310,6 +307,15 @@
         return nil;
     }
 }
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    if (section!=3) {
+        UIView *headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.width, 10)];
+        headView.backgroundColor = YBMainViewControlerBackgroundColor;
+        return headView;
+    }
+    return nil;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -483,6 +489,7 @@
     if (offsetY > maxOffsetY) {
         _tableView.contentOffset = CGPointMake(0, maxOffsetY);
     }
+    
 }
 
 
@@ -494,6 +501,7 @@
         _tableView.delegate = self;
         _tableView.tableFooterView = [UITableView new];
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        _tableHeaderView.backgroundColor = YBMainViewControlerBackgroundColor;
     }
     return _tableView;
 }
@@ -572,7 +580,7 @@
 - (DVVNoDataPromptView *)noDataPromptView {
     if (!_noDataPromptView) {
         _noDataPromptView = [[DVVNoDataPromptView alloc] initWithTitle:@"加载失败" image:[UIImage imageNamed:@"app_error_robot"]];
-        _noDataPromptView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+        _noDataPromptView.backgroundColor = YBMainViewControlerBackgroundColor;
     }
     return _noDataPromptView;
 }

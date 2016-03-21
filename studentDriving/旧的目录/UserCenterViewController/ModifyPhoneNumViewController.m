@@ -67,8 +67,6 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     if ([UIDevice jeSystemVersion] >= 7.0) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
     }
-//    self.view.backgroundColor = RGBColor(245, 247, 250);
-//    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self.view addSubview:self.nowPhoneNumLabel];

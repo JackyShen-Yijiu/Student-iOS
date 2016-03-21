@@ -73,7 +73,7 @@
     NSString * imageStr = _model.userModel.headportrait.originalpic;
     [_iconImageView dvv_downloadImage:imageStr placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
     
-    _statusLabel.text = @"已完成";
+    _statusLabel.text = [_model getStatueString];
     
     _nameLabel.text = _model.userModel.name;
     
@@ -81,16 +81,16 @@
     
     _schoolLabel.text = _model.courseTrainInfo.address;
     
-    _subjectIntroductionLabel.text = _model.learningcontent;
+    _subjectIntroductionLabel.text = _model.learningcontent ? _model.learningcontent : @"学习内容为空";
     
     NSLog(@"_model.sigintime:%@",_model.sigintime);
     
     if (_model.sigintime && _model.sigintime.length) {
         _signInTimeLabel.text = [NSString stringWithFormat:@"签到时间:%@", [self getLocalDateFormateUTCDate:_model.sigintime format:@"HH:mm"]];
-    }else {
+    }else{
         _signInTimeLabel.text = @"";
     }
-    
+
 }
 
 - (NSString *)dateFromLocalWithFormatString:(NSString *)formatString {
