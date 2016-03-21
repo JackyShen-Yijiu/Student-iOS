@@ -113,8 +113,8 @@
     self.kemuLabel.text = kemuStr;
     
     self.pinglunCountLabel.text = [NSString stringWithFormat:@"%lu条评论",coachModel.commentcount];
-    
-    [_starBar setImageDeselected:@"starUnSelected.png" halfSelected:nil fullSelected:@"starSelected.png" andDelegate:nil];
+    [_starBar setImageDeselected:@"YBAppointMentDetailsstar.png" halfSelected:nil fullSelected:@"YBAppointMentDetailsstar_fill.png" andDelegate:nil];
+
     CGFloat starLevel = 0;
     if (coachModel.starlevel) {
         starLevel = coachModel.starlevel;
