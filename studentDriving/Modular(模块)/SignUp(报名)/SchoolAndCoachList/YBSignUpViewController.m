@@ -217,6 +217,7 @@ static NSString *coachCellID = @"coachCellID";
 
 #pragma mark 搜索
 - (void)dvvTextFieldDidBeginEditingAction:(UITextField *)textField {
+    NSLog(@"_____%@",_schoolViewModel.dataArray);
     _schoolViewModel.isSearch = YES;
     _coachViewModel.isSearch = YES;
 }
@@ -257,18 +258,12 @@ static NSString *coachCellID = @"coachCellID";
 - (void)beginRefresh {
     
     // 当刷新时，刷新下数据，避免驾校和教练切换时，点击cell崩溃
-    if (0 == _showType) {
-        [_schoolViewModel.dataArray removeAllObjects];
-    }else {
-        [_coachViewModel.dataArray removeAllObjects];
-    }
     [self.tableView reloadData];
     
     if (!_loadedCache) {
         [self loadDataFromCache];
         _loadedCache = YES;
     }
-    
     
     // 开始请求数据
     [self.noDataPromptView remove];
@@ -282,6 +277,13 @@ static NSString *coachCellID = @"coachCellID";
 }
 
 - (void)loadDataFromCache {
+    
+    if (0 == _showType) {
+        [_schoolViewModel.dataArray removeAllObjects];
+    }else {
+        [_coachViewModel.dataArray removeAllObjects];
+    }
+    
     if (0 == _showType) {
         // 加载驾校缓存数据
         NSMutableArray *schoolDataArray = [self dvv_unarchiveFromCacheWithFileName:ArchiverName_SchoolDataArray];
@@ -415,6 +417,7 @@ static NSString *coachCellID = @"coachCellID";
     
     // 在没有数据的时候不让用户滚动
     if (0 == _showType) {
+       // NSLog(@"!_%@",_schoolViewModel.dataArray);
         if (!_schoolViewModel.dataArray.count) {
             _tableView.contentOffset = CGPointMake(0, 40);
         }
