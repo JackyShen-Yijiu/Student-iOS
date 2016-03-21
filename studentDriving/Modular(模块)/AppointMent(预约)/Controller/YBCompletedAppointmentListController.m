@@ -89,7 +89,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     if (!_tableView) {
         _tableView = [UITableView new];
         _tableView.frame = CGRectMake(0, 0, kSystemWide, [UIScreen mainScreen].bounds.size.height - 64);
-        _tableView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+        _tableView.backgroundColor = YBMainViewControlerBackgroundColor;
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

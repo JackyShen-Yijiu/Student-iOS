@@ -673,7 +673,7 @@ static NSString *coachCellID = @"coachCellID";
 - (UITableView *)tableView {
     if (!_tableView) {
         _tableView= [UITableView new];
-        _tableView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+        _tableView.backgroundColor = YBMainViewControlerBackgroundColor;
         _tableView.clipsToBounds = NO;
         _tableView.dataSource = self;
         _tableView.delegate = self;
@@ -682,7 +682,7 @@ static NSString *coachCellID = @"coachCellID";
         [_tableView registerClass:[DVVSignUpCoachCell class] forCellReuseIdentifier:coachCellID];
         
         _searchContentView = [UIView new];
-        _searchContentView.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+        _searchContentView.backgroundColor = YBMainViewControlerBackgroundColor;
         _searchContentView.frame = CGRectMake(0, 0, self.view.bounds.size.width, 40);
         [_searchContentView addSubview:self.searchView];
         _tableView.tableHeaderView = _searchContentView;

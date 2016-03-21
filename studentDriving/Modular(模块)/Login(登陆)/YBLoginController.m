@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor colorWithHexString:@"#EEEEEE"];
+    self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     self.view.layer.contents = (id)([UIImage imageNamed:@"background_login"].CGImage);
     
     [self.view addSubview:self.logoImageView];
