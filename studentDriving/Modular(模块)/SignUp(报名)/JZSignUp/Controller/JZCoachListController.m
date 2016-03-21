@@ -11,6 +11,7 @@
 #import "JZCoachListMoel.h"
 #import "YYModel.h"
 #import "JZSignUpCoachListCell.h"
+#import <MJRefresh.h>
 
 @interface JZCoachListController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -27,7 +28,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     [self initData];
-    
+    [self refresh];
 }
 - (void)initData{
     NSString *index =  [NSString stringWithFormat:@"/%d",1];
@@ -45,7 +46,8 @@
         
         NSDictionary *param = data;
         if ([param[@"type"] integerValue] == 1) {
-            NSArray *array = param[@"data"];
+            [self.tableView.mj_header  endRefreshing];
+                         NSArray *array = param[@"data"];
             if (array.count) {
                 for (NSDictionary *dic in array) {
                     JZCoachListMoel *coachListModel = [JZCoachListMoel yy_modelWithDictionary:dic];
@@ -60,9 +62,22 @@
         }
         
     } withFailure:^(id data) {
+         [self.tableView.mj_header  endRefreshing];
         [self obj_showTotasViewWithMes:data[@"msg"]];
     }];
 }
+- (void)refresh{
+    
+    __weak typeof(self) ws = self;
+    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        [self initData];
+       
+    
+    }];
+    
+   ws.tableView.mj_header = header;
+}
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     
