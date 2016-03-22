@@ -390,7 +390,7 @@
         cell.textLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
         cell.textLabel.font = [UIFont boldSystemFontOfSize:13];
         if (YBIphone6Plus) {
-            cell.textLabel.font = [UIFont boldSystemFontOfSize:13*1.5];
+            cell.textLabel.font = [UIFont boldSystemFontOfSize:13*YBRatio];
         }
         cell.textLabel.text = @"教练信息";
         
@@ -562,7 +562,7 @@
         _toolBarView.textAlignment = NSTextAlignmentLeft;
         _toolBarView.titleFont = [UIFont boldSystemFontOfSize:13];
         if (YBIphone6Plus) {
-            _toolBarView.titleFont = [UIFont boldSystemFontOfSize:13*1.5];
+            _toolBarView.titleFont = [UIFont boldSystemFontOfSize:13*YBRatio];
         }
         _toolBarView.followBarColor = [UIColor lightGrayColor];
         _toolBarView.followBarHeight = 0.5;

@@ -189,7 +189,7 @@
 
     CGFloat totleMargin = JGMargin * 3;
     if ([UIScreen mainScreen].bounds.size.height>640) {
-        totleMargin = JGMargin * 1.5;
+        totleMargin = JGMargin * YBRatio;
     }
     return cell.topView.frame.size.height+cell.titleLabel.frame.size.height+cell.countLabel.frame.size.height+cell.footView.frame.size.height+totleMargin;
     

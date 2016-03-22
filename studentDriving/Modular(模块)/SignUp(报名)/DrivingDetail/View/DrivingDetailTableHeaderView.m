@@ -142,7 +142,7 @@
         _nameLabel.userInteractionEnabled = NO;
         _nameLabel.font = [UIFont boldSystemFontOfSize:15];
         if (YBIphone6Plus) {
-            _nameLabel.font = [UIFont boldSystemFontOfSize:15*1.5];
+            _nameLabel.font = [UIFont boldSystemFontOfSize:15*YBRatio];
         }
         _nameLabel.textColor = [UIColor whiteColor];
     }

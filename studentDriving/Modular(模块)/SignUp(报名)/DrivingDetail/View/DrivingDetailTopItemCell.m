@@ -32,7 +32,7 @@
         _leftLabel = [[UILabel alloc] init];
         _leftLabel.font = [UIFont systemFontOfSize:13];
         if (YBIphone6Plus) {
-            _leftLabel.font = [UIFont systemFontOfSize:13*1.5];
+            _leftLabel.font = [UIFont systemFontOfSize:13*YBRatio];
         }
         _leftLabel.textColor = [UIColor grayColor];
         _leftLabel.textAlignment = NSTextAlignmentLeft;
@@ -48,7 +48,7 @@
         _detailsLabel = [[UILabel alloc] init];
         _detailsLabel.font = [UIFont boldSystemFontOfSize:13];
         if (YBIphone6Plus) {
-            _detailsLabel.font = [UIFont boldSystemFontOfSize:13*1.5];
+            _detailsLabel.font = [UIFont boldSystemFontOfSize:13*YBRatio];
         }
         _detailsLabel.textAlignment = NSTextAlignmentLeft;
         

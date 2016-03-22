@@ -24,7 +24,7 @@
         _topLabel = [[UILabel alloc] init];
         _topLabel.font = [UIFont boldSystemFontOfSize:13];
         if (YBIphone6Plus) {
-            _topLabel.font = [UIFont boldSystemFontOfSize:13*1.5];
+            _topLabel.font = [UIFont boldSystemFontOfSize:13*YBRatio];
         }
         _topLabel.text = @"驾校详情";
         _topLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
@@ -51,7 +51,7 @@
         _detailsLabel = [[UILabel alloc] init];
         _detailsLabel.font = [UIFont systemFontOfSize:12];
         if (YBIphone6Plus) {
-            _detailsLabel.font = [UIFont systemFontOfSize:12*1.5];
+            _detailsLabel.font = [UIFont systemFontOfSize:12*YBRatio];
         }
         _detailsLabel.textColor = [UIColor lightGrayColor];
         _detailsLabel.textAlignment = NSTextAlignmentLeft;
