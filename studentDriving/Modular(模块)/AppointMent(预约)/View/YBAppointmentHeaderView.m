@@ -32,6 +32,17 @@
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yuekaoBtnDidClick)];
         [self.yuekaoBtn addGestureRecognizer:tap];
         
+        if (YBIphone6Plus) {
+            
+            self.subjectLabel.font = [UIFont systemFontOfSize:14*YBRatio];
+            self.subjectTopLabel.font = [UIFont systemFontOfSize:14*YBRatio];
+            self.buySubjectLabel.font = [UIFont systemFontOfSize:12*YBRatio];
+            self.guidingLabel.font = [UIFont systemFontOfSize:12*YBRatio];
+            self.yiXueLabel.font = [UIFont systemFontOfSize:12*YBRatio];
+            self.wanChengLabel.font = [UIFont systemFontOfSize:12*YBRatio];
+            
+        }
+        
         _bottomView.backgroundColor = YBMainViewControlerBackgroundColor;
     }
     return self;
