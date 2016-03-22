@@ -67,7 +67,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     [self.view addSubview:self.webView];
     [self.bgView addSubview:self.exchangeButton];
     [self.view addSubview:self.bgView];
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _webviewProgress = [[NJKWebViewProgress alloc] init];
     self.webView.delegate = _webviewProgress;
     self.webviewProgress.webViewProxyDelegate = self;
@@ -104,6 +104,12 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     self.webView.backgroundColor = YBNavigationBarBgColor;
 
     NSLog(@"scrollView.contentOffset.y:%f",scrollView.contentOffset.y);
+    if (YBIphone6Plus) {
+        if (scrollView.contentOffset.y >= 0) {
+            self.webView.backgroundColor = [UIColor whiteColor];
+            return;
+        }
+    }
     if (scrollView.contentOffset.y>=38.5) {
 //        scrollView.scrollEnabled = NO;
         self.webView.backgroundColor = [UIColor whiteColor];
@@ -210,10 +216,13 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     _webView.hidden = NO;
+    
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     DYNSLog(@"error");
+    [MBProgressHUD hideHUDForView:self.view animated:NO];
     [self showTotasViewWithMes:@"加载失败"];
 }
 - (void)viewWillDisappear:(BOOL)animated {
