@@ -8,7 +8,7 @@
 
 #import "MagicDetailViewController.h"
 #import "PrivateMessageController.h"
-#import "UIImageView+EMWebCache.h"
+//#import "UIImageView+EMWebCache.h"
 #import "UIColor+Hex.h"
 #import "MyWalletViewController.h"
 #import "VirtualViewController.h"
