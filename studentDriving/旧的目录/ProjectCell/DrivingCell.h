@@ -10,9 +10,6 @@
 @class DrivingModel;
 @interface DrivingCell : UITableViewCell
 @property (strong, nonatomic) UILabel *distanceLabel;
-
-@property (nonatomic, strong) UIImageView *starBackgroundImageView;
-@property (nonatomic, strong) UIImageView *starImageView;
 @property (nonatomic, assign) CGFloat star;
 @property (nonatomic, strong) UILabel *commentLabel;
 @property (nonatomic, assign) NSInteger coachcount;

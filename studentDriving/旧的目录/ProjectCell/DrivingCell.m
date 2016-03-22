@@ -8,6 +8,7 @@
 
 #import "DrivingCell.h"
 #import "DrivingModel.h"
+#import "RatingBar.h"
 
 #define starViewWidth 100
 #define starViewHeight 25
@@ -19,7 +20,7 @@
 @property (strong, nonatomic) UILabel *drivingAddressLabel;
 @property (strong, nonatomic) UILabel *moenyLabel;
 @property (strong, nonatomic) UIView *lineBottomView;
-//@property (strong, nonatomic) UILabel *successRateLabel;
+@property (strong, nonatomic) RatingBar *rateBar;
 @property (strong, nonatomic) UIView *WMSelectedbackGroundView;
 @end
 @implementation DrivingCell
@@ -73,7 +74,6 @@
         _drivingAddressLabel = [[UILabel alloc]init];
         _drivingAddressLabel.text = @"北京海淀区";
         _drivingAddressLabel.textColor = RGBColor(153, 153, 153);
-//        _drivingAddressLabel.adjustsFontSizeToFitWidth = YES;
         _drivingAddressLabel.font = [UIFont systemFontOfSize:12];
     }
     return _drivingAddressLabel;
@@ -87,15 +87,7 @@
     }
     return _moenyLabel;
 }
-//- (UILabel *)successRateLabel {
-//    if (_successRateLabel == nil) {
-//        _successRateLabel = [[UILabel alloc] init];
-//        _successRateLabel.font = [UIFont systemFontOfSize:12];
-//        _successRateLabel.textColor = RGBColor(153, 153, 153);
-//        _successRateLabel.text = @"通过率:95%";
-//    }
-//    return _successRateLabel;
-//}
+
 - (UILabel *)distanceLabel {
     if (_distanceLabel == nil) {
         _distanceLabel = [[UILabel alloc] init];
@@ -118,23 +110,6 @@
     return _commentLabel;
 }
 
-- (UIImageView *)starBackgroundImageView {
-    if (!_starBackgroundImageView) {
-        _starBackgroundImageView = [UIImageView new];
-//        _starBackgroundImageView.backgroundColor = [UIColor lightGrayColor];
-        _starBackgroundImageView.image = [UIImage imageNamed:@"star_background"];
-    }
-    return _starBackgroundImageView;
-}
-- (UIImageView *)starImageView {
-    if (!_starImageView) {
-        _starImageView = [UIImageView new];
-//        _starImageView.backgroundColor = [UIColor colorWithRed:1 green:0 blue:0 alpha:0.1];
-        _starImageView.image = [UIImage imageNamed:@"star"];
-        _starImageView.contentMode = UIViewContentModeLeft;
-    }
-    return _starImageView;
-}
 - (UIView *)lineBottomView{
     
     if (_lineBottomView == nil) {
@@ -143,6 +118,14 @@
         
     }
     return _lineBottomView;
+}
+- (RatingBar *)rateBar{
+    if (_rateBar == nil) {
+        _rateBar = [[RatingBar alloc] init];
+        [_rateBar setImageDeselected:@"YBAppointMentDetailsstar.png" halfSelected:nil fullSelected:@"YBAppointMentDetailsstar_fill.png" andDelegate:nil];
+
+    }
+    return _rateBar;
 }
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -164,32 +147,15 @@
 
     [self.backGroundView addSubview:self.drivingAddressLabel];
 
-//    [self.backGroundView addSubview:self.successRateLabel];
     [self.backGroundView addSubview:self.distanceLabel];
     
     [self.backGroundView addSubview:self.commentLabel];
-    [self.backGroundView addSubview:self.starBackgroundImageView];
-    [self.backGroundView addSubview:self.starImageView];
+    [self.backGroundView addSubview:self.rateBar];
     [self.backGroundView addSubview:self.lineBottomView];
     
-
-    [self.distanceLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        //        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
-        //        make.bottom.mas_equalTo(self.drivingAddressLabel.mas_bottom).offset(-1);
-        
-        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
-        make.centerY.equalTo(self.drivingAddressLabel);
-        make.width.mas_greaterThanOrEqualTo(80);
-        make.height.mas_equalTo(self.starBackgroundImageView.mas_height);
-        
-    }];
-    
-    [self.starBackgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.distanceLabel.mas_right);
-        make.top.mas_equalTo(self.drivingNameLabel.mas_top).offset(0);
-        make.width.mas_equalTo(80);
-        make.height.mas_equalTo(15);
-    }];
+}
+- (void)layoutSubviews{
+    [super layoutSubviews];
     
     [self.drivingImage mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
@@ -200,71 +166,45 @@
     
     [self.drivingNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingImage.mas_right).offset(10);
-//        make.right.mas_equalTo(self.starImageView.mas_left).offset(10);
-        make.top.mas_equalTo(self.drivingImage.mas_top).offset(0);
-        make.height.mas_equalTo(@20);
-        make.right.equalTo(self.starImageView.mas_left);
-
+        make.top.mas_equalTo(self.drivingImage.mas_top);
+        make.height.mas_equalTo(@14);
+        
     }];
-    
+
     [self.drivingAddressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingNameLabel.mas_left).offset(0);
         make.top.mas_equalTo(self.drivingNameLabel.mas_bottom).offset(7);
-
-        make.right.mas_equalTo(self.distanceLabel.mas_left).offset(-5);
-//        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide/2];
-//        make.width.mas_equalTo(wide);
-
-        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide/2];
-        make.width.equalTo(self.drivingNameLabel);
-
+        make.height.mas_equalTo(@12);
+        
     }];
-    
+
     [self.moenyLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingAddressLabel.mas_left).offset(0);
         make.top.mas_equalTo(self.drivingAddressLabel.mas_bottom).offset(10);
         make.width.equalTo(self.drivingNameLabel);
-
-//        NSNumber *wide = [NSNumber numberWithFloat:kSystemWide-100];
-//        make.width.mas_equalTo(wide);
+        
     }];
-    
-//    [self.successRateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
-//        make.top.mas_equalTo(self.backGroundView.mas_top).offset(17);
-//    }];
-    
     
     [self.commentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.distanceLabel.mas_right);
         make.bottom.mas_equalTo(self.moenyLabel.mas_bottom).offset(-1);
-//        make.centerY.mas_equalTo(self.moenyLabel.mas_centerY);
     }];
     
-
-    [self.starImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.starBackgroundImageView.mas_right);
-        make.top.mas_equalTo(self.starBackgroundImageView.mas_top);
-        make.width.mas_equalTo(self.starBackgroundImageView.mas_width);
-        make.height.mas_equalTo(self.starBackgroundImageView.mas_height);
-    }];
-    self.star = 0;
-    [self setStar];
-//    self.distanceLabel.backgroundColor = [UIColor lightGrayColor];
     
-    [self.drivingNameLabel mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(self.starBackgroundImageView.mas_left);
+    [self.rateBar mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.drivingNameLabel.mas_top);
+        make.right.mas_equalTo(self.backGroundView.mas_right).offset(-15);
+        make.height.mas_equalTo(12);
+        make.width.mas_equalTo(80);
     }];
     [self.lineBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.drivingNameLabel.mas_left).offset(0);
         make.right.mas_equalTo(self.backGroundView.mas_right).offset(0);
         make.bottom.mas_equalTo(self.mas_bottom).offset(0);
         make.height.mas_equalTo(@0.5);
-        
-    }];
     
+    }];
 }
-
 - (void)updateAllContentWith:(DrivingModel *)model {
     [self clearContent];
     
@@ -280,9 +220,7 @@
     
     
     
-//    if ([model.coachcount isKindOfClass:[NSNull class]]) {
-//        self.coachcount = 0;
-//    }
+
     NSInteger integer = [model.distance integerValue];
     self.distanceLabel.text = [NSString stringWithFormat:@"距离%.2fkm",integer / 1000.f];
     
@@ -294,59 +232,23 @@
         self.moenyLabel.text = [NSString stringWithFormat:@"¥%@-¥%@",model.minprice,model.maxprice];
     }
     
-//    self.star = [model.passingrate floatValue] / 100.f * 10.f / 2.f;
-    self.star = 0;
+    CGFloat starLevel = 0;
     if (model.schoollevel) {
-        self.star = [model.schoollevel integerValue];
+        starLevel = [model.schoollevel floatValue];
     }
-    [self setStar];
+    NSLog(@"%@",model.schoollevel);
+    [self.rateBar setUpRating:starLevel];
     [self.drivingImage sd_setImageWithURL:[NSURL URLWithString:model.logoimg.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
-//    if (self.coachcount == 0) {
-//        self.commentLabel.text = @"已认证教练";
-//    }else {
-//        self.commentLabel.text = [NSString stringWithFormat:@"%li名认证教练",self.coachcount];
-//    }
     self.commentLabel.text = @"暂无认证教练";
     if (model.coachcount) {
         self.commentLabel.text = [NSString stringWithFormat:@"%@位认证教练",model.coachcount];
     }
 }
-
-//设置星级
-- (void)setStar {
-    
-    CGFloat biLi = self.star * 2.f / 10.f;
-    //    NSLog(@"%f",biLi);
-    UIImage *tempImage = [UIImage imageNamed:@"star"];
-    UIImage *image = [self reSizeImage:tempImage newSize:CGSizeMake(80, 15)];
-    CGRect rect = CGRectMake(0, 0, image.size.width, image.size.height);
-    rect.size.width *= biLi;
-    
-    CGImageRef imageRef = CGImageCreateWithImageInRect(image.CGImage, rect);
-    UIImage *catImage = [UIImage imageWithCGImage:imageRef];
-    
-    self.starImageView.image = catImage;
-}
-
-//改变图片的大小
-- (UIImage *)reSizeImage:(UIImage *)image newSize:(CGSize)newSize {
-    
-    UIGraphicsBeginImageContext(newSize);
-    CGRect rect;
-    rect.origin = CGPointMake(0, 0);
-    rect.size = newSize;
-    [image drawInRect:rect];
-    UIImage *reSizeImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return reSizeImage;
-}
-
 - (void)clearContent {
     self.drivingImage.image = nil;
     self.drivingNameLabel.text = nil;
     self.drivingAddressLabel.text = nil;
     self.moenyLabel.text = nil;
-//    self.successRateLabel.text = nil;
     self.distanceLabel.text = nil;
 }
 @end
