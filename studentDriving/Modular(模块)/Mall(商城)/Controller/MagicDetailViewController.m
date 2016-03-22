@@ -67,7 +67,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     [self.view addSubview:self.webView];
     [self.bgView addSubview:self.exchangeButton];
     [self.view addSubview:self.bgView];
-    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     _webviewProgress = [[NJKWebViewProgress alloc] init];
     self.webView.delegate = _webviewProgress;
     self.webviewProgress.webViewProxyDelegate = self;
@@ -216,10 +216,13 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
     _webView.hidden = NO;
+    
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     DYNSLog(@"error");
+    [MBProgressHUD hideHUDForView:self.view animated:NO];
     [self showTotasViewWithMes:@"加载失败"];
 }
 - (void)viewWillDisappear:(BOOL)animated {
