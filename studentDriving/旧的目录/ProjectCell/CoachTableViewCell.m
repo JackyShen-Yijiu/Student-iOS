@@ -52,10 +52,10 @@
     return _WMSelectedbackGroundView;
 }
 
-- (DVVStarView *)starView {
+- (RatingBar *)starView {
     if (!_starView) {
-        _starView = [DVVStarView new];
-        [_starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+        _starView = [RatingBar new];
+        [_starView setImageDeselected:@"YBAppointMentDetailsstar.png" halfSelected:nil fullSelected:@"YBAppointMentDetailsstar_fill.png" andDelegate:nil];
     }
     return _starView;
 }
@@ -187,7 +187,7 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     CGSize size = self.bounds.size;
-    _starView.frame = CGRectMake(size.width - 94 - 16, 16, 94, 14);
+    _starView.frame = CGRectMake(size.width - 91, 16, 94, 14);
 }
 
 - (void)createCellUI {
@@ -288,7 +288,7 @@
     if (coachModel.starlevel) {
         starLevel = [coachModel.starlevel floatValue];
     }
-    [self.starView dvv_setStar:starLevel];
+    [self.starView setUpRating:starLevel];
     if (coachModel.is_shuttle) {
         [self.backGroundView addSubview:self.coachStateSend];
         [self.coachStateSend mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -354,7 +354,7 @@
     if (coachModel.starlevel) {
         starLevel = coachModel.starlevel;
     }
-    [self.starView dvv_setStar:starLevel];
+    [self.starView setUpRating:starLevel];
     
     if (coachModel.isShuttle) {
         [self.backGroundView addSubview:self.coachStateSend];
@@ -377,6 +377,6 @@
     self.successRateLabel.text = nil;
     self.dringAgeLabel.text = nil;
     self.distanceLabel.text = nil;
-    [self.starView dvv_setStar:0];
+    [self.starView setUpRating:0];
 }
 @end

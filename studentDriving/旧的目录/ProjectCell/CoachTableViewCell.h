@@ -9,12 +9,13 @@
 #import <UIKit/UIKit.h>
 #import "YBBaseTableCell.h"
 #import "DVVStarView.h"
+#import "RatingBar.h"
 @class CoachDMData;
 @class CoachModel;
 
 @interface CoachTableViewCell : UITableViewCell
 
-@property (nonatomic, strong) DVVStarView *starView;
+@property (nonatomic, strong) RatingBar *starView;
 
 - (void)refreshData:(CoachDMData *)coachModel;
 - (void)receivedCellModelWith:(CoachModel *)coachModel;
