@@ -36,13 +36,13 @@
         _distanceLabel.textColor = [UIColor colorWithHexString:@"757575"];
         _priceLabel.textColor = [UIColor colorWithHexString:@"DB4437"];
         
-        
         if ( ScreenWidthIs_6Plus_OrWider ) {
             _nameLabel.font = [UIFont systemFontOfSize:14*YBRatio];
             _schoolNameLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             _distanceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             _priceLabel.font = [UIFont systemFontOfSize:12*YBRatio];
         }
+        
     }
     return self;
 }
@@ -52,6 +52,7 @@
     CGSize size = self.bounds.size;
     _rateBar.frame = CGRectMake(size.width - 89, CGRectGetMidY(self.nameLabel.frame) - 7, 94, 14);
     _lineImageView.frame = CGRectMake(0, size.height - 0.5, size.width, 0.5);
+    
 }
 
 - (void)refreshData:(DVVSignUpCoachDMData *)dmData {
@@ -94,7 +95,10 @@
     }else {
         //        [_starView dvv_setStar:0];
         [_rateBar setUpRating:0];
-    }}
+    }
+    
+}
+
 
 - (RatingBar *)rateBar{
     if (_rateBar == nil) {
