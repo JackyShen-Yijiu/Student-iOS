@@ -18,3 +18,7 @@ pod 'UMengSocial', '~> 4.4'
 pod 'TencentOpenApiSDK', '~> 2.9.5'
 pod 'JSONKit'
 pod 'MJExtension'
+pod 'FMDB'
+pod 'MBProgressHUD', '~> 0.9.2'
+pod "MWPhotoBrowser"
+pod 'YYModel'

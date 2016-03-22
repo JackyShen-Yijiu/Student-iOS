@@ -9,7 +9,7 @@
 #import "DiscountShopCell.h"
 #import "WMUITool.h"
 #import <Masonry.h>
-#import "UIImageView+EMWebCache.h"
+//#import "UIImageView+EMWebCache.h"
 
 @interface DiscountShopCell()
 @property (nonatomic,strong) UIView *backView;
