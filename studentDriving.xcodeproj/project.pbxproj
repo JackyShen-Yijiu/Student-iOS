@@ -53,6 +53,7 @@
 		0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5E1C904867000FD8A4 /* MallCollectionView.m */; };
 		0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */; };
 		0673FC691C91106E000FD8A4 /* JZAutoLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */; };
+		06B0081A1CA28D1C00C0AEE3 /* YBIntegralMallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B008191CA28D1C00C0AEE3 /* YBIntegralMallModel.m */; };
 		06B303571C93DF240095BD39 /* JZComplaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B303561C93DF240095BD39 /* JZComplaintView.m */; };
 		06FBB6DC1C9A848100F04A35 /* JZCoachListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DB1C9A848100F04A35 /* JZCoachListController.m */; };
 		06FBB6DF1C9A89C800F04A35 /* JZCoachListMoel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DE1C9A89C800F04A35 /* JZCoachListMoel.m */; };
@@ -597,7 +598,6 @@
 		B251E5031C8E849500E6613A /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE631C8E849200E6613A /* RegisterViewController.m */; };
 		B251E5041C8E849500E6613A /* RegistNoteController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE651C8E849200E6613A /* RegistNoteController.m */; };
 		B251E5051C8E849500E6613A /* ShowWarningMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE671C8E849200E6613A /* ShowWarningMessageView.m */; };
-		B251E5061C8E849500E6613A /* YBIntegralMallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE691C8E849200E6613A /* YBIntegralMallModel.m */; };
 		B251E5071C8E849500E6613A /* YBFindPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */; };
 		B251E5081C8E849500E6613A /* YBLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE6D1C8E849200E6613A /* YBLoginController.m */; };
 		B251E5091C8E849500E6613A /* YBSettingNewPwdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */; };
@@ -1123,6 +1123,8 @@
 		0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscountCollectionView.m; sourceTree = "<group>"; };
 		0673FC671C91106E000FD8A4 /* JZAutoLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAutoLoginController.h; sourceTree = "<group>"; };
 		0673FC681C91106E000FD8A4 /* JZAutoLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAutoLoginController.m; sourceTree = "<group>"; };
+		06B008181CA28D1C00C0AEE3 /* YBIntegralMallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegralMallModel.h; sourceTree = "<group>"; };
+		06B008191CA28D1C00C0AEE3 /* YBIntegralMallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegralMallModel.m; sourceTree = "<group>"; };
 		06B303551C93DF240095BD39 /* JZComplaintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintView.h; sourceTree = "<group>"; };
 		06B303561C93DF240095BD39 /* JZComplaintView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintView.m; sourceTree = "<group>"; };
 		06FBB6DA1C9A848100F04A35 /* JZCoachListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZCoachListController.h; sourceTree = "<group>"; };
@@ -2018,8 +2020,6 @@
 		B251DE651C8E849200E6613A /* RegistNoteController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistNoteController.m; sourceTree = "<group>"; };
 		B251DE661C8E849200E6613A /* ShowWarningMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowWarningMessageView.h; sourceTree = "<group>"; };
 		B251DE671C8E849200E6613A /* ShowWarningMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowWarningMessageView.m; sourceTree = "<group>"; };
-		B251DE681C8E849200E6613A /* YBIntegralMallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegralMallModel.h; sourceTree = "<group>"; };
-		B251DE691C8E849200E6613A /* YBIntegralMallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegralMallModel.m; sourceTree = "<group>"; };
 		B251DE6A1C8E849200E6613A /* YBFindPwdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBFindPwdViewController.h; path = ../../YBFindPwdViewController.h; sourceTree = "<group>"; };
 		B251DE6B1C8E849200E6613A /* YBFindPwdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBFindPwdViewController.m; path = ../../YBFindPwdViewController.m; sourceTree = "<group>"; };
 		B251DE6C1C8E849200E6613A /* YBLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBLoginController.h; sourceTree = "<group>"; };
@@ -3354,6 +3354,15 @@
 				B251DE6F1C8E849200E6613A /* YBSettingNewPwdViewController.m */,
 			);
 			path = JZLogin;
+			sourceTree = "<group>";
+		};
+		06B008171CA28D1C00C0AEE3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				06B008181CA28D1C00C0AEE3 /* YBIntegralMallModel.h */,
+				06B008191CA28D1C00C0AEE3 /* YBIntegralMallModel.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4FD586B5C72C30AF6B2C582E /* Pods */ = {
@@ -4955,8 +4964,6 @@
 				B251DE651C8E849200E6613A /* RegistNoteController.m */,
 				B251DE661C8E849200E6613A /* ShowWarningMessageView.h */,
 				B251DE671C8E849200E6613A /* ShowWarningMessageView.m */,
-				B251DE681C8E849200E6613A /* YBIntegralMallModel.h */,
-				B251DE691C8E849200E6613A /* YBIntegralMallModel.m */,
 			);
 			path = LoginViewController;
 			sourceTree = "<group>";
@@ -4975,9 +4982,8 @@
 		B251DE701C8E849200E6613A /* Mall(商城) */ = {
 			isa = PBXGroup;
 			children = (
+				06B008171CA28D1C00C0AEE3 /* Model */,
 				B251DE711C8E849200E6613A /* Controller */,
-				B251DE801C8E849200E6613A /* Model */,
-				B251DE811C8E849200E6613A /* Other */,
 				B251DE821C8E849200E6613A /* View */,
 			);
 			path = "Mall(商城)";
@@ -5002,20 +5008,6 @@
 				B251DE7F1C8E849200E6613A /* YBMallViewController.m */,
 			);
 			path = Controller;
-			sourceTree = "<group>";
-		};
-		B251DE801C8E849200E6613A /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B251DE811C8E849200E6613A /* Other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Other;
 			sourceTree = "<group>";
 		};
 		B251DE821C8E849200E6613A /* View */ = {
@@ -7410,7 +7402,6 @@
 				B251E5C71C8E849500E6613A /* DVVSignUpCoachDMRootClass.m in Sources */,
 				B251E3AA1C8E849500E6613A /* HomeCheckProgressView.m in Sources */,
 				B251E40E1C8E849500E6613A /* UIView+Sizes.m in Sources */,
-				B251E5061C8E849500E6613A /* YBIntegralMallModel.m in Sources */,
 				B251E4101C8E849500E6613A /* CourseSummaryDayCell.m in Sources */,
 				B251E6B01C8E849600E6613A /* base64.m in Sources */,
 				B251E3CC1C8E849500E6613A /* AppDelegate.mm in Sources */,
@@ -7768,6 +7759,7 @@
 				B251E31B1C8E849500E6613A /* AVPlayModel.m in Sources */,
 				B251E36E1C8E849500E6613A /* AppointmentCollectionCell.m in Sources */,
 				B251E3FD1C8E849500E6613A /* HMTrainaddressModel.m in Sources */,
+				06B0081A1CA28D1C00C0AEE3 /* YBIntegralMallModel.m in Sources */,
 				B251E3661C8E849500E6613A /* MagicMainTableViewCell.m in Sources */,
 				B251E5FF1C8E849500E6613A /* EMCDDeviceManagerBase.m in Sources */,
 				B251E3031C8E849500E6613A /* ExamCarViewController.m in Sources */,
