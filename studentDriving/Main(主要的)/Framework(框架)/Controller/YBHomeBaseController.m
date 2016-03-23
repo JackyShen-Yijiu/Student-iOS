@@ -21,9 +21,6 @@
 {
     [super viewWillAppear:animated];
     
-    // 获取进度
-    [self loadSubjectProress];
-    
 }
 
 - (void)viewDidLoad {
@@ -39,6 +36,9 @@
     [self.navigationItem setLeftBarButtonItem:barLeftBtn];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"YBSliderLeftBarImg"] style:UIBarButtonItemStyleDone target:self action:@selector(clicked)];
+    
+    // 获取进度
+    [self loadSubjectProress];
     
 }
 
@@ -98,14 +98,10 @@
             
         }else {
             
-            NSLog(@"1:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
-            
-            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
-            
         }
         
     } withFailure:^(id data) {
-        [self showTotasViewWithMes:@"网络错误"];
+
     }];
     
     // 获取首页状态
@@ -145,23 +141,13 @@
             if ([dataDic objectForKey:@"subjectfour"]) {
                 [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjectfour"] WithKey:ksubjectFour];
             }
-            
-            NSLog(@"%s,[AcountManager manager].userSubject.name:%@",__func__,[AcountManager manager].userSubject.name);
-            NSLog(@"%s,[AcountManager manager].subjectone.progress:%@",__func__,[AcountManager manager].subjectone.progress);
-            NSLog(@"%s,[AcountManager manager].subjecttwo.progress:%@",__func__,[AcountManager manager].subjecttwo.progress);
-            NSLog(@"%s,[AcountManager manager].subjectthree.progress:%@",__func__,[AcountManager manager].subjectthree.progress);
-            NSLog(@"%s,[AcountManager manager].subjectfour.progress:%@",__func__,[AcountManager manager].subjectfour.progress);
-            
+           
         }else {
-            
-            NSLog(@"2:%s [data objectForKey:msg:%@",__func__,[data objectForKey:@"msg"]);
-            
-            [self showTotasViewWithMes:[data objectForKey:@"msg"]];
             
         }
         
     } withFailure:^(id data) {
-        [self showTotasViewWithMes:@"网络错误"];
+
     }];
     
 }
