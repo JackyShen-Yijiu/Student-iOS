@@ -72,7 +72,7 @@
     self.topTitleArray = @[@"报考驾校",@"报考教练",@"班级类型"];
     self.topDesArray = @[@"报考驾校",@"报考教练",@"班级类型"].mutableCopy;
     
-    self.bottonTitleArray = @[@"您的姓名",@"电话号码",@"Y返现"];
+    self.bottonTitleArray = @[@"您的姓名",@"电话号码",@"Y码返现"];
     self.bottonDesArray = @[@"请填写您的真实姓名",@"请填写您的真实号码",@"请选择一张您所领取的Y码"].mutableCopy;
     self.tagArray =  @[@"6000",@"6001",@"6002"];
     [self loadData];
