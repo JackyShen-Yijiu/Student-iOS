@@ -87,8 +87,8 @@
         
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.YTitleLabel.mas_bottom).offset(10);
-        make.left.mas_equalTo(self.YTitleLabel.mas_left);
+        make.bottom.mas_equalTo(self.bgImgView.mas_bottom).offset(-15);
+        make.right.mas_equalTo(self.bgImgView.mas_right).offset(-15);
         make.width.mas_equalTo(@150);
         make.height.mas_equalTo(@12);
         
@@ -147,11 +147,16 @@
 - (UILabel *)timeLabel{
     if (_timeLabel == nil) {
         _timeLabel = [[UILabel alloc] init];
-        _timeLabel.text = @"有限期至:2026/02/29";
-        _timeLabel.font = [UIFont systemFontOfSize:15];
-        _timeLabel.textColor = RGBColor(74, 118, 250);
+        _timeLabel.text = @"2026/02/29";
+        _timeLabel.font = [UIFont systemFontOfSize:12];
+        _timeLabel.textAlignment = NSTextAlignmentRight;
+        _timeLabel.textColor = [UIColor colorWithHexString:@"efb5a9"];
     }
     return _timeLabel;
 }
-
+- (void)setListModel:(JZYListModel *)listModel{
+    self.nameLabel.text = listModel.name;
+    self.YNameLabel.text = listModel.Ycode;
+    self.timeLabel.text = listModel.date;
+}
 @end
