@@ -185,13 +185,6 @@
 		B251E3371C8E849500E6613A /* UserIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB401C8E849100E6613A /* UserIdModel.m */; };
 		B251E3381C8E849500E6613A /* UserSettingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB421C8E849100E6613A /* UserSettingModel.m */; };
 		B251E3391C8E849500E6613A /* VipserverModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB441C8E849100E6613A /* VipserverModel.m */; };
-		B251E33A1C8E849500E6613A /* ComplaintCoachListController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB471C8E849100E6613A /* ComplaintCoachListController.m */; };
-		B251E33B1C8E849500E6613A /* ComplaintCoachView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB491C8E849100E6613A /* ComplaintCoachView.m */; };
-		B251E33C1C8E849500E6613A /* ComplaintCoachView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DB4A1C8E849100E6613A /* ComplaintCoachView.xib */; };
-		B251E33D1C8E849500E6613A /* ComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB4C1C8E849100E6613A /* ComplaintController.m */; };
-		B251E33E1C8E849500E6613A /* ComplaintController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DB4D1C8E849100E6613A /* ComplaintController.xib */; };
-		B251E33F1C8E849500E6613A /* ComplaintDrivingView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB4F1C8E849100E6613A /* ComplaintDrivingView.m */; };
-		B251E3401C8E849500E6613A /* ComplaintDrivingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DB501C8E849100E6613A /* ComplaintDrivingView.xib */; };
 		B251E3411C8E849500E6613A /* DVVImagePickerControllerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB521C8E849100E6613A /* DVVImagePickerControllerManager.m */; };
 		B251E3421C8E849500E6613A /* DVVOpenControllerFromSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB551C8E849100E6613A /* DVVOpenControllerFromSideMenu.m */; };
 		B251E3431C8E849500E6613A /* DVVSideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DB571C8E849100E6613A /* DVVSideMenu.m */; };
@@ -1382,17 +1375,6 @@
 		B251DB421C8E849100E6613A /* UserSettingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserSettingModel.m; sourceTree = "<group>"; };
 		B251DB431C8E849100E6613A /* VipserverModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VipserverModel.h; sourceTree = "<group>"; };
 		B251DB441C8E849100E6613A /* VipserverModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VipserverModel.m; sourceTree = "<group>"; };
-		B251DB461C8E849100E6613A /* ComplaintCoachListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintCoachListController.h; sourceTree = "<group>"; };
-		B251DB471C8E849100E6613A /* ComplaintCoachListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintCoachListController.m; sourceTree = "<group>"; };
-		B251DB481C8E849100E6613A /* ComplaintCoachView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintCoachView.h; sourceTree = "<group>"; };
-		B251DB491C8E849100E6613A /* ComplaintCoachView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintCoachView.m; sourceTree = "<group>"; };
-		B251DB4A1C8E849100E6613A /* ComplaintCoachView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplaintCoachView.xib; sourceTree = "<group>"; };
-		B251DB4B1C8E849100E6613A /* ComplaintController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintController.h; sourceTree = "<group>"; };
-		B251DB4C1C8E849100E6613A /* ComplaintController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintController.m; sourceTree = "<group>"; };
-		B251DB4D1C8E849100E6613A /* ComplaintController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplaintController.xib; sourceTree = "<group>"; };
-		B251DB4E1C8E849100E6613A /* ComplaintDrivingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComplaintDrivingView.h; sourceTree = "<group>"; };
-		B251DB4F1C8E849100E6613A /* ComplaintDrivingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComplaintDrivingView.m; sourceTree = "<group>"; };
-		B251DB501C8E849100E6613A /* ComplaintDrivingView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComplaintDrivingView.xib; sourceTree = "<group>"; };
 		B251DB511C8E849100E6613A /* DVVImagePickerControllerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVImagePickerControllerManager.h; sourceTree = "<group>"; };
 		B251DB521C8E849100E6613A /* DVVImagePickerControllerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVImagePickerControllerManager.m; sourceTree = "<group>"; };
 		B251DB541C8E849100E6613A /* DVVOpenControllerFromSideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DVVOpenControllerFromSideMenu.h; sourceTree = "<group>"; };
@@ -3701,17 +3683,6 @@
 		B251DB451C8E849100E6613A /* Complaint */ = {
 			isa = PBXGroup;
 			children = (
-				B251DB461C8E849100E6613A /* ComplaintCoachListController.h */,
-				B251DB471C8E849100E6613A /* ComplaintCoachListController.m */,
-				B251DB481C8E849100E6613A /* ComplaintCoachView.h */,
-				B251DB491C8E849100E6613A /* ComplaintCoachView.m */,
-				B251DB4A1C8E849100E6613A /* ComplaintCoachView.xib */,
-				B251DB4B1C8E849100E6613A /* ComplaintController.h */,
-				B251DB4C1C8E849100E6613A /* ComplaintController.m */,
-				B251DB4D1C8E849100E6613A /* ComplaintController.xib */,
-				B251DB4E1C8E849100E6613A /* ComplaintDrivingView.h */,
-				B251DB4F1C8E849100E6613A /* ComplaintDrivingView.m */,
-				B251DB501C8E849100E6613A /* ComplaintDrivingView.xib */,
 				B251DB511C8E849100E6613A /* DVVImagePickerControllerManager.h */,
 				B251DB521C8E849100E6613A /* DVVImagePickerControllerManager.m */,
 			);
@@ -6973,7 +6944,6 @@
 				B251E4911C8E849500E6613A /* chatBar_face.png in Resources */,
 				B251E4C41C8E849500E6613A /* chat_receiver_audio_playing003.png in Resources */,
 				B251E4631C8E849500E6613A /* VoiceSearchFeedback014.png in Resources */,
-				B251E33C1C8E849500E6613A /* ComplaintCoachView.xib in Resources */,
 				B251E4B81C8E849500E6613A /* chatBar_more_locationSelected@2x.png in Resources */,
 				B251E4A01C8E849500E6613A /* chatBar_recordBg@2x.png in Resources */,
 				B251E6451C8E849500E6613A /* UMSLoginViewController.xib in Resources */,
@@ -6999,7 +6969,6 @@
 				B2EEBCB71CA1396A00846656 /* DVVSignUpDetailFooterView.xib in Resources */,
 				B251E4761C8E849500E6613A /* call_silence@2x.png in Resources */,
 				B251E4AA1C8E849500E6613A /* chatBar_colorMore_locationSelected@2x.png in Resources */,
-				B251E3401C8E849500E6613A /* ComplaintDrivingView.xib in Resources */,
 				B251E6011C8E849500E6613A /* EaseMob.bundle in Resources */,
 				B251E4581C8E849500E6613A /* VoiceSearchFeedback008@2x.png in Resources */,
 				B251E4D51C8E849500E6613A /* chat_sender_bg@2x.png in Resources */,
@@ -7113,7 +7082,6 @@
 				B251E4F11C8E849500E6613A /* tabbar_contactsHL@2x.png in Resources */,
 				B251E6A01C8E849600E6613A /* LaunchScreen.strings in Resources */,
 				B251E4481C8E849500E6613A /* chatListCellHead@2x.png in Resources */,
-				B251E33E1C8E849500E6613A /* ComplaintController.xib in Resources */,
 				D976764A1C97E0F10033221E /* YBAppointmentHeaderView.xib in Resources */,
 				B251E4B31C8E849500E6613A /* chatBar_more_cameraSelected.png in Resources */,
 				B251E6441C8E849500E6613A /* UMShareEditViewControlleriPad.xib in Resources */,
@@ -7342,7 +7310,6 @@
 				B251E54C1C8E849500E6613A /* HelpCell.m in Sources */,
 				B251E6B61C8E849600E6613A /* RSADataSigner.m in Sources */,
 				B251E3BC1C8E849500E6613A /* ModifyNickNameViewController.m in Sources */,
-				B251E33F1C8E849500E6613A /* ComplaintDrivingView.m in Sources */,
 				B251E3701C8E849500E6613A /* AppointmentDrivingCell.m in Sources */,
 				B251E3221C8E849500E6613A /* DriveSchoolinfo.m in Sources */,
 				B2EEBCB11CA1396A00846656 /* DVVBaseDoubleRowCell.m in Sources */,
@@ -7471,7 +7438,6 @@
 				B251E6DD1C8E856E00E6613A /* IWBadgeButton.m in Sources */,
 				B251E31F1C8E849500E6613A /* CoachModel.m in Sources */,
 				B2EEBCB61CA1396A00846656 /* DVVSignUpDetailFooterView.m in Sources */,
-				B251E33B1C8E849500E6613A /* ComplaintCoachView.m in Sources */,
 				B251E3C71C8E849500E6613A /* UserCenterViewController.m in Sources */,
 				B251E4291C8E849500E6613A /* DXRecordView.m in Sources */,
 				B2EEBC171CA12E3400846656 /* YBUserApplyclasstypeinfo.m in Sources */,
@@ -7599,7 +7565,6 @@
 				D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */,
 				B251E4FF1C8E849500E6613A /* JZRegisterFirstController.m in Sources */,
 				B251E5471C8E849500E6613A /* FeedBackViewController.m in Sources */,
-				B251E33A1C8E849500E6613A /* ComplaintCoachListController.m in Sources */,
 				B20E59421C97C04B00912F5A /* getIPhoneIP.m in Sources */,
 				B251E4181C8E849500E6613A /* YBAppointMentUserFooter.m in Sources */,
 				B251E3841C8E849500E6613A /* ExamDetailCell.m in Sources */,
@@ -7930,7 +7895,6 @@
 				B2EEBC9B1CA1395400846656 /* DVVSignUpDetailController.m in Sources */,
 				B251E53C1C8E849500E6613A /* MallOrderListModel.m in Sources */,
 				B251E5FE1C8E849500E6613A /* EMCDDeviceManager+Remind.m in Sources */,
-				B251E33D1C8E849500E6613A /* ComplaintController.m in Sources */,
 				B251E6031C8E849500E6613A /* Emoji.m in Sources */,
 				B251E3B71C8E849500E6613A /* SignUpPayCell.m in Sources */,
 				B251E3811C8E849500E6613A /* DrivingSelectedCoachCollectionCell.m in Sources */,

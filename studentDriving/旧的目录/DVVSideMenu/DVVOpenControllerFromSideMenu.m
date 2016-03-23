@@ -23,7 +23,6 @@
 #import "SignInListController.h"
 #import "MoneyShopController.h"
 #import "JGActivityViewController.h"
-#import "ComplaintController.h"
 #import "ShuttleBusController.h"
 #import "HomeAdvantageController.h"
 
@@ -136,26 +135,6 @@
         }
             break;
         
-        case kOpenControllerTypeComplaintController:// 投诉
-        {
-            if (![AcountManager isLogin]) {
-                [DVVUserManager userNeedLogin];
-                break;
-            }
-            
-            if (![AcountManager manager].applyschool || [AcountManager manager].applyschool.infoId) {
-                [self showMsg:@"您还没有报名"];
-                return ;
-            }
-            
-            ComplaintController *controller = [ComplaintController new];
-            
-            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-            UINavigationController *naviVC = (UINavigationController *)(window.rootViewController);
-            [naviVC pushViewController:controller animated:YES];
-            
-        }
-            break;
             
         case kOpenControllerTypeSignInViewController:// 签到
         {
