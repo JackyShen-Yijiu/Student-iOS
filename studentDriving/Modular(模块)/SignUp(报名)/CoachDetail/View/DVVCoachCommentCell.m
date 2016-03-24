@@ -39,7 +39,7 @@
     [super layoutSubviews];
     
     CGSize size = self.bounds.size;
-    _starView.frame = CGRectMake(size.width - 94 - 16, 16, 94, 14);
+    _starView.frame = CGRectMake(size.width - 90, 16, 94, 12);
     CGFloat minX = CGRectGetMinX(_nameLabel.frame);
     _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
 }
@@ -78,8 +78,13 @@
     }else {
         _classTypeLabel.text = @"暂无班型信息";
     }
+    if (dmData.comment.starlevel) {
+        [_starView setUpRating:dmData.comment.starlevel];
+    }else{
+        [_starView setUpRating:0];
+    }
     
-    [_starView dvv_setStar:dmData.comment.starlevel];
+
 }
 
 + (CGFloat)dynamicHeight:(DVVCoachCommentDMData *)dmData {
@@ -93,10 +98,11 @@
     return 64 + testHeight + 16;
 }
 
-- (DVVStarView *)starView {
+- (RatingBar *)starView {
     if (!_starView) {
-        _starView = [DVVStarView new];
-        [_starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+        _starView = [RatingBar new];
+        [_starView setImageDeselected:@"YBAppointMentDetailsstar.png" halfSelected:nil fullSelected:@"YBAppointMentDetailsstar_fill.png" andDelegate:nil];
+       
     }
     return _starView;
 }
