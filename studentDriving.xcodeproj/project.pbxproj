@@ -348,8 +348,6 @@
 		B251E3FF1C8E849500E6613A /* YBAppointMentCoachModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCE61C8E849200E6613A /* YBAppointMentCoachModel.m */; };
 		B251E4081C8E849500E6613A /* FDCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFA1C8E849200E6613A /* FDCalendar.m */; };
 		B251E4091C8E849500E6613A /* FDCalendarItem.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DCFC1C8E849200E6613A /* FDCalendarItem.m */; };
-		B251E40D1C8E849500E6613A /* NSDictionary+StrDic.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD051C8E849200E6613A /* NSDictionary+StrDic.m */; };
-		B251E40E1C8E849500E6613A /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD081C8E849200E6613A /* UIView+Sizes.m */; };
 		B251E40F1C8E849500E6613A /* YBObjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD0A1C8E849200E6613A /* YBObjectTool.m */; };
 		B251E4101C8E849500E6613A /* CourseSummaryDayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD0D1C8E849200E6613A /* CourseSummaryDayCell.m */; };
 		B251E4111C8E849500E6613A /* JGAppointMentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DD0F1C8E849200E6613A /* JGAppointMentCell.m */; };
@@ -998,6 +996,10 @@
 		B2EEBD931CA141BE00846656 /* DVVSubCityCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EEBD891CA141BE00846656 /* DVVSubCityCell.m */; };
 		B2EEBD941CA141BE00846656 /* DVVSubCityView.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EEBD8B1CA141BE00846656 /* DVVSubCityView.m */; };
 		B2EEBD971CA144DE00846656 /* JZBusDetailStationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EEBD961CA144DE00846656 /* JZBusDetailStationModel.m */; };
+		B2EEBDE01CA2B53500846656 /* NSDictionary+StrDic.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EEBDDC1CA2B53500846656 /* NSDictionary+StrDic.m */; };
+		B2EEBDE11CA2B53500846656 /* UIView+Sizes.m in Sources */ = {isa = PBXBuildFile; fileRef = B2EEBDDF1CA2B53500846656 /* UIView+Sizes.m */; };
+		B2EEBDE41CA2B54500846656 /* refresh_student_one.gif in Resources */ = {isa = PBXBuildFile; fileRef = B2EEBDE21CA2B54500846656 /* refresh_student_one.gif */; };
+		B2EEBDE51CA2B54500846656 /* refresh_student_two.gif in Resources */ = {isa = PBXBuildFile; fileRef = B2EEBDE31CA2B54500846656 /* refresh_student_two.gif */; };
 		D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */; };
 		D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9D1BF659480020F0D7 /* CFNetwork.framework */; };
 		D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */; };
@@ -1704,10 +1706,6 @@
 		B251DCFA1C8E849200E6613A /* FDCalendar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCalendar.m; sourceTree = "<group>"; };
 		B251DCFB1C8E849200E6613A /* FDCalendarItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FDCalendarItem.h; sourceTree = "<group>"; };
 		B251DCFC1C8E849200E6613A /* FDCalendarItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FDCalendarItem.m; sourceTree = "<group>"; };
-		B251DD041C8E849200E6613A /* NSDictionary+StrDic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StrDic.h"; sourceTree = "<group>"; };
-		B251DD051C8E849200E6613A /* NSDictionary+StrDic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+StrDic.m"; sourceTree = "<group>"; };
-		B251DD071C8E849200E6613A /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
-		B251DD081C8E849200E6613A /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
 		B251DD091C8E849200E6613A /* YBObjectTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBObjectTool.h; sourceTree = "<group>"; };
 		B251DD0A1C8E849200E6613A /* YBObjectTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBObjectTool.m; sourceTree = "<group>"; };
 		B251DD0C1C8E849200E6613A /* CourseSummaryDayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CourseSummaryDayCell.h; sourceTree = "<group>"; };
@@ -2942,6 +2940,12 @@
 		B2EEBD8B1CA141BE00846656 /* DVVSubCityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DVVSubCityView.m; sourceTree = "<group>"; };
 		B2EEBD951CA144DE00846656 /* JZBusDetailStationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZBusDetailStationModel.h; path = "studentDriving/Modular(模块)/SideMenu(侧边栏)/SideMenuShuttleBus/Controller/JZBusDetailStationModel.h"; sourceTree = SOURCE_ROOT; };
 		B2EEBD961CA144DE00846656 /* JZBusDetailStationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZBusDetailStationModel.m; path = "studentDriving/Modular(模块)/SideMenu(侧边栏)/SideMenuShuttleBus/Controller/JZBusDetailStationModel.m"; sourceTree = SOURCE_ROOT; };
+		B2EEBDDB1CA2B53500846656 /* NSDictionary+StrDic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+StrDic.h"; sourceTree = "<group>"; };
+		B2EEBDDC1CA2B53500846656 /* NSDictionary+StrDic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+StrDic.m"; sourceTree = "<group>"; };
+		B2EEBDDE1CA2B53500846656 /* UIView+Sizes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Sizes.h"; sourceTree = "<group>"; };
+		B2EEBDDF1CA2B53500846656 /* UIView+Sizes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Sizes.m"; sourceTree = "<group>"; };
+		B2EEBDE21CA2B54500846656 /* refresh_student_one.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = refresh_student_one.gif; sourceTree = "<group>"; };
+		B2EEBDE31CA2B54500846656 /* refresh_student_two.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = refresh_student_two.gif; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -4275,11 +4279,11 @@
 		B251DCF71C8E849200E6613A /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				B2EEBDE21CA2B54500846656 /* refresh_student_one.gif */,
+				B2EEBDE31CA2B54500846656 /* refresh_student_two.gif */,
+				B251DCF81C8E849200E6613A /* FDCalendar */,
 				D976763B1C97E0B70033221E /* YBAppointmentTool.h */,
 				D976763C1C97E0B70033221E /* YBAppointmentTool.m */,
-				B251DCF81C8E849200E6613A /* FDCalendar */,
-				B251DD031C8E849200E6613A /* SafeDic */,
-				B251DD061C8E849200E6613A /* UIView+Sizes */,
 				B251DD091C8E849200E6613A /* YBObjectTool.h */,
 				B251DD0A1C8E849200E6613A /* YBObjectTool.m */,
 			);
@@ -4295,24 +4299,6 @@
 				B251DCFC1C8E849200E6613A /* FDCalendarItem.m */,
 			);
 			path = FDCalendar;
-			sourceTree = "<group>";
-		};
-		B251DD031C8E849200E6613A /* SafeDic */ = {
-			isa = PBXGroup;
-			children = (
-				B251DD041C8E849200E6613A /* NSDictionary+StrDic.h */,
-				B251DD051C8E849200E6613A /* NSDictionary+StrDic.m */,
-			);
-			path = SafeDic;
-			sourceTree = "<group>";
-		};
-		B251DD061C8E849200E6613A /* UIView+Sizes */ = {
-			isa = PBXGroup;
-			children = (
-				B251DD071C8E849200E6613A /* UIView+Sizes.h */,
-				B251DD081C8E849200E6613A /* UIView+Sizes.m */,
-			);
-			path = "UIView+Sizes";
 			sourceTree = "<group>";
 		};
 		B251DD0B1C8E849200E6613A /* View */ = {
@@ -6264,6 +6250,8 @@
 		B251E1E21C8E849400E6613A /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				B2EEBDDA1CA2B53500846656 /* SafeDic */,
+				B2EEBDDD1CA2B53500846656 /* UIView+Sizes */,
 				B251E1E31C8E849400E6613A /* DVVNavigation */,
 				B2EEBD361CA13E2B00846656 /* NSObject+DVVBaseViewModel.h */,
 				B2EEBD371CA13E2B00846656 /* NSObject+DVVBaseViewModel.m */,
@@ -6811,6 +6799,24 @@
 			path = ChinaCityList;
 			sourceTree = "<group>";
 		};
+		B2EEBDDA1CA2B53500846656 /* SafeDic */ = {
+			isa = PBXGroup;
+			children = (
+				B2EEBDDB1CA2B53500846656 /* NSDictionary+StrDic.h */,
+				B2EEBDDC1CA2B53500846656 /* NSDictionary+StrDic.m */,
+			);
+			path = SafeDic;
+			sourceTree = "<group>";
+		};
+		B2EEBDDD1CA2B53500846656 /* UIView+Sizes */ = {
+			isa = PBXGroup;
+			children = (
+				B2EEBDDE1CA2B53500846656 /* UIView+Sizes.h */,
+				B2EEBDDF1CA2B53500846656 /* UIView+Sizes.m */,
+			);
+			path = "UIView+Sizes";
+			sourceTree = "<group>";
+		};
 		BEF77C06A3D4E352E446D8FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -7037,6 +7043,7 @@
 				B251E4F41C8E849500E6613A /* tabbar_settingHL.png in Resources */,
 				B251E44B1C8E849500E6613A /* VoiceSearchFeedback002.png in Resources */,
 				B251E34D1C8E849500E6613A /* CoinCertificateController.xib in Resources */,
+				B2EEBDE41CA2B54500846656 /* refresh_student_one.gif in Resources */,
 				B251E4E31C8E849500E6613A /* group_joinpublicgroup@2x.png in Resources */,
 				B251E6551C8E849500E6613A /* WeiboSDK.bundle in Resources */,
 				B2EEBC641CA1373300846656 /* DrivingDetailInfoCell.xib in Resources */,
@@ -7127,6 +7134,7 @@
 				B251E6441C8E849500E6613A /* UMShareEditViewControlleriPad.xib in Resources */,
 				B251E4E61C8E849500E6613A /* groupPrivateHeader@2x.png in Resources */,
 				B251E4A31C8E849500E6613A /* chatBar_recordSelectedBg.png in Resources */,
+				B2EEBDE51CA2B54500846656 /* refresh_student_two.gif in Resources */,
 				B251E4C21C8E849500E6613A /* chat_receiver_audio_playing002.png in Resources */,
 				B251E4F01C8E849500E6613A /* tabbar_contactsHL.png in Resources */,
 				B251E4561C8E849500E6613A /* VoiceSearchFeedback007@2x.png in Resources */,
@@ -7409,7 +7417,6 @@
 				B251E5311C8E849500E6613A /* FavouriteViewController.m in Sources */,
 				B251E5C71C8E849500E6613A /* DVVSignUpCoachDMRootClass.m in Sources */,
 				B251E3AA1C8E849500E6613A /* HomeCheckProgressView.m in Sources */,
-				B251E40E1C8E849500E6613A /* UIView+Sizes.m in Sources */,
 				B251E5061C8E849500E6613A /* YBIntegralMallModel.m in Sources */,
 				B251E4101C8E849500E6613A /* CourseSummaryDayCell.m in Sources */,
 				B251E6B01C8E849600E6613A /* base64.m in Sources */,
@@ -7489,7 +7496,6 @@
 				B2EEBD901CA141BE00846656 /* CityListViewController.m in Sources */,
 				B251E3B41C8E849500E6613A /* SignUpFirmOrderController.m in Sources */,
 				060106A71C97AAC90084379F /* JZYListModel.m in Sources */,
-				B251E40D1C8E849500E6613A /* NSDictionary+StrDic.m in Sources */,
 				B2EEBCB91CA1396A00846656 /* JZShowTitleCell.m in Sources */,
 				B251E6981C8E849600E6613A /* PFActionSheetView.m in Sources */,
 				B251E68B1C8E849600E6613A /* BCTextView.m in Sources */,
@@ -7504,6 +7510,7 @@
 				B251E3961C8E849500E6613A /* APWaitEvaluationViewController.m in Sources */,
 				B251E5FB1C8E849500E6613A /* EMCDDeviceManager+Media.m in Sources */,
 				B251E6F11C8FC59400E6613A /* KOAProgressBar.m in Sources */,
+				B2EEBDE01CA2B53500846656 /* NSDictionary+StrDic.m in Sources */,
 				B251E3B11C8E849500E6613A /* SchoolClassDetailController.m in Sources */,
 				B251E6971C8E849600E6613A /* JEPhotoPickManger.m in Sources */,
 				B251E2DC1C8E849500E6613A /* ChooseBtnView.m in Sources */,
@@ -7851,6 +7858,7 @@
 				B2EEBC201CA12E3400846656 /* YBUserVipserverlist.m in Sources */,
 				B251E32D1C8E849500E6613A /* StudentDetailModel.m in Sources */,
 				B251E6B31C8E849600E6613A /* MD5DataSigner.m in Sources */,
+				B2EEBDE11CA2B53500846656 /* UIView+Sizes.m in Sources */,
 				B251E5631C8E849500E6613A /* DVVCoachCommentDMData.m in Sources */,
 				B251E51B1C8E849500E6613A /* YBMyWalletMallViewController.m in Sources */,
 				B251E4221C8E849500E6613A /* ChatViewController.m in Sources */,

@@ -47,6 +47,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 @property (nonatomic,assign) BOOL isShowComplaintView;  // 是否显示强制评价界面
 
+@property (nonatomic,strong) MJRefreshGifHeader *header;
 
 @end
 
@@ -159,7 +160,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     _viewModel = [YBAppointmentListViewModel new];
     __weak typeof(self) ws = self;
     [_viewModel dvv_setRefreshSuccessBlock:^{
+
         [ws.tableView reloadData];
+
     }];
     
     [_viewModel dvv_setNilResponseObjectBlock:^{
@@ -180,17 +183,50 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 #pragma mark - config refresh
 
-- (void)configRefresh {
-    
-    WS(ws)
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+- (MJRefreshGifHeader *)header
+{
+    if (_header==nil) {
         
-        [ws.viewModel dvv_networkRequestRefresh];
-    }];
-    
-    self.tableView.mj_header = header;
+        // 设置正在刷新状态的动画图片
+        NSMutableArray *refreshingImages = [NSMutableArray array];
+        for (int i = 1; i<=5; i++) {
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_student_0%d", i]];
+            [refreshingImages addObject:image];
+        }
+        
+        // 设置松开刷新状态的动画图片
+        NSMutableArray *refreshingImages2 = [NSMutableArray array];
+        for (int i = 1; i<=10; i++) {
+            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_student_0%d", i+5]];
+            [refreshingImages2 addObject:image];
+        }
+        
+        // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadNewData方法）
+        _header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(dvv_networkRequestRefresh)];
+        // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
+        [_header setImages:refreshingImages forState:MJRefreshStatePulling];
+        // 设置正在刷新状态的动画图片
+        [_header setImages:refreshingImages2 forState:MJRefreshStateRefreshing];
+        // 隐藏时间
+        _header.lastUpdatedTimeLabel.hidden = YES;
+        // 隐藏状态
+        _header.stateLabel.hidden = YES;
+
+    }
+    return _header;
 }
 
+- (void)configRefresh {
+    
+    // 设置刷新控件
+    self.tableView.mj_header = self.header;
+
+}
+
+- (void)dvv_networkRequestRefresh
+{
+    [self.viewModel dvv_networkRequestRefresh];
+}
 
 #pragma mark - tableView delegate and data source
 
