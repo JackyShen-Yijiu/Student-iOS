@@ -541,25 +541,27 @@
     }else if ([type isEqualToString:@"reservationsuccess"]) {
         
         DYNSLog(@"接受到教练确认订单信息");
-        NSString *string = [NSString stringWithFormat:@"%@",userInfo[@"data"][@"reservationid"]];
-        AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
-        detail.isPushInformation = YES;
-        detail.infoId = string;
-        detail.state = AppointmentStateCoachConfirm;
-        
-        [self controller:detail];
+        [[NSNotificationCenter defaultCenter] postNotificationName:kAppointmentDetailRefresh object:self];
+//        NSString *string = [NSString stringWithFormat:@"%@",userInfo[@"data"][@"reservationid"]];
+//        AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
+//        detail.isPushInformation = YES;
+//        detail.infoId = string;
+//        detail.state = AppointmentStateCoachConfirm;
+//        
+//        [self controller:detail];
         
         
     }else if ([type isEqualToString:@"reservationcancel"]) {
         
         DYNSLog(@"接受到教练取消订单信息");
-        NSString *string = [NSString stringWithFormat:@"%@",userInfo[@"data"][@"reservationid"]];
-        AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
-        detail.isPushInformation = YES;
-        detail.infoId = string;
-        detail.state = AppointmentStateCoachCancel;
-        
-        [self controller:detail];
+      [[NSNotificationCenter defaultCenter] postNotificationName:kAppointmentDetailRefresh object:self];
+//        NSString *string = [NSString stringWithFormat:@"%@",userInfo[@"data"][@"reservationid"]];
+//        AppointmentDetailViewController *detail = [[AppointmentDetailViewController alloc] init];
+//        detail.isPushInformation = YES;
+//        detail.infoId = string;
+//        detail.state = AppointmentStateCoachCancel;
+//        
+//        [self controller:detail];
         
     }else if ([type isEqualToString:@"reservationcoachcomment"]) {
         // 获取到教练评价
