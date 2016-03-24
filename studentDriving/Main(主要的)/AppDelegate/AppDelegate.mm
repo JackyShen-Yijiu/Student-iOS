@@ -68,6 +68,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    NSLog(@"launchOptions = %@ application = %@ ",launchOptions,application);
     // 添加crash后弹出提示
     dvv_installCrashExceptionHandler();
     
