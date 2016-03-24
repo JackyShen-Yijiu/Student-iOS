@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "DVVCoachCommentDMData.h"
 #import "DVVStarView.h"
+#import "RatingBar.h"
 
 @interface DVVCoachCommentCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *iconImageView;
@@ -17,7 +18,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
 
-@property (nonatomic, strong) DVVStarView *starView;
+@property (nonatomic, strong) RatingBar *starView;
 
 @property (nonatomic, strong) UIImageView *lineImageView;
 

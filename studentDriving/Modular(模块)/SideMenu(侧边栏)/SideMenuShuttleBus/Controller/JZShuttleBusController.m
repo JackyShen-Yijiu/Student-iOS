@@ -40,7 +40,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"班车信息";
-    _detailBusArray = [NSMutableArray array];
+   
 
     self.view.backgroundColor = RGBColor(226, 226, 233);
     [self.view addSubview:self.tableView];
@@ -80,6 +80,7 @@
 
 - (void)setDataArray:(NSArray *)dataArray {
     NSMutableArray *array = [NSMutableArray array];
+     _detailBusArray = [NSMutableArray array];
     _heightArray = [NSMutableArray array];
     for (NSDictionary *dict in dataArray) {
         

@@ -38,6 +38,8 @@
 #import "DrivingDetailTopItemCell.h"
 #import "DrivingDetailCoachInfoController.h"
 
+#import "JZShuttleBusController.h"
+
 @interface DrivingDetailController ()<UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
@@ -198,8 +200,9 @@
         [self obj_showTotasViewWithMes:@"暂无班车信息"];
         return ;
     }
-    ShuttleBusController *busVC = [ShuttleBusController new];
+    JZShuttleBusController *busVC = [JZShuttleBusController new];
     busVC.dataArray = _viewModel.dmData.schoolbusroute;
+    NSLog(@"_viewModel.dmData.schoolbusroute= %@",_viewModel.dmData.schoolbusroute);
     [self.navigationController pushViewController:busVC animated:YES];
 }
 

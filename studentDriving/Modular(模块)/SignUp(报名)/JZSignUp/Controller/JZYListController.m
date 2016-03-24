@@ -92,6 +92,7 @@ static NSString *YgetMyList = @"userinfo/getUserAvailableFcode";
     if (!listCell) {
         listCell = [[JZYListCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:YListCellID];
     }
+    listCell.listModel = self.yListArray[indexPath.row];
     return listCell;
 }
 

@@ -166,6 +166,8 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"科目二";
+    // 隐藏侧边栏通知
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshTabelViewData) name:kAppointmentDetailRefresh object:nil];
     self.automaticallyAdjustsScrollViewInsets = NO;
     if ([UIDevice jeSystemVersion] >= 7.0f) {
         self.edgesForExtendedLayout = UIRectEdgeNone;
@@ -348,6 +350,10 @@ static NSString *const kAppointmentDetail = @"courseinfo/userreservationinfo/%@"
     CancelAppointmentViewController *cancelAppoint = [[CancelAppointmentViewController alloc] init];
     cancelAppoint.model = self.model;
     [self.navigationController pushViewController:cancelAppoint animated:YES];
+}
+#pragma mark ---- 刷新列表的通知
+- (void)refreshTabelViewData{
+    [self.tableView reloadData];
 }
 #pragma mark - collectionViewDelegate
 - (void)viewWillAppear:(BOOL)animated

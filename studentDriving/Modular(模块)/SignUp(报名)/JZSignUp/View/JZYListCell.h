@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JZYListModel.h"
 
 @interface JZYListCell : UITableViewCell
-
+@property (nonatomic, strong) JZYListModel *listModel;
 @end

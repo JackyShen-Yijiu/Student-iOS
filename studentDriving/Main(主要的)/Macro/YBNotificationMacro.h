@@ -23,6 +23,9 @@
 
 #define KNOTIFICATION_USERLOADED @"userLoaded"
 
+// 刷新预约详情的通知
+#define kAppointmentDetailRefresh @"appointmentDetailRefresh"
+
 /** 接收到推送消息，跳转到对应的窗体的通知 */
 #define YBNotif_HandleNotification @"kYBNotif_HandleNotification"
 

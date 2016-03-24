@@ -24,6 +24,7 @@
 #import "DVVNoDataPromptView.h"
 
 #import "JZMainSignUpController.h"
+#import "JZShuttleBusController.h"
 
 static NSString *infoCellID = @"kInfoCellID";
 static NSString *introductionCellID = @"kIntroductionCellID";
@@ -154,7 +155,7 @@ static NSString *courseCellID = @"kCourseCellID";
 #pragma mark 班车路线
 - (void)shuttleBusButtonAction {
     
-    ShuttleBusController *busVC = [ShuttleBusController new];
+    JZShuttleBusController *busVC = [JZShuttleBusController new];
     DrivingDetailViewModel *viewModel = [DrivingDetailViewModel new];
     viewModel.schoolID = _viewModel.dmData.driveschoolinfo.ID;
     [viewModel dvvSetRefreshSuccessBlock:^{
