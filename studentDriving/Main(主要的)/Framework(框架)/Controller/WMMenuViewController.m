@@ -141,7 +141,8 @@
 
 // 当头像改变时通知方法
 - (void)iconImage{
-    [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"coach_man_default_icon.jpg"] getRoundImage] completed:nil];
+    
+    [self.headerImageView sd_setImageWithURL:[NSURL URLWithString:[AcountManager manager].userHeadImageUrl] placeholderImage:[[UIImage imageNamed:@"coach_man_default_icon.jpg"] getRoundImage] completed:nil];
 }
 // 点击头像手势
 - (void)priateMessage:(UITapGestureRecognizer *)tapGesture{
