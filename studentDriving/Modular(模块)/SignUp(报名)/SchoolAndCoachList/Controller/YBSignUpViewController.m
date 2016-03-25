@@ -63,7 +63,6 @@ static NSString *coachCellID = @"coachCellID";
 @property (nonatomic, assign) BOOL loadedCache;
 
 @property (nonatomic,strong) MJRefreshGifHeader *header;
-@property (nonatomic,strong) MJRefreshAutoGifFooter *footer;
 
 @end
 
@@ -525,41 +524,6 @@ static NSString *coachCellID = @"coachCellID";
     return _header;
 }
 
-- (MJRefreshAutoGifFooter *)footer
-{
-    if (_footer==nil) {
-        
-        // 设置正在刷新状态的动画图片
-        NSMutableArray *refreshingImages = [NSMutableArray array];
-        for (int i = 1; i<=5; i++) {
-            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_student_0%d", i]];
-            [refreshingImages addObject:image];
-        }
-        
-        // 设置松开刷新状态的动画图片
-        NSMutableArray *refreshingImages2 = [NSMutableArray array];
-        for (int i = 1; i<=10; i++) {
-            UIImage *image = [UIImage imageNamed:[NSString stringWithFormat:@"refresh_student_0%d", i+5]];
-            [refreshingImages2 addObject:image];
-        }
-        
-        // 设置回调（一旦进入刷新状态，就调用target的action，也就是调用self的loadMoreData方法）
-        _footer = [MJRefreshAutoGifFooter footerWithRefreshingTarget:self refreshingAction:@selector(setUpFooterRefresh)];
-        
-        // 设置刷新图片
-        [_footer setImages:refreshingImages forState:MJRefreshStateRefreshing];
-        
-        // 设置即将刷新状态的动画图片（一松开就会刷新的状态）
-        [_footer setImages:refreshingImages forState:MJRefreshStatePulling];
-        // 设置正在刷新状态的动画图片
-        [_footer setImages:refreshingImages2 forState:MJRefreshStateRefreshing];
-        // 隐藏刷新状态的文字
-        _footer.refreshingTitleHidden = YES;
-        
-    }
-    return _footer;
-}
-
 -(void)setUpHeaderRefresh
 {
     [self cancelSearch];
@@ -569,19 +533,11 @@ static NSString *coachCellID = @"coachCellID";
         [self.coachViewModel dvv_networkRequestRefresh];
     }
 }
-- (void)setUpFooterRefresh
-{
-    if (0 == self.showType) {
-        [self.schoolViewModel dvv_networkRequestLoadMore];
-    }else {
-        [self.coachViewModel dvv_networkRequestLoadMore];
-    }
-}
 
 #pragma mark - config refresh
 - (void)configRefresh {
     
-//    __weak typeof(self) ws = self;
+    __weak typeof(self) ws = self;
 //    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
 //        [self cancelSearch];
 //        if (0 == ws.showType) {
@@ -590,15 +546,15 @@ static NSString *coachCellID = @"coachCellID";
 //            [ws.coachViewModel dvv_networkRequestRefresh];
 //        }
 //    }];
-//    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
-//        if (0 == ws.showType) {
-//            [ws.schoolViewModel dvv_networkRequestLoadMore];
-//        }else {
-//            [ws.coachViewModel dvv_networkRequestLoadMore];
-//        }
-//    }];
+    MJRefreshBackNormalFooter *footer = [MJRefreshBackNormalFooter footerWithRefreshingBlock:^{
+        if (0 == ws.showType) {
+            [ws.schoolViewModel dvv_networkRequestLoadMore];
+        }else {
+            [ws.coachViewModel dvv_networkRequestLoadMore];
+        }
+    }];
     _tableView.mj_header = self.header;
-    _tableView.mj_footer = self.footer;
+    _tableView.mj_footer = footer;
     
 }
 
