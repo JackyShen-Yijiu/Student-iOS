@@ -35,7 +35,7 @@ static NSString *const kgetapplyschoolinfo = @"userinfo/getapplyschoolinfo"; // 
 
 static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订单
 
-@interface YBOrderListViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface YBOrderListViewController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
 }
@@ -305,31 +305,38 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
 //            [ud setObject:@"1" forKey:@"applyAgain"];
 //            [ud synchronize];
 //            [DVVUserManager userLoginSucces];
+
+
+            NSString *message = [NSString stringWithFormat:@"您确定要取消报名%@吗?",[self.dict objectForKey:@"schoolStr"]];
             
-            // 取消订单
-            NSLog(@"%s",__func__);
-            NSString *url = [NSString stringWithFormat:kusercancelorder,[AcountManager manager].userid];
-            NSString *applyUrlString = [NSString stringWithFormat:BASEURL,url];
-            [JENetwoking startDownLoadWithUrl:applyUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-                
-                NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
-                
-                if ([type isEqualToString:@"1"]) {
-                    
-                    [self obj_showTotasViewWithMes:@"取消成功"];
-                    
-                    [self.navigationController popToRootViewControllerAnimated:YES];
-                    
-                }else{
-                    
-                    [self obj_showTotasViewWithMes:data[@"msg"]];
-                    
-                }
-                
-            } withFailure:^(id data) {
-                
-                
-            }];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"取消订单" message:message delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+            [alert show];
+            
+
+//            // 取消订单
+//            NSLog(@"%s",__func__);
+//            NSString *url = [NSString stringWithFormat:kusercancelorder,[AcountManager manager].userid];
+//            NSString *applyUrlString = [NSString stringWithFormat:BASEURL,url];
+//            [JENetwoking startDownLoadWithUrl:applyUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+//                
+//                NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
+//                
+//                if ([type isEqualToString:@"1"]) {
+//                    
+//                    [self obj_showTotasViewWithMes:@"取消成功"];
+//                    
+//                    [self.navigationController popToRootViewControllerAnimated:YES];
+//                    
+//                }else{
+//                    
+//                    [self obj_showTotasViewWithMes:data[@"msg"]];
+//                    
+//                }
+//                
+//            } withFailure:^(id data) {
+//                
+//                
+//            }];
 
             
         }else if(402 == tag){
@@ -460,4 +467,38 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (buttonIndex==1) {
+        
+        NSLog(@"%s",__func__);
+        NSString *url = [NSString stringWithFormat:kusercancelorder,[AcountManager manager].userid];
+        NSString *applyUrlString = [NSString stringWithFormat:BASEURL,url];
+        [JENetwoking startDownLoadWithUrl:applyUrlString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+            
+            NSString *type = [NSString stringWithFormat:@"%@",data[@"type"]];
+            
+            if ([type isEqualToString:@"1"]) {
+                
+                [self obj_showTotasViewWithMes:@"取消成功"];
+                
+                [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
+                
+            }else{
+                
+                [self obj_showTotasViewWithMes:data[@"msg"]];
+                
+            }
+            
+        } withFailure:^(id data) {
+            
+            
+        }];
+        
+    }
+    
+}
+
 @end
