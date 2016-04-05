@@ -62,7 +62,11 @@
     _nameLabel.text = dmData.classname;
     _introductionLabel.text = dmData.classdesc;
     _priceLabel.text = [NSString stringWithFormat:@"￥%zi", dmData.price];
-    _markLabel.text = [NSString stringWithFormat:@"%@~%@",[NSString getYearLocalDateFormateUTCDate:dmData.begindate], [NSString getYearLocalDateFormateUTCDate:dmData.enddate]];
+    if (dmData.begindate&&dmData.enddate) {
+        _markLabel.text = [NSString stringWithFormat:@"%@~%@",[NSString getYearLocalDateFormateUTCDate:dmData.begindate], [NSString getYearLocalDateFormateUTCDate:dmData.enddate]];        
+    }else{
+        _markLabel.text = @"暂无数据";
+    }
     
 }
 

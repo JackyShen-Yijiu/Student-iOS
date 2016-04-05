@@ -86,7 +86,6 @@ static NSString *kMallID = @"MallID";
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
@@ -128,7 +127,7 @@ static NSString *kMallID = @"MallID";
                            @"producttype":@"0"};
     //    NSLog(@"%@",[AcountManager manager].userCity);
     [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         DYNSLog(@"data = %@",data);
         if (data == nil) {
             return ;
@@ -170,7 +169,7 @@ static NSString *kMallID = @"MallID";
                            @"producttype":@"1"};
     //    NSLog(@"%@",[AcountManager manager].userCity);
     [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+
         DYNSLog(@"data = %@",data);
         if (data == nil) {
             return ;
@@ -190,7 +189,6 @@ static NSString *kMallID = @"MallID";
                 YBDiscountModel *mainDodel = [[YBDiscountModel alloc] init];
                 [mainDodel setValuesForKeysWithDictionary:dic];
                 [self.discountArray addObject:mainDodel];
-                
                 [self.collectionView.mj_header endRefreshing];
             }
         }

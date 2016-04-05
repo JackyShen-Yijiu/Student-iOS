@@ -64,7 +64,7 @@
         NSInteger totalCourse = [AcountManager manager].subjecttwo.totalcourse.integerValue;
         NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
-        NSInteger shengyuxueshi = [[AcountManager manager].subjecttwo.totalcourse integerValue] - [[AcountManager manager].subjecttwo.finishcourse integerValue];
+        NSInteger shengyuxueshi = [[AcountManager manager].subjecttwo.officialhours integerValue] - [AcountManager manager].subjecttwo.officialfinishhours;
 
         // 学习内容
         self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",[AcountManager manager].subjecttwo.progress];
@@ -84,6 +84,7 @@
             _yuekaoBtn.userInteractionEnabled = NO;
             _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_off"];
         }else {
+            self.shengxueshiLabel.hidden = YES;
             _yuekaoBtn.userInteractionEnabled = YES;
             _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_on"];
         }
@@ -97,7 +98,7 @@
         NSInteger totalCourse = [AcountManager manager].subjectthree.totalcourse.integerValue;
         NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
-        NSInteger shengyuxueshi = [[AcountManager manager].subjectthree.totalcourse integerValue] - [[AcountManager manager].subjectthree.finishcourse integerValue];
+        NSInteger shengyuxueshi = [[AcountManager manager].subjectthree.officialhours integerValue] - [AcountManager manager].subjectthree.officialfinishhours;
         
         // 学习内容
         self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",[AcountManager manager].subjectthree.progress];
@@ -118,6 +119,7 @@
             _yuekaoBtn.userInteractionEnabled = NO;
             _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_off"];
         }else {
+            self.shengxueshiLabel.hidden = YES;
             _yuekaoBtn.userInteractionEnabled = YES;
             _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_on"];
         }
