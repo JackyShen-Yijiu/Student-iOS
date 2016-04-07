@@ -9,10 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @interface YBIntegralMallModel : NSObject
+///  商品id
 @property (nonatomic,strong) NSString *productid;
+///  商品名字
 @property (nonatomic,strong) NSString *productname;
+///  商品价格
 @property (nonatomic,assign) NSInteger  productprice;
+///  商品图片
 @property (nonatomic,strong) NSString *productimg;
+///  商品详情
 @property (nonatomic,strong) NSString *productdesc;
 @property (nonatomic,assign) int  viewcount;
 @property (nonatomic,assign) int  buycount;

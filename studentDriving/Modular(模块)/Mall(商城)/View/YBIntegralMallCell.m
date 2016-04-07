@@ -13,6 +13,7 @@
 @property (nonatomic, strong) UIView *backView;
 @property (nonatomic, strong) UIImageView *mallImageView;
 @property (nonatomic, strong) UILabel *nameLabel;
+///  积分
 @property (nonatomic, strong) UILabel *integralLabel;
 @property (nonatomic, strong) UILabel *addressLabel;
 @property (nonatomic, strong) UILabel *surplusLabel;

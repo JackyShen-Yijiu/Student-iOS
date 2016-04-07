@@ -36,11 +36,11 @@ static NSString *kMallID = @"MallID";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     
-        // 加载积分商城
-        
-        YBIntegralMallCell *mallCell = [collectionView dequeueReusableCellWithReuseIdentifier:kMallID forIndexPath:indexPath];
-        mallCell.integralMallModel = self.shopMainListArray[indexPath.row];
-        return mallCell;
+    // 加载积分商城
+    
+    YBIntegralMallCell *mallCell = [collectionView dequeueReusableCellWithReuseIdentifier:kMallID forIndexPath:indexPath];
+    mallCell.integralMallModel = self.shopMainListArray[indexPath.row];
+    return mallCell;
     
 }
 
@@ -52,12 +52,12 @@ static NSString *kMallID = @"MallID";
         return;
     }
     
-            MagicDetailViewController *detailVC = [[MagicDetailViewController alloc] init];
-        detailVC.integralModel = _shopMainListArray[indexPath.row];
-        detailVC.mallWay = 0;
-        detailVC.hidesBottomBarWhenPushed = YES;
-        [self.viewController.navigationController pushViewController:detailVC animated:YES];
-    }
+    MagicDetailViewController *detailVC = [[MagicDetailViewController alloc] init];
+    detailVC.integralModel = _shopMainListArray[indexPath.row];
+    detailVC.mallWay = 0;
+    detailVC.hidesBottomBarWhenPushed = YES;
+    [self.viewController.navigationController pushViewController:detailVC animated:YES];
+}
 
 #pragma mark - collectionView flowLayout
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath {
