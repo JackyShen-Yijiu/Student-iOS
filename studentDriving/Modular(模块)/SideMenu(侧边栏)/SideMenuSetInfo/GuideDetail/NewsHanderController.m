@@ -135,7 +135,7 @@ static NSString *advantage = @"youshi.html";
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
+//    NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
     [_progressView removeFromSuperview];
     
 }

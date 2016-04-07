@@ -128,10 +128,10 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     }
     
     
-    NSString *realNameStr = nil;
-    NSString *realNickStr = nil;
-    NSString *realAddressStr = nil;
-    NSString *realSex = nil;
+    NSString *realNameStr = @"";
+    NSString *realNickStr = @"";
+    NSString *realAddressStr = @"";
+    NSString *realSex = @"";
     
     // 保存姓名
     realNameStr = self.nameCell.descriTextField.text;

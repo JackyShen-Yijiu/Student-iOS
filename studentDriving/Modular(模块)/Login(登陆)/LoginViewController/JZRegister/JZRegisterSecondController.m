@@ -30,6 +30,7 @@ static NSString *const kkregisterUser = @"userinfo/signup";
 @end
 @implementation JZRegisterSecondController
 - (void)viewDidLoad{
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"注册";
     [self initUI];

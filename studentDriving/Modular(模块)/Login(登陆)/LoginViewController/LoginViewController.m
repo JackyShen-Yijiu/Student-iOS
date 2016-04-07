@@ -339,6 +339,7 @@ static NSString *const kuserType = @"usertype";
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:YES];
     self.navigationController.navigationBarHidden = NO;
 }
 

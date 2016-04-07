@@ -475,8 +475,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (void)addContactUs {
     
-    UIButton *button = [UIButton new];
-    button = [[UIButton alloc] initWithFrame:CGRectMake(16, kSystemHeight - 64 - 56, kSystemWide - 16*2, 44)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(16, kSystemHeight - 64 - 56, kSystemWide - 16*2, 44)];
     button.layer.masksToBounds = YES;
     button.layer.cornerRadius = 4;
     button.titleLabel.font = [UIFont systemFontOfSize:14];
