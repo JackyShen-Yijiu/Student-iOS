@@ -52,13 +52,13 @@ alpha:1.0]
         
         NSDictionary *tagDict = arr[i];
         
-        NSString *_id = tagDict[@"_id"];
+//        NSString *_id = tagDict[@"_id"];
         NSString *color = tagDict[@"color"];
         NSString *tagname = tagDict[@"tagname"];
         if (tagname==nil) {
             tagname = tagDict[@"name"];
         }
-        NSString *tagtype = tagDict[@"tagtype"];
+//        NSString *tagtype = tagDict[@"tagtype"];
       
         NSLog(@"设置color:%@",color);
         

@@ -59,6 +59,8 @@
 @implementation APCommentViewController
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
+    
     [self.tableView reloadData];
 }
 - (void)viewDidLoad {

@@ -46,6 +46,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [super viewWillAppear:YES];
 //    for (UIViewController *viewCon in self.navigationController.viewControllers) {
 //        if ([viewCon isKindOfClass:[MyWalletViewController class]]) {
 //            MyWalletViewController *myWalletVC = (MyWalletViewController *)viewCon;
@@ -228,7 +229,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
     
-    NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
+//    NSString *string =  [self.webView stringByEvaluatingJavaScriptFromString:@"save()"];
     [_progressView removeFromSuperview];
     
 }
