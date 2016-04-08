@@ -48,6 +48,9 @@
         self.title = @"姓名";
         self.editTextFidld.placeholder = @"请输入姓名";
     }else if (_editType == YBEditUserInfoType_Sex) {
+//        _editTextFidld.userInteractionEnabled = NO;
+        _editTextFidld.clearButtonMode = UITextFieldViewModeNever;
+        _editTextFidld.tintColor = [UIColor clearColor];
         
         self.title = @"性别";
         self.editTextFidld.placeholder = @"请选择性别";
@@ -62,6 +65,7 @@
             }
         }else {
             _editTextFidld.text = @"男";
+            
         }
         
     }else if (_editType == YBEditUserInfoType_Mobile) {
@@ -140,6 +144,9 @@
         
     }else if (_editType == YBEditUserInfoType_Sex) {
         // 性别
+        _editTextFidld.clearButtonMode = UITextFieldViewModeNever;
+        _editTextFidld.userInteractionEnabled = NO;
+
         if ([_editTextFidld.text isEqualToString:@"男"] || [_editTextFidld.text isEqualToString:@"女"]) {
             paramsDict[@"gender"] = _editTextFidld.text;
         }else {

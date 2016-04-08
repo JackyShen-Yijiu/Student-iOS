@@ -292,7 +292,6 @@
 		B251E3BA1C8E849500E6613A /* SignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC4A1C8E849200E6613A /* SignUpController.m */; };
 		B251E3BB1C8E849500E6613A /* ModifyNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC4C1C8E849200E6613A /* ModifyNameViewController.m */; };
 		B251E3BC1C8E849500E6613A /* ModifyNickNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC4E1C8E849200E6613A /* ModifyNickNameViewController.m */; };
-		B251E3BD1C8E849500E6613A /* ModifyPhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC501C8E849200E6613A /* ModifyPhoneNumViewController.m */; };
 		B251E3BE1C8E849500E6613A /* MyExamCarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC521C8E849200E6613A /* MyExamCarViewController.m */; };
 		B251E3BF1C8E849500E6613A /* MyLoveCoachViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC541C8E849200E6613A /* MyLoveCoachViewController.m */; };
 		B251E3C01C8E849500E6613A /* MySaveViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DC561C8E849200E6613A /* MySaveViewController.m */; };
@@ -1009,6 +1008,7 @@
 		D5604CB91BF65DD50020F0D7 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CA11BF659690020F0D7 /* libstdc++.6.0.9.tbd */; };
 		D5604CBB1BF65E030020F0D7 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBA1BF65E030020F0D7 /* Twitter.framework */; };
 		D5604CBD1BF65E1F0020F0D7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBC1BF65E1F0020F0D7 /* Social.framework */; };
+		D906FAEA1CB762CB002BC2B8 /* PhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */; };
 		D96445121C91812600E7C29F /* YBAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445111C91812600E7C29F /* YBAppointmentListController.m */; };
 		D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445211C918D5200E7C29F /* YBCompletedAppointmentListController.m */; };
 		D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445291C91969100E7C29F /* YBAppointmentDetailController.m */; };
@@ -1593,8 +1593,6 @@
 		B251DC4C1C8E849200E6613A /* ModifyNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyNameViewController.m; sourceTree = "<group>"; };
 		B251DC4D1C8E849200E6613A /* ModifyNickNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyNickNameViewController.h; sourceTree = "<group>"; };
 		B251DC4E1C8E849200E6613A /* ModifyNickNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyNickNameViewController.m; sourceTree = "<group>"; };
-		B251DC4F1C8E849200E6613A /* ModifyPhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifyPhoneNumViewController.h; sourceTree = "<group>"; };
-		B251DC501C8E849200E6613A /* ModifyPhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ModifyPhoneNumViewController.m; sourceTree = "<group>"; };
 		B251DC511C8E849200E6613A /* MyExamCarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyExamCarViewController.h; sourceTree = "<group>"; };
 		B251DC521C8E849200E6613A /* MyExamCarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyExamCarViewController.m; sourceTree = "<group>"; };
 		B251DC531C8E849200E6613A /* MyLoveCoachViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyLoveCoachViewController.h; sourceTree = "<group>"; };
@@ -2955,6 +2953,8 @@
 		D5604CBA1BF65E030020F0D7 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		D5604CBC1BF65E1F0020F0D7 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D588AF861BDDB62C000C5D6F /* studentDriving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = studentDriving.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D906FAE81CB762CB002BC2B8 /* PhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumViewController.h; sourceTree = "<group>"; };
+		D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumViewController.m; sourceTree = "<group>"; };
 		D96445101C91812600E7C29F /* YBAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListController.h; sourceTree = "<group>"; };
 		D96445111C91812600E7C29F /* YBAppointmentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListController.m; sourceTree = "<group>"; };
 		D96445201C918D5200E7C29F /* YBCompletedAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentListController.h; sourceTree = "<group>"; };
@@ -3938,10 +3938,10 @@
 				B251DC1C1C8E849200E6613A /* HomeMainController */,
 				B251DC4B1C8E849200E6613A /* ModifyNameViewController.h */,
 				B251DC4C1C8E849200E6613A /* ModifyNameViewController.m */,
+				D906FAE81CB762CB002BC2B8 /* PhoneNumViewController.h */,
+				D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */,
 				B251DC4D1C8E849200E6613A /* ModifyNickNameViewController.h */,
 				B251DC4E1C8E849200E6613A /* ModifyNickNameViewController.m */,
-				B251DC4F1C8E849200E6613A /* ModifyPhoneNumViewController.h */,
-				B251DC501C8E849200E6613A /* ModifyPhoneNumViewController.m */,
 				B251DC511C8E849200E6613A /* MyExamCarViewController.h */,
 				B251DC521C8E849200E6613A /* MyExamCarViewController.m */,
 				B251DC531C8E849200E6613A /* MyLoveCoachViewController.h */,
@@ -7498,7 +7498,6 @@
 				B251E56F1C8E849500E6613A /* DVVCoachDetailDMTrainfieldlinfo.m in Sources */,
 				B251E5FA1C8E849500E6613A /* EMAudioRecorderUtil.m in Sources */,
 				B251E3301C8E849500E6613A /* SubjectModel.m in Sources */,
-				B251E3BD1C8E849500E6613A /* ModifyPhoneNumViewController.m in Sources */,
 				B251E59B1C8E849500E6613A /* DrivingDetailDMData.m in Sources */,
 				B251E2FA1C8E849500E6613A /* JGCoachDetailViewController.m in Sources */,
 				064BD60B1C914C6D0021C116 /* JZRegisterController.m in Sources */,
@@ -7548,6 +7547,7 @@
 				B251E3F91C8E849500E6613A /* HMRecomendModel.m in Sources */,
 				B251E6DD1C8E856E00E6613A /* IWBadgeButton.m in Sources */,
 				B251E31F1C8E849500E6613A /* CoachModel.m in Sources */,
+				D906FAEA1CB762CB002BC2B8 /* PhoneNumViewController.m in Sources */,
 				B2EEBCB61CA1396A00846656 /* DVVSignUpDetailFooterView.m in Sources */,
 				B2FD3C9B1CB7E78400DCE88D /* ScrollViewPage.m in Sources */,
 				B251E3C71C8E849500E6613A /* UserCenterViewController.m in Sources */,

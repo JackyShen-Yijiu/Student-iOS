@@ -9,7 +9,7 @@
 #import "EditorUserViewController.h"
 #import "PFActionSheetView.h"
 #import "JEPhotoPickManger.h"
-#import "ModifyPhoneNumViewController.h"
+#import "PhoneNumViewController.h"
 #import "GenderViewController.h"
 #import "SignatureViewController.h"
 #import "ModifyNameViewController.h"
@@ -138,7 +138,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     if (indexPath.section == 0 && indexPath.row == 0) {
         [JEPhotoPickManger pickPhotofromController:self];
     }else if (indexPath.section == 1 && indexPath.row == 0) {
-        ModifyPhoneNumViewController *modify = [[ModifyPhoneNumViewController alloc] init];
+        PhoneNumViewController *modify = [[PhoneNumViewController alloc] init];
         [self.navigationController pushViewController:modify animated:YES];
     }else if (indexPath.section == 0 && indexPath.row == 1) {
         ModifyNameViewController *modifyName = [[ModifyNameViewController alloc] init];
