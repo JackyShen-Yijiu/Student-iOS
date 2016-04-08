@@ -12,7 +12,7 @@
 #import "DVVImagePickerControllerManager.h"
 #import <QiniuSDK.h>
 #import "YBEditUserInfoController.h"
-#import "ModifyPhoneNumViewController.h"
+#import "PhoneNumViewController.h"
 #import "MySaveViewController.h"
 #import "YBOrderListViewController.h"
 
@@ -211,7 +211,7 @@ static NSString *cellIdentifier = @"kCellIdentifier";
     }else if (1 == indexPath.section) {
         
         if (3 == indexPath.row) {
-            ModifyPhoneNumViewController *vc = [ModifyPhoneNumViewController new];
+            PhoneNumViewController *vc = [PhoneNumViewController new];
             [self.navigationController pushViewController:vc animated:YES];
             return ;
         }
