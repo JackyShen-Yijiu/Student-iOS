@@ -74,8 +74,6 @@
 #pragma mark - life cycle
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     ((AppDelegate *)([UIApplication sharedApplication].delegate)).window.backgroundColor = YBNavigationBarBgColor;
     
     self.edgesForExtendedLayout = NO;
@@ -561,10 +559,6 @@
     if (!_toolBarView) {
         _toolBarView = [DVVSignUpToolBarView new];
         _toolBarView.backgroundColor = [UIColor whiteColor];;
-//        _toolBarView.layer.shadowColor = [UIColor blackColor].CGColor;
-//        _toolBarView.layer.shadowOffset = CGSizeMake(0, 2);
-//        _toolBarView.layer.shadowOpacity = 0.3;
-//        _toolBarView.layer.shadowRadius = 2;
         _toolBarView.titleNormalColor = [UIColor colorWithHexString:@"6e6e6e"];
         _toolBarView.titleSelectColor = [UIColor colorWithHexString:@"6e6e6e"];
         _toolBarView.textAlignment = NSTextAlignmentLeft;
@@ -597,15 +591,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
