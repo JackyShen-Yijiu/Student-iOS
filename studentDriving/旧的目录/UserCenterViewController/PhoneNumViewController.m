@@ -8,6 +8,8 @@
 
 #import "PhoneNumViewController.h"
 #import "UIDevice+JEsystemVersion.h"
+#import "NSUserStoreTool.h"
+
 //#import "ToolHeader.h"
 //static NSString *const kupdateUserInfo = @"userinfo/updatecoachinfo";
 static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
@@ -121,7 +123,7 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     [self.confirmTextField addSubview:self.gainNum];
     [self.view addSubview:self.bgView];
     
-//    [self.modifyNameTextField becomeFirstResponder];
+    //    [self.modifyNameTextField becomeFirstResponder];
 }
 - (void)clickLeft:(UIButton *)sender {
     if (self.modifyNameTextField.text == nil || self.modifyNameTextField.text.length == 0) {
@@ -141,47 +143,52 @@ static NSString *const kuserUpdateMobileNum = @"userinfo/updatemobile";
     
     BOOL isRight = [self isValidateMobile:_modifyNameTextField.text];
     if (!isRight) {
-  
+        
         [self obj_showTotasViewWithMes:@"请输入正确的手机号码"];
-
+        
         return;
     }
     if (_confirmTextField.text == nil || [_confirmTextField.text isEqualToString:@""]) {
-
+        
         [self obj_showTotasViewWithMes:@"请输入验证码"];
         return;
     }
-        NSDictionary *param = @{@"smscode":self.confirmTextField.text,@"mobile":self.modifyNameTextField.text,@"usertype":@1};
-//    coachChangePhoneNumber:_modifyNameTextField.text smscode:_confirmTextField.text userType:2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    NSDictionary *param = @{@"smscode":self.confirmTextField.text,@"mobile":self.modifyNameTextField.text,@"usertype":@1};
+    //    coachChangePhoneNumber:_modifyNameTextField.text smscode:_confirmTextField.text userType:2 success:^(AFHTTPRequestOperation *operation, id responseObject) {
     NSString *kupdateMobileNum = [NSString stringWithFormat:BASEURL,kuserUpdateMobileNum];
     NSLog(@"kupdateMobileNum = %@",kupdateMobileNum);
     
     [JENetwoking startDownLoadWithUrl:kupdateMobileNum postParam:param WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         NSDictionary *dataParam = data;
-        NSNumber *messege = dataParam[@"type"];
         NSString *msg = [NSString stringWithFormat:@"%@",dataParam[@"msg"]];
         
-        if (messege.intValue == 1) {
-
+        if ([dataParam[@"type"] integerValue] == 1) {
+            
             [self obj_showTotasViewWithMes:@"修改成功"];
+            
             [AcountManager saveUserPhoneNum:self.modifyNameTextField.text];
-            [[NSNotificationCenter defaultCenter] postNotificationName:kPhoneNumChange object:nil];
+            
+            [NSUserStoreTool storeWithId:self.modifyNameTextField.text WithKey:@"mobile"];
+            
+//            [[NSNotificationCenter defaultCenter] postNotificationName:kPhoneNumChange object:nil];
+            
             [self.navigationController popViewControllerAnimated:YES];
+            
         }else {
-
+            
             [self obj_showTotasViewWithMes:msg];
         }
-
+        
         
     } withFailure:^(id data) {
-
+        
         
         [self obj_showTotasViewWithMes:@"网络错误"];
     }];
     
     
     
-
+    
     
     
     
