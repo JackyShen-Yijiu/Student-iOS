@@ -1,5 +1,5 @@
 //
-//  NSDateFormatter+shareDate.h
+//  NSDateFormatter+sharedDateFormatter.h
 //  dataPickerView复习
 //
 //  Created by 雷凯 on 16/4/8.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSDateFormatter (shareDate)
+@interface NSDateFormatter (sharedDateFormatter)
 + (instancetype)sharedDateFormatter;
 
 @end

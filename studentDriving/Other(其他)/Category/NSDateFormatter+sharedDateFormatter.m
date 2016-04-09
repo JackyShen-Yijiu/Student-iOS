@@ -1,14 +1,14 @@
 //
-//  NSDateFormatter+shareDate.m
+//  NSDateFormatter+sharedDateFormatter.m
 //  dataPickerView复习
 //
 //  Created by 雷凯 on 16/4/8.
 //  Copyright © 2016年 leifaxian. All rights reserved.
 //
 
-#import "NSDateFormatter+shareDate.h"
+#import "NSDateFormatter+sharedDateFormatter.h"
 
-@implementation NSDateFormatter (shareDate)
+@implementation NSDateFormatter (sharedDateFormatter)
 + (instancetype)sharedDateFormatter
 {
     static NSDateFormatter *_dateFormatter;
