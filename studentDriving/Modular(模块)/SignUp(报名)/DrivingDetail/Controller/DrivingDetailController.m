@@ -575,7 +575,7 @@
         _toolBarView.followBarColor = [UIColor lightGrayColor];
         _toolBarView.followBarHeight = 0.5;
         _toolBarView.followBarAlpha = 0.3;
-        _toolBarView.titleArray = @[@"课程班型"];
+        _toolBarView.titleArray = @[@"班型列表"];
 
         __weak typeof(self) ws = self;
         [_toolBarView dvvToolBarViewItemSelected:^(UIButton *button) {
