@@ -47,6 +47,7 @@
 #import "YBModelDataMacro.h"
 #import "Singleton.h"
 #import "UIBarButtonItem+YBBarButtonItem.h"
+#import "NSDateFormatter+sharedDateFormatter.h"
 
 // 环信appKey
 #define easeMobAPPkey @"black-cat#jizhijaifu"

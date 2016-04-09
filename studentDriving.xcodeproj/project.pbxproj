@@ -1035,6 +1035,7 @@
 		D976764F1C97E0F10033221E /* YBCompletedAppointmentListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97676481C97E0F10033221E /* YBCompletedAppointmentListCell.xib */; };
 		D97676531C97E1940033221E /* YBAppointmentListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D97676521C97E1940033221E /* YBAppointmentListViewModel.m */; };
 		D998555C1C9658840090036D /* YBCompletedAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D998555B1C9658840090036D /* YBCompletedAppointmentDetailController.m */; };
+		D9DEA0A61CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DEA0A51CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3004,6 +3005,8 @@
 		D97676521C97E1940033221E /* YBAppointmentListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListViewModel.m; sourceTree = "<group>"; };
 		D998555A1C9658840090036D /* YBCompletedAppointmentDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentDetailController.h; sourceTree = "<group>"; };
 		D998555B1C9658840090036D /* YBCompletedAppointmentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCompletedAppointmentDetailController.m; sourceTree = "<group>"; };
+		D9DEA0A41CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+sharedDateFormatter.h"; sourceTree = "<group>"; };
+		D9DEA0A51CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+sharedDateFormatter.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -6253,6 +6256,8 @@
 				B251E1EB1C8E849400E6613A /* NSDate+Category.m */,
 				B251E1EC1C8E849400E6613A /* NSDateFormatter+Category.h */,
 				B251E1ED1C8E849400E6613A /* NSDateFormatter+Category.m */,
+				D9DEA0A41CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.h */,
+				D9DEA0A51CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m */,
 				B251E1EE1C8E849400E6613A /* NSString+CurrentTimeDay.h */,
 				B251E1EF1C8E849400E6613A /* NSString+CurrentTimeDay.m */,
 				B251E1F01C8E849400E6613A /* NSString+DY_MD5.h */,
@@ -7401,6 +7406,7 @@
 				062F5B1E1C9BA8D10057FE5E /* YBComplaintController.m in Sources */,
 				B251E56E1C8E849500E6613A /* DVVCoachDetailDMTrainfield.m in Sources */,
 				B2EEBCB41CA1396A00846656 /* DVVPaySuccessView.m in Sources */,
+				D9DEA0A61CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m in Sources */,
 				B251E3AF1C8E849500E6613A /* HomeShowKnowController.m in Sources */,
 				B251E3BB1C8E849500E6613A /* ModifyNameViewController.m in Sources */,
 				060106AA1C97C0F90084379F /* JZPayWayController.m in Sources */,
