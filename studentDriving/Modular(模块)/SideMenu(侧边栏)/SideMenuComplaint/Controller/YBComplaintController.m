@@ -79,12 +79,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 //    navBarHairlineImageView.hidden = NO;
 
 }
 - (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:YES];
 //    navBarHairlineImageView.hidden=NO;
 }
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {

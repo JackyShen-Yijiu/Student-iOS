@@ -19,6 +19,8 @@
 #import "YBCheatsViewController.h"
 #import "MyConsultationListController.h"
 
+#import "YBSubjectOneViewController.h"
+
 #define kCellIdentifier @"YBStudyViewCell"
 
 @interface YBStudyTableView () <UITableViewDataSource, UITableViewDelegate>
@@ -106,11 +108,14 @@
             if (indexPath.row==0) {
     
                 NSLog(@"self.questiontesturl:%@",self.questiontesturl);
+                YBSubjectOneViewController *vc = [[YBSubjectOneViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:vc animated:YES];
                 
-                QuestionTestViewController *questionVC = [[QuestionTestViewController alloc] init];
-                questionVC.hidesBottomBarWhenPushed = YES;
-                questionVC.questiontesturl = self.questiontesturl;
-                [self.parentViewController.navigationController pushViewController:questionVC animated:YES];
+//                QuestionTestViewController *questionVC = [[QuestionTestViewController alloc] init];
+//                questionVC.hidesBottomBarWhenPushed = YES;
+//                questionVC.questiontesturl = self.questiontesturl;
+//                [self.parentViewController.navigationController pushViewController:questionVC animated:YES];
 
             }else if (indexPath.row==1){
                 

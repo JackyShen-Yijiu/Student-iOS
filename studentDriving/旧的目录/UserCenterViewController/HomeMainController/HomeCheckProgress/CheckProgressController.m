@@ -261,7 +261,7 @@ static NSString *const kcheckProgressUrl = @"userinfo/enrollverificationv2";
     
     // 向后台提交数据
     
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kcheckProgressUrl];
+//    NSString *urlString = [NSString stringWithFormat:BASEURL,kcheckProgressUrl];
         [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 /*
  "name": "李亚飞",

@@ -36,6 +36,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
 
 @implementation JZRegisterController
 - (void)viewDidLoad{
+    [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"注册";
     

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15A4310" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
@@ -14,7 +14,6 @@
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="finish" translatesAutoresizingMaskIntoConstraints="NO" id="HEN-Y7-F6a">
                     <rect key="frame" x="273" y="95" width="57" height="52"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="57" id="7i7-Nc-MF1"/>
                         <constraint firstAttribute="height" constant="52" id="tuX-vX-Rjx"/>
@@ -22,7 +21,6 @@
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我们已经收到了您的订单,我们将尽快把商品" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9C7-NT-Alv">
                     <rect key="frame" x="40" y="275" width="523" height="21"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="UKE-eq-FR8"/>
                     </constraints>
@@ -32,7 +30,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="送到您手中,祝您愉快!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ugu-OR-1Xt">
                     <rect key="frame" x="231" y="293" width="180" height="15"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="180" id="fyc-Xl-6ez"/>
                         <constraint firstAttribute="height" constant="15" id="yHe-rL-5GF"/>
@@ -43,7 +40,6 @@
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="交易成功" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gTT-qs-qeM">
                     <rect key="frame" x="191" y="188" width="220" height="44"/>
-                    <animations/>
                     <constraints>
                         <constraint firstAttribute="width" constant="220" id="IBC-Ed-OPT"/>
                         <constraint firstAttribute="height" constant="44" id="q7H-co-YI2"/>
@@ -54,7 +50,6 @@
                 </label>
                 <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfd-ET-1iR">
                     <rect key="frame" x="100" y="332" width="402" height="29"/>
-                    <animations/>
                     <color key="backgroundColor" red="1" green="0.36510210749999999" blue="0.2063328844" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="29" id="Qou-ll-7vg"/>
@@ -70,7 +65,6 @@
                     </userDefinedRuntimeAttributes>
                 </button>
             </subviews>
-            <animations/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="gTT-qs-qeM" firstAttribute="top" secondItem="HEN-Y7-F6a" secondAttribute="bottom" constant="41" id="Dy2-3e-A0K"/>

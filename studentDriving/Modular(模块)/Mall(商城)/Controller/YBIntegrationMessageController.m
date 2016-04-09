@@ -15,7 +15,9 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 @interface YBIntegrationMessageController ()<UITableViewDelegate,UITableViewDataSource>
 @property (nonatomic, strong) UITableView *tabelView;
 @property (nonatomic, strong) UIView *bgView;
+///  YB的Label
 @property (nonatomic, strong) UILabel *moneyLabel;
+///  立即兑换的按钮
 @property (nonatomic, strong) UIButton *exchangeButton;
 
 @property (nonatomic, strong) NSArray *titleIntegrationArray;
@@ -279,7 +281,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
         if (0 == _mallWay) {
             // 积分商城
             
-            _moneyLabel.text = [NSString stringWithFormat:@"需支付:%dYB",_integraMallModel.productprice];
+            _moneyLabel.text = [NSString stringWithFormat:@"需支付:%luYB",_integraMallModel.productprice];
         }else if (1 == _mallWay){
             // 兑换劵商城
             _moneyLabel.text = @"需要消费一张兑换劵";
