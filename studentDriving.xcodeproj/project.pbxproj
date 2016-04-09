@@ -993,10 +993,10 @@
 		B2EEBDE41CA2B54500846656 /* refresh_student_one.gif in Resources */ = {isa = PBXBuildFile; fileRef = B2EEBDE21CA2B54500846656 /* refresh_student_one.gif */; };
 		B2EEBDE51CA2B54500846656 /* refresh_student_two.gif in Resources */ = {isa = PBXBuildFile; fileRef = B2EEBDE31CA2B54500846656 /* refresh_student_two.gif */; };
 		B2FD3C931CB7E73F00DCE88D /* YBSubjectOneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3C921CB7E73F00DCE88D /* YBSubjectOneViewController.m */; };
-		B2FD3C991CB7E78400DCE88D /* PageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3C951CB7E78400DCE88D /* PageTableViewCell.m */; };
-		B2FD3C9A1CB7E78400DCE88D /* PageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FD3C961CB7E78400DCE88D /* PageTableViewCell.xib */; };
-		B2FD3C9B1CB7E78400DCE88D /* ScrollViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3C981CB7E78400DCE88D /* ScrollViewPage.m */; };
 		B2FD3C9D1CB7E7BB00DCE88D /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B2FD3C9C1CB7E7BB00DCE88D /* ggtkFile.zip */; };
+		B2FD3CA01CB8A4D600DCE88D /* ScrollViewPage.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3C9F1CB8A4D600DCE88D /* ScrollViewPage.m */; };
+		B2FD3CA41CB8A4E400DCE88D /* PageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3CA21CB8A4E400DCE88D /* PageTableViewCell.m */; };
+		B2FD3CA51CB8A4E400DCE88D /* PageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FD3CA31CB8A4E400DCE88D /* PageTableViewCell.xib */; };
 		D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */; };
 		D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9D1BF659480020F0D7 /* CFNetwork.framework */; };
 		D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */; };
@@ -2933,12 +2933,12 @@
 		B2EEBDE31CA2B54500846656 /* refresh_student_two.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = refresh_student_two.gif; sourceTree = "<group>"; };
 		B2FD3C911CB7E73F00DCE88D /* YBSubjectOneViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectOneViewController.h; sourceTree = "<group>"; };
 		B2FD3C921CB7E73F00DCE88D /* YBSubjectOneViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectOneViewController.m; sourceTree = "<group>"; };
-		B2FD3C941CB7E78400DCE88D /* PageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PageTableViewCell.h; path = "../../../../../../../代码资源/ScollViewPage/ScollViewPage/PageTableViewCell.h"; sourceTree = "<group>"; };
-		B2FD3C951CB7E78400DCE88D /* PageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PageTableViewCell.m; path = "../../../../../../../代码资源/ScollViewPage/ScollViewPage/PageTableViewCell.m"; sourceTree = "<group>"; };
-		B2FD3C961CB7E78400DCE88D /* PageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PageTableViewCell.xib; path = "../../../../../../../代码资源/ScollViewPage/ScollViewPage/PageTableViewCell.xib"; sourceTree = "<group>"; };
-		B2FD3C971CB7E78400DCE88D /* ScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ScrollViewPage.h; path = "../../../../../../../代码资源/ScollViewPage/ScollViewPage/ScrollViewPage.h"; sourceTree = "<group>"; };
-		B2FD3C981CB7E78400DCE88D /* ScrollViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ScrollViewPage.m; path = "../../../../../../../代码资源/ScollViewPage/ScollViewPage/ScrollViewPage.m"; sourceTree = "<group>"; };
 		B2FD3C9C1CB7E7BB00DCE88D /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; name = ggtkFile.zip; path = ../../../../../../../ggtkFile.zip; sourceTree = "<group>"; };
+		B2FD3C9E1CB8A4D600DCE88D /* ScrollViewPage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewPage.h; sourceTree = "<group>"; };
+		B2FD3C9F1CB8A4D600DCE88D /* ScrollViewPage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewPage.m; sourceTree = "<group>"; };
+		B2FD3CA11CB8A4E400DCE88D /* PageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PageTableViewCell.h; sourceTree = "<group>"; };
+		B2FD3CA21CB8A4E400DCE88D /* PageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PageTableViewCell.m; sourceTree = "<group>"; };
+		B2FD3CA31CB8A4E400DCE88D /* PageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageTableViewCell.xib; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -6872,11 +6872,11 @@
 		B2FD3C901CB7E70200DCE88D /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B2FD3C941CB7E78400DCE88D /* PageTableViewCell.h */,
-				B2FD3C951CB7E78400DCE88D /* PageTableViewCell.m */,
-				B2FD3C961CB7E78400DCE88D /* PageTableViewCell.xib */,
-				B2FD3C971CB7E78400DCE88D /* ScrollViewPage.h */,
-				B2FD3C981CB7E78400DCE88D /* ScrollViewPage.m */,
+				B2FD3CA11CB8A4E400DCE88D /* PageTableViewCell.h */,
+				B2FD3CA21CB8A4E400DCE88D /* PageTableViewCell.m */,
+				B2FD3CA31CB8A4E400DCE88D /* PageTableViewCell.xib */,
+				B2FD3C9E1CB8A4D600DCE88D /* ScrollViewPage.h */,
+				B2FD3C9F1CB8A4D600DCE88D /* ScrollViewPage.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7079,7 +7079,6 @@
 				B251E6011C8E849500E6613A /* EaseMob.bundle in Resources */,
 				B251E4581C8E849500E6613A /* VoiceSearchFeedback008@2x.png in Resources */,
 				B251E4D51C8E849500E6613A /* chat_sender_bg@2x.png in Resources */,
-				B2FD3C9A1CB7E78400DCE88D /* PageTableViewCell.xib in Resources */,
 				B251E4DD1C8E849500E6613A /* group_detail@2x.png in Resources */,
 				B251E4D31C8E849500E6613A /* chat_sender_audio_playing_full@2x.png in Resources */,
 				B251E4B91C8E849500E6613A /* chatBar_more_photo.png in Resources */,
@@ -7151,6 +7150,7 @@
 				B2EEBCB51CA1396A00846656 /* DVVPaySuccessView.xib in Resources */,
 				B251E53B1C8E849500E6613A /* YBUserCenterHeaderCell.xib in Resources */,
 				B251E45D1C8E849500E6613A /* VoiceSearchFeedback011.png in Resources */,
+				B2FD3CA51CB8A4E400DCE88D /* PageTableViewCell.xib in Resources */,
 				062F5B2F1C9C31A20057FE5E /* ShuttleBusCell.xib in Resources */,
 				B251E49B1C8E849500E6613A /* chatBar_moreSelected.png in Resources */,
 				B251E4A21C8E849500E6613A /* chatBar_recordSelected@2x.png in Resources */,
@@ -7452,7 +7452,6 @@
 				B20E59411C97C04B00912F5A /* DataMD5.m in Sources */,
 				B251E3191C8E849500E6613A /* AppointmentCoachModel.m in Sources */,
 				B251E66D1C8E849500E6613A /* UINavigationItem+DVVBackItem.m in Sources */,
-				B2FD3C991CB7E78400DCE88D /* PageTableViewCell.m in Sources */,
 				B251E5151C8E849500E6613A /* PrivateMessageCell.m in Sources */,
 				B251E38E1C8E849500E6613A /* QuestionTestViewController.m in Sources */,
 				B22312E11C9D5D2F001D6EC2 /* OLImageView.m in Sources */,
@@ -7549,7 +7548,6 @@
 				B251E31F1C8E849500E6613A /* CoachModel.m in Sources */,
 				D906FAEA1CB762CB002BC2B8 /* PhoneNumViewController.m in Sources */,
 				B2EEBCB61CA1396A00846656 /* DVVSignUpDetailFooterView.m in Sources */,
-				B2FD3C9B1CB7E78400DCE88D /* ScrollViewPage.m in Sources */,
 				B251E3C71C8E849500E6613A /* UserCenterViewController.m in Sources */,
 				B251E4291C8E849500E6613A /* DXRecordView.m in Sources */,
 				B2EEBC171CA12E3400846656 /* YBUserApplyclasstypeinfo.m in Sources */,
@@ -7662,6 +7660,7 @@
 				B251E3A01C8E849500E6613A /* ThirdViewController.m in Sources */,
 				B251E3CF1C8E849500E6613A /* WMNavigationController.m in Sources */,
 				B2EEBC541CA1373300846656 /* CoachListViewModel.m in Sources */,
+				B2FD3CA41CB8A4E400DCE88D /* PageTableViewCell.m in Sources */,
 				B2EEBD5E1CA13F9200846656 /* UIBarButtonItem+JGBarButtonItem.m in Sources */,
 				B251E41F1C8E849500E6613A /* RealtimeSearchUtil.m in Sources */,
 				B251E42D1C8E849500E6613A /* EMChatLocationBubbleView.m in Sources */,
@@ -7930,6 +7929,7 @@
 				B251E3541C8E849500E6613A /* DiscountWalletCell.m in Sources */,
 				B251E31A1C8E849500E6613A /* AppointmentCoachTimeInfoModel.m in Sources */,
 				B251E43C1C8E849500E6613A /* BaseViewController.m in Sources */,
+				B2FD3CA01CB8A4D600DCE88D /* ScrollViewPage.m in Sources */,
 				B2EEBCC41CA139D200846656 /* YBSignUpSuccessApplyschoolinfo.m in Sources */,
 				B251E32E1C8E849500E6613A /* StudentModel.m in Sources */,
 				B251E4111C8E849500E6613A /* JGAppointMentCell.m in Sources */,
