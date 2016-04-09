@@ -348,14 +348,19 @@
         }else if (indexPath.row == 2){
             
             cell.leftLabel.text = @"通过率:";
-            cell.detailsLabel.text = [NSString stringWithFormat:@"%ld%",(long)_viewModel.dmData.passingrate];
+            cell.detailsLabel.text = [NSString stringWithFormat:@"%ld%%",(long)_viewModel.dmData.passingrate];
             cell.detailsLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
             cell.imgView.image = [UIImage imageNamed:@"YBDringDetailspass"];
 
         }else if (indexPath.row == 3){
             
             cell.leftLabel.text = @"营业时间:";
-            cell.detailsLabel.text = [NSString stringWithFormat:@"%@",_viewModel.dmData.hours];
+            if (_viewModel.dmData.hours == nil || [_viewModel.dmData.hours isEqualToString:@""]) {
+                 cell.detailsLabel.text  = @"暂无";
+            }else{
+                cell.detailsLabel.text = [NSString stringWithFormat:@"%@",_viewModel.dmData.hours];
+            }
+            
             cell.detailsLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
             cell.imgView.image = [UIImage imageNamed:@"YBDringDetailstime"];
             cell.delive.hidden = YES;
