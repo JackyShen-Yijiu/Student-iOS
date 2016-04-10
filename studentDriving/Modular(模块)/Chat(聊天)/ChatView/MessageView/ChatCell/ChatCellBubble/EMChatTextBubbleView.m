@@ -186,6 +186,8 @@ NSString *const kRouterEventTextURLTapEventName = @"kRouterEventTextURLTapEventN
     
     CTFrameRef frame = CTFramesetterCreateFrame(framesetter, CFRangeMake(0, [self.textLabel.attributedText length]), path, NULL);
     
+    
+    
     if (frame == NULL) {
         CFRelease(path);
         return NSNotFound;

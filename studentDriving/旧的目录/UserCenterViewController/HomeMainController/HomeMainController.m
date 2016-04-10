@@ -128,6 +128,8 @@ static NSString *kConversationChatter = @"ConversationChatter";
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:YES];
     //存值用来消除登出再登入时小车还在原位的问题；
     NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
     if ([ud integerForKey:@"isCarReset"] == 1) {

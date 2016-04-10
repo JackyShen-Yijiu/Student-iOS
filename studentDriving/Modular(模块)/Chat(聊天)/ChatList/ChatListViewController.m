@@ -23,6 +23,7 @@
 #import "DVVSideMenu.h"
 #import "YBAppointMentNoCountentView.h"
 #import "JGUserTools.h"
+#import "DVVNoDataPromptView.h"
 
 @implementation EMConversation (search)
 
@@ -52,7 +53,7 @@
 
 @property (strong, nonatomic) EMSearchDisplayController *searchController;
 
-@property (nonatomic,strong) YBAppointMentNoCountentView *noCountmentView;
+@property (nonatomic, strong)  DVVNoDataPromptView *bgView;
 
 @end
 
@@ -97,7 +98,7 @@
     [self.view addSubview:self.tableView];
     [self.tableView addSubview:self.slimeView];
     [self networkStateView];
-    [self.view addSubview:self.noCountmentView];
+    [self.view addSubview:self.bgView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshDataSource) name:KNOTIFICATION_USERLOADED object:nil];
     
@@ -425,20 +426,14 @@
     return cell;
 }
 
-- (YBAppointMentNoCountentView *)noCountmentView
-{
-    if (_noCountmentView==nil) {
-        _noCountmentView = [[YBAppointMentNoCountentView alloc] init];
-        _noCountmentView.frame = self.view.bounds;
-        _noCountmentView.hidden = YES;
-        _noCountmentView.img.image = [UIImage imageNamed:@"YBNocountentimage_message"];
-        _noCountmentView.label1.text = @"没有找到您的聊天信息\n您可以通过预约教练和相邻时段学员发起聊天";
+- (DVVNoDataPromptView *)bgView{
+    if (_bgView == nil) {
+        _bgView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您的聊天信息\n您可以通过预约教练和相邻时段学员发起聊天" image:[UIImage imageNamed:@"YBNocountentimage_message"] subTitle:nil];
     }
-    return _noCountmentView;
+    return _bgView;
 }
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    self.noCountmentView.hidden = self.dataSource.count;
+    self.bgView.hidden = self.dataSource.count;
     return  self.dataSource.count;
 }
 

@@ -100,11 +100,6 @@
         [self.navigationController pushViewController:thorVC animated:YES];
     
     }
-    else if (2 == indexPath.row){
-        // 新手上路
-        NewsHanderController *newsHanderVC = [[NewsHanderController alloc] init];
-        [self.navigationController pushViewController:newsHanderVC animated:YES];
-    }
     else if (3 == indexPath.row){
         // 常见问题
         FrequentlyController *frequentVC = [[FrequentlyController alloc] init];

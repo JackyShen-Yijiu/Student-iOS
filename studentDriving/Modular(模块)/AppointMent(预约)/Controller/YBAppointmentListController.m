@@ -83,6 +83,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [_viewModel dvv_networkRequestRefresh];
 }
 - (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:YES];
     // 请求评论数据
     if (_isShowComplaintView) {
         [self loadCommentList];

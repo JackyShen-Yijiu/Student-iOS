@@ -93,7 +93,7 @@
     if (!_cycleShowImagesView) {
         _cycleShowImagesView = [DVVCycleShowImagesView new];
         [_cycleShowImagesView setPageControlLocation:0 isCycle:YES];
-        _cycleShowImagesView.placeImage = [UIImage imageNamed:@"cycleshowimages_icon.jpg"];
+        _cycleShowImagesView.placeImage = [UIImage imageNamed:@"school_pic.jpg"];
     }
     return _cycleShowImagesView;
 }

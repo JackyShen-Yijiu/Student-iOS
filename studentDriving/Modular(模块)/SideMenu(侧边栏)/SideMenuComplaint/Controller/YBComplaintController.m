@@ -79,12 +79,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
     // 隐藏导航条底部分割线
     navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
 //    navBarHairlineImageView.hidden = NO;
 
 }
 - (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:YES];
 //    navBarHairlineImageView.hidden=NO;
 }
 - (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
@@ -163,7 +165,7 @@
 - (UIView *)bgView{
     if (_bgView == nil) {
         _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 50)];
-        _bgView.backgroundColor = YBNavigationBarBgColor;
+        _bgView.backgroundColor = [UIColor whiteColor];
         
     }
     return _bgView;
@@ -173,8 +175,8 @@
         _coachButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _coachButton.frame = CGRectMake(0, 0, self.view.frame.size.width / 2, 48);
         _coachButton.backgroundColor = [UIColor clearColor];
-        [_coachButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_coachButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateSelected];
+        [_coachButton setTitleColor:TEXTGRAYCOLOR forState:UIControlStateNormal];
+        [_coachButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_coachButton setTitle:@"投诉教练" forState:UIControlStateNormal];
         _coachButton.titleLabel.font = [UIFont systemFontOfSize:14];
         _coachButton.selected = YES;
@@ -188,8 +190,8 @@
         _shchoolButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _shchoolButton.frame = CGRectMake(self.view.frame.size.width / 2, 0, self.view.frame.size.width / 2, 48);
         _shchoolButton.backgroundColor = [UIColor clearColor];
-        [_shchoolButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_shchoolButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateSelected];
+        [_shchoolButton setTitleColor:TEXTGRAYCOLOR forState:UIControlStateNormal];
+        [_shchoolButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
         [_shchoolButton setTitle:@"投诉驾校" forState:UIControlStateNormal];
          _shchoolButton.titleLabel.font = [UIFont systemFontOfSize:14];
         [_shchoolButton addTarget:self action:@selector(didClickSchool:) forControlEvents:UIControlEventTouchUpInside];
@@ -200,7 +202,8 @@
 - (UIView *)lineFollowView{
     if (_lineFollowView == nil) {
         _lineFollowView = [[UIView alloc] initWithFrame:CGRectMake(0, 48, self.view.frame.size.width / 2, 2)];
-        _lineFollowView.backgroundColor = [UIColor yellowColor];
+        _lineFollowView.backgroundColor = YBNavigationBarBgColor;
+        
     }
     return _lineFollowView;
 }

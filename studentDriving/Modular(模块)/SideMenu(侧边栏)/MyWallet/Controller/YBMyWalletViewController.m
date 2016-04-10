@@ -715,7 +715,7 @@
             NSDictionary *paramsDict = [dict objectForKey:@"data"];
             if (paramsDict) {
                 NSString *fcode = [paramsDict objectForKey:@"fcode"];
-                NSInteger couponcount = [[paramsDict objectForKey:@"couponcount"] integerValue];
+//                NSInteger couponcount = [[paramsDict objectForKey:@"couponcount"] integerValue];
                 if (fcode && fcode.length) {
                     self.messageLabel.text = [NSString stringWithFormat:@"我的Y码：%@", fcode];
                 }

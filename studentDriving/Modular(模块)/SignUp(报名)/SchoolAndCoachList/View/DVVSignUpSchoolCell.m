@@ -84,7 +84,7 @@
 //    DVVSignUpSchoolDMLogoimg *
     NSLog(@"%@",self.iconImageView);
     [_iconImageView dvv_downloadImage:dmData.logoimg.originalpic
-                     placeholderImage:[UIImage imageNamed:@"ic_school_header"]];
+                     placeholderImage:[UIImage imageNamed:@"school_pic.jpg"]];
     NSLog(@"dmData.logoimg.originalpic: %@", dmData.logoimg.originalpic);
     if (dmData.name) {
         _YBNameLabel.text = dmData.name;

@@ -80,6 +80,8 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:self.naviBarLeftButton];
     self.navigationItem.leftBarButtonItem = leftItem;
     
+    self.genderTextField.userInteractionEnabled = NO;
+    self.genderTextField.clearButtonMode = UITextFieldViewModeNever;
     
     [self.view addSubview:self.genderTextField];
     self.genderTextField.inputView = self.pickerView;
