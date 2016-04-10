@@ -90,7 +90,6 @@
 		B221AF9A1C93C232001F6EED /* YBAppointRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF961C93C232001F6EED /* YBAppointRootClass.m */; };
 		B22312E01C9D5D2F001D6EC2 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B22312DC1C9D5D2F001D6EC2 /* OLImage.m */; };
 		B22312E11C9D5D2F001D6EC2 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22312DE1C9D5D2F001D6EC2 /* OLImageView.m */; };
-		B22BAD3C1CB8CFB700455E1C /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BAD3B1CB8CFB700455E1C /* ggtkFile.zip */; };
 		B22BAD3F1CB8D96700455E1C /* YBSubjectData.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD3E1CB8D96700455E1C /* YBSubjectData.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
@@ -7109,7 +7108,6 @@
 				B251E4BD1C8E849500E6613A /* messageToolbarBg@2x.png in Resources */,
 				B251E4611C8E849500E6613A /* VoiceSearchFeedback013.png in Resources */,
 				B251E4491C8E849500E6613A /* VoiceSearchFeedback001.png in Resources */,
-				B22BAD3C1CB8CFB700455E1C /* ggtkFile.zip in Resources */,
 				B251E4941C8E849500E6613A /* chatBar_faceSelected@2x.png in Resources */,
 				B251E44F1C8E849500E6613A /* VoiceSearchFeedback004.png in Resources */,
 				B251E4EF1C8E849500E6613A /* tabbar_contacts@2x.png in Resources */,
