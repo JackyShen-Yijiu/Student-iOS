@@ -998,10 +998,11 @@
 		B2FD3CA41CB8A4E400DCE88D /* PageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3CA21CB8A4E400DCE88D /* PageTableViewCell.m */; };
 		B2FD3CA51CB8A4E400DCE88D /* PageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FD3CA31CB8A4E400DCE88D /* PageTableViewCell.xib */; };
 		B2FD3CA81CB8A68D00DCE88D /* YBSubjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */; };
+		BE29B0821CBA8E2200CBB908 /* JZComplaintLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE29B0811CBA8E2200CBB908 /* JZComplaintLeftView.xib */; };
+		BE29B0851CBA970300CBB908 /* JZComplaintLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */; };
 		BE91B6661CBA3E6D006B39F7 /* JZComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */; };
 		BE91B66B1CBA40F4006B39F7 /* JZComplaintHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */; };
 		BE91B66E1CBA5CC0006B39F7 /* JZComplaintDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */; };
-		BE91B6741CBA6575006B39F7 /* JZComplaintLeftTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B6731CBA6575006B39F7 /* JZComplaintLeftTableView.m */; };
 		D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */; };
 		D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9D1BF659480020F0D7 /* CFNetwork.framework */; };
 		D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */; };
@@ -2949,14 +2950,15 @@
 		B2FD3CA31CB8A4E400DCE88D /* PageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageTableViewCell.xib; sourceTree = "<group>"; };
 		B2FD3CA61CB8A68D00DCE88D /* YBSubjectTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectTool.h; sourceTree = "<group>"; };
 		B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectTool.m; sourceTree = "<group>"; };
+		BE29B0811CBA8E2200CBB908 /* JZComplaintLeftView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZComplaintLeftView.xib; sourceTree = "<group>"; };
+		BE29B0831CBA970300CBB908 /* JZComplaintLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintLeftView.h; sourceTree = "<group>"; };
+		BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintLeftView.m; sourceTree = "<group>"; };
 		BE91B6641CBA3E6D006B39F7 /* JZComplaintController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintController.h; sourceTree = "<group>"; };
 		BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintController.m; sourceTree = "<group>"; };
 		BE91B6691CBA40F4006B39F7 /* JZComplaintHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintHeaderView.h; sourceTree = "<group>"; };
 		BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintHeaderView.m; sourceTree = "<group>"; };
 		BE91B66C1CBA5CC0006B39F7 /* JZComplaintDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintDetailCell.h; sourceTree = "<group>"; };
 		BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintDetailCell.m; sourceTree = "<group>"; };
-		BE91B6721CBA6575006B39F7 /* JZComplaintLeftTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintLeftTableView.h; sourceTree = "<group>"; };
-		BE91B6731CBA6575006B39F7 /* JZComplaintLeftTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintLeftTableView.m; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -6931,8 +6933,9 @@
 			children = (
 				BE91B6691CBA40F4006B39F7 /* JZComplaintHeaderView.h */,
 				BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */,
-				BE91B6721CBA6575006B39F7 /* JZComplaintLeftTableView.h */,
-				BE91B6731CBA6575006B39F7 /* JZComplaintLeftTableView.m */,
+				BE29B0831CBA970300CBB908 /* JZComplaintLeftView.h */,
+				BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */,
+				BE29B0811CBA8E2200CBB908 /* JZComplaintLeftView.xib */,
 				BE91B66C1CBA5CC0006B39F7 /* JZComplaintDetailCell.h */,
 				BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */,
 			);
@@ -7257,6 +7260,7 @@
 				B2EEBDE51CA2B54500846656 /* refresh_student_two.gif in Resources */,
 				B251E4C21C8E849500E6613A /* chat_receiver_audio_playing002.png in Resources */,
 				B251E4F01C8E849500E6613A /* tabbar_contactsHL.png in Resources */,
+				BE29B0821CBA8E2200CBB908 /* JZComplaintLeftView.xib in Resources */,
 				B251E4561C8E849500E6613A /* VoiceSearchFeedback007@2x.png in Resources */,
 				B251E4861C8E849500E6613A /* chat_location_annotation_someone@2x.png in Resources */,
 				B251E4AE1C8E849500E6613A /* chatBar_colorMore_videoCall@2x.png in Resources */,
@@ -7466,6 +7470,7 @@
 				B251E2FD1C8E849500E6613A /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				D976763D1C97E0B70033221E /* YBAppointmentTool.m in Sources */,
 				B251E2F41C8E849500E6613A /* DrivingTableHeaderView.m in Sources */,
+				BE29B0851CBA970300CBB908 /* JZComplaintLeftView.m in Sources */,
 				B251E6D61C8E852300E6613A /* UIImage+WM.m in Sources */,
 				B251E3C81C8E849500E6613A /* AppDelegate+DealJPushMessage.m in Sources */,
 				D96E86A21C9940980097DAD6 /* YBAppointMentDetailDataCancelReason.m in Sources */,
@@ -7531,7 +7536,6 @@
 				B251E4FD1C8E849500E6613A /* GainPasswordView.m in Sources */,
 				D976764D1C97E0F10033221E /* YBAppointmentSectionHeaderView.m in Sources */,
 				062F5AFA1C9BA7A60057FE5E /* ShowWarningBG.m in Sources */,
-				BE91B6741CBA6575006B39F7 /* JZComplaintLeftTableView.m in Sources */,
 				B2EEBC161CA12E3400846656 /* NSUserStoreTool.m in Sources */,
 				B2EEBCC31CA139D200846656 /* YBSignUpSuccessApplyclasstypeinfo.m in Sources */,
 				0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */,

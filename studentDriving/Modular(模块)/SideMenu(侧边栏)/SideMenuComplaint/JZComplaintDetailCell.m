@@ -69,6 +69,8 @@
         
         [coachLabel setFont:[UIFont systemFontOfSize:14]];
         
+        coachLabel.text = @"测试测试";
+        
         _coachLabel = coachLabel;
     
     }
@@ -84,6 +86,7 @@
     UILabel *coachNameLabel = [[UILabel alloc]init];
     coachNameLabel.textColor = TEXTGRAYCOLOR;
         [coachNameLabel setFont:[UIFont systemFontOfSize:14]];
+        coachNameLabel.text = @"测试测试";
 
         
         [self.contentView addSubview:coachNameLabel];
@@ -99,7 +102,11 @@
         
         UIImageView *detailImg = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"箭头"]];
         
+        [detailImg sizeToFit];
+        
         [self.contentView addSubview:detailImg];
+        
+        
         
         _detailImg = detailImg;
     }
