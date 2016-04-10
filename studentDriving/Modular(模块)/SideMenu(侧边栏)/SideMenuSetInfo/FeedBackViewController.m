@@ -152,7 +152,7 @@
             
             if (type.intValue == 1) {
                 
-                [self obj_showTotasViewWithMes:@"反馈成功"];
+                [self obj_showTotasViewWithMes:@"非常感谢，您的反馈"];
                 
                 // 成功后返回上一级窗体
                 [self.navigationController popViewControllerAnimated:YES];

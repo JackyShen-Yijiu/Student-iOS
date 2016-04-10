@@ -35,6 +35,7 @@ static NSString *kMagicShop = @"getmailproduct?index=1&count=10&producttype=0";
 
 @implementation MagicMainTableViewController
 - (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:YES];
     self.navigationController.navigationBarHidden = NO;
 }
 - (void)viewDidLoad {

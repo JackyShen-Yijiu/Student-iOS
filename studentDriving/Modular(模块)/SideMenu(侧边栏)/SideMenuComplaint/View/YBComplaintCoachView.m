@@ -13,9 +13,9 @@
 #import "ShowWarningMessageView.h"
 
 @interface YBComplaintCoachView ()<UITextViewDelegate,UITextFieldDelegate>
-
-@property (nonatomic, strong) UIButton *anonymousButton; // 匿名投诉
-
+///  匿名投诉
+@property (nonatomic, strong) UIButton *anonymousButton;
+///  实名投诉
 @property (nonatomic, strong) UIButton *realNameButton;
 
 @property (nonatomic, strong) UIView *lintComlaintView;
@@ -23,8 +23,8 @@
 @property (nonatomic, strong) UIView *BgoachNameView; // 添加手势，跳转教练列表页面
 
 @property (nonatomic, strong) UILabel *titlieNameCoachLabel;
-
-
+///  是否匿名的Switch
+@property (nonatomic, strong) UISwitch *realNameSwitch;
 
 @property (nonatomic, strong) UIImageView *imgView;
 
@@ -41,8 +41,6 @@
 @property (nonatomic, strong) UIView *lineCView;
 
 @property (nonatomic, strong)  UIView *bottomBG; // 底部试图
-
-
 
 @property (nonatomic, strong)  UIButton *commintButton;
 
@@ -63,6 +61,7 @@
 - (void)initUI{
     [self addSubview:self.anonymousButton];
     [self addSubview:self.realNameButton];
+//    [self addSubview:self.realNameSwitch];
     [self addSubview:self.lintComlaintView];
     [self addSubview:self.BgoachNameView];
     [self.BgoachNameView addSubview:self.titlieNameCoachLabel];
@@ -138,28 +137,6 @@
 
         return ;
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    //    {   "userid":"560539bea694336c25c3acb9",（用户id 可以空）
-    //        "feedbackmessage":"无法登录", （反馈信息 必填）
-    //        "mobileversion":"小米 4.00",(手机版本 必填)
-    //        "network":"wifi",（网络情况 必填）
-    //        "resolution":"300*400", （分辨率 必填）
-    //        "appversion":"android 1.00"（app 版本 必填）
-    //        "feedbacktype": 1, // 反馈类型 0 平台反馈 1 投诉教练 2 投诉驾校
-    //        "name": "liyafei",
-    //        "feedbackusertype": 1, //投诉类型 0 匿名投诉 1 实名投诉
-    //        "moblie": "12345678901", // 投诉人手机号
-    //        "becomplainedname": "王教练", //被投诉姓名
-    //        "piclist": "pic1.jpg,pic2.jpg" // 图片列表 ,分割}
     
     NSMutableDictionary *parmDict = [NSMutableDictionary dictionary];
     // 用户id 可以空
@@ -235,6 +212,344 @@
 }
 - (void)layoutSubviews{
     [super layoutSubviews];
+    
+    
+    [self.anonymousButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top).offset(20);
+        make.left.mas_equalTo(self.mas_left).offset(20);
+        make.width.mas_equalTo(@100);
+        make.height.mas_equalTo(24);
+    }];
+    [self.realNameButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.mas_top).offset(20);
+        make.left.mas_equalTo(self.anonymousButton.mas_right).offset(70);
+        make.width.mas_equalTo(@100);
+        make.height.mas_equalTo(24);
+    }];
+    [self.lintComlaintView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.anonymousButton.mas_bottom).offset(20);
+        make.left.mas_equalTo(self.mas_left).offset(20);
+        make.right.mas_equalTo(self.mas_right).offset(0);
+        make.height.mas_equalTo(0.5);
+    }];
+    [self.BgoachNameView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.lintComlaintView.mas_bottom).offset(0);
+        make.left.mas_equalTo(self.mas_left).offset(0);
+        make.height.mas_equalTo(68);
+        make.right.mas_equalTo(self.mas_right).offset(0);
+    }];
+    [self.titlieNameCoachLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.BgoachNameView.mas_top).offset(16);
+        make.left.mas_equalTo(self.BgoachNameView.mas_left).offset(20);
+        make.width.mas_equalTo(@200);
+        make.height.mas_equalTo(10);
+    }];
+    
+    [self.nameCoachLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.titlieNameCoachLabel.mas_bottom).offset(16);
+        make.left.mas_equalTo(self.BgoachNameView.mas_left).offset(20);
+        make.width.mas_equalTo(@200);
+        make.height.mas_equalTo(14);
+    }];
+    [self.imgView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.BgoachNameView.mas_top).offset(24);
+        make.right.mas_equalTo(self.BgoachNameView.mas_right).offset(-20);
+        make.width.mas_equalTo(@24);
+        make.height.mas_equalTo(24);
+    }];
+    
+    [self.lineNameView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.BgoachNameView.mas_bottom).offset(0);
+        make.left.mas_equalTo(self.BgoachNameView.mas_left).offset(20);
+        make.right.mas_equalTo(self.BgoachNameView.mas_right).offset(0);
+        make.height.mas_equalTo(0.3);
+    }];
+    [self.phontView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.lineNameView.mas_bottom).offset(16);
+        make.left.mas_equalTo(self.mas_left).offset(20);
+        make.right.mas_equalTo(self.mas_right).offset(0);
+        make.height.mas_equalTo(@10);
+    }];
+    [self.phontTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.phontView.mas_bottom).offset(0);
+        make.left.mas_equalTo(self.mas_left).offset(20);
+        make.right.mas_equalTo(self.mas_right).offset(0);
+        make.height.mas_equalTo(@40);
+    }];
+    [self.complaintContentLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.phontTextField.mas_bottom).offset(16);
+        make.left.mas_equalTo(self.mas_left).offset(20);
+        make.right.mas_equalTo(self.mas_right).offset(0);
+        make.height.mas_equalTo(@10);
+    }];
+    [self.complaintTextField mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.complaintContentLabel.mas_bottom).offset(0);
+        make.left.mas_equalTo(self.mas_left).offset(20);
+        make.right.mas_equalTo(self.mas_right).offset(0);
+        make.height.mas_equalTo(@60);
+    }];
+    [self.lineCView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.complaintTextField.mas_bottom).offset(-1);
+        make.left.mas_equalTo(self.mas_left).offset(20);
+        make.right.mas_equalTo(self.mas_right).offset(0);
+        make.height.mas_equalTo(@0.5);
+    }];
+    
+    [self.bottomBG mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(self.mas_bottom).offset(0);
+        make.left.mas_equalTo(self.mas_left).offset(0);
+        make.right.mas_equalTo(self.mas_right).offset(0);
+        make.height.mas_equalTo(@40);
+    }];
+    
+    [self.bottomCoachName mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.bottomBG.mas_top).offset(13);
+        make.left.mas_equalTo(self.bottomBG.mas_left).offset(20);
+        make.width.mas_equalTo(@150);
+        make.height.mas_equalTo(14);
+    }];
+    [self.commintButton mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.bottomBG.mas_top).offset(5);
+        make.right.mas_equalTo(self.bottomBG.mas_right).offset(-20);
+        make.width.mas_equalTo(@80);
+        make.height.mas_equalTo(30);
+    }];
+    
+
+}
+
+#pragma mark --- Lazy加载
+#pragma mark - 匿名投诉
+- (UIButton *)anonymousButton{
+    if (_anonymousButton == nil) {
+        
+        _anonymousButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_anonymousButton setTitle:@"匿名投诉" forState:UIControlStateNormal];
+        [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+        [_anonymousButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
+        [_anonymousButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+        [_anonymousButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
+        [_anonymousButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
+        _anonymousButton.titleEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 0);
+        _anonymousButton.selected = YES;
+//        _anonymousButton.backgroundColor = [UIColor orangeColor];
+        [_anonymousButton addTarget:self action:@selector(didclickAnonymous:) forControlEvents:UIControlEventTouchUpInside];
+        _anonymousButton.titleLabel.font = [UIFont systemFontOfSize:14];
+//        _anonymousButton.backgroundColor = [UIColor cyanColor]
+        ;
+        
+    }
+    return _anonymousButton;
+}
+#pragma mark - 实名投诉
+- (UIButton *)realNameButton{
+    if (_realNameButton == nil) {
+        
+        _realNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        [_realNameButton setTitle:@"实名投诉" forState:UIControlStateNormal];
+        [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
+        [_realNameButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
+        [_realNameButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
+        [_realNameButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
+        [_realNameButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
+         _realNameButton.titleEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 0);
+        
+        [_realNameButton addTarget:self action:@selector(didclickReal:) forControlEvents:UIControlEventTouchUpInside];
+        _realNameButton.titleLabel.font = [UIFont systemFontOfSize:14];
+         _realNameButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
+    }
+    return _realNameButton;
+    
+    
+}
+- (UIView *)lintComlaintView{
+    if (_lintComlaintView == nil) {
+        _lintComlaintView = [[UIView alloc] init];
+        _lintComlaintView.backgroundColor  = HM_LINE_COLOR;
+        
+    }
+    return _lintComlaintView;
+}
+
+#pragma mark - 青蓝色
+- (UIView *)BgoachNameView{
+    if (_BgoachNameView == nil) {
+        _BgoachNameView = [[UIView alloc] init];
+//        _BgoachNameView.backgroundColor = [UIColor clearColor];
+        _BgoachNameView.backgroundColor = [UIColor cyanColor];
+        UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SingleTap:)];
+        //给self.view添加一个手势监测；
+        [_BgoachNameView addGestureRecognizer:singleRecognizer];
+        
+    }
+    return _BgoachNameView;
+}
+#pragma mark - 投诉教练Label
+- (UILabel *)titlieNameCoachLabel{
+    if (_titlieNameCoachLabel == nil) {
+        _titlieNameCoachLabel = [[UILabel alloc] init];
+        _titlieNameCoachLabel.text = @"投诉教练";
+        _titlieNameCoachLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _titlieNameCoachLabel.font = [UIFont systemFontOfSize:10];
+        
+        
+    }
+    return _titlieNameCoachLabel;
+}
+#pragma mark - 教练姓名
+- (UILabel *)nameCoachLabel{
+    if (_nameCoachLabel == nil) {
+        _nameCoachLabel = [[UILabel alloc] init];
+        _nameCoachLabel.text = [[AcountManager manager] applycoach].name;
+        _nameCoachLabel.textColor = TEXTGRAYCOLOR;
+        _nameCoachLabel.font = [UIFont systemFontOfSize:14];
+        
+        
+    }
+    return _nameCoachLabel;
+}
+#pragma mark - 投诉教练箭头
+- (UIImageView *)imgView{
+    if (_imgView == nil) {
+        _imgView = [[UIImageView alloc] init];
+        _imgView.backgroundColor  = [UIColor clearColor];
+        _imgView.image = [UIImage imageNamed:@"箭头"];
+    }
+    return _imgView;
+                          
+}
+#pragma mark - 黑色
+- (UIView *)lineNameView{
+    if (_lineNameView == nil) {
+        _lineNameView = [[UIView alloc] init];
+//        _lineNameView.backgroundColor  = HM_LINE_COLOR;
+        _lineNameView.backgroundColor = [UIColor blackColor];
+        
+    }
+    return _lineNameView;
+}
+#pragma mark - 我的电话label
+- (UILabel *)phontView{
+    if (_phontView == nil) {
+        _phontView = [[UILabel  alloc] init];
+        _phontView.text = @"我的电话";
+        _phontView.textColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _phontView.font = [UIFont systemFontOfSize:10];
+        _phontView.backgroundColor = [UIColor yellowColor];
+    }
+    return _phontView;
+}
+#pragma mark - 手机号填写
+- (UITextField *)phontTextField{
+    if (_phontTextField == nil) {
+        _phontTextField = [[AddlineButtomTextField alloc] init];
+        _phontTextField.delegate = self;
+        _phontTextField.textColor = [UIColor colorWithHexString:@"212121"];
+        _phontTextField.font = [UIFont systemFontOfSize:14];
+        _phontTextField.text = [AcountManager manager].userMobile;
+        
+    }
+    return _phontTextField;
+}
+#pragma mark - 剩余的字数--新版要去除
+- (UILabel *)complaintContentLabel{
+    if (_complaintContentLabel == nil) {
+        _complaintContentLabel = [[UILabel  alloc] init];
+        _complaintContentLabel.text = @"投诉内容 0/200";
+        
+        _complaintContentLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
+        _complaintContentLabel.font = [UIFont systemFontOfSize:10];
+        //        _phontView.backgroundColor = [UIColor cyanColor];
+    }
+    return _complaintContentLabel;
+}
+#pragma mark - 投诉的文本填写
+- (PlaceholderTextView *)complaintTextField{
+    if (_complaintTextField == nil) {
+        _complaintTextField = [[PlaceholderTextView alloc] init];
+        _complaintTextField.delegate = self;
+        _complaintTextField.textColor = [UIColor colorWithHexString:@"212121"];
+        _complaintTextField.font = [UIFont systemFontOfSize:14];
+        _complaintTextField.backgroundColor = [UIColor clearColor];
+        
+    }
+    return _complaintTextField;
+}
+- (UIView *)lineCView{
+    if (_lineCView == nil) {
+        _lineCView = [[UIView alloc] init];
+//        _lineCView.backgroundColor  = HM_LINE_COLOR;
+        _lineNameView.backgroundColor = [UIColor blueColor];
+    }
+    return _lineCView;
+}
+#pragma mark - 底部投诉的背景
+- (UIView *)bottomBG{
+    if (_bottomBG == nil) {
+        _bottomBG = [[UIView alloc] init];
+        _bottomBG.backgroundColor = [UIColor whiteColor];
+        
+    }
+    return _bottomBG;
+}
+#pragma mark - 底部的投诉的教练
+- (UILabel *)bottomCoachName{
+    if (_bottomCoachName == nil) {
+        _bottomCoachName = [[UILabel alloc] init];
+        _bottomCoachName.text = [NSString stringWithFormat:@"投诉 %@教练",[[AcountManager manager] applycoach].name];
+        _bottomCoachName.textColor = [UIColor blackColor];
+        _bottomCoachName.font = [UIFont systemFontOfSize:14];
+        
+        
+    }
+    return _bottomCoachName;
+}
+#pragma mark - 提交
+- (UIButton *)commintButton{
+    if (_commintButton == nil) {
+        _commintButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _commintButton.backgroundColor = YBNavigationBarBgColor;
+        [_commintButton setTitle:@"提交" forState:UIControlStateNormal];
+        [_commintButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_commintButton addTarget:self action:@selector(commitComplaint:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _commintButton;
+}
+#pragma mark - 是否匿名投诉
+-(UISwitch *)realNameSwitch {
+    
+    if (!_realNameSwitch) {
+        
+        _realNameSwitch = [[UISwitch alloc]init];
+        
+        _realNameSwitch.on = YES;
+        
+        _realNameSwitch.tintColor = YBNavigationBarBgColor;
+        
+    }
+    
+    
+    return _realNameSwitch;
+}
+#pragma mark - 字段
+-(void)字段 {
+    
+    
+    //    {   "userid":"560539bea694336c25c3acb9",（用户id 可以空）
+    //        "feedbackmessage":"无法登录", （反馈信息 必填）
+    //        "mobileversion":"小米 4.00",(手机版本 必填)
+    //        "network":"wifi",（网络情况 必填）
+    //        "resolution":"300*400", （分辨率 必填）
+    //        "appversion":"android 1.00"（app 版本 必填）
+    //        "feedbacktype": 1, // 反馈类型 0 平台反馈 1 投诉教练 2 投诉驾校
+    //        "name": "liyafei",
+    //        "feedbackusertype": 1, //投诉类型 0 匿名投诉 1 实名投诉
+    //        "moblie": "12345678901", // 投诉人手机号
+    //        "becomplainedname": "王教练", //被投诉姓名
+    //        "piclist": "pic1.jpg,pic2.jpg" // 图片列表 ,分割}
+}
+#pragma mark - 旧的约束
+-(void)旧的约束 {
     [self.anonymousButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.mas_top).offset(20);
         make.left.mas_equalTo(self.mas_left).offset(20);
@@ -277,7 +592,7 @@
         make.width.mas_equalTo(@24);
         make.height.mas_equalTo(24);
     }];
-
+    
     [self.lineNameView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.BgoachNameView.mas_bottom).offset(0);
         make.left.mas_equalTo(self.BgoachNameView.mas_left).offset(20);
@@ -314,14 +629,14 @@
         make.right.mas_equalTo(self.mas_right).offset(0);
         make.height.mas_equalTo(@0.5);
     }];
-
+    
     [self.bottomBG mas_makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.mas_equalTo(self.mas_bottom).offset(0);
         make.left.mas_equalTo(self.mas_left).offset(0);
         make.right.mas_equalTo(self.mas_right).offset(0);
         make.height.mas_equalTo(@40);
     }];
-
+    
     [self.bottomCoachName mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.bottomBG.mas_top).offset(13);
         make.left.mas_equalTo(self.bottomBG.mas_left).offset(20);
@@ -335,190 +650,5 @@
         make.height.mas_equalTo(30);
     }];
 
-
-}
-#pragma mark --- Lazy加载
-
-- (UIButton *)anonymousButton{
-    if (_anonymousButton == nil) {
-        
-        _anonymousButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_anonymousButton setTitle:@"匿名投诉" forState:UIControlStateNormal];
-        [_anonymousButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        [_anonymousButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
-        [_anonymousButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
-        [_anonymousButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
-        [_anonymousButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
-        _anonymousButton.titleEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 0);
-        _anonymousButton.selected = YES;
-//        _anonymousButton.backgroundColor = [UIColor orangeColor];
-        [_anonymousButton addTarget:self action:@selector(didclickAnonymous:) forControlEvents:UIControlEventTouchUpInside];
-        _anonymousButton.titleLabel.font = [UIFont systemFontOfSize:14];
-//        _anonymousButton.backgroundColor = [UIColor cyanColor]
-        ;
-        
-    }
-    return _anonymousButton;
-    
-    
-}
-- (UIButton *)realNameButton{
-    if (_realNameButton == nil) {
-        
-        _realNameButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_realNameButton setTitle:@"实名投诉" forState:UIControlStateNormal];
-        [_realNameButton setTitleColor:[UIColor colorWithHexString:@"bdbdbd"] forState:UIControlStateNormal];
-        [_realNameButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
-        [_realNameButton setImage:[UIImage imageNamed:@"未选中"] forState:UIControlStateNormal];
-        [_realNameButton setImage:[UIImage imageNamed:@"选中"] forState:UIControlStateSelected];
-        [_realNameButton setImageEdgeInsets:UIEdgeInsetsMake(0,-25,0,0)];
-         _realNameButton.titleEdgeInsets = UIEdgeInsetsMake(5, -20, 5, 0);
-        
-        [_realNameButton addTarget:self action:@selector(didclickReal:) forControlEvents:UIControlEventTouchUpInside];
-        _realNameButton.titleLabel.font = [UIFont systemFontOfSize:14];
-         _realNameButton.contentHorizontalAlignment=UIControlContentHorizontalAlignmentRight;
-    }
-    return _realNameButton;
-    
-    
-}
-- (UIView *)lintComlaintView{
-    if (_lintComlaintView == nil) {
-        _lintComlaintView = [[UIView alloc] init];
-        _lintComlaintView.backgroundColor  = HM_LINE_COLOR;
-        
-    }
-    return _lintComlaintView;
-}
-- (UIView *)BgoachNameView{
-    if (_BgoachNameView == nil) {
-        _BgoachNameView = [[UIView alloc] init];
-        _BgoachNameView.backgroundColor = [UIColor clearColor];
-        UITapGestureRecognizer *singleRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(SingleTap:)];
-        //给self.view添加一个手势监测；
-        [_BgoachNameView addGestureRecognizer:singleRecognizer];
-        
-    }
-    return _BgoachNameView;
-}
-- (UILabel *)titlieNameCoachLabel{
-    if (_titlieNameCoachLabel == nil) {
-        _titlieNameCoachLabel = [[UILabel alloc] init];
-        _titlieNameCoachLabel.text = @"投诉教练姓名";
-        _titlieNameCoachLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
-        _titlieNameCoachLabel.font = [UIFont systemFontOfSize:10];
-        
-        
-    }
-    return _titlieNameCoachLabel;
-}
-
-- (UILabel *)nameCoachLabel{
-    if (_nameCoachLabel == nil) {
-        _nameCoachLabel = [[UILabel alloc] init];
-        _nameCoachLabel.text = [[AcountManager manager] applycoach].name;
-        _nameCoachLabel.textColor = [UIColor blackColor];
-        _nameCoachLabel.font = [UIFont systemFontOfSize:14];
-        
-        
-    }
-    return _nameCoachLabel;
-}
-
-- (UIImageView *)imgView{
-    if (_imgView == nil) {
-        _imgView = [[UIImageView alloc] init];
-        _imgView.backgroundColor  = [UIColor clearColor];
-        _imgView.image = [UIImage imageNamed:@"箭头"];
-    }
-    return _imgView;
-                          
-}
-- (UIView *)lineNameView{
-    if (_lineNameView == nil) {
-        _lineNameView = [[UIView alloc] init];
-        _lineNameView.backgroundColor  = HM_LINE_COLOR;
-        
-    }
-    return _lineNameView;
-}
-- (UILabel *)phontView{
-    if (_phontView == nil) {
-        _phontView = [[UILabel  alloc] init];
-        _phontView.text = @"您的联系电话";
-        _phontView.textColor = [UIColor colorWithHexString:@"bdbdbd"];
-        _phontView.font = [UIFont systemFontOfSize:10];
-//        _phontView.backgroundColor = [UIColor cyanColor];
-    }
-    return _phontView;
-}
-- (UITextField *)phontTextField{
-    if (_phontTextField == nil) {
-        _phontTextField = [[AddlineButtomTextField alloc] init];
-        _phontTextField.delegate = self;
-        _phontTextField.textColor = [UIColor colorWithHexString:@"212121"];
-        _phontTextField.font = [UIFont systemFontOfSize:14];
-        _phontTextField.text = [AcountManager manager].userMobile;
-        
-    }
-    return _phontTextField;
-}
-- (UILabel *)complaintContentLabel{
-    if (_complaintContentLabel == nil) {
-        _complaintContentLabel = [[UILabel  alloc] init];
-        _complaintContentLabel.text = @"投诉内容 0/200";
-        
-        _complaintContentLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
-        _complaintContentLabel.font = [UIFont systemFontOfSize:10];
-        //        _phontView.backgroundColor = [UIColor cyanColor];
-    }
-    return _complaintContentLabel;
-}
-- (PlaceholderTextView *)complaintTextField{
-    if (_complaintTextField == nil) {
-        _complaintTextField = [[PlaceholderTextView alloc] init];
-        _complaintTextField.delegate = self;
-        _complaintTextField.textColor = [UIColor colorWithHexString:@"212121"];
-        _complaintTextField.font = [UIFont systemFontOfSize:14];
-        _complaintTextField.backgroundColor = [UIColor clearColor];
-        
-    }
-    return _complaintTextField;
-}
-- (UIView *)lineCView{
-    if (_lineCView == nil) {
-        _lineCView = [[UIView alloc] init];
-        _lineCView.backgroundColor  = HM_LINE_COLOR;
-    }
-    return _lineCView;
-}
-- (UIView *)bottomBG{
-    if (_bottomBG == nil) {
-        _bottomBG = [[UIView alloc] init];
-        _bottomBG.backgroundColor = [UIColor whiteColor];
-        
-    }
-    return _bottomBG;
-}
-- (UILabel *)bottomCoachName{
-    if (_bottomCoachName == nil) {
-        _bottomCoachName = [[UILabel alloc] init];
-        _bottomCoachName.text = [NSString stringWithFormat:@"投诉 %@教练",[[AcountManager manager] applycoach].name];
-        _bottomCoachName.textColor = [UIColor blackColor];
-        _bottomCoachName.font = [UIFont systemFontOfSize:14];
-        
-        
-    }
-    return _bottomCoachName;
-}
-- (UIButton *)commintButton{
-    if (_commintButton == nil) {
-        _commintButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _commintButton.backgroundColor = YBNavigationBarBgColor;
-        [_commintButton setTitle:@"提交" forState:UIControlStateNormal];
-        [_commintButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_commintButton addTarget:self action:@selector(commitComplaint:) forControlEvents:UIControlEventTouchUpInside];
-    }
-    return _commintButton;
 }
 @end

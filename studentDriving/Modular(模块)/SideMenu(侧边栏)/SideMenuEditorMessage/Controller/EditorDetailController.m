@@ -11,7 +11,7 @@
 #import "EditorDetailSexCell.h"
 #import "JEPhotoPickManger.h"
 #import <QiniuSDK.h>
-#import "ModifyPhoneNumViewController.h"
+#import "PhoneNumViewController.h"
 static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 
 @interface EditorDetailController ()<UITableViewDataSource,UITableViewDelegate,UIImagePickerControllerDelegate,UITextFieldDelegate>
@@ -46,7 +46,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     UITapGestureRecognizer *tapGestureRe = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pickImage:)];
     [self.iconImgView addGestureRecognizer:tapGestureRe];
     self.iconImgView.userInteractionEnabled = YES;
-     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(phone) name:kphone object:nil];
+//     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(phone) name:kphone object:nil];
     [self addSignUp];
     [self initData];
    
@@ -128,10 +128,10 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
     }
     
     
-    NSString *realNameStr = nil;
-    NSString *realNickStr = nil;
-    NSString *realAddressStr = nil;
-    NSString *realSex = nil;
+    NSString *realNameStr = @"";
+    NSString *realNickStr = @"";
+    NSString *realAddressStr = @"";
+    NSString *realSex = @"";
     
     // 保存姓名
     realNameStr = self.nameCell.descriTextField.text;
@@ -333,7 +333,7 @@ static NSString *const kupdateUserInfo = @"userinfo/updateuserinfo";
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (3 == indexPath.row) {
         // 绑定手机号
-        ModifyPhoneNumViewController *ModifyPhoneVC = [[ModifyPhoneNumViewController alloc] init];
+        PhoneNumViewController *ModifyPhoneVC = [[PhoneNumViewController alloc] init];
         [self.navigationController pushViewController:ModifyPhoneVC animated:YES];
     }
 }

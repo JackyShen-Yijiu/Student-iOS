@@ -117,7 +117,7 @@ static MessageReadManager *detailInstance = nil;
 - (void)showBrowserWithImages:(NSArray *)imageArray
 {
     if (imageArray && [imageArray count] > 0) {
-        NSMutableArray *photoArray = [NSMutableArray array];
+        NSMutableArray *photoArray = [NSMutableArray arrayWithCapacity:imageArray.count];
         for (id object in imageArray) {
             MWPhoto *photo;
             if ([object isKindOfClass:[UIImage class]]) {
