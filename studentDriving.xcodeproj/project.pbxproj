@@ -998,6 +998,10 @@
 		B2FD3CA41CB8A4E400DCE88D /* PageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3CA21CB8A4E400DCE88D /* PageTableViewCell.m */; };
 		B2FD3CA51CB8A4E400DCE88D /* PageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FD3CA31CB8A4E400DCE88D /* PageTableViewCell.xib */; };
 		B2FD3CA81CB8A68D00DCE88D /* YBSubjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */; };
+		BE91B6661CBA3E6D006B39F7 /* JZComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */; };
+		BE91B66B1CBA40F4006B39F7 /* JZComplaintHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */; };
+		BE91B66E1CBA5CC0006B39F7 /* JZComplaintDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */; };
+		BE91B6741CBA6575006B39F7 /* JZComplaintLeftTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B6731CBA6575006B39F7 /* JZComplaintLeftTableView.m */; };
 		D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */; };
 		D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9D1BF659480020F0D7 /* CFNetwork.framework */; };
 		D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */; };
@@ -2945,6 +2949,14 @@
 		B2FD3CA31CB8A4E400DCE88D /* PageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageTableViewCell.xib; sourceTree = "<group>"; };
 		B2FD3CA61CB8A68D00DCE88D /* YBSubjectTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectTool.h; sourceTree = "<group>"; };
 		B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectTool.m; sourceTree = "<group>"; };
+		BE91B6641CBA3E6D006B39F7 /* JZComplaintController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintController.h; sourceTree = "<group>"; };
+		BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintController.m; sourceTree = "<group>"; };
+		BE91B6691CBA40F4006B39F7 /* JZComplaintHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintHeaderView.h; sourceTree = "<group>"; };
+		BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintHeaderView.m; sourceTree = "<group>"; };
+		BE91B66C1CBA5CC0006B39F7 /* JZComplaintDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintDetailCell.h; sourceTree = "<group>"; };
+		BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintDetailCell.m; sourceTree = "<group>"; };
+		BE91B6721CBA6575006B39F7 /* JZComplaintLeftTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintLeftTableView.h; sourceTree = "<group>"; };
+		BE91B6731CBA6575006B39F7 /* JZComplaintLeftTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintLeftTableView.m; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -3167,9 +3179,9 @@
 		062F5B0E1C9BA8D10057FE5E /* SideMenuComplaint */ = {
 			isa = PBXGroup;
 			children = (
-				062F5B0F1C9BA8D10057FE5E /* Controller */,
-				062F5B141C9BA8D10057FE5E /* Model */,
-				062F5B151C9BA8D10057FE5E /* View */,
+				BE91B6631CBA3E56006B39F7 /* Old */,
+				BE91B6671CBA3F2C006B39F7 /* Controller */,
+				BE91B6681CBA4097006B39F7 /* View */,
 			);
 			path = SideMenuComplaint;
 			sourceTree = "<group>";
@@ -6895,6 +6907,38 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BE91B6631CBA3E56006B39F7 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				062F5B0F1C9BA8D10057FE5E /* Controller */,
+				062F5B141C9BA8D10057FE5E /* Model */,
+				062F5B151C9BA8D10057FE5E /* View */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
+		BE91B6671CBA3F2C006B39F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE91B6641CBA3E6D006B39F7 /* JZComplaintController.h */,
+				BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BE91B6681CBA4097006B39F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE91B6691CBA40F4006B39F7 /* JZComplaintHeaderView.h */,
+				BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */,
+				BE91B6721CBA6575006B39F7 /* JZComplaintLeftTableView.h */,
+				BE91B6731CBA6575006B39F7 /* JZComplaintLeftTableView.m */,
+				BE91B66C1CBA5CC0006B39F7 /* JZComplaintDetailCell.h */,
+				BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		BEF77C06A3D4E352E446D8FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -7429,6 +7473,7 @@
 				B2EEBC1E1CA12E3400846656 /* YBUserSubjectthree.m in Sources */,
 				B2EEBC891CA138A100846656 /* ChineseToPinyinResource.m in Sources */,
 				B251E4341C8E849500E6613A /* MessageModelManager.m in Sources */,
+				BE91B6661CBA3E6D006B39F7 /* JZComplaintController.m in Sources */,
 				B251E30D1C8E849500E6613A /* SignUpListViewController.m in Sources */,
 				B251E2EC1C8E849500E6613A /* DrivingCityListDMRootClass.m in Sources */,
 				B2EEBD8D1CA141BE00846656 /* CityButton.m in Sources */,
@@ -7486,6 +7531,7 @@
 				B251E4FD1C8E849500E6613A /* GainPasswordView.m in Sources */,
 				D976764D1C97E0F10033221E /* YBAppointmentSectionHeaderView.m in Sources */,
 				062F5AFA1C9BA7A60057FE5E /* ShowWarningBG.m in Sources */,
+				BE91B6741CBA6575006B39F7 /* JZComplaintLeftTableView.m in Sources */,
 				B2EEBC161CA12E3400846656 /* NSUserStoreTool.m in Sources */,
 				B2EEBCC31CA139D200846656 /* YBSignUpSuccessApplyclasstypeinfo.m in Sources */,
 				0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */,
@@ -7704,6 +7750,7 @@
 				B251E2E01C8E849500E6613A /* CoachDMRootClass.m in Sources */,
 				B2EEBC5E1CA1373300846656 /* DrivingDetailAddressCell.m in Sources */,
 				B251E4161C8E849500E6613A /* YBAppointMentNoCountentView.m in Sources */,
+				BE91B66E1CBA5CC0006B39F7 /* JZComplaintDetailCell.m in Sources */,
 				B251E37F1C8E849500E6613A /* DrivingIntroductionCell.m in Sources */,
 				B2EEBC8B1CA138A100846656 /* NSString+PinYin4Cocoa.m in Sources */,
 				B251E6631C8E849500E6613A /* EMVoiceConverter.mm in Sources */,
@@ -7883,6 +7930,7 @@
 				B251E3D31C8E849500E6613A /* IWTabBarViewController.m in Sources */,
 				B251E4271C8E849500E6613A /* FacialView.m in Sources */,
 				B251E5FC1C8E849500E6613A /* EMCDDeviceManager+Microphone.m in Sources */,
+				BE91B66B1CBA40F4006B39F7 /* JZComplaintHeaderView.m in Sources */,
 				B251E6891C8E849600E6613A /* SignUpInfoManager.m in Sources */,
 				B2EEBC621CA1373300846656 /* DrivingDetailCoachInfoController.m in Sources */,
 				B2EEBD8F1CA141BE00846656 /* CityItem.m in Sources */,
