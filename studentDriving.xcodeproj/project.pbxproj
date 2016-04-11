@@ -90,7 +90,6 @@
 		B221AF9A1C93C232001F6EED /* YBAppointRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF961C93C232001F6EED /* YBAppointRootClass.m */; };
 		B22312E01C9D5D2F001D6EC2 /* OLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = B22312DC1C9D5D2F001D6EC2 /* OLImage.m */; };
 		B22312E11C9D5D2F001D6EC2 /* OLImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22312DE1C9D5D2F001D6EC2 /* OLImageView.m */; };
-		B22BAD3C1CB8CFB700455E1C /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BAD3B1CB8CFB700455E1C /* ggtkFile.zip */; };
 		B22BAD3F1CB8D96700455E1C /* YBSubjectData.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD3E1CB8D96700455E1C /* YBSubjectData.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
@@ -999,6 +998,11 @@
 		B2FD3CA41CB8A4E400DCE88D /* PageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3CA21CB8A4E400DCE88D /* PageTableViewCell.m */; };
 		B2FD3CA51CB8A4E400DCE88D /* PageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B2FD3CA31CB8A4E400DCE88D /* PageTableViewCell.xib */; };
 		B2FD3CA81CB8A68D00DCE88D /* YBSubjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */; };
+		BE29B0821CBA8E2200CBB908 /* JZComplaintLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE29B0811CBA8E2200CBB908 /* JZComplaintLeftView.xib */; };
+		BE29B0851CBA970300CBB908 /* JZComplaintLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */; };
+		BE91B6661CBA3E6D006B39F7 /* JZComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */; };
+		BE91B66B1CBA40F4006B39F7 /* JZComplaintHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */; };
+		BE91B66E1CBA5CC0006B39F7 /* JZComplaintDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */; };
 		D5604C9C1BF659400020F0D7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */; };
 		D5604C9E1BF659480020F0D7 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9D1BF659480020F0D7 /* CFNetwork.framework */; };
 		D5604CA01BF6595E0020F0D7 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */; };
@@ -2946,6 +2950,15 @@
 		B2FD3CA31CB8A4E400DCE88D /* PageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageTableViewCell.xib; sourceTree = "<group>"; };
 		B2FD3CA61CB8A68D00DCE88D /* YBSubjectTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectTool.h; sourceTree = "<group>"; };
 		B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectTool.m; sourceTree = "<group>"; };
+		BE29B0811CBA8E2200CBB908 /* JZComplaintLeftView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZComplaintLeftView.xib; sourceTree = "<group>"; };
+		BE29B0831CBA970300CBB908 /* JZComplaintLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintLeftView.h; sourceTree = "<group>"; };
+		BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintLeftView.m; sourceTree = "<group>"; };
+		BE91B6641CBA3E6D006B39F7 /* JZComplaintController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintController.h; sourceTree = "<group>"; };
+		BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintController.m; sourceTree = "<group>"; };
+		BE91B6691CBA40F4006B39F7 /* JZComplaintHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintHeaderView.h; sourceTree = "<group>"; };
+		BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintHeaderView.m; sourceTree = "<group>"; };
+		BE91B66C1CBA5CC0006B39F7 /* JZComplaintDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintDetailCell.h; sourceTree = "<group>"; };
+		BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintDetailCell.m; sourceTree = "<group>"; };
 		D5604C9B1BF659400020F0D7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D5604C9D1BF659480020F0D7 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D5604C9F1BF6595E0020F0D7 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
@@ -3168,9 +3181,9 @@
 		062F5B0E1C9BA8D10057FE5E /* SideMenuComplaint */ = {
 			isa = PBXGroup;
 			children = (
-				062F5B0F1C9BA8D10057FE5E /* Controller */,
-				062F5B141C9BA8D10057FE5E /* Model */,
-				062F5B151C9BA8D10057FE5E /* View */,
+				BE91B6631CBA3E56006B39F7 /* Old */,
+				BE91B6671CBA3F2C006B39F7 /* Controller */,
+				BE91B6681CBA4097006B39F7 /* View */,
 			);
 			path = SideMenuComplaint;
 			sourceTree = "<group>";
@@ -6896,6 +6909,39 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BE91B6631CBA3E56006B39F7 /* Old */ = {
+			isa = PBXGroup;
+			children = (
+				062F5B0F1C9BA8D10057FE5E /* Controller */,
+				062F5B141C9BA8D10057FE5E /* Model */,
+				062F5B151C9BA8D10057FE5E /* View */,
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
+		BE91B6671CBA3F2C006B39F7 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BE91B6641CBA3E6D006B39F7 /* JZComplaintController.h */,
+				BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		BE91B6681CBA4097006B39F7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				BE91B6691CBA40F4006B39F7 /* JZComplaintHeaderView.h */,
+				BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */,
+				BE29B0831CBA970300CBB908 /* JZComplaintLeftView.h */,
+				BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */,
+				BE29B0811CBA8E2200CBB908 /* JZComplaintLeftView.xib */,
+				BE91B66C1CBA5CC0006B39F7 /* JZComplaintDetailCell.h */,
+				BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
 		BEF77C06A3D4E352E446D8FE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -7109,7 +7155,6 @@
 				B251E4BD1C8E849500E6613A /* messageToolbarBg@2x.png in Resources */,
 				B251E4611C8E849500E6613A /* VoiceSearchFeedback013.png in Resources */,
 				B251E4491C8E849500E6613A /* VoiceSearchFeedback001.png in Resources */,
-				B22BAD3C1CB8CFB700455E1C /* ggtkFile.zip in Resources */,
 				B251E4941C8E849500E6613A /* chatBar_faceSelected@2x.png in Resources */,
 				B251E44F1C8E849500E6613A /* VoiceSearchFeedback004.png in Resources */,
 				B251E4EF1C8E849500E6613A /* tabbar_contacts@2x.png in Resources */,
@@ -7215,6 +7260,7 @@
 				B2EEBDE51CA2B54500846656 /* refresh_student_two.gif in Resources */,
 				B251E4C21C8E849500E6613A /* chat_receiver_audio_playing002.png in Resources */,
 				B251E4F01C8E849500E6613A /* tabbar_contactsHL.png in Resources */,
+				BE29B0821CBA8E2200CBB908 /* JZComplaintLeftView.xib in Resources */,
 				B251E4561C8E849500E6613A /* VoiceSearchFeedback007@2x.png in Resources */,
 				B251E4861C8E849500E6613A /* chat_location_annotation_someone@2x.png in Resources */,
 				B251E4AE1C8E849500E6613A /* chatBar_colorMore_videoCall@2x.png in Resources */,
@@ -7424,6 +7470,7 @@
 				B251E2FD1C8E849500E6613A /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				D976763D1C97E0B70033221E /* YBAppointmentTool.m in Sources */,
 				B251E2F41C8E849500E6613A /* DrivingTableHeaderView.m in Sources */,
+				BE29B0851CBA970300CBB908 /* JZComplaintLeftView.m in Sources */,
 				B251E6D61C8E852300E6613A /* UIImage+WM.m in Sources */,
 				B251E3C81C8E849500E6613A /* AppDelegate+DealJPushMessage.m in Sources */,
 				D96E86A21C9940980097DAD6 /* YBAppointMentDetailDataCancelReason.m in Sources */,
@@ -7431,6 +7478,7 @@
 				B2EEBC1E1CA12E3400846656 /* YBUserSubjectthree.m in Sources */,
 				B2EEBC891CA138A100846656 /* ChineseToPinyinResource.m in Sources */,
 				B251E4341C8E849500E6613A /* MessageModelManager.m in Sources */,
+				BE91B6661CBA3E6D006B39F7 /* JZComplaintController.m in Sources */,
 				B251E30D1C8E849500E6613A /* SignUpListViewController.m in Sources */,
 				B251E2EC1C8E849500E6613A /* DrivingCityListDMRootClass.m in Sources */,
 				B2EEBD8D1CA141BE00846656 /* CityButton.m in Sources */,
@@ -7706,6 +7754,7 @@
 				B251E2E01C8E849500E6613A /* CoachDMRootClass.m in Sources */,
 				B2EEBC5E1CA1373300846656 /* DrivingDetailAddressCell.m in Sources */,
 				B251E4161C8E849500E6613A /* YBAppointMentNoCountentView.m in Sources */,
+				BE91B66E1CBA5CC0006B39F7 /* JZComplaintDetailCell.m in Sources */,
 				B251E37F1C8E849500E6613A /* DrivingIntroductionCell.m in Sources */,
 				B2EEBC8B1CA138A100846656 /* NSString+PinYin4Cocoa.m in Sources */,
 				B251E6631C8E849500E6613A /* EMVoiceConverter.mm in Sources */,
@@ -7885,6 +7934,7 @@
 				B251E3D31C8E849500E6613A /* IWTabBarViewController.m in Sources */,
 				B251E4271C8E849500E6613A /* FacialView.m in Sources */,
 				B251E5FC1C8E849500E6613A /* EMCDDeviceManager+Microphone.m in Sources */,
+				BE91B66B1CBA40F4006B39F7 /* JZComplaintHeaderView.m in Sources */,
 				B251E6891C8E849600E6613A /* SignUpInfoManager.m in Sources */,
 				B2EEBC621CA1373300846656 /* DrivingDetailCoachInfoController.m in Sources */,
 				B2EEBD8F1CA141BE00846656 /* CityItem.m in Sources */,
