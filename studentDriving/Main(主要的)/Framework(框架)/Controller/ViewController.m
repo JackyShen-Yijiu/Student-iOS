@@ -37,6 +37,7 @@
 #import "JZYListController.h"
 #import "JZPayWayController.h"
 #import "JZShuttleBusController.h"
+#import "JZComplaintController.h"
 
 @interface ViewController () <WMMenuViewControllerDelegate,IWTabBarViewControllerDelegate>
 
@@ -410,7 +411,7 @@
             return ;
         }
 
-                YBComplaintController *complaintVC = [[YBComplaintController alloc] init];
+                JZComplaintController *complaintVC = [[JZComplaintController alloc] init];
                 [self controller:complaintVC];
         
     }else if (5001 == btn.tag) {
