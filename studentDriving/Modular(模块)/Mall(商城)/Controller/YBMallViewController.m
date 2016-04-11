@@ -17,6 +17,7 @@
 #import <MJRefresh.h>
 #import "MallCollectionView.h"
 #import "DiscountCollectionView.h"
+#import "JZExchangeRecordController.h"
 
 #define HeaderViewH 48
 
@@ -193,7 +194,9 @@ static NSString *kMallID = @"MallID";
 }
 #pragma mark -- Action
 - (void)exhangeBtn:(UIButton *)btn {
-    
+    JZExchangeRecordController *recordVC = [[JZExchangeRecordController alloc] init];
+     recordVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:recordVC animated:YES];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
