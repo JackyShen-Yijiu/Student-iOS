@@ -15,54 +15,11 @@
     if (self = [super initWithFrame:frame]) {
         self.backgroundColor = [UIColor whiteColor];
         [self setUI];
-        
-        
-        
-        [self.headerLeftBtn addTarget:self action:@selector(clickHeaderLeftBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [self.headerRightBtn addTarget:self action:@selector(clickHeaderRightBtn:) forControlEvents:UIControlEventTouchUpInside];
-        
-        
-        
+
     }
     
     return self;
 }
-
-#pragma mark - 顶部按钮点击事件
--(void)clickHeaderLeftBtn:(UIButton *)sender {
-    
-    [self.headerLeftBtn setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
-    [self.headerRightBtn setTitleColor:TEXTGRAYCOLOR forState:UIControlStateNormal];
-    
-    if (self.herderLineView.frame.origin.x != 0) {
-        
-        [UIView animateWithDuration:0.25 animations:^{
-            
-            self.herderLineView.transform = CGAffineTransformMakeTranslation(0,0);
-            
-        }];
-        
-        
-    }
-    
-    
-    
-    
-    
-}
--(void)clickHeaderRightBtn:(UIButton *)sender  {
-    
-    [self.headerRightBtn setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
-    
-    [self.headerLeftBtn setTitleColor:TEXTGRAYCOLOR forState:UIControlStateNormal];
-    [UIView animateWithDuration:0.25 animations:^{
-        
-        self.herderLineView.transform = CGAffineTransformMakeTranslation(kLKSize.width * 0.5,0);
-        
-    }];
-    
-}
-
 
 -(void)layoutSubviews {
     
