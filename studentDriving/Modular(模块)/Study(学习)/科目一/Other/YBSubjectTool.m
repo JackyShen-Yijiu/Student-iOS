@@ -143,8 +143,6 @@ static FMDatabaseQueue *_queue;
         
         [dataBase open];
         
-        // select *, rowid "NAVICAT_ROWID" from "main"."web_note" order by "id" limit 0,1000
-        // SELECT count(*) FROM web_note where kemu =1   and (strTppe='01' or strTppe='02' or strTppe='03' or strTppe='04')SELECT count(*) FROM web_note where kemu =1   and (strTppe='01' or strTppe='02' or strTppe='03' or strTppe='04')
         NSString *sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld   and (strTppe='01' or strTppe='02' or strTppe='03' or strTppe='04')",(long)type];
         
         FMResultSet *rs = [dataBase executeQuery:sql];
