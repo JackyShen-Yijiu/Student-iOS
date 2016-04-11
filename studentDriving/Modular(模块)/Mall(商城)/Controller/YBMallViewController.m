@@ -17,14 +17,11 @@
 #import <MJRefresh.h>
 #import "MallCollectionView.h"
 #import "DiscountCollectionView.h"
+#import "JZExchangeRecordController.h"
 
-static NSString *const kGetMySaveCoach = @"userinfo/favoritecoach";
+#define HeaderViewH 48
 
-static NSString *const kGetMySaveSchool = @"userinfo/favoriteschool";
-
-static NSString *const kDeleteMySaveCoach = @"userinfo/favoritecoach";
-
-static NSString *const kDeleteMySaveSchool = @"userinfo/favoriteschool";
+static NSString *const kIntegralMallURl = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=0&count=10";
 
 typedef NS_ENUM(NSUInteger,MallType){
     kIntegralMall,
@@ -36,13 +33,7 @@ typedef NS_ENUM(NSUInteger,MallType){
     UIImageView*navBarHairlineImageView;
 }
 
-@property (nonatomic, strong) UICollectionView *collectionView;
-
 @property (nonatomic,retain) NSMutableArray *shopMainListArray; // 积分商城
-
-@property (nonatomic,retain) NSMutableArray *discountArray; // 兑换劵商城
-
-@property (strong, nonatomic) UIView *menuIndicator;
 
 @property (nonatomic, strong) NSMutableArray *buttonArray;
 
@@ -50,12 +41,19 @@ typedef NS_ENUM(NSUInteger,MallType){
 
 @property (nonatomic,assign) NSInteger index;
 
-@property (nonatomic, strong) UIScrollView *scrollView;
-
 @property (nonatomic, strong) MallCollectionView *mallCollectionView;
 
-@property (nonatomic, strong) DiscountCollectionView *discountCollectionView;
+@property (nonatomic, strong) UIView *bgView;
 
+@property (nonatomic, strong) UILabel *titleLable;
+
+@property (nonatomic, strong) UILabel *resultLabel;
+
+@property (nonatomic, strong) UIButton *exangeButton;
+
+@property (nonatomic, strong) UIView *lineView;
+
+@property (nonatomic, assign) NSInteger integralNumber;
 @end
 
 static NSString *kMagicShop = @"getmailproduct";
@@ -70,16 +68,18 @@ static NSString *kMallID = @"MallID";
     self.edgesForExtendedLayout = UIRectEdgeNone;
 
     self.shopMainListArray = [[NSMutableArray alloc] init];
-    self.discountArray = [[NSMutableArray alloc] init];
     self.title = @"商城";
     _mallType = kIntegralMall;
     [self initMallMoreData:NO];
     _index = 1;
+    
      self.view.backgroundColor = [UIColor colorWithHexString:@"e8e8ed"];
-    [self.view addSubview:self.scrollView];
-    [self.scrollView addSubview:self.mallCollectionView];
-    [self.scrollView addSubview:self.discountCollectionView];
-    [self.view addSubview:[self tableViewHeadView]];
+    [self.view addSubview:self.mallCollectionView];
+    [self.bgView addSubview:self.titleLable];
+    [self.bgView addSubview:self.resultLabel];
+    [self.bgView addSubview:self.exangeButton];
+    [self.bgView addSubview:self.lineView];
+    [self.mallCollectionView addSubview:self.bgView];
     
 }
 
@@ -92,8 +92,8 @@ static NSString *kMallID = @"MallID";
     navBarHairlineImageView.hidden=YES;
     
     [self initMallMoreData:NO];
-    [self initDiscountMoreData:NO];
     [self refresh];
+    [self initData];
     
 }
 -(void)viewDidDisappear:(BOOL)animated {
@@ -138,7 +138,7 @@ static NSString *kMallID = @"MallID";
             NSArray *array = [dataDic objectForKey:@"mainlist"];
             if (array.count == 0) {
                 [self obj_showTotasViewWithMes:@"还没有商品哦!"];
-                 [self.collectionView.mj_header endRefreshing];
+                 [self.mallCollectionView.mj_header endRefreshing];
                 return;
             }
             [self.shopMainListArray removeAllObjects];
@@ -147,60 +147,17 @@ static NSString *kMallID = @"MallID";
                 YBIntegralMallModel *mainDodel = [[YBIntegralMallModel alloc] init];
                 [mainDodel setValuesForKeysWithDictionary:dic];
                 [self.shopMainListArray addObject:mainDodel];
-                [self.collectionView.mj_header endRefreshing];
+                [self.mallCollectionView.mj_header endRefreshing];
             }
         }
          self.mallCollectionView.shopMainListArray = self.shopMainListArray;
         self.mallCollectionView.viewController = self;
         [self.mallCollectionView reloadData];
     } withFailure:^(id data) {
-         [self.collectionView.mj_header endRefreshing];
+         [self.mallCollectionView.mj_header endRefreshing];
     }];
 
 }
-- (void)initDiscountMoreData:(BOOL)isMoreData{
-    // 优惠劵商城数据
-    // 加载兑换劵商城数据
-    NSString *urlString = [NSString stringWithFormat:BASEURL,kDiscountShop];
-    NSLog(@"%@",urlString);
-    NSDictionary *parm = @{@"cityname":@"北京",
-                           @"index":@"1",
-                           @"count":@"10",
-                           @"producttype":@"1"};
-    //    NSLog(@"%@",[AcountManager manager].userCity);
-    [JENetwoking startDownLoadWithUrl:urlString postParam:parm WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-
-        DYNSLog(@"data = %@",data);
-        if (data == nil) {
-            return ;
-        }
-        NSDictionary *dataDic = [data objectForKey:@"data"];
-        
-        {
-            NSArray *array = [dataDic objectForKey:@"mainlist"];
-            if (array.count == 0) {
-                [self obj_showTotasViewWithMes:@"还没有商品哦!"];
-                [self.collectionView.mj_header endRefreshing];
-                return;
-            }
-            [self.discountArray removeAllObjects];
-            for (NSDictionary *dic in array)
-            {
-                YBDiscountModel *mainDodel = [[YBDiscountModel alloc] init];
-                [mainDodel setValuesForKeysWithDictionary:dic];
-                [self.discountArray addObject:mainDodel];
-                [self.collectionView.mj_header endRefreshing];
-            }
-        }
-        self.discountCollectionView.discountArray = self.discountArray;
-        self.discountCollectionView.viewController = self;
-        [self.discountCollectionView reloadData];
-    }withFailure:^(id data) {
-         [self.collectionView.mj_header endRefreshing];
-    } ];
-
-}
-
 - (void)refresh{
     
         __weak typeof(self) ws = self;
@@ -209,124 +166,55 @@ static NSString *kMallID = @"MallID";
                 [ws initMallMoreData:NO];
                 _mallCollectionView.mj_header = header;
                 
-            }else {
-                [ws initDiscountMoreData:NO];
-                 _discountCollectionView.mj_header = header;
             }
         }];
    
 
 }
+- (void)initData{
+    
+        // 积分商城
+        NSString *appendString = [NSString stringWithFormat:kIntegralMallURl,[AcountManager manager].userid];
+        NSString *finalString = [NSString stringWithFormat:BASEURL,appendString];
+    [JENetwoking startDownLoadWithUrl:finalString postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *param = data;
+        if ([param[@"type"] integerValue] == 1) {
+            NSDictionary *data = param[@"data"];
+            self.integralNumber = [data[@"wallet"] integerValue];
+            self.resultLabel.text = [NSString stringWithFormat:@"%lu",self.integralNumber];
+        }
+        [self.mallCollectionView reloadData];
+
+    } withFailure:^(id data) {
+        NSString *str = data[@"msg"];
+        [self obj_showTotasViewWithMes:str];
+    }];
+    
+    
+}
+#pragma mark -- Action
+- (void)exhangeBtn:(UIButton *)btn {
+    JZExchangeRecordController *recordVC = [[JZExchangeRecordController alloc] init];
+     recordVC.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:recordVC animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 
 }
-#pragma mark - bntAciton
-// 积分商城
-- (void)clickLeftBtn:(UIButton *)sender {
-    for (UIButton *b in self.buttonArray) {
-        b.selected = NO;
-    }
-    [UIView animateWithDuration:0.5 animations:^{
-        self.menuIndicator.frame = CGRectMake(5, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
-    }];
-    sender.selected = YES;
-    _mallType = kIntegralMall;
-//    [self initMallMoreData:NO];
-    CGFloat contentOffsetX = 0;
-    [UIView animateWithDuration:0.5 animations:^{
-                _scrollView.contentOffset = CGPointMake(contentOffsetX, 0);
-    }];
 
-}
-// 兑换劵商城
-- (void)clickRightBtn:(UIButton *)sender {
-    for (UIButton *b in self.buttonArray) {
-        b.selected = NO;
-    }
-    [UIView animateWithDuration:0.3 animations:^{
-        self.menuIndicator.frame = CGRectMake(kSystemWide/2 + 5, self.menuIndicator.calculateFrameWithY, self.menuIndicator.calculateFrameWithWide, self.menuIndicator.calculateFrameWithHeight);
-    }];
-    sender.selected = YES;
-    _mallType = kDiscountMall;
-//    [self initDiscountMoreData:NO];
-    CGFloat contentOffsetX = kSystemWide;
-    [UIView animateWithDuration:0.5 animations:^{
-        _scrollView.contentOffset = CGPointMake(contentOffsetX, 0);
-    }];
-}
-#pragma mark -- UIScrollerView 的代理方法
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    CGFloat width = self.view.frame.size.width;
-    if (0 == scrollView.contentOffset.x) {
-        // 积分商城
-//        _mallType = kIntegralMall;
-        [self selectLeftItem:500];
-    }
-    if (width == scrollView.contentOffset.x) {
-        // 优惠劵商城
-        [self selectItem:501];
-        
-        
-    }
-
-}
-
-- (void)selectItem:(NSInteger)tag{
-    for (UIButton *btn in self.buttonArray) {
-        if (btn.tag == tag) {
-            [self clickRightBtn:btn];
-        }
-    }
-}
-- (void)selectLeftItem:(NSInteger)tag{
-    for (UIButton *btn in self.buttonArray) {
-        if (btn.tag == tag) {
-            [self clickLeftBtn:btn];
-        }
-    }
-}
-#pragma mark - lazy load
-- (UIScrollView *)scrollView{
-    if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 94)];
-        _scrollView.delegate = self;
-        _scrollView.contentSize = CGSizeMake(2 * kSystemWide, 0);
-        _scrollView.pagingEnabled = YES;
-    }
-    return _scrollView;
-}
 - (MallCollectionView *)mallCollectionView {
     if (!_mallCollectionView) {
         
         // 自动布局方式
         UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 44, self.view.frame.size.width, self.view.frame.size.height - 158) collectionViewLayout:flowLayout];
+        _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64  - 50) collectionViewLayout:flowLayout];
         // 注册Cell
+        _mallCollectionView.contentInset = UIEdgeInsetsMake(HeaderViewH, 0, 0, 0);
         
     }
     return _mallCollectionView;
-}
-- (DiscountCollectionView *)discountCollectionView {
-    if (!_discountCollectionView) {
-        
-        // 自动布局方式
-        UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
-        [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _discountCollectionView = [[DiscountCollectionView alloc] initWithFrame:CGRectMake(kSystemWide, 44, self.view.frame.size.width, self.view.frame.size.height - 110) collectionViewLayout:flowLayout];
-        // 注册Cell
-        
-    }
-    return _discountCollectionView;
-}
-
-- (UIView *)menuIndicator {
-    if (_menuIndicator == nil) {
-        _menuIndicator = [[UIView alloc] initWithFrame:CGRectMake(5,44-2, (kSystemWide - 20) / 2, 2)];
-        _menuIndicator.backgroundColor = YBNavigationBarBgColor;
-    }
-    return _menuIndicator;
 }
 - (NSMutableArray *)buttonArray {
     if (_buttonArray == nil) {
@@ -335,60 +223,52 @@ static NSString *kMallID = @"MallID";
     return _buttonArray;
 }
 
-- (UIView *)tableViewHeadView {
-    // 背景
-    UIView *backGroundView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 44)];
-    backGroundView.backgroundColor = [UIColor whiteColor];
-    backGroundView.layer.shadowColor = RGBColor(204, 204, 204).CGColor;
-    backGroundView.layer.shadowOffset = CGSizeMake(0, 1);
-    backGroundView.layer.shadowOpacity = 0.08;
-    backGroundView.userInteractionEnabled = YES;
-    // 积分商城
-    UIButton *leftButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [leftButton setTitle:@"积分商城" forState:UIControlStateNormal];
-    [leftButton setTitleColor:[UIColor colorWithHexString:@"6e6e6e"] forState:UIControlStateNormal];
-    leftButton.selected = YES;
-    leftButton.tag = 500;
-    [leftButton addTarget:self action:@selector(clickLeftBtn:) forControlEvents:UIControlEventTouchUpInside];
-    leftButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    [leftButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
-    [backGroundView addSubview:leftButton];
-    [leftButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(backGroundView.mas_left).offset(0);
-        make.top.mas_equalTo(backGroundView.mas_top).offset(0);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide/2];
-        make.width.mas_equalTo(height);
-        make.height.mas_equalTo(@44);
-    }];
-    [self.buttonArray addObject:leftButton];
-    // 兑换劵商城
-    UIButton *rightButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightButton setTitle:@"兑换劵商城" forState:UIControlStateNormal];
-    [rightButton setTitleColor:[UIColor colorWithHexString:@"6e6e6e"] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(clickRightBtn:) forControlEvents:UIControlEventTouchUpInside];
-    rightButton.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-    rightButton.tag = 501;
+- (UIView *)bgView{
+    if (_bgView == nil) {
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, -HeaderViewH, kSystemWide, HeaderViewH)];
+        _bgView.backgroundColor = [UIColor whiteColor];
 
-    [rightButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateSelected];
-    [backGroundView addSubview:rightButton];
-    [rightButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.right.mas_equalTo(backGroundView.mas_right).offset(0);
-        make.top.mas_equalTo(backGroundView.mas_top).offset(0);
-        NSNumber *height = [NSNumber numberWithFloat:kSystemWide/2];
-        make.width.mas_equalTo(height);
-        make.height.mas_equalTo(@44);
-    }];
-    [self.buttonArray addObject:rightButton];
-    
-    [backGroundView addSubview:self.menuIndicator];
-    
-    // 添加底部的阴影效果
-    backGroundView.layer.shadowColor = [UIColor blackColor].CGColor;
-    backGroundView.layer.shadowOffset = CGSizeMake(0, 0.36);
-    backGroundView.layer.shadowOpacity = 0.3;
-    backGroundView.layer.shadowRadius = 2;
-    
-    return backGroundView;
+    }
+    return _bgView;
 }
-
+- (UILabel *)titleLable{
+    if (_titleLable == nil) {
+        _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(12, (HeaderViewH - 14) / 2, 64, 14)];
+        _titleLable.text = @"我的积分:";
+        _titleLable.font = [UIFont systemFontOfSize:14];
+        _titleLable.textColor = JZ_FONTCOLOR_DRAK;
+    }
+    return _titleLable;
+}
+- (UILabel *)resultLabel{
+    if (_resultLabel == nil) {
+        _resultLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.titleLable.frame) + 5, (HeaderViewH - 12) / 2, 200, 12)];
+        _resultLabel.text = @"0";
+        _resultLabel.font = [UIFont systemFontOfSize:12];
+        _resultLabel.textColor = YBNavigationBarBgColor;
+    }
+    return _resultLabel;
+}
+- (UIButton *)exangeButton{
+    if (_exangeButton == nil) {
+        _exangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        _exangeButton.frame = CGRectMake(CGRectGetWidth(self.bgView.frame) - 12 - 74 , (HeaderViewH - 30) / 2, 74, 30);
+        [_exangeButton setTitle:@"兑换记录" forState:UIControlStateNormal];
+        [_exangeButton setTitleColor:JZ_BlueColor forState:UIControlStateNormal];
+        _exangeButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        _exangeButton.layer.borderWidth = 1;
+        _exangeButton.layer.borderColor = JZ_BlueColor.CGColor;
+        _exangeButton.layer.masksToBounds = YES;
+        _exangeButton.layer.cornerRadius = 4;
+        [_exangeButton addTarget:self action:@selector(exhangeBtn:) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _exangeButton;
+}
+- (UIView *)lineView{
+    if (_lineView == nil) {
+        _lineView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.bgView.frame)- 1, kSystemWide, 1)];
+        _lineView.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
+    }
+    return _lineView;
+}
 @end
