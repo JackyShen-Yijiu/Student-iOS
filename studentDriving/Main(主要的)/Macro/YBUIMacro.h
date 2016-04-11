@@ -19,6 +19,31 @@ typedef NS_ENUM(NSInteger, kControllerType) {
 
 };
 
+#define RGB_Color(r,g,b)    RGBA_Color(r,g,b,1)
+#define RGBA_Color(r,g,b,a) ([UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:a])
+
+// 背景颜色
+#define JZ_BACKGROUNDCOLOR_COLOR RGB_Color(232,232,237)
+
+// 深色字体颜色
+#define JZ_FONTCOLOR_DRAK   RGB_Color(110,110,110)
+
+// 浅色字体颜色
+#define JZ_FONTCOLOR_LIGHT   RGB_Color(183,183,183)
+
+// 蓝色
+#define JZ_BlueColor RGB_Color(31, 124, 235)
+
+
+
+
+
+
+
+
+
+
+
 #define RGBColor(R,G,B)  [UIColor colorWithRed:R/255.0f green:G/255.0f blue:B/255.0f alpha:1]
 //RGBColor(255, 102, 51)
 #define MAINCOLOR  [UIColor colorWithRed:255/255.0f green:102/255.0f blue:51/255.0f alpha:1]
