@@ -63,14 +63,14 @@
     if (_footView==nil) {
         
         // 底部提交
-        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame)-50-64, self.view.width, 50)];
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetMaxY(self.view.frame)-40-64, self.view.width, 40)];
         _footView.backgroundColor = [UIColor whiteColor];
         
         [_footView addSubview:self.messageLabel];
         
         [_footView addSubview:self.leftBtn];
 
-        [_footView addSubview:self.rightBtn];
+//        [_footView addSubview:self.rightBtn];
         
     }
     return _footView;
@@ -79,42 +79,45 @@
 - (UILabel *)messageLabel
 {
     if (_messageLabel==nil) {
-        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, 150, self.footView.height-10)];
-        _messageLabel.text = @" 我的Y码：";
-        _messageLabel.font = [UIFont systemFontOfSize:12];
-        _messageLabel.textColor = [UIColor blackColor];
+        _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width * 0.5, 40)];
+        _messageLabel.text = @" 我的Y码 ";
+        _messageLabel.font = [UIFont systemFontOfSize:14];
+        _messageLabel.textColor = RGBColor(183, 183, 183);
+        _messageLabel.backgroundColor = [UIColor whiteColor];
+        
     }
     return _messageLabel;
 }
 
-- (UIButton *)rightBtn
-{
-    if (_rightBtn==nil) {
-        
-        _rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.footView.width-80-10, 5, 80, 40)];
-        _rightBtn.backgroundColor = YBNavigationBarBgColor;
-        _rightBtn.layer.masksToBounds = YES;
-        _rightBtn.layer.cornerRadius = 3;
-        [_rightBtn setTitle:@"兑换" forState:UIControlStateNormal];
-        [_rightBtn setTitle:@"兑换" forState:UIControlStateHighlighted];
-        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
-        [_rightBtn addTarget:self action:@selector(rightBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+//- (UIButton *)rightBtn
+//{
+//    if (_rightBtn==nil) {
+//        
+//        _rightBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.footView.width-80-10, 5, 80, 40)];
+//        _rightBtn.backgroundColor = YBNavigationBarBgColor;
+//        _rightBtn.layer.masksToBounds = YES;
+//        _rightBtn.layer.cornerRadius = 3;
+//        [_rightBtn setTitle:@"兑换" forState:UIControlStateNormal];
+//        [_rightBtn setTitle:@"兑换" forState:UIControlStateHighlighted];
+//        _rightBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+//        [_rightBtn addTarget:self action:@selector(rightBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+//
+//    }
+//    return _rightBtn;
+//}
 
-    }
-    return _rightBtn;
-}
-
+///  邀请好友的按钮
 - (UIButton *)leftBtn
 {
     if (_leftBtn==nil) {
         
-        _leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.footView.width-80*2-20, 5, 80, 40)];
+        _leftBtn = [[UIButton alloc] initWithFrame:CGRectMake(self.footView.width*0.5,0,self.footView.width*0.5,40)];
         _leftBtn.backgroundColor = YBNavigationBarBgColor;
-        _leftBtn.layer.masksToBounds = YES;
-        _leftBtn.layer.cornerRadius = 3;
+//        _leftBtn.layer.masksToBounds = YES;
+//        _leftBtn.layer.cornerRadius = 3;
         [_leftBtn setTitle:@"邀请好友" forState:UIControlStateNormal];
         [_leftBtn setTitle:@"邀请好友" forState:UIControlStateHighlighted];
-        _leftBtn.titleLabel.font = [UIFont systemFontOfSize:13];
+        _leftBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         [_leftBtn addTarget:self action:@selector(leftBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
         
     }
@@ -610,7 +613,7 @@
         [self.baomingduihuanquanTableView reloadData];
         
         if (self.baomingduihuanquanArray.count==0) {
-            self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您没有报名兑换券" image:[UIImage imageNamed:@"YBNocountentimage_wallet_ticket"] subTitle:nil];
+            self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您没有兑换券" image:[UIImage imageNamed:@"YBNocountentimage_wallet_ticket"] subTitle:nil];
             [self.baomingduihuanquanTableView addSubview:self.DvvView];
         }
         
