@@ -10,7 +10,7 @@
 #import "JZAppiontMessageTopCell.h"
 #import "JZAppiontMessageBottomCell.h"
 
-@interface JZAppiontTestMessageController ()<UITableViewDelegate,UITableViewDataSource>
+@interface JZAppiontTestMessageController ()<UITableViewDelegate,UITableViewDataSource,JZAppointTimeBack>
 
 @property (nonatomic,strong) UITableView *tableView;
 
@@ -20,6 +20,8 @@
 
 @property (nonatomic, strong) NSArray *bottomTitleArray;
 
+@property (nonatomic, strong) NSArray *tagArray;
+
 @property (nonatomic, strong) UIView *bgView;
 
 @property (nonatomic, strong) UILabel *topLabel;
@@ -27,6 +29,10 @@
 @property (nonatomic, strong) UILabel *bottomLabel;
 
 @property (nonatomic, strong) UIButton *appiontButton;
+
+@property (nonatomic, strong) NSString *stareTime;
+
+@property (nonatomic, strong) NSString *endTime;
 
 
 
@@ -49,7 +55,11 @@
 - (void)initData{
     self.toptitleArray = @[@"姓名",@"电话",@"考试原因"];
     
-    self.bottomTitleArray = @[@"开始时间",@"至",@"结束时间"];
+    self.topdesArray = @[[AcountManager manager].userName,[AcountManager manager].userMobile,@"初次申请"];
+    
+    self.bottomTitleArray = @[@"开始日期",@"至",@"结束日期"];
+    
+    self.tagArray = @[@"600",@"601",@"602"];
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -65,7 +75,7 @@
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 40)];
         view.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
         UILabel *label = [[UILabel alloc] initWithFrame:CGRectMake(16, 0, 200, 40)];
-        label.text = @"预约考试起止时间";
+        label.text = @"预约考试起止日期";
         label.font = [UIFont systemFontOfSize:14];
         label.textColor = JZ_FONTCOLOR_DRAK;
         [view addSubview:label];
@@ -100,6 +110,7 @@
             cell = [[JZAppiontMessageTopCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDexchange];
         }
         cell.titleLabel.text = self.toptitleArray[indexPath.row];
+        cell.desLabel.text = self.topdesArray[indexPath.row];
         
         return cell;
         
@@ -115,7 +126,9 @@
             cell.textField.userInteractionEnabled = NO;
         }
         cell.textField.placeholder = self.bottomTitleArray[indexPath.row];
-            return cell;
+        cell.timePicker.tag = [self.tagArray[indexPath.row] integerValue];
+        cell.JZAppointTimeBackDelegate = self;
+        return cell;
     
      
     }
@@ -127,11 +140,56 @@
     [super didReceiveMemoryWarning];
     
 }
+#pragma mark ---Delegate  预约时间代理方法
+- (void)initWithTime:(NSString *)time timeTag:(NSInteger)timeTag{
+    if (600 == timeTag) {
+        // 开始时间
+        self.stareTime = time;
+    }
+    if (602 == timeTag) {
+        // 结束时间
+        self.endTime = time;
+    }
+}
 
 #pragma  mark -- Action 申请预约
 - (void)appointSchool:(UIButton *)btn{
 //    JZAppiontTestMessageController * appiontTestVC  = [[JZAppiontTestMessageController alloc] init];
 //    [self.navigationController pushViewController:appiontTestVC animated:YES];
+    if (self.stareTime == nil || [self.stareTime isEqualToString:@""]) {
+        [self obj_showTotasViewWithMes:@"请选择开始日期"];
+        return;
+    }
+    if (self.endTime == nil || [self.endTime isEqualToString:@""]) {
+        [self obj_showTotasViewWithMes:@"请选择结束日期"];
+        return;
+    }
+    
+    NSString *urlString  = [NSString stringWithFormat:BASEURL,kapplyexamination];
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    dict[@"exambegintime"] = self.stareTime;
+    dict[@"examendtime"] = self.endTime;
+    dict[@"exammobile"] = [AcountManager manager].userMobile;
+    dict[@"examname"] = [AcountManager manager].userName;
+//    dict[@"exampractice"] = [NSString stringWithFormat:@"%d",self.isYESorNo]; // 这次没有这个字段了
+    dict[@"subjectid"] = [NSString stringWithFormat:@"%@",[AcountManager manager].userSubject.subjectId];
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:dict WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        DYNSLog(@"申请urlString:%@ param:%@ data:%@",urlString,dict,data);
+        
+        NSDictionary *param = data;
+        NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
+        
+        if (type.integerValue == 1) {
+            [self obj_showTotasViewWithMes:@"约考成功"];
+            [self.navigationController popViewControllerAnimated:YES];
+        }else {
+            [self obj_showTotasViewWithMes:msg];
+        }
+    }];
+    
 }
 
 #pragma mark --- Lazy加载

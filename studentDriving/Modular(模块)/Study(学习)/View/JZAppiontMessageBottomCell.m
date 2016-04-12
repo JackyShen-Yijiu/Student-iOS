@@ -10,9 +10,6 @@
 
 @interface JZAppiontMessageBottomCell ()<UITextFieldDelegate>
 
-
-
-
 @property (nonatomic, strong) UIView *lineView;
 
 
@@ -59,19 +56,42 @@
 }
 - (void)timeChange:(UIDatePicker *)picker {
     
+    
+    
+    
+    
     NSDate *date = picker.date;
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    // 为日期格式器设置格式字符串
-    [dateFormatter setDateFormat:@"HH:mm"];
+    // 为日期格式器设置格式字符串  yyyy-MM-dd
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    NSString *startDate = [dateFormatter stringFromDate:date];
     DYNSLog(@"tag = %ld",picker.tag);
+    if (picker.tag == 600) {
+        // 开始时间
+        self.textField.text = startDate;
+        
+    }
+    if (picker.tag == 602) {
+        // 结束时间
+        self.textField.text = startDate;
+    }
+    if ([self.JZAppointTimeBackDelegate respondsToSelector:@selector(initWithTime:timeTag:)]) {
+        [self.JZAppointTimeBackDelegate  initWithTime:startDate timeTag:picker.tag];
+    }
     
 }
 
 - (UIDatePicker *)timePicker {
     if (_timePicker == nil) {
         _timePicker = [[UIDatePicker alloc] init];
-        _timePicker.datePickerMode = UIDatePickerModeTime;
+        // 初始化信息
+        _timePicker.date = [NSDate date]; // 设置初始时间
+        _timePicker.timeZone = [NSTimeZone timeZoneWithName:@"GTM+8"]; // 设置时区，中国在东八区
+        _timePicker.minimumDate = [NSDate dateWithTimeIntervalSinceNow:0]; // 设置最小时间
+        _timePicker.maximumDate = [NSDate dateWithTimeIntervalSinceNow:72 * 60 * 60 * 30 * 6]; // 设置最大时间
+        _timePicker.datePickerMode = UIDatePickerModeDateAndTime;
         [_timePicker addTarget:self action:@selector(timeChange:) forControlEvents:UIControlEventValueChanged];
+        _timePicker.tag = _pickTag;
     }
     return _timePicker;
 }
