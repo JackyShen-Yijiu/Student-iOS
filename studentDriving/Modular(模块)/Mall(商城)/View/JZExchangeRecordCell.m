@@ -40,6 +40,7 @@
     return self;
 }
 - (void)initUI{
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
         self.contentView.backgroundColor = [UIColor whiteColor];
         [self.contentView addSubview:self.bgView];
         [self.bgView addSubview:self.mallIconView];
@@ -203,6 +204,12 @@
     [self.mallIconView sd_setImageWithURL:[NSURL URLWithString:integrtalMallModel.productimg] placeholderImage:nil];
     self.nameMallLabel.text = integrtalMallModel.productname;
     self.resultLabel.text = [NSString stringWithFormat:@"%lu",integrtalMallModel.productprice];
-    self.timeLabel.text = [NSString stringWithFormat:@"兑换时间:%@",@""];
+    
+    // 获取系统当前时间
+    NSDate *  senddate=[NSDate date];
+    NSDateFormatter  *dateformatter=[[NSDateFormatter alloc] init];
+     [dateformatter setDateFormat:@"YYYY-MM-dd"];
+    NSString *locationString=[dateformatter stringFromDate:senddate];
+    self.timeLabel.text = [NSString stringWithFormat:@"兑换时间:%@",locationString];
 }
 @end

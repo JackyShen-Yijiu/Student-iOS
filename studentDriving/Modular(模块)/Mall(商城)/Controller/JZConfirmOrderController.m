@@ -157,6 +157,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 //                
 //            }
             JZConfirmOrderSuccessController *orderSuccessVC = [[JZConfirmOrderSuccessController alloc] init];
+            orderSuccessVC.integralMallModel = self.integraMallModel;
             [self.navigationController pushViewController:orderSuccessVC animated:YES];
             
         }
