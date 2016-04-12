@@ -29,6 +29,7 @@
 }
 - (void)dvv_networkRequestLoadMore {
     [self dvv_networkRequestWithIndex:++_index isRefresh:NO];
+    NSLog(@"index == %lu",_index);
 }
 - (void)dvv_networkRequestWithIndex:(NSUInteger)index isRefresh:(BOOL)isRefresh {
     
@@ -57,7 +58,8 @@
             }
             return ;
         }
-        if (!dmRoot.data.ordrelist) {
+        NSLog(@"dmRoot.data.ordrelist.count %lu",dmRoot.data.ordrelist.count);
+        if (!dmRoot.data.ordrelist.count) {
             [self dvv_nilResponseObject];
             return ;
         }
