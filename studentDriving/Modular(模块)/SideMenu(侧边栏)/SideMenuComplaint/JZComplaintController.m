@@ -15,7 +15,7 @@
 #import "CoachListController.h"
 #define kLKSize [UIScreen mainScreen].bounds.size
 //static NSString * const contentCellID = @"contentCellID";
-@interface JZComplaintController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextViewDelegate,complaintPushCoachDetail>
+@interface JZComplaintController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,complaintPushCoachDetail>
 
 ///  顶部
 @property (nonatomic, weak)  JZComplaintHeaderView *headerView;
@@ -94,8 +94,6 @@
     JZComplaintLeftView *leftView = [[JZComplaintLeftView alloc]initWithFrame:CGRectMake(0, 0, kLKSize.width, kLKSize.height - 54)];
     self.leftView = leftView;
     [self.contentScrollView addSubview:leftView];
-    
-    self.leftView.complaintInfoText.delegate = self;
     
     
     JZComplaintRightView *rightView = [[JZComplaintRightView alloc]initWithFrame:CGRectMake(contentScrollView.contentSize.width *0.5, 0, kLKSize.width, kLKSize.height - 54)];
@@ -195,10 +193,8 @@
 
 #pragma mark - 相册的代理方法
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-    
-    
+
     NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
-    
     
     //当选择的类型是图片
     if ([type isEqualToString:@"public.image"])
@@ -224,7 +220,38 @@
         
         //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
         [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
+        
         [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:[NSString stringWithFormat:@"%zd.png",arc4random_uniform(2)]] contents:data attributes:nil];
+        
+        if(self.contentScrollView.contentOffset.x == kLKSize.width)
+        {
+            
+            if (!self.rightView.firstImageView.image)
+            {
+
+            self.rightView.firstImageView.hidden = NO;
+            
+            self.rightView.firstImageView.image = image;
+            
+            self.rightView.firstImageView.frame = CGRectMake(self.rightView.complaintInfoText.origin.x, self.rightView.addImgBtn.frame.origin.y, self.rightView.addImgBtn.bounds.size.width, self.rightView.addImgBtn.bounds.size.height);
+            
+            self.rightView.addImgBtn.transform = CGAffineTransformMakeTranslation(90,0);
+            
+            
+        }else {
+            
+            self.rightView.firstImageView.hidden = NO;
+            self.rightView.secondImageView.hidden = NO;
+            
+            self.rightView.secondImageView.image = image;
+            
+            self.rightView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
+            
+            self.rightView.addImgBtn.hidden = YES;
+            
+            
+        }
+        }else {
         
         if (!self.leftView.firstImageView.image) {
             
@@ -253,34 +280,8 @@
         }
         
         
-        if (!self.rightView.firstImageView.image) {
-            
-            
-            
-            self.rightView.firstImageView.hidden = NO;
-            
-            self.rightView.firstImageView.image = image;
-            
-            self.rightView.firstImageView.frame = CGRectMake(self.rightView.complaintInfoText.origin.x, self.rightView.addImgBtn.frame.origin.y, self.rightView.addImgBtn.bounds.size.width, self.rightView.addImgBtn.bounds.size.height);
-            
-            self.rightView.addImgBtn.transform = CGAffineTransformMakeTranslation(90,0);
-            
-            
-        }else {
-            
-            self.rightView.firstImageView.hidden = NO;
-            self.rightView.secondImageView.hidden = NO;
-            
-            self.rightView.secondImageView.image = image;
-            
-            self.rightView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
-            
-            self.rightView.addImgBtn.hidden = YES;
-            
-            
+             
         }
-        
-        
         
         
         
@@ -294,29 +295,7 @@
     [self.navigationController dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - textView的代理方法
--(BOOL)textViewShouldBeginEditing:(UITextView *)textView {
-    
-    self.leftView.hoderLabel.hidden = YES;
-    
-    self.rightView.hoderLabel.hidden = YES;
-    
-    
-    return YES;
-}
 
--(void)textViewDidChange:(UITextView *)textView{
-    if([textView.text length]>500)
-    {
-        [self obj_showTotasViewWithMes:@"已超过最大字数"];
-        return;
-    }
-    
-}
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    
-    
-}
 
 #pragma mark - 点击提交按钮的方法
 // 提交投诉信息
@@ -324,7 +303,7 @@
     [self leftViewNetworkRequest];
 }
 - (void)rightViewPutInClick:(UIButton *)btn{
-    [self leftViewNetworkRequest];
+    [self rightViewNetworkRequest];
 }
 
 - (void)leftViewNetworkRequest {
@@ -482,6 +461,8 @@
     BOOL isNoName = self.rightView.anonymitySwitch;
     
     int anonymity = isNoName ? 0 : 1;
+    
+    NSLog(@"是否是匿名%d",anonymity);
     
     
     [parmDict setValue:[NSString stringWithFormat:@"%d", anonymity] forKey:@"feedbackusertype"];

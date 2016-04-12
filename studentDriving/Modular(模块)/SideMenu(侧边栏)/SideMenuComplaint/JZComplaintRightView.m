@@ -37,7 +37,16 @@
         
         self.hoderLabel.font = [UIFont systemFontOfSize:14];
         self.phoneNumTf.text = [AcountManager manager].userMobile;
-        self.bottomSchoolName.titleLabel.text = [NSString stringWithFormat:@"投诉 %@",[[AcountManager manager]applyschool].name];
+//        self.bottomSchoolName.titleLabel.text = [NSString stringWithFormat:@"投诉 %@",[[AcountManager manager]applyschool].name];
+        
+
+        
+        self.schoolNameLabel.text = [[AcountManager manager]applyschool].name;
+          [self.bottomSchoolName setTitle:[NSString stringWithFormat:@"投诉 %@",self.schoolNameLabel.text] forState:UIControlStateNormal];
+
+        
+        
+         self.complaintInfoText.delegate = self;
         
         
     }
@@ -77,9 +86,35 @@
 }
 
 
+
+
+
 -(void)switchClick {
     
     NSLog(@"点击了");
+}
+#pragma mark - textView的代理方法
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    
+    self.hoderLabel.hidden = YES;
+    
+    [self.hoderLabel removeFromSuperview];
+    
+   
+    return YES;
+}
+
+-(void)textViewDidChange:(UITextView *)textView{
+    if([textView.text length]>500)
+    {
+        [self obj_showTotasViewWithMes:@"已超过最大字数"];
+        return;
+    }
+    
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    
 }
 
 

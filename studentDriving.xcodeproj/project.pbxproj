@@ -621,8 +621,6 @@
 		B251E51A1C8E849500E6613A /* MyConsultationListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE991C8E849200E6613A /* MyConsultationListCell.m */; };
 		B251E51B1C8E849500E6613A /* YBMyWalletMallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE9D1C8E849200E6613A /* YBMyWalletMallViewController.m */; };
 		B251E51C1C8E849500E6613A /* YBMyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE9F1C8E849200E6613A /* YBMyWalletViewController.m */; };
-		B251E51D1C8E849500E6613A /* YBBaoMingDuiHuanQuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEA41C8E849200E6613A /* YBBaoMingDuiHuanQuanCell.m */; };
-		B251E51E1C8E849500E6613A /* YBBaoMingDuiHuanQuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DEA51C8E849200E6613A /* YBBaoMingDuiHuanQuanCell.xib */; };
 		B251E51F1C8E849500E6613A /* YBBaoMingDuiHuanQuanTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEA71C8E849200E6613A /* YBBaoMingDuiHuanQuanTableView.m */; };
 		B251E5201C8E849500E6613A /* YBJiangliJifenCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DEA91C8E849200E6613A /* YBJiangliJifenCell.m */; };
 		B251E5211C8E849500E6613A /* YBJiangliJifenCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DEAA1C8E849200E6613A /* YBJiangliJifenCell.xib */; };
@@ -2088,9 +2086,6 @@
 		B251DE9D1C8E849200E6613A /* YBMyWalletMallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMyWalletMallViewController.m; sourceTree = "<group>"; };
 		B251DE9E1C8E849200E6613A /* YBMyWalletViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMyWalletViewController.h; sourceTree = "<group>"; };
 		B251DE9F1C8E849200E6613A /* YBMyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMyWalletViewController.m; sourceTree = "<group>"; };
-		B251DEA31C8E849200E6613A /* YBBaoMingDuiHuanQuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaoMingDuiHuanQuanCell.h; sourceTree = "<group>"; };
-		B251DEA41C8E849200E6613A /* YBBaoMingDuiHuanQuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaoMingDuiHuanQuanCell.m; sourceTree = "<group>"; };
-		B251DEA51C8E849200E6613A /* YBBaoMingDuiHuanQuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBBaoMingDuiHuanQuanCell.xib; sourceTree = "<group>"; };
 		B251DEA61C8E849200E6613A /* YBBaoMingDuiHuanQuanTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaoMingDuiHuanQuanTableView.h; sourceTree = "<group>"; };
 		B251DEA71C8E849200E6613A /* YBBaoMingDuiHuanQuanTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaoMingDuiHuanQuanTableView.m; sourceTree = "<group>"; };
 		B251DEA81C8E849200E6613A /* YBJiangliJifenCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBJiangliJifenCell.h; sourceTree = "<group>"; };
@@ -5157,6 +5152,7 @@
 		B251DE9A1C8E849200E6613A /* MyWallet */ = {
 			isa = PBXGroup;
 			children = (
+				D9DA1C5F1CBCBFE800BBD81D /* Old */,
 				B251DE9B1C8E849200E6613A /* Controller */,
 				B251DEA01C8E849200E6613A /* Model */,
 				B251DEA11C8E849200E6613A /* Tool */,
@@ -5195,9 +5191,6 @@
 		B251DEA21C8E849200E6613A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B251DEA31C8E849200E6613A /* YBBaoMingDuiHuanQuanCell.h */,
-				B251DEA41C8E849200E6613A /* YBBaoMingDuiHuanQuanCell.m */,
-				B251DEA51C8E849200E6613A /* YBBaoMingDuiHuanQuanCell.xib */,
 				B251DEA61C8E849200E6613A /* YBBaoMingDuiHuanQuanTableView.h */,
 				B251DEA71C8E849200E6613A /* YBBaoMingDuiHuanQuanTableView.m */,
 				B251DEA81C8E849200E6613A /* YBJiangliJifenCell.h */,
@@ -7098,6 +7091,13 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D9DA1C5F1CBCBFE800BBD81D /* Old */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Old;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -7254,7 +7254,6 @@
 				B251E4661C8E849500E6613A /* VoiceSearchFeedback015@2x.png in Resources */,
 				B251E4C11C8E849500E6613A /* chat_receiver_audio_playing001@2x.png in Resources */,
 				B251E4961C8E849500E6613A /* chatBar_keyboard@2x.png in Resources */,
-				B251E51E1C8E849500E6613A /* YBBaoMingDuiHuanQuanCell.xib in Resources */,
 				B251E4B01C8E849500E6613A /* chatBar_colorMore_videoSelected@2x.png in Resources */,
 				B251E45E1C8E849500E6613A /* VoiceSearchFeedback011@2x.png in Resources */,
 				B251E49E1C8E849500E6613A /* chatBar_record@2x.png in Resources */,
@@ -7934,7 +7933,6 @@
 				B251E34C1C8E849500E6613A /* CoinCertificateController.m in Sources */,
 				B251E3B51C8E849500E6613A /* SignUpFirmOrderFooterView.m in Sources */,
 				B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */,
-				B251E51D1C8E849500E6613A /* YBBaoMingDuiHuanQuanCell.m in Sources */,
 				B221AF8B1C92F31E001F6EED /* YBAppointMentDetailsDataModel.m in Sources */,
 				B251E4231C8E849500E6613A /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				B251E4361C8E849500E6613A /* InvitationManager.m in Sources */,

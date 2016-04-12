@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface JZComplaintRightView : UIView
+@interface JZComplaintRightView : UIView<UITextViewDelegate>
 
 ///  文本框的高
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *textViewHight;

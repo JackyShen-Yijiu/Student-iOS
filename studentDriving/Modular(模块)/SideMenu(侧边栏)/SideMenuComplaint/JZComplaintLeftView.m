@@ -41,17 +41,22 @@
         
         self.phoneNumTf.text = [AcountManager manager].userMobile;
         
-        self.bottomCoachName.titleLabel.text = [NSString stringWithFormat:@"投诉 %@教练",[[AcountManager manager] applycoach].name];
+//        self.bottomCoachName.titleLabel.text = [NSString stringWithFormat:@"投诉 %@教练",[[AcountManager manager] applycoach].name];
+        self.coachNameLabel.text = [[AcountManager manager] applycoach].name;
+        
+        [self.bottomCoachName setTitle:[NSString stringWithFormat:@"投诉 %@教练",self.coachNameLabel.text] forState:UIControlStateNormal];
+        
+        
         
         
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seeCoachClick)];
         
         
         [self.seeCoachView addGestureRecognizer:tap];
+        
+        
+        self.complaintInfoText.delegate = self;
 
-        
-        
-        
     }
     
     return self;
@@ -59,6 +64,7 @@
 -(void)seeCoachClick {
     if ([self.complaintPushCoachDetailDelegate respondsToSelector:@selector(initWithComplaintPushCoachDetail)]) {
         [self.complaintPushCoachDetailDelegate initWithComplaintPushCoachDetail];
+
     }
 }
 -(UIImageView *)firstImageView {
@@ -92,7 +98,31 @@
 }
 
 
+#pragma mark - textView的代理方法
+-(BOOL)textViewShouldBeginEditing:(UITextView *)textView {
+    
+    self.hoderLabel.hidden = YES;
+    
+    [self.hoderLabel removeFromSuperview];
+    
+//    self.hoderLabel.hidden = YES;
+//    
+//    [self.hoderLabel removeFromSuperview];
+    return YES;
+}
 
+-(void)textViewDidChange:(UITextView *)textView{
+    if([textView.text length]>500)
+    {
+        [self obj_showTotasViewWithMes:@"已超过最大字数"];
+        return;
+    }
+    
+}
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    
+    
+}
 
 
 
