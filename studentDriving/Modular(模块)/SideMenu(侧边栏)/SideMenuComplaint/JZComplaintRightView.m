@@ -1,32 +1,30 @@
 //
-//  JZComplaintLeftView.m
+//  JZComplaintRightView.m
 //  studentDriving
 //
-//  Created by 雷凯 on 16/4/10.
+//  Created by 雷凯 on 16/4/11.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "JZComplaintLeftView.h"
+#import "JZComplaintRightView.h"
 #define kLKSize [UIScreen mainScreen].bounds.size
 
-@implementation JZComplaintLeftView
-
+@implementation JZComplaintRightView
 
 -(instancetype)initWithFrame:(CGRect)frame {
     
     
     if (self = [super initWithFrame:frame]) {
         
-        self = [[NSBundle mainBundle] loadNibNamed:@"JZComplaintLeftView" owner:self options:nil].lastObject;
+        self = [[NSBundle mainBundle] loadNibNamed:@"JZComplaintRightView" owner:self options:nil].lastObject;
         
         self.frame = CGRectMake(0, 0, kLKSize.width, kLKSize.height-54);
+        self.transform = CGAffineTransformMakeTranslation(kLKSize.width,0);
         
         [self.anonymitySwitch bringSubviewToFront:self];
-
-        
         self.textViewHight.constant = kLKSize.height - 389;
-
         
+        [self.anonymitySwitch addTarget:self action:@selector(switchClick) forControlEvents:UIControlEventTouchUpInside];
         
         UILabel *hoderLabel = [[UILabel alloc]initWithFrame:CGRectMake(self.complaintInfoText.frame.origin.x + 16, self.complaintInfoText.frame.origin.y +14, 250, 14)];
         self.hoderLabel = hoderLabel;
@@ -38,29 +36,16 @@
         self.hoderLabel.text = @"请输入投诉内容(500字以内)";
         
         self.hoderLabel.font = [UIFont systemFontOfSize:14];
-        
         self.phoneNumTf.text = [AcountManager manager].userMobile;
-        
-        self.bottomCoachName.titleLabel.text = [NSString stringWithFormat:@"投诉 %@教练",[[AcountManager manager] applycoach].name];
-        
-        
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seeCoachClick)];
-        
-        
-        [self.seeCoachView addGestureRecognizer:tap];
-
-        
+        self.bottomSchoolName.titleLabel.text = [NSString stringWithFormat:@"投诉 %@",[[AcountManager manager]applyschool].name];
         
         
     }
     
     return self;
 }
--(void)seeCoachClick {
-    if ([self.complaintPushCoachDetailDelegate respondsToSelector:@selector(initWithComplaintPushCoachDetail)]) {
-        [self.complaintPushCoachDetailDelegate initWithComplaintPushCoachDetail];
-    }
-}
+
+
 -(UIImageView *)firstImageView {
     
     if (!_firstImageView) {
@@ -92,11 +77,10 @@
 }
 
 
-
-
-
-
-
+-(void)switchClick {
+    
+    NSLog(@"点击了");
+}
 
 
 

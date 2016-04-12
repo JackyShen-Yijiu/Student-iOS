@@ -7,21 +7,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JZComplaintLeftView">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="JZComplaintRightView">
             <rect key="frame" x="0.0" y="0.0" width="371" height="371"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fw1-Jq-JTN">
                     <rect key="frame" x="0.0" y="0.0" width="371" height="44"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="箭头" translatesAutoresizingMaskIntoConstraints="NO" id="guN-4k-6si">
-                            <rect key="frame" x="341" y="15" width="14" height="14"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="14" id="JWY-Oc-G7R"/>
-                                <constraint firstAttribute="height" constant="14" id="pTM-UA-3nR"/>
-                            </constraints>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投诉教练" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iE2-pB-LAp">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="投诉驾校" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iE2-pB-LAp">
                             <rect key="frame" x="16" y="15" width="56" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="4Sy-35-qrz"/>
@@ -40,12 +33,10 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="yCt-CA-0tO" firstAttribute="centerY" secondItem="fw1-Jq-JTN" secondAttribute="centerY" id="0Ll-3U-rtx"/>
-                        <constraint firstItem="guN-4k-6si" firstAttribute="centerY" secondItem="fw1-Jq-JTN" secondAttribute="centerY" id="H9z-Qr-r3n"/>
                         <constraint firstItem="iE2-pB-LAp" firstAttribute="centerY" secondItem="fw1-Jq-JTN" secondAttribute="centerY" id="K6a-Vs-Do2"/>
                         <constraint firstItem="iE2-pB-LAp" firstAttribute="leading" secondItem="fw1-Jq-JTN" secondAttribute="leading" constant="16" id="but-rL-jb9"/>
                         <constraint firstAttribute="height" constant="44" id="kFj-BH-E9u"/>
                         <constraint firstItem="yCt-CA-0tO" firstAttribute="leading" secondItem="iE2-pB-LAp" secondAttribute="trailing" constant="12" id="vL0-Uy-p7K"/>
-                        <constraint firstAttribute="trailing" secondItem="guN-4k-6si" secondAttribute="trailing" constant="16" id="zTH-3N-lim"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TqG-9W-YxC">
@@ -224,21 +215,19 @@
                 </mask>
             </variation>
             <connections>
-                <outlet property="addImageBtn" destination="1t4-bQ-s5I" id="Y6L-pC-ji3"/>
-                <outlet property="anonymitySwitch" destination="Ih7-QK-xL8" id="wgs-FM-CWz"/>
-                <outlet property="bottomCoachName" destination="i5h-2Z-rTT" id="kte-eZ-fdP"/>
-                <outlet property="coachNameLabel" destination="yCt-CA-0tO" id="yAD-fQ-jkF"/>
-                <outlet property="complaintInfoText" destination="CA8-ys-bzm" id="xHJ-oa-dJP"/>
-                <outlet property="phoneNumTf" destination="Jft-nJ-cq2" id="SLx-mv-Uhc"/>
-                <outlet property="putInBtn" destination="0f5-mH-xpi" id="a2r-f1-uxh"/>
-                <outlet property="seeCoachView" destination="fw1-Jq-JTN" id="k7a-d7-LGO"/>
-                <outlet property="textViewHight" destination="Ls5-uC-nu6" id="twp-cN-gto"/>
+                <outlet property="addImgBtn" destination="1t4-bQ-s5I" id="Mbz-YJ-3C0"/>
+                <outlet property="anonymitySwitch" destination="Ih7-QK-xL8" id="ATA-am-mDB"/>
+                <outlet property="bottomSchoolName" destination="i5h-2Z-rTT" id="ZPX-Dt-MYf"/>
+                <outlet property="complaintInfoText" destination="CA8-ys-bzm" id="y2j-EZ-TOb"/>
+                <outlet property="phoneNumTf" destination="Jft-nJ-cq2" id="t1m-Ml-fZ3"/>
+                <outlet property="putInBtn" destination="0f5-mH-xpi" id="ISa-ko-peI"/>
+                <outlet property="schoolNameLabel" destination="yCt-CA-0tO" id="a7N-j0-CZA"/>
+                <outlet property="textViewHight" destination="Ls5-uC-nu6" id="Ntn-cE-ymX"/>
             </connections>
             <point key="canvasLocation" x="473.5" y="215.5"/>
         </view>
     </objects>
     <resources>
         <image name="addpic" width="74" height="74"/>
-        <image name="箭头" width="48" height="48"/>
     </resources>
 </document>
