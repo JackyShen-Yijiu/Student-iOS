@@ -38,6 +38,7 @@
 #import "JZPayWayController.h"
 #import "JZShuttleBusController.h"
 #import "JZComplaintController.h"
+#import "JZMyWalletViewController.h"
 
 @interface ViewController () <WMMenuViewControllerDelegate,IWTabBarViewControllerDelegate>
 
@@ -326,7 +327,11 @@
                 [DVVUserManager userNeedLogin];
                 return;
             }
-            YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
+//            YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
+            JZMyWalletViewController *vc = [[JZMyWalletViewController alloc] init];
+
+            
+            
             [self controller:vc];
         }
     }else if (1 == indexPath.section){

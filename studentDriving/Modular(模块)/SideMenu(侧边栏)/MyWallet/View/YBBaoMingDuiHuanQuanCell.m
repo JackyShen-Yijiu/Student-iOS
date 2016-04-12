@@ -9,10 +9,12 @@
 #import "YBBaoMingDuiHuanQuanCell.h"
 
 @interface YBBaoMingDuiHuanQuanCell ()
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rightTopLabel;
-@property (weak, nonatomic) IBOutlet UILabel *rightFootLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *detailLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *rightTopLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *rightFootLabel;
+
+
 @end
 
 @implementation YBBaoMingDuiHuanQuanCell
@@ -34,17 +36,17 @@
 {
     _dictModel = dictModel;
     NSLog(@"_dictModel:%@",_dictModel);
-    
-    self.titleLabel.text = [self getTitle:[_dictModel[@"state"] integerValue]];
-    
-    self.detailLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_dictModel[@"createtime"]]];
-
-    self.rightTopLabel.text = @"兑换券单号";
-    self.rightTopLabel.textColor = MAINCOLOR;
-    
-    self.rightFootLabel.text = [NSString stringWithFormat:@"%@",_dictModel[@"userid"]];
-    self.rightFootLabel.textColor = MAINCOLOR;
-    
+//    
+//    self.titleLabel.text = [self getTitle:[_dictModel[@"state"] integerValue]];
+//    
+//    self.detailLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_dictModel[@"statetime"]]];
+//
+//    self.rightTopLabel.text = @"兑换券单号";
+//    self.rightTopLabel.textColor = MAINCOLOR;
+//    
+//    self.rightFootLabel.text = [NSString stringWithFormat:@"%@",_dictModel[@"userid"]];
+//    self.rightFootLabel.textColor = MAINCOLOR;
+//    
 //    {
 //        "_id": "56812f877b340f4e48423164",
 //        优惠卷编码"userid": "562cb02e93d4ca260b40e544",

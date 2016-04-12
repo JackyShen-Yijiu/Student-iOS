@@ -12,7 +12,10 @@
 @property(nonatomic,weak) UIViewController *parentViewController;
 @property (nonatomic, strong) UITableView *dataTabelView;
 
+///  奖励积分
 @property (nonatomic,strong) NSArray *jianglijifenArrray;
+
+///  可取现
 @property (nonatomic,strong) NSArray *kequxianjineduArray;
 
 // YES:奖励积分 NO:不是奖励积分
