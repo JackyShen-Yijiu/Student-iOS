@@ -19,7 +19,7 @@
 #import "YBCheatsViewController.h"
 #import "MyConsultationListController.h"
 
-#import "YBSubjectOneViewController.h"
+#import "YBSubjectQuestionsListController.h"
 
 #define kCellIdentifier @"YBStudyViewCell"
 
@@ -108,8 +108,10 @@
             if (indexPath.row==0) {
     
                 NSLog(@"self.questiontesturl:%@",self.questiontesturl);
-                YBSubjectOneViewController *vc = [[YBSubjectOneViewController alloc] init];
+                YBSubjectQuestionsListController *vc = [[YBSubjectQuestionsListController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
+                vc.kemu = subjectOne;
+                vc.title = @"科目一章节";
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];
                 
 //                QuestionTestViewController *questionVC = [[QuestionTestViewController alloc] init];
@@ -215,19 +217,25 @@
             
             if (indexPath.row==0) {
                 
-                QuestionBankViewController *questionBank = [[QuestionBankViewController alloc] init];
-                questionBank.hidesBottomBarWhenPushed = YES;
-                questionBank.questionlisturl = self.questionFourlisturl;
-                if ([AcountManager isLogin]) {
-                    NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
-                    NSString *finalString = [self.questionFourlisturl stringByAppendingString:appendString];
-                    questionBank.questionlisturl = finalString;
-                }
+                YBSubjectQuestionsListController *vc = [[YBSubjectQuestionsListController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.kemu = subjectFour;
+                vc.title = @"科目四章节";
+                [self.parentViewController.navigationController pushViewController:vc animated:YES];
+//                
+//                QuestionBankViewController *questionBank = [[QuestionBankViewController alloc] init];
+//                questionBank.hidesBottomBarWhenPushed = YES;
+//                questionBank.questionlisturl = self.questionFourlisturl;
+//                if ([AcountManager isLogin]) {
+//                    NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
+//                    NSString *finalString = [self.questionFourlisturl stringByAppendingString:appendString];
+//                    questionBank.questionlisturl = finalString;
+//                }
 //                questionBank.title = @"科四题库";
 //                questionBank.isModal = YES;
                 //                [mainVC.navigationController pushViewController:questionBank animated:YES];
 //                [self.parentViewController.navigationController presentViewController:questionBank animated:NO completion:nil];
-                [self.parentViewController.navigationController pushViewController:questionBank animated:YES];
+//                [self.parentViewController.navigationController pushViewController:questionBank animated:YES];
 
             }else if (indexPath.row==1){
                 

@@ -14,27 +14,30 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H3h-Nk-ccj">
-                        <rect key="frame" x="15" y="10" width="20" height="20"/>
-                        <color key="backgroundColor" red="0.11310643195893622" green="0.61960784310000006" blue="0.4931393742776613" alpha="1" colorSpace="calibratedRGB"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WSJ-Bn-82L">
-                        <rect key="frame" x="15" y="10" width="20" height="20"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="显示内容" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBm-6Y-vJE">
-                        <rect key="frame" x="40" y="10" width="269" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="显示内容" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yBm-6Y-vJE">
+                        <rect key="frame" x="40" y="13.5" width="265" height="17"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wlq-zV-d58">
+                        <rect key="frame" x="15" y="14.5" width="15" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="Rwe-C8-kBZ"/>
+                            <constraint firstAttribute="width" constant="15" id="Rwq-XH-Xoe"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
+                <constraints>
+                    <constraint firstItem="yBm-6Y-vJE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="dfu-3b-FFw"/>
+                    <constraint firstAttribute="trailing" secondItem="yBm-6Y-vJE" secondAttribute="trailing" constant="15" id="jGC-Ru-cLi"/>
+                    <constraint firstItem="wlq-zV-d58" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="uLa-OJ-Pxq"/>
+                    <constraint firstItem="yBm-6Y-vJE" firstAttribute="leading" secondItem="wlq-zV-d58" secondAttribute="trailing" constant="10" id="ueX-ce-C9C"/>
+                    <constraint firstItem="wlq-zV-d58" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="zbR-fS-2Tf"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
-                <outlet property="image" destination="WSJ-Bn-82L" id="dUj-CN-7Kd"/>
-                <outlet property="numberlable" destination="H3h-Nk-ccj" id="yRn-bR-Tna"/>
+                <outlet property="numberImageView" destination="wlq-zV-d58" id="FcF-wW-W4e"/>
                 <outlet property="textcontent" destination="yBm-6Y-vJE" id="c86-sK-grn"/>
             </connections>
         </tableViewCell>

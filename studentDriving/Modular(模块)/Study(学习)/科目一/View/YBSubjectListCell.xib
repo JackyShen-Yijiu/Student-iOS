@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="YBSubjectListCell" id="p8r-xl-IxH" customClass="YBSubjectListCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="p8r-xl-IxH" id="3sh-at-Ew6">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAg-Oz-qVa">
+                        <rect key="frame" x="10" y="13" width="14" height="16"/>
+                        <color key="backgroundColor" red="0.99947339296340942" green="0.089262746274471283" blue="0.0032940446399152279" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="14" id="LMb-zD-h9V"/>
+                            <constraint firstAttribute="height" constant="16" id="wbn-3l-R0f"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="违法违法违法违法违法违法" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ZA-Xh-cvw">
+                        <rect key="frame" x="29" y="13" width="168" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pes-VX-YuS">
+                        <rect key="frame" x="0.0" y="43" width="320" height="1"/>
+                        <color key="backgroundColor" white="0.92266304060000004" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Rof-Hc-1xw"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="JAg-Oz-qVa" firstAttribute="centerY" secondItem="3sh-at-Ew6" secondAttribute="centerY" id="ErL-wM-AEl"/>
+                    <constraint firstItem="7ZA-Xh-cvw" firstAttribute="leading" secondItem="JAg-Oz-qVa" secondAttribute="trailing" constant="5" id="ILJ-y0-lGb"/>
+                    <constraint firstItem="JAg-Oz-qVa" firstAttribute="leading" secondItem="3sh-at-Ew6" secondAttribute="leading" constant="10" id="Psb-6p-uLZ"/>
+                    <constraint firstAttribute="bottom" secondItem="pes-VX-YuS" secondAttribute="bottom" constant="-0.5" id="XHe-6p-bmp"/>
+                    <constraint firstItem="pes-VX-YuS" firstAttribute="leading" secondItem="JAg-Oz-qVa" secondAttribute="trailing" constant="-24" id="bg9-9a-e3c"/>
+                    <constraint firstItem="7ZA-Xh-cvw" firstAttribute="centerY" secondItem="3sh-at-Ew6" secondAttribute="centerY" id="hAD-Wa-MgV"/>
+                    <constraint firstAttribute="trailing" secondItem="pes-VX-YuS" secondAttribute="trailing" constant="-33" id="vDB-3g-22m"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <connections>
+                <outlet property="contentLabel" destination="7ZA-Xh-cvw" id="BwE-nh-Xra"/>
+                <outlet property="numberLabel" destination="JAg-Oz-qVa" id="YS9-hv-mKG"/>
+            </connections>
+            <point key="canvasLocation" x="412" y="237"/>
+        </tableViewCell>
+    </objects>
+</document>

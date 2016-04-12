@@ -11,7 +11,9 @@
 @implementation PageTableViewCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    
+    self.textcontent.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
