@@ -11,9 +11,6 @@
 
 @interface JZAppiontMessageTopCell ()
 
-@property (nonatomic, strong) UILabel *titleLabel;
-
-@property (nonatomic, strong) UILabel *desLabel;
 
 @property (nonatomic, strong) UIView *lineView;
 @end

@@ -11,9 +11,7 @@
 @interface JZAppiontMessageBottomCell ()<UITextFieldDelegate>
 
 
-@property (strong, nonatomic) UIDatePicker *timePicker;
 
-@property (strong, nonatomic) UITextField *textField;
 
 @property (nonatomic, strong) UIView *lineView;
 
@@ -46,7 +44,7 @@
         make.top.mas_equalTo(self.contentView.mas_top);
         make.left.mas_equalTo(self.contentView.mas_left).offset(0);
         make.right.mas_equalTo(self.contentView.mas_right).offset(0);
-        make.height.mas_equalTo(@44);
+         make.bottom.mas_equalTo(self.contentView.mas_bottom);
         
     }];
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -79,7 +77,7 @@
 }
 - (UITextField *)textField {
     if (_textField == nil) {
-        _textField = [[UITextField alloc] initWithFrame:CGRectMake(15, 0, 40, 44)];
+        _textField = [[UITextField alloc] init];
         _textField.placeholder = @"开始时间";
         _textField.font = [UIFont systemFontOfSize:14];
         _textField.inputView = self.timePicker;

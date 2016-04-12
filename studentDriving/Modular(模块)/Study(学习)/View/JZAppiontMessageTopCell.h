@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface JZAppiontMessageTopCell : UITableViewCell
+@property (nonatomic, strong) UILabel *titleLabel;
+
+@property (nonatomic, strong) UILabel *desLabel;
 
 @end

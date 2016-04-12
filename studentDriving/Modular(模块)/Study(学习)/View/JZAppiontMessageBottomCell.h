@@ -9,5 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface JZAppiontMessageBottomCell : UITableViewCell
+@property (strong, nonatomic) UIDatePicker *timePicker;
 
+@property (strong, nonatomic) UITextField *textField;
 @end
