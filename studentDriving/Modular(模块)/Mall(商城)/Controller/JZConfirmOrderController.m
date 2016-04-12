@@ -12,7 +12,10 @@
 #import "JZOrderMallAdderssCell.h"
 
 #define footerViewH 40
-@interface JZConfirmOrderController ()<UITableViewDelegate,UITableViewDataSource>
+
+static NSString *const kBuyproduct =  @"userinfo/buyproduct";
+
+@interface JZConfirmOrderController ()<UITableViewDelegate,UITableViewDataSource,JZMallNumberDelegate>
 
 @property (nonatomic,strong) UITableView *tableView;
 
@@ -21,6 +24,8 @@
 @property (nonatomic, strong) UILabel *moneyLabel;
 ///  立即兑换的按钮
 @property (nonatomic, strong) UIButton *exchangeButton;
+
+@property (nonatomic, assign) NSUInteger numberMall;
 
 
 @end
@@ -84,6 +89,7 @@
             if (!cell) {
                 cell = [[JZOrderMallNumberCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDnumber];
             }
+            cell.JZMallNumberDelegate = self;
             return cell;
 
         }
@@ -106,8 +112,65 @@
     [super didReceiveMemoryWarning];
     
 }
-#pragma mark ---- Action
+#pragma mark -----delegate(商品数量)
+- (void)mallNumberWith:(NSInteger)numberMall{
+    _numberMall = numberMall;
+}
+#pragma mark ---- Action 确认购买
 - (void)didExchange:(UIButton *)btn{
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kBuyproduct];
+    NSLog(@"urlString = %@",urlString);
+    
+    // 当点击购买时向后台传送数据
+    NSString *useId = [AcountManager manager].userid;
+    NSString *productId =  _integraMallModel.productid;
+    
+    NSDictionary *dic = @{@"usertype":@"1",
+                          @"userid":useId,
+                          @"productid":productId
+//                          @"name":_inameCell.describleTextField.text,
+//                          @"mobile":_iphoneCell.describleTextField.text,
+//                          @"address":_iaddressCell.describleTextField.text
+                          };
+//    NSLog(@"========================%@,%@,%@,%@,%@,%@",dic,useId,productId,_inameCell.describleTextField.text,_iphoneCell.describleTextField.text,_iaddressCell.describleTextField.text);
+    [JENetwoking startDownLoadWithUrl:urlString postParam:dic WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        /*
+         { data = suncess;
+         extra =     {
+         finishorderurl = "http://api.yibuxueche.com/validation/getpageorderfinish?orderid=56cfe6c9623c319d25a02384";
+         orderid = 56cfe6c9623c319d25a02384;
+         orderscanaduiturl = "http://api.yibuxueche.com/validation/ordervalidation?orderid=56cfe6c9623c319d25a02384";
+         };
+         msg = "";
+         type = 1;
+         }
+         */
+        if (1 == [data[@"type"] integerValue]) {
+            [self obj_showTotasViewWithMes:@"积分兑换完成"];
+//            for (UIViewController *viewCon in self.navigationController.viewControllers) {
+//                if ([viewCon isKindOfClass:[YBMallViewController class]]) {
+//                    YBMallViewController *mallVC = (YBMallViewController *)viewCon;
+//                    [self.navigationController popToViewController:mallVC animated:YES];
+//                }
+//                
+//            }
+            
+        }
+        
+        
+    }  withFailure:^(id data) {
+        NSLog(@"errorData = %@",data);
+    }];
+
+    
+    
+    
+    
+    
+    
+    
+    
     
 }
 #pragma mark --- Lazy加载
@@ -137,7 +200,18 @@
         if (0 == _mallWay) {
             // 积分商城
             
-            _moneyLabel.text = [NSString stringWithFormat:@"需支付:%luYB",_integraMallModel.productprice];
+            NSString *result = [NSString stringWithFormat:@"%lu",[AcountManager manager].integrationNumber];
+            NSString *title  = @"积分";
+            CGFloat rang1 = result.length;
+            NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",result,title]];
+            [attStr addAttribute:NSForegroundColorAttributeName value:YBNavigationBarBgColor range:NSMakeRange(0, rang1 - 1)];
+//            [attStr addAttribute:NSForegroundColorAttributeName value:JZ_FONTCOLOR_LIGHT range:NSMakeRange(rang1, rang1 + 1)];
+            
+            [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, rang1 - 1)];
+//            [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(rang1 , rang1 + 1)];
+            self.moneyLabel.attributedText = attStr;
+
+            
         }else if (1 == _mallWay){
             // 兑换劵商城
             _moneyLabel.text = @"需要消费一张兑换劵";

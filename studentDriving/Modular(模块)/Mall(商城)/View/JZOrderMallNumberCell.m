@@ -24,6 +24,8 @@
 
 @property (nonatomic, strong) UIView *lineView;
 
+@property (nonatomic, assign) NSUInteger numberMall;
+
 
 @end
 @implementation JZOrderMallNumberCell
@@ -33,11 +35,15 @@
 }
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        _numberMall = 1;
         [self initUI];
     }
     return self;
 }
 - (void)initUI{
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
+    self.addButton.userInteractionEnabled = YES;
+    self.reduceButton.userInteractionEnabled = YES;
     self.contentView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.numberMallLabel];
     [self.contentView addSubview:self.reduceButton];
@@ -85,7 +91,45 @@
 }
 #pragma mark ---Action
 - (void)numberChanage:(UIButton *)btn{
+    if (btn.tag == 500) {
+        // 点击添加数量
+        
+        
+        // 获取商品的单价
+        if ( _integrtalMallModel.productprice * (_numberMall + 1) <= [AcountManager manager].integrationNumber) {
+            ++_numberMall;
+            [self.reduceButton setBackgroundImage:[UIImage imageNamed:@"quantity_subtract_on"] forState:UIControlStateNormal];
+            self.reduceButton.userInteractionEnabled = YES;
+            self.resultLabel.text = [NSString stringWithFormat:@"%lu",_numberMall];
+        }else{
+            self.resultLabel.text = [NSString stringWithFormat:@"%lu",_numberMall];
+            [self.addButton setBackgroundImage:[UIImage imageNamed:@"quantity_add_off"] forState:UIControlStateNormal];
+            self.addButton.userInteractionEnabled = NO;
+        }
+
+        
+        
+        
+    }
+    if (btn.tag == 501) {
+        // 点击减少数量
+        if (_numberMall == 0) {
+            self.resultLabel.text = [NSString stringWithFormat:@"%lu",_numberMall];
+            [self.reduceButton setBackgroundImage:[UIImage imageNamed:@"quantity_subtract_off"] forState:UIControlStateNormal];
+            self.reduceButton.userInteractionEnabled = NO;
+        }else{
+            self.addButton.userInteractionEnabled = YES;
+            [self.addButton setBackgroundImage:[UIImage imageNamed:@"quantity_add_on"] forState:UIControlStateNormal];
+            --_numberMall;
+            self.resultLabel.text = [NSString stringWithFormat:@"%lu",_numberMall];
+        }
+        
+    }
     
+    // 把选的商品数量返回到控制器
+    if ([self.JZMallNumberDelegate respondsToSelector:@selector(mallNumberWith:)]) {
+        [self.JZMallNumberDelegate mallNumberWith:_numberMall];
+    }
 }
 
 - (UILabel *)numberMallLabel{
@@ -103,6 +147,7 @@
         [_addButton setBackgroundImage:[UIImage imageNamed:@"quantity_add_on"] forState:UIControlStateNormal];
         [_addButton addTarget:self action:@selector(numberChanage:) forControlEvents:UIControlEventTouchUpInside];
         _addButton.tag = 500;
+        _addButton.userInteractionEnabled = YES;
         
     }
     return _addButton;
@@ -113,6 +158,7 @@
         [_reduceButton setBackgroundImage:[UIImage imageNamed:@"quantity_subtract_on"] forState:UIControlStateNormal];
         [_reduceButton addTarget:self action:@selector(numberChanage:) forControlEvents:UIControlEventTouchUpInside];
         _reduceButton.tag = 501;
+        _reduceButton.userInteractionEnabled = YES;
         
     }
     return _reduceButton;

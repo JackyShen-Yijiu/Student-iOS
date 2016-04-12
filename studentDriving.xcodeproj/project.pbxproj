@@ -71,6 +71,7 @@
 		06FBB6DC1C9A848100F04A35 /* JZCoachListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DB1C9A848100F04A35 /* JZCoachListController.m */; };
 		06FBB6DF1C9A89C800F04A35 /* JZCoachListMoel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DE1C9A89C800F04A35 /* JZCoachListMoel.m */; };
 		06FBB6E21C9AA88F00F04A35 /* JZSignUpCoachListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6E11C9AA88F00F04A35 /* JZSignUpCoachListCell.m */; };
+		06FE563F1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE563E1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -1181,6 +1182,8 @@
 		06FBB6DE1C9A89C800F04A35 /* JZCoachListMoel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZCoachListMoel.m; sourceTree = "<group>"; };
 		06FBB6E01C9AA88F00F04A35 /* JZSignUpCoachListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSignUpCoachListCell.h; sourceTree = "<group>"; };
 		06FBB6E11C9AA88F00F04A35 /* JZSignUpCoachListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSignUpCoachListCell.m; sourceTree = "<group>"; };
+		06FE563D1CBCBFB500749A49 /* JZConfirmOrderSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZConfirmOrderSuccessController.h; sourceTree = "<group>"; };
+		06FE563E1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZConfirmOrderSuccessController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5510F87D1C34F52300A431CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -5066,6 +5069,8 @@
 				0681DD1F1CBBACDA007414F1 /* JZRecordDetailController.m */,
 				062334531CBBCA6B00E9C94C /* JZConfirmOrderController.h */,
 				062334541CBBCA6B00E9C94C /* JZConfirmOrderController.m */,
+				06FE563D1CBCBFB500749A49 /* JZConfirmOrderSuccessController.h */,
+				06FE563E1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7851,6 +7856,7 @@
 				B251E3531C8E849500E6613A /* DiscountShopModel.m in Sources */,
 				B251E3751C8E849500E6613A /* CoachInformationCell.m in Sources */,
 				B2EEBC901CA138A100846656 /* ZYPinYinSearch.m in Sources */,
+				06FE563F1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m in Sources */,
 				B251E6A71C8E849600E6613A /* NSObject+SBJSON.m in Sources */,
 				B2EEBC681CA1373300846656 /* DrivingDetailSignUpCell.m in Sources */,
 				B251E3911C8E849500E6613A /* APCommentViewController.m in Sources */,

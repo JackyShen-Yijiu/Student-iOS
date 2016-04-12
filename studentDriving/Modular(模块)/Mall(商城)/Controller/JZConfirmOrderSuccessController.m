@@ -1,31 +1,34 @@
 //
-//  JZRecordDetailController.m
+//  JZConfirmOrderSuccessController.m
 //  studentDriving
 //
-//  Created by ytzhang on 16/4/11.
+//  Created by ytzhang on 16/4/12.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "JZRecordDetailController.h"
+#import "JZConfirmOrderSuccessController.h"
 #import "JZExchangeRecordCell.h"
 #import "JZRecordFooterView.h"
-@interface JZRecordDetailController ()<UITableViewDelegate,UITableViewDataSource>
+#import "JZRecordHeaderView.h"
+
+@interface JZConfirmOrderSuccessController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
 
-
-
 @end
 
-@implementation JZRecordDetailController
+@implementation JZConfirmOrderSuccessController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
-    self.title = @"兑换详情";
+    self.title = @"兑换成功";
     JZRecordFooterView *footerView = [[JZRecordFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 274)];
     self.tableView.tableFooterView = footerView;
+    
+    JZRecordHeaderView *headerView = [[JZRecordHeaderView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 172)];
+    self.tableView.tableHeaderView = headerView;
     
     
 }
@@ -43,13 +46,13 @@
         cell = [[JZExchangeRecordCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:IDexchange];
         cell.stateLabel.hidden = YES;
     }
-    cell.recordModel = self.recordModel;
+    cell.integrtalMallModel = self.integralMallModel;
     return cell;
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-   }
+}
 
 #pragma mark --- Lazy加载
 - (UITableView *)tableView

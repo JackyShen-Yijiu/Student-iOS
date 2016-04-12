@@ -16,8 +16,6 @@
 @property (nonatomic, strong) UILabel *addressLabel;
 
 
-
-
 @end
 @implementation JZOrderMallAdderssCell
 
@@ -31,6 +29,7 @@
     return self;
 }
 - (void)initUI{
+     self.selectionStyle = UITableViewCellSelectionStyleNone;
     self.contentView.backgroundColor = [UIColor whiteColor];
     [self.contentView addSubview:self.titleLabel];
     [self.contentView addSubview:self.addressLabel];

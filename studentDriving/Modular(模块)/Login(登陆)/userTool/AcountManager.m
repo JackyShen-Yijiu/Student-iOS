@@ -55,6 +55,10 @@ static  NSString    *kLocationAddress = @"kLocationAddress";
 static  NSString    *kUserLocationShowType = @"kUserLocationShowType";
 // 兑换券
 static  NSString    *kUserCoinCertificate = @"kUserCoinCertificate";
+
+// 我的积分
+static  NSString    *kIntegrationNumber = @"kIntegrationNumber";
+
 // 用户在首页选择的城市，如果用户设置过了，则下次不再定位，直接使用此城市
 static  NSString    *kUserSelectedCity = @"kUserSelectedCity";
 static  NSString    *kUserSelectedLatitude = @"kUserSelectedLatitude";
@@ -615,6 +619,11 @@ static FMDatabaseQueue *_queue;
 - (void)setUserCoinCertificate:(NSUInteger)userCoinCertificate {
     [NSUserStoreTool storeWithId:@(userCoinCertificate) WithKey:kUserCoinCertificate];
 }
+// 积分
+- (void)setIntegrationNumber:(NSUInteger)integrationNumber{
+    [NSUserStoreTool storeWithId:@(integrationNumber) WithKey:kIntegrationNumber];
+}
+
 - (NSUInteger)userCoinCertificate {
     if ([NSUserStoreTool getObjectWithKey:kUserCoinCertificate]) {
         return [[NSUserStoreTool getObjectWithKey:kUserCoinCertificate] integerValue];
@@ -622,7 +631,13 @@ static FMDatabaseQueue *_queue;
         return 0;
     }
 }
-
+- (NSUInteger)integrationNumber{
+    if ([NSUserStoreTool getObjectWithKey:kIntegrationNumber]) {
+        return [[NSUserStoreTool getObjectWithKey:kIntegrationNumber] integerValue];
+    }else{
+        return 0;
+    }
+}
 // 用户在首页选择的城市，如果用户设置过了，则下次不再定位，直接使用此城市
 - (void)setUserSelectedCity:(NSString *)userSelectedCity {
     [NSUserStoreTool storeWithId:userSelectedCity WithKey:kUserSelectedCity];

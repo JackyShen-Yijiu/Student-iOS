@@ -9,7 +9,16 @@
 #import <UIKit/UIKit.h>
 #import "YBIntegralMallModel.h"
 
+@protocol JZMallNumberDelegate <NSObject>
+
+- (void)mallNumberWith:(NSInteger)numberMall;
+
+@end
 
 @interface JZOrderMallNumberCell : UITableViewCell
+
 @property (nonatomic, strong) YBIntegralMallModel *integrtalMallModel;
+
+@property (nonatomic,assign) id<JZMallNumberDelegate> JZMallNumberDelegate;
+
 @end

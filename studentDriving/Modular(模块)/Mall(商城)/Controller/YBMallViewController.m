@@ -182,6 +182,9 @@ static NSString *kMallID = @"MallID";
             NSDictionary *data = param[@"data"];
             self.integralNumber = [data[@"wallet"] integerValue];
             self.resultLabel.text = [NSString stringWithFormat:@"%lu",self.integralNumber];
+            
+            // 保存积分数量
+            [AcountManager manager].integrationNumber = self.integralNumber;
         }
         [self.mallCollectionView reloadData];
 
