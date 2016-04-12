@@ -13,7 +13,7 @@
 - (void)initWithComplaintPushCoachDetail;
 @end
 
-@interface JZComplaintLeftView : UIView<UIImagePickerControllerDelegate>
+@interface JZComplaintLeftView : UIView<UIImagePickerControllerDelegate,UITextViewDelegate>
 /// 是否匿名
 @property (weak, nonatomic) IBOutlet UISwitch *anonymitySwitch;
 /// 手机号码
@@ -38,6 +38,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *bottomCoachName;
 
 @property (nonatomic, strong) id complaintPushCoachDetailDelegate;
+
+
 
 
 @end
