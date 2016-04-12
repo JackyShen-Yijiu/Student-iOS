@@ -72,6 +72,11 @@
 		06FBB6DF1C9A89C800F04A35 /* JZCoachListMoel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DE1C9A89C800F04A35 /* JZCoachListMoel.m */; };
 		06FBB6E21C9AA88F00F04A35 /* JZSignUpCoachListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6E11C9AA88F00F04A35 /* JZSignUpCoachListCell.m */; };
 		06FE563F1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE563E1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m */; };
+		06FE56421CBCE4DA00749A49 /* JZAppointTestFirstController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE56411CBCE4DA00749A49 /* JZAppointTestFirstController.m */; };
+		06FE56451CBCF22400749A49 /* JZAppiontTestMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE56441CBCF22400749A49 /* JZAppiontTestMessageController.m */; };
+		06FE56481CBCF42000749A49 /* JZAppiontMessageTopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE56471CBCF42000749A49 /* JZAppiontMessageTopCell.m */; };
+		06FE564B1CBCF5FE00749A49 /* JZAppiontMessageBottomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE564A1CBCF5FE00749A49 /* JZAppiontMessageBottomCell.m */; };
+		06FE564E1CBD330600749A49 /* JZAppointTestApplyController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE564D1CBD330600749A49 /* JZAppointTestApplyController.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -1196,6 +1201,16 @@
 		06FBB6E11C9AA88F00F04A35 /* JZSignUpCoachListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSignUpCoachListCell.m; sourceTree = "<group>"; };
 		06FE563D1CBCBFB500749A49 /* JZConfirmOrderSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZConfirmOrderSuccessController.h; sourceTree = "<group>"; };
 		06FE563E1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZConfirmOrderSuccessController.m; sourceTree = "<group>"; };
+		06FE56401CBCE4DA00749A49 /* JZAppointTestFirstController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAppointTestFirstController.h; sourceTree = "<group>"; };
+		06FE56411CBCE4DA00749A49 /* JZAppointTestFirstController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAppointTestFirstController.m; sourceTree = "<group>"; };
+		06FE56431CBCF22400749A49 /* JZAppiontTestMessageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAppiontTestMessageController.h; sourceTree = "<group>"; };
+		06FE56441CBCF22400749A49 /* JZAppiontTestMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAppiontTestMessageController.m; sourceTree = "<group>"; };
+		06FE56461CBCF42000749A49 /* JZAppiontMessageTopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAppiontMessageTopCell.h; sourceTree = "<group>"; };
+		06FE56471CBCF42000749A49 /* JZAppiontMessageTopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAppiontMessageTopCell.m; sourceTree = "<group>"; };
+		06FE56491CBCF5FE00749A49 /* JZAppiontMessageBottomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAppiontMessageBottomCell.h; sourceTree = "<group>"; };
+		06FE564A1CBCF5FE00749A49 /* JZAppiontMessageBottomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAppiontMessageBottomCell.m; sourceTree = "<group>"; };
+		06FE564C1CBD330600749A49 /* JZAppointTestApplyController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAppointTestApplyController.h; sourceTree = "<group>"; };
+		06FE564D1CBD330600749A49 /* JZAppointTestApplyController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAppointTestApplyController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5510F87D1C34F52300A431CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -5620,6 +5635,12 @@
 				B251E0421C8E849300E6613A /* YBStudyViewController.m */,
 				B251E0431C8E849300E6613A /* YBStudyWebViewController.h */,
 				B251E0441C8E849300E6613A /* YBStudyWebViewController.m */,
+				06FE56401CBCE4DA00749A49 /* JZAppointTestFirstController.h */,
+				06FE56411CBCE4DA00749A49 /* JZAppointTestFirstController.m */,
+				06FE56431CBCF22400749A49 /* JZAppiontTestMessageController.h */,
+				06FE56441CBCF22400749A49 /* JZAppiontTestMessageController.m */,
+				06FE564C1CBD330600749A49 /* JZAppointTestApplyController.h */,
+				06FE564D1CBD330600749A49 /* JZAppointTestApplyController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5659,6 +5680,10 @@
 				B251E05B1C8E849300E6613A /* YBStudyViewCell.xib */,
 				B251E05C1C8E849300E6613A /* YBToolBarView.h */,
 				B251E05D1C8E849300E6613A /* YBToolBarView.m */,
+				06FE56461CBCF42000749A49 /* JZAppiontMessageTopCell.h */,
+				06FE56471CBCF42000749A49 /* JZAppiontMessageTopCell.m */,
+				06FE56491CBCF5FE00749A49 /* JZAppiontMessageBottomCell.h */,
+				06FE564A1CBCF5FE00749A49 /* JZAppiontMessageBottomCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7552,6 +7577,7 @@
 				B251E53F1C8E849500E6613A /* EditorDetailCell.m in Sources */,
 				B251E3501C8E849500E6613A /* DiscountShopCell.m in Sources */,
 				B2EEBC651CA1373300846656 /* DrivingDetailItemCell.m in Sources */,
+				06FE564B1CBCF5FE00749A49 /* JZAppiontMessageBottomCell.m in Sources */,
 				B2EEBC751CA1376700846656 /* DrivingDetailViewModel.m in Sources */,
 				062F5B231C9BA8D10057FE5E /* YBMyComplaintListCell.m in Sources */,
 				062F5B221C9BA8D10057FE5E /* YBComplaintCoachView.m in Sources */,
@@ -7803,6 +7829,7 @@
 				B251E6971C8E849600E6613A /* JEPhotoPickManger.m in Sources */,
 				B251E2DC1C8E849500E6613A /* ChooseBtnView.m in Sources */,
 				B251E5341C8E849500E6613A /* SignUpDetailController.m in Sources */,
+				06FE56481CBCF42000749A49 /* JZAppiontMessageTopCell.m in Sources */,
 				B251E3F31C8E849500E6613A /* BaseModelMethod.m in Sources */,
 				B251E41C1C8E849500E6613A /* YBTextView.m in Sources */,
 				B251E37B1C8E849500E6613A /* ConfirmSubjectTwoCell.m in Sources */,
@@ -7918,6 +7945,7 @@
 				B251E5441C8E849500E6613A /* SignUpDetailCell.m in Sources */,
 				B251E2E01C8E849500E6613A /* CoachDMRootClass.m in Sources */,
 				B2EEBC5E1CA1373300846656 /* DrivingDetailAddressCell.m in Sources */,
+				06FE56421CBCE4DA00749A49 /* JZAppointTestFirstController.m in Sources */,
 				B251E4161C8E849500E6613A /* YBAppointMentNoCountentView.m in Sources */,
 				BE91B66E1CBA5CC0006B39F7 /* JZComplaintDetailCell.m in Sources */,
 				B251E37F1C8E849500E6613A /* DrivingIntroductionCell.m in Sources */,
@@ -8104,6 +8132,7 @@
 				B251E4271C8E849500E6613A /* FacialView.m in Sources */,
 				B251E5FC1C8E849500E6613A /* EMCDDeviceManager+Microphone.m in Sources */,
 				BE91B66B1CBA40F4006B39F7 /* JZComplaintHeaderView.m in Sources */,
+				06FE56451CBCF22400749A49 /* JZAppiontTestMessageController.m in Sources */,
 				B251E6891C8E849600E6613A /* SignUpInfoManager.m in Sources */,
 				B2EEBC621CA1373300846656 /* DrivingDetailCoachInfoController.m in Sources */,
 				B2EEBD8F1CA141BE00846656 /* CityItem.m in Sources */,
@@ -8119,6 +8148,7 @@
 				B251E38F1C8E849500E6613A /* SubjectFirstViewController.m in Sources */,
 				D97E1CE41CBD330900BBF87B /* JZMyWalletJiFenView.m in Sources */,
 				B251E3EC1C8E849500E6613A /* YBAppointMentChangeCoachController.m in Sources */,
+				06FE564E1CBD330600749A49 /* JZAppointTestApplyController.m in Sources */,
 				062F5B2E1C9C31A20057FE5E /* ShuttleBusCell.m in Sources */,
 				B2EEBC1F1CA12E3400846656 /* YBUserUsersetting.m in Sources */,
 				B2EEBD6B1CA1415400846656 /* YBSignUpViewController.m in Sources */,

@@ -9,6 +9,7 @@
 #import "YBAppointmentHeaderView.h"
 #import "YBAppointTestViewController.h"
 #import "NSUserStoreTool.h"
+#import "JZAppointTestFirstController.h"
 
 @implementation YBAppointmentHeaderView
 
@@ -134,8 +135,12 @@
 
 - (void)yuekaoBtnDidClick{
     
-    YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
-    appointVc.title = @"我要预约";
+//    YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
+//    appointVc.title = @"我要预约";
+//    appointVc.hidesBottomBarWhenPushed = YES;
+//    [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
+    
+    JZAppointTestFirstController *appointVc = [[JZAppointTestFirstController alloc] init];
     appointVc.hidesBottomBarWhenPushed = YES;
     [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
     
