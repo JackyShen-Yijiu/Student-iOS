@@ -13,6 +13,10 @@
 		060106AF1C97C1A60084379F /* JZPayWayHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 060106AD1C97C1A60084379F /* JZPayWayHeaderCell.xib */; };
 		060106B81C983CA80084379F /* JZPayWayFooterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 060106B61C983CA80084379F /* JZPayWayFooterCell.m */; };
 		060106B91C983CA80084379F /* JZPayWayFooterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 060106B71C983CA80084379F /* JZPayWayFooterCell.xib */; };
+		062334521CBBC54200E9C94C /* JZRecordHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 062334511CBBC54200E9C94C /* JZRecordHeaderView.m */; };
+		062334551CBBCA6B00E9C94C /* JZConfirmOrderController.m in Sources */ = {isa = PBXBuildFile; fileRef = 062334541CBBCA6B00E9C94C /* JZConfirmOrderController.m */; };
+		062334581CBBCD3200E9C94C /* JZOrderMallNumberCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 062334571CBBCD3200E9C94C /* JZOrderMallNumberCell.m */; };
+		0623345B1CBBCD4B00E9C94C /* JZOrderMallAdderssCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0623345A1CBBCD4B00E9C94C /* JZOrderMallAdderssCell.m */; };
 		0625694A1CBB8AD900BEC406 /* JZExchangeRecordController.m in Sources */ = {isa = PBXBuildFile; fileRef = 062569491CBB8AD900BEC406 /* JZExchangeRecordController.m */; };
 		0625694D1CBB8B6A00BEC406 /* JZExchangeRecordCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0625694C1CBB8B6A00BEC406 /* JZExchangeRecordCell.m */; };
 		062F5AF21C9BA7A60057FE5E /* SideMenuSignUpController.m in Sources */ = {isa = PBXBuildFile; fileRef = 062F5ADD1C9BA7A60057FE5E /* SideMenuSignUpController.m */; };
@@ -60,11 +64,14 @@
 		0681DD1B1CBB9ED9007414F1 /* JZRecordListRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 0681DD151CBB9ED9007414F1 /* JZRecordListRootClass.m */; };
 		0681DD1C1CBB9ED9007414F1 /* JZRecordOrdrelist.m in Sources */ = {isa = PBXBuildFile; fileRef = 0681DD171CBB9ED9007414F1 /* JZRecordOrdrelist.m */; };
 		0681DD1D1CBB9ED9007414F1 /* JZRecordUserdata.m in Sources */ = {isa = PBXBuildFile; fileRef = 0681DD191CBB9ED9007414F1 /* JZRecordUserdata.m */; };
+		0681DD201CBBACDA007414F1 /* JZRecordDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0681DD1F1CBBACDA007414F1 /* JZRecordDetailController.m */; };
+		0681DD231CBBB412007414F1 /* JZRecordFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0681DD221CBBB412007414F1 /* JZRecordFooterView.m */; };
 		06B0081A1CA28D1C00C0AEE3 /* YBIntegralMallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B008191CA28D1C00C0AEE3 /* YBIntegralMallModel.m */; };
 		06B303571C93DF240095BD39 /* JZComplaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B303561C93DF240095BD39 /* JZComplaintView.m */; };
 		06FBB6DC1C9A848100F04A35 /* JZCoachListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DB1C9A848100F04A35 /* JZCoachListController.m */; };
 		06FBB6DF1C9A89C800F04A35 /* JZCoachListMoel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DE1C9A89C800F04A35 /* JZCoachListMoel.m */; };
 		06FBB6E21C9AA88F00F04A35 /* JZSignUpCoachListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6E11C9AA88F00F04A35 /* JZSignUpCoachListCell.m */; };
+		06FE563F1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FE563E1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m */; };
 		0D4BEB69A2064AA063E113BF /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC3DA128F67E50F27E9DBD2 /* libPods.a */; };
 		5510F87C1C34F4FD00A431CD /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		5510F87E1C34F52300A431CD /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5510F87D1C34F52300A431CD /* CoreTelephony.framework */; };
@@ -1060,6 +1067,14 @@
 		060106B51C983CA80084379F /* JZPayWayFooterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZPayWayFooterCell.h; sourceTree = "<group>"; };
 		060106B61C983CA80084379F /* JZPayWayFooterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZPayWayFooterCell.m; sourceTree = "<group>"; };
 		060106B71C983CA80084379F /* JZPayWayFooterCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZPayWayFooterCell.xib; sourceTree = "<group>"; };
+		062334501CBBC54200E9C94C /* JZRecordHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRecordHeaderView.h; sourceTree = "<group>"; };
+		062334511CBBC54200E9C94C /* JZRecordHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRecordHeaderView.m; sourceTree = "<group>"; };
+		062334531CBBCA6B00E9C94C /* JZConfirmOrderController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZConfirmOrderController.h; sourceTree = "<group>"; };
+		062334541CBBCA6B00E9C94C /* JZConfirmOrderController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZConfirmOrderController.m; sourceTree = "<group>"; };
+		062334561CBBCD3200E9C94C /* JZOrderMallNumberCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZOrderMallNumberCell.h; sourceTree = "<group>"; };
+		062334571CBBCD3200E9C94C /* JZOrderMallNumberCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZOrderMallNumberCell.m; sourceTree = "<group>"; };
+		062334591CBBCD4B00E9C94C /* JZOrderMallAdderssCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZOrderMallAdderssCell.h; sourceTree = "<group>"; };
+		0623345A1CBBCD4B00E9C94C /* JZOrderMallAdderssCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZOrderMallAdderssCell.m; sourceTree = "<group>"; };
 		062569481CBB8AD900BEC406 /* JZExchangeRecordController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZExchangeRecordController.h; sourceTree = "<group>"; };
 		062569491CBB8AD900BEC406 /* JZExchangeRecordController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZExchangeRecordController.m; sourceTree = "<group>"; };
 		0625694B1CBB8B6A00BEC406 /* JZExchangeRecordCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZExchangeRecordCell.h; sourceTree = "<group>"; };
@@ -1151,6 +1166,10 @@
 		0681DD171CBB9ED9007414F1 /* JZRecordOrdrelist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRecordOrdrelist.m; sourceTree = "<group>"; };
 		0681DD181CBB9ED9007414F1 /* JZRecordUserdata.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRecordUserdata.h; sourceTree = "<group>"; };
 		0681DD191CBB9ED9007414F1 /* JZRecordUserdata.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRecordUserdata.m; sourceTree = "<group>"; };
+		0681DD1E1CBBACDA007414F1 /* JZRecordDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRecordDetailController.h; sourceTree = "<group>"; };
+		0681DD1F1CBBACDA007414F1 /* JZRecordDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRecordDetailController.m; sourceTree = "<group>"; };
+		0681DD211CBBB412007414F1 /* JZRecordFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZRecordFooterView.h; sourceTree = "<group>"; };
+		0681DD221CBBB412007414F1 /* JZRecordFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRecordFooterView.m; sourceTree = "<group>"; };
 		06B008181CA28D1C00C0AEE3 /* YBIntegralMallModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBIntegralMallModel.h; sourceTree = "<group>"; };
 		06B008191CA28D1C00C0AEE3 /* YBIntegralMallModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegralMallModel.m; sourceTree = "<group>"; };
 		06B303551C93DF240095BD39 /* JZComplaintView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintView.h; sourceTree = "<group>"; };
@@ -1161,6 +1180,8 @@
 		06FBB6DE1C9A89C800F04A35 /* JZCoachListMoel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZCoachListMoel.m; sourceTree = "<group>"; };
 		06FBB6E01C9AA88F00F04A35 /* JZSignUpCoachListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSignUpCoachListCell.h; sourceTree = "<group>"; };
 		06FBB6E11C9AA88F00F04A35 /* JZSignUpCoachListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSignUpCoachListCell.m; sourceTree = "<group>"; };
+		06FE563D1CBCBFB500749A49 /* JZConfirmOrderSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZConfirmOrderSuccessController.h; sourceTree = "<group>"; };
+		06FE563E1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZConfirmOrderSuccessController.m; sourceTree = "<group>"; };
 		4AC3DA128F67E50F27E9DBD2 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		5510F87B1C34F4FD00A431CD /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		5510F87D1C34F52300A431CD /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -5039,6 +5060,12 @@
 				B251DE7F1C8E849200E6613A /* YBMallViewController.m */,
 				062569481CBB8AD900BEC406 /* JZExchangeRecordController.h */,
 				062569491CBB8AD900BEC406 /* JZExchangeRecordController.m */,
+				0681DD1E1CBBACDA007414F1 /* JZRecordDetailController.h */,
+				0681DD1F1CBBACDA007414F1 /* JZRecordDetailController.m */,
+				062334531CBBCA6B00E9C94C /* JZConfirmOrderController.h */,
+				062334541CBBCA6B00E9C94C /* JZConfirmOrderController.m */,
+				06FE563D1CBCBFB500749A49 /* JZConfirmOrderSuccessController.h */,
+				06FE563E1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5065,6 +5092,14 @@
 				0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */,
 				0625694B1CBB8B6A00BEC406 /* JZExchangeRecordCell.h */,
 				0625694C1CBB8B6A00BEC406 /* JZExchangeRecordCell.m */,
+				0681DD211CBBB412007414F1 /* JZRecordFooterView.h */,
+				0681DD221CBBB412007414F1 /* JZRecordFooterView.m */,
+				062334501CBBC54200E9C94C /* JZRecordHeaderView.h */,
+				062334511CBBC54200E9C94C /* JZRecordHeaderView.m */,
+				062334561CBBCD3200E9C94C /* JZOrderMallNumberCell.h */,
+				062334571CBBCD3200E9C94C /* JZOrderMallNumberCell.m */,
+				062334591CBBCD4B00E9C94C /* JZOrderMallAdderssCell.h */,
+				0623345A1CBBCD4B00E9C94C /* JZOrderMallAdderssCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7636,6 +7671,7 @@
 				B2EEBC9F1CA1395B00846656 /* DVVPaySuccessViewModel.m in Sources */,
 				B251E3201C8E849500E6613A /* CommentModel.m in Sources */,
 				B251E41D1C8E849500E6613A /* ChatListCell.m in Sources */,
+				0681DD201CBBACDA007414F1 /* JZRecordDetailController.m in Sources */,
 				B2EEBD5B1CA13F6700846656 /* JGItemButton.m in Sources */,
 				B251E6A61C8E849600E6613A /* JGPayTool.m in Sources */,
 				B2EEBCF71CA13AB100846656 /* DVVCoachDetailViewModel.m in Sources */,
@@ -7727,6 +7763,7 @@
 				B251E3A71C8E849500E6613A /* CheckProgressController.m in Sources */,
 				B2EEBC601CA1373300846656 /* DrivingDetailBriefIntroductionCell.m in Sources */,
 				D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */,
+				062334581CBBCD3200E9C94C /* JZOrderMallNumberCell.m in Sources */,
 				06B303571C93DF240095BD39 /* JZComplaintView.m in Sources */,
 				B251E3A31C8E849500E6613A /* EditorUserViewController.m in Sources */,
 				B251E5F21C8E849500E6613A /* YBCheatslistViewCell.m in Sources */,
@@ -7818,6 +7855,7 @@
 				B251E3531C8E849500E6613A /* DiscountShopModel.m in Sources */,
 				B251E3751C8E849500E6613A /* CoachInformationCell.m in Sources */,
 				B2EEBC901CA138A100846656 /* ZYPinYinSearch.m in Sources */,
+				06FE563F1CBCBFB500749A49 /* JZConfirmOrderSuccessController.m in Sources */,
 				B251E6A71C8E849600E6613A /* NSObject+SBJSON.m in Sources */,
 				B2EEBC681CA1373300846656 /* DrivingDetailSignUpCell.m in Sources */,
 				B251E3911C8E849500E6613A /* APCommentViewController.m in Sources */,
@@ -7853,6 +7891,7 @@
 				062F5B351C9C32AC0057FE5E /* JZShuttleBusMainCell.m in Sources */,
 				B251E6761C8E849600E6613A /* UIDevice+JEsystemVersion.m in Sources */,
 				B251E5131C8E849500E6613A /* LTBottomView.m in Sources */,
+				0623345B1CBBCD4B00E9C94C /* JZOrderMallAdderssCell.m in Sources */,
 				B251E4391C8E849500E6613A /* EMSearchBar.m in Sources */,
 				B251E2E21C8E849500E6613A /* DVVFilterView.m in Sources */,
 				B251E6741C8E849600E6613A /* UIColor+Hex.m in Sources */,
@@ -8046,6 +8085,7 @@
 				B2EEBC201CA12E3400846656 /* YBUserVipserverlist.m in Sources */,
 				B251E32D1C8E849500E6613A /* StudentDetailModel.m in Sources */,
 				B251E6B31C8E849600E6613A /* MD5DataSigner.m in Sources */,
+				0681DD231CBBB412007414F1 /* JZRecordFooterView.m in Sources */,
 				B2EEBDE11CA2B53500846656 /* UIView+Sizes.m in Sources */,
 				B251E5631C8E849500E6613A /* DVVCoachCommentDMData.m in Sources */,
 				B251E51B1C8E849500E6613A /* YBMyWalletMallViewController.m in Sources */,
@@ -8074,6 +8114,7 @@
 				B251E6611C8E849500E6613A /* amrFileCodec.mm in Sources */,
 				B251E37C1C8E849500E6613A /* DrivingCell.m in Sources */,
 				B251E6AF1C8E849600E6613A /* Order.m in Sources */,
+				062334521CBBC54200E9C94C /* JZRecordHeaderView.m in Sources */,
 				B2EEBD791CA1416600846656 /* DVVSignUpToolBarView.m in Sources */,
 				062F5AF91C9BA7A60057FE5E /* SignInViewModel.m in Sources */,
 				B251E2E61C8E849500E6613A /* CoachDetailViewController.m in Sources */,
@@ -8094,6 +8135,7 @@
 				B251E56D1C8E849500E6613A /* DVVCoachDetailDMTagslist.m in Sources */,
 				B251E5091C8E849500E6613A /* YBSettingNewPwdViewController.m in Sources */,
 				B251E66B1C8E849500E6613A /* UIColor+Extension.m in Sources */,
+				062334551CBBCA6B00E9C94C /* JZConfirmOrderController.m in Sources */,
 				B251E2F81C8E849500E6613A /* DVVLocationStatus.m in Sources */,
 				B251E6701C8E849600E6613A /* NSString+CurrentTimeDay.m in Sources */,
 				B251E2FC1C8E849500E6613A /* JGDrivingDetailPersonalNoteCell.m in Sources */,

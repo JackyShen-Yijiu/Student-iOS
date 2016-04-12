@@ -22,7 +22,7 @@
 
 @property (nonatomic, strong) UILabel *timeLabel;
 
-@property (nonatomic, strong) UILabel *stateLabel;
+
 
 @property (nonatomic, strong) UIView *lineView;
 
@@ -196,7 +196,13 @@
     [self.mallIconView sd_setImageWithURL:[NSURL URLWithString:recordModel.productimg] placeholderImage:nil];
     self.nameMallLabel.text = recordModel.productname;
     self.resultLabel.text = [NSString stringWithFormat:@"%lu",recordModel.productprice];
-    self.timeLabel.text = recordModel.createtime;
+    self.timeLabel.text = [NSString stringWithFormat:@"兑换时间:%@",recordModel.createtime];
     
+}
+- (void)setIntegrtalMallModel:(YBIntegralMallModel *)integrtalMallModel{
+    [self.mallIconView sd_setImageWithURL:[NSURL URLWithString:integrtalMallModel.productimg] placeholderImage:nil];
+    self.nameMallLabel.text = integrtalMallModel.productname;
+    self.resultLabel.text = [NSString stringWithFormat:@"%lu",integrtalMallModel.productprice];
+    self.timeLabel.text = [NSString stringWithFormat:@"兑换时间:%@",@""];
 }
 @end

@@ -22,4 +22,6 @@
 @property (nonatomic, strong) YBDiscountModel *discountModel;
 @property (nonatomic, strong) YBIntegralMallModel *integralModel;
 
+@property (nonatomic, assign) NSInteger integralNumber;
+
 @end
