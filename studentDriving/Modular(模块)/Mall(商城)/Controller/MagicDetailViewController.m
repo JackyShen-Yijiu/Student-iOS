@@ -15,6 +15,7 @@
 #import <NJKWebViewProgress.h>
 #import <NJKWebViewProgressView.h>
 #import "YBIntegrationMessageController.h"
+#import "JZConfirmOrderController.h"
 
 static NSString *const kIntegralMall = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=0&count=10";
 
@@ -26,9 +27,10 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 @property (strong, nonatomic) NJKWebViewProgressView *progressView;
 
 @property (nonatomic, strong) UIView *bgView;
-//@property (nonatomic, strong) UILabel *moneyLabel;
+
 @property (nonatomic, strong) UIButton *exchangeButton;
-@property (nonatomic, assign) NSInteger integralNumber;
+
+
 @property (nonatomic, assign) NSInteger discountNumber;
 
 @end
@@ -243,7 +245,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 
     if (0 == _mallWay) {
         // 积分商城
-        YBIntegrationMessageController *integrationMessageVC = [[YBIntegrationMessageController alloc] init];
+        JZConfirmOrderController *integrationMessageVC = [[JZConfirmOrderController alloc] init];
         integrationMessageVC.mallWay = 0;
         integrationMessageVC.integraMallModel = self.integralModel;
         [self.navigationController pushViewController:integrationMessageVC animated:YES];

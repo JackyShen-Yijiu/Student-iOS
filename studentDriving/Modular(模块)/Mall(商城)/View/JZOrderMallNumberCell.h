@@ -1,5 +1,5 @@
 //
-//  JZExchangeRecordCell.h
+//  JZOrderMallNumberCell.h
 //  studentDriving
 //
 //  Created by ytzhang on 16/4/11.
@@ -7,13 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "JZRecordOrdrelist.h"
 #import "YBIntegralMallModel.h"
 
-@interface JZExchangeRecordCell : UITableViewCell
-@property (nonatomic, strong) JZRecordOrdrelist *recordModel;
 
+@interface JZOrderMallNumberCell : UITableViewCell
 @property (nonatomic, strong) YBIntegralMallModel *integrtalMallModel;
-
-@property (nonatomic, strong) UILabel *stateLabel;
 @end

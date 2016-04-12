@@ -10,6 +10,7 @@
 #import "JZExchangeRecordCell.h"
 #import "JZRecordViewModel.h"
 #import <MJRefresh/MJRefresh.h>
+#import "JZRecordDetailController.h"
 
 
 @interface JZExchangeRecordController ()<UITableViewDelegate,UITableViewDataSource>
@@ -115,7 +116,11 @@
         [_viewModel dvv_networkRequestRefresh];
     
 }
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    JZRecordDetailController *recordDetailVC = [[JZRecordDetailController alloc] init];
+    recordDetailVC.recordModel  = _viewModel.dataArray[indexPath.row];
+    [self.navigationController pushViewController:recordDetailVC animated:YES];
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     }
