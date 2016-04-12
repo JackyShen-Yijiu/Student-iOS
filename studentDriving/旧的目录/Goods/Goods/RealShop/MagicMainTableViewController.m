@@ -9,7 +9,6 @@
 #import "MagicMainTableViewController.h"
 #import "MagicMainTableViewCell.h"
 #import "MagicDetailViewController.h"
-#import "LTBottomView.h"
 #import "ShopMainModel.h"
 #import "AFNetworking.h"
 #import "JENetwoking.h"

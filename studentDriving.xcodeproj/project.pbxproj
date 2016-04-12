@@ -613,10 +613,6 @@
 		B251E50E1C8E849500E6613A /* YBIntegrationMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE7B1C8E849200E6613A /* YBIntegrationMessageCell.m */; };
 		B251E50F1C8E849500E6613A /* YBIntegrationMessageController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE7D1C8E849200E6613A /* YBIntegrationMessageController.m */; };
 		B251E5101C8E849500E6613A /* YBMallViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE7F1C8E849200E6613A /* YBMallViewController.m */; };
-		B251E5111C8E849500E6613A /* finishMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE841C8E849200E6613A /* finishMessageView.m */; };
-		B251E5121C8E849500E6613A /* finishMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DE851C8E849200E6613A /* finishMessageView.xib */; };
-		B251E5131C8E849500E6613A /* LTBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE871C8E849200E6613A /* LTBottomView.m */; };
-		B251E5141C8E849500E6613A /* LTBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DE881C8E849200E6613A /* LTBottomView.xib */; };
 		B251E5151C8E849500E6613A /* PrivateMessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE8A1C8E849200E6613A /* PrivateMessageCell.m */; };
 		B251E5161C8E849500E6613A /* PrivateMessageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251DE8B1C8E849200E6613A /* PrivateMessageCell.xib */; };
 		B251E5171C8E849500E6613A /* YBIntegralMallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DE8D1C8E849200E6613A /* YBIntegralMallCell.m */; };
@@ -2077,12 +2073,6 @@
 		B251DE7D1C8E849200E6613A /* YBIntegrationMessageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBIntegrationMessageController.m; sourceTree = "<group>"; };
 		B251DE7E1C8E849200E6613A /* YBMallViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMallViewController.h; sourceTree = "<group>"; };
 		B251DE7F1C8E849200E6613A /* YBMallViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMallViewController.m; sourceTree = "<group>"; };
-		B251DE831C8E849200E6613A /* finishMessageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = finishMessageView.h; sourceTree = "<group>"; };
-		B251DE841C8E849200E6613A /* finishMessageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = finishMessageView.m; sourceTree = "<group>"; };
-		B251DE851C8E849200E6613A /* finishMessageView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = finishMessageView.xib; sourceTree = "<group>"; };
-		B251DE861C8E849200E6613A /* LTBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LTBottomView.h; sourceTree = "<group>"; };
-		B251DE871C8E849200E6613A /* LTBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LTBottomView.m; sourceTree = "<group>"; };
-		B251DE881C8E849200E6613A /* LTBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LTBottomView.xib; sourceTree = "<group>"; };
 		B251DE891C8E849200E6613A /* PrivateMessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrivateMessageCell.h; sourceTree = "<group>"; };
 		B251DE8A1C8E849200E6613A /* PrivateMessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrivateMessageCell.m; sourceTree = "<group>"; };
 		B251DE8B1C8E849200E6613A /* PrivateMessageCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrivateMessageCell.xib; sourceTree = "<group>"; };
@@ -5078,12 +5068,6 @@
 		B251DE821C8E849200E6613A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B251DE831C8E849200E6613A /* finishMessageView.h */,
-				B251DE841C8E849200E6613A /* finishMessageView.m */,
-				B251DE851C8E849200E6613A /* finishMessageView.xib */,
-				B251DE861C8E849200E6613A /* LTBottomView.h */,
-				B251DE871C8E849200E6613A /* LTBottomView.m */,
-				B251DE881C8E849200E6613A /* LTBottomView.xib */,
 				B251DE891C8E849200E6613A /* PrivateMessageCell.h */,
 				B251DE8A1C8E849200E6613A /* PrivateMessageCell.m */,
 				B251DE8B1C8E849200E6613A /* PrivateMessageCell.xib */,
@@ -7206,14 +7190,12 @@
 				B251E4F21C8E849500E6613A /* tabbar_setting.png in Resources */,
 				B251E4B21C8E849500E6613A /* chatBar_more_camera@2x.png in Resources */,
 				B251E4E11C8E849500E6613A /* group_header@2x.png in Resources */,
-				B251E5121C8E849500E6613A /* finishMessageView.xib in Resources */,
 				B251E4DB1C8E849500E6613A /* back@2x.png in Resources */,
 				B251E4BF1C8E849500E6613A /* chat_receiver_audio_playing000@2x.png in Resources */,
 				B251E4681C8E849500E6613A /* VoiceSearchFeedback016@2x.png in Resources */,
 				B251E5331C8E849500E6613A /* OrdetDetailController.xib in Resources */,
 				B2EEBCF01CA13A8700846656 /* DVVCoachDetailInfoCell.xib in Resources */,
 				B251E5F31C8E849500E6613A /* YBCheatslistViewCell.xib in Resources */,
-				B251E5141C8E849500E6613A /* LTBottomView.xib in Resources */,
 				B251E4ED1C8E849500E6613A /* tabbar_chatsHL@2x.png in Resources */,
 				B251E6431C8E849500E6613A /* UMShareEditViewController.xib in Resources */,
 				062F5B0D1C9BA85B0057FE5E /* JGActivityCell.xib in Resources */,
@@ -7733,7 +7715,6 @@
 				B251E2DC1C8E849500E6613A /* ChooseBtnView.m in Sources */,
 				B251E5341C8E849500E6613A /* SignUpDetailController.m in Sources */,
 				B251E3F31C8E849500E6613A /* BaseModelMethod.m in Sources */,
-				B251E5111C8E849500E6613A /* finishMessageView.m in Sources */,
 				B251E41C1C8E849500E6613A /* YBTextView.m in Sources */,
 				B251E37B1C8E849500E6613A /* ConfirmSubjectTwoCell.m in Sources */,
 				B251E32C1C8E849500E6613A /* StudentCommentModel.m in Sources */,
@@ -7891,7 +7872,6 @@
 				B251E5EB1C8E849500E6613A /* YBStudyWebViewController.m in Sources */,
 				062F5B351C9C32AC0057FE5E /* JZShuttleBusMainCell.m in Sources */,
 				B251E6761C8E849600E6613A /* UIDevice+JEsystemVersion.m in Sources */,
-				B251E5131C8E849500E6613A /* LTBottomView.m in Sources */,
 				0623345B1CBBCD4B00E9C94C /* JZOrderMallAdderssCell.m in Sources */,
 				B251E4391C8E849500E6613A /* EMSearchBar.m in Sources */,
 				B251E2E21C8E849500E6613A /* DVVFilterView.m in Sources */,
