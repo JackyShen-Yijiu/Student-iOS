@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="OCK-QJ-omb">
+            <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket" translatesAutoresizingMaskIntoConstraints="NO" id="COV-Ip-1Jx">
+                    <rect key="frame" x="0.0" y="0.0" width="370" height="120"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="北京天唱KTV劲歌代金券" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34T-FJ-aWi">
+                    <rect key="frame" x="0.0" y="18" width="186" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="COV-Ip-1Jx" firstAttribute="top" secondItem="OCK-QJ-omb" secondAttribute="top" id="3nU-Wj-IgF"/>
+                <constraint firstAttribute="trailing" secondItem="COV-Ip-1Jx" secondAttribute="trailing" id="Jox-LG-DT7"/>
+                <constraint firstItem="COV-Ip-1Jx" firstAttribute="leading" secondItem="OCK-QJ-omb" secondAttribute="leading" id="Td6-Jh-Qr5"/>
+                <constraint firstAttribute="bottom" secondItem="COV-Ip-1Jx" secondAttribute="bottom" id="TqG-A7-i7L"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-125" y="-188"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ticket" width="355" height="120"/>
+    </resources>
+</document>

@@ -1053,6 +1053,8 @@
 		D976764F1C97E0F10033221E /* YBCompletedAppointmentListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97676481C97E0F10033221E /* YBCompletedAppointmentListCell.xib */; };
 		D97676531C97E1940033221E /* YBAppointmentListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D97676521C97E1940033221E /* YBAppointmentListViewModel.m */; };
 		D998555C1C9658840090036D /* YBCompletedAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D998555B1C9658840090036D /* YBCompletedAppointmentDetailController.m */; };
+		D9DA1C611CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9DA1C601CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib */; };
+		D9DA1C641CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DA1C631CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m */; };
 		D9DEA0A61CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DEA0A51CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m */; };
 /* End PBXBuildFile section */
 
@@ -3060,6 +3062,9 @@
 		D97676521C97E1940033221E /* YBAppointmentListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListViewModel.m; sourceTree = "<group>"; };
 		D998555A1C9658840090036D /* YBCompletedAppointmentDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentDetailController.h; sourceTree = "<group>"; };
 		D998555B1C9658840090036D /* YBCompletedAppointmentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCompletedAppointmentDetailController.m; sourceTree = "<group>"; };
+		D9DA1C601CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBBaoMingDuiHuanQuanCell.xib; sourceTree = "<group>"; };
+		D9DA1C621CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBBaoMingDuiHuanQuanCell.h; sourceTree = "<group>"; };
+		D9DA1C631CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBBaoMingDuiHuanQuanCell.m; sourceTree = "<group>"; };
 		D9DEA0A41CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+sharedDateFormatter.h"; sourceTree = "<group>"; };
 		D9DEA0A51CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+sharedDateFormatter.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -5208,6 +5213,9 @@
 			isa = PBXGroup;
 			children = (
 				B251DEA61C8E849200E6613A /* YBBaoMingDuiHuanQuanTableView.h */,
+				D9DA1C601CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib */,
+				D9DA1C621CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.h */,
+				D9DA1C631CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m */,
 				B251DEA71C8E849200E6613A /* YBBaoMingDuiHuanQuanTableView.m */,
 				B251DEA81C8E849200E6613A /* YBJiangliJifenCell.h */,
 				B251DEA91C8E849200E6613A /* YBJiangliJifenCell.m */,
@@ -7286,6 +7294,7 @@
 				B251E5E71C8E849500E6613A /* YBAppointTestViewController.xib in Resources */,
 				B251E4A61C8E849500E6613A /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
 				064909521C969B8F00126299 /* JZSignUpFooterView.xib in Resources */,
+				D9DA1C611CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib in Resources */,
 				B251E4E81C8E849500E6613A /* nav_createGroup@2x.png in Resources */,
 				B251E4CB1C8E849500E6613A /* chat_sender_audio_playing_000@2x.png in Resources */,
 				B251E4641C8E849500E6613A /* VoiceSearchFeedback014@2x.png in Resources */,
@@ -7616,6 +7625,7 @@
 				B251E50C1C8E849500E6613A /* PrivateMessageController.m in Sources */,
 				B251E2E91C8E849500E6613A /* DrivingCarTypeDMData.m in Sources */,
 				B251E3B61C8E849500E6613A /* SignUpInfoCell.m in Sources */,
+				D9DA1C641CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m in Sources */,
 				B251E37A1C8E849500E6613A /* ConfirmSubjectOneCell.m in Sources */,
 				B251E6021C8E849500E6613A /* EMAlertView.m in Sources */,
 				062F5AF51C9BA7A60057FE5E /* YBSignUpSuccessController.m in Sources */,
