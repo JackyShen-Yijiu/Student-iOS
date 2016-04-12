@@ -14,13 +14,19 @@
 static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 
 static NSString *const knumber = @"create_qrcode";
+
 @interface VirtualViewController ()
 
 @property (nonatomic,strong) UILabel *successLabel;
+
 @property (nonatomic,strong) UILabel *upLabel;
+
 @property (nonatomic,strong) UIImageView *numberImageView;
+
 @property (nonatomic,strong) UILabel *downLabel;
+
 @property (nonatomic,strong) UIButton *finishButton;
+
 @property (nonatomic,strong) NSString *numberStr;
 
 @end
