@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "LTBottomView.h"
 #import "ShopMainModel.h"
 #import "MyWallet.h"
 #import "YBIntegralMallModel.h"
@@ -15,7 +14,6 @@
 
 @interface MagicDetailViewController : UIViewController
 @property (nonatomic,retain)ShopMainModel *mainModel;
-@property (nonatomic,retain) LTBottomView *bottomView;
 @property (nonatomic,retain)  UIButton *didClickBtn;
 @property (nonatomic,assign) int moneyCount;
 @property (nonatomic,assign) BOOL mallWay; // 0 积分商城 ，1 兑换劵商城

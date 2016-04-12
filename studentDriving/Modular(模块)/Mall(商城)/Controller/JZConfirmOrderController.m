@@ -10,6 +10,7 @@
 #import "JZExchangeRecordCell.h"
 #import "JZOrderMallNumberCell.h"
 #import "JZOrderMallAdderssCell.h"
+#import "JZConfirmOrderSuccessController.h"
 
 #define footerViewH 40
 
@@ -155,6 +156,8 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 //                }
 //                
 //            }
+            JZConfirmOrderSuccessController *orderSuccessVC = [[JZConfirmOrderSuccessController alloc] init];
+            [self.navigationController pushViewController:orderSuccessVC animated:YES];
             
         }
         

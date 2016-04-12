@@ -8,7 +8,6 @@
 
 #import "PrivateMessageController.h"
 #import "PrivateMessageCell.h"
-#import "finishMessageView.h"
 #import "MagicMainTableViewController.h"
 #import "InfoModel.h"
 #import "MyWalletViewController.h"
@@ -42,7 +41,6 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     self.tableView.dataSource = self;
 
     [self initUI];
-    [self addBottomView];
     // 去除多余的线
     [self cleaExtraLine];
     
@@ -84,30 +82,6 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     self.tableView.tableHeaderView = headerView;
  
 }
-// 点击确认购买按钮
-#pragma mark -----加载底部View
-- (void)addBottomView
-{
-    // 加载底部View
-    _bottomView = [LTBottomView instanceBottomView];
-    _didClickBtn = [_bottomView viewWithTag:102];
-    // 取出积分的Label
-    UILabel *numberLabel = [_bottomView viewWithTag:103];
-    NSUserDefaults *defaules = [NSUserDefaults standardUserDefaults];
-    NSString *walletstr = [defaules objectForKey:@"walletStr"];
-    numberLabel.text = walletstr;
-    [_didClickBtn setTitle:@"确认购买" forState:UIControlStateNormal];
-    
-    CGFloat kWight = [UIScreen mainScreen].bounds.size.width;
-    CGFloat kHight = [UIScreen mainScreen].bounds.size.height;
-    CGFloat kbottonViewh = 50;
-    _bottomView.frame = CGRectMake(0,kHight - 50 , kWight, kbottonViewh);
-    _bottomView.tag = 200;
-    [self.view addSubview:_bottomView];
-    
-    
-}
-
 
 - (void)backMainView:(UIButton *)btn
 {
@@ -274,21 +248,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
         NSLog(@"errorData = %@",data);
     }];
     
-    
-    
-    
 
- _finishView =  [finishMessageView instanceBottomView];
-    
-    CGFloat kW = self.tableView.bounds.size.width;
-    CGFloat kH = self.tableView.bounds.size.height;
-    _finishView.frame = CGRectMake(0, 0, kW, kH);
-    _finishView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.85];
-  UIButton *button =   [_finishView viewWithTag:100];
-    self.navigationController.navigationBar.hidden = YES;
-    [button addTarget:self action:@selector(backMainView:) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_finishView];
-    
 }
 
 
