@@ -67,12 +67,18 @@
 @property (nonatomic, copy) NSString *userSelectedLatitude;
 @property (nonatomic, copy) NSString *userSelectedLongitude;
 
+
+
 // 设置
 @property (nonatomic, assign) BOOL reservationreminder;
+
 @property (nonatomic, assign) BOOL newmessagereminder;
 
 // 兑换券
 @property (atomic, assign) NSUInteger userCoinCertificate;
+
+// 我的钱包积分
+@property (nonatomic, assign) NSUInteger integrationNumber;
 
 + (AcountManager *)manager;
 

@@ -15,6 +15,11 @@
 @interface ScrollViewPage ()
 // key:indexPath.row+1  values:indexPath.row是否是选中状态
 @property (nonatomic,strong) NSMutableDictionary *selectnumDict;
+
+@property (nonatomic,strong)YBSubjectQuestionsFooter *leftFooter;
+@property (nonatomic,strong)YBSubjectQuestionsFooter *midFooter;
+@property (nonatomic,strong)YBSubjectQuestionsFooter *rightFooter;
+
 @end
 
 @implementation ScrollViewPage
@@ -25,7 +30,6 @@
     UITableView *_righttableview;
     NSMutableArray *_datearry;
     YBSubjectQuestionsHeader *header;
-    YBSubjectQuestionsFooter *footer;
 }
 
 - (NSMutableDictionary *)selectnumDict{
@@ -192,34 +196,201 @@
     
     if (data.isDone == NO && data.type==3) {// 尚未做过，多选确定按钮
         
-        footer = [[YBSubjectQuestionsFooter alloc] init];
-        footer.confimBtn.hidden = NO;
-        [footer.confimBtn addTarget:self action:@selector(confimBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
-        footer.contentView.hidden = YES;
+        if (tableView==_lefttableview && self.currentPage > 0) {
 
-        footer.frame = CGRectMake(0, 0, kSystemWide, 64);
-        
-        footer.currentPage = self.currentPage;
-        footer.data = data;
-        
-        return footer;
+            self.leftFooter = [[YBSubjectQuestionsFooter alloc] init];
+            self.leftFooter.confimBtn.hidden = NO;
+           
+            NSArray *allValues = [self.selectnumDict allValues];
+            NSLog(@"------allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
+            
+            if (allValues && allValues.count != 0) {
+                
+                if (tableView==_lefttableview && self.currentPage > 0) {
+                    self.leftFooter.confimBtn.enabled = [allValues containsObject:@(1)];
+                    self.leftFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+                }else if (tableView==_middletableview){
+                    self.midFooter.confimBtn.enabled = [allValues containsObject:@(1)];
+                    self.midFooter.confimBtn.backgroundColor = YBNavigationBarBgColor;//[allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                    self.rightFooter.confimBtn.enabled = [allValues containsObject:@(1)];
+                    self.rightFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+                }
+                
+            }else{
+                
+                if (tableView==_lefttableview && self.currentPage > 0) {
+                    self.leftFooter.confimBtn.enabled = NO;
+                    self.leftFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
+                }else if (tableView==_middletableview){
+                    self.midFooter.confimBtn.enabled = NO;
+                    self.midFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
+                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                    self.rightFooter.confimBtn.enabled = NO;
+                    self.rightFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
+                }
+                
+            }
+            
+            [self.leftFooter.confimBtn addTarget:self action:@selector(confimBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+            self.leftFooter.contentView.hidden = YES;
+            
+            self.leftFooter.frame = CGRectMake(0, 0, kSystemWide, 64);
+            
+            self.leftFooter.currentPage = self.currentPage;
+            self.leftFooter.data = data;
+            
+            return self.leftFooter;
+            
+        }else if (tableView==_middletableview){
+
+            self.midFooter = [[YBSubjectQuestionsFooter alloc] init];
+            self.midFooter.confimBtn.hidden = NO;
+            
+            NSArray *allValues = [self.selectnumDict allValues];
+            NSLog(@"------allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
+            
+            if (allValues && allValues.count != 0) {
+               
+                if (tableView==_lefttableview && self.currentPage > 0) {
+                    self.leftFooter.confimBtn.enabled = [allValues containsObject:@(1)];
+                    self.leftFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+                }else if (tableView==_middletableview){
+                    self.midFooter.confimBtn.enabled = [allValues containsObject:@(1)];
+                    self.midFooter.confimBtn.backgroundColor = YBNavigationBarBgColor;//[allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                    self.rightFooter.confimBtn.enabled = [allValues containsObject:@(1)];
+                    self.rightFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+                }
+                
+            }else{
+                
+                if (tableView==_lefttableview && self.currentPage > 0) {
+                    self.leftFooter.confimBtn.enabled = NO;
+                    self.leftFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
+                }else if (tableView==_middletableview){
+                    self.midFooter.confimBtn.enabled = NO;
+                    self.midFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
+                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                    self.rightFooter.confimBtn.enabled = NO;
+                    self.rightFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
+                }
+                
+            }
+            
+            [self.midFooter.confimBtn addTarget:self action:@selector(confimBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+            self.midFooter.contentView.hidden = YES;
+            
+            self.midFooter.frame = CGRectMake(0, 0, kSystemWide, 64);
+            
+            self.midFooter.currentPage = self.currentPage;
+            self.midFooter.data = data;
+            
+            return self.midFooter;
+            
+        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+
+            self.rightFooter = [[YBSubjectQuestionsFooter alloc] init];
+            self.rightFooter.confimBtn.hidden = NO;
+          
+            NSArray *allValues = [self.selectnumDict allValues];
+            NSLog(@"------allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
+            
+            if (allValues && allValues.count != 0) {
+                
+                if (tableView==_lefttableview && self.currentPage > 0) {
+                    self.leftFooter.confimBtn.enabled = [allValues containsObject:@(1)];
+                    self.leftFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+                }else if (tableView==_middletableview){
+                    self.midFooter.confimBtn.enabled = [allValues containsObject:@(1)];
+                    self.midFooter.confimBtn.backgroundColor = YBNavigationBarBgColor;//[allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                    self.rightFooter.confimBtn.enabled = [allValues containsObject:@(1)];
+                    self.rightFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+                }
+                
+            }else{
+                
+                if (tableView==_lefttableview && self.currentPage > 0) {
+                    self.leftFooter.confimBtn.enabled = NO;
+                    self.leftFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
+                }else if (tableView==_middletableview){
+                    self.midFooter.confimBtn.enabled = NO;
+                    self.midFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
+                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                    self.rightFooter.confimBtn.enabled = NO;
+                    self.rightFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
+                }
+                
+            }
+            
+            [self.rightFooter.confimBtn addTarget:self action:@selector(confimBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+            self.rightFooter.contentView.hidden = YES;
+            
+            self.rightFooter.frame = CGRectMake(0, 0, kSystemWide, 64);
+            
+            self.rightFooter.currentPage = self.currentPage;
+            self.rightFooter.data = data;
+            
+            return self.rightFooter;
+            
+        }
         
     }else if (data.isDone && data.isTrue==NO){// 已经做过、并且做错出现解释、
         
-        footer = [[YBSubjectQuestionsFooter alloc] init];
-        footer.backgroundColor = YBMainViewControlerBackgroundColor;
-        footer.confimBtn.hidden = YES;
-        footer.contentView.hidden = NO;
-        
-        NSString *title = [NSString stringWithFormat:@"%@",data.explain];
-        CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT)].height;
-      
-        footer.frame = CGRectMake(0, 0, kSystemWide, sizeH+45+10);
-        
-        footer.currentPage = self.currentPage;
-        footer.data = data;
-        
-        return footer;
+        if (tableView==_lefttableview && self.currentPage > 0) {
+            
+            self.leftFooter = [[YBSubjectQuestionsFooter alloc] init];
+            self.leftFooter.backgroundColor = YBMainViewControlerBackgroundColor;
+            self.leftFooter.confimBtn.hidden = YES;
+            self.leftFooter.contentView.hidden = NO;
+            
+            NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
+            CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
+            
+            self.leftFooter.frame = CGRectMake(0, 0, kSystemWide, sizeH+45+10);
+            
+            self.leftFooter.currentPage = self.currentPage;
+            self.leftFooter.data = data;
+            
+            return self.leftFooter;
+            
+        }else if (tableView==_middletableview){
+
+            self.midFooter = [[YBSubjectQuestionsFooter alloc] init];
+            self.midFooter.backgroundColor = YBMainViewControlerBackgroundColor;
+            self.midFooter.confimBtn.hidden = YES;
+            self.midFooter.contentView.hidden = NO;
+            
+            NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
+            CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
+            
+            self.midFooter.frame = CGRectMake(0, 0, kSystemWide, sizeH+45+10);
+            
+            self.midFooter.currentPage = self.currentPage;
+            self.midFooter.data = data;
+            
+            return self.midFooter;
+            
+        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+
+            self.rightFooter = [[YBSubjectQuestionsFooter alloc] init];
+            self.rightFooter.backgroundColor = YBMainViewControlerBackgroundColor;
+            self.rightFooter.confimBtn.hidden = YES;
+            self.rightFooter.contentView.hidden = NO;
+            
+            NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
+            CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
+            
+            self.rightFooter.frame = CGRectMake(0, 0, kSystemWide, sizeH+45+10);
+            
+            self.rightFooter.currentPage = self.currentPage;
+            self.rightFooter.data = data;
+            
+            return self.rightFooter;
+            
+        }
+       
         
     }
     
@@ -245,8 +416,8 @@
         
     }else if (data.isDone && data.isTrue==NO){// 已经做过、并且做错出现解释、
         
-        NSString *title = [NSString stringWithFormat:@"%@",data.explain];
-        CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT)].height;
+        NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
+        CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
         
         return sizeH+45+10;
         
@@ -272,6 +443,8 @@
     }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
         data = _datearry[self.currentPage+1];
     }
+    
+    cell.userInteractionEnabled = !data.isDone;
     
 // 1:正确错误 2：单选4个选项 3：4个选项,多选
     if (data.type==1) {
@@ -392,62 +565,218 @@
         
     }else if (data.type==3){
 
+        if (indexPath.row==0) {
+            
+            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer1];
+            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_A"];
+            
+        }else if (indexPath.row==1){
+            
+            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer2];
+            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_B"];
+            
+        }else if (indexPath.row==2){
+            
+            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer3];
+            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_C"];
+            
+        }else if (indexPath.row==3){
+            
+            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer4];
+            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_D"];
+            
+        }
+        
         if (data.isDone) {// 已经确认
             
-//            NSString *answer_true = [NSString stringWithFormat:@"%ld",(long)data.answer_true];
-//            
-//            NSMutableString *selectStr = [NSMutableString string];
-//            for (int i = 0; i < allkeys.count; i++) {
-//                
-//                NSString *keys = allkeys[i];
-//                BOOL isSelectnum = [self.selectnumDict[keys] boolValue];
-//                NSLog(@"keys:%@---values:%d",keys,isSelectnum);
-//                
-//                if (isSelectnum) {// 选中的状态
-//                    
-//                    [selectStr appendString:keys];
-//                    
-//                }
-//                
-//            }
-//            
-//            NSLog(@"selectStr:%@",selectStr);
-//            
-//            if (([answer_true rangeOfString:selectStr].location !=NSNotFound)) {
-//                
-//                [self obj_showTotasViewWithMes:@"ok"];
-//                data.isTrue = YES;
-//                
-//            }else{
-//                
-//                [self obj_showTotasViewWithMes:@"答错了"];
-//                data.isTrue = NO;
-//                
-//            }
+            NSString *answer_true = [NSString stringWithFormat:@"%ld",(long)data.answer_true];
             
-        }else{// 尚未确认
+            NSArray *asnwer_trueArray = data.answer_trueArray;
             
+            NSDictionary *selectnumDict = data.selectnumDict;
+            
+            NSString *selectnumStr = selectnumDict[[NSString stringWithFormat:@"%lu",indexPath.row+1]];
+            
+            NSInteger selectnum = [selectnumDict[[NSString stringWithFormat:@"%lu",indexPath.row+1]] integerValue];
+            
+            NSString *index_row = [NSString stringWithFormat:@"%lu",indexPath.row+1];
+            
+            NSLog(@"已经确认 answer_true:%@ asnwer_trueArray:%@ selectnumDict:%@ selectnumStr:%@ selectnum:%ld indexPath.row:%ld @(selectnum):%@",answer_true,asnwer_trueArray,selectnumDict,selectnumStr,(long)selectnum,(long)indexPath.row,@(selectnum));
+            
+            NSLog(@"[data.answer_trueArray containsObject:@(selectnum)]:%d",[data.answer_trueArray containsObject:selectnumStr]);
+
             if (indexPath.row==0) {
                 
-                cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer1];
-                cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_A"];
-                
-            }else if (indexPath.row==1){
-                
-                cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer2];
-                cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_B"];
-                
-            }else if (indexPath.row==2){
-                
-                cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer3];
-                cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_C"];
-                
-            }else if (indexPath.row==3){
-                
-                cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer4];
-                cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_D"];
+                if (data.isTrue) {// 回答正确
+                    
+                    if (selectnumStr && selectnum == indexPath.row+1) {// 当前row是用户点击的row
+                        
+                        cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer1];
+                        cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_right"];
+                        
+                    }
+                    
+                }else{// 回答错误
+                    
+                    if (selectnumStr && selectnum == indexPath.row+1) {// 当前row是用户点击的row
+                        
+                        // 判断用户选择的当前row是否在正确答案内
+                        if ([data.answer_trueArray containsObject:selectnumStr]) {
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer1];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_right"];
+                            
+                        }else{
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer1];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_wrong"];
+                            
+                        }
+                        
+                    }else{// 当前row不是用户点击的row
+                        
+                        if ([data.answer_trueArray containsObject:index_row]) {// 判断当前row是否在正确答案中
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer1];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_A_pick"];
+                            
+                        }
+                        
+                    }
+                    
+                }
                 
             }
+            
+            if (indexPath.row==1){
+                
+                if (data.isTrue) {// 回答正确
+                    
+                    if (selectnumStr && selectnum == indexPath.row+1) {// 当前row是用户点击的row
+                        
+                        cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer2];
+                        cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_right"];
+                    }
+                    
+                }else{// 回答错误
+                    
+                    if (selectnumStr && selectnum == indexPath.row+1) {// 当前row是用户点击的row
+                        
+                        // 判断用户选择的当前row是否在正确答案内
+                        if ([data.answer_trueArray containsObject:selectnumStr]) {
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer2];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_right"];
+                            
+                        }else{
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer2];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_wrong"];
+                            
+                        }
+                        
+                    }else{// 当前row不是用户点击的row
+                        
+                        if ([data.answer_trueArray containsObject:index_row]) {// 判断当前row是否在正确答案中
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer2];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_B_pick"];
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            if (indexPath.row==2){
+                
+                if (data.isTrue) {// 回答正确
+                    
+                   if (selectnumStr && selectnum == indexPath.row+1) {// 当前row是用户点击的row
+                        
+                       cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer3];
+                       cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_right"];
+                       
+                    }
+                    
+                }else{// 回答错误
+                    
+                    if (selectnumStr && selectnum == indexPath.row+1) {// 当前row是用户点击的row
+                        
+                        // 判断用户选择的当前row是否在正确答案内
+                        if ([data.answer_trueArray containsObject:selectnumStr]) {
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer3];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_right"];
+                            
+                        }else{
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer3];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_wrong"];
+                            
+                        }
+                        
+                    }else{// 当前row不是用户点击的row
+                        
+                        if ([data.answer_trueArray containsObject:index_row]) {// 判断当前row是否在正确答案中
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer3];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_C_pick"];
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            if (indexPath.row==3){
+                
+                if (data.isTrue) {// 回答正确
+                  
+                    if (selectnumStr && selectnum == indexPath.row+1) {// 当前row是用户点击的row
+                        
+                       cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer4];
+                       cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_right"];
+                       
+                    }
+                    
+                }else{// 回答错误
+                    
+                    if (selectnumStr && selectnum == indexPath.row+1) {// 当前row是用户点击的row
+                        
+                        // 判断用户选择的当前row是否在正确答案内
+                        if ([data.answer_trueArray containsObject:selectnumStr]) {
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer4];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_right"];
+                            
+                        }else{
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer4];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_wrong"];
+                            
+                        }
+                        
+                    }else{// 当前row不是用户点击的row
+                        
+                        if ([data.answer_trueArray containsObject:index_row]) {// 判断当前row是否在正确答案中
+                            
+                            cell.textcontent.text = [NSString stringWithFormat:@"%@",data.answer4];
+                            cell.numberImageView.image = [UIImage imageNamed:@"YBStudySubjectchoose_D_pick"];
+                            
+                        }
+                        
+                    }
+                    
+                }
+                
+            }
+            
+        }else{// 尚未确认
             
             if (data.isSelect) {// 已经选择
                 
@@ -478,7 +807,6 @@
                 }
                 
             }else{// 尚未选择、普通状态
-                
                 
             }
             
@@ -567,16 +895,21 @@
         NSString *selectIndex = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
 
         BOOL isSelectnum = [self.selectnumDict[selectIndex] boolValue];
-        NSLog(@"-----------isSelectnum:%d",isSelectnum);
+       // NSLog(@"-----------isSelectnum:%d",[self.selectnumDict[selectIndex] boolValue]);
         [self.selectnumDict setValue:@(!isSelectnum) forKey:selectIndex];
-        NSLog(@"+++++++++++isSelectnum:%d",isSelectnum);
-
+        //NSLog(@"+++++++++++isSelectnum:%d",[self.selectnumDict[selectIndex] boolValue]);
+       
         NSArray *allValues = [self.selectnumDict allValues];
-        footer.confimBtn.enabled = [allValues containsObject:@(1)];
-        
+        //NSLog(@"------allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
+
+        if (![allValues containsObject:@(1)]) {
+            [self.selectnumDict removeAllObjects];
+        }
+        //NSLog(@"++++++allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
+
         data.isSelect = YES;
         [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
-
+        
         [self reloadDate];
         
     }
@@ -586,53 +919,78 @@
 - (void)confimBtnDidClick
 {
     YBSubjectData *data = _datearry[self.currentPage];
-    NSLog(@"%ld data.answer_true:%ld",data.ID,(long)data.answer_true);
+    //NSLog(@"%ld data.answer_true:%ld data.answer_trueArray:%@",data.ID,(long)data.answer_true,data.answer_trueArray);
     // 1：单选4个选项 2：正确错误 3：4个选项,多选
 
     data.isDone = YES;
-    
-    NSLog(@"self.selectnumDict:%@",self.selectnumDict);
+    [data.selectnumDict removeAllObjects];
     
     // key:indexPath.row+1  values:indexPath.row是否是选中状态
     NSArray *allkeys = [self.selectnumDict allKeys];
     
-    NSString *answer_true = [NSString stringWithFormat:@"%ld",(long)data.answer_true];
-
     NSMutableString *selectStr = [NSMutableString string];
+
+    BOOL isTure = NO;
     for (int i = 0; i < allkeys.count; i++) {
         
         NSString *keys = allkeys[i];
         BOOL isSelectnum = [self.selectnumDict[keys] boolValue];
-        NSLog(@"keys:%@---values:%d",keys,isSelectnum);
+       // NSLog(@"keys:%@---values:%d",keys,isSelectnum);
         
         if (isSelectnum) {// 选中的状态
             
             [selectStr appendString:keys];
             
+            //NSLog(@"-------回答正确keys:%@",keys);
+
+            [data.selectnumDict setValue:keys forKey:keys];
+
+            if ([data.answer_trueArray containsObject:keys]) {
+            //    NSLog(@"++++++回答正确keys:%@",keys);
+//                [data.selectnumArray addObject:keys];
+                
+                // 通过key:indexpath.row 取得value 如果value有值并且value等于indexpath.row的话就表示用户当前选中
+                
+            }
+            
+            if (data.answer_trueArray.count == allkeys.count && [data.answer_trueArray containsObject:keys]) {
+                
+                isTure=YES;
+                
+            }else{
+                
+                isTure=NO;
+                
+            }
+            
         }
         
     }
     
-    NSLog(@"selectStr:%@",selectStr);
+    NSLog(@"self.selectnumDict:%@ data.selectnumDict:%@",self.selectnumDict,data.selectnumDict);
 
-    if (([answer_true rangeOfString:selectStr].location !=NSNotFound)) {
+    data.isTrue = isTure;
+
+    data.selectNum = [selectStr integerValue];
+
+    [self.selectnumDict removeAllObjects];
+
+    [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
+
+    if (isTure) {
         
         [self obj_showTotasViewWithMes:@"ok"];
-        data.isTrue = YES;
+        
+        [self nextQuestion];
         
     }else{
 
         [self obj_showTotasViewWithMes:@"答错了"];
-        data.isTrue = NO;
+        
+        [self reloadDate];
         
     }
     
-    data.selectNum = [selectStr integerValue];
-    
-    [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
-    [self reloadDate];
-    
-    [self.selectnumDict removeAllObjects];
     
 }
 
@@ -700,6 +1058,8 @@
         
         [self reloadDate];
         
+        [self.selectnumDict removeAllObjects];
+
     }
     
 //    NSLog(@"scrollViewDidEndDecelerating self.currentPage:%ld",(long)self.currentPage);

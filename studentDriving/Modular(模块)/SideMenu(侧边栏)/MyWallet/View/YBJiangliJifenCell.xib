@@ -1,65 +1,90 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="YBJiangliJifenCell" id="KGk-i7-Jjw" customClass="YBJiangliJifenCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="62.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="71.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享收益" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dV6-hn-GYK">
-                        <rect key="frame" x="10" y="10" width="60" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="07/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osW-B3-IHi">
-                        <rect key="frame" x="10" y="33" width="36" height="17"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2016/07/10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="osW-B3-IHi">
+                        <rect key="frame" x="239.5" y="18" width="64" height="12"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="e2K-qu-eC6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+222积分" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBi-js-WOq">
-                        <rect key="frame" x="220" y="18" width="72" height="26.5"/>
-                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+222" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBi-js-WOq">
+                        <rect key="frame" x="270" y="42" width="34" height="17"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="75N-yn-ulw"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.84705882352941175" green="0.27058823529411763" blue="0.23921568627450979" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tez-DD-cii">
-                        <rect key="frame" x="10" y="60.5" width="310" height="1"/>
+                        <rect key="frame" x="0.0" y="75" width="320" height="0.5"/>
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="PYj-eM-Lnf"/>
+                            <constraint firstAttribute="height" constant="0.5" id="z1P-1H-9LX"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="分享收益" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dV6-hn-GYK">
+                        <rect key="frame" x="24" y="24" width="56" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="AcW-pR-b1Y"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="tez-DD-cii" secondAttribute="trailing" id="7oP-eW-ubW"/>
+                    <constraint firstAttribute="trailing" secondItem="osW-B3-IHi" secondAttribute="trailing" constant="16" id="1bV-wN-xtW"/>
+                    <constraint firstAttribute="trailing" secondItem="bBi-js-WOq" secondAttribute="trailing" constant="16" id="4Ky-nZ-Pdh"/>
+                    <constraint firstItem="tez-DD-cii" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="HRA-w8-6Lz"/>
                     <constraint firstItem="osW-B3-IHi" firstAttribute="top" secondItem="dV6-hn-GYK" secondAttribute="bottom" constant="5" id="Mm0-ee-VZ6"/>
-                    <constraint firstItem="tez-DD-cii" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Q66-90-vHs"/>
-                    <constraint firstItem="osW-B3-IHi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Wrs-Mi-1ei"/>
+                    <constraint firstItem="osW-B3-IHi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="NFo-DV-Ht2"/>
+                    <constraint firstItem="tez-DD-cii" firstAttribute="top" secondItem="bBi-js-WOq" secondAttribute="bottom" constant="16" id="SaB-1u-wBy"/>
+                    <constraint firstItem="bBi-js-WOq" firstAttribute="top" secondItem="osW-B3-IHi" secondAttribute="bottom" constant="12" id="ZLL-iQ-j5p"/>
                     <constraint firstItem="dV6-hn-GYK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="ZOd-s9-Ofa"/>
                     <constraint firstItem="dV6-hn-GYK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="aaF-Jh-cwf"/>
+                    <constraint firstItem="dV6-hn-GYK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="16" id="bXc-TE-HWn"/>
+                    <constraint firstAttribute="bottom" secondItem="tez-DD-cii" secondAttribute="bottom" id="hfN-by-R3N"/>
                     <constraint firstAttribute="bottomMargin" secondItem="bBi-js-WOq" secondAttribute="bottom" constant="10" id="kW0-dj-qDQ"/>
+                    <constraint firstItem="dV6-hn-GYK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="mQA-CD-v2r"/>
                     <constraint firstItem="bBi-js-WOq" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="10" id="vVB-MS-pYE"/>
+                    <constraint firstAttribute="trailing" secondItem="tez-DD-cii" secondAttribute="trailing" id="wJU-tf-LG1"/>
                     <constraint firstAttribute="trailingMargin" secondItem="bBi-js-WOq" secondAttribute="trailing" constant="20" id="woo-wl-MH6"/>
-                    <constraint firstAttribute="bottom" secondItem="tez-DD-cii" secondAttribute="bottom" constant="1" id="ydU-9n-ThZ"/>
                 </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="ZOd-s9-Ofa"/>
+                        <exclude reference="aaF-Jh-cwf"/>
+                        <exclude reference="Mm0-ee-VZ6"/>
+                        <exclude reference="kW0-dj-qDQ"/>
+                        <exclude reference="vVB-MS-pYE"/>
+                        <exclude reference="woo-wl-MH6"/>
+                    </mask>
+                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="detailLabel" destination="bBi-js-WOq" id="qoi-Hq-53X"/>
                 <outlet property="timeLabel" destination="osW-B3-IHi" id="vI1-gz-fY0"/>
                 <outlet property="titleLabel" destination="dV6-hn-GYK" id="3s5-gE-Ujv"/>
             </connections>
-            <point key="canvasLocation" x="347" y="339.5"/>
+            <point key="canvasLocation" x="344" y="282"/>
         </tableViewCell>
     </objects>
 </document>

@@ -73,7 +73,7 @@
         _dataTabelView.dataSource = self;
         _dataTabelView.delegate = self;
         // 如果是固定高度的话在这里设置比较好
-        _dataTabelView.rowHeight = 63;
+        _dataTabelView.rowHeight = 72;
         _dataTabelView.tableFooterView = [UIView new];
     }
     return _dataTabelView;

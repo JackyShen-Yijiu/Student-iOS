@@ -28,24 +28,6 @@
     return _contentView;
 }
 
-- (UIButton *)confimBtn
-{
-    if (_confimBtn==nil) {
-        
-        _confimBtn = [[UIButton alloc] init];
-        [_confimBtn setTitle:@"确认" forState:UIControlStateNormal];
-        [_confimBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        _confimBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
-        _confimBtn.backgroundColor = YBNavigationBarBgColor;
-        [_confimBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [_confimBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
-        _confimBtn.layer.masksToBounds = YES;
-        _confimBtn.layer.cornerRadius = 3;
-        
-    }
-    return _confimBtn;
-}
-
 - (UILabel *)titleLabel
 {
     if (_titleLabel==nil) {
@@ -80,6 +62,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        _confimBtn = [[UIButton alloc] init];
+        [_confimBtn setTitle:@"确认" forState:UIControlStateNormal];
+        _confimBtn.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+        [_confimBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [_confimBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+        _confimBtn.layer.masksToBounds = YES;
+        _confimBtn.layer.cornerRadius = 3;
         
         [self addSubview:self.confimBtn];
         [self.confimBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -119,7 +109,7 @@
 {
     _data = data;
     
-    self.explainLabel.text = [NSString stringWithFormat:@"%@",_data.explain];
+    self.explainLabel.text = [NSString stringWithFormat:@"答案：%@ \n%@",_data.answer_trueStr,_data.explain];
     
 }
 

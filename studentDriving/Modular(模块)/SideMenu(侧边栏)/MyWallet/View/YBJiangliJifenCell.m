@@ -39,7 +39,7 @@
 
     self.timeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_jianglijifenModel[@"createtime"]]];
     
-    self.detailLabel.text = [NSString stringWithFormat:@"+%@积分",_jianglijifenModel[@"amount"]];
+    self.detailLabel.text = [NSString stringWithFormat:@"+%@",_jianglijifenModel[@"amount"]];
     self.detailLabel.textColor = MAINCOLOR;
     
 //    "createtime": "2015-11-09T12:39:36.624Z",
@@ -74,7 +74,7 @@
     
     self.timeLabel.text = [NSString getYearLocalDateFormateUTCDate:[NSString stringWithFormat:@"%@",_kequxianjineduModel[@"createtime"]]];
     
-    self.detailLabel.text = [NSString stringWithFormat:@"%@元",_kequxianjineduModel[@"income"]];
+    self.detailLabel.text = [NSString stringWithFormat:@"￥%@",_kequxianjineduModel[@"income"]];
     self.detailLabel.textColor = MAINCOLOR;
     
 //    "createtime": "",

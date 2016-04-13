@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
+
+
+
+
 @interface CoachListController : UIViewController
 
 @property (nonatomic, copy) NSString *schoolID;
@@ -16,5 +20,6 @@
 // 从投诉进入需要的属性
 @property (nonatomic, strong) UILabel *complaintCoachNameLabel;
 @property (nonatomic, strong) UILabel *complaintCoachNameLabelBottom;
+
 
 @end

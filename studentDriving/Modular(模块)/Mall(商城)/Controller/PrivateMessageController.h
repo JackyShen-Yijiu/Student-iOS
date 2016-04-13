@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "PrivateMessageCell.h"
-#import "LTBottomView.h"
 #import "MyWallet.h"
 
 
@@ -17,8 +16,6 @@
 @property (nonatomic,retain)PrivateMessageCell *cell;
 @property (nonatomic,retain)UIWindow *wid;
 @property (nonatomic,retain)UIView *finishView;
-
-@property (nonatomic,retain) LTBottomView *bottomView;
 @property (nonatomic,retain)  UIButton *didClickBtn;
 
 @property (nonatomic,retain) NSMutableArray *cellArray ;

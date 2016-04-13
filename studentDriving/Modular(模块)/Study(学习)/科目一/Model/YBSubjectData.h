@@ -61,5 +61,11 @@
 
 // 多选状态下是否选择
 @property (nonatomic,assign) BOOL isSelect;
+// 多选状态下用户选中的正确答案
+@property (nonatomic,strong) NSMutableDictionary *selectnumDict;
+// 多选状态下题库的正确答案
+@property (nonatomic,strong) NSMutableArray *answer_trueArray;
+
+@property (nonatomic,copy) NSString *answer_trueStr;
 
 @end
