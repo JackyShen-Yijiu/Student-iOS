@@ -112,7 +112,6 @@
     [self.surplusLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.integralLabel.mas_top).offset(0);
         make.right.mas_equalTo (self.backView.mas_right).offset(-12);
-        make.width.mas_equalTo(30);
         make.height.mas_equalTo(14);
         
     }];

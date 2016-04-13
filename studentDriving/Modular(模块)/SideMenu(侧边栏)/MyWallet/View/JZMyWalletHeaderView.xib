@@ -100,7 +100,7 @@
                                 <color key="titleColor" red="0.85882352941176465" green="0.26666666666666666" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                         </button>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Wf-df-IiQ">
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Wf-df-IiQ" userLabel="滚动条">
                             <rect key="frame" x="0.0" y="38" width="123.5" height="2"/>
                             <color key="backgroundColor" red="0.85882352941176465" green="0.26666666666666666" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
@@ -139,9 +139,14 @@
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="duiHuanJuanBtn" destination="vRg-72-FWh" id="OGm-Vk-XvQ"/>
                 <outlet property="goToOthersBtn" destination="Ad4-vm-ROr" id="xAc-34-agg"/>
+                <outlet property="headerImg" destination="bhO-hx-mI5" id="nWl-I2-HZa"/>
                 <outlet property="headerNumLabel" destination="o13-Ew-mhd" id="5oI-yF-uAL"/>
                 <outlet property="howDoBtn" destination="6sb-XZ-6a5" id="dzl-Hp-I4W"/>
+                <outlet property="jiFenBtn" destination="aw1-q8-UPr" id="KnD-fz-ytW"/>
+                <outlet property="rollLineView" destination="2Wf-df-IiQ" id="EM5-Hs-oze"/>
+                <outlet property="xianJinBtn" destination="DMb-9C-EfT" id="AMd-SY-vfw"/>
             </connections>
             <point key="canvasLocation" x="62" y="-143"/>
         </view>

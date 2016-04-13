@@ -21,7 +21,13 @@
 
 #import "YBSubjectQuestionsListController.h"
 
+#import "JZAppointTestFirstController.h"
+#import "JZAppointTestApplyController.h"
+#import "JZAppointTestSuccessController.h"
+
 #define kCellIdentifier @"YBStudyViewCell"
+
+static NSString *kapplyStare = @"userinfo/getmyexaminfo";
 
 @interface YBStudyTableView () <UITableViewDataSource, UITableViewDelegate>
 
@@ -134,11 +140,9 @@
                 [self.parentViewController.navigationController pushViewController:wrongQuestVC animated:YES];
 
             }else if (indexPath.row==3){
+                // 判断申请状态
                 
-                YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
-                appointVc.title = dict[@"title"];
-                appointVc.hidesBottomBarWhenPushed = YES;
-                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
+                [self applyinitWith:@"1"];
                 
             }else if (indexPath.row==4){
                 
@@ -165,6 +169,8 @@
                 
             }else if (indexPath.row==1){
                 
+                
+                
                 YBCheatslistViewController *vc = [[YBCheatslistViewController alloc] init];
                 vc.isSubjectTwo = YES;
                 vc.hidesBottomBarWhenPushed = YES;
@@ -172,10 +178,8 @@
                 
             }else if (indexPath.row==2){
                 
-                YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
-                appointVc.title = dict[@"title"];
-                appointVc.hidesBottomBarWhenPushed = YES;
-                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
+                // 我要约考
+                [self applyinitWith:@"2"];
                 
             }else if (indexPath.row==3){
                 
@@ -201,11 +205,8 @@
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];
                 
             }else if (indexPath.row==2){
-                
-                YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
-                appointVc.title = dict[@"title"];
-                appointVc.hidesBottomBarWhenPushed = YES;
-                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
+                // 我要约考
+                 [self applyinitWith:@"3"];
                 
             }else if (indexPath.row==3){
                 
@@ -273,11 +274,8 @@
 
                 
             }else if (indexPath.row==3){
-                
-                YBAppointTestViewController *appointVc = [[YBAppointTestViewController alloc] init];
-                appointVc.title = dict[@"title"];
-                appointVc.hidesBottomBarWhenPushed = YES;
-                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
+                // 我要约考
+                 [self applyinitWith:@"4"];
                 
             }else if (indexPath.row==4){
                 
@@ -296,12 +294,40 @@
     }
 }
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+- (void)applyinitWith:(NSString *)subjectID{
+    NSString *url = [NSString stringWithFormat:BASEURL,kapplyStare];
+    NSDictionary *param = @{@"subjectid":subjectID};
+    [JENetwoking startDownLoadWithUrl:url postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *param = data;
+        if (1 == [param[@"type"] integerValue]) {
+            NSDictionary *resultDic  = param[@"data"];
+            if (0 == [resultDic[@"examinationstate"] integerValue]) {
+                // 未申请
+                JZAppointTestFirstController *appointVc = [[JZAppointTestFirstController alloc] init];
+                appointVc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
+            }
+            if (1 == [resultDic[@"examinationstate"] integerValue]) {
+                // 申请中
+                JZAppointTestApplyController *appointVc = [[JZAppointTestApplyController alloc] init];
+                appointVc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
+            }
+            if (2 == [resultDic[@"examinationstate"] integerValue]) {
+                // 申请拒绝
+            }
+            if (3 == [resultDic[@"examinationstate"] integerValue]) {
+                // 已安排
+                JZAppointTestSuccessController *appointVc = [[JZAppointTestSuccessController alloc] init];
+                appointVc.hidesBottomBarWhenPushed = YES;
+                [self.parentViewController.navigationController pushViewController:appointVc animated:YES];
+                
+            }
+            
+        }
+    } withFailure:^(id data) {
+        
+    }];
 
+}
 @end

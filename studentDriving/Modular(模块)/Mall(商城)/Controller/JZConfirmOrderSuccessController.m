@@ -24,7 +24,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     self.title = @"兑换成功";
-    JZRecordFooterView *footerView = [[JZRecordFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 274)];
+    JZRecordFooterView *footerView = [[JZRecordFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 274) integralMallModel:_integralMallModel formMall:YES codeStr:_orderscanaduiturl];
     self.tableView.tableFooterView = footerView;
     
     JZRecordHeaderView *headerView = [[JZRecordHeaderView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 172)];

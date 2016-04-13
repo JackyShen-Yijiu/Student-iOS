@@ -198,6 +198,13 @@
     self.nameMallLabel.text = recordModel.productname;
     self.resultLabel.text = [NSString stringWithFormat:@"%lu",recordModel.productprice];
     self.timeLabel.text = [NSString stringWithFormat:@"兑换时间:%@",recordModel.createtime];
+    if (recordModel.orderstate == 5) {
+        self.stateLabel.text = @"已领取";
+        self.stateLabel.textColor = JZ_BlueColor;
+    }else{
+        self.stateLabel.text = @"未领取";
+        self.stateLabel.textColor = YBNavigationBarBgColor;
+    }
     
 }
 - (void)setIntegrtalMallModel:(YBIntegralMallModel *)integrtalMallModel{
