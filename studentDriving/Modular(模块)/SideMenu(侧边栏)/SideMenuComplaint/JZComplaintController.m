@@ -87,7 +87,7 @@
     contentScrollView.bounces = NO;
     contentScrollView.contentSize = CGSizeMake(kLKSize.width * 2, kLKSize.height - 54);
     self.contentScrollView = contentScrollView;
-    contentScrollView.backgroundColor = [UIColor cyanColor];
+//    contentScrollView.backgroundColor = [UIColor cyanColor];
     //    self.automaticallyAdjustsScrollViewInsets = NO;
     [self.view addSubview:contentScrollView];
     
