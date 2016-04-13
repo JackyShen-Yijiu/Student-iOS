@@ -41,6 +41,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     [self.view addSubview:self.bgView];
     [self.bgView addSubview:self.moneyLabel];
     [self.bgView addSubview:self.exchangeButton];
+    _numberMall = 1;
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
@@ -119,6 +120,11 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 }
 #pragma mark ---- Action 确认购买
 - (void)didExchange:(UIButton *)btn{
+    if (_numberMall == 0) {
+        [self obj_showTotasViewWithMes:@"请选择商品数量"];
+        return;
+    }
+    
     
     NSString *urlString = [NSString stringWithFormat:BASEURL,kBuyproduct];
     NSLog(@"urlString = %@",urlString);
@@ -126,10 +132,23 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     // 当点击购买时向后台传送数据
     NSString *useId = [AcountManager manager].userid;
     NSString *productId =  _integraMallModel.productid;
+    /*
+     "usertype": 1,
+     "userid": "563c8d5976e8a3882d734975",
+     "productid": "564052488d799c642be50320",
+     "name": "李亚飞",
+     "mobile": "15652305650",
+     "address": "北京市海淀区",
+     "buycount": 1,
+     "couponid": "dsfsdfdsfs"
+     
+     */
+    
     
     NSDictionary *dic = @{@"usertype":@"1",
                           @"userid":useId,
-                          @"productid":productId
+                          @"productid":productId,
+                          @"couponid": [NSString stringWithFormat:@"%lu",self.numberMall]
 //                          @"name":_inameCell.describleTextField.text,
 //                          @"mobile":_iphoneCell.describleTextField.text,
 //                          @"address":_iaddressCell.describleTextField.text
@@ -158,6 +177,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 //            }
             JZConfirmOrderSuccessController *orderSuccessVC = [[JZConfirmOrderSuccessController alloc] init];
             orderSuccessVC.integralMallModel = self.integraMallModel;
+            orderSuccessVC.orderscanaduiturl = data[@"extra"][@"orderscanaduiturl"];
             [self.navigationController pushViewController:orderSuccessVC animated:YES];
             
         }

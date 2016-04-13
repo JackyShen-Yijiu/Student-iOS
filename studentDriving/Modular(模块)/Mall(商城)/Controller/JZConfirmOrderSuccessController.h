@@ -11,4 +11,6 @@
 
 @interface JZConfirmOrderSuccessController : UIViewController
 @property (nonatomic, strong) YBIntegralMallModel *integralMallModel;
+
+@property (nonatomic, strong) NSString *orderscanaduiturl;
 @end

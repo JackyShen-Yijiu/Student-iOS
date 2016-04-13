@@ -107,6 +107,13 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     self.webView.backgroundColor = YBNavigationBarBgColor;
 
     NSLog(@"scrollView.contentOffset.y:%f",scrollView.contentOffset.y);
+    if (YBIphone6) {
+        if (scrollView.contentOffset.y >= 0) {
+            self.webView.backgroundColor = [UIColor whiteColor];
+            return;
+        }
+
+    }
     if (YBIphone6Plus) {
         if (scrollView.contentOffset.y >= 0) {
             self.webView.backgroundColor = [UIColor whiteColor];

@@ -13,19 +13,20 @@
 
 @property (nonatomic,strong) UITableView *tableView;
 
-
-
 @end
 
 @implementation JZRecordDetailController
+- (void)viewWillAppear:(BOOL)animated{
+    [self.tableView reloadData];
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.tableView];
     self.title = @"兑换详情";
-    JZRecordFooterView *footerView = [[JZRecordFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 274)];
-    self.tableView.tableFooterView = footerView;
+    JZRecordFooterView *footerView = [[JZRecordFooterView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 274) recordOrderModel:self.recordModel];
+        self.tableView.tableFooterView = footerView;
     
     
 }

@@ -76,4 +76,7 @@
     [super setSelected:selected animated:animated];
     
 }
+- (void)setIntegrtalMallModel:(YBIntegralMallModel *)integrtalMallModel{
+    self.addressLabel.text = integrtalMallModel.address;
+}
 @end
