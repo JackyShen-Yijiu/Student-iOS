@@ -15,7 +15,9 @@
 #import "MyJiFenHeaderTypeView.h"
 #import "MyXianJinHeaderTypeView.h"
 #import "MyDuiHuanJuanHeaderTypeView.h"
-
+#import "DVVShare.h"
+#import "YBMallViewController.h"
+#import "YBMyWalletMallViewController.h"
 #define kLKSize [UIScreen mainScreen].bounds.size
 
 @interface JZMyWalletViewController ()<UIScrollViewDelegate>
@@ -37,9 +39,6 @@
 @property (nonatomic, weak) MyXianJinHeaderTypeView *xianJinHeaderTypeView;
 
 @property (nonatomic, weak) MyDuiHuanJuanHeaderTypeView *duiHuanJuanHeaderTypeView;
-
-
-
 
 @end
 
@@ -104,6 +103,9 @@
     self.jiFenView = jiFenView;
     [self.contentScrollView addSubview:jiFenView];
     
+    self.jiFenView.showsVerticalScrollIndicator = NO;
+    self.jiFenView.showsHorizontalScrollIndicator = NO;
+    
 #pragma mark - 兑换券页面
     MyDuiHuanJuanHeaderTypeView *duiHuanJuanHeaderTypeView = [[MyDuiHuanJuanHeaderTypeView alloc]initWithFrame:CGRectMake(kLKSize.width, 0, kLKSize.width, 36)];
     
@@ -115,6 +117,8 @@
     
     self.duiHuanJuanView = duiHuanJuanView;
     [self.contentScrollView addSubview:duiHuanJuanView];
+    self.duiHuanJuanView.showsVerticalScrollIndicator = NO;
+    self.duiHuanJuanView.showsHorizontalScrollIndicator = NO;
     
     
     
@@ -131,6 +135,8 @@
     self.xianJinView = xianJinView;
     
     [self.contentScrollView addSubview:xianJinView];
+    self.xianJinView.showsVerticalScrollIndicator = NO;
+    self.xianJinView.showsHorizontalScrollIndicator = NO;
     
 #pragma mark - 底部页面
 JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(jiFenView.frame), kLKSize.width, 40.5)];
@@ -139,9 +145,16 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
     [self.contentScrollView addSubview:bottomView];
     
+    self.bottomView.myYCodeLabel.text = self.Ycode;
+    
+    [self.bottomView.inviteFriendBtn addTarget:self action:@selector(inviteFriendBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = YES;
+    [self.jiFenHeaderView.goToOthersBtn addTarget:self action:@selector(goToJiFenMallClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+
 }
-
-
 #pragma mark - scrollowVie的代理方法
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
@@ -153,10 +166,14 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     if (scrollView.contentOffset.x > kLKSize.width) {
         
         self.bottomView.transform = CGAffineTransformMakeTranslation(kLKSize.width * 2,0);
+    
+        self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = NO;
+        
     }
     
     if (scrollView.contentOffset.x < kLKSize.width) {
         self.bottomView.transform = CGAffineTransformMakeTranslation(0,0);
+         self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = YES;
         
         [self getJiFenData];
         
@@ -265,16 +282,11 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
 
     
 }
-
-
-
-
-
-
-
 #pragma mark - 顶部按钮的点击事件
 #pragma mark - 点击积分
 -(void)clickJiFenBtn {
+    
+    self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = YES;
     [self getJiFenData];
     [self.jiFenHeaderView.jiFenBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
     self.jiFenHeaderView.duiHuanJuanBtn.titleLabel.textColor = RGBColor(110, 110, 110);
@@ -314,6 +326,8 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
 #pragma mark - 点击现金
 -(void)clickXianJinBtn {
     
+    self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = NO;
+    
     [self getXianJinData];
     
     [self.jiFenHeaderView.xianJinBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
@@ -332,9 +346,27 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     }];
 }
 
+#pragma mark - 邀请好友按钮点击
+- (void)inviteFriendBtnClick{
+    
+    [DVVShare shareWithTitle:DVV_Share_Default_Title
+                     content:DVV_Share_Default_Content
+                       image:DVV_Share_Default_Image
+                    location:nil
+                         url:nil
+                     success:^(NSString *platformName) {
+                         [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
+                     }];
+}
 
 
-
+#pragma mark - 积分商城按钮点击
+-(void)goToJiFenMallClick {
+    
+    YBMyWalletMallViewController *mallVC = [[YBMyWalletMallViewController alloc]init];
+    
+    [self.navigationController pushViewController:mallVC animated:YES];
+}
 
 
 @end

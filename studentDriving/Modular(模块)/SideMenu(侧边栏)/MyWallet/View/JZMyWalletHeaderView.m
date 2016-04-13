@@ -7,6 +7,7 @@
 //
 
 #import "JZMyWalletHeaderView.h"
+
 #define kLKSize [UIScreen mainScreen].bounds.size
 
 @implementation JZMyWalletHeaderView

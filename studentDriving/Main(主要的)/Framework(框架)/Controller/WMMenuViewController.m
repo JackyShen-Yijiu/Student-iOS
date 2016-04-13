@@ -27,6 +27,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *tousuBtn;
 @property (weak, nonatomic) IBOutlet UIButton *zixunBtn;
 
+@property (strong, nonatomic) NSString *ycode;
+
 @end
 
 @implementation WMMenuViewController
@@ -82,6 +84,7 @@
                 NSInteger couponcount = [[paramsDict objectForKey:@"couponcount"] integerValue];
                 if (fcode && fcode.length) {
                     self.YLabel.text = [NSString stringWithFormat:@"我的Y码：%@", fcode];
+                    _ycode = [NSString stringWithFormat:@"我的Y码：%@", fcode];
                 }
                 
                 [self.tableView reloadData];
@@ -208,9 +211,9 @@
 
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    if ([self.delegate respondsToSelector:@selector(didSelectItem: indexPath:)]) {
-        [self.delegate didSelectItem:nil indexPath:(NSIndexPath *)indexPath];
-    }
+    if ([self.delegate respondsToSelector:@selector(didSelectItem:indexPath:yCode:)]) {
+        [self.delegate didSelectItem:nil indexPath:(NSIndexPath *)indexPath yCode:_ycode];
+            }
 }
 
 @end

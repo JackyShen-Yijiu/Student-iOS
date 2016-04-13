@@ -1067,6 +1067,12 @@
 		D97E1CEE1CBD3AFD00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E1CED1CBD3AFD00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.xib */; };
 		D97E1CF11CBD3B1A00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97E1CF01CBD3B1A00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.m */; };
 		D97E1CF41CBD458400BBF87B /* JZMyWalletDuiHuanJuanView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97E1CF31CBD458400BBF87B /* JZMyWalletDuiHuanJuanView.m */; };
+		D991FAE31CBE714C002AEBE1 /* JZMyWalletJiFenData.m in Sources */ = {isa = PBXBuildFile; fileRef = D991FADE1CBE714C002AEBE1 /* JZMyWalletJiFenData.m */; };
+		D991FAE41CBE714C002AEBE1 /* JZMyWalletJiFenList.m in Sources */ = {isa = PBXBuildFile; fileRef = D991FAE01CBE714C002AEBE1 /* JZMyWalletJiFenList.m */; };
+		D991FAE51CBE714C002AEBE1 /* JZMyWalletJiFenRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D991FAE21CBE714C002AEBE1 /* JZMyWalletJiFenRootClass.m */; };
+		D991FAED1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanData.m in Sources */ = {isa = PBXBuildFile; fileRef = D991FAE81CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanData.m */; };
+		D991FAEE1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D991FAEA1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanRootClass.m */; };
+		D991FAEF1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.m in Sources */ = {isa = PBXBuildFile; fileRef = D991FAEC1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.m */; };
 		D998555C1C9658840090036D /* YBCompletedAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D998555B1C9658840090036D /* YBCompletedAppointmentDetailController.m */; };
 		D9DA1C611CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9DA1C601CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib */; };
 		D9DA1C641CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DA1C631CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m */; };
@@ -3116,6 +3122,18 @@
 		D97E1CF01CBD3B1A00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletDuiHuanJuanHeaderView.m; sourceTree = "<group>"; };
 		D97E1CF21CBD458400BBF87B /* JZMyWalletDuiHuanJuanView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletDuiHuanJuanView.h; sourceTree = "<group>"; };
 		D97E1CF31CBD458400BBF87B /* JZMyWalletDuiHuanJuanView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletDuiHuanJuanView.m; sourceTree = "<group>"; };
+		D991FADD1CBE714C002AEBE1 /* JZMyWalletJiFenData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletJiFenData.h; sourceTree = "<group>"; };
+		D991FADE1CBE714C002AEBE1 /* JZMyWalletJiFenData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletJiFenData.m; sourceTree = "<group>"; };
+		D991FADF1CBE714C002AEBE1 /* JZMyWalletJiFenList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletJiFenList.h; sourceTree = "<group>"; };
+		D991FAE01CBE714C002AEBE1 /* JZMyWalletJiFenList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletJiFenList.m; sourceTree = "<group>"; };
+		D991FAE11CBE714C002AEBE1 /* JZMyWalletJiFenRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletJiFenRootClass.h; sourceTree = "<group>"; };
+		D991FAE21CBE714C002AEBE1 /* JZMyWalletJiFenRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletJiFenRootClass.m; sourceTree = "<group>"; };
+		D991FAE71CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletDuiHuanJuanData.h; sourceTree = "<group>"; };
+		D991FAE81CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletDuiHuanJuanData.m; sourceTree = "<group>"; };
+		D991FAE91CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletDuiHuanJuanRootClass.h; sourceTree = "<group>"; };
+		D991FAEA1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletDuiHuanJuanRootClass.m; sourceTree = "<group>"; };
+		D991FAEB1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletDuiHuanJuanUseproductidlist.h; sourceTree = "<group>"; };
+		D991FAEC1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletDuiHuanJuanUseproductidlist.m; sourceTree = "<group>"; };
 		D998555A1C9658840090036D /* YBCompletedAppointmentDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentDetailController.h; sourceTree = "<group>"; };
 		D998555B1C9658840090036D /* YBCompletedAppointmentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCompletedAppointmentDetailController.m; sourceTree = "<group>"; };
 		D9DA1C601CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YBBaoMingDuiHuanQuanCell.xib; path = View/YBBaoMingDuiHuanQuanCell.xib; sourceTree = "<group>"; };
@@ -5268,12 +5286,9 @@
 		B251DEA01C8E849200E6613A /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D9E0FF9D1CBE43BB00CDC2B8 /* JZMyWalletXianJinData.h */,
-				D9E0FF9E1CBE43BB00CDC2B8 /* JZMyWalletXianJinData.m */,
-				D9E0FF9F1CBE43BB00CDC2B8 /* JZMyWalletXianJinMoneylist.h */,
-				D9E0FFA01CBE43BB00CDC2B8 /* JZMyWalletXianJinMoneylist.m */,
-				D9E0FFA11CBE43BB00CDC2B8 /* JZMyWalletXianJinRootClass.h */,
-				D9E0FFA21CBE43BB00CDC2B8 /* JZMyWalletXianJinRootClass.m */,
+				D991FAF01CBE8454002AEBE1 /* DuiHuanJuanModel */,
+				D991FAE61CBE7151002AEBE1 /* JIFenModel */,
+				D991FADC1CBE7068002AEBE1 /* XianJinModel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -7202,6 +7217,45 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		D991FADC1CBE7068002AEBE1 /* XianJinModel */ = {
+			isa = PBXGroup;
+			children = (
+				D9E0FF9D1CBE43BB00CDC2B8 /* JZMyWalletXianJinData.h */,
+				D9E0FF9E1CBE43BB00CDC2B8 /* JZMyWalletXianJinData.m */,
+				D9E0FF9F1CBE43BB00CDC2B8 /* JZMyWalletXianJinMoneylist.h */,
+				D9E0FFA01CBE43BB00CDC2B8 /* JZMyWalletXianJinMoneylist.m */,
+				D9E0FFA11CBE43BB00CDC2B8 /* JZMyWalletXianJinRootClass.h */,
+				D9E0FFA21CBE43BB00CDC2B8 /* JZMyWalletXianJinRootClass.m */,
+			);
+			name = XianJinModel;
+			sourceTree = "<group>";
+		};
+		D991FAE61CBE7151002AEBE1 /* JIFenModel */ = {
+			isa = PBXGroup;
+			children = (
+				D991FADD1CBE714C002AEBE1 /* JZMyWalletJiFenData.h */,
+				D991FADE1CBE714C002AEBE1 /* JZMyWalletJiFenData.m */,
+				D991FADF1CBE714C002AEBE1 /* JZMyWalletJiFenList.h */,
+				D991FAE01CBE714C002AEBE1 /* JZMyWalletJiFenList.m */,
+				D991FAE11CBE714C002AEBE1 /* JZMyWalletJiFenRootClass.h */,
+				D991FAE21CBE714C002AEBE1 /* JZMyWalletJiFenRootClass.m */,
+			);
+			name = JIFenModel;
+			sourceTree = "<group>";
+		};
+		D991FAF01CBE8454002AEBE1 /* DuiHuanJuanModel */ = {
+			isa = PBXGroup;
+			children = (
+				D991FAE71CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanData.h */,
+				D991FAE81CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanData.m */,
+				D991FAE91CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanRootClass.h */,
+				D991FAEA1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanRootClass.m */,
+				D991FAEB1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.h */,
+				D991FAEC1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.m */,
+			);
+			name = DuiHuanJuanModel;
+			sourceTree = "<group>";
+		};
 		D9DA1C5F1CBCBFE800BBD81D /* Old */ = {
 			isa = PBXGroup;
 			children = (
@@ -7717,6 +7771,7 @@
 				060106AA1C97C0F90084379F /* JZPayWayController.m in Sources */,
 				B251E5C01C8E849500E6613A /* DVVPaySuccessDMApplycoachinfo.m in Sources */,
 				B251E3931C8E849500E6613A /* AppointmentDrivingViewController.m in Sources */,
+				D991FAE31CBE714C002AEBE1 /* JZMyWalletJiFenData.m in Sources */,
 				B251E3971C8E849500E6613A /* BLAVDetailViewController.m in Sources */,
 				B251E3121C8E849500E6613A /* VerifyInformationController.m in Sources */,
 				B251E3A41C8E849500E6613A /* GenderViewController.m in Sources */,
@@ -7889,6 +7944,7 @@
 				B251E5181C8E849500E6613A /* MyConsultationListController.m in Sources */,
 				B251E3391C8E849500E6613A /* VipserverModel.m in Sources */,
 				B2EEBD901CA141BE00846656 /* CityListViewController.m in Sources */,
+				D991FAED1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanData.m in Sources */,
 				B251E3B41C8E849500E6613A /* SignUpFirmOrderController.m in Sources */,
 				060106A71C97AAC90084379F /* JZYListModel.m in Sources */,
 				B2EEBCB91CA1396A00846656 /* JZShowTitleCell.m in Sources */,
@@ -7922,6 +7978,7 @@
 				B251E2E31C8E849500E6613A /* DVVSearchView.m in Sources */,
 				D97676261C97DF6F0033221E /* YBAppointmentDetailHeaderView.m in Sources */,
 				B251E6711C8E849600E6613A /* NSString+DY_MD5.m in Sources */,
+				D991FAE41CBE714C002AEBE1 /* JZMyWalletJiFenList.m in Sources */,
 				B251E5C61C8E849500E6613A /* DVVSignUpCoachDMHeadportrait.m in Sources */,
 				B251E32B1C8E849500E6613A /* serverclasslistModel.m in Sources */,
 				B2EEBC9C1CA1395400846656 /* SignUpSuccessViewController.m in Sources */,
@@ -8141,6 +8198,7 @@
 				B251E3B51C8E849500E6613A /* SignUpFirmOrderFooterView.m in Sources */,
 				B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */,
 				B221AF8B1C92F31E001F6EED /* YBAppointMentDetailsDataModel.m in Sources */,
+				D991FAEE1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanRootClass.m in Sources */,
 				B251E4231C8E849500E6613A /* ConvertToCommonEmoticonsHelper.m in Sources */,
 				B251E4361C8E849500E6613A /* InvitationManager.m in Sources */,
 				B251E3801C8E849500E6613A /* DrivingSelectedCoachCell.m in Sources */,
@@ -8332,6 +8390,7 @@
 				B251E2F81C8E849500E6613A /* DVVLocationStatus.m in Sources */,
 				B251E6701C8E849600E6613A /* NSString+CurrentTimeDay.m in Sources */,
 				B251E2FC1C8E849500E6613A /* JGDrivingDetailPersonalNoteCell.m in Sources */,
+				D991FAEF1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.m in Sources */,
 				B251E3941C8E849500E6613A /* AppointmentViewController.m in Sources */,
 				B251E4211C8E849500E6613A /* ChatViewController+Category.m in Sources */,
 				B251E3771C8E849500E6613A /* CoachTableViewCell.m in Sources */,
@@ -8370,6 +8429,7 @@
 				B251E5F01C8E849500E6613A /* YBCheatsCell.m in Sources */,
 				B2EEBC9B1CA1395400846656 /* DVVSignUpDetailController.m in Sources */,
 				B251E53C1C8E849500E6613A /* MallOrderListModel.m in Sources */,
+				D991FAE51CBE714C002AEBE1 /* JZMyWalletJiFenRootClass.m in Sources */,
 				B251E5FE1C8E849500E6613A /* EMCDDeviceManager+Remind.m in Sources */,
 				B251E6031C8E849500E6613A /* Emoji.m in Sources */,
 				B251E3B71C8E849500E6613A /* SignUpPayCell.m in Sources */,

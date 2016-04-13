@@ -8,7 +8,6 @@
 
 #import "JZMyWalletXianJinView.h"
 #import "JZMyWalletXianJinCell.h"
-#import "JZMyWalletXianJinData.h"
 #import "JZMyWalletXianJinMoneylist.h"
 #import <YYModel.h>
 #define kLKSize [UIScreen mainScreen].bounds.size

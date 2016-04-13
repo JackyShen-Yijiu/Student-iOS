@@ -7,12 +7,16 @@
 //
 
 #import "JZMyWalletJiFenView.h"
-
+#import "JZMyWalletJiFenCell.h"
+#import "JZMyWalletJiFenList.h"
+#import <YYModel.h>
 #define kLKSize [UIScreen mainScreen].bounds.size
 static NSString *jiFenCellID = @"jiFenCellID";
 
 @interface JZMyWalletJiFenView ()<UITableViewDataSource,UITableViewDelegate>
+@property (nonatomic, strong) NSMutableArray *jiFenListArr;
 
+@property (nonatomic, strong) JZMyWalletJiFenList *listData;
 @end
 
 @implementation JZMyWalletJiFenView
@@ -31,6 +35,7 @@ static NSString *jiFenCellID = @"jiFenCellID";
         self.rowHeight = 72;
         
 
+        [self loadData];
         
     }
     return self;
@@ -42,7 +47,7 @@ static NSString *jiFenCellID = @"jiFenCellID";
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
     
-    return 10;
+    return self.jiFenListArr.count;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     JZMyWalletJiFenCell *jiFenCell = [tableView dequeueReusableCellWithIdentifier:jiFenCellID];
@@ -59,9 +64,92 @@ static NSString *jiFenCellID = @"jiFenCellID";
     
     jiFenCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    self.jiFenCell = jiFenCell;
     
+    self.listData = self.jiFenListArr[indexPath.row];
+    
+    jiFenCell.jiFenNumLabel.text = [NSString stringWithFormat:@"+%zd",self.listData.amount];
+    
+    
+    NSString *dateStr = [self getLocalDateFormateUTCDate:self.listData.createtime];
+    
+    jiFenCell.jiFenDateLabel.text = dateStr;
+    
+    if (self.listData.type == 1 ) {
+        jiFenCell.jiFenSourceLabel.text = @"注册发放";
+    }else if (self.listData.type == 2){
+        
+        jiFenCell.jiFenSourceLabel.text = @"邀请好友发放";
+    }else if (self.listData.type == 3){
+        jiFenCell.jiFenSourceLabel.text = @"购买商品";
+    }
+    jiFenCell.selectionStyle = UITableViewCellSelectionStyleNone;
+
     return jiFenCell;
-   
+
 }
+
+
+
+-(void)loadData {
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmywallet"];
+    NSDictionary *paramsDict = @{@"userid": [AcountManager manager].userid,@"usertype":@"1",@"seqindex":@"0",@"count":@"10"};
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *resultData = data[@"data"];
+        NSLog(@"获取积分:%@",data);
+        
+        
+        if ([[data objectForKey:@"type"] integerValue]) {
+            
+            NSArray *array = resultData[@"list"];
+            for (NSDictionary *dic in array) {
+                JZMyWalletJiFenList *listModel = [JZMyWalletJiFenList yy_modelWithJSON:dic];
+                
+                
+                [self.jiFenListArr addObject:listModel];
+            }
+            [self reloadData];
+        }
+        
+    } withFailure:^(id data) {
+        
+        [self obj_showTotasViewWithMes:@"网络错误"];
+        
+    }];
+    
+    
+}
+
+-(NSMutableArray *)jiFenListArr {
+    
+    if (!_jiFenListArr) {
+        
+        NSMutableArray *arrM = [[NSMutableArray alloc]init];
+        
+        self.jiFenListArr = arrM;
+    }
+    
+    
+    
+    return _jiFenListArr;
+}
+
+//将UTC日期字符串转为本地时间字符串
+//输入的UTC日期格式2013-08-03T04:53:51+0000
+- (NSString *)getLocalDateFormateUTCDate:(NSString *)utcDate {
+    //    NSLog(@"utc = %@",utcDate);
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //输入格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
+    [dateFormatter setTimeZone:localTimeZone];
+    
+    NSDate *dateFormatted = [dateFormatter dateFromString:utcDate];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
+    return dateString;
+}
+
+
 @end
