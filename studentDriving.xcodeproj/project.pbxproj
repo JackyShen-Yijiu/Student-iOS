@@ -111,6 +111,7 @@
 		B22BAD4A1CBB6BE400455E1C /* YBSubjectQuestionsHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD491CBB6BE400455E1C /* YBSubjectQuestionsHeader.m */; };
 		B22BAD4D1CBB7F1800455E1C /* YBSubjectQuestionHeadCountentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD4C1CBB7F1800455E1C /* YBSubjectQuestionHeadCountentView.m */; };
 		B22BAD501CBCBC2700455E1C /* YBSubjectQuestionsFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD4F1CBCBC2700455E1C /* YBSubjectQuestionsFooter.m */; };
+		B22BAD531CBE5BD900455E1C /* YBMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD521CBE5BD900455E1C /* YBMoviePlayerController.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -1264,6 +1265,8 @@
 		B22BAD4C1CBB7F1800455E1C /* YBSubjectQuestionHeadCountentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectQuestionHeadCountentView.m; sourceTree = "<group>"; };
 		B22BAD4E1CBCBC2700455E1C /* YBSubjectQuestionsFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectQuestionsFooter.h; sourceTree = "<group>"; };
 		B22BAD4F1CBCBC2700455E1C /* YBSubjectQuestionsFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectQuestionsFooter.m; sourceTree = "<group>"; };
+		B22BAD511CBE5BD900455E1C /* YBMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMoviePlayerController.h; sourceTree = "<group>"; };
+		B22BAD521CBE5BD900455E1C /* YBMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMoviePlayerController.m; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -7010,6 +7013,8 @@
 				B22BAD4F1CBCBC2700455E1C /* YBSubjectQuestionsFooter.m */,
 				B22BAD4B1CBB7F1800455E1C /* YBSubjectQuestionHeadCountentView.h */,
 				B22BAD4C1CBB7F1800455E1C /* YBSubjectQuestionHeadCountentView.m */,
+				B22BAD511CBE5BD900455E1C /* YBMoviePlayerController.h */,
+				B22BAD521CBE5BD900455E1C /* YBMoviePlayerController.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8247,6 +8252,7 @@
 				B251E3101C8E849500E6613A /* SignUpViewController.m in Sources */,
 				B251E6071C8E849500E6613A /* NSArray+adapter.m in Sources */,
 				B251E5E91C8E849500E6613A /* YBCheatsViewController.m in Sources */,
+				B22BAD531CBE5BD900455E1C /* YBMoviePlayerController.m in Sources */,
 				B251E50B1C8E849500E6613A /* MallListSuccessController.m in Sources */,
 				B251E3231C8E849500E6613A /* DrivingModel.m in Sources */,
 				B251E3FA1C8E849500E6613A /* HMSchoolInfoModel.m in Sources */,

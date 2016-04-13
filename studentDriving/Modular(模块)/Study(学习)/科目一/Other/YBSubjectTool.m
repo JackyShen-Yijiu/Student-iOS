@@ -202,7 +202,7 @@ static FMDatabaseQueue *_queue;
         
         [dataBase open];
         
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld and strTppe='%@' and type='3' order by id limit 100",(long)type,chapter];
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld and strTppe='%@' order by id",(long)type,chapter];
         
         NSLog(@"sql:%@",sql);
         

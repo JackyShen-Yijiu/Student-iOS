@@ -11,10 +11,11 @@
 #import "OLImageView.h"
 #import "OLImage.h"
 #import <AVFoundation/AVFoundation.h>
+#import "YBMoviePlayerController.h"
 
 @interface YBSubjectQuestionHeadCountentView ()
 @property (nonatomic,strong) OLImageView *Aimv;
-@property (nonatomic ,strong) AVPlayer *player;
+@property (nonatomic ,strong) MPMoviePlayerController *movie;
 @end
 
 @implementation YBSubjectQuestionHeadCountentView
@@ -28,6 +29,7 @@
         
         // 播放器
        
+        
     }
     return self;
 }
@@ -39,6 +41,7 @@
     if (_data.img_url) {
         
         _Aimv = [[OLImageView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide-30, 175)];
+        _Aimv.contentMode = UIViewContentModeScaleAspectFit;
         [self addSubview:_Aimv];
         
         NSString *subjectImgPath = [YBSubjectPath stringByAppendingFormat:@"/ggtkFile/resources/%@",_data.img_url];
@@ -50,18 +53,54 @@
         
         NSString *subjectVedioPath = [YBSubjectPath stringByAppendingFormat:@"/ggtkFile/resources/%@",_data.video_url];
         NSLog(@"subjectVedioPath:%@",subjectVedioPath);
-        NSURL *sourceMovieURL = [NSURL fileURLWithPath:subjectVedioPath];
-        AVAsset *movieAsset = [AVURLAsset URLAssetWithURL:sourceMovieURL options:nil];
-        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:movieAsset];
-        AVPlayer *player = [AVPlayer playerWithPlayerItem:playerItem];
-        AVPlayerLayer *playerLayer = [AVPlayerLayer playerLayerWithPlayer:player];
-        playerLayer.frame = self.layer.bounds;
-        playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-        [self.layer addSublayer:playerLayer];
-        [player play];
+        
+        _movie = [[MPMoviePlayerController alloc] init];
+        
+        _movie.controlStyle = MPMovieControlStyleNone;
+        
+        //_movie.initialPlaybackTime = -1;
+        
+        _movie.view.frame = CGRectMake(0, 0, kSystemWide-30, 175);
+        
+        // 注册一个播放结束的通知
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(myMovieFinishedCallback:)
+                                                     name:MPMoviePlayerPlaybackDidFinishNotification
+                                                   object:_movie];
+        
+        [self addSubview:_movie.view];
+        NSURL *url = [NSURL fileURLWithPath:subjectVedioPath];
+        _movie.contentURL = url;
+        [_movie play];
         
     }
 
+}
+
+
+/*
+ @method 当视频播放完毕释放对象
+ */
+-(void)myMovieFinishedCallback:(NSNotification*)notify
+{
+    NSLog(@"%s notify:%@",__func__,notify);
+    MPMoviePlayerController *movie = notify.object;
+    
+    [UIView animateWithDuration:1.0 animations:^{
+        
+        [movie play];
+
+    }];
+
+}
+
+- (void)dealloc
+{
+    
+    NSLog(@"%s",__func__);
+    //[[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.movie];
+    //[self.movie stop];
+    //[self.movie.view removeFromSuperview];
     
 }
 @end

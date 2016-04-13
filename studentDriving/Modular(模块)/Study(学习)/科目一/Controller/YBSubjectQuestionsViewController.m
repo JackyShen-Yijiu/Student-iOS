@@ -37,6 +37,7 @@
     NSArray *dataArray = [YBSubjectTool getAllSubjectDataWithType:_kemu chapter:_chapter];
    
     ScrollViewPage *scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray];
+    scrollView.parentViewController = self;
     [self.view addSubview:scrollView];
     
 }

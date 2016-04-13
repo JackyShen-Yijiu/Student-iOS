@@ -12,13 +12,13 @@
 #import "YBSubjectQuestionsHeader.h"
 #import "YBSubjectQuestionsFooter.h"
 
-@interface ScrollViewPage ()
+@interface ScrollViewPage ()<UIAlertViewDelegate>
+
 // key:indexPath.row+1  values:indexPath.row是否是选中状态
 @property (nonatomic,strong) NSMutableDictionary *selectnumDict;
 
-@property (nonatomic,strong)YBSubjectQuestionsFooter *leftFooter;
-@property (nonatomic,strong)YBSubjectQuestionsFooter *midFooter;
-@property (nonatomic,strong)YBSubjectQuestionsFooter *rightFooter;
+@property (nonatomic,strong)YBSubjectQuestionsFooter *footer;
+@property (nonatomic,strong)YBSubjectQuestionsHeader *header;
 
 @end
 
@@ -29,7 +29,6 @@
     UITableView *_middletableview;
     UITableView *_righttableview;
     NSMutableArray *_datearry;
-    YBSubjectQuestionsHeader *header;
 }
 
 - (NSMutableDictionary *)selectnumDict{
@@ -62,54 +61,60 @@
         _scrollview.showsHorizontalScrollIndicator = NO;
         _scrollview.showsVerticalScrollIndicator = NO;
         
-        if (_datearry.count>1) {
-            _scrollview.contentSize = CGSizeMake(kSystemWide*2, 0);
-        }
+        _scrollview.frame = CGRectMake(0, 0,kSystemWide, kSystemHeight);
         
-        [self creatUI];
+//        _middletableview.frame = CGRectMake(0,0, kSystemWide, kSystemHeight);
+//        _lefttableview.frame = CGRectMake(-kSystemWide, 0, kSystemWide, kSystemHeight);
+//        _righttableview.frame = CGRectMake(kSystemWide, 0, kSystemWide, kSystemHeight);
+        
+//        if (_datearry.count>1) {
+//            _scrollview.contentSize = CGSizeMake(kSystemWide*3, 0);
+//            _scrollview.contentOffset = CGPointMake(kSystemWide*3, 0);
+//        }
+        
+        _scrollview.delegate = self;
+        _lefttableview.delegate = self;
+        _middletableview.delegate = self;
+        _righttableview.delegate = self;
+        _lefttableview.dataSource = self;
+        _middletableview.dataSource = self;
+        _righttableview.dataSource = self;
+        
+        [_scrollview addSubview:_lefttableview];
+        [_scrollview addSubview:_middletableview];
+        [_scrollview addSubview:_righttableview];
+        
+        [self addSubview:_scrollview];
+        
+        // 设置scrollview滚动区域
+        [self setUpScrollViewSize];
         
     }
     return self;
 }
 
-//创建ui界面
--(void)creatUI{
-  
-    _scrollview.frame = CGRectMake(0, 0,kSystemWide, kSystemHeight);
-   
-    _middletableview.frame = CGRectMake(0,0, kSystemWide, kSystemHeight);
-    _lefttableview.frame = CGRectMake(-kSystemWide, 0, kSystemWide, kSystemHeight);
-    _righttableview.frame = CGRectMake(kSystemWide, 0, kSystemWide, kSystemHeight);
-    
-    _scrollview.delegate = self;
-    _lefttableview.delegate = self;
-    _middletableview.delegate = self;
-    _righttableview.delegate = self;
-    _lefttableview.dataSource = self;
-    _middletableview.dataSource = self;
-    _righttableview.dataSource = self;
-    
-    [_scrollview addSubview:_lefttableview];
-    [_scrollview addSubview:_middletableview];
-    [_scrollview addSubview:_righttableview];
-    
-    [self addSubview:_scrollview];
-    
-    // 设置scrollview滚动区域
-    [self setUpScrollViewSize];
-    
-}
-
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    YBSubjectData *                data = _datearry[self.currentPage];
-    if (tableView==_lefttableview && self.currentPage > 0) {
-        data = _datearry[self.currentPage-1];
-    }else if (tableView==_middletableview){
+    NSLog(@"numberOfRowsInSection self.currentPage:%ld self.selectnumDict:%@",(long)self.currentPage,self.selectnumDict);
+    
+    YBSubjectData *                data;
+    
+    if (self.selectnumDict && self.selectnumDict.count !=0) {// 点击了多选
+        
         data = _datearry[self.currentPage];
-    }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-        data = _datearry[self.currentPage+1];
+        
+    }else{
+       
+        if (tableView==_lefttableview && self.currentPage > 0) {
+            data = _datearry[self.currentPage-1];
+        }else if (tableView==_middletableview){
+            data = _datearry[self.currentPage];
+        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+            data = _datearry[self.currentPage+1];
+        }
+        
     }
+    
     
 // 1:正确错误 2：单选4个选项 3：4个选项,多选
     if (data.type==1) {
@@ -121,21 +126,37 @@
     }
     return 0;
 }
+
 #pragma mark ----- 顶部控件
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
     
-    YBSubjectData *                data = _datearry[self.currentPage];
-    if (tableView==_lefttableview && self.currentPage > 0) {
-        data = _datearry[self.currentPage-1];
-    }else if (tableView==_middletableview){
+    YBSubjectData *                data;
+    NSString *title = @"";
+
+    if (self.selectnumDict && self.selectnumDict.count !=0) {// 点击了多选
+        
         data = _datearry[self.currentPage];
-    }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-        data = _datearry[self.currentPage+1];
+        title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+
+    }else{
+        
+        if (tableView==_lefttableview && self.currentPage > 0) {
+            data = _datearry[self.currentPage-1];
+            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
+        }else if (tableView==_middletableview){
+            data = _datearry[self.currentPage];
+            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+            data = _datearry[self.currentPage+1];
+            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+2,data.question];
+        }
+        
     }
     
-    header = [[YBSubjectQuestionsHeader alloc] init];
+    self.header = [[YBSubjectQuestionsHeader alloc] init];
     
-    NSString *title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
+    self.header.titleLable.text = title;
+    
     CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
     
     CGFloat height = 60;
@@ -143,34 +164,39 @@
         height = sizeH + 185;
     }
     
-    header.frame = CGRectMake(0, 0, kSystemWide, height);
+    self.header.frame = CGRectMake(0, 0, kSystemWide, height);
     
-    if (tableView==_lefttableview && self.currentPage > 0) {
-        header.titleLable.text = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
-    }else if (tableView==_middletableview){
-        header.titleLable.text = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
-    }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-        header.titleLable.text = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+2,data.question];
-    }
+    self.header.currentPage = self.currentPage;
+    self.header.data = data;
     
-    header.currentPage = self.currentPage;
-    header.data = data;
-    
-    return header;
+    return self.header;
 }
 #pragma mark ----- 顶部控件高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
   
-    YBSubjectData *                data = _datearry[self.currentPage];
-    if (tableView==_lefttableview && self.currentPage > 0) {
-        data = _datearry[self.currentPage-1];
-    }else if (tableView==_middletableview){
+    YBSubjectData *                data;
+    NSString *title = @"";
+    
+    if (self.selectnumDict && self.selectnumDict.count !=0) {// 点击了多选
+        
         data = _datearry[self.currentPage];
-    }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-        data = _datearry[self.currentPage+1];
+        title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+        
+    }else{
+        
+        if (tableView==_lefttableview && self.currentPage > 0) {
+            data = _datearry[self.currentPage-1];
+            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
+        }else if (tableView==_middletableview){
+            data = _datearry[self.currentPage];
+            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+            data = _datearry[self.currentPage+1];
+            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+2,data.question];
+        }
+        
     }
     
-    NSString *title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
     CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
 
     if (data.img_url || data.video_url) {
@@ -185,213 +211,71 @@
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     
-    YBSubjectData *                data = _datearry[self.currentPage];
-    if (tableView==_lefttableview && self.currentPage > 0) {
-        data = _datearry[self.currentPage-1];
-    }else if (tableView==_middletableview){
+    YBSubjectData *                data;
+    
+    if (self.selectnumDict && self.selectnumDict.count !=0) {// 点击了多选
+        
         data = _datearry[self.currentPage];
-    }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-        data = _datearry[self.currentPage+1];
+        
+    }else{
+        
+        if (tableView==_lefttableview && self.currentPage > 0) {
+            data = _datearry[self.currentPage-1];
+        }else if (tableView==_middletableview){
+            data = _datearry[self.currentPage];
+        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+            data = _datearry[self.currentPage+1];
+        }
+        
     }
     
     if (data.isDone == NO && data.type==3) {// 尚未做过，多选确定按钮
         
-        if (tableView==_lefttableview && self.currentPage > 0) {
-
-            self.leftFooter = [[YBSubjectQuestionsFooter alloc] init];
-            self.leftFooter.confimBtn.hidden = NO;
-           
-            NSArray *allValues = [self.selectnumDict allValues];
-            NSLog(@"------allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
+        self.footer = [[YBSubjectQuestionsFooter alloc] init];
+        self.footer.confimBtn.hidden = NO;
+        
+        NSArray *allValues = [self.selectnumDict allValues];
+        NSLog(@"------allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
+        
+        if (allValues && allValues.count != 0) {
             
-            if (allValues && allValues.count != 0) {
-                
-                if (tableView==_lefttableview && self.currentPage > 0) {
-                    self.leftFooter.confimBtn.enabled = [allValues containsObject:@(1)];
-                    self.leftFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
-                }else if (tableView==_middletableview){
-                    self.midFooter.confimBtn.enabled = [allValues containsObject:@(1)];
-                    self.midFooter.confimBtn.backgroundColor = YBNavigationBarBgColor;//[allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
-                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-                    self.rightFooter.confimBtn.enabled = [allValues containsObject:@(1)];
-                    self.rightFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
-                }
-                
-            }else{
-                
-                if (tableView==_lefttableview && self.currentPage > 0) {
-                    self.leftFooter.confimBtn.enabled = NO;
-                    self.leftFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
-                }else if (tableView==_middletableview){
-                    self.midFooter.confimBtn.enabled = NO;
-                    self.midFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
-                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-                    self.rightFooter.confimBtn.enabled = NO;
-                    self.rightFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
-                }
-                
-            }
+            self.footer.confimBtn.enabled = [allValues containsObject:@(1)];
+            self.footer.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
             
-            [self.leftFooter.confimBtn addTarget:self action:@selector(confimBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
-            self.leftFooter.contentView.hidden = YES;
+        }else{
             
-            self.leftFooter.frame = CGRectMake(0, 0, kSystemWide, 64);
-            
-            self.leftFooter.currentPage = self.currentPage;
-            self.leftFooter.data = data;
-            
-            return self.leftFooter;
-            
-        }else if (tableView==_middletableview){
-
-            self.midFooter = [[YBSubjectQuestionsFooter alloc] init];
-            self.midFooter.confimBtn.hidden = NO;
-            
-            NSArray *allValues = [self.selectnumDict allValues];
-            NSLog(@"------allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
-            
-            if (allValues && allValues.count != 0) {
-               
-                if (tableView==_lefttableview && self.currentPage > 0) {
-                    self.leftFooter.confimBtn.enabled = [allValues containsObject:@(1)];
-                    self.leftFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
-                }else if (tableView==_middletableview){
-                    self.midFooter.confimBtn.enabled = [allValues containsObject:@(1)];
-                    self.midFooter.confimBtn.backgroundColor = YBNavigationBarBgColor;//[allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
-                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-                    self.rightFooter.confimBtn.enabled = [allValues containsObject:@(1)];
-                    self.rightFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
-                }
-                
-            }else{
-                
-                if (tableView==_lefttableview && self.currentPage > 0) {
-                    self.leftFooter.confimBtn.enabled = NO;
-                    self.leftFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
-                }else if (tableView==_middletableview){
-                    self.midFooter.confimBtn.enabled = NO;
-                    self.midFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
-                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-                    self.rightFooter.confimBtn.enabled = NO;
-                    self.rightFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
-                }
-                
-            }
-            
-            [self.midFooter.confimBtn addTarget:self action:@selector(confimBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
-            self.midFooter.contentView.hidden = YES;
-            
-            self.midFooter.frame = CGRectMake(0, 0, kSystemWide, 64);
-            
-            self.midFooter.currentPage = self.currentPage;
-            self.midFooter.data = data;
-            
-            return self.midFooter;
-            
-        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-
-            self.rightFooter = [[YBSubjectQuestionsFooter alloc] init];
-            self.rightFooter.confimBtn.hidden = NO;
-          
-            NSArray *allValues = [self.selectnumDict allValues];
-            NSLog(@"------allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
-            
-            if (allValues && allValues.count != 0) {
-                
-                if (tableView==_lefttableview && self.currentPage > 0) {
-                    self.leftFooter.confimBtn.enabled = [allValues containsObject:@(1)];
-                    self.leftFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
-                }else if (tableView==_middletableview){
-                    self.midFooter.confimBtn.enabled = [allValues containsObject:@(1)];
-                    self.midFooter.confimBtn.backgroundColor = YBNavigationBarBgColor;//[allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
-                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-                    self.rightFooter.confimBtn.enabled = [allValues containsObject:@(1)];
-                    self.rightFooter.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
-                }
-                
-            }else{
-                
-                if (tableView==_lefttableview && self.currentPage > 0) {
-                    self.leftFooter.confimBtn.enabled = NO;
-                    self.leftFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
-                }else if (tableView==_middletableview){
-                    self.midFooter.confimBtn.enabled = NO;
-                    self.midFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
-                }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-                    self.rightFooter.confimBtn.enabled = NO;
-                    self.rightFooter.confimBtn.backgroundColor = [UIColor lightGrayColor];
-                }
-                
-            }
-            
-            [self.rightFooter.confimBtn addTarget:self action:@selector(confimBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
-            self.rightFooter.contentView.hidden = YES;
-            
-            self.rightFooter.frame = CGRectMake(0, 0, kSystemWide, 64);
-            
-            self.rightFooter.currentPage = self.currentPage;
-            self.rightFooter.data = data;
-            
-            return self.rightFooter;
+            self.footer.confimBtn.enabled = NO;
+            self.footer.confimBtn.backgroundColor = [UIColor lightGrayColor];
             
         }
+        
+        [self.footer.confimBtn addTarget:self action:@selector(confimBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
+        self.footer.contentView.hidden = YES;
+        
+        self.footer.frame = CGRectMake(0, 0, kSystemWide, 64);
+        
+        self.footer.currentPage = self.currentPage;
+        self.footer.data = data;
+        
+        return self.footer;
         
     }else if (data.isDone && data.isTrue==NO){// 已经做过、并且做错出现解释、
         
-        if (tableView==_lefttableview && self.currentPage > 0) {
-            
-            self.leftFooter = [[YBSubjectQuestionsFooter alloc] init];
-            self.leftFooter.backgroundColor = YBMainViewControlerBackgroundColor;
-            self.leftFooter.confimBtn.hidden = YES;
-            self.leftFooter.contentView.hidden = NO;
-            
-            NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
-            CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
-            
-            self.leftFooter.frame = CGRectMake(0, 0, kSystemWide, sizeH+45+10);
-            
-            self.leftFooter.currentPage = self.currentPage;
-            self.leftFooter.data = data;
-            
-            return self.leftFooter;
-            
-        }else if (tableView==_middletableview){
-
-            self.midFooter = [[YBSubjectQuestionsFooter alloc] init];
-            self.midFooter.backgroundColor = YBMainViewControlerBackgroundColor;
-            self.midFooter.confimBtn.hidden = YES;
-            self.midFooter.contentView.hidden = NO;
-            
-            NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
-            CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
-            
-            self.midFooter.frame = CGRectMake(0, 0, kSystemWide, sizeH+45+10);
-            
-            self.midFooter.currentPage = self.currentPage;
-            self.midFooter.data = data;
-            
-            return self.midFooter;
-            
-        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-
-            self.rightFooter = [[YBSubjectQuestionsFooter alloc] init];
-            self.rightFooter.backgroundColor = YBMainViewControlerBackgroundColor;
-            self.rightFooter.confimBtn.hidden = YES;
-            self.rightFooter.contentView.hidden = NO;
-            
-            NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
-            CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
-            
-            self.rightFooter.frame = CGRectMake(0, 0, kSystemWide, sizeH+45+10);
-            
-            self.rightFooter.currentPage = self.currentPage;
-            self.rightFooter.data = data;
-            
-            return self.rightFooter;
-            
-        }
-       
+        self.footer = [[YBSubjectQuestionsFooter alloc] init];
+        self.footer.backgroundColor = YBMainViewControlerBackgroundColor;
+        self.footer.confimBtn.hidden = YES;
+        self.footer.contentView.hidden = NO;
         
+        NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
+        CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
+        
+        self.footer.frame = CGRectMake(0, 0, kSystemWide, sizeH+45+10);
+        
+        self.footer.currentPage = self.currentPage;
+        self.footer.data = data;
+        
+        return self.footer;
+       
     }
     
     return nil;
@@ -401,13 +285,22 @@
 #pragma mark ----- 底部控件高度
 -(CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
     
-    YBSubjectData *                data = _datearry[self.currentPage];
-    if (tableView==_lefttableview && self.currentPage > 0) {
-        data = _datearry[self.currentPage-1];
-    }else if (tableView==_middletableview){
+    YBSubjectData *                data;
+    
+    if (self.selectnumDict && self.selectnumDict.count !=0) {// 点击了多选
+        
         data = _datearry[self.currentPage];
-    }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-        data = _datearry[self.currentPage+1];
+        
+    }else{
+        
+        if (tableView==_lefttableview && self.currentPage > 0) {
+            data = _datearry[self.currentPage-1];
+        }else if (tableView==_middletableview){
+            data = _datearry[self.currentPage];
+        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+            data = _datearry[self.currentPage+1];
+        }
+        
     }
     
     if (data.isDone == NO && data.type==3) {// 尚未做过，多选确定按钮
@@ -435,13 +328,22 @@
         cell = [[[NSBundle mainBundle]loadNibNamed:@"PageTableViewCell" owner:self options:nil]lastObject];        
     }
     
-    YBSubjectData *                data = _datearry[self.currentPage];
-    if (tableView==_lefttableview && self.currentPage > 0) {
-        data = _datearry[self.currentPage-1];
-    }else if (tableView==_middletableview){
+    YBSubjectData *                data;
+    
+    if (self.selectnumDict && self.selectnumDict.count !=0) {// 点击了多选
+        
         data = _datearry[self.currentPage];
-    }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-        data = _datearry[self.currentPage+1];
+        
+    }else{
+        
+        if (tableView==_lefttableview && self.currentPage > 0) {
+            data = _datearry[self.currentPage-1];
+        }else if (tableView==_middletableview){
+            data = _datearry[self.currentPage];
+        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+            data = _datearry[self.currentPage+1];
+        }
+        
     }
     
     cell.userInteractionEnabled = !data.isDone;
@@ -821,13 +723,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     YBSubjectData *                data = _datearry[self.currentPage];
-    if (tableView==_lefttableview && self.currentPage > 0) {
-        data = _datearry[self.currentPage-1];
-    }else if (tableView==_middletableview){
-        data = _datearry[self.currentPage];
-    }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-        data = _datearry[self.currentPage+1];
-    }
+    
+    NSLog(@"data.question:%@",data.question);
     
      NSLog(@"%ld data.answer_true:%ld",data.ID,(long)data.answer_true);
     // 1:正确错误 2：单选4个选项 3：4个选项,多选
@@ -910,14 +807,26 @@
         data.isSelect = YES;
         [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
         
-        [self reloadDate];
+        NSLog(@"tableView:%@ self.currentPage:%ld",tableView,(long)self.currentPage);
         
+        if (tableView==_lefttableview) {
+            NSLog(@"--_lefttableview--");
+            [_lefttableview reloadData];
+        }else if (tableView==_middletableview){
+            NSLog(@"--_middletableview--");
+            [_middletableview reloadData];
+        }else if (tableView==_righttableview){
+            NSLog(@"--_righttableview--");
+            [_righttableview reloadData];
+        }
+
     }
     
 }
 
 - (void)confimBtnDidClick
 {
+
     YBSubjectData *data = _datearry[self.currentPage];
     //NSLog(@"%ld data.answer_true:%ld data.answer_trueArray:%@",data.ID,(long)data.answer_true,data.answer_trueArray);
     // 1：单选4个选项 2：正确错误 3：4个选项,多选
@@ -973,15 +882,22 @@
 
     data.selectNum = [selectStr integerValue];
 
-    [self.selectnumDict removeAllObjects];
-
     [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
+
+    [self.selectnumDict removeAllObjects];
 
     if (isTure) {
         
         [self obj_showTotasViewWithMes:@"ok"];
         
-        [self nextQuestion];
+        if (_datearry.count-1==self.currentPage) {
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"恭喜您答完啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            [alert show];
+            
+        }else{
+            [self nextQuestion];
+        }
         
     }else{
 
@@ -991,13 +907,17 @@
         
     }
     
-    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    [self.parentViewController.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)setUpScrollViewSize
 {
     // 从数据库中读取上次最后做题记录
-    self.currentPage = 10;
+    self.currentPage = _datearry.count/2;
 
 //    NSLog(@"-------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
     _scrollview.contentOffset = CGPointMake((self.currentPage)*kSystemWide,0);
@@ -1033,6 +953,8 @@
         _lefttableview.frame = CGRectMake(_scrollview.contentOffset.x-kSystemWide, 0, kSystemWide, kSystemHeight);
         _righttableview.frame = CGRectMake(_scrollview.contentOffset.x+kSystemWide, 0, kSystemWide, kSystemHeight);
         
+        [self.selectnumDict removeAllObjects];
+
         [self reloadDate];
         
     }
@@ -1057,16 +979,14 @@
         _righttableview.frame = CGRectMake(currentOffset.x+kSystemWide, 0, kSystemWide, kSystemHeight);
         
         [self reloadDate];
-        
-        [self.selectnumDict removeAllObjects];
 
     }
-    
+
+    [self.selectnumDict removeAllObjects];
+
 //    NSLog(@"scrollViewDidEndDecelerating self.currentPage:%ld",(long)self.currentPage);
     
 }
-
-
 
 -(void)reloadDate{
     [_lefttableview reloadData];
