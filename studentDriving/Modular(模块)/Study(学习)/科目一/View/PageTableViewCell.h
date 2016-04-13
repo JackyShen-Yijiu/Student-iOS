@@ -10,7 +10,5 @@
 
 @interface PageTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *textcontent;
-@property (weak, nonatomic) IBOutlet UIImageView *image;
-@property (weak, nonatomic) IBOutlet UILabel *numberlable;
-
+@property (weak, nonatomic) IBOutlet UIImageView *numberImageView;
 @end

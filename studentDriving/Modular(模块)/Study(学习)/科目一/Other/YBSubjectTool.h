@@ -10,18 +10,12 @@
 
 typedef void (^zipArchiveBlock)(BOOL fileIsExit,BOOL archiveResult);
 
-typedef NS_ENUM(NSInteger,subjectType){
-    
-    subjectOne=1,
-    subjectTwo,
-    subjectThree,
-    subjectFour,
-    
-};
-
 @interface YBSubjectTool : NSObject
 
-// 获取所有的数据
-+ (NSArray *)getAllSubjectDataWithType:(subjectType)type;
+// 获取指定科目指定章节的所有数据
++ (NSArray *)getAllSubjectDataWithType:(subjectType)type chapter:(NSString *)chapter;
+
+// 获取指定科目的章节
++ (NSArray *)getAllSubjectChapterWithType:(subjectType)type;
 
 @end
