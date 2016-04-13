@@ -10,4 +10,5 @@
 
 @interface JZMyWalletDuiHuanJuanCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *duiHuanJuanDetailLabel;
 @end

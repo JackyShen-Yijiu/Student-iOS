@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JZMyWalletJiFenCell.h"
 @interface JZMyWalletJiFenView : UITableView
+
+@property (nonatomic, weak) JZMyWalletJiFenCell *jiFenCell;
+@property (nonatomic, strong) NSMutableArray *jifenArrM;
 
 @end

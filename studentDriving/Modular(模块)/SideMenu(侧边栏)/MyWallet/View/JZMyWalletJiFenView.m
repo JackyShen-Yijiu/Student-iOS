@@ -7,7 +7,7 @@
 //
 
 #import "JZMyWalletJiFenView.h"
-#import "JZMyWalletJiFenCell.h"
+
 #define kLKSize [UIScreen mainScreen].bounds.size
 static NSString *jiFenCellID = @"jiFenCellID";
 
@@ -22,13 +22,15 @@ static NSString *jiFenCellID = @"jiFenCellID";
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.frame = CGRectMake(0, 0, kLKSize.width, kLKSize.height - 238-64-40);
+        self.frame = frame;
         
         self.dataSource = self;
         
         self.delegate = self;
         
         self.rowHeight = 72;
+        
+
         
     }
     return self;
@@ -52,13 +54,14 @@ static NSString *jiFenCellID = @"jiFenCellID";
         jiFenCell.jiFenNumLabel.text = @"+10";
         jiFenCell.jiFenDateLabel.text = @"2018/18/18";
         jiFenCell.jiFenSourceLabel.text = @"测试测试测试";
+  
     }
     
     jiFenCell.selectionStyle = UITableViewCellSelectionStyleNone;
     
+    self.jiFenCell = jiFenCell;
     
     return jiFenCell;
    
 }
-
 @end
