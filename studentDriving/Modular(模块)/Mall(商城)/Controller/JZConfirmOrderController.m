@@ -41,6 +41,7 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
     [self.view addSubview:self.bgView];
     [self.bgView addSubview:self.moneyLabel];
     [self.bgView addSubview:self.exchangeButton];
+    _numberMall = 1;
     
 }
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
