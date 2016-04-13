@@ -90,6 +90,8 @@
             <connections>
                 <outlet property="QRCodeImg" destination="BX4-kg-wn5" id="8V9-4C-yOQ"/>
                 <outlet property="duiHuanJuanDetailView" destination="qXo-hQ-PAe" id="oEE-hd-etf"/>
+                <outlet property="duiHuanJuanName" destination="6Ig-a7-DCO" id="BbA-iC-C5Y"/>
+                <outlet property="seeDetailImg" destination="JeE-wN-Q3B" id="s2q-3k-tMS"/>
                 <outlet property="spendDateLabel" destination="HAm-SR-RK8" id="bOS-lT-Ghl"/>
             </connections>
             <point key="canvasLocation" x="228.5" y="-172"/>

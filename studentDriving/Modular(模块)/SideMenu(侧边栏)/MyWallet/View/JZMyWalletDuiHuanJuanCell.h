@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface JZMyWalletDuiHuanJuanCell : UITableViewCell
-
+@property (nonatomic, strong) NSMutableArray *duiHuanJuanListArrM;
 @property (weak, nonatomic) IBOutlet UILabel *duiHuanJuanDetailLabel;
 @end

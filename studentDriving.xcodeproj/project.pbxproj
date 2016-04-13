@@ -1098,6 +1098,9 @@
 		D9E0FFA31CBE43BB00CDC2B8 /* JZMyWalletXianJinData.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0FF9E1CBE43BB00CDC2B8 /* JZMyWalletXianJinData.m */; };
 		D9E0FFA41CBE43BB00CDC2B8 /* JZMyWalletXianJinMoneylist.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0FFA01CBE43BB00CDC2B8 /* JZMyWalletXianJinMoneylist.m */; };
 		D9E0FFA51CBE43BB00CDC2B8 /* JZMyWalletXianJinRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0FFA21CBE43BB00CDC2B8 /* JZMyWalletXianJinRootClass.m */; };
+		D9FD74F41CBEADE2007EB079 /* HowAddJiFenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD74F31CBEADE2007EB079 /* HowAddJiFenViewController.m */; };
+		D9FD74F61CBEAF2C007EB079 /* HowAddJiFenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9FD74F51CBEAF2C007EB079 /* HowAddJiFenView.xib */; };
+		D9FD74F91CBEB372007EB079 /* HowAddJiFenView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9FD74F81CBEB372007EB079 /* HowAddJiFenView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3185,6 +3188,11 @@
 		D9E0FFA01CBE43BB00CDC2B8 /* JZMyWalletXianJinMoneylist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletXianJinMoneylist.m; sourceTree = "<group>"; };
 		D9E0FFA11CBE43BB00CDC2B8 /* JZMyWalletXianJinRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletXianJinRootClass.h; sourceTree = "<group>"; };
 		D9E0FFA21CBE43BB00CDC2B8 /* JZMyWalletXianJinRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletXianJinRootClass.m; sourceTree = "<group>"; };
+		D9FD74F21CBEADE2007EB079 /* HowAddJiFenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowAddJiFenViewController.h; sourceTree = "<group>"; };
+		D9FD74F31CBEADE2007EB079 /* HowAddJiFenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowAddJiFenViewController.m; sourceTree = "<group>"; };
+		D9FD74F51CBEAF2C007EB079 /* HowAddJiFenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowAddJiFenView.xib; sourceTree = "<group>"; };
+		D9FD74F71CBEB372007EB079 /* HowAddJiFenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowAddJiFenView.h; sourceTree = "<group>"; };
+		D9FD74F81CBEB372007EB079 /* HowAddJiFenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowAddJiFenView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5299,6 +5307,8 @@
 			children = (
 				D9DA1C6B1CBCE64E00BBD81D /* JZMyWalletViewController.h */,
 				D9DA1C6C1CBCE64E00BBD81D /* JZMyWalletViewController.m */,
+				D9FD74F21CBEADE2007EB079 /* HowAddJiFenViewController.h */,
+				D9FD74F31CBEADE2007EB079 /* HowAddJiFenViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5332,6 +5342,9 @@
 				D9E0FF8E1CBDFFBF00CDC2B8 /* JiFenView */,
 				D9E0FF8F1CBDFFD100CDC2B8 /* XianJinView */,
 				D9E0FF901CBDFFE200CDC2B8 /* DuiHuanJuanView */,
+				D9FD74F71CBEB372007EB079 /* HowAddJiFenView.h */,
+				D9FD74F81CBEB372007EB079 /* HowAddJiFenView.m */,
+				D9FD74F51CBEAF2C007EB079 /* HowAddJiFenView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7457,6 +7470,7 @@
 				B251E4F21C8E849500E6613A /* tabbar_setting.png in Resources */,
 				B251E4B21C8E849500E6613A /* chatBar_more_camera@2x.png in Resources */,
 				B251E4E11C8E849500E6613A /* group_header@2x.png in Resources */,
+				D9FD74F61CBEAF2C007EB079 /* HowAddJiFenView.xib in Resources */,
 				B251E4DB1C8E849500E6613A /* back@2x.png in Resources */,
 				B251E4BF1C8E849500E6613A /* chat_receiver_audio_playing000@2x.png in Resources */,
 				B251E4681C8E849500E6613A /* VoiceSearchFeedback016@2x.png in Resources */,
@@ -7880,6 +7894,7 @@
 				B251E58D1C8E849500E6613A /* CoachListDMCarmodel.m in Sources */,
 				B251E3891C8E849500E6613A /* StudentDetailCell.m in Sources */,
 				B251E50C1C8E849500E6613A /* PrivateMessageController.m in Sources */,
+				D9FD74F91CBEB372007EB079 /* HowAddJiFenView.m in Sources */,
 				B251E2E91C8E849500E6613A /* DrivingCarTypeDMData.m in Sources */,
 				B251E3B61C8E849500E6613A /* SignUpInfoCell.m in Sources */,
 				D9DA1C641CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m in Sources */,
@@ -7908,6 +7923,7 @@
 				B251E2DF1C8E849500E6613A /* CoachDMHeadportrait.m in Sources */,
 				064909581C96E87300126299 /* JZYListController.m in Sources */,
 				B251E6BA1C8E849600E6613A /* payRequsestHandler.mm in Sources */,
+				D9FD74F41CBEADE2007EB079 /* HowAddJiFenViewController.m in Sources */,
 				B251E3481C8E849500E6613A /* DVVSideMenuFooterView.m in Sources */,
 				B251E6EB1C8EDEAD00E6613A /* ViewController.m in Sources */,
 				B251E3BE1C8E849500E6613A /* MyExamCarViewController.m in Sources */,

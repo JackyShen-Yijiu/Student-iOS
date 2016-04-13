@@ -10,4 +10,5 @@
 
 @interface JZMyWalletViewController : UIViewController
 @property (nonatomic ,copy) NSString *Ycode;
+@property (nonatomic, strong) NSMutableArray *duiHuanJuanDataArrM;
 @end

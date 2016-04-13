@@ -11,4 +11,7 @@
 @property (nonatomic, assign) NSInteger state;
 @property (nonatomic, strong) NSArray * useproductidlist;
 @property (nonatomic, strong) NSString * userid;
+
+/** 用来标识当前组是否打开或关闭 */
+@property (nonatomic, assign) BOOL openGroup;
 @end

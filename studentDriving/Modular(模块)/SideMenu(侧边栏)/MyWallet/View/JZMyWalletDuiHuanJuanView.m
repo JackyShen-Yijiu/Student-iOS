@@ -7,12 +7,14 @@
 //
 
 #import "JZMyWalletDuiHuanJuanView.h"
-#import "JZMyWalletDuiHuanJuanHeaderView.h"
-#import "JZMyWalletDuiHuanJuanCell.h"
+#import <YYModel.h>
 #define kLKSize [UIScreen mainScreen].bounds.size
 static NSString *duiHuanJuanHeaderViewID = @"duiHuanJuanHeaderViewID";
 static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
 @interface JZMyWalletDuiHuanJuanView ()<UITableViewDelegate,UITableViewDataSource>
+
+
+@property (nonatomic,assign) NSInteger selectHeaderViewTag;
 
 @end
 
@@ -32,6 +34,8 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
         self.rowHeight = 99;
         self.sectionHeaderHeight = 130;
         
+        [self loadData];
+        
         
     }
     return self;
@@ -41,7 +45,13 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
 #pragma mark - 数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
-    return 1;
+    JZMyWalletDuiHuanJuanData *dataModel = self.duiHuanJuanDataArrM[section];
+    
+    if (dataModel.openGroup && self.selectHeaderViewTag == section)
+        return self.duiHuanJuanDataArrM.count;
+    
+    return 0;
+
     
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -53,14 +63,15 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
         duiHuanJuanCell = [[JZMyWalletDuiHuanJuanCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:duiHuanJuanDetailCellID];
     }
     
+        
     return duiHuanJuanCell;
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
+
     
-    
-    return 2;
+    return self.duiHuanJuanDataArrM.count;
     
 }
 
@@ -76,17 +87,131 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(duiHuanJuanHeaerViewDidClick:)];
     [duiHuanJuanHeaerView.duiHuanJuanDetailView addGestureRecognizer:tap];
     
+    self.duiHuanJuanHeaerView = duiHuanJuanHeaerView;
+    
+    JZMyWalletDuiHuanJuanData *data = self.duiHuanJuanDataArrM[section];
+    
+    duiHuanJuanHeaerView.spendDateLabel.text = [NSString stringWithFormat:@"有效期至：%@",[self getLocalDateFormateUTCDate:data.createtime]];
+    
+    
+    if (data.couponcomefrom == 1) {
+        
+        duiHuanJuanHeaerView.duiHuanJuanName.text = @"报名奖励兑换券";
+    }else if(data.couponcomefrom == 2) {
+        
+        duiHuanJuanHeaerView.duiHuanJuanName.text = @"活动奖励兑换券";
+
+    }
+    
+    
+    
+    
+    
     // 3.返回haderView
     return duiHuanJuanHeaerView;
     
     
 }
+-(void)setDataModel:(JZMyWalletDuiHuanJuanData *)dataModel {
+    
+    
+    _dataModel = dataModel;
+    
+    // 判断当前组是否打开或关闭,对头上的图片是否旋转做判断
+    // 如果是打开了,让按钮图片旋转
+    if (self.dataModel.openGroup == YES) {
+        
+        // 让按钮中的小图片旋转正的90度
+        self.duiHuanJuanHeaerView.seeDetailImg.transform = CGAffineTransformMakeRotation(M_PI);
+        
+    } else {
+        // 关闭让图片再还原
+        self.duiHuanJuanHeaerView.seeDetailImg.transform = CGAffineTransformMakeRotation(0);
+        
+    }
 
+}
 
 ///  点击兑换劵下拉视图方法
 -(void)duiHuanJuanHeaerViewDidClick:(UITapGestureRecognizer *)tap {
     
+    
+    
+
 }
+
+
+-(void)loadData {
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmycupon"];
+    NSDictionary *paramsDict = @{@"userid": [AcountManager manager].userid};
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        if ([[data objectForKey:@"type"] integerValue]) {
+            
+            NSArray *array = data[@"data"];
+            
+            NSLog(@"%@",array);
+            if (array.count) {
+                NSArray *duiHuanJuanDataArr = data[@"data"];
+                for (NSDictionary *dict in duiHuanJuanDataArr) {
+                    
+                    JZMyWalletDuiHuanJuanData *data = [JZMyWalletDuiHuanJuanData yy_modelWithDictionary:dict];
+                    
+                    if(data.state == 0 || data.state == 1){
+                    
+                    [self.duiHuanJuanDataArrM addObject:data];
+                    }
+                }
+                
+                [self reloadData];
+                
+            }
+            
+  
+        }
+        
+    } withFailure:^(id data) {
+        
+        [self obj_showTotasViewWithMes:@"网络错误"];
+        
+    }];
+    
+
+    
+    
+    
+}
+
+
+
+-(NSMutableArray *)duiHuanJuanDataArrM {
+    
+    if (_duiHuanJuanDataArrM ==  nil) {
+        
+        _duiHuanJuanDataArrM = [[NSMutableArray alloc]init];
+    }
+    return _duiHuanJuanDataArrM;
+}
+
+
+//将UTC日期字符串转为本地时间字符串
+//输入的UTC日期格式2013-08-03T04:53:51+0000
+- (NSString *)getLocalDateFormateUTCDate:(NSString *)utcDate {
+    //    NSLog(@"utc = %@",utcDate);
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //输入格式
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
+    NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
+    [dateFormatter setTimeZone:localTimeZone];
+    
+    NSDate *dateFormatted = [dateFormatter dateFromString:utcDate];
+    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
+    NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
+    return dateString;
+}
+
 
 
 

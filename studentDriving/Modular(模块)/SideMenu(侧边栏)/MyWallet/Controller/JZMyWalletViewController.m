@@ -18,6 +18,7 @@
 #import "DVVShare.h"
 #import "YBMallViewController.h"
 #import "YBMyWalletMallViewController.h"
+#import "HowAddJiFenViewController.h"
 #define kLKSize [UIScreen mainScreen].bounds.size
 
 @interface JZMyWalletViewController ()<UIScrollViewDelegate>
@@ -105,6 +106,8 @@
     
     self.jiFenView.showsVerticalScrollIndicator = NO;
     self.jiFenView.showsHorizontalScrollIndicator = NO;
+    
+    [self.jiFenHeaderView.howDoBtn addTarget:self action:@selector(howAddJiFenClick) forControlEvents:UIControlEventTouchUpInside];
     
 #pragma mark - 兑换券页面
     MyDuiHuanJuanHeaderTypeView *duiHuanJuanHeaderTypeView = [[MyDuiHuanJuanHeaderTypeView alloc]initWithFrame:CGRectMake(kLKSize.width, 0, kLKSize.width, 36)];
@@ -315,6 +318,8 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
     self.jiFenHeaderView.goToOthersBtn.layer.borderWidth = 0;
     
+    self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%zd张",self.duiHuanJuanView.duiHuanJuanDataArrM.count];
+    
     [UIView animateWithDuration:0.25 animations:^{
         
         self.jiFenHeaderView.rollLineView.transform = CGAffineTransformMakeTranslation(kLKSize.width/3,0);
@@ -367,6 +372,14 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
     [self.navigationController pushViewController:mallVC animated:YES];
 }
-
+#pragma mark - 如何赚取积分
+-(void)howAddJiFenClick {
+    
+    HowAddJiFenViewController *howAddVC = [[HowAddJiFenViewController alloc]init];
+    
+    [self.navigationController pushViewController:howAddVC animated:YES];
+    
+    
+}
 
 @end
