@@ -10,6 +10,7 @@
 #import "JZMyWalletHeaderView.h"
 #import "JZMyWalletJiFenView.h"
 #import "JZMyWalletXianJinView.h"
+#import "JZMyWalletBottomView.h"
 
 #define kLKSize [UIScreen mainScreen].bounds.size
 
@@ -20,9 +21,11 @@
 @property (nonatomic, weak) UIScrollView *contentScrollView;
 ///  积分的视图
 @property (nonatomic, weak) JZMyWalletJiFenView *jiFenView;
-
 ///  现金的视图
 @property (nonatomic, weak) JZMyWalletXianJinView *xianJinView;
+///  底部视图
+@property (nonatomic, weak) JZMyWalletBottomView *bottomView;
+
 
 @end
 
@@ -33,6 +36,8 @@
     
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     self.title = @"我的钱包";
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self setUI];
     
@@ -62,9 +67,19 @@
     
     self.contentScrollView.delegate = self;
     
-    JZMyWalletJiFenView *jiFenView = [[JZMyWalletJiFenView alloc]initWithFrame:CGRectMake(0, 0, kLKSize.width, kLKSize.height - 238)];
+    JZMyWalletJiFenView *jiFenView = [[JZMyWalletJiFenView alloc]initWithFrame:CGRectMake(0, 0, kLKSize.width, kLKSize.height - 238-64-40)];
+    
     self.jiFenView = jiFenView;
     [self.contentScrollView addSubview:jiFenView];
+    
+    JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CGRectMake(0, kLKSize.height-40, kSystemWide, 40)];
+    
+    self.bottomView = bottomView;
+    
+    [self.contentScrollView addSubview:bottomView];
+   
+    
+
     
 
     JZMyWalletXianJinView *xianJinView = [[JZMyWalletXianJinView alloc]initWithFrame:CGRectMake(kLKSize.width * 2, 0, kLKSize.width, kLKSize.height - 238)];

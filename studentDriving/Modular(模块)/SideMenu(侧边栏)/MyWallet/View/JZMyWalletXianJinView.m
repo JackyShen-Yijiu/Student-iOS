@@ -22,7 +22,7 @@ static NSString *xianJinCellID = @"xianJinCellID";
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.frame = CGRectMake(kLKSize.width * 2, 0, kLKSize.width, kLKSize.height - 238);
+        self.frame = CGRectMake(kLKSize.width * 2, 0, kLKSize.width, kLKSize.height - 238-64);
         
         self.dataSource = self;
         

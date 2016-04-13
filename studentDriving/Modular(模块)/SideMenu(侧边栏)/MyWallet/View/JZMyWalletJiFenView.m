@@ -22,14 +22,13 @@ static NSString *jiFenCellID = @"jiFenCellID";
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.frame = CGRectMake(0, 0, kLKSize.width, kLKSize.height - 238);
+        self.frame = CGRectMake(0, 0, kLKSize.width, kLKSize.height - 238-64-40);
         
         self.dataSource = self;
         
         self.delegate = self;
         
         self.rowHeight = 72;
-
         
     }
     return self;

@@ -1073,6 +1073,8 @@
 		D9DA1C6A1CBCD5EE00BBD81D /* JZWalletRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DA1C681CBCD5EE00BBD81D /* JZWalletRootClass.m */; };
 		D9DA1C6D1CBCE64E00BBD81D /* JZMyWalletViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DA1C6C1CBCE64E00BBD81D /* JZMyWalletViewController.m */; };
 		D9DEA0A61CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DEA0A51CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m */; };
+		D9E0FF851CBDDA4200CDC2B8 /* JZMyWalletBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9E0FF841CBDDA4200CDC2B8 /* JZMyWalletBottomView.xib */; };
+		D9E0FF881CBDDD0100CDC2B8 /* JZMyWalletBottomView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9E0FF871CBDDD0100CDC2B8 /* JZMyWalletBottomView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -3115,6 +3117,9 @@
 		D9DA1C6C1CBCE64E00BBD81D /* JZMyWalletViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletViewController.m; sourceTree = "<group>"; };
 		D9DEA0A41CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+sharedDateFormatter.h"; sourceTree = "<group>"; };
 		D9DEA0A51CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+sharedDateFormatter.m"; sourceTree = "<group>"; };
+		D9E0FF841CBDDA4200CDC2B8 /* JZMyWalletBottomView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZMyWalletBottomView.xib; sourceTree = "<group>"; };
+		D9E0FF861CBDDD0100CDC2B8 /* JZMyWalletBottomView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletBottomView.h; sourceTree = "<group>"; };
+		D9E0FF871CBDDD0100CDC2B8 /* JZMyWalletBottomView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletBottomView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -5277,6 +5282,9 @@
 				D97E1CE81CBD3A1B00BBF87B /* JZMyWalletDuiHuanJuanCell.h */,
 				D97E1CE91CBD3A1B00BBF87B /* JZMyWalletDuiHuanJuanCell.m */,
 				D97E1CEB1CBD3A2A00BBF87B /* JZMyWalletDuiHuanJuanCell.xib */,
+				D9E0FF841CBDDA4200CDC2B8 /* JZMyWalletBottomView.xib */,
+				D9E0FF861CBDDD0100CDC2B8 /* JZMyWalletBottomView.h */,
+				D9E0FF871CBDDD0100CDC2B8 /* JZMyWalletBottomView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7351,6 +7359,7 @@
 				B251E4C31C8E849500E6613A /* chat_receiver_audio_playing002@2x.png in Resources */,
 				B251E4951C8E849500E6613A /* chatBar_keyboard.png in Resources */,
 				B251E4D01C8E849500E6613A /* chat_sender_audio_playing_003.png in Resources */,
+				D9E0FF851CBDDA4200CDC2B8 /* JZMyWalletBottomView.xib in Resources */,
 				B2EEBC691CA1373300846656 /* DrivingDetailSignUpCell.xib in Resources */,
 				B251E6421C8E849500E6613A /* UMSCommentInputControlleriPad.xib in Resources */,
 				B251E49D1C8E849500E6613A /* chatBar_record.png in Resources */,
@@ -8016,6 +8025,7 @@
 				062F5B1F1C9BA8D10057FE5E /* YBMyComplaintListController.m in Sources */,
 				B221AF881C92F31E001F6EED /* YBAppointMentDetailsDataData.m in Sources */,
 				062F5B321C9C31E50057FE5E /* JZShuttleBusController.m in Sources */,
+				D9E0FF881CBDDD0100CDC2B8 /* JZMyWalletBottomView.m in Sources */,
 				B251E38C1C8E849500E6613A /* WaitConfirmCell.m in Sources */,
 				B20E59A51C9AA0E400912F5A /* DVVUserManager.m in Sources */,
 				B221AF871C92F31E001F6EED /* YBAppointMentDetailsDataCoachid.m in Sources */,
