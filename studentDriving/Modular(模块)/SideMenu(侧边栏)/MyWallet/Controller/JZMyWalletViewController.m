@@ -19,6 +19,8 @@
 #import "YBMallViewController.h"
 #import "YBMyWalletMallViewController.h"
 #import "HowAddJiFenViewController.h"
+#import "JZMyWalletDuiHuanJuanData.h"
+#import <YYModel.h>
 #define kLKSize [UIScreen mainScreen].bounds.size
 
 @interface JZMyWalletViewController ()<UIScrollViewDelegate>
@@ -289,6 +291,8 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
 #pragma mark - 点击积分
 -(void)clickJiFenBtn {
     
+     [self.contentScrollView setContentOffset:CGPointMake(0, 0)];
+    
     self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = YES;
     [self getJiFenData];
     [self.jiFenHeaderView.jiFenBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
@@ -308,6 +312,8 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
 }
 #pragma mark - 点击兑换券
 -(void)clickDuiHuanJuanBtn {
+    
+     [self.contentScrollView setContentOffset:CGPointMake(kLKSize.width, 0)];
     [self.jiFenHeaderView.duiHuanJuanBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
     self.jiFenHeaderView.jiFenBtn.titleLabel.textColor = RGBColor(110, 110, 110);
     self.jiFenHeaderView.xianJinBtn.titleLabel.textColor = RGBColor(110, 110, 110);
@@ -320,16 +326,17 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
     self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%zd张",self.duiHuanJuanView.duiHuanJuanDataArrM.count];
     
+
+    
     [UIView animateWithDuration:0.25 animations:^{
         
         self.jiFenHeaderView.rollLineView.transform = CGAffineTransformMakeTranslation(kLKSize.width/3,0);
         
-        
-        
-        
     }];}
 #pragma mark - 点击现金
 -(void)clickXianJinBtn {
+    
+         [self.contentScrollView setContentOffset:CGPointMake(kLKSize.width*2, 0)];
     
     self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = NO;
     
@@ -381,5 +388,8 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
     
 }
+
+
+
 
 @end

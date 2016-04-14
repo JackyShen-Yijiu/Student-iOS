@@ -36,7 +36,6 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
         
         [self loadData];
         
-        
     }
     return self;
     
@@ -52,7 +51,6 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
     
     return 0;
 
-    
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -61,9 +59,14 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
     if (!duiHuanJuanCell) {
         
         duiHuanJuanCell = [[JZMyWalletDuiHuanJuanCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:duiHuanJuanDetailCellID];
+        
     }
     
-        
+    JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[indexPath.row];
+    
+    
+    duiHuanJuanCell.duiHuanJuanDetailLabel.text = list.productname;
+    
     return duiHuanJuanCell;
 }
 
@@ -135,7 +138,20 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
 ///  点击兑换劵下拉视图方法
 -(void)duiHuanJuanHeaerViewDidClick:(UITapGestureRecognizer *)tap {
     
+    JZMyWalletDuiHuanJuanData *dataModel = self.duiHuanJuanDataArrM[self.selectHeaderViewTag];
     
+    dataModel.openGroup = !dataModel.openGroup;
+    
+    [self.duiHuanJuanDataArrM replaceObjectAtIndex:self.selectHeaderViewTag withObject:dataModel];
+    
+    // 打开本分组
+    NSInteger selectHeaderViewTag = tap.view.tag;
+    NSLog(@"selectHeaderViewTag:%ld",(long)selectHeaderViewTag);
+    self.selectHeaderViewTag = selectHeaderViewTag;
+    
+    [self getDuiHuanJuanDetail:dataModel.openGroup];
+
+
     
 
 }
@@ -177,10 +193,73 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
         [self obj_showTotasViewWithMes:@"网络错误"];
         
     }];
+
+}
+
+-(void)getDuiHuanJuanDetail:(BOOL)openGroup {
+    
+    
+    if (openGroup==NO) {
+    
+        [self reloadData];
+        
+        return;
+    }
+    
+    JZMyWalletDuiHuanJuanData *dataModel = self.duiHuanJuanDataArrM[self.selectHeaderViewTag];
     
 
+    NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmycupon"];
+    NSDictionary *paramsDict = @{@"userid": [AcountManager manager].userid};
     
+    [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        if ([[data objectForKey:@"type"] integerValue]) {
+            
+            NSArray *array = data[@"data"];
+            
+            NSLog(@"%@",array);
+            if (array.count) {
+                 dataModel.openGroup = YES;
+                [self.duiHuanJuanDataArrM replaceObjectAtIndex:self.selectHeaderViewTag withObject:dataModel];
+                
+                [self.duihuanJuanListArrM removeAllObjects];
+                
+                NSArray *duiHuanJuanDataArr = data[@"data"];
+                
+                for (NSDictionary *dict in duiHuanJuanDataArr) {
+                    
+                    JZMyWalletDuiHuanJuanData *data = [JZMyWalletDuiHuanJuanData yy_modelWithDictionary:dict];
+                    
+                    NSArray *listArr = data.useproductidlist;
+                    
+                    
+                    for (NSDictionary *dict in listArr) {
+                        
+                        
+                        JZMyWalletDuiHuanJuanUseproductidlist *list = [JZMyWalletDuiHuanJuanUseproductidlist yy_modelWithDictionary:dict];
+                        
+                        [self.duihuanJuanListArrM addObject:list];
+  
+                    }
+                    
+                    //[self reloadData];
+                }
+                
+                [self reloadData];
+                
+            }
+            
+            
+        }
+        
+    } withFailure:^(id data) {
+        
+        [self obj_showTotasViewWithMes:@"网络错误"];
+        
+    }];
     
+
     
 }
 
@@ -193,6 +272,14 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
         _duiHuanJuanDataArrM = [[NSMutableArray alloc]init];
     }
     return _duiHuanJuanDataArrM;
+}
+-(NSMutableArray *)duihuanJuanListArrM {
+    
+    if (_duihuanJuanListArrM==  nil) {
+        
+        _duihuanJuanListArrM = [[NSMutableArray alloc]init];
+    }
+    return _duihuanJuanListArrM;
 }
 
 

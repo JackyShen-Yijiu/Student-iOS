@@ -18,11 +18,11 @@
                         <rect key="frame" x="16" y="0.0" width="326" height="98.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="该兑换券仅能在下列活动中选择一个活动使用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zgc-zp-uCG">
-                                <rect key="frame" x="16" y="16" width="280" height="14"/>
+                                <rect key="frame" x="16" y="16" width="240" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="HxP-9u-gWf"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.85882352941176465" green="0.26666666666666666" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
