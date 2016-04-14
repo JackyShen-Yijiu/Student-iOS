@@ -10,6 +10,7 @@
 #import "JZSideMenuOrderToorBarView.h"
 #import "JZExchangeRecordController.h"
 #import "YBOrderListViewController.h"
+#import "JZSideMenuOrderDiscountView.h"
 
 #define HeaderH 40
 
@@ -25,6 +26,8 @@
 @property (nonatomic, strong) JZExchangeRecordController *exchangeVC;
 
 @property (nonatomic, strong) YBOrderListViewController *signUpVC;
+
+@property (nonatomic, strong) JZSideMenuOrderDiscountView *sideMenuOrderDiscountView;
 @end
 
 @implementation JZSideMenuOrderListController
@@ -40,6 +43,7 @@
     _exchangeVC.pareVC = self;
     _exchangeVC.isFormallOrder = YES;
     [self.scrollView addSubview:self.exchangeVC.view];
+    [self.scrollView addSubview:self.sideMenuOrderDiscountView];
     [_exchangeVC beginRefresh];
     
     
@@ -96,6 +100,7 @@
         [UIView animateWithDuration:0.5 animations:^{
             _scrollView.contentOffset = CGPointMake(contentOffsetX, 0);
         }];
+        
     }else if (2 == index) {
         CGFloat contentOffsetX = 2 * self.view.width;
         [UIView animateWithDuration:0.5 animations:^{
@@ -159,5 +164,10 @@
     }
     return _scrollView;
 }
-
+- (JZSideMenuOrderDiscountView *)sideMenuOrderDiscountView{
+    if (_sideMenuOrderDiscountView == nil) {
+        _sideMenuOrderDiscountView = [[JZSideMenuOrderDiscountView alloc] initWithFrame:CGRectMake(kSystemWide, 0, kSystemWide, self.scrollView.height)];
+    }
+    return _sideMenuOrderDiscountView;
+}
 @end

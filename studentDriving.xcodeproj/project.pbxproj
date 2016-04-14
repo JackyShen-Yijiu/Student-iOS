@@ -71,6 +71,12 @@
 		06B303571C93DF240095BD39 /* JZComplaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B303561C93DF240095BD39 /* JZComplaintView.m */; };
 		06F860981CBF2E70007348B9 /* JZSideMenuOrderListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F860971CBF2E70007348B9 /* JZSideMenuOrderListController.m */; };
 		06F8609B1CBF308B007348B9 /* JZSideMenuOrderToorBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F8609A1CBF308B007348B9 /* JZSideMenuOrderToorBarView.m */; };
+		06F8609E1CBF4D86007348B9 /* JZSideMenuOrderDiscountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F8609D1CBF4D86007348B9 /* JZSideMenuOrderDiscountView.m */; };
+		06F860A11CBF6176007348B9 /* JZSideMenuOrderDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F860A01CBF6176007348B9 /* JZSideMenuOrderDiscountCell.m */; };
+		06F860A41CBF78B3007348B9 /* JZSideMenuOrderListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F860A31CBF78B3007348B9 /* JZSideMenuOrderListViewModel.m */; };
+		06F860AB1CBF7C34007348B9 /* JZSideMenuOrderListData.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F860A61CBF7C34007348B9 /* JZSideMenuOrderListData.m */; };
+		06F860AC1CBF7C34007348B9 /* JZSideMenuOrderListProductid.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F860A81CBF7C34007348B9 /* JZSideMenuOrderListProductid.m */; };
+		06F860AD1CBF7C34007348B9 /* JZSideMenuOrderListRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F860AA1CBF7C34007348B9 /* JZSideMenuOrderListRootClass.m */; };
 		06FBB6DC1C9A848100F04A35 /* JZCoachListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DB1C9A848100F04A35 /* JZCoachListController.m */; };
 		06FBB6DF1C9A89C800F04A35 /* JZCoachListMoel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6DE1C9A89C800F04A35 /* JZCoachListMoel.m */; };
 		06FBB6E21C9AA88F00F04A35 /* JZSignUpCoachListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06FBB6E11C9AA88F00F04A35 /* JZSignUpCoachListCell.m */; };
@@ -1229,6 +1235,18 @@
 		06F860971CBF2E70007348B9 /* JZSideMenuOrderListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSideMenuOrderListController.m; sourceTree = "<group>"; };
 		06F860991CBF308B007348B9 /* JZSideMenuOrderToorBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSideMenuOrderToorBarView.h; sourceTree = "<group>"; };
 		06F8609A1CBF308B007348B9 /* JZSideMenuOrderToorBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSideMenuOrderToorBarView.m; sourceTree = "<group>"; };
+		06F8609C1CBF4D86007348B9 /* JZSideMenuOrderDiscountView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSideMenuOrderDiscountView.h; sourceTree = "<group>"; };
+		06F8609D1CBF4D86007348B9 /* JZSideMenuOrderDiscountView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSideMenuOrderDiscountView.m; sourceTree = "<group>"; };
+		06F8609F1CBF6176007348B9 /* JZSideMenuOrderDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSideMenuOrderDiscountCell.h; sourceTree = "<group>"; };
+		06F860A01CBF6176007348B9 /* JZSideMenuOrderDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSideMenuOrderDiscountCell.m; sourceTree = "<group>"; };
+		06F860A21CBF78B3007348B9 /* JZSideMenuOrderListViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSideMenuOrderListViewModel.h; sourceTree = "<group>"; };
+		06F860A31CBF78B3007348B9 /* JZSideMenuOrderListViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSideMenuOrderListViewModel.m; sourceTree = "<group>"; };
+		06F860A51CBF7C34007348B9 /* JZSideMenuOrderListData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSideMenuOrderListData.h; sourceTree = "<group>"; };
+		06F860A61CBF7C34007348B9 /* JZSideMenuOrderListData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSideMenuOrderListData.m; sourceTree = "<group>"; };
+		06F860A71CBF7C34007348B9 /* JZSideMenuOrderListProductid.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSideMenuOrderListProductid.h; sourceTree = "<group>"; };
+		06F860A81CBF7C34007348B9 /* JZSideMenuOrderListProductid.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSideMenuOrderListProductid.m; sourceTree = "<group>"; };
+		06F860A91CBF7C34007348B9 /* JZSideMenuOrderListRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZSideMenuOrderListRootClass.h; sourceTree = "<group>"; };
+		06F860AA1CBF7C34007348B9 /* JZSideMenuOrderListRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZSideMenuOrderListRootClass.m; sourceTree = "<group>"; };
 		06FBB6DA1C9A848100F04A35 /* JZCoachListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZCoachListController.h; sourceTree = "<group>"; };
 		06FBB6DB1C9A848100F04A35 /* JZCoachListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZCoachListController.m; sourceTree = "<group>"; };
 		06FBB6DD1C9A89C800F04A35 /* JZCoachListMoel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZCoachListMoel.h; sourceTree = "<group>"; };
@@ -3605,6 +3623,12 @@
 		06F860931CBF2E37007348B9 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				06F860A51CBF7C34007348B9 /* JZSideMenuOrderListData.h */,
+				06F860A61CBF7C34007348B9 /* JZSideMenuOrderListData.m */,
+				06F860A71CBF7C34007348B9 /* JZSideMenuOrderListProductid.h */,
+				06F860A81CBF7C34007348B9 /* JZSideMenuOrderListProductid.m */,
+				06F860A91CBF7C34007348B9 /* JZSideMenuOrderListRootClass.h */,
+				06F860AA1CBF7C34007348B9 /* JZSideMenuOrderListRootClass.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -3614,6 +3638,10 @@
 			children = (
 				06F860991CBF308B007348B9 /* JZSideMenuOrderToorBarView.h */,
 				06F8609A1CBF308B007348B9 /* JZSideMenuOrderToorBarView.m */,
+				06F8609C1CBF4D86007348B9 /* JZSideMenuOrderDiscountView.h */,
+				06F8609D1CBF4D86007348B9 /* JZSideMenuOrderDiscountView.m */,
+				06F8609F1CBF6176007348B9 /* JZSideMenuOrderDiscountCell.h */,
+				06F860A01CBF6176007348B9 /* JZSideMenuOrderDiscountCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3621,6 +3649,8 @@
 		06F860951CBF2E37007348B9 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				06F860A21CBF78B3007348B9 /* JZSideMenuOrderListViewModel.h */,
+				06F860A31CBF78B3007348B9 /* JZSideMenuOrderListViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -7828,6 +7858,7 @@
 				B251E2E71C8E849500E6613A /* CoachViewController.m in Sources */,
 				B2EEBD351CA13DA400846656 /* CircularMotion.m in Sources */,
 				062F5AFB1C9BA7A60057FE5E /* SideMenuSignUpCell.m in Sources */,
+				06F860AB1CBF7C34007348B9 /* JZSideMenuOrderListData.m in Sources */,
 				B251E3021C8E849500E6613A /* JGTeachingNewsChangDiView.m in Sources */,
 				B251E5C21C8E849500E6613A /* DVVPaySuccessDMData.m in Sources */,
 				B2EEBD931CA141BE00846656 /* DVVSubCityCell.m in Sources */,
@@ -7882,6 +7913,7 @@
 				B251E31E1C8E849500E6613A /* CoachDetail.m in Sources */,
 				B2EEBCE81CA13A8700846656 /* DVVCoachDetailController.m in Sources */,
 				D9DA1C6D1CBCE64E00BBD81D /* JZMyWalletViewController.m in Sources */,
+				06F8609E1CBF4D86007348B9 /* JZSideMenuOrderDiscountView.m in Sources */,
 				B251E69C1C8E849600E6613A /* WMUITool.m in Sources */,
 				B251E2FD1C8E849500E6613A /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				D976763D1C97E0B70033221E /* YBAppointmentTool.m in Sources */,
@@ -7894,6 +7926,7 @@
 				B2EEBC1E1CA12E3400846656 /* YBUserSubjectthree.m in Sources */,
 				B2EEBC891CA138A100846656 /* ChineseToPinyinResource.m in Sources */,
 				B251E4341C8E849500E6613A /* MessageModelManager.m in Sources */,
+				06F860A11CBF6176007348B9 /* JZSideMenuOrderDiscountCell.m in Sources */,
 				BE91B6661CBA3E6D006B39F7 /* JZComplaintController.m in Sources */,
 				B251E30D1C8E849500E6613A /* SignUpListViewController.m in Sources */,
 				B251E2EC1C8E849500E6613A /* DrivingCityListDMRootClass.m in Sources */,
@@ -7947,6 +7980,7 @@
 				D9FD74F91CBEB372007EB079 /* HowAddJiFenView.m in Sources */,
 				B251E2E91C8E849500E6613A /* DrivingCarTypeDMData.m in Sources */,
 				B251E3B61C8E849500E6613A /* SignUpInfoCell.m in Sources */,
+				06F860A41CBF78B3007348B9 /* JZSideMenuOrderListViewModel.m in Sources */,
 				D9DA1C641CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m in Sources */,
 				D9DA1C691CBCD5EE00BBD81D /* JZWalletData.m in Sources */,
 				B251E37A1C8E849500E6613A /* ConfirmSubjectOneCell.m in Sources */,
@@ -8348,6 +8382,7 @@
 				062F5B0B1C9BA85B0057FE5E /* JGActivityModel.m in Sources */,
 				B251E31B1C8E849500E6613A /* AVPlayModel.m in Sources */,
 				B251E36E1C8E849500E6613A /* AppointmentCollectionCell.m in Sources */,
+				06F860AD1CBF7C34007348B9 /* JZSideMenuOrderListRootClass.m in Sources */,
 				B251E3FD1C8E849500E6613A /* HMTrainaddressModel.m in Sources */,
 				06B0081A1CA28D1C00C0AEE3 /* YBIntegralMallModel.m in Sources */,
 				B251E3661C8E849500E6613A /* MagicMainTableViewCell.m in Sources */,
@@ -8417,6 +8452,7 @@
 				06FBB6DC1C9A848100F04A35 /* JZCoachListController.m in Sources */,
 				B251E69E1C8E849600E6613A /* JENetwoking.m in Sources */,
 				B2EEBC151CA12E3400846656 /* JGUserTools.m in Sources */,
+				06F860AC1CBF7C34007348B9 /* JZSideMenuOrderListProductid.m in Sources */,
 				B251E5281C8E849500E6613A /* HomeAdvantageController.m in Sources */,
 				B251E4251C8E849500E6613A /* DXMessageToolBar.m in Sources */,
 				B251E3871C8E849500E6613A /* SignUpCell.m in Sources */,
