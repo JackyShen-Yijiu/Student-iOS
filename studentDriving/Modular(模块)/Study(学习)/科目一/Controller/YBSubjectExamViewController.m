@@ -18,6 +18,10 @@
 }
 
 @property (nonatomic,strong) YBSubjectQuestionRightBarView *rightBarView;
+
+@property (nonatomic,strong) NSDate *beginTime;
+@property (nonatomic,strong) NSDate *endTime;
+
 @end
 
 @implementation YBSubjectExamViewController
@@ -26,7 +30,8 @@
     [super viewDidLoad];
     
     time = 45 * 60;
-
+    self.beginTime = [NSDate date];
+    
     NSLog(@"YBSubjectQuestionsViewController kemu:%ld",(long)_kemu);
     
     NSArray *titleArray;
@@ -82,13 +87,12 @@
         [timer invalidate];
         timer = nil;
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"时间已到" delegate:self cancelButtonTitle:@"知道啦" otherButtonTitles:nil, nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"时间已到，是否提交本次模拟考试成绩" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
         [alert show];
         
         return;
     }
-    
-    //NSLog(@"self.rightBarView.subviews:%@",self.rightBarView.subviews);
+
     for (UIButton *btn in self.rightBarView.subviews) {
         
         switch (btn.tag) {
@@ -102,14 +106,67 @@
             default:
                 break;
         }
+        
     }
     
 }
 
+// 获取时间戳
+- (NSString *)chagetime:(NSDate *)times{
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    
+    //设置格式
+    df.dateFormat = @"yyyy-MM-dd HH:mm:ss.0";
+    
+    NSString * dataStr = [df stringFromDate:times];
+ 
+    //将符合格式的字符串转成NSDate对象
+    NSDate *date = [df dateFromString:dataStr];
+    
+    //计算一个时间和系统当前时间的时间差
+    int second = [date timeIntervalSince1970];
+    
+    return [NSString stringWithFormat:@"%d",second];
+    
+}
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    
+    self.endTime = [NSDate date];
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL,kuserinfosendtestscore];
+    
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    
+    params[@"userid"] = [AcountManager manager].userid;
+    params[@"begintime"] = [self chagetime:self.beginTime];
+    params[@"endtime"] = [self chagetime:self.endTime];
+    params[@"socre"] = @"90";
+    params[@"subjectid"] = [NSString stringWithFormat:@"%ld",(long)_kemu];
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:params WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
+        
+        NSDictionary *param = data;
+
+        DYNSLog(@"data:%@ param = %@",data,param[@"msg"]);
+
+        NSNumber *type = param[@"type"];
+        NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
+        
+        if (type.integerValue == 1) {
+        
+            [self.navigationController popViewControllerAnimated:YES];
+
+        }else {
+            
+            [self obj_showTotasViewWithMes:msg];
+            
+        }
+        
+    }];
+    
 }
 
 
