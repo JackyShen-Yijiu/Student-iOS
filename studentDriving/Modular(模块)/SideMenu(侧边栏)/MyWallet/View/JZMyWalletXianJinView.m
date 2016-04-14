@@ -35,8 +35,9 @@ static NSString *xianJinCellID = @"xianJinCellID";
         self.dataSource = self;
         
         self.delegate = self;
-        
-        self.rowHeight = 72;
+        self.separatorStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
+        self.rowHeight = 72.5;
         [self loadData];
         
     }
@@ -174,6 +175,28 @@ static NSString *xianJinCellID = @"xianJinCellID";
     [dateFormatter setDateFormat:@"yyyy/MM/dd"];
     NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
     return dateString;
+}
+
+-(void)viewDidLayoutSubviews
+{
+    if ([self respondsToSelector:@selector(setSeparatorInset:)]) {
+        [self setSeparatorInset:UIEdgeInsetsMake(0,0,0,0)];
+    }
+    
+    if ([self respondsToSelector:@selector(setLayoutMargins:)]) {
+        [self setLayoutMargins:UIEdgeInsetsMake(0,0,0,0)];
+    }
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if ([cell respondsToSelector:@selector(setSeparatorInset:)]) {
+        [cell setSeparatorInset:UIEdgeInsetsZero];
+    }
+    
+    if ([cell respondsToSelector:@selector(setLayoutMargins:)]) {
+        [cell setLayoutMargins:UIEdgeInsetsZero];
+    }
 }
 
 

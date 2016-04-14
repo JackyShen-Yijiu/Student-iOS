@@ -12,7 +12,6 @@
 #import "JZMyWalletDuiHuanJuanCell.h"
 #import "JZMyWalletDuiHuanJuanUseproductidlist.h"
 @interface JZMyWalletDuiHuanJuanView : UITableView
-
 @property (nonatomic, strong) JZMyWalletDuiHuanJuanData *dataModel;
 @property (nonatomic, strong) JZMyWalletDuiHuanJuanUseproductidlist *listModel;
 

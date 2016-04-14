@@ -18,12 +18,20 @@
 #import "DVVShare.h"
 #import "YBMallViewController.h"
 #import "YBMyWalletMallViewController.h"
-#import "HowAddJiFenViewController.h"
-#import "JZMyWalletDuiHuanJuanData.h"
+#import "JZHowAddJiFenViewController.h"
 #import <YYModel.h>
+#import "JZMyWalletDuiHuanJuanData.h"
+#import "JZMyWalletDuiHuanJuanUseproductidlist.h"
+#import "DVVNoDataPromptView.h"
+
+
 #define kLKSize [UIScreen mainScreen].bounds.size
 
 @interface JZMyWalletViewController ()<UIScrollViewDelegate>
+
+{
+    UIImageView *navBarHairlineImageView;
+}
 ///  头部视图
 @property (nonatomic, weak)JZMyWalletHeaderView  *jiFenHeaderView;
 ///  滚动父视图
@@ -43,9 +51,32 @@
 
 @property (nonatomic, weak) MyDuiHuanJuanHeaderTypeView *duiHuanJuanHeaderTypeView;
 
+
+@property (nonatomic, strong) JZMyWalletDuiHuanJuanData *dataModel;
+@property (nonatomic, strong) JZMyWalletDuiHuanJuanUseproductidlist *listModel;
+
+
+@property (nonatomic, strong) NSMutableArray *duiHuanJuanDataArrM;
+
+@property (nonatomic, strong) NSMutableArray *duihuanJuanListArrM;
+
+
+@property (nonatomic,strong)DVVNoDataPromptView *DvvView;
 @end
 
 @implementation JZMyWalletViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // 隐藏导航条底部分割线
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+    navBarHairlineImageView.hidden=YES;
+    
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -56,8 +87,10 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self setUI];
-    
-    [self getXianJinData];
+    [self getJiFenData];
+//    [self getXianJinData];
+//    
+//    [self getDuiHuanJuanData];
     
     
 }
@@ -109,7 +142,8 @@
     self.jiFenView.showsVerticalScrollIndicator = NO;
     self.jiFenView.showsHorizontalScrollIndicator = NO;
     
-    [self.jiFenHeaderView.howDoBtn addTarget:self action:@selector(howAddJiFenClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.jiFenHeaderView.howDoBtn addTarget:self action:@selector(howAddJiFenClick:) forControlEvents:UIControlEventTouchUpInside];
+    
     
 #pragma mark - 兑换券页面
     MyDuiHuanJuanHeaderTypeView *duiHuanJuanHeaderTypeView = [[MyDuiHuanJuanHeaderTypeView alloc]initWithFrame:CGRectMake(kLKSize.width, 0, kLKSize.width, 36)];
@@ -119,6 +153,8 @@
     [self.contentScrollView addSubview:duiHuanJuanHeaderTypeView];
     
     JZMyWalletDuiHuanJuanView *duiHuanJuanView = [[JZMyWalletDuiHuanJuanView alloc]initWithFrame:CGRectMake(kLKSize.width, 36, kLKSize.width, kLKSize.height -238-64-36)];
+    
+    self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%zd张",self.duihuanJuanListArrM.count];
     
     self.duiHuanJuanView = duiHuanJuanView;
     [self.contentScrollView addSubview:duiHuanJuanView];
@@ -170,6 +206,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
     if (scrollView.contentOffset.x > kLKSize.width) {
         
+
         self.bottomView.transform = CGAffineTransformMakeTranslation(kLKSize.width * 2,0);
     
         self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = NO;
@@ -188,9 +225,23 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         [self clickJiFenBtn];
     }
     
+    
+  
+        
+  
+    
+    
+    
     if (scrollView.contentOffset.x == kLKSize.width) {
         
+//        [self getDuiHuanJuanData];
+//        self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%zd张",self.duihuanJuanListArrM.count];
+
+        
+
         [self clickDuiHuanJuanBtn];
+        
+        
     }if (scrollView.contentOffset.x == kLKSize.width * 2) {
         
         [self clickXianJinBtn];
@@ -214,16 +265,26 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         if ([[data objectForKey:@"type"] integerValue]) {
             
             if (resultData[@"wallet"]) {
-                
+                [self.DvvView removeFromSuperview];
                 self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%@",resultData[@"wallet"]];
             }else{
                 self.jiFenHeaderView.headerNumLabel.text = @"暂无";
+                
+                self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您暂时没有积分信息" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+                self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.jiFenView.bounds.size.height - 36 - 40);
+                
+                [self.contentScrollView addSubview:self.DvvView];
+                
             }
         }
         
     } withFailure:^(id data) {
         
-        [self obj_showTotasViewWithMes:@"网络错误"];
+        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"网络出错啦" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+        self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.jiFenView.bounds.size.height - 36 - 40);
+        
+        [self.contentScrollView addSubview:self.DvvView];
+
         
     }];
     
@@ -252,7 +313,15 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         
     } withFailure:^(id data) {
         
-        [self obj_showTotasViewWithMes:@"网络错误"];
+        
+        
+        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"网络出错啦" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+        self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.jiFenView.bounds.size.height - 36 - 40);
+        
+        self.DvvView.transform = CGAffineTransformMakeTranslation(kLKSize.width,0);
+        
+        [self.contentScrollView addSubview:self.DvvView];
+
         
     }];
     
@@ -261,21 +330,42 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
 
 -(void)getDuiHuanJuanData {
     
-    NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmymoney"];
-    NSDictionary *paramsDict = @{@"userid": [AcountManager manager].userid,@"usertype":@"1"};
+    NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmycupon"];
+    NSDictionary *paramsDict = @{@"userid": [AcountManager manager].userid};
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        NSDictionary *resultData = data[@"data"];
-        NSLog(@"获取现金:%@",data);
         
         if ([[data objectForKey:@"type"] integerValue]) {
             
-            if (resultData[@"money"]) {
+            NSArray *array = data[@"data"];
+            
+            NSLog(@"%@",array);
+            if (array.count) {
                 
-                self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"￥%@",resultData[@"money"]];
-            }else{
-                self.jiFenHeaderView.headerNumLabel.text = @"暂无";
+                [self.duihuanJuanListArrM removeAllObjects];
+                
+                NSArray *duiHuanJuanDataArr = data[@"data"];
+                
+                for (NSDictionary *dict in duiHuanJuanDataArr) {
+                    
+                    JZMyWalletDuiHuanJuanData *data = [JZMyWalletDuiHuanJuanData yy_modelWithDictionary:dict];
+                    
+                    NSArray *listArr = data.useproductidlist;
+                    
+                    
+                    for (NSDictionary *dict in listArr) {
+                        
+                        
+                        JZMyWalletDuiHuanJuanUseproductidlist *list = [JZMyWalletDuiHuanJuanUseproductidlist yy_modelWithDictionary:dict];
+                        
+                        [self.duihuanJuanListArrM addObject:list];
+                        
+                    }
+
+                }
+                
             }
+            
         }
         
     } withFailure:^(id data) {
@@ -284,7 +374,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         
     }];
     
-
+    
     
 }
 #pragma mark - 顶部按钮的点击事件
@@ -336,7 +426,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
 #pragma mark - 点击现金
 -(void)clickXianJinBtn {
     
-         [self.contentScrollView setContentOffset:CGPointMake(kLKSize.width*2, 0)];
+    [self.contentScrollView setContentOffset:CGPointMake(kLKSize.width*2, 0)];
     
     self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = NO;
     
@@ -380,15 +470,48 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     [self.navigationController pushViewController:mallVC animated:YES];
 }
 #pragma mark - 如何赚取积分
--(void)howAddJiFenClick {
+-(void)howAddJiFenClick:(UIButton *)btn {
+      JZHowAddJiFenViewController *howAddVC = [[JZHowAddJiFenViewController alloc]init];
     
-    HowAddJiFenViewController *howAddVC = [[HowAddJiFenViewController alloc]init];
     
+    howAddVC.myJiFenCount = self.jiFenHeaderView.headerNumLabel.text;
     [self.navigationController pushViewController:howAddVC animated:YES];
     
     
 }
 
+-(NSMutableArray *)duiHuanJuanDataArrM {
+    
+    if (_duiHuanJuanDataArrM ==  nil) {
+        
+        _duiHuanJuanDataArrM = [[NSMutableArray alloc]init];
+    }
+    return _duiHuanJuanDataArrM;
+}
+-(NSMutableArray *)duihuanJuanListArrM {
+    
+    if (_duihuanJuanListArrM==  nil) {
+        
+        _duihuanJuanListArrM = [[NSMutableArray alloc]init];
+    }
+    return _duihuanJuanListArrM;
+}
+
+
+
+- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
+    
+    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
+        return(UIImageView*)view;
+    }
+    for(UIView*subview in view.subviews) {
+        UIImageView*imageView = [self findHairlineImageViewUnder:subview];
+        if(imageView) {
+            return imageView;
+        }
+    }
+    return nil;
+}
 
 
 
