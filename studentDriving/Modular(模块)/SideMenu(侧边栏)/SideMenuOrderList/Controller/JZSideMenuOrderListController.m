@@ -11,10 +11,11 @@
 #import "JZExchangeRecordController.h"
 #import "YBOrderListViewController.h"
 #import "JZSideMenuOrderDiscountView.h"
+#import "JZNoDataShowBGView.h"
 
 #define HeaderH 40
 
-@interface JZSideMenuOrderListController ()<UIScrollViewDelegate>
+@interface JZSideMenuOrderListController ()<UIScrollViewDelegate,JZSideMenuOrderListDiscountDelegate>
 
 @property (nonatomic, strong) UIView *bgView;
 
@@ -43,7 +44,7 @@
     _exchangeVC.pareVC = self;
     _exchangeVC.isFormallOrder = YES;
     [self.scrollView addSubview:self.exchangeVC.view];
-    [self.scrollView addSubview:self.sideMenuOrderDiscountView];
+    
     [_exchangeVC beginRefresh];
     
     
@@ -100,6 +101,9 @@
         [UIView animateWithDuration:0.5 animations:^{
             _scrollView.contentOffset = CGPointMake(contentOffsetX, 0);
         }];
+        [self.scrollView addSubview:self.sideMenuOrderDiscountView];
+        self.sideMenuOrderDiscountView.sideMenuOrderListDiscountDelegate = self;
+        [self.sideMenuOrderDiscountView begainRefresh];
         
     }else if (2 == index) {
         CGFloat contentOffsetX = 2 * self.view.width;
@@ -115,6 +119,11 @@
     }
     
 }
+#pragma mark --- 兑换劵无数据的占位图片
+- (void)initWithNoDataOrderLsitDiscountBG{
+    JZNoDataShowBGView *noData = [[JZNoDataShowBGView alloc] initWithFrame:CGRectMake(kSystemWide, 0, self.scrollView.width, self.scrollView.height)];
+    [self.scrollView addSubview:noData];
+}
 
 #pragma mark --- Lazy
 
@@ -124,7 +133,7 @@
         _bgView.backgroundColor  = [UIColor whiteColor];
         _bgView.layer.shadowColor = [UIColor blackColor].CGColor;
         _bgView.layer.shadowOffset = CGSizeMake(0, 2);
-        _bgView.layer.shadowOpacity = 0.36;
+        _bgView.layer.shadowOpacity = 0.048;
         _bgView.layer.shadowRadius = 2;
     }
     return _bgView;

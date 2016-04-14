@@ -55,10 +55,11 @@
             [self dvv_refreshError];
             return ;
         }
-        if (!param[@"data"]) {
+        if ([param[@"data"] count] == 0) {
             [self dvv_nilResponseObject];
             return ;
         }
+        [_listDataArray removeAllObjects];
         for (NSDictionary *dic in param[@"data"]) {
             JZSideMenuOrderListData *listDataModel = [JZSideMenuOrderListData yy_modelWithDictionary:dic];
             [_listDataArray addObject:listDataModel];

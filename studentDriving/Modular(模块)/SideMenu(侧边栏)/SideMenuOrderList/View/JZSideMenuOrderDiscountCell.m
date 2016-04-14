@@ -34,20 +34,21 @@ static NSString *const knumber = @"create_qrcode";
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initUI];
         [self initData];
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     return self;
 }
 
 - (void)initUI{
     
-    self.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
+    self.backgroundColor = [UIColor clearColor];
     
     [self.contentView addSubview:self.bgView];
     [self.bgView addSubview:self.imageBG];
-    [self.bgView addSubview:self.codeImageView];
-    [self.bgView addSubview:self.titleLable];
-    [self.bgView addSubview:self.addressLabel];
-    [self.bgView addSubview:self.timeLabel];
+    [self.imageBG addSubview:self.codeImageView];
+    [self.imageBG addSubview:self.titleLable];
+    [self.imageBG addSubview:self.addressLabel];
+    [self.imageBG addSubview:self.timeLabel];
 }
 - (void)initData{
     NSString *resultStr = [NSString stringWithFormat:BASEURL,knumber];
@@ -113,7 +114,7 @@ static NSString *const knumber = @"create_qrcode";
 - (UIView *)bgView{
     if (_bgView == nil ) {
         _bgView = [[UIView alloc] init];
-        _bgView.backgroundColor = [UIColor whiteColor];
+        _bgView.backgroundColor = [UIColor clearColor];
         _bgView.layer.shadowColor = [UIColor blackColor].CGColor;
         _bgView.layer.shadowOffset = CGSizeMake(0, 2);
         _bgView.layer.shadowOpacity = 0.048;

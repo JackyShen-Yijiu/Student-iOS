@@ -8,6 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+
+@protocol JZSideMenuOrderListDiscountDelegate <NSObject>
+
+- (void)initWithNoDataOrderLsitDiscountBG;
+
+@end
+
+
 @interface JZSideMenuOrderDiscountView : UITableView
+
+@property (nonatomic, strong) id <JZSideMenuOrderListDiscountDelegate> sideMenuOrderListDiscountDelegate;
+
+- (void)begainRefresh;
+
 
 @end

@@ -28,13 +28,17 @@
     if (self = [super initWithFrame:frame]) {
         self.dataSource = self;
         self.delegate = self;
+        self.backgroundColor = [UIColor clearColor];
         self.separatorStyle = UITableViewCellSeparatorStyleNone;
         [self configViewModel];
+        
     }
     return self;
 }
 
-
+- (void)begainRefresh{
+    [self.viewModel dvv_networkRequestRefresh];
+}
 #pragma mark - config view model
 - (void)configViewModel {
     
@@ -47,8 +51,12 @@
         [ws reloadData];
     }];
     [_viewModel dvv_setNilResponseObjectBlock:^{
-//        [ws.view addSubview:ws.noDataPromptView];
-//        //        [ws obj_showTotasViewWithMes:@"暂无数据"];
+        
+        // 显示无数据的占位图片
+        if ([self.sideMenuOrderListDiscountDelegate respondsToSelector:@selector(initWithNoDataOrderLsitDiscountBG)]) {
+            [self.sideMenuOrderListDiscountDelegate initWithNoDataOrderLsitDiscountBG];
+        }
+
     }];
     [_viewModel dvv_setNetworkCallBackBlock:^{
         
@@ -63,6 +71,7 @@
 
 #pragma mark ---- UITableViewDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    
     return _viewModel.listDataArray.count;
     
 }
