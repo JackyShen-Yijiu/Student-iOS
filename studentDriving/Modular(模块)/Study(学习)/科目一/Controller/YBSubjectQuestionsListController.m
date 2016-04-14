@@ -38,6 +38,17 @@
         
     [self.view addSubview:self.tableView];
     
+    switch (_kemu) {
+        case subjectOne:
+            self.title = @"科目一章节";
+            break;
+        case subjectFour:
+            self.title = @"科目四章节";
+            break;
+        default:
+            break;
+    }
+    
     self.dataArray = [NSArray array];
     self.dataArray =  [YBSubjectTool getAllSubjectDataWithType:_kemu];
     [self.tableView reloadData];

@@ -353,6 +353,10 @@ static FMDatabaseQueue *_queue;
         
         NSString *sql = [NSString stringWithFormat:@"SELECT w.* from web_note w,error_books e where w.id=e.webnoteid  and e.userid  =%@ and e.kemu=%ld",userid,(long)type];
         
+        if ([userid isEqualToString:@"null"]) {
+            sql = [NSString stringWithFormat:@"SELECT w.* from web_note w,error_books e where w.id=e.webnoteid  and e.userid is null and e.kemu=%ld",(long)type];
+        }
+        
         NSLog(@"sql:%@",sql);
         
         FMResultSet *rs = [dataBase executeQuery:sql];

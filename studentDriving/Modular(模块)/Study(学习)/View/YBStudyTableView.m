@@ -123,7 +123,6 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 YBSubjectQuestionsListController *vc = [[YBSubjectQuestionsListController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.kemu = subjectOne;
-                vc.title = @"科目一章节";
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];
 
             }else if (indexPath.row==1){
@@ -132,7 +131,6 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 YBSubjectExamViewController *vc = [[YBSubjectExamViewController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.kemu = subjectOne;
-                vc.title = @"科目一模拟考试";
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];
 
             }else if (indexPath.row==2){
@@ -151,7 +149,6 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                     
                     YBSubjectWrongQuestionController *vc = [[YBSubjectWrongQuestionController alloc] init];
                     vc.kemu = subjectOne;
-                    vc.title = @"科目一错题";
                     vc.hidesBottomBarWhenPushed = YES;
                     [self.parentViewController.navigationController pushViewController:vc animated:YES];
 
@@ -243,7 +240,6 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 YBSubjectQuestionsListController *vc = [[YBSubjectQuestionsListController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.kemu = subjectFour;
-                vc.title = @"科目四章节";
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];
 
             }else if (indexPath.row==1){
@@ -251,7 +247,6 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 YBSubjectExamViewController *vc = [[YBSubjectExamViewController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.kemu = subjectFour;
-                vc.title = @"科目四模拟考试";
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];
 
             }else if (indexPath.row==2){
@@ -271,7 +266,6 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                     YBSubjectWrongQuestionController *vc = [[YBSubjectWrongQuestionController alloc] init];
                     vc.hidesBottomBarWhenPushed = YES;
                     vc.kemu = subjectFour;
-                    vc.title = @"科目四错题";
                     [self.parentViewController.navigationController pushViewController:vc animated:YES];
                     
                 }else{

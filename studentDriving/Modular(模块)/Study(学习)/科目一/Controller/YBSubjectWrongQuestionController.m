@@ -40,7 +40,6 @@
     
     // 数组中保存的是YBSubjectData对象
     NSArray *dataArray = [YBSubjectTool getAllWrongQuestionwithtype:_kemu userid:userid];
-    NSLog(@"dataArray:%@",dataArray);
     
     ScrollViewPage *scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray rightBarView:_rightBarView subjectType:_kemu chapter:nil];
     scrollView.parentViewController = self;

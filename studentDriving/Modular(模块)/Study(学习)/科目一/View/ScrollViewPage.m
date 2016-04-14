@@ -1157,17 +1157,20 @@
         
         [self reloadDate];
         
-        // 保存本地发生的变化
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
-        [user synchronize];
-        
     }
 
     [self changeRightBarState];
 
     [self.selectnumDict removeAllObjects];
 
+    // 保存本地发生的变化
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+    if (self.currentPage==_datearry.count-1) {
+        [user setInteger:0 forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+    }
+    [user synchronize];
+    
 //    NSLog(@"scrollViewDidEndDecelerating self.currentPage:%ld",(long)self.currentPage);
     
 }

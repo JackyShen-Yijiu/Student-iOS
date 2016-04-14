@@ -25,7 +25,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    time = 1 * 60;
+    time = 45 * 60;
 
     NSLog(@"YBSubjectQuestionsViewController kemu:%ld",(long)_kemu);
     
@@ -88,7 +88,7 @@
         return;
     }
     
-    NSLog(@"self.rightBarView.subviews:%@",self.rightBarView.subviews);
+    //NSLog(@"self.rightBarView.subviews:%@",self.rightBarView.subviews);
     for (UIButton *btn in self.rightBarView.subviews) {
         
         switch (btn.tag) {
