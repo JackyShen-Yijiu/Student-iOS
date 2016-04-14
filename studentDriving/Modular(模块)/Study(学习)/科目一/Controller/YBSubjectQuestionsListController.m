@@ -39,7 +39,7 @@
     [self.view addSubview:self.tableView];
     
     self.dataArray = [NSArray array];
-    self.dataArray =  [YBSubjectTool getAllSubjectChapterWithType:_kemu];
+    self.dataArray =  [YBSubjectTool getAllSubjectDataWithType:_kemu];
     [self.tableView reloadData];
     
 }

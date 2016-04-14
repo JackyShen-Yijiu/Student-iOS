@@ -7,9 +7,23 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "YBMoviePlayerController.h"
+
 @class YBSubjectData;
+
 @interface YBSubjectQuestionsHeader : UIView
-@property (nonatomic,strong)UILabel *titleLable;
+
+@property (nonatomic,strong) UILabel *titleLable;
+
+@property (nonatomic,strong) MPMoviePlayerController *movie;
+
 @property (nonatomic ,assign) NSInteger currentPage;
-@property (nonatomic,strong) YBSubjectData *data;
+
+/**
+ @method 播放电影
+ */
+-(void)reloadData:(YBSubjectData *)data;
+
+- (void)playMovie:(YBSubjectData *)data;
+
 @end

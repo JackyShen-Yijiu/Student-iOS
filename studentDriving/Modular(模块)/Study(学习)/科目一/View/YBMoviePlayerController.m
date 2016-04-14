@@ -23,10 +23,11 @@
 //    });
     
     // 注册一个播放结束的通知
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(myMovieFinishedCallback:)
-                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-                                               object:self];
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(myMovieFinishedCallback:)
+//                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+//                                               object:self];
+    
     
     return [[self alloc] init];
     
@@ -48,7 +49,7 @@
     self.initialPlaybackTime = -1;
 
     [self play];
-    
+
 }
 
 #pragma mark -------------------视频播放结束委托--------------------
@@ -56,23 +57,21 @@
 /*
  @method 当视频播放完毕释放对象
  */
--(void)myMovieFinishedCallback:(NSNotification*)notify
-{
-    NSLog(@"%s",__func__);
+//-(void)myMovieFinishedCallback:(NSNotification*)notify
+//{
+//    NSLog(@"%s",__func__);
+//
+//    [self play];
+//    
+//}
 
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self play];
-    });
-    
-}
-
-- (void)dealloc
-{
-    NSLog(@"%s",__func__);
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:nil];
-    [self stop];
+//- (void)dealloc
+//{
+//    NSLog(@"%s",__func__);
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self];
+//    [self stop];
 //    [self.view removeFromSuperview];
-    
-}
+//    
+//}
 
 @end
