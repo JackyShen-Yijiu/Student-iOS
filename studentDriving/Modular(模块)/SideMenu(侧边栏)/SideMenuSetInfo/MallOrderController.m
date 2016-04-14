@@ -163,7 +163,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
           // 获取商品订单
         urlString = [NSString stringWithFormat:BASEURL,kgetMallList];
         param = @{@"userid": [AcountManager manager].userid,
-                  @"index":@"1",
+                  @"index":@"2",
                   @"count":@"10"};
    
     [JENetwoking startDownLoadWithUrl:urlString postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {

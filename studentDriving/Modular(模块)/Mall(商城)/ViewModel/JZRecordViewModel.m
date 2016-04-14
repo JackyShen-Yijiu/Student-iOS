@@ -33,7 +33,6 @@
 }
 - (void)dvv_networkRequestWithIndex:(NSUInteger)index isRefresh:(BOOL)isRefresh {
     
-    
     NSString *url = [NSString stringWithFormat:BASEURL, @"userinfo/getmyorderlist"];
     
     NSDictionary *paramsDict = @{ @"userid": [AcountManager manager].userid,

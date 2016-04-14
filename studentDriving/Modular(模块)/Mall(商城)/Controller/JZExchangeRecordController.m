@@ -8,7 +8,7 @@
 
 #import "JZExchangeRecordController.h"
 #import "JZExchangeRecordCell.h"
-#import "JZRecordViewModel.h"
+
 #import <MJRefresh/MJRefresh.h>
 #import "JZRecordDetailController.h"
 
@@ -17,7 +17,6 @@
 
 @property (nonatomic,strong) UITableView *tableView;
 
-@property (nonatomic, strong) JZRecordViewModel *viewModel;
 
 @property (nonatomic,strong) MJRefreshHeader *header;
 
@@ -119,7 +118,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JZRecordDetailController *recordDetailVC = [[JZRecordDetailController alloc] init];
     recordDetailVC.recordModel  = _viewModel.dataArray[indexPath.row];
-    [self.navigationController pushViewController:recordDetailVC animated:YES];
+    if (_isFormallOrder) {
+        [self.pareVC.navigationController pushViewController:recordDetailVC animated:YES];
+    }else{
+        [self.navigationController pushViewController:recordDetailVC animated:YES];
+    }
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
