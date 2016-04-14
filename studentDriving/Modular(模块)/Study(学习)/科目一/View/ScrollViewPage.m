@@ -11,14 +11,28 @@
 #import "YBSubjectData.h"
 #import "YBSubjectQuestionsHeader.h"
 #import "YBSubjectQuestionsFooter.h"
+#import "YBSubjectQuestionRightBarView.h"
+#import "YBSubjectTool.h"
 
 @interface ScrollViewPage ()<UIAlertViewDelegate>
+
+@property (nonatomic ,assign) NSInteger currentPage;
 
 // key:indexPath.row+1  values:indexPath.row是否是选中状态
 @property (nonatomic,strong) NSMutableDictionary *selectnumDict;
 
 @property (nonatomic,strong)YBSubjectQuestionsFooter *footer;
 @property (nonatomic,strong)YBSubjectQuestionsHeader *header;
+
+@property (nonatomic,strong) YBSubjectQuestionRightBarView *rightBarView;
+
+// 章节
+@property (nonatomic,copy)NSString *chapter;
+// 科目
+@property (nonatomic,assign) subjectType kemu;
+
+@property (nonatomic,assign) NSInteger trueCount;
+@property (nonatomic,assign) NSInteger wrongCount;
 
 @end
 
@@ -29,6 +43,7 @@
     UITableView *_middletableview;
     UITableView *_righttableview;
     NSMutableArray *_datearry;
+    
 }
 
 - (NSMutableDictionary *)selectnumDict{
@@ -38,9 +53,15 @@
     return _selectnumDict;
 }
 
--(instancetype)initWithFrame:(CGRect)frame withArray:(NSArray *)array{
+-(instancetype)initWithFrame:(CGRect)frame withArray:(NSArray *)array rightBarView:(YBSubjectQuestionRightBarView *)rightBarView subjectType:(subjectType)kemu chapter:(NSString *)chapter{
+    
     self = [super initWithFrame:frame];
+    
     if (self) {
+        
+        _rightBarView = rightBarView;
+        _kemu = kemu;
+        _chapter = chapter;
         
         _scrollview = [[UIScrollView  alloc]initWithFrame:frame];
         _scrollview.directionalLockEnabled = YES;
@@ -62,16 +83,7 @@
         _scrollview.showsVerticalScrollIndicator = NO;
         
         _scrollview.frame = CGRectMake(0, 0,kSystemWide, kSystemHeight);
-        
-//        _middletableview.frame = CGRectMake(0,0, kSystemWide, kSystemHeight);
-//        _lefttableview.frame = CGRectMake(-kSystemWide, 0, kSystemWide, kSystemHeight);
-//        _righttableview.frame = CGRectMake(kSystemWide, 0, kSystemWide, kSystemHeight);
-        
-//        if (_datearry.count>1) {
-//            _scrollview.contentSize = CGSizeMake(kSystemWide*3, 0);
-//            _scrollview.contentOffset = CGPointMake(kSystemWide*3, 0);
-//        }
-        
+
         _scrollview.delegate = self;
         _lefttableview.delegate = self;
         _middletableview.delegate = self;
@@ -115,7 +127,6 @@
         
     }
     
-    
 // 1:正确错误 2：单选4个选项 3：4个选项,多选
     if (data.type==1) {
         return 2;
@@ -157,7 +168,7 @@
     
     self.header.titleLable.text = title;
     
-    CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    CGFloat sizeH = [title sizeWithFont:self.header.titleLable.font constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
     
     CGFloat height = 60;
     if (data.img_url || data.video_url) {
@@ -167,10 +178,22 @@
     self.header.frame = CGRectMake(0, 0, kSystemWide, height);
     
     self.header.currentPage = self.currentPage;
-    self.header.data = data;
+    [self.header reloadData:data];
+    
+    CGFloat scrollViewPage = _scrollview.contentOffset.x/kSystemWide;
+    NSLog(@"viewForHeaderInSection scrollViewPage:%f",scrollViewPage);
+    
+    if (tableView==_lefttableview && self.currentPage == scrollViewPage+1) {
+        [self.header playMovie:data];
+    }else if (tableView==_middletableview){
+        [self.header playMovie:data];
+    }else if (tableView==_righttableview && self.currentPage == scrollViewPage+1){
+        [self.header playMovie:data];
+    }
     
     return self.header;
 }
+
 #pragma mark ----- 顶部控件高度
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
   
@@ -197,7 +220,7 @@
         
     }
     
-    CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    CGFloat sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
 
     if (data.img_url || data.video_url) {
         return sizeH + 185;
@@ -735,16 +758,32 @@
             
             [self obj_showTotasViewWithMes:@"ok"];
             
-            data.isDone = YES;
-            data.isTrue = YES;
-            data.selectNum = indexPath.row;
-
-            [_datearry replaceObjectAtIndex:indexPath.row withObject:data];
-            
-            // 滚动到下一步
-            [self nextQuestion];
+            if (_datearry.count-1==self.currentPage) {
+                
+                self.trueCount = 0;
+                self.wrongCount = 0;
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"恭喜您答完啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+                
+            }else{
+                
+                self.trueCount+=1;
+                
+                data.isDone = YES;
+                data.isTrue = YES;
+                data.selectNum = indexPath.row;
+                
+                [_datearry replaceObjectAtIndex:indexPath.row withObject:data];
+                
+                // 滚动到下一步
+                [self nextQuestion];
+                
+            }
             
         }else{
+            
+            self.wrongCount+=1;
             
             data.isDone = YES;
             data.isTrue = NO;
@@ -754,26 +793,51 @@
             
             [self reloadDate];
             
-            [self obj_showTotasViewWithMes:@"答错了"];
+           // [self obj_showTotasViewWithMes:@"答错了"];
             
+            NSString *userid = @"null";
+            NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+                userid = [AcountManager manager].userid;
+            }
+            [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+
         }
         
+        [self changeRightBarState];
+
     }else if (data.type==2){
         
         if (data.answer_true == indexPath.row+1) {
             
-            [self obj_showTotasViewWithMes:@"ok"];
+         //   [self obj_showTotasViewWithMes:@"ok"];
             
-            data.isDone = YES;
-            data.isTrue = YES;
-            data.selectNum = indexPath.row;
-
-            [_datearry replaceObjectAtIndex:indexPath.row withObject:data];
-            
-            // 滚动到下一步
-            [self nextQuestion];
+            if (_datearry.count-1==self.currentPage) {
+                
+                self.trueCount = 0;
+                self.wrongCount = 0;
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"恭喜您答完啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+                
+            }else{
+                
+                self.trueCount+=1;
+                
+                data.isDone = YES;
+                data.isTrue = YES;
+                data.selectNum = indexPath.row;
+                
+                [_datearry replaceObjectAtIndex:indexPath.row withObject:data];
+                
+                // 滚动到下一步
+                [self nextQuestion];
+                
+            }
             
         }else{
+            
+            self.wrongCount+=1;
             
             data.isDone = YES;
             data.isTrue = NO;
@@ -783,9 +847,18 @@
         
             [self reloadDate];
 
-            [self obj_showTotasViewWithMes:@"答错了"];
+           // [self obj_showTotasViewWithMes:@"答错了"];
             
+            NSString *userid = @"null";
+            NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+                userid = [AcountManager manager].userid;
+            }
+            [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+
         }
+        
+        [self changeRightBarState];
         
     }else{
         
@@ -886,28 +959,115 @@
 
     [self.selectnumDict removeAllObjects];
 
+    // 取得上次保存的状态
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSInteger currentPage = [user integerForKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+    
+    NSLog(@"取得上次保存的状态 currentPage:%ld trueCount:%ld wrongCount:%ld",(long)currentPage,(long)self.trueCount,(long)self.wrongCount);
+
     if (isTure) {
         
-        [self obj_showTotasViewWithMes:@"ok"];
+        //[self obj_showTotasViewWithMes:@"ok"];
         
         if (_datearry.count-1==self.currentPage) {
+            
+            currentPage=0;
+            self.trueCount = 0;
+            self.wrongCount = 0;
             
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"恭喜您答完啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
             
         }else{
+            
+            currentPage=self.currentPage+1;
+            self.trueCount++;
+            
             [self nextQuestion];
+            
         }
         
     }else{
 
-        [self obj_showTotasViewWithMes:@"答错了"];
+        NSString *userid = @"null";
+        NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+        if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+            userid = [AcountManager manager].userid;
+        }
+        [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+        
+        self.wrongCount++;
+        
+       // [self obj_showTotasViewWithMes:@"答错了"];
         
         [self reloadDate];
         
     }
+   
+    
+    [self changeRightBarState];
     
 }
+
+- (void)changeRightBarState
+{
+    // 从数据库中读取上次最后做题记录
+    NSInteger currentPage = self.currentPage;
+    float trueCount = self.trueCount;
+    float wrongCount = self.wrongCount;
+    
+    NSString *proportion = [NSString stringWithFormat:@"%ld/%lu",(long)currentPage+1,(unsigned long)_datearry.count];
+    NSString *trueCountStr = [NSString stringWithFormat:@"%.0f",trueCount];
+    NSString *wrongCountStr = [NSString stringWithFormat:@"%.0f",wrongCount];
+
+    NSString *correctrate = @"0%";
+    if (trueCount != 0 || wrongCount!=0) {
+        
+        correctrate = [NSString stringWithFormat:@"%.0f%@",(trueCount/(trueCount+wrongCount))*100,@"%"];
+        
+    }
+
+    NSLog(@"changeRightBarState currentPage:%ld trueCount:%ld wrongCount:%ld proportion:%@ trueCountStr:%@ wrongCountStr:%@ correctrate:%@",(long)currentPage,(long)trueCount,(long)wrongCount,proportion,trueCountStr,wrongCountStr,correctrate);
+
+    for (UIButton *btn in self.rightBarView.subviews) {
+        
+        switch (btn.tag) {
+           
+            case 0:// 比例
+                
+                [btn setTitle:proportion forState:UIControlStateNormal];
+                
+                break;
+                
+            case 1:// 正确多少题
+                
+                [btn setTitle:trueCountStr forState:UIControlStateNormal];
+
+                break;
+                
+            case 2:// 错误多少题
+                
+                [btn setTitle:wrongCountStr forState:UIControlStateNormal];
+
+                break;
+                
+            case 3:// 正确率
+                
+                [btn setTitle:correctrate forState:UIControlStateNormal];
+
+                break;
+                
+            case 4:// 倒计时
+                
+                break;
+                
+            default:
+                break;
+        }
+    }
+    
+}
+
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
@@ -916,9 +1076,16 @@
 
 - (void)setUpScrollViewSize
 {
+    
     // 从数据库中读取上次最后做题记录
-    self.currentPage = _datearry.count/2;
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    NSInteger currentPage = [user integerForKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+    NSLog(@"setUpScrollViewSize currentPage:%ld",(long)currentPage);
+    self.currentPage = currentPage;
 
+    // 更新右上角状态
+    [self changeRightBarState];
+    
 //    NSLog(@"-------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
     _scrollview.contentOffset = CGPointMake((self.currentPage)*kSystemWide,0);
 //    NSLog(@"+++++++_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
@@ -941,7 +1108,7 @@
 {
     
 //    NSLog(@"-------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
-    self.currentPage++;
+    self.currentPage+=1;
     _scrollview.contentOffset = CGPointMake((self.currentPage)*kSystemWide, _scrollview.contentOffset.y);
 //    NSLog(@"+++++++_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
 
@@ -957,6 +1124,11 @@
 
         [self reloadDate];
         
+        // 保存本地发生的变化
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+        [user synchronize];
+        
     }
     
 }
@@ -964,12 +1136,17 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     CGPoint currentOffset = scrollView.contentOffset;
-//    NSLog(@"currentOffset.x:%f currentOffset.y:%f",currentOffset.x,currentOffset.y);
+    NSLog(@"scrollViewDidEndDecelerating currentOffset.x:%f currentOffset.y:%f",currentOffset.x,currentOffset.y);
     
     int page = (int)currentOffset.x/kSystemWide;
-//    NSLog(@"-----------------scrollViewDidEndDecelerating page:%d",page);
+    NSLog(@"scrollViewDidEndDecelerating scrollViewDidEndDecelerating page:%d",page);
     self.currentPage = page;
 
+    if (page==0 || page==_datearry.count-1) {
+        YBSubjectData *data = _datearry[page];
+        [self.header playMovie:data];
+    }
+    
     if (page < _datearry.count-1 && currentOffset.x!=0) {
         
         _scrollview.contentSize = CGSizeMake(kSystemWide*2+currentOffset.x, 0);
@@ -979,11 +1156,21 @@
         _righttableview.frame = CGRectMake(currentOffset.x+kSystemWide, 0, kSystemWide, kSystemHeight);
         
         [self reloadDate];
-
+        
     }
+
+    [self changeRightBarState];
 
     [self.selectnumDict removeAllObjects];
 
+    // 保存本地发生的变化
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+    if (self.currentPage==_datearry.count-1) {
+        [user setInteger:0 forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+    }
+    [user synchronize];
+    
 //    NSLog(@"scrollViewDidEndDecelerating self.currentPage:%ld",(long)self.currentPage);
     
 }

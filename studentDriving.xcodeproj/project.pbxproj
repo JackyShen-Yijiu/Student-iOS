@@ -127,6 +127,11 @@
 		B22BAD4D1CBB7F1800455E1C /* YBSubjectQuestionHeadCountentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD4C1CBB7F1800455E1C /* YBSubjectQuestionHeadCountentView.m */; };
 		B22BAD501CBCBC2700455E1C /* YBSubjectQuestionsFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD4F1CBCBC2700455E1C /* YBSubjectQuestionsFooter.m */; };
 		B22BAD531CBE5BD900455E1C /* YBMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD521CBE5BD900455E1C /* YBMoviePlayerController.m */; };
+		B22BAD561CBF328E00455E1C /* YBSubjectQuestionRightBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD551CBF328E00455E1C /* YBSubjectQuestionRightBarView.m */; };
+		B22BAD591CBF38BF00455E1C /* YBSubjectQuestionRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */; };
+		B22BAD6A1CBF923B00455E1C /* ggtkFile1.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BAD691CBF923B00455E1C /* ggtkFile1.zip */; };
+		B22BAD6D1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */; };
+		B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -1328,7 +1333,6 @@
 		B22312DD1C9D5D2F001D6EC2 /* OLImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImageView.h; sourceTree = "<group>"; };
 		B22312DE1C9D5D2F001D6EC2 /* OLImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OLImageView.m; sourceTree = "<group>"; };
 		B22312DF1C9D5D2F001D6EC2 /* OLImageViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OLImageViewDelegate.h; sourceTree = "<group>"; };
-		B22BAD3B1CB8CFB700455E1C /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
 		B22BAD3D1CB8D96700455E1C /* YBSubjectData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectData.h; sourceTree = "<group>"; };
 		B22BAD3E1CB8D96700455E1C /* YBSubjectData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectData.m; sourceTree = "<group>"; };
 		B22BAD401CBB474B00455E1C /* YBSubjectQuestionsListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectQuestionsListController.h; sourceTree = "<group>"; };
@@ -1344,6 +1348,15 @@
 		B22BAD4F1CBCBC2700455E1C /* YBSubjectQuestionsFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectQuestionsFooter.m; sourceTree = "<group>"; };
 		B22BAD511CBE5BD900455E1C /* YBMoviePlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBMoviePlayerController.h; sourceTree = "<group>"; };
 		B22BAD521CBE5BD900455E1C /* YBMoviePlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBMoviePlayerController.m; sourceTree = "<group>"; };
+		B22BAD541CBF328E00455E1C /* YBSubjectQuestionRightBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectQuestionRightBarView.h; sourceTree = "<group>"; };
+		B22BAD551CBF328E00455E1C /* YBSubjectQuestionRightBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectQuestionRightBarView.m; sourceTree = "<group>"; };
+		B22BAD571CBF38BF00455E1C /* YBSubjectQuestionRightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectQuestionRightButton.h; sourceTree = "<group>"; };
+		B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectQuestionRightButton.m; sourceTree = "<group>"; };
+		B22BAD691CBF923B00455E1C /* ggtkFile1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile1.zip; sourceTree = "<group>"; };
+		B22BAD6B1CBFA0D300455E1C /* YBSubjectWrongQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectWrongQuestionController.h; sourceTree = "<group>"; };
+		B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectWrongQuestionController.m; sourceTree = "<group>"; };
+		B22BAD6E1CBFA13800455E1C /* YBSubjectExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectExamViewController.h; sourceTree = "<group>"; };
+		B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectExamViewController.m; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -7185,6 +7198,10 @@
 				B22BAD411CBB474B00455E1C /* YBSubjectQuestionsListController.m */,
 				B2FD3C911CB7E73F00DCE88D /* YBSubjectQuestionsViewController.h */,
 				B2FD3C921CB7E73F00DCE88D /* YBSubjectQuestionsViewController.m */,
+				B22BAD6B1CBFA0D300455E1C /* YBSubjectWrongQuestionController.h */,
+				B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */,
+				B22BAD6E1CBFA13800455E1C /* YBSubjectExamViewController.h */,
+				B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7201,7 +7218,7 @@
 		B2FD3C8F1CB7E70200DCE88D /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				B22BAD3B1CB8CFB700455E1C /* ggtkFile.zip */,
+				B22BAD691CBF923B00455E1C /* ggtkFile1.zip */,
 				B2FD3CA61CB8A68D00DCE88D /* YBSubjectTool.h */,
 				B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */,
 			);
@@ -7227,6 +7244,10 @@
 				B22BAD4C1CBB7F1800455E1C /* YBSubjectQuestionHeadCountentView.m */,
 				B22BAD511CBE5BD900455E1C /* YBMoviePlayerController.h */,
 				B22BAD521CBE5BD900455E1C /* YBMoviePlayerController.m */,
+				B22BAD541CBF328E00455E1C /* YBSubjectQuestionRightBarView.h */,
+				B22BAD551CBF328E00455E1C /* YBSubjectQuestionRightBarView.m */,
+				B22BAD571CBF38BF00455E1C /* YBSubjectQuestionRightButton.h */,
+				B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7728,6 +7749,7 @@
 				B251E34E1C8E849500E6613A /* DetailPriceCell.xib in Resources */,
 				B251E48A1C8E849500E6613A /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				B251E47E1C8E849500E6613A /* chatBar_more_cardSelected@2x.png in Resources */,
+				B22BAD6A1CBF923B00455E1C /* ggtkFile1.zip in Resources */,
 				B251E4C81C8E849500E6613A /* chat_receiver_bg.png in Resources */,
 				B251E46D1C8E849500E6613A /* VoiceSearchFeedback019.png in Resources */,
 				B251E4DC1C8E849500E6613A /* delete@2x.png in Resources */,
@@ -7882,7 +7904,11 @@
 				B251E42E1C8E849500E6613A /* EMChatTextBubbleView.m in Sources */,
 				B251E43A1C8E849500E6613A /* EMTextView.m in Sources */,
 				B251E5361C8E849500E6613A /* YBEditUserInfoController.m in Sources */,
+<<<<<<< HEAD
 				D971BD511CBFBE6100C5E626 /* JZDuiHuanListController.m in Sources */,
+=======
+				B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */,
+>>>>>>> 3f3153bf30832689b76dc74a6d6e5f62c3bae154
 				B251E3991C8E849500E6613A /* BLImageViewController.m in Sources */,
 				B2EEBC991CA1395400846656 /* DVVConfirmOrderController.m in Sources */,
 				B22BAD421CBB474B00455E1C /* YBSubjectQuestionsListController.m in Sources */,
@@ -7909,6 +7935,7 @@
 				B2EEBCB41CA1396A00846656 /* DVVPaySuccessView.m in Sources */,
 				D97E1CE11CBD2D0C00BBF87B /* JZMyWalletXianJinCell.m in Sources */,
 				D9DEA0A61CB8AA3C00F76720 /* NSDateFormatter+sharedDateFormatter.m in Sources */,
+				B22BAD6D1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m in Sources */,
 				B251E3AF1C8E849500E6613A /* HomeShowKnowController.m in Sources */,
 				B251E3BB1C8E849500E6613A /* ModifyNameViewController.m in Sources */,
 				060106AA1C97C0F90084379F /* JZPayWayController.m in Sources */,
@@ -7959,6 +7986,7 @@
 				B251E3DF1C8E849500E6613A /* WMNavigationInteractiveTransition.m in Sources */,
 				B251E5301C8E849500E6613A /* EditorMessageController.m in Sources */,
 				B251E2F31C8E849500E6613A /* DrivingSelectMotorcycleTypeView.m in Sources */,
+				B22BAD591CBF38BF00455E1C /* YBSubjectQuestionRightButton.m in Sources */,
 				B251E3B31C8E849500E6613A /* SchoolClassDetailMessageCell.m in Sources */,
 				B251E3AC1C8E849500E6613A /* HomeMainController.m in Sources */,
 				B251E4131C8E849500E6613A /* PortraitView.m in Sources */,
@@ -8458,6 +8486,7 @@
 				B251E5E81C8E849500E6613A /* YBCheatslistViewController.m in Sources */,
 				B2EEBC141CA12E3400846656 /* JGUserModel.m in Sources */,
 				B251E56A1C8E849500E6613A /* DVVCoachDetailDMHeadportrait.m in Sources */,
+				B22BAD561CBF328E00455E1C /* YBSubjectQuestionRightBarView.m in Sources */,
 				B251E5491C8E849500E6613A /* FrequentlyController.m in Sources */,
 				B2EEBCF11CA13A8700846656 /* DVVCoachDetailIntroductionCell.m in Sources */,
 				B251E42F1C8E849500E6613A /* EMChatVideoBubbleView.m in Sources */,

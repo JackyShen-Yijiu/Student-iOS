@@ -59,7 +59,7 @@ static FMDatabaseQueue *_queue;
 
         NSLog(@"文件不存在");
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"ggtkFile"] ofType:@"zip"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"ggtkFile1"] ofType:@"zip"];
         if( [zip UnzipOpenFile:path] )
         {
             BOOL ret = [zip UnzipFileTo:unzipto overWrite:YES];
@@ -121,10 +121,11 @@ static FMDatabaseQueue *_queue;
 // 获取指定科目的章节
 + (NSArray *)getAllSubjectChapterWithType:(subjectType)type
 {
+    
     NSMutableArray *tempArray = [NSMutableArray array];
     
     NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
-    NSLog(@"dbPath:%@",dbPath);
+    NSLog(@"获取指定科目的章节dbPath:%@",dbPath);
   
     FMDatabase *dataBase = [FMDatabase databaseWithPath:dbPath];
     
@@ -291,6 +292,317 @@ static FMDatabaseQueue *_queue;
 
 }
 
+// INSERT into error_book ('webnoteid','userid','kemu') VALUES(1,'dfsd0',1)
++ (void)setupSqlite
+{
+    // 0.获得沙盒中的数据库文件名
+    NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
+    NSLog(@"dbPath:%@",dbPath);
+    
+    // 1.创建队列
+    _queue = [FMDatabaseQueue databaseQueueWithPath:dbPath];
+    
+    // 2.创表
+    [_queue inDatabase:^(FMDatabase *db) {
+        
+        BOOL result = [db executeUpdate:@"create table if not exists error_books (id integer primary key autoincrement, kemu int, webnoteid int,userid text);"];
+        
+        if (result) {
+            NSLog(@"创表成功");
+        } else {
+            NSLog(@"创表失败");
+        }
+        
+    }];
+    
+}
 
++ (void)insertWrongQuestionwithtype:(subjectType)type userid:(NSString *)userid webnoteid:(NSInteger)webnoteid
+{
+    
+    NSLog(@"type:%ld-userid:%@-webnoteid:%ld",(long)type,userid,(long)webnoteid);
+    
+    [self setupSqlite];
+    
+    [_queue inDatabase:^(FMDatabase *db) {
+        
+        NSString *sql = [NSString stringWithFormat:@"INSERT into error_books ('kemu','webnoteid','userid') VALUES (%ld,%ld,%@);",type,webnoteid,userid];
+        NSLog(@"sql:%@",sql);
+        
+        // 2.存储数据
+        [db executeUpdate:sql];
+
+    }];
+    
+    [_queue close];
+    
+}
+
++ (NSArray *)getAllWrongQuestionwithtype:(subjectType)type userid:(NSString *)userid
+{
+    NSMutableArray *tempArray = [NSMutableArray array];
+    
+    NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
+    NSLog(@"dbPath:%@",dbPath);
+    
+    FMDatabase *dataBase = [FMDatabase databaseWithPath:dbPath];
+    
+    if (dataBase) {
+        
+        [dataBase open];
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT w.* from web_note w,error_books e where w.id=e.webnoteid  and e.userid  =%@ and e.kemu=%ld",userid,(long)type];
+        
+        if ([userid isEqualToString:@"null"]) {
+            sql = [NSString stringWithFormat:@"SELECT w.* from web_note w,error_books e where w.id=e.webnoteid  and e.userid is null and e.kemu=%ld",(long)type];
+        }
+        
+        NSLog(@"sql:%@",sql);
+        
+        FMResultSet *rs = [dataBase executeQuery:sql];
+        
+        while ([rs next]) {
+            
+//            NSData *data = [rs dataForColumn:@"data"];
+            
+            YBSubjectData *subjectData = [[YBSubjectData alloc] init];//[NSKeyedUnarchiver unarchiveObjectWithData:data];
+            
+            NSInteger ID = [[rs stringForColumn:@"id"] integerValue];
+            subjectData.ID = ID;
+            
+            NSInteger intNumber = [[rs stringForColumn:@"intNumber"] integerValue];
+            subjectData.intNumber = intNumber;
+            
+            NSInteger type = [[rs stringForColumn:@"type"] integerValue];
+            subjectData.type = type;
+            
+            NSInteger strTppe = [[rs stringForColumn:@"strTppe"] integerValue];
+            subjectData.strTppe = strTppe;
+            
+            NSInteger strType_l = [[rs stringForColumn:@"strType_l"] integerValue];
+            subjectData.strType_l = strType_l;
+            
+            NSString *license_type = [rs stringForColumn:@"license_type"];
+            subjectData.license_type = license_type;
+            
+            NSString *question = [rs stringForColumn:@"question"];
+            subjectData.question = question;
+            
+            NSString *answer1 = [rs stringForColumn:@"answer1"];
+            subjectData.answer1 = answer1;
+            
+            NSString *answer2 = [rs stringForColumn:@"answer2"];
+            subjectData.answer2 = answer2;
+            
+            NSString *answer3 = [rs stringForColumn:@"answer3"];
+            subjectData.answer3 = answer3;
+            
+            NSString *answer4 = [rs stringForColumn:@"answer4"];
+            subjectData.answer4 = answer4;
+            
+            NSString *answer5 = [rs stringForColumn:@"answer5"];
+            subjectData.answer5 = answer5;
+            
+            NSString *answer6 = [rs stringForColumn:@"answer6"];
+            subjectData.answer6 = answer6;
+            
+            NSString *answer7 = [rs stringForColumn:@"answer7"];
+            subjectData.answer7 = answer7;
+            
+            NSInteger answer_true = [[rs stringForColumn:@"answer_true"] integerValue];
+            subjectData.answer_true = answer_true;
+            
+            NSString *explain = [rs stringForColumn:@"explain"];
+            subjectData.explain = explain;
+            
+            NSInteger kemu = [[rs stringForColumn:@"kemu"] integerValue];
+            subjectData.kemu = kemu;
+            
+            NSString *explain_form = [rs stringForColumn:@"explain_form"];
+            subjectData.explain_form = explain_form;
+            
+            NSString *moretypes = [rs stringForColumn:@"moretypes"];
+            subjectData.moretypes = moretypes;
+            
+            NSString *chapterid = [rs stringForColumn:@"chapterid"];
+            subjectData.chapterid = chapterid;
+            
+            NSString *img_url = [rs stringForColumn:@"img_url"];
+            subjectData.img_url = img_url;
+            
+            NSString *video_url = [rs stringForColumn:@"video_url"];
+            subjectData.video_url = video_url;
+            
+            NSInteger diff_degree = [[rs stringForColumn:@"diff_degree"] integerValue];
+            subjectData.diff_degree = diff_degree;
+            
+            [tempArray addObject:subjectData];
+            
+        }
+        
+    }
+    
+    return tempArray;
+    
+}
+
+// 获取随机考试题库
++ (NSArray *)getAllExamDataWithType:(subjectType)type
+{
+    NSMutableArray *tempArray = [NSMutableArray array];
+    
+    NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
+    NSLog(@"dbPath:%@",dbPath);
+    
+    FMDatabase *dataBase = [FMDatabase databaseWithPath:dbPath];
+    
+    if (dataBase) {
+        
+        [dataBase open];
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld   and (strTppe='01' or strTppe='02' or strTppe='03' or strTppe='04') order BY RANDOM() limit 100",(long)type];
+        
+        NSLog(@"sql:%@",sql);
+        
+        FMResultSet *rs = [dataBase executeQuery:sql];
+        
+        while ([rs next]) {
+                        
+            YBSubjectData *subjectData = [[YBSubjectData alloc] init];//[NSKeyedUnarchiver unarchiveObjectWithData:data];
+            
+            NSInteger ID = [[rs stringForColumn:@"id"] integerValue];
+            subjectData.ID = ID;
+            
+            NSInteger intNumber = [[rs stringForColumn:@"intNumber"] integerValue];
+            subjectData.intNumber = intNumber;
+            
+            NSInteger type = [[rs stringForColumn:@"type"] integerValue];
+            subjectData.type = type;
+            
+            NSInteger strTppe = [[rs stringForColumn:@"strTppe"] integerValue];
+            subjectData.strTppe = strTppe;
+            
+            NSInteger strType_l = [[rs stringForColumn:@"strType_l"] integerValue];
+            subjectData.strType_l = strType_l;
+            
+            NSString *license_type = [rs stringForColumn:@"license_type"];
+            subjectData.license_type = license_type;
+            
+            NSString *question = [rs stringForColumn:@"question"];
+            subjectData.question = question;
+            
+            NSString *answer1 = [rs stringForColumn:@"answer1"];
+            subjectData.answer1 = answer1;
+            
+            NSString *answer2 = [rs stringForColumn:@"answer2"];
+            subjectData.answer2 = answer2;
+            
+            NSString *answer3 = [rs stringForColumn:@"answer3"];
+            subjectData.answer3 = answer3;
+            
+            NSString *answer4 = [rs stringForColumn:@"answer4"];
+            subjectData.answer4 = answer4;
+            
+            NSString *answer5 = [rs stringForColumn:@"answer5"];
+            subjectData.answer5 = answer5;
+            
+            NSString *answer6 = [rs stringForColumn:@"answer6"];
+            subjectData.answer6 = answer6;
+            
+            NSString *answer7 = [rs stringForColumn:@"answer7"];
+            subjectData.answer7 = answer7;
+            
+            NSInteger answer_true = [[rs stringForColumn:@"answer_true"] integerValue];
+            subjectData.answer_true = answer_true;
+            
+            NSString *explain = [rs stringForColumn:@"explain"];
+            subjectData.explain = explain;
+            
+            NSInteger kemu = [[rs stringForColumn:@"kemu"] integerValue];
+            subjectData.kemu = kemu;
+            
+            NSString *explain_form = [rs stringForColumn:@"explain_form"];
+            subjectData.explain_form = explain_form;
+            
+            NSString *moretypes = [rs stringForColumn:@"moretypes"];
+            subjectData.moretypes = moretypes;
+            
+            NSString *chapterid = [rs stringForColumn:@"chapterid"];
+            subjectData.chapterid = chapterid;
+            
+            NSString *img_url = [rs stringForColumn:@"img_url"];
+            subjectData.img_url = img_url;
+            
+            NSString *video_url = [rs stringForColumn:@"video_url"];
+            subjectData.video_url = video_url;
+            
+            NSInteger diff_degree = [[rs stringForColumn:@"diff_degree"] integerValue];
+            subjectData.diff_degree = diff_degree;
+            
+            [tempArray addObject:subjectData];
+            
+        }
+        
+    }
+    
+    return tempArray;
+    
+}
+
+/**
+ *  根据语音时长格式化时长
+ *
+ *  @param duration 原始时长
+ *
+ *  @return 格式化后的时长
+ */
++ (NSString *)duration:(NSString *)duration
+{
+    int times = [duration intValue];
+    
+    NSString *newTime;
+    
+    if (times < 60) {// 小于60秒
+        
+        if (times < 10) {// 小于10秒
+            
+            if (times==0) {
+                newTime = [NSString stringWithFormat:@"00:00"];
+            }else{
+                newTime = [NSString stringWithFormat:@"00:0%.0d" , times];
+            }
+            
+        } else {// 大于10秒
+            
+            newTime = [NSString stringWithFormat:@"00:%.0d" , times];
+        }
+        
+    } else {// 大于60秒
+        
+        int t = times / 60;// 分钟
+        float  p = times % 60;// 秒
+        
+        if (t > 10) {// 大于10分钟
+            
+            if (p < 10) {// 秒钟小于10秒
+                newTime = [NSString stringWithFormat:@"%d:0%.0f" ,t,p];
+            } else {// 秒钟大于10秒
+                newTime = [NSString stringWithFormat:@"%d:%.0f" , t,p];
+            }
+            
+        } else {// 小于10分钟,小于一分钟
+            
+            if (p < 10) {// 秒钟小于10秒
+                newTime = [NSString stringWithFormat:@"0%d:0%.0f" ,t,p];
+            } else {// 秒钟大于10秒
+                newTime = [NSString stringWithFormat:@"0%d:%.0f" , t,p];
+            }
+            
+        }
+        
+    }
+    
+    return newTime;
+}
 
 @end

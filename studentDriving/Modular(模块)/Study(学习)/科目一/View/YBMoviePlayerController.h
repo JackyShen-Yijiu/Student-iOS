@@ -12,9 +12,4 @@
 
 + (instancetype)sharedInstance;
 
-/**
- @method 播放电影
- */
--(void)playMovie:(NSString *)fileName;
-
 @end
