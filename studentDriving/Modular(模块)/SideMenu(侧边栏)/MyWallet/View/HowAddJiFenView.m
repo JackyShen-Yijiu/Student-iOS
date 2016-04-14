@@ -22,12 +22,11 @@
         self.frame = frame;
         
         
-      
-        
-        
     }
     
     return self;
 }
+
+
 
 @end

@@ -7,10 +7,13 @@
 //
 
 #import "JZMyWalletDuiHuanJuanView.h"
+#import "DVVCreateQRCode.h"
 #import <YYModel.h>
 #define kLKSize [UIScreen mainScreen].bounds.size
 static NSString *duiHuanJuanHeaderViewID = @"duiHuanJuanHeaderViewID";
 static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
+static NSString *const knumber = @"create_qrcode";
+
 @interface JZMyWalletDuiHuanJuanView ()<UITableViewDelegate,UITableViewDataSource>
 
 
@@ -33,6 +36,10 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
         
         self.rowHeight = 99;
         self.sectionHeaderHeight = 130;
+        
+        self.separatorStyle = UITableViewCellSelectionStyleNone;
+        self.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
+
         
         [self loadData];
         
@@ -93,8 +100,25 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
     self.duiHuanJuanHeaerView = duiHuanJuanHeaerView;
     
     JZMyWalletDuiHuanJuanData *data = self.duiHuanJuanDataArrM[section];
+
     
     duiHuanJuanHeaerView.spendDateLabel.text = [NSString stringWithFormat:@"有效期至：%@",[self getLocalDateFormateUTCDate:data.createtime]];
+    // 生成二维码
+    NSString *resultStr = [NSString stringWithFormat:BASEURL,knumber];
+    NSString *str = @"?text=";
+    NSString *lastStr = @"&size=46";
+    
+    NSString *finishResultStr = [NSString stringWithFormat:@"%@%@%@%@",resultStr,str,self.dataModel.orderscanaduiturl,lastStr];
+
+    [duiHuanJuanHeaerView.QRCodeImg sd_setImageWithURL:[NSURL URLWithString:finishResultStr] placeholderImage:[UIImage imageNamed:@"code_null"]];
+    
+    
+    self.duiHuanJuanHeaerView.QRCodeImg.userInteractionEnabled = YES;
+    
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seeBigImg)];
+    [self.duiHuanJuanHeaerView.QRCodeImg addGestureRecognizer:tapGesture];
+    
+    
     
     
     if (data.couponcomefrom == 1) {
@@ -105,7 +129,7 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
         duiHuanJuanHeaerView.duiHuanJuanName.text = @"活动奖励兑换券";
 
     }
-    
+
     
     
     
@@ -115,6 +139,34 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
     
     
 }
+-(void)seeBigImg {
+    
+    NSLog(@"测试测试测试");
+    
+    
+    JZMyWalletDuiHuanJuanData *data = self.duiHuanJuanDataArrM[self.duiHuanJuanHeaerView.tag];
+    
+    
+    // 生成二维码
+    NSString *resultStr = [NSString stringWithFormat:BASEURL,knumber];
+    NSString *str = @"?text=";
+    NSString *lastStr = @"&size=46";
+    
+    NSString *finishResultStr = [NSString stringWithFormat:@"%@%@%@%@",resultStr,str,self.dataModel.orderscanaduiturl,lastStr];
+    
+    
+    
+    UIImageView *bigImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,kLKSize.width, kLKSize.height)];
+    
+    
+    
+
+    
+    
+    
+    
+}
+
 -(void)setDataModel:(JZMyWalletDuiHuanJuanData *)dataModel {
     
     
@@ -221,6 +273,7 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
             NSLog(@"%@",array);
             if (array.count) {
                  dataModel.openGroup = YES;
+                
                 [self.duiHuanJuanDataArrM replaceObjectAtIndex:self.selectHeaderViewTag withObject:dataModel];
                 
                 [self.duihuanJuanListArrM removeAllObjects];
@@ -298,7 +351,6 @@ static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
     NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
     return dateString;
 }
-
 
 
 

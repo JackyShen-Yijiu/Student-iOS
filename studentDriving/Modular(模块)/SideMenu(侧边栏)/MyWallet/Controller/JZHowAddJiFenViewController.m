@@ -1,30 +1,37 @@
 //
-//  HowAddJiFenViewController.m
+//  JZHowAddJiFenViewController.m
 //  studentDriving
 //
 //  Created by 雷凯 on 16/4/14.
 //  Copyright © 2016年 jatd. All rights reserved.
 //
 
-#import "HowAddJiFenViewController.h"
+#import "JZHowAddJiFenViewController.h"
 #import "HowAddJiFenView.h"
 #define kLKSize [UIScreen mainScreen].bounds.size
 
-@interface HowAddJiFenViewController ()
-
+@interface JZHowAddJiFenViewController ()
+@property (nonatomic, weak) HowAddJiFenView *howAddView;
 @end
 
-@implementation HowAddJiFenViewController
+@implementation JZHowAddJiFenViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor cyanColor];
+    
     self.title = @"赚积分";
     
-    HowAddJiFenView *jiFenView = [[HowAddJiFenView alloc]initWithFrame:CGRectMake(0, 0, kLKSize.width, kLKSize.height)];
+    HowAddJiFenView *howAddView = [[HowAddJiFenView alloc]initWithFrame:CGRectMake(0, 0, kLKSize.width, kLKSize.height)];
     
-    self.view = jiFenView;
-
+    self.howAddView = howAddView;
+    
+    self.howAddView.myJiFenLabel.text = self.myJiFenCount;
+    
+    [self.view addSubview:howAddView];
+    
 }
 
 - (void)didReceiveMemoryWarning {

@@ -1,5 +1,5 @@
 //
-//  HowAddJiFenViewController.h
+//  JZHowAddJiFenViewController.h
 //  studentDriving
 //
 //  Created by 雷凯 on 16/4/14.
@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HowAddJiFenViewController : UIViewController
+@interface JZHowAddJiFenViewController : UIViewController
+@property (nonatomic, strong) NSString *myJiFenCount;
 
 @end

@@ -10,7 +10,6 @@
 
 @interface HowAddJiFenView : UIView
 @property (weak, nonatomic) IBOutlet UILabel *myJiFenLabel;
-@property (weak, nonatomic) IBOutlet UILabel *howAddJiFenLabel;
-@property (weak, nonatomic) IBOutlet UILabel *jiFenDetailLabel;
+
 
 @end
