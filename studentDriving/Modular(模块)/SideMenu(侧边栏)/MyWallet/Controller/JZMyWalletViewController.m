@@ -23,6 +23,7 @@
 #import "JZMyWalletDuiHuanJuanData.h"
 #import "JZMyWalletDuiHuanJuanUseproductidlist.h"
 #import "DVVNoDataPromptView.h"
+#import "JZExchangeRecordController.h"
 
 
 #define kLKSize [UIScreen mainScreen].bounds.size
@@ -120,7 +121,7 @@
     contentScrollView.pagingEnabled = YES;
     contentScrollView.bounces = NO;
     contentScrollView.contentSize = CGSizeMake(kLKSize.width * 3, kLKSize.height - 238);
-    contentScrollView.backgroundColor = [UIColor cyanColor];
+//    contentScrollView.backgroundColor = [UIColor cyanColor];
     [self.view addSubview:contentScrollView];
     
     self.contentScrollView = contentScrollView;
@@ -132,8 +133,9 @@
     self.jiFenHeaderTypeView = jiFenHeaderTypeView;
     
     [self.contentScrollView addSubview:jiFenHeaderTypeView];
-
     
+    [self.jiFenHeaderTypeView.duiHuanList addTarget:self action:@selector(goToDuiHuanListClick) forControlEvents:UIControlEventTouchUpInside];
+
     JZMyWalletJiFenView *jiFenView = [[JZMyWalletJiFenView alloc]initWithFrame:CGRectMake(0, 36, kLKSize.width, kLKSize.height - 238-64-40.5-36)];
     
     self.jiFenView = jiFenView;
@@ -225,12 +227,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         [self clickJiFenBtn];
     }
     
-    
-  
-        
-  
-    
-    
+
     
     if (scrollView.contentOffset.x == kLKSize.width) {
         
@@ -302,11 +299,18 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         NSLog(@"获取现金:%@",data);
         
         if ([[data objectForKey:@"type"] integerValue]) {
-            
+            [self.DvvView removeFromSuperview];
             if (resultData[@"money"]) {
                 
                 self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"￥%@",resultData[@"money"]];
             }else{
+                self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"暂时没有数据" image:[UIImage imageNamed:@"YBNocountentimage_wallet_cash"] subTitle:nil];
+                self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.jiFenView.bounds.size.height - 36 - 40);
+                
+                self.DvvView.transform = CGAffineTransformMakeTranslation(kLKSize.width*2,0);
+                
+                [self.contentScrollView addSubview:self.DvvView];
+
                 self.jiFenHeaderView.headerNumLabel.text = @"暂无";
             }
         }
@@ -315,10 +319,10 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         
         
         
-        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"网络出错啦" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"网络出错啦" image:[UIImage imageNamed:@"YBNocountentimage_wallet_cash"] subTitle:nil];
         self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.jiFenView.bounds.size.height - 36 - 40);
         
-        self.DvvView.transform = CGAffineTransformMakeTranslation(kLKSize.width,0);
+        self.DvvView.transform = CGAffineTransformMakeTranslation(kLKSize.width*2,0);
         
         [self.contentScrollView addSubview:self.DvvView];
 
@@ -337,6 +341,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         
         if ([[data objectForKey:@"type"] integerValue]) {
             
+            [self.DvvView removeFromSuperview];
             NSArray *array = data[@"data"];
             
             NSLog(@"%@",array);
@@ -364,13 +369,29 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
 
                 }
                 
+            }else {
+                
+                self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"暂时没有数据" image:[UIImage imageNamed:@"YBNocountentimage_wallet_ticket"] subTitle:nil];
+                self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.duiHuanJuanView.bounds.size.height - 36);
+                
+                self.DvvView.transform = CGAffineTransformMakeTranslation(kLKSize.width,0);
+                
+                [self.contentScrollView addSubview:self.DvvView];
+
             }
             
         }
         
     } withFailure:^(id data) {
         
-        [self obj_showTotasViewWithMes:@"网络错误"];
+        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"网络错误" image:[UIImage imageNamed:@"YBNocountentimage_wallet_ticket"] subTitle:nil];
+        self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.duiHuanJuanView.bounds.size.height - 36);
+        
+        self.DvvView.transform = CGAffineTransformMakeTranslation(kLKSize.width,0);
+        
+        [self.contentScrollView addSubview:self.DvvView];
+        
+
         
     }];
     
@@ -477,6 +498,15 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     howAddVC.myJiFenCount = self.jiFenHeaderView.headerNumLabel.text;
     [self.navigationController pushViewController:howAddVC animated:YES];
     
+    
+}
+
+#pragma mark - 跳转到兑换记录界面
+-(void)goToDuiHuanListClick {
+    
+    JZExchangeRecordController *duiHuanListVC = [[JZExchangeRecordController alloc]init];
+    
+    [self.navigationController pushViewController:duiHuanListVC animated:YES];
     
 }
 

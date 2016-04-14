@@ -3119,8 +3119,8 @@
 		D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowAddJiFenView.xib; sourceTree = "<group>"; };
 		D971BD491CBF55E600C5E626 /* HowAddJiFenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowAddJiFenView.h; sourceTree = "<group>"; };
 		D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowAddJiFenView.m; sourceTree = "<group>"; };
-		D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZHowAddJiFenViewController.h; sourceTree = "<group>"; };
-		D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZHowAddJiFenViewController.m; sourceTree = "<group>"; };
+		D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZHowAddJiFenViewController.h; path = ../Controller/JZHowAddJiFenViewController.h; sourceTree = "<group>"; };
+		D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZHowAddJiFenViewController.m; path = ../Controller/JZHowAddJiFenViewController.m; sourceTree = "<group>"; };
 		D97303731CBB52B800F51435 /* JZComplaintRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintRightView.h; sourceTree = "<group>"; };
 		D97303741CBB52B800F51435 /* JZComplaintRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintRightView.m; sourceTree = "<group>"; };
 		D97303781CBB81A700F51435 /* JZComplaintRightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZComplaintRightView.xib; sourceTree = "<group>"; };
@@ -5392,8 +5392,6 @@
 			children = (
 				D9DA1C6B1CBCE64E00BBD81D /* JZMyWalletViewController.h */,
 				D9DA1C6C1CBCE64E00BBD81D /* JZMyWalletViewController.m */,
-				D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */,
-				D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5418,6 +5416,11 @@
 		B251DEA21C8E849200E6613A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */,
+				D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */,
+				D971BD491CBF55E600C5E626 /* HowAddJiFenView.h */,
+				D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */,
+				D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */,
 				D97E1CD01CBCEFCB00BBF87B /* JZMyWalletHeaderView.h */,
 				D97E1CD11CBCEFCB00BBF87B /* JZMyWalletHeaderView.m */,
 				D97E1CD31CBCF53900BBF87B /* JZMyWalletHeaderView.xib */,
@@ -5427,9 +5430,6 @@
 				D9E0FF8E1CBDFFBF00CDC2B8 /* JiFenView */,
 				D9E0FF8F1CBDFFD100CDC2B8 /* XianJinView */,
 				D9E0FF901CBDFFE200CDC2B8 /* DuiHuanJuanView */,
-				D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */,
-				D971BD491CBF55E600C5E626 /* HowAddJiFenView.h */,
-				D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";

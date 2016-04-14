@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MyJiFenHeaderTypeView : UIView
+@property (weak, nonatomic) IBOutlet UIButton *duiHuanList;
 
 @end
