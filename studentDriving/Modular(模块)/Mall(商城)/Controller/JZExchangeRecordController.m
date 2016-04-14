@@ -8,18 +8,20 @@
 
 #import "JZExchangeRecordController.h"
 #import "JZExchangeRecordCell.h"
-#import "JZRecordViewModel.h"
+
 #import <MJRefresh/MJRefresh.h>
 #import "JZRecordDetailController.h"
+#import "JZNoDataShowBGView.h"
 
 
 @interface JZExchangeRecordController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic,strong) UITableView *tableView;
 
-@property (nonatomic, strong) JZRecordViewModel *viewModel;
 
 @property (nonatomic,strong) MJRefreshHeader *header;
+
+@property (nonatomic, strong) JZNoDataShowBGView *noDataShowBGView;
 
 @end
 
@@ -78,11 +80,11 @@
     _viewModel= [JZRecordViewModel new];
     
     [_viewModel dvv_setRefreshSuccessBlock:^{
-//        [ws.noDataPromptView remove];
+        [ws.noDataShowBGView removeFromSuperview];
         [ws.tableView reloadData];
     }];
     [_viewModel dvv_setLoadMoreSuccessBlock:^{
-//        [ws.noDataPromptView remove];
+        [ws.noDataShowBGView removeFromSuperview];
         [ws.tableView reloadData];
     }];
     [_viewModel dvv_setNilResponseObjectBlock:^{
@@ -90,7 +92,7 @@
             [ws obj_showTotasViewWithMes:@"已经全部加载完毕"];
             ws.tableView.mj_footer.state = MJRefreshStateNoMoreData;
         }else {
-        //            [ws.tableView addSubview:self.noDataPromptView];
+                    [ws.tableView addSubview:self.noDataShowBGView];
         }
     }];
     [_viewModel dvv_setNetworkCallBackBlock:^{
@@ -99,7 +101,7 @@
         
     }];
     [_viewModel dvv_setNetworkErrorBlock:^{
-//            [ws.tableView addSubview:ws.noDataPromptView];
+            [ws.tableView addSubview:ws.noDataShowBGView];
         [ws obj_showTotasViewWithMes:@"网络错误"];
     }];
 }
@@ -112,14 +114,19 @@
     
     
     // 开始请求数据
-//    [self.noDataPromptView remove];
+    [self.noDataShowBGView removeFromSuperview];
         [_viewModel dvv_networkRequestRefresh];
     
 }
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     JZRecordDetailController *recordDetailVC = [[JZRecordDetailController alloc] init];
     recordDetailVC.recordModel  = _viewModel.dataArray[indexPath.row];
-    [self.navigationController pushViewController:recordDetailVC animated:YES];
+    if (_isFormallOrder) {
+        [self.pareVC.navigationController pushViewController:recordDetailVC animated:YES];
+    }else{
+        [self.navigationController pushViewController:recordDetailVC animated:YES];
+    }
+    
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -132,8 +139,15 @@
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.delegate = self;
         _tableView.dataSource = self;
+        _tableView.backgroundColor = [UIColor clearColor];
     }
     return _tableView;
 }
-
+- (JZNoDataShowBGView *)noDataShowBGView{
+    if (_noDataShowBGView == nil) {
+        _noDataShowBGView = [[JZNoDataShowBGView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, self.view.height)];
+        
+    }
+    return _noDataShowBGView;
+}
 @end
