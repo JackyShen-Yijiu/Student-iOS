@@ -1053,6 +1053,7 @@
 		D971BD481CBF50BB00C5E626 /* HowAddJiFenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */; };
 		D971BD4B1CBF55E600C5E626 /* HowAddJiFenView.m in Sources */ = {isa = PBXBuildFile; fileRef = D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */; };
 		D971BD4E1CBF616800C5E626 /* JZHowAddJiFenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */; };
+		D971BD511CBFBE6100C5E626 /* JZDuiHuanListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D971BD501CBFBE6100C5E626 /* JZDuiHuanListController.m */; };
 		D97303751CBB52B800F51435 /* JZComplaintRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97303741CBB52B800F51435 /* JZComplaintRightView.m */; };
 		D97303791CBB81A700F51435 /* JZComplaintRightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97303781CBB81A700F51435 /* JZComplaintRightView.xib */; };
 		D97676251C97DF6F0033221E /* YBAppointmentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97676211C97DF6F0033221E /* YBAppointmentDetailCell.m */; };
@@ -3121,6 +3122,8 @@
 		D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowAddJiFenView.m; sourceTree = "<group>"; };
 		D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZHowAddJiFenViewController.h; path = ../Controller/JZHowAddJiFenViewController.h; sourceTree = "<group>"; };
 		D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZHowAddJiFenViewController.m; path = ../Controller/JZHowAddJiFenViewController.m; sourceTree = "<group>"; };
+		D971BD4F1CBFBE6100C5E626 /* JZDuiHuanListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZDuiHuanListController.h; sourceTree = "<group>"; };
+		D971BD501CBFBE6100C5E626 /* JZDuiHuanListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZDuiHuanListController.m; sourceTree = "<group>"; };
 		D97303731CBB52B800F51435 /* JZComplaintRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintRightView.h; sourceTree = "<group>"; };
 		D97303741CBB52B800F51435 /* JZComplaintRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintRightView.m; sourceTree = "<group>"; };
 		D97303781CBB81A700F51435 /* JZComplaintRightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZComplaintRightView.xib; sourceTree = "<group>"; };
@@ -3619,6 +3622,8 @@
 			children = (
 				06F860961CBF2E70007348B9 /* JZSideMenuOrderListController.h */,
 				06F860971CBF2E70007348B9 /* JZSideMenuOrderListController.m */,
+				D971BD4F1CBFBE6100C5E626 /* JZDuiHuanListController.h */,
+				D971BD501CBFBE6100C5E626 /* JZDuiHuanListController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7877,6 +7882,7 @@
 				B251E42E1C8E849500E6613A /* EMChatTextBubbleView.m in Sources */,
 				B251E43A1C8E849500E6613A /* EMTextView.m in Sources */,
 				B251E5361C8E849500E6613A /* YBEditUserInfoController.m in Sources */,
+				D971BD511CBFBE6100C5E626 /* JZDuiHuanListController.m in Sources */,
 				B251E3991C8E849500E6613A /* BLImageViewController.m in Sources */,
 				B2EEBC991CA1395400846656 /* DVVConfirmOrderController.m in Sources */,
 				B22BAD421CBB474B00455E1C /* YBSubjectQuestionsListController.m in Sources */,
