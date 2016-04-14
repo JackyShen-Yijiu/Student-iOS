@@ -11,8 +11,6 @@
 #import "FMDB.h"
 #import "YBSubjectData.h"
 
-#define YBSubjectPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
-
 @interface YBSubjectTool ()
 
 @end
@@ -101,13 +99,13 @@ static FMDatabaseQueue *_queue;
         
         if (fileIsExit) {// 文件存在
             
-            tempArray = [self getSubjectData:type];
+            tempArray = [self getAllSubjectChapterWithType:type];
             
         }else{// 文件不存在
            
             if (archiveResult) {// 解压成功
                 
-                tempArray = [self getSubjectData:type];
+                tempArray = [self getAllSubjectChapterWithType:type];
 
             }else{// 解压失败
                 
@@ -120,7 +118,68 @@ static FMDatabaseQueue *_queue;
     return tempArray;
 }
 
-+ (NSArray *)getSubjectData:(subjectType)type
+// 获取指定科目的章节
++ (NSArray *)getAllSubjectChapterWithType:(subjectType)type
+{
+    NSMutableArray *tempArray = [NSMutableArray array];
+    
+    NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
+    NSLog(@"dbPath:%@",dbPath);
+  
+    FMDatabase *dataBase = [FMDatabase databaseWithPath:dbPath];
+    
+    if (dataBase) {
+        
+        [dataBase open];
+        
+        NSString *sql = @"";
+        switch (type) {
+            case subjectOne:
+                
+                sql = [NSString stringWithFormat:@"SELECT c.title as title ,c.id as id, '0'||c.mid as mid, count(c.id) as count FROM Chapter c, web_note w WHERE c.kemu = %ld AND w.kemu=%ld AND (c.id = 1 OR c.id = 2 OR c.id = 3 OR c.id = 4) AND w.chapterid = c.id AND ( w.strTppe = '01' OR w.strTppe = '02' OR w.strTppe = '03' OR w.strTppe = '04') GROUP BY c.title,c.id ORDER BY c.id",(long)type,(long)type];
+
+                break;
+                
+            case subjectFour:
+                
+                sql = [NSString stringWithFormat:@"SELECT c.title as title ,c.id as id, c.mid as mid, count(c.id) as count FROM (select '0'||mid as mid ,title ,id ,kemu FROM Chapter where kemu=%ld AND fid=0 and ( mid<>8 )) c, web_note w WHERE c.kemu = %ld AND w.kemu=%ld AND w.strTppe = c.mid GROUP BY c.title,c.id, c.mid ORDER BY c.id",(long)type,(long)type,(long)type];
+                
+                break;
+                
+            default:
+                break;
+        }
+        NSLog(@"sql:%@",sql);
+
+        FMResultSet *rs = [dataBase executeQuery:sql];
+        
+        while ([rs next]) {
+            
+            YBSubjectData *subjectData = [[YBSubjectData alloc] init];
+            
+            NSString *mid = [rs stringForColumn:@"mid"];
+            subjectData.mid = mid;
+            
+            NSString *title = [rs stringForColumn:@"title"];
+            subjectData.title = title;
+            
+            NSInteger ID = [[rs stringForColumn:@"id"] integerValue];
+            subjectData.ID = ID;
+            
+            NSInteger count = [[rs stringForColumn:@"count"] integerValue];
+            subjectData.count = count;
+            
+            [tempArray addObject:subjectData];
+            
+        }
+        
+    }
+    
+    return tempArray;
+    
+}
+
++ (NSArray *)getAllSubjectDataWithType:(subjectType)type chapter:(NSString *)chapter
 {
     NSMutableArray *tempArray = [NSMutableArray array];
 
@@ -143,9 +202,9 @@ static FMDatabaseQueue *_queue;
         
         [dataBase open];
         
-        // select *, rowid "NAVICAT_ROWID" from "main"."web_note" order by "id" limit 0,1000
-        // SELECT count(*) FROM web_note where kemu =1   and (strTppe='01' or strTppe='02' or strTppe='03' or strTppe='04')SELECT count(*) FROM web_note where kemu =1   and (strTppe='01' or strTppe='02' or strTppe='03' or strTppe='04')
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld   and (strTppe='01' or strTppe='02' or strTppe='03' or strTppe='04')",(long)type];
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld and strTppe='%@' order by id",(long)type,chapter];
+        
+        NSLog(@"sql:%@",sql);
         
         FMResultSet *rs = [dataBase executeQuery:sql];
         

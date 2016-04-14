@@ -7,7 +7,22 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "JZMyWalletDuiHuanJuanData.h"
+#import "JZMyWalletDuiHuanJuanHeaderView.h"
+#import "JZMyWalletDuiHuanJuanCell.h"
+#import "JZMyWalletDuiHuanJuanUseproductidlist.h"
 @interface JZMyWalletDuiHuanJuanView : UITableView
 
+@property (nonatomic, strong) JZMyWalletDuiHuanJuanData *dataModel;
+@property (nonatomic, strong) JZMyWalletDuiHuanJuanUseproductidlist *listModel;
+
+
+@property (nonatomic, weak) JZMyWalletDuiHuanJuanHeaderView *duiHuanJuanHeaerView;
+@property (nonatomic, weak) JZMyWalletDuiHuanJuanCell *duiHuanJuanCell;
+@property (nonatomic, strong) NSMutableArray *duiHuanJuanDataArrM;
+
+@property (nonatomic, strong) NSMutableArray *duihuanJuanListArrM;
+
+
 @end
+

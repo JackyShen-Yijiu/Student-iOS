@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface JZMyWalletViewController : UIViewController
-
+@property (nonatomic ,copy) NSString *Ycode;
 @end

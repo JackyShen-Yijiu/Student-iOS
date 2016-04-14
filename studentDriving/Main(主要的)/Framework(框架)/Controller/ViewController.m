@@ -296,7 +296,7 @@
 }
 
 #pragma mark - WMMenuViewController代理方法
-- (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath{
+- (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath yCode:(NSString *)ycode{
     
     
     
@@ -332,6 +332,8 @@
             }
 //            YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
             JZMyWalletViewController *vc = [[JZMyWalletViewController alloc] init];
+        
+            vc.Ycode = ycode;
 
             
             

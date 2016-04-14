@@ -11,7 +11,7 @@
 
 @protocol WMMenuViewControllerDelegate <NSObject>
 @optional
-- (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath; // 点击tableView的cell
+- (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath yCode:(NSString *)ycode; // 点击tableView的cell
 - (void)didSelectIconImage:(UITapGestureRecognizer *)gestureRecognizer; // 点击头像的代理方法
 - (void)initWithButton:(UIButton *)btn; // 底部按钮的点击事件
 @end

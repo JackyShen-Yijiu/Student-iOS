@@ -21,6 +21,16 @@ typedef NS_ENUM(NSUInteger,SubjectState){
     SubjectStateCompletion
 };
 
+// 科目
+typedef NS_ENUM(NSInteger,subjectType){
+    
+    subjectOne=1,
+    subjectTwo,
+    subjectThree,
+    subjectFour,
+    
+};
+
 typedef NS_ENUM(NSUInteger,AppointmentState){
     AppointmentStateWait = 1, //  预约中
     AppointmentStateSelfCancel, //  学生取消
@@ -53,5 +63,8 @@ typedef NS_ENUM(NSUInteger,SignUpFormDetail){
 
 // 数据存储路径
 #define YBPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+
+// 题库路劲
+#define YBSubjectPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
 
 #endif /* YBModelDataMacro_h */
