@@ -9,5 +9,14 @@
 #import "YBBaseViewController.h"
 
 @interface YBOrderListViewController : YBBaseViewController
+
+
+@property (nonatomic, assign) BOOL isFormallOrder;
+
+@property (nonatomic, strong) UIViewController *pareVC;
+
 @property (nonatomic,assign) BOOL isPaySuccess;
+
+
+
 @end

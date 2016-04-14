@@ -425,7 +425,12 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
 
                     JZPayWayController *payWayVC= [[JZPayWayController alloc] init];
                     payWayVC.extraDict =  dict;
-                    [self.navigationController pushViewController:payWayVC animated:YES];
+                    if (_isFormallOrder) {
+                        [self.pareVC.navigationController pushViewController:payWayVC animated:YES];
+                    }else{
+                        [self.navigationController pushViewController:payWayVC animated:YES];
+                    }
+                    
                     
                     
             }
@@ -452,19 +457,35 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
     if ([self.payWaystr isEqualToString:@"线下支付"] && [self.applySatus isEqualToString:@"申请中"]) {
         // 跳转到扫描界面
         YBSignUpSuccessController *signUpVC = [[YBSignUpSuccessController alloc] init];
-        [self.navigationController pushViewController:signUpVC animated:YES];
-    }
+        if (_isFormallOrder) {
+            [self.pareVC.navigationController pushViewController:signUpVC animated:YES];
+        }else{
+            [self.navigationController pushViewController:signUpVC animated:YES];
+        }
+        
+}
     if ([self.payWaystr isEqualToString:@"线下支付"] && [self.applySatus isEqualToString:@"申请成功"]) {
         // 跳转到线下报名成功界面
         DVVPaySuccessController *vc = [DVVPaySuccessController new];
         vc.isPaySuccess = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        if (_isFormallOrder) {
+            [self.pareVC.navigationController pushViewController:vc animated:YES];
+        }else{
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+
     }
     if ([self.payWaystr isEqualToString:@"线上支付"] && [self.payStausStr isEqualToString:@"支付成功"]) {
         // 跳转到线上报名成界面
         DVVPaySuccessController *vc = [DVVPaySuccessController new];
         vc.isPaySuccess = YES;
-        [self.navigationController pushViewController:vc animated:YES];
+        
+        if (_isFormallOrder) {
+            [self.pareVC.navigationController pushViewController:vc animated:YES];
+        }else{
+            [self.navigationController pushViewController:vc animated:YES];
+        }
+
     }
 }
 
@@ -484,9 +505,16 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
                 
                 [self obj_showTotasViewWithMes:@"取消成功"];
                 
-                [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
+                if (_isFormallOrder) {
+                    [self.pareVC.navigationController.navigationController popToRootViewControllerAnimated:YES];
+                }else{
+                    [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
+                }
+                
                 
             }else{
+                
+                
                 
                 [self obj_showTotasViewWithMes:data[@"msg"]];
                 

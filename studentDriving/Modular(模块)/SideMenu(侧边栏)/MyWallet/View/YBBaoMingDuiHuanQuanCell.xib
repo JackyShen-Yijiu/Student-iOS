@@ -95,6 +95,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ticket" width="355" height="120"/>
+        <image name="ticket" width="343" height="118"/>
     </resources>
 </document>

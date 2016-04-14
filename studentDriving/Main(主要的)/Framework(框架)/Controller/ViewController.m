@@ -24,6 +24,9 @@
 #import "JGActivityViewController.h" // 活动
 #import "SideMenuSignUpController.h" // 签到
 #import "EditorMessageController.h" // 点击头像
+
+#import "JZSideMenuOrderListController.h" // 全部订单列表
+
 #import "SetupViewController.h"
 #import "BLPFAlertView.h"
 #import "PushInformationManager.h"
@@ -293,7 +296,7 @@
 }
 
 #pragma mark - WMMenuViewController代理方法
-- (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath{
+- (void)didSelectItem:(NSString *)title indexPath:(NSIndexPath *)indexPath yCode:(NSString *)ycode{
     
     
     
@@ -318,8 +321,8 @@
                 return;
             }
 
-            MallOrderController *mallOrderVC = [[MallOrderController alloc] init];
-            [self controller:mallOrderVC];
+            JZSideMenuOrderListController *allOrderVC = [[JZSideMenuOrderListController alloc] init];
+            [self controller:allOrderVC];
             
         }else if (2 == indexPath.row) {
             // 我的钱包
@@ -329,6 +332,8 @@
             }
 //            YBMyWalletViewController *vc = [[YBMyWalletViewController alloc] init];
             JZMyWalletViewController *vc = [[JZMyWalletViewController alloc] init];
+        
+            vc.Ycode = ycode;
 
             
             

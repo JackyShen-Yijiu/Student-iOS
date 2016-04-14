@@ -9,24 +9,74 @@
 #import "JZMyWalletViewController.h"
 #import "JZMyWalletHeaderView.h"
 #import "JZMyWalletJiFenView.h"
+#import "JZMyWalletDuiHuanJuanView.h"
 #import "JZMyWalletXianJinView.h"
+#import "JZMyWalletBottomView.h"
+#import "MyJiFenHeaderTypeView.h"
+#import "MyXianJinHeaderTypeView.h"
+#import "MyDuiHuanJuanHeaderTypeView.h"
+#import "DVVShare.h"
+#import "YBMallViewController.h"
+#import "YBMyWalletMallViewController.h"
+#import "JZHowAddJiFenViewController.h"
+#import <YYModel.h>
+#import "JZMyWalletDuiHuanJuanData.h"
+#import "JZMyWalletDuiHuanJuanUseproductidlist.h"
+#import "DVVNoDataPromptView.h"
+
 
 #define kLKSize [UIScreen mainScreen].bounds.size
 
 @interface JZMyWalletViewController ()<UIScrollViewDelegate>
+
+{
+    UIImageView *navBarHairlineImageView;
+}
 ///  头部视图
 @property (nonatomic, weak)JZMyWalletHeaderView  *jiFenHeaderView;
 ///  滚动父视图
 @property (nonatomic, weak) UIScrollView *contentScrollView;
 ///  积分的视图
 @property (nonatomic, weak) JZMyWalletJiFenView *jiFenView;
-
+///  兑换券的视图
+@property (nonatomic, weak) JZMyWalletDuiHuanJuanView *duiHuanJuanView;
 ///  现金的视图
 @property (nonatomic, weak) JZMyWalletXianJinView *xianJinView;
+///  底部视图
+@property (nonatomic, weak) JZMyWalletBottomView *bottomView;
 
+@property (nonatomic, weak) MyJiFenHeaderTypeView *jiFenHeaderTypeView;
+
+@property (nonatomic, weak) MyXianJinHeaderTypeView *xianJinHeaderTypeView;
+
+@property (nonatomic, weak) MyDuiHuanJuanHeaderTypeView *duiHuanJuanHeaderTypeView;
+
+
+@property (nonatomic, strong) JZMyWalletDuiHuanJuanData *dataModel;
+@property (nonatomic, strong) JZMyWalletDuiHuanJuanUseproductidlist *listModel;
+
+
+@property (nonatomic, strong) NSMutableArray *duiHuanJuanDataArrM;
+
+@property (nonatomic, strong) NSMutableArray *duihuanJuanListArrM;
+
+
+@property (nonatomic,strong)DVVNoDataPromptView *DvvView;
 @end
 
 @implementation JZMyWalletViewController
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    // 隐藏导航条底部分割线
+    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
+    navBarHairlineImageView.hidden=YES;
+    
+}
+
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -34,8 +84,13 @@
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     self.title = @"我的钱包";
     
-    [self setUI];
+    self.automaticallyAdjustsScrollViewInsets = NO;
     
+    [self setUI];
+    [self getJiFenData];
+//    [self getXianJinData];
+//    
+//    [self getDuiHuanJuanData];
     
     
 }
@@ -46,6 +101,16 @@
     self.jiFenHeaderView = jiFenHeaderView;
     
     [self.view addSubview:jiFenHeaderView];
+    
+    self.jiFenHeaderView.jiFenBtn.tag = 2016;
+    self.jiFenHeaderView.duiHuanJuanBtn.tag = 2017;
+    self.jiFenHeaderView.xianJinBtn.tag = 2018;
+    
+    
+    [self.jiFenHeaderView.jiFenBtn addTarget:self action:@selector(clickJiFenBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.jiFenHeaderView.duiHuanJuanBtn addTarget:self action:@selector(clickDuiHuanJuanBtn) forControlEvents:UIControlEventTouchUpInside];
+    [self.jiFenHeaderView.xianJinBtn addTarget:self action:@selector(clickXianJinBtn) forControlEvents:UIControlEventTouchUpInside];
+    
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -61,31 +126,391 @@
     self.contentScrollView = contentScrollView;
     
     self.contentScrollView.delegate = self;
+#pragma mark - 积分页面
+    MyJiFenHeaderTypeView *jiFenHeaderTypeView = [[MyJiFenHeaderTypeView alloc]initWithFrame:CGRectMake(0, 0, kLKSize.width, 36)];
     
-    JZMyWalletJiFenView *jiFenView = [[JZMyWalletJiFenView alloc]initWithFrame:CGRectMake(0, 0, kLKSize.width, kLKSize.height - 238)];
+    self.jiFenHeaderTypeView = jiFenHeaderTypeView;
+    
+    [self.contentScrollView addSubview:jiFenHeaderTypeView];
+
+    
+    JZMyWalletJiFenView *jiFenView = [[JZMyWalletJiFenView alloc]initWithFrame:CGRectMake(0, 36, kLKSize.width, kLKSize.height - 238-64-40.5-36)];
+    
     self.jiFenView = jiFenView;
     [self.contentScrollView addSubview:jiFenView];
     
+    self.jiFenView.showsVerticalScrollIndicator = NO;
+    self.jiFenView.showsHorizontalScrollIndicator = NO;
+    
+    [self.jiFenHeaderView.howDoBtn addTarget:self action:@selector(howAddJiFenClick:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+#pragma mark - 兑换券页面
+    MyDuiHuanJuanHeaderTypeView *duiHuanJuanHeaderTypeView = [[MyDuiHuanJuanHeaderTypeView alloc]initWithFrame:CGRectMake(kLKSize.width, 0, kLKSize.width, 36)];
+    
+    self.duiHuanJuanHeaderTypeView = duiHuanJuanHeaderTypeView;
+    
+    [self.contentScrollView addSubview:duiHuanJuanHeaderTypeView];
+    
+    JZMyWalletDuiHuanJuanView *duiHuanJuanView = [[JZMyWalletDuiHuanJuanView alloc]initWithFrame:CGRectMake(kLKSize.width, 36, kLKSize.width, kLKSize.height -238-64-36)];
+    
+    self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%zd张",self.duihuanJuanListArrM.count];
+    
+    self.duiHuanJuanView = duiHuanJuanView;
+    [self.contentScrollView addSubview:duiHuanJuanView];
+    self.duiHuanJuanView.showsVerticalScrollIndicator = NO;
+    self.duiHuanJuanView.showsHorizontalScrollIndicator = NO;
+    
+    
+    
+#pragma mark - 现金页面
+    
+    MyXianJinHeaderTypeView *xianJinHeaderTypeView = [[MyXianJinHeaderTypeView alloc]initWithFrame:CGRectMake(kLKSize.width * 2, 0, kLKSize.width, 36)];
+    self.xianJinHeaderTypeView = xianJinHeaderTypeView;
+    
+    [self.contentScrollView addSubview:xianJinHeaderTypeView];
+    
 
-    JZMyWalletXianJinView *xianJinView = [[JZMyWalletXianJinView alloc]initWithFrame:CGRectMake(kLKSize.width * 2, 0, kLKSize.width, kLKSize.height - 238)];
+    JZMyWalletXianJinView *xianJinView = [[JZMyWalletXianJinView alloc]initWithFrame:CGRectMake(kLKSize.width * 2, 36, kLKSize.width, kLKSize.height -238-64-40.5-36)];
     
     self.xianJinView = xianJinView;
     
     [self.contentScrollView addSubview:xianJinView];
+    self.xianJinView.showsVerticalScrollIndicator = NO;
+    self.xianJinView.showsHorizontalScrollIndicator = NO;
     
+#pragma mark - 底部页面
+JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(jiFenView.frame), kLKSize.width, 40.5)];
+    
+    self.bottomView = bottomView;
+    
+    [self.contentScrollView addSubview:bottomView];
+    
+    self.bottomView.myYCodeLabel.text = self.Ycode;
+    
+    [self.bottomView.inviteFriendBtn addTarget:self action:@selector(inviteFriendBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = YES;
+    [self.jiFenHeaderView.goToOthersBtn addTarget:self action:@selector(goToJiFenMallClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-
-
 #pragma mark - scrollowVie的代理方法
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    NSLog(@"%f",scrollView.contentOffset.x);
+    
+    NSLog(@"%f",self.contentScrollView.contentOffset.x);
+    
+
+    
+    if (scrollView.contentOffset.x > kLKSize.width) {
+        
+
+        self.bottomView.transform = CGAffineTransformMakeTranslation(kLKSize.width * 2,0);
+    
+        self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = NO;
+        
+    }
+    
+    if (scrollView.contentOffset.x < kLKSize.width) {
+        self.bottomView.transform = CGAffineTransformMakeTranslation(0,0);
+         self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = YES;
+        
+        [self getJiFenData];
+        
+    }
+    if (scrollView.contentOffset.x == 0) {
+        
+        [self clickJiFenBtn];
+    }
+    
+    
+  
+        
+  
+    
+    
+    
+    if (scrollView.contentOffset.x == kLKSize.width) {
+        
+//        [self getDuiHuanJuanData];
+//        self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%zd张",self.duihuanJuanListArrM.count];
+
+        
+
+        [self clickDuiHuanJuanBtn];
+        
+        
+    }if (scrollView.contentOffset.x == kLKSize.width * 2) {
+        
+        [self clickXianJinBtn];
+    }
+    
+
+    
+    
+}
+
+#pragma mark 获取积分
+- (void)getJiFenData{
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmywallet"];
+    NSDictionary *paramsDict = @{@"userid": [AcountManager manager].userid,@"usertype":@"1",@"seqindex":@"1"};
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *resultData = data[@"data"];
+        NSLog(@"奖励积分:%@",data);
+        
+        if ([[data objectForKey:@"type"] integerValue]) {
+            
+            if (resultData[@"wallet"]) {
+                [self.DvvView removeFromSuperview];
+                self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%@",resultData[@"wallet"]];
+            }else{
+                self.jiFenHeaderView.headerNumLabel.text = @"暂无";
+                
+                self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"您暂时没有积分信息" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+                self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.jiFenView.bounds.size.height - 36 - 40);
+                
+                [self.contentScrollView addSubview:self.DvvView];
+                
+            }
+        }
+        
+    } withFailure:^(id data) {
+        
+        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"网络出错啦" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+        self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.jiFenView.bounds.size.height - 36 - 40);
+        
+        [self.contentScrollView addSubview:self.DvvView];
+
+        
+    }];
+    
+    
+}
+
+#pragma mark 获取现金
+- (void)getXianJinData{
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmymoney"];
+    NSDictionary *paramsDict = @{@"userid": [AcountManager manager].userid,@"usertype":@"1"};
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        NSDictionary *resultData = data[@"data"];
+        NSLog(@"获取现金:%@",data);
+        
+        if ([[data objectForKey:@"type"] integerValue]) {
+            
+            if (resultData[@"money"]) {
+                
+                self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"￥%@",resultData[@"money"]];
+            }else{
+                self.jiFenHeaderView.headerNumLabel.text = @"暂无";
+            }
+        }
+        
+    } withFailure:^(id data) {
+        
+        
+        
+        self.DvvView = [[DVVNoDataPromptView alloc] initWithTitle:@"网络出错啦" image:[UIImage imageNamed:@"YBNocountentimage_wallet_integral"] subTitle:nil];
+        self.DvvView.frame = CGRectMake(0, 0, kLKSize.width, self.jiFenView.bounds.size.height - 36 - 40);
+        
+        self.DvvView.transform = CGAffineTransformMakeTranslation(kLKSize.width,0);
+        
+        [self.contentScrollView addSubview:self.DvvView];
+
+        
+    }];
+    
+    
+}
+
+-(void)getDuiHuanJuanData {
+    
+    NSString *urlString = [NSString stringWithFormat:BASEURL, @"userinfo/getmycupon"];
+    NSDictionary *paramsDict = @{@"userid": [AcountManager manager].userid};
+    
+    [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+        
+        if ([[data objectForKey:@"type"] integerValue]) {
+            
+            NSArray *array = data[@"data"];
+            
+            NSLog(@"%@",array);
+            if (array.count) {
+                
+                [self.duihuanJuanListArrM removeAllObjects];
+                
+                NSArray *duiHuanJuanDataArr = data[@"data"];
+                
+                for (NSDictionary *dict in duiHuanJuanDataArr) {
+                    
+                    JZMyWalletDuiHuanJuanData *data = [JZMyWalletDuiHuanJuanData yy_modelWithDictionary:dict];
+                    
+                    NSArray *listArr = data.useproductidlist;
+                    
+                    
+                    for (NSDictionary *dict in listArr) {
+                        
+                        
+                        JZMyWalletDuiHuanJuanUseproductidlist *list = [JZMyWalletDuiHuanJuanUseproductidlist yy_modelWithDictionary:dict];
+                        
+                        [self.duihuanJuanListArrM addObject:list];
+                        
+                    }
+
+                }
+                
+            }
+            
+        }
+        
+    } withFailure:^(id data) {
+        
+        [self obj_showTotasViewWithMes:@"网络错误"];
+        
+    }];
+    
+    
+    
+}
+#pragma mark - 顶部按钮的点击事件
+#pragma mark - 点击积分
+-(void)clickJiFenBtn {
+    
+     [self.contentScrollView setContentOffset:CGPointMake(0, 0)];
+    
+    self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = YES;
+    [self getJiFenData];
+    [self.jiFenHeaderView.jiFenBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
+    self.jiFenHeaderView.duiHuanJuanBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+    self.jiFenHeaderView.xianJinBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+    self.jiFenHeaderView.howDoBtn.hidden = NO;
+    
+    [self.jiFenHeaderView.headerImg setImage:[UIImage imageNamed:@"wallet_integral"]];
+    [self.jiFenHeaderView.goToOthersBtn setTitle:@"积分商城" forState:UIControlStateNormal];
+    self.jiFenHeaderView.goToOthersBtn.layer.borderWidth = 2;
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        self.jiFenHeaderView.rollLineView.transform = CGAffineTransformMakeTranslation(0,0);
+        
+    }];
+}
+#pragma mark - 点击兑换券
+-(void)clickDuiHuanJuanBtn {
+    
+     [self.contentScrollView setContentOffset:CGPointMake(kLKSize.width, 0)];
+    [self.jiFenHeaderView.duiHuanJuanBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
+    self.jiFenHeaderView.jiFenBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+    self.jiFenHeaderView.xianJinBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+    
+    [self.jiFenHeaderView.headerImg setImage:[UIImage imageNamed:@"wallet_ticket"]];
+    [self.jiFenHeaderView.goToOthersBtn setTitle:@"" forState:UIControlStateNormal];
+    self.jiFenHeaderView.howDoBtn.hidden = YES;
+    
+    self.jiFenHeaderView.goToOthersBtn.layer.borderWidth = 0;
+    
+    self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%zd张",self.duiHuanJuanView.duiHuanJuanDataArrM.count];
+    
+
+    
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        self.jiFenHeaderView.rollLineView.transform = CGAffineTransformMakeTranslation(kLKSize.width/3,0);
+        
+    }];}
+#pragma mark - 点击现金
+-(void)clickXianJinBtn {
+    
+    [self.contentScrollView setContentOffset:CGPointMake(kLKSize.width*2, 0)];
+    
+    self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = NO;
+    
+    [self getXianJinData];
+    
+    [self.jiFenHeaderView.xianJinBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
+    self.jiFenHeaderView.jiFenBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+    self.jiFenHeaderView.duiHuanJuanBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+    [self.jiFenHeaderView.headerImg setImage:[UIImage imageNamed:@"wallet_cash"]];
+    [self.jiFenHeaderView.goToOthersBtn setTitle:@"立即提现" forState:UIControlStateNormal];
+    
+    self.jiFenHeaderView.goToOthersBtn.layer.borderWidth = 2;
+    
+    self.jiFenHeaderView.howDoBtn.hidden = YES;
+    [UIView animateWithDuration:0.25 animations:^{
+        
+        self.jiFenHeaderView.rollLineView.transform = CGAffineTransformMakeTranslation(kLKSize.width/3*2,0);
+        
+    }];
+}
+
+#pragma mark - 邀请好友按钮点击
+- (void)inviteFriendBtnClick{
+    
+    [DVVShare shareWithTitle:DVV_Share_Default_Title
+                     content:DVV_Share_Default_Content
+                       image:DVV_Share_Default_Image
+                    location:nil
+                         url:nil
+                     success:^(NSString *platformName) {
+                         [self obj_showTotasViewWithMes:DVV_Share_Default_Success_Mark_Word];
+                     }];
+}
+
+
+#pragma mark - 积分商城按钮点击
+-(void)goToJiFenMallClick {
+    
+    YBMyWalletMallViewController *mallVC = [[YBMyWalletMallViewController alloc]init];
+    
+    [self.navigationController pushViewController:mallVC animated:YES];
+}
+#pragma mark - 如何赚取积分
+-(void)howAddJiFenClick:(UIButton *)btn {
+      JZHowAddJiFenViewController *howAddVC = [[JZHowAddJiFenViewController alloc]init];
+    
+    
+    howAddVC.myJiFenCount = self.jiFenHeaderView.headerNumLabel.text;
+    [self.navigationController pushViewController:howAddVC animated:YES];
+    
+    
+}
+
+-(NSMutableArray *)duiHuanJuanDataArrM {
+    
+    if (_duiHuanJuanDataArrM ==  nil) {
+        
+        _duiHuanJuanDataArrM = [[NSMutableArray alloc]init];
+    }
+    return _duiHuanJuanDataArrM;
+}
+-(NSMutableArray *)duihuanJuanListArrM {
+    
+    if (_duihuanJuanListArrM==  nil) {
+        
+        _duihuanJuanListArrM = [[NSMutableArray alloc]init];
+    }
+    return _duihuanJuanListArrM;
+}
+
+
+
+- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
+    
+    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
+        return(UIImageView*)view;
+    }
+    for(UIView*subview in view.subviews) {
+        UIImageView*imageView = [self findHairlineImageViewUnder:subview];
+        if(imageView) {
+            return imageView;
+        }
+    }
+    return nil;
 }
 
 

@@ -15,6 +15,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *spendDateLabel;
 ///  兑换券详情（添加手势）
 @property (weak, nonatomic) IBOutlet UIView *duiHuanJuanDetailView;
+@property (weak, nonatomic) IBOutlet UIImageView *seeDetailImg;
+@property (weak, nonatomic) IBOutlet UILabel *duiHuanJuanName;
 
 ///  创建tableView的headerView
 + (instancetype)duiHuanJuanHeaderViewWithTableView:(UITableView *)tableView withTag:(NSInteger)tag;

@@ -18,6 +18,8 @@ static NSString *duiHuanJuanHeaderViewID = @"duiHuanJuanHeaderViewID";
     
     if (!headerView) {
         headerView = [[JZMyWalletDuiHuanJuanHeaderView alloc] initWithReuseIdentifier:duiHuanJuanHeaderViewID];
+        
+        
     }
     
     return headerView;
@@ -32,6 +34,8 @@ static NSString *duiHuanJuanHeaderViewID = @"duiHuanJuanHeaderViewID";
     if (self = [super initWithReuseIdentifier:reuseIdentifier]) {
         
         self = [[NSBundle mainBundle]loadNibNamed:@"JZMyWalletDuiHuanJuanHeaderView" owner:self options:nil].lastObject;
+        
+        
         
     }
     
