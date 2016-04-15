@@ -750,7 +750,6 @@
 		B251E5F41C8E849500E6613A /* YBStudeyProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0561C8E849300E6613A /* YBStudeyProgressView.m */; };
 		B251E5F51C8E849500E6613A /* YBStudyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0581C8E849300E6613A /* YBStudyTableView.m */; };
 		B251E5F61C8E849500E6613A /* YBStudyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E05A1C8E849300E6613A /* YBStudyViewCell.m */; };
-		B251E5F71C8E849500E6613A /* YBStudyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251E05B1C8E849300E6613A /* YBStudyViewCell.xib */; };
 		B251E5F81C8E849500E6613A /* YBToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E05D1C8E849300E6613A /* YBToolBarView.m */; };
 		B251E5F91C8E849500E6613A /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0671C8E849300E6613A /* EMAudioPlayerUtil.m */; };
 		B251E5FA1C8E849500E6613A /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0691C8E849300E6613A /* EMAudioRecorderUtil.m */; };
@@ -2400,7 +2399,6 @@
 		B251E0581C8E849300E6613A /* YBStudyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyTableView.m; sourceTree = "<group>"; };
 		B251E0591C8E849300E6613A /* YBStudyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudyViewCell.h; sourceTree = "<group>"; };
 		B251E05A1C8E849300E6613A /* YBStudyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyViewCell.m; sourceTree = "<group>"; };
-		B251E05B1C8E849300E6613A /* YBStudyViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBStudyViewCell.xib; sourceTree = "<group>"; };
 		B251E05C1C8E849300E6613A /* YBToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBToolBarView.h; sourceTree = "<group>"; };
 		B251E05D1C8E849300E6613A /* YBToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBToolBarView.m; sourceTree = "<group>"; };
 		B251E0621C8E849300E6613A /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
@@ -5845,7 +5843,6 @@
 				B251E0581C8E849300E6613A /* YBStudyTableView.m */,
 				B251E0591C8E849300E6613A /* YBStudyViewCell.h */,
 				B251E05A1C8E849300E6613A /* YBStudyViewCell.m */,
-				B251E05B1C8E849300E6613A /* YBStudyViewCell.xib */,
 				B251E05C1C8E849300E6613A /* YBToolBarView.h */,
 				B251E05D1C8E849300E6613A /* YBToolBarView.m */,
 				06FE56461CBCF42000749A49 /* JZAppiontMessageTopCell.h */,
@@ -7763,7 +7760,6 @@
 				B251E4571C8E849500E6613A /* VoiceSearchFeedback008.png in Resources */,
 				B251E4991C8E849500E6613A /* chatBar_more.png in Resources */,
 				B251E46A1C8E849500E6613A /* VoiceSearchFeedback017@2x.png in Resources */,
-				B251E5F71C8E849500E6613A /* YBStudyViewCell.xib in Resources */,
 				B251E4AB1C8E849500E6613A /* chatBar_colorMore_photo@2x.png in Resources */,
 				B2EEBD8E1CA141BE00846656 /* citydict.plist in Resources */,
 				B251E34E1C8E849500E6613A /* DetailPriceCell.xib in Resources */,
