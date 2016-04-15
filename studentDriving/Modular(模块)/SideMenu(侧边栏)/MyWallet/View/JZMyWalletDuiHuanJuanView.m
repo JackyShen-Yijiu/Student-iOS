@@ -54,6 +54,11 @@ static NSString *const knumber = @"create_qrcode";
 #pragma mark - 数据源方法
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     
+    NSLog(@"self.duiHuanJuanDataArrM.count = %lu",self.duiHuanJuanDataArrM.count);
+    
+    
+    
+    
     JZMyWalletDuiHuanJuanData *dataModel = self.duiHuanJuanDataArrM[section];
     
     if (dataModel.openGroup && self.selectHeaderViewTag == section)
@@ -133,9 +138,7 @@ static NSString *const knumber = @"create_qrcode";
 
     }
 
-    
-    
-    
+
     
     // 3.返回haderView
     return duiHuanJuanHeaerView;
@@ -155,16 +158,9 @@ static NSString *const knumber = @"create_qrcode";
     NSString *str = @"?text=";
     NSString *lastStr = @"&size=46";
     NSString *finishResultStr = [NSString stringWithFormat:@"%@%@%@%@",resultStr,str,self.dataModel.orderscanaduiturl,lastStr];
-    
-    
-    [self showQRInfoWithImageStr:finishResultStr];
-    
-    
 
-    
-    
-    
-    
+    [self showQRInfoWithImageStr:finishResultStr];
+
 }
 - (void)showQRInfoWithImageStr:(NSString *)imagestr {
     

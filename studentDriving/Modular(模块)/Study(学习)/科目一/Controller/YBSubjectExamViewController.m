@@ -15,12 +15,15 @@
 {
     NSTimer *timer;
     NSInteger time;
+    NSArray *dataArray;
 }
 
 @property (nonatomic,strong) YBSubjectQuestionRightBarView *rightBarView;
 
 @property (nonatomic,strong) NSDate *beginTime;
 @property (nonatomic,strong) NSDate *endTime;
+
+@property (nonatomic,strong) ScrollViewPage *scrollView;
 
 @end
 
@@ -40,18 +43,17 @@
     titleArray = [NSArray arrayWithObjects:@"比例",@"正确",@"错误",@"正确率",@"倒计时", nil];
     imgArray = [NSArray arrayWithObjects:@"YBStudySubjectsubject",@"YBStudySubjectright",@"YBStudySubjectwrong",@"YBStudySubjectpercentage",@"YBStudySubjecttime", nil];
     
-    
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     _rightBarView = [[YBSubjectQuestionRightBarView alloc] initWithFrame:CGRectMake(0, 0, titleArray.count * 45, 40) withTitleArray:titleArray withImgArray:imgArray];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightBarView];
     
     // 数组中保存的是YBSubjectData对象
-    NSArray *dataArray = [YBSubjectTool getAllExamDataWithType:_kemu];
+    dataArray = [YBSubjectTool getAllExamDataWithType:_kemu];
     
-    ScrollViewPage *scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray rightBarView:_rightBarView subjectType:_kemu chapter:nil];
-    scrollView.parentViewController = self;
-    [self.view addSubview:scrollView];
+    _scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray rightBarView:_rightBarView subjectType:_kemu chapter:@""];
+    _scrollView.parentViewController = self;
+    [self.view addSubview:_scrollView];
     
 }
 
@@ -69,6 +71,10 @@
 {
     [super viewWillDisappear:animated];
     
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setInteger:0 forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,@""]];
+    [user synchronize];
+    
     [timer invalidate];
     timer = nil;
     
@@ -82,6 +88,8 @@
     NSString *timestr = [NSString stringWithFormat:@"%ld",(long)time];
     timestr = [YBSubjectTool duration:timestr];
     
+    NSLog(@"_scrollView.socre:%lu _scrollView.currentPage:%ld",(unsigned long)_scrollView.socre,(long)_scrollView.currentPage);
+    
     if (time==0) {
         
         [timer invalidate];
@@ -91,6 +99,18 @@
         [alert show];
         
         return;
+    }
+    
+    if (_scrollView.currentPage == dataArray.count-1) {
+        
+        [timer invalidate];
+        timer = nil;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"答题完毕，是否提交成绩" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        return;
+        
     }
 
     for (UIButton *btn in self.rightBarView.subviews) {
@@ -117,7 +137,7 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     
     //设置格式
-    df.dateFormat = @"yyyy-MM-dd HH:mm:ss.0";
+    df.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     
     NSString * dataStr = [df stringFromDate:times];
  
@@ -143,7 +163,7 @@
     params[@"userid"] = [AcountManager manager].userid;
     params[@"begintime"] = [self chagetime:self.beginTime];
     params[@"endtime"] = [self chagetime:self.endTime];
-    params[@"socre"] = @"90";
+    params[@"socre"] = [NSString stringWithFormat:@"%lu",(unsigned long)_scrollView.socre];
     params[@"subjectid"] = [NSString stringWithFormat:@"%ld",(long)_kemu];
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:params WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
@@ -157,6 +177,8 @@
         
         if (type.integerValue == 1) {
         
+            [self obj_showTotasViewWithMes:@"提交成功"];
+            
             [self.navigationController popViewControllerAnimated:YES];
 
         }else {

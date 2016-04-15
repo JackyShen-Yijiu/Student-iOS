@@ -12,6 +12,8 @@
 
 typedef void (^zipArchiveBlock)(BOOL fileIsExit,BOOL archiveResult);
 
+typedef void (^isExitBlock)(BOOL isExit);
+
 @interface YBSubjectTool : NSObject
 
 + (NSArray *)getAllSubjectDataWithType:(subjectType)type;
@@ -21,6 +23,9 @@ typedef void (^zipArchiveBlock)(BOOL fileIsExit,BOOL archiveResult);
 
 // 获取指定科目的章节
 + (NSArray *)getAllSubjectChapterWithType:(subjectType)type;
+
+// 判断错题是否在错题库中
++ (void)isExitWrongQuestionWithtype:(subjectType)type userid:(NSString *)userid webnoteid:(NSInteger)webnoteid isExitBlock:(isExitBlock)isExitBlock;
 
 // 插入错题
 + (void)insertWrongQuestionwithtype:(subjectType)type userid:(NSString *)userid webnoteid:(NSInteger)webnoteid;

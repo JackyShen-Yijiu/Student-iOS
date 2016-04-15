@@ -59,7 +59,7 @@ static FMDatabaseQueue *_queue;
 
         NSLog(@"文件不存在");
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"ggtkFile1"] ofType:@"zip"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"ggtkFile"] ofType:@"zip"];
         if( [zip UnzipOpenFile:path] )
         {
             BOOL ret = [zip UnzipFileTo:unzipto overWrite:YES];
@@ -327,7 +327,7 @@ static FMDatabaseQueue *_queue;
     [_queue inDatabase:^(FMDatabase *db) {
         
         NSString *sql = [NSString stringWithFormat:@"INSERT into error_books ('kemu','webnoteid','userid') VALUES (%ld,%ld,%@);",type,webnoteid,userid];
-        NSLog(@"sql:%@",sql);
+        NSLog(@"insertWrongQuestionwithtype sql:%@",sql);
         
         // 2.存储数据
         [db executeUpdate:sql];
@@ -335,6 +335,38 @@ static FMDatabaseQueue *_queue;
     }];
     
     [_queue close];
+    
+}
+
++ (void)isExitWrongQuestionWithtype:(subjectType)type userid:(NSString *)userid webnoteid:(NSInteger)webnoteid isExitBlock:(isExitBlock)isExitBlock
+{
+
+    NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
+    NSLog(@"dbPath:%@",dbPath);
+    
+    FMDatabase *dataBase = [FMDatabase databaseWithPath:dbPath];
+    
+    if (dataBase) {
+        
+        [dataBase open];
+        
+        NSString *sql = [NSString stringWithFormat:@"SELECT count(*) as count from web_note w,error_books e where w.id=e.webnoteid and e.userid =%@ and e.kemu=%ld and e.webnoteid=%ld",userid,(long)type,webnoteid];
+        
+        if ([userid isEqualToString:@"null"]) {
+            sql = [NSString stringWithFormat:@"SELECT count(*) as count from web_note w,error_books e where w.id=e.webnoteid  and e.userid is null and e.kemu=%ld and e.webnoteid=%ld",(long)type,webnoteid];
+        }
+        
+        FMResultSet *rs = [dataBase executeQuery:sql];
+        
+        NSLog(@"判断错题是否存在sql:%@-rs:%@ [rs stringForColumn:count]:%@",sql,rs,[rs stringForColumn:@"count"]);
+
+        if ([rs stringForColumn:@"count"] && [[rs stringForColumn:@"count"] integerValue] !=0) {
+            isExitBlock(YES);
+        }else{
+            isExitBlock(NO);
+        }
+        
+    }
     
 }
 
@@ -357,13 +389,11 @@ static FMDatabaseQueue *_queue;
             sql = [NSString stringWithFormat:@"SELECT w.* from web_note w,error_books e where w.id=e.webnoteid  and e.userid is null and e.kemu=%ld",(long)type];
         }
         
-        NSLog(@"sql:%@",sql);
+        NSLog(@"获取错题sql:%@",sql);
         
         FMResultSet *rs = [dataBase executeQuery:sql];
         
         while ([rs next]) {
-            
-//            NSData *data = [rs dataForColumn:@"data"];
             
             YBSubjectData *subjectData = [[YBSubjectData alloc] init];//[NSKeyedUnarchiver unarchiveObjectWithData:data];
             

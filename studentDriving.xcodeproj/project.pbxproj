@@ -1049,7 +1049,6 @@
 		D5604CBD1BF65E1F0020F0D7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBC1BF65E1F0020F0D7 /* Social.framework */; };
 		D906FAEA1CB762CB002BC2B8 /* PhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */; };
 		D949A5331CC0BA6B00BBE088 /* JZNoDataShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */; };
-		D949A5351CC0D5F100BBE088 /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = D949A5341CC0D5F100BBE088 /* ggtkFile.zip */; };
 		D949A5381CC0DBF900BBE088 /* JZNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A5371CC0DBF900BBE088 /* JZNoDataView.m */; };
 		D949A53B1CC0F9F700BBE088 /* JZDiscountRecodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A53A1CC0F9F700BBE088 /* JZDiscountRecodeController.m */; };
 		D96445121C91812600E7C29F /* YBAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445111C91812600E7C29F /* YBAppointmentListController.m */; };
@@ -1354,11 +1353,11 @@
 		B22BAD551CBF328E00455E1C /* YBSubjectQuestionRightBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectQuestionRightBarView.m; sourceTree = "<group>"; };
 		B22BAD571CBF38BF00455E1C /* YBSubjectQuestionRightButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectQuestionRightButton.h; sourceTree = "<group>"; };
 		B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectQuestionRightButton.m; sourceTree = "<group>"; };
-		B22BAD691CBF923B00455E1C /* ggtkFile1.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile1.zip; sourceTree = "<group>"; };
 		B22BAD6B1CBFA0D300455E1C /* YBSubjectWrongQuestionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectWrongQuestionController.h; sourceTree = "<group>"; };
 		B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectWrongQuestionController.m; sourceTree = "<group>"; };
 		B22BAD6E1CBFA13800455E1C /* YBSubjectExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectExamViewController.h; sourceTree = "<group>"; };
 		B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectExamViewController.m; sourceTree = "<group>"; };
+		B22BADB61CC0F85400455E1C /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -7223,7 +7222,7 @@
 		B2FD3C8F1CB7E70200DCE88D /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				B22BAD691CBF923B00455E1C /* ggtkFile1.zip */,
+				B22BADB61CC0F85400455E1C /* ggtkFile.zip */,
 				B2FD3CA61CB8A68D00DCE88D /* YBSubjectTool.h */,
 				B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */,
 			);
@@ -7780,7 +7779,6 @@
 				B251E47E1C8E849500E6613A /* chatBar_more_cardSelected@2x.png in Resources */,
 				B251E4C81C8E849500E6613A /* chat_receiver_bg.png in Resources */,
 				B251E46D1C8E849500E6613A /* VoiceSearchFeedback019.png in Resources */,
-				D949A5351CC0D5F100BBE088 /* ggtkFile.zip in Resources */,
 				B251E4DC1C8E849500E6613A /* delete@2x.png in Resources */,
 				B251E5F11C8E849500E6613A /* YBCheatsCell.xib in Resources */,
 				B251E6361C8E849500E6613A /* sr_refresh.png in Resources */,

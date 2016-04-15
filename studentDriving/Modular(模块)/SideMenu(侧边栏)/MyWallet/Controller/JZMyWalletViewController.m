@@ -401,31 +401,36 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     [JENetwoking startDownLoadWithUrl:urlString postParam:paramsDict WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
         if ([[data objectForKey:@"type"] integerValue]) {
-            
+            [self.duiHuanJuanDataArrM removeAllObjects];
             [self.noDataLabel removeFromSuperview];
             NSArray *array = data[@"data"];
             
             NSLog(@"%@",array);
             if (array.count) {
                 
-                [self.duihuanJuanListArrM removeAllObjects];
-                
                 NSArray *duiHuanJuanDataArr = data[@"data"];
                 
                 for (NSDictionary *dict in duiHuanJuanDataArr) {
                     
                     JZMyWalletDuiHuanJuanData *data = [JZMyWalletDuiHuanJuanData yy_modelWithDictionary:dict];
+                    if(data.state == 0 || data.state == 1){
+                        
+                        [self.duiHuanJuanDataArrM addObject:data];
+                    }
+                    
+
+                    
                     
                     NSArray *listArr = data.useproductidlist;
                     
-                    for (NSDictionary *dict in listArr) {
-                        
-                        
-                        JZMyWalletDuiHuanJuanUseproductidlist *list = [JZMyWalletDuiHuanJuanUseproductidlist yy_modelWithDictionary:dict];
-                        
-                        [self.duihuanJuanListArrM addObject:list];
-                        
-                    }
+//                    for (NSDictionary *dict in listArr) {
+//                        
+//                        
+//                        JZMyWalletDuiHuanJuanUseproductidlist *list = [JZMyWalletDuiHuanJuanUseproductidlist yy_modelWithDictionary:dict];
+//                        
+//                        [self.duihuanJuanListArrM addObject:list];
+//                        
+//                    }
                     
                     if (listArr.count == 0) {
                         
@@ -448,6 +453,8 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
                     
 
                 }
+                [self addcountDiscount];
+
                 
             }
             
@@ -482,6 +489,9 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
     
     
+}
+- (void)addcountDiscount{
+    self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%lu张",self.duiHuanJuanDataArrM.count];
 }
 #pragma mark - 顶部按钮的点击事件
 #pragma mark - 点击积分
