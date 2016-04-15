@@ -129,7 +129,6 @@
 		B22BAD531CBE5BD900455E1C /* YBMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD521CBE5BD900455E1C /* YBMoviePlayerController.m */; };
 		B22BAD561CBF328E00455E1C /* YBSubjectQuestionRightBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD551CBF328E00455E1C /* YBSubjectQuestionRightBarView.m */; };
 		B22BAD591CBF38BF00455E1C /* YBSubjectQuestionRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */; };
-		B22BAD6A1CBF923B00455E1C /* ggtkFile1.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BAD691CBF923B00455E1C /* ggtkFile1.zip */; };
 		B22BAD6D1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */; };
 		B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
@@ -5434,17 +5433,8 @@
 		B251DEA21C8E849200E6613A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */,
-				D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */,
-				D971BD491CBF55E600C5E626 /* HowAddJiFenView.h */,
-				D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */,
-				D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */,
-				D97E1CD01CBCEFCB00BBF87B /* JZMyWalletHeaderView.h */,
-				D97E1CD11CBCEFCB00BBF87B /* JZMyWalletHeaderView.m */,
-				D97E1CD31CBCF53900BBF87B /* JZMyWalletHeaderView.xib */,
-				D9E0FF861CBDDD0100CDC2B8 /* JZMyWalletBottomView.h */,
-				D9E0FF871CBDDD0100CDC2B8 /* JZMyWalletBottomView.m */,
-				D9E0FF841CBDDA4200CDC2B8 /* JZMyWalletBottomView.xib */,
+				D949A52F1CC080FF00BBE088 /* HowAddJiFenVC */,
+				D949A5301CC0812100BBE088 /* HeaderAndBottomView */,
 				D9E0FF8E1CBDFFBF00CDC2B8 /* JiFenView */,
 				D9E0FF8F1CBDFFD100CDC2B8 /* XianJinView */,
 				D9E0FF901CBDFFE200CDC2B8 /* DuiHuanJuanView */,
@@ -7346,6 +7336,31 @@
 			path = studentDriving;
 			sourceTree = "<group>";
 		};
+		D949A52F1CC080FF00BBE088 /* HowAddJiFenVC */ = {
+			isa = PBXGroup;
+			children = (
+				D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */,
+				D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */,
+				D971BD491CBF55E600C5E626 /* HowAddJiFenView.h */,
+				D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */,
+				D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */,
+			);
+			name = HowAddJiFenVC;
+			sourceTree = "<group>";
+		};
+		D949A5301CC0812100BBE088 /* HeaderAndBottomView */ = {
+			isa = PBXGroup;
+			children = (
+				D97E1CD01CBCEFCB00BBF87B /* JZMyWalletHeaderView.h */,
+				D97E1CD11CBCEFCB00BBF87B /* JZMyWalletHeaderView.m */,
+				D97E1CD31CBCF53900BBF87B /* JZMyWalletHeaderView.xib */,
+				D9E0FF861CBDDD0100CDC2B8 /* JZMyWalletBottomView.h */,
+				D9E0FF871CBDDD0100CDC2B8 /* JZMyWalletBottomView.m */,
+				D9E0FF841CBDDA4200CDC2B8 /* JZMyWalletBottomView.xib */,
+			);
+			name = HeaderAndBottomView;
+			sourceTree = "<group>";
+		};
 		D97676281C97E0A10033221E /* YBAppointmentListDataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -7749,7 +7764,6 @@
 				B251E34E1C8E849500E6613A /* DetailPriceCell.xib in Resources */,
 				B251E48A1C8E849500E6613A /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				B251E47E1C8E849500E6613A /* chatBar_more_cardSelected@2x.png in Resources */,
-				B22BAD6A1CBF923B00455E1C /* ggtkFile1.zip in Resources */,
 				B251E4C81C8E849500E6613A /* chat_receiver_bg.png in Resources */,
 				B251E46D1C8E849500E6613A /* VoiceSearchFeedback019.png in Resources */,
 				B251E4DC1C8E849500E6613A /* delete@2x.png in Resources */,

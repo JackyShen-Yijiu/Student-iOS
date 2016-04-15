@@ -20,7 +20,7 @@
 - (UIImageView *)logoImageView {
     if (_logoImageView == nil) {
         _logoImageView = [[UIImageView alloc] init];
-        _logoImageView.image = [UIImage imageNamed:@"loginLogo"];
+        _logoImageView.image = [UIImage imageNamed:@"logo"];
     }
     return _logoImageView;
 }
@@ -47,7 +47,7 @@
         _topLabelTwo = [[UILabel alloc] init];
         _topLabelTwo.textAlignment = NSTextAlignmentCenter;
         _topLabelTwo.font = [UIFont boldSystemFontOfSize:14];
-        _topLabelTwo.text = @"V 1.1.0";
+        _topLabelTwo.text = @"V 1.2";
     }
     return _topLabelTwo;
 }
