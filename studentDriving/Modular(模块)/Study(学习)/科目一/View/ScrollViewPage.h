@@ -12,6 +12,8 @@
 
 @interface ScrollViewPage : UIView<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic ,assign) NSInteger currentPage;
+
 // 考试分数
 @property (nonatomic,assign) NSUInteger socre;
 

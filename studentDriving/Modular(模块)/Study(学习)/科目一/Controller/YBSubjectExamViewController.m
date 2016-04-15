@@ -15,6 +15,7 @@
 {
     NSTimer *timer;
     NSInteger time;
+    NSArray *dataArray;
 }
 
 @property (nonatomic,strong) YBSubjectQuestionRightBarView *rightBarView;
@@ -48,7 +49,7 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightBarView];
     
     // 数组中保存的是YBSubjectData对象
-    NSArray *dataArray = [YBSubjectTool getAllExamDataWithType:_kemu];
+    dataArray = [YBSubjectTool getAllExamDataWithType:_kemu];
     
     _scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray rightBarView:_rightBarView subjectType:_kemu chapter:@""];
     _scrollView.parentViewController = self;
@@ -70,6 +71,10 @@
 {
     [super viewWillDisappear:animated];
     
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setInteger:0 forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,@""]];
+    [user synchronize];
+    
     [timer invalidate];
     timer = nil;
     
@@ -83,7 +88,7 @@
     NSString *timestr = [NSString stringWithFormat:@"%ld",(long)time];
     timestr = [YBSubjectTool duration:timestr];
     
-    NSLog(@"_scrollView.socre:%lu",(unsigned long)_scrollView.socre);
+    NSLog(@"_scrollView.socre:%lu _scrollView.currentPage:%ld",(unsigned long)_scrollView.socre,(long)_scrollView.currentPage);
     
     if (time==0) {
         
@@ -94,6 +99,18 @@
         [alert show];
         
         return;
+    }
+    
+    if (_scrollView.currentPage == dataArray.count-1) {
+        
+        [timer invalidate];
+        timer = nil;
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"答题完毕，是否提交成绩" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alert show];
+        
+        return;
+        
     }
 
     for (UIButton *btn in self.rightBarView.subviews) {

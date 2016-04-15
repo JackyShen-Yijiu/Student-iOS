@@ -24,8 +24,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 
 @interface ScrollViewPage ()<UIAlertViewDelegate>
 
-@property (nonatomic ,assign) NSInteger currentPage;
-
 // key:indexPath.row+1  values:indexPath.row是否是选中状态
 @property (nonatomic,strong) NSMutableDictionary *selectnumDict;
 
