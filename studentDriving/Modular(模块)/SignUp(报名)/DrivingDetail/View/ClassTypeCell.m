@@ -61,7 +61,7 @@
     
     _nameLabel.text = dmData.classname;
     _introductionLabel.text = dmData.classdesc;
-    _priceLabel.text = [NSString stringWithFormat:@"￥%zi", dmData.price];
+    _priceLabel.text = [NSString stringWithFormat:@"￥%zi", dmData.onsaleprice];
     if (dmData.begindate&&dmData.enddate) {
         _markLabel.text = [NSString stringWithFormat:@"%@~%@",[NSString getYearLocalDateFormateUTCDate:dmData.begindate], [NSString getYearLocalDateFormateUTCDate:dmData.enddate]];        
     }else{
