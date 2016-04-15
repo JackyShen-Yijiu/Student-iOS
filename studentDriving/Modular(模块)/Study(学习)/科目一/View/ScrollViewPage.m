@@ -14,9 +14,15 @@
 #import "YBSubjectQuestionRightBarView.h"
 #import "YBSubjectTool.h"
 
-@interface ScrollViewPage ()<UIAlertViewDelegate>
+typedef NS_ENUM(NSInteger,scrollViewPageType){
+    
+    scrollViewPageLeft,
+    scrollViewPageMid,
+    scrollViewPageRight
+    
+};
 
-@property (nonatomic ,assign) NSInteger currentPage;
+@interface ScrollViewPage ()<UIAlertViewDelegate>
 
 // key:indexPath.row+1  values:indexPath.row是否是选中状态
 @property (nonatomic,strong) NSMutableDictionary *selectnumDict;
@@ -33,6 +39,8 @@
 
 @property (nonatomic,assign) NSInteger trueCount;
 @property (nonatomic,assign) NSInteger wrongCount;
+
+@property (nonatomic,assign) scrollViewPageType scrollViewPageType;
 
 @end
 
@@ -68,13 +76,13 @@
         _scrollview.backgroundColor = YBMainViewControlerBackgroundColor;
 
         _lefttableview = [[UITableView alloc]initWithFrame:frame style:UITableViewStyleGrouped];
-//        _lefttableview.backgroundColor = [UIColor blueColor];
+        _lefttableview.backgroundColor = [UIColor blueColor];
         
         _middletableview = [[UITableView alloc]initWithFrame:frame style:UITableViewStyleGrouped];
-//        _middletableview.backgroundColor = [UIColor yellowColor];
+        _middletableview.backgroundColor = [UIColor yellowColor];
 
         _righttableview = [[UITableView alloc]initWithFrame:frame style:UITableViewStyleGrouped];
-//        _righttableview.backgroundColor = [UIColor redColor];
+        _righttableview.backgroundColor = [UIColor redColor];
 
         _datearry = [[NSMutableArray alloc] initWithArray:array];
         _scrollview.pagingEnabled = YES;
@@ -117,13 +125,57 @@
         
     }else{
        
-        if (tableView==_lefttableview && self.currentPage > 0) {
-            data = _datearry[self.currentPage-1];
-        }else if (tableView==_middletableview){
-            data = _datearry[self.currentPage];
-        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-            data = _datearry[self.currentPage+1];
+        if (_datearry.count==1) {
+           
+            if (tableView==_righttableview){
+                data = _datearry[self.currentPage];
+            }
+            
+        }else if (_datearry.count==2){
+            
+            if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+            }else if (tableView==_righttableview){
+                data = _datearry[self.currentPage+1];
+            }
+            
+        }else{
+            
+            if (tableView==_lefttableview && self.currentPage > 0) {
+                data = _datearry[self.currentPage-1];
+            }else if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+            }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                data = _datearry[self.currentPage+1];
+            }else{
+                data = _datearry[self.currentPage];
+            }
+            
         }
+        
+//
+//        
+//        if (_datearry.count==1) {
+//            
+//            data = _datearry[self.currentPage];
+//            
+//        }else{
+//            
+//            if (tableView==_lefttableview && self.currentPage > 0 && _datearry.count>2) {
+//                data = _datearry[self.currentPage-1];
+//            }else if (tableView==_middletableview && _datearry.count>2){
+//                data = _datearry[self.currentPage];
+//            }else if (tableView==_righttableview && self.currentPage < _datearry.count-1 && _datearry.count>2){
+//                data = _datearry[self.currentPage+1];
+//            }else if (tableView==_righttableview && self.currentPage == _datearry.count-1){
+//                data = _datearry[self.currentPage];
+//            }else if (tableView==_lefttableview && self.currentPage==0){
+//                data = _datearry[self.currentPage];
+//            }else if (tableView==_middletableview){
+//                data = _datearry[self.currentPage];
+//            }
+//            
+//        }
         
     }
     
@@ -151,16 +203,45 @@
 
     }else{
         
-        if (tableView==_lefttableview && self.currentPage > 0) {
-            data = _datearry[self.currentPage-1];
-            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
-        }else if (tableView==_middletableview){
-            data = _datearry[self.currentPage];
-            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
-        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-            data = _datearry[self.currentPage+1];
-            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+2,data.question];
+        if (_datearry.count==1) {
+            
+            if (tableView==_righttableview){
+                data = _datearry[self.currentPage];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+            }
+            
+        }else if (_datearry.count==2){
+            
+            if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+            }else if (tableView==_righttableview){
+                data = _datearry[self.currentPage+1];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+2,data.question];
+            }
+            
+        }else{
+            
+            if (tableView==_lefttableview && self.currentPage > 0) {
+                data = _datearry[self.currentPage-1];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
+                
+            }else if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+                
+            }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                data = _datearry[self.currentPage+1];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+2,data.question];
+                
+            }else{
+                data = _datearry[self.currentPage];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+                
+            }
+            
         }
+        
         
     }
     
@@ -168,27 +249,59 @@
     
     self.header.titleLable.text = title;
     
-    CGFloat sizeH = [title sizeWithFont:self.header.titleLable.font constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    CGFloat sizeH = [self.header.titleLable.text sizeWithFont:self.header.titleLable.font constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    NSLog(@"viewForHeaderInSection sizeH:%f",sizeH);
     
-    CGFloat height = 60;
     if (data.img_url || data.video_url) {
-        height = sizeH + 185;
+        sizeH += 185;
     }
     
-    self.header.frame = CGRectMake(0, 0, kSystemWide, height);
+    self.header.frame = CGRectMake(0, 0, kSystemWide, sizeH);
     
     self.header.currentPage = self.currentPage;
     [self.header reloadData:data];
     
-    CGFloat scrollViewPage = _scrollview.contentOffset.x/kSystemWide;
+    CGFloat scrollViewPage = _scrollview.contentOffset.x;
     NSLog(@"viewForHeaderInSection scrollViewPage:%f",scrollViewPage);
     
-    if (tableView==_lefttableview && self.currentPage == scrollViewPage+1) {
-        [self.header playMovie:data];
-    }else if (tableView==_middletableview){
-        [self.header playMovie:data];
-    }else if (tableView==_righttableview && self.currentPage == scrollViewPage+1){
-        [self.header playMovie:data];
+    if (self.selectnumDict && self.selectnumDict.count !=0) {// 点击了多选
+        
+        data = _datearry[self.currentPage];
+        title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+        
+    }else{
+        
+        if (_datearry.count==1) {
+            
+            if (tableView==_righttableview){
+
+                [self.header playMovie:data];
+
+            }
+            
+        }else if (_datearry.count==2){
+            
+            if (tableView==_middletableview && scrollViewPage == self.currentPage){
+                
+                [self.header playMovie:data];
+
+            }else if (tableView==_righttableview && scrollViewPage == self.currentPage){
+                
+                [self.header playMovie:data];
+
+            }
+            
+        }else{
+            
+            if (tableView==_middletableview){
+                
+                [self.header playMovie:data];
+                
+            }
+            
+        }
+        
+        
     }
     
     return self.header;
@@ -207,19 +320,51 @@
         
     }else{
         
-        if (tableView==_lefttableview && self.currentPage > 0) {
-            data = _datearry[self.currentPage-1];
-            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
-        }else if (tableView==_middletableview){
-            data = _datearry[self.currentPage];
-            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
-        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-            data = _datearry[self.currentPage+1];
-            title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+2,data.question];
+        if (_datearry.count==1) {
+            
+            if (tableView==_righttableview){
+                data = _datearry[self.currentPage];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+            }
+            
+        }else if (_datearry.count==2){
+            
+            if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+            }else if (tableView==_righttableview){
+                data = _datearry[self.currentPage+1];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+2,data.question];
+            }
+            
+        }else{
+            
+            if (tableView==_lefttableview && self.currentPage > 0) {
+                data = _datearry[self.currentPage-1];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
+                
+            }else if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+                
+            }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                data = _datearry[self.currentPage+1];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+2,data.question];
+                
+            }else{
+                data = _datearry[self.currentPage];
+                title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+                
+            }
+            
         }
         
+        
     }
-    CGFloat sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+
+    CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+
+    NSLog(@"heightForHeaderInSection sizeH:%f",sizeH);
 
     if (data.img_url || data.video_url) {
         return sizeH + 185;
@@ -241,13 +386,38 @@
         
     }else{
         
-        if (tableView==_lefttableview && self.currentPage > 0) {
-            data = _datearry[self.currentPage-1];
-        }else if (tableView==_middletableview){
-            data = _datearry[self.currentPage];
-        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-            data = _datearry[self.currentPage+1];
+        if (_datearry.count==1) {
+            
+            if (tableView==_righttableview){
+                data = _datearry[self.currentPage];
+            }
+            
+        }else if (_datearry.count==2){
+            
+            if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+            }else if (tableView==_righttableview){
+                data = _datearry[self.currentPage+1];
+            }
+            
+        }else{
+            
+            if (tableView==_lefttableview && self.currentPage > 0) {
+                data = _datearry[self.currentPage-1];
+                
+            }else if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+                
+            }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                data = _datearry[self.currentPage+1];
+                
+            }else{
+                data = _datearry[self.currentPage];
+                
+            }
+            
         }
+        
         
     }
     
@@ -315,13 +485,38 @@
         
     }else{
         
-        if (tableView==_lefttableview && self.currentPage > 0) {
-            data = _datearry[self.currentPage-1];
-        }else if (tableView==_middletableview){
-            data = _datearry[self.currentPage];
-        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-            data = _datearry[self.currentPage+1];
+        if (_datearry.count==1) {
+            
+            if (tableView==_righttableview){
+                data = _datearry[self.currentPage];
+            }
+            
+        }else if (_datearry.count==2){
+            
+            if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+            }else if (tableView==_righttableview){
+                data = _datearry[self.currentPage+1];
+            }
+            
+        }else{
+            
+            if (tableView==_lefttableview && self.currentPage > 0) {
+                data = _datearry[self.currentPage-1];
+                
+            }else if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+                
+            }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                data = _datearry[self.currentPage+1];
+                
+            }else{
+                data = _datearry[self.currentPage];
+                
+            }
+            
         }
+        
         
     }
     
@@ -358,13 +553,38 @@
         
     }else{
         
-        if (tableView==_lefttableview && self.currentPage > 0) {
-            data = _datearry[self.currentPage-1];
-        }else if (tableView==_middletableview){
-            data = _datearry[self.currentPage];
-        }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
-            data = _datearry[self.currentPage+1];
+        if (_datearry.count==1) {
+            
+            if (tableView==_righttableview){
+                data = _datearry[self.currentPage];
+            }
+            
+        }else if (_datearry.count==2){
+            
+            if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+            }else if (tableView==_righttableview){
+                data = _datearry[self.currentPage+1];
+            }
+            
+        }else{
+            
+            if (tableView==_lefttableview && self.currentPage > 0) {
+                data = _datearry[self.currentPage-1];
+                
+            }else if (tableView==_middletableview){
+                data = _datearry[self.currentPage];
+                
+            }else if (tableView==_righttableview && self.currentPage < _datearry.count-1){
+                data = _datearry[self.currentPage+1];
+                
+            }else{
+                data = _datearry[self.currentPage];
+                
+            }
+            
         }
+        
         
     }
     
@@ -748,21 +968,25 @@
     
     NSLog(@"data.question:%@",data.question);
     
-     NSLog(@"%ld data.answer_true:%ld",data.ID,(long)data.answer_true);
+     NSLog(@"%ld data.answer_true:%ld data.type:%ld",data.ID,(long)data.answer_true,(long)data.type);
     // 1:正确错误 2：单选4个选项 3：4个选项,多选
 
     if (data.type==1) {
 
+        NSString *selectIndex = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
+        BOOL isSelectnum = [self.selectnumDict[selectIndex] boolValue];
+        [self.selectnumDict setValue:@(!isSelectnum) forKey:selectIndex];
+        
         if (data.answer_true == indexPath.row+1) {
             
-            [self obj_showTotasViewWithMes:@"ok"];
+           // [self obj_showTotasViewWithMes:@"ok"];
             
             if (_datearry.count-1==self.currentPage) {
                 
                 self.trueCount = 0;
                 self.wrongCount = 0;
                 
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"恭喜您答完啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
                 [alert show];
                 
             }else{
@@ -773,7 +997,7 @@
                 data.isTrue = YES;
                 data.selectNum = indexPath.row;
                 
-                [_datearry replaceObjectAtIndex:indexPath.row withObject:data];
+                [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
                 
                 // 滚动到下一步
                 [self nextQuestion];
@@ -788,10 +1012,26 @@
             data.isTrue = NO;
             data.selectNum = indexPath.row;
 
-            [_datearry replaceObjectAtIndex:indexPath.row withObject:data];
+            [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
             
             [self reloadDate];
-            
+
+//            if (_datearry.count==1) {
+//                [_righttableview reloadData];
+//            }else{
+//                
+//                if (self.currentPage==_datearry.count-1) {
+//                    [_righttableview reloadData];
+//                }else{
+//                    if (tableView==_lefttableview) {
+//                        [_lefttableview reloadData];
+//                    }else if (tableView==_middletableview){
+//                        [_middletableview reloadData];
+//                    }else{
+//                        [self reloadDate];
+//                    }
+//                }
+//            }
            // [self obj_showTotasViewWithMes:@"答错了"];
             
             NSString *userid = @"null";
@@ -799,13 +1039,24 @@
             if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
                 userid = [AcountManager manager].userid;
             }
-            [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
-
+            [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+                NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
+                if (!isExit) {
+                    [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+                }
+                
+            }];
         }
         
         [self changeRightBarState];
 
+        [self.selectnumDict removeAllObjects];
+
     }else if (data.type==2){
+        
+        NSString *selectIndex = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
+        BOOL isSelectnum = [self.selectnumDict[selectIndex] boolValue];
+        [self.selectnumDict setValue:@(!isSelectnum) forKey:selectIndex];
         
         if (data.answer_true == indexPath.row+1) {
             
@@ -816,7 +1067,7 @@
                 self.trueCount = 0;
                 self.wrongCount = 0;
                 
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"恭喜您答完啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
                 [alert show];
                 
             }else{
@@ -827,7 +1078,7 @@
                 data.isTrue = YES;
                 data.selectNum = indexPath.row;
                 
-                [_datearry replaceObjectAtIndex:indexPath.row withObject:data];
+                [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
                 
                 // 滚动到下一步
                 [self nextQuestion];
@@ -842,10 +1093,28 @@
             data.isTrue = NO;
             data.selectNum = indexPath.row;
 
-            [_datearry replaceObjectAtIndex:indexPath.row withObject:data];
-        
+            NSLog(@"_datearry.count:%lu indexPath.row:%ld self.currentPage:%ld",(unsigned long)_datearry.count,(long)indexPath.row,(long)self.currentPage);
+
+            [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
+            
             [self reloadDate];
 
+//            if (_datearry.count==1) {
+//                [_righttableview reloadData];
+//            }else{
+//                if (self.currentPage==_datearry.count-1) {
+//                    [_righttableview reloadData];
+//                }else{
+//                    if (tableView==_lefttableview) {
+//                        [_lefttableview reloadData];
+//                    }else if (tableView==_middletableview){
+//                        [_middletableview reloadData];
+//                    }else{
+//                       [self reloadDate];
+//                    }
+//                }
+//            }
+//            
            // [self obj_showTotasViewWithMes:@"答错了"];
             
             NSString *userid = @"null";
@@ -853,12 +1122,21 @@
             if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
                 userid = [AcountManager manager].userid;
             }
-            [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
-
+            
+            [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+                NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
+                if (!isExit) {
+                    [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+                }
+                
+            }];
+            
         }
         
         [self changeRightBarState];
         
+        [self.selectnumDict removeAllObjects];
+
     }else{
         
         NSString *selectIndex = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
@@ -881,16 +1159,18 @@
         
         NSLog(@"tableView:%@ self.currentPage:%ld",tableView,(long)self.currentPage);
         
-        if (tableView==_lefttableview) {
-            NSLog(@"--_lefttableview--");
-            [_lefttableview reloadData];
-        }else if (tableView==_middletableview){
-            NSLog(@"--_middletableview--");
-            [_middletableview reloadData];
-        }else if (tableView==_righttableview){
-            NSLog(@"--_righttableview--");
-            [_righttableview reloadData];
-        }
+        [self reloadDate];
+
+//        if (tableView==_lefttableview) {
+//            NSLog(@"--_lefttableview--");
+//            [_lefttableview reloadData];
+//        }else if (tableView==_middletableview){
+//            NSLog(@"--_middletableview--");
+//            [_middletableview reloadData];
+//        }else if (tableView==_righttableview){
+//            NSLog(@"--_righttableview--");
+//            [_righttableview reloadData];
+//        }
 
     }
     
@@ -956,8 +1236,6 @@
 
     [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
 
-    [self.selectnumDict removeAllObjects];
-
     // 取得上次保存的状态
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSInteger currentPage = [user integerForKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
@@ -974,7 +1252,7 @@
             self.trueCount = 0;
             self.wrongCount = 0;
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"恭喜您答完啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
             [alert show];
             
         }else{
@@ -993,7 +1271,14 @@
         if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
             userid = [AcountManager manager].userid;
         }
-        [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+        
+        [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+            NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
+            if (!isExit) {
+                [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+            }
+            
+        }];
         
         self.wrongCount++;
         
@@ -1006,11 +1291,13 @@
     
     [self changeRightBarState];
     
+    [self.selectnumDict removeAllObjects];
+
 }
 
 - (void)changeRightBarState
 {
-    // 从数据库中读取上次最后做题记录
+
     NSInteger currentPage = self.currentPage;
     float trueCount = self.trueCount;
     float wrongCount = self.wrongCount;
@@ -1026,6 +1313,8 @@
         
     }
 
+    self.socre = trueCount;
+    
     NSLog(@"changeRightBarState currentPage:%ld trueCount:%ld wrongCount:%ld proportion:%@ trueCountStr:%@ wrongCountStr:%@ correctrate:%@",(long)currentPage,(long)trueCount,(long)wrongCount,proportion,trueCountStr,wrongCountStr,correctrate);
 
     for (UIButton *btn in self.rightBarView.subviews) {
@@ -1079,7 +1368,10 @@
     // 从数据库中读取上次最后做题记录
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSInteger currentPage = [user integerForKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
-    NSLog(@"setUpScrollViewSize currentPage:%ld",(long)currentPage);
+    NSLog(@"setUpScrollViewSize currentPage:%ld _scrollview.contentOffset.x:%f",(long)currentPage,_scrollview.contentOffset.x);
+    if (currentPage>0) {
+        currentPage-=1;
+    }
     self.currentPage = currentPage;
 
     // 更新右上角状态
@@ -1098,6 +1390,11 @@
         _righttableview.frame = CGRectMake(_scrollview.contentOffset.x+kSystemWide, 0, kSystemWide, kSystemHeight);
         
         [self reloadDate];
+        
+    }else{
+        
+        _righttableview.frame = CGRectMake(0,0, kSystemWide, kSystemHeight);
+        [_righttableview reloadData];
         
     }
     
@@ -1130,6 +1427,18 @@
         
     }
     
+    CGPoint currentOffset = _scrollview.contentOffset;
+    NSLog(@"nextQuestion currentOffset.x:%f currentOffset.y:%f",currentOffset.x,currentOffset.y);
+    
+    int page = (int)currentOffset.x/kSystemWide;
+
+    if (page==0 || page==_datearry.count-1) {
+        
+        YBSubjectData *data = _datearry[page];
+        [self.header playMovie:data];
+        
+    }
+    
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
@@ -1141,9 +1450,19 @@
     NSLog(@"scrollViewDidEndDecelerating scrollViewDidEndDecelerating page:%d",page);
     self.currentPage = page;
 
+    if (page==0) {
+        self.scrollViewPageType = scrollViewPageLeft;
+    }else if (page==_datearry.count-1){
+        self.scrollViewPageType = scrollViewPageRight;
+    }else{
+        self.scrollViewPageType = scrollViewPageMid;
+    }
+    
     if (page==0 || page==_datearry.count-1) {
+        
         YBSubjectData *data = _datearry[page];
         [self.header playMovie:data];
+    
     }
     
     if (page < _datearry.count-1 && currentOffset.x!=0) {
