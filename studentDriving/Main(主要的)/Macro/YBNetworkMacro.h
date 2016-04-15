@@ -73,4 +73,7 @@ static NSString *kdriveschoolofcoach = @"getschoolcoach/%@";
 // 学员提交模拟考试成绩
 static NSString *const kuserinfosendtestscore = @"userinfo/sendtestscore";
 
+// 获得投诉图片token
+static NSString *const kQiniuUpdateUrluserFeedback = @"info/qiniuuptoken?api_key=userFeedback";
+
 #endif /* YBNetworkMacro_h */
