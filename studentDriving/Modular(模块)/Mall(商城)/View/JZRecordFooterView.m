@@ -70,7 +70,7 @@ static NSString *const knumber = @"create_qrcode";
 }
 - (void)refreshDataWith:(NSString *)str{
     NSURL *url = [NSURL URLWithString:str];
-    [_codeImageView sd_setImageWithURL:url placeholderImage:nil];
+    [_codeImageView sd_setImageWithURL:url placeholderImage:[UIImage imageNamed:@"code_null"]];
 
 }
 - (void)layoutSubviews{
@@ -132,7 +132,7 @@ static NSString *const knumber = @"create_qrcode";
 - (UIImageView *)codeImageView{
     if (_codeImageView == nil) {
         _codeImageView = [[UIImageView alloc] init];
-        _codeImageView.backgroundColor = [UIColor grayColor];
+        _codeImageView.backgroundColor = [UIColor clearColor];
     }
     return _codeImageView;
 }

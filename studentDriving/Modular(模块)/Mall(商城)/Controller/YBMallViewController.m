@@ -74,6 +74,7 @@ static NSString *kMallID = @"MallID";
     _index = 1;
     
      self.view.backgroundColor = [UIColor colorWithHexString:@"e8e8ed"];
+    self.view.userInteractionEnabled = YES;
     [self.view addSubview:self.mallCollectionView];
     [self.bgView addSubview:self.titleLable];
     [self.bgView addSubview:self.resultLabel];
@@ -82,7 +83,6 @@ static NSString *kMallID = @"MallID";
     [self.mallCollectionView addSubview:self.bgView];
     
 }
-
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
@@ -217,6 +217,7 @@ static NSString *kMallID = @"MallID";
         _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64  - 50) collectionViewLayout:flowLayout];
         // 注册Cell
         _mallCollectionView.contentInset = UIEdgeInsetsMake(HeaderViewH, 0, 0, 0);
+        _mallCollectionView.contentSize = CGSizeMake(kSystemWide, kSystemHeight);
         
     }
     return _mallCollectionView;
