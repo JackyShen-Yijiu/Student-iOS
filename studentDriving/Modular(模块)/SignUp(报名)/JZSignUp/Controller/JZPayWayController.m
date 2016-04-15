@@ -128,10 +128,10 @@
     // 中部cell赋值
     if (_isHaveYCode) {
         self.middhtTitleArray = @[@"报考班型",@"支付费用",@"Y码返现",@"邀请码"];
-        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],self.yCodeStr,@"请输入或扫描邀请码(选填)"];
+        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],self.yCodeStr,@"请输入邀请码(选填)"];
     }else if (!_isHaveYCode){
         self.middhtTitleArray = @[@"报考班型",@"支付费用",@"邀请码"];
-        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],@"请输入或扫描邀请码(选填)"];
+        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],@"请输入邀请码(选填)"];
     }
     // 底部cell赋值
     self.imgArray = @[@"wechat",@"alipay",@"offline"];
