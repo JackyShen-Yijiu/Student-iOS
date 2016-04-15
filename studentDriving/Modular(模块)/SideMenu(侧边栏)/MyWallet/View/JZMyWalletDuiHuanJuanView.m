@@ -154,13 +154,10 @@ static NSString *const knumber = @"create_qrcode";
     NSString *resultStr = [NSString stringWithFormat:BASEURL,knumber];
     NSString *str = @"?text=";
     NSString *lastStr = @"&size=46";
-    
     NSString *finishResultStr = [NSString stringWithFormat:@"%@%@%@%@",resultStr,str,self.dataModel.orderscanaduiturl,lastStr];
     
     
-    
-    UIImageView *bigImg = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0,kLKSize.width, kLKSize.height)];
-    
+    [self showQRInfoWithImageStr:finishResultStr];
     
     
 
@@ -168,6 +165,40 @@ static NSString *const knumber = @"create_qrcode";
     
     
     
+}
+- (void)showQRInfoWithImageStr:(NSString *)imagestr {
+    
+    UIView *bgView = [[UIView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    UITapGestureRecognizer *tapGes = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(closeQRCodeBgView:)];
+    [bgView addGestureRecognizer:tapGes];
+    bgView.userInteractionEnabled = YES;
+    
+    bgView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.5];
+    bgView.alpha = 0;
+    UIImageView *imageView = [UIImageView new];
+    imageView.bounds = CGRectMake(0, 0, 0, 0);
+    imageView.center = bgView.center;
+    [imageView sd_setImageWithURL:[NSURL URLWithString:imagestr] placeholderImage:nil];
+    [bgView addSubview:imageView];
+    [[UIApplication sharedApplication].keyWindow addSubview:bgView];
+    
+    [UIView animateWithDuration:0.3 delay:0 options:UIViewAnimationOptionCurveEaseInOut animations:^{
+        
+        bgView.alpha = 1;
+        imageView.bounds = CGRectMake(0, 0, 188, 188);
+        
+    } completion:^(BOOL finished) {
+        
+    }];
+}
+- (void)closeQRCodeBgView:(UITapGestureRecognizer *)tagGes {
+    
+    UIView *view = tagGes.view;
+    [UIView animateWithDuration:0.3 animations:^{
+        view.alpha = 0;
+    } completion:^(BOOL finished) {
+        [tagGes.view removeFromSuperview];
+    }];
 }
 
 -(void)setDataModel:(JZMyWalletDuiHuanJuanData *)dataModel {
