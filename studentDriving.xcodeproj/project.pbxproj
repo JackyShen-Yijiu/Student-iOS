@@ -1048,6 +1048,7 @@
 		D5604CBB1BF65E030020F0D7 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBA1BF65E030020F0D7 /* Twitter.framework */; };
 		D5604CBD1BF65E1F0020F0D7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBC1BF65E1F0020F0D7 /* Social.framework */; };
 		D906FAEA1CB762CB002BC2B8 /* PhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */; };
+		D949A5331CC0BA6B00BBE088 /* JZNoDataShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */; };
 		D96445121C91812600E7C29F /* YBAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445111C91812600E7C29F /* YBAppointmentListController.m */; };
 		D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445211C918D5200E7C29F /* YBCompletedAppointmentListController.m */; };
 		D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445291C91969100E7C29F /* YBAppointmentDetailController.m */; };
@@ -3118,6 +3119,8 @@
 		D588AF861BDDB62C000C5D6F /* studentDriving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = studentDriving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D906FAE81CB762CB002BC2B8 /* PhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumViewController.h; sourceTree = "<group>"; };
 		D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumViewController.m; sourceTree = "<group>"; };
+		D949A5311CC0BA6B00BBE088 /* JZNoDataShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZNoDataShowView.h; sourceTree = "<group>"; };
+		D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZNoDataShowView.m; sourceTree = "<group>"; };
 		D96445101C91812600E7C29F /* YBAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListController.h; sourceTree = "<group>"; };
 		D96445111C91812600E7C29F /* YBAppointmentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListController.m; sourceTree = "<group>"; };
 		D96445201C918D5200E7C29F /* YBCompletedAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentListController.h; sourceTree = "<group>"; };
@@ -5303,6 +5306,8 @@
 		B251DE821C8E849200E6613A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D949A5311CC0BA6B00BBE088 /* JZNoDataShowView.h */,
+				D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */,
 				B251DE891C8E849200E6613A /* PrivateMessageCell.h */,
 				B251DE8A1C8E849200E6613A /* PrivateMessageCell.m */,
 				B251DE8B1C8E849200E6613A /* PrivateMessageCell.xib */,
@@ -7988,6 +7993,7 @@
 				B251E3881C8E849500E6613A /* StudentCommentCell.m in Sources */,
 				B251E3C41C8E849500E6613A /* SignInListController.m in Sources */,
 				D97303751CBB52B800F51435 /* JZComplaintRightView.m in Sources */,
+				D949A5331CC0BA6B00BBE088 /* JZNoDataShowView.m in Sources */,
 				B2EEBC881CA138A100846656 /* ChineseInclude.m in Sources */,
 				B2EEBD8C1CA141BE00846656 /* ButtonGroupView.m in Sources */,
 				B251E3DF1C8E849500E6613A /* WMNavigationInteractiveTransition.m in Sources */,
