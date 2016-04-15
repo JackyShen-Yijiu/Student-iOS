@@ -72,7 +72,7 @@
             return @"学员取消";
             break;
         case KCourseStatueapplyconfirm:  // 已确定
-            return @"已接收";
+            return @"已接受";
             break;
         case KCourseStatueapplyrefuse:      // 教练拒绝或者取消->教练取消
             return @"教练取消";

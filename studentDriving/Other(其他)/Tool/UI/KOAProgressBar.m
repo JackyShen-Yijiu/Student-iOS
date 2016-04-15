@@ -74,14 +74,15 @@
 	self.minValue = 0.0;
 	self.maxValue = 1.0;
     
-	self.shadowColor = [UIColor colorWithRed:223.0/255.0 green:238.0/255.0 blue:181.0/255.0 alpha:1.0];
-	self.progressBarColorBackground = RGBColor(189, 189, 189);
-	self.progressBarColorBackgroundGlow = [UIColor colorWithRed:17.0/255.0 green:20.0/255.0 blue:23.0/255.0 alpha:1.0];
-	self.stripeColor = [UIColor redColor];
-	self.lighterProgressColor = [UIColor redColor];
-    self.darkerProgressColor = [UIColor redColor];
-	self.lighterStripeColor = [UIColor redColor];
-	self.darkerStripeColor = [UIColor redColor];
+//	self.shadowColor = [UIColor colorWithRed:223.0/255.0 green:238.0/255.0 blue:181.0/255.0 alpha:1.0];
+	self.progressBarColorBackground = [UIColor colorWithHexString:@"e8e8ed"];  // 背景颜色
+
+//	self.progressBarColorBackgroundGlow = [UIColor colorWithRed:17.0/255.0 green:20.0/255.0 blue:23.0/255.0 alpha:1.0];
+	self.stripeColor = JZ_BlueColor;
+	self.lighterProgressColor = [UIColor colorWithHexString:@"5698fd"]; // 动态显示
+    self.darkerProgressColor = [UIColor colorWithHexString:@"5698fd"];  //  动态显示
+	self.lighterStripeColor = [UIColor colorWithHexString:@"5698fd"];
+	self.darkerStripeColor = [UIColor colorWithHexString:@"5698fd"];
     
 	self.displayedWhenStopped = YES;
 	self.timerInterval = 0.1;

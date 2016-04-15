@@ -38,6 +38,8 @@ static NSString *const kautoCode = @"Verificationsmscode";
     
     self.view.backgroundColor = [UIColor whiteColor];
     
+    
+    
     self.title = @"找回密码";
     
     [self initUI];

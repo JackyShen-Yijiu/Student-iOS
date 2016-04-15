@@ -324,9 +324,10 @@ WMSingletonM(YBStudyViewController)
     
     _toolBarBottomLineView.frame = CGRectMake(0, CGRectGetMaxY(_dvvToolBarView.frame), screenSize.width, 1);
     
-    _progressView.frame = CGRectMake(0, CGRectGetMaxY(self.dvvToolBarView.frame), screenSize.width, 47);
+    _progressView.frame = CGRectMake(0, CGRectGetMaxY(self.dvvToolBarView.frame), screenSize.width, 50);
+    _progressView.backgroundColor = [UIColor whiteColor];
     
-    _scrollView.frame = CGRectMake(0, CGRectGetMaxY(_progressView.frame), screenSize.width, screenSize.height - CGRectGetMaxY(_progressView.frame)-100);
+    _scrollView.frame = CGRectMake(0, CGRectGetMaxY(_progressView.frame) + 10, screenSize.width, screenSize.height - CGRectGetMaxY(_progressView.frame)-100);
     _scrollView.contentSize = CGSizeMake(screenSize.width * 4, 0);
     
     _kemuyiView.frame = CGRectMake(0, 0, screenSize.width, CGRectGetHeight(_scrollView.frame));
@@ -383,7 +384,7 @@ WMSingletonM(YBStudyViewController)
         _scrollView = [UIScrollView new];
         _scrollView.delegate = self;
         _scrollView.pagingEnabled = YES;
-        _scrollView.backgroundColor = RGBColor(232, 232, 237);
+        _scrollView.backgroundColor = [UIColor clearColor];
         _scrollView.bounces = NO;
     }
     return _scrollView;
@@ -392,6 +393,7 @@ WMSingletonM(YBStudyViewController)
 - (YBStudyTableView *)kemuyiView {
     if (!_kemuyiView) {
         _kemuyiView = [YBStudyTableView new];
+        _kemuyiView.backgroundColor = [UIColor clearColor];
         _kemuyiView.parentViewController = self;
     }
     return _kemuyiView;
@@ -401,6 +403,7 @@ WMSingletonM(YBStudyViewController)
     if (!_kemuerView) {
         _kemuerView = [YBStudyTableView new];
         _kemuerView.parentViewController = self;
+                _kemuerView.backgroundColor = [UIColor clearColor];
     }
     return _kemuerView;
 }
@@ -409,6 +412,7 @@ WMSingletonM(YBStudyViewController)
     if (!_kemusanView) {
         _kemusanView = [YBStudyTableView new];
         _kemusanView.parentViewController = self;
+                _kemusanView.backgroundColor = [UIColor clearColor];
 
     }
     return _kemusanView;
@@ -417,6 +421,7 @@ WMSingletonM(YBStudyViewController)
     if (!_kemusiView) {
         _kemusiView = [YBStudyTableView new];
         _kemusiView.parentViewController = self;
+                _kemusiView.backgroundColor = [UIColor clearColor];
     }
     return _kemusiView;
 }

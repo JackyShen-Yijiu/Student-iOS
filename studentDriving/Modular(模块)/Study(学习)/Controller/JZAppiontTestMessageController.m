@@ -224,7 +224,7 @@
 - (UILabel *)bottomLabel{
     if (_bottomLabel == nil) {
         _bottomLabel = [[UILabel alloc] initWithFrame:CGRectMake(16, CGRectGetMaxY(self.topLabel.frame) + 5, kSystemWide - 2 * 16, 30)];
-        _bottomLabel.text = @"若您已自行子在122网站提交约考信息,就不必在这里提交代约信息";
+        _bottomLabel.text = @"若您已自行在122网站提交约考信息,就不必在这里提交代约信息";
         _bottomLabel.font = [UIFont systemFontOfSize:12];
         _bottomLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _bottomLabel.numberOfLines = 0;

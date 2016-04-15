@@ -129,7 +129,6 @@
 		B22BAD531CBE5BD900455E1C /* YBMoviePlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD521CBE5BD900455E1C /* YBMoviePlayerController.m */; };
 		B22BAD561CBF328E00455E1C /* YBSubjectQuestionRightBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD551CBF328E00455E1C /* YBSubjectQuestionRightBarView.m */; };
 		B22BAD591CBF38BF00455E1C /* YBSubjectQuestionRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */; };
-		B22BAD6A1CBF923B00455E1C /* ggtkFile1.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BAD691CBF923B00455E1C /* ggtkFile1.zip */; };
 		B22BAD6D1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */; };
 		B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
@@ -751,7 +750,6 @@
 		B251E5F41C8E849500E6613A /* YBStudeyProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0561C8E849300E6613A /* YBStudeyProgressView.m */; };
 		B251E5F51C8E849500E6613A /* YBStudyTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0581C8E849300E6613A /* YBStudyTableView.m */; };
 		B251E5F61C8E849500E6613A /* YBStudyViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E05A1C8E849300E6613A /* YBStudyViewCell.m */; };
-		B251E5F71C8E849500E6613A /* YBStudyViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B251E05B1C8E849300E6613A /* YBStudyViewCell.xib */; };
 		B251E5F81C8E849500E6613A /* YBToolBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E05D1C8E849300E6613A /* YBToolBarView.m */; };
 		B251E5F91C8E849500E6613A /* EMAudioPlayerUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0671C8E849300E6613A /* EMAudioPlayerUtil.m */; };
 		B251E5FA1C8E849500E6613A /* EMAudioRecorderUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = B251E0691C8E849300E6613A /* EMAudioRecorderUtil.m */; };
@@ -1050,6 +1048,9 @@
 		D5604CBB1BF65E030020F0D7 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBA1BF65E030020F0D7 /* Twitter.framework */; };
 		D5604CBD1BF65E1F0020F0D7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBC1BF65E1F0020F0D7 /* Social.framework */; };
 		D906FAEA1CB762CB002BC2B8 /* PhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */; };
+		D949A5331CC0BA6B00BBE088 /* JZNoDataShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */; };
+		D949A5351CC0D5F100BBE088 /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = D949A5341CC0D5F100BBE088 /* ggtkFile.zip */; };
+		D949A5381CC0DBF900BBE088 /* JZNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A5371CC0DBF900BBE088 /* JZNoDataView.m */; };
 		D96445121C91812600E7C29F /* YBAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445111C91812600E7C29F /* YBAppointmentListController.m */; };
 		D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445211C918D5200E7C29F /* YBCompletedAppointmentListController.m */; };
 		D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445291C91969100E7C29F /* YBAppointmentDetailController.m */; };
@@ -1058,6 +1059,7 @@
 		D971BD481CBF50BB00C5E626 /* HowAddJiFenView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */; };
 		D971BD4B1CBF55E600C5E626 /* HowAddJiFenView.m in Sources */ = {isa = PBXBuildFile; fileRef = D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */; };
 		D971BD4E1CBF616800C5E626 /* JZHowAddJiFenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */; };
+		D971BD511CBFBE6100C5E626 /* JZDuiHuanListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D971BD501CBFBE6100C5E626 /* JZDuiHuanListController.m */; };
 		D97303751CBB52B800F51435 /* JZComplaintRightView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97303741CBB52B800F51435 /* JZComplaintRightView.m */; };
 		D97303791CBB81A700F51435 /* JZComplaintRightView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97303781CBB81A700F51435 /* JZComplaintRightView.xib */; };
 		D97676251C97DF6F0033221E /* YBAppointmentDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97676211C97DF6F0033221E /* YBAppointmentDetailCell.m */; };
@@ -2399,7 +2401,6 @@
 		B251E0581C8E849300E6613A /* YBStudyTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyTableView.m; sourceTree = "<group>"; };
 		B251E0591C8E849300E6613A /* YBStudyViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBStudyViewCell.h; sourceTree = "<group>"; };
 		B251E05A1C8E849300E6613A /* YBStudyViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBStudyViewCell.m; sourceTree = "<group>"; };
-		B251E05B1C8E849300E6613A /* YBStudyViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YBStudyViewCell.xib; sourceTree = "<group>"; };
 		B251E05C1C8E849300E6613A /* YBToolBarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBToolBarView.h; sourceTree = "<group>"; };
 		B251E05D1C8E849300E6613A /* YBToolBarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBToolBarView.m; sourceTree = "<group>"; };
 		B251E0621C8E849300E6613A /* EMCDDeviceManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EMCDDeviceManagerDelegate.h; sourceTree = "<group>"; };
@@ -3120,6 +3121,11 @@
 		D588AF861BDDB62C000C5D6F /* studentDriving.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = studentDriving.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D906FAE81CB762CB002BC2B8 /* PhoneNumViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhoneNumViewController.h; sourceTree = "<group>"; };
 		D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumViewController.m; sourceTree = "<group>"; };
+		D949A5311CC0BA6B00BBE088 /* JZNoDataShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZNoDataShowView.h; sourceTree = "<group>"; };
+		D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZNoDataShowView.m; sourceTree = "<group>"; };
+		D949A5341CC0D5F100BBE088 /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
+		D949A5361CC0DBF900BBE088 /* JZNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZNoDataView.h; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.h"; sourceTree = "<group>"; };
+		D949A5371CC0DBF900BBE088 /* JZNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZNoDataView.m; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.m"; sourceTree = "<group>"; };
 		D96445101C91812600E7C29F /* YBAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListController.h; sourceTree = "<group>"; };
 		D96445111C91812600E7C29F /* YBAppointmentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListController.m; sourceTree = "<group>"; };
 		D96445201C918D5200E7C29F /* YBCompletedAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentListController.h; sourceTree = "<group>"; };
@@ -3132,8 +3138,10 @@
 		D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HowAddJiFenView.xib; sourceTree = "<group>"; };
 		D971BD491CBF55E600C5E626 /* HowAddJiFenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HowAddJiFenView.h; sourceTree = "<group>"; };
 		D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HowAddJiFenView.m; sourceTree = "<group>"; };
-		D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZHowAddJiFenViewController.h; sourceTree = "<group>"; };
-		D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZHowAddJiFenViewController.m; sourceTree = "<group>"; };
+		D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZHowAddJiFenViewController.h; path = ../Controller/JZHowAddJiFenViewController.h; sourceTree = "<group>"; };
+		D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZHowAddJiFenViewController.m; path = ../Controller/JZHowAddJiFenViewController.m; sourceTree = "<group>"; };
+		D971BD4F1CBFBE6100C5E626 /* JZDuiHuanListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZDuiHuanListController.h; sourceTree = "<group>"; };
+		D971BD501CBFBE6100C5E626 /* JZDuiHuanListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZDuiHuanListController.m; sourceTree = "<group>"; };
 		D97303731CBB52B800F51435 /* JZComplaintRightView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintRightView.h; sourceTree = "<group>"; };
 		D97303741CBB52B800F51435 /* JZComplaintRightView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintRightView.m; sourceTree = "<group>"; };
 		D97303781CBB81A700F51435 /* JZComplaintRightView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZComplaintRightView.xib; sourceTree = "<group>"; };
@@ -3632,6 +3640,8 @@
 			children = (
 				06F860961CBF2E70007348B9 /* JZSideMenuOrderListController.h */,
 				06F860971CBF2E70007348B9 /* JZSideMenuOrderListController.m */,
+				D971BD4F1CBFBE6100C5E626 /* JZDuiHuanListController.h */,
+				D971BD501CBFBE6100C5E626 /* JZDuiHuanListController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5301,6 +5311,8 @@
 		B251DE821C8E849200E6613A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D949A5311CC0BA6B00BBE088 /* JZNoDataShowView.h */,
+				D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */,
 				B251DE891C8E849200E6613A /* PrivateMessageCell.h */,
 				B251DE8A1C8E849200E6613A /* PrivateMessageCell.m */,
 				B251DE8B1C8E849200E6613A /* PrivateMessageCell.xib */,
@@ -5405,8 +5417,6 @@
 			children = (
 				D9DA1C6B1CBCE64E00BBD81D /* JZMyWalletViewController.h */,
 				D9DA1C6C1CBCE64E00BBD81D /* JZMyWalletViewController.m */,
-				D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */,
-				D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -5431,18 +5441,11 @@
 		B251DEA21C8E849200E6613A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				D97E1CD01CBCEFCB00BBF87B /* JZMyWalletHeaderView.h */,
-				D97E1CD11CBCEFCB00BBF87B /* JZMyWalletHeaderView.m */,
-				D97E1CD31CBCF53900BBF87B /* JZMyWalletHeaderView.xib */,
-				D9E0FF861CBDDD0100CDC2B8 /* JZMyWalletBottomView.h */,
-				D9E0FF871CBDDD0100CDC2B8 /* JZMyWalletBottomView.m */,
-				D9E0FF841CBDDA4200CDC2B8 /* JZMyWalletBottomView.xib */,
+				D949A52F1CC080FF00BBE088 /* HowAddJiFenVC */,
+				D949A5301CC0812100BBE088 /* HeaderAndBottomView */,
 				D9E0FF8E1CBDFFBF00CDC2B8 /* JiFenView */,
 				D9E0FF8F1CBDFFD100CDC2B8 /* XianJinView */,
 				D9E0FF901CBDFFE200CDC2B8 /* DuiHuanJuanView */,
-				D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */,
-				D971BD491CBF55E600C5E626 /* HowAddJiFenView.h */,
-				D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -5823,6 +5826,7 @@
 		B251E0461C8E849300E6613A /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D949A5341CC0D5F100BBE088 /* ggtkFile.zip */,
 				B251E0471C8E849300E6613A /* YBCheatsData.json */,
 				B251E0481C8E849300E6613A /* YBStudyData.json */,
 				B251E0491C8E849300E6613A /* YBStudyTool.h */,
@@ -5845,7 +5849,6 @@
 				B251E0581C8E849300E6613A /* YBStudyTableView.m */,
 				B251E0591C8E849300E6613A /* YBStudyViewCell.h */,
 				B251E05A1C8E849300E6613A /* YBStudyViewCell.m */,
-				B251E05B1C8E849300E6613A /* YBStudyViewCell.xib */,
 				B251E05C1C8E849300E6613A /* YBToolBarView.h */,
 				B251E05D1C8E849300E6613A /* YBToolBarView.m */,
 				06FE56461CBCF42000749A49 /* JZAppiontMessageTopCell.h */,
@@ -6638,6 +6641,8 @@
 		B251E2111C8E849400E6613A /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D949A5361CC0DBF900BBE088 /* JZNoDataView.h */,
+				D949A5371CC0DBF900BBE088 /* JZNoDataView.m */,
 				B251E2121C8E849400E6613A /* Model */,
 				B251E2211C8E849400E6613A /* UI */,
 				B251E2491C8E849400E6613A /* 网络 */,
@@ -7341,6 +7346,31 @@
 			path = studentDriving;
 			sourceTree = "<group>";
 		};
+		D949A52F1CC080FF00BBE088 /* HowAddJiFenVC */ = {
+			isa = PBXGroup;
+			children = (
+				D971BD4C1CBF616800C5E626 /* JZHowAddJiFenViewController.h */,
+				D971BD4D1CBF616800C5E626 /* JZHowAddJiFenViewController.m */,
+				D971BD491CBF55E600C5E626 /* HowAddJiFenView.h */,
+				D971BD4A1CBF55E600C5E626 /* HowAddJiFenView.m */,
+				D971BD471CBF50BB00C5E626 /* HowAddJiFenView.xib */,
+			);
+			name = HowAddJiFenVC;
+			sourceTree = "<group>";
+		};
+		D949A5301CC0812100BBE088 /* HeaderAndBottomView */ = {
+			isa = PBXGroup;
+			children = (
+				D97E1CD01CBCEFCB00BBF87B /* JZMyWalletHeaderView.h */,
+				D97E1CD11CBCEFCB00BBF87B /* JZMyWalletHeaderView.m */,
+				D97E1CD31CBCF53900BBF87B /* JZMyWalletHeaderView.xib */,
+				D9E0FF861CBDDD0100CDC2B8 /* JZMyWalletBottomView.h */,
+				D9E0FF871CBDDD0100CDC2B8 /* JZMyWalletBottomView.m */,
+				D9E0FF841CBDDA4200CDC2B8 /* JZMyWalletBottomView.xib */,
+			);
+			name = HeaderAndBottomView;
+			sourceTree = "<group>";
+		};
 		D97676281C97E0A10033221E /* YBAppointmentListDataModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -7738,15 +7768,14 @@
 				B251E4571C8E849500E6613A /* VoiceSearchFeedback008.png in Resources */,
 				B251E4991C8E849500E6613A /* chatBar_more.png in Resources */,
 				B251E46A1C8E849500E6613A /* VoiceSearchFeedback017@2x.png in Resources */,
-				B251E5F71C8E849500E6613A /* YBStudyViewCell.xib in Resources */,
 				B251E4AB1C8E849500E6613A /* chatBar_colorMore_photo@2x.png in Resources */,
 				B2EEBD8E1CA141BE00846656 /* citydict.plist in Resources */,
 				B251E34E1C8E849500E6613A /* DetailPriceCell.xib in Resources */,
 				B251E48A1C8E849500E6613A /* chat_location_detail_disclosureHL@2x.png in Resources */,
 				B251E47E1C8E849500E6613A /* chatBar_more_cardSelected@2x.png in Resources */,
-				B22BAD6A1CBF923B00455E1C /* ggtkFile1.zip in Resources */,
 				B251E4C81C8E849500E6613A /* chat_receiver_bg.png in Resources */,
 				B251E46D1C8E849500E6613A /* VoiceSearchFeedback019.png in Resources */,
+				D949A5351CC0D5F100BBE088 /* ggtkFile.zip in Resources */,
 				B251E4DC1C8E849500E6613A /* delete@2x.png in Resources */,
 				B251E5F11C8E849500E6613A /* YBCheatsCell.xib in Resources */,
 				B251E6361C8E849500E6613A /* sr_refresh.png in Resources */,
@@ -7899,6 +7928,7 @@
 				B251E42E1C8E849500E6613A /* EMChatTextBubbleView.m in Sources */,
 				B251E43A1C8E849500E6613A /* EMTextView.m in Sources */,
 				B251E5361C8E849500E6613A /* YBEditUserInfoController.m in Sources */,
+				D971BD511CBFBE6100C5E626 /* JZDuiHuanListController.m in Sources */,
 				B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */,
 				B251E3991C8E849500E6613A /* BLImageViewController.m in Sources */,
 				B2EEBC991CA1395400846656 /* DVVConfirmOrderController.m in Sources */,
@@ -7972,6 +8002,7 @@
 				B251E3881C8E849500E6613A /* StudentCommentCell.m in Sources */,
 				B251E3C41C8E849500E6613A /* SignInListController.m in Sources */,
 				D97303751CBB52B800F51435 /* JZComplaintRightView.m in Sources */,
+				D949A5331CC0BA6B00BBE088 /* JZNoDataShowView.m in Sources */,
 				B2EEBC881CA138A100846656 /* ChineseInclude.m in Sources */,
 				B2EEBD8C1CA141BE00846656 /* ButtonGroupView.m in Sources */,
 				B251E3DF1C8E849500E6613A /* WMNavigationInteractiveTransition.m in Sources */,
@@ -8298,6 +8329,7 @@
 				B251E5F61C8E849500E6613A /* YBStudyViewCell.m in Sources */,
 				B251E43E1C8E849500E6613A /* EMNavigationController.m in Sources */,
 				B251E5641C8E849500E6613A /* DVVCoachCommentDMHeadportrait.m in Sources */,
+				D949A5381CC0DBF900BBE088 /* JZNoDataView.m in Sources */,
 				B251E5EB1C8E849500E6613A /* YBStudyWebViewController.m in Sources */,
 				062F5B351C9C32AC0057FE5E /* JZShuttleBusMainCell.m in Sources */,
 				B251E6761C8E849600E6613A /* UIDevice+JEsystemVersion.m in Sources */,

@@ -22,7 +22,7 @@
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6sb-XZ-6a5">
-                            <rect key="frame" x="266" y="12" width="88" height="15"/>
+                            <rect key="frame" x="266" y="8" width="88" height="15"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="88" id="EQC-OQ-6dL"/>
                                 <constraint firstAttribute="height" constant="15" id="lhq-FW-KTF"/>
@@ -57,7 +57,7 @@
                     <constraints>
                         <constraint firstItem="Ad4-vm-ROr" firstAttribute="centerX" secondItem="UXd-pT-sSp" secondAttribute="centerX" id="1UM-Cr-25q"/>
                         <constraint firstItem="o13-Ew-mhd" firstAttribute="top" secondItem="bhO-hx-mI5" secondAttribute="bottom" constant="8" id="2Sp-9K-bYQ"/>
-                        <constraint firstItem="6sb-XZ-6a5" firstAttribute="top" secondItem="UXd-pT-sSp" secondAttribute="top" constant="12" id="2u7-Yv-9IF"/>
+                        <constraint firstItem="6sb-XZ-6a5" firstAttribute="top" secondItem="UXd-pT-sSp" secondAttribute="top" constant="8" id="2u7-Yv-9IF"/>
                         <constraint firstItem="o13-Ew-mhd" firstAttribute="centerX" secondItem="UXd-pT-sSp" secondAttribute="centerX" id="EDM-56-QYd"/>
                         <constraint firstItem="Ad4-vm-ROr" firstAttribute="top" secondItem="o13-Ew-mhd" secondAttribute="bottom" constant="14" id="GXS-HP-6bf"/>
                         <constraint firstItem="bhO-hx-mI5" firstAttribute="top" secondItem="UXd-pT-sSp" secondAttribute="top" constant="46" id="Rnt-3M-MBV"/>

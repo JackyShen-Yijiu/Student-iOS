@@ -22,11 +22,9 @@
         
         _subjectLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
         _subjectTopLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        
-        [self setLabelTextColor:_buySubjectLabel];
-        [self setLabelTextColor:_yiXueLabel];
-        [self setLabelTextColor:_guidingLabel];
-        [self setLabelTextColor:_wanChengLabel];
+
+//        [self setLabelTextColor:_yiXueLabel];
+//        [self setLabelTextColor:_guidingLabel];
         
         self.yuekaoBtn.hidden = NO;
         self.yuekaoBtn.userInteractionEnabled = YES;
@@ -37,10 +35,10 @@
             
             self.subjectLabel.font = [UIFont systemFontOfSize:14*YBRatio];
             self.subjectTopLabel.font = [UIFont systemFontOfSize:14*YBRatio];
-            self.buySubjectLabel.font = [UIFont systemFontOfSize:12*YBRatio];
+            
             self.guidingLabel.font = [UIFont systemFontOfSize:12*YBRatio];
             self.yiXueLabel.font = [UIFont systemFontOfSize:12*YBRatio];
-            self.wanChengLabel.font = [UIFont systemFontOfSize:12*YBRatio];
+
             
         }
         
@@ -69,14 +67,11 @@
 
         // 学习内容
         self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",[AcountManager manager].subjecttwo.progress];
-        // 规定
-        self.buySubjectLabel.text = [NSString stringWithFormat:@"规定:%@学时",[AcountManager manager].subjecttwo.officialhours];
-        // 购买
-        self.guidingLabel.text = [NSString stringWithFormat:@"购买:%@课时",[AcountManager manager].subjecttwo.totalcourse];
-        // 完成
-        self.yiXueLabel.text = [NSString stringWithFormat:@"完成:%ld学时",(long)[AcountManager manager].subjecttwo.officialfinishhours];
+        // 规定的
+        self.guidingLabel.text = [NSString stringWithFormat:@"规定:%@课时",[AcountManager manager].subjecttwo.totalcourse];
         // 已学
-        self.wanChengLabel.text = [NSString stringWithFormat:@"已学:%@课时",[AcountManager manager].subjecttwo.finishcourse];
+        self.yiXueLabel.text = [NSString stringWithFormat:@"已学:%@课时",[AcountManager manager].subjecttwo.finishcourse];
+ 
         // 还需
         self.shengxueshiLabel.text = [NSString stringWithFormat:@"还需%ld学时",(long)shengyuxueshi];
         
@@ -104,13 +99,9 @@
         // 学习内容
         self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",[AcountManager manager].subjectthree.progress];
         // 规定
-        self.buySubjectLabel.text = [NSString stringWithFormat:@"规定:%@学时",[AcountManager manager].subjectthree.officialhours];
-        // 购买
-        self.guidingLabel.text = [NSString stringWithFormat:@"购买:%@课时",[AcountManager manager].subjectthree.totalcourse];
-        // 完成
-        self.yiXueLabel.text = [NSString stringWithFormat:@"完成:%ld学时",(long)[AcountManager manager].subjectthree.officialfinishhours];
+        self.guidingLabel.text = [NSString stringWithFormat:@"规定:%@课时",[AcountManager manager].subjectthree.totalcourse];
         // 已学
-        self.wanChengLabel.text = [NSString stringWithFormat:@"已学:%@课时",[AcountManager manager].subjectthree.finishcourse];
+        self.yiXueLabel.text = [NSString stringWithFormat:@"已学:%@课时",[AcountManager manager].subjectthree.finishcourse];
         // 还需
         self.shengxueshiLabel.text = [NSString stringWithFormat:@"还需%ld学时",(long)shengyuxueshi];
         

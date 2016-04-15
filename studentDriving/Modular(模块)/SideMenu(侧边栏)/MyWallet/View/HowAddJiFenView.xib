@@ -105,9 +105,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5.科目二/科目三每完成1课时" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USQ-n1-HKY">
-                    <rect key="frame" x="16" y="194" width="178" height="14"/>
+                    <rect key="frame" x="16" y="194" width="180" height="14"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="178" id="8l9-wz-nDl"/>
+                        <constraint firstAttribute="width" constant="180" id="8l9-wz-nDl"/>
                         <constraint firstAttribute="height" constant="14" id="ebD-jN-Uex"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -197,7 +197,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+20" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cIv-Ge-mWF">
-                    <rect key="frame" x="208" y="194" width="26" height="14"/>
+                    <rect key="frame" x="210" y="194" width="26" height="14"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="14" id="3J9-LW-v2t"/>
                     </constraints>

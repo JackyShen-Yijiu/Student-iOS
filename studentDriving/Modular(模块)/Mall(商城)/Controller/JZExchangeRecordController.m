@@ -11,7 +11,7 @@
 
 #import <MJRefresh/MJRefresh.h>
 #import "JZRecordDetailController.h"
-#import "JZNoDataShowBGView.h"
+#import "JZNoDataShowView.h"
 
 
 @interface JZExchangeRecordController ()<UITableViewDelegate,UITableViewDataSource>
@@ -21,7 +21,7 @@
 
 @property (nonatomic,strong) MJRefreshHeader *header;
 
-@property (nonatomic, strong) JZNoDataShowBGView *noDataShowBGView;
+@property (nonatomic, strong) JZNoDataShowView *noDataShowView;
 
 @end
 
@@ -92,6 +92,8 @@
             [ws obj_showTotasViewWithMes:@"已经全部加载完毕"];
             ws.tableView.mj_footer.state = MJRefreshStateNoMoreData;
         }else {
+            self.noDataShowView.imgStr = @"YBNocountentimage_wallet_integral";
+            self.noDataShowView.titleStr = @"暂无兑换记录";
                     [ws.tableView addSubview:self.noDataShowBGView];
         }
     }];
@@ -101,6 +103,9 @@
         
     }];
     [_viewModel dvv_setNetworkErrorBlock:^{
+        ws.noDataShowView.imgStr = @"YBNocountentimage_wallet_integral";
+        ws.noDataShowView.titleStr = @"暂无兑换记录";
+
             [ws.tableView addSubview:ws.noDataShowBGView];
         [ws obj_showTotasViewWithMes:@"网络错误"];
     }];
@@ -143,11 +148,11 @@
     }
     return _tableView;
 }
-- (JZNoDataShowBGView *)noDataShowBGView{
-    if (_noDataShowBGView == nil) {
-        _noDataShowBGView = [[JZNoDataShowBGView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, self.view.height)];
+- (JZNoDataShowView *)noDataShowBGView{
+    if (_noDataShowView == nil) {
+        _noDataShowView = [[JZNoDataShowView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, self.view.height)];
         
     }
-    return _noDataShowBGView;
+    return _noDataShowView;
 }
 @end

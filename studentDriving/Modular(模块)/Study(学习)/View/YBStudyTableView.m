@@ -47,6 +47,7 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
 {
     self = [super init];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.dataTabelView];
     }
     return self;
@@ -89,8 +90,9 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
         _dataTabelView.dataSource = self;
         _dataTabelView.delegate = self;
         // 如果是固定高度的话在这里设置比较好
-        _dataTabelView.rowHeight = 75;
-        _dataTabelView.tableFooterView = [UIView new];
+        _dataTabelView.rowHeight = 68;
+//        _dataTabelView.tableFooterView = [UIView new];
+        _dataTabelView.backgroundColor =[UIColor clearColor];
     }
     return _dataTabelView;
 }
@@ -160,6 +162,15 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 
             }else if (indexPath.row==3){
                 // 判断申请状态
+                if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+                    [self obj_showTotasViewWithMes:@"您还未报名"];
+                    return;
+                }
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                    [self obj_showTotasViewWithMes:@"报名正在申请中"];
+                    return;
+                }
+                
                 
                 [self applyinitWith:@"1"];
                 
@@ -198,6 +209,17 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
             }else if (indexPath.row==2){
                 
                 // 我要约考
+                
+                // 判断申请状态
+                if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+                    [self obj_showTotasViewWithMes:@"您还未报名"];
+                    return;
+                }
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                    [self obj_showTotasViewWithMes:@"报名正在申请中"];
+                    return;
+                }
+
                 [self applyinitWith:@"2"];
                 
             }else if (indexPath.row==3){
@@ -225,6 +247,18 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 
             }else if (indexPath.row==2){
                 // 我要约考
+                
+                
+                // 判断申请状态
+                if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+                    [self obj_showTotasViewWithMes:@"您还未报名"];
+                    return;
+                }
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                    [self obj_showTotasViewWithMes:@"报名正在申请中"];
+                    return;
+                }
+
                  [self applyinitWith:@"3"];
                 
             }else if (indexPath.row==3){
@@ -276,6 +310,17 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 
             }else if (indexPath.row==3){
                 // 我要约考
+                
+                // 判断申请状态
+                if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+                    [self obj_showTotasViewWithMes:@"您还未报名"];
+                    return;
+                }
+                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                    [self obj_showTotasViewWithMes:@"报名正在申请中"];
+                    return;
+                }
+
                  [self applyinitWith:@"4"];
                 
             }else if (indexPath.row==4){
