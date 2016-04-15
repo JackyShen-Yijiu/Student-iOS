@@ -36,6 +36,8 @@
 
 @property (nonatomic,strong) NSMutableArray *picArray;
 
+@property(nonatomic,strong)NSMutableArray *picArrSchool;
+
 @end
 
 @implementation JZComplaintController
@@ -46,6 +48,17 @@
         _picArray = [NSMutableArray array];
     }
     return _picArray;
+}
+
+-(NSMutableArray *)picArrSchool {
+    
+    if (_picArrSchool ==nil) {
+        
+        _picArrSchool = [NSMutableArray array];
+        
+        
+    }
+    return _picArrSchool;
 }
 
 - (void)viewDidLoad {
@@ -209,10 +222,18 @@
             
             if (resp) {
                 
-                [self.picArray addObject:[NSString stringWithFormat:@"%@",resp[@"pic"]]];
+//                NSLog(@"%@",key);
+                
+                
+                NSString *upImageUrl = [NSString stringWithFormat:kQiniuImageUrl,key];
+                
+                
+//
                 
                 if(self.contentScrollView.contentOffset.x == kLKSize.width)
                 {
+                    
+                    [self.picArray addObject:upImageUrl];
                     
                     if (!self.rightView.firstImageView.image)
                     {
@@ -240,6 +261,8 @@
                         
                     }
                 }else {
+                    
+                    [self.picArrSchool addObject:upImageUrl];
                     
                     if (!self.leftView.firstImageView.image) {
                         

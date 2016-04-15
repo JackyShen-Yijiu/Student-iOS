@@ -131,7 +131,6 @@
 		B22BAD591CBF38BF00455E1C /* YBSubjectQuestionRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */; };
 		B22BAD6D1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */; };
 		B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */; };
-		B22BADB71CC0F85400455E1C /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BADB61CC0F85400455E1C /* ggtkFile.zip */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -7775,7 +7774,6 @@
 				B251E47E1C8E849500E6613A /* chatBar_more_cardSelected@2x.png in Resources */,
 				B251E4C81C8E849500E6613A /* chat_receiver_bg.png in Resources */,
 				B251E46D1C8E849500E6613A /* VoiceSearchFeedback019.png in Resources */,
-				B22BADB71CC0F85400455E1C /* ggtkFile.zip in Resources */,
 				B251E4DC1C8E849500E6613A /* delete@2x.png in Resources */,
 				B251E5F11C8E849500E6613A /* YBCheatsCell.xib in Resources */,
 				B251E6361C8E849500E6613A /* sr_refresh.png in Resources */,
