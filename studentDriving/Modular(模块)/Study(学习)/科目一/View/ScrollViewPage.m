@@ -219,7 +219,6 @@
         }
         
     }
-    
     CGFloat sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
 
     if (data.img_url || data.video_url) {
