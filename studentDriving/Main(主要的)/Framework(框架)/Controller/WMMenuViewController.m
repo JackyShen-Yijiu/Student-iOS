@@ -38,6 +38,8 @@
     [super viewWillAppear:animated];
     
     self.YLabel.text = @"我的Y码：暂无";
+    
+
     [self.tableView reloadData];
     
     [self setUpUserData];
@@ -66,10 +68,16 @@
     
     [self.headerImageView sd_setImageWithURL:(NSURL *)[AcountManager manager].userHeadImageUrl placeholderImage:[[UIImage imageNamed:@"coach_man_default_icon"] getRoundImage] completed:nil];
     // 用户名
-    if ([AcountManager manager].userMobile) {
-        
-        self.userMobileLabel.text = [AcountManager manager].userMobile;
-    }
+        if ([AcountManager manager].userName) {
+          self.userMobileLabel.text = [AcountManager manager].userName;
+            
+        }else if ([AcountManager manager].userNickName) {
+            
+            self.userMobileLabel.text = [AcountManager manager].userNickName;
+        }else{
+            self.userMobileLabel.text = [AcountManager manager].userMobile;
+        }
+
     
     
     NSString *urlString = [NSString stringWithFormat:@"/userinfo/getmymoney?userid=%@&usertype=1", [AcountManager manager].userid];
@@ -85,6 +93,7 @@
                 if (fcode && fcode.length) {
                     self.YLabel.text = [NSString stringWithFormat:@"我的Y码：%@", fcode];
                     _ycode = [NSString stringWithFormat:@"我的Y码：%@", fcode];
+                    
                 }
                 
                 [self.tableView reloadData];
