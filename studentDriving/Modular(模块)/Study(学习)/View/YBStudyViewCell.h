@@ -10,11 +10,7 @@
 
 @interface YBStudyViewCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *iconImgView;
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
 @property (nonatomic,strong) NSDictionary *dictModel;
 

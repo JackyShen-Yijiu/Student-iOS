@@ -47,6 +47,7 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
 {
     self = [super init];
     if (self) {
+        self.backgroundColor = [UIColor clearColor];
         [self addSubview:self.dataTabelView];
     }
     return self;
@@ -89,8 +90,9 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
         _dataTabelView.dataSource = self;
         _dataTabelView.delegate = self;
         // 如果是固定高度的话在这里设置比较好
-        _dataTabelView.rowHeight = 75;
-        _dataTabelView.tableFooterView = [UIView new];
+        _dataTabelView.rowHeight = 68;
+//        _dataTabelView.tableFooterView = [UIView new];
+        _dataTabelView.backgroundColor =[UIColor clearColor];
     }
     return _dataTabelView;
 }

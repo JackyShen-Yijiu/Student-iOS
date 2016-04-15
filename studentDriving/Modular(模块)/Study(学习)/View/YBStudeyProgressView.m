@@ -11,7 +11,7 @@
 
 @interface YBStudeyProgressView ()
 
-@property (nonatomic,weak) UILabel *progressLabel;
+//@property (nonatomic,weak) UILabel *progressLabel;
 
 
 @end
@@ -27,14 +27,14 @@
         
         self.backgroundColor = RGBColor(232, 232, 232);
         
-        // 学习进度
-        UILabel *progressLabel = [[UILabel alloc] init];
-        progressLabel.text = @"学习进度";
-        progressLabel.textColor = [UIColor grayColor];
-        progressLabel.font = [UIFont systemFontOfSize:12];
-        progressLabel.textAlignment = NSTextAlignmentLeft;
-        [self addSubview:progressLabel];
-        self.progressLabel = progressLabel;
+//        // 学习进度
+//        UILabel *progressLabel = [[UILabel alloc] init];
+//        progressLabel.text = @"学习进度";
+//        progressLabel.textColor = [UIColor grayColor];
+//        progressLabel.font = [UIFont systemFontOfSize:12];
+//        progressLabel.textAlignment = NSTextAlignmentLeft;
+//        [self addSubview:progressLabel];
+//        self.progressLabel = progressLabel;
         
         // 顶部模拟考试 官方学时 规定学时
         UILabel *topLabel = [[UILabel alloc] init];
@@ -46,8 +46,10 @@
         
         // 进度条
         KOAProgressBar *progressSliderView = [[KOAProgressBar alloc] init];
-        progressSliderView.backgroundColor = RGBColor(189, 189, 189);
+        progressSliderView.backgroundColor = [UIColor clearColor];
         progressSliderView.userInteractionEnabled = NO;
+        progressSliderView.layer.masksToBounds = YES;
+        progressSliderView.layer.cornerRadius = 4;
         [progressSliderView setMinValue:0.0];
         [progressSliderView setMaxValue:1.0];
         [progressSliderView setDisplayedWhenStopped:YES];
@@ -56,22 +58,23 @@
         [self addSubview:progressSliderView];
         self.progressSliderView = progressSliderView;
 
-        [self.progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(10);
-            make.top.mas_equalTo(20);
-            make.width.mas_equalTo(50);
-        }];
+//        [self.progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.left.mas_equalTo(10);
+//            make.top.mas_equalTo(20);
+//            make.width.mas_equalTo(50);
+//        }];
         
         [self.topLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.progressLabel.mas_right).offset(10);
-            make.top.mas_equalTo(10);
+            make.left.mas_equalTo(self.mas_left).offset(16);
+            make.centerY.mas_equalTo(self.mas_centerY);
+            make.height.mas_equalTo(@14);
         }];
         
         [self.progressSliderView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.mas_equalTo(self.topLabel);
-            make.top.mas_equalTo(self.topLabel.mas_bottom).offset(5);
-            make.height.mas_equalTo(10);
-            make.width.mas_equalTo(kSystemWide-50-30);
+            make.left.mas_equalTo(self.topLabel.mas_right).offset(14);
+            make.centerY.mas_equalTo(self.mas_centerY);
+            make.height.mas_equalTo(6);
+            make.right.mas_equalTo(self.mas_right).offset(-14);
         }];
     }
     return self;
