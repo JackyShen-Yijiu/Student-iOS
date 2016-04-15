@@ -83,6 +83,8 @@
     NSString *timestr = [NSString stringWithFormat:@"%ld",(long)time];
     timestr = [YBSubjectTool duration:timestr];
     
+    NSLog(@"_scrollView.socre:%lu",(unsigned long)_scrollView.socre);
+    
     if (time==0) {
         
         [timer invalidate];
@@ -144,7 +146,7 @@
     params[@"userid"] = [AcountManager manager].userid;
     params[@"begintime"] = [self chagetime:self.beginTime];
     params[@"endtime"] = [self chagetime:self.endTime];
-    params[@"socre"] = @"90";
+    params[@"socre"] = [NSString stringWithFormat:@"%lu",(unsigned long)_scrollView.socre];
     params[@"subjectid"] = [NSString stringWithFormat:@"%ld",(long)_kemu];
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:params WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
@@ -158,6 +160,8 @@
         
         if (type.integerValue == 1) {
         
+            [self obj_showTotasViewWithMes:@"提交成功"];
+            
             [self.navigationController popViewControllerAnimated:YES];
 
         }else {

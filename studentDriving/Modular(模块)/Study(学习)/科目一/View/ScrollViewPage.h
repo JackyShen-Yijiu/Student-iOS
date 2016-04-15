@@ -12,6 +12,9 @@
 
 @interface ScrollViewPage : UIView<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
+// 考试分数
+@property (nonatomic,assign) NSUInteger socre;
+
 -(instancetype)initWithFrame:(CGRect)frame withArray:(NSArray *) array rightBarView:(YBSubjectQuestionRightBarView *)rightBarView subjectType:(subjectType)kemu chapter:(NSString *)chapter;
 
 @property (nonatomic,strong) UIViewController *parentViewController;

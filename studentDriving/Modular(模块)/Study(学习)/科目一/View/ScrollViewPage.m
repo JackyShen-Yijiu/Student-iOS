@@ -1315,6 +1315,8 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
     }
 
+    self.socre = trueCount;
+    
     NSLog(@"changeRightBarState currentPage:%ld trueCount:%ld wrongCount:%ld proportion:%@ trueCountStr:%@ wrongCountStr:%@ correctrate:%@",(long)currentPage,(long)trueCount,(long)wrongCount,proportion,trueCountStr,wrongCountStr,correctrate);
 
     for (UIButton *btn in self.rightBarView.subviews) {
