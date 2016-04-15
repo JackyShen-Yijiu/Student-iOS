@@ -92,6 +92,7 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
     _dataListArray = [NSMutableArray array];
     
     self.noCountentView = [[DVVNoDataPromptView alloc] initWithTitle:@"没有找到您的订单信息，请确认您是否报名" image:[UIImage imageNamed:@"app_error_robot"] subTitle:nil];
+    self.noCountentView.hidden = YES;
     [self.view addSubview:self.noCountentView];
     
     if (self.isPaySuccess) {
