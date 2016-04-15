@@ -18,6 +18,7 @@
 
 @property (nonatomic, weak) JZMyWalletDuiHuanJuanHeaderView *duiHuanJuanHeaerView;
 @property (nonatomic, weak) JZMyWalletDuiHuanJuanCell *duiHuanJuanCell;
+
 @property (nonatomic, strong) NSMutableArray *duiHuanJuanDataArrM;
 
 @property (nonatomic, strong) NSMutableArray *duihuanJuanListArrM;
