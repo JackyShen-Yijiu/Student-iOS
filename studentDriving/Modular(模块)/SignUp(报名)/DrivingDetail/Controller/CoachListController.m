@@ -98,6 +98,9 @@
         CoachListDMData *dmData = _viewModel.dataArray[indexPath.row];
         _complaintCoachNameLabel.text = dmData.name;
         _complaintCoachNameLabelBottom.text = [NSString stringWithFormat:@"投诉 %@教练",dmData.name];
+        if ([self.delagate respondsToSelector:@selector(initWithCoacheModel:)]) {
+            [self.delagate initWithCoacheModel:dmData];
+        }
         [self.navigationController popViewControllerAnimated:YES];
     }
 }

@@ -16,9 +16,12 @@
 #import "DVVImagePickerControllerManager.h"
 #import "QNUploadManager.h"
 
+#import "CoachListDMData.h"
+
+
 #define kLKSize [UIScreen mainScreen].bounds.size
 //static NSString * const contentCellID = @"contentCellID";
-@interface JZComplaintController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,complaintPushCoachDetail>
+@interface JZComplaintController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,complaintPushCoachDetail,BackCoachCompalaintModelDelegate>
 
 ///  顶部
 @property (nonatomic, weak)  JZComplaintHeaderView *headerView;
@@ -37,6 +40,8 @@
 @property (nonatomic,strong) NSMutableArray *picArray;
 
 @property(nonatomic,strong)NSMutableArray *picArrSchool;
+
+@property (nonatomic, strong) CoachListDMData *complaintCoachModel;
 
 @end
 
@@ -408,6 +413,12 @@
     }];
 }
 - (void)rightViewNetworkRequest {
+    
+    NSLog(@"self.complaintCoachModel.name = %@",self.complaintCoachModel.name);
+    
+    
+    
+    
     if (self.rightView.phoneNumTf.text == nil || self.rightView.phoneNumTf.text.length  == 0) {
         [self obj_showTotasViewWithMes:@"请输入手机号"];
         
@@ -502,6 +513,11 @@
     }];
 }
 
+- (void)initWithCoacheModel:(CoachListDMData *)model{
+    _complaintCoachModel = model;
+    self.leftView.coachNameLabel.text = model.name;
+    
+}
 
 
 - (void)initWithComplaintPushCoachDetail{
@@ -511,6 +527,7 @@
     listVC.type = 1;
     listVC.complaintCoachNameLabel.text = self.leftView.coachNameLabel.text;
     listVC.complaintCoachNameLabelBottom.text = self.leftView.bottomCoachName.titleLabel.text;
+    listVC.delagate = self;
     [self.navigationController pushViewController:listVC animated:YES];
 }
 @end
