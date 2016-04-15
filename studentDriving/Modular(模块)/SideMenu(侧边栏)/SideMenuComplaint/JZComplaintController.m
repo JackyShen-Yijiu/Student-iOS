@@ -16,6 +16,7 @@
 #import "DVVImagePickerControllerManager.h"
 #import "QNUploadManager.h"
 #import "CoachListDMData.h"
+#import "JZMyComplaintListController.h"
 
 
 #define kLKSize [UIScreen mainScreen].bounds.size
@@ -142,8 +143,13 @@
 }
 #pragma mark - Bar右侧--我的投诉
 - (void)rightBarDidClick{
-    YBMyComplaintListController *vc = [[YBMyComplaintListController alloc] init];
-    [self.navigationController pushViewController:vc animated:YES];
+//    YBMyComplaintListController *vc = [[YBMyComplaintListController alloc] init];
+//    [self.navigationController pushViewController:vc animated:YES];
+    JZMyComplaintListController *listVC = [[JZMyComplaintListController alloc]init];
+    
+    
+    
+    [self.navigationController pushViewController:listVC animated:YES];
 }
 
 #pragma mark - scrollView的代理方法
