@@ -13,6 +13,9 @@
 #import "JZComplaintRightView.h"
 #import "NSString+Helper.h"
 #import "CoachListController.h"
+#import "DVVImagePickerControllerManager.h"
+#import "QNUploadManager.h"
+
 #define kLKSize [UIScreen mainScreen].bounds.size
 //static NSString * const contentCellID = @"contentCellID";
 @interface JZComplaintController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,complaintPushCoachDetail>
@@ -30,9 +33,21 @@
 @property (nonatomic, weak) JZComplaintRightView *rightView;
 
 @property (nonatomic, weak) UIImagePickerController *picker;
+
+@property (nonatomic,strong) NSMutableArray *picArray;
+
 @end
 
 @implementation JZComplaintController
+
+- (NSMutableArray *)picArray
+{
+    if (_picArray==nil) {
+        _picArray = [NSMutableArray array];
+    }
+    return _picArray;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -164,130 +179,99 @@
 #pragma mark - 添加照片
 -(void)addImageClick:(UIButton *)sender {
     
-    
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        NSLog(@"支持相机");
-    }
-    if([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypePhotoLibrary])
-    {
-        NSLog(@"支持图库");
-    }
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum])
-    {
-        NSLog(@"支持相片库");
-    }
-    
-    
-    UIImagePickerController *picker = [[UIImagePickerController alloc]init];
-    picker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
-    
-    self.picker = picker;
-    picker.delegate = self;
-    
-    //    picker.allowsEditing = YES;
-    
-    [self presentViewController:picker animated:YES completion:nil];
-    
+    [DVVImagePickerControllerManager showImagePickerControllerFrom:self delegate:self];
+ 
 }
 
-#pragma mark - 相册的代理方法
--(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
 
-    NSString *type = [info objectForKey:UIImagePickerControllerMediaType];
+- (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     
-    //当选择的类型是图片
-    if ([type isEqualToString:@"public.image"])
-    {
-        //先把图片转成NSData
-        UIImage* image = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-        NSData *data;
-        if (UIImagePNGRepresentation(image) == nil)
-        {
-            data = UIImageJPEGRepresentation(image, 0.3);
-        }
-        else
-        {
-            data = UIImagePNGRepresentation(image);
-        }
+    [picker dismissViewControllerAnimated:YES completion:nil];
+   
+    UIImage *photoImage = [info valueForKey:UIImagePickerControllerEditedImage];
+    
+    NSData *photeoData = UIImageJPEGRepresentation(photoImage, 0.5);
+    
+    __block NSData *gcdPhotoData = photeoData;
+    
+    NSString *qiniuUrl = [NSString stringWithFormat:BASEURL,kQiniuUpdateUrluserFeedback];
+    
+    [JENetwoking startDownLoadWithUrl:qiniuUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
-        //图片保存的路径
-        //这里将图片放在沙盒的documents文件夹中
-        NSString * DocumentsPath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
+        NSDictionary *dataDic = data;
+        NSString *qiniuToken = dataDic[@"data"];
+        QNUploadManager *upLoadManager = [[QNUploadManager alloc] init];
+        NSString *keyUrl = [NSString stringWithFormat:@"%@-%@.png",[NSString currentTimeDay],[AcountManager manager].userid];
         
-        //文件管理器
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        
-        //把刚刚图片转换的data对象拷贝至沙盒中 并保存为image.png
-        [fileManager createDirectoryAtPath:DocumentsPath withIntermediateDirectories:YES attributes:nil error:nil];
-        
-        [fileManager createFileAtPath:[DocumentsPath stringByAppendingString:[NSString stringWithFormat:@"%zd.png",arc4random_uniform(2)]] contents:data attributes:nil];
-        
-        if(self.contentScrollView.contentOffset.x == kLKSize.width)
-        {
+        [upLoadManager putData:gcdPhotoData key:keyUrl token:qiniuToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
             
-            if (!self.rightView.firstImageView.image)
-            {
-
-            self.rightView.firstImageView.hidden = NO;
+            NSLog(@"upLoadManager resp:%@",resp);
             
-            self.rightView.firstImageView.image = image;
-            
-            self.rightView.firstImageView.frame = CGRectMake(self.rightView.complaintInfoText.origin.x, self.rightView.addImgBtn.frame.origin.y, self.rightView.addImgBtn.bounds.size.width, self.rightView.addImgBtn.bounds.size.height);
-            
-            self.rightView.addImgBtn.transform = CGAffineTransformMakeTranslation(90,0);
-            
-            
-        }else {
-            
-            self.rightView.firstImageView.hidden = NO;
-            self.rightView.secondImageView.hidden = NO;
-            
-            self.rightView.secondImageView.image = image;
-            
-            self.rightView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
-            
-            self.rightView.addImgBtn.hidden = YES;
-            
-            
-        }
-        }else {
-        
-        if (!self.leftView.firstImageView.image) {
-            
-            self.rightView.firstImageView.hidden = YES;
-            self.rightView.secondImageView.hidden = YES;
-            
-            self.leftView.firstImageView.hidden = NO;
-            
-            self.leftView.firstImageView.image = image;
-            
-            self.leftView.firstImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
-            
-            self.leftView.addImageBtn.transform = CGAffineTransformMakeTranslation(90,0);
-            
-        }else {
-            
-            self.leftView.firstImageView.hidden = NO;
-            self.leftView.secondImageView.hidden = NO;
-            
-            self.leftView.secondImageView.image = image;
-            
-            self.leftView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
-            
-            self.leftView.addImageBtn.hidden = YES;
-            
-        }
-        
-        
-             
-        }
-        
-        
-        
-        [self dismissViewControllerAnimated:YES completion:nil];
-        
-    }
+            if (resp) {
+                
+                [self.picArray addObject:[NSString stringWithFormat:@"%@",resp[@"pic"]]];
+                
+                if(self.contentScrollView.contentOffset.x == kLKSize.width)
+                {
+                    
+                    if (!self.rightView.firstImageView.image)
+                    {
+                        
+                        self.rightView.firstImageView.hidden = NO;
+                        
+                        self.rightView.firstImageView.image = photoImage;
+                        
+                        self.rightView.firstImageView.frame = CGRectMake(self.rightView.complaintInfoText.origin.x, self.rightView.addImgBtn.frame.origin.y, self.rightView.addImgBtn.bounds.size.width, self.rightView.addImgBtn.bounds.size.height);
+                        
+                        self.rightView.addImgBtn.transform = CGAffineTransformMakeTranslation(90,0);
+                        
+                        
+                    }else {
+                        
+                        self.rightView.firstImageView.hidden = NO;
+                        self.rightView.secondImageView.hidden = NO;
+                        
+                        self.rightView.secondImageView.image = photoImage;
+                        
+                        self.rightView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
+                        
+                        self.rightView.addImgBtn.hidden = YES;
+                        
+                        
+                    }
+                }else {
+                    
+                    if (!self.leftView.firstImageView.image) {
+                        
+                        self.rightView.firstImageView.hidden = YES;
+                        self.rightView.secondImageView.hidden = YES;
+                        
+                        self.leftView.firstImageView.hidden = NO;
+                        
+                        self.leftView.firstImageView.image = photoImage;
+                        
+                        self.leftView.firstImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
+                        
+                        self.leftView.addImageBtn.transform = CGAffineTransformMakeTranslation(90,0);
+                        
+                    }else {
+                        
+                        self.leftView.firstImageView.hidden = NO;
+                        self.leftView.secondImageView.hidden = NO;
+                        
+                        self.leftView.secondImageView.image = photoImage;
+                        
+                        self.leftView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
+                        
+                        self.leftView.addImageBtn.hidden = YES;
+                        
+                    }
+                    
+                }
+                
+            }
+        } option:nil];
+    }];
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
