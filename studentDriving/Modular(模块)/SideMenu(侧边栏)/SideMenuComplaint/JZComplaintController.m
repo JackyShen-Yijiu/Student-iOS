@@ -387,6 +387,10 @@
     }
     // 被投诉姓名
     [parmDict setValue:self.leftView.coachNameLabel.text forKey:@"becomplainedname"];
+    
+    [parmDict setValue:self.picArray forKey:@"piclist"];
+    
+    
     DYNSLog(@"%@", parmDict);
     [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL, @"userfeedback"] postParam:parmDict WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         
@@ -444,6 +448,8 @@
     }
     // 反馈信息 必填
     [parmDict setValue:self.rightView.complaintInfoText.text forKey:@"feedbackmessage"];
+    
+    [parmDict setValue:self.picArrSchool forKey:@"piclist"];
     // 手机型号
     NSString *deviceModel = [NSString getCurrentDeviceModel];
     if (!deviceModel) {
