@@ -1049,6 +1049,8 @@
 		D5604CBD1BF65E1F0020F0D7 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D5604CBC1BF65E1F0020F0D7 /* Social.framework */; };
 		D906FAEA1CB762CB002BC2B8 /* PhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */; };
 		D949A5331CC0BA6B00BBE088 /* JZNoDataShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */; };
+		D949A5351CC0D5F100BBE088 /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = D949A5341CC0D5F100BBE088 /* ggtkFile.zip */; };
+		D949A5381CC0DBF900BBE088 /* JZNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A5371CC0DBF900BBE088 /* JZNoDataView.m */; };
 		D96445121C91812600E7C29F /* YBAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445111C91812600E7C29F /* YBAppointmentListController.m */; };
 		D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445211C918D5200E7C29F /* YBCompletedAppointmentListController.m */; };
 		D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445291C91969100E7C29F /* YBAppointmentDetailController.m */; };
@@ -3121,6 +3123,9 @@
 		D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumViewController.m; sourceTree = "<group>"; };
 		D949A5311CC0BA6B00BBE088 /* JZNoDataShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZNoDataShowView.h; sourceTree = "<group>"; };
 		D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZNoDataShowView.m; sourceTree = "<group>"; };
+		D949A5341CC0D5F100BBE088 /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
+		D949A5361CC0DBF900BBE088 /* JZNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZNoDataView.h; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.h"; sourceTree = "<group>"; };
+		D949A5371CC0DBF900BBE088 /* JZNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZNoDataView.m; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.m"; sourceTree = "<group>"; };
 		D96445101C91812600E7C29F /* YBAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListController.h; sourceTree = "<group>"; };
 		D96445111C91812600E7C29F /* YBAppointmentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListController.m; sourceTree = "<group>"; };
 		D96445201C918D5200E7C29F /* YBCompletedAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentListController.h; sourceTree = "<group>"; };
@@ -5821,6 +5826,7 @@
 		B251E0461C8E849300E6613A /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				D949A5341CC0D5F100BBE088 /* ggtkFile.zip */,
 				B251E0471C8E849300E6613A /* YBCheatsData.json */,
 				B251E0481C8E849300E6613A /* YBStudyData.json */,
 				B251E0491C8E849300E6613A /* YBStudyTool.h */,
@@ -6635,6 +6641,8 @@
 		B251E2111C8E849400E6613A /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				D949A5361CC0DBF900BBE088 /* JZNoDataView.h */,
+				D949A5371CC0DBF900BBE088 /* JZNoDataView.m */,
 				B251E2121C8E849400E6613A /* Model */,
 				B251E2211C8E849400E6613A /* UI */,
 				B251E2491C8E849400E6613A /* 网络 */,
@@ -7767,6 +7775,7 @@
 				B251E47E1C8E849500E6613A /* chatBar_more_cardSelected@2x.png in Resources */,
 				B251E4C81C8E849500E6613A /* chat_receiver_bg.png in Resources */,
 				B251E46D1C8E849500E6613A /* VoiceSearchFeedback019.png in Resources */,
+				D949A5351CC0D5F100BBE088 /* ggtkFile.zip in Resources */,
 				B251E4DC1C8E849500E6613A /* delete@2x.png in Resources */,
 				B251E5F11C8E849500E6613A /* YBCheatsCell.xib in Resources */,
 				B251E6361C8E849500E6613A /* sr_refresh.png in Resources */,
@@ -8320,6 +8329,7 @@
 				B251E5F61C8E849500E6613A /* YBStudyViewCell.m in Sources */,
 				B251E43E1C8E849500E6613A /* EMNavigationController.m in Sources */,
 				B251E5641C8E849500E6613A /* DVVCoachCommentDMHeadportrait.m in Sources */,
+				D949A5381CC0DBF900BBE088 /* JZNoDataView.m in Sources */,
 				B251E5EB1C8E849500E6613A /* YBStudyWebViewController.m in Sources */,
 				062F5B351C9C32AC0057FE5E /* JZShuttleBusMainCell.m in Sources */,
 				B251E6761C8E849600E6613A /* UIDevice+JEsystemVersion.m in Sources */,
