@@ -7904,11 +7904,8 @@
 				B251E42E1C8E849500E6613A /* EMChatTextBubbleView.m in Sources */,
 				B251E43A1C8E849500E6613A /* EMTextView.m in Sources */,
 				B251E5361C8E849500E6613A /* YBEditUserInfoController.m in Sources */,
-<<<<<<< HEAD
 				D971BD511CBFBE6100C5E626 /* JZDuiHuanListController.m in Sources */,
-=======
 				B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */,
->>>>>>> 3f3153bf30832689b76dc74a6d6e5f62c3bae154
 				B251E3991C8E849500E6613A /* BLImageViewController.m in Sources */,
 				B2EEBC991CA1395400846656 /* DVVConfirmOrderController.m in Sources */,
 				B22BAD421CBB474B00455E1C /* YBSubjectQuestionsListController.m in Sources */,
