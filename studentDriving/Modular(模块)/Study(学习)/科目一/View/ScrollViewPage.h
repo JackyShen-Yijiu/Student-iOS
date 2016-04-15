@@ -6,9 +6,6 @@
 //  Copyright (c) 2015年 Allen. All rights reserved.
 //
 
-// 顶部视频播放有问题
-//
-
 #import <UIKit/UIKit.h>
 
 @class YBSubjectQuestionRightBarView;

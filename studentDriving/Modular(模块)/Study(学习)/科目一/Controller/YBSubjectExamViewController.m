@@ -22,6 +22,8 @@
 @property (nonatomic,strong) NSDate *beginTime;
 @property (nonatomic,strong) NSDate *endTime;
 
+@property (nonatomic,strong) ScrollViewPage *scrollView;
+
 @end
 
 @implementation YBSubjectExamViewController
@@ -40,7 +42,6 @@
     titleArray = [NSArray arrayWithObjects:@"比例",@"正确",@"错误",@"正确率",@"倒计时", nil];
     imgArray = [NSArray arrayWithObjects:@"YBStudySubjectsubject",@"YBStudySubjectright",@"YBStudySubjectwrong",@"YBStudySubjectpercentage",@"YBStudySubjecttime", nil];
     
-    
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     
     _rightBarView = [[YBSubjectQuestionRightBarView alloc] initWithFrame:CGRectMake(0, 0, titleArray.count * 45, 40) withTitleArray:titleArray withImgArray:imgArray];
@@ -49,9 +50,9 @@
     // 数组中保存的是YBSubjectData对象
     NSArray *dataArray = [YBSubjectTool getAllExamDataWithType:_kemu];
     
-    ScrollViewPage *scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray rightBarView:_rightBarView subjectType:_kemu chapter:nil];
-    scrollView.parentViewController = self;
-    [self.view addSubview:scrollView];
+    _scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray rightBarView:_rightBarView subjectType:_kemu chapter:@""];
+    _scrollView.parentViewController = self;
+    [self.view addSubview:_scrollView];
     
 }
 
@@ -117,7 +118,7 @@
     NSDateFormatter *df = [[NSDateFormatter alloc] init];
     
     //设置格式
-    df.dateFormat = @"yyyy-MM-dd HH:mm:ss.0";
+    df.dateFormat = @"yyyy-MM-dd HH:mm:ss";
     
     NSString * dataStr = [df stringFromDate:times];
  

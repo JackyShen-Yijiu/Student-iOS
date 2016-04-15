@@ -64,7 +64,7 @@
         _typeImg.image = [UIImage imageNamed:@"YBStudySubjectpattern_multiselect"];
     }
     
-    NSString *title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage,data.question];
+    NSString *title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
     CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
     
     NSLog(@"sizeH:%f",sizeH);
@@ -129,6 +129,7 @@
             [_contentView addSubview:_movie.view];
          
         }
+        
     }
     
 }
@@ -174,9 +175,9 @@
 
 - (void)dealloc{
     
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.movie];
-//    [self.movie stop];
-//    [self.movie.view removeFromSuperview];
+   // [[NSNotificationCenter defaultCenter] removeObserver:self name:MPMoviePlayerPlaybackDidFinishNotification object:self.movie];
+   // [self.movie stop];
+   // [self.movie.view removeFromSuperview];
     
 }
 
