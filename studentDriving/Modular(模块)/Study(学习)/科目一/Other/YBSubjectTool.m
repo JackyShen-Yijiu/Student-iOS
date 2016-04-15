@@ -59,7 +59,7 @@ static FMDatabaseQueue *_queue;
 
         NSLog(@"文件不存在");
         
-        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"ggtkFile1"] ofType:@"zip"];
+        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"ggtkFile"] ofType:@"zip"];
         if( [zip UnzipOpenFile:path] )
         {
             BOOL ret = [zip UnzipFileTo:unzipto overWrite:YES];
