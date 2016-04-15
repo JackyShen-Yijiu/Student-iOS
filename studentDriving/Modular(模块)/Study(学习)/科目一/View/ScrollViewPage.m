@@ -266,41 +266,13 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     
     if (self.selectnumDict && self.selectnumDict.count !=0) {// 点击了多选
         
-        data = _datearry[self.currentPage];
-        title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
+        [self.header playMovie:data];
         
     }else{
         
-        if (_datearry.count==1) {
-            
-            if (tableView==_righttableview){
-
-                [self.header playMovie:data];
-
-            }
-            
-        }else if (_datearry.count==2){
-            
-            if (tableView==_middletableview && scrollViewPage == self.currentPage){
-                
-                [self.header playMovie:data];
-
-            }else if (tableView==_righttableview && scrollViewPage == self.currentPage){
-                
-                [self.header playMovie:data];
-
-            }
-            
-        }else{
-            
-            if (tableView==_middletableview){
-                
-                [self.header playMovie:data];
-                
-            }
-            
+        if (tableView==_middletableview){
+            [self.header playMovie:data];
         }
-        
         
     }
     
