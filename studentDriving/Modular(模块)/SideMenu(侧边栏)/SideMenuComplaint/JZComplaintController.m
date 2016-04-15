@@ -15,7 +15,6 @@
 #import "CoachListController.h"
 #import "DVVImagePickerControllerManager.h"
 #import "QNUploadManager.h"
-
 #import "CoachListDMData.h"
 
 
@@ -36,12 +35,16 @@
 @property (nonatomic, weak) JZComplaintRightView *rightView;
 
 @property (nonatomic, weak) UIImagePickerController *picker;
-
+///  投诉教练照片数组数组
 @property (nonatomic,strong) NSMutableArray *picArray;
 
+///  投诉驾校照片url数组
 @property(nonatomic,strong)NSMutableArray *picArrSchool;
 
 @property (nonatomic, strong) CoachListDMData *complaintCoachModel;
+
+@property (nonatomic ,copy) NSString *coachId;
+
 
 @end
 
@@ -232,8 +235,7 @@
                 
                 NSString *upImageUrl = [NSString stringWithFormat:kQiniuImageUrl,key];
                 
-                
-//
+            
                 
                 if(self.contentScrollView.contentOffset.x == kLKSize.width)
                 {
@@ -377,7 +379,7 @@
     NSString *currentVersion = [infoDict objectForKey:@"CFBundleShortVersionString"];
     [parmDict setValue:[NSString stringWithFormat:@"iOS %@", currentVersion] forKey:@"appversion"];
     // 反馈类型 0 平台反馈 1 投诉教练 2 投诉驾校
-    [parmDict setValue:@"2" forKey:@"feedbacktype"];
+    [parmDict setValue:@"1" forKey:@"feedbacktype"];
     // 投诉类型 0 匿名投诉 1 实名投诉
     
     BOOL isNoName = self.leftView.anonymitySwitch;
@@ -497,6 +499,13 @@
     // 被投诉姓名
     [parmDict setValue:self.rightView.schoolNameLabel.text forKey:@"becomplainedname"];
     DYNSLog(@"%@", parmDict);
+    
+
+    [parmDict setValue:self.coachId forKey:@"coachid"];
+    
+    [parmDict setValue:[AcountManager manager].applyschool.infoId forKey:@"schoolid"];
+    
+    
     [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL, @"userfeedback"] postParam:parmDict WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         
         NSDictionary *dict = data;
@@ -516,6 +525,9 @@
 - (void)initWithCoacheModel:(CoachListDMData *)model{
     _complaintCoachModel = model;
     self.leftView.coachNameLabel.text = model.name;
+    
+    self.coachId = model.coachid;
+    [self.leftView.bottomCoachName setTitle:[NSString stringWithFormat:@"投诉%@教练",model.name] forState:UIControlStateNormal];;
     
 }
 
