@@ -13,6 +13,8 @@
 
 - (void)initWithNoDataOrderLsitDiscountBG;
 
+//- (void)initWithSingleNoDataOrderLsitDiscountBG;
+
 @end
 
 

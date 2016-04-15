@@ -24,6 +24,7 @@
 #import "JZMyWalletDuiHuanJuanUseproductidlist.h"
 #import "DVVNoDataPromptView.h"
 #import "JZExchangeRecordController.h"
+#import "JZDiscountRecodeController.h"
 
 
 #define kLKSize [UIScreen mainScreen].bounds.size
@@ -607,7 +608,8 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
 #pragma mark - 跳转到使用记录的页面
 -(void)useListButtonClick {
     
-    
+    JZDiscountRecodeController *discountRecordVC = [[JZDiscountRecodeController alloc]init];
+    [self.navigationController pushViewController:discountRecordVC animated:YES];
     
     
     
