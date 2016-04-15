@@ -16,6 +16,9 @@ typedef void (^isExitBlock)(BOOL isExit);
 
 @interface YBSubjectTool : NSObject
 
+// 解压文件
++ (void)zipArchiveSubjectDataWithArchive:(zipArchiveBlock)zipArchiveBlock;
+
 + (NSArray *)getAllSubjectDataWithType:(subjectType)type;
 
 // 获取指定科目指定章节的所有数据

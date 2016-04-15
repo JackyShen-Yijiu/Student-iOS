@@ -18,7 +18,7 @@
                         <constraint firstAttribute="height" constant="32" id="ioh-kq-rfn"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科目二" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTQ-UJ-QLr">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wTQ-UJ-QLr">
                     <rect key="frame" x="15" y="69" width="53" height="21"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="53" id="NDc-ei-MrX"/>
@@ -63,8 +63,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T6j-d4-bsL">
                     <rect key="frame" x="84" y="0.0" width="146" height="110"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="科目" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-rZ-D6Y">
-                            <rect key="frame" x="6" y="32" width="28" height="14"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-rZ-D6Y">
+                            <rect key="frame" x="6" y="32" width="0.0" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="8Kf-Mx-x6c"/>
                             </constraints>
@@ -72,7 +72,7 @@
                             <color key="textColor" red="0.43137254901960786" green="0.43137254901960786" blue="0.43137254901960786" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="规定：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amI-fL-2lI">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="amI-fL-2lI">
                             <rect key="frame" x="6" y="62" width="75" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="JRz-hN-V0g"/>
@@ -82,8 +82,8 @@
                             <color key="textColor" red="0.85882352941176465" green="0.26666666666666666" blue="0.21568627450980393" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="已学：" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeQ-Bb-oNA">
-                            <rect key="frame" x="87" y="62" width="36" height="12"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CeQ-Bb-oNA">
+                            <rect key="frame" x="87" y="62" width="0.0" height="12"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="12" id="m9K-tS-xLY"/>
                             </constraints>
