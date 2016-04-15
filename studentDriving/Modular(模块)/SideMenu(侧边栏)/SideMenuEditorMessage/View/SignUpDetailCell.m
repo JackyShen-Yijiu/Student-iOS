@@ -316,7 +316,7 @@
 - (UIImageView *)headImageView {
     if (_headImageView == nil) {
         _headImageView = [[UIImageView alloc] initWithFrame:CGRectMake(15, 15, 40, 40)];
-        _headImageView.backgroundColor = MAINCOLOR;
+        _headImageView.backgroundColor = [UIColor clearColor];
         [_headImageView.layer setMasksToBounds:YES];
         [_headImageView.layer setCornerRadius:20];
     }

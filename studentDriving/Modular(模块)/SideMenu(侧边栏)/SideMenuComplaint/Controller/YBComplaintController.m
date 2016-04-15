@@ -12,8 +12,9 @@
 #import "ComplaintSchoolView.h"
 #import "CoachListController.h"
 #import "YBMyComplaintListController.h"
+#import "CoachListDMData.h"
 
-@interface YBComplaintController ()<UIScrollViewDelegate,complaintPushCoachDetail>
+@interface YBComplaintController ()<UIScrollViewDelegate,complaintPushCoachDetail,BackCoachCompalaintModelDelegate>
 {
     UIImageView*navBarHairlineImageView;
 }
@@ -31,6 +32,8 @@
 @property (nonatomic, strong) YBComplaintCoachView *coachView;
 @property (nonatomic, strong) ComplaintSchoolView *drivingView;
 
+
+@property (nonatomic, strong) CoachListDMData *complaintCoachModel;
 
 
 
@@ -159,7 +162,12 @@
     listVC.type = 1;
     listVC.complaintCoachNameLabel = self.coachView.nameCoachLabel;
     listVC.complaintCoachNameLabelBottom = self.coachView.bottomCoachName;
+    listVC.delagate = self;
     [self.navigationController pushViewController:listVC animated:YES];
+}
+
+- (void)initWithCoacheModel:(CoachListDMData *)model{
+    _complaintCoachModel = model;
 }
 #pragma mark --- Lazy加载
 - (UIView *)bgView{

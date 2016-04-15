@@ -128,10 +128,10 @@
     // 中部cell赋值
     if (_isHaveYCode) {
         self.middhtTitleArray = @[@"报考班型",@"支付费用",@"Y码返现",@"邀请码"];
-        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],self.yCodeStr,@"请输入或扫描邀请码(选填)"];
+        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],self.yCodeStr,@"请输入邀请码(选填)"];
     }else if (!_isHaveYCode){
         self.middhtTitleArray = @[@"报考班型",@"支付费用",@"邀请码"];
-        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],@"请输入或扫描邀请码(选填)"];
+        self.midDesArray = @[self.extraDict[@"applyclasstypeinfo"][@"name"],[NSString stringWithFormat:@"%@¥",self.extraDict[@"applyclasstypeinfo"][@"price"]],@"请输入邀请码(选填)"];
     }
     // 底部cell赋值
     self.imgArray = @[@"wechat",@"alipay",@"offline"];
@@ -181,20 +181,7 @@
             }
     return self.otherHeaderView;
 }
-//- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-//    if (2 == section) {
-//        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0 , kSystemWide, 10)];
-//        view.backgroundColor = YBMainViewControlerBackgroundColor;
-//        return view;
-//    }
-//    return nil;
-//}
-//- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section{
-//    if (2 == section) {
-//        return 10;
-//    }
-//    return 0;
-//}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (0 == section) {
         return 1;
@@ -560,45 +547,7 @@
     }
     return _rightButton;
 }
-// 初始化数组
-//- (NSArray *)middhtTitleArray{
-//    if (_middhtTitleArray == nil) {
-//        _middhtTitleArray = [NSArray array];
-//    }
-//    return _middhtTitleArray;
-//}
-//- (NSArray *)midDesArray{
-//    if (_midDesArray == nil) {
-//        _midDesArray = [NSArray array];
-//    }
-//    return _midDesArray;
-//}
-//
-//- (NSArray *)imgArray{
-//    if (_imgArray == nil) {
-//        _imgArray = [NSArray array];
-//    }
-//    return _imgArray;
-//}
-//
-//- (NSArray *)titleArray{
-//    if (_titleArray == nil) {
-//        _titleArray = [NSArray array];
-//    }
-//    return _titleArray;
-//}
-//- (NSArray *)desArray{
-//    if (_desArray == nil) {
-//        _desArray = [NSArray array];
-//    }
-//    return _desArray;
-//}
-//- (NSArray *)tagArray{
-//    if (_tagArray == nil) {
-//        _tagArray = [NSArray array];
-//    }
-//    return _tagArray;
-//}
+
 - (NSMutableArray *)btnArray{
     if (_btnArray == nil) {
         _btnArray = [NSMutableArray array];

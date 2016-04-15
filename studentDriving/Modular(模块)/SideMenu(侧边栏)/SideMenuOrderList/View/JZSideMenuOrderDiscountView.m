@@ -56,6 +56,10 @@
         if ([self.sideMenuOrderListDiscountDelegate respondsToSelector:@selector(initWithNoDataOrderLsitDiscountBG)]) {
             [self.sideMenuOrderListDiscountDelegate initWithNoDataOrderLsitDiscountBG];
         }
+        
+//        if ([self.sideMenuOrderListDiscountDelegate respondsToSelector:@selector(initWithSingleNoDataOrderLsitDiscountBG)]) {
+//            [self.sideMenuOrderListDiscountDelegate initWithSingleNoDataOrderLsitDiscountBG];
+//        }
 
     }];
     [_viewModel dvv_setNetworkCallBackBlock:^{

@@ -7,9 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoachListDMData.h"
 
 
+@protocol BackCoachCompalaintModelDelegate <NSObject>
 
+- (void)initWithCoacheModel:(CoachListDMData *)model;
+
+@end
 
 
 @interface CoachListController : UIViewController
@@ -21,5 +26,6 @@
 @property (nonatomic, strong) UILabel *complaintCoachNameLabel;
 @property (nonatomic, strong) UILabel *complaintCoachNameLabelBottom;
 
+@property (nonatomic, strong) id<BackCoachCompalaintModelDelegate> delagate;
 
 @end

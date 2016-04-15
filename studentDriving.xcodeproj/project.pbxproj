@@ -131,7 +131,6 @@
 		B22BAD591CBF38BF00455E1C /* YBSubjectQuestionRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */; };
 		B22BAD6D1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */; };
 		B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */; };
-		B22BADB71CC0F85400455E1C /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BADB61CC0F85400455E1C /* ggtkFile.zip */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -1051,6 +1050,7 @@
 		D906FAEA1CB762CB002BC2B8 /* PhoneNumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */; };
 		D949A5331CC0BA6B00BBE088 /* JZNoDataShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */; };
 		D949A5381CC0DBF900BBE088 /* JZNoDataView.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A5371CC0DBF900BBE088 /* JZNoDataView.m */; };
+		D949A53B1CC0F9F700BBE088 /* JZDiscountRecodeController.m in Sources */ = {isa = PBXBuildFile; fileRef = D949A53A1CC0F9F700BBE088 /* JZDiscountRecodeController.m */; };
 		D96445121C91812600E7C29F /* YBAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445111C91812600E7C29F /* YBAppointmentListController.m */; };
 		D96445221C918D5200E7C29F /* YBCompletedAppointmentListController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445211C918D5200E7C29F /* YBCompletedAppointmentListController.m */; };
 		D964452A1C91969100E7C29F /* YBAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D96445291C91969100E7C29F /* YBAppointmentDetailController.m */; };
@@ -3126,6 +3126,8 @@
 		D949A5341CC0D5F100BBE088 /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
 		D949A5361CC0DBF900BBE088 /* JZNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZNoDataView.h; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.h"; sourceTree = "<group>"; };
 		D949A5371CC0DBF900BBE088 /* JZNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZNoDataView.m; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.m"; sourceTree = "<group>"; };
+		D949A5391CC0F9F700BBE088 /* JZDiscountRecodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZDiscountRecodeController.h; sourceTree = "<group>"; };
+		D949A53A1CC0F9F700BBE088 /* JZDiscountRecodeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZDiscountRecodeController.m; sourceTree = "<group>"; };
 		D96445101C91812600E7C29F /* YBAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBAppointmentListController.h; sourceTree = "<group>"; };
 		D96445111C91812600E7C29F /* YBAppointmentListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBAppointmentListController.m; sourceTree = "<group>"; };
 		D96445201C918D5200E7C29F /* YBCompletedAppointmentListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentListController.h; sourceTree = "<group>"; };
@@ -5417,6 +5419,8 @@
 			children = (
 				D9DA1C6B1CBCE64E00BBD81D /* JZMyWalletViewController.h */,
 				D9DA1C6C1CBCE64E00BBD81D /* JZMyWalletViewController.m */,
+				D949A5391CC0F9F700BBE088 /* JZDiscountRecodeController.h */,
+				D949A53A1CC0F9F700BBE088 /* JZDiscountRecodeController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -7775,7 +7779,6 @@
 				B251E47E1C8E849500E6613A /* chatBar_more_cardSelected@2x.png in Resources */,
 				B251E4C81C8E849500E6613A /* chat_receiver_bg.png in Resources */,
 				B251E46D1C8E849500E6613A /* VoiceSearchFeedback019.png in Resources */,
-				B22BADB71CC0F85400455E1C /* ggtkFile.zip in Resources */,
 				B251E4DC1C8E849500E6613A /* delete@2x.png in Resources */,
 				B251E5F11C8E849500E6613A /* YBCheatsCell.xib in Resources */,
 				B251E6361C8E849500E6613A /* sr_refresh.png in Resources */,
@@ -8070,6 +8073,7 @@
 				B251E6BA1C8E849600E6613A /* payRequsestHandler.mm in Sources */,
 				B251E3481C8E849500E6613A /* DVVSideMenuFooterView.m in Sources */,
 				B251E6EB1C8EDEAD00E6613A /* ViewController.m in Sources */,
+				D949A53B1CC0F9F700BBE088 /* JZDiscountRecodeController.m in Sources */,
 				B251E3BE1C8E849500E6613A /* MyExamCarViewController.m in Sources */,
 				B221AF6A1C928D34001F6EED /* DIDatepicker.m in Sources */,
 				B22BAD451CBB484400455E1C /* YBSubjectListCell.m in Sources */,

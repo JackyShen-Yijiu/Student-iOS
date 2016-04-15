@@ -15,10 +15,12 @@
 #import "CoachListController.h"
 #import "DVVImagePickerControllerManager.h"
 #import "QNUploadManager.h"
+#import "CoachListDMData.h"
+
 
 #define kLKSize [UIScreen mainScreen].bounds.size
 //static NSString * const contentCellID = @"contentCellID";
-@interface JZComplaintController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,complaintPushCoachDetail>
+@interface JZComplaintController ()<UIScrollViewDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate,complaintPushCoachDetail,BackCoachCompalaintModelDelegate>
 
 ///  顶部
 @property (nonatomic, weak)  JZComplaintHeaderView *headerView;
@@ -33,8 +35,18 @@
 @property (nonatomic, weak) JZComplaintRightView *rightView;
 
 @property (nonatomic, weak) UIImagePickerController *picker;
-
+///  投诉教练照片数组数组
 @property (nonatomic,strong) NSMutableArray *picArray;
+
+///  投诉驾校照片url数组
+@property(nonatomic,strong)NSMutableArray *picArrSchool;
+
+@property (nonatomic, strong) CoachListDMData *complaintCoachModel;
+
+@property (nonatomic ,copy) NSString *coachId;
+/// 投诉教练的url
+@property (nonatomic, strong) NSString *picListURL;
+
 
 @end
 
@@ -46,6 +58,17 @@
         _picArray = [NSMutableArray array];
     }
     return _picArray;
+}
+
+-(NSMutableArray *)picArrSchool {
+    
+    if (_picArrSchool ==nil) {
+        
+        _picArrSchool = [NSMutableArray array];
+        
+        
+    }
+    return _picArrSchool;
 }
 
 - (void)viewDidLoad {
@@ -66,9 +89,6 @@
     self.leftView.complaintPushCoachDetailDelegate = self;
     
     [self click];
-    
-    
-    
     
 }
 #pragma mark - 点击事件
@@ -190,6 +210,68 @@
    
     UIImage *photoImage = [info valueForKey:UIImagePickerControllerEditedImage];
     
+    
+    
+    if(self.contentScrollView.contentOffset.x == kLKSize.width)
+    {
+       
+        
+        if (!self.rightView.firstImageView.image)
+        {
+            
+            self.rightView.firstImageView.hidden = NO;
+            
+            self.rightView.firstImageView.image = photoImage;
+            
+            self.rightView.firstImageView.frame = CGRectMake(self.rightView.complaintInfoText.origin.x, self.rightView.addImgBtn.frame.origin.y, self.rightView.addImgBtn.bounds.size.width, self.rightView.addImgBtn.bounds.size.height);
+            
+            self.rightView.addImgBtn.transform = CGAffineTransformMakeTranslation(90,0);
+            
+            
+        }else {
+            
+            self.rightView.firstImageView.hidden = NO;
+            self.rightView.secondImageView.hidden = NO;
+            
+            self.rightView.secondImageView.image = photoImage;
+            
+            self.rightView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
+            
+            self.rightView.addImgBtn.hidden = YES;
+            
+            
+        }
+    }else {
+        
+        
+        if (!self.leftView.firstImageView.image) {
+            
+            self.rightView.firstImageView.hidden = YES;
+            self.rightView.secondImageView.hidden = YES;
+            
+            self.leftView.firstImageView.hidden = NO;
+            
+            self.leftView.firstImageView.image = photoImage;
+            
+            self.leftView.firstImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
+            
+            self.leftView.addImageBtn.transform = CGAffineTransformMakeTranslation(90,0);
+            
+        }else {
+            
+            self.leftView.firstImageView.hidden = NO;
+            self.leftView.secondImageView.hidden = NO;
+            
+            self.leftView.secondImageView.image = photoImage;
+            
+            self.leftView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
+            
+            self.leftView.addImageBtn.hidden = YES;
+            
+        }
+        
+    }
+
     NSData *photeoData = UIImageJPEGRepresentation(photoImage, 0.5);
     
     __block NSData *gcdPhotoData = photeoData;
@@ -209,66 +291,29 @@
             
             if (resp) {
                 
-                [self.picArray addObject:[NSString stringWithFormat:@"%@",resp[@"pic"]]];
+//                NSLog(@"%@",key);
+                
+                
+                NSString *upImageUrl = [NSString stringWithFormat:kQiniuImageUrl,key];
+                
+            
                 
                 if(self.contentScrollView.contentOffset.x == kLKSize.width)
                 {
+                    [self.picArrSchool addObject:upImageUrl];
+
+
                     
-                    if (!self.rightView.firstImageView.image)
-                    {
-                        
-                        self.rightView.firstImageView.hidden = NO;
-                        
-                        self.rightView.firstImageView.image = photoImage;
-                        
-                        self.rightView.firstImageView.frame = CGRectMake(self.rightView.complaintInfoText.origin.x, self.rightView.addImgBtn.frame.origin.y, self.rightView.addImgBtn.bounds.size.width, self.rightView.addImgBtn.bounds.size.height);
-                        
-                        self.rightView.addImgBtn.transform = CGAffineTransformMakeTranslation(90,0);
-                        
-                        
-                    }else {
-                        
-                        self.rightView.firstImageView.hidden = NO;
-                        self.rightView.secondImageView.hidden = NO;
-                        
-                        self.rightView.secondImageView.image = photoImage;
-                        
-                        self.rightView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
-                        
-                        self.rightView.addImgBtn.hidden = YES;
-                        
-                        
-                    }
+                    
                 }else {
                     
-                    if (!self.leftView.firstImageView.image) {
-                        
-                        self.rightView.firstImageView.hidden = YES;
-                        self.rightView.secondImageView.hidden = YES;
-                        
-                        self.leftView.firstImageView.hidden = NO;
-                        
-                        self.leftView.firstImageView.image = photoImage;
-                        
-                        self.leftView.firstImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
-                        
-                        self.leftView.addImageBtn.transform = CGAffineTransformMakeTranslation(90,0);
-                        
-                    }else {
-                        
-                        self.leftView.firstImageView.hidden = NO;
-                        self.leftView.secondImageView.hidden = NO;
-                        
-                        self.leftView.secondImageView.image = photoImage;
-                        
-                        self.leftView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
-                        
-                        self.leftView.addImageBtn.hidden = YES;
+                    
+                    
+                    [self.picArray addObject:upImageUrl];
+                    
+                   
                         
                     }
-                    
-                }
-                
             }
         } option:nil];
     }];
@@ -310,19 +355,7 @@
         return ;
     }
     
-    
-    //    {   "userid":"560539bea694336c25c3acb9",（用户id 可以空）
-    //        "feedbackmessage":"无法登录", （反馈信息 必填）
-    //        "mobileversion":"小米 4.00",(手机版本 必填)
-    //        "network":"wifi",（网络情况 必填）
-    //        "resolution":"300*400", （分辨率 必填）
-    //        "appversion":"android 1.00"（app 版本 必填）
-    //        "feedbacktype": 1, // 反馈类型 0 平台反馈 1 投诉教练 2 投诉驾校
-    //        "name": "liyafei",
-    //        "feedbackusertype": 1, //投诉类型 0 匿名投诉 1 实名投诉
-    //        "moblie": "12345678901", // 投诉人手机号
-    //        "becomplainedname": "王教练", //被投诉姓名
-    //        "piclist": "pic1.jpg,pic2.jpg" // 图片列表 ,分割}
+
     
     NSMutableDictionary *parmDict = [NSMutableDictionary dictionary];
     // 用户id 可以空
@@ -337,6 +370,12 @@
         deviceModel = @"未知";
     }
     [parmDict setValue:deviceModel forKey:@"mobileversion"];
+    
+    
+    ///  教练id和驾校id
+    [parmDict setValue:self.coachId forKey:@"coachid"];
+    
+    [parmDict setValue:[AcountManager manager].applyschool.infoId forKey:@"schoolid"];
     // 网络情况 必填
     if ([NetMonitor manager].netStateExplain) {
         [parmDict setValue:[NetMonitor manager].netStateExplain forKey:@"network"];
@@ -349,12 +388,12 @@
     NSString *currentVersion = [infoDict objectForKey:@"CFBundleShortVersionString"];
     [parmDict setValue:[NSString stringWithFormat:@"iOS %@", currentVersion] forKey:@"appversion"];
     // 反馈类型 0 平台反馈 1 投诉教练 2 投诉驾校
-    [parmDict setValue:@"2" forKey:@"feedbacktype"];
+    [parmDict setValue:@"1" forKey:@"feedbacktype"];
     // 投诉类型 0 匿名投诉 1 实名投诉
     
     BOOL isNoName = self.leftView.anonymitySwitch;
     
-    int anonymity = isNoName ? 0 : 1;
+    int anonymity = isNoName ? 1 : 0;
     
     
     [parmDict setValue:[NSString stringWithFormat:@"%d", anonymity] forKey:@"feedbackusertype"];
@@ -364,6 +403,27 @@
     }
     // 被投诉姓名
     [parmDict setValue:self.leftView.coachNameLabel.text forKey:@"becomplainedname"];
+    
+    
+    
+    if (self.picArray.count == 1) {
+       
+        self.picListURL = self.picArray[0];
+        
+        
+    }else if (self.picArray.count == 2) {
+        
+        NSString *picURl = self.picArray[0];
+        
+        
+        self.picListURL = [picURl stringByAppendingFormat:@",%@",self.picArray[2]];
+            
+
+    }
+    
+    [parmDict setValue:self.picListURL forKey:@"piclist"];
+    
+    
     DYNSLog(@"%@", parmDict);
     [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL, @"userfeedback"] postParam:parmDict WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         
@@ -381,6 +441,12 @@
     }];
 }
 - (void)rightViewNetworkRequest {
+    
+    NSLog(@"self.complaintCoachModel.name = %@",self.complaintCoachModel.name);
+    
+    
+    
+    
     if (self.rightView.phoneNumTf.text == nil || self.rightView.phoneNumTf.text.length  == 0) {
         [self obj_showTotasViewWithMes:@"请输入手机号"];
         
@@ -400,19 +466,7 @@
         return ;
     }
     
-    
-    //    {   "userid":"560539bea694336c25c3acb9",（用户id 可以空）
-    //        "feedbackmessage":"无法登录", （反馈信息 必填）
-    //        "mobileversion":"小米 4.00",(手机版本 必填)
-    //        "network":"wifi",（网络情况 必填）
-    //        "resolution":"300*400", （分辨率 必填）
-    //        "appversion":"android 1.00"（app 版本 必填）
-    //        "feedbacktype": 1, // 反馈类型 0 平台反馈 1 投诉教练 2 投诉驾校
-    //        "name": "liyafei",
-    //        "feedbackusertype": 1, //投诉类型 0 匿名投诉 1 实名投诉
-    //        "moblie": "12345678901", // 投诉人手机号
-    //        "becomplainedname": "王教练", //被投诉姓名
-    //        "piclist": "pic1.jpg,pic2.jpg" // 图片列表 ,分割}
+
     
     NSMutableDictionary *parmDict = [NSMutableDictionary dictionary];
     // 用户id 可以空
@@ -421,6 +475,8 @@
     }
     // 反馈信息 必填
     [parmDict setValue:self.rightView.complaintInfoText.text forKey:@"feedbackmessage"];
+    
+    [parmDict setValue:self.picArrSchool forKey:@"piclist"];
     // 手机型号
     NSString *deviceModel = [NSString getCurrentDeviceModel];
     if (!deviceModel) {
@@ -444,7 +500,7 @@
     
     BOOL isNoName = self.rightView.anonymitySwitch;
     
-    int anonymity = isNoName ? 0 : 1;
+    int anonymity = isNoName ? 1 : 0;
     
     NSLog(@"是否是匿名%d",anonymity);
     
@@ -457,6 +513,12 @@
     // 被投诉姓名
     [parmDict setValue:self.rightView.schoolNameLabel.text forKey:@"becomplainedname"];
     DYNSLog(@"%@", parmDict);
+    
+
+    
+    [parmDict setValue:[AcountManager manager].applyschool.infoId forKey:@"schoolid"];
+    
+    
     [JENetwoking startDownLoadWithUrl:[NSString stringWithFormat:BASEURL, @"userfeedback"] postParam:parmDict WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         
         NSDictionary *dict = data;
@@ -473,6 +535,14 @@
     }];
 }
 
+- (void)initWithCoacheModel:(CoachListDMData *)model{
+    _complaintCoachModel = model;
+    self.leftView.coachNameLabel.text = model.name;
+    
+    self.coachId = model.coachid;
+    [self.leftView.bottomCoachName setTitle:[NSString stringWithFormat:@"投诉%@教练",model.name] forState:UIControlStateNormal];;
+    
+}
 
 
 - (void)initWithComplaintPushCoachDetail{
@@ -482,6 +552,7 @@
     listVC.type = 1;
     listVC.complaintCoachNameLabel.text = self.leftView.coachNameLabel.text;
     listVC.complaintCoachNameLabelBottom.text = self.leftView.bottomCoachName.titleLabel.text;
+    listVC.delagate = self;
     [self.navigationController pushViewController:listVC animated:YES];
 }
 @end

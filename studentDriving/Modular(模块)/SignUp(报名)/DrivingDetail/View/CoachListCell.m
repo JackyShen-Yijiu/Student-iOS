@@ -8,6 +8,12 @@
 
 #import "CoachListCell.h"
 
+
+@interface CoachListCell ()
+
+
+@end
+
 @implementation CoachListCell
 
 - (void)awakeFromNib {
@@ -23,7 +29,7 @@
         self = cell;
         [cell setRestorationIdentifier:reuseIdentifier];
         
-        [self.contentView addSubview:self.starView];
+        [self.contentView addSubview:self.starBar];
         [self.contentView addSubview:self.lineImageView];
         
         [_iconImageView.layer setMasksToBounds:YES];
@@ -36,15 +42,19 @@
     [super layoutSubviews];
     
     CGSize size = self.bounds.size;
-    _starView.frame = CGRectMake(size.width - 94 - 16, 16, 94, 14);
+    _starBar.frame = CGRectMake(size.width - 75 - 16, 16, 75, 14);
     CGFloat minX = CGRectGetMinX(_nameLabel.frame);
     _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
 }
 
 - (void)refreshData:(CoachListDMData *)dmData {
     
-    [_starView dvv_setStar:dmData.starlevel];
-    
+   [_starBar setImageDeselected:@"YBAppointMentDetailsstar.png" halfSelected:nil fullSelected:@"YBAppointMentDetailsstar_fill.png" andDelegate:nil];
+    CGFloat starLevel = 0;
+    if (dmData.starlevel) {
+        starLevel = dmData.starlevel;
+    }
+    [self.starBar displayRating:starLevel];
     if (dmData.headportrait.originalpic && dmData.headportrait.originalpic.length) {
         [_iconImageView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",dmData.headportrait.originalpic]]];
     }else {
@@ -90,12 +100,12 @@
     }
 }
 
-- (DVVStarView *)starView {
-    if (!_starView) {
-        _starView = [DVVStarView new];
-        [_starView dvv_setBackgroundImage:@"star_all_default_icon" foregroundImage:@"star_all_icon" width:94 height:14];
+- (RatingBar *)starBar{
+    if (_starBar == nil) {
+        _starBar = [[RatingBar alloc] init];
+        [_starBar setUpRating:3];
     }
-    return _starView;
+    return _starBar;
 }
 
 - (UIImageView *)lineImageView {

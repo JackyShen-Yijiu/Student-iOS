@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CoachListDMData.h"
 #import "DVVStarView.h"
+#import "RatingBar.h"
 
 @interface CoachListCell : UITableViewCell
 
@@ -20,7 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
 @property (weak, nonatomic) IBOutlet UIView *bottomLineView;
 
-@property (nonatomic, strong) DVVStarView *starView;
+@property (nonatomic, strong) RatingBar *starBar;
 
 @property (nonatomic, strong) UIImageView *lineImageView;
 
