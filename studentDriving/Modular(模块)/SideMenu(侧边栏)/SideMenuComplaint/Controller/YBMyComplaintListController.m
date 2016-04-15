@@ -70,7 +70,7 @@
 - (void)loadData
 {
 
-    NSString *urlString = [NSString stringWithFormat:BASEURL, @"courseinfo/getmycomplaint"];
+    NSString *urlString = [NSString stringWithFormat:BASEURL, @"courseinfo/getmycomplaintv2"];
     
     NSString *url = [NSString stringWithFormat:@"%@?userid=%@",urlString,[AcountManager manager].userid];
     

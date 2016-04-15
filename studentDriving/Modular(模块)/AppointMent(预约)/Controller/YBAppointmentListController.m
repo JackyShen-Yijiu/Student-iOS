@@ -23,7 +23,7 @@
 #import "JGPayTool.h"
 #import "RatingBar.h"
 #import "JZNoDataShowView.h"
-
+#import "JZNoDataView.h"
 @class RatingBar;
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
 static NSString *kCellIdentifier = @"kCellIdentifier";
@@ -50,7 +50,8 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 @property (nonatomic,strong) MJRefreshGifHeader *header;
 
-@property (nonatomic, strong) JZNoDataShowView *noDataView;
+@property (nonatomic, strong) JZNoDataView *noDataView;
+
 
 @end
 
@@ -61,19 +62,36 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [super viewDidLoad];
     self.title = @"预约列表";
     
-    if (![AcountManager manager].applyschool.infoId) {
-        
-        self.noDataView.imgStr = @"appointment";
-        
-        self.noDataView.titleStr = @"您还没有报名学车无法预约学车，先去报名吧";
-        
-
-        [self.view addSubview:self.noDataView];
-        
-        return ;
-    }
+    self.noDataView = [[JZNoDataView alloc]init];
     
-    [self.noDataView removeFromSuperview];
+    self.noDataView.frame = self.view.bounds;
+    
+    self.noDataView.hidden = YES;
+    
+    [self.view addSubview:self.noDataView];
+    
+    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+        
+        self.noDataView.hidden = NO;
+        self.noDataView.noDataLabel.text = @"您还没有报名学车无法预约学车，先去报名吧！";
+        
+        self.noDataView.noDataImageView.image = [UIImage imageNamed:@"appointment"];
+        return;
+
+    }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+        
+        self.noDataView.hidden = NO;
+        self.noDataView.noDataLabel.text = @"您已报名，报名信息正在审核中，请稍后再试，谢谢！";
+        
+        self.noDataView.noDataImageView.image = [UIImage imageNamed:@"appointment"];
+        
+        return;
+    }else {
+        
+        self.noDataView.hidden = YES;
+        
+    }
+
     
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"马上预约" target:self action:@selector(rightBarButtonItemDidClick)];
@@ -569,16 +587,6 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     // Dispose of any resources that can be recreated.
 }
 
--(JZNoDataShowView *)noDataView {
-    
-    if (!_noDataView) {
-        
-        _noDataView = [[JZNoDataShowView alloc]init];
-        
-        
-    }
-    return _noDataView;
-}
 
 
 @end
