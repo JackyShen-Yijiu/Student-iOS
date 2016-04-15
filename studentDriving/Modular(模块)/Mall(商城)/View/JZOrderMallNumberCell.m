@@ -113,7 +113,7 @@
     }
     if (btn.tag == 501) {
         // 点击减少数量
-        if (_numberMall == 0) {
+        if (_numberMall == 1) {
             self.resultLabel.text = [NSString stringWithFormat:@"%lu",_numberMall];
             [self.reduceButton setBackgroundImage:[UIImage imageNamed:@"quantity_subtract_off"] forState:UIControlStateNormal];
             self.reduceButton.userInteractionEnabled = NO;
@@ -155,10 +155,10 @@
 - (UIButton *)reduceButton{
     if (_reduceButton == nil) {
         _reduceButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_reduceButton setBackgroundImage:[UIImage imageNamed:@"quantity_subtract_on"] forState:UIControlStateNormal];
+        [_reduceButton setBackgroundImage:[UIImage imageNamed:@"quantity_subtract_off"] forState:UIControlStateNormal];
         [_reduceButton addTarget:self action:@selector(numberChanage:) forControlEvents:UIControlEventTouchUpInside];
         _reduceButton.tag = 501;
-        _reduceButton.userInteractionEnabled = YES;
+        _reduceButton.userInteractionEnabled = NO;
         
     }
     return _reduceButton;

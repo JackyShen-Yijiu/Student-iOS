@@ -30,7 +30,13 @@
     JZRecordHeaderView *headerView = [[JZRecordHeaderView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 172)];
     self.tableView.tableHeaderView = headerView;
     
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone target:self action:@selector(back)];
     
+}
+
+- (void)back
+{
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return 1;
