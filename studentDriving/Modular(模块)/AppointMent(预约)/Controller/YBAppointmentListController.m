@@ -58,6 +58,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [super viewDidLoad];
     self.title = @"预约列表";
     
+    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"马上预约" target:self action:@selector(rightBarButtonItemDidClick)];
     
     self.edgesForExtendedLayout = NO;
