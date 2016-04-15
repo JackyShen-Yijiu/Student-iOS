@@ -22,6 +22,7 @@
 #import "JZComplaintView.h"
 #import "JGPayTool.h"
 #import "RatingBar.h"
+#import "JZNoDataShowView.h"
 
 @class RatingBar;
 static NSString *kSectionHeaderIdentifier = @"kHeaderIdentifier";
@@ -49,6 +50,8 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 @property (nonatomic,strong) MJRefreshGifHeader *header;
 
+@property (nonatomic, strong) JZNoDataShowView *noDataView;
+
 @end
 
 @implementation YBAppointmentListController
@@ -57,6 +60,20 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"预约列表";
+    
+    if (![AcountManager manager].applyschool.infoId) {
+        
+        self.noDataView.imgStr = @"appointment";
+        
+        self.noDataView.titleStr = @"您还没有报名学车无法预约学车，先去报名吧";
+        
+
+        [self.view addSubview:self.noDataView];
+        
+        return ;
+    }
+    
+    [self.noDataView removeFromSuperview];
     
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"马上预约" target:self action:@selector(rightBarButtonItemDidClick)];
@@ -551,5 +568,17 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+-(JZNoDataShowView *)noDataView {
+    
+    if (!_noDataView) {
+        
+        _noDataView = [[JZNoDataShowView alloc]init];
+        
+        
+    }
+    return _noDataView;
+}
+
 
 @end
