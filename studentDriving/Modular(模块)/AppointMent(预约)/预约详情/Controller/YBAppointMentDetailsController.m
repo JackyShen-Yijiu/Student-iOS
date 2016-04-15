@@ -362,7 +362,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             image = [UIImage imageNamed:@"hold"];
             markStr = @"教练还没有接受预约，请耐心等一下哦";
             
-        }else if ([statusStr isEqualToString:@"已接收"]) {
+        }else if ([statusStr isEqualToString:@"已接受"]) {
             
             statusStr = @"预约已接受";
             showSigninText = YES;
