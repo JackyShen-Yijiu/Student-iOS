@@ -117,6 +117,23 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 #pragma mark -----delegate(商品数量)
 - (void)mallNumberWith:(NSInteger)numberMall{
     _numberMall = numberMall;
+    
+    NSString *result = [NSString stringWithFormat:@"%lu",_integraMallModel.productprice * numberMall];
+    NSString *title  = @" 积分";
+    NSInteger rang1 = [result length];
+    NSInteger rang2 = [title length];
+    NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",result,title]];
+    
+    // 设置
+    [attStr addAttribute:NSForegroundColorAttributeName value:YBNavigationBarBgColor range:NSMakeRange(0, rang1)];
+    [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, rang1)];
+    
+    [attStr addAttribute:NSForegroundColorAttributeName value:JZ_FONTCOLOR_LIGHT range:NSMakeRange(rang1, rang2)];
+    [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(rang1 , rang2)];
+    self.moneyLabel.attributedText = attStr;
+
+
+    
 }
 #pragma mark ---- Action 确认购买
 - (void)didExchange:(UIButton *)btn{
@@ -221,27 +238,19 @@ static NSString *const kBuyproduct =  @"userinfo/buyproduct";
 - (UILabel *)moneyLabel{
     if (_moneyLabel == nil) {
         _moneyLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kSystemWide / 2, footerViewH)];
-        if (0 == _mallWay) {
-            // 积分商城
-            
-            NSString *result = [NSString stringWithFormat:@"%lu",[AcountManager manager].integrationNumber];
-            NSString *title  = @"积分";
-            CGFloat rang1 = result.length;
+            NSString *result = [NSString stringWithFormat:@"%lu",_integraMallModel.productprice];
+            NSString *title  = @" 积分";
+            NSInteger rang1 = [result length];
+            NSInteger rang2 = [title length];
             NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@%@",result,title]];
-            [attStr addAttribute:NSForegroundColorAttributeName value:YBNavigationBarBgColor range:NSMakeRange(0, rang1 - 1)];
-//            [attStr addAttribute:NSForegroundColorAttributeName value:JZ_FONTCOLOR_LIGHT range:NSMakeRange(rang1, rang1 + 1)];
             
-            [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(0, rang1 - 1)];
-//            [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(rang1 , rang1 + 1)];
+            // 设置
+            [attStr addAttribute:NSForegroundColorAttributeName value:YBNavigationBarBgColor range:NSMakeRange(0, rang1)];
+            [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:14] range:NSMakeRange(0, rang1)];
+            
+            [attStr addAttribute:NSForegroundColorAttributeName value:JZ_FONTCOLOR_LIGHT range:NSMakeRange(rang1, rang2)];
+            [attStr addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:16] range:NSMakeRange(rang1 , rang2)];
             self.moneyLabel.attributedText = attStr;
-
-            
-        }else if (1 == _mallWay){
-            // 兑换劵商城
-            _moneyLabel.text = @"需要消费一张兑换劵";
-        }
-        _moneyLabel.font = [UIFont systemFontOfSize:14];
-        _moneyLabel.textColor = [UIColor colorWithHexString:@"212121"];
         _moneyLabel.textAlignment = NSTextAlignmentCenter;
     }
     return _moneyLabel;
