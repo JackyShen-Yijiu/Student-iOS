@@ -24,8 +24,14 @@
 #import "JZAppointTestFirstController.h"
 #import "JZAppointTestApplyController.h"
 #import "JZAppointTestSuccessController.h"
+#import "YBSubjectExamViewController.h"
+#import "YBSubjectWrongQuestionController.h"
+
+#import "YBSubjectTool.h"
 
 #define kCellIdentifier @"YBStudyViewCell"
+
+#import "YBSubjectQuestionsViewController.h"
 
 static NSString *kapplyStare = @"userinfo/getmyexaminfo";
 
@@ -117,28 +123,41 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 YBSubjectQuestionsListController *vc = [[YBSubjectQuestionsListController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.kemu = subjectOne;
-                vc.title = @"科目一章节";
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];
-                
-//                QuestionTestViewController *questionVC = [[QuestionTestViewController alloc] init];
-//                questionVC.hidesBottomBarWhenPushed = YES;
-//                questionVC.questiontesturl = self.questiontesturl;
-//                [self.parentViewController.navigationController pushViewController:questionVC animated:YES];
 
             }else if (indexPath.row==1){
                 
-                QuestionBankViewController *questBankVC = [[QuestionBankViewController alloc] init];
-                questBankVC.hidesBottomBarWhenPushed = YES;
-                questBankVC.questionlisturl = self.questionlisturl;
-                [self.parentViewController.navigationController pushViewController:questBankVC animated:YES];
+                NSLog(@"self.questiontesturl:%@",self.questiontesturl);
+                YBSubjectExamViewController *vc = [[YBSubjectExamViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.kemu = subjectOne;
+                [self.parentViewController.navigationController pushViewController:vc animated:YES];
 
             }else if (indexPath.row==2){
                 
-                WrongQuestionViewController *wrongQuestVC = [[WrongQuestionViewController alloc] init];
-                wrongQuestVC.hidesBottomBarWhenPushed = YES;
-                wrongQuestVC.questionerrorurl = self.questionerrorurl;
-                [self.parentViewController.navigationController pushViewController:wrongQuestVC animated:YES];
+                NSString *userid = @"null";
+                NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+                    userid = [AcountManager manager].userid;
+                }
+                
+                // 数组中保存的是YBSubjectData对象
+                NSArray *dataArray = [YBSubjectTool getAllWrongQuestionwithtype:subjectOne userid:userid];
+                NSLog(@"科目一错题dataArray:%@",dataArray);
+                
+                if (dataArray && dataArray.count!=0) {
+                    
+                    YBSubjectWrongQuestionController *vc = [[YBSubjectWrongQuestionController alloc] init];
+                    vc.kemu = subjectOne;
+                    vc.hidesBottomBarWhenPushed = YES;
+                    [self.parentViewController.navigationController pushViewController:vc animated:YES];
 
+                }else{
+                    
+                    [self obj_showTotasViewWithMes:@"暂无错题"];
+                    
+                }
+                
             }else if (indexPath.row==3){
                 // 判断申请状态
                 
@@ -221,57 +240,39 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 YBSubjectQuestionsListController *vc = [[YBSubjectQuestionsListController alloc] init];
                 vc.hidesBottomBarWhenPushed = YES;
                 vc.kemu = subjectFour;
-                vc.title = @"科目四章节";
                 [self.parentViewController.navigationController pushViewController:vc animated:YES];
-//                
-//                QuestionBankViewController *questionBank = [[QuestionBankViewController alloc] init];
-//                questionBank.hidesBottomBarWhenPushed = YES;
-//                questionBank.questionlisturl = self.questionFourlisturl;
-//                if ([AcountManager isLogin]) {
-//                    NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
-//                    NSString *finalString = [self.questionFourlisturl stringByAppendingString:appendString];
-//                    questionBank.questionlisturl = finalString;
-//                }
-//                questionBank.title = @"科四题库";
-//                questionBank.isModal = YES;
-                //                [mainVC.navigationController pushViewController:questionBank animated:YES];
-//                [self.parentViewController.navigationController presentViewController:questionBank animated:NO completion:nil];
-//                [self.parentViewController.navigationController pushViewController:questionBank animated:YES];
 
             }else if (indexPath.row==1){
                 
-                QuestionTestViewController *questionTest = [[QuestionTestViewController alloc] init];
-                questionTest.hidesBottomBarWhenPushed = YES;
-                if ([AcountManager isLogin]) {
-                    NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
-                    NSString *finalString = [self.questionFourtesturl stringByAppendingString:appendString];
-                    questionTest.questiontesturl = finalString;
-                }
-//                questionTest.title = @"科四模拟考试";
-                //                [mainVC.navigationController pushViewController:questionTest animated:YES];
-//                questionTest.isModal = YES;
-//                [self.parentViewController.navigationController presentViewController:questionTest animated:NO completion:nil];
-                [self.parentViewController.navigationController pushViewController:questionTest animated:YES];
+                YBSubjectExamViewController *vc = [[YBSubjectExamViewController alloc] init];
+                vc.hidesBottomBarWhenPushed = YES;
+                vc.kemu = subjectFour;
+                [self.parentViewController.navigationController pushViewController:vc animated:YES];
 
             }else if (indexPath.row==2){
                 
-                WrongQuestionViewController *wrongQuestion = [[WrongQuestionViewController alloc] init];
-                wrongQuestion.hidesBottomBarWhenPushed = YES;
-                if (![AcountManager isLogin]) {
-                    DYNSLog(@"islogin = %d",[AcountManager isLogin]);
-                    [DVVUserManager userNeedLogin];
-                    return;
-                }else {
-                    NSString *appendString = [NSString stringWithFormat:@"?userid=%@",[AcountManager manager].userid];
-                    NSString *finalString = [self.questionFourerrorurl stringByAppendingString:appendString];
-                    wrongQuestion.questionerrorurl = finalString;
+                NSString *userid = @"null";
+                NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
+                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+                    userid = [AcountManager manager].userid;
                 }
-//                wrongQuestion.title = @"错题";
-//                wrongQuestion.isModal = YES;
-                //                [mainVC.navigationController pushViewController:wrongQuestion animated:YES];
-//                [self.parentViewController.navigationController presentViewController:wrongQuestion animated:NO completion:nil];
-                [self.parentViewController.navigationController pushViewController:wrongQuestion animated:YES];
-
+                
+                // 数组中保存的是YBSubjectData对象
+                NSArray *dataArray = [YBSubjectTool getAllWrongQuestionwithtype:subjectFour userid:userid];
+                NSLog(@"科目四错题dataArray:%@",dataArray);
+                
+                if (dataArray && dataArray.count!=0) {
+                    
+                    YBSubjectWrongQuestionController *vc = [[YBSubjectWrongQuestionController alloc] init];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    vc.kemu = subjectFour;
+                    [self.parentViewController.navigationController pushViewController:vc animated:YES];
+                    
+                }else{
+                    
+                    [self obj_showTotasViewWithMes:@"暂无错题"];
+                    
+                }
                 
             }else if (indexPath.row==3){
                 // 我要约考

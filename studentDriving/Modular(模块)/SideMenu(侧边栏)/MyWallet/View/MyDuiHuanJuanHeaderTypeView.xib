@@ -7,7 +7,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="tmJ-TT-5YS">
+        <view contentMode="scaleToFill" id="tmJ-TT-5YS" customClass="MyDuiHuanJuanHeaderTypeView">
             <rect key="frame" x="0.0" y="0.0" width="325" height="36"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
@@ -30,6 +30,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="useListButton" destination="hWP-aK-7RG" id="dxE-ae-wud"/>
+            </connections>
             <point key="canvasLocation" x="187.5" y="-202"/>
         </view>
     </objects>

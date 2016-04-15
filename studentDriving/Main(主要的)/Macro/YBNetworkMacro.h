@@ -70,4 +70,7 @@ static NSString *kusercancelorder = @"userinfo/usercancelorder?userid=%@";
 // 获取驾校里的教练
 static NSString *kdriveschoolofcoach = @"getschoolcoach/%@";
 
+// 学员提交模拟考试成绩
+static NSString *const kuserinfosendtestscore = @"userinfo/sendtestscore";
+
 #endif /* YBNetworkMacro_h */

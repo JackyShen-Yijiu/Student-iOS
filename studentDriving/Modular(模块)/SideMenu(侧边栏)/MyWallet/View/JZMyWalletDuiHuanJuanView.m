@@ -9,6 +9,7 @@
 #import "JZMyWalletDuiHuanJuanView.h"
 #import "DVVCreateQRCode.h"
 #import <YYModel.h>
+
 #define kLKSize [UIScreen mainScreen].bounds.size
 static NSString *duiHuanJuanHeaderViewID = @"duiHuanJuanHeaderViewID";
 static NSString *duiHuanJuanDetailCellID = @"duiHuanJuanDetailCellID";
@@ -18,6 +19,8 @@ static NSString *const knumber = @"create_qrcode";
 
 
 @property (nonatomic,assign) NSInteger selectHeaderViewTag;
+
+
 
 @end
 
@@ -242,7 +245,6 @@ static NSString *const knumber = @"create_qrcode";
         
     } withFailure:^(id data) {
         
-        [self obj_showTotasViewWithMes:@"网络错误"];
         
     }];
 
@@ -351,6 +353,8 @@ static NSString *const knumber = @"create_qrcode";
     NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
     return dateString;
 }
+
+
 
 
 

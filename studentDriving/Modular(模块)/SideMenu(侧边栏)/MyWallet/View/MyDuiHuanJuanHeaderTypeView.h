@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MyDuiHuanJuanHeaderTypeView : UIView
+@property (weak, nonatomic) IBOutlet UIButton *useListButton;
 
 @end

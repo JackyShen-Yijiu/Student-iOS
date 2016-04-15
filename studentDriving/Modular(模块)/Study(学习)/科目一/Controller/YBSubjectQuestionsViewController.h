@@ -4,7 +4,7 @@
 //
 //  Created by JiangangYang on 16/4/8.
 //  Copyright © 2016年 jatd. All rights reserved.
-//
+//  题库
 
 #import "YBBaseViewController.h"
 
@@ -13,5 +13,5 @@
 @property (nonatomic,copy)NSString *chapter;
 // 科目
 @property (nonatomic,assign) subjectType kemu;
-
 @end
+
