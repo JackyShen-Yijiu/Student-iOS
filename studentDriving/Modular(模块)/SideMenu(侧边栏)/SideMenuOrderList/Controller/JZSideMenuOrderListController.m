@@ -54,11 +54,6 @@
     _signUpVC.pareVC = self;
     _signUpVC.isFormallOrder = YES;
     [self.scrollView addSubview:self.signUpVC.view];
-
-    
-    
-    
-    
     [_exchangeVC beginRefresh];
     
     
