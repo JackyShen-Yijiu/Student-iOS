@@ -46,9 +46,9 @@ static FMDatabaseQueue *_queue;
         
         NSString* unzipto = [YBSubjectPath stringByAppendingString:@"/ggtkFile"] ;
 
-        NSLog(@"文件不存在");
-        NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"ggtkFile"] ofType:@"zip"];
-
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"ggtkFile" ofType:@"zip"];
+        NSLog(@"文件不存在path:%@ unzipto:%@",path,unzipto);
+        
         if([zip UnzipOpenFile:path])
         {
             
@@ -70,7 +70,7 @@ static FMDatabaseQueue *_queue;
             [zip UnzipCloseFile];
             
         }
-        
+    
     }
     
 }
@@ -312,7 +312,7 @@ static FMDatabaseQueue *_queue;
     [_queue inDatabase:^(FMDatabase *db) {
         
         NSString *sql = [NSString stringWithFormat:@"INSERT into error_books ('kemu','webnoteid','userid') VALUES (%ld,%ld,%@);",type,webnoteid,userid];
-        NSLog(@"insertWrongQuestionwithtype sql:%@",sql);
+        NSLog(@"insertWrongQuestionwithtype sql:(%@) userid:%@",sql,userid);
         
         // 2.存储数据
         [db executeUpdate:sql];
