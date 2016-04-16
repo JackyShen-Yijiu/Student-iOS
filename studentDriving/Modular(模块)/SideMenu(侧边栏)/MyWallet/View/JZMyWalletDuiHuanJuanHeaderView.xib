@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket" translatesAutoresizingMaskIntoConstraints="NO" id="gEM-Jq-VJw">
-                    <rect key="frame" x="16" y="16" width="351" height="132"/>
+                    <rect key="frame" x="16" y="0.0" width="351" height="148"/>
                 </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BX4-kg-wn5">
                     <rect key="frame" x="32" y="32" width="46" height="46"/>
@@ -71,7 +71,7 @@
             <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="HAm-SR-RK8" firstAttribute="leading" secondItem="6Ig-a7-DCO" secondAttribute="leading" id="534-kS-k1j"/>
-                <constraint firstItem="gEM-Jq-VJw" firstAttribute="top" secondItem="Lt5-OR-xkQ" secondAttribute="top" constant="16" id="6Jq-eh-YyQ"/>
+                <constraint firstItem="gEM-Jq-VJw" firstAttribute="top" secondItem="Lt5-OR-xkQ" secondAttribute="top" id="6Jq-eh-YyQ"/>
                 <constraint firstAttribute="bottom" secondItem="gEM-Jq-VJw" secondAttribute="bottom" id="IT1-0M-TzE"/>
                 <constraint firstItem="gEM-Jq-VJw" firstAttribute="leading" secondItem="Lt5-OR-xkQ" secondAttribute="leading" constant="16" id="Owc-WM-xFC"/>
                 <constraint firstItem="6Ig-a7-DCO" firstAttribute="leading" secondItem="BX4-kg-wn5" secondAttribute="trailing" constant="30" id="Qr9-Oc-942"/>

@@ -25,6 +25,7 @@
 #import "DVVNoDataPromptView.h"
 #import "JZExchangeRecordController.h"
 #import "JZDiscountRecodeController.h"
+#import "JZTiXianListController.h"
 
 
 #define kLKSize [UIScreen mainScreen].bounds.size
@@ -189,6 +190,11 @@
     [self.contentScrollView addSubview:xianJinView];
     self.xianJinView.showsVerticalScrollIndicator = NO;
     self.xianJinView.showsHorizontalScrollIndicator = NO;
+    
+    [self.xianJinHeaderTypeView.seeXianJinListBtn addTarget:self action:@selector(seeXianJinListBtn) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
     
 #pragma mark - 底部页面
 JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CGRectMake(0,CGRectGetMaxY(jiFenView.frame), kLKSize.width, 40.5)];
@@ -615,6 +621,15 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
 }
 
+#pragma mark - 现金体现记录
+
+-(void)seeXianJinListBtn {
+    
+    JZTiXianListController *tiXianVC = [[JZTiXianListController alloc]init];
+    
+    [self.navigationController pushViewController:tiXianVC animated:YES];
+    
+}
 -(NSMutableArray *)duiHuanJuanDataArrM {
     
     if (_duiHuanJuanDataArrM ==  nil) {
