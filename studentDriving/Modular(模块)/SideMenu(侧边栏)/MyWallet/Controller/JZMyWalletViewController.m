@@ -255,8 +255,6 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
     if (scrollView.contentOffset.x == kLKSize.width) {
         
-//        [self getDuiHuanJuanData];
-//        self.jiFenHeaderView.headerNumLabel.text = [NSString stringWithFormat:@"%zd张",self.duihuanJuanListArrM.count];
         
         self.jiFenHeaderView.goToOthersBtn.hidden = YES;
 
