@@ -75,11 +75,14 @@ static NSString *kMallID = @"MallID";
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"e8e8ed"];
     [self.view addSubview:self.mallCollectionView];
+    
+//    [self.mallCollectionView bringSubviewToFront:self.view];
     [self.bgView addSubview:self.titleLable];
     [self.bgView addSubview:self.resultLabel];
     [self.bgView addSubview:self.exangeButton];
     [self.bgView addSubview:self.lineView];
     [self.mallCollectionView addSubview:self.bgView];
+    
     
 }
 
@@ -214,7 +217,7 @@ static NSString *kMallID = @"MallID";
         // 自动布局方式
         UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64  - 50) collectionViewLayout:flowLayout];
+        _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64) collectionViewLayout:flowLayout];
         // 注册Cell
         _mallCollectionView.contentInset = UIEdgeInsetsMake(HeaderViewH, 0, 0, 0);
         

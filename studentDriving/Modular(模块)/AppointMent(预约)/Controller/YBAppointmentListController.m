@@ -62,13 +62,35 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     [super viewDidLoad];
     self.title = @"预约列表";
     
-    self.noDataView = [[JZNoDataView alloc]init];
     
-    self.noDataView.frame = self.view.bounds;
+    JZNoDataView *noDataView = [[JZNoDataView alloc]initWithFrame:self.view.bounds];
+    
+    
+    noDataView.frame = self.view.bounds;
     
     self.noDataView.hidden = YES;
     
-    [self.view addSubview:self.noDataView];
+    [self.view addSubview:noDataView];
+    
+    self.noDataView = noDataView;
+    
+   
+    
+    if(![AcountManager isLogin]){
+        
+        self.noDataView.hidden = NO;
+        self.noDataView.noDataLabel.text = @"您还没有登录，没有找到您的预约详情";
+        
+        self.noDataView.noDataImageView.image = [UIImage imageNamed:@"appointment"];
+        
+        
+        self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"马上预约" target:self action:@selector(needLoginClick)];
+
+        
+        return;
+    }
+    
+
     
     if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
         
@@ -86,13 +108,14 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         self.noDataView.noDataImageView.image = [UIImage imageNamed:@"appointment"];
         
         return;
-    }else {
+    }else  {
         
         self.noDataView.hidden = YES;
-        
+ 
     }
 
-    
+
+
     
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTitle:@"马上预约" target:self action:@selector(rightBarButtonItemDidClick)];
     
@@ -587,6 +610,14 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     // Dispose of any resources that can be recreated.
 }
 
+
+-(void)needLoginClick {
+    
+        if (![AcountManager isLogin]) {
+            [DVVUserManager userNeedLogin];
+            return;
+        }
+}
 
 
 @end
