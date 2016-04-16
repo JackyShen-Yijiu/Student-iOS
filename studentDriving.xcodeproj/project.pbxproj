@@ -131,7 +131,7 @@
 		B22BAD591CBF38BF00455E1C /* YBSubjectQuestionRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */; };
 		B22BAD6D1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */; };
 		B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */; };
-		B22BADBD1CC1E81000455E1C /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BADBC1CC1E81000455E1C /* ggtkFile.zip */; };
+		B22BADC11CC1EC4500455E1C /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BADC01CC1EC4500455E1C /* ggtkFile.zip */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -1364,7 +1364,7 @@
 		B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectWrongQuestionController.m; sourceTree = "<group>"; };
 		B22BAD6E1CBFA13800455E1C /* YBSubjectExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectExamViewController.h; sourceTree = "<group>"; };
 		B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectExamViewController.m; sourceTree = "<group>"; };
-		B22BADBC1CC1E81000455E1C /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
+		B22BADC01CC1EC4500455E1C /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -3141,7 +3141,6 @@
 		D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumViewController.m; sourceTree = "<group>"; };
 		D949A5311CC0BA6B00BBE088 /* JZNoDataShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZNoDataShowView.h; sourceTree = "<group>"; };
 		D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZNoDataShowView.m; sourceTree = "<group>"; };
-		D949A5341CC0D5F100BBE088 /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
 		D949A5361CC0DBF900BBE088 /* JZNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZNoDataView.h; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.h"; sourceTree = "<group>"; };
 		D949A5371CC0DBF900BBE088 /* JZNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZNoDataView.m; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.m"; sourceTree = "<group>"; };
 		D949A5391CC0F9F700BBE088 /* JZDiscountRecodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZDiscountRecodeController.h; sourceTree = "<group>"; };
@@ -5848,7 +5847,6 @@
 		B251E0461C8E849300E6613A /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				D949A5341CC0D5F100BBE088 /* ggtkFile.zip */,
 				B251E0471C8E849300E6613A /* YBCheatsData.json */,
 				B251E0481C8E849300E6613A /* YBStudyData.json */,
 				B251E0491C8E849300E6613A /* YBStudyTool.h */,
@@ -7201,7 +7199,7 @@
 		B2FD3C8F1CB7E70200DCE88D /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				B22BADBC1CC1E81000455E1C /* ggtkFile.zip */,
+				B22BADC01CC1EC4500455E1C /* ggtkFile.zip */,
 				B2FD3CA61CB8A68D00DCE88D /* YBSubjectTool.h */,
 				B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */,
 			);
@@ -7718,7 +7716,7 @@
 				B251E4471C8E849500E6613A /* chatListCellHead.png in Resources */,
 				B2EEBC5A1CA1373300846656 /* CoachListCell.xib in Resources */,
 				B251E4891C8E849500E6613A /* chat_location_detail_disclosureHL.png in Resources */,
-				B22BADBD1CC1E81000455E1C /* ggtkFile.zip in Resources */,
+				B22BADC11CC1EC4500455E1C /* ggtkFile.zip in Resources */,
 				B251E4551C8E849500E6613A /* VoiceSearchFeedback007.png in Resources */,
 				B251E44D1C8E849500E6613A /* VoiceSearchFeedback003.png in Resources */,
 				B251E4AC1C8E849500E6613A /* chatBar_colorMore_photoSelected@2x.png in Resources */,
@@ -8908,6 +8906,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关/WeChatPay",
+					"\"$(SRCROOT)/studentDriving/Modular(模块)/Study(学习)/科目一/Other/ggtkFile.zip\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -9013,6 +9012,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关/WeChatPay",
+					"\"$(SRCROOT)/studentDriving/Modular(模块)/Study(学习)/科目一/Other/ggtkFile.zip\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";

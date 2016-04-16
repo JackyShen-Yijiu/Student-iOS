@@ -249,7 +249,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     
     self.header.titleLable.text = title;
     
-    CGFloat sizeH = [self.header.titleLable.text sizeWithFont:self.header.titleLable.font constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    CGFloat sizeH = [self.header.titleLable.text sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
     NSLog(@"viewForHeaderInSection sizeH:%f",sizeH);
     
     if (data.img_url || data.video_url) {
@@ -334,7 +334,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
     }
 
-    CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    CGFloat sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
 
     NSLog(@"heightForHeaderInSection sizeH:%f",sizeH);
 

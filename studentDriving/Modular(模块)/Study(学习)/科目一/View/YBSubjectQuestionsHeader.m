@@ -38,8 +38,8 @@
         _titleLable = [[UILabel alloc]init];
         _titleLable.textAlignment = NSTextAlignmentLeft;
         _titleLable.numberOfLines = 0;
-        _titleLable.font = [UIFont systemFontOfSize:14];
-        _titleLable.textColor = [UIColor lightGrayColor];
+        _titleLable.font = [UIFont boldSystemFontOfSize:14];
+        _titleLable.textColor = [UIColor colorWithHexString:@"6e6e6e"];
         [_headView addSubview:_titleLable];
         
         _typeImg = [[UIImageView alloc] init];
