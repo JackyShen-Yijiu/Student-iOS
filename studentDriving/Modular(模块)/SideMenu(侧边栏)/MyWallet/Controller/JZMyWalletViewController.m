@@ -424,23 +424,14 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
                         [self.duiHuanJuanDataArrM addObject:data];
                     }
                     
-
-                    
                     
                     NSArray *listArr = data.useproductidlist;
                     
-//                    for (NSDictionary *dict in listArr) {
-//                        
-//                        
-//                        JZMyWalletDuiHuanJuanUseproductidlist *list = [JZMyWalletDuiHuanJuanUseproductidlist yy_modelWithDictionary:dict];
-//                        
-//                        [self.duihuanJuanListArrM addObject:list];
-//                        
-//                    }
                     
                     if (listArr.count == 0) {
-                        
-                        self.jiFenHeaderView.headerNumLabel.text = @"暂无";
+                        [self.noDataLabel removeFromSuperview];
+
+//                        self.jiFenHeaderView.headerNumLabel.text = @"暂无";
                         
                         self.noDataLabel = [[UILabel alloc]init];
                         
@@ -461,6 +452,27 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
                 }
                 [self addcountDiscount];
 
+                
+            }else {
+                
+                [self.noDataLabel removeFromSuperview];
+                
+//                self.jiFenHeaderView.headerNumLabel.text = @"暂无";
+                
+                self.noDataLabel = [[UILabel alloc]init];
+                
+                self.noDataLabel.textAlignment = NSTextAlignmentCenter;
+                
+                self.noDataLabel.textColor = JZ_FONTCOLOR_LIGHT;
+                [self.noDataLabel setFont:[UIFont systemFontOfSize:16]];
+                
+                //        self.noDataLabel.backgroundColor = [UIColor blueColor];
+                self.noDataLabel.text = @"暂无兑换券";
+                
+                self.noDataLabel.frame =  CGRectMake(0,0, kLKSize.width, self.duiHuanJuanView.bounds.size.height);
+                self.noDataLabel.transform = CGAffineTransformMakeTranslation(kLKSize.width,0);
+                [self.contentScrollView addSubview:self.noDataLabel];
+                
                 
             }
             
@@ -621,7 +633,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     
 }
 
-#pragma mark - 现金体现记录
+#pragma mark - 现金提现记录
 
 -(void)seeXianJinListBtn {
     
@@ -662,40 +674,5 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
     }
     return nil;
 }
-
-//-(void)bigQRImageClick {
-//    
-//    UIButton *coverButton = [[UIButton alloc]init];
-//    
-//    coverButton.frame = CGRectMake(0, 0, kLKSize.width, kLKSize.height);
-//    
-//    coverButton.backgroundColor = [UIColor blackColor];
-//    
-//    [self.view addSubview:coverButton];
-//    
-//    coverButton.alpha = 0.0;
-//    
-//    [self.view bringSubviewToFront:self.duiHuanJuanView.duiHuanJuanHeaerView.QRCodeImg];
-//    
-//    [UIView animateWithDuration:1.0 animations:^{
-//       
-//        coverButton.alpha = 0.5;
-//        
-//        self.duiHuanJuanView.duiHuanJuanHeaerView.QRCodeImg.frame = CGRectMake(0, kLKSize.height - self.duiHuanJuanView.duiHuanJuanHeaerView.QRCodeImg.bounds.size.height, kLKSize.width, kLKSize.width);
-//        
-//        [coverButton addTarget:self action:@selector(smallImageClick) forControlEvents:UIControlEventTouchUpInside];
-//        
-//    }];
-//    
-//    self.coverButton = coverButton;
-//}
-//
-//-(void)smallImageClick {
-//    
-//    
-//}
-//
-//
-//
 
 @end

@@ -64,7 +64,7 @@
                     <rect key="frame" x="85" y="0.0" width="145" height="110"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cco-rZ-D6Y">
-                            <rect key="frame" x="6" y="32" width="0.0" height="14"/>
+                            <rect key="frame" x="6" y="32" width="131" height="14"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="14" id="8Kf-Mx-x6c"/>
                             </constraints>
@@ -97,6 +97,7 @@
                         <constraint firstItem="amI-fL-2lI" firstAttribute="top" secondItem="Cco-rZ-D6Y" secondAttribute="bottom" constant="16" id="IOy-ZH-X9x"/>
                         <constraint firstItem="CeQ-Bb-oNA" firstAttribute="top" secondItem="amI-fL-2lI" secondAttribute="top" id="Z4A-0a-nib"/>
                         <constraint firstItem="CeQ-Bb-oNA" firstAttribute="leading" secondItem="amI-fL-2lI" secondAttribute="trailing" constant="6" id="Z9k-DO-8Yu"/>
+                        <constraint firstAttribute="trailing" secondItem="Cco-rZ-D6Y" secondAttribute="trailing" constant="8" id="cKY-bT-Fnx"/>
                         <constraint firstItem="amI-fL-2lI" firstAttribute="leading" secondItem="T6j-d4-bsL" secondAttribute="leading" constant="6" id="eC1-l1-HhF"/>
                         <constraint firstItem="Cco-rZ-D6Y" firstAttribute="leading" secondItem="T6j-d4-bsL" secondAttribute="leading" constant="6" id="kvI-an-E9F"/>
                     </constraints>
