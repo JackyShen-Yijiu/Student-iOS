@@ -1015,16 +1015,11 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             [self reloadDate];
 
            // [self obj_showTotasViewWithMes:@"答错了"];
-            
-            NSString *userid = @"null";
-            NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-//            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-//                userid = [NSString stringWithFormat:@"%@",[AcountManager manager].userid];
-//            }
-            [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+          
+            [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
                 NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
                 if (!isExit) {
-                    [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+                    [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
                 }
                 
             }];
@@ -1091,16 +1086,10 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 //            
            // [self obj_showTotasViewWithMes:@"答错了"];
             
-            NSString *userid = @"null";
-            NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-//            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-//                userid = [NSString stringWithFormat:@"%@",[AcountManager manager].userid];
-//            }
-            
-            [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+            [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
                 NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
                 if (!isExit) {
-                    [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+                    [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
                 }
                 
             }];
@@ -1235,16 +1224,10 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
     }else{
 
-        NSString *userid = @"null";
-        NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-//        if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-//            userid = [NSString stringWithFormat:@"%@",[AcountManager manager].userid];
-//        }
-        
-        [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+        [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
             NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
             if (!isExit) {
-                [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+                [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
             }
             
         }];
@@ -1271,7 +1254,11 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         return;
     }
     
-    NSInteger currentPage = self.currentPage;
+    CGPoint currentOffset = _scrollview.contentOffset;
+    int page = (int)currentOffset.x/kSystemWide;
+    NSLog(@"scrollViewDidEndDecelerating currentOffset.x:%f currentOffset.y:%f page:%d",currentOffset.x,currentOffset.y,page);
+
+    NSInteger currentPage = page;//self.currentPage;
     float trueCount = self.trueCount;
     float wrongCount = self.wrongCount;
     
@@ -1424,7 +1411,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    CGPoint currentOffset = scrollView.contentOffset;
+    CGPoint currentOffset = _scrollview.contentOffset;
     NSLog(@"scrollViewDidEndDecelerating currentOffset.x:%f currentOffset.y:%f",currentOffset.x,currentOffset.y);
     
     int page = (int)currentOffset.x/kSystemWide;
@@ -1459,9 +1446,10 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
     }
     
+    [self changeRightBarState];
     
-    
-    if (page <= _datearry.count-1 && currentOffset.x!=0) {
+    // 8 
+    if (page < _datearry.count-1 && currentOffset.x!=0) {
         
         self.currentPage = page;
  
@@ -1481,8 +1469,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
         [self reloadDate];
         
-        [self changeRightBarState];
-
         [self.selectnumDict removeAllObjects];
         
         // 保存本地发生的变化
