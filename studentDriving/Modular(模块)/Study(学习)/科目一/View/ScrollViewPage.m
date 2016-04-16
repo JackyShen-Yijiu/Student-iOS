@@ -1015,16 +1015,11 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             [self reloadDate];
 
            // [self obj_showTotasViewWithMes:@"答错了"];
-            
-            NSString *userid = @"null";
-            NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-//            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-//                userid = [NSString stringWithFormat:@"%@",[AcountManager manager].userid];
-//            }
-            [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+          
+            [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
                 NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
                 if (!isExit) {
-                    [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+                    [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
                 }
                 
             }];
@@ -1091,16 +1086,10 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 //            
            // [self obj_showTotasViewWithMes:@"答错了"];
             
-            NSString *userid = @"null";
-            NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-//            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-//                userid = [NSString stringWithFormat:@"%@",[AcountManager manager].userid];
-//            }
-            
-            [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+            [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
                 NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
                 if (!isExit) {
-                    [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+                    [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
                 }
                 
             }];
@@ -1235,16 +1224,10 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
     }else{
 
-        NSString *userid = @"null";
-        NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-//        if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-//            userid = [NSString stringWithFormat:@"%@",[AcountManager manager].userid];
-//        }
-        
-        [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+        [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
             NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
             if (!isExit) {
-                [YBSubjectTool insertWrongQuestionwithtype:_kemu userid:userid webnoteid:data.ID];
+                [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
             }
             
         }];

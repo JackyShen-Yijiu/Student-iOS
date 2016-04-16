@@ -28,12 +28,12 @@ typedef void (^isExitBlock)(BOOL isExit);
 + (NSArray *)getAllSubjectChapterWithType:(subjectType)type;
 
 // 判断错题是否在错题库中
-+ (void)isExitWrongQuestionWithtype:(subjectType)type userid:(NSString *)userid webnoteid:(NSInteger)webnoteid isExitBlock:(isExitBlock)isExitBlock;
++ (void)isExitWrongQuestionWithtype:(subjectType)type webnoteid:(NSInteger)webnoteid isExitBlock:(isExitBlock)isExitBlock;
 
 // 插入错题
-+ (void)insertWrongQuestionwithtype:(subjectType)type userid:(NSString *)userid webnoteid:(NSInteger)webnoteid;
++ (void)insertWrongQuestionwithtype:(subjectType)type webnoteid:(NSInteger)webnoteid;
 // 获取错题
-+ (NSArray *)getAllWrongQuestionwithtype:(subjectType)type userid:(NSString *)userid;
++ (NSArray *)getAllWrongQuestionwithtype:(subjectType)type;
 
 // 获取随机考试题库
 + (NSArray *)getAllExamDataWithType:(subjectType)type;

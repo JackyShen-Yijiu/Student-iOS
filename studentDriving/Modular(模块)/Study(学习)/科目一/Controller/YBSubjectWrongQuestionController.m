@@ -32,14 +32,8 @@
     _rightBarView = [[YBSubjectQuestionRightBarView alloc] initWithFrame:CGRectMake(0, 0, titleArray.count * 45, 40) withTitleArray:titleArray withImgArray:imgArray];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_rightBarView];
     
-    NSString *userid = @"null";
-    NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-//    if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-//        userid = [AcountManager manager].userid;
-//    }
-    
     // 数组中保存的是YBSubjectData对象
-    NSArray *dataArray = [YBSubjectTool getAllWrongQuestionwithtype:_kemu userid:userid];
+    NSArray *dataArray = [YBSubjectTool getAllWrongQuestionwithtype:_kemu];
     
     ScrollViewPage *scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray rightBarView:_rightBarView subjectType:_kemu chapter:@""];
     scrollView.parentViewController = self;

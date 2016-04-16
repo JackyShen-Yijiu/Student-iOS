@@ -302,17 +302,17 @@ static FMDatabaseQueue *_queue;
     
 }
 
-+ (void)insertWrongQuestionwithtype:(subjectType)type userid:(NSString *)userid webnoteid:(NSInteger)webnoteid
++ (void)insertWrongQuestionwithtype:(subjectType)type webnoteid:(NSInteger)webnoteid
 {
     
-    NSLog(@"type:%ld-userid:%@-webnoteid:%ld",(long)type,userid,(long)webnoteid);
+    NSLog(@"type:%ld-webnoteid:%ld",(long)type,(long)webnoteid);
     
     [self setupSqlite];
     
     [_queue inDatabase:^(FMDatabase *db) {
         
-        NSString *sql = [NSString stringWithFormat:@"INSERT into error_books ('kemu','webnoteid','userid') VALUES (%ld,%ld,%@);",type,webnoteid,userid];
-        NSLog(@"insertWrongQuestionwithtype sql:(%@) userid:%@",sql,userid);
+        NSString *sql = [NSString stringWithFormat:@"INSERT into error_books ('kemu','webnoteid') VALUES (%ld,%ld);",type,webnoteid];
+        NSLog(@"insertWrongQuestionwithtype sql:(%@)",sql);
         
         // 2.存储数据
         [db executeUpdate:sql];
@@ -323,7 +323,7 @@ static FMDatabaseQueue *_queue;
     
 }
 
-+ (void)isExitWrongQuestionWithtype:(subjectType)type userid:(NSString *)userid webnoteid:(NSInteger)webnoteid isExitBlock:(isExitBlock)isExitBlock
++ (void)isExitWrongQuestionWithtype:(subjectType)type webnoteid:(NSInteger)webnoteid isExitBlock:(isExitBlock)isExitBlock
 {
 
     NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
@@ -335,11 +335,7 @@ static FMDatabaseQueue *_queue;
         
         [dataBase open];
         
-        NSString *sql = @"";//[NSString stringWithFormat:@"SELECT count(*) as count from web_note w,error_books e where w.id=e.webnoteid and e.userid =%@ and e.kemu=%ld and e.webnoteid=%ld",userid,(long)type,webnoteid];
-        
-        if ([userid isEqualToString:@"null"]) {
-            sql = [NSString stringWithFormat:@"SELECT count(*) as numbercount from web_note w,error_books e where w.id=e.webnoteid and e.kemu=%ld and e.webnoteid=%ld",(long)type,webnoteid];
-        }
+        NSString *sql = [NSString stringWithFormat:@"SELECT count(*) as numbercount from web_note w,error_books e where w.id=e.webnoteid and e.kemu=%ld and e.webnoteid=%ld",(long)type,webnoteid];
         
         FMResultSet *rs = [dataBase executeQuery:sql];
 
@@ -353,17 +349,11 @@ static FMDatabaseQueue *_queue;
             isExitBlock(YES);
         }
 
-//        if ([rs stringForColumn:@"count"] && ![[rs stringForColumn:@"count"] isEqualToString:@"(null)"]) {
-//            isExitBlock(YES);
-//        }else{
-//            isExitBlock(NO);
-//        }
-        
     }
     
 }
 
-+ (NSArray *)getAllWrongQuestionwithtype:(subjectType)type userid:(NSString *)userid
++ (NSArray *)getAllWrongQuestionwithtype:(subjectType)type
 {
     NSMutableArray *tempArray = [NSMutableArray array];
     
@@ -376,11 +366,7 @@ static FMDatabaseQueue *_queue;
         
         [dataBase open];
         
-        NSString *sql = @"";//[NSString stringWithFormat:@"SELECT w.* from web_note w,error_books e where w.id=e.webnoteid  and e.userid  =%@ and e.kemu=%ld",userid,(long)type];
-        
-        if ([userid isEqualToString:@"null"]) {
-            sql = [NSString stringWithFormat:@"SELECT w.* from web_note w,error_books e where w.id=e.webnoteid  and e.userid is null and e.kemu=%ld",(long)type];
-        }
+        NSString *sql = [NSString stringWithFormat:@"SELECT w.* from web_note w,error_books e where w.id=e.webnoteid and e.kemu=%ld",(long)type];
         
         NSLog(@"获取错题sql:%@",sql);
         
