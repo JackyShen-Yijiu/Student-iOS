@@ -168,18 +168,27 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 }
                 
             }else if (indexPath.row==3){
-                // 判断申请状态
-                if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-                    [self obj_showTotasViewWithMes:@"您还未报名"];
-                    return;
-                }
-                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-                    [self obj_showTotasViewWithMes:@"报名正在申请中"];
-                    return;
-                }
                 
-                
-                [self applyinitWith:@"1"];
+                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+                    
+                    // 判断申请状态
+                    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+                        [self obj_showTotasViewWithMes:@"您还未报名"];
+                        return;
+                    }
+                    if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                        [self obj_showTotasViewWithMes:@"报名正在申请中"];
+                        return;
+                    }
+                    
+                    
+                    [self applyinitWith:@"1"];
+                    
+                }else{
+                    
+                    [DVVUserManager userNeedLogin];
+                    
+                }
                 
             }else if (indexPath.row==4){
                 
@@ -325,18 +334,26 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 
             }else if (indexPath.row==3){
                 // 我要约考
+                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+                    
+                    // 判断申请状态
+                    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+                        [self obj_showTotasViewWithMes:@"您还未报名"];
+                        return;
+                    }
+                    if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
+                        [self obj_showTotasViewWithMes:@"报名正在申请中"];
+                        return;
+                    }
+                    
+                    [self applyinitWith:@"4"];
+                    
+                }else{
+                    
+                    [DVVUserManager userNeedLogin];
+                    
+                }
                 
-                // 判断申请状态
-                if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
-                    [self obj_showTotasViewWithMes:@"您还未报名"];
-                    return;
-                }
-                if ([[AcountManager manager].userApplystate isEqualToString:@"1"]) {
-                    [self obj_showTotasViewWithMes:@"报名正在申请中"];
-                    return;
-                }
-
-                 [self applyinitWith:@"4"];
                 
             }else if (indexPath.row==4){
                 
