@@ -83,7 +83,6 @@ static NSString *kMallID = @"MallID";
     [self.bgView addSubview:self.lineView];
     [self.mallCollectionView addSubview:self.bgView];
     
-    self.mallCollectionView.frame = self.view.bounds;
     
 }
 
