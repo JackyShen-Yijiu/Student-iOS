@@ -402,6 +402,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             statusStr = @"预约被拒绝";
             image = [UIImage imageNamed:@"order_fail"];
             markStr = @"";
+            [self hideBottomInfo];
             
         }else if ([statusStr isEqualToString:@"学员取消"]) {
             
