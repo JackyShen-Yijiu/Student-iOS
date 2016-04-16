@@ -75,7 +75,7 @@
                 
                 rect.origin.x=newMinX;
                 //动画
-                [UIButton animateWithDuration:0.3 animations:^{
+                [UIButton animateWithDuration:0.2 animations:^{
                     button.frame=rect;
                 }];
             }else{

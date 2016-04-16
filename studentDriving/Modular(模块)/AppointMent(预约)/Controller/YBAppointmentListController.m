@@ -95,7 +95,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
         
         self.noDataView.hidden = NO;
-        self.noDataView.noDataLabel.text = @"您还没有报名学车无法预约学车，先去报名吧！";
+        self.noDataView.noDataLabel.text = @"暂时无法预约，请先报名";
         
         self.noDataView.noDataImageView.image = [UIImage imageNamed:@"appointment"];
         return;

@@ -95,7 +95,7 @@
     [_topDesArray replaceObjectAtIndex:1 withObject:coachName];
         
     // 班型
-        NSString *classType = [NSString stringWithFormat:@"%@ ￥%lu", _dmData.classname, _dmData.price];
+        NSString *classType = [NSString stringWithFormat:@"%@ ￥%lu", _dmData.classname, _dmData.onsaleprice];
         [_topDesArray replaceObjectAtIndex:2 withObject:classType];
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -455,7 +455,6 @@
         _passwordTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请输入密码"];
         _passwordTextField.cornerRadius = 10;
         _passwordTextField.secureTextEntry = YES;
-        _passwordTextField.keyboardType = UIKeyboardTypeNumberPad;
          _passwordTextField.foregroundColor = JZ_FONTCOLOR_LIGHT;
     }
     return _passwordTextField;
