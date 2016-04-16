@@ -24,6 +24,13 @@
 // 底部分割线
 @property (strong, nonatomic) UIView *footView;
 
+/// 第一张图片
+@property (nonatomic, strong) UIImageView *firstImageView;
+/// 第二张图片
+@property (nonatomic, strong) UIImageView *secondImageView;
+
+
+
 @end
 
 @implementation YBMyComplaintListCell

@@ -76,10 +76,16 @@
         make.height.mas_equalTo(sizeH);
     }];
     
+    CGFloat width = 24;
+    CGFloat height = 14;
+    if (YBIphone6Plus) {
+        width = 24 * YBRatio;
+        height = 14 * YBRatio;
+    }
     [_typeImg mas_remakeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(15);
-        make.width.mas_equalTo(24);
-        make.height.mas_equalTo(14);
+        make.width.mas_equalTo(width);
+        make.height.mas_equalTo(height);
         make.centerY.mas_equalTo(_titleLable.mas_centerY);
     }];
     

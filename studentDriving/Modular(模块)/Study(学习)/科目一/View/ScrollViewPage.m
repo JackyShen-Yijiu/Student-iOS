@@ -1375,41 +1375,46 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 - (void)nextQuestion
 {
     
-//    NSLog(@"-------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
-    self.currentPage+=1;
-    _scrollview.contentOffset = CGPointMake((self.currentPage)*kSystemWide, _scrollview.contentOffset.y);
-//    NSLog(@"+++++++_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
-
-    if (self.currentPage < _datearry.count-1) {
+    [UIView animateWithDuration:1.0 animations:^{
         
-        _scrollview.contentSize = CGSizeMake(kSystemWide*2+_scrollview.contentOffset.x, 0);
+        //    NSLog(@"-------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
+        self.currentPage+=1;
+        _scrollview.contentOffset = CGPointMake((self.currentPage)*kSystemWide, _scrollview.contentOffset.y);
+        //    NSLog(@"+++++++_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
         
-        _middletableview.frame = CGRectMake(_scrollview.contentOffset.x,0, kSystemWide, kSystemHeight);
-        _lefttableview.frame = CGRectMake(_scrollview.contentOffset.x-kSystemWide, 0, kSystemWide, kSystemHeight);
-        _righttableview.frame = CGRectMake(_scrollview.contentOffset.x+kSystemWide, 0, kSystemWide, kSystemHeight);
+        if (self.currentPage < _datearry.count-1) {
+            
+            _scrollview.contentSize = CGSizeMake(kSystemWide*2+_scrollview.contentOffset.x, 0);
+            
+            _middletableview.frame = CGRectMake(_scrollview.contentOffset.x,0, kSystemWide, kSystemHeight);
+            _lefttableview.frame = CGRectMake(_scrollview.contentOffset.x-kSystemWide, 0, kSystemWide, kSystemHeight);
+            _righttableview.frame = CGRectMake(_scrollview.contentOffset.x+kSystemWide, 0, kSystemWide, kSystemHeight);
+            
+            [self.selectnumDict removeAllObjects];
+            
+            [self reloadDate];
+            
+            // 保存本地发生的变化
+            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+            [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+            [user synchronize];
+            
+        }
         
-        [self.selectnumDict removeAllObjects];
-
-        [self reloadDate];
+        CGPoint currentOffset = _scrollview.contentOffset;
+        NSLog(@"nextQuestion currentOffset.x:%f currentOffset.y:%f",currentOffset.x,currentOffset.y);
         
-        // 保存本地发生的变化
-        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-        [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
-        [user synchronize];
+        int page = (int)currentOffset.x/kSystemWide;
         
-    }
+        if (page==0 || page==_datearry.count-1) {
+            
+            YBSubjectData *data = _datearry[page];
+            [self.header playMovie:data];
+            
+        }
+        
+    }];
     
-    CGPoint currentOffset = _scrollview.contentOffset;
-    NSLog(@"nextQuestion currentOffset.x:%f currentOffset.y:%f",currentOffset.x,currentOffset.y);
-    
-    int page = (int)currentOffset.x/kSystemWide;
-
-    if (page==0 || page==_datearry.count-1) {
-        
-        YBSubjectData *data = _datearry[page];
-        [self.header playMovie:data];
-        
-    }
     
 }
 
@@ -1419,26 +1424,28 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     NSLog(@"scrollViewDidEndDecelerating currentOffset.x:%f currentOffset.y:%f",currentOffset.x,currentOffset.y);
     
     int page = (int)currentOffset.x/kSystemWide;
-    NSLog(@"scrollViewDidEndDecelerating scrollViewDidEndDecelerating page:%d",page);
-    self.currentPage = page;
 
-    if (page==0) {
-        self.scrollViewPageType = scrollViewPageLeft;
-    }else if (page==_datearry.count-1){
-        self.scrollViewPageType = scrollViewPageRight;
-    }else{
-        self.scrollViewPageType = scrollViewPageMid;
-    }
+    NSLog(@"scrollViewDidEndDecelerating scrollViewDidEndDecelerating page:%d",page);
     
     if (page==0 || page==_datearry.count-1) {
         
         YBSubjectData *data = _datearry[page];
         [self.header playMovie:data];
-    
+        
     }
     
     if (page < _datearry.count-1 && currentOffset.x!=0) {
         
+        self.currentPage = page;
+ 
+        if (page==0) {
+            self.scrollViewPageType = scrollViewPageLeft;
+        }else if (page==_datearry.count-1){
+            self.scrollViewPageType = scrollViewPageRight;
+        }else{
+            self.scrollViewPageType = scrollViewPageMid;
+        }
+       
         _scrollview.contentSize = CGSizeMake(kSystemWide*2+currentOffset.x, 0);
         
         _middletableview.frame = CGRectMake(currentOffset.x,0, kSystemWide, kSystemHeight);
@@ -1447,20 +1454,21 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
         [self reloadDate];
         
+        [self changeRightBarState];
+
+        
+        [self.selectnumDict removeAllObjects];
+        
+        // 保存本地发生的变化
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+        if (self.currentPage==_datearry.count-1) {
+            [user setInteger:0 forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+        }
+        [user synchronize];
+        
     }
 
-    [self changeRightBarState];
-
-    [self.selectnumDict removeAllObjects];
-
-    // 保存本地发生的变化
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
-    if (self.currentPage==_datearry.count-1) {
-        [user setInteger:0 forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
-    }
-    [user synchronize];
-    
 //    NSLog(@"scrollViewDidEndDecelerating self.currentPage:%ld",(long)self.currentPage);
     
 }

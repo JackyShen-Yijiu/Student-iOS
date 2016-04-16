@@ -8,6 +8,7 @@
 
 #import "YBWelcomeController.h"
 #import "ViewController.h"
+#import "YBSubjectTool.h"
 
 #pragma mark - 给NSString添加一个方法，用来获取当前的版本
 @interface NSString(Version)
@@ -149,6 +150,10 @@
     [self cycleCreateImageView:@[ @"guide_one", @"guide_two", @"guide_three"]];
     self.pageControl.numberOfPages = 3;
     
+    
+    [YBSubjectTool zipArchiveSubjectDataWithArchive:^(BOOL fileIsExit, BOOL archiveResult) {
+    }];
+
 }
 
 - (void)didReceiveMemoryWarning {
