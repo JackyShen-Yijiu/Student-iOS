@@ -1362,10 +1362,8 @@
 		B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectWrongQuestionController.m; sourceTree = "<group>"; };
 		B22BAD6E1CBFA13800455E1C /* YBSubjectExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectExamViewController.h; sourceTree = "<group>"; };
 		B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectExamViewController.m; sourceTree = "<group>"; };
-<<<<<<< HEAD
-=======
+
 		B22BADC01CC1EC4500455E1C /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
->>>>>>> c042b54e13ceee40254dcf732f9235b20080d2d1
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -7199,10 +7197,9 @@
 		B2FD3C8F1CB7E70200DCE88D /* Other */ = {
 			isa = PBXGroup;
 			children = (
-<<<<<<< HEAD
-=======
+
 				B22BADC01CC1EC4500455E1C /* ggtkFile.zip */,
->>>>>>> c042b54e13ceee40254dcf732f9235b20080d2d1
+
 				B2FD3CA61CB8A68D00DCE88D /* YBSubjectTool.h */,
 				B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */,
 			);
