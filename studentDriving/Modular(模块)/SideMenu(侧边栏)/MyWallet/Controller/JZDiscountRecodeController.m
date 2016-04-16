@@ -21,6 +21,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title = @"兑换券";
     self.view.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
     [self.view addSubview:self.sideMenuOrderDiscountView];
     self.sideMenuOrderDiscountView.sideMenuOrderListDiscountDelegate = self;
