@@ -64,11 +64,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "studentDriving/Modular(&#x6a21;&#x5757;)/SideMenu(&#x4fa7;&#x8fb9;&#x680f;)/MyWallet/View/JZMyWalletDuiHuanJuanView.m"
-            timestampString = "482490910.243015"
+            timestampString = "482491062.689844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "293"
-            endingLineNumber = "293"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "-getDuiHuanJuanDetail:"
             landmarkType = "5">
          </BreakpointContent>
@@ -80,11 +80,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "studentDriving/Modular(&#x6a21;&#x5757;)/SideMenu(&#x4fa7;&#x8fb9;&#x680f;)/MyWallet/View/JZMyWalletDuiHuanJuanView.m"
-            timestampString = "482490910.243015"
+            timestampString = "482491062.689844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "235"
+            endingLineNumber = "235"
             landmarkName = "-duiHuanJuanHeaerViewDidClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -96,11 +96,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "studentDriving/Modular(&#x6a21;&#x5757;)/SideMenu(&#x4fa7;&#x8fb9;&#x680f;)/MyWallet/View/JZMyWalletDuiHuanJuanView.m"
-            timestampString = "482490910.243015"
+            timestampString = "482491062.689844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "-duiHuanJuanHeaerViewDidClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -112,11 +112,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "studentDriving/Modular(&#x6a21;&#x5757;)/SideMenu(&#x4fa7;&#x8fb9;&#x680f;)/MyWallet/View/JZMyWalletDuiHuanJuanView.m"
-            timestampString = "482490910.243015"
+            timestampString = "482491062.689844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "300"
-            endingLineNumber = "300"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
             landmarkName = "-getDuiHuanJuanDetail:"
             landmarkType = "5">
          </BreakpointContent>
@@ -128,11 +128,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "studentDriving/Modular(&#x6a21;&#x5757;)/SideMenu(&#x4fa7;&#x8fb9;&#x680f;)/MyWallet/View/JZMyWalletDuiHuanJuanView.m"
-            timestampString = "482490910.243015"
+            timestampString = "482491062.689844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "-duiHuanJuanHeaerViewDidClick:"
             landmarkType = "5">
          </BreakpointContent>
@@ -144,11 +144,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "studentDriving/Modular(&#x6a21;&#x5757;)/SideMenu(&#x4fa7;&#x8fb9;&#x680f;)/MyWallet/View/JZMyWalletDuiHuanJuanView.m"
-            timestampString = "482490910.243015"
+            timestampString = "482491062.689844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "296"
-            endingLineNumber = "296"
+            startingLineNumber = "294"
+            endingLineNumber = "294"
             landmarkName = "-getDuiHuanJuanDetail:"
             landmarkType = "5">
          </BreakpointContent>
