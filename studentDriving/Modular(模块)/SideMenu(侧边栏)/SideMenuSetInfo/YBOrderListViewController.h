@@ -17,6 +17,8 @@
 
 @property (nonatomic,assign) BOOL isPaySuccess;
 
+@property (strong, nonatomic) UITableView *tableView;
 
+- (void)startDownLoad ;
 
 @end

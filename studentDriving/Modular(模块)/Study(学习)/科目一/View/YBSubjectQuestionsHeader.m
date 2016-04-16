@@ -38,8 +38,8 @@
         _titleLable = [[UILabel alloc]init];
         _titleLable.textAlignment = NSTextAlignmentLeft;
         _titleLable.numberOfLines = 0;
-        _titleLable.font = [UIFont systemFontOfSize:14];
-        _titleLable.textColor = [UIColor lightGrayColor];
+        _titleLable.font = [UIFont boldSystemFontOfSize:14];
+        _titleLable.textColor = [UIColor colorWithHexString:@"6e6e6e"];
         [_headView addSubview:_titleLable];
         
         _typeImg = [[UIImageView alloc] init];
@@ -125,15 +125,16 @@
             // 播放器
             _movie = [[MPMoviePlayerController alloc] init];
             _movie.view.frame = CGRectMake(0, 0, kSystemWide-30, 175);
-            
             _movie.controlStyle = MPMovieControlStyleNone;
-    
             _movie.repeatMode = MPMovieRepeatModeOne;
-    
             _movie.initialPlaybackTime = -1;
-            
             [_contentView addSubview:_movie.view];
          
+//            NSString *subjectVedioPath = [YBSubjectPath stringByAppendingFormat:@"/ggtkFile/resources/%@",data.video_url];
+//            NSURL *url = [NSURL fileURLWithPath:subjectVedioPath];
+//            _movie.contentURL = url;
+//            [_movie play];
+            
         }
         
     }
@@ -145,18 +146,20 @@
     
     if (data.video_url && [data.video_url length]!=0){
         
+        //[self reloadData:data];
+        
         NSString *subjectVedioPath = [YBSubjectPath stringByAppendingFormat:@"/ggtkFile/resources/%@",data.video_url];
         NSLog(@"++++++++++++++subjectVedioPath:%@",subjectVedioPath);
-        
+//
         NSURL *url = [NSURL fileURLWithPath:subjectVedioPath];
         _movie.contentURL = url;
         [_movie play];
-        
+//
         // 注册一个播放结束的通知
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(myMovieFinishedCallback:)
-                                                     name:MPMoviePlayerPlaybackDidFinishNotification
-                                                   object:_movie];
+//        [[NSNotificationCenter defaultCenter] addObserver:self
+//                                                 selector:@selector(myMovieFinishedCallback:)
+//                                                     name:MPMoviePlayerPlaybackDidFinishNotification
+//                                                   object:_movie];
         
     }
     
@@ -169,13 +172,15 @@
 -(void)myMovieFinishedCallback:(NSNotification*)notify
 {
     NSLog(@"%s notify:%@",__func__,notify);
-    MPMoviePlayerController *movie = notify.object;
-
-    [UIView animateWithDuration:1.0 animations:^{
-
-        [movie play];
-
-    }];
+//    MPMoviePlayerController *movie = notify.object;
+//
+//    [UIView animateWithDuration:1.0 animations:^{
+//
+//        if ([movie isKindOfClass:[_movie class]]) {
+//            [movie play];
+//        }
+//
+//    }];
 
 }
 

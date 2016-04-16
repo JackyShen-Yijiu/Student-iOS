@@ -10,8 +10,8 @@
 
 @implementation YBMoviePlayerController
 
-+ (instancetype)sharedInstance
-{
+//+ (instancetype)sharedInstance
+//{
 //    static YBMoviePlayerController *sharedInstance = nil;
 //    
 //    static dispatch_once_t onceToken;
@@ -21,36 +21,36 @@
 //        sharedInstance = [[self alloc] init];
 //
 //    });
-    
-    // 注册一个播放结束的通知
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(myMovieFinishedCallback:)
-//                                                 name:MPMoviePlayerPlaybackDidFinishNotification
-//                                               object:self];
-    
-    
-    return [[self alloc] init];
-    
-}
+//    
+//    return sharedInstance;
+//    
+//}
 
 /**
  @method 播放电影
  */
--(void)playMovie:(NSString *)fileName{
-    
-    //视频URL
-    NSURL *url = [NSURL fileURLWithPath:fileName];
-    //视频播放对象
-//    _movie = [[MPMoviePlayerController alloc] initWithContentURL:url];
-    self.contentURL = url;
-    self.controlStyle = MPMovieControlStyleNone;
-//    [self.view setFrame:CGRectMake(0, 0, kSystemWide-30, 175)];
-//    [self addSubview:_movie.view];
-    self.initialPlaybackTime = -1;
-
-    [self play];
-
-}
+//-(void)playMovie:(NSString *)fileName{
+//    
+//    
+//    // 注册一个播放结束的通知
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(myMovieFinishedCallback:)
+//                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+//                                               object:self];
+//    
+//    //视频URL
+//    NSURL *url = [NSURL fileURLWithPath:fileName];
+//    //视频播放对象
+////    _movie = [[MPMoviePlayerController alloc] initWithContentURL:url];
+//    self.contentURL = url;
+//    self.controlStyle = MPMovieControlStyleNone;
+////    [self.view setFrame:CGRectMake(0, 0, kSystemWide-30, 175)];
+////    [self addSubview:_movie.view];
+//    self.initialPlaybackTime = -1;
+//
+//    [self play];
+//
+//}
 
 #pragma mark -------------------视频播放结束委托--------------------
 

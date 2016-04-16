@@ -129,12 +129,19 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
 
             }else if (indexPath.row==1){
                 
-                NSLog(@"self.questiontesturl:%@",self.questiontesturl);
-                YBSubjectExamViewController *vc = [[YBSubjectExamViewController alloc] init];
-                vc.hidesBottomBarWhenPushed = YES;
-                vc.kemu = subjectOne;
-                [self.parentViewController.navigationController pushViewController:vc animated:YES];
-
+                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+                   
+                    YBSubjectExamViewController *vc = [[YBSubjectExamViewController alloc] init];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    vc.kemu = subjectOne;
+                    [self.parentViewController.navigationController pushViewController:vc animated:YES];
+ 
+                }else{
+                    
+                    [DVVUserManager userNeedLogin];
+                    
+                }
+                
             }else if (indexPath.row==2){
                 
                 NSString *userid = @"null";
@@ -278,11 +285,19 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
 
             }else if (indexPath.row==1){
                 
-                YBSubjectExamViewController *vc = [[YBSubjectExamViewController alloc] init];
-                vc.hidesBottomBarWhenPushed = YES;
-                vc.kemu = subjectFour;
-                [self.parentViewController.navigationController pushViewController:vc animated:YES];
+                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+                    
+                    YBSubjectExamViewController *vc = [[YBSubjectExamViewController alloc] init];
+                    vc.hidesBottomBarWhenPushed = YES;
+                    vc.kemu = subjectFour;
+                    [self.parentViewController.navigationController pushViewController:vc animated:YES];
 
+                }else{
+                    
+                    [DVVUserManager userNeedLogin];
+                    
+                }
+                
             }else if (indexPath.row==2){
                 
                 NSString *userid = @"null";

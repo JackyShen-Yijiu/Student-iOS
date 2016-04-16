@@ -22,7 +22,7 @@
 @property (nonatomic, strong) UIView *mightBGView;
 @property (strong, nonatomic) UIImageView *headImageView;
 @property (strong, nonatomic) UILabel *schoolName; // 驾校姓名
-//@property (strong, nonatomic) UILabel *payWay; // 支付方式
+@property (strong, nonatomic) UILabel *payWay; // 支付方式
 @property (strong, nonatomic) UILabel *carNameLabel; // 报考车型
 @property (strong, nonatomic) UILabel *signUptime;     // 报名时间
 @property (nonatomic, strong) UILabel *numberMoneyLabel; // 实付款
@@ -57,6 +57,7 @@
     [self addSubview:self.mightBGView];
     [self.mightBGView addSubview:self.headImageView];
     [self.mightBGView addSubview:self.schoolName];
+    [self.mightBGView addSubview:self.payWay];
     [self.mightBGView addSubview:self.carNameLabel];
     [self.mightBGView addSubview:self.signUptime];
     [self.mightBGView addSubview:self.numberMoneyLabel];
@@ -123,11 +124,11 @@
         make.top.mas_equalTo(self.headImageView.mas_top);
         make.height.mas_equalTo(@14);
     }];
-//    [self.payWay mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.schoolName.mas_right).offset(5);
-//        make.top.mas_equalTo(self.headImageView.mas_top).offset(17);
-//        make.height.mas_equalTo(@10);
-//    }];
+    [self.payWay mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(self.schoolName.mas_right).offset(5);
+        make.top.mas_equalTo(self.headImageView.mas_top).offset(5);
+        make.height.mas_equalTo(@10);
+    }];
 
     [self.carNameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.headImageView.mas_right).offset(20);
@@ -214,7 +215,7 @@
     self.carNameLabel.text = [dict objectForKey:@"carModelStr"];
     self.signUptime.text = [dict objectForKey:@"signUpStr"];
     self.numberMoney.text = [NSString stringWithFormat:@"¥%@",[dict objectForKey:@"realMoneyStr"]];
-//    self.payWay.text = [NSString stringWithFormat:@"(%@)",[dict objectForKey:@"payWaystr"]];
+    self.payWay.text = [NSString stringWithFormat:@"(%@)",[dict objectForKey:@"payWaystr"]];
     
     // 线上支付状态
     self.payStaus.text = [dict objectForKey:@"payStausStr"];
@@ -244,8 +245,28 @@
     // 线下支付状态
         if ([[dict objectForKey:@"payWaystr"] isEqualToString:@"线下支付"]) {
         if ([[dict objectForKey:@"applySatus"] isEqualToString:@"申请中"]) {
-            self.payStaus.text = @"未验证";
+            self.payStaus.text = @"报名成功";
 //            _offlineButton.hidden = NO;
+            
+          // 隐藏继续支付按钮
+            self.payButton.hidden = YES;
+            [_cancelButton setTitleColor:YBNavigationBarBgColor forState:UIControlStateNormal];
+            _cancelButton.layer.borderWidth = 1;
+            _cancelButton.layer.borderColor = YBNavigationBarBgColor.CGColor;
+            
+            [self.cancelButton mas_remakeConstraints:^(MASConstraintMaker *make) {
+                make.right.mas_equalTo(self.bottomBG.mas_right).offset(-16);
+                make.top.mas_equalTo(self.bottomBG.mas_top).offset(8);
+                make.height.mas_equalTo(@24);
+                make.width.mas_equalTo(@64);
+                
+            }];
+
+            
+            
+            
+            
+            
         }
         if ([[dict objectForKey:@"applySatus"] isEqualToString:@"申请成功"]) {
             self.payStaus.text = @"报名成功";
@@ -332,16 +353,16 @@
     }
     return _schoolName;
 }
-//// 支付方式
-//- (UILabel *)payWay{
-//    if (_payWay == nil) {
-//        _payWay = [[UILabel alloc]init];
-//        _payWay.text = @"(线上)";
-//        _payWay.font = [UIFont systemFontOfSize:10];
-//        _payWay.textColor = [UIColor colorWithHexString:@"bdbdbd"];
-//    }
-//    return _payWay;
-//}
+// 支付方式
+- (UILabel *)payWay{
+    if (_payWay == nil) {
+        _payWay = [[UILabel alloc]init];
+        _payWay.text = @"(线上)";
+        _payWay.font = [UIFont systemFontOfSize:10];
+        _payWay.textColor = [UIColor colorWithHexString:@"bdbdbd"];
+    }
+    return _payWay;
+}
 // 报考班型
 - (UILabel *)carNameLabel{
     if (_carNameLabel == nil) {
