@@ -240,12 +240,14 @@ WMSingletonM(YBStudyViewController)
         self.progressView.progressSliderView.realProgress = progress;
 
         NSLog(@"topStr:%@",topStr);
+        
+        self.progressView.topLabel.text = [NSString stringWithFormat:@"学习进度 %.f/%.f",[[AcountManager manager].subjectone.finishcourse floatValue],[[AcountManager manager].subjectone.totalcourse floatValue]];
 
-        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
-            self.progressView.topLabel.text = topStr;
-        }else{
-            self.progressView.topLabel.text = @"暂无统计";
-        }
+//        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+//            self.progressView.topLabel.text = topStr;
+//        }else{
+//            self.progressView.topLabel.text = @"暂无统计";
+//        }
         
     }else if (studyProgress == 1){
        
@@ -260,12 +262,15 @@ WMSingletonM(YBStudyViewController)
         self.progressView.progressSliderView.realProgress = progress;
 
         NSLog(@"topStr:%@",topStr);
-
-        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
-            self.progressView.topLabel.text = topStr;
-        }else{
-            self.progressView.topLabel.text = @"暂无统计";
-        }
+        
+        
+        self.progressView.topLabel.text = [NSString stringWithFormat:@"规定课时 %.f/%.f",[[AcountManager manager].subjecttwo.finishcourse floatValue],[[AcountManager manager].subjecttwo.totalcourse floatValue]];
+        
+//        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+//            self.progressView.topLabel.text = topStr;
+//        }else{
+//            self.progressView.topLabel.text = @"暂无统计";
+//        }
         
     }else if (studyProgress == 2){
 
@@ -279,11 +284,13 @@ WMSingletonM(YBStudyViewController)
         self.progressView.progressSliderView.realProgress = progress;
 
         NSLog(@"topStr:%@",topStr);
-        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
-            self.progressView.topLabel.text = topStr;
-        }else{
-            self.progressView.topLabel.text = @"暂无统计";
-        }
+        
+         self.progressView.topLabel.text = [NSString stringWithFormat:@"规定课时 %.f/%.f",[[AcountManager manager].subjectthree.finishcourse floatValue],[[AcountManager manager].subjectthree.totalcourse floatValue]];
+//        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+//            self.progressView.topLabel.text = topStr;
+//        }else{
+//            self.progressView.topLabel.text = @"暂无统计";
+//        }
         
     }else if (studyProgress == 3){
        
@@ -302,11 +309,13 @@ WMSingletonM(YBStudyViewController)
 
         NSLog(@"topStr:%@",topStr);
         
-        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
-            self.progressView.topLabel.text = topStr;
-        }else{
-            self.progressView.topLabel.text = @"暂无统计";
-        }
+         self.progressView.topLabel.text = [NSString stringWithFormat:@"学习进度 %.f/%.f",[[AcountManager manager].subjectfour.finishcourse floatValue],[[AcountManager manager].subjectfour.totalcourse floatValue]];
+        
+//        if(topStr && [topStr length]!=0 && ![topStr isEqual:[NSNull class]] && ![topStr isEqualToString:@"  (null)"]){
+//            self.progressView.topLabel.text = topStr;
+//        }else{
+//            self.progressView.topLabel.text = @"暂无统计";
+//        }
         
     }
     

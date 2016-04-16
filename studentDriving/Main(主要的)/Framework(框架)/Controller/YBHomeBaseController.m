@@ -123,6 +123,66 @@
                 return;
             }
             
+            /*
+             
+             2016-04-16 17:53:28.467 studentDriving[18875:1682497] 获取首页状态 data:{
+             data =     {
+             "_id" = 56e6341394aaa86c3244d9a1;
+             subject =         {
+             name = "\U79d1\U76ee\U4e8c";
+             subjectid = 2;
+             };
+             subjectfour =         {
+             finishcourse = 1;
+             missingcourse = 0;
+             officialfinishhours = 0;
+             officialhours = 960;
+             progress = "\U672a\U5f00\U59cb";
+             reservation = 0;
+             totalcourse = 3;
+             };
+             subjectone =         {
+             finishcourse = 2;
+             missingcourse = 0;
+             officialfinishhours = 779;
+             officialhours = 779;
+             progress = "\U672a\U5f00\U59cb";
+             reservation = 0;
+             totalcourse = 3;
+             };
+             subjectthree =         {
+             buycoursecount = 0;
+             finishcourse = 0;
+             missingcourse = 0;
+             officialfinishhours = 1569;
+             officialhours = 2400;
+             progress = "\U672a\U5f00\U59cb";
+             reservation = 0;
+             totalcourse = 16;
+             };
+             subjecttwo =         {
+             buycoursecount = 0;
+             finishcourse = 10;
+             missingcourse = 10;
+             officialfinishhours = 1773;
+             officialhours = 1773;
+             progress = "\U79d1\U76ee\U4e8c\U7b2c10\U8bfe\U65f6";
+             reservation = 0;
+             reservationid = 570daca86063b4f446d35502;
+             totalcourse = 24;
+             };
+             };
+             msg = "";
+             type = 1;
+             }
+
+             
+             */
+            
+            
+            
+            
+            
             // 当前为科目几
             NSDictionary *subject = [dataDic objectForKey:@"subject"];
             if (subject) {
