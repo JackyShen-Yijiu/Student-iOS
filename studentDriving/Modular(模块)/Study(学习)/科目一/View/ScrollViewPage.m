@@ -270,8 +270,19 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
     }else{
         
-        if (tableView==_middletableview){
-            [self.header playMovie:data];
+       
+        if (_datearry.count==1) {
+            if (tableView==_righttableview){
+                [self.header playMovie:data];
+            }
+        }else if (_datearry.count==2){
+            if (tableView==_middletableview){
+                [self.header playMovie:data];
+            }
+        }else{
+            if (tableView==_middletableview){
+                [self.header playMovie:data];
+            }
         }
         
     }
@@ -1331,7 +1342,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 - (void)nextQuestion
 {
     
-    [UIView animateWithDuration:1.0 animations:^{
+    [UIView animateWithDuration:0.5 animations:^{
         
         //    NSLog(@"-------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
         self.currentPage+=1;
@@ -1383,12 +1394,35 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 
     NSLog(@"scrollViewDidEndDecelerating scrollViewDidEndDecelerating page:%d",page);
     
-    if (page==0 || page==_datearry.count-1) {
+    if (_datearry.count==1) {
+
+        NSLog(@"1111111111111 scrollViewDidEndDecelerating scrollViewDidEndDecelerating page:%d",page);
+
+    }else if (_datearry.count==2){
         
-        YBSubjectData *data = _datearry[page];
-        [self.header playMovie:data];
+        NSLog(@"2222222222222 scrollViewDidEndDecelerating scrollViewDidEndDecelerating page:%d",page);
+
+        if (page==1) {
+           
+            NSLog(@"++++++++++2222222222222 scrollViewDidEndDecelerating scrollViewDidEndDecelerating page:%d",page);
+
+            YBSubjectData *data = _datearry[page];
+            [self.header playMovie:data];
+            
+        }
+        
+    }else{
+        
+        if (page==0 || page==_datearry.count-1) {
+            
+            YBSubjectData *data = _datearry[page];
+            [self.header playMovie:data];
+            
+        }
         
     }
+    
+    
     
     if (page < _datearry.count-1 && currentOffset.x!=0) {
         
