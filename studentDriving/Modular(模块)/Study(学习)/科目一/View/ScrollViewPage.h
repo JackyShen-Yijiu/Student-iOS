@@ -14,6 +14,9 @@
 
 @property (nonatomic ,assign) NSInteger currentPage;
 
+// 是否是最后一题
+@property (nonatomic,assign) BOOL isLastQuestion;
+
 // 考试分数
 @property (nonatomic,assign) NSUInteger socre;
 
