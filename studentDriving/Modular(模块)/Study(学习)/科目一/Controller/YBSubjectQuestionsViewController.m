@@ -14,6 +14,7 @@
 @interface YBSubjectQuestionsViewController()
 
 @property (nonatomic,strong) YBSubjectQuestionRightBarView *rightBarView;
+
 @end
 
 @implementation YBSubjectQuestionsViewController
@@ -40,6 +41,7 @@
     
     ScrollViewPage *scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray rightBarView:_rightBarView subjectType:_kemu chapter:_chapter];
     scrollView.parentViewController = self;
+    scrollView.isWrongAndQuestion = YES;
     [self.view addSubview:scrollView];
     
 }
