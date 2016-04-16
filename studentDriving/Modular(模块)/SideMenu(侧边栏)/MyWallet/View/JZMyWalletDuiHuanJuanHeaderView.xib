@@ -14,7 +14,7 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ticket" translatesAutoresizingMaskIntoConstraints="NO" id="gEM-Jq-VJw">
                     <rect key="frame" x="16" y="16" width="351" height="132"/>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="code_null" translatesAutoresizingMaskIntoConstraints="NO" id="BX4-kg-wn5">
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BX4-kg-wn5">
                     <rect key="frame" x="32" y="32" width="46" height="46"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="46" id="CVR-il-CJu"/>
@@ -99,7 +99,6 @@
     </objects>
     <resources>
         <image name="YBAppointMentDetailsmore_down" width="14" height="8"/>
-        <image name="code_null" width="92" height="92"/>
         <image name="ticket" width="343" height="118"/>
     </resources>
 </document>
