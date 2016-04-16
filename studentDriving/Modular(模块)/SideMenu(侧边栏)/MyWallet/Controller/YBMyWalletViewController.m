@@ -82,7 +82,7 @@
         _messageLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0,[UIScreen mainScreen].bounds.size.width * 0.5, 40)];
         _messageLabel.text = @" 我的Y码 ";
         _messageLabel.font = [UIFont systemFontOfSize:14];
-        _messageLabel.textColor = RGBColor(183, 183, 183);
+        _messageLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _messageLabel.backgroundColor = [UIColor whiteColor];
         
     }

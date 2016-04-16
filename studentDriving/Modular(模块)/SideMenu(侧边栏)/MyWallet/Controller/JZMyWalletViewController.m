@@ -293,7 +293,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
                 
                 self.noDataLabel.textAlignment = NSTextAlignmentCenter;
                 
-                self.noDataLabel.textColor = RGBColor(183, 183, 183);
+                self.noDataLabel.textColor = JZ_FONTCOLOR_LIGHT;
                 [self.noDataLabel setFont:[UIFont systemFontOfSize:16]];
                 
                 self.noDataLabel.text = @"暂无积分明细";
@@ -315,7 +315,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         
         self.noDataLabel.textAlignment = NSTextAlignmentCenter;
         
-        self.noDataLabel.textColor = RGBColor(183, 183, 183);
+        self.noDataLabel.textColor = JZ_FONTCOLOR_LIGHT;
         [self.noDataLabel setFont:[UIFont systemFontOfSize:16]];
         
         self.noDataLabel.text = @"网络开小差啦";
@@ -357,7 +357,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
                 
                 self.noDataLabel.textAlignment = NSTextAlignmentCenter;
                 
-                self.noDataLabel.textColor = RGBColor(183, 183, 183);
+                self.noDataLabel.textColor = JZ_FONTCOLOR_LIGHT;
                 [self.noDataLabel setFont:[UIFont systemFontOfSize:16]];
                 
                 self.noDataLabel.text = @"暂无现金明细";
@@ -378,7 +378,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         
         self.noDataLabel.textAlignment = NSTextAlignmentCenter;
         
-        self.noDataLabel.textColor = RGBColor(183, 183, 183);
+        self.noDataLabel.textColor = JZ_FONTCOLOR_LIGHT;
         [self.noDataLabel setFont:[UIFont systemFontOfSize:16]];
         
         self.noDataLabel.text = @"网络开小差啦";
@@ -440,7 +440,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
                         
                         self.noDataLabel.textAlignment = NSTextAlignmentCenter;
                         
-                        self.noDataLabel.textColor = RGBColor(183, 183, 183);
+                        self.noDataLabel.textColor = JZ_FONTCOLOR_LIGHT;
                         [self.noDataLabel setFont:[UIFont systemFontOfSize:16]];
                         
                         self.noDataLabel.text = @"暂无积分明细";
@@ -473,7 +473,7 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
         
         self.noDataLabel.textAlignment = NSTextAlignmentCenter;
         
-        self.noDataLabel.textColor = RGBColor(183, 183, 183);
+        self.noDataLabel.textColor = JZ_FONTCOLOR_LIGHT;
         [self.noDataLabel setFont:[UIFont systemFontOfSize:16]];
         
 //        self.noDataLabel.backgroundColor = [UIColor blueColor];

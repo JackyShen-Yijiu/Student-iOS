@@ -444,7 +444,7 @@
         _loginNameTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user"] placeholder:@"请输入手机号"];
         _loginNameTextField.keyboardType = UIKeyboardTypeNumberPad;
         _loginNameTextField.cornerRadius = 10;
-        _loginNameTextField.foregroundColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _loginNameTextField.foregroundColor = JZ_FONTCOLOR_LIGHT;
         _loginNameTextField.delegate = self;
     }
     return _loginNameTextField;
@@ -455,7 +455,7 @@
         _passwordTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请输入密码"];
         _passwordTextField.cornerRadius = 10;
         _passwordTextField.secureTextEntry = YES;
-         _passwordTextField.foregroundColor = [UIColor colorWithHexString:@"b7b7b7"];
+         _passwordTextField.foregroundColor = JZ_FONTCOLOR_LIGHT;
     }
     return _passwordTextField;
 }

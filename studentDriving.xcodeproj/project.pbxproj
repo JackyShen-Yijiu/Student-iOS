@@ -1034,6 +1034,12 @@
 		B2FD3CA81CB8A68D00DCE88D /* YBSubjectTool.m in Sources */ = {isa = PBXBuildFile; fileRef = B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */; };
 		BE29B0821CBA8E2200CBB908 /* JZComplaintLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE29B0811CBA8E2200CBB908 /* JZComplaintLeftView.xib */; };
 		BE29B0851CBA970300CBB908 /* JZComplaintLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */; };
+		BE2D3D311CC141560064CEC0 /* JZMyComplaintListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D301CC141560064CEC0 /* JZMyComplaintListController.m */; };
+		BE2D3D341CC141E60064CEC0 /* JZMyComplaintListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D331CC141E60064CEC0 /* JZMyComplaintListCell.m */; };
+		BE2D3D361CC141FD0064CEC0 /* JZMyComplaintListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE2D3D351CC141FD0064CEC0 /* JZMyComplaintListCell.xib */; };
+		BE2D3D3C1CC149800064CEC0 /* JZMyComplaintData.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D391CC149800064CEC0 /* JZMyComplaintData.m */; };
+		BE2D3D3D1CC149800064CEC0 /* JZMyComplaintRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D3B1CC149800064CEC0 /* JZMyComplaintRootClass.m */; };
+		BE2D3D401CC14A8D0064CEC0 /* JZMyComplaintListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D3F1CC14A8D0064CEC0 /* JZMyComplaintListView.m */; };
 		BE91B6661CBA3E6D006B39F7 /* JZComplaintController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */; };
 		BE91B66B1CBA40F4006B39F7 /* JZComplaintHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B66A1CBA40F4006B39F7 /* JZComplaintHeaderView.m */; };
 		BE91B66E1CBA5CC0006B39F7 /* JZComplaintDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */; };
@@ -3100,6 +3106,17 @@
 		BE29B0811CBA8E2200CBB908 /* JZComplaintLeftView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZComplaintLeftView.xib; sourceTree = "<group>"; };
 		BE29B0831CBA970300CBB908 /* JZComplaintLeftView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintLeftView.h; sourceTree = "<group>"; };
 		BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintLeftView.m; sourceTree = "<group>"; };
+		BE2D3D2F1CC141560064CEC0 /* JZMyComplaintListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintListController.h; sourceTree = "<group>"; };
+		BE2D3D301CC141560064CEC0 /* JZMyComplaintListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyComplaintListController.m; sourceTree = "<group>"; };
+		BE2D3D321CC141E60064CEC0 /* JZMyComplaintListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintListCell.h; sourceTree = "<group>"; };
+		BE2D3D331CC141E60064CEC0 /* JZMyComplaintListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyComplaintListCell.m; sourceTree = "<group>"; };
+		BE2D3D351CC141FD0064CEC0 /* JZMyComplaintListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZMyComplaintListCell.xib; sourceTree = "<group>"; };
+		BE2D3D381CC149800064CEC0 /* JZMyComplaintData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintData.h; sourceTree = "<group>"; };
+		BE2D3D391CC149800064CEC0 /* JZMyComplaintData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyComplaintData.m; sourceTree = "<group>"; };
+		BE2D3D3A1CC149800064CEC0 /* JZMyComplaintRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintRootClass.h; sourceTree = "<group>"; };
+		BE2D3D3B1CC149800064CEC0 /* JZMyComplaintRootClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyComplaintRootClass.m; sourceTree = "<group>"; };
+		BE2D3D3E1CC14A8D0064CEC0 /* JZMyComplaintListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintListView.h; sourceTree = "<group>"; };
+		BE2D3D3F1CC14A8D0064CEC0 /* JZMyComplaintListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyComplaintListView.m; sourceTree = "<group>"; };
 		BE91B6641CBA3E6D006B39F7 /* JZComplaintController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintController.h; sourceTree = "<group>"; };
 		BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintController.m; sourceTree = "<group>"; };
 		BE91B6691CBA40F4006B39F7 /* JZComplaintHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZComplaintHeaderView.h; sourceTree = "<group>"; };
@@ -3407,6 +3424,7 @@
 			children = (
 				BE91B6631CBA3E56006B39F7 /* Old */,
 				BE91B6671CBA3F2C006B39F7 /* Controller */,
+				BE2D3D371CC149680064CEC0 /* Model */,
 				BE91B6681CBA4097006B39F7 /* View */,
 			);
 			path = SideMenuComplaint;
@@ -7217,6 +7235,17 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		BE2D3D371CC149680064CEC0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				BE2D3D381CC149800064CEC0 /* JZMyComplaintData.h */,
+				BE2D3D391CC149800064CEC0 /* JZMyComplaintData.m */,
+				BE2D3D3A1CC149800064CEC0 /* JZMyComplaintRootClass.h */,
+				BE2D3D3B1CC149800064CEC0 /* JZMyComplaintRootClass.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
 		BE91B6631CBA3E56006B39F7 /* Old */ = {
 			isa = PBXGroup;
 			children = (
@@ -7232,6 +7261,8 @@
 			children = (
 				BE91B6641CBA3E6D006B39F7 /* JZComplaintController.h */,
 				BE91B6651CBA3E6D006B39F7 /* JZComplaintController.m */,
+				BE2D3D2F1CC141560064CEC0 /* JZMyComplaintListController.h */,
+				BE2D3D301CC141560064CEC0 /* JZMyComplaintListController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -7249,6 +7280,11 @@
 				D97303781CBB81A700F51435 /* JZComplaintRightView.xib */,
 				BE91B66C1CBA5CC0006B39F7 /* JZComplaintDetailCell.h */,
 				BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */,
+				BE2D3D3E1CC14A8D0064CEC0 /* JZMyComplaintListView.h */,
+				BE2D3D3F1CC14A8D0064CEC0 /* JZMyComplaintListView.m */,
+				BE2D3D321CC141E60064CEC0 /* JZMyComplaintListCell.h */,
+				BE2D3D331CC141E60064CEC0 /* JZMyComplaintListCell.m */,
+				BE2D3D351CC141FD0064CEC0 /* JZMyComplaintListCell.xib */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -7658,6 +7694,7 @@
 				B251E4A61C8E849500E6613A /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
 				064909521C969B8F00126299 /* JZSignUpFooterView.xib in Resources */,
 				D9DA1C611CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib in Resources */,
+				BE2D3D361CC141FD0064CEC0 /* JZMyComplaintListCell.xib in Resources */,
 				B251E4E81C8E849500E6613A /* nav_createGroup@2x.png in Resources */,
 				B251E4CB1C8E849500E6613A /* chat_sender_audio_playing_000@2x.png in Resources */,
 				B251E4641C8E849500E6613A /* VoiceSearchFeedback014@2x.png in Resources */,
@@ -7933,6 +7970,7 @@
 				B251E3A41C8E849500E6613A /* GenderViewController.m in Sources */,
 				B2EEBCED1CA13A8700846656 /* DVVCoachDetailCourseCell.m in Sources */,
 				B251E6A91C8E849600E6613A /* SBJSON.m in Sources */,
+				BE2D3D3D1CC149800064CEC0 /* JZMyComplaintRootClass.m in Sources */,
 				B251E50D1C8E849500E6613A /* VirtualViewController.m in Sources */,
 				B251E31E1C8E849500E6613A /* CoachDetail.m in Sources */,
 				B2EEBCE81CA13A8700846656 /* DVVCoachDetailController.m in Sources */,
@@ -7942,6 +7980,7 @@
 				B251E2FD1C8E849500E6613A /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				D976763D1C97E0B70033221E /* YBAppointmentTool.m in Sources */,
 				B251E2F41C8E849500E6613A /* DrivingTableHeaderView.m in Sources */,
+				BE2D3D341CC141E60064CEC0 /* JZMyComplaintListCell.m in Sources */,
 				BE29B0851CBA970300CBB908 /* JZComplaintLeftView.m in Sources */,
 				B251E6D61C8E852300E6613A /* UIImage+WM.m in Sources */,
 				B251E3C81C8E849500E6613A /* AppDelegate+DealJPushMessage.m in Sources */,
@@ -8063,6 +8102,7 @@
 				B251E3061C8E849500E6613A /* KindlyReminderView.m in Sources */,
 				B251E7441C91133100E6613A /* UIBarButtonItem+YBBarButtonItem.m in Sources */,
 				B251E6AC1C8E849600E6613A /* SBJsonWriter.m in Sources */,
+				BE2D3D3C1CC149800064CEC0 /* JZMyComplaintData.m in Sources */,
 				B251E30E1C8E849500E6613A /* SignUpSucceedViewController.m in Sources */,
 				B2EEBCB81CA1396A00846656 /* DVVSignUpDetailPayView.m in Sources */,
 				B251E5011C8E849500E6613A /* LoginViewController.m in Sources */,
@@ -8152,6 +8192,7 @@
 				B251E3B81C8E849500E6613A /* SignUpSchoolInfoCell.m in Sources */,
 				B251E4301C8E849500E6613A /* EMChatTimeCell.m in Sources */,
 				062F5B091C9BA85B0057FE5E /* JGActivityDetailsViewController.m in Sources */,
+				BE2D3D401CC14A8D0064CEC0 /* JZMyComplaintListView.m in Sources */,
 				B251E3F81C8E849500E6613A /* HMPortraitInfoModel.m in Sources */,
 				B251E4151C8E849500E6613A /* YBAppointMentDetailsFootView.m in Sources */,
 				062F5AF81C9BA7A60057FE5E /* SignInDataModel.m in Sources */,
@@ -8307,6 +8348,7 @@
 				B2EEBD611CA13FB500846656 /* UIImage+DVVEffects.m in Sources */,
 				B251E5051C8E849500E6613A /* ShowWarningMessageView.m in Sources */,
 				B251E3071C8E849500E6613A /* MapViewController.m in Sources */,
+				BE2D3D311CC141560064CEC0 /* JZMyComplaintListController.m in Sources */,
 				B251E6B71C8E849600E6613A /* RSADataVerifier.m in Sources */,
 				B251E6A81C8E849600E6613A /* NSString+SBJSON.m in Sources */,
 				B251E68C1C8E849600E6613A /* BLPFAlertView.m in Sources */,

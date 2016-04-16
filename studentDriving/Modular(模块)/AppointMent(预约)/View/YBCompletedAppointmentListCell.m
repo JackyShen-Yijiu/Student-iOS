@@ -31,12 +31,12 @@
         [_iconImageView.layer setCornerRadius:19];
         
         // 字体颜色
-        _statusLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
-        _nameLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        _schoolLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
-        _timeLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
-        _subjectLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        _subjectIntroductionLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _statusLabel.textColor = JZ_FONTCOLOR_LIGHT;
+        _nameLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
+        _schoolLabel.textColor = JZ_FONTCOLOR_LIGHT;
+        _timeLabel.textColor = JZ_FONTCOLOR_LIGHT;
+        _subjectLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
+        _subjectIntroductionLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _signInTimeLabel.textColor = YBNavigationBarBgColor;
     }
     return self;

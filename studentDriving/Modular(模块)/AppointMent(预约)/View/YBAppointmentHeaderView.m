@@ -20,8 +20,8 @@
         NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"YBAppointmentHeaderView" owner:self options:nil];
         self = xibArray.firstObject;
         
-        _subjectLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        _subjectTopLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _subjectLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
+        _subjectTopLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
 
 //        [self setLabelTextColor:_yiXueLabel];
 //        [self setLabelTextColor:_guidingLabel];
@@ -48,7 +48,7 @@
 }
 
 - (void)setLabelTextColor:(UILabel *)label {
-    label.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+    label.textColor = JZ_FONTCOLOR_LIGHT;
 }
 
 - (void)setUpData

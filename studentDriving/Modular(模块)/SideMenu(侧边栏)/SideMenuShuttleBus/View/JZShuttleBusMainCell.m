@@ -64,7 +64,7 @@
         _lineNameLabel = [[UILabel alloc] init];
         _lineNameLabel.text = @"昌平线";
         _lineNameLabel.font = [UIFont systemFontOfSize:12];
-        _lineNameLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _lineNameLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _lineNameLabel;
 }

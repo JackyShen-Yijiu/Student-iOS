@@ -81,7 +81,7 @@
         _stationLabel = [[UILabel alloc] init];
         _stationLabel.text = @"昌平线昌平线昌平线昌平线昌平线";
         _stationLabel.font = [UIFont systemFontOfSize:14];
-        _stationLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _stationLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     }
     return _stationLabel;
 }
@@ -97,7 +97,7 @@
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.text = @"昌平线昌平线昌平线昌平线昌平线";
         _timeLabel.font = [UIFont systemFontOfSize:12];
-        _timeLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _timeLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _timeLabel;
 }

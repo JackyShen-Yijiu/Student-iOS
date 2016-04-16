@@ -62,7 +62,7 @@
     
     if (![YBAppointmentTool checkCancelAppointmentWithBeginTime:_courseModel.courseBeginTime]) {
         
-        _commitBtn.backgroundColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _commitBtn.backgroundColor = JZ_FONTCOLOR_LIGHT;
         _commitBtn.userInteractionEnabled = NO;
     }
     
