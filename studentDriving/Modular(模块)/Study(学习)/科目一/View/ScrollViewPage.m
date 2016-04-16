@@ -1010,9 +1010,9 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             
             NSString *userid = @"null";
             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-                userid = [AcountManager manager].userid;
-            }
+//            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+//                userid = [NSString stringWithFormat:@"%@",[AcountManager manager].userid];
+//            }
             [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
                 NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
                 if (!isExit) {
@@ -1085,9 +1085,9 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             
             NSString *userid = @"null";
             NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-                userid = [AcountManager manager].userid;
-            }
+//            if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+//                userid = [NSString stringWithFormat:@"%@",[AcountManager manager].userid];
+//            }
             
             [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
                 NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
@@ -1229,9 +1229,9 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 
         NSString *userid = @"null";
         NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-        if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-            userid = [AcountManager manager].userid;
-        }
+//        if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+//            userid = [NSString stringWithFormat:@"%@",[AcountManager manager].userid];
+//        }
         
         [YBSubjectTool isExitWrongQuestionWithtype:_kemu userid:userid webnoteid:data.ID isExitBlock:^(BOOL isExit) {
             NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);

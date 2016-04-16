@@ -146,9 +146,9 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 
                 NSString *userid = @"null";
                 NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-                    userid = [AcountManager manager].userid;
-                }
+//                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+//                    userid = [AcountManager manager].userid;
+//                }
                 
                 // 数组中保存的是YBSubjectData对象
                 NSArray *dataArray = [YBSubjectTool getAllWrongQuestionwithtype:subjectOne userid:userid];
@@ -302,9 +302,9 @@ static NSString *kapplyStare = @"userinfo/getmyexaminfo";
                 
                 NSString *userid = @"null";
                 NSLog(@"[AcountManager manager].userid:%@",[AcountManager manager].userid);
-                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
-                    userid = [AcountManager manager].userid;
-                }
+//                if ([AcountManager manager].userid && [[AcountManager manager].userid length]!=0) {
+//                    userid = [AcountManager manager].userid;
+//                }
                 
                 // 数组中保存的是YBSubjectData对象
                 NSArray *dataArray = [YBSubjectTool getAllWrongQuestionwithtype:subjectFour userid:userid];

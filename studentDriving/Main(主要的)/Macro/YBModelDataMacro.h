@@ -65,6 +65,6 @@ typedef NS_ENUM(NSUInteger,SignUpFormDetail){
 #define YBPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
 
 // 题库路劲
-#define YBSubjectPath [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject]
+#define YBSubjectPath [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject]
 
 #endif /* YBModelDataMacro_h */
