@@ -17,7 +17,7 @@
 #import "QNUploadManager.h"
 #import "CoachListDMData.h"
 #import "JZMyComplaintListController.h"
-
+#import <MBProgressHUD.h>
 
 #define kLKSize [UIScreen mainScreen].bounds.size
 //static NSString * const contentCellID = @"contentCellID";
@@ -286,17 +286,18 @@
     
     [JENetwoking startDownLoadWithUrl:qiniuUrl postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
         
+        [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        
         NSDictionary *dataDic = data;
         NSString *qiniuToken = dataDic[@"data"];
         QNUploadManager *upLoadManager = [[QNUploadManager alloc] init];
         NSString *keyUrl = [NSString stringWithFormat:@"%@-%@.png",[NSString currentTimeDay],[AcountManager manager].userid];
         
         [upLoadManager putData:gcdPhotoData key:keyUrl token:qiniuToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSLog(@"upLoadManager resp:%@",resp);
             
             if (resp) {
-                
 //                NSLog(@"%@",key);
                 
                 
@@ -310,15 +311,10 @@
 
 
                     
-                    
                 }else {
                     
-                    
-                    
                     [self.picArray addObject:upImageUrl];
-                    
-                   
-                        
+                
                     }
             }
         } option:nil];
@@ -422,7 +418,7 @@
         NSString *picURl = self.picArray[0];
         
         
-        self.picListURL = [picURl stringByAppendingFormat:@",%@",self.picArray[2]];
+        self.picListURL = [picURl stringByAppendingFormat:@",%@",self.picArray[1]];
             
 
     }

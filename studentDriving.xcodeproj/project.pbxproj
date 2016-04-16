@@ -1035,8 +1035,6 @@
 		BE29B0821CBA8E2200CBB908 /* JZComplaintLeftView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE29B0811CBA8E2200CBB908 /* JZComplaintLeftView.xib */; };
 		BE29B0851CBA970300CBB908 /* JZComplaintLeftView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */; };
 		BE2D3D311CC141560064CEC0 /* JZMyComplaintListController.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D301CC141560064CEC0 /* JZMyComplaintListController.m */; };
-		BE2D3D341CC141E60064CEC0 /* JZMyComplaintListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D331CC141E60064CEC0 /* JZMyComplaintListCell.m */; };
-		BE2D3D361CC141FD0064CEC0 /* JZMyComplaintListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BE2D3D351CC141FD0064CEC0 /* JZMyComplaintListCell.xib */; };
 		BE2D3D3C1CC149800064CEC0 /* JZMyComplaintData.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D391CC149800064CEC0 /* JZMyComplaintData.m */; };
 		BE2D3D3D1CC149800064CEC0 /* JZMyComplaintRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D3B1CC149800064CEC0 /* JZMyComplaintRootClass.m */; };
 		BE2D3D401CC14A8D0064CEC0 /* JZMyComplaintListView.m in Sources */ = {isa = PBXBuildFile; fileRef = BE2D3D3F1CC14A8D0064CEC0 /* JZMyComplaintListView.m */; };
@@ -1107,6 +1105,7 @@
 		D991FAEE1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanRootClass.m in Sources */ = {isa = PBXBuildFile; fileRef = D991FAEA1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanRootClass.m */; };
 		D991FAEF1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.m in Sources */ = {isa = PBXBuildFile; fileRef = D991FAEC1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.m */; };
 		D998555C1C9658840090036D /* YBCompletedAppointmentDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = D998555B1C9658840090036D /* YBCompletedAppointmentDetailController.m */; };
+		D99BDBF41CC1EA6A00D72A33 /* JZMyComplaintCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D99BDBF31CC1EA6A00D72A33 /* JZMyComplaintCell.m */; };
 		D9DA1C611CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D9DA1C601CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib */; };
 		D9DA1C641CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DA1C631CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m */; };
 		D9DA1C691CBCD5EE00BBD81D /* JZWalletData.m in Sources */ = {isa = PBXBuildFile; fileRef = D9DA1C661CBCD5EE00BBD81D /* JZWalletData.m */; };
@@ -1364,7 +1363,10 @@
 		B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectWrongQuestionController.m; sourceTree = "<group>"; };
 		B22BAD6E1CBFA13800455E1C /* YBSubjectExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectExamViewController.h; sourceTree = "<group>"; };
 		B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectExamViewController.m; sourceTree = "<group>"; };
+<<<<<<< HEAD
+=======
 		B22BADC01CC1EC4500455E1C /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
+>>>>>>> c042b54e13ceee40254dcf732f9235b20080d2d1
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -3108,9 +3110,6 @@
 		BE29B0841CBA970300CBB908 /* JZComplaintLeftView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZComplaintLeftView.m; sourceTree = "<group>"; };
 		BE2D3D2F1CC141560064CEC0 /* JZMyComplaintListController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintListController.h; sourceTree = "<group>"; };
 		BE2D3D301CC141560064CEC0 /* JZMyComplaintListController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyComplaintListController.m; sourceTree = "<group>"; };
-		BE2D3D321CC141E60064CEC0 /* JZMyComplaintListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintListCell.h; sourceTree = "<group>"; };
-		BE2D3D331CC141E60064CEC0 /* JZMyComplaintListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyComplaintListCell.m; sourceTree = "<group>"; };
-		BE2D3D351CC141FD0064CEC0 /* JZMyComplaintListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZMyComplaintListCell.xib; sourceTree = "<group>"; };
 		BE2D3D381CC149800064CEC0 /* JZMyComplaintData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintData.h; sourceTree = "<group>"; };
 		BE2D3D391CC149800064CEC0 /* JZMyComplaintData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyComplaintData.m; sourceTree = "<group>"; };
 		BE2D3D3A1CC149800064CEC0 /* JZMyComplaintRootClass.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintRootClass.h; sourceTree = "<group>"; };
@@ -3231,6 +3230,8 @@
 		D991FAEC1CBE844F002AEBE1 /* JZMyWalletDuiHuanJuanUseproductidlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletDuiHuanJuanUseproductidlist.m; sourceTree = "<group>"; };
 		D998555A1C9658840090036D /* YBCompletedAppointmentDetailController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBCompletedAppointmentDetailController.h; sourceTree = "<group>"; };
 		D998555B1C9658840090036D /* YBCompletedAppointmentDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBCompletedAppointmentDetailController.m; sourceTree = "<group>"; };
+		D99BDBF21CC1EA6A00D72A33 /* JZMyComplaintCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyComplaintCell.h; sourceTree = "<group>"; };
+		D99BDBF31CC1EA6A00D72A33 /* JZMyComplaintCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyComplaintCell.m; sourceTree = "<group>"; };
 		D9DA1C601CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = YBBaoMingDuiHuanQuanCell.xib; path = View/YBBaoMingDuiHuanQuanCell.xib; sourceTree = "<group>"; };
 		D9DA1C621CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = YBBaoMingDuiHuanQuanCell.h; path = View/YBBaoMingDuiHuanQuanCell.h; sourceTree = "<group>"; };
 		D9DA1C631CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = YBBaoMingDuiHuanQuanCell.m; path = View/YBBaoMingDuiHuanQuanCell.m; sourceTree = "<group>"; };
@@ -7199,7 +7200,10 @@
 		B2FD3C8F1CB7E70200DCE88D /* Other */ = {
 			isa = PBXGroup;
 			children = (
+<<<<<<< HEAD
+=======
 				B22BADC01CC1EC4500455E1C /* ggtkFile.zip */,
+>>>>>>> c042b54e13ceee40254dcf732f9235b20080d2d1
 				B2FD3CA61CB8A68D00DCE88D /* YBSubjectTool.h */,
 				B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */,
 			);
@@ -7280,9 +7284,8 @@
 				BE91B66D1CBA5CC0006B39F7 /* JZComplaintDetailCell.m */,
 				BE2D3D3E1CC14A8D0064CEC0 /* JZMyComplaintListView.h */,
 				BE2D3D3F1CC14A8D0064CEC0 /* JZMyComplaintListView.m */,
-				BE2D3D321CC141E60064CEC0 /* JZMyComplaintListCell.h */,
-				BE2D3D331CC141E60064CEC0 /* JZMyComplaintListCell.m */,
-				BE2D3D351CC141FD0064CEC0 /* JZMyComplaintListCell.xib */,
+				D99BDBF21CC1EA6A00D72A33 /* JZMyComplaintCell.h */,
+				D99BDBF31CC1EA6A00D72A33 /* JZMyComplaintCell.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -7693,7 +7696,6 @@
 				B251E4A61C8E849500E6613A /* chatBar_colorMore_audioCallSelected@2x.png in Resources */,
 				064909521C969B8F00126299 /* JZSignUpFooterView.xib in Resources */,
 				D9DA1C611CBCC1AD00BBD81D /* YBBaoMingDuiHuanQuanCell.xib in Resources */,
-				BE2D3D361CC141FD0064CEC0 /* JZMyComplaintListCell.xib in Resources */,
 				B251E4E81C8E849500E6613A /* nav_createGroup@2x.png in Resources */,
 				B251E4CB1C8E849500E6613A /* chat_sender_audio_playing_000@2x.png in Resources */,
 				B251E4641C8E849500E6613A /* VoiceSearchFeedback014@2x.png in Resources */,
@@ -7978,7 +7980,6 @@
 				B251E2FD1C8E849500E6613A /* JGDrivingDetailTeachingNewsCell.m in Sources */,
 				D976763D1C97E0B70033221E /* YBAppointmentTool.m in Sources */,
 				B251E2F41C8E849500E6613A /* DrivingTableHeaderView.m in Sources */,
-				BE2D3D341CC141E60064CEC0 /* JZMyComplaintListCell.m in Sources */,
 				BE29B0851CBA970300CBB908 /* JZComplaintLeftView.m in Sources */,
 				B251E6D61C8E852300E6613A /* UIImage+WM.m in Sources */,
 				B251E3C81C8E849500E6613A /* AppDelegate+DealJPushMessage.m in Sources */,
@@ -8529,6 +8530,7 @@
 				D9E0FFA51CBE43BB00CDC2B8 /* JZMyWalletXianJinRootClass.m in Sources */,
 				B251E66E1C8E849600E6613A /* NSDate+Category.m in Sources */,
 				B251E3FF1C8E849500E6613A /* YBAppointMentCoachModel.m in Sources */,
+				D99BDBF41CC1EA6A00D72A33 /* JZMyComplaintCell.m in Sources */,
 				B251E43B1C8E849500E6613A /* EMRemarkImageView.m in Sources */,
 				B251E3CD1C8E849500E6613A /* PushInformationManager.m in Sources */,
 				B251E51F1C8E849500E6613A /* YBBaoMingDuiHuanQuanTableView.m in Sources */,

@@ -15,6 +15,7 @@
 #import "JGActivityDetailsViewController.h"
 #import "DVVShare.h"
 #import <UMSocial.h>
+#import "DVVNoDataPromptView.h"
 
 @interface JGActivityViewController ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -27,6 +28,8 @@
 
 @property (nonatomic,copy) NSString *cityName;
 
+
+@property (nonatomic, strong) DVVNoDataPromptView *noCountentView;
 @end
 
 @implementation JGActivityViewController
@@ -77,6 +80,18 @@
         [ws.tableView.mj_header beginRefreshing];
     }];
     
+    // 添加空白占位图片
+    self.noCountentView = [[DVVNoDataPromptView alloc] initWithTitle:@"一大波优惠活动正在来袭" image:[UIImage imageNamed:@"gift"] subTitle:@"敬请期待"];
+    self.noCountentView.titleLabel.textColor = JZ_FONTCOLOR_DRAK;
+    self.noCountentView.subTitleLabel.textColor = JZ_FONTCOLOR_DRAK;
+    self.noCountentView.titleLabel.font = [UIFont systemFontOfSize:14];
+        self.noCountentView.subTitleLabel.font = [UIFont systemFontOfSize:14];
+    
+    self.noCountentView.hidden = NO;
+    [self.view addSubview:self.noCountentView];
+    
+    
+    
     // 添加分享
     UIButton *button = [UIButton new];
     [button setTitle:@"分享" forState:UIControlStateNormal];
@@ -120,7 +135,13 @@
             NSString *msg = [NSString stringWithFormat:@"%@",param[@"msg"]];
             
             if (type.integerValue == 1) {
+                if ([param[@"data"] count] == 0) {
+                    self.noCountentView.hidden = NO;
+                    return ;
+                    
+                }
                 
+                self.noCountentView.hidden = YES;
                 [ws.activityArray removeAllObjects];
                 
                 NSMutableArray *tempArray = [NSMutableArray array];
@@ -156,7 +177,7 @@
                 [ws.tableView reloadData];
                 
             }else {
-                
+                self.noCountentView.hidden = NO;
                 kShowFail(msg);
                 
             }

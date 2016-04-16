@@ -25,6 +25,8 @@
 @property (nonatomic, strong) YBOrderListViewController *signUpVC;
 
 @property (nonatomic, strong) JZSideMenuOrderDiscountView *sideMenuOrderDiscountView;
+
+@property (nonatomic, strong) JZNoDataShowBGView *noData;
 @end
 
 @implementation JZSideMenuOrderListController
@@ -59,7 +61,7 @@
     
 }
 - (void)viewWillAppear:(BOOL)animated{
-    
+    [_noData removeFromSuperview];
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -67,7 +69,7 @@
 #pragma mark ----- UIScrollerView Delegate
 #pragma mark --- UIScroller delegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
+    [self.noData removeFromSuperview];
     CGFloat width = self.view.width;
     
     if (0 == scrollView.contentOffset.x) {
@@ -89,6 +91,7 @@
 #pragma mark ---- Action
 #pragma mark 筛选条件
 - (void)dvvToolBarViewItemSelectedAction:(NSInteger)index {
+    [self.noData removeFromSuperview];
     /*
      
      学员状态：0 全部学员 1在学学员 2未考学员 3约考学员 4补考学员 5通过学员
@@ -123,6 +126,8 @@
 }
 #pragma mark --- 兑换劵无数据的占位图片
 - (void)initWithNoDataOrderLsitDiscountBG{
+    
+    
     JZNoDataShowBGView *noData = [[JZNoDataShowBGView alloc] initWithFrame:CGRectMake(kSystemWide, 0, self.scrollView.width, self.scrollView.height)];
     [self.scrollView addSubview:noData];
 }

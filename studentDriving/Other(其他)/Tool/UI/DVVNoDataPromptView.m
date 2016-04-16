@@ -75,7 +75,7 @@
     CGFloat contentWidth = size.width;
     // 图片的高
     CGFloat imageHeight = 75.0f;
-    CGFloat titleTopMargin = 20.0f;
+    CGFloat titleTopMargin = 59.0f;
     // 标题的高
     CGFloat titleHeight = 0;
     if (_titleLabel.text && _titleLabel.text.length) {
@@ -92,8 +92,8 @@
     _contentView.bounds = CGRectMake(0, 0, contentWidth, contentHeight);
     _contentView.center = CGPointMake(size.width / 2.0f, size.height / 2.0f);
     _imageView.frame = CGRectMake(0, 0, contentWidth, imageHeight);
-    _titleLabel.frame = CGRectMake(5, imageHeight + titleTopMargin, contentWidth, titleHeight);
-    _subTitleLabel.frame = CGRectMake(0, imageHeight + titleTopMargin + titleHeight, contentWidth, subTitleHeight);
+    _titleLabel.frame = CGRectMake(5, CGRectGetMaxY(self.imageView.frame) + titleTopMargin, contentWidth, titleHeight);
+    _subTitleLabel.frame = CGRectMake(0, imageHeight + titleTopMargin + titleHeight + 10, contentWidth, subTitleHeight);
     
 //    NSLog(@"%f, %f", self.superview.bounds.size.width, self.superview.bounds.size.height);
 }
