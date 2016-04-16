@@ -63,7 +63,9 @@
         NSInteger totalCourse = [AcountManager manager].subjecttwo.totalcourse.integerValue;
         NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
-        NSInteger shengyuxueshi = [[AcountManager manager].subjecttwo.officialhours integerValue] - [AcountManager manager].subjecttwo.officialfinishhours;
+        NSInteger shengyuxueshi = [[AcountManager manager].subjecttwo.totalcourse integerValue] - [[AcountManager manager].subjecttwo.finishcourse integerValue];
+        NSLog(@"[[AcountManager manager].subjecttwo.officialhours integerValue]= %lu [[AcountManager manager].subjecttwo.totalcourse integerValue] = %lu",[[AcountManager manager].subjecttwo.officialhours integerValue],[[AcountManager manager].subjecttwo.totalcourse integerValue]);
+
 
         // 学习内容
         self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",[AcountManager manager].subjecttwo.progress];
@@ -76,7 +78,7 @@
         self.shengxueshiLabel.text = [NSString stringWithFormat:@"还需%ld学时",(long)shengyuxueshi];
         
         // 如果没有完成规定的学时，则不能点击约考
-        if (shengyuxueshi>0) {
+        if (shengyuxueshi > 0) {
             _yuekaoBtn.userInteractionEnabled = NO;
             _yuekaoBtn.image = [UIImage imageNamed:@"YBAppointMentDetailsexam_off"];
         }else {
