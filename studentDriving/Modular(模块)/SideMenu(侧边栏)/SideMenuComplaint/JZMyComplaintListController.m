@@ -8,7 +8,7 @@
 
 #import "JZMyComplaintListController.h"
 #import "JZMyComplaintListView.h"
-
+#define kLKSize [UIScreen mainScreen].bounds.size
 @interface JZMyComplaintListController ()
 @property (nonatomic, weak) JZMyComplaintListView *listView;
 @end
@@ -28,11 +28,12 @@
     // 告诉tableView所有cell的估算高度
     self.listView.estimatedRowHeight = 100;
     
-    JZMyComplaintListView *listView = [[JZMyComplaintListView alloc]initWithFrame:self.view.bounds];
+    JZMyComplaintListView *listView = [[JZMyComplaintListView alloc]initWithFrame:CGRectMake(0, 0, kLKSize.width, kLKSize.height-64)];
     
     self.listView = listView;
     
     [self.view addSubview:listView];
+    
     
     
     

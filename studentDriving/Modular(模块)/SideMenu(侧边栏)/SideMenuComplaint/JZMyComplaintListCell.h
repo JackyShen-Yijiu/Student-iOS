@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *complaintFirstImg;
 /// 投诉的第二张图片
 @property (weak, nonatomic) IBOutlet UIImageView *complaintSecondImg;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *detailTextHight;
 
 @end

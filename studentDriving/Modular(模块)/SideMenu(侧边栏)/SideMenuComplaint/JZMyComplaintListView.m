@@ -31,7 +31,7 @@ static NSString *JZMyComplaintListCellID = @"JZMyComplaintListCell";
         
         self.delegate = self;
         
-        self.rowHeight = 150;
+//        self.rowHeight = 150;
         self.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
         self.showsVerticalScrollIndicator = NO;
         self.showsHorizontalScrollIndicator = NO;
@@ -60,6 +60,7 @@ static NSString *JZMyComplaintListCellID = @"JZMyComplaintListCell";
         listCell = [[JZMyComplaintListCell  alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:JZMyComplaintListCellID];
     }
 
+    listCell.selectionStyle = UITableViewCellSelectionStyleNone;
     self.dataModel = self.listArr[self.listArr.count - indexPath.row -1];
     
     listCell.complaintDetail.text = self.dataModel.feedbackmessage;
@@ -93,18 +94,33 @@ static NSString *JZMyComplaintListCellID = @"JZMyComplaintListCell";
     }
     
    
+    listCell.detailTextLabel.numberOfLines = 0;
+    
+    
+
+    
+    NSNumber *datailTextHight = [NSNumber numberWithFloat:[self getLabelWidthWithString:self.dataModel.feedbackmessage ]];
+
+    [listCell.detailTextLabel mas_remakeConstraints:^(MASConstraintMaker *make) {
+        
+        make.height.equalTo(datailTextHight);
+        
+    }];
     
     
     
-//    if (self.dataModel.piclist[0]) {
-//        
-//        [listCell.complaintFirstImg sd_setImageWithURL:[NSURL URLWithString:self.dataModel.piclist[0]] placeholderImage:[UIImage imageNamed:@"addpic"]];
-//    }
-//    
-//    if (self.dataModel.piclist[1]) {
-//        
-//        [listCell.complaintSecondImg sd_setImageWithURL:[NSURL URLWithString:self.dataModel.piclist[1]] placeholderImage:[UIImage imageNamed:@"addpic"]];
-//    }
+    [self layoutIfNeeded];
+    
+    
+    if (self.dataModel.piclist.count == 1) {
+        
+        [listCell.complaintFirstImg sd_setImageWithURL:[NSURL URLWithString:self.dataModel.piclist[0]]];
+    }
+    
+    if (self.dataModel.piclist.count == 2) {
+        
+        [listCell.complaintSecondImg sd_setImageWithURL:[NSURL URLWithString:self.dataModel.piclist[1]]];
+    }
     
     
     
@@ -112,23 +128,28 @@ static NSString *JZMyComplaintListCellID = @"JZMyComplaintListCell";
     
 }
 
-//-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     
+    self.dataModel = self.listArr[self.listArr.count - indexPath.row -1];
     
-//    
-//        if (self.dataModel.piclist[0]) {
-//    
-//            [listCell.complaintFirstImg sd_setImageWithURL:[NSURL URLWithString:self.dataModel.piclist[0]] placeholderImage:[UIImage imageNamed:@"addpic"]];
-//        }
-//    
-//        if (self.dataModel.piclist[1]) {
-//    
-//            [listCell.complaintSecondImg sd_setImageWithURL:[NSURL URLWithString:self.dataModel.piclist[1]] placeholderImage:[UIImage imageNamed:@"addpic"]];
-//        }
 
     
-//}
+        if (self.dataModel.piclist.count == 0) {
+    
+            return 100;
+           
+        }
+    
+        if (self.dataModel.piclist.count == 1 || self.dataModel.piclist.count == 2) {
+    
+            return 150;
+          
+        }
+
+    
+    return 100;
+}
 
 
 
@@ -226,6 +247,13 @@ static NSString *JZMyComplaintListCellID = @"JZMyComplaintListCell";
     
     return dateTime;
     
+}
+
+- (CGFloat )getLabelWidthWithString:(NSString *)string {
+    CGRect bounds = [string boundingRectWithSize:
+                     CGSizeMake([[UIScreen mainScreen] bounds].size.width - 30, 10000) options:
+                     NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14.f]} context:nil];
+    return bounds.size.height;
 }
 
 
