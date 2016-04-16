@@ -24,13 +24,15 @@
         _playButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [_playButton setBackgroundImage:[UIImage imageNamed:@"playImage.png"] forState:UIControlStateNormal];
         [_playButton addTarget:self action:@selector(clickPlayButton:) forControlEvents:UIControlEventTouchUpInside];
+        _playButton.backgroundColor = [UIColor redColor];
     }
     return _playButton;
 }
 - (UILabel *)AVdescribe {
     if (_AVdescribe == nil) {
-        _AVdescribe = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:16]];
+        _AVdescribe = [WMUITool initWithTextColor:[UIColor whiteColor] withFont:[UIFont systemFontOfSize:24]];
         _AVdescribe.text = @"倒车入库";
+        _AVdescribe.textAlignment = NSTextAlignmentCenter;
     }
     return _AVdescribe;
 }
@@ -44,19 +46,21 @@
     
     [self.contentView addSubview:self.backGroundImage];
     
-    [self.backGroundImage addSubview:self.playButton];
+//    [self.backGroundImage addSubview:self.playButton];
     
-    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.backGroundImage.mas_left).offset(15);
-        make.bottom.mas_equalTo(self.backGroundImage.mas_bottom).offset(-22);
-        make.width.mas_equalTo(@22);
-        make.height.mas_equalTo(@22);
-    }];
+//    [self.playButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(self.backGroundImage.mas_left).offset(15);
+//        make.bottom.mas_equalTo(self.backGroundImage.mas_bottom).offset(-22);
+//        make.width.mas_equalTo(@22);
+//        make.height.mas_equalTo(@22);
+//    }];
     
     [self.backGroundImage addSubview:self.AVdescribe];
     [self.AVdescribe mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.playButton.mas_right).offset(10);
-        make.top.mas_equalTo(self.playButton.mas_top).offset(2);
+        make.left.mas_equalTo(self.backGroundImage.mas_left).offset(0);
+         make.right.mas_equalTo(self.backGroundImage.mas_right).offset(0);
+        make.centerY.mas_equalTo(self.backGroundImage.mas_centerY);
+        make.height.mas_equalTo(@24);
     }];
     
 }
