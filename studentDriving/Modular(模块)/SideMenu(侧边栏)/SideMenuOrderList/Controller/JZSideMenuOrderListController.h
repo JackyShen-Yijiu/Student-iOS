@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JZSideMenuOrderToorBarView.h"
 
 @interface JZSideMenuOrderListController : UIViewController
+
+@property (nonatomic, strong) JZSideMenuOrderToorBarView *toolBarView;
+
+@property (nonatomic,assign) BOOL isOpenSignUpOrderList;
 
 @end

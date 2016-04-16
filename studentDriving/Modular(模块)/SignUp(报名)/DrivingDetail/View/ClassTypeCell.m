@@ -28,6 +28,10 @@
         self.signUpButton.layer.masksToBounds = YES;
         self.signUpButton.layer.cornerRadius = 4;
         [self.signUpButton setBackgroundColor:YBNavigationBarBgColor];
+        if ([[AcountManager manager].userApplystate isEqualToString:@"1"] || [[AcountManager manager].userApplystate isEqualToString:@"2"]) {
+            [self.signUpButton setBackgroundColor:[UIColor colorWithHexString:@"cecece"]];
+            
+        }
         
         [self addSubview:self.lineImageView];
 

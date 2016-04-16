@@ -40,7 +40,7 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
     UIImageView*navBarHairlineImageView;
 }
 
-@property (strong, nonatomic) UITableView *tableView;
+
 
 
 @property (strong, nonatomic) CoachModel *coachDetailModel;
@@ -63,6 +63,8 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
 
 @property (nonatomic,strong) DVVNoDataPromptView *noCountentView;
 @property (nonatomic,strong) DVVNoDataPromptView *mallView;
+
+@property (nonatomic, assign)  BOOL isNOShowCell;
 
 @end
 
@@ -151,6 +153,16 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
         DYNSLog(@"data = %@",data);
         NSDictionary *param = data;
         NSError *error = nil;
+        
+        if (0 == [[data objectForKey:@"type"] integerValue]) {
+            self.noCountentView.imageView.image = [UIImage imageNamed:@"people_null"];
+            self.noCountentView.hidden = NO;
+            _isNOShowCell = YES;
+            [self.tableView reloadData];
+            
+            return ;
+        }
+        
         if (1 == [[data objectForKey:@"type"] integerValue]) {
             NSDictionary *data = param[@"data"];
                 /***************************************************** 报名详情请求数据
@@ -210,6 +222,8 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
                 if (0 == [[data objectForKey:@"applystate"] integerValue]) {
                     
                     self.noCountentView.hidden = NO;
+                    _isNOShowCell = YES;
+                    [self.tableView reloadData];
                     
                     return ;
                 }
@@ -281,6 +295,9 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (_isNOShowCell) {
+        return 0;
+    }
     return 1;
 }
 
@@ -432,7 +449,7 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
                         [self.navigationController pushViewController:payWayVC animated:YES];
                     }
                     
-                    
+                    [self.tableView reloadData];
                     
             }
                 
@@ -505,9 +522,9 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
             if ([type isEqualToString:@"1"]) {
                 
                 [self obj_showTotasViewWithMes:@"取消成功"];
-                
+                [AcountManager saveUserApplyState:@"0"];
                 if (_isFormallOrder) {
-                    [self.pareVC.navigationController.navigationController popToRootViewControllerAnimated:YES];
+                    [self.pareVC.navigationController popToRootViewControllerAnimated:YES];
                 }else{
                     [self.parentViewController.navigationController popToRootViewControllerAnimated:YES];
                 }

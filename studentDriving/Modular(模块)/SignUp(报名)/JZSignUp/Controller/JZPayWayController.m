@@ -15,6 +15,8 @@
 #import "DVVPaySuccessController.h"
 #import "YBOrderListViewController.h"
 #import "SignUpSuccessViewController.h"
+#import "JZSideMenuOrderListController.h"
+
 
 @interface JZPayWayController ()<UITableViewDataSource,UITableViewDelegate,JZPayWayDelegate,UIAlertViewDelegate>
 
@@ -86,12 +88,22 @@
         // 报名成功时清除
         NSUserDefaults *defauts = [NSUserDefaults standardUserDefaults];
         [defauts setObject:@"" forKey:@"SignUp"];
+//        
+//        YBOrderListViewController *vc = [[YBOrderListViewController alloc] init];
+//        vc.isPaySuccess = YES;
+//        [self.navigationController pushViewController:vc animated:YES];
+//        
+//        [AcountManager saveUserApplyState:@"1"];
         
-        YBOrderListViewController *vc = [[YBOrderListViewController alloc] init];
-        vc.isPaySuccess = YES;
+        JZSideMenuOrderListController *vc = [[JZSideMenuOrderListController alloc] init];
+        vc.isOpenSignUpOrderList = YES;
+//        vc.isPaySuccess = YES;
+//        [vc.toolBarView selectItem:2];
+        [AcountManager saveUserApplyState:@"1"];
         [self.navigationController pushViewController:vc animated:YES];
         
-        [AcountManager saveUserApplyState:@"1"];
+        
+
         
     }
 }
