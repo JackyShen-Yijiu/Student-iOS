@@ -249,7 +249,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     
     self.header.titleLable.text = title;
     
-    CGFloat sizeH = [self.header.titleLable.text sizeWithFont:self.header.titleLable.font constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    CGFloat sizeH = [self.header.titleLable.text sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
     NSLog(@"viewForHeaderInSection sizeH:%f",sizeH);
     
     if (data.img_url || data.video_url) {
@@ -334,7 +334,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
     }
 
-    CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    CGFloat sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
 
     NSLog(@"heightForHeaderInSection sizeH:%f",sizeH);
 
@@ -988,22 +988,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             
             [self reloadDate];
 
-//            if (_datearry.count==1) {
-//                [_righttableview reloadData];
-//            }else{
-//                
-//                if (self.currentPage==_datearry.count-1) {
-//                    [_righttableview reloadData];
-//                }else{
-//                    if (tableView==_lefttableview) {
-//                        [_lefttableview reloadData];
-//                    }else if (tableView==_middletableview){
-//                        [_middletableview reloadData];
-//                    }else{
-//                        [self reloadDate];
-//                    }
-//                }
-//            }
            // [self obj_showTotasViewWithMes:@"答错了"];
             
             NSString *userid = @"null";
@@ -1070,22 +1054,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
             
             [self reloadDate];
-
-//            if (_datearry.count==1) {
-//                [_righttableview reloadData];
-//            }else{
-//                if (self.currentPage==_datearry.count-1) {
-//                    [_righttableview reloadData];
-//                }else{
-//                    if (tableView==_lefttableview) {
-//                        [_lefttableview reloadData];
-//                    }else if (tableView==_middletableview){
-//                        [_middletableview reloadData];
-//                    }else{
-//                       [self reloadDate];
-//                    }
-//                }
-//            }
 //            
            // [self obj_showTotasViewWithMes:@"答错了"];
             
@@ -1132,18 +1100,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         NSLog(@"tableView:%@ self.currentPage:%ld",tableView,(long)self.currentPage);
         
         [self reloadDate];
-
-//        if (tableView==_lefttableview) {
-//            NSLog(@"--_lefttableview--");
-//            [_lefttableview reloadData];
-//        }else if (tableView==_middletableview){
-//            NSLog(@"--_middletableview--");
-//            [_middletableview reloadData];
-//        }else if (tableView==_righttableview){
-//            NSLog(@"--_righttableview--");
-//            [_righttableview reloadData];
-//        }
-
+        
     }
     
 }
@@ -1259,7 +1216,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         [self reloadDate];
         
     }
-   
     
     [self changeRightBarState];
     

@@ -1363,7 +1363,7 @@
 		B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectWrongQuestionController.m; sourceTree = "<group>"; };
 		B22BAD6E1CBFA13800455E1C /* YBSubjectExamViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBSubjectExamViewController.h; sourceTree = "<group>"; };
 		B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBSubjectExamViewController.m; sourceTree = "<group>"; };
-		B22BADB61CC0F85400455E1C /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
+		B22BADC01CC1EC4500455E1C /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
 		B251DA7E1C8E849100E6613A /* AFNetworkActivityLogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkActivityLogger.h; sourceTree = "<group>"; };
 		B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkActivityLogger.m; sourceTree = "<group>"; };
 		B251DA811C8E849100E6613A /* ApplyClassCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplyClassCell.h; sourceTree = "<group>"; };
@@ -3140,7 +3140,6 @@
 		D906FAE91CB762CB002BC2B8 /* PhoneNumViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhoneNumViewController.m; sourceTree = "<group>"; };
 		D949A5311CC0BA6B00BBE088 /* JZNoDataShowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZNoDataShowView.h; sourceTree = "<group>"; };
 		D949A5321CC0BA6B00BBE088 /* JZNoDataShowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZNoDataShowView.m; sourceTree = "<group>"; };
-		D949A5341CC0D5F100BBE088 /* ggtkFile.zip */ = {isa = PBXFileReference; lastKnownFileType = archive.zip; path = ggtkFile.zip; sourceTree = "<group>"; };
 		D949A5361CC0DBF900BBE088 /* JZNoDataView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JZNoDataView.h; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.h"; sourceTree = "<group>"; };
 		D949A5371CC0DBF900BBE088 /* JZNoDataView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JZNoDataView.m; path = "../../Modular(模块)/AppointMent(预约)/View/JZNoDataView.m"; sourceTree = "<group>"; };
 		D949A5391CC0F9F700BBE088 /* JZDiscountRecodeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZDiscountRecodeController.h; sourceTree = "<group>"; };
@@ -5802,7 +5801,6 @@
 		B251E0381C8E849300E6613A /* Study(学习) */ = {
 			isa = PBXGroup;
 			children = (
-				B2FD3C871CB7E70200DCE88D /* 科目四 */,
 				B2FD3C8C1CB7E70200DCE88D /* 科目一 */,
 				B251E0391C8E849300E6613A /* Controller */,
 				B251E0451C8E849300E6613A /* Model */,
@@ -5848,7 +5846,6 @@
 		B251E0461C8E849300E6613A /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				D949A5341CC0D5F100BBE088 /* ggtkFile.zip */,
 				B251E0471C8E849300E6613A /* YBCheatsData.json */,
 				B251E0481C8E849300E6613A /* YBStudyData.json */,
 				B251E0491C8E849300E6613A /* YBStudyTool.h */,
@@ -7163,45 +7160,6 @@
 			path = "UIView+Sizes";
 			sourceTree = "<group>";
 		};
-		B2FD3C871CB7E70200DCE88D /* 科目四 */ = {
-			isa = PBXGroup;
-			children = (
-				B2FD3C881CB7E70200DCE88D /* Controller */,
-				B2FD3C891CB7E70200DCE88D /* Model */,
-				B2FD3C8A1CB7E70200DCE88D /* Other */,
-				B2FD3C8B1CB7E70200DCE88D /* View */,
-			);
-			path = "科目四";
-			sourceTree = "<group>";
-		};
-		B2FD3C881CB7E70200DCE88D /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		B2FD3C891CB7E70200DCE88D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		B2FD3C8A1CB7E70200DCE88D /* Other */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Other;
-			sourceTree = "<group>";
-		};
-		B2FD3C8B1CB7E70200DCE88D /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		B2FD3C8C1CB7E70200DCE88D /* 科目一 */ = {
 			isa = PBXGroup;
 			children = (
@@ -7240,7 +7198,7 @@
 		B2FD3C8F1CB7E70200DCE88D /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				B22BADB61CC0F85400455E1C /* ggtkFile.zip */,
+				B22BADC01CC1EC4500455E1C /* ggtkFile.zip */,
 				B2FD3CA61CB8A68D00DCE88D /* YBSubjectTool.h */,
 				B2FD3CA71CB8A68D00DCE88D /* YBSubjectTool.m */,
 			);
@@ -8946,6 +8904,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关/WeChatPay",
+					"\"$(SRCROOT)/studentDriving/Modular(模块)/Study(学习)/科目一/Other/ggtkFile.zip\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
@@ -9051,6 +9010,7 @@
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/3rdparty/VoiceConvert/opencore-amrwb",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关",
 					"$(PROJECT_DIR)/studentDriving/Other(其他)/支付相关/WeChatPay",
+					"\"$(SRCROOT)/studentDriving/Modular(模块)/Study(学习)/科目一/Other/ggtkFile.zip\"",
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";

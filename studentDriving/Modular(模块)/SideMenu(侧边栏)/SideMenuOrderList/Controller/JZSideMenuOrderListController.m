@@ -7,7 +7,6 @@
 //
 
 #import "JZSideMenuOrderListController.h"
-#import "JZSideMenuOrderToorBarView.h"
 #import "JZExchangeRecordController.h"
 #import "YBOrderListViewController.h"
 #import "JZSideMenuOrderDiscountView.h"
@@ -20,9 +19,6 @@
 @property (nonatomic, strong) UIView *bgView;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
-
-
-@property (nonatomic, strong) JZSideMenuOrderToorBarView *toolBarView;
 
 @property (nonatomic, strong) JZExchangeRecordController *exchangeVC;
 
@@ -66,10 +62,10 @@
     [_exchangeVC beginRefresh];
     
     
-    
-   
 }
-
+- (void)viewWillAppear:(BOOL)animated{
+    
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
@@ -154,7 +150,6 @@
         _toolBarView = [JZSideMenuOrderToorBarView new];
         _toolBarView.frame = CGRectMake(0, 0, kSystemWide, HeaderH);
         _toolBarView.titleNormalColor = JZ_FONTCOLOR_DRAK;
-        
         _toolBarView.titleSelectColor = YBNavigationBarBgColor;
         _toolBarView.followBarColor = YBNavigationBarBgColor;
         _toolBarView.titleFont = [UIFont systemFontOfSize:14];

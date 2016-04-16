@@ -522,8 +522,7 @@ static NSString *kCellIdentifier = @"userinfo/getmypayorder"; // 获取我的订
             if ([type isEqualToString:@"1"]) {
                 
                 [self obj_showTotasViewWithMes:@"取消成功"];
-                
-                
+                [AcountManager saveUserApplyState:@"0"];
                 if (_isFormallOrder) {
                     [self.pareVC.navigationController popToRootViewControllerAnimated:YES];
                 }else{
