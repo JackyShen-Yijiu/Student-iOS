@@ -1254,7 +1254,11 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         return;
     }
     
-    NSInteger currentPage = self.currentPage;
+    CGPoint currentOffset = _scrollview.contentOffset;
+    int page = (int)currentOffset.x/kSystemWide;
+    NSLog(@"scrollViewDidEndDecelerating currentOffset.x:%f currentOffset.y:%f page:%d",currentOffset.x,currentOffset.y,page);
+
+    NSInteger currentPage = page;//self.currentPage;
     float trueCount = self.trueCount;
     float wrongCount = self.wrongCount;
     
@@ -1407,7 +1411,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
-    CGPoint currentOffset = scrollView.contentOffset;
+    CGPoint currentOffset = _scrollview.contentOffset;
     NSLog(@"scrollViewDidEndDecelerating currentOffset.x:%f currentOffset.y:%f",currentOffset.x,currentOffset.y);
     
     int page = (int)currentOffset.x/kSystemWide;
@@ -1442,9 +1446,10 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
     }
     
+    [self changeRightBarState];
     
-    
-    if (page <= _datearry.count-1 && currentOffset.x!=0) {
+    // 8 
+    if (page < _datearry.count-1 && currentOffset.x!=0) {
         
         self.currentPage = page;
  
@@ -1464,8 +1469,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
         [self reloadDate];
         
-        [self changeRightBarState];
-
         [self.selectnumDict removeAllObjects];
         
         // 保存本地发生的变化
