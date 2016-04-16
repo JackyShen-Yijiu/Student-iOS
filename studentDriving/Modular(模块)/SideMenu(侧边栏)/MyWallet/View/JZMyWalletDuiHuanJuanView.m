@@ -116,7 +116,7 @@ static NSString *const knumber = @"create_qrcode";
     NSString *str = @"?text=";
     NSString *lastStr = @"&size=46";
     
-    NSString *finishResultStr = [NSString stringWithFormat:@"%@%@%@%@",resultStr,str,self.dataModel.orderscanaduiturl,lastStr];
+    NSString *finishResultStr = [NSString stringWithFormat:@"%@%@%@%@",resultStr,str,data.orderscanaduiturl,lastStr];
 
     [duiHuanJuanHeaerView.QRCodeImg sd_setImageWithURL:[NSURL URLWithString:finishResultStr] placeholderImage:[UIImage imageNamed:@"code_null"]];
     
@@ -145,19 +145,20 @@ static NSString *const knumber = @"create_qrcode";
     
     
 }
--(void)seeBigImg {
+-(void)seeBigImg{
     
     NSLog(@"测试测试测试");
     
     
-//    JZMyWalletDuiHuanJuanData *data = self.duiHuanJuanDataArrM[self.duiHuanJuanHeaerView.tag];
+    JZMyWalletDuiHuanJuanData *data = self.duiHuanJuanDataArrM[self.duiHuanJuanHeaerView.tag];
     
     
     // 生成二维码
     NSString *resultStr = [NSString stringWithFormat:BASEURL,knumber];
     NSString *str = @"?text=";
     NSString *lastStr = @"&size=46";
-    NSString *finishResultStr = [NSString stringWithFormat:@"%@%@%@%@",resultStr,str,self.dataModel.orderscanaduiturl,lastStr];
+    
+    NSString *finishResultStr = [NSString stringWithFormat:@"%@%@%@%@",resultStr,str,data.orderscanaduiturl,lastStr];
 
     [self showQRInfoWithImageStr:finishResultStr];
 
