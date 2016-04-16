@@ -40,7 +40,6 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 {
     if (_webView == nil) {
         _webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight - 64 - 44 - 16)];
-        _webView.hidden = YES;
         _webView.backgroundColor = [UIColor clearColor];
     }
     return _webView;
@@ -49,15 +48,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:YES];
-//    for (UIViewController *viewCon in self.navigationController.viewControllers) {
-//        if ([viewCon isKindOfClass:[MyWalletViewController class]]) {
-//            MyWalletViewController *myWalletVC = (MyWalletViewController *)viewCon;
-//            [myWalletVC refreshWalletData];
-//        }
-//        
-//    }
-//    [self.navigationController.navigationBar addSubview:_progressView];
-//     [self addBottomView];
+
     [self initData];
     
 }
@@ -107,6 +98,7 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
     self.webView.backgroundColor = YBNavigationBarBgColor;
 
     NSLog(@"scrollView.contentOffset.y:%f",scrollView.contentOffset.y);
+    
     if (YBIphone6) {
         if (scrollView.contentOffset.y >= 0) {
             self.webView.backgroundColor = [UIColor whiteColor];
@@ -120,6 +112,13 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
             return;
         }
     }
+    if (YBIphone5) {
+        if (scrollView.contentOffset.y >= 16) {
+            self.webView.backgroundColor = [UIColor whiteColor];
+            return;
+        }
+    }
+    
     if (scrollView.contentOffset.y>=38.5) {
 //        scrollView.scrollEnabled = NO;
         self.webView.backgroundColor = [UIColor whiteColor];
@@ -223,12 +222,13 @@ static NSString *const kDiscountMall = @"userinfo/getmycupon?userid=%@";
 - (void)webViewDidStartLoad:(UIWebView *)webView {
     DYNSLog(@"startLoad");
     self.progressView.hidden = NO;
+    _webView.backgroundColor = [UIColor whiteColor];
 }
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     DYNSLog(@"finishLoad");
     [MBProgressHUD hideHUDForView:self.view animated:YES];
     _webView.hidden = NO;
-    
+    _webView.backgroundColor = YBNavigationBarBgColor;
 }
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(nullable NSError *)error {
     DYNSLog(@"error");
