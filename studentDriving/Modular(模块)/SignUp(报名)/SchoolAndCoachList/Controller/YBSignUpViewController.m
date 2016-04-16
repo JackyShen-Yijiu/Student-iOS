@@ -670,7 +670,7 @@ static NSString *coachCellID = @"coachCellID";
     if (!_toolBarView) {
         _toolBarView = [DVVSignUpToolBarView new];
         
-        _toolBarView.titleNormalColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _toolBarView.titleNormalColor = [UIColor colorWithHexString:@"2f2f2f"];
         _toolBarView.titleSelectColor = YBNavigationBarBgColor;
         _toolBarView.followBarColor = YBNavigationBarBgColor;
         

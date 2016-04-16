@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
     
-    self.textcontent.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+    self.textcontent.textColor = [UIColor colorWithHexString:@"2f2f2f"];
 
 }
 

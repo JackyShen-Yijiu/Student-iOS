@@ -113,7 +113,7 @@
         _shareLabel = [[UILabel alloc] init];
         _shareLabel.text = @"分享者";
         _shareLabel.font = [UIFont systemFontOfSize:12];
-        _shareLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _shareLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _shareLabel;
 }

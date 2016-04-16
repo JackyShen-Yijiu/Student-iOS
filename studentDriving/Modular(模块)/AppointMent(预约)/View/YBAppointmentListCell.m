@@ -37,10 +37,10 @@
         
         // 字体颜色
         _statusLabel.textColor = YBNavigationBarBgColor;
-        _nameLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        _schoolLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
-        _timeLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        _subjectLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _nameLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
+        _schoolLabel.textColor = JZ_FONTCOLOR_LIGHT;
+        _timeLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
+        _subjectLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     }
     return self;
 }
@@ -189,7 +189,7 @@
         
         _qrCodeButton.userInteractionEnabled = NO;
         _qrCodeImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscode_off"];
-        _qrCodeMarkLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _qrCodeMarkLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     
     NSString * imageStr = _model.userModel.headportrait.originalpic;
@@ -258,7 +258,7 @@
 - (void)qrCodeGray {
     _qrCodeButton.userInteractionEnabled = NO;
     _qrCodeImageView.image = [UIImage imageNamed:@"YBAppointMentDetailscode_off"];
-    _qrCodeMarkLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+    _qrCodeMarkLabel.textColor = JZ_FONTCOLOR_LIGHT;
 }
 
 - (NSString *)dateFromLocalWithFormatString:(NSString *)formatString {

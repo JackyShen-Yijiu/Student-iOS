@@ -38,7 +38,7 @@
         _titleLabel.text = @"你的姓名,你的姓名,你的姓名,你的姓名";
         _titleLabel.font = [UIFont systemFontOfSize:14];
         _titleLabel.numberOfLines = 0;
-        _titleLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _titleLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _titleLabel;
 }

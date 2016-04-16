@@ -143,7 +143,7 @@
     if (_nameLabel == nil) {
         _nameLabel = [[UILabel alloc] init];
         _nameLabel.text = @"价值399元的车载蓝牙mp3";
-        _nameLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _nameLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
         _nameLabel.font = [UIFont systemFontOfSize:14];
     }
     return _nameLabel;
@@ -181,7 +181,7 @@
     if (_integralLabelTitle == nil) {
         _integralLabelTitle = [[UILabel alloc] init];
         _integralLabelTitle.text = @"积分";
-        _integralLabelTitle.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _integralLabelTitle.textColor = JZ_FONTCOLOR_LIGHT;
         _integralLabelTitle.font = [UIFont systemFontOfSize:12];
     }
     return _integralLabelTitle;
@@ -191,7 +191,7 @@
         _surplusLabelTitle = [[UILabel alloc] init];
         _surplusLabelTitle.text = @"剩余";
         _surplusLabelTitle.textAlignment  = NSTextAlignmentRight;
-        _surplusLabelTitle.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _surplusLabelTitle.textColor = JZ_FONTCOLOR_LIGHT;
         _surplusLabelTitle.font = [UIFont systemFontOfSize:12];
     }
     return _surplusLabelTitle;

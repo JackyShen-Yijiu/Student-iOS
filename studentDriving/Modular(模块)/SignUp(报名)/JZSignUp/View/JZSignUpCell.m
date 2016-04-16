@@ -84,7 +84,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"报考驾校";
         _titleLabel.font = [UIFont systemFontOfSize:14];
-        _titleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _titleLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     }
     return _titleLabel;
 }
@@ -93,9 +93,9 @@
         _desTextFiled = [[UITextField alloc] init];
         _desTextFiled.font = [UIFont systemFontOfSize:14];
         _desTextFiled.delegate = self;
-        _desTextFiled.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _desTextFiled.textColor = JZ_FONTCOLOR_LIGHT;
         [_desTextFiled setValue:[UIFont systemFontOfSize:14] forKeyPath:@"_placeholderLabel.font"];
-        [_desTextFiled setValue:[UIColor colorWithHexString:@"b7b7b7"] forKeyPath:@"placeholderLabel.textColor"];
+        [_desTextFiled setValue:JZ_FONTCOLOR_LIGHT forKeyPath:@"placeholderLabel.textColor"];
     }
     return _desTextFiled;
 }

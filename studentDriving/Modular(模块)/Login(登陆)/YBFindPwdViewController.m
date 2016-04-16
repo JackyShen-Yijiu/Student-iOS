@@ -317,7 +317,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
 #pragma mark ----- Lazy 加载
 - (DVVBaseTextField *)phoneNumTextFiled{
     if (_phoneNumTextFiled == nil) {
-        _phoneNumTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user"] placeholder:@"请输入手机号" borderColor:[UIColor colorWithHexString:@"b7b7b7"]];
+        _phoneNumTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"user"] placeholder:@"请输入手机号" borderColor:JZ_FONTCOLOR_LIGHT];
         _phoneNumTextFiled.keyboardType = UIKeyboardTypeNumberPad;
         _phoneNumTextFiled.tag = 5000;
         _phoneNumTextFiled.delegate = self;
@@ -336,7 +336,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
         _codeView.layer.masksToBounds = YES;
         _codeView.layer.cornerRadius = 10;
         _codeView.layer.borderWidth = 1;
-        _codeView.layer.borderColor = [UIColor colorWithHexString:@"b7b7b7"].CGColor;
+        _codeView.layer.borderColor = JZ_FONTCOLOR_LIGHT.CGColor;
     }
     return _codeView;
 }
@@ -371,7 +371,7 @@ static NSString *const kautoCode = @"Verificationsmscode";
 }
 - (DVVBaseTextField *)pwdTextFiled{
     if (_pwdTextFiled == nil) {
-        _pwdTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请设置新密码" borderColor:[UIColor colorWithHexString:@"b7b7b7"]];
+        _pwdTextFiled  = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请设置新密码" borderColor:JZ_FONTCOLOR_LIGHT];
         _pwdTextFiled.tag = 5000;
         _pwdTextFiled.delegate = self;
         _pwdTextFiled.secureTextEntry = YES;

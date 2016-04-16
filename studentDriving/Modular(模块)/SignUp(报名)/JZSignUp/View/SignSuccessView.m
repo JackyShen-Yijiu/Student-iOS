@@ -242,7 +242,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     _orderNumLb.textColor = [UIColor redColor];
     
     _dataExplainLb.text = @"携带资料说明:";
-    _dataExplainLb.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+    _dataExplainLb.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     _dataExplainLb.font = [UIFont boldSystemFontOfSize:13];
     
     _dataExplainContentLb.text = @"去驾校缴费时请携带身份证，体检表，户口本，报名电子订单，相关流程如有疑问，请直接致电400-101-6669";
@@ -250,7 +250,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     _dataExplainContentLb.font = [UIFont systemFontOfSize:12];
     
     _barCodeUseExplainLb.text = @"订单二维码使用说明:";
-    _barCodeUseExplainLb.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+    _barCodeUseExplainLb.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     _barCodeUseExplainLb.font = [UIFont boldSystemFontOfSize:13];
     
     _barCodeUseExplainContentLb.text = @"在确认订单信息时，只需将此二维码提供给驾校工作人员即可，由工作人员扫描二维码，确认报名信息。";
@@ -261,7 +261,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     
     [_iconImgView sd_setImageWithURL:[NSURL URLWithString:self.signUpSuccessClass.data.schoollogoimg] placeholderImage:[UIImage imageNamed:@"background_mine"]];
 
-    _nameLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+    _nameLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     _nameLabel.font = [UIFont systemFontOfSize:14];
     _nameLabel.text = [NSString stringWithFormat:@"%@",self.signUpSuccessClass.data.applyschoolinfo.name];
 
@@ -270,7 +270,7 @@ static NSString *const kCreatQrcode = @"/create_qrcode";
     NSString *num2 = [NSString stringWithFormat:@"¥%ld",(long)self.signUpSuccessClass.data.applyclasstypeinfo.onsaleprice];
     NSInteger range2 = [num2 length];
     NSMutableAttributedString *attStr = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:@"%@ %@",num1,num2]];
-    [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"6e6e6e"] range:NSMakeRange(0, range1)];
+    [attStr addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"2f2f2f"] range:NSMakeRange(0, range1)];
     [attStr addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:12] range:NSMakeRange(0, range1)];
     [attStr addAttribute:NSForegroundColorAttributeName value:YBNavigationBarBgColor range:NSMakeRange(range1, range2+1)];
     _payMoneyLabel.attributedText = attStr;

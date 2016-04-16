@@ -158,7 +158,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             CGFloat width = [UIScreen mainScreen].bounds.size.width;
             
             UILabel *titleLabel = [UILabel new];
-            titleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+            titleLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
             titleLabel.font = [UIFont systemFontOfSize:14];
             titleLabel.text = @"我的评价";
             
@@ -174,13 +174,13 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
             // 时间
             UILabel *timeLabel = [UILabel new];
             timeLabel.textAlignment = NSTextAlignmentRight;
-            timeLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+            timeLabel.textColor = JZ_FONTCOLOR_LIGHT;
             timeLabel.font = [UIFont systemFontOfSize:12];
             timeLabel.text = [self getLocalDateFormateUTCDate:time format:@"MM/dd HH:mm"];
             
             // 评论内容
             UILabel *contentLabel = [UILabel new];
-            contentLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+            contentLabel.textColor = JZ_FONTCOLOR_LIGHT;
             contentLabel.font = [UIFont systemFontOfSize:12];
             contentLabel.numberOfLines = 0;
             contentLabel.text = content;

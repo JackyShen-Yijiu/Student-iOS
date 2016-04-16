@@ -48,7 +48,7 @@
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
         _titleLabel.font = [UIFont systemFontOfSize:14];
-        _titleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _titleLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     }
     return _titleLabel;
 }
@@ -73,7 +73,7 @@
     if (!_statusLabel) {
         _statusLabel = [UILabel new];
         _statusLabel.font = [UIFont systemFontOfSize:14];
-        _statusLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _statusLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _statusLabel.text = @"无";
     }
     return _statusLabel;

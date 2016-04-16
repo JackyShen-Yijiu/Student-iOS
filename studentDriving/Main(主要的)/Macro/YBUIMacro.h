@@ -26,10 +26,10 @@ typedef NS_ENUM(NSInteger, kControllerType) {
 #define JZ_BACKGROUNDCOLOR_COLOR RGB_Color(232,232,237)
 
 // 深色字体颜色
-#define JZ_FONTCOLOR_DRAK   RGB_Color(110,110,110)
+#define JZ_FONTCOLOR_DRAK   RGB_Color(47,47,47)
 
 // 浅色字体颜色
-#define JZ_FONTCOLOR_LIGHT   RGB_Color(183,183,183)
+#define JZ_FONTCOLOR_LIGHT   RGB_Color(140,140,140)
 
 // 蓝色
 #define JZ_BlueColor RGB_Color(31, 124, 235)

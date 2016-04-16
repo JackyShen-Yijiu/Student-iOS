@@ -24,8 +24,8 @@
         _statusLabel.textColor = YBNavigationBarBgColor;
         [self addSubview:self.imageMarkLabel];
         [self addSubview:self.markLabel];
-        _imageMarkLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
-        _markLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _imageMarkLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
+        _markLabel.textColor = JZ_FONTCOLOR_LIGHT;
         
         NSMutableAttributedString *descString = [[NSMutableAttributedString alloc] initWithString:DescString];
         [descString addAttribute:NSForegroundColorAttributeName
@@ -47,7 +47,7 @@
     if (!_imageMarkLabel) {
         _imageMarkLabel = [UILabel new];
         _imageMarkLabel.font = [UIFont systemFontOfSize:14];
-        _imageMarkLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _imageMarkLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
         _imageMarkLabel.numberOfLines = 0;
         _imageMarkLabel.textAlignment = NSTextAlignmentCenter;
     }
@@ -58,7 +58,7 @@
     if (!_markLabel) {
         _markLabel = [UILabel new];
         _markLabel.font = [UIFont systemFontOfSize:12];
-        _markLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _markLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _markLabel.numberOfLines = 0;
 //        _markLabel.textAlignment = NSTextAlignmentCenter;
     }

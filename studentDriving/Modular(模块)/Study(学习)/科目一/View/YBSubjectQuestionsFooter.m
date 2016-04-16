@@ -51,7 +51,7 @@
         _explainLabel.textAlignment = NSTextAlignmentLeft;
         _explainLabel.numberOfLines = 0;
         _explainLabel.font = [UIFont systemFontOfSize:14];
-        _explainLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _explainLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
         
     }
     return _explainLabel;
