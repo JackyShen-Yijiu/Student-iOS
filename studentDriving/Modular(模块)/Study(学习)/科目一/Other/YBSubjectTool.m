@@ -338,18 +338,26 @@ static FMDatabaseQueue *_queue;
         NSString *sql = @"";//[NSString stringWithFormat:@"SELECT count(*) as count from web_note w,error_books e where w.id=e.webnoteid and e.userid =%@ and e.kemu=%ld and e.webnoteid=%ld",userid,(long)type,webnoteid];
         
         if ([userid isEqualToString:@"null"]) {
-            sql = [NSString stringWithFormat:@"SELECT count(*) as count from web_note w,error_books e where w.id=e.webnoteid  and e.userid is null and e.kemu=%ld and e.webnoteid=%ld",(long)type,webnoteid];
+            sql = [NSString stringWithFormat:@"SELECT count(*) as numbercount from web_note w,error_books e where w.id=e.webnoteid and e.kemu=%ld and e.webnoteid=%ld",(long)type,webnoteid];
         }
         
         FMResultSet *rs = [dataBase executeQuery:sql];
-        
-        NSLog(@"判断错题是否存在sql:%@-rs:%@ [rs stringForColumn:count]:%@",sql,rs,[rs stringForColumn:@"count"]);
 
-        if ([rs stringForColumn:@"count"] && [[rs stringForColumn:@"count"] integerValue] !=0) {
-            isExitBlock(YES);
-        }else{
+        int count = [rs intForColumn:@"numbercount"];
+
+        NSLog(@"判断错题是否存在sql:%@-rs:%@ [rs stringForColumn:numbercount]:'%@' count:%d",sql,rs,[rs stringForColumn:@"numbercount"],count);
+        
+        if (count==0) {
             isExitBlock(NO);
+        }else{
+            isExitBlock(YES);
         }
+
+//        if ([rs stringForColumn:@"count"] && ![[rs stringForColumn:@"count"] isEqualToString:@"(null)"]) {
+//            isExitBlock(YES);
+//        }else{
+//            isExitBlock(NO);
+//        }
         
     }
     
