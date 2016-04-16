@@ -75,11 +75,15 @@ static NSString *kMallID = @"MallID";
     
     self.view.backgroundColor = [UIColor colorWithHexString:@"e8e8ed"];
     [self.view addSubview:self.mallCollectionView];
+    
+//    [self.mallCollectionView bringSubviewToFront:self.view];
     [self.bgView addSubview:self.titleLable];
     [self.bgView addSubview:self.resultLabel];
     [self.bgView addSubview:self.exangeButton];
     [self.bgView addSubview:self.lineView];
     [self.mallCollectionView addSubview:self.bgView];
+    
+    self.mallCollectionView.frame = self.view.bounds;
     
 }
 
