@@ -964,23 +964,24 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             
            // [self obj_showTotasViewWithMes:@"ok"];
             
+            data.isDone = YES;
+            data.isTrue = YES;
+            data.selectNum = indexPath.row;
+            [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
+
             if (_datearry.count-1==self.currentPage) {
                 
-                self.trueCount = 0;
-                self.wrongCount = 0;
+                self.isLastQuestion = YES;
                 
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-                [alert show];
+//                self.trueCount = 0;
+//                self.wrongCount = 0;
+                
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//                [alert show];
                 
             }else{
                 
                 self.trueCount+=1;
-                
-                data.isDone = YES;
-                data.isTrue = YES;
-                data.selectNum = indexPath.row;
-                
-                [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
                 
                 // 滚动到下一步
                 [self nextQuestion];
@@ -988,6 +989,12 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             }
             
         }else{
+            
+            if (_datearry.count-1==self.currentPage) {
+                
+                self.isLastQuestion = YES;
+           
+            }
             
             self.wrongCount+=1;
             
@@ -1025,27 +1032,29 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         BOOL isSelectnum = [self.selectnumDict[selectIndex] boolValue];
         [self.selectnumDict setValue:@(!isSelectnum) forKey:selectIndex];
         
+        data.isDone = YES;
+        data.isTrue = YES;
+        data.selectNum = indexPath.row;
+        
+        [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
+        
         if (data.answer_true == indexPath.row+1) {
             
          //   [self obj_showTotasViewWithMes:@"ok"];
             
             if (_datearry.count-1==self.currentPage) {
                 
-                self.trueCount = 0;
-                self.wrongCount = 0;
-                
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-                [alert show];
+                self.isLastQuestion = YES;
+
+//                self.trueCount = 0;
+//                self.wrongCount = 0;
+//                
+//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//                [alert show];
                 
             }else{
                 
                 self.trueCount+=1;
-                
-                data.isDone = YES;
-                data.isTrue = YES;
-                data.selectNum = indexPath.row;
-                
-                [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
                 
                 // 滚动到下一步
                 [self nextQuestion];
@@ -1053,6 +1062,12 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             }
             
         }else{
+            
+            if (_datearry.count-1==self.currentPage) {
+                
+                self.isLastQuestion = YES;
+                
+            }
             
             self.wrongCount+=1;
             
@@ -1119,6 +1134,10 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 - (void)confimBtnDidClick
 {
 
+    if (_datearry.count-1==self.currentPage) {
+        self.isLastQuestion = YES;
+    }
+    
     YBSubjectData *data = _datearry[self.currentPage];
     //NSLog(@"%ld data.answer_true:%ld data.answer_trueArray:%@",data.ID,(long)data.answer_true,data.answer_trueArray);
     // 1：单选4个选项 2：正确错误 3：4个选项,多选
@@ -1189,12 +1208,14 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         if (_datearry.count-1==self.currentPage) {
             
             currentPage=0;
-            self.trueCount = 0;
-            self.wrongCount = 0;
+//            self.trueCount = 0;
+//            self.wrongCount = 0;
             
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-            [alert show];
+//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+//            [alert show];
             
+            [self reloadDate];
+
         }else{
             
             currentPage=self.currentPage+1;
@@ -1424,7 +1445,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     
     
     
-    if (page < _datearry.count-1 && currentOffset.x!=0) {
+    if (page <= _datearry.count-1 && currentOffset.x!=0) {
         
         self.currentPage = page;
  
@@ -1446,7 +1467,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
         [self changeRightBarState];
 
-        
         [self.selectnumDict removeAllObjects];
         
         // 保存本地发生的变化

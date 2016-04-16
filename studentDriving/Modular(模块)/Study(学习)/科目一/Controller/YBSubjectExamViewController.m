@@ -120,7 +120,7 @@
         return;
     }
     
-    if (_scrollView.currentPage == dataArray.count-1) {
+    if (_scrollView.currentPage==dataArray.count-1 && _scrollView.isLastQuestion) {
         
         [timer invalidate];
         timer = nil;
