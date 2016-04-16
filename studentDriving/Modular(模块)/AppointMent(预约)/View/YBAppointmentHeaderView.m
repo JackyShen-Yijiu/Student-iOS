@@ -68,7 +68,7 @@
 
 
         // 学习内容
-        self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",[AcountManager manager].subjecttwo.progress];
+        self.subjectTopLabel.text = [NSString stringWithFormat:@"上次学习: %@",[AcountManager manager].subjecttwo.progress];
         // 规定的
         self.guidingLabel.text = [NSString stringWithFormat:@"规定:%@课时",[AcountManager manager].subjecttwo.totalcourse];
         // 已学
@@ -99,7 +99,7 @@
         NSInteger shengyuxueshi = [[AcountManager manager].subjectthree.officialhours integerValue] - [AcountManager manager].subjectthree.officialfinishhours;
         
         // 学习内容
-        self.subjectTopLabel.text = [NSString stringWithFormat:@"%@",[AcountManager manager].subjectthree.progress];
+        self.subjectTopLabel.text = [NSString stringWithFormat:@"上次学习: %@",[AcountManager manager].subjectthree.progress];
         // 规定
         self.guidingLabel.text = [NSString stringWithFormat:@"规定:%@课时",[AcountManager manager].subjectthree.totalcourse];
         // 已学
