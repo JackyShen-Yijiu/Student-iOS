@@ -44,6 +44,7 @@ static NSString *const knumber = @"create_qrcode";
         self.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
 
         
+        
         [self loadData];
         
     }
@@ -79,7 +80,7 @@ static NSString *const knumber = @"create_qrcode";
     
     JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[indexPath.row];
     
-    
+    duiHuanJuanCell.selectionStyle = UITableViewCellSelectionStyleNone;
     duiHuanJuanCell.duiHuanJuanDetailLabel.text = list.productname;
     
     return duiHuanJuanCell;
@@ -87,14 +88,13 @@ static NSString *const knumber = @"create_qrcode";
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     
-
-    
     return self.duiHuanJuanDataArrM.count;
     
 }
 
 // 用来返回每一组的头部视图
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
     // 1.创建headerView
     JZMyWalletDuiHuanJuanHeaderView *duiHuanJuanHeaerView = [JZMyWalletDuiHuanJuanHeaderView duiHuanJuanHeaderViewWithTableView:tableView withTag:section];
     
@@ -126,8 +126,17 @@ static NSString *const knumber = @"create_qrcode";
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(seeBigImg)];
     [self.duiHuanJuanHeaerView.QRCodeImg addGestureRecognizer:tapGesture];
     
-    
-    
+    if (data.openGroup == YES) {
+        
+        // 让按钮中的小图片旋转正的90度
+        self.duiHuanJuanHeaerView.seeDetailImg.transform = CGAffineTransformMakeRotation(M_PI);
+        
+    } else {
+        
+        // 关闭让图片再还原
+        self.duiHuanJuanHeaerView.seeDetailImg.transform = CGAffineTransformMakeRotation(0);
+        
+    }
     
     if (data.couponcomefrom == 1) {
         
@@ -188,6 +197,7 @@ static NSString *const knumber = @"create_qrcode";
         
     }];
 }
+
 - (void)closeQRCodeBgView:(UITapGestureRecognizer *)tagGes {
     
     UIView *view = tagGes.view;
@@ -198,31 +208,31 @@ static NSString *const knumber = @"create_qrcode";
     }];
 }
 
--(void)setDataModel:(JZMyWalletDuiHuanJuanData *)dataModel {
-    
-    
-    _dataModel = dataModel;
-    
-    // 判断当前组是否打开或关闭,对头上的图片是否旋转做判断
-    // 如果是打开了,让按钮图片旋转
-    if (self.dataModel.openGroup == YES) {
-        
-        // 让按钮中的小图片旋转正的90度
-        self.duiHuanJuanHeaerView.seeDetailImg.transform = CGAffineTransformMakeRotation(M_PI);
-        
-    } else {
-        // 关闭让图片再还原
-        self.duiHuanJuanHeaerView.seeDetailImg.transform = CGAffineTransformMakeRotation(0);
-        
-    }
-
-}
-
-///  点击兑换劵下拉视图方法
+//-(void)setDataModel:(JZMyWalletDuiHuanJuanData *)dataModel {
+//    
+//    
+//    _dataModel = dataModel;
+//    
+//    // 判断当前组是否打开或关闭,对头上的图片是否旋转做判断
+//    // 如果是打开了,让按钮图片旋转
+//    if (self.dataModel.openGroup == YES) {
+//        
+//        // 让按钮中的小图片旋转正的90度
+//        self.duiHuanJuanHeaerView.seeDetailImg.transform = CGAffineTransformMakeRotation(M_PI);
+//        
+//    } else {
+//        // 关闭让图片再还原
+//        self.duiHuanJuanHeaerView.seeDetailImg.transform = CGAffineTransformMakeRotation(0);
+//        
+//    }
+//
+//}
+#pragma mark - 点击兑换劵下拉视图方法
 -(void)duiHuanJuanHeaerViewDidClick:(UITapGestureRecognizer *)tap {
     
-    JZMyWalletDuiHuanJuanData *dataModel = self.duiHuanJuanDataArrM[self.selectHeaderViewTag];
     
+    JZMyWalletDuiHuanJuanData *dataModel = self.duiHuanJuanDataArrM[self.selectHeaderViewTag];
+
     dataModel.openGroup = !dataModel.openGroup;
     
     [self.duiHuanJuanDataArrM replaceObjectAtIndex:self.selectHeaderViewTag withObject:dataModel];
@@ -234,8 +244,6 @@ static NSString *const knumber = @"create_qrcode";
     
     [self getDuiHuanJuanDetail:dataModel.openGroup];
 
-
-    
 
 }
 
@@ -302,6 +310,7 @@ static NSString *const knumber = @"create_qrcode";
             
             NSLog(@"%@",array);
             if (array.count) {
+                
                  dataModel.openGroup = YES;
                 
                 [self.duiHuanJuanDataArrM replaceObjectAtIndex:self.selectHeaderViewTag withObject:dataModel];
