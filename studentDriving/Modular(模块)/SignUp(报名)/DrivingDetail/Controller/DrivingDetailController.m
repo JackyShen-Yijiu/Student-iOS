@@ -377,10 +377,8 @@
         self.drivingDetailsCell = cell;
         
         cell.dmData = _viewModel.dmData;
-        
-        cell.detailsLabel.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(moreBtnDidClick)];
-        [cell.detailsLabel addGestureRecognizer:tap];
+ 
+        [cell.isMoteBtn addTarget:self action:@selector(moreBtnDidClick) forControlEvents:UIControlEventTouchUpInside];
         
         return cell;
         
