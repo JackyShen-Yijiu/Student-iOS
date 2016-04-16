@@ -183,33 +183,34 @@ static NSString *const kautoCode = @"Verificationsmscode";
 }
 // 点击下一步
 - (void)nextRegisterButton:(UIButton *)sender{
-    NSString *urlStr = [NSString stringWithFormat:BASEURL,kautoCode];
-    //    /api/v1/Verificationsmscode?mobile=15652305650&code=123456
-    
-    NSDictionary *param = @{@"mobile":self.phoneNumTextFiled.text,
-                            @"code":self.authCodeTextFiled.text};
-    [JENetwoking startDownLoadWithUrl:urlStr postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        /*
-         {
-         "type": 0,
-         "msg": "验证码错误，请重新发送",
-         "data": ""
-         }
-         */
-        NSDictionary *param = data;
-        if (0 == [data[@"type"] integerValue]) {
-            [self obj_showTotasViewWithMes:param[@"msg"]];
-            return ;
-        }
-        if (1 == [data[@"type"] integerValue]) {
-           
-            NSLog(@"设置新密码");
-            [self nextAuto];
-        }
-        
-    } withFailure:^(id data) {
-        
-    }];
+//    NSString *urlStr = [NSString stringWithFormat:BASEURL,kautoCode];
+//    //    /api/v1/Verificationsmscode?mobile=15652305650&code=123456
+//    
+//    NSDictionary *param = @{@"mobile":self.phoneNumTextFiled.text,
+//                            @"code":self.authCodeTextFiled.text};
+//    [JENetwoking startDownLoadWithUrl:urlStr postParam:param WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
+//        /*
+//         {
+//         "type": 0,
+//         "msg": "验证码错误，请重新发送",
+//         "data": ""
+//         }
+//         */
+//        NSDictionary *param = data;
+//        if (0 == [data[@"type"] integerValue]) {
+//            [self obj_showTotasViewWithMes:param[@"msg"]];
+//            return ;
+//        }
+//        if (1 == [data[@"type"] integerValue]) {
+//           
+//            NSLog(@"设置新密码");
+//            [self nextAuto];
+//        }
+//        
+//    } withFailure:^(id data) {
+//        
+//    }]
+    [self nextAuto];
     
 }
 - (void)nextAuto
