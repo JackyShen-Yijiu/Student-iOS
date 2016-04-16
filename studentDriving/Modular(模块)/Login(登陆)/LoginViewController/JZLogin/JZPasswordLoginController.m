@@ -369,10 +369,10 @@
     CGFloat contentViewWidth = 0;
     if (screenWidth <= 320) {
         // 小屏幕
-        contentViewWidth = screenWidth - 30*2;
+        contentViewWidth = screenWidth - 20*2;
     }else {
         // 大屏幕
-        contentViewWidth = screenWidth - 53*2;
+        contentViewWidth = screenWidth - 20*2;
     }
     
     
@@ -455,6 +455,7 @@
         _passwordTextField = [[DVVBaseTextField alloc] initWithLeftImage:[UIImage imageNamed:@"password"] placeholder:@"请输入密码"];
         _passwordTextField.cornerRadius = 10;
         _passwordTextField.secureTextEntry = YES;
+        _passwordTextField.keyboardType = UIKeyboardTypeNumberPad;
          _passwordTextField.foregroundColor = JZ_FONTCOLOR_LIGHT;
     }
     return _passwordTextField;
