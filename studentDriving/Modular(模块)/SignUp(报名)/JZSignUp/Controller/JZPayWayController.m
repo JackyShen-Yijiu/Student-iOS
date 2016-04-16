@@ -16,6 +16,7 @@
 #import "YBOrderListViewController.h"
 #import "SignUpSuccessViewController.h"
 
+
 @interface JZPayWayController ()<UITableViewDataSource,UITableViewDelegate,JZPayWayDelegate,UIAlertViewDelegate>
 
 @property (nonatomic, strong) UITableView *tableView;

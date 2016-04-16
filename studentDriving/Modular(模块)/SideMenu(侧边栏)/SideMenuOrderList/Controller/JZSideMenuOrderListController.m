@@ -40,10 +40,28 @@
     [self.view addSubview:self.scrollView];
     [self.view addSubview:self.bgView];
     [self.bgView addSubview:self.toolBarView];
+    
+    // 积分兑换记录
     _exchangeVC = [[JZExchangeRecordController alloc] init];
     _exchangeVC.pareVC = self;
     _exchangeVC.isFormallOrder = YES;
     [self.scrollView addSubview:self.exchangeVC.view];
+    
+    // 兑换券记录
+    self.sideMenuOrderDiscountView.sideMenuOrderListDiscountDelegate = self;
+    [self.scrollView addSubview:self.sideMenuOrderDiscountView];
+    
+    
+    // 报名记录
+    _signUpVC= [[YBOrderListViewController alloc] init];
+    _signUpVC.view.frame = CGRectMake(kSystemWide * 2, 0, kSystemWide, self.scrollView.height);
+    _signUpVC.pareVC = self;
+    _signUpVC.isFormallOrder = YES;
+    [self.scrollView addSubview:self.signUpVC.view];
+
+    
+    
+    
     
     [_exchangeVC beginRefresh];
     
@@ -91,9 +109,9 @@
         }];
         _exchangeVC = [[JZExchangeRecordController alloc] init];
         _exchangeVC.view.frame = CGRectMake(0, 0, kSystemWide, self.scrollView.height);
-        _exchangeVC.pareVC = self;
-        _exchangeVC.isFormallOrder = YES;
-        [self.scrollView addSubview:self.exchangeVC.view];
+//        _exchangeVC.pareVC = self;
+//        _exchangeVC.isFormallOrder = YES;
+//        [self.scrollView addSubview:self.exchangeVC.view];
         [_exchangeVC beginRefresh];
         
     }else if (1 == index) {
@@ -101,8 +119,6 @@
         [UIView animateWithDuration:0.5 animations:^{
             _scrollView.contentOffset = CGPointMake(contentOffsetX, 0);
         }];
-        [self.scrollView addSubview:self.sideMenuOrderDiscountView];
-        self.sideMenuOrderDiscountView.sideMenuOrderListDiscountDelegate = self;
         [self.sideMenuOrderDiscountView begainRefresh];
         
     }else if (2 == index) {
@@ -110,12 +126,7 @@
         [UIView animateWithDuration:0.5 animations:^{
             _scrollView.contentOffset = CGPointMake(contentOffsetX, 0);
         }];
-        _signUpVC= [[YBOrderListViewController alloc] init];
-        _signUpVC.view.frame = CGRectMake(kSystemWide * 2, 0, kSystemWide, self.scrollView.height);
-        _signUpVC.pareVC = self;
-        _signUpVC.isFormallOrder = YES;
-        [self.scrollView addSubview:self.signUpVC.view];
-        
+        [_signUpVC  startDownLoad];
     }
     
 }
