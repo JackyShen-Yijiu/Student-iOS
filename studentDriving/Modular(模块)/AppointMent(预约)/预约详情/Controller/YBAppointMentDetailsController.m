@@ -197,14 +197,14 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     
     titleLabel.text = @"取消原因";
     titleLabel.font = [UIFont systemFontOfSize:14];
-    titleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+    titleLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     
     UIView *lineView = [UIView new];
     lineView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.1];
     
     UILabel *contentLabel = [UILabel new];
     contentLabel.font = [UIFont systemFontOfSize:14];
-    contentLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+    contentLabel.textColor = JZ_FONTCOLOR_LIGHT;
     contentLabel.text = [NSString stringWithFormat:@"%@  %@", _viewModel.dmData.cancelreason.reason, _viewModel.dmData.cancelreason.cancelcontent];
     
     splitView.frame = CGRectMake(0, 0, kSystemWide, 10);
@@ -330,7 +330,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         
         _promptLabel = [UILabel new];
         _promptLabel.text = @"预约开始前24小时内将不能取消预约";
-        _promptLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _promptLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
         _promptLabel.font = [UIFont systemFontOfSize:10];
         _promptLabel.frame = CGRectMake(0, CGRectGetMaxY(_tableView.frame), kSystemWide, 30);
         _promptLabel.textAlignment = NSTextAlignmentCenter;

@@ -70,7 +70,7 @@
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"你的姓名";
         _titleLabel.font = [UIFont systemFontOfSize:14];
-        _titleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _titleLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     }
     return _titleLabel;
 }
@@ -79,7 +79,7 @@
         _rightLabel = [[UILabel alloc] init];
         _rightLabel.font = [UIFont systemFontOfSize:14];
         _rightLabel.text = @"一步互联网驾校";
-        _rightLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _rightLabel.textColor = JZ_FONTCOLOR_LIGHT;
     
     }
     return _rightLabel;

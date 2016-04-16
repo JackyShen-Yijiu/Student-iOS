@@ -321,7 +321,7 @@
         CGFloat height = 12;
         _coachTitleLabel = [[UILabel alloc] init];
         _coachTitleLabel.text = @"教练";
-        _coachTitleLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _coachTitleLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _coachTitleLabel.font = [UIFont systemFontOfSize:12];
         _coachTitleLabel.textAlignment = NSTextAlignmentCenter;
         _coachTitleLabel.frame = CGRectMake(self.headerView.width/2 - width/2, 20, width, height);
@@ -351,7 +351,7 @@
         CGFloat height = 12;
         _coachNameLabel = [[UILabel alloc] init];
         _coachNameLabel.text = @"######";
-        _coachNameLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _coachNameLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _coachNameLabel.font = [UIFont systemFontOfSize:12];
         _coachNameLabel.textAlignment = NSTextAlignmentCenter;
         _coachNameLabel.frame = CGRectMake(self.headerView.width/2 - width/2, CGRectGetMaxY(self.iconImgView.frame)+10, width, height);

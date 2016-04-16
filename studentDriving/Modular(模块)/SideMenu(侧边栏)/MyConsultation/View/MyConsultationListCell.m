@@ -63,7 +63,7 @@
         _askSubTitle = [[UILabel alloc] init];
         _askSubTitle.textAlignment = NSTextAlignmentLeft;
         _askSubTitle.font = [UIFont systemFontOfSize:13.f];
-        _askSubTitle.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _askSubTitle.textColor = [UIColor colorWithHexString:@"2f2f2f"];
         _askSubTitle.backgroundColor = [UIColor clearColor];
         _askSubTitle.numberOfLines = 0;
         _askSubTitle.text = @"askSubTitleaskSubTitleaskSubTitleaskSubTitleaskSubTitleaskSubTitleaskSubTitle";
@@ -77,7 +77,7 @@
         _replySubTitle = [[UILabel alloc] init];
         _replySubTitle.textAlignment = NSTextAlignmentLeft;
         _replySubTitle.font = [UIFont systemFontOfSize:13.f];
-        _replySubTitle.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _replySubTitle.textColor = JZ_FONTCOLOR_LIGHT;
         _replySubTitle.backgroundColor = [UIColor clearColor];
         _replySubTitle.numberOfLines = 0;
         _replySubTitle.text = @"驾校回复中...";

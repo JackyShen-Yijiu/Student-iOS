@@ -222,7 +222,7 @@
         CGFloat height = 16;
         _topTitleLabel = [[UILabel alloc] init];
         _topTitleLabel.text = @"上次练车练的怎么样?";
-        _topTitleLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _topTitleLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
         _topTitleLabel.font = [UIFont systemFontOfSize:16];
         _topTitleLabel.textAlignment = NSTextAlignmentCenter;
         _topTitleLabel.frame = CGRectMake(self.alertView.width/2 - width/2, 36, width, height);
@@ -238,7 +238,7 @@
         CGFloat height = 16;
         _desLabel = [[UILabel alloc] init];
         _desLabel.text = @"先来评价一下~";
-        _desLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _desLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
         _desLabel.font = [UIFont systemFontOfSize:16];
         _desLabel.textAlignment = NSTextAlignmentCenter;
         _desLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.topTitleLabel.frame)+16, width, height);
@@ -254,7 +254,7 @@
         CGFloat height = 14;
         _coachTitleLabel = [[UILabel alloc] init];
         _coachTitleLabel.text = @"教练";
-        _coachTitleLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _coachTitleLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _coachTitleLabel.font = [UIFont systemFontOfSize:14];
         _coachTitleLabel.textAlignment = NSTextAlignmentCenter;
         _coachTitleLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.desLabel.frame)+24, width, height);
@@ -284,7 +284,7 @@
         CGFloat height = 14;
         _coachNameLabel = [[UILabel alloc] init];
         _coachNameLabel.text = @"######";
-        _coachNameLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _coachNameLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _coachNameLabel.font = [UIFont systemFontOfSize:14];
         _coachNameLabel.textAlignment = NSTextAlignmentCenter;
         _coachNameLabel.frame = CGRectMake(self.alertView.width/2 - width/2, CGRectGetMaxY(self.iconImgView.frame)+12, width, height);

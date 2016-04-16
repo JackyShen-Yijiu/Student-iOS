@@ -988,22 +988,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             
             [self reloadDate];
 
-//            if (_datearry.count==1) {
-//                [_righttableview reloadData];
-//            }else{
-//                
-//                if (self.currentPage==_datearry.count-1) {
-//                    [_righttableview reloadData];
-//                }else{
-//                    if (tableView==_lefttableview) {
-//                        [_lefttableview reloadData];
-//                    }else if (tableView==_middletableview){
-//                        [_middletableview reloadData];
-//                    }else{
-//                        [self reloadDate];
-//                    }
-//                }
-//            }
            // [self obj_showTotasViewWithMes:@"答错了"];
             
             NSString *userid = @"null";
@@ -1070,22 +1054,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
             
             [self reloadDate];
-
-//            if (_datearry.count==1) {
-//                [_righttableview reloadData];
-//            }else{
-//                if (self.currentPage==_datearry.count-1) {
-//                    [_righttableview reloadData];
-//                }else{
-//                    if (tableView==_lefttableview) {
-//                        [_lefttableview reloadData];
-//                    }else if (tableView==_middletableview){
-//                        [_middletableview reloadData];
-//                    }else{
-//                       [self reloadDate];
-//                    }
-//                }
-//            }
 //            
            // [self obj_showTotasViewWithMes:@"答错了"];
             
@@ -1132,18 +1100,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         NSLog(@"tableView:%@ self.currentPage:%ld",tableView,(long)self.currentPage);
         
         [self reloadDate];
-
-//        if (tableView==_lefttableview) {
-//            NSLog(@"--_lefttableview--");
-//            [_lefttableview reloadData];
-//        }else if (tableView==_middletableview){
-//            NSLog(@"--_middletableview--");
-//            [_middletableview reloadData];
-//        }else if (tableView==_righttableview){
-//            NSLog(@"--_righttableview--");
-//            [_righttableview reloadData];
-//        }
-
+        
     }
     
 }
@@ -1259,7 +1216,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         [self reloadDate];
         
     }
-   
     
     [self changeRightBarState];
     

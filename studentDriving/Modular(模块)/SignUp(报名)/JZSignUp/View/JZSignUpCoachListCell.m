@@ -152,7 +152,7 @@
         _coachNameLabel = [[UILabel alloc] init];
         _coachNameLabel.text = @"Jackey";
         _coachNameLabel.font = [UIFont systemFontOfSize:14];
-        _coachNameLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _coachNameLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _coachNameLabel;
 }
@@ -170,7 +170,7 @@
         _pinglunCountLabel = [[UILabel alloc] init];
         _pinglunCountLabel.text = @"Jackey";
         _pinglunCountLabel.font = [UIFont systemFontOfSize:12];
-        _pinglunCountLabel.textColor = [UIColor colorWithHexString:@"b7b7b7"];
+        _pinglunCountLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _pinglunCountLabel;
 }
@@ -186,7 +186,7 @@
         _jialingLabel.text = @"Jackey";
         _jialingLabel.font = [UIFont systemFontOfSize:12];
         _jialingLabel.textAlignment = NSTextAlignmentRight;
-        _jialingLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _jialingLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     }
     return _pinglunCountLabel;
 }
@@ -196,7 +196,7 @@
         _tongguolvLabel.text = @"Jackey";
         _tongguolvLabel.font = [UIFont systemFontOfSize:12];
         _tongguolvLabel.textAlignment = NSTextAlignmentRight;
-        _tongguolvLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _tongguolvLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     }
     return _tongguolvLabel;
 }

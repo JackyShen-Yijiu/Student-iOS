@@ -72,12 +72,13 @@
     cell.numberLabel.backgroundColor = YBNavigationBarBgColor;
     cell.numberLabel.layer.masksToBounds = YES;
     cell.numberLabel.layer.cornerRadius = 3;
-    cell.contentLabel.textColor = [UIColor colorWithHexString:@"6e6e6e"];
+    cell.contentLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     cell.contentLabel.font = [UIFont boldSystemFontOfSize:13];
     
     cell.numberLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
     
     YBSubjectData *data = self.dataArray[indexPath.row];
+    
     
     cell.contentLabel.text = [NSString stringWithFormat:@"%@(%ld)",data.title,(long)data.count];
     

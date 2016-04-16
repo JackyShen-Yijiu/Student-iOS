@@ -343,7 +343,7 @@ WMSingletonM(YBStudyViewController)
     if (!_dvvToolBarView) {
         _dvvToolBarView = [YBToolBarView new];
         _dvvToolBarView.titleArray = @[ @"科目一", @"科目二", @"科目三" ,@"科目四"];
-        _dvvToolBarView.titleNormalColor = [UIColor colorWithHexString:@"6e6e6e"];
+        _dvvToolBarView.titleNormalColor = [UIColor colorWithHexString:@"2f2f2f"];
         _dvvToolBarView.titleSelectedColor = YBNavigationBarBgColor;
         _dvvToolBarView.buttonNormalColor = [UIColor whiteColor];
         _dvvToolBarView.buttonSelectedColor = [UIColor whiteColor];

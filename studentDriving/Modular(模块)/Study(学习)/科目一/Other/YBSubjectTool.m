@@ -29,28 +29,17 @@ static FMDatabaseQueue *_queue;
     
     BOOL isExist = false;
     for (NSString *str in fileArray) {
-        NSLog(@"str:%@",str);
+        NSLog(@"fileManager str:%@",str);
         if ([str hasPrefix:@"ggtkFile"]) {
             isExist = YES;
             break;
         }
     }
-    NSLog(@"isExist:%d",isExist);
+    NSLog(@"fileManager isExist:%d",isExist);
     
     if (isExist) {
         
         NSLog(@"文件存在，读取文件");
-//        NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
-//        NSLog(@"dbPath:%@",dbPath);
-//        
-//        NSString *imgPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/resources"];
-//        NSArray *imgArray = [fileManager subpathsOfDirectoryAtPath: imgPath error:nil];
-//        NSLog(@"imgArrayPath:%@",imgArray);
-//        
-//        NSString *name = @"0014ec3c884a4e7bbdbbf61d07e0d597.jpg";
-//        NSString *subjectImgPath = [YBSubjectPath stringByAppendingFormat:@"/ggtkFile/resources/%@",name];//[documentpath stringByAppendingString:@"/ggtkFile/resources/%@",name];
-//        NSLog(@"subjectImgPath:%@",subjectImgPath);
-
         zipArchiveBlock(YES,YES);
 
     }else{
@@ -58,33 +47,28 @@ static FMDatabaseQueue *_queue;
         NSString* unzipto = [YBSubjectPath stringByAppendingString:@"/ggtkFile"] ;
 
         NSLog(@"文件不存在");
-        
         NSString *path = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"ggtkFile"] ofType:@"zip"];
-        if( [zip UnzipOpenFile:path] )
+
+        if([zip UnzipOpenFile:path])
         {
+            
+            NSLog(@"压缩包存在");
+            
             BOOL ret = [zip UnzipFileTo:unzipto overWrite:YES];
             if(ret)
             {
                 NSLog(@"解压成功");
-//                NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
-//                NSLog(@"dbPath:%@",dbPath);
-//                
-//                NSString *imgPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/resources"];
-//                NSArray *imgArray = [fileManager subpathsOfDirectoryAtPath: imgPath error:nil];
-//                NSLog(@"imgArrayPath:%@",imgArray);
-//                
-//                NSString *name = @"0014ec3c884a4e7bbdbbf61d07e0d597.jpg";
-//                NSString *subjectImgPath = [YBSubjectPath stringByAppendingFormat:@"/ggtkFile/resources/%@",name];//[documentpath stringByAppendingString:@"/ggtkFile/resources/%@",name];
-//                NSLog(@"subjectImgPath:%@",subjectImgPath);
-                
                 zipArchiveBlock(NO,YES);
-
+                
             }else{
                 
                 NSLog(@"解压失败");
                 zipArchiveBlock(NO,NO);
+                
             }
+            
             [zip UnzipCloseFile];
+            
         }
         
     }
@@ -102,12 +86,13 @@ static FMDatabaseQueue *_queue;
             tempArray = [self getAllSubjectChapterWithType:type];
             
         }else{// 文件不存在
-           
+            
             if (archiveResult) {// 解压成功
                 
                 tempArray = [self getAllSubjectChapterWithType:type];
-
+                
             }else{// 解压失败
+                
                 
             }
             
