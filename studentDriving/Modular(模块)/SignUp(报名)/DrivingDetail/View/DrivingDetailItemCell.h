@@ -13,6 +13,8 @@
 
 @property (nonatomic,strong) UILabel *detailsLabel;
 
+@property (nonatomic,strong) UIButton *isMoteBtn;
+
 + (CGFloat)cellHeightDmData:(DrivingDetailDMData *)dmData;
 
 @property (nonatomic,strong) DrivingDetailDMData *dmData;
