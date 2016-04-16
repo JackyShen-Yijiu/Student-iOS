@@ -1340,6 +1340,9 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     if (currentPage>0) {
         currentPage-=1;
     }
+    if (currentPage>=_datearry.count-1) {
+        currentPage=0;
+    }
     self.currentPage = currentPage;
 
     // 更新右上角状态
