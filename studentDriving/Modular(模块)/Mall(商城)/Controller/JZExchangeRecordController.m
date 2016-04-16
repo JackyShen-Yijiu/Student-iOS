@@ -109,6 +109,13 @@
             [ws.tableView addSubview:ws.noDataShowBGView];
         [ws obj_showTotasViewWithMes:@"网络错误"];
     }];
+    
+    [_viewModel dvv_setRefreshErrorBlock:^{
+        self.noDataShowView.imgStr = @"YBNocountentimage_wallet_integral";
+        self.noDataShowView.titleStr = @"暂无兑换记录";
+        [ws.tableView addSubview:self.noDataShowBGView];
+    }];
+
 }
 #pragma mark - public
 
