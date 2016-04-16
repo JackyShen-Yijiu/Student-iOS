@@ -476,6 +476,9 @@ static FMDatabaseQueue *_queue;
         [dataBase open];
         
         NSString *sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld   and (strTppe='01' or strTppe='02' or strTppe='03' or strTppe='04') order BY RANDOM() limit 100",(long)type];
+        if (type==subjectFour) {
+            sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld   and (strTppe='01' or strTppe='02' or strTppe='03' or strTppe='04') order BY RANDOM() limit 50",(long)type];
+        }
         
         NSLog(@"sql:%@",sql);
         

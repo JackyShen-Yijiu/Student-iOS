@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MyXianJinHeaderTypeView : UIView
+@property (weak, nonatomic) IBOutlet UIButton *seeXianJinListBtn;
 
 @end

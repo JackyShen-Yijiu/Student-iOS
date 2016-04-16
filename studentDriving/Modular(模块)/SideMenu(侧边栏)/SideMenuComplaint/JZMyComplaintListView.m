@@ -64,6 +64,8 @@ static NSString *JZMyComplaintCellID = @"JZMyComplaintCell";
     
     JZMyComplaintData *dataModel = self.listDataArray[self.listDataArray.count - indexPath.row -1];
     
+    NSLog(@"dataModel.piclist:%@",dataModel.piclist);
+    
     listCell.data = dataModel;
     
     return listCell;

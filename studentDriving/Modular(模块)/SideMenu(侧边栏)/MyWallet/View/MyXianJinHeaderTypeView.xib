@@ -42,6 +42,9 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="seeXianJinListBtn" destination="mEO-bQ-tTi" id="hrD-IQ-Rxa"/>
+            </connections>
             <point key="canvasLocation" x="391.5" y="-634"/>
         </view>
     </objects>
