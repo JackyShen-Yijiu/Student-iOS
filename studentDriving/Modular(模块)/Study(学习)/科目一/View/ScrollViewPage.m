@@ -412,10 +412,18 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         NSArray *allValues = [self.selectnumDict allValues];
         NSLog(@"------allValues:%@ [allValues containsObject:@(1)]:%d",allValues,[allValues containsObject:@(1)]);
         
-        if (allValues && allValues.count != 0) {
+        if (allValues && allValues.count >= 2) {
             
-            self.footer.confimBtn.enabled = [allValues containsObject:@(1)];
-            self.footer.confimBtn.backgroundColor = [allValues containsObject:@(1)] ? YBNavigationBarBgColor : [UIColor lightGrayColor];
+            BOOL iscontainsYES=NO;
+            for (NSNumber *x in allValues) {
+                if ([x integerValue]) {
+                    iscontainsYES=YES;
+                }else{
+                    iscontainsYES=NO;
+                }
+            }
+            self.footer.confimBtn.enabled = iscontainsYES;//[allValues containsObject:@(1)];
+            self.footer.confimBtn.backgroundColor = iscontainsYES ? YBNavigationBarBgColor : [UIColor lightGrayColor];
             
         }else{
             
