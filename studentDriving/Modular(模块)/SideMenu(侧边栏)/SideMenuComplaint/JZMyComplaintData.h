@@ -11,4 +11,7 @@
 @property (nonatomic, strong) NSString * name;
 @property (nonatomic, strong) NSArray * piclist;
 @property (nonatomic, strong) NSString * userid;
+
+@property (nonatomic, assign) CGFloat imageViewH;
+@property (nonatomic, assign) CGFloat datailLabelH;
 @end

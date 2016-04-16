@@ -23,10 +23,8 @@
     self.title = @"我的投诉";
     self.view.backgroundColor = RGBColor(232, 232, 237);
 
-    // 告诉tableView所有cell的真实高度是自动计算（根据设置的约束来计算）
-    self.listView.rowHeight = UITableViewAutomaticDimension;
-    // 告诉tableView所有cell的估算高度
-    self.listView.estimatedRowHeight = 100;
+    
+    
     
     JZMyComplaintListView *listView = [[JZMyComplaintListView alloc]initWithFrame:CGRectMake(0, 0, kLKSize.width, kLKSize.height-64)];
     

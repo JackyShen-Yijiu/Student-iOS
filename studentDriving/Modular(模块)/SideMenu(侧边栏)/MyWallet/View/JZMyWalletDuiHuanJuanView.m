@@ -150,7 +150,7 @@ static NSString *const knumber = @"create_qrcode";
     NSLog(@"测试测试测试");
     
     
-    JZMyWalletDuiHuanJuanData *data = self.duiHuanJuanDataArrM[self.duiHuanJuanHeaerView.tag];
+//    JZMyWalletDuiHuanJuanData *data = self.duiHuanJuanDataArrM[self.duiHuanJuanHeaerView.tag];
     
     
     // 生成二维码

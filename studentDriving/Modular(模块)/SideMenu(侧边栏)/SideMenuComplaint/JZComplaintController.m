@@ -294,7 +294,7 @@
         NSString *keyUrl = [NSString stringWithFormat:@"%@-%@.png",[NSString currentTimeDay],[AcountManager manager].userid];
         
         [upLoadManager putData:gcdPhotoData key:keyUrl token:qiniuToken complete:^(QNResponseInfo *info, NSString *key, NSDictionary *resp) {
-            
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSLog(@"upLoadManager resp:%@",resp);
             
             if (resp) {
@@ -311,15 +311,10 @@
 
 
                     
-                    
                 }else {
                     
-                    
-                    
                     [self.picArray addObject:upImageUrl];
-                    
-                   
-                        
+                
                     }
             }
         } option:nil];
@@ -423,7 +418,7 @@
         NSString *picURl = self.picArray[0];
         
         
-        self.picListURL = [picURl stringByAppendingFormat:@",%@",self.picArray[2]];
+        self.picListURL = [picURl stringByAppendingFormat:@",%@",self.picArray[1]];
             
 
     }
