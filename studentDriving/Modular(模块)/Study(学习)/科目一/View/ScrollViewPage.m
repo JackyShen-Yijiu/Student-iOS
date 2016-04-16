@@ -1266,6 +1266,11 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 - (void)changeRightBarState
 {
 
+    if (_datearry && _datearry.count==0) {
+        NSLog(@"数据为空");
+        return;
+    }
+    
     NSInteger currentPage = self.currentPage;
     float trueCount = self.trueCount;
     float wrongCount = self.wrongCount;
@@ -1283,7 +1288,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 
     self.socre = trueCount;
     
-    NSLog(@"changeRightBarState currentPage:%ld trueCount:%ld wrongCount:%ld proportion:%@ trueCountStr:%@ wrongCountStr:%@ correctrate:%@",(long)currentPage,(long)trueCount,(long)wrongCount,proportion,trueCountStr,wrongCountStr,correctrate);
+    NSLog(@"changeRightBarState currentPage:%ld trueCount:%ld wrongCount:%ld proportion:%@ trueCountStr:%@ wrongCountStr:%@ correctrate:%@ (unsigned long)_datearry.count:%ld",(long)currentPage,(long)trueCount,(long)wrongCount,proportion,trueCountStr,wrongCountStr,correctrate,(unsigned long)_datearry.count);
 
     for (UIButton *btn in self.rightBarView.subviews) {
         
@@ -1336,7 +1341,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     // 从数据库中读取上次最后做题记录
     NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
     NSInteger currentPage = [user integerForKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
-    NSLog(@"setUpScrollViewSize currentPage:%ld _scrollview.contentOffset.x:%f",(long)currentPage,_scrollview.contentOffset.x);
+    NSLog(@"setUpScrollViewSize currentPage:%ld _scrollview.contentOffset.x:%f _datearry.count:%lu",(long)currentPage,_scrollview.contentOffset.x,(unsigned long)_datearry.count);
     if (currentPage>0) {
         currentPage-=1;
     }
@@ -1348,9 +1353,9 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     // 更新右上角状态
     [self changeRightBarState];
     
-//    NSLog(@"-------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
+    NSLog(@"-------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
     _scrollview.contentOffset = CGPointMake((self.currentPage)*kSystemWide,0);
-//    NSLog(@"+++++++_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
+    NSLog(@"+++++++_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
     
     if (self.currentPage < _datearry.count-1) {
         

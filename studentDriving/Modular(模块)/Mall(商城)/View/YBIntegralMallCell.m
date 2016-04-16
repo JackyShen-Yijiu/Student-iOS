@@ -225,8 +225,9 @@
     
     NSString *timeStr = [self getLocalDateFormateUTCDate:integralMallModel.enddate format:@"yyyy/MM/dd"];
     self.addressLabel.text = [NSString stringWithFormat:@"截止日期: %@",timeStr];
-    self.surplusLabel.text = [NSString stringWithFormat:@"%d份",integralMallModel.productcount];
+    self.surplusLabel.text = [NSString stringWithFormat:@"%d份",integralMallModel.productcount - integralMallModel.buycount];
     
+
 }
 - (NSString *)getLocalDateFormateUTCDate:(NSString *)utcDate format:(NSString *)formatString {
     //    NSLog(@"utc = %@",utcDate);
