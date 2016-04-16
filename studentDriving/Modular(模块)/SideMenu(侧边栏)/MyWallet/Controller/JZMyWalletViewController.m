@@ -462,6 +462,27 @@ JZMyWalletBottomView *bottomView = [[JZMyWalletBottomView alloc]initWithFrame:CG
                 [self addcountDiscount];
 
                 
+            }else {
+                
+                [self.noDataLabel removeFromSuperview];
+                
+                self.jiFenHeaderView.headerNumLabel.text = @"暂无";
+                
+                self.noDataLabel = [[UILabel alloc]init];
+                
+                self.noDataLabel.textAlignment = NSTextAlignmentCenter;
+                
+                self.noDataLabel.textColor = JZ_FONTCOLOR_LIGHT;
+                [self.noDataLabel setFont:[UIFont systemFontOfSize:16]];
+                
+                //        self.noDataLabel.backgroundColor = [UIColor blueColor];
+                self.noDataLabel.text = @"暂无";
+                
+                self.noDataLabel.frame =  CGRectMake(0,0, kLKSize.width, self.duiHuanJuanView.bounds.size.height);
+                self.noDataLabel.transform = CGAffineTransformMakeTranslation(kLKSize.width,0);
+                [self.contentScrollView addSubview:self.noDataLabel];
+                
+                
             }
             
             

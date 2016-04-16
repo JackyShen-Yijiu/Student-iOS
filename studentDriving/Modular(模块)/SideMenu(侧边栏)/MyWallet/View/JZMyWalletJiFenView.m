@@ -57,10 +57,10 @@ static NSString *jiFenCellID = @"jiFenCellID";
     if (!jiFenCell) {
         
         jiFenCell = [[JZMyWalletJiFenCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:jiFenCellID];
-        
-        jiFenCell.jiFenNumLabel.text = @"+10";
-        jiFenCell.jiFenDateLabel.text = @"2018/18/18";
-        jiFenCell.jiFenSourceLabel.text = @"测试测试测试";
+//        
+//        jiFenCell.jiFenNumLabel.text = @"10";
+//        jiFenCell.jiFenDateLabel.text = @"2018/18/18";
+//        jiFenCell.jiFenSourceLabel.text = @"测试测试测试";
   
     }
     
@@ -69,7 +69,7 @@ static NSString *jiFenCellID = @"jiFenCellID";
     
     self.listData = self.jiFenListArr[indexPath.row];
     
-    jiFenCell.jiFenNumLabel.text = [NSString stringWithFormat:@"+%zd",self.listData.amount];
+    jiFenCell.jiFenNumLabel.text = [NSString stringWithFormat:@"%zd",self.listData.amount];
     
     
     NSString *dateStr = [self getLocalDateFormateUTCDate:self.listData.createtime];
