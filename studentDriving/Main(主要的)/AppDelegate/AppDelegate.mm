@@ -51,6 +51,7 @@
 #import "WMCommon.h"
 #import "ViewController.h"
 #import "WXApi.h"
+#import "YBSubjectTool.h"
 
 // 检查活动
 #import "YBActivity.h"
@@ -126,6 +127,22 @@
     
     // 设置StatusBarStyle为白色（需要在在infor.plist中加入key:UIViewControllerBasedStatusBarAppearance 并设置其值为NO）
     [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    
+    // 解压文件
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        // 耗时的操作
+        [YBSubjectTool zipArchiveSubjectDataWithArchive:^(BOOL fileIsExit, BOOL archiveResult) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                // 更新界面
+                NSLog(@"fileIsExit:%d archiveResult:%d",fileIsExit,archiveResult);
+            });
+            
+        }];
+        
+    });
     
     return YES;
 }
