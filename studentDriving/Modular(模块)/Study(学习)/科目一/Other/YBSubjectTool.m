@@ -173,22 +173,14 @@ static FMDatabaseQueue *_queue;
 
     NSString *dbPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/ggtk_20151201.db"];
     NSLog(@"dbPath:%@",dbPath);
-    
-   // NSString *imgPath = [YBSubjectPath stringByAppendingString:@"/ggtkFile/resources"];
-   // NSArray *imgArray = [fileManager subpathsOfDirectoryAtPath: imgPath error:nil];
-   // NSLog(@"imgArrayPath:%@",imgArray);
-    
-   // NSString *name = @"0014ec3c884a4e7bbdbbf61d07e0d597.jpg";
-   // NSString *subjectImgPath = [YBSubjectPath stringByAppendingFormat:@"/ggtkFile/resources/%@",name];//[documentpath stringByAppendingString:@"/ggtkFile/resources/%@",name];
-   // NSLog(@"subjectImgPath:%@",subjectImgPath);
-    
+   
     FMDatabase *dataBase = [FMDatabase databaseWithPath:dbPath];
     
     if (dataBase) {
         
         [dataBase open];
         
-        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld and strTppe='%@' order by id",(long)type,chapter];
+        NSString *sql = [NSString stringWithFormat:@"SELECT * FROM web_note where kemu =%ld and strTppe='%@' order by id limit 10",(long)type,chapter];
         
         NSLog(@"sql:%@",sql);
         
