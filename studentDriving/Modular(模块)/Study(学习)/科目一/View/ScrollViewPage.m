@@ -76,13 +76,13 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         _scrollview.backgroundColor = YBMainViewControlerBackgroundColor;
 
         _lefttableview = [[UITableView alloc]initWithFrame:frame style:UITableViewStyleGrouped];
-        _lefttableview.backgroundColor = [UIColor blueColor];
+//        _lefttableview.backgroundColor = [UIColor blueColor];
         
         _middletableview = [[UITableView alloc]initWithFrame:frame style:UITableViewStyleGrouped];
-        _middletableview.backgroundColor = [UIColor yellowColor];
+//        _middletableview.backgroundColor = [UIColor yellowColor];
 
         _righttableview = [[UITableView alloc]initWithFrame:frame style:UITableViewStyleGrouped];
-        _righttableview.backgroundColor = [UIColor redColor];
+//        _righttableview.backgroundColor = [UIColor redColor];
 
         _datearry = [[NSMutableArray alloc] initWithArray:array];
         _scrollview.pagingEnabled = YES;
