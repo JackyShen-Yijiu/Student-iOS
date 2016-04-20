@@ -56,6 +56,7 @@
 		064BD6081C911F990021C116 /* JZPasswordLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064BD6071C911F990021C116 /* JZPasswordLoginController.m */; };
 		064BD60B1C914C6D0021C116 /* JZRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064BD60A1C914C6D0021C116 /* JZRegisterController.m */; };
 		064D43C21CBE537000F24453 /* JZAppointTestSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064D43C11CBE537000F24453 /* JZAppointTestSuccessController.m */; };
+		065D767D1CC7258D008BAA49 /* JZCoachDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 065D767C1CC7258D008BAA49 /* JZCoachDetailHeaderView.m */; };
 		0673FC5C1C8FB0B4000FD8A4 /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */; };
 		0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5E1C904867000FD8A4 /* MallCollectionView.m */; };
 		0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */; };
@@ -1220,6 +1221,8 @@
 		064BD60A1C914C6D0021C116 /* JZRegisterController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZRegisterController.m; sourceTree = "<group>"; };
 		064D43C01CBE537000F24453 /* JZAppointTestSuccessController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZAppointTestSuccessController.h; sourceTree = "<group>"; };
 		064D43C11CBE537000F24453 /* JZAppointTestSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAppointTestSuccessController.m; sourceTree = "<group>"; };
+		065D767B1CC7258D008BAA49 /* JZCoachDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZCoachDetailHeaderView.h; sourceTree = "<group>"; };
+		065D767C1CC7258D008BAA49 /* JZCoachDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZCoachDetailHeaderView.m; sourceTree = "<group>"; };
 		0673FC5A1C8FB0B4000FD8A4 /* YBDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBDiscountCell.h; sourceTree = "<group>"; };
 		0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBDiscountCell.m; sourceTree = "<group>"; };
 		0673FC5D1C904867000FD8A4 /* MallCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallCollectionView.h; sourceTree = "<group>"; };
@@ -7080,6 +7083,8 @@
 				B2EEBCE41CA13A8700846656 /* DVVCoachDetailTagCell.h */,
 				B2EEBCE51CA13A8700846656 /* DVVCoachDetailTagCell.m */,
 				B2EEBCE61CA13A8700846656 /* DVVCoachDetailTagCell.xib */,
+				065D767B1CC7258D008BAA49 /* JZCoachDetailHeaderView.h */,
+				065D767C1CC7258D008BAA49 /* JZCoachDetailHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -8001,6 +8006,7 @@
 				B251E42A1C8E849500E6613A /* EMChatAudioBubbleView.m in Sources */,
 				B251E3C21C8E849500E6613A /* SignatureViewController.m in Sources */,
 				B251E6731C8E849600E6613A /* NSString+Valid.m in Sources */,
+				065D767D1CC7258D008BAA49 /* JZCoachDetailHeaderView.m in Sources */,
 				B251E3881C8E849500E6613A /* StudentCommentCell.m in Sources */,
 				B251E3C41C8E849500E6613A /* SignInListController.m in Sources */,
 				D97303751CBB52B800F51435 /* JZComplaintRightView.m in Sources */,
