@@ -12,6 +12,10 @@
 
 @interface ScrollViewPage : UIView<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic,assign) BOOL isWrongVc;
+
+@property (nonatomic,assign) BOOL isWrongAndQuestion;
+
 @property (nonatomic ,assign) NSInteger currentPage;
 
 // 是否是最后一题

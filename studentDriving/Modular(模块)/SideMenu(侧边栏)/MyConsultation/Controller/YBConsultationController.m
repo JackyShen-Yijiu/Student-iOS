@@ -8,14 +8,30 @@
 
 #import "YBConsultationController.h"
 #import "YBTextView.h"
+#import "IQKeyboardManager.h"
 
 @interface YBConsultationController ()<UITextViewDelegate>
 {
     YBTextView *bctextView;
+    BOOL _wasKeyboardManagerEnabled;
 }
 @end
 
 @implementation YBConsultationController
+
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    _wasKeyboardManagerEnabled = [[IQKeyboardManager sharedManager] isEnabled];
+    [[IQKeyboardManager sharedManager] setEnable:NO];
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [[IQKeyboardManager sharedManager] setEnable:_wasKeyboardManagerEnabled];
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];

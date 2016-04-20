@@ -152,31 +152,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             }
             
         }
-        
-//
-//        
-//        if (_datearry.count==1) {
-//            
-//            data = _datearry[self.currentPage];
-//            
-//        }else{
-//            
-//            if (tableView==_lefttableview && self.currentPage > 0 && _datearry.count>2) {
-//                data = _datearry[self.currentPage-1];
-//            }else if (tableView==_middletableview && _datearry.count>2){
-//                data = _datearry[self.currentPage];
-//            }else if (tableView==_righttableview && self.currentPage < _datearry.count-1 && _datearry.count>2){
-//                data = _datearry[self.currentPage+1];
-//            }else if (tableView==_righttableview && self.currentPage == _datearry.count-1){
-//                data = _datearry[self.currentPage];
-//            }else if (tableView==_lefttableview && self.currentPage==0){
-//                data = _datearry[self.currentPage];
-//            }else if (tableView==_middletableview){
-//                data = _datearry[self.currentPage];
-//            }
-//            
-//        }
-        
+
     }
     
 // 1:正确错误 2：单选4个选项 3：4个选项,多选
@@ -270,7 +246,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
     }else{
         
-       
         if (_datearry.count==1) {
             if (tableView==_righttableview){
                 [self.header playMovie:data];
@@ -337,7 +312,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             }else{
                 data = _datearry[self.currentPage];
                 title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
-                
             }
             
         }
@@ -400,7 +374,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             }
             
         }
-        
         
     }
     
@@ -962,6 +935,11 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
      NSLog(@"%ld data.answer_true:%ld data.type:%ld",data.ID,(long)data.answer_true,(long)data.type);
     // 1:正确错误 2：单选4个选项 3：4个选项,多选
 
+    CGPoint currentOffset = _scrollview.contentOffset;
+    int page = (int)currentOffset.x/kSystemWide;
+    NSLog(@"didSelectRowAtIndexPath scrollViewDidEndDecelerating currentOffset.x:%f currentOffset.y:%f page:%d",currentOffset.x,currentOffset.y,page);
+    self.currentPage = page;
+    
     if (data.type==1) {
 
         NSString *selectIndex = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
@@ -976,59 +954,75 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
             data.isTrue = YES;
             data.selectNum = indexPath.row;
             [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
+            self.trueCount+=1;
 
-            if (_datearry.count-1==self.currentPage) {
+            if (_datearry.count==page+1) {
                 
                 self.isLastQuestion = YES;
+//                [_righttableview reloadData];
                 
-//                self.trueCount = 0;
-//                self.wrongCount = 0;
-                
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//                [alert show];
+                if(self.isWrongAndQuestion){
+                 
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                    [alert show];
+                    
+                }
                 
             }else{
-                
-                self.trueCount+=1;
                 
                 // 滚动到下一步
                 [self nextQuestion];
                 
+                [self changeRightBarState];
+                
+                [self.selectnumDict removeAllObjects];
+
             }
             
         }else{
             
-            if (_datearry.count-1==self.currentPage) {
-                
-                self.isLastQuestion = YES;
-           
-            }
-            
             self.wrongCount+=1;
-            
             data.isDone = YES;
             data.isTrue = NO;
             data.selectNum = indexPath.row;
-
             [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
-            
-            [self reloadDate];
 
            // [self obj_showTotasViewWithMes:@"答错了"];
           
-            [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
-                NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
-                if (!isExit) {
-                    [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
+            if(self.isWrongVc==NO){
+                [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+                    NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
+                    if (!isExit) {
+                        [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
+                    }
+                    
+                }];
+            }
+            
+            if (_datearry.count==page+1) {
+                
+                self.isLastQuestion = YES;
+//                [_righttableview reloadData];
+
+                if(self.isWrongAndQuestion){
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                    [alert show];
+                    
                 }
                 
-            }];
+            }else{// 错误
+                
+                [self reloadDate];
+
+                [self changeRightBarState];
+                
+                [self.selectnumDict removeAllObjects];
+
+            }
+            
         }
         
-        [self changeRightBarState];
-
-        [self.selectnumDict removeAllObjects];
-
     }else if (data.type==2){
         
         NSString *selectIndex = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
@@ -1038,68 +1032,82 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         data.isDone = YES;
         data.isTrue = YES;
         data.selectNum = indexPath.row;
-        
         [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
         
         if (data.answer_true == indexPath.row+1) {
             
+            self.trueCount+=1;
+
          //   [self obj_showTotasViewWithMes:@"ok"];
             
-            if (_datearry.count-1==self.currentPage) {
+            if (_datearry.count==page+1) {
                 
                 self.isLastQuestion = YES;
+//                [_righttableview reloadData];
 
-//                self.trueCount = 0;
-//                self.wrongCount = 0;
-//                
-//                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//                [alert show];
+                if(self.isWrongAndQuestion){
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                    [alert show];
+                    
+                }
                 
             }else{
-                
-                self.trueCount+=1;
                 
                 // 滚动到下一步
                 [self nextQuestion];
                 
+                [self changeRightBarState];
+                
+                [self.selectnumDict removeAllObjects];
+
             }
             
-        }else{
-            
-            if (_datearry.count-1==self.currentPage) {
-                
-                self.isLastQuestion = YES;
-                
-            }
+        }else{// 错误
             
             self.wrongCount+=1;
             
             data.isDone = YES;
             data.isTrue = NO;
             data.selectNum = indexPath.row;
-
             NSLog(@"_datearry.count:%lu indexPath.row:%ld self.currentPage:%ld",(unsigned long)_datearry.count,(long)indexPath.row,(long)self.currentPage);
-
             [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
-            
-            [self reloadDate];
-//            
+//
            // [self obj_showTotasViewWithMes:@"答错了"];
             
-            [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
-                NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
-                if (!isExit) {
-                    [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
+            if(self.isWrongVc==NO){
+                [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+                    NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
+                    if (!isExit) {
+                        [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
+                    }
+                }];
+            }
+           
+            if (_datearry.count==page+1) {
+                
+                self.isLastQuestion = YES;
+//                [_righttableview reloadData];
+
+                if(self.isWrongAndQuestion){
+                    
+                    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                    [alert show];
+                    
                 }
                 
-            }];
+            }else{
+                
+                [self reloadDate];
+
+                [self changeRightBarState];
+                
+                [self.selectnumDict removeAllObjects];
+
+            }
             
         }
         
-        [self changeRightBarState];
-        
-        [self.selectnumDict removeAllObjects];
-
     }else{
         
         NSString *selectIndex = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
@@ -1131,7 +1139,12 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 - (void)confimBtnDidClick
 {
 
-    if (_datearry.count-1==self.currentPage) {
+    CGPoint currentOffset = _scrollview.contentOffset;
+    int page = (int)currentOffset.x/kSystemWide;
+    NSLog(@"didSelectRowAtIndexPath scrollViewDidEndDecelerating currentOffset.x:%f currentOffset.y:%f page:%d",currentOffset.x,currentOffset.y,page);
+    self.currentPage = page;
+
+    if (_datearry.count==page+1) {
         self.isLastQuestion = YES;
     }
     
@@ -1187,9 +1200,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     NSLog(@"self.selectnumDict:%@ data.selectnumDict:%@",self.selectnumDict,data.selectnumDict);
 
     data.isTrue = isTure;
-
     data.selectNum = [selectStr integerValue];
-
     [_datearry replaceObjectAtIndex:self.currentPage withObject:data];
 
     // 取得上次保存的状态
@@ -1200,50 +1211,73 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 
     if (isTure) {
         
+        self.trueCount+=1;
+
         //[self obj_showTotasViewWithMes:@"ok"];
         
-        if (_datearry.count-1==self.currentPage) {
+        if (_datearry.count==page+1) {
             
             currentPage=0;
-//            self.trueCount = 0;
-//            self.wrongCount = 0;
+//            [_righttableview reloadData];
             
-//            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
-//            [alert show];
-            
-            [self reloadDate];
+            if(self.isWrongAndQuestion){
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+                
+            }
 
         }else{
             
             currentPage=self.currentPage+1;
-            self.trueCount++;
-            
             [self nextQuestion];
             
+            [self changeRightBarState];
+            
+            [self.selectnumDict removeAllObjects];
+
         }
         
-    }else{
+    }else{// 错误
 
-        [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
-            NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
-            if (!isExit) {
-                [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
-            }
-            
-        }];
+        if(self.isWrongVc==NO){
+            [YBSubjectTool isExitWrongQuestionWithtype:_kemu webnoteid:data.ID isExitBlock:^(BOOL isExit) {
+                NSLog(@"isExitWrongQuestionWithtype isExit:%d",isExit);
+                if (!isExit) {
+                    [YBSubjectTool insertWrongQuestionwithtype:_kemu webnoteid:data.ID];
+                }
+                
+            }];
+        }
         
-        self.wrongCount++;
+        self.wrongCount+=1;
         
        // [self obj_showTotasViewWithMes:@"答错了"];
         
-        [self reloadDate];
+        if (_datearry.count==page+1) {
+            
+            self.isLastQuestion = YES;
+//            [_righttableview reloadData];
+            
+            if(self.isWrongAndQuestion){
+                
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"已经到最后一题啦" delegate:self cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+                [alert show];
+                
+            }
+            
+        }else{
+            
+            [self reloadDate];
+            
+            [self changeRightBarState];
+            
+            [self.selectnumDict removeAllObjects];
+
+        }
         
     }
     
-    [self changeRightBarState];
-    
-    [self.selectnumDict removeAllObjects];
-
 }
 
 - (void)changeRightBarState
@@ -1335,7 +1369,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     if (currentPage>=_datearry.count-1) {
         currentPage=0;
     }
-    self.currentPage = currentPage;
+    self.currentPage = 0;//currentPage;
 
     // 更新右上角状态
     [self changeRightBarState];
@@ -1368,35 +1402,30 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     
     [UIView animateWithDuration:0.5 animations:^{
         
-        //    NSLog(@"-------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
+        NSLog(@"nextQuestion -------_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
         self.currentPage+=1;
         _scrollview.contentOffset = CGPointMake((self.currentPage)*kSystemWide, _scrollview.contentOffset.y);
-        //    NSLog(@"+++++++_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
+        NSLog(@"+++++++_scrollview.contentOffset.x:%f self.currentPage:%ld",_scrollview.contentOffset.x,self.currentPage);
         
-        if (self.currentPage < _datearry.count-1) {
-            
-            _scrollview.contentSize = CGSizeMake(kSystemWide*2+_scrollview.contentOffset.x, 0);
-            
-            _middletableview.frame = CGRectMake(_scrollview.contentOffset.x,0, kSystemWide, kSystemHeight);
-            _lefttableview.frame = CGRectMake(_scrollview.contentOffset.x-kSystemWide, 0, kSystemWide, kSystemHeight);
-            _righttableview.frame = CGRectMake(_scrollview.contentOffset.x+kSystemWide, 0, kSystemWide, kSystemHeight);
-            
-            [self.selectnumDict removeAllObjects];
-            
-            [self reloadDate];
-            
-            // 保存本地发生的变化
-            NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-            [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
-            [user synchronize];
-            
-        }
+        _scrollview.contentSize = CGSizeMake(kSystemWide*2+_scrollview.contentOffset.x, 0);
+        
+        _middletableview.frame = CGRectMake(_scrollview.contentOffset.x,0, kSystemWide, kSystemHeight);
+        _lefttableview.frame = CGRectMake(_scrollview.contentOffset.x-kSystemWide, 0, kSystemWide, kSystemHeight);
+        _righttableview.frame = CGRectMake(_scrollview.contentOffset.x+kSystemWide, 0, kSystemWide, kSystemHeight);
+        
+        [self.selectnumDict removeAllObjects];
+        
+        [self reloadDate];
+
+        // 保存本地发生的变化
+        NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+        [user setInteger:self.currentPage forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,self.chapter]];
+        [user synchronize];
         
         CGPoint currentOffset = _scrollview.contentOffset;
-        NSLog(@"nextQuestion currentOffset.x:%f currentOffset.y:%f",currentOffset.x,currentOffset.y);
-        
         int page = (int)currentOffset.x/kSystemWide;
-        
+        NSLog(@"nextQuestion currentOffset.x:%f currentOffset.y:%f page:%d",currentOffset.x,currentOffset.y,page);
+
         if (page==0 || page==_datearry.count-1) {
             
             YBSubjectData *data = _datearry[page];
@@ -1448,7 +1477,7 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     
     [self changeRightBarState];
     
-    // 8 
+    // 8
     if (page < _datearry.count-1 && currentOffset.x!=0) {
         
         self.currentPage = page;

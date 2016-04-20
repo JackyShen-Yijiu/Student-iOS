@@ -79,7 +79,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     if(![AcountManager isLogin]){
         
         self.noDataView.hidden = NO;
-        self.noDataView.noDataLabel.text = @"您还没有登录，没有找到您的预约详情";
+        self.noDataView.noDataLabel.text = @"请先登录";
         
         self.noDataView.noDataImageView.image = [UIImage imageNamed:@"appointment"];
         

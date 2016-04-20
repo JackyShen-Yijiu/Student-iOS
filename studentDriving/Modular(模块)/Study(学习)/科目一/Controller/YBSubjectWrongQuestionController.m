@@ -37,6 +37,8 @@
     
     ScrollViewPage *scrollView = [[ScrollViewPage alloc]initWithFrame:CGRectMake(0,0, self.view.frame.size.width, self.view.frame.size.height-64) withArray:dataArray rightBarView:_rightBarView subjectType:_kemu chapter:@""];
     scrollView.parentViewController = self;
+    scrollView.isWrongVc = YES;
+    scrollView.isWrongAndQuestion = YES;
     [self.view addSubview:scrollView];
     
 }
