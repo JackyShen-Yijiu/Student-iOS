@@ -28,8 +28,8 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
-        [self.contentView addSubview:self.scrollImagesView];
-        [self.contentView addSubview:self.lineImageView];
+//        [self.contentView addSubview:self.scrollImagesView];
+//        [self.contentView addSubview:self.lineImageView];
     }
     return self;
 }
@@ -39,13 +39,15 @@
     
     CGSize size = self.bounds.size;
     CGFloat minX = CGRectGetMinX(_firstLabel.frame);
-    _scrollImagesView.frame = CGRectMake(56, CGRectGetMinY(_thirdImageView.frame), size.width - 56 - 16, IMAGE_HEIGHT);
-    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
+//    _scrollImagesView.frame = CGRectMake(56, CGRectGetMinY(_thirdImageView.frame), size.width - 56 - 16, IMAGE_HEIGHT);
+//    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
 }
 
 + (CGFloat)dynamicHeight:(DVVCoachDetailDMData *)dmData type:(NSUInteger)type {
     if (1 == type && dmData.trainfield.pictures && dmData.trainfield.pictures.count) {
-        return 96 + IMAGE_HEIGHT + 16;
+        // 训练场地照片
+//        return 96 + IMAGE_HEIGHT + 16;
+        return 136;
     }else {
         return 136;
     }
@@ -109,9 +111,9 @@
             _thirdLabel.text = @"暂无训练场照片";
         }
         
-        _firstImageView.image = [UIImage imageNamed:@"ic_school"];
-        _secondImageView.image = [UIImage imageNamed:@"ic_training_grounds"];
-        _thirdImageView.image = [UIImage imageNamed:@"ic_photos"];
+        _firstImageView.image = [UIImage imageNamed:@"coach_teach_car"];
+        _secondImageView.image = [UIImage imageNamed:@"coach_school"];
+        _thirdImageView.image = [UIImage imageNamed:@"coach_site"];
     }
 }
 
@@ -154,26 +156,26 @@
         _thirdImageView.image = [UIImage imageNamed:@"ic_car_type"];
         
     }else {
-        if (dmData.driveschoolinfo.name && dmData.driveschoolinfo.name.length) {
-            _firstLabel.text = dmData.driveschoolinfo.name;
+        if (dmData.carmodel.name && dmData.carmodel.name.length) {
+            _firstLabel.text = [NSString stringWithFormat:@"教学车型: %@",dmData.carmodel.name];
         }else {
-            _firstLabel.text = @"未填写所属驾校";
+            _firstLabel.text = [NSString stringWithFormat:@"教学车型: 暂无车型信息"];
+        }
+        if (dmData.driveschoolinfo.name && dmData.driveschoolinfo.name.length) {
+            _secondLabel.text = [NSString stringWithFormat:@"所属驾校: %@",dmData.driveschoolinfo.name];;
+        }else {
+            _secondLabel.text = [NSString stringWithFormat:@"所属驾校: 暂无信息"];
         }
         if (dmData.trainfield.fieldname && dmData.trainfield.fieldname.length) {
-            _secondLabel.text = dmData.trainfield.fieldname;
+            _thirdLabel.text = [NSString stringWithFormat:@"训练场地: %@",dmData.trainfield.fieldname];
+            //            [_scrollImagesView refreshData:dmData.trainfield.pictures];
         }else {
-            _secondLabel.text = @"未填写所属训练场";
-        }
-        if (dmData.trainfield.pictures && dmData.trainfield.pictures.count) {
-            _thirdLabel.text = @"";
-            [_scrollImagesView refreshData:dmData.trainfield.pictures];
-        }else {
-            _thirdLabel.text = @"暂无训练场照片";
+            _thirdLabel.text = [NSString stringWithFormat:@"训练场地: 暂无信息"];
         }
         
-        _firstImageView.image = [UIImage imageNamed:@"ic_school"];
-        _secondImageView.image = [UIImage imageNamed:@"ic_training_grounds"];
-        _thirdImageView.image = [UIImage imageNamed:@"ic_photos"];
+        _firstImageView.image = [UIImage imageNamed:@"coach_teach_car"];
+        _secondImageView.image = [UIImage imageNamed:@"coach_school"];
+        _thirdImageView.image = [UIImage imageNamed:@"coach_site"];
     }
 }
 
