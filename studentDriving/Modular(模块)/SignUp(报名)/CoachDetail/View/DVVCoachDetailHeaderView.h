@@ -20,7 +20,11 @@
 @property (nonatomic, copy) NSString *coachID;
 
 @property (nonatomic, strong) UIImageView *iconImageView;
-@property (nonatomic, strong) THLabel *nameLabel;
+
+@property (nonatomic, strong) THLabel *teacherAge; // 教龄
+
+@property (nonatomic, strong) THLabel *teacherContentLabel; // 授课课程
+
 @property (nonatomic, strong) RatingBar *starView;
 
 @property (nonatomic, strong) UIImageView *bgImageView;

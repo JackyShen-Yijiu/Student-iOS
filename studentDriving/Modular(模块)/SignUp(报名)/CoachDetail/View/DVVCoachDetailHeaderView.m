@@ -76,9 +76,11 @@
         }
     }];
     
+    // 教龄
     if (dmData.coachid.name && dmData.coachid.name.length) {
-        _nameLabel.text = dmData.coachid.name;
+        _teacherAge.text = [NSString stringWithFormat:@"教龄: %@",dmData.coachid.name];
     }
+    // 授课科目
     [_starView displayRating:dmData.coachid.starlevel];
 }
 
@@ -101,7 +103,7 @@
     }];
     
     if (dmData.name && dmData.name.length) {
-        _nameLabel.text = dmData.name;
+        _teacherAge.text = [NSString stringWithFormat:@"教龄: %@",dmData.name];
     }
     [_starView displayRating:dmData.starlevel];
 }
@@ -149,16 +151,27 @@
     }
     return _iconImageView;
 }
-- (THLabel *)nameLabel {
-    if (!_nameLabel) {
-        _nameLabel = [THLabel new];
-        _nameLabel.font = [UIFont systemFontOfSize:16];
-        _nameLabel.textColor = [UIColor whiteColor];
-        _nameLabel.textAlignment = NSTextAlignmentCenter;
-        _nameLabel.text = @"暂无教练名";
+- (THLabel *)teacherAge {
+    if (!_teacherAge) {
+        _teacherAge = [THLabel new];
+        _teacherAge.font = [UIFont systemFontOfSize:14];
+        _teacherAge.textColor = [UIColor whiteColor];
+//        _teacherAge.textAlignment = NSTextAlignmentCenter;
+        _teacherAge.text = @"暂无教龄";
     }
-    return _nameLabel;
+    return _teacherAge;
 }
+- (THLabel *)teacherContentLabel {
+    if (!_teacherContentLabel) {
+        _teacherContentLabel = [THLabel new];
+        _teacherContentLabel.font = [UIFont systemFontOfSize:14];
+        _teacherContentLabel.textColor = [UIColor whiteColor];
+//        _teacherContentLabel.textAlignment = NSTextAlignmentCenter;
+        _teacherContentLabel.text = @"暂无授课科目";
+    }
+    return _teacherContentLabel;
+}
+
 - (RatingBar *)starView {
     if (!_starView) {
         _starView = [RatingBar new];
@@ -170,14 +183,25 @@
 - (UIView *)centerView {
     if (!_centerView) {
         _centerView = [UIView new];
-        _centerView.frame = CGRectMake(0, 0, 94, 110);
-        
+        _centerView.frame = CGRectMake(0, 0, kSystemWide, 110);
+        _centerView.backgroundColor = [UIColor redColor];
         [_centerView addSubview:self.iconImageView];
-        [_centerView addSubview:self.nameLabel];
+        [_centerView addSubview:self.teacherAge];
         [_centerView addSubview:self.starView];
-        _iconImageView.frame = CGRectMake((94-60) / 2, 0, 60, 60);
-        _nameLabel.frame = CGRectMake(0, 60, 94, 10 + 16 + 10);
-        _starView.frame = CGRectMake(10, CGRectGetMaxY(_nameLabel.frame), 94, 14);
+        [_centerView addSubview:self.teacherContentLabel];
+        
+        // 教练头像
+        _iconImageView.frame = CGRectMake(44, 0, 60, 60);
+        _iconImageView.centerY = _centerView.centerY;
+        // 星级控件
+        _starView.frame = CGRectMake(10, _iconImageView.frame.origin.y, 94, 14);
+        _starView.centerX = _centerView.centerX;
+        // 教龄
+        _teacherAge.frame = CGRectMake(_starView.frame.origin.x, _starView.frame.origin.y + 14  + 10, 94, 14);
+        
+        // 授课科目
+         _teacherContentLabel.frame = CGRectMake(_starView.frame.origin.x, _teacherAge.frame.origin.y + 14  + 10, 94, 14);
+        
     }
     return _centerView;
 }
