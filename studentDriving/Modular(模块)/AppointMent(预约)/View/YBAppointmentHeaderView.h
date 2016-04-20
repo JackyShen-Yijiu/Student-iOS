@@ -27,4 +27,6 @@
 
 - (void)setUpData;
 
++ (YBAppointmentHeaderView *)appointmentHeaderView;
+
 @end
