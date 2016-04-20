@@ -5,6 +5,8 @@
 //  Created by allen on 15/9/18.
 //  Copyright (c) 2015年 Allen. All rights reserved.
 //
+// 做题时候的下一步有问题
+// 最后一题有问题
 
 #import <UIKit/UIKit.h>
 
