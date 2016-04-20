@@ -32,6 +32,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
+    [user setInteger:0 forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,@""]];
+    [user synchronize];
+    
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
 
     NSArray *titleArray;
@@ -86,10 +90,6 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    
-    NSUserDefaults *user = [NSUserDefaults standardUserDefaults];
-    [user setInteger:0 forKey:[NSString stringWithFormat:@"currentPage-%ld-%@",(long)self.kemu,@""]];
-    [user synchronize];
     
     if (timer) {
         [timer invalidate];
