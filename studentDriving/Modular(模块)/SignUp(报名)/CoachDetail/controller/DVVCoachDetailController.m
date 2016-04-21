@@ -349,7 +349,7 @@ static NSString *courseCellID = @"kCourseCellID";
         return headerView;
         
            }else {
-        return [UIView new];
+        return nil;
     }
 }
 
@@ -579,6 +579,7 @@ static NSString *courseCellID = @"kCourseCellID";
 //    if (offsetY > maxOffsetY) {
 //        _tableView.contentOffset = CGPointMake(0, maxOffsetY);
 //    }
+    _tableView.backgroundColor = [UIColor clearColor];
 }
 
 
