@@ -16,4 +16,6 @@
 
 @property (nonatomic, strong) DVVCoachDetailDMData *dmData;
 
+@property (nonatomic, strong) NSMutableArray *classTypeListArray;
+
 @end

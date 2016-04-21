@@ -7,8 +7,14 @@
 //
 
 #import "DVVCoachDetailViewModel.h"
+#import "ClassTypeDMData.h"
 
 @implementation DVVCoachDetailViewModel
+
+- (instancetype)init{
+    _classTypeListArray = [NSMutableArray array];
+    return self;
+}
 
 - (void)dvv_networkRequestRefresh {
     
@@ -33,7 +39,16 @@
             [self dvv_nilResponseObject];
             return ;
         }
+        
         _dmData = dmRoot.data;
+        // 班型数据
+        [_classTypeListArray removeAllObjects];
+        NSArray *classListArray =  _dmData.serverclasslist;
+        for (NSDictionary *dic in classListArray) {
+            ClassTypeDMData *classTypeModel = [ClassTypeDMData yy_modelWithDictionary:dic];
+            [_classTypeListArray addObject:classTypeModel];
+        }
+        
         [self dvv_refreshSuccess];
         
     } withFailure:^(id data) {

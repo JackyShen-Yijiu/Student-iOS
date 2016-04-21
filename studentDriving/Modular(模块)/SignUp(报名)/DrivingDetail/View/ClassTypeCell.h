@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "ClassTypeDMData.h"
 
+typedef void(^DVVCoachClassTypeViewBlock)(ClassTypeDMData *dmData);
+
 @interface ClassTypeCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *markLabel;
 
@@ -23,4 +25,5 @@
 
 + (CGFloat)dynamicHeight:(NSString *)string;
 
+- (void)dvvCoachClassTypeView_setSignUpButtonActionBlock:(DVVCoachClassTypeViewBlock)handle;
 @end
