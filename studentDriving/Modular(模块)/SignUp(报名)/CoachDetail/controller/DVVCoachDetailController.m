@@ -333,6 +333,7 @@ static NSString *courseCellID = @"kCourseCellID";
         headerView.titleLabel.text = @"课程收费";
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(isShowClassType)];
         [headerView addGestureRecognizer:tap];
+        headerView.isShowClassTypeDetail = _isShowClassDetail;
         return headerView;
 
     }
@@ -341,7 +342,7 @@ static NSString *courseCellID = @"kCourseCellID";
         headerView.titleLabel.text = @"学员评价";
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(isShowComment)];
         [headerView addGestureRecognizer:tap];
-
+        headerView.isShowCommentDetail = _isShowCommentDetail;
         return headerView;
         
            }else {
@@ -511,7 +512,7 @@ static NSString *courseCellID = @"kCourseCellID";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    CGFloat centerY = [UIScreen mainScreen].bounds.size.width*0.7;
+    CGFloat centerY = [UIScreen mainScreen].bounds.size.width*0.7  - 25;
     CGFloat centerX = [UIScreen mainScreen].bounds.size.width - 16 - 63/2.f;
     CGFloat height = centerY;
     
@@ -562,7 +563,7 @@ static NSString *courseCellID = @"kCourseCellID";
     }else {
         
         [UIView animateWithDuration:0.3 animations:^{
-            _headerView.collectionImageView.size = CGSizeMake(63, 63);
+            _headerView.collectionImageView.size = CGSizeMake(48, 20);
             _headerView.collectionImageView.center = CGPointMake(centerX, centerY);
             _headerView.collectionImageView.alpha = 1;
             

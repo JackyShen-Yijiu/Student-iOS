@@ -32,9 +32,7 @@
     [self addSubview:self.arrowImgView];
     [self addSubview:self.lineView];
     
-    if (_isShowClassTypeDetail) {
-        _arrowImgView.image = [UIImage imageNamed:@"more_right"];
-    }
+    
 }
 - (void)layoutSubviews{
     [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -99,4 +97,24 @@
     }
     return _lineView;
 }
+- (void)setIsShowClassTypeDetail:(BOOL)isShowClassTypeDetail{
+    if (!isShowClassTypeDetail) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+          _arrowImgView.transform = CGAffineTransformMakeRotation(M_PI);
+        } completion:^(BOOL finished) {
+        }];
+    }
+}
+- (void)setIsShowCommentDetail:(BOOL)isShowCommentDetail{
+    if (!isShowCommentDetail) {
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            _arrowImgView.transform = CGAffineTransformMakeRotation(M_PI);
+        } completion:^(BOOL finished) {
+        }];
+    }
+
+}
+
 @end
