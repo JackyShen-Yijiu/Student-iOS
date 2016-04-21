@@ -570,11 +570,11 @@ static NSString *courseCellID = @"kCourseCellID";
         }];
     }
     
-    // 取消tableView底部的弹簧效果的方法
-    CGFloat maxOffsetY = _tableView.contentSize.height - _tableView.bounds.size.height;
-    if (offsetY > maxOffsetY) {
-        _tableView.contentOffset = CGPointMake(0, maxOffsetY);
-    }
+//    // 取消tableView底部的弹簧效果的方法
+//    CGFloat maxOffsetY = _tableView.contentSize.height - _tableView.bounds.size.height;
+//    if (offsetY > maxOffsetY) {
+//        _tableView.contentOffset = CGPointMake(0, maxOffsetY);
+//    }
 }
 
 
@@ -668,19 +668,23 @@ static NSString *courseCellID = @"kCourseCellID";
     NSString *string = [NSString stringWithFormat:BASEURL, @"courseinfo/getusercomment/2"];
     NSString *url = [NSString stringWithFormat:@"%@/%@/%lu", string, _coachID, _index];
     [JENetwoking startDownLoadWithUrl:url postParam:nil WithMethod:JENetworkingRequestMethodGet withCompletion:^(id data) {
-        
-        [self dvv_networkCallBack];
+    
         
         NSLog(@"DVVCoachCommentDMRootClass: %@", data);
         DVVCoachCommentDMRootClass *dmRoot = [DVVCoachCommentDMRootClass yy_modelWithJSON:data];
-        if (!dmRoot.type || !dmRoot.data.count) {
-            [self dvv_nilResponseObject];
+        
+        if (!dmRoot.type) {
             return ;
+        }
+        NSLog(@"dmRoot.type = %lu dmRoot.data.count = %lu isRefresh = %d  index = %lu", dmRoot.type,dmRoot.data.count,isRefresh,_index);
+        if (dmRoot.type && !dmRoot.data.count && !isRefresh) {
+            [self obj_showTotasViewWithMes:@"已经全部加载完毕"];
+            self.tableView.mj_footer.state = MJRefreshStateNoMoreData;
         }
         
         if (isRefresh) {
             [_dataArray removeAllObjects];
-//            [_heightArray removeAllObjects];
+
         }
         
         for (NSDictionary *dict in dmRoot.data) {
@@ -694,18 +698,14 @@ static NSString *courseCellID = @"kCourseCellID";
 //        }
         
         if (isRefresh) {
-//            [self dvv_refreshSuccess];
-            // 刷新成功
             [self.tableView reloadData];
         }else {
-            // 加载更多成功
-//            [self dvv_loadMoreSuccess];
+            [self.tableView.mj_footer endRefreshing];
             [self.tableView reloadData];
         }
         
     } withFailure:^(id data) {
-//        [self dvv_networkCallBack];
-//        [self dvv_networkError];
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 // 是否显示班型信息
@@ -718,6 +718,7 @@ static NSString *courseCellID = @"kCourseCellID";
     
     _isShowCommentDetail = !_isShowCommentDetail;
     [self.tableView reloadData];
+    [self.tableView.mj_footer endRefreshing];
     
 }
 @end

@@ -749,38 +749,6 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "studentDriving/Modular(&#x6a21;&#x5757;)/SignUp(&#x62a5;&#x540d;)/DrivingDetail/Controller/DrivingDetailController.m"
-            timestampString = "482898051.028502"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
-            landmarkName = "-signUpButtonAction:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "studentDriving/Modular(&#x6a21;&#x5757;)/SignUp(&#x62a5;&#x540d;)/DrivingDetail/Controller/DrivingDetailController.m"
-            timestampString = "482898056.405954"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
-            landmarkName = "-classTypeCellDidSelectAction:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "studentDriving/Modular(&#x6a21;&#x5757;)/SignUp(&#x62a5;&#x540d;)/CoachDetail/View/JZCoachDetailHeaderView.m"
             timestampString = "482904805.711133"
             startingColumnNumber = "9223372036854775807"
