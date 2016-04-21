@@ -15,4 +15,8 @@
 @property (nonatomic, strong) UIImageView *arrowImgView;
 
 @property (nonatomic, strong) UIView *lineView;
+
+@property (nonatomic, assign) BOOL isShowClassTypeDetail;
+
+@property (nonatomic, assign) BOOL isShowCommentDetail;
 @end

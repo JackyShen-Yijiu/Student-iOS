@@ -9,7 +9,13 @@
 #import "ClassTypeCell.h"
 #import "NSString+Helper.h"
 
+@interface ClassTypeCell ()
 
+@property (nonatomic, copy) DVVCoachClassTypeViewBlock signUpButtonBlock;
+
+@property (nonatomic, strong) ClassTypeDMData *classTypeDMData;
+
+@end
 @implementation ClassTypeCell
 
 - (void)awakeFromNib {
@@ -62,7 +68,7 @@
 }
 
 - (void)refreshData:(ClassTypeDMData *)dmData {
-    
+    _classTypeDMData = dmData;
     _nameLabel.text = dmData.classname;
     _introductionLabel.text = dmData.classdesc;
     _priceLabel.text = [NSString stringWithFormat:@"￥%zi", dmData.onsaleprice];
@@ -99,6 +105,33 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+- (IBAction)classTypeSignUp:(id)sender {
+    
+    
+    if (![AcountManager isLogin]) {
+        [DVVUserManager userNeedLogin];
+        return ;
+    }
+    
+    if ([[AcountManager manager].userApplystate isEqualToString:@"0"]) {
+        
+        if (_signUpButtonBlock) {
+        
+            _signUpButtonBlock(_classTypeDMData);
+        }
+        
+    }else if ([[AcountManager manager].userApplystate isEqualToString:@"1"]){
+        [self obj_showTotasViewWithMes:@"报名正在申请中"];
+    }else if ([[AcountManager manager].userApplystate isEqualToString:@"2"]){
+        [self obj_showTotasViewWithMes:@"您已经报过名"];
+    }
+
+}
+#pragma mark - set block
+
+- (void)dvvCoachClassTypeView_setSignUpButtonActionBlock:(DVVCoachClassTypeViewBlock)handle {
+    _signUpButtonBlock = handle;
 }
 
 @end
