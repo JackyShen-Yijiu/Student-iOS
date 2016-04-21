@@ -57,6 +57,8 @@
 		064BD60B1C914C6D0021C116 /* JZRegisterController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064BD60A1C914C6D0021C116 /* JZRegisterController.m */; };
 		064D43C21CBE537000F24453 /* JZAppointTestSuccessController.m in Sources */ = {isa = PBXBuildFile; fileRef = 064D43C11CBE537000F24453 /* JZAppointTestSuccessController.m */; };
 		065D767D1CC7258D008BAA49 /* JZCoachDetailHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 065D767C1CC7258D008BAA49 /* JZCoachDetailHeaderView.m */; };
+		065D76801CC7520D008BAA49 /* JZClassTypeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 065D767F1CC7520D008BAA49 /* JZClassTypeCell.m */; };
+		065D76831CC75238008BAA49 /* JZCommentCoachDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 065D76821CC75238008BAA49 /* JZCommentCoachDetailCell.m */; };
 		0673FC5C1C8FB0B4000FD8A4 /* YBDiscountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */; };
 		0673FC5F1C904867000FD8A4 /* MallCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC5E1C904867000FD8A4 /* MallCollectionView.m */; };
 		0673FC621C904B55000FD8A4 /* DiscountCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0673FC611C904B55000FD8A4 /* DiscountCollectionView.m */; };
@@ -132,7 +134,6 @@
 		B22BAD591CBF38BF00455E1C /* YBSubjectQuestionRightButton.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD581CBF38BF00455E1C /* YBSubjectQuestionRightButton.m */; };
 		B22BAD6D1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6C1CBFA0D300455E1C /* YBSubjectWrongQuestionController.m */; };
 		B22BAD701CBFA13800455E1C /* YBSubjectExamViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B22BAD6F1CBFA13800455E1C /* YBSubjectExamViewController.m */; };
-		B22BADC51CC2798600455E1C /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BADC01CC1EC4500455E1C /* ggtkFile.zip */; };
 		B251E2D91C8E849500E6613A /* AFNetworkActivityLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA7F1C8E849100E6613A /* AFNetworkActivityLogger.m */; };
 		B251E2DA1C8E849500E6613A /* ApplyClassCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA821C8E849100E6613A /* ApplyClassCell.m */; };
 		B251E2DB1C8E849500E6613A /* ApplyDrivingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B251DA841C8E849100E6613A /* ApplyDrivingViewController.m */; };
@@ -1223,6 +1224,10 @@
 		064D43C11CBE537000F24453 /* JZAppointTestSuccessController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZAppointTestSuccessController.m; sourceTree = "<group>"; };
 		065D767B1CC7258D008BAA49 /* JZCoachDetailHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZCoachDetailHeaderView.h; sourceTree = "<group>"; };
 		065D767C1CC7258D008BAA49 /* JZCoachDetailHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZCoachDetailHeaderView.m; sourceTree = "<group>"; };
+		065D767E1CC7520D008BAA49 /* JZClassTypeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZClassTypeCell.h; sourceTree = "<group>"; };
+		065D767F1CC7520D008BAA49 /* JZClassTypeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZClassTypeCell.m; sourceTree = "<group>"; };
+		065D76811CC75238008BAA49 /* JZCommentCoachDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZCommentCoachDetailCell.h; sourceTree = "<group>"; };
+		065D76821CC75238008BAA49 /* JZCommentCoachDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZCommentCoachDetailCell.m; sourceTree = "<group>"; };
 		0673FC5A1C8FB0B4000FD8A4 /* YBDiscountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YBDiscountCell.h; sourceTree = "<group>"; };
 		0673FC5B1C8FB0B4000FD8A4 /* YBDiscountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YBDiscountCell.m; sourceTree = "<group>"; };
 		0673FC5D1C904867000FD8A4 /* MallCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MallCollectionView.h; sourceTree = "<group>"; };
@@ -7085,6 +7090,10 @@
 				B2EEBCE61CA13A8700846656 /* DVVCoachDetailTagCell.xib */,
 				065D767B1CC7258D008BAA49 /* JZCoachDetailHeaderView.h */,
 				065D767C1CC7258D008BAA49 /* JZCoachDetailHeaderView.m */,
+				065D767E1CC7520D008BAA49 /* JZClassTypeCell.h */,
+				065D767F1CC7520D008BAA49 /* JZClassTypeCell.m */,
+				065D76811CC75238008BAA49 /* JZCommentCoachDetailCell.h */,
+				065D76821CC75238008BAA49 /* JZCommentCoachDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -7585,7 +7594,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B22BADC51CC2798600455E1C /* ggtkFile.zip in Resources */,
 				B251E4E51C8E849500E6613A /* group_participant_addHL@2x.png in Resources */,
 				B251E48F1C8E849500E6613A /* imageDownloadFail@2x.png in Resources */,
 				B251E4D11C8E849500E6613A /* chat_sender_audio_playing_003@2x.png in Resources */,
@@ -7952,6 +7960,7 @@
 				B251E3BF1C8E849500E6613A /* MyLoveCoachViewController.m in Sources */,
 				B251E5931C8E849500E6613A /* CoachListDMSubject.m in Sources */,
 				B2EEBCBA1CA1396A00846656 /* SignSuccessView.m in Sources */,
+				065D76801CC7520D008BAA49 /* JZClassTypeCell.m in Sources */,
 				B251E3161C8E849500E6613A /* ApplyclasstypeinfoModel.m in Sources */,
 				B251E6DE1C8E856E00E6613A /* IWTabBar.m in Sources */,
 				B251E5D11C8E849500E6613A /* DVVSignUpCoachViewModel.m in Sources */,
@@ -8050,6 +8059,7 @@
 				B251E2E91C8E849500E6613A /* DrivingCarTypeDMData.m in Sources */,
 				B251E3B61C8E849500E6613A /* SignUpInfoCell.m in Sources */,
 				06F860A41CBF78B3007348B9 /* JZSideMenuOrderListViewModel.m in Sources */,
+				065D76831CC75238008BAA49 /* JZCommentCoachDetailCell.m in Sources */,
 				D9DA1C641CBCC55E00BBD81D /* YBBaoMingDuiHuanQuanCell.m in Sources */,
 				D9DA1C691CBCD5EE00BBD81D /* JZWalletData.m in Sources */,
 				B251E37A1C8E849500E6613A /* ConfirmSubjectOneCell.m in Sources */,
@@ -8755,7 +8765,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Beijing Jizhi Driver Services Co., Ltd (2VG884M937)";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_BITCODE = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;

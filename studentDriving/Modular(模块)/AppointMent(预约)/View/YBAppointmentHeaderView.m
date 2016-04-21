@@ -13,38 +13,41 @@
 
 @implementation YBAppointmentHeaderView
 
-- (instancetype)init
++ (YBAppointmentHeaderView *)appointmentHeaderView
 {
-    self = [super init];
-    if (self) {
-        NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"YBAppointmentHeaderView" owner:self options:nil];
-        self = xibArray.firstObject;
-        
-        _subjectLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
-        _subjectTopLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
+    NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"YBAppointmentHeaderView" owner:self options:nil];
+    
+    return xibArray.firstObject;
+    
+}
 
-//        [self setLabelTextColor:_yiXueLabel];
-//        [self setLabelTextColor:_guidingLabel];
+- (void)awakeFromNib
+{
+    
+    _subjectLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
+    _subjectTopLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
+    
+    //        [self setLabelTextColor:_yiXueLabel];
+    //        [self setLabelTextColor:_guidingLabel];
+    
+    self.yuekaoBtn.hidden = NO;
+    self.yuekaoBtn.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yuekaoBtnDidClick)];
+    [self.yuekaoBtn addGestureRecognizer:tap];
+    
+    if (YBIphone6Plus) {
         
-        self.yuekaoBtn.hidden = NO;
-        self.yuekaoBtn.userInteractionEnabled = YES;
-        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(yuekaoBtnDidClick)];
-        [self.yuekaoBtn addGestureRecognizer:tap];
+        self.subjectLabel.font = [UIFont systemFontOfSize:14*YBRatio];
+        self.subjectTopLabel.font = [UIFont systemFontOfSize:14*YBRatio];
         
-        if (YBIphone6Plus) {
-            
-            self.subjectLabel.font = [UIFont systemFontOfSize:14*YBRatio];
-            self.subjectTopLabel.font = [UIFont systemFontOfSize:14*YBRatio];
-            
-            self.guidingLabel.font = [UIFont systemFontOfSize:12*YBRatio];
-            self.yiXueLabel.font = [UIFont systemFontOfSize:12*YBRatio];
-
-            
-        }
+        self.guidingLabel.font = [UIFont systemFontOfSize:12*YBRatio];
+        self.yiXueLabel.font = [UIFont systemFontOfSize:12*YBRatio];
         
-        _bottomView.backgroundColor = YBMainViewControlerBackgroundColor;
+        
     }
-    return self;
+    
+    self.bottomView.backgroundColor = YBMainViewControlerBackgroundColor;
+    
 }
 
 - (void)setLabelTextColor:(UILabel *)label {
@@ -58,10 +61,10 @@
         
         self.subjectLabel.text = [NSString stringWithFormat:@"%@",@"科目二"];
 
-        NSInteger doneCourse = [AcountManager manager].subjecttwo.finishcourse.integerValue;
-        NSInteger appointCourse = [AcountManager manager].subjecttwo.reservation.integerValue;
-        NSInteger totalCourse = [AcountManager manager].subjecttwo.totalcourse.integerValue;
-        NSInteger restCourse = totalCourse - doneCourse - appointCourse;
+//        NSInteger doneCourse = [AcountManager manager].subjecttwo.finishcourse.integerValue;
+//        NSInteger appointCourse = [AcountManager manager].subjecttwo.reservation.integerValue;
+//        NSInteger totalCourse = [AcountManager manager].subjecttwo.totalcourse.integerValue;
+//        NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
         NSInteger shengyuxueshi = [[AcountManager manager].subjecttwo.totalcourse integerValue] - [[AcountManager manager].subjecttwo.finishcourse integerValue];
         NSLog(@"[[AcountManager manager].subjecttwo.officialhours integerValue]= %lu [[AcountManager manager].subjecttwo.totalcourse integerValue] = %lu",[[AcountManager manager].subjecttwo.officialhours integerValue],[[AcountManager manager].subjecttwo.totalcourse integerValue]);
@@ -91,10 +94,10 @@
         
         self.subjectLabel.text = [NSString stringWithFormat:@"%@",@"科目三"];
 
-        NSInteger doneCourse = [AcountManager manager].subjectthree.finishcourse.integerValue;
-        NSInteger appointCourse = [AcountManager manager].subjectthree.reservation.integerValue;
-        NSInteger totalCourse = [AcountManager manager].subjectthree.totalcourse.integerValue;
-        NSInteger restCourse = totalCourse - doneCourse - appointCourse;
+//        NSInteger doneCourse = [AcountManager manager].subjectthree.finishcourse.integerValue;
+//        NSInteger appointCourse = [AcountManager manager].subjectthree.reservation.integerValue;
+//        NSInteger totalCourse = [AcountManager manager].subjectthree.totalcourse.integerValue;
+//        NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
         NSInteger shengyuxueshi = [[AcountManager manager].subjectthree.officialhours integerValue] - [AcountManager manager].subjectthree.officialfinishhours;
         

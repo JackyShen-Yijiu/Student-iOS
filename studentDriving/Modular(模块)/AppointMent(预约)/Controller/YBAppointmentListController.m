@@ -586,7 +586,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (YBAppointmentHeaderView *)headerView {
     if (!_headerView) {
-        _headerView = [YBAppointmentHeaderView new];
+        _headerView = [YBAppointmentHeaderView appointmentHeaderView];
         _headerView.parentViewController = self;
         _headerView.frame = CGRectMake(0, 0, kSystemWide, 118);
     }

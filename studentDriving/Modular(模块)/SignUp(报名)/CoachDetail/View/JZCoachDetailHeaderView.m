@@ -31,6 +31,10 @@
     [self addSubview:self.titleLabel];
     [self addSubview:self.arrowImgView];
     [self addSubview:self.lineView];
+    
+    if (_isShowClassTypeDetail) {
+        _arrowImgView.image = [UIImage imageNamed:@"more_right"];
+    }
 }
 - (void)layoutSubviews{
     [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
