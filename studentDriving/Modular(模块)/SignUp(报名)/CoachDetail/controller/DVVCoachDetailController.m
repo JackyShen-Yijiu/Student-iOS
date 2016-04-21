@@ -317,7 +317,10 @@ static NSString *courseCellID = @"kCourseCellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 10;
+    if (0 == section || 1 == section) {
+        return 10;
+    }
+    return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (1 == section || 2 == section) {
@@ -514,7 +517,7 @@ static NSString *courseCellID = @"kCourseCellID";
     
     CGFloat centerY = [UIScreen mainScreen].bounds.size.width*0.7  - 25;
     CGFloat centerX = [UIScreen mainScreen].bounds.size.width - 16 - 63/2.f;
-    CGFloat height = centerY;
+    CGFloat height = [UIScreen mainScreen].bounds.size.width*0.7;
     
     CGFloat offsetY = scrollView.contentOffset.y;
     
