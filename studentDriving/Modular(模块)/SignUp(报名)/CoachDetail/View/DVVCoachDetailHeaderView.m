@@ -41,12 +41,12 @@
         _bgImageView.frame = CGRectMake(0, 0, selfWidth, bgImagesViewHeight);
         _maskView.frame = _bgImageView.frame;
         _alphaView.frame = _bgImageView.frame;
-        CGFloat collectionWidth = 63;
-        CGFloat collectionHeight = 63;
-        _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, bgImagesViewHeight - collectionHeight/2.f, collectionWidth, collectionHeight);
+        CGFloat collectionWidth = 48;
+        CGFloat collectionHeight = 20;
+        _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, bgImagesViewHeight - collectionHeight - 16, collectionWidth, collectionHeight);
         
-        _collectionImageView.layer.masksToBounds = YES;
-        _collectionImageView.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+//        _collectionImageView.layer.masksToBounds = YES;
+//        _collectionImageView.layer.cornerRadius = _collectionImageView.frame.size.width/2;
 
         _centerView.center = CGPointMake(CGRectGetMidX(_bgImageView.frame), CGRectGetMidY(_bgImageView.frame) + 18);
 
@@ -137,7 +137,7 @@
         UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(collectionClickAction:)];
         [_collectionImageView addGestureRecognizer:tapGesture];
         _collectionImageView.userInteractionEnabled = YES;
-        _collectionImageView.image = [UIImage imageNamed:@"collection_no_icon"];
+        _collectionImageView.image = [UIImage imageNamed:@"coach_collect_off"];
     }
     return _collectionImageView;
 }
@@ -184,7 +184,7 @@
     if (!_centerView) {
         _centerView = [UIView new];
         _centerView.frame = CGRectMake(0, 0, kSystemWide, 110);
-        _centerView.backgroundColor = [UIColor redColor];
+        _centerView.backgroundColor = [UIColor clearColor];
         [_centerView addSubview:self.iconImageView];
         [_centerView addSubview:self.teacherAge];
         [_centerView addSubview:self.starView];
@@ -232,7 +232,7 @@
                     
                     NSString *schoolId = [array[i] objectForKey:@"coachid"];
                     if ([schoolId isEqualToString:_coachID]) {
-                        _collectionImageView.image = [UIImage imageNamed:@"collection_yes_icon"];
+                        _collectionImageView.image = [UIImage imageNamed:@"coach_collect_on"];
                         _collectionImageView.tag = 1;
                         return ;
                     }
@@ -258,17 +258,17 @@
 #pragma mark 添加喜欢的驾校
 - (void)addLoveSchool {
     
-    _Aimv = [OLImageView new];
-    _Aimv.backgroundColor = [UIColor clearColor];
-    _Aimv.layer.masksToBounds = YES;
-    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_on" ofType:@"gif"];
-    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
-    _Aimv.image = [OLImage imageWithData:GIFDATA];
-    [_Aimv setFrame:_collectionImageView.frame];
-    [self addSubview:_Aimv];
-    
-    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
+//    _Aimv = [OLImageView new];
+//    _Aimv.backgroundColor = [UIColor clearColor];
+//    _Aimv.layer.masksToBounds = YES;
+//    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_on" ofType:@"gif"];
+//    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
+//    _Aimv.image = [OLImage imageWithData:GIFDATA];
+//    [_Aimv setFrame:_collectionImageView.frame];
+//    [self addSubview:_Aimv];
+//    
+//    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
 
     NSString *interface = [NSString stringWithFormat:@"userinfo/favoritecoach/%@",_coachID];
     NSString *urlString = [NSString stringWithFormat:BASEURL,interface];
@@ -278,7 +278,7 @@
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            _collectionImageView.image = [UIImage imageNamed:@"collection_yes_icon"];
+            _collectionImageView.image = [UIImage imageNamed:@"coach_collect_off"];
 //            [self obj_showTotasViewWithMes:@"收藏成功"];
             _collectionImageView.tag = 1;
         }else {
@@ -298,17 +298,17 @@
 - (void)deleteLoveSchool {
     
     
-    _Aimv = [OLImageView new];
-    _Aimv.backgroundColor = [UIColor clearColor];
-    _Aimv.layer.masksToBounds = YES;
-    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_off" ofType:@"gif"];
-    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
-    _Aimv.image = [OLImage imageWithData:GIFDATA];
-    [_Aimv setFrame:_collectionImageView.frame];
-    [self addSubview:_Aimv];
-    
-    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
+//    _Aimv = [OLImageView new];
+//    _Aimv.backgroundColor = [UIColor clearColor];
+//    _Aimv.layer.masksToBounds = YES;
+//    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_off" ofType:@"gif"];
+//    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
+//    _Aimv.image = [OLImage imageWithData:GIFDATA];
+//    [_Aimv setFrame:_collectionImageView.frame];
+//    [self addSubview:_Aimv];
+//    
+//    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
 
     NSString *interface = [NSString stringWithFormat:@"userinfo/favoritecoach/%@",_coachID];
     NSString *urlString = [NSString stringWithFormat:BASEURL,interface];
@@ -318,7 +318,7 @@
         NSDictionary *param = data;
         NSString *type = [NSString stringWithFormat:@"%@",param[@"type"]];
         if ([type isEqualToString:@"1"]) {
-            _collectionImageView.image = [UIImage imageNamed:@"collection_no_icon"];
+            _collectionImageView.image = [UIImage imageNamed:@"coach_collect_on"];
 //            [self obj_showTotasViewWithMes:@"已取消收藏"];
             _collectionImageView.tag = 0;
         }else {

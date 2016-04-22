@@ -317,7 +317,10 @@ static NSString *courseCellID = @"kCourseCellID";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    return 10;
+    if (0 == section || 1 == section) {
+        return 10;
+    }
+    return 0;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (1 == section || 2 == section) {
@@ -333,6 +336,7 @@ static NSString *courseCellID = @"kCourseCellID";
         headerView.titleLabel.text = @"课程收费";
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(isShowClassType)];
         [headerView addGestureRecognizer:tap];
+        headerView.isShowClassTypeDetail = _isShowClassDetail;
         return headerView;
 
     }
@@ -341,11 +345,11 @@ static NSString *courseCellID = @"kCourseCellID";
         headerView.titleLabel.text = @"学员评价";
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(isShowComment)];
         [headerView addGestureRecognizer:tap];
-
+        headerView.isShowCommentDetail = _isShowCommentDetail;
         return headerView;
         
            }else {
-        return [UIView new];
+        return nil;
     }
 }
 
@@ -511,9 +515,9 @@ static NSString *courseCellID = @"kCourseCellID";
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
-    CGFloat centerY = [UIScreen mainScreen].bounds.size.width*0.7;
+    CGFloat centerY = [UIScreen mainScreen].bounds.size.width*0.7  - 25;
     CGFloat centerX = [UIScreen mainScreen].bounds.size.width - 16 - 63/2.f;
-    CGFloat height = centerY;
+    CGFloat height = [UIScreen mainScreen].bounds.size.width*0.7;
     
     CGFloat offsetY = scrollView.contentOffset.y;
     
@@ -562,7 +566,7 @@ static NSString *courseCellID = @"kCourseCellID";
     }else {
         
         [UIView animateWithDuration:0.3 animations:^{
-            _headerView.collectionImageView.size = CGSizeMake(63, 63);
+            _headerView.collectionImageView.size = CGSizeMake(48, 20);
             _headerView.collectionImageView.center = CGPointMake(centerX, centerY);
             _headerView.collectionImageView.alpha = 1;
             
@@ -575,6 +579,7 @@ static NSString *courseCellID = @"kCourseCellID";
 //    if (offsetY > maxOffsetY) {
 //        _tableView.contentOffset = CGPointMake(0, maxOffsetY);
 //    }
+    _tableView.backgroundColor = [UIColor clearColor];
 }
 
 

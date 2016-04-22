@@ -25,6 +25,7 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        
         [self.contentView addSubview:self.lineImageView];
         
         [_iconImageView.layer setMasksToBounds:YES];
@@ -81,14 +82,15 @@
     
     _schoolLabel.text = _model.courseTrainInfo.address;
     
-    _subjectIntroductionLabel.text = _model.learningcontent ? _model.learningcontent : @"学习内容为空";
+    _subjectIntroductionLabel.text = _model.learningcontent ? _model.learningcontent : @"教练未确认";
     
     NSLog(@"_model.sigintime:%@",_model.sigintime);
     
     if (_model.sigintime && _model.sigintime.length) {
-        _signInTimeLabel.text = [NSString stringWithFormat:@"签到时间:%@", [self getLocalDateFormateUTCDate:_model.sigintime format:@"HH:mm"]];
+        _signInTimeLabel.text = [NSString stringWithFormat:@"签到时间 %@", [self getLocalDateFormateUTCDate:_model.sigintime format:@"HH:mm"]];
     }else{
         _signInTimeLabel.text = @"";
+//        _subjectIntroductionLabel.text = @"";
     }
 
 }

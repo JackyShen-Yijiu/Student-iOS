@@ -209,17 +209,17 @@
 #pragma mark 添加喜欢的驾校
 - (void)addLoveSchool {
     
-    _Aimv = [OLImageView new];
-    _Aimv.backgroundColor = [UIColor clearColor];
-    _Aimv.layer.masksToBounds = YES;
-    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_on" ofType:@"gif"];
-    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
-    _Aimv.image = [OLImage imageWithData:GIFDATA];
-    [_Aimv setFrame:_collectionImageView.frame];
-    [self addSubview:_Aimv];
-    
-    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
+//    _Aimv = [OLImageView new];
+//    _Aimv.backgroundColor = [UIColor clearColor];
+//    _Aimv.layer.masksToBounds = YES;
+//    _Aimv.layer.cornerRadius = _collectionImageView.frame.size.width/2;
+//    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"collect_on" ofType:@"gif"];
+//    NSData *GIFDATA = [NSData dataWithContentsOfFile:filePath];
+//    _Aimv.image = [OLImage imageWithData:GIFDATA];
+//    [_Aimv setFrame:_collectionImageView.frame];
+//    [self addSubview:_Aimv];
+//    
+//    [self performSelector:@selector(removeAimv) withObject:self afterDelay:0.5];
 
     NSString *interface = [NSString stringWithFormat:@"userinfo/favoriteschool/%@",_schoolID];
     NSString *urlString = [NSString stringWithFormat:BASEURL,interface];
