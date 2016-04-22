@@ -201,7 +201,7 @@
             if ([dataDic objectForKey:@"subjectfour"]) {
                 [NSUserStoreTool storeWithId:[dataDic objectForKey:@"subjectfour"] WithKey:ksubjectFour];
             }
-           
+            [[NSNotificationCenter defaultCenter] postNotificationName:kupdateSignUpListHeaderData object:nil];
         }else {
             
         }

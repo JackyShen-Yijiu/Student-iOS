@@ -10,12 +10,14 @@
 #import "YBAppointTestViewController.h"
 #import "NSUserStoreTool.h"
 #import "JZAppointTestFirstController.h"
+#import "YBHomeBaseController.h"
 
 @implementation YBAppointmentHeaderView
 
 + (YBAppointmentHeaderView *)appointmentHeaderView
 {
     NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"YBAppointmentHeaderView" owner:self options:nil];
+    // 手机号码改变
     
     return xibArray.firstObject;
     
@@ -23,7 +25,7 @@
 
 - (void)awakeFromNib
 {
-    
+   [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateSignUpList) name:kupdateSignUpListHeaderData object:nil];
     _subjectLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     _subjectTopLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     
@@ -139,5 +141,7 @@
     // Drawing code
 }
 */
-
+- (void)updateSignUpList{
+    [self setUpData];
+}
 @end

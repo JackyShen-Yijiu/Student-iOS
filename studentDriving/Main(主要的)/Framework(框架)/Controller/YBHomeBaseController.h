@@ -8,6 +8,11 @@
 
 #import "YBBaseViewController.h"
 
+
+static NSString *const kupdateSignUpListHeaderData = @"kupdateSignUpListHeaderData";
+
+
+
 @protocol YBHomeBaseControllerDelegate <NSObject>
 @optional
 - (void)leftBtnClicked;
