@@ -195,7 +195,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
     
     NSLog(@"_viewModel.completedArray:%@",_viewModel.completedArray);
     for (HMCourseModel *model in _viewModel.completedArray) {
-        NSLog(@"model.sigintime:%@",model.sigintime);
+        NSLog(@"model.sigintime:%@ model.courseId:%@",model.sigintime,model.courseId);
     }
     YBCompletedAppointmentListController *vc = [YBCompletedAppointmentListController new];
     vc.dataArray = _viewModel.completedArray;
