@@ -29,9 +29,6 @@ static NSString *schoolCellID = @"schoolCellID";
 static NSString *coachCellID = @"coachCellID";
 
 @interface YBSignUpViewController ()<UITableViewDataSource, UITableViewDelegate,UIScrollViewDelegate, CityListViewDelegate>
-{
-    UIImageView*navBarHairlineImageView;
-}
 
 @property (nonatomic, assign) BOOL alreadyBeginLoaction;
 
@@ -41,10 +38,6 @@ static NSString *coachCellID = @"coachCellID";
 // 当前显示的是驾校还是教练（0：驾校  1：教练）
 @property (nonatomic, assign) BOOL showType;
 
-//@property (nonatomic, strong) UIView *titleView;
-//@property (nonatomic, strong) UIButton *titleLeftButton;
-//@property (nonatomic, strong) UIButton *titleRightButton;
-//@property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UISegmentedControl *segment;
 
 // 定位
@@ -70,8 +63,11 @@ static NSString *coachCellID = @"coachCellID";
 
 #pragma mark - life cycle
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
+    
     self.edgesForExtendedLayout = NO;
+    
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
 
     self.navigationItem.titleView = self.segment;
@@ -95,14 +91,6 @@ static NSString *coachCellID = @"coachCellID";
     bottomView.frame = CGRectMake(0, kSystemHeight - 64 - 49, kSystemWide, 49);
     [self.view addSubview:bottomView];
     
-    // 测试控制器
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-////        DVVPaySuccessController *vc = [DVVPaySuccessController new];
-////        vc.hidesBottomBarWhenPushed = YES;
-////        [self.navigationController pushViewController:vc animated:YES];
-//        YBLoginController *vc = [YBLoginController new];
-//        [self presentViewController:vc animated:YES completion:nil];
-//    });
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -111,16 +99,8 @@ static NSString *coachCellID = @"coachCellID";
     CGSize size = self.view.bounds.size;
     _toolBarView.frame = CGRectMake(0, 0, size.width, 44);
     _tableView.frame = CGRectMake(0, 44, size.width, size.height - 44);
-    
-//    _titleView.backgroundColor = [UIColor redColor];
-//    _titleLeftButton.backgroundColor = [UIColor orangeColor];
-//    _titleRightButton.backgroundColor = [UIColor orangeColor];
-    
+  
     _toolBarView.backgroundColor = [UIColor whiteColor];
-    
-    // 隐藏导航条底部分割线
-    navBarHairlineImageView = [self findHairlineImageViewUnder:self.navigationController.navigationBar];
-    navBarHairlineImageView.hidden=YES;
     
     if (!_alreadyBeginLoaction) {
         // 加载数据
@@ -136,46 +116,13 @@ static NSString *coachCellID = @"coachCellID";
 
 - (void)viewWillDisappear:(BOOL)animated {
     [super viewWillDisappear:animated];
-//    // 显示导航条分割线
-//    navBarHairlineImageView.hidden=NO;
-    
+
     // 退出侧边栏
     if ([WMCommon getInstance].homeState==kStateMenu) {
         [self clicked];
     }
 }
 
-- (UIImageView*)findHairlineImageViewUnder:(UIView*)view {
-    
-    if([view isKindOfClass:UIImageView.class] && view.bounds.size.height<=1.0) {
-        return(UIImageView*)view;
-    }
-    for(UIView*subview in view.subviews) {
-        UIImageView*imageView = [self findHairlineImageViewUnder:subview];
-        if(imageView) {
-            return imageView;
-        }
-    }
-    return nil;
-}
-
-#pragma mark - action
-#pragma mark 选驾校或者选教练
-//- (void)selectSchoolOrCoachAction {
-//    
-//    // 根据当前的状态来判断是显示驾校还是教练
-//    if (0 == _showType) {
-//        _showType = 1;
-//        _titleLabel.text = @"教练";
-//        
-//    }else {
-//        _showType = 0;
-//        _titleLabel.text = @"驾校";
-//    }
-//
-//    [self cancelSearch];
-//    [self beginRefresh];
-//}
 - (void)didClicksegmentedControlAction:(UISegmentedControl *)Seg {
     
     NSInteger index = Seg.selectedSegmentIndex;
@@ -194,6 +141,7 @@ static NSString *coachCellID = @"coachCellID";
             [self beginRefresh];
         }
     }
+    
 }
 
 #pragma mark 筛选条件
@@ -244,10 +192,10 @@ static NSString *coachCellID = @"coachCellID";
     
     NSLog(@"selected cityName: %@", cityName);
     _locationLabel.text = cityName;
-    
     _schoolViewModel.cityName = cityName;
     _coachViewModel.cityName = cityName;
     [self beginRefresh];
+    
 }
 
 #pragma mark - public
@@ -718,9 +666,11 @@ static NSString *coachCellID = @"coachCellID";
         _searchView.frame = CGRectMake(16, 7, self.view.bounds.size.width - 16 * 2, _searchView.defaultHeight);
         __weak typeof(self) ws = self;
         [_searchView dvv_setTextFieldDidEndEditingBlock:^(UITextField *textField) {
+            NSLog(@"------------搜索--------取消-------");
             [ws dvvTextFieldDidEndEditingAction:textField];
         }];
         [_searchView dvv_setTextFieldDidBeginEditingBlock:^(UITextField *textField) {
+            NSLog(@"++++++++++dvv_setTextFieldDidBeginEditingBlock++++++++++++++++++");
             [ws dvvTextFieldDidBeginEditingAction:textField];
         }];
     }

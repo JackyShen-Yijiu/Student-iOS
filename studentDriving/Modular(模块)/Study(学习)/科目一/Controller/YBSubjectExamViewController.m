@@ -25,6 +25,8 @@
 
 @property (nonatomic,strong) ScrollViewPage *scrollView;
 
+@property (nonatomic,strong) UIAlertView *timeAlertView;
+
 @end
 
 @implementation YBSubjectExamViewController
@@ -53,7 +55,7 @@
        
         if (fileIsExit) {
             
-            time = 45 * 60;
+            time = 20;//45 * 60;
             ws.beginTime = [NSDate date];
             
             NSLog(@"YBSubjectQuestionsViewController kemu:%ld",(long)_kemu);
@@ -107,6 +109,19 @@
     NSString *timestr = [NSString stringWithFormat:@"%ld",(long)time];
     timestr = [YBSubjectTool duration:timestr];
     
+    if (_scrollView.wrongCount>=10) {
+        
+        [timer invalidate];
+        timer = nil;
+        
+        self.timeAlertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"错题数目大于10，确认提交当前模拟成绩" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [self.timeAlertView show];
+        
+        return;
+        
+    }
+    
+    
     NSLog(@"_scrollView.socre:%lu _scrollView.currentPage:%ld",(unsigned long)_scrollView.socre,(long)_scrollView.currentPage);
     
     if (time==0) {
@@ -114,8 +129,8 @@
         [timer invalidate];
         timer = nil;
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"时间已到，确认提交本次模拟考试成绩" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
-        [alert show];
+        self.timeAlertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"时间已到，确认提交本次模拟考试成绩" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [self.timeAlertView show];
         
         return;
     }
@@ -125,8 +140,8 @@
         [timer invalidate];
         timer = nil;
         
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"答题完毕，确认提交本次模拟考试成绩" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
-        [alert show];
+        self.timeAlertView = [[UIAlertView alloc] initWithTitle:@"温馨提示" message:@"答题完毕，确认提交本次模拟考试成绩" delegate:self cancelButtonTitle:@"确认" otherButtonTitles:nil, nil];
+        [self.timeAlertView show];
         
         return;
         
@@ -184,6 +199,7 @@
     params[@"endtime"] = [self chagetime:self.endTime];
     params[@"socre"] = [NSString stringWithFormat:@"%lu",(unsigned long)_scrollView.socre];
     params[@"subjectid"] = [NSString stringWithFormat:@"%ld",(long)_kemu];
+    NSLog(@"params:%@",params);
     
     [JENetwoking startDownLoadWithUrl:urlString postParam:params WithMethod:JENetworkingRequestMethodPost withCompletion:^(id data) {
         

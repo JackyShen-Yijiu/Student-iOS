@@ -60,11 +60,6 @@
     if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
         
         self.subjectLabel.text = [NSString stringWithFormat:@"%@",@"科目二"];
-
-//        NSInteger doneCourse = [AcountManager manager].subjecttwo.finishcourse.integerValue;
-//        NSInteger appointCourse = [AcountManager manager].subjecttwo.reservation.integerValue;
-//        NSInteger totalCourse = [AcountManager manager].subjecttwo.totalcourse.integerValue;
-//        NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
         NSInteger shengyuxueshi = [[AcountManager manager].subjecttwo.totalcourse integerValue] - [[AcountManager manager].subjecttwo.finishcourse integerValue];
         NSLog(@"[[AcountManager manager].subjecttwo.officialhours integerValue]= %lu [[AcountManager manager].subjecttwo.totalcourse integerValue] = %lu",[[AcountManager manager].subjecttwo.officialhours integerValue],[[AcountManager manager].subjecttwo.totalcourse integerValue]);
@@ -93,17 +88,13 @@
     }else if ([AcountManager manager].userSubject.subjectId.integerValue == 3) {
         
         self.subjectLabel.text = [NSString stringWithFormat:@"%@",@"科目三"];
-
-//        NSInteger doneCourse = [AcountManager manager].subjectthree.finishcourse.integerValue;
-//        NSInteger appointCourse = [AcountManager manager].subjectthree.reservation.integerValue;
-//        NSInteger totalCourse = [AcountManager manager].subjectthree.totalcourse.integerValue;
-//        NSInteger restCourse = totalCourse - doneCourse - appointCourse;
         
         NSInteger shengyuxueshi = [[AcountManager manager].subjectthree.officialhours integerValue] - [AcountManager manager].subjectthree.officialfinishhours;
         
         // 学习内容
         self.subjectTopLabel.text = [NSString stringWithFormat:@"上次学习: %@",[AcountManager manager].subjectthree.progress];
         // 规定
+        NSLog(@"[AcountManager manager].subjectthree.totalcourse = %zd",[AcountManager manager].subjectthree.totalcourse);
         self.guidingLabel.text = [NSString stringWithFormat:@"规定:%@课时",[AcountManager manager].subjectthree.totalcourse];
         // 已学
         self.yiXueLabel.text = [NSString stringWithFormat:@"已学:%@课时",[AcountManager manager].subjectthree.finishcourse];

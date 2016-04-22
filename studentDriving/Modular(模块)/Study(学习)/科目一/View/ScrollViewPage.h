@@ -14,6 +14,8 @@
 
 @interface ScrollViewPage : UIView<UIScrollViewDelegate,UITableViewDataSource,UITableViewDelegate>
 
+@property (nonatomic,assign) NSInteger wrongCount;
+
 @property (nonatomic,assign) BOOL isWrongVc;
 
 @property (nonatomic,assign) BOOL isWrongAndQuestion;
