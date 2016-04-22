@@ -332,6 +332,7 @@ static NSString *coachCellID = @"coachCellID";
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [_searchView.textField resignFirstResponder];
     
     CGFloat offsetY = scrollView.contentOffset.y;
     
