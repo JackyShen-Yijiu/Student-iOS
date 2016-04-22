@@ -171,16 +171,13 @@
     if (!cell) {
         DYNSLog(@"创建错误");
     }
-   
+    cell.iconImageView.image = [UIImage imageNamed:@"coach_man_default_icon"];
+    
     if (self.studentArray.count>0) {
         
         StudentModel *model = self.studentArray[indexPath.row];
         
-        [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"littleImage.png"]];
-        
-    }else{
-        
-        cell.iconImageView.image = [UIImage imageNamed:@"littleImage.png"];
+        [cell.iconImageView sd_setImageWithURL:[NSURL URLWithString:model.userid.headportrait.originalpic] placeholderImage:[UIImage imageNamed:@"coach_man_default_icon"]];
         
     }
     return cell;

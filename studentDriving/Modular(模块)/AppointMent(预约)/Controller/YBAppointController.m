@@ -259,8 +259,10 @@
         
         self.footView.appointCoach = self.appointCoach;
 
-        [self loadMidYuyueTimeData:self.selectDateStr];
+        self.footView.studentArray = nil;
 
+        [self loadMidYuyueTimeData:self.selectDateStr];
+        
     }
     
     // 设置顶部标题
@@ -447,6 +449,9 @@
             ws.footView.studentArray = ws.stuDataArray;
 
         }else {
+            
+            ws.footView.studentArray = nil;
+
             [self obj_showTotasViewWithMes:[NSString stringWithFormat:@"%@",data[@"msg"]]];
         }
         
