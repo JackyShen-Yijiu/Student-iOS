@@ -8,6 +8,6 @@
 
 #import "YBWebBaseViewController.h"
 
-@interface YBCheatsViewController : YBWebBaseViewController
+@interface YBCheatsViewController : UIViewController
 @property (nonatomic,copy)NSString *weburl;
 @end
