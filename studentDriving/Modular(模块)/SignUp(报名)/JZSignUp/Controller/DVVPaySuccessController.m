@@ -28,7 +28,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.title = @"报名信息";
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor redColor];
     
     [self.view addSubview:self.successView];
 //    _successView.hidden = YES;
