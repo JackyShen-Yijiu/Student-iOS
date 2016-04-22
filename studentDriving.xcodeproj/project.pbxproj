@@ -99,7 +99,6 @@
 		B20E59411C97C04B00912F5A /* DataMD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E593E1C97C04B00912F5A /* DataMD5.m */; };
 		B20E59421C97C04B00912F5A /* getIPhoneIP.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E59401C97C04B00912F5A /* getIPhoneIP.m */; };
 		B20E59A51C9AA0E400912F5A /* DVVUserManager.m in Sources */ = {isa = PBXBuildFile; fileRef = B20E59A41C9AA0E400912F5A /* DVVUserManager.m */; };
-		B21A29181CC9F4B000E199FF /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BADC01CC1EC4500455E1C /* ggtkFile.zip */; };
 		B221AF591C914BFB001F6EED /* NetWorkEntiry.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF581C914BFB001F6EED /* NetWorkEntiry.m */; };
 		B221AF5C1C914C18001F6EED /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF5B1C914C18001F6EED /* NSString+MD5.m */; };
 		B221AF651C9172E4001F6EED /* YBAppointController.m in Sources */ = {isa = PBXBuildFile; fileRef = B221AF641C9172E4001F6EED /* YBAppointController.m */; };
@@ -7585,7 +7584,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B21A29181CC9F4B000E199FF /* ggtkFile.zip in Resources */,
 				B251E4E51C8E849500E6613A /* group_participant_addHL@2x.png in Resources */,
 				B251E48F1C8E849500E6613A /* imageDownloadFail@2x.png in Resources */,
 				B251E4D11C8E849500E6613A /* chat_sender_audio_playing_003@2x.png in Resources */,
