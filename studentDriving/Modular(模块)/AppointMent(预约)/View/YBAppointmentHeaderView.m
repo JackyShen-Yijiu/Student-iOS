@@ -144,4 +144,7 @@
 - (void)updateSignUpList{
     [self setUpData];
 }
+- (void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 @end
