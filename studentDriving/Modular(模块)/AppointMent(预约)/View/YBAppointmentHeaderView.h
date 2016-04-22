@@ -10,6 +10,10 @@
 
 @interface YBAppointmentHeaderView : UIView
 
+@property (weak, nonatomic) IBOutlet UILabel *stateLabel;
+
+@property (weak, nonatomic) IBOutlet UIImageView *leftImageView;
+
 @property (weak, nonatomic) IBOutlet UILabel *subjectLabel;
 
 @property (weak, nonatomic) IBOutlet UILabel *subjectTopLabel;

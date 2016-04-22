@@ -29,6 +29,8 @@
     _subjectLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     _subjectTopLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     
+    self.stateLabel.hidden = YES;
+
     //        [self setLabelTextColor:_yiXueLabel];
     //        [self setLabelTextColor:_guidingLabel];
     
@@ -46,6 +48,7 @@
         self.yiXueLabel.font = [UIFont systemFontOfSize:12*YBRatio];
         
         
+        
     }
     
     self.bottomView.backgroundColor = YBMainViewControlerBackgroundColor;
@@ -59,7 +62,17 @@
 - (void)setUpData
 {
     
-    if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
+    NSLog(@"[AcountManager manager].userSubject.subjectId:%@",[AcountManager manager].userSubject.subjectId);
+    
+    self.stateLabel.hidden = YES;
+    
+    if ([AcountManager manager].userSubject.subjectId.integerValue==1) {
+        
+        self.stateLabel.hidden = NO;
+        self.yuekaoBtn.hidden = YES;
+        self.leftImageView.hidden = YES;
+        
+    }else if ([AcountManager manager].userSubject.subjectId.integerValue == 2) {
         
         self.subjectLabel.text = [NSString stringWithFormat:@"%@",@"科目二"];
         

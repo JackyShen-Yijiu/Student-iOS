@@ -158,6 +158,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         return;
     }
     
+    if ([AcountManager manager].userSubject.subjectId.integerValue==1) {
+        [self obj_showTotasViewWithMes:self.headerView.stateLabel.text];
+        return;
+    }
     
     NSLog(@"[AcountManager manager].userApplystate:%@",[AcountManager manager].userApplystate);
     
