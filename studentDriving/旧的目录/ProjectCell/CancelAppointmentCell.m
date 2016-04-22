@@ -10,10 +10,7 @@
 
 @interface CancelAppointmentCell ()
 @property (strong, nonatomic) UIView *backGroundView;
-<<<<<<< HEAD
-=======
-//@property (strong, nonatomic) UILabel *cancelTitle;
->>>>>>> ad63e0b9ad26a889a520335b8bdee1c8bf3a0aaa
+
 @property (strong, nonatomic) NSMutableArray *bntArray;
 @property (nonatomic,strong) NSMutableArray *labelArray;
 @end
@@ -38,17 +35,7 @@
     }
     return _backGroundView;
 }
-<<<<<<< HEAD
 
-=======
-//- (UILabel *)cancelTitle {
-//    if (_cancelTitle == nil) {
-//        _cancelTitle = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
-//        _cancelTitle.text = @"取消原因";
-//    }
-//    return _cancelTitle;
-//}
->>>>>>> ad63e0b9ad26a889a520335b8bdee1c8bf3a0aaa
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self setUp];
@@ -59,24 +46,11 @@
     
     [self.contentView addSubview:self.backGroundView];
     self.backGroundView.userInteractionEnabled = YES;
-<<<<<<< HEAD
-=======
-//    [self.backGroundView addSubview:self.cancelTitle];
-    
-//    [self.cancelTitle mas_makeConstraints:^(MASConstraintMaker *make) {
-//        make.left.mas_equalTo(self.backGroundView.mas_left).offset(15);
-//        make.top.mas_equalTo(self.backGroundView.mas_top).offset(20);
-//    }];
->>>>>>> ad63e0b9ad26a889a520335b8bdee1c8bf3a0aaa
     
     NSArray *titleArray = @[@"临时有事无法参加",@"预约错教练",@"调整了练车时间",@"其他"];
     for (NSUInteger i = 0; i<4; i++) {
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-<<<<<<< HEAD
         button.frame = CGRectMake(15, 10+(15+20)*i, 15, 15);
-=======
-        button.frame = CGRectMake(15, 20+(15+20)*i, 15, 15);
->>>>>>> ad63e0b9ad26a889a520335b8bdee1c8bf3a0aaa
         [button setBackgroundImage:[UIImage imageNamed:@"ic_appointment_selected_no"] forState:UIControlStateNormal];
         [button setBackgroundImage:[UIImage imageNamed:@"ic_appointment_selected_yes"] forState:UIControlStateSelected];
         button.tag = 100 + i;
