@@ -38,7 +38,6 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
 @property (nonatomic,assign) subjectType kemu;
 
 @property (nonatomic,assign) NSInteger trueCount;
-@property (nonatomic,assign) NSInteger wrongCount;
 
 @property (nonatomic,assign) scrollViewPageType scrollViewPageType;
 
