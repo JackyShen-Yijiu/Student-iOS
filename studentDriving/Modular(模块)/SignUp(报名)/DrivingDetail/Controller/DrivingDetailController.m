@@ -91,7 +91,7 @@
     _shuttleBusButton.bounds = CGRectMake(0, 0, 24, 44);
     [_shuttleBusButton addTarget:self action:@selector(shuttleBusMoreButtonAction) forControlEvents:UIControlEventTouchUpInside];
     _phoneButton = [UIButton new];
-    [_phoneButton setImage:[UIImage imageNamed:@"phone_white_icon"] forState:UIControlStateNormal];
+    [_phoneButton setImage:[UIImage imageNamed:@"JZ_cellphone"] forState:UIControlStateNormal];
     _phoneButton.bounds = CGRectMake(0, 0, 24, 44);
     [_phoneButton addTarget:self action:@selector(callPhone) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *bbiBus = [[UIBarButtonItem alloc] initWithCustomView:_shuttleBusButton];

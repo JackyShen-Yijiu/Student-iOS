@@ -12,4 +12,6 @@
 
 @property (nonatomic, copy) NSString *coachID;
 
+@property (nonatomic, strong) NSString *coachName;
+
 @end

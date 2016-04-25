@@ -135,6 +135,7 @@
     // 跳转到详情界面
     DVVCoachDetailController *vc = [[DVVCoachDetailController alloc] init];
     vc.coachID = self.appointCoach.coachid;
+    vc.coachName = self.appointCoach.name;
     [self.parentViewController.navigationController pushViewController:vc animated:YES];
    
 }

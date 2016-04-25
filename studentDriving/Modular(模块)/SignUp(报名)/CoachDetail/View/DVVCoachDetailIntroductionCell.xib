@@ -15,7 +15,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="这是简介，这是简介" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBi-bK-4UH">
-                        <rect key="frame" x="16" y="16" width="288" height="35"/>
+                        <rect key="frame" x="16" y="14" width="288" height="13"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -23,8 +23,8 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="GBi-bK-4UH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="9z6-Yj-Uaw"/>
-                    <constraint firstAttribute="bottom" secondItem="GBi-bK-4UH" secondAttribute="bottom" id="IMc-LN-awS"/>
+                    <constraint firstItem="GBi-bK-4UH" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="9z6-Yj-Uaw"/>
+                    <constraint firstAttribute="bottom" secondItem="GBi-bK-4UH" secondAttribute="bottom" constant="24" id="IMc-LN-awS"/>
                     <constraint firstAttribute="trailing" secondItem="GBi-bK-4UH" secondAttribute="trailing" constant="16" id="Y4C-GD-XVT"/>
                     <constraint firstItem="GBi-bK-4UH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cnd-Yc-VVL"/>
                 </constraints>

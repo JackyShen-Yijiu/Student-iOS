@@ -454,6 +454,7 @@ typedef NS_ENUM(NSUInteger,MyLoveState){
         DVVCoachDetailController *vc = [DVVCoachDetailController new];
         vc.hidesBottomBarWhenPushed = YES;
         vc.coachID = model.coachid;
+        vc.coachName = model.name;
         [self.navigationController pushViewController:vc animated:YES];
         
     }else if (_myLoveState == MyLoveStateDriving) {// 驾校详情

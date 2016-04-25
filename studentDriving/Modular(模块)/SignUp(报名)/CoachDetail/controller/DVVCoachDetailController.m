@@ -91,7 +91,7 @@ static NSString *courseCellID = @"kCourseCellID";
     _isShowCommentDetail = YES;
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
 
-    self.title = @"教练详情";
+    self.title = _coachName;
     
     // 测试时打开此注释
 //    _coachID = @"569d98e11a4e7c693a023499";
@@ -257,7 +257,7 @@ static NSString *courseCellID = @"kCourseCellID";
     [_viewModel dvv_setRefreshSuccessBlock:^{
         
         _networkSuccess = YES;
-        ws.tableView.backgroundColor = [UIColor whiteColor];
+        ws.tableView.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
         // 使导航栏透明
         [self naviTransparent];
         
@@ -321,6 +321,11 @@ static NSString *courseCellID = @"kCourseCellID";
         return 10;
     }
     return 0;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    UIView *view = [[UIView alloc] init];
+    view.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
+    return view;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (1 == section || 2 == section) {
@@ -403,6 +408,7 @@ static NSString *courseCellID = @"kCourseCellID";
             if (cell ==nil) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"headerOfSectionTwo"];
                 JZCoachDetailHeaderView *headerView = [[JZCoachDetailHeaderView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, 40)];
+//                headerView.backgroundColor = [UIColor cyanColor];
                 headerView.titleLabel.text = @"介绍";
                 headerView.arrowImgView.hidden = YES;
                 headerView.lineView.hidden = YES;
@@ -648,7 +654,7 @@ static NSString *courseCellID = @"kCourseCellID";
     
     // 添加有上角的班车和拨打电话
     _phoneButton = [UIButton new];
-    [_phoneButton setImage:[UIImage imageNamed:@"phone_white_icon"] forState:UIControlStateNormal];
+    [_phoneButton setImage:[UIImage imageNamed:@"JZ_cellphone"] forState:UIControlStateNormal];
     _phoneButton.bounds = CGRectMake(0, 0, 24, 44);
     [_phoneButton addTarget:self action:@selector(callPhone) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *bbiPhone = [[UIBarButtonItem alloc] initWithCustomView:_phoneButton];

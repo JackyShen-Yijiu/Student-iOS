@@ -103,7 +103,7 @@
     }];
     
     if (dmData.name && dmData.name.length) {
-        _teacherAge.text = [NSString stringWithFormat:@"教龄: %@",dmData.name];
+        _teacherAge.text = [NSString stringWithFormat:@"教龄: %@",dmData.seniority];
     }
     [_starView displayRating:dmData.starlevel];
 }

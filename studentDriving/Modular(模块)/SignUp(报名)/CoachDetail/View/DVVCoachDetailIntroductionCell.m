@@ -46,12 +46,12 @@
     CGFloat height = [NSString autoHeightWithString:dmData.introduction width:[UIScreen mainScreen].bounds.size.width - 56 - 16 font:[UIFont systemFontOfSize:14]];
     
     if (height < 36) {
-        return 40;
+        return 50;
     }else {
         if (isShowMore) {
-            return 16 + height + 1;
+            return 16 + height + 1 + 24;
         }else {
-            return 52;
+            return 52 + 24;
         }
     }
 }

@@ -100,6 +100,7 @@
     DVVCoachDetailController *vc = [DVVCoachDetailController new];
     vc.hidesBottomBarWhenPushed = YES;
     vc.coachID = model.coachid;
+    vc.coachName = model.name;
     [self.navigationController pushViewController:vc animated:YES];
     
 }

@@ -327,6 +327,7 @@ static NSString *coachCellID = @"coachCellID";
         DVVCoachDetailController *vc = [DVVCoachDetailController new];
         vc.hidesBottomBarWhenPushed = YES;
         vc.coachID = dmData.coachid;
+        vc.coachName = dmData.name;
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
