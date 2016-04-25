@@ -102,14 +102,22 @@
                         <constraint firstItem="Cco-rZ-D6Y" firstAttribute="leading" secondItem="T6j-d4-bsL" secondAttribute="leading" constant="6" id="kvI-an-E9F"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="您还不能预约练车，请及时联系驾校" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uUS-EV-UvB">
+                    <rect key="frame" x="24" y="49" width="272" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="dXL-uL-Vo3" secondAttribute="bottom" id="DKc-2q-Aj9"/>
                 <constraint firstAttribute="trailing" secondItem="dXL-uL-Vo3" secondAttribute="trailing" id="EKE-9S-aaT"/>
+                <constraint firstItem="uUS-EV-UvB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Ihu-aI-lgp"/>
                 <constraint firstItem="wTQ-UJ-QLr" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Ju7-0X-MZ4"/>
                 <constraint firstAttribute="trailing" secondItem="1wP-OF-K1t" secondAttribute="trailing" constant="12" id="MAq-V7-1CR"/>
                 <constraint firstItem="1wP-OF-K1t" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-5" id="PXp-uS-E7M"/>
+                <constraint firstItem="uUS-EV-UvB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="VkE-iJ-q7l"/>
                 <constraint firstItem="wTQ-UJ-QLr" firstAttribute="top" secondItem="itl-uW-IFJ" secondAttribute="bottom" constant="8" id="arU-NK-kk0"/>
                 <constraint firstItem="dXL-uL-Vo3" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bH3-5l-4Cq"/>
                 <constraint firstItem="itl-uW-IFJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="29" id="bZz-R2-SCY"/>
@@ -124,7 +132,9 @@
             <connections>
                 <outlet property="bottomView" destination="dXL-uL-Vo3" id="NKX-7j-0OB"/>
                 <outlet property="guidingLabel" destination="amI-fL-2lI" id="26Z-gn-DfT"/>
+                <outlet property="leftImageView" destination="itl-uW-IFJ" id="99T-Mb-Czq"/>
                 <outlet property="shengxueshiLabel" destination="Ksz-Wk-Vbs" id="3Ru-hz-8e3"/>
+                <outlet property="stateLabel" destination="uUS-EV-UvB" id="pbe-pF-bnK"/>
                 <outlet property="subjectLabel" destination="wTQ-UJ-QLr" id="Di7-95-4ro"/>
                 <outlet property="subjectTopLabel" destination="Cco-rZ-D6Y" id="1eo-BX-uyC"/>
                 <outlet property="yiXueLabel" destination="CeQ-Bb-oNA" id="oc9-v1-2U0"/>
