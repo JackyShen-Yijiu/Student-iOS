@@ -59,8 +59,9 @@
 }
 
 + (CGFloat)defaultHeight {
-    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
-    return screenWidth * 0.7;
+//    CGFloat screenWidth = [UIScreen mainScreen].bounds.size.width;
+//    return screenWidth * 0.7;
+    return 225;
 }
 
 - (void)refreshAppointMentData:(YBAppointMentDetailsDataData *)dmData
@@ -118,7 +119,7 @@
 - (UIImageView *)maskView {
     if (!_maskView) {
         _maskView= [UIImageView new];
-        _maskView.image = [UIImage imageNamed:@"coach_header_bg"];
+        _maskView.image = [UIImage imageNamed:@"JZ_coach_backgroud"];
     }
     return _maskView;
 }

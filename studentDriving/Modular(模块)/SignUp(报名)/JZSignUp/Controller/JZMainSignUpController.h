@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "ClassTypeDMData.h"
+#import "DVVCoachDetailDMData.h"
 
 
 
 @interface JZMainSignUpController : UIViewController
+
 @property (nonatomic, strong) ClassTypeDMData *dmData;
 
+@property (nonatomic, assign) BOOL isFormCoach;
+
+@property (nonatomic, strong) DVVCoachDetailDMData *detailDMData;
 @end

@@ -81,18 +81,35 @@
 }
 - (void)loadData {
     // 驾校名
-    NSString *schoolName = _dmData.schoolinfo.name;
-    [_topDesArray replaceObjectAtIndex:0 withObject:schoolName];
+    if (_isFormCoach) {
+        NSString *schoolName = _detailDMData.driveschoolinfo.name;
+        [_topDesArray replaceObjectAtIndex:0 withObject:schoolName];
+
+    }else{
+        NSString *schoolName = _dmData.schoolinfo.name;
+        [_topDesArray replaceObjectAtIndex:0 withObject:schoolName];
+    }
+    
+    
+    
+    
+   
+    
     
     // 教练名
     NSString *coachName = @"智能匹配";
-    if (_dmData.coachID && _dmData.coachName.length) {
-        if (_dmData.coachName && _dmData.coachName.length) {
-            coachName = _dmData.coachName;
-            _isCoach = YES;
+    
+    
+    if (_isFormCoach) {
+        if (_detailDMData.coachid && _detailDMData.name.length) {
+            if (_detailDMData.name && _detailDMData.name.length) {
+                coachName = _detailDMData.name;
+                _isCoach = YES;
+            }
         }
+
     }
-    [_topDesArray replaceObjectAtIndex:1 withObject:coachName];
+        [_topDesArray replaceObjectAtIndex:1 withObject:coachName];
         
     // 班型
         NSString *classType = [NSString stringWithFormat:@"%@ ￥%lu", _dmData.classname, _dmData.onsaleprice];
@@ -142,7 +159,7 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-  
+    
     if (_isShowTitle) {
         // 加载展示班型描述的Cell
         if (0 == indexPath.section) {
@@ -165,6 +182,14 @@
                 if (0 == indexPath.row) {
                     signUpTopCell.arrowImageView.hidden = YES;
                 }
+                // 隐藏右侧箭头
+                if (_isCoach) {
+                    if (0 == indexPath.row || 1 == indexPath.row) {
+                        signUpTopCell.arrowImageView.hidden = YES;
+                    }
+                }
+                
+
                 if (2 == indexPath.row) {
                 signUpTopCell.lineView.hidden = YES;
                 }
@@ -218,6 +243,13 @@
             if (0 == indexPath.row) {
                 signUpTopCell.arrowImageView.hidden = YES;
             }
+            // 隐藏右侧箭头
+            if (_isCoach) {
+                if (0 == indexPath.row || 1 == indexPath.row) {
+                    signUpTopCell.arrowImageView.hidden = YES;
+                }
+            }
+
             if (2 == indexPath.row) {
                 signUpTopCell.lineView.hidden = YES;
             }
@@ -292,6 +324,7 @@
                 JZCoachListController *coachListVC = [[JZCoachListController alloc] init];
                 coachListVC.delegate = self;
                 coachListVC.dmData = self.dmData;
+                coachListVC.schoolid = _detailDMData.driveschoolinfo.ID;
                 [self.navigationController pushViewController:coachListVC animated:YES];
 
             }

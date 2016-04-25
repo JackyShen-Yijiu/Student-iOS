@@ -23,4 +23,5 @@
 
 @property (nonatomic, strong) ClassTypeDMData *dmData;
 
+@property (nonatomic, strong) NSString *schoolid;
 @end

@@ -218,8 +218,10 @@ static NSString *courseCellID = @"kCourseCellID";
 
 #pragma mark 班型cell中的报名按钮单击事件
 - (void)signUpButtonAction:(ClassTypeDMData *)dmData {
-    
+    NSLog(@"dmData.schoolinfo.name = %@,%@",dmData.schoolinfo.name,dmData.schoolinfo.schoolid);
     JZMainSignUpController *vc = [JZMainSignUpController new];
+    vc.isFormCoach = YES;
+    vc.detailDMData = _viewModel.dmData;
     vc.dmData = dmData;
     [self.navigationController pushViewController:vc animated:YES];
     
@@ -517,6 +519,7 @@ static NSString *courseCellID = @"kCourseCellID";
         schoolClassDetailVC.classTypeDMData = _viewModel.classTypeListArray[indexPath.row];;
         [self.navigationController pushViewController:schoolClassDetailVC animated:YES];
     }
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
