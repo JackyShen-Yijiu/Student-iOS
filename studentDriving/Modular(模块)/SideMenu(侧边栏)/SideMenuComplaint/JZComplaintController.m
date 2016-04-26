@@ -49,6 +49,8 @@
 @property (nonatomic, strong) NSString *picListURL;
 
 
+
+
 @end
 
 @implementation JZComplaintController
@@ -356,9 +358,7 @@
         
         return ;
     }
-    
 
-    
     NSMutableDictionary *parmDict = [NSMutableDictionary dictionary];
     // 用户id 可以空
     if ([AcountManager manager].userid.length) {
@@ -445,10 +445,7 @@
 - (void)rightViewNetworkRequest {
     
     NSLog(@"self.complaintCoachModel.name = %@",self.complaintCoachModel.name);
-    
-    
-    
-    
+
     if (self.rightView.phoneNumTf.text == nil || self.rightView.phoneNumTf.text.length  == 0) {
         [self obj_showTotasViewWithMes:@"请输入手机号"];
         
@@ -478,7 +475,28 @@
     // 反馈信息 必填
     [parmDict setValue:self.rightView.complaintInfoText.text forKey:@"feedbackmessage"];
     
-    [parmDict setValue:self.picArrSchool forKey:@"piclist"];
+    if (self.picArrSchool.count == 1) {
+        
+        self.picListURL = self.picArrSchool[0];
+        
+        
+    }else if (self.picArrSchool.count == 2) {
+        
+        NSString *picURl = self.picArrSchool[0];
+        
+        
+        self.picListURL = [picURl stringByAppendingFormat:@",%@",self.picArray[1]];
+        
+        
+    }
+    
+    [parmDict setValue:self.picListURL forKey:@"piclist"];
+    
+
+    
+    
+    
+//    [parmDict setValue:self.picArrSchool forKey:@"piclist"];
     // 手机型号
     NSString *deviceModel = [NSString getCurrentDeviceModel];
     if (!deviceModel) {
