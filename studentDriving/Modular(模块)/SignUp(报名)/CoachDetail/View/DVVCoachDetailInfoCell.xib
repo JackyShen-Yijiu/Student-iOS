@@ -15,27 +15,27 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JFB-3u-na8">
-                        <rect key="frame" x="16" y="16" width="24" height="24"/>
+                        <rect key="frame" x="16" y="14" width="24" height="24"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Lup-z8-lTw">
-                        <rect key="frame" x="16" y="56" width="24" height="24"/>
+                        <rect key="frame" x="16" y="52" width="24" height="24"/>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wgz-Y3-lrc">
                         <rect key="frame" x="16" y="96" width="24" height="24"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="first" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WpG-X2-ggY">
-                        <rect key="frame" x="56" y="16" width="248" height="24"/>
+                        <rect key="frame" x="56" y="16" width="248" height="14"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="24" id="Smc-uH-fDg"/>
+                            <constraint firstAttribute="height" constant="14" id="Smc-uH-fDg"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="second" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMM-uM-Wes">
-                        <rect key="frame" x="56" y="56" width="248" height="24"/>
+                        <rect key="frame" x="56" y="56" width="248" height="14"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="24" id="i8S-wI-ml3"/>
+                            <constraint firstAttribute="height" constant="14" id="i8S-wI-ml3"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -53,13 +53,13 @@
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="Hbs-wM-Osg" secondAttribute="trailing" constant="16" id="BZw-zG-aLf"/>
-                    <constraint firstItem="Hbs-wM-Osg" firstAttribute="top" secondItem="LMM-uM-Wes" secondAttribute="bottom" constant="16" id="Hh3-Gu-KCk"/>
+                    <constraint firstItem="Hbs-wM-Osg" firstAttribute="top" secondItem="LMM-uM-Wes" secondAttribute="bottom" constant="26" id="Hh3-Gu-KCk"/>
                     <constraint firstAttribute="trailing" secondItem="WpG-X2-ggY" secondAttribute="trailing" constant="16" id="TS0-Og-lTm"/>
                     <constraint firstItem="WpG-X2-ggY" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="WCm-T4-igW"/>
                     <constraint firstAttribute="trailing" secondItem="LMM-uM-Wes" secondAttribute="trailing" constant="16" id="Waf-6c-IH6"/>
                     <constraint firstItem="LMM-uM-Wes" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="ZKC-z9-EcN"/>
                     <constraint firstItem="WpG-X2-ggY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="eC9-3s-pcJ"/>
-                    <constraint firstItem="LMM-uM-Wes" firstAttribute="top" secondItem="WpG-X2-ggY" secondAttribute="bottom" constant="16" id="fX7-wK-s1a"/>
+                    <constraint firstItem="LMM-uM-Wes" firstAttribute="top" secondItem="WpG-X2-ggY" secondAttribute="bottom" constant="26" id="fX7-wK-s1a"/>
                     <constraint firstItem="Hbs-wM-Osg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="56" id="rFq-uP-OXs"/>
                 </constraints>
             </tableViewCellContentView>
