@@ -386,7 +386,8 @@ static NSString *courseCellID = @"kCourseCellID";
     }else {
         // 课程费用、教练信息
 //        return [self.courseCell dynamicHeight:_viewModel.dmData.serverclasslist];
-         return 100;
+        return [DVVCoachCommentCell dynamicHeight:_dataArray[indexPath.row]];
+//         return 100;
     }
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
