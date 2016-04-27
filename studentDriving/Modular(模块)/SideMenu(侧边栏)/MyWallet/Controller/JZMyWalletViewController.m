@@ -94,6 +94,19 @@
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     self.title = @"我的钱包";
     
+    if (YBIphone6Plus) {
+     
+        UIColor * color = [UIColor whiteColor];
+        UIFont *font = [UIFont systemFontOfSize:19];
+        
+        NSMutableDictionary *dict=[NSMutableDictionary dictionary];
+        [dict setObject:color forKey:NSForegroundColorAttributeName];
+        [dict setObject:font forKey:NSFontAttributeName];
+        
+        self.navigationController.navigationBar.titleTextAttributes = dict;
+        
+    }
+    
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     [self setUI];
