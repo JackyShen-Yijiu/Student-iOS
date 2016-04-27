@@ -37,6 +37,7 @@
 
 #define kCellIdentifier @"kCellIdentifier"
 
+
 static NSString *kCommentCoachCellIdentifier = @"kCellIdentifier";
 
 static NSString *infoCellID = @"kInfoCellID";
@@ -331,7 +332,12 @@ static NSString *courseCellID = @"kCourseCellID";
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     if (1 == section || 2 == section) {
-        return 40;
+        if (YBIphone6Plus) {
+            return 40 * YB_1_5_Ratio;
+        }else{
+            return 40;
+        }
+        
     }else {
         return 0;
     }
@@ -375,7 +381,9 @@ static NSString *courseCellID = @"kCourseCellID";
             return [DVVCoachDetailIntroductionCell dynamicHeight:_viewModel.dmData isShowMore:_isShowIntroduction];
         }
     }
-    else {
+    if (1 == indexPath.section) {
+        return 120;
+    }else {
         // 课程费用、教练信息
 //        return [self.courseCell dynamicHeight:_viewModel.dmData.serverclasslist];
          return 100;

@@ -43,7 +43,7 @@
 
         _markLabel.textColor = [UIColor colorWithHexString:@"757575"];
         _priceLabel.textColor = YBNavigationBarBgColor;
-        _nameLabel.font = [UIFont boldSystemFontOfSize:13];
+        _nameLabel.font = [UIFont boldSystemFontOfSize:14];
         if (YBIphone6Plus) {
             _nameLabel.font = [UIFont boldSystemFontOfSize:13*YBRatio];
         }
@@ -87,7 +87,7 @@
         font = 12*YBRatio;
     }
     
-    CGFloat newFloat = 45 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 16 * 2 font:[UIFont systemFontOfSize:font]] + 60;
+    CGFloat newFloat = 45 + [NSString autoHeightWithString:string width:[UIScreen mainScreen].bounds.size.width - 16 * 2 font:[UIFont systemFontOfSize:font]] + 60 + 16;
     
     return newFloat;
     

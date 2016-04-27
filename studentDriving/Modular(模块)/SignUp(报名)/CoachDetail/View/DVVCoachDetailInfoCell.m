@@ -23,10 +23,30 @@
     if (self) {
         NSArray *xibArray = [[NSBundle mainBundle]loadNibNamed:@"DVVCoachDetailInfoCell" owner:self options:nil];
         DVVCoachDetailInfoCell *cell = xibArray.firstObject;
+        
         self = cell;
         [self setRestorationIdentifier:reuseIdentifier];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        if (YBIphone6Plus) {
+            self.firstImageView.width = 18 * YB_1_5_Ratio;
+            self.firstImageView.height = 18 * YB_1_5_Ratio;
+            self.firstLabel.height = 14 * YBRatio;
+            self.firstLabel.font = [UIFont systemFontOfSize:14 * YBRatio];
+            
+            self.secondImageView.width = 18 * YB_1_5_Ratio;
+            self.secondImageView.height = 18 * YB_1_5_Ratio;
+            self.secondLabel.height = 14 * YBRatio;
+            self.secondLabel.font = [UIFont systemFontOfSize:14 * YBRatio];
+            
+            self.thirdImageView.width = 18 * YB_1_5_Ratio;
+            self.thirdImageView.height = 18 * YB_1_5_Ratio;
+            self.thirdLabel.height = 14 * YBRatio;
+            self.thirdLabel.font = [UIFont systemFontOfSize:14 * YBRatio];
+            
+        }
+
         
 //        [self.contentView addSubview:self.scrollImagesView];
 //        [self.contentView addSubview:self.lineImageView];

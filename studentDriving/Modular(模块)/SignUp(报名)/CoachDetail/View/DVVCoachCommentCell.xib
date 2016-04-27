@@ -11,12 +11,9 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="99.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="320" height="99"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FUB-1j-Q3a">
-                        <rect key="frame" x="16" y="16" width="40" height="40"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="李教练" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BcW-aR-Mdr">
                         <rect key="frame" x="72" y="16" width="130" height="16"/>
                         <constraints>
@@ -45,15 +42,24 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="评价内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-B0-tCR">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="评价内容" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-B0-tCR">
                         <rect key="frame" x="72" y="64" width="232" height="20"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FUB-1j-Q3a">
+                        <rect key="frame" x="16" y="16" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="JZc-WP-TdO"/>
+                            <constraint firstAttribute="height" constant="40" id="gkk-c2-J2p"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="BcW-aR-Mdr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="72" id="03s-uT-9Oo"/>
+                    <constraint firstItem="FUB-1j-Q3a" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="0gx-Sa-ujC"/>
+                    <constraint firstItem="FUB-1j-Q3a" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="Bka-Ih-bwh"/>
                     <constraint firstItem="Peg-B0-tCR" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="72" id="HqR-zu-QM2"/>
                     <constraint firstAttribute="bottom" secondItem="Peg-B0-tCR" secondAttribute="bottom" constant="16" id="M0o-tu-zhN"/>
                     <constraint firstItem="Peg-B0-tCR" firstAttribute="top" secondItem="CFv-NE-J0H" secondAttribute="bottom" constant="8" id="Q1F-h6-f30"/>

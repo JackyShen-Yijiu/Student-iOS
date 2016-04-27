@@ -31,6 +31,36 @@
         
         [_iconImageView.layer setMasksToBounds:YES];
         [_iconImageView.layer setCornerRadius:20];
+        
+        
+        if (YBIphone6Plus) {
+            
+            self.iconImageView.width = 40 * YB_1_5_Ratio;
+            self.iconImageView.height = 40 * YB_1_5_Ratio;
+//            [_iconImageView.layer setMasksToBounds:YES];
+//            [_iconImageView.layer setCornerRadius:20 * YB_1_5_Ratio];
+            
+            _nameLabel.height = 14 * YBRatio;
+            self.nameLabel.font = [UIFont systemFontOfSize:14 * YBRatio];
+            
+            self.classTypeLabel.height = 12 * YBRatio;
+            self.classTypeLabel.font = [UIFont systemFontOfSize:12 * YBRatio];
+            
+            self.timeLabel.height = 12 * YBRatio;
+            self.timeLabel.font = [UIFont systemFontOfSize:12 * YBRatio];
+            
+            self.contentLabel.height = 12 * YBRatio;
+            self.contentLabel.font = [UIFont systemFontOfSize:12 * YBRatio];
+            
+        }
+ 
+        
+        
+        
+        
+        
+        
+        
     }
     return self;
 }
@@ -93,8 +123,11 @@
     if (!commentcontent || !commentcontent.length) {
         commentcontent = @"未填写评论内容";
     }
-
-    CGFloat testHeight = [NSString autoHeightWithString:commentcontent width:[UIScreen mainScreen].bounds.size.width - 72 - 16 font:[UIFont systemFontOfSize:14]];
+    CGFloat fontSize = 12;
+    if (YBIphone6Plus) {
+        fontSize = 12 * YBRatio;
+    }
+    CGFloat testHeight = [NSString autoHeightWithString:commentcontent width:[UIScreen mainScreen].bounds.size.width - 72 - 16 font:[UIFont systemFontOfSize:12]];
     return 64 + testHeight + 16;
 }
 
