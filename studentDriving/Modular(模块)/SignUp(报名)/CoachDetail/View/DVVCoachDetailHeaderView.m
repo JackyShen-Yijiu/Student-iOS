@@ -43,6 +43,10 @@
         _alphaView.frame = _bgImageView.frame;
         CGFloat collectionWidth = 48;
         CGFloat collectionHeight = 20;
+        if (YBIphone6Plus) {
+            collectionHeight = 20 * 1.5;
+            collectionWidth = 48 * 1.5;
+        }
         _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, bgImagesViewHeight - collectionHeight - 16, collectionWidth, collectionHeight);
         
 //        _collectionImageView.layer.masksToBounds = YES;
@@ -147,7 +151,11 @@
     if (!_iconImageView) {
         _iconImageView = [UIImageView new];
         [_iconImageView.layer setMasksToBounds:YES];
+        
         [_iconImageView.layer setCornerRadius:30];
+        if (YBIphone6Plus) {
+            _iconImageView.layer.cornerRadius = 30 * 1.5;
+        }
         _iconImageView.image = [UIImage imageNamed:@"coach_man_default_icon"];
     }
     return _iconImageView;
@@ -192,7 +200,13 @@
         [_centerView addSubview:self.teacherContentLabel];
         
         // 教练头像
-        _iconImageView.frame = CGRectMake(44, 0, 60, 60);
+        CGFloat iconImageH = 60;
+        CGFloat iconImageW = 60;
+        if (YBIphone6Plus) {
+            iconImageH = 60 * 1.5;
+            iconImageW = 60 * 1.5;
+        }
+        _iconImageView.frame = CGRectMake(44, 0, iconImageW, iconImageH);
         _iconImageView.centerY = _centerView.centerY;
         // 星级控件
         _starView.frame = CGRectMake(10, _iconImageView.frame.origin.y, 94, 14);
