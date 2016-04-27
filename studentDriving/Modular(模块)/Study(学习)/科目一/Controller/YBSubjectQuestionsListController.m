@@ -28,6 +28,9 @@
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
         _tableView.rowHeight = 44;
+        if (YBIphone6Plus) {
+            _tableView.rowHeight = 44*YB_1_5_Ratio;
+        }
     }
     return _tableView;
 }
@@ -73,12 +76,15 @@
     cell.numberLabel.layer.masksToBounds = YES;
     cell.numberLabel.layer.cornerRadius = 3;
     cell.contentLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
-    cell.contentLabel.font = [UIFont boldSystemFontOfSize:13];
+    cell.contentLabel.font = [UIFont systemFontOfSize:16];
+
+    if (YBIphone6Plus) {
+        cell.numberLabel.font = [UIFont boldSystemFontOfSize:11*YBRatio];
+    }
     
     cell.numberLabel.text = [NSString stringWithFormat:@"%ld",(long)indexPath.row+1];
     
     YBSubjectData *data = self.dataArray[indexPath.row];
-    
     
     cell.contentLabel.text = [NSString stringWithFormat:@"%@(%ld)",data.title,(long)data.count];
     

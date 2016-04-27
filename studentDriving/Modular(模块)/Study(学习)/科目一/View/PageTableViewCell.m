@@ -14,6 +14,11 @@
     
     self.textcontent.textColor = [UIColor colorWithHexString:@"2f2f2f"];
 
+    if (YBIphone6Plus) {
+        self.textcontent.font = [UIFont systemFontOfSize:14*YBRatio];
+        self.numberImageView.frame = CGRectMake(self.numberImageView.origin.x, self.numberImageView.origin.y, self.numberImageView.width*YB_1_5_Ratio, self.numberImageView.height*YB_1_5_Ratio);
+        
+    }
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
