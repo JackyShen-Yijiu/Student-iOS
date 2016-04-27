@@ -232,7 +232,11 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     
     self.header.titleLable.text = title;
     
-    CGFloat sizeH = [self.header.titleLable.text sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    
+    CGFloat sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    if (YBIphone6Plus) {
+        sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14*YBRatio] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    }
     
     if (data.img_url || data.video_url) {
         sizeH += 185;
@@ -327,7 +331,10 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
     }
 
     CGFloat sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
-
+    if (YBIphone6Plus) {
+        sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14*YBRatio] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    }
+    
     if (data.img_url || data.video_url) {
         return sizeH + 185;
     }
@@ -431,7 +438,9 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
         NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
         CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
-        
+        if (YBIphone6Plus) {
+            sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14*YBRatio] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
+        }
         self.footer.frame = CGRectMake(0, 0, kSystemWide, sizeH+45+10);
         
         self.footer.currentPage = self.currentPage;
@@ -503,7 +512,9 @@ typedef NS_ENUM(NSInteger,scrollViewPageType){
         
         NSString *title = [NSString stringWithFormat:@"答案：%@ %@",data.explain,data.answer_trueStr];
         CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
-        
+        if (YBIphone6Plus) {
+            sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14*YBRatio] constrainedToSize:CGSizeMake(kSystemWide - 15 - 15, MAXFLOAT) lineBreakMode:NSLineBreakByCharWrapping].height+20;
+        }
         return sizeH+45+10;
         
     }
