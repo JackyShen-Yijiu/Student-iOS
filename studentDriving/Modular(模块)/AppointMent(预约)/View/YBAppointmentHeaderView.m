@@ -61,12 +61,12 @@
     self.leftImageView.width = carIconW;
     self.leftImageView.height = carIconH;
 
-    
     self.bottomView.backgroundColor = YBMainViewControlerBackgroundColor;
     
 }
 
 - (void)setLabelTextColor:(UILabel *)label {
+    
     label.textColor = JZ_FONTCOLOR_LIGHT;
 }
 

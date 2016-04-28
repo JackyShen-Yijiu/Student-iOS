@@ -24,7 +24,7 @@
         [self setRestorationIdentifier:reuseIdentifier];
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+       
         
         [self.contentView addSubview:self.lineImageView];
         
@@ -39,6 +39,40 @@
         _subjectLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
         _subjectIntroductionLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _signInTimeLabel.textColor = YBNavigationBarBgColor;
+        
+        if (YBIphone6Plus) {
+            // 头像
+            _iconImageView.width = 38 * YB_1_5_Ratio;
+            _iconImageView.height = 38 * YB_1_5_Ratio;
+            CGFloat fontSizeBig = 14;
+            CGFloat fontSizeSmall = 12;
+            CGFloat margin = 10 * YB_Height_Ratio;
+            
+            // 漏课状态
+            _statusLabel.font = [UIFont systemFontOfSize:fontSizeSmall * YBRatio];
+            
+            // 姓名
+            _nameLabel.font = [UIFont systemFontOfSize:fontSizeBig * YBRatio];
+            
+            // 所属驾校
+            _schoolLabel.font = [UIFont systemFontOfSize:fontSizeSmall * YBRatio];
+            
+            // 时间
+            _timeLabel.font = [UIFont systemFontOfSize:fontSizeSmall * YBRatio];
+            
+            // 科目课时
+            _subjectLabel.font = [UIFont systemFontOfSize:fontSizeBig * YBRatio];
+            
+            // 教练确认状态
+            _subjectIntroductionLabel.font = [UIFont systemFontOfSize:fontSizeSmall * YBRatio];
+            
+        }
+        
+        
+        
+        
+        
+        
     }
     return self;
 }
@@ -49,6 +83,7 @@
     CGSize size = self.bounds.size;
     CGFloat minX = CGRectGetMinX(_nameLabel.frame);
     _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX, 0.5);
+    
 }
 
 

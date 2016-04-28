@@ -47,6 +47,9 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (YBIphone6Plus) {
+        return  90 * YB_Height_Ratio;
+    }
     return 90;
 }
 
