@@ -93,7 +93,7 @@
     [self.stateLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.right.mas_equalTo(self.bgView.mas_right).offset(-16);
         make.centerY.mas_equalTo(self.bgView.mas_centerY);
-        make.width.mas_equalTo(@42);
+        make.width.mas_equalTo(@50);
         make.height.mas_equalTo(@14);
         
     }];
@@ -127,8 +127,12 @@
 - (UILabel *)nameMallLabel{
     if (_nameMallLabel == nil) {
         _nameMallLabel = [[UILabel alloc] init];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
         _nameMallLabel.text = @"苹果6s";
-        _nameMallLabel.font = [UIFont systemFontOfSize:14];
+        _nameMallLabel.font = [UIFont systemFontOfSize:fontSize];
         _nameMallLabel.textColor = JZ_FONTCOLOR_DRAK;
     }
     return _nameMallLabel;
@@ -137,7 +141,11 @@
     if (_resultLabel == nil) {
         _resultLabel = [[UILabel alloc] init];
         _resultLabel.text = @"160";
-        _resultLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+        _resultLabel.font = [UIFont systemFontOfSize:fontSize];
         _resultLabel.textColor = YBNavigationBarBgColor;
     }
     return _resultLabel;
@@ -146,7 +154,11 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"积分";
-        _titleLabel.font = [UIFont systemFontOfSize:12];
+        CGFloat fontSize = 12;
+        if (YBIphone6Plus) {
+            fontSize = 12 * YBRatio;
+        }
+        _titleLabel.font = [UIFont systemFontOfSize:fontSize];
         _titleLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _titleLabel;
@@ -155,7 +167,11 @@
     if (_timeLabel == nil) {
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.text = @"兑换时间:2.1624555";
-        _timeLabel.font = [UIFont systemFontOfSize:12];
+        CGFloat fontSize = 12;
+        if (YBIphone6Plus) {
+            fontSize = 12 * YBRatio;
+        }
+        _timeLabel.font = [UIFont systemFontOfSize:fontSize];
         _timeLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _timeLabel;
@@ -164,7 +180,11 @@
     if (_stateLabel == nil) {
         _stateLabel = [[UILabel alloc] init];
         _stateLabel.text = @"未领取";
-        _stateLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+        _stateLabel.font = [UIFont systemFontOfSize:fontSize];
         _stateLabel.textColor = YBNavigationBarBgColor;
     }
     return _stateLabel;
