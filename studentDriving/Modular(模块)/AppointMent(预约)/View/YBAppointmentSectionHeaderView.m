@@ -29,12 +29,17 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     
+    CGFloat fontSize = 14;
+    if (YBIphone6Plus) {
+        fontSize = 14 * YBRatio;
+    }
+
     CGSize size = self.bounds.size;
     
     _titleLabel.frame = CGRectMake(16, 0, size.width/2.0, size.height);
     _arrowImageView.frame = CGRectMake(size.width - 14 - 12*2, 0, 14 + 12*2, size.height);
     _button.frame = self.bounds;
-    _statusLabel.frame = CGRectMake(size.width - 14 - 14, 0, 14, size.height);
+    _statusLabel.frame = CGRectMake(size.width - 14 - fontSize, 0, fontSize, size.height);
     _lineImageView.frame = CGRectMake(0, size.height - 0.5, size.width, 0.5);
     
 //    _titleLabel.backgroundColor = [UIColor orangeColor];
@@ -47,7 +52,11 @@
 - (UILabel *)titleLabel {
     if (!_titleLabel) {
         _titleLabel = [UILabel new];
-        _titleLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+        _titleLabel.font = [UIFont systemFontOfSize:fontSize];
         _titleLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     }
     return _titleLabel;
@@ -72,7 +81,11 @@
 - (UILabel *)statusLabel {
     if (!_statusLabel) {
         _statusLabel = [UILabel new];
-        _statusLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+        _statusLabel.font = [UIFont systemFontOfSize:fontSize];
         _statusLabel.textColor = JZ_FONTCOLOR_LIGHT;
         _statusLabel.text = @"无";
     }

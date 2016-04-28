@@ -319,14 +319,25 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (YBIphone6Plus) {
+        return  90 * YB_Height_Ratio;
+    }
     return 90;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    if (YBIphone6Plus) {
+        return  44 * YB_Height_Ratio;
+    }
+
     return 44;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+    if (YBIphone6Plus) {
+        return  10 * YB_Height_Ratio;
+    }
+
     return 10;
 }
 
@@ -600,7 +611,11 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 - (YBAppointmentSectionHeaderView *)footerView {
     if (!_footerView) {
         _footerView = [YBAppointmentSectionHeaderView new];
-        _footerView.frame = CGRectMake(0, 0, kSystemWide, 44);
+        CGFloat footerView = 44;
+        if (YBIphone6Plus) {
+            footerView = 44 * YB_Height_Ratio;
+        }
+        _footerView.frame = CGRectMake(0, 0, kSystemWide, footerView);
         _footerView.titleLabel.text = @"已完成预约";
         [_footerView.button addTarget:self action:@selector(completedAppointmentAction) forControlEvents:UIControlEventTouchUpInside];
         _footerView.statusLabel.hidden = YES;

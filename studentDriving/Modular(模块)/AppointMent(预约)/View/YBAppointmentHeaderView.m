@@ -46,16 +46,27 @@
         
         self.guidingLabel.font = [UIFont systemFontOfSize:12*YBRatio];
         self.yiXueLabel.font = [UIFont systemFontOfSize:12*YBRatio];
-        
-        
+    
         
     }
     
+    
+    
+    CGFloat carIconW = 40;
+    CGFloat carIconH = 32;
+    if (YBIphone6Plus) {
+        carIconW = 40 * YB_1_5_Ratio;
+        carIconH = 32 * YB_1_5_Ratio;
+    }
+    self.leftImageView.width = carIconW;
+    self.leftImageView.height = carIconH;
+
     self.bottomView.backgroundColor = YBMainViewControlerBackgroundColor;
     
 }
 
 - (void)setLabelTextColor:(UILabel *)label {
+    
     label.textColor = JZ_FONTCOLOR_LIGHT;
 }
 
