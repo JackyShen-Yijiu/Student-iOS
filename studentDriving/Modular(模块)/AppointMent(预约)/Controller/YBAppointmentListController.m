@@ -334,10 +334,10 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-    if (YBIphone6Plus) {
-        return  10 * YB_Height_Ratio;
-    }
-
+//    if (YBIphone6Plus) {
+//        return  10 * YB_Height_Ratio;
+//    }
+//
     return 10;
 }
 

@@ -150,7 +150,11 @@
 - (UILabel *)classTextLabel{
     if (_classTextLabel == nil) {
         _classTextLabel = [[UILabel alloc] init];
-        _classTextLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont boldSystemFontOfSize:14]];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+        _classTextLabel = [WMUITool initWithTextColor:JZ_FONTCOLOR_DRAK withFont:[UIFont boldSystemFontOfSize:fontSize]];
         _classTextLabel.textAlignment = NSTextAlignmentCenter;
         _classTextLabel.text = @"一步特惠班详情";
     }
@@ -165,36 +169,61 @@
 }
 - (UILabel *)schoolLabel {
     if (_schoolLabel == nil) {
-        _schoolLabel = [WMUITool initWithTextColor:MAINCOLOR withFont:[UIFont boldSystemFontOfSize:16]];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _schoolLabel = [WMUITool initWithTextColor:YBNavigationBarBgColor withFont:[UIFont boldSystemFontOfSize:fontSize]];
         _schoolLabel.text = @"课程信息";
     }
     return _schoolLabel;
 }
 - (UILabel *)schoolClassLabel {
     if (_schoolClassLabel == nil) {
-        _schoolClassLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _schoolClassLabel = [WMUITool initWithTextColor:JZ_FONTCOLOR_LIGHT withFont:[UIFont systemFontOfSize:fontSize]];
         _schoolClassLabel.text = @"适用驾照类型: C1手动挡小车/C2自动挡小车";
     }
     return _schoolClassLabel;
 }
 - (UILabel *)timeLabel {
     if (_timeLabel == nil) {
-        _timeLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _timeLabel = [WMUITool initWithTextColor:JZ_FONTCOLOR_LIGHT withFont:[UIFont systemFontOfSize:fontSize]];
         _timeLabel.text = @"有效期: 长期开班";
     }
     return _timeLabel;
 }
 - (UILabel *)studyLabel {
     if (_studyLabel == nil) {
-        _studyLabel = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _studyLabel = [WMUITool initWithTextColor:JZ_FONTCOLOR_LIGHT withFont:[UIFont systemFontOfSize:fontSize]];
         _studyLabel.text = @"授课日程: 平日/周末/平日+周末";
     }
     return _studyLabel;
 }
 - (UILabel *)featuredTutorials {
     if (_featuredTutorials == nil) {
-        _featuredTutorials = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
-        _featuredTutorials.text = @"课程特色:";
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _featuredTutorials = [WMUITool initWithTextColor:JZ_FONTCOLOR_LIGHT withFont:[UIFont systemFontOfSize:fontSize]];
+        _featuredTutorials.text = @"课程特色: 暂无";
     }
     return _featuredTutorials;
 }
@@ -208,28 +237,48 @@
 }
 - (UILabel *)carType {
     if (_carType == nil) {
-        _carType = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _carType = [WMUITool initWithTextColor:JZ_FONTCOLOR_LIGHT withFont:[UIFont systemFontOfSize:fontSize]];
         _carType.text = @"训练车品牌: 桑塔纳3000";
     }
     return _carType;
 }
 - (UILabel *)price {
     if (_price == nil) {
-        _price = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _price = [WMUITool initWithTextColor:JZ_FONTCOLOR_LIGHT withFont:[UIFont systemFontOfSize:fontSize]];
         _price.text = @"价格: ";
     }
     return _price;
 }
 - (UILabel *)priceDetailLabel{
     if (_priceDetailLabel == nil) {
-        _priceDetailLabel = [WMUITool initWithTextColor:MAINCOLOR withFont:[UIFont systemFontOfSize:14]];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _priceDetailLabel = [WMUITool initWithTextColor:YBNavigationBarBgColor withFont:[UIFont systemFontOfSize:fontSize]];
         _priceDetailLabel.text = @"3800元";
     }
     return _priceDetailLabel;                        
 }
 - (UILabel *)personCount {
     if (_personCount == nil) {
-        _personCount = [WMUITool initWithTextColor:[UIColor blackColor] withFont:[UIFont systemFontOfSize:14]];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _personCount = [WMUITool initWithTextColor:JZ_FONTCOLOR_LIGHT withFont:[UIFont systemFontOfSize:fontSize]];
         _personCount.text = @"已报名人数: 35人";
     }
     return _personCount;
@@ -259,7 +308,13 @@
     _schoolClassLabel.text = schoolClass;
     NSString *str = classTypeModel.enddate;
     _timeLabel.text = [NSString stringWithFormat:@"有效期: %@",[self componentsSeparatedStr:str]];
-    _studyLabel.text = [NSString stringWithFormat:@"授课日程: %@",_classTypeModel.classchedule];
+    
+    // 授课日程
+    NSString *classTypeStr = @"暂无";
+    if (![_classTypeModel.classchedule isEqualToString:@""] && _classTypeModel.classchedule != nil) {
+        classTypeStr = _classTypeModel.classchedule;
+    }
+    _studyLabel.text = [NSString stringWithFormat:@"授课日程: %@",classTypeStr];
     _carType.text = [NSString stringWithFormat:@"训练车品牌: %@",_classTypeModel.cartype];
     _priceDetailLabel.text = [NSString stringWithFormat:@"%lu元",_classTypeModel.price];
     _personCount.text = [NSString stringWithFormat:@"已报名人数: %lu",_classTypeModel.applycount];
@@ -296,7 +351,7 @@
         
     }];
 
-    return   280 + _with;
+    return   280 + _with + 10;
     
 }
 

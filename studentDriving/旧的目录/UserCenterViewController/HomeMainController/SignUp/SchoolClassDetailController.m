@@ -39,9 +39,9 @@
     }
     return 0;
 }
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 250;
-}
+//- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    return 250;
+//}
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     if (0 == indexPath.row) {
         NSString *cellID = @"cellID";
@@ -66,6 +66,7 @@
 - (UITableView *)tabelView{
     if (_tabelView == nil) {
         _tabelView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kSystemWide, kSystemHeight) style:UITableViewStylePlain];
+        _tabelView.backgroundColor = [UIColor clearColor];
         _tabelView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _tabelView;
