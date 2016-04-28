@@ -1,4 +1,7 @@
-platform:ios,'9.0'
+# Uncomment this line to define a global platform for your project
+
+platform :ios, '7.0'
+inhibit_all_warnings!
 
 pod 'Masonry'
 pod 'AFNetworking'
