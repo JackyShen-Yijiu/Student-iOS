@@ -130,7 +130,13 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (0 == indexPath.row) {
+        if (YBIphone6Plus) {
+            return 42 * YB_Height_Ratio;
+        }
         return 42;
+    }
+    if (YBIphone6Plus) {
+        return 65 * YB_Height_Ratio;
     }
     return 65;
 }
