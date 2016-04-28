@@ -40,6 +40,9 @@
 
 @property (nonatomic, assign) CGFloat fontSize12;
 
+
+
+
 @end
 @implementation SignUpDetailCell
 

@@ -66,7 +66,7 @@
                         <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YBDringDetailstime" translatesAutoresizingMaskIntoConstraints="NO" id="MpO-kn-7kS">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="YBDringDetailstime" translatesAutoresizingMaskIntoConstraints="NO" id="MpO-kn-7kS">
                         <rect key="frame" x="16" y="91" width="16" height="16"/>
                     </imageView>
                 </subviews>

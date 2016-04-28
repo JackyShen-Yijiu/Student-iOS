@@ -10,5 +10,6 @@
 
 @interface MyJiFenHeaderTypeView : UIView
 @property (weak, nonatomic) IBOutlet UIButton *duiHuanList;
+@property (weak, nonatomic) IBOutlet UILabel *dixcountLabel;
 
 @end

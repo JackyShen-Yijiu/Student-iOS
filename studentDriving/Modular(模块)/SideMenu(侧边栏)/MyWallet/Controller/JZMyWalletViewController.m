@@ -32,6 +32,9 @@
 
 @interface JZMyWalletViewController ()<UIScrollViewDelegate>
 
+
+
+
 {
     UIImageView *navBarHairlineImageView;
 }
@@ -71,6 +74,11 @@
 ///  遮罩按钮
 @property (nonatomic, strong) UIButton *coverButton;
 
+@property (nonatomic, assign) CGFloat fontSize14;
+
+@property (nonatomic, assign) CGFloat fontSize12;
+
+
 
 @end
 
@@ -91,6 +99,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _fontSize14 = 14;
+    _fontSize12 = 12;
+    if (YBIphone6Plus) {
+        _fontSize14 = 14 * YBRatio;
+        _fontSize12 = 12 * YBRatio;
+    }
+
     self.view.backgroundColor = YBMainViewControlerBackgroundColor;
     self.title = @"我的钱包";
     

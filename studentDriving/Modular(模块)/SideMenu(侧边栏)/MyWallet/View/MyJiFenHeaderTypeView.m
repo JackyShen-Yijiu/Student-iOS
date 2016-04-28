@@ -8,6 +8,7 @@
 
 #import "MyJiFenHeaderTypeView.h"
 #define kLKSize [UIScreen mainScreen].bounds.size
+
 @implementation MyJiFenHeaderTypeView
 -(instancetype)initWithFrame:(CGRect)frame {
     
@@ -19,7 +20,14 @@
         
         self.frame = frame;
         
-        
+       CGFloat  fontSize = 12;
+    
+        if (YBIphone6Plus) {
+        fontSize = 12 * YBRatio;
+        }
+        _dixcountLabel.font = [UIFont systemFontOfSize:fontSize];
+    _duiHuanList.titleLabel.font = [UIFont systemFontOfSize:fontSize];
+
     }
     
     return self;
