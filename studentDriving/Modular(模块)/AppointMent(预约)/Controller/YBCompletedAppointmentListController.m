@@ -7,10 +7,11 @@
 //
 
 #import "YBCompletedAppointmentListController.h"
-#import "YBCompletedAppointmentListCell.h"
 #import "DVVToast.h"
 #import "YBCompletedAppointmentDetailController.h"
 #import "YBAppointMentDetailsController.h"
+
+#import "JZCompletedAppointmentListCell.h"
 
 static NSString *kCellIdentifier = @"kCellIdentifier";
 
@@ -55,13 +56,13 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    YBCompletedAppointmentListCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    JZCompletedAppointmentListCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
     
     [cell refreshData:_dataArray[indexPath.row]];
     if (indexPath.row == _dataArray.count - 1) {
-        cell.lineImageView.hidden = YES;
+        cell.lineView.hidden = YES;
     }else {
-        cell.lineImageView.hidden = NO;
+        cell.lineView.hidden = NO;
     }
     
     return cell;
@@ -96,7 +97,7 @@ static NSString *kCellIdentifier = @"kCellIdentifier";
         _tableView.dataSource = self;
         _tableView.delegate = self;
         _tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        [_tableView registerClass:[YBCompletedAppointmentListCell class] forCellReuseIdentifier:kCellIdentifier];
+        [_tableView registerClass:[JZCompletedAppointmentListCell class] forCellReuseIdentifier:kCellIdentifier];
     }
     return _tableView;
 }
