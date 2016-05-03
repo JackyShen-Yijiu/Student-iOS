@@ -21,6 +21,8 @@
 
 #define HeaderViewH 48
 
+#define HeaderViewH6P 48 *  YBIphone6Plus
+
 static NSString *const kIntegralMallURl = @"userinfo/getmywallet?userid=%@&usertype=1&seqindex=0&count=10";
 
 typedef NS_ENUM(NSUInteger,MallType){
@@ -31,6 +33,7 @@ typedef NS_ENUM(NSUInteger,MallType){
 @interface YBMallViewController ()<UIScrollViewDelegate>
 {
     UIImageView*navBarHairlineImageView;
+   
 }
 
 @property (nonatomic,retain) NSMutableArray *shopMainListArray; // 积分商城
@@ -211,12 +214,22 @@ static NSString *kMallID = @"MallID";
 - (MallCollectionView *)mallCollectionView {
     if (!_mallCollectionView) {
         
+        CGFloat bgH = 48;
+        if (YBIphone6Plus) {
+            bgH = 48 * 1.5;
+        }
+
         // 自动布局方式
         UICollectionViewFlowLayout *flowLayout = [UICollectionViewFlowLayout new];
         [flowLayout setScrollDirection:UICollectionViewScrollDirectionVertical];
-        _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64  - 50) collectionViewLayout:flowLayout];
+        
+         _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64  - bgH) collectionViewLayout:flowLayout];
+        if (YBIphone6Plus) {
+             _mallCollectionView = [[MallCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height - 64  - bgH + 20) collectionViewLayout:flowLayout];
+        }
+       
         // 注册Cell
-        _mallCollectionView.contentInset = UIEdgeInsetsMake(HeaderViewH, 0, 0, 0);
+        _mallCollectionView.contentInset = UIEdgeInsetsMake(bgH, 0, 0, 0);
         _mallCollectionView.contentSize = CGSizeMake(kSystemWide, kSystemHeight);
         
     }
@@ -231,7 +244,12 @@ static NSString *kMallID = @"MallID";
 
 - (UIView *)bgView{
     if (_bgView == nil) {
-        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, -HeaderViewH, kSystemWide, HeaderViewH)];
+        
+        CGFloat bgH = 48;
+        if (YBIphone6Plus) {
+            bgH = 48 * YB_1_5_Ratio;
+        }
+        _bgView = [[UIView alloc] initWithFrame:CGRectMake(0, -bgH, kSystemWide, bgH)];
         _bgView.backgroundColor = [UIColor whiteColor];
 
     }
@@ -239,29 +257,57 @@ static NSString *kMallID = @"MallID";
 }
 - (UILabel *)titleLable{
     if (_titleLable == nil) {
-        _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(12, (HeaderViewH - 14) / 2, 64, 14)];
+        
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _titleLable = [[UILabel alloc] initWithFrame:CGRectMake(12, (HeaderViewH - 14) / 2, fontSize * 4 + 5, fontSize)];
+        _titleLable.centerY = - (self.bgView.centerY);
         _titleLable.text = @"我的积分:";
-        _titleLable.font = [UIFont systemFontOfSize:14];
+        _titleLable.font = [UIFont systemFontOfSize:fontSize];
         _titleLable.textColor = JZ_FONTCOLOR_DRAK;
     }
     return _titleLable;
 }
 - (UILabel *)resultLabel{
     if (_resultLabel == nil) {
-        _resultLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.titleLable.frame) + 5, (HeaderViewH - 12) / 2, 200, 12)];
+        
+        CGFloat fontSize = 12;
+        if (YBIphone6Plus) {
+            fontSize = 12 * YBRatio;
+        }
+
+        _resultLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.titleLable.frame) + 5, (HeaderViewH - 12) / 2, 200, fontSize)];
+        _resultLabel.centerY = -(self.bgView.centerY);
         _resultLabel.text = @"0";
-        _resultLabel.font = [UIFont systemFontOfSize:12];
+        _resultLabel.font = [UIFont systemFontOfSize:fontSize];
         _resultLabel.textColor = YBNavigationBarBgColor;
     }
     return _resultLabel;
 }
 - (UIButton *)exangeButton{
     if (_exangeButton == nil) {
+        
+        CGFloat exangeButtonH = 30;
+        CGFloat exangeButtonW = 74;
+        CGFloat exangeButtonFontSize = 12;
+        if (YBIphone6Plus) {
+           exangeButtonH = 30 * YBRatio;
+             exangeButtonW = 74 * YBRatio;
+             exangeButtonFontSize = 12 * YBRatio;
+        }
+        
+        
+        
+    
         _exangeButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        _exangeButton.frame = CGRectMake(CGRectGetWidth(self.bgView.frame) - 12 - 74 , (HeaderViewH - 30) / 2, 74, 30);
+        _exangeButton.frame = CGRectMake(CGRectGetWidth(self.bgView.frame) - 12 - exangeButtonW , (HeaderViewH - 30) / 2, exangeButtonW, exangeButtonH);
+          _exangeButton.centerY = - (self.bgView.centerY);
         [_exangeButton setTitle:@"兑换记录" forState:UIControlStateNormal];
         [_exangeButton setTitleColor:JZ_BlueColor forState:UIControlStateNormal];
-        _exangeButton.titleLabel.font = [UIFont systemFontOfSize:12];
+        _exangeButton.titleLabel.font = [UIFont systemFontOfSize:exangeButtonFontSize];
         _exangeButton.layer.borderWidth = 1;
         _exangeButton.layer.borderColor = JZ_BlueColor.CGColor;
         _exangeButton.layer.masksToBounds = YES;

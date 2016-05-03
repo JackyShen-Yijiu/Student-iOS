@@ -63,7 +63,11 @@
     if (_lineNameLabel == nil) {
         _lineNameLabel = [[UILabel alloc] init];
         _lineNameLabel.text = @"昌平线";
-        _lineNameLabel.font = [UIFont systemFontOfSize:12];
+        CGFloat fontSize = 12;
+        if (YBIphone6Plus) {
+            fontSize = 12  * YBRatio;
+        }
+        _lineNameLabel.font = [UIFont systemFontOfSize:fontSize];
         _lineNameLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _lineNameLabel;

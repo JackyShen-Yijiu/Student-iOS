@@ -51,7 +51,12 @@
         
     }];
     [self.timeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.stationLabel.mas_bottom).offset(6);
+        CGFloat Height = 6;
+        
+        if (YBIphone6Plus) {
+            Height = 6 * YB_Height_Ratio;
+        }
+        make.top.mas_equalTo(self.stationLabel.mas_bottom).offset(Height);
         make.left.mas_equalTo(self.titleImageView.mas_right).offset(14);
         make.right.mas_equalTo(self.contentView.mas_right).offset(32);
         make.height.mas_equalTo(@12);
@@ -80,7 +85,12 @@
     if (_stationLabel == nil) {
         _stationLabel = [[UILabel alloc] init];
         _stationLabel.text = @"昌平线昌平线昌平线昌平线昌平线";
-        _stationLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14  * YBRatio;
+        }
+
+        _stationLabel.font = [UIFont systemFontOfSize:fontSize];
         _stationLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
     }
     return _stationLabel;
@@ -96,7 +106,12 @@
     if (_timeLabel == nil) {
         _timeLabel = [[UILabel alloc] init];
         _timeLabel.text = @"昌平线昌平线昌平线昌平线昌平线";
-        _timeLabel.font = [UIFont systemFontOfSize:12];
+        CGFloat fontSize = 12;
+        if (YBIphone6Plus) {
+            fontSize = 12  * YBRatio;
+        }
+
+        _timeLabel.font = [UIFont systemFontOfSize:fontSize];
         _timeLabel.textColor = JZ_FONTCOLOR_LIGHT;
     }
     return _timeLabel;

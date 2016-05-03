@@ -36,6 +36,11 @@
 @property (nonatomic, strong) UIButton *cancelButton; // 取消订单
 @property (nonatomic, strong) UIButton *payButton; // 继续支付
 
+@property (nonatomic, assign) CGFloat fontSize14;
+
+@property (nonatomic, assign) CGFloat fontSize12;
+
+
 
 
 @end
@@ -49,6 +54,13 @@
     return self;
 }
 - (void)createCellUI {
+    _fontSize14 = 14;
+    _fontSize12 = 12;
+    if (YBIphone6Plus) {
+        _fontSize14 = 14 * YBRatio;
+        _fontSize12 = 12 * YBRatio;
+    }
+    
     [self addSubview:self.bgView];
     [self.bgView addSubview:self.titleLabel];
     [self.bgView addSubview:self.bgLineView];
@@ -113,14 +125,14 @@
     }];
     
     [self.headImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mightBGView.mas_top).offset(15);
+        make.top.mas_equalTo(self.mightBGView.mas_top).offset(12);
         make.left.mas_equalTo(self.mightBGView.mas_left).offset(20);
         make.height.mas_equalTo(@40);
         make.width.mas_equalTo(@40);
         
     }];
     [self.schoolName mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.headImageView.mas_right).offset(20);
+        make.left.mas_equalTo(self.headImageView.mas_right).offset(15);
         make.top.mas_equalTo(self.headImageView.mas_top);
         make.height.mas_equalTo(@14);
     }];
@@ -155,7 +167,7 @@
         make.right.mas_equalTo(self.mightBGView.mas_right).offset(-20);
         make.top.mas_equalTo(self.signUptime.mas_top).offset(0);
         make.height.mas_equalTo(@10);
-        make.width.mas_equalTo(@50);
+//        make.width.mas_equalTo(@0);
     }];
     [self.lineBottomView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.mightBGView.mas_left).offset(0);
@@ -348,7 +360,11 @@
 - (UILabel *)schoolName{
     if (_schoolName == nil) {
         _schoolName = [[UILabel alloc]init];
-        _schoolName.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus ) {
+            fontSize = 14 * YBRatio;
+        }
+        _schoolName.font = [UIFont systemFontOfSize:fontSize];
         _schoolName.textColor = [UIColor colorWithHexString:@"212121"];
     }
     return _schoolName;
@@ -358,7 +374,11 @@
     if (_payWay == nil) {
         _payWay = [[UILabel alloc]init];
         _payWay.text = @"(线上)";
-        _payWay.font = [UIFont systemFontOfSize:10];
+        CGFloat fontSize = 10;
+        if (YBIphone6Plus ) {
+            fontSize = 10 * YBRatio;
+        }
+        _payWay.font = [UIFont systemFontOfSize:fontSize];
         _payWay.textColor = [UIColor colorWithHexString:@"bdbdbd"];
     }
     return _payWay;
@@ -369,7 +389,11 @@
         _carNameLabel = [[UILabel alloc]init];
         _carNameLabel.text = @"C1手动挡VIP专项班";
         _carNameLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
-        _carNameLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus ) {
+            fontSize = 14 * YBRatio;
+        }
+        _carNameLabel.font = [UIFont systemFontOfSize:fontSize];
     }
     return _carNameLabel;
 }
@@ -378,7 +402,11 @@
     if (_signUptime == nil) {
         _signUptime = [[UILabel alloc]init];
         _signUptime.text = @"报名时间:2016-12-20";
-        _signUptime.font = [UIFont systemFontOfSize:12];
+        CGFloat fontSize = 12;
+        if (YBIphone6Plus ) {
+            fontSize = 12 * YBRatio;
+        }
+        _signUptime.font = [UIFont systemFontOfSize:fontSize];
         _signUptime.textColor = [UIColor colorWithHexString:@"bdbdbd"];
     }
     return _signUptime;
@@ -387,7 +415,7 @@
 - (UILabel *)numberMoneyLabel {
     if (_numberMoneyLabel == nil) {
         _numberMoneyLabel = [[UILabel alloc] init];
-        _numberMoneyLabel.font = [UIFont systemFontOfSize:12];
+        _numberMoneyLabel.font = [UIFont systemFontOfSize:_fontSize12];
         _numberMoneyLabel.textColor = [UIColor colorWithHexString:@"bdbdbd"];
         _numberMoneyLabel.text = @"实付款:";
     }
@@ -397,7 +425,7 @@
     if (_numberMoney == nil) {
         _numberMoney = [[UILabel alloc] init];
         _numberMoney.text = @"#3980";
-        _numberMoney.font = [UIFont systemFontOfSize:12];
+        _numberMoney.font = [UIFont systemFontOfSize:_fontSize12];
         _numberMoney.textColor = YBNavigationBarBgColor;
     }
     return _numberMoney;
@@ -407,7 +435,7 @@
         _payStaus = [[UILabel alloc] init];
         _payStaus.text = @"未支付";
         _payStaus.textColor = [UIColor colorWithHexString:@"bdbdbd"];
-        _payStaus.font = [UIFont systemFontOfSize:12];
+        _payStaus.font = [UIFont systemFontOfSize:_fontSize12];
     }
     return _payStaus;
 }

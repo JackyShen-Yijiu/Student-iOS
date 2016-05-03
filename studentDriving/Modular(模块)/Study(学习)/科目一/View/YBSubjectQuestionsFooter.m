@@ -36,6 +36,9 @@
         _titleLabel.textAlignment = NSTextAlignmentLeft;
         _titleLabel.numberOfLines = 1;
         _titleLabel.font = [UIFont systemFontOfSize:13];
+        if (YBIphone6Plus) {
+            _titleLabel.font = [UIFont systemFontOfSize:13*YBRatio];
+        }
         _titleLabel.textColor = [UIColor colorWithHexString:@"5698fd"];
         _titleLabel.text = @"答案详解";
         
@@ -51,6 +54,9 @@
         _explainLabel.textAlignment = NSTextAlignmentLeft;
         _explainLabel.numberOfLines = 0;
         _explainLabel.font = [UIFont systemFontOfSize:14];
+        if (YBIphone6Plus) {
+            _explainLabel.font = [UIFont systemFontOfSize:14*YBRatio];
+        }
         _explainLabel.textColor = [UIColor colorWithHexString:@"2f2f2f"];
         
     }

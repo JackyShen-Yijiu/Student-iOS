@@ -39,6 +39,9 @@
         _titleLable.textAlignment = NSTextAlignmentLeft;
         _titleLable.numberOfLines = 0;
         _titleLable.font = [UIFont boldSystemFontOfSize:14];
+        if (YBIphone6Plus) {
+            _titleLable.font = [UIFont boldSystemFontOfSize:14*YBRatio];
+        }
         _titleLable.textColor = [UIColor colorWithHexString:@"6e6e6e"];
         [_headView addSubview:_titleLable];
         
@@ -65,8 +68,10 @@
     }
     
     NSString *title = [NSString stringWithFormat:@"%d、%@",(int)self.currentPage+1,data.question];
-    CGFloat sizeH = [title sizeWithFont:[UIFont systemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
-    
+    CGFloat sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    if (YBIphone6Plus) {
+        sizeH = [title sizeWithFont:[UIFont boldSystemFontOfSize:14*YBRatio] constrainedToSize:CGSizeMake(kSystemWide - 15 - 24 - 10 - 15, MAXFLOAT)].height + 20;
+    }
     NSLog(@"sizeH:%f",sizeH);
     
     [_headView mas_remakeConstraints:^(MASConstraintMaker *make) {

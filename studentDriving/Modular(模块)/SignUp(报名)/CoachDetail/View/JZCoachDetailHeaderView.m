@@ -35,18 +35,38 @@
     
 }
 - (void)layoutSubviews{
+    
+    CGFloat titleViewH = 16;
+    CGFloat titleViewW = 2;
+    CGFloat labelLeft = 10;
+    CGFloat labelH = 14;
+    
+    
+    if (YBIphone6Plus) {
+        
+        titleViewH = 16 * YB_1_5_Ratio;
+       titleViewW = 2 * YB_1_5_Ratio;
+       labelLeft = 10 * YB_1_5_Ratio;
+        labelH = 14 * YB_1_5_Ratio;
+    }
+    
+    
+    
+    
+    
     [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.mas_top).offset(14);
+        make.centerY.mas_equalTo(self.mas_centerY);
         make.left.mas_equalTo(self.mas_left).offset(16);
-        make.height.mas_equalTo(@16);
-        make.width.mas_equalTo(@2);
+        
+        make.height.mas_equalTo(titleViewH);
+        make.width.mas_equalTo(titleViewW);
        
     }];
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.titleView.mas_top);
-        make.left.mas_equalTo(self.titleView.mas_right).offset(10);
+        make.left.mas_equalTo(self.titleView.mas_right).offset(labelLeft);
         make.right.mas_equalTo(self.mas_right).offset(0);
-        make.height.mas_equalTo(@14);
+        make.height.mas_equalTo(labelH);
         
     }];
 
@@ -77,7 +97,11 @@
     if (_titleLabel == nil) {
         _titleLabel = [[UILabel alloc] init];
         _titleLabel.text = @"基本信息";
-        _titleLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+        _titleLabel.font = [UIFont systemFontOfSize:fontSize];
         _titleLabel.textColor = JZ_FONTCOLOR_DRAK;
     }
     return _titleLabel;

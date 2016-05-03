@@ -26,6 +26,10 @@
         
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
+        if (YBIphone6Plus) {
+            _introductionLabel.height = 12 * YBRatio;
+            _introductionLabel.font = [UIFont systemFontOfSize:12 * YBRatio];
+        }
 //        _introductionLabel.backgroundColor = [UIColor orangeColor];
     }
     return self;
@@ -42,16 +46,20 @@
 
 + (CGFloat)dynamicHeight:(DVVCoachDetailDMData *)dmData
               isShowMore:(BOOL)isShowMore {
+    CGFloat fontSize = 12;
+    if (YBIphone6Plus) {
+        fontSize = 12 * YBRatio;
+    }
     
-    CGFloat height = [NSString autoHeightWithString:dmData.introduction width:[UIScreen mainScreen].bounds.size.width - 56 - 16 font:[UIFont systemFontOfSize:14]];
+    CGFloat height = [NSString autoHeightWithString:dmData.introduction width:[UIScreen mainScreen].bounds.size.width - 32 font:[UIFont systemFontOfSize:fontSize]];
     
-    if (height < 36) {
-        return 50;
+    if (height < 12 * YBRatio) {
+        return 12 * YBRatio + 24;
     }else {
         if (isShowMore) {
-            return 16 + height + 1 + 24;
+            return height + 24;
         }else {
-            return 52 + 24;
+            return 12 * YBRatio + 24;
         }
     }
 }

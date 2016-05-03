@@ -12,6 +12,7 @@
 #import "OLImageView.h"
 #import "OLImage.h"
 
+
 @interface DVVCoachDetailHeaderView ()
 
 @property (nonatomic, strong) UIView *centerView;
@@ -44,8 +45,8 @@
         CGFloat collectionWidth = 48;
         CGFloat collectionHeight = 20;
         if (YBIphone6Plus) {
-            collectionHeight = 20 * 1.5;
-            collectionWidth = 48 * 1.5;
+            collectionHeight = 20 * YB_1_5_Ratio;
+            collectionWidth = 48 * YB_1_5_Ratio;
         }
         _collectionImageView.frame = CGRectMake(selfWidth - collectionWidth - 16, bgImagesViewHeight - collectionHeight - 16, collectionWidth, collectionHeight);
         
@@ -154,7 +155,7 @@
         
         [_iconImageView.layer setCornerRadius:30];
         if (YBIphone6Plus) {
-            _iconImageView.layer.cornerRadius = 30 * 1.5;
+            _iconImageView.layer.cornerRadius = 30 * YB_1_5_Ratio;
         }
         _iconImageView.image = [UIImage imageNamed:@"coach_man_default_icon"];
     }
@@ -163,7 +164,11 @@
 - (THLabel *)teacherAge {
     if (!_teacherAge) {
         _teacherAge = [THLabel new];
-        _teacherAge.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+        _teacherAge.font = [UIFont systemFontOfSize:fontSize];
         _teacherAge.textColor = [UIColor whiteColor];
 //        _teacherAge.textAlignment = NSTextAlignmentCenter;
         _teacherAge.text = @"暂无教龄";
@@ -173,7 +178,13 @@
 - (THLabel *)teacherContentLabel {
     if (!_teacherContentLabel) {
         _teacherContentLabel = [THLabel new];
-        _teacherContentLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+        }
+
+        _teacherContentLabel.font = [UIFont systemFontOfSize:fontSize];
         _teacherContentLabel.textColor = [UIColor whiteColor];
 //        _teacherContentLabel.textAlignment = NSTextAlignmentCenter;
         _teacherContentLabel.text = @"暂无授课科目";
@@ -209,13 +220,42 @@
         _iconImageView.frame = CGRectMake(44, 0, iconImageW, iconImageH);
         _iconImageView.centerY = _centerView.centerY;
         // 星级控件
-        _starView.frame = CGRectMake(10, _iconImageView.frame.origin.y, 94, 14);
+        CGFloat starViewH = 14;
+        CGFloat starViewW = 94;
+        CGFloat labelLeft = 10;
+
+        if (YBIphone6Plus) {
+            starViewH = 14 * YB_1_5_Ratio;
+            starViewW = 94 * YB_1_5_Ratio;
+             labelLeft = 10 * YB_1_5_Ratio;
+        }
+
+         _starView.frame = CGRectMake(labelLeft, _iconImageView.frame.origin.y, starViewW, starViewH);
+        
         _starView.centerX = _centerView.centerX;
+        if (YBIphone6Plus) {
+            _starView.centerX = _centerView.centerX + labelLeft;
+        }
+        
+        
+        CGFloat margin = 10;
+        CGFloat labelW = 14;
+               if (YBIphone6Plus) {
+            margin = 10 * YB_1_5_Ratio;
+            labelW = 14 * YB_1_5_Ratio;
+           
+        }
+        
+        
+        
+        
+        
+        
         // 教龄
-        _teacherAge.frame = CGRectMake(_starView.frame.origin.x, _starView.frame.origin.y + 14  + 10, 94, 14);
+        _teacherAge.frame = CGRectMake(_starView.frame.origin.x,CGRectGetMaxY(_starView.frame) + margin, 94, labelW);
         
         // 授课科目
-         _teacherContentLabel.frame = CGRectMake(_starView.frame.origin.x, _teacherAge.frame.origin.y + 14  + 10, 94, 14);
+         _teacherContentLabel.frame = CGRectMake(_starView.frame.origin.x, CGRectGetMaxY(_teacherAge.frame) + margin, 94, labelW);
         
     }
     return _centerView;

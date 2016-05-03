@@ -25,7 +25,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介班型简介" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GgN-59-Jgw">
-                        <rect key="frame" x="16" y="35" width="288" height="46"/>
+                        <rect key="frame" x="16" y="53" width="288" height="28"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,17 +57,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="驾校名  班型  价格" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BjF-ad-yP6">
-                        <rect key="frame" x="38" y="85" width="168" height="21"/>
+                        <rect key="frame" x="38" y="92" width="168" height="14"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="21" id="Z82-4f-e2S"/>
+                            <constraint firstAttribute="height" constant="14" id="Z82-4f-e2S"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <color key="textColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="YBDringDetailstime" translatesAutoresizingMaskIntoConstraints="NO" id="MpO-kn-7kS">
-                        <rect key="frame" x="16" y="88" width="16" height="16"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="YBDringDetailstime" translatesAutoresizingMaskIntoConstraints="NO" id="MpO-kn-7kS">
+                        <rect key="frame" x="16" y="91" width="16" height="16"/>
                     </imageView>
                 </subviews>
                 <constraints>
@@ -81,7 +81,7 @@
                     <constraint firstAttribute="trailing" secondItem="GgN-59-Jgw" secondAttribute="trailing" constant="16" id="WRY-yI-I2t"/>
                     <constraint firstAttribute="bottom" secondItem="BjF-ad-yP6" secondAttribute="bottom" constant="13.5" id="Wxb-d1-uKZ"/>
                     <constraint firstItem="bPu-vO-kSj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="bmu-dR-Svh"/>
-                    <constraint firstItem="GgN-59-Jgw" firstAttribute="top" secondItem="bPu-vO-kSj" secondAttribute="bottom" constant="-2" id="gat-jd-lPA"/>
+                    <constraint firstItem="GgN-59-Jgw" firstAttribute="top" secondItem="bPu-vO-kSj" secondAttribute="bottom" constant="16" id="gat-jd-lPA"/>
                     <constraint firstItem="BjF-ad-yP6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="38" id="kTN-EN-Olm"/>
                     <constraint firstAttribute="bottom" secondItem="7Fi-h1-mfg" secondAttribute="bottom" constant="11.5" id="lLe-O0-80V"/>
                     <constraint firstItem="MpO-kn-7kS" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="mx1-cU-70O"/>

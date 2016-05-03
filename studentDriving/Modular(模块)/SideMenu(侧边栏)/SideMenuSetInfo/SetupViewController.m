@@ -105,6 +105,13 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
+- (CGFloat )tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    if (YBIphone6Plus) {
+        return  44 * YB_Height_Ratio;
+    }
+    return 44;
+}
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 2;
@@ -121,8 +128,12 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     cell.textLabel.text = self.dataArray[indexPath.section][indexPath.row];
-    cell.textLabel.font = [UIFont systemFontOfSize:14];
-    cell.textLabel.textColor = [UIColor blackColor];
+    CGFloat fontSize = 14;
+    if (YBIphone6Plus) {
+        fontSize = 14 * YBRatio;
+    }
+    cell.textLabel.font = [UIFont systemFontOfSize:fontSize];
+    cell.textLabel.textColor = JZ_FONTCOLOR_DRAK;
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
@@ -202,9 +213,7 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         FeedBackViewController *feedBack = [[FeedBackViewController alloc] init];
         [self.navigationController pushViewController:feedBack animated:YES];
     }
-//    else if (indexPath.section==1&&indexPath.row==4){
-//        [self gotoAppStorePageRaisal:@"1089292482"];
-//    }
+
     
 }
 
@@ -232,9 +241,16 @@ static NSString *const kSettingUrl = @"userinfo/personalsetting";
         _quitButton = [UIButton buttonWithType:UIButtonTypeCustom];
         _quitButton.backgroundColor = [UIColor whiteColor];
         [_quitButton setTitle:@"退出登录" forState:UIControlStateNormal];
-        _quitButton.titleLabel.font = [UIFont systemFontOfSize:14];
+        CGFloat fontSize = 14;
+        CGFloat quitButtonH = 44;
+        if (YBIphone6Plus) {
+            fontSize = 14 * YBRatio;
+           quitButtonH = 44 * YB_Height_Ratio;
+        }
+        
+        _quitButton.titleLabel.font = [UIFont systemFontOfSize:fontSize];
         [_quitButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        _quitButton.frame = CGRectMake(0,kSystemHeight - 108, kSystemWide, 44);
+        _quitButton.frame = CGRectMake(0,kSystemHeight - 108, kSystemWide, quitButtonH);
         [_quitButton addTarget:self action:@selector(clickQuit:) forControlEvents:UIControlEventTouchUpInside];
         return _quitButton;
     }

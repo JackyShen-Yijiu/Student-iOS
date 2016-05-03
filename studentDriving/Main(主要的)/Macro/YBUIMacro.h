@@ -67,6 +67,8 @@ static const CGFloat menuStartNarrowRatio  = 0.70;
 
 #define YB_1_5_Ratio 1.5
 
+#define YB_Height_Ratio 1.15
+
 #define kSystemWide [UIScreen mainScreen].bounds.size.width
 
 #define kSystemHeight [UIScreen mainScreen].bounds.size.height

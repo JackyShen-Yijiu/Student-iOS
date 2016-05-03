@@ -28,9 +28,25 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:self.starView];
         [self.contentView addSubview:self.lineImageView];
+        _timeLabel.textColor = JZ_FONTCOLOR_LIGHT;
+        _contentLabel.textColor = JZ_FONTCOLOR_DRAK;
+        if (YBIphone6Plus) {
+            
+            self.timeLabel.height = 12 * YBRatio;
+            self.timeLabel.font = [UIFont systemFontOfSize:12 * YBRatio];
+            
+            self.contentLabel.height = 12 * YBRatio;
+            self.contentLabel.font = [UIFont systemFontOfSize:12 * YBRatio];
+            
+        }
+ 
         
-        [_iconImageView.layer setMasksToBounds:YES];
-        [_iconImageView.layer setCornerRadius:20];
+        
+        
+        
+        
+        
+        
     }
     return self;
 }
@@ -39,25 +55,12 @@
     [super layoutSubviews];
     
     CGSize size = self.bounds.size;
-    _starView.frame = CGRectMake(size.width - 90, 16, 94, 12);
-    CGFloat minX = CGRectGetMinX(_nameLabel.frame);
-    _lineImageView.frame = CGRectMake(minX, size.height - 0.5, size.width - minX - 16, 0.5);
+    _starView.frame = CGRectMake(16, 14, 94, 12);
+    _lineImageView.frame = CGRectMake(0, size.height - 0.5, size.width, 0.5);
 }
 
 - (void)refreshData:(DVVCoachCommentDMData *)dmData {
     
-    NSString *originalpic = dmData.userid.headportrait.originalpic;
-    if (originalpic && originalpic.length) {
-        [_iconImageView dvv_downloadImage:originalpic];
-    }else {
-        NSString *imageName = @"ic_student_man_header";
-        if (dmData.userid.gender && dmData.userid.gender.length) {
-            if ([dmData.userid.gender isEqualToString:@"女"]) {
-                imageName = @"ic_student_woman_header";
-            }
-        }
-        _iconImageView.image = [UIImage imageNamed:imageName];
-    }
     
     if (dmData.comment.commenttime && dmData.comment.commenttime) {
         _timeLabel.text = [NSString getLocalDateFormateUTCDate:dmData.comment.commenttime format:@"yyyy-MM-dd"];
@@ -70,13 +73,6 @@
         _contentLabel.text = commentcontent;
     }else {
         _contentLabel.text = @"未填写评论内容";
-    }
-    
-    NSString *classType = dmData.userid.applyclasstypeinfo.name;
-    if (classType && classType.length) {
-        _classTypeLabel.text = classType;
-    }else {
-        _classTypeLabel.text = @"暂无班型信息";
     }
     if (dmData.comment.starlevel) {
         [_starView setUpRating:dmData.comment.starlevel];
@@ -93,9 +89,12 @@
     if (!commentcontent || !commentcontent.length) {
         commentcontent = @"未填写评论内容";
     }
-
-    CGFloat testHeight = [NSString autoHeightWithString:commentcontent width:[UIScreen mainScreen].bounds.size.width - 72 - 16 font:[UIFont systemFontOfSize:14]];
-    return 64 + testHeight + 16;
+    CGFloat fontSize = 12;
+    if (YBIphone6Plus) {
+        fontSize = 12 * YBRatio;
+    }
+    CGFloat testHeight = [NSString autoHeightWithString:commentcontent width:[UIScreen mainScreen].bounds.size.width - 32 font:[UIFont systemFontOfSize:fontSize]];
+    return 14 + 14 + 12 + 16 + testHeight;
 }
 
 - (RatingBar *)starView {
