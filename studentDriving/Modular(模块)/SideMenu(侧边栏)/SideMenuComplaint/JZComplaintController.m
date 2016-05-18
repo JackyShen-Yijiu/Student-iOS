@@ -398,7 +398,7 @@
     [parmDict setValue:@"1" forKey:@"feedbacktype"];
     // 投诉类型 0 匿名投诉 1 实名投诉
     
-    BOOL isNoName = self.leftView.anonymitySwitch;
+    BOOL isNoName = !self.leftView.anonymitySwitch.isOn;
     
     int anonymity = isNoName ? 1 : 0;
     
@@ -523,7 +523,7 @@
     [parmDict setValue:@"2" forKey:@"feedbacktype"];
     // 投诉类型 0 匿名投诉 1 实名投诉
     
-    BOOL isNoName = self.rightView.anonymitySwitch;
+    BOOL isNoName = !self.rightView.anonymitySwitch.isOn;
     
     int anonymity = isNoName ? 1 : 0;
     
