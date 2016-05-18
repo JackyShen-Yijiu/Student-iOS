@@ -158,15 +158,20 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     NSLog(@"移动移动---%@",NSStringFromCGPoint(self.contentScrollView.contentOffset));
-    if (self.contentScrollView.contentOffset.x == kLKSize.width) {
-        
-        [self clickHeaderRightBtn:self.headerView.headerRightBtn];
-        
-    }else {
+    
+    
+    if (self.contentScrollView.contentOffset.x == 0) {
         
         [self clickHeaderLeftBtn:self.headerView.headerLeftBtn];
         
     }
+    
+    if (self.contentScrollView.contentOffset.x == kLKSize.width) {
+        
+        [self clickHeaderRightBtn:self.headerView.headerRightBtn];
+        
+    }
+    
 }
 
 #pragma mark - 顶部按钮点击事件
