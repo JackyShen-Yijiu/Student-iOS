@@ -24,6 +24,8 @@
 
 @property (nonatomic,strong) UIView *complaintImageView;
 
+@property (nonatomic, strong) UIView *lineView;
+
 @end
 
 @implementation JZMyComplaintCell
@@ -32,6 +34,8 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self initUI];
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -71,6 +75,11 @@
     [self.contentView addSubview:self.complaintName];
     [self.contentView addSubview:self.complaintTime];
     [self.contentView addSubview:self.complaintDetail];
+    
+    self.lineView = [[UIView alloc]init];
+    self.lineView.backgroundColor = JZ_FONTCOLOR_LIGHT;
+    [self.contentView addSubview:self.lineView];
+
     
 }
 
@@ -113,6 +122,15 @@
         make.width.mas_equalTo(75);
      }];
     
+    [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
+        
+        make.left.equalTo(self.contentView.mas_left);
+        make.right.equalTo(self.contentView.mas_right);
+        make.bottom.equalTo(self.contentView.mas_bottom);
+        make.height.equalTo(@0.5);
+        
+    }];
+    
     
     
 }
@@ -135,50 +153,46 @@
     }
     
     self.complaintTime.text = [NSString getYearLocalDateFormateUTCDate:_data.createtime];
-
-    if (_data.piclist && _data.piclist.count!=0) {
+    NSString *str = @"""";
+    
+    if (_data.piclist && _data.piclist.count!=0 && ![_data.piclist containsObject:str]) {
         
         self.complaintImageView.hidden = NO;
         
-        if (_data.piclist[0] && [_data.piclist[0] length]!=0) {
+        if ((_data.piclist[0] && [_data.piclist[0] length]!=0)) {
             self.complaintFirstImg.hidden = NO;
+            self.complaintSecondImg.hidden = YES;
             [self.complaintFirstImg sd_setImageWithURL:[NSURL URLWithString:_data.piclist[0]]];
-        }else{
-            self.complaintFirstImg.hidden = YES;
         }
         
-        if (_data.piclist && _data.piclist.count>1) {
-            
-            if (_data.piclist[1] && [_data.piclist[1] length]!=0) {
-                self.complaintSecondImg.hidden = NO;
-                [self.complaintSecondImg sd_setImageWithURL:[NSURL URLWithString:_data.piclist[1]]];
-            }else{
-                self.complaintSecondImg.hidden = YES;
-            }
-            
+        if (_data.piclist.count>1 && _data.piclist[1] && [_data.piclist[1] length]!=0) {
+            self.complaintFirstImg.hidden = NO;
+            self.complaintSecondImg.hidden = NO;
+            [self.complaintSecondImg sd_setImageWithURL:[NSURL URLWithString:_data.piclist[1]]];
         }
         
     }else{
         
         self.complaintImageView.hidden = YES;
-
+        
     }
+
     
 }
 
 + (CGFloat)cellHeightDmData:(JZMyComplaintData *)dmData
 {
     
-    JZMyComplaintCell *cell = [[JZMyComplaintCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JZMyComplaintCell"];
+    JZMyComplaintCell *cell = [[JZMyComplaintCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"JZMyComplaintCellID"];
     
     cell.data = dmData;
     
     [cell layoutIfNeeded];
-    
-    if (dmData.piclist && dmData.piclist.count!=0) {
-        return cell.complaintName.height + cell.complaintDetail.height + cell.complaintImageView.height + 40 + 1;
+    NSString *str = @"""";
+    if (dmData.piclist && dmData.piclist.count!=0 && ![dmData.piclist containsObject:str]) {
+        return cell.complaintName.height + cell.complaintDetail.height + cell.complaintImageView.height + 40 + 1.5;
     }
-    return cell.complaintName.height + cell.complaintDetail.height + 30 + 1;
+    return cell.complaintName.height + cell.complaintDetail.height + 30 + 1.5;
     
 }
 
