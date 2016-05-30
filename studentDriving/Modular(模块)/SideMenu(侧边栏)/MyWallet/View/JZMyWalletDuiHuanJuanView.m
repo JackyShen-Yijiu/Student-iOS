@@ -9,6 +9,7 @@
 #import "JZMyWalletDuiHuanJuanView.h"
 #import "DVVCreateQRCode.h"
 #import <YYModel.h>
+#import "NSString+LKString.h"
 
 #define kLKSize [UIScreen mainScreen].bounds.size
 static NSString *duiHuanJuanHeaderViewID = @"duiHuanJuanHeaderViewID";
@@ -256,7 +257,11 @@ static NSString *const knumber = @"create_qrcode";
     JZMyWalletDuiHuanJuanData *data = self.duiHuanJuanDataArrM[section];
 
     
-    duiHuanJuanHeaerView.spendDateLabel.text = [NSString stringWithFormat:@"有效期至：%@",[self getLocalDateFormateUTCDate:data.createtime]];
+    duiHuanJuanHeaerView.spendDateLabel.text = [NSString stringWithFormat:@"有效期至：%@",[NSString getYearLocalDateFormateUTCDate:data.createtime style:LKDateStyleNoHaveTime]];
+    
+    
+    
+    
     // 生成二维码
     NSString *resultStr = [NSString stringWithFormat:BASEURL,knumber];
     NSString *str = @"?text=";
@@ -524,27 +529,5 @@ static NSString *const knumber = @"create_qrcode";
     }
     return _duihuanJuanListArrM;
 }
-
-
-//将UTC日期字符串转为本地时间字符串
-//输入的UTC日期格式2013-08-03T04:53:51+0000
-- (NSString *)getLocalDateFormateUTCDate:(NSString *)utcDate {
-    //    NSLog(@"utc = %@",utcDate);
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    //输入格式
-    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZ"];
-    NSTimeZone *localTimeZone = [NSTimeZone localTimeZone];
-    [dateFormatter setTimeZone:localTimeZone];
-    
-    NSDate *dateFormatted = [dateFormatter dateFromString:utcDate];
-    [dateFormatter setDateFormat:@"yyyy/MM/dd"];
-    NSString *dateString = [dateFormatter stringFromDate:dateFormatted];
-    return dateString;
-}
-
-
-
-
-
 
 @end
