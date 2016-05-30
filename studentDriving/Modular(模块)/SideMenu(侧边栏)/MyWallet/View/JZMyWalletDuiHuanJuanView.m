@@ -37,7 +37,7 @@ static NSString *const knumber = @"create_qrcode";
         
         self.delegate = self;
         
-        self.rowHeight = 99;
+//        self.rowHeight = 99;
         self.sectionHeaderHeight = 130;
         
         self.separatorStyle = UITableViewCellSelectionStyleNone;
@@ -74,12 +74,156 @@ static NSString *const knumber = @"create_qrcode";
         duiHuanJuanCell = [[JZMyWalletDuiHuanJuanCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:duiHuanJuanDetailCellID];
         
     }
-    
-    JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[indexPath.row];
-    
     duiHuanJuanCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    [duiHuanJuanCell.duiHuanJuanDetailButton setTitle:list.productname forState:UIControlStateNormal];
+
     
+    if (self.duihuanJuanListArrM.count==1)  {
+        JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[0];
+
+        [duiHuanJuanCell.duiHuanJuanDetailButton setTitle:list.productname forState:UIControlStateNormal];
+        duiHuanJuanCell.duiHuanJuanDetailButton01.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton02.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton03.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton04.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton05.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton06.hidden = YES;
+
+        
+    }
+    if (self.duihuanJuanListArrM.count==2) {
+        
+    JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[0];
+        
+    [duiHuanJuanCell.duiHuanJuanDetailButton setTitle:list.productname forState:UIControlStateNormal];
+        
+    JZMyWalletDuiHuanJuanUseproductidlist *list01 = self.duihuanJuanListArrM[1];
+    [duiHuanJuanCell.duiHuanJuanDetailButton01 setTitle:list01.productname forState:UIControlStateNormal];
+        
+        duiHuanJuanCell.duiHuanJuanDetailButton02.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton03.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton04.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton05.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton06.hidden = YES;
+
+    }
+    if (self.duihuanJuanListArrM.count==3) {
+        JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[0];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton setTitle:list.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list01 = self.duihuanJuanListArrM[1];
+        [duiHuanJuanCell.duiHuanJuanDetailButton01 setTitle:list01.productname forState:UIControlStateNormal];
+        JZMyWalletDuiHuanJuanUseproductidlist *list02 = self.duihuanJuanListArrM[2];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton02 setTitle:list02.productname forState:UIControlStateNormal];
+        duiHuanJuanCell.duiHuanJuanDetailButton03.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton04.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton05.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton06.hidden = YES;
+        
+        
+    }
+    if (self.duihuanJuanListArrM.count==4) {
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[0];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton setTitle:list.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list01 = self.duihuanJuanListArrM[1];
+        [duiHuanJuanCell.duiHuanJuanDetailButton01 setTitle:list01.productname forState:UIControlStateNormal];
+        JZMyWalletDuiHuanJuanUseproductidlist *list02 = self.duihuanJuanListArrM[2];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton02 setTitle:list02.productname forState:UIControlStateNormal];
+
+        JZMyWalletDuiHuanJuanUseproductidlist *list03 = self.duihuanJuanListArrM[3];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton03 setTitle:list03.productname forState:UIControlStateNormal];
+        duiHuanJuanCell.duiHuanJuanDetailButton04.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton05.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton06.hidden = YES;
+
+        
+        
+    }
+    if (self.duihuanJuanListArrM.count==5) {
+        JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[0];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton setTitle:list.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list01 = self.duihuanJuanListArrM[1];
+        [duiHuanJuanCell.duiHuanJuanDetailButton01 setTitle:list01.productname forState:UIControlStateNormal];
+        JZMyWalletDuiHuanJuanUseproductidlist *list02 = self.duihuanJuanListArrM[2];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton02 setTitle:list02.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list03 = self.duihuanJuanListArrM[3];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton03 setTitle:list03.productname forState:UIControlStateNormal];
+
+        JZMyWalletDuiHuanJuanUseproductidlist *list04 = self.duihuanJuanListArrM[4];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton04 setTitle:list04.productname forState:UIControlStateNormal];
+        duiHuanJuanCell.duiHuanJuanDetailButton05.hidden = YES;
+        duiHuanJuanCell.duiHuanJuanDetailButton06.hidden = YES;
+        
+           }
+    if (self.duihuanJuanListArrM.count==6) {
+        JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[0];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton setTitle:list.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list01 = self.duihuanJuanListArrM[1];
+        [duiHuanJuanCell.duiHuanJuanDetailButton01 setTitle:list01.productname forState:UIControlStateNormal];
+        JZMyWalletDuiHuanJuanUseproductidlist *list02 = self.duihuanJuanListArrM[2];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton02 setTitle:list02.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list03 = self.duihuanJuanListArrM[3];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton03 setTitle:list03.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list04 = self.duihuanJuanListArrM[4];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton04 setTitle:list04.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list05 = self.duihuanJuanListArrM[5];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton05 setTitle:list05.productname forState:UIControlStateNormal];
+        
+        duiHuanJuanCell.duiHuanJuanDetailButton06.hidden = YES;
+        
+            }
+    if (self.duihuanJuanListArrM.count==7)  {
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[0];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton setTitle:list.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list01 = self.duihuanJuanListArrM[1];
+        [duiHuanJuanCell.duiHuanJuanDetailButton01 setTitle:list01.productname forState:UIControlStateNormal];
+        JZMyWalletDuiHuanJuanUseproductidlist *list02 = self.duihuanJuanListArrM[2];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton02 setTitle:list02.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list03 = self.duihuanJuanListArrM[3];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton03 setTitle:list03.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list04 = self.duihuanJuanListArrM[4];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton04 setTitle:list04.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list05 = self.duihuanJuanListArrM[5];
+        
+        [duiHuanJuanCell.duiHuanJuanDetailButton05 setTitle:list05.productname forState:UIControlStateNormal];
+        
+        JZMyWalletDuiHuanJuanUseproductidlist *list06 = self.duihuanJuanListArrM[6];
+        [duiHuanJuanCell.duiHuanJuanDetailButton06 setTitle:list06.productname forState:UIControlStateNormal];
+        
+        
+    }
+
+
     return duiHuanJuanCell;
 }
 
@@ -87,6 +231,11 @@ static NSString *const knumber = @"create_qrcode";
     
     return self.duiHuanJuanDataArrM.count;
     
+}
+
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    return self.duihuanJuanListArrM.count * 14 + 58;
 }
 
 // 用来返回每一组的头部视图
@@ -316,12 +465,15 @@ static NSString *const knumber = @"create_qrcode";
                 
                 NSArray *duiHuanJuanDataArr = data[@"data"];
                 
+            
                 for (NSDictionary *dict in duiHuanJuanDataArr) {
                     
                     JZMyWalletDuiHuanJuanData *data = [JZMyWalletDuiHuanJuanData yy_modelWithDictionary:dict];
                     
                     NSArray *listArr = data.useproductidlist;
                     
+                    if(data.state == 0 || data.state == 1){
+
                     
                     for (NSDictionary *dict in listArr) {
                         
@@ -330,6 +482,8 @@ static NSString *const knumber = @"create_qrcode";
                         
                         [self.duihuanJuanListArrM addObject:list];
   
+                    }
+                        
                     }
                     
                     //[self reloadData];
