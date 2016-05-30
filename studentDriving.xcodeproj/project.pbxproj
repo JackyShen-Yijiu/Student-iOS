@@ -1093,7 +1093,6 @@
 		D97E1CE41CBD330900BBF87B /* JZMyWalletJiFenView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97E1CE31CBD330900BBF87B /* JZMyWalletJiFenView.m */; };
 		D97E1CE71CBD374B00BBF87B /* JZMyWalletXianJinView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97E1CE61CBD374B00BBF87B /* JZMyWalletXianJinView.m */; };
 		D97E1CEA1CBD3A1B00BBF87B /* JZMyWalletDuiHuanJuanCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D97E1CE91CBD3A1B00BBF87B /* JZMyWalletDuiHuanJuanCell.m */; };
-		D97E1CEC1CBD3A2A00BBF87B /* JZMyWalletDuiHuanJuanCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E1CEB1CBD3A2A00BBF87B /* JZMyWalletDuiHuanJuanCell.xib */; };
 		D97E1CEE1CBD3AFD00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D97E1CED1CBD3AFD00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.xib */; };
 		D97E1CF11CBD3B1A00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97E1CF01CBD3B1A00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.m */; };
 		D97E1CF41CBD458400BBF87B /* JZMyWalletDuiHuanJuanView.m in Sources */ = {isa = PBXBuildFile; fileRef = D97E1CF31CBD458400BBF87B /* JZMyWalletDuiHuanJuanView.m */; };
@@ -3208,7 +3207,6 @@
 		D97E1CE61CBD374B00BBF87B /* JZMyWalletXianJinView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletXianJinView.m; sourceTree = "<group>"; };
 		D97E1CE81CBD3A1B00BBF87B /* JZMyWalletDuiHuanJuanCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletDuiHuanJuanCell.h; sourceTree = "<group>"; };
 		D97E1CE91CBD3A1B00BBF87B /* JZMyWalletDuiHuanJuanCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletDuiHuanJuanCell.m; sourceTree = "<group>"; };
-		D97E1CEB1CBD3A2A00BBF87B /* JZMyWalletDuiHuanJuanCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZMyWalletDuiHuanJuanCell.xib; sourceTree = "<group>"; };
 		D97E1CED1CBD3AFD00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JZMyWalletDuiHuanJuanHeaderView.xib; sourceTree = "<group>"; };
 		D97E1CEF1CBD3B1A00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JZMyWalletDuiHuanJuanHeaderView.h; sourceTree = "<group>"; };
 		D97E1CF01CBD3B1A00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JZMyWalletDuiHuanJuanHeaderView.m; sourceTree = "<group>"; };
@@ -7510,7 +7508,6 @@
 				D97E1CED1CBD3AFD00BBF87B /* JZMyWalletDuiHuanJuanHeaderView.xib */,
 				D97E1CE81CBD3A1B00BBF87B /* JZMyWalletDuiHuanJuanCell.h */,
 				D97E1CE91CBD3A1B00BBF87B /* JZMyWalletDuiHuanJuanCell.m */,
-				D97E1CEB1CBD3A2A00BBF87B /* JZMyWalletDuiHuanJuanCell.xib */,
 			);
 			name = DuiHuanJuanView;
 			sourceTree = "<group>";
@@ -7598,7 +7595,6 @@
 				B251E4BA1C8E849500E6613A /* chatBar_more_photo@2x.png in Resources */,
 				B251E4911C8E849500E6613A /* chatBar_face.png in Resources */,
 				B251E4C41C8E849500E6613A /* chat_receiver_audio_playing003.png in Resources */,
-				D97E1CEC1CBD3A2A00BBF87B /* JZMyWalletDuiHuanJuanCell.xib in Resources */,
 				B251E4631C8E849500E6613A /* VoiceSearchFeedback014.png in Resources */,
 				B251E4B81C8E849500E6613A /* chatBar_more_locationSelected@2x.png in Resources */,
 				B251E4A01C8E849500E6613A /* chatBar_recordBg@2x.png in Resources */,

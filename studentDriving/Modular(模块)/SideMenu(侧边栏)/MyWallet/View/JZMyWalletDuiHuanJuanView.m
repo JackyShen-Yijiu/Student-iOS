@@ -57,9 +57,6 @@ static NSString *const knumber = @"create_qrcode";
     
     NSLog(@"self.duiHuanJuanDataArrM.count = %lu",self.duiHuanJuanDataArrM.count);
     
-    
-    
-    
     JZMyWalletDuiHuanJuanData *dataModel = self.duiHuanJuanDataArrM[section];
     
     if (dataModel.openGroup && self.selectHeaderViewTag == section)
@@ -81,7 +78,7 @@ static NSString *const knumber = @"create_qrcode";
     JZMyWalletDuiHuanJuanUseproductidlist *list = self.duihuanJuanListArrM[indexPath.row];
     
     duiHuanJuanCell.selectionStyle = UITableViewCellSelectionStyleNone;
-    duiHuanJuanCell.duiHuanJuanDetailLabel.text = list.productname;
+    [duiHuanJuanCell.duiHuanJuanDetailButton setTitle:list.productname forState:UIControlStateNormal];
     
     return duiHuanJuanCell;
 }
