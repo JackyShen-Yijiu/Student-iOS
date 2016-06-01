@@ -71,6 +71,7 @@
 		06B0081A1CA28D1C00C0AEE3 /* YBIntegralMallModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B008191CA28D1C00C0AEE3 /* YBIntegralMallModel.m */; };
 		06B303571C93DF240095BD39 /* JZComplaintView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06B303561C93DF240095BD39 /* JZComplaintView.m */; };
 		06BA27131CD1C96C008BE903 /* JZCompletedAppointmentListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 06BA27121CD1C96C008BE903 /* JZCompletedAppointmentListCell.m */; };
+		06CA824F1CF575DC00D8197A /* ggtkFile.zip in Resources */ = {isa = PBXBuildFile; fileRef = B22BADC01CC1EC4500455E1C /* ggtkFile.zip */; };
 		06F860981CBF2E70007348B9 /* JZSideMenuOrderListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F860971CBF2E70007348B9 /* JZSideMenuOrderListController.m */; };
 		06F8609B1CBF308B007348B9 /* JZSideMenuOrderToorBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F8609A1CBF308B007348B9 /* JZSideMenuOrderToorBarView.m */; };
 		06F8609E1CBF4D86007348B9 /* JZSideMenuOrderDiscountView.m in Sources */ = {isa = PBXBuildFile; fileRef = 06F8609D1CBF4D86007348B9 /* JZSideMenuOrderDiscountView.m */; };
@@ -7581,6 +7582,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06CA824F1CF575DC00D8197A /* ggtkFile.zip in Resources */,
 				B251E4E51C8E849500E6613A /* group_participant_addHL@2x.png in Resources */,
 				B251E48F1C8E849500E6613A /* imageDownloadFail@2x.png in Resources */,
 				B251E4D11C8E849500E6613A /* chat_sender_audio_playing_003@2x.png in Resources */,
