@@ -12,7 +12,7 @@
 #import <YYModel.h>
 #import "JZMyComplaintCell.h"
 
-static NSString *JZMyComplaintCellID = @"JZMyComplaintCell";
+static NSString *JZMyComplaintCellID = @"JZMyComplaintCellID";
 
 @interface JZMyComplaintListView ()<UITableViewDataSource,UITableViewDelegate>
 
@@ -33,9 +33,12 @@ static NSString *JZMyComplaintCellID = @"JZMyComplaintCell";
         
         self.delegate = self;
 
-        self.backgroundColor = JZ_BACKGROUNDCOLOR_COLOR;
+        self.backgroundColor = [UIColor whiteColor];
 //        self.showsVerticalScrollIndicator = NO;
 //        self.showsHorizontalScrollIndicator = NO;
+        
+        self.separatorStyle = NO;
+
 
         [self loadData];
         

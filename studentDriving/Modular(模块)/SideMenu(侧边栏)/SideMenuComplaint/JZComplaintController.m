@@ -158,15 +158,20 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     NSLog(@"移动移动---%@",NSStringFromCGPoint(self.contentScrollView.contentOffset));
-    if (self.contentScrollView.contentOffset.x == kLKSize.width) {
-        
-        [self clickHeaderRightBtn:self.headerView.headerRightBtn];
-        
-    }else {
+    
+    
+    if (self.contentScrollView.contentOffset.x == 0) {
         
         [self clickHeaderLeftBtn:self.headerView.headerLeftBtn];
         
     }
+    
+    if (self.contentScrollView.contentOffset.x == kLKSize.width) {
+        
+        [self clickHeaderRightBtn:self.headerView.headerRightBtn];
+        
+    }
+    
 }
 
 #pragma mark - 顶部按钮点击事件
@@ -219,7 +224,38 @@
     UIImage *photoImage = [info valueForKey:UIImagePickerControllerEditedImage];
     
     
-    
+    if (self.contentScrollView.contentOffset.x == 0)
+    {
+        
+        
+        if (!self.leftView.firstImageView.image) {
+            
+            self.rightView.firstImageView.hidden = YES;
+            self.rightView.secondImageView.hidden = YES;
+            self.leftView.firstImageView.hidden = NO;
+            
+            self.leftView.firstImageView.image = photoImage;
+            
+            self.leftView.firstImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
+            
+            self.leftView.addImageBtn.transform = CGAffineTransformMakeTranslation(90,0);
+            
+        }else {
+            
+            self.leftView.firstImageView.hidden = NO;
+            self.leftView.secondImageView.hidden = NO;
+            
+            self.leftView.secondImageView.image = photoImage;
+            
+            self.leftView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
+            
+            self.leftView.addImageBtn.hidden = YES;
+            
+        }
+        
+        
+    }
+
     if(self.contentScrollView.contentOffset.x == kLKSize.width)
     {
        
@@ -249,37 +285,9 @@
             
             
         }
-    }else {
-        
-        
-        if (!self.leftView.firstImageView.image) {
-            
-            self.rightView.firstImageView.hidden = YES;
-            self.rightView.secondImageView.hidden = YES;
-            
-            self.leftView.firstImageView.hidden = NO;
-            
-            self.leftView.firstImageView.image = photoImage;
-            
-            self.leftView.firstImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
-            
-            self.leftView.addImageBtn.transform = CGAffineTransformMakeTranslation(90,0);
-            
-        }else {
-            
-            self.leftView.firstImageView.hidden = NO;
-            self.leftView.secondImageView.hidden = NO;
-            
-            self.leftView.secondImageView.image = photoImage;
-            
-            self.leftView.secondImageView.frame = CGRectMake(self.leftView.complaintInfoText.origin.x+90, self.leftView.addImageBtn.frame.origin.y, self.leftView.addImageBtn.bounds.size.width, self.leftView.addImageBtn.bounds.size.height);
-            
-            self.leftView.addImageBtn.hidden = YES;
-            
-        }
-        
     }
-
+    
+   
     NSData *photeoData = UIImageJPEGRepresentation(photoImage, 0.5);
     
     __block NSData *gcdPhotoData = photeoData;
@@ -301,12 +309,9 @@
             
             if (resp) {
 //                NSLog(@"%@",key);
-                
-                
+
                 NSString *upImageUrl = [NSString stringWithFormat:kQiniuImageUrl,key];
-                
-            
-                
+
                 if(self.contentScrollView.contentOffset.x == kLKSize.width)
                 {
                     [self.picArrSchool addObject:upImageUrl];
@@ -393,7 +398,7 @@
     [parmDict setValue:@"1" forKey:@"feedbacktype"];
     // 投诉类型 0 匿名投诉 1 实名投诉
     
-    BOOL isNoName = self.leftView.anonymitySwitch;
+    BOOL isNoName = !self.leftView.anonymitySwitch.isOn;
     
     int anonymity = isNoName ? 1 : 0;
     
@@ -518,7 +523,7 @@
     [parmDict setValue:@"2" forKey:@"feedbacktype"];
     // 投诉类型 0 匿名投诉 1 实名投诉
     
-    BOOL isNoName = self.rightView.anonymitySwitch;
+    BOOL isNoName = !self.rightView.anonymitySwitch.isOn;
     
     int anonymity = isNoName ? 1 : 0;
     

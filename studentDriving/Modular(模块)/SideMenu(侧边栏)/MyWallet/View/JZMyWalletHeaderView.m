@@ -33,5 +33,23 @@
     return self;
 }
 
+-(void)setJiFenBtn:(UIButton *)jiFenBtn {
+    
+    _jiFenBtn = jiFenBtn;
+    
+    _jiFenBtn.titleLabel.textColor = _jiFenBtn.titleLabel.textColor;
+}
+-(void)setDuiHuanJuanBtn:(UIButton *)duiHuanJuanBtn {
+    _duiHuanJuanBtn = duiHuanJuanBtn;
+    _duiHuanJuanBtn.titleLabel.textColor = _duiHuanJuanBtn.titleLabel.textColor;
+}
+
+-(void)setXianJinBtn:(UIButton *)xianJinBtn {
+    _xianJinBtn = xianJinBtn;
+    
+    _xianJinBtn.titleLabel.textColor = _xianJinBtn.titleLabel.textColor;
+
+}
+
 
 @end

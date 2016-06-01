@@ -281,11 +281,15 @@
         self.jiFenHeaderView.goToOthersBtn.hidden = NO;
         self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = YES;
         self.jiFenHeaderView.goToOthersBtn.backgroundColor = RGBColor(219,68,55);
-        
+
         [self getJiFenData];
         [self clickJiFenBtn];
-        
-        [self.jiFenHeaderView.jiFenBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
+
+        self.jiFenHeaderView.jiFenBtn.titleLabel.textColor = RGBColor(219, 68, 55);
+
+        self.jiFenHeaderView.duiHuanJuanBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+        self.jiFenHeaderView.xianJinBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+
 
     }
     
@@ -301,7 +305,10 @@
         
         [self getDuiHuanJuanData];
         
-        [self.jiFenHeaderView.duiHuanJuanBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
+        self.jiFenHeaderView.duiHuanJuanBtn.titleLabel.textColor = RGBColor(219, 68, 55);
+        self.jiFenHeaderView.jiFenBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+        self.jiFenHeaderView.xianJinBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+
 
         
         
@@ -314,7 +321,10 @@
         
         self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = NO;
         self.jiFenHeaderView.goToOthersBtn.backgroundColor = RGBColor(206, 206, 206);
-        [self.jiFenHeaderView.xianJinBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
+        self.jiFenHeaderView.xianJinBtn.titleLabel.textColor = RGBColor(219, 68, 55);
+        self.jiFenHeaderView.jiFenBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+        self.jiFenHeaderView.duiHuanJuanBtn.titleLabel.textColor = RGBColor(110, 110, 110);
+
         
         [self clickXianJinBtn];
     }
@@ -566,6 +576,7 @@
     
     self.jiFenHeaderView.goToOthersBtn.userInteractionEnabled = YES;
     [self getJiFenData];
+    
     [self.jiFenHeaderView.jiFenBtn setTitleColor:RGBColor(219, 68, 55) forState:UIControlStateNormal];
     self.jiFenHeaderView.duiHuanJuanBtn.titleLabel.textColor = RGBColor(110, 110, 110);
     self.jiFenHeaderView.xianJinBtn.titleLabel.textColor = RGBColor(110, 110, 110);
