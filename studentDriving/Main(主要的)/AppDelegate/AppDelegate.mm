@@ -61,6 +61,7 @@
 @interface AppDelegate ()<UIAlertViewDelegate,WXApiDelegate>
 {
     BOOL isReceiveMessage;
+    NSString *name;
 }
 @end
 
